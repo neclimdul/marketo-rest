@@ -1,0 +1,11 @@
+# TriggerCampaignData
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**leads** | [**\MarketoRest\Lead\Model\InputLead[]**](InputLead.md) | List of leads for input | 
+**tokens** | [**\MarketoRest\Lead\Model\Token[]**](Token.md) | List of my tokens to replace during the run of the target campaign.  The tokens must be available in a parent program or folder to be replaced during the run | [optional] 
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+
