@@ -3,7 +3,7 @@
 namespace NecLimDul\MarketoRest;
 
 use GuzzleHttp\Client as GuzzleHttpClient;
-use GuzzleHttp\Handler\MockHandler;
+use GuzzleHttp\Handler\CurlHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Middleware;
 use NecLimDul\MarketoRest\Cache\StaticCachePool;
@@ -60,7 +60,7 @@ class ClientFactory
         $cacheHandler = new AccessTokenCacheHandler($cache);
 
         $stack = HandlerStack::create();
-        $stack->setHandler(new MockHandler());
+        $stack->setHandler(new CurlHandler());
         $stack->push(Middleware::mapRequest(new AddAuthorizationHeader(
             $oauthProvider,
             $tokenOptions,
