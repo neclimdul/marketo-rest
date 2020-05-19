@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Asset\Model;
+namespace NecLimDul\MarketoRest\Asset\Model;
 
 use \ArrayAccess;
-use \MarketoRest\Asset\ObjectSerializer;
+use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * CreateProgramRequest Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -58,11 +58,11 @@ class CreateProgramRequest implements ModelInterface, ArrayAccess
       */
     protected static $swaggerTypes = [
         'channel' => 'string',
-        'costs' => '\MarketoRest\Asset\Model\CostRequest[]',
+        'costs' => '\NecLimDul\MarketoRest\Asset\Model\CostRequest[]',
         'description' => 'string',
-        'folder' => '\MarketoRest\Asset\Model\Folder',
+        'folder' => '\NecLimDul\MarketoRest\Asset\Model\Folder',
         'name' => 'string',
-        'tags' => '\MarketoRest\Asset\Model\TagRequest[]',
+        'tags' => '\NecLimDul\MarketoRest\Asset\Model\TagRequest[]',
         'type' => 'string'
     ];
 
@@ -270,7 +270,7 @@ class CreateProgramRequest implements ModelInterface, ArrayAccess
     /**
      * Gets costs
      *
-     * @return \MarketoRest\Asset\Model\CostRequest[]
+     * @return \NecLimDul\MarketoRest\Asset\Model\CostRequest[]
      */
     public function getCosts()
     {
@@ -280,7 +280,7 @@ class CreateProgramRequest implements ModelInterface, ArrayAccess
     /**
      * Sets costs
      *
-     * @param \MarketoRest\Asset\Model\CostRequest[] $costs Lists of associated period costs
+     * @param \NecLimDul\MarketoRest\Asset\Model\CostRequest[] $costs Lists of associated period costs
      *
      * @return $this
      */
@@ -318,7 +318,7 @@ class CreateProgramRequest implements ModelInterface, ArrayAccess
     /**
      * Gets folder
      *
-     * @return \MarketoRest\Asset\Model\Folder
+     * @return \NecLimDul\MarketoRest\Asset\Model\Folder
      */
     public function getFolder()
     {
@@ -328,7 +328,7 @@ class CreateProgramRequest implements ModelInterface, ArrayAccess
     /**
      * Sets folder
      *
-     * @param \MarketoRest\Asset\Model\Folder $folder JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
+     * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
      *
      * @return $this
      */
@@ -366,7 +366,7 @@ class CreateProgramRequest implements ModelInterface, ArrayAccess
     /**
      * Gets tags
      *
-     * @return \MarketoRest\Asset\Model\TagRequest[]
+     * @return \NecLimDul\MarketoRest\Asset\Model\TagRequest[]
      */
     public function getTags()
     {
@@ -376,7 +376,7 @@ class CreateProgramRequest implements ModelInterface, ArrayAccess
     /**
      * Sets tags
      *
-     * @param \MarketoRest\Asset\Model\TagRequest[] $tags List of associated program tags
+     * @param \NecLimDul\MarketoRest\Asset\Model\TagRequest[] $tags List of associated program tags
      *
      * @return $this
      */

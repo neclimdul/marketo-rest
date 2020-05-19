@@ -1,4 +1,4 @@
-# MarketoRest\Lead\NamedAccountsApi
+# NecLimDul\MarketoRest\Lead\NamedAccountsApi
 
 All URIs are relative to *https://localhost:8080*
 
@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 
 # **deleteNamedAccountsUsingPOST**
-> \MarketoRest\Lead\Model\ResponseOfNamedAccount deleteNamedAccountsUsingPOST($delete_account_request)
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount deleteNamedAccountsUsingPOST($delete_account_request)
 
 Delete NamedAccounts
 
@@ -22,12 +22,12 @@ Deletes a list of namedaccount records from the target instance.  Input records 
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Lead\Api\NamedAccountsApi(
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\NamedAccountsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$delete_account_request = new \MarketoRest\Lead\Model\DeleteNamedAccountRequest(); // \MarketoRest\Lead\Model\DeleteNamedAccountRequest | deleteAccountRequest
+$delete_account_request = new \NecLimDul\MarketoRest\Lead\Model\DeleteNamedAccountRequest(); // \NecLimDul\MarketoRest\Lead\Model\DeleteNamedAccountRequest | deleteAccountRequest
 
 try {
     $result = $apiInstance->deleteNamedAccountsUsingPOST($delete_account_request);
@@ -42,11 +42,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **delete_account_request** | [**\MarketoRest\Lead\Model\DeleteNamedAccountRequest**](../Model/DeleteNamedAccountRequest.md)| deleteAccountRequest |
+ **delete_account_request** | [**\NecLimDul\MarketoRest\Lead\Model\DeleteNamedAccountRequest**](../Model/DeleteNamedAccountRequest.md)| deleteAccountRequest |
 
 ### Return type
 
-[**\MarketoRest\Lead\Model\ResponseOfNamedAccount**](../Model/ResponseOfNamedAccount.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount**](../Model/ResponseOfNamedAccount.md)
 
 ### Authorization
 
@@ -60,7 +60,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **describeUsingGET3**
-> \MarketoRest\Lead\Model\ResponseOfObjectMetaData describeUsingGET3()
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData describeUsingGET3()
 
 Describe NamedAccounts
 
@@ -71,7 +71,7 @@ Returns metadata about namedaccounts and the fields available for interaction vi
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Lead\Api\NamedAccountsApi(
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\NamedAccountsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -91,7 +91,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**\MarketoRest\Lead\Model\ResponseOfObjectMetaData**](../Model/ResponseOfObjectMetaData.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData**](../Model/ResponseOfObjectMetaData.md)
 
 ### Authorization
 
@@ -105,7 +105,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getNamedAccountsUsingGET**
-> \MarketoRest\Lead\Model\ResponseOfNamedAccount getNamedAccountsUsingGET($filter_type, $filter_values, $fields, $batch_size, $next_page_token)
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount getNamedAccountsUsingGET($filter_type, $filter_values, $fields, $batch_size, $next_page_token)
 
 Get NamedAccounts
 
@@ -116,7 +116,7 @@ Retrieves namedaccount records from the destination instance based on the submit
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Lead\Api\NamedAccountsApi(
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\NamedAccountsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -148,7 +148,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Lead\Model\ResponseOfNamedAccount**](../Model/ResponseOfNamedAccount.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount**](../Model/ResponseOfNamedAccount.md)
 
 ### Authorization
 
@@ -162,7 +162,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **syncNamedAccountsUsingPOST**
-> \MarketoRest\Lead\Model\ResponseOfNamedAccount syncNamedAccountsUsingPOST($sync_account_request)
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount syncNamedAccountsUsingPOST($sync_account_request)
 
 Sync NamedAccounts
 
@@ -173,12 +173,12 @@ Allows inserts, updates, or upserts of namedaccounts to the target instance.  Re
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Lead\Api\NamedAccountsApi(
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\NamedAccountsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$sync_account_request = new \MarketoRest\Lead\Model\SyncNamedAccountRequest(); // \MarketoRest\Lead\Model\SyncNamedAccountRequest | syncAccountRequest
+$sync_account_request = new \NecLimDul\MarketoRest\Lead\Model\SyncNamedAccountRequest(); // \NecLimDul\MarketoRest\Lead\Model\SyncNamedAccountRequest | syncAccountRequest
 
 try {
     $result = $apiInstance->syncNamedAccountsUsingPOST($sync_account_request);
@@ -193,11 +193,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **sync_account_request** | [**\MarketoRest\Lead\Model\SyncNamedAccountRequest**](../Model/SyncNamedAccountRequest.md)| syncAccountRequest |
+ **sync_account_request** | [**\NecLimDul\MarketoRest\Lead\Model\SyncNamedAccountRequest**](../Model/SyncNamedAccountRequest.md)| syncAccountRequest |
 
 ### Return type
 
-[**\MarketoRest\Lead\Model\ResponseOfNamedAccount**](../Model/ResponseOfNamedAccount.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount**](../Model/ResponseOfNamedAccount.md)
 
 ### Authorization
 

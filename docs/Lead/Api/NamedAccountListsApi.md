@@ -1,4 +1,4 @@
-# MarketoRest\Lead\NamedAccountListsApi
+# NecLimDul\MarketoRest\Lead\NamedAccountListsApi
 
 All URIs are relative to *https://localhost:8080*
 
@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 
 # **addNamedAccountListMembersUsingPOST**
-> \MarketoRest\Lead\Model\ResponseOfNamedAccount addNamedAccountListMembersUsingPOST($id, $add_named_account_list_member_request)
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount addNamedAccountListMembersUsingPOST($id, $add_named_account_list_member_request)
 
 Add Named Account List Members
 
@@ -24,13 +24,13 @@ Adds named account records to a named account list.  Required Permissions: Read-
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Lead\Api\NamedAccountListsApi(
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\NamedAccountListsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $id = "id_example"; // string | Id of target named account list
-$add_named_account_list_member_request = new \MarketoRest\Lead\Model\AddNamedAccountListMemberRequest(); // \MarketoRest\Lead\Model\AddNamedAccountListMemberRequest | addNamedAccountListMemberRequest
+$add_named_account_list_member_request = new \NecLimDul\MarketoRest\Lead\Model\AddNamedAccountListMemberRequest(); // \NecLimDul\MarketoRest\Lead\Model\AddNamedAccountListMemberRequest | addNamedAccountListMemberRequest
 
 try {
     $result = $apiInstance->addNamedAccountListMembersUsingPOST($id, $add_named_account_list_member_request);
@@ -46,11 +46,11 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **string**| Id of target named account list |
- **add_named_account_list_member_request** | [**\MarketoRest\Lead\Model\AddNamedAccountListMemberRequest**](../Model/AddNamedAccountListMemberRequest.md)| addNamedAccountListMemberRequest |
+ **add_named_account_list_member_request** | [**\NecLimDul\MarketoRest\Lead\Model\AddNamedAccountListMemberRequest**](../Model/AddNamedAccountListMemberRequest.md)| addNamedAccountListMemberRequest |
 
 ### Return type
 
-[**\MarketoRest\Lead\Model\ResponseOfNamedAccount**](../Model/ResponseOfNamedAccount.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount**](../Model/ResponseOfNamedAccount.md)
 
 ### Authorization
 
@@ -64,7 +64,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **deleteNamedAccountListsUsingPOST**
-> \MarketoRest\Lead\Model\ResponseOfNamedAccountList deleteNamedAccountListsUsingPOST($delete_named_account_list_request)
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccountList deleteNamedAccountListsUsingPOST($delete_named_account_list_request)
 
 Delete Named Account Lists
 
@@ -75,12 +75,12 @@ Delete named account lists by dedupe fields, or by id field.  Required Permissio
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Lead\Api\NamedAccountListsApi(
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\NamedAccountListsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$delete_named_account_list_request = new \MarketoRest\Lead\Model\DeleteNamedAccountListRequest(); // \MarketoRest\Lead\Model\DeleteNamedAccountListRequest | deleteNamedAccountListRequest
+$delete_named_account_list_request = new \NecLimDul\MarketoRest\Lead\Model\DeleteNamedAccountListRequest(); // \NecLimDul\MarketoRest\Lead\Model\DeleteNamedAccountListRequest | deleteNamedAccountListRequest
 
 try {
     $result = $apiInstance->deleteNamedAccountListsUsingPOST($delete_named_account_list_request);
@@ -95,11 +95,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **delete_named_account_list_request** | [**\MarketoRest\Lead\Model\DeleteNamedAccountListRequest**](../Model/DeleteNamedAccountListRequest.md)| deleteNamedAccountListRequest |
+ **delete_named_account_list_request** | [**\NecLimDul\MarketoRest\Lead\Model\DeleteNamedAccountListRequest**](../Model/DeleteNamedAccountListRequest.md)| deleteNamedAccountListRequest |
 
 ### Return type
 
-[**\MarketoRest\Lead\Model\ResponseOfNamedAccountList**](../Model/ResponseOfNamedAccountList.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccountList**](../Model/ResponseOfNamedAccountList.md)
 
 ### Authorization
 
@@ -113,7 +113,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getNamedAccountListMembersUsingGET**
-> \MarketoRest\Lead\Model\ResponseOfNamedAccount getNamedAccountListMembersUsingGET($id, $fields, $batch_size, $next_page_token)
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount getNamedAccountListMembersUsingGET($id, $fields, $batch_size, $next_page_token)
 
 Get Named Account List Members
 
@@ -124,7 +124,7 @@ Retrieves the named accounts which are members of the given list.  Required Perm
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Lead\Api\NamedAccountListsApi(
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\NamedAccountListsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -154,7 +154,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Lead\Model\ResponseOfNamedAccount**](../Model/ResponseOfNamedAccount.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount**](../Model/ResponseOfNamedAccount.md)
 
 ### Authorization
 
@@ -168,7 +168,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getNamedAccountListsUsingGET**
-> \MarketoRest\Lead\Model\ResponseOfNamedAccountList getNamedAccountListsUsingGET($filter_type, $filter_values, $batch_size, $next_page_token)
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccountList getNamedAccountListsUsingGET($filter_type, $filter_values, $batch_size, $next_page_token)
 
 Get Named Account Lists
 
@@ -179,7 +179,7 @@ Retrieves a list of named account list records based on the filter type and valu
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Lead\Api\NamedAccountListsApi(
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\NamedAccountListsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -209,7 +209,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Lead\Model\ResponseOfNamedAccountList**](../Model/ResponseOfNamedAccountList.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccountList**](../Model/ResponseOfNamedAccountList.md)
 
 ### Authorization
 
@@ -223,7 +223,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **removeNamedAccountListMembersUsingPOST**
-> \MarketoRest\Lead\Model\ResponseOfNamedAccount removeNamedAccountListMembersUsingPOST($id, $remove_named_account_list_member_request)
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount removeNamedAccountListMembersUsingPOST($id, $remove_named_account_list_member_request)
 
 Remove Named Account List Members
 
@@ -234,13 +234,13 @@ Removes named account members from a named account list.  Required Permissions: 
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Lead\Api\NamedAccountListsApi(
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\NamedAccountListsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $id = "id_example"; // string | Id of target named account list
-$remove_named_account_list_member_request = new \MarketoRest\Lead\Model\RemoveNamedAccountListMemberRequest(); // \MarketoRest\Lead\Model\RemoveNamedAccountListMemberRequest | removeNamedAccountListMemberRequest
+$remove_named_account_list_member_request = new \NecLimDul\MarketoRest\Lead\Model\RemoveNamedAccountListMemberRequest(); // \NecLimDul\MarketoRest\Lead\Model\RemoveNamedAccountListMemberRequest | removeNamedAccountListMemberRequest
 
 try {
     $result = $apiInstance->removeNamedAccountListMembersUsingPOST($id, $remove_named_account_list_member_request);
@@ -256,11 +256,11 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **string**| Id of target named account list |
- **remove_named_account_list_member_request** | [**\MarketoRest\Lead\Model\RemoveNamedAccountListMemberRequest**](../Model/RemoveNamedAccountListMemberRequest.md)| removeNamedAccountListMemberRequest |
+ **remove_named_account_list_member_request** | [**\NecLimDul\MarketoRest\Lead\Model\RemoveNamedAccountListMemberRequest**](../Model/RemoveNamedAccountListMemberRequest.md)| removeNamedAccountListMemberRequest |
 
 ### Return type
 
-[**\MarketoRest\Lead\Model\ResponseOfNamedAccount**](../Model/ResponseOfNamedAccount.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount**](../Model/ResponseOfNamedAccount.md)
 
 ### Authorization
 
@@ -274,7 +274,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **syncNamedAccountListsUsingPOST**
-> \MarketoRest\Lead\Model\ResponseOfNamedAccountList syncNamedAccountListsUsingPOST($sync_named_account_list_request)
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccountList syncNamedAccountListsUsingPOST($sync_named_account_list_request)
 
 Sync Named Account Lists
 
@@ -285,12 +285,12 @@ Creates and/or updates named account list records.  Required Permissions: Read-W
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Lead\Api\NamedAccountListsApi(
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\NamedAccountListsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$sync_named_account_list_request = new \MarketoRest\Lead\Model\SyncNamedAccountListRequest(); // \MarketoRest\Lead\Model\SyncNamedAccountListRequest | syncNamedAccountListRequest
+$sync_named_account_list_request = new \NecLimDul\MarketoRest\Lead\Model\SyncNamedAccountListRequest(); // \NecLimDul\MarketoRest\Lead\Model\SyncNamedAccountListRequest | syncNamedAccountListRequest
 
 try {
     $result = $apiInstance->syncNamedAccountListsUsingPOST($sync_named_account_list_request);
@@ -305,11 +305,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **sync_named_account_list_request** | [**\MarketoRest\Lead\Model\SyncNamedAccountListRequest**](../Model/SyncNamedAccountListRequest.md)| syncNamedAccountListRequest |
+ **sync_named_account_list_request** | [**\NecLimDul\MarketoRest\Lead\Model\SyncNamedAccountListRequest**](../Model/SyncNamedAccountListRequest.md)| syncNamedAccountListRequest |
 
 ### Return type
 
-[**\MarketoRest\Lead\Model\ResponseOfNamedAccountList**](../Model/ResponseOfNamedAccountList.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccountList**](../Model/ResponseOfNamedAccountList.md)
 
 ### Authorization
 

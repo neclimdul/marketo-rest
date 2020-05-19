@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Lead\Model;
+namespace NecLimDul\MarketoRest\Lead\Model;
 
 use \ArrayAccess;
-use \MarketoRest\Lead\ObjectSerializer;
+use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * ScheduleCampaignData Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -59,7 +59,7 @@ class ScheduleCampaignData implements ModelInterface, ArrayAccess
     protected static $swaggerTypes = [
         'clone_to_program_name' => 'string',
         'run_at' => '\DateTime',
-        'tokens' => '\MarketoRest\Lead\Model\Token[]'
+        'tokens' => '\NecLimDul\MarketoRest\Lead\Model\Token[]'
     ];
 
     /**
@@ -267,7 +267,7 @@ class ScheduleCampaignData implements ModelInterface, ArrayAccess
     /**
      * Gets tokens
      *
-     * @return \MarketoRest\Lead\Model\Token[]
+     * @return \NecLimDul\MarketoRest\Lead\Model\Token[]
      */
     public function getTokens()
     {
@@ -277,7 +277,7 @@ class ScheduleCampaignData implements ModelInterface, ArrayAccess
     /**
      * Sets tokens
      *
-     * @param \MarketoRest\Lead\Model\Token[] $tokens List of my tokens to replace during the run of the target campaign.  The tokens must be available in a parent program or folder to be replaced during the run
+     * @param \NecLimDul\MarketoRest\Lead\Model\Token[] $tokens List of my tokens to replace during the run of the target campaign.  The tokens must be available in a parent program or folder to be replaced during the run
      *
      * @return $this
      */

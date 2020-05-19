@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Lead\Model;
+namespace NecLimDul\MarketoRest\Lead\Model;
 
 use \ArrayAccess;
-use \MarketoRest\Lead\ObjectSerializer;
+use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * ObjectMetaData Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -62,10 +62,10 @@ class ObjectMetaData implements ModelInterface, ArrayAccess
         'description' => 'string',
         'display_name' => 'string',
         'plural_name' => 'string',
-        'fields' => '\MarketoRest\Lead\Model\ObjectField[]',
+        'fields' => '\NecLimDul\MarketoRest\Lead\Model\ObjectField[]',
         'id_field' => 'string',
         'api_name' => 'string',
-        'relationships' => '\MarketoRest\Lead\Model\ObjectRelation[]',
+        'relationships' => '\NecLimDul\MarketoRest\Lead\Model\ObjectRelation[]',
         'searchable_fields' => 'string[][]',
         'updated_at' => '\DateTime',
         'state' => 'string',
@@ -483,7 +483,7 @@ class ObjectMetaData implements ModelInterface, ArrayAccess
     /**
      * Gets fields
      *
-     * @return \MarketoRest\Lead\Model\ObjectField[]
+     * @return \NecLimDul\MarketoRest\Lead\Model\ObjectField[]
      */
     public function getFields()
     {
@@ -493,7 +493,7 @@ class ObjectMetaData implements ModelInterface, ArrayAccess
     /**
      * Sets fields
      *
-     * @param \MarketoRest\Lead\Model\ObjectField[] $fields List of fields available on the object type
+     * @param \NecLimDul\MarketoRest\Lead\Model\ObjectField[] $fields List of fields available on the object type
      *
      * @return $this
      */
@@ -555,7 +555,7 @@ class ObjectMetaData implements ModelInterface, ArrayAccess
     /**
      * Gets relationships
      *
-     * @return \MarketoRest\Lead\Model\ObjectRelation[]
+     * @return \NecLimDul\MarketoRest\Lead\Model\ObjectRelation[]
      */
     public function getRelationships()
     {
@@ -565,7 +565,7 @@ class ObjectMetaData implements ModelInterface, ArrayAccess
     /**
      * Sets relationships
      *
-     * @param \MarketoRest\Lead\Model\ObjectRelation[] $relationships List of relationships which the object has
+     * @param \NecLimDul\MarketoRest\Lead\Model\ObjectRelation[] $relationships List of relationships which the object has
      *
      * @return $this
      */

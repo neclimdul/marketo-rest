@@ -1,4 +1,4 @@
-# MarketoRest\Asset\FileContentsApi
+# NecLimDul\MarketoRest\Asset\FileContentsApi
 
 All URIs are relative to *https://localhost:8080*
 
@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 
 # **updateContentUsingPOST**
-> \MarketoRest\Asset\Model\ResponseOfFileResponse updateContentUsingPOST($id, $request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse updateContentUsingPOST($id, $request)
 
 Update File Content
 
@@ -19,13 +19,13 @@ Replaces the current content of the file with the included payload.  Required Pe
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\FileContentsApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\FileContentsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $id = 56; // int | Id for file in database
-$request = new \MarketoRest\Asset\Model\UpdateFileContentRequest(); // \MarketoRest\Asset\Model\UpdateFileContentRequest | request
+$request = new \NecLimDul\MarketoRest\Asset\Model\UpdateFileContentRequest(); // \NecLimDul\MarketoRest\Asset\Model\UpdateFileContentRequest | request
 
 try {
     $result = $apiInstance->updateContentUsingPOST($id, $request);
@@ -41,11 +41,11 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| Id for file in database |
- **request** | [**\MarketoRest\Asset\Model\UpdateFileContentRequest**](../Model/UpdateFileContentRequest.md)| request |
+ **request** | [**\NecLimDul\MarketoRest\Asset\Model\UpdateFileContentRequest**](../Model/UpdateFileContentRequest.md)| request |
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfFileResponse**](../Model/ResponseOfFileResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse**](../Model/ResponseOfFileResponse.md)
 
 ### Authorization
 

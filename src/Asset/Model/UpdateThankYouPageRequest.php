@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Asset\Model;
+namespace NecLimDul\MarketoRest\Asset\Model;
 
 use \ArrayAccess;
-use \MarketoRest\Asset\ObjectSerializer;
+use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * UpdateThankYouPageRequest Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -57,7 +57,7 @@ class UpdateThankYouPageRequest implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'thankyou' => '\MarketoRest\Asset\Model\ThankYouPageRequest[]'
+        'thankyou' => '\NecLimDul\MarketoRest\Asset\Model\ThankYouPageRequest[]'
     ];
 
     /**
@@ -207,7 +207,7 @@ class UpdateThankYouPageRequest implements ModelInterface, ArrayAccess
     /**
      * Gets thankyou
      *
-     * @return \MarketoRest\Asset\Model\ThankYouPageRequest[]
+     * @return \NecLimDul\MarketoRest\Asset\Model\ThankYouPageRequest[]
      */
     public function getThankyou()
     {
@@ -217,7 +217,7 @@ class UpdateThankYouPageRequest implements ModelInterface, ArrayAccess
     /**
      * Sets thankyou
      *
-     * @param \MarketoRest\Asset\Model\ThankYouPageRequest[] $thankyou JSON array of followup rules
+     * @param \NecLimDul\MarketoRest\Asset\Model\ThankYouPageRequest[] $thankyou JSON array of followup rules
      *
      * @return $this
      */

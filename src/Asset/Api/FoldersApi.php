@@ -4,7 +4,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -26,7 +26,7 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Asset\Api;
+namespace NecLimDul\MarketoRest\Asset\Api;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -34,16 +34,16 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
-use MarketoRest\Asset\ApiException;
-use MarketoRest\Asset\Configuration;
-use MarketoRest\Asset\HeaderSelector;
-use MarketoRest\Asset\ObjectSerializer;
+use NecLimDul\MarketoRest\Asset\ApiException;
+use NecLimDul\MarketoRest\Asset\Configuration;
+use NecLimDul\MarketoRest\Asset\HeaderSelector;
+use NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * FoldersApi Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -92,11 +92,11 @@ class FoldersApi
      *
      * Create Folder
      *
-     * @param  \MarketoRest\Asset\Model\CreateFolderRequest $create_folder_request createFolderRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CreateFolderRequest $create_folder_request createFolderRequest (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfFolderResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse
      */
     public function createFolderUsingPOST($create_folder_request)
     {
@@ -109,15 +109,15 @@ class FoldersApi
      *
      * Create Folder
      *
-     * @param  \MarketoRest\Asset\Model\CreateFolderRequest $create_folder_request createFolderRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CreateFolderRequest $create_folder_request createFolderRequest (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfFolderResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function createFolderUsingPOSTWithHttpInfo($create_folder_request)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfFolderResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse';
         $request = $this->createFolderUsingPOSTRequest($create_folder_request);
 
         try {
@@ -169,7 +169,7 @@ class FoldersApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfFolderResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -184,7 +184,7 @@ class FoldersApi
      *
      * Create Folder
      *
-     * @param  \MarketoRest\Asset\Model\CreateFolderRequest $create_folder_request createFolderRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CreateFolderRequest $create_folder_request createFolderRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -204,14 +204,14 @@ class FoldersApi
      *
      * Create Folder
      *
-     * @param  \MarketoRest\Asset\Model\CreateFolderRequest $create_folder_request createFolderRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CreateFolderRequest $create_folder_request createFolderRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function createFolderUsingPOSTAsyncWithHttpInfo($create_folder_request)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfFolderResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse';
         $request = $this->createFolderUsingPOSTRequest($create_folder_request);
 
         return $this->client
@@ -254,7 +254,7 @@ class FoldersApi
     /**
      * Create request for operation 'createFolderUsingPOST'
      *
-     * @param  \MarketoRest\Asset\Model\CreateFolderRequest $create_folder_request createFolderRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CreateFolderRequest $create_folder_request createFolderRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -359,9 +359,9 @@ class FoldersApi
      * @param  int $id Id of the folder to delete (required)
      * @param  string $type type (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfIdResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse
      */
     public function deleteFolderUsingPOST($id, $type)
     {
@@ -377,13 +377,13 @@ class FoldersApi
      * @param  int $id Id of the folder to delete (required)
      * @param  string $type type (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfIdResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function deleteFolderUsingPOSTWithHttpInfo($id, $type)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfIdResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse';
         $request = $this->deleteFolderUsingPOSTRequest($id, $type);
 
         try {
@@ -435,7 +435,7 @@ class FoldersApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfIdResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -479,7 +479,7 @@ class FoldersApi
      */
     public function deleteFolderUsingPOSTAsyncWithHttpInfo($id, $type)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfIdResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse';
         $request = $this->deleteFolderUsingPOSTRequest($id, $type);
 
         return $this->client
@@ -643,9 +643,9 @@ class FoldersApi
      * @param  int $id Id of the folder to retrieve (required)
      * @param  string $type Type of folder.  &#39;Folder&#39; or &#39;Program&#39; (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfFolderResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse
      */
     public function getFolderByIdUsingGET($id, $type)
     {
@@ -661,13 +661,13 @@ class FoldersApi
      * @param  int $id Id of the folder to retrieve (required)
      * @param  string $type Type of folder.  &#39;Folder&#39; or &#39;Program&#39; (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfFolderResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function getFolderByIdUsingGETWithHttpInfo($id, $type)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfFolderResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse';
         $request = $this->getFolderByIdUsingGETRequest($id, $type);
 
         try {
@@ -719,7 +719,7 @@ class FoldersApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfFolderResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -763,7 +763,7 @@ class FoldersApi
      */
     public function getFolderByIdUsingGETAsyncWithHttpInfo($id, $type)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfFolderResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse';
         $request = $this->getFolderByIdUsingGETRequest($id, $type);
 
         return $this->client
@@ -929,9 +929,9 @@ class FoldersApi
      * @param  string $root Parent folder reference (optional)
      * @param  string $work_space Name of the workspace (optional)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfFolderResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse
      */
     public function getFolderByNameUsingGET($name, $type = null, $root = null, $work_space = null)
     {
@@ -949,13 +949,13 @@ class FoldersApi
      * @param  string $root Parent folder reference (optional)
      * @param  string $work_space Name of the workspace (optional)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfFolderResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function getFolderByNameUsingGETWithHttpInfo($name, $type = null, $root = null, $work_space = null)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfFolderResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse';
         $request = $this->getFolderByNameUsingGETRequest($name, $type, $root, $work_space);
 
         try {
@@ -1007,7 +1007,7 @@ class FoldersApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfFolderResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1055,7 +1055,7 @@ class FoldersApi
      */
     public function getFolderByNameUsingGETAsyncWithHttpInfo($name, $type = null, $root = null, $work_space = null)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfFolderResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse';
         $request = $this->getFolderByNameUsingGETRequest($name, $type, $root, $work_space);
 
         return $this->client
@@ -1221,9 +1221,9 @@ class FoldersApi
      * @param  int $max_return Maximum number of channels to return.  Max 200, default 20 (optional)
      * @param  int $offset Integer offset for paging (optional)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfFolderContentResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderContentResponse
      */
     public function getFolderContentUsingGET($id, $type, $max_return = null, $offset = null)
     {
@@ -1241,13 +1241,13 @@ class FoldersApi
      * @param  int $max_return Maximum number of channels to return.  Max 200, default 20 (optional)
      * @param  int $offset Integer offset for paging (optional)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfFolderContentResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderContentResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function getFolderContentUsingGETWithHttpInfo($id, $type, $max_return = null, $offset = null)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfFolderContentResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderContentResponse';
         $request = $this->getFolderContentUsingGETRequest($id, $type, $max_return, $offset);
 
         try {
@@ -1299,7 +1299,7 @@ class FoldersApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfFolderContentResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderContentResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1347,7 +1347,7 @@ class FoldersApi
      */
     public function getFolderContentUsingGETAsyncWithHttpInfo($id, $type, $max_return = null, $offset = null)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfFolderContentResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderContentResponse';
         $request = $this->getFolderContentUsingGETRequest($id, $type, $max_return, $offset);
 
         return $this->client
@@ -1524,9 +1524,9 @@ class FoldersApi
      * @param  int $offset Integer offset for paging.  Default 0 (optional)
      * @param  string $work_space Name of the workspace (optional)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfFolderResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse
      */
     public function getFolderUsingGET($root = null, $max_depth = null, $max_return = null, $offset = null, $work_space = null)
     {
@@ -1545,13 +1545,13 @@ class FoldersApi
      * @param  int $offset Integer offset for paging.  Default 0 (optional)
      * @param  string $work_space Name of the workspace (optional)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfFolderResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function getFolderUsingGETWithHttpInfo($root = null, $max_depth = null, $max_return = null, $offset = null, $work_space = null)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfFolderResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse';
         $request = $this->getFolderUsingGETRequest($root, $max_depth, $max_return, $offset, $work_space);
 
         try {
@@ -1603,7 +1603,7 @@ class FoldersApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfFolderResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1653,7 +1653,7 @@ class FoldersApi
      */
     public function getFolderUsingGETAsyncWithHttpInfo($root = null, $max_depth = null, $max_return = null, $offset = null, $work_space = null)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfFolderResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse';
         $request = $this->getFolderUsingGETRequest($root, $max_depth, $max_return, $offset, $work_space);
 
         return $this->client
@@ -1814,11 +1814,11 @@ class FoldersApi
      * Update Folder Metadata
      *
      * @param  int $id Id of the folder to update (required)
-     * @param  \MarketoRest\Asset\Model\UpdateFolderRequest $update_folder_request updateFolderRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateFolderRequest $update_folder_request updateFolderRequest (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfFolderResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse
      */
     public function updateFolderUsingPOST($id, $update_folder_request)
     {
@@ -1832,15 +1832,15 @@ class FoldersApi
      * Update Folder Metadata
      *
      * @param  int $id Id of the folder to update (required)
-     * @param  \MarketoRest\Asset\Model\UpdateFolderRequest $update_folder_request updateFolderRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateFolderRequest $update_folder_request updateFolderRequest (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfFolderResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function updateFolderUsingPOSTWithHttpInfo($id, $update_folder_request)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfFolderResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse';
         $request = $this->updateFolderUsingPOSTRequest($id, $update_folder_request);
 
         try {
@@ -1892,7 +1892,7 @@ class FoldersApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfFolderResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1908,7 +1908,7 @@ class FoldersApi
      * Update Folder Metadata
      *
      * @param  int $id Id of the folder to update (required)
-     * @param  \MarketoRest\Asset\Model\UpdateFolderRequest $update_folder_request updateFolderRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateFolderRequest $update_folder_request updateFolderRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1929,14 +1929,14 @@ class FoldersApi
      * Update Folder Metadata
      *
      * @param  int $id Id of the folder to update (required)
-     * @param  \MarketoRest\Asset\Model\UpdateFolderRequest $update_folder_request updateFolderRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateFolderRequest $update_folder_request updateFolderRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function updateFolderUsingPOSTAsyncWithHttpInfo($id, $update_folder_request)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfFolderResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse';
         $request = $this->updateFolderUsingPOSTRequest($id, $update_folder_request);
 
         return $this->client
@@ -1980,7 +1980,7 @@ class FoldersApi
      * Create request for operation 'updateFolderUsingPOST'
      *
      * @param  int $id Id of the folder to update (required)
-     * @param  \MarketoRest\Asset\Model\UpdateFolderRequest $update_folder_request updateFolderRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateFolderRequest $update_folder_request updateFolderRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request

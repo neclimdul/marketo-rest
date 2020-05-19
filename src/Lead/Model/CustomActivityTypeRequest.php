@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Lead\Model;
+namespace NecLimDul\MarketoRest\Lead\Model;
 
 use \ArrayAccess;
-use \MarketoRest\Lead\ObjectSerializer;
+use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * CustomActivityTypeRequest Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -61,7 +61,7 @@ class CustomActivityTypeRequest implements ModelInterface, ArrayAccess
         'description' => 'string',
         'filter_name' => 'string',
         'name' => 'string',
-        'primary_attribute' => '\MarketoRest\Lead\Model\CustomActivityTypeAttribute',
+        'primary_attribute' => '\NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttribute',
         'trigger_name' => 'string'
     ];
 
@@ -348,7 +348,7 @@ class CustomActivityTypeRequest implements ModelInterface, ArrayAccess
     /**
      * Gets primary_attribute
      *
-     * @return \MarketoRest\Lead\Model\CustomActivityTypeAttribute
+     * @return \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttribute
      */
     public function getPrimaryAttribute()
     {
@@ -358,7 +358,7 @@ class CustomActivityTypeRequest implements ModelInterface, ArrayAccess
     /**
      * Sets primary_attribute
      *
-     * @param \MarketoRest\Lead\Model\CustomActivityTypeAttribute $primary_attribute Primary attribute of the activity type
+     * @param \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttribute $primary_attribute Primary attribute of the activity type
      *
      * @return $this
      */

@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Lead\Model;
+namespace NecLimDul\MarketoRest\Lead\Model;
 
 use \ArrayAccess;
-use \MarketoRest\Lead\ObjectSerializer;
+use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * LeadAttribute Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -61,8 +61,8 @@ class LeadAttribute implements ModelInterface, ArrayAccess
         'display_name' => 'string',
         'id' => 'int',
         'length' => 'int',
-        'rest' => '\MarketoRest\Lead\Model\LeadMapAttribute',
-        'soap' => '\MarketoRest\Lead\Model\LeadMapAttribute'
+        'rest' => '\NecLimDul\MarketoRest\Lead\Model\LeadMapAttribute',
+        'soap' => '\NecLimDul\MarketoRest\Lead\Model\LeadMapAttribute'
     ];
 
     /**
@@ -342,7 +342,7 @@ class LeadAttribute implements ModelInterface, ArrayAccess
     /**
      * Gets rest
      *
-     * @return \MarketoRest\Lead\Model\LeadMapAttribute
+     * @return \NecLimDul\MarketoRest\Lead\Model\LeadMapAttribute
      */
     public function getRest()
     {
@@ -352,7 +352,7 @@ class LeadAttribute implements ModelInterface, ArrayAccess
     /**
      * Sets rest
      *
-     * @param \MarketoRest\Lead\Model\LeadMapAttribute $rest Description of REST API usage attributes
+     * @param \NecLimDul\MarketoRest\Lead\Model\LeadMapAttribute $rest Description of REST API usage attributes
      *
      * @return $this
      */
@@ -366,7 +366,7 @@ class LeadAttribute implements ModelInterface, ArrayAccess
     /**
      * Gets soap
      *
-     * @return \MarketoRest\Lead\Model\LeadMapAttribute
+     * @return \NecLimDul\MarketoRest\Lead\Model\LeadMapAttribute
      */
     public function getSoap()
     {
@@ -376,7 +376,7 @@ class LeadAttribute implements ModelInterface, ArrayAccess
     /**
      * Sets soap
      *
-     * @param \MarketoRest\Lead\Model\LeadMapAttribute $soap Description of SOAP API usage attributes
+     * @param \NecLimDul\MarketoRest\Lead\Model\LeadMapAttribute $soap Description of SOAP API usage attributes
      *
      * @return $this
      */

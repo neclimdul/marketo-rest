@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Asset\Model;
+namespace NecLimDul\MarketoRest\Asset\Model;
 
 use \ArrayAccess;
-use \MarketoRest\Asset\ObjectSerializer;
+use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * VisibilityRuleRequest Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -59,7 +59,7 @@ class VisibilityRuleRequest implements ModelInterface, ArrayAccess
     protected static $swaggerTypes = [
         'alt_label' => 'string',
         'operator' => 'string',
-        'pick_list_values' => '\MarketoRest\Asset\Model\PickListDTO[]',
+        'pick_list_values' => '\NecLimDul\MarketoRest\Asset\Model\PickListDTO[]',
         'subject_field' => 'string',
         'values' => 'string[]'
     ];
@@ -364,7 +364,7 @@ class VisibilityRuleRequest implements ModelInterface, ArrayAccess
     /**
      * Gets pick_list_values
      *
-     * @return \MarketoRest\Asset\Model\PickListDTO[]
+     * @return \NecLimDul\MarketoRest\Asset\Model\PickListDTO[]
      */
     public function getPickListValues()
     {
@@ -374,7 +374,7 @@ class VisibilityRuleRequest implements ModelInterface, ArrayAccess
     /**
      * Sets pick_list_values
      *
-     * @param \MarketoRest\Asset\Model\PickListDTO[] $pick_list_values Alternative label to display when rules are applied.
+     * @param \NecLimDul\MarketoRest\Asset\Model\PickListDTO[] $pick_list_values Alternative label to display when rules are applied.
      *
      * @return $this
      */

@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Asset\Model;
+namespace NecLimDul\MarketoRest\Asset\Model;
 
 use \ArrayAccess;
-use \MarketoRest\Asset\ObjectSerializer;
+use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * LpFormFieldResponse Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -75,7 +75,7 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess
         'row_number' => 'int',
         'text' => 'string',
         'validation_message' => 'object',
-        'visibility_rules' => '\MarketoRest\Asset\Model\FormFieldVisibilityRuleResponse'
+        'visibility_rules' => '\NecLimDul\MarketoRest\Asset\Model\FormFieldVisibilityRuleResponse'
     ];
 
     /**
@@ -747,7 +747,7 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess
     /**
      * Gets visibility_rules
      *
-     * @return \MarketoRest\Asset\Model\FormFieldVisibilityRuleResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\FormFieldVisibilityRuleResponse
      */
     public function getVisibilityRules()
     {
@@ -757,7 +757,7 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess
     /**
      * Sets visibility_rules
      *
-     * @param \MarketoRest\Asset\Model\FormFieldVisibilityRuleResponse $visibility_rules visibility_rules
+     * @param \NecLimDul\MarketoRest\Asset\Model\FormFieldVisibilityRuleResponse $visibility_rules visibility_rules
      *
      * @return $this
      */

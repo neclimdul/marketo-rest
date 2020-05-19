@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Asset\Model;
+namespace NecLimDul\MarketoRest\Asset\Model;
 
 use \ArrayAccess;
-use \MarketoRest\Asset\ObjectSerializer;
+use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * UpdateFormMetaDataRequest Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -61,7 +61,7 @@ class UpdateFormMetaDataRequest implements ModelInterface, ArrayAccess
         'description' => 'string',
         'font_family' => 'string',
         'font_size' => 'string',
-        'known_visitor' => '\MarketoRest\Asset\Model\FormKnownVisitorDTO',
+        'known_visitor' => '\NecLimDul\MarketoRest\Asset\Model\FormKnownVisitorDTO',
         'label_position' => 'string',
         'language' => 'string',
         'locale' => 'string',
@@ -363,7 +363,7 @@ class UpdateFormMetaDataRequest implements ModelInterface, ArrayAccess
     /**
      * Gets known_visitor
      *
-     * @return \MarketoRest\Asset\Model\FormKnownVisitorDTO
+     * @return \NecLimDul\MarketoRest\Asset\Model\FormKnownVisitorDTO
      */
     public function getKnownVisitor()
     {
@@ -373,7 +373,7 @@ class UpdateFormMetaDataRequest implements ModelInterface, ArrayAccess
     /**
      * Sets known_visitor
      *
-     * @param \MarketoRest\Asset\Model\FormKnownVisitorDTO $known_visitor Known visitor behavior for the form
+     * @param \NecLimDul\MarketoRest\Asset\Model\FormKnownVisitorDTO $known_visitor Known visitor behavior for the form
      *
      * @return $this
      */

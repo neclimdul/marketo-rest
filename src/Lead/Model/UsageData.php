@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Lead\Model;
+namespace NecLimDul\MarketoRest\Lead\Model;
 
 use \ArrayAccess;
-use \MarketoRest\Lead\ObjectSerializer;
+use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * UsageData Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -59,9 +59,9 @@ class UsageData implements ModelInterface, ArrayAccess
     protected static $swaggerTypes = [
         'count' => 'int',
         'date' => '\DateTime',
-        'errors' => '\MarketoRest\Lead\Model\ErrorCount[]',
+        'errors' => '\NecLimDul\MarketoRest\Lead\Model\ErrorCount[]',
         'total' => 'int',
-        'users' => '\MarketoRest\Lead\Model\UserCount[]'
+        'users' => '\NecLimDul\MarketoRest\Lead\Model\UserCount[]'
     ];
 
     /**
@@ -282,7 +282,7 @@ class UsageData implements ModelInterface, ArrayAccess
     /**
      * Gets errors
      *
-     * @return \MarketoRest\Lead\Model\ErrorCount[]
+     * @return \NecLimDul\MarketoRest\Lead\Model\ErrorCount[]
      */
     public function getErrors()
     {
@@ -292,7 +292,7 @@ class UsageData implements ModelInterface, ArrayAccess
     /**
      * Sets errors
      *
-     * @param \MarketoRest\Lead\Model\ErrorCount[] $errors Counts for individual error codes
+     * @param \NecLimDul\MarketoRest\Lead\Model\ErrorCount[] $errors Counts for individual error codes
      *
      * @return $this
      */
@@ -330,7 +330,7 @@ class UsageData implements ModelInterface, ArrayAccess
     /**
      * Gets users
      *
-     * @return \MarketoRest\Lead\Model\UserCount[]
+     * @return \NecLimDul\MarketoRest\Lead\Model\UserCount[]
      */
     public function getUsers()
     {
@@ -340,7 +340,7 @@ class UsageData implements ModelInterface, ArrayAccess
     /**
      * Sets users
      *
-     * @param \MarketoRest\Lead\Model\UserCount[] $users Counts for individual users
+     * @param \NecLimDul\MarketoRest\Lead\Model\UserCount[] $users Counts for individual users
      *
      * @return $this
      */

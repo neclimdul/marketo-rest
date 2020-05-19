@@ -4,7 +4,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -26,7 +26,7 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Asset\Api;
+namespace NecLimDul\MarketoRest\Asset\Api;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -34,16 +34,16 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
-use MarketoRest\Asset\ApiException;
-use MarketoRest\Asset\Configuration;
-use MarketoRest\Asset\HeaderSelector;
-use MarketoRest\Asset\ObjectSerializer;
+use NecLimDul\MarketoRest\Asset\ApiException;
+use NecLimDul\MarketoRest\Asset\Configuration;
+use NecLimDul\MarketoRest\Asset\HeaderSelector;
+use NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * SnippetsApi Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -94,9 +94,9 @@ class SnippetsApi
      *
      * @param  int $id id (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfSnippetResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse
      */
     public function approveSnippetUsingPOST($id)
     {
@@ -111,13 +111,13 @@ class SnippetsApi
      *
      * @param  int $id id (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfSnippetResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function approveSnippetUsingPOSTWithHttpInfo($id)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfSnippetResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse';
         $request = $this->approveSnippetUsingPOSTRequest($id);
 
         try {
@@ -169,7 +169,7 @@ class SnippetsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfSnippetResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -211,7 +211,7 @@ class SnippetsApi
      */
     public function approveSnippetUsingPOSTAsyncWithHttpInfo($id)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfSnippetResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse';
         $request = $this->approveSnippetUsingPOSTRequest($id);
 
         return $this->client
@@ -362,11 +362,11 @@ class SnippetsApi
      * Clone Snippet
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\CloneSnippetRequest $clone_snippet_request cloneSnippetRequest (optional)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CloneSnippetRequest $clone_snippet_request cloneSnippetRequest (optional)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfSnippetResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse
      */
     public function cloneSnippetUsingPOST($id, $clone_snippet_request = null)
     {
@@ -380,15 +380,15 @@ class SnippetsApi
      * Clone Snippet
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\CloneSnippetRequest $clone_snippet_request cloneSnippetRequest (optional)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CloneSnippetRequest $clone_snippet_request cloneSnippetRequest (optional)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfSnippetResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function cloneSnippetUsingPOSTWithHttpInfo($id, $clone_snippet_request = null)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfSnippetResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse';
         $request = $this->cloneSnippetUsingPOSTRequest($id, $clone_snippet_request);
 
         try {
@@ -440,7 +440,7 @@ class SnippetsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfSnippetResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -456,7 +456,7 @@ class SnippetsApi
      * Clone Snippet
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\CloneSnippetRequest $clone_snippet_request cloneSnippetRequest (optional)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CloneSnippetRequest $clone_snippet_request cloneSnippetRequest (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -477,14 +477,14 @@ class SnippetsApi
      * Clone Snippet
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\CloneSnippetRequest $clone_snippet_request cloneSnippetRequest (optional)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CloneSnippetRequest $clone_snippet_request cloneSnippetRequest (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function cloneSnippetUsingPOSTAsyncWithHttpInfo($id, $clone_snippet_request = null)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfSnippetResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse';
         $request = $this->cloneSnippetUsingPOSTRequest($id, $clone_snippet_request);
 
         return $this->client
@@ -528,7 +528,7 @@ class SnippetsApi
      * Create request for operation 'cloneSnippetUsingPOST'
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\CloneSnippetRequest $clone_snippet_request cloneSnippetRequest (optional)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CloneSnippetRequest $clone_snippet_request cloneSnippetRequest (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -638,11 +638,11 @@ class SnippetsApi
      *
      * Create Snippet
      *
-     * @param  \MarketoRest\Asset\Model\CreateSnippetRequest $create_snippet_request createSnippetRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CreateSnippetRequest $create_snippet_request createSnippetRequest (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfSnippetResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse
      */
     public function createSnippetUsingPOST($create_snippet_request)
     {
@@ -655,15 +655,15 @@ class SnippetsApi
      *
      * Create Snippet
      *
-     * @param  \MarketoRest\Asset\Model\CreateSnippetRequest $create_snippet_request createSnippetRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CreateSnippetRequest $create_snippet_request createSnippetRequest (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfSnippetResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function createSnippetUsingPOSTWithHttpInfo($create_snippet_request)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfSnippetResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse';
         $request = $this->createSnippetUsingPOSTRequest($create_snippet_request);
 
         try {
@@ -715,7 +715,7 @@ class SnippetsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfSnippetResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -730,7 +730,7 @@ class SnippetsApi
      *
      * Create Snippet
      *
-     * @param  \MarketoRest\Asset\Model\CreateSnippetRequest $create_snippet_request createSnippetRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CreateSnippetRequest $create_snippet_request createSnippetRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -750,14 +750,14 @@ class SnippetsApi
      *
      * Create Snippet
      *
-     * @param  \MarketoRest\Asset\Model\CreateSnippetRequest $create_snippet_request createSnippetRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CreateSnippetRequest $create_snippet_request createSnippetRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function createSnippetUsingPOSTAsyncWithHttpInfo($create_snippet_request)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfSnippetResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse';
         $request = $this->createSnippetUsingPOSTRequest($create_snippet_request);
 
         return $this->client
@@ -800,7 +800,7 @@ class SnippetsApi
     /**
      * Create request for operation 'createSnippetUsingPOST'
      *
-     * @param  \MarketoRest\Asset\Model\CreateSnippetRequest $create_snippet_request createSnippetRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CreateSnippetRequest $create_snippet_request createSnippetRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -904,9 +904,9 @@ class SnippetsApi
      *
      * @param  int $id id (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfIdResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse
      */
     public function deleteSnippetUsingPOST($id)
     {
@@ -921,13 +921,13 @@ class SnippetsApi
      *
      * @param  int $id id (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfIdResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function deleteSnippetUsingPOSTWithHttpInfo($id)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfIdResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse';
         $request = $this->deleteSnippetUsingPOSTRequest($id);
 
         try {
@@ -979,7 +979,7 @@ class SnippetsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfIdResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1021,7 +1021,7 @@ class SnippetsApi
      */
     public function deleteSnippetUsingPOSTAsyncWithHttpInfo($id)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfIdResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse';
         $request = $this->deleteSnippetUsingPOSTRequest($id);
 
         return $this->client
@@ -1173,9 +1173,9 @@ class SnippetsApi
      *
      * @param  int $id id (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfIdResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse
      */
     public function discardSnippetUsingPOST($id)
     {
@@ -1190,13 +1190,13 @@ class SnippetsApi
      *
      * @param  int $id id (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfIdResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function discardSnippetUsingPOSTWithHttpInfo($id)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfIdResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse';
         $request = $this->discardSnippetUsingPOSTRequest($id);
 
         try {
@@ -1248,7 +1248,7 @@ class SnippetsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfIdResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1290,7 +1290,7 @@ class SnippetsApi
      */
     public function discardSnippetUsingPOSTAsyncWithHttpInfo($id)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfIdResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse';
         $request = $this->discardSnippetUsingPOSTRequest($id);
 
         return $this->client
@@ -1443,9 +1443,9 @@ class SnippetsApi
      * @param  int $id id (required)
      * @param  string $status Status filter for draft or approved versions (optional)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ModelResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ModelResponse
      */
     public function getDynamicContentUsingGET($id, $status = null)
     {
@@ -1461,13 +1461,13 @@ class SnippetsApi
      * @param  int $id id (required)
      * @param  string $status Status filter for draft or approved versions (optional)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ModelResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ModelResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function getDynamicContentUsingGETWithHttpInfo($id, $status = null)
     {
-        $returnType = '\MarketoRest\Asset\Model\ModelResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ModelResponse';
         $request = $this->getDynamicContentUsingGETRequest($id, $status);
 
         try {
@@ -1519,7 +1519,7 @@ class SnippetsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ModelResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ModelResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1563,7 +1563,7 @@ class SnippetsApi
      */
     public function getDynamicContentUsingGETAsyncWithHttpInfo($id, $status = null)
     {
-        $returnType = '\MarketoRest\Asset\Model\ModelResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ModelResponse';
         $request = $this->getDynamicContentUsingGETRequest($id, $status);
 
         return $this->client
@@ -1721,9 +1721,9 @@ class SnippetsApi
      * @param  int $id id (required)
      * @param  string $status Status filter for draft or approved versions (optional)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfSnippetResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse
      */
     public function getSnippetByIdUsingGET($id, $status = null)
     {
@@ -1739,13 +1739,13 @@ class SnippetsApi
      * @param  int $id id (required)
      * @param  string $status Status filter for draft or approved versions (optional)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfSnippetResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function getSnippetByIdUsingGETWithHttpInfo($id, $status = null)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfSnippetResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse';
         $request = $this->getSnippetByIdUsingGETRequest($id, $status);
 
         try {
@@ -1797,7 +1797,7 @@ class SnippetsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfSnippetResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1841,7 +1841,7 @@ class SnippetsApi
      */
     public function getSnippetByIdUsingGETAsyncWithHttpInfo($id, $status = null)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfSnippetResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse';
         $request = $this->getSnippetByIdUsingGETRequest($id, $status);
 
         return $this->client
@@ -1999,9 +1999,9 @@ class SnippetsApi
      * @param  int $id id (required)
      * @param  string $status Status filter for draft or approved versions (optional)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfSnippetContentResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetContentResponse
      */
     public function getSnippetContentByIdUsingGET($id, $status = null)
     {
@@ -2017,13 +2017,13 @@ class SnippetsApi
      * @param  int $id id (required)
      * @param  string $status Status filter for draft or approved versions (optional)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfSnippetContentResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetContentResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function getSnippetContentByIdUsingGETWithHttpInfo($id, $status = null)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfSnippetContentResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetContentResponse';
         $request = $this->getSnippetContentByIdUsingGETRequest($id, $status);
 
         try {
@@ -2075,7 +2075,7 @@ class SnippetsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfSnippetContentResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetContentResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2119,7 +2119,7 @@ class SnippetsApi
      */
     public function getSnippetContentByIdUsingGETAsyncWithHttpInfo($id, $status = null)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfSnippetContentResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetContentResponse';
         $request = $this->getSnippetContentByIdUsingGETRequest($id, $status);
 
         return $this->client
@@ -2278,9 +2278,9 @@ class SnippetsApi
      * @param  int $max_return Maximum number of channels to return.  Max 200, default 20 (optional)
      * @param  int $offset Integer offset for paging (optional)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfSnippetResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse
      */
     public function getSnippetUsingGET($status = null, $max_return = null, $offset = null)
     {
@@ -2297,13 +2297,13 @@ class SnippetsApi
      * @param  int $max_return Maximum number of channels to return.  Max 200, default 20 (optional)
      * @param  int $offset Integer offset for paging (optional)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfSnippetResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function getSnippetUsingGETWithHttpInfo($status = null, $max_return = null, $offset = null)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfSnippetResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse';
         $request = $this->getSnippetUsingGETRequest($status, $max_return, $offset);
 
         try {
@@ -2355,7 +2355,7 @@ class SnippetsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfSnippetResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2401,7 +2401,7 @@ class SnippetsApi
      */
     public function getSnippetUsingGETAsyncWithHttpInfo($status = null, $max_return = null, $offset = null)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfSnippetResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse';
         $request = $this->getSnippetUsingGETRequest($status, $max_return, $offset);
 
         return $this->client
@@ -2553,9 +2553,9 @@ class SnippetsApi
      *
      * @param  int $id id (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfSnippetResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse
      */
     public function unapproveSnippetUsingPOST($id)
     {
@@ -2570,13 +2570,13 @@ class SnippetsApi
      *
      * @param  int $id id (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfSnippetResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function unapproveSnippetUsingPOSTWithHttpInfo($id)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfSnippetResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse';
         $request = $this->unapproveSnippetUsingPOSTRequest($id);
 
         try {
@@ -2628,7 +2628,7 @@ class SnippetsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfSnippetResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2670,7 +2670,7 @@ class SnippetsApi
      */
     public function unapproveSnippetUsingPOSTAsyncWithHttpInfo($id)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfSnippetResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse';
         $request = $this->unapproveSnippetUsingPOSTRequest($id);
 
         return $this->client
@@ -2824,9 +2824,9 @@ class SnippetsApi
      * @param  string $content Content of the snippet (required)
      * @param  string $type Type of snippet content (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfIdResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse
      */
     public function updateContentUsingPOST1($id, $content, $type)
     {
@@ -2843,13 +2843,13 @@ class SnippetsApi
      * @param  string $content Content of the snippet (required)
      * @param  string $type Type of snippet content (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfIdResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function updateContentUsingPOST1WithHttpInfo($id, $content, $type)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfIdResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse';
         $request = $this->updateContentUsingPOST1Request($id, $content, $type);
 
         try {
@@ -2901,7 +2901,7 @@ class SnippetsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfIdResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2947,7 +2947,7 @@ class SnippetsApi
      */
     public function updateContentUsingPOST1AsyncWithHttpInfo($id, $content, $type)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfIdResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse';
         $request = $this->updateContentUsingPOST1Request($id, $content, $type);
 
         return $this->client
@@ -3121,11 +3121,11 @@ class SnippetsApi
      *
      * @param  int $id id (required)
      * @param  int $segment_id segmentId (required)
-     * @param  \MarketoRest\Asset\Model\UpdateSnippetDynamicContentRequest $request request (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateSnippetDynamicContentRequest $request request (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfIdResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse
      */
     public function updateDynamicContentUsingPOST($id, $segment_id, $request)
     {
@@ -3140,15 +3140,15 @@ class SnippetsApi
      *
      * @param  int $id id (required)
      * @param  int $segment_id segmentId (required)
-     * @param  \MarketoRest\Asset\Model\UpdateSnippetDynamicContentRequest $request request (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateSnippetDynamicContentRequest $request request (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfIdResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function updateDynamicContentUsingPOSTWithHttpInfo($id, $segment_id, $request)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfIdResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse';
         $request = $this->updateDynamicContentUsingPOSTRequest($id, $segment_id, $request);
 
         try {
@@ -3200,7 +3200,7 @@ class SnippetsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfIdResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3217,7 +3217,7 @@ class SnippetsApi
      *
      * @param  int $id id (required)
      * @param  int $segment_id segmentId (required)
-     * @param  \MarketoRest\Asset\Model\UpdateSnippetDynamicContentRequest $request request (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateSnippetDynamicContentRequest $request request (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -3239,14 +3239,14 @@ class SnippetsApi
      *
      * @param  int $id id (required)
      * @param  int $segment_id segmentId (required)
-     * @param  \MarketoRest\Asset\Model\UpdateSnippetDynamicContentRequest $request request (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateSnippetDynamicContentRequest $request request (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function updateDynamicContentUsingPOSTAsyncWithHttpInfo($id, $segment_id, $request)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfIdResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse';
         $request = $this->updateDynamicContentUsingPOSTRequest($id, $segment_id, $request);
 
         return $this->client
@@ -3291,7 +3291,7 @@ class SnippetsApi
      *
      * @param  int $id id (required)
      * @param  int $segment_id segmentId (required)
-     * @param  \MarketoRest\Asset\Model\UpdateSnippetDynamicContentRequest $request request (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateSnippetDynamicContentRequest $request request (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -3422,11 +3422,11 @@ class SnippetsApi
      * Update Snippet Metadata
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\UpdateSnippetRequest $update_snippet_request updateSnippetRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateSnippetRequest $update_snippet_request updateSnippetRequest (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfSnippetResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse
      */
     public function updateSnippetUsingPOST($id, $update_snippet_request)
     {
@@ -3440,15 +3440,15 @@ class SnippetsApi
      * Update Snippet Metadata
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\UpdateSnippetRequest $update_snippet_request updateSnippetRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateSnippetRequest $update_snippet_request updateSnippetRequest (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfSnippetResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function updateSnippetUsingPOSTWithHttpInfo($id, $update_snippet_request)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfSnippetResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse';
         $request = $this->updateSnippetUsingPOSTRequest($id, $update_snippet_request);
 
         try {
@@ -3500,7 +3500,7 @@ class SnippetsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfSnippetResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3516,7 +3516,7 @@ class SnippetsApi
      * Update Snippet Metadata
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\UpdateSnippetRequest $update_snippet_request updateSnippetRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateSnippetRequest $update_snippet_request updateSnippetRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -3537,14 +3537,14 @@ class SnippetsApi
      * Update Snippet Metadata
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\UpdateSnippetRequest $update_snippet_request updateSnippetRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateSnippetRequest $update_snippet_request updateSnippetRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function updateSnippetUsingPOSTAsyncWithHttpInfo($id, $update_snippet_request)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfSnippetResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse';
         $request = $this->updateSnippetUsingPOSTRequest($id, $update_snippet_request);
 
         return $this->client
@@ -3588,7 +3588,7 @@ class SnippetsApi
      * Create request for operation 'updateSnippetUsingPOST'
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\UpdateSnippetRequest $update_snippet_request updateSnippetRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateSnippetRequest $update_snippet_request updateSnippetRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request

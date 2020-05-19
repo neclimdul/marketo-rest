@@ -11,7 +11,7 @@ MakeSwagger() {
   # Use docker to run the swagger codegen tool.
   docker run --rm -v ${PWD}/tmp:/local/php swaggerapi/swagger-codegen-cli generate \
     -i ${1} -l php -o /local/php \
-    -DinvokerPackage=MarketoRest\\${2}
+    -DinvokerPackage=NecLimDul\\MarketoRest\\${2}
 
   sudo chown ${USER}: tmp -R
 

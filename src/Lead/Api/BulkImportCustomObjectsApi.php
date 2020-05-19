@@ -4,7 +4,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -26,7 +26,7 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Lead\Api;
+namespace NecLimDul\MarketoRest\Lead\Api;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -34,16 +34,16 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
-use MarketoRest\Lead\ApiException;
-use MarketoRest\Lead\Configuration;
-use MarketoRest\Lead\HeaderSelector;
-use MarketoRest\Lead\ObjectSerializer;
+use NecLimDul\MarketoRest\Lead\ApiException;
+use NecLimDul\MarketoRest\Lead\Configuration;
+use NecLimDul\MarketoRest\Lead\HeaderSelector;
+use NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * BulkImportCustomObjectsApi Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -95,9 +95,9 @@ class BulkImportCustomObjectsApi
      * @param  string $api_name API Name of the custom object for the import batch job. (required)
      * @param  int $batch_id Id of the import batch job. (required)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Lead\Model\ObservableOfInputStreamContent
+     * @return \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent
      */
     public function getImportCustomObjectFailuresUsingGET($api_name, $batch_id)
     {
@@ -113,13 +113,13 @@ class BulkImportCustomObjectsApi
      * @param  string $api_name API Name of the custom object for the import batch job. (required)
      * @param  int $batch_id Id of the import batch job. (required)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Lead\Model\ObservableOfInputStreamContent, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent, HTTP status code, HTTP response headers (array of strings)
      */
     public function getImportCustomObjectFailuresUsingGETWithHttpInfo($api_name, $batch_id)
     {
-        $returnType = '\MarketoRest\Lead\Model\ObservableOfInputStreamContent';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent';
         $request = $this->getImportCustomObjectFailuresUsingGETRequest($api_name, $batch_id);
 
         try {
@@ -171,7 +171,7 @@ class BulkImportCustomObjectsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Lead\Model\ObservableOfInputStreamContent',
+                        '\NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -215,7 +215,7 @@ class BulkImportCustomObjectsApi
      */
     public function getImportCustomObjectFailuresUsingGETAsyncWithHttpInfo($api_name, $batch_id)
     {
-        $returnType = '\MarketoRest\Lead\Model\ObservableOfInputStreamContent';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent';
         $request = $this->getImportCustomObjectFailuresUsingGETRequest($api_name, $batch_id);
 
         return $this->client
@@ -383,9 +383,9 @@ class BulkImportCustomObjectsApi
      * @param  string $api_name API Name of the custom object for the import batch job. (required)
      * @param  int $batch_id Id of the import batch job. (required)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Lead\Model\ResponseOfImportCustomObjectResponse
+     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportCustomObjectResponse
      */
     public function getImportCustomObjectStatusUsingGET($api_name, $batch_id)
     {
@@ -401,13 +401,13 @@ class BulkImportCustomObjectsApi
      * @param  string $api_name API Name of the custom object for the import batch job. (required)
      * @param  int $batch_id Id of the import batch job. (required)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Lead\Model\ResponseOfImportCustomObjectResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportCustomObjectResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function getImportCustomObjectStatusUsingGETWithHttpInfo($api_name, $batch_id)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfImportCustomObjectResponse';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfImportCustomObjectResponse';
         $request = $this->getImportCustomObjectStatusUsingGETRequest($api_name, $batch_id);
 
         try {
@@ -459,7 +459,7 @@ class BulkImportCustomObjectsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Lead\Model\ResponseOfImportCustomObjectResponse',
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfImportCustomObjectResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -503,7 +503,7 @@ class BulkImportCustomObjectsApi
      */
     public function getImportCustomObjectStatusUsingGETAsyncWithHttpInfo($api_name, $batch_id)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfImportCustomObjectResponse';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfImportCustomObjectResponse';
         $request = $this->getImportCustomObjectStatusUsingGETRequest($api_name, $batch_id);
 
         return $this->client
@@ -671,9 +671,9 @@ class BulkImportCustomObjectsApi
      * @param  string $api_name API Name of the custom object for the import batch job. (required)
      * @param  int $batch_id Id of the import batch job. (required)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Lead\Model\ObservableOfInputStreamContent
+     * @return \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent
      */
     public function getImportCustomObjectWarningsUsingGET($api_name, $batch_id)
     {
@@ -689,13 +689,13 @@ class BulkImportCustomObjectsApi
      * @param  string $api_name API Name of the custom object for the import batch job. (required)
      * @param  int $batch_id Id of the import batch job. (required)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Lead\Model\ObservableOfInputStreamContent, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent, HTTP status code, HTTP response headers (array of strings)
      */
     public function getImportCustomObjectWarningsUsingGETWithHttpInfo($api_name, $batch_id)
     {
-        $returnType = '\MarketoRest\Lead\Model\ObservableOfInputStreamContent';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent';
         $request = $this->getImportCustomObjectWarningsUsingGETRequest($api_name, $batch_id);
 
         try {
@@ -747,7 +747,7 @@ class BulkImportCustomObjectsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Lead\Model\ObservableOfInputStreamContent',
+                        '\NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -791,7 +791,7 @@ class BulkImportCustomObjectsApi
      */
     public function getImportCustomObjectWarningsUsingGETAsyncWithHttpInfo($api_name, $batch_id)
     {
-        $returnType = '\MarketoRest\Lead\Model\ObservableOfInputStreamContent';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent';
         $request = $this->getImportCustomObjectWarningsUsingGETRequest($api_name, $batch_id);
 
         return $this->client
@@ -960,9 +960,9 @@ class BulkImportCustomObjectsApi
      * @param  string $format Import file format. (required)
      * @param  \SplFileObject $file File containing the data records to import. (required)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Lead\Model\ResponseOfImportCustomObjectResponse
+     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportCustomObjectResponse
      */
     public function importCustomObjectUsingPOST($api_name, $format, $file)
     {
@@ -979,13 +979,13 @@ class BulkImportCustomObjectsApi
      * @param  string $format Import file format. (required)
      * @param  \SplFileObject $file File containing the data records to import. (required)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Lead\Model\ResponseOfImportCustomObjectResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportCustomObjectResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function importCustomObjectUsingPOSTWithHttpInfo($api_name, $format, $file)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfImportCustomObjectResponse';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfImportCustomObjectResponse';
         $request = $this->importCustomObjectUsingPOSTRequest($api_name, $format, $file);
 
         try {
@@ -1037,7 +1037,7 @@ class BulkImportCustomObjectsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Lead\Model\ResponseOfImportCustomObjectResponse',
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfImportCustomObjectResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1083,7 +1083,7 @@ class BulkImportCustomObjectsApi
      */
     public function importCustomObjectUsingPOSTAsyncWithHttpInfo($api_name, $format, $file)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfImportCustomObjectResponse';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfImportCustomObjectResponse';
         $request = $this->importCustomObjectUsingPOSTRequest($api_name, $format, $file);
 
         return $this->client

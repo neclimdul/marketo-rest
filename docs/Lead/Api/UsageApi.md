@@ -1,4 +1,4 @@
-# MarketoRest\Lead\UsageApi
+# NecLimDul\MarketoRest\Lead\UsageApi
 
 All URIs are relative to *https://localhost:8080*
 
@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 
 # **getDailyErrorsUsingGET**
-> \MarketoRest\Lead\Model\ResponseOfUsageData getDailyErrorsUsingGET()
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfUsageData getDailyErrorsUsingGET()
 
 Get Daily Errors
 
@@ -22,7 +22,7 @@ Retrieves a list of API users and a count of each error type they have encounter
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Lead\Api\UsageApi(
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\UsageApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -42,7 +42,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**\MarketoRest\Lead\Model\ResponseOfUsageData**](../Model/ResponseOfUsageData.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfUsageData**](../Model/ResponseOfUsageData.md)
 
 ### Authorization
 
@@ -56,7 +56,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getDailyUsageUsingGET**
-> \MarketoRest\Lead\Model\ResponseOfUsageData getDailyUsageUsingGET()
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfUsageData getDailyUsageUsingGET()
 
 Get Daily Usage
 
@@ -67,7 +67,7 @@ Returns a list of API users and the number of calls they have consumed for the d
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Lead\Api\UsageApi(
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\UsageApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -87,7 +87,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**\MarketoRest\Lead\Model\ResponseOfUsageData**](../Model/ResponseOfUsageData.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfUsageData**](../Model/ResponseOfUsageData.md)
 
 ### Authorization
 
@@ -101,7 +101,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getLast7DaysErrorsUsingGET**
-> \MarketoRest\Lead\Model\ResponseOfUsageData getLast7DaysErrorsUsingGET()
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfUsageData getLast7DaysErrorsUsingGET()
 
 Get Weekly Errors
 
@@ -112,7 +112,7 @@ Returns a list of API users and a count of each error type they have encountered
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Lead\Api\UsageApi(
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\UsageApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -132,7 +132,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**\MarketoRest\Lead\Model\ResponseOfUsageData**](../Model/ResponseOfUsageData.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfUsageData**](../Model/ResponseOfUsageData.md)
 
 ### Authorization
 
@@ -146,7 +146,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getLast7DaysUsageUsingGET**
-> \MarketoRest\Lead\Model\ResponseOfUsageData getLast7DaysUsageUsingGET()
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfUsageData getLast7DaysUsageUsingGET()
 
 Get Weekly Usage
 
@@ -157,7 +157,7 @@ Returns a list of API users and the number of calls they have consumed in the pa
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Lead\Api\UsageApi(
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\UsageApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -177,7 +177,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**\MarketoRest\Lead\Model\ResponseOfUsageData**](../Model/ResponseOfUsageData.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfUsageData**](../Model/ResponseOfUsageData.md)
 
 ### Authorization
 

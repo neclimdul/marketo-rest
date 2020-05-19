@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Asset\Model;
+namespace NecLimDul\MarketoRest\Asset\Model;
 
 use \ArrayAccess;
-use \MarketoRest\Asset\ObjectSerializer;
+use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * FormFieldVisibilityRequest Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -58,7 +58,7 @@ class FormFieldVisibilityRequest implements ModelInterface, ArrayAccess
       */
     protected static $swaggerTypes = [
         'rule_type' => 'string',
-        'rules' => '\MarketoRest\Asset\Model\VisibilityRuleRequest[]'
+        'rules' => '\NecLimDul\MarketoRest\Asset\Model\VisibilityRuleRequest[]'
     ];
 
     /**
@@ -277,7 +277,7 @@ class FormFieldVisibilityRequest implements ModelInterface, ArrayAccess
     /**
      * Gets rules
      *
-     * @return \MarketoRest\Asset\Model\VisibilityRuleRequest[]
+     * @return \NecLimDul\MarketoRest\Asset\Model\VisibilityRuleRequest[]
      */
     public function getRules()
     {
@@ -287,7 +287,7 @@ class FormFieldVisibilityRequest implements ModelInterface, ArrayAccess
     /**
      * Sets rules
      *
-     * @param \MarketoRest\Asset\Model\VisibilityRuleRequest[] $rules JSON Array of rules
+     * @param \NecLimDul\MarketoRest\Asset\Model\VisibilityRuleRequest[] $rules JSON Array of rules
      *
      * @return $this
      */

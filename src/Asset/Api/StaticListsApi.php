@@ -4,7 +4,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -26,7 +26,7 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Asset\Api;
+namespace NecLimDul\MarketoRest\Asset\Api;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -34,16 +34,16 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
-use MarketoRest\Asset\ApiException;
-use MarketoRest\Asset\Configuration;
-use MarketoRest\Asset\HeaderSelector;
-use MarketoRest\Asset\ObjectSerializer;
+use NecLimDul\MarketoRest\Asset\ApiException;
+use NecLimDul\MarketoRest\Asset\Configuration;
+use NecLimDul\MarketoRest\Asset\HeaderSelector;
+use NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * StaticListsApi Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -92,11 +92,11 @@ class StaticListsApi
      *
      * Create Static List
      *
-     * @param  \MarketoRest\Asset\Model\CreateStaticListRequest $create_static_list_request createStaticListRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CreateStaticListRequest $create_static_list_request createStaticListRequest (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfStaticListResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse
      */
     public function createStaticListUsingPOST($create_static_list_request)
     {
@@ -109,15 +109,15 @@ class StaticListsApi
      *
      * Create Static List
      *
-     * @param  \MarketoRest\Asset\Model\CreateStaticListRequest $create_static_list_request createStaticListRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CreateStaticListRequest $create_static_list_request createStaticListRequest (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfStaticListResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function createStaticListUsingPOSTWithHttpInfo($create_static_list_request)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfStaticListResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse';
         $request = $this->createStaticListUsingPOSTRequest($create_static_list_request);
 
         try {
@@ -169,7 +169,7 @@ class StaticListsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfStaticListResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -184,7 +184,7 @@ class StaticListsApi
      *
      * Create Static List
      *
-     * @param  \MarketoRest\Asset\Model\CreateStaticListRequest $create_static_list_request createStaticListRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CreateStaticListRequest $create_static_list_request createStaticListRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -204,14 +204,14 @@ class StaticListsApi
      *
      * Create Static List
      *
-     * @param  \MarketoRest\Asset\Model\CreateStaticListRequest $create_static_list_request createStaticListRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CreateStaticListRequest $create_static_list_request createStaticListRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function createStaticListUsingPOSTAsyncWithHttpInfo($create_static_list_request)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfStaticListResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse';
         $request = $this->createStaticListUsingPOSTRequest($create_static_list_request);
 
         return $this->client
@@ -254,7 +254,7 @@ class StaticListsApi
     /**
      * Create request for operation 'createStaticListUsingPOST'
      *
-     * @param  \MarketoRest\Asset\Model\CreateStaticListRequest $create_static_list_request createStaticListRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CreateStaticListRequest $create_static_list_request createStaticListRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -358,9 +358,9 @@ class StaticListsApi
      *
      * @param  int $id Id of the static list to delete (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfIdResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse
      */
     public function deleteStaticListByIdUsingPOST($id)
     {
@@ -375,13 +375,13 @@ class StaticListsApi
      *
      * @param  int $id Id of the static list to delete (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfIdResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function deleteStaticListByIdUsingPOSTWithHttpInfo($id)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfIdResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse';
         $request = $this->deleteStaticListByIdUsingPOSTRequest($id);
 
         try {
@@ -433,7 +433,7 @@ class StaticListsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfIdResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -475,7 +475,7 @@ class StaticListsApi
      */
     public function deleteStaticListByIdUsingPOSTAsyncWithHttpInfo($id)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfIdResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse';
         $request = $this->deleteStaticListByIdUsingPOSTRequest($id);
 
         return $this->client
@@ -627,9 +627,9 @@ class StaticListsApi
      *
      * @param  int $id Id of the static list to retrieve (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfStaticListResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse
      */
     public function getStaticListByIdUsingGET($id)
     {
@@ -644,13 +644,13 @@ class StaticListsApi
      *
      * @param  int $id Id of the static list to retrieve (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfStaticListResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function getStaticListByIdUsingGETWithHttpInfo($id)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfStaticListResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse';
         $request = $this->getStaticListByIdUsingGETRequest($id);
 
         try {
@@ -702,7 +702,7 @@ class StaticListsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfStaticListResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -744,7 +744,7 @@ class StaticListsApi
      */
     public function getStaticListByIdUsingGETAsyncWithHttpInfo($id)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfStaticListResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse';
         $request = $this->getStaticListByIdUsingGETRequest($id);
 
         return $this->client
@@ -896,9 +896,9 @@ class StaticListsApi
      *
      * @param  string $name Name of static list to retrieve (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfStaticListResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse
      */
     public function getStaticListByNameUsingGET($name)
     {
@@ -913,13 +913,13 @@ class StaticListsApi
      *
      * @param  string $name Name of static list to retrieve (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfStaticListResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function getStaticListByNameUsingGETWithHttpInfo($name)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfStaticListResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse';
         $request = $this->getStaticListByNameUsingGETRequest($name);
 
         try {
@@ -971,7 +971,7 @@ class StaticListsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfStaticListResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1013,7 +1013,7 @@ class StaticListsApi
      */
     public function getStaticListByNameUsingGETAsyncWithHttpInfo($name)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfStaticListResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse';
         $request = $this->getStaticListByNameUsingGETRequest($name);
 
         return $this->client
@@ -1165,9 +1165,9 @@ class StaticListsApi
      * @param  string $earliest_updated_at Exclude static lists prior to this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. (optional)
      * @param  string $latest_updated_at Exclude static lists after this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. (optional)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfStaticListResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse
      */
     public function getStaticListsUsingGET($folder = null, $offset = null, $max_return = null, $earliest_updated_at = null, $latest_updated_at = null)
     {
@@ -1186,13 +1186,13 @@ class StaticListsApi
      * @param  string $earliest_updated_at Exclude static lists prior to this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. (optional)
      * @param  string $latest_updated_at Exclude static lists after this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. (optional)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfStaticListResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function getStaticListsUsingGETWithHttpInfo($folder = null, $offset = null, $max_return = null, $earliest_updated_at = null, $latest_updated_at = null)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfStaticListResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse';
         $request = $this->getStaticListsUsingGETRequest($folder, $offset, $max_return, $earliest_updated_at, $latest_updated_at);
 
         try {
@@ -1244,7 +1244,7 @@ class StaticListsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfStaticListResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1294,7 +1294,7 @@ class StaticListsApi
      */
     public function getStaticListsUsingGETAsyncWithHttpInfo($folder = null, $offset = null, $max_return = null, $earliest_updated_at = null, $latest_updated_at = null)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfStaticListResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse';
         $request = $this->getStaticListsUsingGETRequest($folder, $offset, $max_return, $earliest_updated_at, $latest_updated_at);
 
         return $this->client
@@ -1455,11 +1455,11 @@ class StaticListsApi
      * Update Static List Metadata
      *
      * @param  int $id Id of static list to update (required)
-     * @param  \MarketoRest\Asset\Model\UpdateStaticListRequest $update_static_list_request updateStaticListRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateStaticListRequest $update_static_list_request updateStaticListRequest (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfStaticListResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse
      */
     public function updateStaticListUsingPOST($id, $update_static_list_request)
     {
@@ -1473,15 +1473,15 @@ class StaticListsApi
      * Update Static List Metadata
      *
      * @param  int $id Id of static list to update (required)
-     * @param  \MarketoRest\Asset\Model\UpdateStaticListRequest $update_static_list_request updateStaticListRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateStaticListRequest $update_static_list_request updateStaticListRequest (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfStaticListResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function updateStaticListUsingPOSTWithHttpInfo($id, $update_static_list_request)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfStaticListResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse';
         $request = $this->updateStaticListUsingPOSTRequest($id, $update_static_list_request);
 
         try {
@@ -1533,7 +1533,7 @@ class StaticListsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfStaticListResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1549,7 +1549,7 @@ class StaticListsApi
      * Update Static List Metadata
      *
      * @param  int $id Id of static list to update (required)
-     * @param  \MarketoRest\Asset\Model\UpdateStaticListRequest $update_static_list_request updateStaticListRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateStaticListRequest $update_static_list_request updateStaticListRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1570,14 +1570,14 @@ class StaticListsApi
      * Update Static List Metadata
      *
      * @param  int $id Id of static list to update (required)
-     * @param  \MarketoRest\Asset\Model\UpdateStaticListRequest $update_static_list_request updateStaticListRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateStaticListRequest $update_static_list_request updateStaticListRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function updateStaticListUsingPOSTAsyncWithHttpInfo($id, $update_static_list_request)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfStaticListResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse';
         $request = $this->updateStaticListUsingPOSTRequest($id, $update_static_list_request);
 
         return $this->client
@@ -1621,7 +1621,7 @@ class StaticListsApi
      * Create request for operation 'updateStaticListUsingPOST'
      *
      * @param  int $id Id of static list to update (required)
-     * @param  \MarketoRest\Asset\Model\UpdateStaticListRequest $update_static_list_request updateStaticListRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateStaticListRequest $update_static_list_request updateStaticListRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request

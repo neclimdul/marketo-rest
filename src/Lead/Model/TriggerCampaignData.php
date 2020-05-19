@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Lead\Model;
+namespace NecLimDul\MarketoRest\Lead\Model;
 
 use \ArrayAccess;
-use \MarketoRest\Lead\ObjectSerializer;
+use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * TriggerCampaignData Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -57,8 +57,8 @@ class TriggerCampaignData implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'leads' => '\MarketoRest\Lead\Model\InputLead[]',
-        'tokens' => '\MarketoRest\Lead\Model\Token[]'
+        'leads' => '\NecLimDul\MarketoRest\Lead\Model\InputLead[]',
+        'tokens' => '\NecLimDul\MarketoRest\Lead\Model\Token[]'
     ];
 
     /**
@@ -216,7 +216,7 @@ class TriggerCampaignData implements ModelInterface, ArrayAccess
     /**
      * Gets leads
      *
-     * @return \MarketoRest\Lead\Model\InputLead[]
+     * @return \NecLimDul\MarketoRest\Lead\Model\InputLead[]
      */
     public function getLeads()
     {
@@ -226,7 +226,7 @@ class TriggerCampaignData implements ModelInterface, ArrayAccess
     /**
      * Sets leads
      *
-     * @param \MarketoRest\Lead\Model\InputLead[] $leads List of leads for input
+     * @param \NecLimDul\MarketoRest\Lead\Model\InputLead[] $leads List of leads for input
      *
      * @return $this
      */
@@ -240,7 +240,7 @@ class TriggerCampaignData implements ModelInterface, ArrayAccess
     /**
      * Gets tokens
      *
-     * @return \MarketoRest\Lead\Model\Token[]
+     * @return \NecLimDul\MarketoRest\Lead\Model\Token[]
      */
     public function getTokens()
     {
@@ -250,7 +250,7 @@ class TriggerCampaignData implements ModelInterface, ArrayAccess
     /**
      * Sets tokens
      *
-     * @param \MarketoRest\Lead\Model\Token[] $tokens List of my tokens to replace during the run of the target campaign.  The tokens must be available in a parent program or folder to be replaced during the run
+     * @param \NecLimDul\MarketoRest\Lead\Model\Token[] $tokens List of my tokens to replace during the run of the target campaign.  The tokens must be available in a parent program or folder to be replaced during the run
      *
      * @return $this
      */

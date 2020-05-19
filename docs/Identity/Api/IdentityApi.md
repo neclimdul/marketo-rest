@@ -1,4 +1,4 @@
-# MarketoRest\Identity\IdentityApi
+# NecLimDul\MarketoRest\Identity\IdentityApi
 
 All URIs are relative to *https://localhost:8080*
 
@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 
 # **identityUsingGET**
-> \MarketoRest\Identity\Model\ResponseOfIdentity identityUsingGET($client_id, $client_secret, $grant_type, $partner_id)
+> \NecLimDul\MarketoRest\Identity\Model\ResponseOfIdentity identityUsingGET($client_id, $client_secret, $grant_type, $partner_id)
 
 Identity
 
@@ -19,7 +19,7 @@ Retrieve an access token from Marketo.  Calls to this endpoint are not counted t
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Identity\Api\IdentityApi(
+$apiInstance = new NecLimDul\MarketoRest\Identity\Api\IdentityApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -49,7 +49,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Identity\Model\ResponseOfIdentity**](../Model/ResponseOfIdentity.md)
+[**\NecLimDul\MarketoRest\Identity\Model\ResponseOfIdentity**](../Model/ResponseOfIdentity.md)
 
 ### Authorization
 

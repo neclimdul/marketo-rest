@@ -5,7 +5,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **alt_label** | **string** |  | [optional] 
 **operator** | **string** |  | [optional] 
-**picklist_filter_values** | [**\MarketoRest\Asset\Model\PickListDTO[]**](PickListDTO.md) |  | [optional] 
+**picklist_filter_values** | [**\NecLimDul\MarketoRest\Asset\Model\PickListDTO[]**](PickListDTO.md) |  | [optional] 
 **subject_field** | **string** |  | [optional] 
 **values** | **string[]** |  | [optional] 
 

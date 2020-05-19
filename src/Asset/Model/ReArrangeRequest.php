@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Asset\Model;
+namespace NecLimDul\MarketoRest\Asset\Model;
 
 use \ArrayAccess;
-use \MarketoRest\Asset\ObjectSerializer;
+use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * ReArrangeRequest Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -57,7 +57,7 @@ class ReArrangeRequest implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'positions' => '\MarketoRest\Asset\Model\UpdateFieldPosition[]'
+        'positions' => '\NecLimDul\MarketoRest\Asset\Model\UpdateFieldPosition[]'
     ];
 
     /**
@@ -207,7 +207,7 @@ class ReArrangeRequest implements ModelInterface, ArrayAccess
     /**
      * Gets positions
      *
-     * @return \MarketoRest\Asset\Model\UpdateFieldPosition[]
+     * @return \NecLimDul\MarketoRest\Asset\Model\UpdateFieldPosition[]
      */
     public function getPositions()
     {
@@ -217,7 +217,7 @@ class ReArrangeRequest implements ModelInterface, ArrayAccess
     /**
      * Sets positions
      *
-     * @param \MarketoRest\Asset\Model\UpdateFieldPosition[] $positions positions
+     * @param \NecLimDul\MarketoRest\Asset\Model\UpdateFieldPosition[] $positions positions
      *
      * @return $this
      */

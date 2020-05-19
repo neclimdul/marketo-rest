@@ -1,4 +1,4 @@
-# MarketoRest\Asset\ChannelsApi
+# NecLimDul\MarketoRest\Asset\ChannelsApi
 
 All URIs are relative to *https://localhost:8080*
 
@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 
 # **getAllChannelsUsingGET**
-> \MarketoRest\Asset\Model\ResponseOfChannelResponse getAllChannelsUsingGET($max_return, $offset)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfChannelResponse getAllChannelsUsingGET($max_return, $offset)
 
 Get Channels
 
@@ -20,7 +20,7 @@ Retrieves all channels. Required Permissions: Read-Only Assets, Read-Write Asset
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\ChannelsApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\ChannelsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -46,7 +46,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfChannelResponse**](../Model/ResponseOfChannelResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfChannelResponse**](../Model/ResponseOfChannelResponse.md)
 
 ### Authorization
 
@@ -60,7 +60,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getChannelByNameUsingGET**
-> \MarketoRest\Asset\Model\ResponseOfChannelResponse getChannelByNameUsingGET($name)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfChannelResponse getChannelByNameUsingGET($name)
 
 Get Channel by Name
 
@@ -71,7 +71,7 @@ Retrieves channels based on the provided name. Required Permissions: Read-Only A
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\ChannelsApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\ChannelsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -95,7 +95,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfChannelResponse**](../Model/ResponseOfChannelResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfChannelResponse**](../Model/ResponseOfChannelResponse.md)
 
 ### Authorization
 

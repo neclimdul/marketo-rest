@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Lead\Model;
+namespace NecLimDul\MarketoRest\Lead\Model;
 
 use \ArrayAccess;
-use \MarketoRest\Lead\ObjectSerializer;
+use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * ExportProgramMemberRequest Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -57,9 +57,9 @@ class ExportProgramMemberRequest implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'column_header_names' => '\MarketoRest\Lead\Model\ColumnHeaderNames',
+        'column_header_names' => '\NecLimDul\MarketoRest\Lead\Model\ColumnHeaderNames',
         'fields' => 'string[]',
-        'filter' => '\MarketoRest\Lead\Model\ExportProgramMemberFilter',
+        'filter' => '\NecLimDul\MarketoRest\Lead\Model\ExportProgramMemberFilter',
         'format' => 'string'
     ];
 
@@ -231,7 +231,7 @@ class ExportProgramMemberRequest implements ModelInterface, ArrayAccess
     /**
      * Gets column_header_names
      *
-     * @return \MarketoRest\Lead\Model\ColumnHeaderNames
+     * @return \NecLimDul\MarketoRest\Lead\Model\ColumnHeaderNames
      */
     public function getColumnHeaderNames()
     {
@@ -241,7 +241,7 @@ class ExportProgramMemberRequest implements ModelInterface, ArrayAccess
     /**
      * Sets column_header_names
      *
-     * @param \MarketoRest\Lead\Model\ColumnHeaderNames $column_header_names File header field names override (corresponds with REST API name)
+     * @param \NecLimDul\MarketoRest\Lead\Model\ColumnHeaderNames $column_header_names File header field names override (corresponds with REST API name)
      *
      * @return $this
      */
@@ -279,7 +279,7 @@ class ExportProgramMemberRequest implements ModelInterface, ArrayAccess
     /**
      * Gets filter
      *
-     * @return \MarketoRest\Lead\Model\ExportProgramMemberFilter
+     * @return \NecLimDul\MarketoRest\Lead\Model\ExportProgramMemberFilter
      */
     public function getFilter()
     {
@@ -289,7 +289,7 @@ class ExportProgramMemberRequest implements ModelInterface, ArrayAccess
     /**
      * Sets filter
      *
-     * @param \MarketoRest\Lead\Model\ExportProgramMemberFilter $filter Program member record selection criteria. Must be the following: \"programId\"
+     * @param \NecLimDul\MarketoRest\Lead\Model\ExportProgramMemberFilter $filter Program member record selection criteria. Must be the following: \"programId\"
      *
      * @return $this
      */

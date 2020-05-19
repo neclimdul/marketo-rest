@@ -1,4 +1,4 @@
-# MarketoRest\Asset\StaticListsApi
+# NecLimDul\MarketoRest\Asset\StaticListsApi
 
 All URIs are relative to *https://localhost:8080*
 
@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 
 # **createStaticListUsingPOST**
-> \MarketoRest\Asset\Model\ResponseOfStaticListResponse createStaticListUsingPOST($create_static_list_request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse createStaticListUsingPOST($create_static_list_request)
 
 Create Static List
 
@@ -24,12 +24,12 @@ Creates a new Static List.  Required Permissions: Read-Write Assets
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\StaticListsApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\StaticListsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$create_static_list_request = new \MarketoRest\Asset\Model\CreateStaticListRequest(); // \MarketoRest\Asset\Model\CreateStaticListRequest | createStaticListRequest
+$create_static_list_request = new \NecLimDul\MarketoRest\Asset\Model\CreateStaticListRequest(); // \NecLimDul\MarketoRest\Asset\Model\CreateStaticListRequest | createStaticListRequest
 
 try {
     $result = $apiInstance->createStaticListUsingPOST($create_static_list_request);
@@ -44,11 +44,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_static_list_request** | [**\MarketoRest\Asset\Model\CreateStaticListRequest**](../Model/CreateStaticListRequest.md)| createStaticListRequest |
+ **create_static_list_request** | [**\NecLimDul\MarketoRest\Asset\Model\CreateStaticListRequest**](../Model/CreateStaticListRequest.md)| createStaticListRequest |
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfStaticListResponse**](../Model/ResponseOfStaticListResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse**](../Model/ResponseOfStaticListResponse.md)
 
 ### Authorization
 
@@ -62,7 +62,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **deleteStaticListByIdUsingPOST**
-> \MarketoRest\Asset\Model\ResponseOfIdResponse deleteStaticListByIdUsingPOST($id)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse deleteStaticListByIdUsingPOST($id)
 
 Delete Static List
 
@@ -73,7 +73,7 @@ Deletes the designated Static List. Required Permissions: Read-Write Asset
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\StaticListsApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\StaticListsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -97,7 +97,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfIdResponse**](../Model/ResponseOfIdResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse**](../Model/ResponseOfIdResponse.md)
 
 ### Authorization
 
@@ -111,7 +111,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getStaticListByIdUsingGET**
-> \MarketoRest\Asset\Model\ResponseOfStaticListResponse getStaticListByIdUsingGET($id)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse getStaticListByIdUsingGET($id)
 
 Get Static List by Id
 
@@ -122,7 +122,7 @@ Retrieves a Static List record by its id. Required Permissions: Read-Asset or Re
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\StaticListsApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\StaticListsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -146,7 +146,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfStaticListResponse**](../Model/ResponseOfStaticListResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse**](../Model/ResponseOfStaticListResponse.md)
 
 ### Authorization
 
@@ -160,7 +160,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getStaticListByNameUsingGET**
-> \MarketoRest\Asset\Model\ResponseOfStaticListResponse getStaticListByNameUsingGET($name)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse getStaticListByNameUsingGET($name)
 
 Get Static List by Name
 
@@ -171,7 +171,7 @@ Retrieves a Static List record by its name. Required Permissions: Read-Asset or 
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\StaticListsApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\StaticListsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -195,7 +195,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfStaticListResponse**](../Model/ResponseOfStaticListResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse**](../Model/ResponseOfStaticListResponse.md)
 
 ### Authorization
 
@@ -209,7 +209,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getStaticListsUsingGET**
-> \MarketoRest\Asset\Model\ResponseOfStaticListResponse getStaticListsUsingGET($folder, $offset, $max_return, $earliest_updated_at, $latest_updated_at)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse getStaticListsUsingGET($folder, $offset, $max_return, $earliest_updated_at, $latest_updated_at)
 
 Get Static Lists
 
@@ -220,7 +220,7 @@ Retrieves a list of Static List records. Required Permissions: Read-Asset or Rea
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\StaticListsApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\StaticListsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -252,7 +252,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfStaticListResponse**](../Model/ResponseOfStaticListResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse**](../Model/ResponseOfStaticListResponse.md)
 
 ### Authorization
 
@@ -266,7 +266,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **updateStaticListUsingPOST**
-> \MarketoRest\Asset\Model\ResponseOfStaticListResponse updateStaticListUsingPOST($id, $update_static_list_request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse updateStaticListUsingPOST($id, $update_static_list_request)
 
 Update Static List Metadata
 
@@ -277,13 +277,13 @@ Updates the metadata of a static list asset.  Required Permissions: Read-Write A
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\StaticListsApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\StaticListsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $id = 56; // int | Id of static list to update
-$update_static_list_request = new \MarketoRest\Asset\Model\UpdateStaticListRequest(); // \MarketoRest\Asset\Model\UpdateStaticListRequest | updateStaticListRequest
+$update_static_list_request = new \NecLimDul\MarketoRest\Asset\Model\UpdateStaticListRequest(); // \NecLimDul\MarketoRest\Asset\Model\UpdateStaticListRequest | updateStaticListRequest
 
 try {
     $result = $apiInstance->updateStaticListUsingPOST($id, $update_static_list_request);
@@ -299,11 +299,11 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| Id of static list to update |
- **update_static_list_request** | [**\MarketoRest\Asset\Model\UpdateStaticListRequest**](../Model/UpdateStaticListRequest.md)| updateStaticListRequest |
+ **update_static_list_request** | [**\NecLimDul\MarketoRest\Asset\Model\UpdateStaticListRequest**](../Model/UpdateStaticListRequest.md)| updateStaticListRequest |
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfStaticListResponse**](../Model/ResponseOfStaticListResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse**](../Model/ResponseOfStaticListResponse.md)
 
 ### Authorization
 

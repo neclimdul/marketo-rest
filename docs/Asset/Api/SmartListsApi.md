@@ -1,4 +1,4 @@
-# MarketoRest\Asset\SmartListsApi
+# NecLimDul\MarketoRest\Asset\SmartListsApi
 
 All URIs are relative to *https://localhost:8080*
 
@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 
 # **cloneSmartListUsingPOST**
-> \MarketoRest\Asset\Model\ResponseOfSmartListResponse cloneSmartListUsingPOST($id, $clone_smart_list_request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponse cloneSmartListUsingPOST($id, $clone_smart_list_request)
 
 Clone Smart List
 
@@ -23,13 +23,13 @@ Clones the designated Smart List. Required Permissions: Read-Write Asset
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\SmartListsApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\SmartListsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $id = 56; // int | Id of smart list to clone
-$clone_smart_list_request = new \MarketoRest\Asset\Model\CloneSmartListRequest(); // \MarketoRest\Asset\Model\CloneSmartListRequest | cloneSmartListRequest
+$clone_smart_list_request = new \NecLimDul\MarketoRest\Asset\Model\CloneSmartListRequest(); // \NecLimDul\MarketoRest\Asset\Model\CloneSmartListRequest | cloneSmartListRequest
 
 try {
     $result = $apiInstance->cloneSmartListUsingPOST($id, $clone_smart_list_request);
@@ -45,11 +45,11 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| Id of smart list to clone |
- **clone_smart_list_request** | [**\MarketoRest\Asset\Model\CloneSmartListRequest**](../Model/CloneSmartListRequest.md)| cloneSmartListRequest |
+ **clone_smart_list_request** | [**\NecLimDul\MarketoRest\Asset\Model\CloneSmartListRequest**](../Model/CloneSmartListRequest.md)| cloneSmartListRequest |
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfSmartListResponse**](../Model/ResponseOfSmartListResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponse**](../Model/ResponseOfSmartListResponse.md)
 
 ### Authorization
 
@@ -63,7 +63,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **deleteSmartListByIdUsingPOST**
-> \MarketoRest\Asset\Model\ResponseOfIdResponse deleteSmartListByIdUsingPOST($id)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse deleteSmartListByIdUsingPOST($id)
 
 Delete Smart List
 
@@ -74,7 +74,7 @@ Deletes the designated Smart List. Required Permissions: Read-Write Asset
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\SmartListsApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\SmartListsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -98,7 +98,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfIdResponse**](../Model/ResponseOfIdResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse**](../Model/ResponseOfIdResponse.md)
 
 ### Authorization
 
@@ -112,7 +112,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getSmartListByIdUsingGET**
-> \MarketoRest\Asset\Model\ResponseOfSmartListResponseWithRules getSmartListByIdUsingGET($id, $include_rules)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponseWithRules getSmartListByIdUsingGET($id, $include_rules)
 
 Get Smart List by Id
 
@@ -123,7 +123,7 @@ Retrieves a Smart List record by its id. Required Permissions: Read-Asset or Rea
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\SmartListsApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\SmartListsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -149,7 +149,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfSmartListResponseWithRules**](../Model/ResponseOfSmartListResponseWithRules.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponseWithRules**](../Model/ResponseOfSmartListResponseWithRules.md)
 
 ### Authorization
 
@@ -163,7 +163,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getSmartListByNameUsingGET**
-> \MarketoRest\Asset\Model\ResponseOfSmartListResponse getSmartListByNameUsingGET($name)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponse getSmartListByNameUsingGET($name)
 
 Get Smart List by Name
 
@@ -174,7 +174,7 @@ Retrieves a Smart List record by its name. Required Permissions: Read-Asset or R
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\SmartListsApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\SmartListsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -198,7 +198,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfSmartListResponse**](../Model/ResponseOfSmartListResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponse**](../Model/ResponseOfSmartListResponse.md)
 
 ### Authorization
 
@@ -212,7 +212,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getSmartListsUsingGET**
-> \MarketoRest\Asset\Model\ResponseOfSmartListResponse getSmartListsUsingGET($folder, $offset, $max_return, $earliest_updated_at, $latest_updated_at)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponse getSmartListsUsingGET($folder, $offset, $max_return, $earliest_updated_at, $latest_updated_at)
 
 Get Smart Lists
 
@@ -223,7 +223,7 @@ Retrieves a list of user created Smart List records. Required Permissions: Read-
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\SmartListsApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\SmartListsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -255,7 +255,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfSmartListResponse**](../Model/ResponseOfSmartListResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponse**](../Model/ResponseOfSmartListResponse.md)
 
 ### Authorization
 

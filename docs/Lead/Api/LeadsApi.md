@@ -1,4 +1,4 @@
-# MarketoRest\Lead\LeadsApi
+# NecLimDul\MarketoRest\Lead\LeadsApi
 
 All URIs are relative to *https://localhost:8080*
 
@@ -23,7 +23,7 @@ Method | HTTP request | Description
 
 
 # **associateLeadUsingPOST**
-> \MarketoRest\Lead\Model\ResponseWithoutResult associateLeadUsingPOST($lead_id, $cookie)
+> \NecLimDul\MarketoRest\Lead\Model\ResponseWithoutResult associateLeadUsingPOST($lead_id, $cookie)
 
 Associate Lead
 
@@ -34,7 +34,7 @@ Associates a known Marketo lead record to a munchkin cookie and its associated w
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Lead\Api\LeadsApi(
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\LeadsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -60,7 +60,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Lead\Model\ResponseWithoutResult**](../Model/ResponseWithoutResult.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseWithoutResult**](../Model/ResponseWithoutResult.md)
 
 ### Authorization
 
@@ -74,7 +74,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **changeLeadProgramStatusUsingPOST**
-> \MarketoRest\Lead\Model\ResponseOfChangeLeadProgramStatusOutputData changeLeadProgramStatusUsingPOST($program_id, $change_lead_program_status_request)
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfChangeLeadProgramStatusOutputData changeLeadProgramStatusUsingPOST($program_id, $change_lead_program_status_request)
 
 Change Lead Program Status
 
@@ -85,13 +85,13 @@ Changes the program status of a list of leads in a target program.  Only existin
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Lead\Api\LeadsApi(
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\LeadsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $program_id = 56; // int | programId
-$change_lead_program_status_request = new \MarketoRest\Lead\Model\ChangeLeadProgramStatusRequest(); // \MarketoRest\Lead\Model\ChangeLeadProgramStatusRequest | changeLeadProgramStatusRequest
+$change_lead_program_status_request = new \NecLimDul\MarketoRest\Lead\Model\ChangeLeadProgramStatusRequest(); // \NecLimDul\MarketoRest\Lead\Model\ChangeLeadProgramStatusRequest | changeLeadProgramStatusRequest
 
 try {
     $result = $apiInstance->changeLeadProgramStatusUsingPOST($program_id, $change_lead_program_status_request);
@@ -107,11 +107,11 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **program_id** | **int**| programId |
- **change_lead_program_status_request** | [**\MarketoRest\Lead\Model\ChangeLeadProgramStatusRequest**](../Model/ChangeLeadProgramStatusRequest.md)| changeLeadProgramStatusRequest |
+ **change_lead_program_status_request** | [**\NecLimDul\MarketoRest\Lead\Model\ChangeLeadProgramStatusRequest**](../Model/ChangeLeadProgramStatusRequest.md)| changeLeadProgramStatusRequest |
 
 ### Return type
 
-[**\MarketoRest\Lead\Model\ResponseOfChangeLeadProgramStatusOutputData**](../Model/ResponseOfChangeLeadProgramStatusOutputData.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfChangeLeadProgramStatusOutputData**](../Model/ResponseOfChangeLeadProgramStatusOutputData.md)
 
 ### Authorization
 
@@ -125,7 +125,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **deleteLeadsUsingPOST**
-> \MarketoRest\Lead\Model\ResponseOfLead deleteLeadsUsingPOST($delete_lead_request, $id)
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfLead deleteLeadsUsingPOST($delete_lead_request, $id)
 
 Delete Leads
 
@@ -136,12 +136,12 @@ Delete a list of leads from the destination instance.  Required Permissions: Rea
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Lead\Api\LeadsApi(
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\LeadsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$delete_lead_request = new \MarketoRest\Lead\Model\DeleteLeadRequest(); // \MarketoRest\Lead\Model\DeleteLeadRequest | deleteLeadRequest
+$delete_lead_request = new \NecLimDul\MarketoRest\Lead\Model\DeleteLeadRequest(); // \NecLimDul\MarketoRest\Lead\Model\DeleteLeadRequest | deleteLeadRequest
 $id = array(56); // int[] | Parameter can be specified if the request body is empty. Multiple lead ids can be specified. e.g. id=1,2,3,2342
 
 try {
@@ -157,12 +157,12 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **delete_lead_request** | [**\MarketoRest\Lead\Model\DeleteLeadRequest**](../Model/DeleteLeadRequest.md)| deleteLeadRequest | [optional]
+ **delete_lead_request** | [**\NecLimDul\MarketoRest\Lead\Model\DeleteLeadRequest**](../Model/DeleteLeadRequest.md)| deleteLeadRequest | [optional]
  **id** | [**int[]**](../Model/int.md)| Parameter can be specified if the request body is empty. Multiple lead ids can be specified. e.g. id&#x3D;1,2,3,2342 | [optional]
 
 ### Return type
 
-[**\MarketoRest\Lead\Model\ResponseOfLead**](../Model/ResponseOfLead.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead**](../Model/ResponseOfLead.md)
 
 ### Authorization
 
@@ -176,7 +176,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **describeUsingGET2**
-> \MarketoRest\Lead\Model\ResponseOfLeadAttribute describeUsingGET2()
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadAttribute describeUsingGET2()
 
 Describe Lead
 
@@ -187,7 +187,7 @@ Returns metadata about lead objects in the target instance, including a list of 
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Lead\Api\LeadsApi(
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\LeadsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -207,7 +207,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**\MarketoRest\Lead\Model\ResponseOfLeadAttribute**](../Model/ResponseOfLeadAttribute.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadAttribute**](../Model/ResponseOfLeadAttribute.md)
 
 ### Authorization
 
@@ -221,7 +221,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **describeUsingGET6**
-> \MarketoRest\Lead\Model\ResponseOfLeadAttribute2 describeUsingGET6()
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadAttribute2 describeUsingGET6()
 
 Describe Lead2
 
@@ -232,7 +232,7 @@ Returns list of searchable fields on lead objects in the target instance.  Requi
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Lead\Api\LeadsApi(
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\LeadsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -252,7 +252,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**\MarketoRest\Lead\Model\ResponseOfLeadAttribute2**](../Model/ResponseOfLeadAttribute2.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadAttribute2**](../Model/ResponseOfLeadAttribute2.md)
 
 ### Authorization
 
@@ -266,7 +266,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getLeadByIdUsingGET**
-> \MarketoRest\Lead\Model\ResponseOfLead getLeadByIdUsingGET($lead_id, $fields)
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfLead getLeadByIdUsingGET($lead_id, $fields)
 
 Get Lead by Id
 
@@ -277,7 +277,7 @@ Retrieves a single lead record through its Marketo id.  Required Permissions: Re
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Lead\Api\LeadsApi(
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\LeadsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -303,7 +303,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Lead\Model\ResponseOfLead**](../Model/ResponseOfLead.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead**](../Model/ResponseOfLead.md)
 
 ### Authorization
 
@@ -317,7 +317,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getLeadPartitionsUsingGET**
-> \MarketoRest\Lead\Model\ResponseOfLeadPartition getLeadPartitionsUsingGET()
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadPartition getLeadPartitionsUsingGET()
 
 Get Lead Partitions
 
@@ -328,7 +328,7 @@ Returns a list of available partitions in the target instance.  Required Permiss
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Lead\Api\LeadsApi(
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\LeadsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -348,7 +348,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**\MarketoRest\Lead\Model\ResponseOfLeadPartition**](../Model/ResponseOfLeadPartition.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadPartition**](../Model/ResponseOfLeadPartition.md)
 
 ### Authorization
 
@@ -362,7 +362,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getLeadsByFilterUsingGET**
-> \MarketoRest\Lead\Model\ResponseOfLead getLeadsByFilterUsingGET($filter_type, $filter_values, $fields, $batch_size, $next_page_token)
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfLead getLeadsByFilterUsingGET($filter_type, $filter_values, $fields, $batch_size, $next_page_token)
 
 Get Leads by Filter Type
 
@@ -373,7 +373,7 @@ Returns a list of up to 300 leads based on a list of values in a particular fiel
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Lead\Api\LeadsApi(
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\LeadsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -405,7 +405,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Lead\Model\ResponseOfLead**](../Model/ResponseOfLead.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead**](../Model/ResponseOfLead.md)
 
 ### Authorization
 
@@ -419,7 +419,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getLeadsByProgramIdUsingGET**
-> \MarketoRest\Lead\Model\ResponseOfLead getLeadsByProgramIdUsingGET($program_id, $fields, $batch_size, $next_page_token)
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfLead getLeadsByProgramIdUsingGET($program_id, $fields, $batch_size, $next_page_token)
 
 Get Leads by Program Id
 
@@ -430,7 +430,7 @@ Retrieves a list of leads which are members of the designated program.  Required
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Lead\Api\LeadsApi(
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\LeadsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -460,7 +460,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Lead\Model\ResponseOfLead**](../Model/ResponseOfLead.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead**](../Model/ResponseOfLead.md)
 
 ### Authorization
 
@@ -474,7 +474,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getListMembershipUsingGET**
-> \MarketoRest\Lead\Model\ResponseOfLists getListMembershipUsingGET($lead_id, $next_page_token, $batch_size)
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfLists getListMembershipUsingGET($lead_id, $next_page_token, $batch_size)
 
 Get Lists by Lead Id
 
@@ -485,7 +485,7 @@ Query static list membership for one lead.  Required Permissions: Read-Only Asse
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Lead\Api\LeadsApi(
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\LeadsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -513,7 +513,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Lead\Model\ResponseOfLists**](../Model/ResponseOfLists.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfLists**](../Model/ResponseOfLists.md)
 
 ### Authorization
 
@@ -527,7 +527,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getProgramMembershipUsingGET**
-> \MarketoRest\Lead\Model\ResponseOfPrograms getProgramMembershipUsingGET($lead_id, $next_page_token, $batch_size, $earliest_updated_at, $latest_updated_at)
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfPrograms getProgramMembershipUsingGET($lead_id, $next_page_token, $batch_size, $earliest_updated_at, $latest_updated_at)
 
 Get Programs by Lead Id
 
@@ -538,7 +538,7 @@ Query program membership for one lead.  Required Permissions: Read-Only Asset
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Lead\Api\LeadsApi(
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\LeadsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -570,7 +570,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Lead\Model\ResponseOfPrograms**](../Model/ResponseOfPrograms.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfPrograms**](../Model/ResponseOfPrograms.md)
 
 ### Authorization
 
@@ -584,7 +584,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getSmartCampaignMembershipUsingGET**
-> \MarketoRest\Lead\Model\ResponseOfSmartCampaigns getSmartCampaignMembershipUsingGET($lead_id, $next_page_token, $batch_size, $earliest_updated_at, $latest_updated_at)
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfSmartCampaigns getSmartCampaignMembershipUsingGET($lead_id, $next_page_token, $batch_size, $earliest_updated_at, $latest_updated_at)
 
 Get Smart Campaigns by Lead Id
 
@@ -595,7 +595,7 @@ Query smart campaign membership for one lead.  Required Permissions: Read-Only A
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Lead\Api\LeadsApi(
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\LeadsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -627,7 +627,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Lead\Model\ResponseOfSmartCampaigns**](../Model/ResponseOfSmartCampaigns.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfSmartCampaigns**](../Model/ResponseOfSmartCampaigns.md)
 
 ### Authorization
 
@@ -641,7 +641,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **mergeLeadsUsingPOST**
-> \MarketoRest\Lead\Model\ResponseWithoutResult mergeLeadsUsingPOST($lead_id, $lead_id2, $lead_ids, $merge_in_crm)
+> \NecLimDul\MarketoRest\Lead\Model\ResponseWithoutResult mergeLeadsUsingPOST($lead_id, $lead_id2, $lead_ids, $merge_in_crm)
 
 Merge Leads
 
@@ -652,7 +652,7 @@ Merges two or more known lead records into a single lead record.  Required Permi
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Lead\Api\LeadsApi(
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\LeadsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -682,7 +682,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Lead\Model\ResponseWithoutResult**](../Model/ResponseWithoutResult.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseWithoutResult**](../Model/ResponseWithoutResult.md)
 
 ### Authorization
 
@@ -696,7 +696,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **pushToMarketoUsingPOST**
-> \MarketoRest\Lead\Model\ResponseOfPushLeadToMarketo pushToMarketoUsingPOST($push_lead_to_marketo_request)
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfPushLeadToMarketo pushToMarketoUsingPOST($push_lead_to_marketo_request)
 
 Push Lead to Marketo
 
@@ -707,12 +707,12 @@ Upserts a lead, and generates a Push Lead to Marketo activity.  Required Permiss
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Lead\Api\LeadsApi(
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\LeadsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$push_lead_to_marketo_request = new \MarketoRest\Lead\Model\PushLeadToMarketoRequest(); // \MarketoRest\Lead\Model\PushLeadToMarketoRequest | pushLeadToMarketoRequest
+$push_lead_to_marketo_request = new \NecLimDul\MarketoRest\Lead\Model\PushLeadToMarketoRequest(); // \NecLimDul\MarketoRest\Lead\Model\PushLeadToMarketoRequest | pushLeadToMarketoRequest
 
 try {
     $result = $apiInstance->pushToMarketoUsingPOST($push_lead_to_marketo_request);
@@ -727,11 +727,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **push_lead_to_marketo_request** | [**\MarketoRest\Lead\Model\PushLeadToMarketoRequest**](../Model/PushLeadToMarketoRequest.md)| pushLeadToMarketoRequest |
+ **push_lead_to_marketo_request** | [**\NecLimDul\MarketoRest\Lead\Model\PushLeadToMarketoRequest**](../Model/PushLeadToMarketoRequest.md)| pushLeadToMarketoRequest |
 
 ### Return type
 
-[**\MarketoRest\Lead\Model\ResponseOfPushLeadToMarketo**](../Model/ResponseOfPushLeadToMarketo.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfPushLeadToMarketo**](../Model/ResponseOfPushLeadToMarketo.md)
 
 ### Authorization
 
@@ -745,7 +745,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **syncLeadUsingPOST**
-> \MarketoRest\Lead\Model\ResponseOfLead syncLeadUsingPOST($sync_lead_request)
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfLead syncLeadUsingPOST($sync_lead_request)
 
 Sync Leads
 
@@ -756,12 +756,12 @@ Syncs a list of leads to the target instance.  Required Permissions: Read-Write 
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Lead\Api\LeadsApi(
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\LeadsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$sync_lead_request = new \MarketoRest\Lead\Model\SyncLeadRequest(); // \MarketoRest\Lead\Model\SyncLeadRequest | syncLeadRequest
+$sync_lead_request = new \NecLimDul\MarketoRest\Lead\Model\SyncLeadRequest(); // \NecLimDul\MarketoRest\Lead\Model\SyncLeadRequest | syncLeadRequest
 
 try {
     $result = $apiInstance->syncLeadUsingPOST($sync_lead_request);
@@ -776,11 +776,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **sync_lead_request** | [**\MarketoRest\Lead\Model\SyncLeadRequest**](../Model/SyncLeadRequest.md)| syncLeadRequest |
+ **sync_lead_request** | [**\NecLimDul\MarketoRest\Lead\Model\SyncLeadRequest**](../Model/SyncLeadRequest.md)| syncLeadRequest |
 
 ### Return type
 
-[**\MarketoRest\Lead\Model\ResponseOfLead**](../Model/ResponseOfLead.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead**](../Model/ResponseOfLead.md)
 
 ### Authorization
 
@@ -794,7 +794,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **updatePartitionsUsingPOST**
-> \MarketoRest\Lead\Model\ResponseOfLead updatePartitionsUsingPOST($update_lead_partition_request)
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfLead updatePartitionsUsingPOST($update_lead_partition_request)
 
 Update Lead Partition
 
@@ -805,12 +805,12 @@ Updates the lead partition for a list of leads.  Required Permissions: Read-Writ
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Lead\Api\LeadsApi(
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\LeadsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$update_lead_partition_request = new \MarketoRest\Lead\Model\UpdateLeadPartitionRequest(); // \MarketoRest\Lead\Model\UpdateLeadPartitionRequest | updateLeadPartitionRequest
+$update_lead_partition_request = new \NecLimDul\MarketoRest\Lead\Model\UpdateLeadPartitionRequest(); // \NecLimDul\MarketoRest\Lead\Model\UpdateLeadPartitionRequest | updateLeadPartitionRequest
 
 try {
     $result = $apiInstance->updatePartitionsUsingPOST($update_lead_partition_request);
@@ -825,11 +825,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **update_lead_partition_request** | [**\MarketoRest\Lead\Model\UpdateLeadPartitionRequest**](../Model/UpdateLeadPartitionRequest.md)| updateLeadPartitionRequest |
+ **update_lead_partition_request** | [**\NecLimDul\MarketoRest\Lead\Model\UpdateLeadPartitionRequest**](../Model/UpdateLeadPartitionRequest.md)| updateLeadPartitionRequest |
 
 ### Return type
 
-[**\MarketoRest\Lead\Model\ResponseOfLead**](../Model/ResponseOfLead.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead**](../Model/ResponseOfLead.md)
 
 ### Authorization
 

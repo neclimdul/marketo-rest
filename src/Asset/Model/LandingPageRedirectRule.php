@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Asset\Model;
+namespace NecLimDul\MarketoRest\Asset\Model;
 
 use \ArrayAccess;
-use \MarketoRest\Asset\ObjectSerializer;
+use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * LandingPageRedirectRule Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -61,8 +61,8 @@ class LandingPageRedirectRule implements ModelInterface, ArrayAccess
         'redirect_from_url' => 'string',
         'redirect_to_url' => 'string',
         'hostname' => 'string',
-        'redirect_from' => '\MarketoRest\Asset\Model\RedirectFrom',
-        'redirect_to' => '\MarketoRest\Asset\Model\RedirectTo',
+        'redirect_from' => '\NecLimDul\MarketoRest\Asset\Model\RedirectFrom',
+        'redirect_to' => '\NecLimDul\MarketoRest\Asset\Model\RedirectTo',
         'created_at' => '\DateTime',
         'updated_at' => '\DateTime'
     ];
@@ -369,7 +369,7 @@ class LandingPageRedirectRule implements ModelInterface, ArrayAccess
     /**
      * Gets redirect_from
      *
-     * @return \MarketoRest\Asset\Model\RedirectFrom
+     * @return \NecLimDul\MarketoRest\Asset\Model\RedirectFrom
      */
     public function getRedirectFrom()
     {
@@ -379,7 +379,7 @@ class LandingPageRedirectRule implements ModelInterface, ArrayAccess
     /**
      * Sets redirect_from
      *
-     * @param \MarketoRest\Asset\Model\RedirectFrom $redirect_from JSON representation of redirect from landing page, with members 'type' which may be 'landingPageId' or 'path', and 'value'
+     * @param \NecLimDul\MarketoRest\Asset\Model\RedirectFrom $redirect_from JSON representation of redirect from landing page, with members 'type' which may be 'landingPageId' or 'path', and 'value'
      *
      * @return $this
      */
@@ -393,7 +393,7 @@ class LandingPageRedirectRule implements ModelInterface, ArrayAccess
     /**
      * Gets redirect_to
      *
-     * @return \MarketoRest\Asset\Model\RedirectTo
+     * @return \NecLimDul\MarketoRest\Asset\Model\RedirectTo
      */
     public function getRedirectTo()
     {
@@ -403,7 +403,7 @@ class LandingPageRedirectRule implements ModelInterface, ArrayAccess
     /**
      * Sets redirect_to
      *
-     * @param \MarketoRest\Asset\Model\RedirectTo $redirect_to JSON representation of redirect to landing page, with members 'type' which may be 'landingPageId' or 'url', and 'value'
+     * @param \NecLimDul\MarketoRest\Asset\Model\RedirectTo $redirect_to JSON representation of redirect to landing page, with members 'type' which may be 'landingPageId' or 'url', and 'value'
      *
      * @return $this
      */

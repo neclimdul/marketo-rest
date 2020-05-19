@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Asset\Model;
+namespace NecLimDul\MarketoRest\Asset\Model;
 
 use \ArrayAccess;
-use \MarketoRest\Asset\ObjectSerializer;
+use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * FormVisibilityRuleDTO Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -59,7 +59,7 @@ class FormVisibilityRuleDTO implements ModelInterface, ArrayAccess
     protected static $swaggerTypes = [
         'alt_label' => 'string',
         'operator' => 'string',
-        'picklist_filter_values' => '\MarketoRest\Asset\Model\PickListDTO[]',
+        'picklist_filter_values' => '\NecLimDul\MarketoRest\Asset\Model\PickListDTO[]',
         'subject_field' => 'string',
         'values' => 'string[]'
     ];
@@ -279,7 +279,7 @@ class FormVisibilityRuleDTO implements ModelInterface, ArrayAccess
     /**
      * Gets picklist_filter_values
      *
-     * @return \MarketoRest\Asset\Model\PickListDTO[]
+     * @return \NecLimDul\MarketoRest\Asset\Model\PickListDTO[]
      */
     public function getPicklistFilterValues()
     {
@@ -289,7 +289,7 @@ class FormVisibilityRuleDTO implements ModelInterface, ArrayAccess
     /**
      * Sets picklist_filter_values
      *
-     * @param \MarketoRest\Asset\Model\PickListDTO[] $picklist_filter_values picklist_filter_values
+     * @param \NecLimDul\MarketoRest\Asset\Model\PickListDTO[] $picklist_filter_values picklist_filter_values
      *
      * @return $this
      */

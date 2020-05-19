@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Asset\Model;
+namespace NecLimDul\MarketoRest\Asset\Model;
 
 use \ArrayAccess;
-use \MarketoRest\Asset\ObjectSerializer;
+use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * EmailResponse Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -59,7 +59,7 @@ class EmailResponse implements ModelInterface, ArrayAccess
     protected static $swaggerTypes = [
         'created_at' => '\DateTime',
         'description' => 'string',
-        'folder' => '\MarketoRest\Asset\Model\Folder',
+        'folder' => '\NecLimDul\MarketoRest\Asset\Model\Folder',
         'from_email' => 'string',
         'from_name' => 'string',
         'id' => 'int',
@@ -77,7 +77,7 @@ class EmailResponse implements ModelInterface, ArrayAccess
         'web_view' => 'bool',
         'workspace' => 'string',
         'auto_copy_to_text' => 'bool',
-        'cc_fields' => '\MarketoRest\Asset\Model\EmailResponseCCFields[]'
+        'cc_fields' => '\NecLimDul\MarketoRest\Asset\Model\EmailResponseCCFields[]'
     ];
 
     /**
@@ -434,7 +434,7 @@ class EmailResponse implements ModelInterface, ArrayAccess
     /**
      * Gets folder
      *
-     * @return \MarketoRest\Asset\Model\Folder
+     * @return \NecLimDul\MarketoRest\Asset\Model\Folder
      */
     public function getFolder()
     {
@@ -444,7 +444,7 @@ class EmailResponse implements ModelInterface, ArrayAccess
     /**
      * Sets folder
      *
-     * @param \MarketoRest\Asset\Model\Folder $folder JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
+     * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
      *
      * @return $this
      */
@@ -875,7 +875,7 @@ class EmailResponse implements ModelInterface, ArrayAccess
     /**
      * Gets cc_fields
      *
-     * @return \MarketoRest\Asset\Model\EmailResponseCCFields[]
+     * @return \NecLimDul\MarketoRest\Asset\Model\EmailResponseCCFields[]
      */
     public function getCcFields()
     {
@@ -885,7 +885,7 @@ class EmailResponse implements ModelInterface, ArrayAccess
     /**
      * Sets cc_fields
      *
-     * @param \MarketoRest\Asset\Model\EmailResponseCCFields[] $cc_fields cc_fields
+     * @param \NecLimDul\MarketoRest\Asset\Model\EmailResponseCCFields[] $cc_fields cc_fields
      *
      * @return $this
      */

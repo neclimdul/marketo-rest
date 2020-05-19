@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Asset\Model;
+namespace NecLimDul\MarketoRest\Asset\Model;
 
 use \ArrayAccess;
-use \MarketoRest\Asset\ObjectSerializer;
+use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * SmartCampaignResponse Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -64,7 +64,7 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess
         'is_system' => 'bool',
         'is_active' => 'bool',
         'is_requestable' => 'bool',
-        'recurrence' => '\MarketoRest\Asset\Model\Recurrence',
+        'recurrence' => '\NecLimDul\MarketoRest\Asset\Model\Recurrence',
         'qualification_rule_type' => 'string',
         'qualification_rule_interval' => 'int',
         'qualification_rule_unit' => 'string',
@@ -72,7 +72,7 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess
         'is_communication_limit_enabled' => 'bool',
         'smart_list_id' => 'int',
         'flow_id' => 'int',
-        'folder' => '\MarketoRest\Asset\Model\Folder',
+        'folder' => '\NecLimDul\MarketoRest\Asset\Model\Folder',
         'created_at' => '\DateTime',
         'updated_at' => '\DateTime',
         'workspace' => 'string',
@@ -668,7 +668,7 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess
     /**
      * Gets recurrence
      *
-     * @return \MarketoRest\Asset\Model\Recurrence
+     * @return \NecLimDul\MarketoRest\Asset\Model\Recurrence
      */
     public function getRecurrence()
     {
@@ -678,7 +678,7 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess
     /**
      * Sets recurrence
      *
-     * @param \MarketoRest\Asset\Model\Recurrence $recurrence Recurrence schedule of batch smart campaign
+     * @param \NecLimDul\MarketoRest\Asset\Model\Recurrence $recurrence Recurrence schedule of batch smart campaign
      *
      * @return $this
      */
@@ -878,7 +878,7 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess
     /**
      * Gets folder
      *
-     * @return \MarketoRest\Asset\Model\Folder
+     * @return \NecLimDul\MarketoRest\Asset\Model\Folder
      */
     public function getFolder()
     {
@@ -888,7 +888,7 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess
     /**
      * Sets folder
      *
-     * @param \MarketoRest\Asset\Model\Folder $folder JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
+     * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
      *
      * @return $this
      */

@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Lead\Model;
+namespace NecLimDul\MarketoRest\Lead\Model;
 
 use \ArrayAccess;
-use \MarketoRest\Lead\ObjectSerializer;
+use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * PushLeadToMarketoRequest Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -57,7 +57,7 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'input' => '\MarketoRest\Lead\Model\Lead[]',
+        'input' => '\NecLimDul\MarketoRest\Lead\Model\Lead[]',
         'lookup_field' => 'string',
         'partition_name' => 'string',
         'program_name' => 'string',
@@ -243,7 +243,7 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess
     /**
      * Gets input
      *
-     * @return \MarketoRest\Lead\Model\Lead[]
+     * @return \NecLimDul\MarketoRest\Lead\Model\Lead[]
      */
     public function getInput()
     {
@@ -253,7 +253,7 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess
     /**
      * Sets input
      *
-     * @param \MarketoRest\Lead\Model\Lead[] $input input
+     * @param \NecLimDul\MarketoRest\Lead\Model\Lead[] $input input
      *
      * @return $this
      */

@@ -3,9 +3,9 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**errors** | [**\MarketoRest\Asset\Model\Error[]**](Error.md) |  | [optional] 
+**errors** | [**\NecLimDul\MarketoRest\Asset\Model\Error[]**](Error.md) |  | [optional] 
 **request_id** | **string** |  | [optional] 
-**result** | [**\MarketoRest\Asset\Model\UpdateEmailFullContentResponse[]**](UpdateEmailFullContentResponse.md) |  | [optional] 
+**result** | [**\NecLimDul\MarketoRest\Asset\Model\UpdateEmailFullContentResponse[]**](UpdateEmailFullContentResponse.md) |  | [optional] 
 **success** | **bool** |  | [optional] 
 **warnings** | **string[]** |  | [optional] 
 

@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Lead\Model;
+namespace NecLimDul\MarketoRest\Lead\Model;
 
 use \ArrayAccess;
-use \MarketoRest\Lead\ObjectSerializer;
+use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * ResponseOfVoid Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -57,12 +57,12 @@ class ResponseOfVoid implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'errors' => '\MarketoRest\Lead\Model\Error[]',
+        'errors' => '\NecLimDul\MarketoRest\Lead\Model\Error[]',
         'more_result' => 'bool',
         'next_page_token' => 'string',
         'request_id' => 'string',
         'success' => 'bool',
-        'warnings' => '\MarketoRest\Lead\Model\Warning[]'
+        'warnings' => '\NecLimDul\MarketoRest\Lead\Model\Warning[]'
     ];
 
     /**
@@ -249,7 +249,7 @@ class ResponseOfVoid implements ModelInterface, ArrayAccess
     /**
      * Gets errors
      *
-     * @return \MarketoRest\Lead\Model\Error[]
+     * @return \NecLimDul\MarketoRest\Lead\Model\Error[]
      */
     public function getErrors()
     {
@@ -259,7 +259,7 @@ class ResponseOfVoid implements ModelInterface, ArrayAccess
     /**
      * Sets errors
      *
-     * @param \MarketoRest\Lead\Model\Error[] $errors Array of errors that occurred if the request was unsuccessful
+     * @param \NecLimDul\MarketoRest\Lead\Model\Error[] $errors Array of errors that occurred if the request was unsuccessful
      *
      * @return $this
      */
@@ -369,7 +369,7 @@ class ResponseOfVoid implements ModelInterface, ArrayAccess
     /**
      * Gets warnings
      *
-     * @return \MarketoRest\Lead\Model\Warning[]
+     * @return \NecLimDul\MarketoRest\Lead\Model\Warning[]
      */
     public function getWarnings()
     {
@@ -379,7 +379,7 @@ class ResponseOfVoid implements ModelInterface, ArrayAccess
     /**
      * Sets warnings
      *
-     * @param \MarketoRest\Lead\Model\Warning[] $warnings Array of warnings given for the operation
+     * @param \NecLimDul\MarketoRest\Lead\Model\Warning[] $warnings Array of warnings given for the operation
      *
      * @return $this
      */

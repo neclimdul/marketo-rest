@@ -1,4 +1,4 @@
-# MarketoRest\Lead\BulkImportCustomObjectsApi
+# NecLimDul\MarketoRest\Lead\BulkImportCustomObjectsApi
 
 All URIs are relative to *https://localhost:8080*
 
@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 
 # **getImportCustomObjectFailuresUsingGET**
-> \MarketoRest\Lead\Model\ObservableOfInputStreamContent getImportCustomObjectFailuresUsingGET($api_name, $batch_id)
+> \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent getImportCustomObjectFailuresUsingGET($api_name, $batch_id)
 
 Get Import Custom Object Failures
 
@@ -22,7 +22,7 @@ Returns the list of failures for the import batch job.  Required Permissions: Re
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Lead\Api\BulkImportCustomObjectsApi(
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\BulkImportCustomObjectsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -48,7 +48,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Lead\Model\ObservableOfInputStreamContent**](../Model/ObservableOfInputStreamContent.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent**](../Model/ObservableOfInputStreamContent.md)
 
 ### Authorization
 
@@ -62,7 +62,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getImportCustomObjectStatusUsingGET**
-> \MarketoRest\Lead\Model\ResponseOfImportCustomObjectResponse getImportCustomObjectStatusUsingGET($api_name, $batch_id)
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportCustomObjectResponse getImportCustomObjectStatusUsingGET($api_name, $batch_id)
 
 Get Import Custom Object Status
 
@@ -73,7 +73,7 @@ Returns the status of an import batch job.  Required Permissions: Read-Write Cus
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Lead\Api\BulkImportCustomObjectsApi(
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\BulkImportCustomObjectsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -99,7 +99,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Lead\Model\ResponseOfImportCustomObjectResponse**](../Model/ResponseOfImportCustomObjectResponse.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfImportCustomObjectResponse**](../Model/ResponseOfImportCustomObjectResponse.md)
 
 ### Authorization
 
@@ -113,7 +113,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getImportCustomObjectWarningsUsingGET**
-> \MarketoRest\Lead\Model\ObservableOfInputStreamContent getImportCustomObjectWarningsUsingGET($api_name, $batch_id)
+> \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent getImportCustomObjectWarningsUsingGET($api_name, $batch_id)
 
 Get Import Custom Object Warnings
 
@@ -124,7 +124,7 @@ Returns the list of warnings for the import batch job.  Required Permissions: Re
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Lead\Api\BulkImportCustomObjectsApi(
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\BulkImportCustomObjectsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -150,7 +150,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Lead\Model\ObservableOfInputStreamContent**](../Model/ObservableOfInputStreamContent.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent**](../Model/ObservableOfInputStreamContent.md)
 
 ### Authorization
 
@@ -164,7 +164,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **importCustomObjectUsingPOST**
-> \MarketoRest\Lead\Model\ResponseOfImportCustomObjectResponse importCustomObjectUsingPOST($api_name, $format, $file)
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportCustomObjectResponse importCustomObjectUsingPOST($api_name, $format, $file)
 
 Import Custom Objects
 
@@ -175,7 +175,7 @@ Imports a file containing data records into the target instance.  Required Permi
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Lead\Api\BulkImportCustomObjectsApi(
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\BulkImportCustomObjectsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -203,7 +203,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Lead\Model\ResponseOfImportCustomObjectResponse**](../Model/ResponseOfImportCustomObjectResponse.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfImportCustomObjectResponse**](../Model/ResponseOfImportCustomObjectResponse.md)
 
 ### Authorization
 

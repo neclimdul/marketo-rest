@@ -21,7 +21,7 @@ Name | Type | Description | Notes
 **row_number** | **int** |  | [optional] 
 **text** | **string** |  | [optional] 
 **validation_message** | **object** |  | [optional] 
-**visibility_rules** | [**\MarketoRest\Asset\Model\FormFieldVisibilityRuleResponse**](FormFieldVisibilityRuleResponse.md) |  | [optional] 
+**visibility_rules** | [**\NecLimDul\MarketoRest\Asset\Model\FormFieldVisibilityRuleResponse**](FormFieldVisibilityRuleResponse.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -1,4 +1,4 @@
-# MarketoRest\Asset\EmailsApi
+# NecLimDul\MarketoRest\Asset\EmailsApi
 
 All URIs are relative to *https://localhost:8080*
 
@@ -33,7 +33,7 @@ Method | HTTP request | Description
 
 
 # **addModuleUsingPOST**
-> \MarketoRest\Asset\Model\ModelResponse addModuleUsingPOST($id, $module_id, $name, $index)
+> \NecLimDul\MarketoRest\Asset\Model\ModelResponse addModuleUsingPOST($id, $module_id, $name, $index)
 
 Add Email Module
 
@@ -44,7 +44,7 @@ Adds a new module to an email, with the given id.  Required Permissions: Read-Wr
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\EmailsApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -74,7 +74,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ModelResponse**](../Model/ModelResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ModelResponse**](../Model/ModelResponse.md)
 
 ### Authorization
 
@@ -88,7 +88,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **approveDraftUsingPOST**
-> \MarketoRest\Asset\Model\ResponseOfIdResponse approveDraftUsingPOST($id)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse approveDraftUsingPOST($id)
 
 Approve Email Draft
 
@@ -99,7 +99,7 @@ Approves the current draft of an email.  Required Permissions: Approve Assets
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\EmailsApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -123,7 +123,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfIdResponse**](../Model/ResponseOfIdResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse**](../Model/ResponseOfIdResponse.md)
 
 ### Authorization
 
@@ -137,7 +137,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **cloneEmailUsingPOST**
-> \MarketoRest\Asset\Model\ResponseOfEmailResponse cloneEmailUsingPOST($id, $clone_email_request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse cloneEmailUsingPOST($id, $clone_email_request)
 
 Clone Email
 
@@ -148,13 +148,13 @@ Clones the target email. Required Permissions: Read-Write Assets
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\EmailsApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $id = 56; // int | id
-$clone_email_request = new \MarketoRest\Asset\Model\CloneEmailRequest(); // \MarketoRest\Asset\Model\CloneEmailRequest | cloneEmailRequest
+$clone_email_request = new \NecLimDul\MarketoRest\Asset\Model\CloneEmailRequest(); // \NecLimDul\MarketoRest\Asset\Model\CloneEmailRequest | cloneEmailRequest
 
 try {
     $result = $apiInstance->cloneEmailUsingPOST($id, $clone_email_request);
@@ -170,11 +170,11 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| id |
- **clone_email_request** | [**\MarketoRest\Asset\Model\CloneEmailRequest**](../Model/CloneEmailRequest.md)| cloneEmailRequest |
+ **clone_email_request** | [**\NecLimDul\MarketoRest\Asset\Model\CloneEmailRequest**](../Model/CloneEmailRequest.md)| cloneEmailRequest |
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfEmailResponse**](../Model/ResponseOfEmailResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse**](../Model/ResponseOfEmailResponse.md)
 
 ### Authorization
 
@@ -188,7 +188,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **createEmailFullContentUsingPOST**
-> \MarketoRest\Asset\Model\ResponseOfUpdateEmailFullContentResponse createEmailFullContentUsingPOST($id, $update_email_full_content_request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfUpdateEmailFullContentResponse createEmailFullContentUsingPOST($id, $update_email_full_content_request)
 
 Update Email Full Content
 
@@ -199,13 +199,13 @@ Replaces the HTML of an Email that has had its relationship broken from its temp
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\EmailsApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $id = 56; // int | Id of the email
-$update_email_full_content_request = new \MarketoRest\Asset\Model\UpdateEmailFullContentRequest(); // \MarketoRest\Asset\Model\UpdateEmailFullContentRequest | Content is multipart file parameter
+$update_email_full_content_request = new \NecLimDul\MarketoRest\Asset\Model\UpdateEmailFullContentRequest(); // \NecLimDul\MarketoRest\Asset\Model\UpdateEmailFullContentRequest | Content is multipart file parameter
 
 try {
     $result = $apiInstance->createEmailFullContentUsingPOST($id, $update_email_full_content_request);
@@ -221,11 +221,11 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| Id of the email |
- **update_email_full_content_request** | [**\MarketoRest\Asset\Model\UpdateEmailFullContentRequest**](../Model/UpdateEmailFullContentRequest.md)| Content is multipart file parameter |
+ **update_email_full_content_request** | [**\NecLimDul\MarketoRest\Asset\Model\UpdateEmailFullContentRequest**](../Model/UpdateEmailFullContentRequest.md)| Content is multipart file parameter |
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfUpdateEmailFullContentResponse**](../Model/ResponseOfUpdateEmailFullContentResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfUpdateEmailFullContentResponse**](../Model/ResponseOfUpdateEmailFullContentResponse.md)
 
 ### Authorization
 
@@ -239,7 +239,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **createEmailUsingPOST**
-> \MarketoRest\Asset\Model\ResponseOfEmailResponse createEmailUsingPOST($create_email_request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse createEmailUsingPOST($create_email_request)
 
 Create Email
 
@@ -250,12 +250,12 @@ Creates a new email asset.  Required Permissions: Read-Write Assets
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\EmailsApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$create_email_request = new \MarketoRest\Asset\Model\CreateEmailRequest(); // \MarketoRest\Asset\Model\CreateEmailRequest | createEmailRequest
+$create_email_request = new \NecLimDul\MarketoRest\Asset\Model\CreateEmailRequest(); // \NecLimDul\MarketoRest\Asset\Model\CreateEmailRequest | createEmailRequest
 
 try {
     $result = $apiInstance->createEmailUsingPOST($create_email_request);
@@ -270,11 +270,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_email_request** | [**\MarketoRest\Asset\Model\CreateEmailRequest**](../Model/CreateEmailRequest.md)| createEmailRequest |
+ **create_email_request** | [**\NecLimDul\MarketoRest\Asset\Model\CreateEmailRequest**](../Model/CreateEmailRequest.md)| createEmailRequest |
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfEmailResponse**](../Model/ResponseOfEmailResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse**](../Model/ResponseOfEmailResponse.md)
 
 ### Authorization
 
@@ -288,7 +288,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **deleteEmailUsingPOST**
-> \MarketoRest\Asset\Model\ResponseOfIdResponse deleteEmailUsingPOST($id)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse deleteEmailUsingPOST($id)
 
 Delete Email
 
@@ -299,7 +299,7 @@ Deletes the target email.  Required Permissions: Read-Write Assets
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\EmailsApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -323,7 +323,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfIdResponse**](../Model/ResponseOfIdResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse**](../Model/ResponseOfIdResponse.md)
 
 ### Authorization
 
@@ -337,7 +337,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **deleteModuleUsingPOST**
-> \MarketoRest\Asset\Model\ModelResponse deleteModuleUsingPOST($id, $module_id)
+> \NecLimDul\MarketoRest\Asset\Model\ModelResponse deleteModuleUsingPOST($id, $module_id)
 
 Delete Module
 
@@ -348,7 +348,7 @@ Deletes the given module from the email.  Required Permissions: Read-Write Asset
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\EmailsApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -374,7 +374,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ModelResponse**](../Model/ModelResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ModelResponse**](../Model/ModelResponse.md)
 
 ### Authorization
 
@@ -388,7 +388,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **discardDraftUsingPOST**
-> \MarketoRest\Asset\Model\ResponseOfIdResponse discardDraftUsingPOST($id)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse discardDraftUsingPOST($id)
 
 Discard Email Draft
 
@@ -399,7 +399,7 @@ Discards the current draft of an email.  Required Permissions: Read-Write Assets
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\EmailsApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -423,7 +423,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfIdResponse**](../Model/ResponseOfIdResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse**](../Model/ResponseOfIdResponse.md)
 
 ### Authorization
 
@@ -437,7 +437,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **duplicateModuleUsingPOST**
-> \MarketoRest\Asset\Model\ModelResponse duplicateModuleUsingPOST($id, $module_id, $name)
+> \NecLimDul\MarketoRest\Asset\Model\ModelResponse duplicateModuleUsingPOST($id, $module_id, $name)
 
 Duplicate Email Module
 
@@ -448,7 +448,7 @@ Creates a copy of the designated module in an email.  Required Permissions: Read
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\EmailsApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -476,7 +476,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ModelResponse**](../Model/ModelResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ModelResponse**](../Model/ModelResponse.md)
 
 ### Authorization
 
@@ -490,7 +490,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getEmailByIdUsingGET**
-> \MarketoRest\Asset\Model\ResponseOfEmailResponse getEmailByIdUsingGET($id, $status)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse getEmailByIdUsingGET($id, $status)
 
 Get Email By Id
 
@@ -501,7 +501,7 @@ Returns an email records by its id.  Required Permissions: Read-Only Assets, Rea
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\EmailsApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -527,7 +527,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfEmailResponse**](../Model/ResponseOfEmailResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse**](../Model/ResponseOfEmailResponse.md)
 
 ### Authorization
 
@@ -541,7 +541,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getEmailByNameUsingGET**
-> \MarketoRest\Asset\Model\ResponseOfEmailResponse getEmailByNameUsingGET($name, $status, $folder)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse getEmailByNameUsingGET($name, $status, $folder)
 
 Get Email by Name
 
@@ -552,7 +552,7 @@ Returns an email records based on the given name.  Required Permissions: Read-On
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\EmailsApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -580,7 +580,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfEmailResponse**](../Model/ResponseOfEmailResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse**](../Model/ResponseOfEmailResponse.md)
 
 ### Authorization
 
@@ -594,7 +594,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getEmailCCFieldsUsingGET**
-> \MarketoRest\Asset\Model\ResponseOfEmailCCFieldsResponse getEmailCCFieldsUsingGET()
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailCCFieldsResponse getEmailCCFieldsUsingGET()
 
 Get Email CC Fields
 
@@ -605,7 +605,7 @@ Returns the set of fields enabled for Email CC in the target instance.  Required
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\EmailsApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -625,7 +625,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfEmailCCFieldsResponse**](../Model/ResponseOfEmailCCFieldsResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailCCFieldsResponse**](../Model/ResponseOfEmailCCFieldsResponse.md)
 
 ### Authorization
 
@@ -639,7 +639,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getEmailContentByIdUsingGET**
-> \MarketoRest\Asset\Model\ResponseOfEmailContentResponse getEmailContentByIdUsingGET($id, $status)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailContentResponse getEmailContentByIdUsingGET($id, $status)
 
 Get Email Content
 
@@ -650,7 +650,7 @@ Returns the content of the designated email.  Required Permissions: Read-Only As
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\EmailsApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -676,7 +676,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfEmailContentResponse**](../Model/ResponseOfEmailContentResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailContentResponse**](../Model/ResponseOfEmailContentResponse.md)
 
 ### Authorization
 
@@ -690,7 +690,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getEmailDynamicContentUsingGET**
-> \MarketoRest\Asset\Model\ResponseOfEmailDynamicContentResponse getEmailDynamicContentUsingGET($id, $content_id, $status)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailDynamicContentResponse getEmailDynamicContentUsingGET($id, $content_id, $status)
 
 Get Email Dynamic Content
 
@@ -701,7 +701,7 @@ Retrieves the dyanmic content record for the given section.  Required Permission
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\EmailsApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -729,7 +729,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfEmailDynamicContentResponse**](../Model/ResponseOfEmailDynamicContentResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailDynamicContentResponse**](../Model/ResponseOfEmailDynamicContentResponse.md)
 
 ### Authorization
 
@@ -743,7 +743,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getEmailFullContentUsingGET**
-> \MarketoRest\Asset\Model\ResponseOfGetEmailFullContentResponse getEmailFullContentUsingGET($id, $status, $lead_id, $type)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfGetEmailFullContentResponse getEmailFullContentUsingGET($id, $status, $lead_id, $type)
 
 Get Email Full Content
 
@@ -754,7 +754,7 @@ Returns the serialized HTML version of the email.  Required Permissions: Read-On
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\EmailsApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -784,7 +784,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfGetEmailFullContentResponse**](../Model/ResponseOfGetEmailFullContentResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfGetEmailFullContentResponse**](../Model/ResponseOfGetEmailFullContentResponse.md)
 
 ### Authorization
 
@@ -798,7 +798,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getEmailUsingGET**
-> \MarketoRest\Asset\Model\ResponseOfEmailResponse getEmailUsingGET($status, $folder, $offset, $max_return)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse getEmailUsingGET($status, $folder, $offset, $max_return)
 
 Get Emails
 
@@ -809,7 +809,7 @@ Returns a list of emails matching the given filter parameters.  Required Permiss
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\EmailsApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -839,7 +839,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfEmailResponse**](../Model/ResponseOfEmailResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse**](../Model/ResponseOfEmailResponse.md)
 
 ### Authorization
 
@@ -853,7 +853,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getEmailVariablesUsingGET**
-> \MarketoRest\Asset\Model\ModelResponse getEmailVariablesUsingGET($id)
+> \NecLimDul\MarketoRest\Asset\Model\ModelResponse getEmailVariablesUsingGET($id)
 
 Get Email Variables
 
@@ -864,7 +864,7 @@ Returns a list of the available variables in an email.  Required Permissions: Re
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\EmailsApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -888,7 +888,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ModelResponse**](../Model/ModelResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ModelResponse**](../Model/ModelResponse.md)
 
 ### Authorization
 
@@ -902,7 +902,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **rearrangeModulesUsingPOST**
-> \MarketoRest\Asset\Model\ModelResponse rearrangeModulesUsingPOST($id, $positions)
+> \NecLimDul\MarketoRest\Asset\Model\ModelResponse rearrangeModulesUsingPOST($id, $positions)
 
 Rearrange Email Modules
 
@@ -913,7 +913,7 @@ Rearranges the modules in an email
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\EmailsApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -939,7 +939,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ModelResponse**](../Model/ModelResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ModelResponse**](../Model/ModelResponse.md)
 
 ### Authorization
 
@@ -953,7 +953,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **renameUsingPOST**
-> \MarketoRest\Asset\Model\ModelResponse renameUsingPOST($id, $module_id, $name)
+> \NecLimDul\MarketoRest\Asset\Model\ModelResponse renameUsingPOST($id, $module_id, $name)
 
 Rename Email Module
 
@@ -964,7 +964,7 @@ Renames a module.  Required Permissions: Read-Write Assets
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\EmailsApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -992,7 +992,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ModelResponse**](../Model/ModelResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ModelResponse**](../Model/ModelResponse.md)
 
 ### Authorization
 
@@ -1006,7 +1006,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **sendSampleEmailUsingPOST**
-> \MarketoRest\Asset\Model\ResponseOfIdResponse sendSampleEmailUsingPOST($id, $send_sample_email_request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse sendSampleEmailUsingPOST($id, $send_sample_email_request)
 
 Send Sample Email
 
@@ -1017,13 +1017,13 @@ Sends a sample email to the given email address.  Leads may be impersonated to p
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\EmailsApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $id = 56; // int | Id of the email
-$send_sample_email_request = new \MarketoRest\Asset\Model\SendSampleEmailRequest(); // \MarketoRest\Asset\Model\SendSampleEmailRequest | sendSampleEmailRequest
+$send_sample_email_request = new \NecLimDul\MarketoRest\Asset\Model\SendSampleEmailRequest(); // \NecLimDul\MarketoRest\Asset\Model\SendSampleEmailRequest | sendSampleEmailRequest
 
 try {
     $result = $apiInstance->sendSampleEmailUsingPOST($id, $send_sample_email_request);
@@ -1039,11 +1039,11 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| Id of the email |
- **send_sample_email_request** | [**\MarketoRest\Asset\Model\SendSampleEmailRequest**](../Model/SendSampleEmailRequest.md)| sendSampleEmailRequest |
+ **send_sample_email_request** | [**\NecLimDul\MarketoRest\Asset\Model\SendSampleEmailRequest**](../Model/SendSampleEmailRequest.md)| sendSampleEmailRequest |
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfIdResponse**](../Model/ResponseOfIdResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse**](../Model/ResponseOfIdResponse.md)
 
 ### Authorization
 
@@ -1057,7 +1057,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **unapproveDraftUsingPOST**
-> \MarketoRest\Asset\Model\ResponseOfIdResponse unapproveDraftUsingPOST($id)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse unapproveDraftUsingPOST($id)
 
 Unapprove Email
 
@@ -1068,7 +1068,7 @@ Unapproves the email and reverts it to a draft-only state.  Required Permissions
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\EmailsApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -1092,7 +1092,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfIdResponse**](../Model/ResponseOfIdResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse**](../Model/ResponseOfIdResponse.md)
 
 ### Authorization
 
@@ -1106,7 +1106,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **updateEmailComponentContentUsingPOST**
-> \MarketoRest\Asset\Model\ResponseOfIdResponse updateEmailComponentContentUsingPOST($id, $html_id, $request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse updateEmailComponentContentUsingPOST($id, $html_id, $request)
 
 Update Email Content Section
 
@@ -1117,14 +1117,14 @@ Updates the content in the given section.  Required Permissions: Read-Write Asse
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\EmailsApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $id = 56; // int | id
 $html_id = "html_id_example"; // string | htmlId
-$request = new \MarketoRest\Asset\Model\UpdateEmailComponentContentRequest(); // \MarketoRest\Asset\Model\UpdateEmailComponentContentRequest | request
+$request = new \NecLimDul\MarketoRest\Asset\Model\UpdateEmailComponentContentRequest(); // \NecLimDul\MarketoRest\Asset\Model\UpdateEmailComponentContentRequest | request
 
 try {
     $result = $apiInstance->updateEmailComponentContentUsingPOST($id, $html_id, $request);
@@ -1141,11 +1141,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| id |
  **html_id** | **string**| htmlId |
- **request** | [**\MarketoRest\Asset\Model\UpdateEmailComponentContentRequest**](../Model/UpdateEmailComponentContentRequest.md)| request |
+ **request** | [**\NecLimDul\MarketoRest\Asset\Model\UpdateEmailComponentContentRequest**](../Model/UpdateEmailComponentContentRequest.md)| request |
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfIdResponse**](../Model/ResponseOfIdResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse**](../Model/ResponseOfIdResponse.md)
 
 ### Authorization
 
@@ -1159,7 +1159,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **updateEmailContentUsingPOST**
-> \MarketoRest\Asset\Model\ResponseOfIdResponse updateEmailContentUsingPOST($id, $update_email_request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse updateEmailContentUsingPOST($id, $update_email_request)
 
 Update Email Content
 
@@ -1170,13 +1170,13 @@ Updates the content of an email.  Required Permissions: Read-Write Assets
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\EmailsApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $id = 56; // int | id
-$update_email_request = new \MarketoRest\Asset\Model\UpdateEmailComponentDataRequest(); // \MarketoRest\Asset\Model\UpdateEmailComponentDataRequest | updateEmailRequest
+$update_email_request = new \NecLimDul\MarketoRest\Asset\Model\UpdateEmailComponentDataRequest(); // \NecLimDul\MarketoRest\Asset\Model\UpdateEmailComponentDataRequest | updateEmailRequest
 
 try {
     $result = $apiInstance->updateEmailContentUsingPOST($id, $update_email_request);
@@ -1192,11 +1192,11 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| id |
- **update_email_request** | [**\MarketoRest\Asset\Model\UpdateEmailComponentDataRequest**](../Model/UpdateEmailComponentDataRequest.md)| updateEmailRequest |
+ **update_email_request** | [**\NecLimDul\MarketoRest\Asset\Model\UpdateEmailComponentDataRequest**](../Model/UpdateEmailComponentDataRequest.md)| updateEmailRequest |
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfIdResponse**](../Model/ResponseOfIdResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse**](../Model/ResponseOfIdResponse.md)
 
 ### Authorization
 
@@ -1210,7 +1210,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **updateEmailDynamicContentUsingPOST**
-> \MarketoRest\Asset\Model\ResponseOfIdResponse updateEmailDynamicContentUsingPOST($id, $content_id, $request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse updateEmailDynamicContentUsingPOST($id, $content_id, $request)
 
 Update Email Dynamic Content Section
 
@@ -1221,14 +1221,14 @@ Updates dynamic content in the given section.  Required Permissions: Read-Write 
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\EmailsApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $id = 56; // int | Id of email
 $content_id = "content_id_example"; // string | Id of email dynamic content section
-$request = new \MarketoRest\Asset\Model\UpdateEmailDynamicContentRequest(); // \MarketoRest\Asset\Model\UpdateEmailDynamicContentRequest | Content properties
+$request = new \NecLimDul\MarketoRest\Asset\Model\UpdateEmailDynamicContentRequest(); // \NecLimDul\MarketoRest\Asset\Model\UpdateEmailDynamicContentRequest | Content properties
 
 try {
     $result = $apiInstance->updateEmailDynamicContentUsingPOST($id, $content_id, $request);
@@ -1245,11 +1245,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| Id of email |
  **content_id** | **string**| Id of email dynamic content section |
- **request** | [**\MarketoRest\Asset\Model\UpdateEmailDynamicContentRequest**](../Model/UpdateEmailDynamicContentRequest.md)| Content properties |
+ **request** | [**\NecLimDul\MarketoRest\Asset\Model\UpdateEmailDynamicContentRequest**](../Model/UpdateEmailDynamicContentRequest.md)| Content properties |
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfIdResponse**](../Model/ResponseOfIdResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse**](../Model/ResponseOfIdResponse.md)
 
 ### Authorization
 
@@ -1263,7 +1263,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **updateEmailUsingPOST**
-> \MarketoRest\Asset\Model\ResponseOfEmailResponse updateEmailUsingPOST($id, $update_email_request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse updateEmailUsingPOST($id, $update_email_request)
 
 Update Email Metadata
 
@@ -1274,13 +1274,13 @@ Updates the metadata of an email asset.  Required Permissions: Read-Write Assets
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\EmailsApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $id = 56; // int | id
-$update_email_request = new \MarketoRest\Asset\Model\UpdateEmailMetaDataRequest(); // \MarketoRest\Asset\Model\UpdateEmailMetaDataRequest | updateEmailRequest
+$update_email_request = new \NecLimDul\MarketoRest\Asset\Model\UpdateEmailMetaDataRequest(); // \NecLimDul\MarketoRest\Asset\Model\UpdateEmailMetaDataRequest | updateEmailRequest
 
 try {
     $result = $apiInstance->updateEmailUsingPOST($id, $update_email_request);
@@ -1296,11 +1296,11 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| id |
- **update_email_request** | [**\MarketoRest\Asset\Model\UpdateEmailMetaDataRequest**](../Model/UpdateEmailMetaDataRequest.md)| updateEmailRequest |
+ **update_email_request** | [**\NecLimDul\MarketoRest\Asset\Model\UpdateEmailMetaDataRequest**](../Model/UpdateEmailMetaDataRequest.md)| updateEmailRequest |
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfEmailResponse**](../Model/ResponseOfEmailResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse**](../Model/ResponseOfEmailResponse.md)
 
 ### Authorization
 
@@ -1314,7 +1314,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **updateVariableUsingPOST**
-> \MarketoRest\Asset\Model\ModelResponse updateVariableUsingPOST($id, $name, $update_variable_request)
+> \NecLimDul\MarketoRest\Asset\Model\ModelResponse updateVariableUsingPOST($id, $name, $update_variable_request)
 
 Update Email Variable
 
@@ -1325,14 +1325,14 @@ Updates the value of a given variable in an email.  Required Permissions: Read-W
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\EmailsApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $id = 56; // int | id
 $name = "name_example"; // string | name
-$update_variable_request = new \MarketoRest\Asset\Model\UpdateVariableRequest(); // \MarketoRest\Asset\Model\UpdateVariableRequest | updateVariableRequest
+$update_variable_request = new \NecLimDul\MarketoRest\Asset\Model\UpdateVariableRequest(); // \NecLimDul\MarketoRest\Asset\Model\UpdateVariableRequest | updateVariableRequest
 
 try {
     $result = $apiInstance->updateVariableUsingPOST($id, $name, $update_variable_request);
@@ -1349,11 +1349,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| id |
  **name** | **string**| name |
- **update_variable_request** | [**\MarketoRest\Asset\Model\UpdateVariableRequest**](../Model/UpdateVariableRequest.md)| updateVariableRequest | [optional]
+ **update_variable_request** | [**\NecLimDul\MarketoRest\Asset\Model\UpdateVariableRequest**](../Model/UpdateVariableRequest.md)| updateVariableRequest | [optional]
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ModelResponse**](../Model/ModelResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ModelResponse**](../Model/ModelResponse.md)
 
 ### Authorization
 

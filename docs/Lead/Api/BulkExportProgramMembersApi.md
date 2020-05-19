@@ -1,4 +1,4 @@
-# MarketoRest\Lead\BulkExportProgramMembersApi
+# NecLimDul\MarketoRest\Lead\BulkExportProgramMembersApi
 
 All URIs are relative to *https://localhost:8080*
 
@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 
 # **cancelExportProgramMembersUsingPOST**
-> \MarketoRest\Lead\Model\ResponseOfExportResponse cancelExportProgramMembersUsingPOST($export_id)
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse cancelExportProgramMembersUsingPOST($export_id)
 
 Cancel Export Program Member Job
 
@@ -24,7 +24,7 @@ Cancel export job.  Required Permissions: Read-Only Lead
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Lead\Api\BulkExportProgramMembersApi(
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\BulkExportProgramMembersApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -48,7 +48,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Lead\Model\ResponseOfExportResponse**](../Model/ResponseOfExportResponse.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse**](../Model/ResponseOfExportResponse.md)
 
 ### Authorization
 
@@ -62,7 +62,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **createExportProgramMembersUsingPOST**
-> \MarketoRest\Lead\Model\ResponseOfExportResponse createExportProgramMembersUsingPOST($export_program_member_request)
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse createExportProgramMembersUsingPOST($export_program_member_request)
 
 Create Export Program Member Job
 
@@ -73,12 +73,12 @@ Create export job for search criteria defined via \"filter\" parameter.  Request
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Lead\Api\BulkExportProgramMembersApi(
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\BulkExportProgramMembersApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$export_program_member_request = new \MarketoRest\Lead\Model\ExportProgramMemberRequest(); // \MarketoRest\Lead\Model\ExportProgramMemberRequest | exportProgramMemberRequest<br><br>ColumnHeaderNames: A JSON object containing key-value pairs of field and column header names.<br><br>Example:<br><code>\"columnHeaderNames\":{<br>  \"firstName\":\"First Name\",<br>  \"lastName\":\"Last Name\",<br>  \"email\":\"Email Address\"<br>}</code><br>
+$export_program_member_request = new \NecLimDul\MarketoRest\Lead\Model\ExportProgramMemberRequest(); // \NecLimDul\MarketoRest\Lead\Model\ExportProgramMemberRequest | exportProgramMemberRequest<br><br>ColumnHeaderNames: A JSON object containing key-value pairs of field and column header names.<br><br>Example:<br><code>\"columnHeaderNames\":{<br>  \"firstName\":\"First Name\",<br>  \"lastName\":\"Last Name\",<br>  \"email\":\"Email Address\"<br>}</code><br>
 
 try {
     $result = $apiInstance->createExportProgramMembersUsingPOST($export_program_member_request);
@@ -93,11 +93,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **export_program_member_request** | [**\MarketoRest\Lead\Model\ExportProgramMemberRequest**](../Model/ExportProgramMemberRequest.md)| exportProgramMemberRequest&lt;br&gt;&lt;br&gt;ColumnHeaderNames: A JSON object containing key-value pairs of field and column header names.&lt;br&gt;&lt;br&gt;Example:&lt;br&gt;&lt;code&gt;\&quot;columnHeaderNames\&quot;:{&lt;br&gt;  \&quot;firstName\&quot;:\&quot;First Name\&quot;,&lt;br&gt;  \&quot;lastName\&quot;:\&quot;Last Name\&quot;,&lt;br&gt;  \&quot;email\&quot;:\&quot;Email Address\&quot;&lt;br&gt;}&lt;/code&gt;&lt;br&gt; | [optional]
+ **export_program_member_request** | [**\NecLimDul\MarketoRest\Lead\Model\ExportProgramMemberRequest**](../Model/ExportProgramMemberRequest.md)| exportProgramMemberRequest&lt;br&gt;&lt;br&gt;ColumnHeaderNames: A JSON object containing key-value pairs of field and column header names.&lt;br&gt;&lt;br&gt;Example:&lt;br&gt;&lt;code&gt;\&quot;columnHeaderNames\&quot;:{&lt;br&gt;  \&quot;firstName\&quot;:\&quot;First Name\&quot;,&lt;br&gt;  \&quot;lastName\&quot;:\&quot;Last Name\&quot;,&lt;br&gt;  \&quot;email\&quot;:\&quot;Email Address\&quot;&lt;br&gt;}&lt;/code&gt;&lt;br&gt; | [optional]
 
 ### Return type
 
-[**\MarketoRest\Lead\Model\ResponseOfExportResponse**](../Model/ResponseOfExportResponse.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse**](../Model/ResponseOfExportResponse.md)
 
 ### Authorization
 
@@ -111,7 +111,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **enqueueExportProgramMembersUsingPOST**
-> \MarketoRest\Lead\Model\ResponseOfExportResponse enqueueExportProgramMembersUsingPOST($export_id)
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse enqueueExportProgramMembersUsingPOST($export_id)
 
 Enqueue Export Program Member Job
 
@@ -122,7 +122,7 @@ Enqueue export job. This will place export job in queue, and will start the job 
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Lead\Api\BulkExportProgramMembersApi(
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\BulkExportProgramMembersApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -146,7 +146,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Lead\Model\ResponseOfExportResponse**](../Model/ResponseOfExportResponse.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse**](../Model/ResponseOfExportResponse.md)
 
 ### Authorization
 
@@ -160,7 +160,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getExportProgramMembersFileUsingGET**
-> \MarketoRest\Lead\Model\ObservableOfInputStreamRangeContent getExportProgramMembersFileUsingGET($export_id, $range)
+> \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamRangeContent getExportProgramMembersFileUsingGET($export_id, $range)
 
 Get Export Program Member File
 
@@ -171,7 +171,7 @@ Returns the file content of an export job.  The export job must be in \"Complete
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Lead\Api\BulkExportProgramMembersApi(
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\BulkExportProgramMembersApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -197,7 +197,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Lead\Model\ObservableOfInputStreamRangeContent**](../Model/ObservableOfInputStreamRangeContent.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamRangeContent**](../Model/ObservableOfInputStreamRangeContent.md)
 
 ### Authorization
 
@@ -211,7 +211,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getExportProgramMembersStatusUsingGET**
-> \MarketoRest\Lead\Model\ResponseOfExportResponse getExportProgramMembersStatusUsingGET($export_id)
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse getExportProgramMembersStatusUsingGET($export_id)
 
 Get Export Program Member Job Status
 
@@ -222,7 +222,7 @@ Returns status of an export job.  Job status is available for 30 days after Comp
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Lead\Api\BulkExportProgramMembersApi(
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\BulkExportProgramMembersApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -246,7 +246,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Lead\Model\ResponseOfExportResponse**](../Model/ResponseOfExportResponse.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse**](../Model/ResponseOfExportResponse.md)
 
 ### Authorization
 
@@ -260,7 +260,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getExportProgramMembersUsingGET**
-> \MarketoRest\Lead\Model\ResponseOfExportResponseWithToken getExportProgramMembersUsingGET($status, $batch_size, $next_page_token)
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponseWithToken getExportProgramMembersUsingGET($status, $batch_size, $next_page_token)
 
 Get Export Program Member Jobs
 
@@ -271,7 +271,7 @@ Returns a list of export jobs that were created in the past 7 days.  Required Pe
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Lead\Api\BulkExportProgramMembersApi(
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\BulkExportProgramMembersApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -299,7 +299,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Lead\Model\ResponseOfExportResponseWithToken**](../Model/ResponseOfExportResponseWithToken.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponseWithToken**](../Model/ResponseOfExportResponseWithToken.md)
 
 ### Authorization
 

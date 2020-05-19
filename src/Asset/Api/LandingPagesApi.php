@@ -4,7 +4,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -26,7 +26,7 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Asset\Api;
+namespace NecLimDul\MarketoRest\Asset\Api;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -34,16 +34,16 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
-use MarketoRest\Asset\ApiException;
-use MarketoRest\Asset\Configuration;
-use MarketoRest\Asset\HeaderSelector;
-use MarketoRest\Asset\ObjectSerializer;
+use NecLimDul\MarketoRest\Asset\ApiException;
+use NecLimDul\MarketoRest\Asset\Configuration;
+use NecLimDul\MarketoRest\Asset\HeaderSelector;
+use NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * LandingPagesApi Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -94,9 +94,9 @@ class LandingPagesApi
      *
      * @param  int $id id (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfIdResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse
      */
     public function approveLandingPageUsingPOST($id)
     {
@@ -111,13 +111,13 @@ class LandingPagesApi
      *
      * @param  int $id id (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfIdResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function approveLandingPageUsingPOSTWithHttpInfo($id)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfIdResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse';
         $request = $this->approveLandingPageUsingPOSTRequest($id);
 
         try {
@@ -169,7 +169,7 @@ class LandingPagesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfIdResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -211,7 +211,7 @@ class LandingPagesApi
      */
     public function approveLandingPageUsingPOSTAsyncWithHttpInfo($id)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfIdResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse';
         $request = $this->approveLandingPageUsingPOSTRequest($id);
 
         return $this->client
@@ -366,9 +366,9 @@ class LandingPagesApi
      * @param  int $offset Integer offset for paging (optional)
      * @param  string $folder JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39; (optional)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfLandingPageResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse
      */
     public function browseLandingPagesUsingGET($status = null, $max_return = null, $offset = null, $folder = null)
     {
@@ -386,13 +386,13 @@ class LandingPagesApi
      * @param  int $offset Integer offset for paging (optional)
      * @param  string $folder JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39; (optional)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfLandingPageResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function browseLandingPagesUsingGETWithHttpInfo($status = null, $max_return = null, $offset = null, $folder = null)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfLandingPageResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse';
         $request = $this->browseLandingPagesUsingGETRequest($status, $max_return, $offset, $folder);
 
         try {
@@ -444,7 +444,7 @@ class LandingPagesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfLandingPageResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -492,7 +492,7 @@ class LandingPagesApi
      */
     public function browseLandingPagesUsingGETAsyncWithHttpInfo($status = null, $max_return = null, $offset = null, $folder = null)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfLandingPageResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse';
         $request = $this->browseLandingPagesUsingGETRequest($status, $max_return, $offset, $folder);
 
         return $this->client
@@ -648,11 +648,11 @@ class LandingPagesApi
      * Clone Landing Page
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\CloneLandingPageRequest $clone_landing_page_request cloneLandingPageRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CloneLandingPageRequest $clone_landing_page_request cloneLandingPageRequest (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfLandingPageResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse
      */
     public function cloneLandingPageUsingPOST($id, $clone_landing_page_request)
     {
@@ -666,15 +666,15 @@ class LandingPagesApi
      * Clone Landing Page
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\CloneLandingPageRequest $clone_landing_page_request cloneLandingPageRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CloneLandingPageRequest $clone_landing_page_request cloneLandingPageRequest (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfLandingPageResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function cloneLandingPageUsingPOSTWithHttpInfo($id, $clone_landing_page_request)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfLandingPageResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse';
         $request = $this->cloneLandingPageUsingPOSTRequest($id, $clone_landing_page_request);
 
         try {
@@ -726,7 +726,7 @@ class LandingPagesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfLandingPageResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -742,7 +742,7 @@ class LandingPagesApi
      * Clone Landing Page
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\CloneLandingPageRequest $clone_landing_page_request cloneLandingPageRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CloneLandingPageRequest $clone_landing_page_request cloneLandingPageRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -763,14 +763,14 @@ class LandingPagesApi
      * Clone Landing Page
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\CloneLandingPageRequest $clone_landing_page_request cloneLandingPageRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CloneLandingPageRequest $clone_landing_page_request cloneLandingPageRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function cloneLandingPageUsingPOSTAsyncWithHttpInfo($id, $clone_landing_page_request)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfLandingPageResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse';
         $request = $this->cloneLandingPageUsingPOSTRequest($id, $clone_landing_page_request);
 
         return $this->client
@@ -814,7 +814,7 @@ class LandingPagesApi
      * Create request for operation 'cloneLandingPageUsingPOST'
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\CloneLandingPageRequest $clone_landing_page_request cloneLandingPageRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CloneLandingPageRequest $clone_landing_page_request cloneLandingPageRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -930,11 +930,11 @@ class LandingPagesApi
      *
      * Create Landing Page
      *
-     * @param  \MarketoRest\Asset\Model\CreateLandingPageRequest $create_landing_page_request createLandingPageRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CreateLandingPageRequest $create_landing_page_request createLandingPageRequest (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfLandingPageResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse
      */
     public function createLandingPageUsingPOST($create_landing_page_request)
     {
@@ -947,15 +947,15 @@ class LandingPagesApi
      *
      * Create Landing Page
      *
-     * @param  \MarketoRest\Asset\Model\CreateLandingPageRequest $create_landing_page_request createLandingPageRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CreateLandingPageRequest $create_landing_page_request createLandingPageRequest (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfLandingPageResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function createLandingPageUsingPOSTWithHttpInfo($create_landing_page_request)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfLandingPageResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse';
         $request = $this->createLandingPageUsingPOSTRequest($create_landing_page_request);
 
         try {
@@ -1007,7 +1007,7 @@ class LandingPagesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfLandingPageResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1022,7 +1022,7 @@ class LandingPagesApi
      *
      * Create Landing Page
      *
-     * @param  \MarketoRest\Asset\Model\CreateLandingPageRequest $create_landing_page_request createLandingPageRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CreateLandingPageRequest $create_landing_page_request createLandingPageRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1042,14 +1042,14 @@ class LandingPagesApi
      *
      * Create Landing Page
      *
-     * @param  \MarketoRest\Asset\Model\CreateLandingPageRequest $create_landing_page_request createLandingPageRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CreateLandingPageRequest $create_landing_page_request createLandingPageRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function createLandingPageUsingPOSTAsyncWithHttpInfo($create_landing_page_request)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfLandingPageResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse';
         $request = $this->createLandingPageUsingPOSTRequest($create_landing_page_request);
 
         return $this->client
@@ -1092,7 +1092,7 @@ class LandingPagesApi
     /**
      * Create request for operation 'createLandingPageUsingPOST'
      *
-     * @param  \MarketoRest\Asset\Model\CreateLandingPageRequest $create_landing_page_request createLandingPageRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CreateLandingPageRequest $create_landing_page_request createLandingPageRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -1196,9 +1196,9 @@ class LandingPagesApi
      *
      * @param  int $id id (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfIdResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse
      */
     public function deleteLandingPageByIdUsingPOST($id)
     {
@@ -1213,13 +1213,13 @@ class LandingPagesApi
      *
      * @param  int $id id (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfIdResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function deleteLandingPageByIdUsingPOSTWithHttpInfo($id)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfIdResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse';
         $request = $this->deleteLandingPageByIdUsingPOSTRequest($id);
 
         try {
@@ -1271,7 +1271,7 @@ class LandingPagesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfIdResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1313,7 +1313,7 @@ class LandingPagesApi
      */
     public function deleteLandingPageByIdUsingPOSTAsyncWithHttpInfo($id)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfIdResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse';
         $request = $this->deleteLandingPageByIdUsingPOSTRequest($id);
 
         return $this->client
@@ -1465,9 +1465,9 @@ class LandingPagesApi
      *
      * @param  int $id id (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfIdResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse
      */
     public function discardLandingPageByIdUsingPOST($id)
     {
@@ -1482,13 +1482,13 @@ class LandingPagesApi
      *
      * @param  int $id id (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfIdResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function discardLandingPageByIdUsingPOSTWithHttpInfo($id)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfIdResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse';
         $request = $this->discardLandingPageByIdUsingPOSTRequest($id);
 
         try {
@@ -1540,7 +1540,7 @@ class LandingPagesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfIdResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1582,7 +1582,7 @@ class LandingPagesApi
      */
     public function discardLandingPageByIdUsingPOSTAsyncWithHttpInfo($id)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfIdResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse';
         $request = $this->discardLandingPageByIdUsingPOSTRequest($id);
 
         return $this->client
@@ -1735,9 +1735,9 @@ class LandingPagesApi
      * @param  int $id id (required)
      * @param  string $status Status filter for draft or approved versions (optional)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfLandingPageResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse
      */
     public function getLandingPageByIdUsingGET($id, $status = null)
     {
@@ -1753,13 +1753,13 @@ class LandingPagesApi
      * @param  int $id id (required)
      * @param  string $status Status filter for draft or approved versions (optional)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfLandingPageResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function getLandingPageByIdUsingGETWithHttpInfo($id, $status = null)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfLandingPageResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse';
         $request = $this->getLandingPageByIdUsingGETRequest($id, $status);
 
         try {
@@ -1811,7 +1811,7 @@ class LandingPagesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfLandingPageResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1855,7 +1855,7 @@ class LandingPagesApi
      */
     public function getLandingPageByIdUsingGETAsyncWithHttpInfo($id, $status = null)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfLandingPageResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse';
         $request = $this->getLandingPageByIdUsingGETRequest($id, $status);
 
         return $this->client
@@ -2015,9 +2015,9 @@ class LandingPagesApi
      * @param  int $max_return Maximum number of channels to return.  Max 200, default 20 (optional)
      * @param  int $offset Integer offset for paging (optional)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfLandingPageResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse
      */
     public function getLandingPageByNameUsingGET($name, $status = null, $max_return = null, $offset = null)
     {
@@ -2035,13 +2035,13 @@ class LandingPagesApi
      * @param  int $max_return Maximum number of channels to return.  Max 200, default 20 (optional)
      * @param  int $offset Integer offset for paging (optional)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfLandingPageResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function getLandingPageByNameUsingGETWithHttpInfo($name, $status = null, $max_return = null, $offset = null)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfLandingPageResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse';
         $request = $this->getLandingPageByNameUsingGETRequest($name, $status, $max_return, $offset);
 
         try {
@@ -2093,7 +2093,7 @@ class LandingPagesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfLandingPageResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2141,7 +2141,7 @@ class LandingPagesApi
      */
     public function getLandingPageByNameUsingGETAsyncWithHttpInfo($name, $status = null, $max_return = null, $offset = null)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfLandingPageResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse';
         $request = $this->getLandingPageByNameUsingGETRequest($name, $status, $max_return, $offset);
 
         return $this->client
@@ -2305,9 +2305,9 @@ class LandingPagesApi
      * @param  int $id Id of the landing page (required)
      * @param  string $status Status filter for draft or approved versions (optional)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfLandingPageVariableResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageVariableResponse
      */
     public function getVariablesUsingGET($id, $status = null)
     {
@@ -2323,13 +2323,13 @@ class LandingPagesApi
      * @param  int $id Id of the landing page (required)
      * @param  string $status Status filter for draft or approved versions (optional)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfLandingPageVariableResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageVariableResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function getVariablesUsingGETWithHttpInfo($id, $status = null)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfLandingPageVariableResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageVariableResponse';
         $request = $this->getVariablesUsingGETRequest($id, $status);
 
         try {
@@ -2381,7 +2381,7 @@ class LandingPagesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfLandingPageVariableResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageVariableResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2425,7 +2425,7 @@ class LandingPagesApi
      */
     public function getVariablesUsingGETAsyncWithHttpInfo($id, $status = null)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfLandingPageVariableResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageVariableResponse';
         $request = $this->getVariablesUsingGETRequest($id, $status);
 
         return $this->client
@@ -2582,9 +2582,9 @@ class LandingPagesApi
      *
      * @param  int $id id (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfLandingPageResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse
      */
     public function unapproveLandingPageByIdUsingPOST($id)
     {
@@ -2599,13 +2599,13 @@ class LandingPagesApi
      *
      * @param  int $id id (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfLandingPageResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function unapproveLandingPageByIdUsingPOSTWithHttpInfo($id)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfLandingPageResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse';
         $request = $this->unapproveLandingPageByIdUsingPOSTRequest($id);
 
         try {
@@ -2657,7 +2657,7 @@ class LandingPagesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfLandingPageResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2699,7 +2699,7 @@ class LandingPagesApi
      */
     public function unapproveLandingPageByIdUsingPOSTAsyncWithHttpInfo($id)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfLandingPageResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse';
         $request = $this->unapproveLandingPageByIdUsingPOSTRequest($id);
 
         return $this->client
@@ -2850,11 +2850,11 @@ class LandingPagesApi
      * Update Landing Page Metadata
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\UpdateLandingPageRequest $update_landing_page_request updateLandingPageRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateLandingPageRequest $update_landing_page_request updateLandingPageRequest (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfLandingPageResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse
      */
     public function updateLandingPageUsingPOST($id, $update_landing_page_request)
     {
@@ -2868,15 +2868,15 @@ class LandingPagesApi
      * Update Landing Page Metadata
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\UpdateLandingPageRequest $update_landing_page_request updateLandingPageRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateLandingPageRequest $update_landing_page_request updateLandingPageRequest (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfLandingPageResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function updateLandingPageUsingPOSTWithHttpInfo($id, $update_landing_page_request)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfLandingPageResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse';
         $request = $this->updateLandingPageUsingPOSTRequest($id, $update_landing_page_request);
 
         try {
@@ -2928,7 +2928,7 @@ class LandingPagesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfLandingPageResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2944,7 +2944,7 @@ class LandingPagesApi
      * Update Landing Page Metadata
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\UpdateLandingPageRequest $update_landing_page_request updateLandingPageRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateLandingPageRequest $update_landing_page_request updateLandingPageRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -2965,14 +2965,14 @@ class LandingPagesApi
      * Update Landing Page Metadata
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\UpdateLandingPageRequest $update_landing_page_request updateLandingPageRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateLandingPageRequest $update_landing_page_request updateLandingPageRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function updateLandingPageUsingPOSTAsyncWithHttpInfo($id, $update_landing_page_request)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfLandingPageResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse';
         $request = $this->updateLandingPageUsingPOSTRequest($id, $update_landing_page_request);
 
         return $this->client
@@ -3016,7 +3016,7 @@ class LandingPagesApi
      * Create request for operation 'updateLandingPageUsingPOST'
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\UpdateLandingPageRequest $update_landing_page_request updateLandingPageRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateLandingPageRequest $update_landing_page_request updateLandingPageRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -3136,9 +3136,9 @@ class LandingPagesApi
      * @param  string $variable_id variableId (required)
      * @param  int $value New value of the variable (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfLandingPageVariableResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageVariableResponse
      */
     public function updateLandingPageVariableUsingPOST($id, $variable_id, $value)
     {
@@ -3155,13 +3155,13 @@ class LandingPagesApi
      * @param  string $variable_id variableId (required)
      * @param  int $value New value of the variable (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfLandingPageVariableResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageVariableResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function updateLandingPageVariableUsingPOSTWithHttpInfo($id, $variable_id, $value)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfLandingPageVariableResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageVariableResponse';
         $request = $this->updateLandingPageVariableUsingPOSTRequest($id, $variable_id, $value);
 
         try {
@@ -3213,7 +3213,7 @@ class LandingPagesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfLandingPageVariableResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageVariableResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3259,7 +3259,7 @@ class LandingPagesApi
      */
     public function updateLandingPageVariableUsingPOSTAsyncWithHttpInfo($id, $variable_id, $value)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfLandingPageVariableResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageVariableResponse';
         $request = $this->updateLandingPageVariableUsingPOSTRequest($id, $variable_id, $value);
 
         return $this->client

@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Lead\Model;
+namespace NecLimDul\MarketoRest\Lead\Model;
 
 use \ArrayAccess;
-use \MarketoRest\Lead\ObjectSerializer;
+use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * ObjectRelation Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -58,7 +58,7 @@ class ObjectRelation implements ModelInterface, ArrayAccess
       */
     protected static $swaggerTypes = [
         'field' => 'string',
-        'related_to' => '\MarketoRest\Lead\Model\RelatedObject',
+        'related_to' => '\NecLimDul\MarketoRest\Lead\Model\RelatedObject',
         'type' => 'string'
     ];
 
@@ -252,7 +252,7 @@ class ObjectRelation implements ModelInterface, ArrayAccess
     /**
      * Gets related_to
      *
-     * @return \MarketoRest\Lead\Model\RelatedObject
+     * @return \NecLimDul\MarketoRest\Lead\Model\RelatedObject
      */
     public function getRelatedTo()
     {
@@ -262,7 +262,7 @@ class ObjectRelation implements ModelInterface, ArrayAccess
     /**
      * Sets related_to
      *
-     * @param \MarketoRest\Lead\Model\RelatedObject $related_to Object to which the field is linked
+     * @param \NecLimDul\MarketoRest\Lead\Model\RelatedObject $related_to Object to which the field is linked
      *
      * @return $this
      */

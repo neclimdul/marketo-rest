@@ -4,7 +4,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Identity
+ * @package  NecLimDul\MarketoRest\Identity
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -26,7 +26,7 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Identity\Api;
+namespace NecLimDul\MarketoRest\Identity\Api;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -34,16 +34,16 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
-use MarketoRest\Identity\ApiException;
-use MarketoRest\Identity\Configuration;
-use MarketoRest\Identity\HeaderSelector;
-use MarketoRest\Identity\ObjectSerializer;
+use NecLimDul\MarketoRest\Identity\ApiException;
+use NecLimDul\MarketoRest\Identity\Configuration;
+use NecLimDul\MarketoRest\Identity\HeaderSelector;
+use NecLimDul\MarketoRest\Identity\ObjectSerializer;
 
 /**
  * IdentityApi Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Identity
+ * @package  NecLimDul\MarketoRest\Identity
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -97,9 +97,9 @@ class IdentityApi
      * @param  string $grant_type Grant type. (required)
      * @param  string $partner_id LaunchPoint Technology Partner &lt;a href&#x3D;&#39;http://developers.marketo.com/support/Marketo_LaunchPoint_Technology_Partner_API_Key.pdf&#39;&gt;API Key&lt;/a&gt;. (optional)
      *
-     * @throws \MarketoRest\Identity\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Identity\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Identity\Model\ResponseOfIdentity
+     * @return \NecLimDul\MarketoRest\Identity\Model\ResponseOfIdentity
      */
     public function identityUsingGET($client_id, $client_secret, $grant_type, $partner_id = null)
     {
@@ -117,13 +117,13 @@ class IdentityApi
      * @param  string $grant_type Grant type. (required)
      * @param  string $partner_id LaunchPoint Technology Partner &lt;a href&#x3D;&#39;http://developers.marketo.com/support/Marketo_LaunchPoint_Technology_Partner_API_Key.pdf&#39;&gt;API Key&lt;/a&gt;. (optional)
      *
-     * @throws \MarketoRest\Identity\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Identity\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Identity\Model\ResponseOfIdentity, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Identity\Model\ResponseOfIdentity, HTTP status code, HTTP response headers (array of strings)
      */
     public function identityUsingGETWithHttpInfo($client_id, $client_secret, $grant_type, $partner_id = null)
     {
-        $returnType = '\MarketoRest\Identity\Model\ResponseOfIdentity';
+        $returnType = '\NecLimDul\MarketoRest\Identity\Model\ResponseOfIdentity';
         $request = $this->identityUsingGETRequest($client_id, $client_secret, $grant_type, $partner_id);
 
         try {
@@ -175,7 +175,7 @@ class IdentityApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Identity\Model\ResponseOfIdentity',
+                        '\NecLimDul\MarketoRest\Identity\Model\ResponseOfIdentity',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -223,7 +223,7 @@ class IdentityApi
      */
     public function identityUsingGETAsyncWithHttpInfo($client_id, $client_secret, $grant_type, $partner_id = null)
     {
-        $returnType = '\MarketoRest\Identity\Model\ResponseOfIdentity';
+        $returnType = '\NecLimDul\MarketoRest\Identity\Model\ResponseOfIdentity';
         $request = $this->identityUsingGETRequest($client_id, $client_secret, $grant_type, $partner_id);
 
         return $this->client

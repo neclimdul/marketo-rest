@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -27,17 +27,17 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Asset\Model;
+namespace NecLimDul\MarketoRest\Asset\Model;
 
 use \ArrayAccess;
-use \MarketoRest\Asset\ObjectSerializer;
+use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * SmartListFilters Class Doc Comment
  *
  * @category Class
  * @description JSON representation of smart list filters
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -63,7 +63,7 @@ class SmartListFilters implements ModelInterface, ArrayAccess
         'rule_type_id' => 'int',
         'rule_type' => 'string',
         'operator' => 'string',
-        'conditions' => '\MarketoRest\Asset\Model\SmartListConditions[]'
+        'conditions' => '\NecLimDul\MarketoRest\Asset\Model\SmartListConditions[]'
     ];
 
     /**
@@ -376,7 +376,7 @@ class SmartListFilters implements ModelInterface, ArrayAccess
     /**
      * Gets conditions
      *
-     * @return \MarketoRest\Asset\Model\SmartListConditions[]
+     * @return \NecLimDul\MarketoRest\Asset\Model\SmartListConditions[]
      */
     public function getConditions()
     {
@@ -386,7 +386,7 @@ class SmartListFilters implements ModelInterface, ArrayAccess
     /**
      * Sets conditions
      *
-     * @param \MarketoRest\Asset\Model\SmartListConditions[] $conditions List of smart list conditions
+     * @param \NecLimDul\MarketoRest\Asset\Model\SmartListConditions[] $conditions List of smart list conditions
      *
      * @return $this
      */

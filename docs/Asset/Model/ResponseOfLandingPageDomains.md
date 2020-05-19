@@ -3,9 +3,9 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**errors** | [**\MarketoRest\Asset\Model\Error[]**](Error.md) |  | [optional] 
+**errors** | [**\NecLimDul\MarketoRest\Asset\Model\Error[]**](Error.md) |  | [optional] 
 **request_id** | **string** |  | [optional] 
-**result** | [**\MarketoRest\Asset\Model\LandingPageDomain[]**](LandingPageDomain.md) |  | [optional] 
+**result** | [**\NecLimDul\MarketoRest\Asset\Model\LandingPageDomain[]**](LandingPageDomain.md) |  | [optional] 
 **success** | **bool** |  | [optional] 
 **warnings** | **string[]** |  | [optional] 
 

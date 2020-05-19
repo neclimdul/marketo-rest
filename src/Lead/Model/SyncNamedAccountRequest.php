@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Lead\Model;
+namespace NecLimDul\MarketoRest\Lead\Model;
 
 use \ArrayAccess;
-use \MarketoRest\Lead\ObjectSerializer;
+use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * SyncNamedAccountRequest Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -59,7 +59,7 @@ class SyncNamedAccountRequest implements ModelInterface, ArrayAccess
     protected static $swaggerTypes = [
         'action' => 'string',
         'dedupe_by' => 'string',
-        'input' => '\MarketoRest\Lead\Model\NamedAccount[]'
+        'input' => '\NecLimDul\MarketoRest\Lead\Model\NamedAccount[]'
     ];
 
     /**
@@ -304,7 +304,7 @@ class SyncNamedAccountRequest implements ModelInterface, ArrayAccess
     /**
      * Gets input
      *
-     * @return \MarketoRest\Lead\Model\NamedAccount[]
+     * @return \NecLimDul\MarketoRest\Lead\Model\NamedAccount[]
      */
     public function getInput()
     {
@@ -314,7 +314,7 @@ class SyncNamedAccountRequest implements ModelInterface, ArrayAccess
     /**
      * Sets input
      *
-     * @param \MarketoRest\Lead\Model\NamedAccount[] $input List of input records
+     * @param \NecLimDul\MarketoRest\Lead\Model\NamedAccount[] $input List of input records
      *
      * @return $this
      */

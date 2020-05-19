@@ -1,4 +1,4 @@
-# MarketoRest\Asset\TokensApi
+# NecLimDul\MarketoRest\Asset\TokensApi
 
 All URIs are relative to *https://localhost:8080*
 
@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 
 # **addTokenTOFolderUsingPOST**
-> \MarketoRest\Asset\Model\ResponseOfTokenResponse addTokenTOFolderUsingPOST($id, $create_token_request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse addTokenTOFolderUsingPOST($id, $create_token_request)
 
 Create Token
 
@@ -21,13 +21,13 @@ Create or update a token in the parent folder.  Required Permissions: Read-Write
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\TokensApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\TokensApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $id = 56; // int | id
-$create_token_request = new \MarketoRest\Asset\Model\CreateTokenRequest(); // \MarketoRest\Asset\Model\CreateTokenRequest | createTokenRequest
+$create_token_request = new \NecLimDul\MarketoRest\Asset\Model\CreateTokenRequest(); // \NecLimDul\MarketoRest\Asset\Model\CreateTokenRequest | createTokenRequest
 
 try {
     $result = $apiInstance->addTokenTOFolderUsingPOST($id, $create_token_request);
@@ -43,11 +43,11 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| id |
- **create_token_request** | [**\MarketoRest\Asset\Model\CreateTokenRequest**](../Model/CreateTokenRequest.md)| createTokenRequest |
+ **create_token_request** | [**\NecLimDul\MarketoRest\Asset\Model\CreateTokenRequest**](../Model/CreateTokenRequest.md)| createTokenRequest |
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfTokenResponse**](../Model/ResponseOfTokenResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse**](../Model/ResponseOfTokenResponse.md)
 
 ### Authorization
 
@@ -61,7 +61,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **deleteTokenByNameUsingPOST**
-> \MarketoRest\Asset\Model\ResponseOfIdResponse deleteTokenByNameUsingPOST($id, $delete_token_request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse deleteTokenByNameUsingPOST($id, $delete_token_request)
 
 Delete Token by Name
 
@@ -72,13 +72,13 @@ Deletes a token with the given name from the parent folder.  Required Permission
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\TokensApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\TokensApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $id = 56; // int | id
-$delete_token_request = new \MarketoRest\Asset\Model\DeleteTokenRequest(); // \MarketoRest\Asset\Model\DeleteTokenRequest | deleteTokenRequest
+$delete_token_request = new \NecLimDul\MarketoRest\Asset\Model\DeleteTokenRequest(); // \NecLimDul\MarketoRest\Asset\Model\DeleteTokenRequest | deleteTokenRequest
 
 try {
     $result = $apiInstance->deleteTokenByNameUsingPOST($id, $delete_token_request);
@@ -94,11 +94,11 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| id |
- **delete_token_request** | [**\MarketoRest\Asset\Model\DeleteTokenRequest**](../Model/DeleteTokenRequest.md)| deleteTokenRequest |
+ **delete_token_request** | [**\NecLimDul\MarketoRest\Asset\Model\DeleteTokenRequest**](../Model/DeleteTokenRequest.md)| deleteTokenRequest |
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfIdResponse**](../Model/ResponseOfIdResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse**](../Model/ResponseOfIdResponse.md)
 
 ### Authorization
 
@@ -112,7 +112,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getTokensByFolderIdUsingGET**
-> \MarketoRest\Asset\Model\ResponseOfTokenResponse getTokensByFolderIdUsingGET($id, $folder_type)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse getTokensByFolderIdUsingGET($id, $folder_type)
 
 Get Tokens by Folder Id
 
@@ -123,7 +123,7 @@ Retrieves the list of available My Tokens in the target folder.  Required Permis
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\TokensApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\TokensApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -149,7 +149,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfTokenResponse**](../Model/ResponseOfTokenResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse**](../Model/ResponseOfTokenResponse.md)
 
 ### Authorization
 

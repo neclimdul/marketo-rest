@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Lead\Model;
+namespace NecLimDul\MarketoRest\Lead\Model;
 
 use \ArrayAccess;
-use \MarketoRest\Lead\ObjectSerializer;
+use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * DeleteCompanyRequest Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -58,7 +58,7 @@ class DeleteCompanyRequest implements ModelInterface, ArrayAccess
       */
     protected static $swaggerTypes = [
         'delete_by' => 'string',
-        'input' => '\MarketoRest\Lead\Model\Company[]'
+        'input' => '\NecLimDul\MarketoRest\Lead\Model\Company[]'
     ];
 
     /**
@@ -237,7 +237,7 @@ class DeleteCompanyRequest implements ModelInterface, ArrayAccess
     /**
      * Gets input
      *
-     * @return \MarketoRest\Lead\Model\Company[]
+     * @return \NecLimDul\MarketoRest\Lead\Model\Company[]
      */
     public function getInput()
     {
@@ -247,7 +247,7 @@ class DeleteCompanyRequest implements ModelInterface, ArrayAccess
     /**
      * Sets input
      *
-     * @param \MarketoRest\Lead\Model\Company[] $input List of company records. Companies in the list should only contain a member matching the dedupeBy value
+     * @param \NecLimDul\MarketoRest\Lead\Model\Company[] $input List of company records. Companies in the list should only contain a member matching the dedupeBy value
      *
      * @return $this
      */

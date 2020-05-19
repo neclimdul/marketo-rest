@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Asset\Model;
+namespace NecLimDul\MarketoRest\Asset\Model;
 
 use \ArrayAccess;
-use \MarketoRest\Asset\ObjectSerializer;
+use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * LandingPageContentResponse Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -60,7 +60,7 @@ class LandingPageContentResponse implements ModelInterface, ArrayAccess
         'content' => 'object',
         'followup_type' => 'string',
         'followup_value' => 'string',
-        'formatting_options' => '\MarketoRest\Asset\Model\JsonNode',
+        'formatting_options' => '\NecLimDul\MarketoRest\Asset\Model\JsonNode',
         'id' => 'object',
         'index' => 'int',
         'type' => 'string'
@@ -398,7 +398,7 @@ class LandingPageContentResponse implements ModelInterface, ArrayAccess
     /**
      * Gets formatting_options
      *
-     * @return \MarketoRest\Asset\Model\JsonNode
+     * @return \NecLimDul\MarketoRest\Asset\Model\JsonNode
      */
     public function getFormattingOptions()
     {
@@ -408,7 +408,7 @@ class LandingPageContentResponse implements ModelInterface, ArrayAccess
     /**
      * Sets formatting_options
      *
-     * @param \MarketoRest\Asset\Model\JsonNode $formatting_options formatting_options
+     * @param \NecLimDul\MarketoRest\Asset\Model\JsonNode $formatting_options formatting_options
      *
      * @return $this
      */

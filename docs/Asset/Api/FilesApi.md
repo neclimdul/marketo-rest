@@ -1,4 +1,4 @@
-# MarketoRest\Asset\FilesApi
+# NecLimDul\MarketoRest\Asset\FilesApi
 
 All URIs are relative to *https://localhost:8080*
 
@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 
 # **createFileUsingPOST**
-> \MarketoRest\Asset\Model\ResponseOfFileResponse createFileUsingPOST($create_file_request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse createFileUsingPOST($create_file_request)
 
 Create File
 
@@ -22,12 +22,12 @@ Creates a new file from the included payload. Required Permissions: Read-Write A
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\FilesApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\FilesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$create_file_request = new \MarketoRest\Asset\Model\CreateFileRequest(); // \MarketoRest\Asset\Model\CreateFileRequest | createFileRequest
+$create_file_request = new \NecLimDul\MarketoRest\Asset\Model\CreateFileRequest(); // \NecLimDul\MarketoRest\Asset\Model\CreateFileRequest | createFileRequest
 
 try {
     $result = $apiInstance->createFileUsingPOST($create_file_request);
@@ -42,11 +42,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_file_request** | [**\MarketoRest\Asset\Model\CreateFileRequest**](../Model/CreateFileRequest.md)| createFileRequest |
+ **create_file_request** | [**\NecLimDul\MarketoRest\Asset\Model\CreateFileRequest**](../Model/CreateFileRequest.md)| createFileRequest |
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfFileResponse**](../Model/ResponseOfFileResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse**](../Model/ResponseOfFileResponse.md)
 
 ### Authorization
 
@@ -60,7 +60,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getFileByIdUsingGET**
-> \MarketoRest\Asset\Model\ResponseOfFileResponse getFileByIdUsingGET($id)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse getFileByIdUsingGET($id)
 
 Get File by Id
 
@@ -71,7 +71,7 @@ Returns the file record for the given id.  Required Permissions: Read-Only Asset
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\FilesApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\FilesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -95,7 +95,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfFileResponse**](../Model/ResponseOfFileResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse**](../Model/ResponseOfFileResponse.md)
 
 ### Authorization
 
@@ -109,7 +109,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getFileByNameUsingGET**
-> \MarketoRest\Asset\Model\ResponseOfFileResponse getFileByNameUsingGET($name)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse getFileByNameUsingGET($name)
 
 Get File by Name
 
@@ -120,7 +120,7 @@ Returns files records for the given name.  Required Permissions: Read-Only Asset
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\FilesApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\FilesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -144,7 +144,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfFileResponse**](../Model/ResponseOfFileResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse**](../Model/ResponseOfFileResponse.md)
 
 ### Authorization
 
@@ -158,7 +158,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getFilesUsingGET**
-> \MarketoRest\Asset\Model\ResponseOfFileResponse getFilesUsingGET($get_files_request, $folder)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse getFilesUsingGET($get_files_request, $folder)
 
 Get Files
 
@@ -169,12 +169,12 @@ Returns the files from the given folder. Required Permissions: Read-Only Assets,
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\FilesApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\FilesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$get_files_request = new \MarketoRest\Asset\Model\GetFilesRequest(); // \MarketoRest\Asset\Model\GetFilesRequest | getFilesRequest
+$get_files_request = new \NecLimDul\MarketoRest\Asset\Model\GetFilesRequest(); // \NecLimDul\MarketoRest\Asset\Model\GetFilesRequest | getFilesRequest
 $folder = "folder_example"; // string | JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
 
 try {
@@ -190,12 +190,12 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **get_files_request** | [**\MarketoRest\Asset\Model\GetFilesRequest**](../Model/GetFilesRequest.md)| getFilesRequest |
+ **get_files_request** | [**\NecLimDul\MarketoRest\Asset\Model\GetFilesRequest**](../Model/GetFilesRequest.md)| getFilesRequest |
  **folder** | **string**| JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39; | [optional]
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfFileResponse**](../Model/ResponseOfFileResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse**](../Model/ResponseOfFileResponse.md)
 
 ### Authorization
 

@@ -1,4 +1,4 @@
-# MarketoRest\Asset\SegmentsApi
+# NecLimDul\MarketoRest\Asset\SegmentsApi
 
 All URIs are relative to *https://localhost:8080*
 
@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 
 # **getSegmentationUsingGET**
-> \MarketoRest\Asset\Model\ResponseOfSegmentationResponse getSegmentationUsingGET($status)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfSegmentationResponse getSegmentationUsingGET($status)
 
 Get Segmentations
 
@@ -20,7 +20,7 @@ Retrieves a list of accessible segmentations for the target instance.  Required 
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\SegmentsApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\SegmentsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -44,7 +44,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfSegmentationResponse**](../Model/ResponseOfSegmentationResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfSegmentationResponse**](../Model/ResponseOfSegmentationResponse.md)
 
 ### Authorization
 
@@ -58,7 +58,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getSegmentsForSegmentationUsingGET**
-> \MarketoRest\Asset\Model\ResponseOfSegmentsResponse getSegmentsForSegmentationUsingGET($id, $status, $offset, $max_return)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfSegmentsResponse getSegmentsForSegmentationUsingGET($id, $status, $offset, $max_return)
 
 Get Segments For Segmentation
 
@@ -69,7 +69,7 @@ Retrieves a list of segments inside the target segmentation.  Required Permissio
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\SegmentsApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\SegmentsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -99,7 +99,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfSegmentsResponse**](../Model/ResponseOfSegmentsResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfSegmentsResponse**](../Model/ResponseOfSegmentsResponse.md)
 
 ### Authorization
 

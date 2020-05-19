@@ -1,4 +1,4 @@
-# MarketoRest\Lead\BulkImportLeadsApi
+# NecLimDul\MarketoRest\Lead\BulkImportLeadsApi
 
 All URIs are relative to *https://localhost:8080*
 
@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 
 # **getImportLeadFailuresUsingGET**
-> \MarketoRest\Lead\Model\ObservableOfInputStreamContent getImportLeadFailuresUsingGET($batch_id)
+> \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent getImportLeadFailuresUsingGET($batch_id)
 
 Get Import Lead Failures
 
@@ -22,7 +22,7 @@ Returns the list of failures for the import batch job.  Required Permissions: Re
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Lead\Api\BulkImportLeadsApi(
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\BulkImportLeadsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -46,7 +46,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Lead\Model\ObservableOfInputStreamContent**](../Model/ObservableOfInputStreamContent.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent**](../Model/ObservableOfInputStreamContent.md)
 
 ### Authorization
 
@@ -60,7 +60,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getImportLeadStatusUsingGET**
-> \MarketoRest\Lead\Model\ResponseOfImportLeadResponse getImportLeadStatusUsingGET($batch_id)
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportLeadResponse getImportLeadStatusUsingGET($batch_id)
 
 Get Import Lead Status
 
@@ -71,7 +71,7 @@ Returns the status of an import batch job.  Required Permissions: Read-Write Lea
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Lead\Api\BulkImportLeadsApi(
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\BulkImportLeadsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -95,7 +95,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Lead\Model\ResponseOfImportLeadResponse**](../Model/ResponseOfImportLeadResponse.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfImportLeadResponse**](../Model/ResponseOfImportLeadResponse.md)
 
 ### Authorization
 
@@ -109,7 +109,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getImportLeadWarningsUsingGET**
-> \MarketoRest\Lead\Model\ObservableOfInputStreamContent getImportLeadWarningsUsingGET($batch_id)
+> \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent getImportLeadWarningsUsingGET($batch_id)
 
 Get Import Lead Warnings
 
@@ -120,7 +120,7 @@ Returns the list of warnings for the import batch job.  Required Permissions: Re
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Lead\Api\BulkImportLeadsApi(
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\BulkImportLeadsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -144,7 +144,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Lead\Model\ObservableOfInputStreamContent**](../Model/ObservableOfInputStreamContent.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent**](../Model/ObservableOfInputStreamContent.md)
 
 ### Authorization
 
@@ -158,7 +158,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **importLeadUsingPOST**
-> \MarketoRest\Lead\Model\ResponseOfImportLeadResponse importLeadUsingPOST($format, $file, $lookup_field, $partition_name, $list_id)
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportLeadResponse importLeadUsingPOST($format, $file, $lookup_field, $partition_name, $list_id)
 
 Import Leads
 
@@ -169,7 +169,7 @@ Imports a file containing data records into the target instance.  Required Permi
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Lead\Api\BulkImportLeadsApi(
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\BulkImportLeadsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -201,7 +201,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Lead\Model\ResponseOfImportLeadResponse**](../Model/ResponseOfImportLeadResponse.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfImportLeadResponse**](../Model/ResponseOfImportLeadResponse.md)
 
 ### Authorization
 

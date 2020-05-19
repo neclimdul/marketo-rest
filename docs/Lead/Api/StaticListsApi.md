@@ -1,4 +1,4 @@
-# MarketoRest\Lead\StaticListsApi
+# NecLimDul\MarketoRest\Lead\StaticListsApi
 
 All URIs are relative to *https://localhost:8080*
 
@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 
 # **addLeadsToListUsingPOST**
-> \MarketoRest\Lead\Model\ResponseOfListOperationOutputData addLeadsToListUsingPOST($list_id, $list_operation_request, $id)
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData addLeadsToListUsingPOST($list_id, $list_operation_request, $id)
 
 Add to List
 
@@ -25,13 +25,13 @@ Adds a given set of person records to a target static list.  There is a limit of
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Lead\Api\StaticListsApi(
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\StaticListsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $list_id = 56; // int | Id of target list
-$list_operation_request = new \MarketoRest\Lead\Model\ListOperationRequest(); // \MarketoRest\Lead\Model\ListOperationRequest | Optional JSON request body for submitting leads
+$list_operation_request = new \NecLimDul\MarketoRest\Lead\Model\ListOperationRequest(); // \NecLimDul\MarketoRest\Lead\Model\ListOperationRequest | Optional JSON request body for submitting leads
 $id = array(56); // int[] | Comma-separated list of lead ids to add to the list
 
 try {
@@ -48,12 +48,12 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **list_id** | **int**| Id of target list |
- **list_operation_request** | [**\MarketoRest\Lead\Model\ListOperationRequest**](../Model/ListOperationRequest.md)| Optional JSON request body for submitting leads | [optional]
+ **list_operation_request** | [**\NecLimDul\MarketoRest\Lead\Model\ListOperationRequest**](../Model/ListOperationRequest.md)| Optional JSON request body for submitting leads | [optional]
  **id** | [**int[]**](../Model/int.md)| Comma-separated list of lead ids to add to the list | [optional]
 
 ### Return type
 
-[**\MarketoRest\Lead\Model\ResponseOfListOperationOutputData**](../Model/ResponseOfListOperationOutputData.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData**](../Model/ResponseOfListOperationOutputData.md)
 
 ### Authorization
 
@@ -67,7 +67,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **areLeadsMemberOfListUsingGET**
-> \MarketoRest\Lead\Model\ResponseOfListOperationOutputData areLeadsMemberOfListUsingGET($list_id, $list_operation_request, $id)
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData areLeadsMemberOfListUsingGET($list_id, $list_operation_request, $id)
 
 Member of List
 
@@ -78,13 +78,13 @@ Checks if leads are members of a given static list.  Required Permissions: Read-
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Lead\Api\StaticListsApi(
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\StaticListsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $list_id = 56; // int | Id of the static list to check against
-$list_operation_request = new \MarketoRest\Lead\Model\ListOperationRequest(); // \MarketoRest\Lead\Model\ListOperationRequest | Optional JSON request body
+$list_operation_request = new \NecLimDul\MarketoRest\Lead\Model\ListOperationRequest(); // \NecLimDul\MarketoRest\Lead\Model\ListOperationRequest | Optional JSON request body
 $id = array(56); // int[] | Comma-separated list of lead ids to check
 
 try {
@@ -101,12 +101,12 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **list_id** | **int**| Id of the static list to check against |
- **list_operation_request** | [**\MarketoRest\Lead\Model\ListOperationRequest**](../Model/ListOperationRequest.md)| Optional JSON request body | [optional]
+ **list_operation_request** | [**\NecLimDul\MarketoRest\Lead\Model\ListOperationRequest**](../Model/ListOperationRequest.md)| Optional JSON request body | [optional]
  **id** | [**int[]**](../Model/int.md)| Comma-separated list of lead ids to check | [optional]
 
 ### Return type
 
-[**\MarketoRest\Lead\Model\ResponseOfListOperationOutputData**](../Model/ResponseOfListOperationOutputData.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData**](../Model/ResponseOfListOperationOutputData.md)
 
 ### Authorization
 
@@ -120,7 +120,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getLeadsByListIdUsingGET**
-> \MarketoRest\Lead\Model\ResponseOfLead getLeadsByListIdUsingGET($list_id, $fields, $batch_size, $next_page_token)
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfLead getLeadsByListIdUsingGET($list_id, $fields, $batch_size, $next_page_token)
 
 Get Leads By List Id
 
@@ -131,7 +131,7 @@ Retrieves person records which are members of the given static list.  Required P
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Lead\Api\StaticListsApi(
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\StaticListsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -161,7 +161,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Lead\Model\ResponseOfLead**](../Model/ResponseOfLead.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead**](../Model/ResponseOfLead.md)
 
 ### Authorization
 
@@ -175,7 +175,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getLeadsByListIdUsingGET1**
-> \MarketoRest\Lead\Model\ResponseOfLead getLeadsByListIdUsingGET1($list_id, $fields, $batch_size, $next_page_token)
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfLead getLeadsByListIdUsingGET1($list_id, $fields, $batch_size, $next_page_token)
 
 Get Leads By List Id
 
@@ -186,7 +186,7 @@ Retrieves person records which are members of the given static list.  Required P
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Lead\Api\StaticListsApi(
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\StaticListsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -216,7 +216,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Lead\Model\ResponseOfLead**](../Model/ResponseOfLead.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead**](../Model/ResponseOfLead.md)
 
 ### Authorization
 
@@ -230,7 +230,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getListByIdUsingGET**
-> \MarketoRest\Lead\Model\ResponseOfStaticList getListByIdUsingGET($list_id)
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfStaticList getListByIdUsingGET($list_id)
 
 Get List by Id
 
@@ -241,7 +241,7 @@ Returns a list record by its id.  Required Permissions: Read-Only Lead, Read-Wri
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Lead\Api\StaticListsApi(
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\StaticListsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -265,7 +265,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Lead\Model\ResponseOfStaticList**](../Model/ResponseOfStaticList.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfStaticList**](../Model/ResponseOfStaticList.md)
 
 ### Authorization
 
@@ -279,7 +279,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getListsUsingGET**
-> \MarketoRest\Lead\Model\ResponseOfStaticList getListsUsingGET($id, $name, $program_name, $workspace_name, $batch_size, $next_page_token)
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfStaticList getListsUsingGET($id, $name, $program_name, $workspace_name, $batch_size, $next_page_token)
 
 Get Lists
 
@@ -290,7 +290,7 @@ Returns a set of static list records based on given filter parameters. Required 
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Lead\Api\StaticListsApi(
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\StaticListsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -324,7 +324,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Lead\Model\ResponseOfStaticList**](../Model/ResponseOfStaticList.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfStaticList**](../Model/ResponseOfStaticList.md)
 
 ### Authorization
 
@@ -338,7 +338,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **removeLeadsFromListUsingDELETE**
-> \MarketoRest\Lead\Model\ResponseOfListOperationOutputData removeLeadsFromListUsingDELETE($list_id, $list_operation_request, $id)
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData removeLeadsFromListUsingDELETE($list_id, $list_operation_request, $id)
 
 Remove from List
 
@@ -349,13 +349,13 @@ Removes a given set of person records from a target static list.  Required Permi
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Lead\Api\StaticListsApi(
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\StaticListsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $list_id = 56; // int | Id of static list to remove leads from
-$list_operation_request = new \MarketoRest\Lead\Model\ListOperationRequest(); // \MarketoRest\Lead\Model\ListOperationRequest | listOperationRequest
+$list_operation_request = new \NecLimDul\MarketoRest\Lead\Model\ListOperationRequest(); // \NecLimDul\MarketoRest\Lead\Model\ListOperationRequest | listOperationRequest
 $id = array(56); // int[] | id
 
 try {
@@ -372,12 +372,12 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **list_id** | **int**| Id of static list to remove leads from |
- **list_operation_request** | [**\MarketoRest\Lead\Model\ListOperationRequest**](../Model/ListOperationRequest.md)| listOperationRequest |
+ **list_operation_request** | [**\NecLimDul\MarketoRest\Lead\Model\ListOperationRequest**](../Model/ListOperationRequest.md)| listOperationRequest |
  **id** | [**int[]**](../Model/int.md)| id |
 
 ### Return type
 
-[**\MarketoRest\Lead\Model\ResponseOfListOperationOutputData**](../Model/ResponseOfListOperationOutputData.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData**](../Model/ResponseOfListOperationOutputData.md)
 
 ### Authorization
 

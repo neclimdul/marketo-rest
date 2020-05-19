@@ -1,4 +1,4 @@
-# MarketoRest\Asset\FoldersApi
+# NecLimDul\MarketoRest\Asset\FoldersApi
 
 All URIs are relative to *https://localhost:8080*
 
@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 
 # **createFolderUsingPOST**
-> \MarketoRest\Asset\Model\ResponseOfFolderResponse createFolderUsingPOST($create_folder_request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse createFolderUsingPOST($create_folder_request)
 
 Create Folder
 
@@ -25,12 +25,12 @@ Creates a new folder.  Required Permissions: Read-Write Assets
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\FoldersApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\FoldersApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$create_folder_request = new \MarketoRest\Asset\Model\CreateFolderRequest(); // \MarketoRest\Asset\Model\CreateFolderRequest | createFolderRequest
+$create_folder_request = new \NecLimDul\MarketoRest\Asset\Model\CreateFolderRequest(); // \NecLimDul\MarketoRest\Asset\Model\CreateFolderRequest | createFolderRequest
 
 try {
     $result = $apiInstance->createFolderUsingPOST($create_folder_request);
@@ -45,11 +45,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_folder_request** | [**\MarketoRest\Asset\Model\CreateFolderRequest**](../Model/CreateFolderRequest.md)| createFolderRequest |
+ **create_folder_request** | [**\NecLimDul\MarketoRest\Asset\Model\CreateFolderRequest**](../Model/CreateFolderRequest.md)| createFolderRequest |
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfFolderResponse**](../Model/ResponseOfFolderResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse**](../Model/ResponseOfFolderResponse.md)
 
 ### Authorization
 
@@ -63,7 +63,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **deleteFolderUsingPOST**
-> \MarketoRest\Asset\Model\ResponseOfIdResponse deleteFolderUsingPOST($id, $type)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse deleteFolderUsingPOST($id, $type)
 
 Delete Folder
 
@@ -74,7 +74,7 @@ Deletes the designated folder.  Deletion will fail if the folder has content.  R
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\FoldersApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\FoldersApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -100,7 +100,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfIdResponse**](../Model/ResponseOfIdResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse**](../Model/ResponseOfIdResponse.md)
 
 ### Authorization
 
@@ -114,7 +114,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getFolderByIdUsingGET**
-> \MarketoRest\Asset\Model\ResponseOfFolderResponse getFolderByIdUsingGET($id, $type)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse getFolderByIdUsingGET($id, $type)
 
 Get Folder by Id
 
@@ -125,7 +125,7 @@ Returns the folder record with the given id.  Required Permissions: Read-Only As
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\FoldersApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\FoldersApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -151,7 +151,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfFolderResponse**](../Model/ResponseOfFolderResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse**](../Model/ResponseOfFolderResponse.md)
 
 ### Authorization
 
@@ -165,7 +165,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getFolderByNameUsingGET**
-> \MarketoRest\Asset\Model\ResponseOfFolderResponse getFolderByNameUsingGET($name, $type, $root, $work_space)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse getFolderByNameUsingGET($name, $type, $root, $work_space)
 
 Get Folder by Name
 
@@ -176,7 +176,7 @@ Returns a folder record for the given name.  Required Permissions: Read-Only Ass
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\FoldersApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\FoldersApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -206,7 +206,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfFolderResponse**](../Model/ResponseOfFolderResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse**](../Model/ResponseOfFolderResponse.md)
 
 ### Authorization
 
@@ -220,7 +220,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getFolderContentUsingGET**
-> \MarketoRest\Asset\Model\ResponseOfFolderContentResponse getFolderContentUsingGET($id, $type, $max_return, $offset)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderContentResponse getFolderContentUsingGET($id, $type, $max_return, $offset)
 
 Get Folder Contents
 
@@ -231,7 +231,7 @@ Returns records for the contents of a given folder.  Required Permissions: Read-
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\FoldersApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\FoldersApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -261,7 +261,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfFolderContentResponse**](../Model/ResponseOfFolderContentResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderContentResponse**](../Model/ResponseOfFolderContentResponse.md)
 
 ### Authorization
 
@@ -275,7 +275,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getFolderUsingGET**
-> \MarketoRest\Asset\Model\ResponseOfFolderResponse getFolderUsingGET($root, $max_depth, $max_return, $offset, $work_space)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse getFolderUsingGET($root, $max_depth, $max_return, $offset, $work_space)
 
 Get Folders
 
@@ -286,7 +286,7 @@ Retrieves child folders from within a given root folder.  Required Permissions: 
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\FoldersApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\FoldersApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -318,7 +318,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfFolderResponse**](../Model/ResponseOfFolderResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse**](../Model/ResponseOfFolderResponse.md)
 
 ### Authorization
 
@@ -332,7 +332,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **updateFolderUsingPOST**
-> \MarketoRest\Asset\Model\ResponseOfFolderResponse updateFolderUsingPOST($id, $update_folder_request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse updateFolderUsingPOST($id, $update_folder_request)
 
 Update Folder Metadata
 
@@ -343,13 +343,13 @@ Updates the metadata for a given folder.  Required Permissions: Read-Write Asset
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\FoldersApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\FoldersApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $id = 56; // int | Id of the folder to update
-$update_folder_request = new \MarketoRest\Asset\Model\UpdateFolderRequest(); // \MarketoRest\Asset\Model\UpdateFolderRequest | updateFolderRequest
+$update_folder_request = new \NecLimDul\MarketoRest\Asset\Model\UpdateFolderRequest(); // \NecLimDul\MarketoRest\Asset\Model\UpdateFolderRequest | updateFolderRequest
 
 try {
     $result = $apiInstance->updateFolderUsingPOST($id, $update_folder_request);
@@ -365,11 +365,11 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| Id of the folder to update |
- **update_folder_request** | [**\MarketoRest\Asset\Model\UpdateFolderRequest**](../Model/UpdateFolderRequest.md)| updateFolderRequest |
+ **update_folder_request** | [**\NecLimDul\MarketoRest\Asset\Model\UpdateFolderRequest**](../Model/UpdateFolderRequest.md)| updateFolderRequest |
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfFolderResponse**](../Model/ResponseOfFolderResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse**](../Model/ResponseOfFolderResponse.md)
 
 ### Authorization
 

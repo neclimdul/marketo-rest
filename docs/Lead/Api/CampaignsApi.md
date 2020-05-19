@@ -1,4 +1,4 @@
-# MarketoRest\Lead\CampaignsApi
+# NecLimDul\MarketoRest\Lead\CampaignsApi
 
 All URIs are relative to *https://localhost:8080*
 
@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 
 # **getCampaignByIdUsingGET**
-> \MarketoRest\Lead\Model\ResponseOfCampaign getCampaignByIdUsingGET($campaign_id)
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign getCampaignByIdUsingGET($campaign_id)
 
 Get Campaign By Id
 
@@ -22,7 +22,7 @@ Returns the record of a campaign by its id.  Required Permissions: Read-Only Cam
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Lead\Api\CampaignsApi(
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\CampaignsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -46,7 +46,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Lead\Model\ResponseOfCampaign**](../Model/ResponseOfCampaign.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign**](../Model/ResponseOfCampaign.md)
 
 ### Authorization
 
@@ -60,7 +60,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getCampaignsUsingGET**
-> \MarketoRest\Lead\Model\ResponseOfCampaign getCampaignsUsingGET($id, $name, $program_name, $workspace_name, $batch_size, $next_page_token, $is_triggerable)
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign getCampaignsUsingGET($id, $name, $program_name, $workspace_name, $batch_size, $next_page_token, $is_triggerable)
 
 Get Campaigns
 
@@ -71,7 +71,7 @@ Returns a list of campaign records.  Required Permissions: Read-Only Campaigns, 
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Lead\Api\CampaignsApi(
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\CampaignsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -107,7 +107,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Lead\Model\ResponseOfCampaign**](../Model/ResponseOfCampaign.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign**](../Model/ResponseOfCampaign.md)
 
 ### Authorization
 
@@ -121,7 +121,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **scheduleCampaignUsingPOST**
-> \MarketoRest\Lead\Model\ResponseOfCampaign scheduleCampaignUsingPOST($campaign_id, $schedule_campaign_request)
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign scheduleCampaignUsingPOST($campaign_id, $schedule_campaign_request)
 
 Schedule Campaign
 
@@ -132,13 +132,13 @@ Remotely schedules a batch campaign to run at a given time.  My tokens local to 
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Lead\Api\CampaignsApi(
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\CampaignsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $campaign_id = 56; // int | Id of the batch campaign to schedule.
-$schedule_campaign_request = new \MarketoRest\Lead\Model\ScheduleCampaignRequest(); // \MarketoRest\Lead\Model\ScheduleCampaignRequest | scheduleCampaignRequest
+$schedule_campaign_request = new \NecLimDul\MarketoRest\Lead\Model\ScheduleCampaignRequest(); // \NecLimDul\MarketoRest\Lead\Model\ScheduleCampaignRequest | scheduleCampaignRequest
 
 try {
     $result = $apiInstance->scheduleCampaignUsingPOST($campaign_id, $schedule_campaign_request);
@@ -154,11 +154,11 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **campaign_id** | **int**| Id of the batch campaign to schedule. |
- **schedule_campaign_request** | [**\MarketoRest\Lead\Model\ScheduleCampaignRequest**](../Model/ScheduleCampaignRequest.md)| scheduleCampaignRequest | [optional]
+ **schedule_campaign_request** | [**\NecLimDul\MarketoRest\Lead\Model\ScheduleCampaignRequest**](../Model/ScheduleCampaignRequest.md)| scheduleCampaignRequest | [optional]
 
 ### Return type
 
-[**\MarketoRest\Lead\Model\ResponseOfCampaign**](../Model/ResponseOfCampaign.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign**](../Model/ResponseOfCampaign.md)
 
 ### Authorization
 
@@ -172,7 +172,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **triggerCampaignUsingPOST**
-> \MarketoRest\Lead\Model\ResponseOfCampaign triggerCampaignUsingPOST($campaign_id, $trigger_campaign_request)
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign triggerCampaignUsingPOST($campaign_id, $trigger_campaign_request)
 
 Request Campaign
 
@@ -183,13 +183,13 @@ Passes a set of leads to a trigger campaign to run through the campaign's flow. 
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Lead\Api\CampaignsApi(
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\CampaignsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $campaign_id = 56; // int | The id of the campaign to trigger
-$trigger_campaign_request = new \MarketoRest\Lead\Model\TriggerCampaignRequest(); // \MarketoRest\Lead\Model\TriggerCampaignRequest | triggerCampaignRequest
+$trigger_campaign_request = new \NecLimDul\MarketoRest\Lead\Model\TriggerCampaignRequest(); // \NecLimDul\MarketoRest\Lead\Model\TriggerCampaignRequest | triggerCampaignRequest
 
 try {
     $result = $apiInstance->triggerCampaignUsingPOST($campaign_id, $trigger_campaign_request);
@@ -205,11 +205,11 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **campaign_id** | **int**| The id of the campaign to trigger |
- **trigger_campaign_request** | [**\MarketoRest\Lead\Model\TriggerCampaignRequest**](../Model/TriggerCampaignRequest.md)| triggerCampaignRequest | [optional]
+ **trigger_campaign_request** | [**\NecLimDul\MarketoRest\Lead\Model\TriggerCampaignRequest**](../Model/TriggerCampaignRequest.md)| triggerCampaignRequest | [optional]
 
 ### Return type
 
-[**\MarketoRest\Lead\Model\ResponseOfCampaign**](../Model/ResponseOfCampaign.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign**](../Model/ResponseOfCampaign.md)
 
 ### Authorization
 

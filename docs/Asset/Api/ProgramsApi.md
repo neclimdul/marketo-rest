@@ -1,4 +1,4 @@
-# MarketoRest\Asset\ProgramsApi
+# NecLimDul\MarketoRest\Asset\ProgramsApi
 
 All URIs are relative to *https://localhost:8080*
 
@@ -18,7 +18,7 @@ Method | HTTP request | Description
 
 
 # **approveProgramUsingPOST**
-> \MarketoRest\Asset\Model\ResponseOfIdResponse approveProgramUsingPOST($id)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse approveProgramUsingPOST($id)
 
 Approve Program
 
@@ -29,7 +29,7 @@ Approves the target program.  Only valid for unapproved email programs.  Require
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\ProgramsApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\ProgramsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -53,7 +53,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfIdResponse**](../Model/ResponseOfIdResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse**](../Model/ResponseOfIdResponse.md)
 
 ### Authorization
 
@@ -67,7 +67,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **browseProgramsUsingGET**
-> \MarketoRest\Asset\Model\ResponseOfBrowseAllPrograms browseProgramsUsingGET($max_return, $offset, $filter_type, $earliest_updated_at, $latest_updated_at)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfBrowseAllPrograms browseProgramsUsingGET($max_return, $offset, $filter_type, $earliest_updated_at, $latest_updated_at)
 
 Get Programs
 
@@ -78,7 +78,7 @@ Retrieves the list of accessible programs from the target instance. Required Per
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\ProgramsApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\ProgramsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -110,7 +110,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfBrowseAllPrograms**](../Model/ResponseOfBrowseAllPrograms.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfBrowseAllPrograms**](../Model/ResponseOfBrowseAllPrograms.md)
 
 ### Authorization
 
@@ -124,7 +124,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **cloneProgramUsingPOST**
-> \MarketoRest\Asset\Model\ResponseOfProgramResponse cloneProgramUsingPOST($id, $clone_program_request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse cloneProgramUsingPOST($id, $clone_program_request)
 
 Clone Program
 
@@ -135,13 +135,13 @@ Clones the target program.  Required Permissions: Read-Write Assets
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\ProgramsApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\ProgramsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $id = 56; // int | id
-$clone_program_request = new \MarketoRest\Asset\Model\CloneProgramRequest(); // \MarketoRest\Asset\Model\CloneProgramRequest | cloneProgramRequest
+$clone_program_request = new \NecLimDul\MarketoRest\Asset\Model\CloneProgramRequest(); // \NecLimDul\MarketoRest\Asset\Model\CloneProgramRequest | cloneProgramRequest
 
 try {
     $result = $apiInstance->cloneProgramUsingPOST($id, $clone_program_request);
@@ -157,11 +157,11 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| id |
- **clone_program_request** | [**\MarketoRest\Asset\Model\CloneProgramRequest**](../Model/CloneProgramRequest.md)| cloneProgramRequest |
+ **clone_program_request** | [**\NecLimDul\MarketoRest\Asset\Model\CloneProgramRequest**](../Model/CloneProgramRequest.md)| cloneProgramRequest |
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfProgramResponse**](../Model/ResponseOfProgramResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse**](../Model/ResponseOfProgramResponse.md)
 
 ### Authorization
 
@@ -175,7 +175,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **createProgramUsingPOST**
-> \MarketoRest\Asset\Model\ResponseOfProgramResponse createProgramUsingPOST($create_program_request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse createProgramUsingPOST($create_program_request)
 
 Create Program
 
@@ -186,12 +186,12 @@ Creates a new program.  Required Permissions: Read-Write Assets
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\ProgramsApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\ProgramsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$create_program_request = new \MarketoRest\Asset\Model\CreateProgramRequest(); // \MarketoRest\Asset\Model\CreateProgramRequest | createProgramRequest
+$create_program_request = new \NecLimDul\MarketoRest\Asset\Model\CreateProgramRequest(); // \NecLimDul\MarketoRest\Asset\Model\CreateProgramRequest | createProgramRequest
 
 try {
     $result = $apiInstance->createProgramUsingPOST($create_program_request);
@@ -206,11 +206,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_program_request** | [**\MarketoRest\Asset\Model\CreateProgramRequest**](../Model/CreateProgramRequest.md)| createProgramRequest |
+ **create_program_request** | [**\NecLimDul\MarketoRest\Asset\Model\CreateProgramRequest**](../Model/CreateProgramRequest.md)| createProgramRequest |
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfProgramResponse**](../Model/ResponseOfProgramResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse**](../Model/ResponseOfProgramResponse.md)
 
 ### Authorization
 
@@ -224,7 +224,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **deleteProgramUsingPOST**
-> \MarketoRest\Asset\Model\ResponseOfIdResponse deleteProgramUsingPOST($id)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse deleteProgramUsingPOST($id)
 
 Delete Program
 
@@ -235,7 +235,7 @@ Deletes the target program.  The program may not contain any assets which are in
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\ProgramsApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\ProgramsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -259,7 +259,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfIdResponse**](../Model/ResponseOfIdResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse**](../Model/ResponseOfIdResponse.md)
 
 ### Authorization
 
@@ -273,7 +273,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getProgramByIdUsingGET**
-> \MarketoRest\Asset\Model\ResponseOfProgramResponse getProgramByIdUsingGET($id)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse getProgramByIdUsingGET($id)
 
 Get Program by Id
 
@@ -284,7 +284,7 @@ Retrieves the program record for the given id.  Required Permissions: Read-Only 
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\ProgramsApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\ProgramsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -308,7 +308,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfProgramResponse**](../Model/ResponseOfProgramResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse**](../Model/ResponseOfProgramResponse.md)
 
 ### Authorization
 
@@ -322,7 +322,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getProgramByNameUsingGET**
-> \MarketoRest\Asset\Model\ResponseOfProgramResponse getProgramByNameUsingGET($name, $include_tags, $include_costs)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse getProgramByNameUsingGET($name, $include_tags, $include_costs)
 
 Get Program by Name
 
@@ -333,7 +333,7 @@ Retrieves the program record for the given name.  Required Permissions: Read-Onl
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\ProgramsApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\ProgramsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -361,7 +361,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfProgramResponse**](../Model/ResponseOfProgramResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse**](../Model/ResponseOfProgramResponse.md)
 
 ### Authorization
 
@@ -375,7 +375,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getProgramListByTagUsingGET**
-> \MarketoRest\Asset\Model\ResponseOfProgramResponse getProgramListByTagUsingGET($tag_type, $tag_value, $max_return, $offset)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse getProgramListByTagUsingGET($tag_type, $tag_value, $max_return, $offset)
 
 Get Programs by Tag
 
@@ -386,7 +386,7 @@ Retrieves a list of programs matching the tag type and tag values given.  Requir
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\ProgramsApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\ProgramsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -416,7 +416,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfProgramResponse**](../Model/ResponseOfProgramResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse**](../Model/ResponseOfProgramResponse.md)
 
 ### Authorization
 
@@ -430,7 +430,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getSmartListByProgramIdUsingGET**
-> \MarketoRest\Asset\Model\ResponseOfSmartListResponseWithRules getSmartListByProgramIdUsingGET($program_id, $include_rules)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponseWithRules getSmartListByProgramIdUsingGET($program_id, $include_rules)
 
 Get Smart List by Program Id
 
@@ -441,7 +441,7 @@ Retrieves a Smart List record by its Email Program id. Required Permissions: Rea
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\ProgramsApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\ProgramsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -467,7 +467,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfSmartListResponseWithRules**](../Model/ResponseOfSmartListResponseWithRules.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponseWithRules**](../Model/ResponseOfSmartListResponseWithRules.md)
 
 ### Authorization
 
@@ -481,7 +481,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **unapproveProgramUsingPOST**
-> \MarketoRest\Asset\Model\ResponseOfIdResponse unapproveProgramUsingPOST($id)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse unapproveProgramUsingPOST($id)
 
 Unapprove Program
 
@@ -492,7 +492,7 @@ Unapproves the target program.  Only valid for approved email programs.  Require
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\ProgramsApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\ProgramsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -516,7 +516,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfIdResponse**](../Model/ResponseOfIdResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse**](../Model/ResponseOfIdResponse.md)
 
 ### Authorization
 
@@ -530,7 +530,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **updateProgramUsingPOST**
-> \MarketoRest\Asset\Model\ResponseOfProgramResponse updateProgramUsingPOST($id, $update_program_request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse updateProgramUsingPOST($id, $update_program_request)
 
 Update Program Metadata
 
@@ -541,13 +541,13 @@ Updates the target program's metadata.  Required Permissions: Read-Write Assets
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\ProgramsApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\ProgramsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $id = 56; // int | id
-$update_program_request = new \MarketoRest\Asset\Model\UpdateProgramRequest(); // \MarketoRest\Asset\Model\UpdateProgramRequest | updateProgramRequest
+$update_program_request = new \NecLimDul\MarketoRest\Asset\Model\UpdateProgramRequest(); // \NecLimDul\MarketoRest\Asset\Model\UpdateProgramRequest | updateProgramRequest
 
 try {
     $result = $apiInstance->updateProgramUsingPOST($id, $update_program_request);
@@ -563,11 +563,11 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| id |
- **update_program_request** | [**\MarketoRest\Asset\Model\UpdateProgramRequest**](../Model/UpdateProgramRequest.md)| updateProgramRequest |
+ **update_program_request** | [**\NecLimDul\MarketoRest\Asset\Model\UpdateProgramRequest**](../Model/UpdateProgramRequest.md)| updateProgramRequest |
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfProgramResponse**](../Model/ResponseOfProgramResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse**](../Model/ResponseOfProgramResponse.md)
 
 ### Authorization
 

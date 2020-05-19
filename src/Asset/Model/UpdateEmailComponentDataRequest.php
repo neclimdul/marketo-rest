@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Asset\Model;
+namespace NecLimDul\MarketoRest\Asset\Model;
 
 use \ArrayAccess;
-use \MarketoRest\Asset\ObjectSerializer;
+use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * UpdateEmailComponentDataRequest Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -57,10 +57,10 @@ class UpdateEmailComponentDataRequest implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'from_email' => '\MarketoRest\Asset\Model\EmailHeaderTypeValue',
-        'from_name' => '\MarketoRest\Asset\Model\EmailHeaderTypeValue',
-        'reply_to' => '\MarketoRest\Asset\Model\EmailHeaderTypeValue',
-        'subject' => '\MarketoRest\Asset\Model\EmailHeaderTypeValue'
+        'from_email' => '\NecLimDul\MarketoRest\Asset\Model\EmailHeaderTypeValue',
+        'from_name' => '\NecLimDul\MarketoRest\Asset\Model\EmailHeaderTypeValue',
+        'reply_to' => '\NecLimDul\MarketoRest\Asset\Model\EmailHeaderTypeValue',
+        'subject' => '\NecLimDul\MarketoRest\Asset\Model\EmailHeaderTypeValue'
     ];
 
     /**
@@ -225,7 +225,7 @@ class UpdateEmailComponentDataRequest implements ModelInterface, ArrayAccess
     /**
      * Gets from_email
      *
-     * @return \MarketoRest\Asset\Model\EmailHeaderTypeValue
+     * @return \NecLimDul\MarketoRest\Asset\Model\EmailHeaderTypeValue
      */
     public function getFromEmail()
     {
@@ -235,7 +235,7 @@ class UpdateEmailComponentDataRequest implements ModelInterface, ArrayAccess
     /**
      * Sets from_email
      *
-     * @param \MarketoRest\Asset\Model\EmailHeaderTypeValue $from_email From-address of the Email
+     * @param \NecLimDul\MarketoRest\Asset\Model\EmailHeaderTypeValue $from_email From-address of the Email
      *
      * @return $this
      */
@@ -249,7 +249,7 @@ class UpdateEmailComponentDataRequest implements ModelInterface, ArrayAccess
     /**
      * Gets from_name
      *
-     * @return \MarketoRest\Asset\Model\EmailHeaderTypeValue
+     * @return \NecLimDul\MarketoRest\Asset\Model\EmailHeaderTypeValue
      */
     public function getFromName()
     {
@@ -259,7 +259,7 @@ class UpdateEmailComponentDataRequest implements ModelInterface, ArrayAccess
     /**
      * Sets from_name
      *
-     * @param \MarketoRest\Asset\Model\EmailHeaderTypeValue $from_name From-name of the Email
+     * @param \NecLimDul\MarketoRest\Asset\Model\EmailHeaderTypeValue $from_name From-name of the Email
      *
      * @return $this
      */
@@ -273,7 +273,7 @@ class UpdateEmailComponentDataRequest implements ModelInterface, ArrayAccess
     /**
      * Gets reply_to
      *
-     * @return \MarketoRest\Asset\Model\EmailHeaderTypeValue
+     * @return \NecLimDul\MarketoRest\Asset\Model\EmailHeaderTypeValue
      */
     public function getReplyTo()
     {
@@ -283,7 +283,7 @@ class UpdateEmailComponentDataRequest implements ModelInterface, ArrayAccess
     /**
      * Sets reply_to
      *
-     * @param \MarketoRest\Asset\Model\EmailHeaderTypeValue $reply_to Reply-To address of the Email
+     * @param \NecLimDul\MarketoRest\Asset\Model\EmailHeaderTypeValue $reply_to Reply-To address of the Email
      *
      * @return $this
      */
@@ -297,7 +297,7 @@ class UpdateEmailComponentDataRequest implements ModelInterface, ArrayAccess
     /**
      * Gets subject
      *
-     * @return \MarketoRest\Asset\Model\EmailHeaderTypeValue
+     * @return \NecLimDul\MarketoRest\Asset\Model\EmailHeaderTypeValue
      */
     public function getSubject()
     {
@@ -307,7 +307,7 @@ class UpdateEmailComponentDataRequest implements ModelInterface, ArrayAccess
     /**
      * Sets subject
      *
-     * @param \MarketoRest\Asset\Model\EmailHeaderTypeValue $subject Subject Line of the Email
+     * @param \NecLimDul\MarketoRest\Asset\Model\EmailHeaderTypeValue $subject Subject Line of the Email
      *
      * @return $this
      */

@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Lead\Model;
+namespace NecLimDul\MarketoRest\Lead\Model;
 
 use \ArrayAccess;
-use \MarketoRest\Lead\ObjectSerializer;
+use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * SyncSalesPersonRequest Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -59,7 +59,7 @@ class SyncSalesPersonRequest implements ModelInterface, ArrayAccess
     protected static $swaggerTypes = [
         'action' => 'string',
         'dedupe_by' => 'string',
-        'input' => '\MarketoRest\Lead\Model\SalesPerson[]'
+        'input' => '\NecLimDul\MarketoRest\Lead\Model\SalesPerson[]'
     ];
 
     /**
@@ -304,7 +304,7 @@ class SyncSalesPersonRequest implements ModelInterface, ArrayAccess
     /**
      * Gets input
      *
-     * @return \MarketoRest\Lead\Model\SalesPerson[]
+     * @return \NecLimDul\MarketoRest\Lead\Model\SalesPerson[]
      */
     public function getInput()
     {
@@ -314,7 +314,7 @@ class SyncSalesPersonRequest implements ModelInterface, ArrayAccess
     /**
      * Sets input
      *
-     * @param \MarketoRest\Lead\Model\SalesPerson[] $input List of input records
+     * @param \NecLimDul\MarketoRest\Lead\Model\SalesPerson[] $input List of input records
      *
      * @return $this
      */

@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Asset\Model;
+namespace NecLimDul\MarketoRest\Asset\Model;
 
 use \ArrayAccess;
-use \MarketoRest\Asset\ObjectSerializer;
+use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * ResponseOfFolderResponse Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -57,9 +57,9 @@ class ResponseOfFolderResponse implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'errors' => '\MarketoRest\Asset\Model\Error[]',
+        'errors' => '\NecLimDul\MarketoRest\Asset\Model\Error[]',
         'request_id' => 'string',
-        'result' => '\MarketoRest\Asset\Model\FolderResponse[]',
+        'result' => '\NecLimDul\MarketoRest\Asset\Model\FolderResponse[]',
         'success' => 'bool',
         'warnings' => 'string[]'
     ];
@@ -231,7 +231,7 @@ class ResponseOfFolderResponse implements ModelInterface, ArrayAccess
     /**
      * Gets errors
      *
-     * @return \MarketoRest\Asset\Model\Error[]
+     * @return \NecLimDul\MarketoRest\Asset\Model\Error[]
      */
     public function getErrors()
     {
@@ -241,7 +241,7 @@ class ResponseOfFolderResponse implements ModelInterface, ArrayAccess
     /**
      * Sets errors
      *
-     * @param \MarketoRest\Asset\Model\Error[] $errors errors
+     * @param \NecLimDul\MarketoRest\Asset\Model\Error[] $errors errors
      *
      * @return $this
      */
@@ -279,7 +279,7 @@ class ResponseOfFolderResponse implements ModelInterface, ArrayAccess
     /**
      * Gets result
      *
-     * @return \MarketoRest\Asset\Model\FolderResponse[]
+     * @return \NecLimDul\MarketoRest\Asset\Model\FolderResponse[]
      */
     public function getResult()
     {
@@ -289,7 +289,7 @@ class ResponseOfFolderResponse implements ModelInterface, ArrayAccess
     /**
      * Sets result
      *
-     * @param \MarketoRest\Asset\Model\FolderResponse[] $result result
+     * @param \NecLimDul\MarketoRest\Asset\Model\FolderResponse[] $result result
      *
      * @return $this
      */

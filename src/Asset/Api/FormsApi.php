@@ -4,7 +4,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -26,7 +26,7 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Asset\Api;
+namespace NecLimDul\MarketoRest\Asset\Api;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -34,16 +34,16 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
-use MarketoRest\Asset\ApiException;
-use MarketoRest\Asset\Configuration;
-use MarketoRest\Asset\HeaderSelector;
-use MarketoRest\Asset\ObjectSerializer;
+use NecLimDul\MarketoRest\Asset\ApiException;
+use NecLimDul\MarketoRest\Asset\Configuration;
+use NecLimDul\MarketoRest\Asset\HeaderSelector;
+use NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * FormsApi Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -94,9 +94,9 @@ class FormsApi
      *
      * @param  int $id id (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfLpFormResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse
      */
     public function approveFromUsingPOST($id)
     {
@@ -111,13 +111,13 @@ class FormsApi
      *
      * @param  int $id id (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfLpFormResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function approveFromUsingPOSTWithHttpInfo($id)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfLpFormResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse';
         $request = $this->approveFromUsingPOSTRequest($id);
 
         try {
@@ -169,7 +169,7 @@ class FormsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfLpFormResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -211,7 +211,7 @@ class FormsApi
      */
     public function approveFromUsingPOSTAsyncWithHttpInfo($id)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfLpFormResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse';
         $request = $this->approveFromUsingPOSTRequest($id);
 
         return $this->client
@@ -366,9 +366,9 @@ class FormsApi
      * @param  string $max_return Maximum number of channels to return.  Max 200, default 20 (optional)
      * @param  string $offset Integer offset for paging (optional)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfLpFormResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse
      */
     public function browseForms2UsingGET($folder, $status = null, $max_return = null, $offset = null)
     {
@@ -386,13 +386,13 @@ class FormsApi
      * @param  string $max_return Maximum number of channels to return.  Max 200, default 20 (optional)
      * @param  string $offset Integer offset for paging (optional)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfLpFormResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function browseForms2UsingGETWithHttpInfo($folder, $status = null, $max_return = null, $offset = null)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfLpFormResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse';
         $request = $this->browseForms2UsingGETRequest($folder, $status, $max_return, $offset);
 
         try {
@@ -444,7 +444,7 @@ class FormsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfLpFormResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -492,7 +492,7 @@ class FormsApi
      */
     public function browseForms2UsingGETAsyncWithHttpInfo($folder, $status = null, $max_return = null, $offset = null)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfLpFormResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse';
         $request = $this->browseForms2UsingGETRequest($folder, $status, $max_return, $offset);
 
         return $this->client
@@ -654,11 +654,11 @@ class FormsApi
      * Clone Form
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\CloneFormRequest $clone_form_request cloneFormRequest (optional)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CloneFormRequest $clone_form_request cloneFormRequest (optional)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfLpFormResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse
      */
     public function cloneLpFormsUsingPOST($id, $clone_form_request = null)
     {
@@ -672,15 +672,15 @@ class FormsApi
      * Clone Form
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\CloneFormRequest $clone_form_request cloneFormRequest (optional)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CloneFormRequest $clone_form_request cloneFormRequest (optional)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfLpFormResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function cloneLpFormsUsingPOSTWithHttpInfo($id, $clone_form_request = null)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfLpFormResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse';
         $request = $this->cloneLpFormsUsingPOSTRequest($id, $clone_form_request);
 
         try {
@@ -732,7 +732,7 @@ class FormsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfLpFormResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -748,7 +748,7 @@ class FormsApi
      * Clone Form
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\CloneFormRequest $clone_form_request cloneFormRequest (optional)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CloneFormRequest $clone_form_request cloneFormRequest (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -769,14 +769,14 @@ class FormsApi
      * Clone Form
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\CloneFormRequest $clone_form_request cloneFormRequest (optional)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CloneFormRequest $clone_form_request cloneFormRequest (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function cloneLpFormsUsingPOSTAsyncWithHttpInfo($id, $clone_form_request = null)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfLpFormResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse';
         $request = $this->cloneLpFormsUsingPOSTRequest($id, $clone_form_request);
 
         return $this->client
@@ -820,7 +820,7 @@ class FormsApi
      * Create request for operation 'cloneLpFormsUsingPOST'
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\CloneFormRequest $clone_form_request cloneFormRequest (optional)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CloneFormRequest $clone_form_request cloneFormRequest (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -930,11 +930,11 @@ class FormsApi
      *
      * Create Form
      *
-     * @param  \MarketoRest\Asset\Model\CreateLpFormRequest $create_form_request createFormRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CreateLpFormRequest $create_form_request createFormRequest (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfLpFormResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse
      */
     public function createLpFormsUsingPOST($create_form_request)
     {
@@ -947,15 +947,15 @@ class FormsApi
      *
      * Create Form
      *
-     * @param  \MarketoRest\Asset\Model\CreateLpFormRequest $create_form_request createFormRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CreateLpFormRequest $create_form_request createFormRequest (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfLpFormResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function createLpFormsUsingPOSTWithHttpInfo($create_form_request)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfLpFormResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse';
         $request = $this->createLpFormsUsingPOSTRequest($create_form_request);
 
         try {
@@ -1007,7 +1007,7 @@ class FormsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfLpFormResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1022,7 +1022,7 @@ class FormsApi
      *
      * Create Form
      *
-     * @param  \MarketoRest\Asset\Model\CreateLpFormRequest $create_form_request createFormRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CreateLpFormRequest $create_form_request createFormRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1042,14 +1042,14 @@ class FormsApi
      *
      * Create Form
      *
-     * @param  \MarketoRest\Asset\Model\CreateLpFormRequest $create_form_request createFormRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CreateLpFormRequest $create_form_request createFormRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function createLpFormsUsingPOSTAsyncWithHttpInfo($create_form_request)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfLpFormResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse';
         $request = $this->createLpFormsUsingPOSTRequest($create_form_request);
 
         return $this->client
@@ -1092,7 +1092,7 @@ class FormsApi
     /**
      * Create request for operation 'createLpFormsUsingPOST'
      *
-     * @param  \MarketoRest\Asset\Model\CreateLpFormRequest $create_form_request createFormRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CreateLpFormRequest $create_form_request createFormRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -1196,9 +1196,9 @@ class FormsApi
      *
      * @param  int $id id (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfIdResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse
      */
     public function deleteFormByIdUsingPOST($id)
     {
@@ -1213,13 +1213,13 @@ class FormsApi
      *
      * @param  int $id id (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfIdResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function deleteFormByIdUsingPOSTWithHttpInfo($id)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfIdResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse';
         $request = $this->deleteFormByIdUsingPOSTRequest($id);
 
         try {
@@ -1271,7 +1271,7 @@ class FormsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfIdResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1313,7 +1313,7 @@ class FormsApi
      */
     public function deleteFormByIdUsingPOSTAsyncWithHttpInfo($id)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfIdResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse';
         $request = $this->deleteFormByIdUsingPOSTRequest($id);
 
         return $this->client
@@ -1465,9 +1465,9 @@ class FormsApi
      *
      * @param  int $id id (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfIdResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse
      */
     public function discardFormByIdUsingPOST($id)
     {
@@ -1482,13 +1482,13 @@ class FormsApi
      *
      * @param  int $id id (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfIdResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function discardFormByIdUsingPOSTWithHttpInfo($id)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfIdResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse';
         $request = $this->discardFormByIdUsingPOSTRequest($id);
 
         try {
@@ -1540,7 +1540,7 @@ class FormsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfIdResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1582,7 +1582,7 @@ class FormsApi
      */
     public function discardFormByIdUsingPOSTAsyncWithHttpInfo($id)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfIdResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse';
         $request = $this->discardFormByIdUsingPOSTRequest($id);
 
         return $this->client
@@ -1735,9 +1735,9 @@ class FormsApi
      * @param  int $id id (required)
      * @param  string $status Status filter for draft or approved versions (optional)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfLpFormResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse
      */
     public function getLpFormByIdUsingGET($id, $status = null)
     {
@@ -1753,13 +1753,13 @@ class FormsApi
      * @param  int $id id (required)
      * @param  string $status Status filter for draft or approved versions (optional)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfLpFormResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function getLpFormByIdUsingGETWithHttpInfo($id, $status = null)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfLpFormResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse';
         $request = $this->getLpFormByIdUsingGETRequest($id, $status);
 
         try {
@@ -1811,7 +1811,7 @@ class FormsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfLpFormResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1855,7 +1855,7 @@ class FormsApi
      */
     public function getLpFormByIdUsingGETAsyncWithHttpInfo($id, $status = null)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfLpFormResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse';
         $request = $this->getLpFormByIdUsingGETRequest($id, $status);
 
         return $this->client
@@ -2014,9 +2014,9 @@ class FormsApi
      * @param  string $status Status filter for draft or approved versions (optional)
      * @param  string $folder JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39; (optional)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfLpFormResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse
      */
     public function getLpFormByNameUsingGET($name, $status = null, $folder = null)
     {
@@ -2033,13 +2033,13 @@ class FormsApi
      * @param  string $status Status filter for draft or approved versions (optional)
      * @param  string $folder JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39; (optional)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfLpFormResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function getLpFormByNameUsingGETWithHttpInfo($name, $status = null, $folder = null)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfLpFormResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse';
         $request = $this->getLpFormByNameUsingGETRequest($name, $status, $folder);
 
         try {
@@ -2091,7 +2091,7 @@ class FormsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfLpFormResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2137,7 +2137,7 @@ class FormsApi
      */
     public function getLpFormByNameUsingGETAsyncWithHttpInfo($name, $status = null, $folder = null)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfLpFormResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse';
         $request = $this->getLpFormByNameUsingGETRequest($name, $status, $folder);
 
         return $this->client
@@ -2296,9 +2296,9 @@ class FormsApi
      * @param  int $id id (required)
      * @param  string $status Status filter for draft or approved versions (optional)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfThankYouPageResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfThankYouPageResponse
      */
     public function getThankYouPageByIdUsingGET($id, $status = null)
     {
@@ -2314,13 +2314,13 @@ class FormsApi
      * @param  int $id id (required)
      * @param  string $status Status filter for draft or approved versions (optional)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfThankYouPageResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfThankYouPageResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function getThankYouPageByIdUsingGETWithHttpInfo($id, $status = null)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfThankYouPageResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfThankYouPageResponse';
         $request = $this->getThankYouPageByIdUsingGETRequest($id, $status);
 
         try {
@@ -2372,7 +2372,7 @@ class FormsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfThankYouPageResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfThankYouPageResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2416,7 +2416,7 @@ class FormsApi
      */
     public function getThankYouPageByIdUsingGETAsyncWithHttpInfo($id, $status = null)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfThankYouPageResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfThankYouPageResponse';
         $request = $this->getThankYouPageByIdUsingGETRequest($id, $status);
 
         return $this->client
@@ -2572,11 +2572,11 @@ class FormsApi
      * Update Submit Button
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\SubmitButtonRequest $submit_button_request submitButtonRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\SubmitButtonRequest $submit_button_request submitButtonRequest (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfLpFormResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse
      */
     public function updateFormSubmitButtonUsingPOST($id, $submit_button_request)
     {
@@ -2590,15 +2590,15 @@ class FormsApi
      * Update Submit Button
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\SubmitButtonRequest $submit_button_request submitButtonRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\SubmitButtonRequest $submit_button_request submitButtonRequest (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfLpFormResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function updateFormSubmitButtonUsingPOSTWithHttpInfo($id, $submit_button_request)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfLpFormResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse';
         $request = $this->updateFormSubmitButtonUsingPOSTRequest($id, $submit_button_request);
 
         try {
@@ -2650,7 +2650,7 @@ class FormsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfLpFormResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2666,7 +2666,7 @@ class FormsApi
      * Update Submit Button
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\SubmitButtonRequest $submit_button_request submitButtonRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\SubmitButtonRequest $submit_button_request submitButtonRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -2687,14 +2687,14 @@ class FormsApi
      * Update Submit Button
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\SubmitButtonRequest $submit_button_request submitButtonRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\SubmitButtonRequest $submit_button_request submitButtonRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function updateFormSubmitButtonUsingPOSTAsyncWithHttpInfo($id, $submit_button_request)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfLpFormResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse';
         $request = $this->updateFormSubmitButtonUsingPOSTRequest($id, $submit_button_request);
 
         return $this->client
@@ -2738,7 +2738,7 @@ class FormsApi
      * Create request for operation 'updateFormSubmitButtonUsingPOST'
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\SubmitButtonRequest $submit_button_request submitButtonRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\SubmitButtonRequest $submit_button_request submitButtonRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -2855,11 +2855,11 @@ class FormsApi
      * Update Form Metadata
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\UpdateFormMetaDataRequest $update_form_meta_data_request updateFormMetaDataRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateFormMetaDataRequest $update_form_meta_data_request updateFormMetaDataRequest (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfLpFormResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse
      */
     public function updateFormsUsingPOST($id, $update_form_meta_data_request)
     {
@@ -2873,15 +2873,15 @@ class FormsApi
      * Update Form Metadata
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\UpdateFormMetaDataRequest $update_form_meta_data_request updateFormMetaDataRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateFormMetaDataRequest $update_form_meta_data_request updateFormMetaDataRequest (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfLpFormResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function updateFormsUsingPOSTWithHttpInfo($id, $update_form_meta_data_request)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfLpFormResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse';
         $request = $this->updateFormsUsingPOSTRequest($id, $update_form_meta_data_request);
 
         try {
@@ -2933,7 +2933,7 @@ class FormsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfLpFormResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2949,7 +2949,7 @@ class FormsApi
      * Update Form Metadata
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\UpdateFormMetaDataRequest $update_form_meta_data_request updateFormMetaDataRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateFormMetaDataRequest $update_form_meta_data_request updateFormMetaDataRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -2970,14 +2970,14 @@ class FormsApi
      * Update Form Metadata
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\UpdateFormMetaDataRequest $update_form_meta_data_request updateFormMetaDataRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateFormMetaDataRequest $update_form_meta_data_request updateFormMetaDataRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function updateFormsUsingPOSTAsyncWithHttpInfo($id, $update_form_meta_data_request)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfLpFormResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse';
         $request = $this->updateFormsUsingPOSTRequest($id, $update_form_meta_data_request);
 
         return $this->client
@@ -3021,7 +3021,7 @@ class FormsApi
      * Create request for operation 'updateFormsUsingPOST'
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\UpdateFormMetaDataRequest $update_form_meta_data_request updateFormMetaDataRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateFormMetaDataRequest $update_form_meta_data_request updateFormMetaDataRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -3138,11 +3138,11 @@ class FormsApi
      * Update Thank You Page
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\UpdateThankYouPageRequest $thank_you_page_request thankYouPageRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateThankYouPageRequest $thank_you_page_request thankYouPageRequest (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfThankYouPageResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfThankYouPageResponse
      */
     public function updateThankYouPageByIdUsingPOST($id, $thank_you_page_request)
     {
@@ -3156,15 +3156,15 @@ class FormsApi
      * Update Thank You Page
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\UpdateThankYouPageRequest $thank_you_page_request thankYouPageRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateThankYouPageRequest $thank_you_page_request thankYouPageRequest (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfThankYouPageResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfThankYouPageResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function updateThankYouPageByIdUsingPOSTWithHttpInfo($id, $thank_you_page_request)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfThankYouPageResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfThankYouPageResponse';
         $request = $this->updateThankYouPageByIdUsingPOSTRequest($id, $thank_you_page_request);
 
         try {
@@ -3216,7 +3216,7 @@ class FormsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfThankYouPageResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfThankYouPageResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3232,7 +3232,7 @@ class FormsApi
      * Update Thank You Page
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\UpdateThankYouPageRequest $thank_you_page_request thankYouPageRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateThankYouPageRequest $thank_you_page_request thankYouPageRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -3253,14 +3253,14 @@ class FormsApi
      * Update Thank You Page
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\UpdateThankYouPageRequest $thank_you_page_request thankYouPageRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateThankYouPageRequest $thank_you_page_request thankYouPageRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function updateThankYouPageByIdUsingPOSTAsyncWithHttpInfo($id, $thank_you_page_request)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfThankYouPageResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfThankYouPageResponse';
         $request = $this->updateThankYouPageByIdUsingPOSTRequest($id, $thank_you_page_request);
 
         return $this->client
@@ -3304,7 +3304,7 @@ class FormsApi
      * Create request for operation 'updateThankYouPageByIdUsingPOST'
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\UpdateThankYouPageRequest $thank_you_page_request thankYouPageRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateThankYouPageRequest $thank_you_page_request thankYouPageRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request

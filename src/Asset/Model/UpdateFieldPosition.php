@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Asset\Model;
+namespace NecLimDul\MarketoRest\Asset\Model;
 
 use \ArrayAccess;
-use \MarketoRest\Asset\ObjectSerializer;
+use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * UpdateFieldPosition Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -58,7 +58,7 @@ class UpdateFieldPosition implements ModelInterface, ArrayAccess
       */
     protected static $swaggerTypes = [
         'column_number' => 'int',
-        'field_list' => '\MarketoRest\Asset\Model\UpdateFieldPosition[]',
+        'field_list' => '\NecLimDul\MarketoRest\Asset\Model\UpdateFieldPosition[]',
         'field_name' => 'string',
         'row_number' => 'int'
     ];
@@ -258,7 +258,7 @@ class UpdateFieldPosition implements ModelInterface, ArrayAccess
     /**
      * Gets field_list
      *
-     * @return \MarketoRest\Asset\Model\UpdateFieldPosition[]
+     * @return \NecLimDul\MarketoRest\Asset\Model\UpdateFieldPosition[]
      */
     public function getFieldList()
     {
@@ -268,7 +268,7 @@ class UpdateFieldPosition implements ModelInterface, ArrayAccess
     /**
      * Sets field_list
      *
-     * @param \MarketoRest\Asset\Model\UpdateFieldPosition[] $field_list List of positions inside the fields.  Only valid if the target is a fieldset
+     * @param \NecLimDul\MarketoRest\Asset\Model\UpdateFieldPosition[] $field_list List of positions inside the fields.  Only valid if the target is a fieldset
      *
      * @return $this
      */

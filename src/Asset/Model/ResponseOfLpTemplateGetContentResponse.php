@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Asset\Model;
+namespace NecLimDul\MarketoRest\Asset\Model;
 
 use \ArrayAccess;
-use \MarketoRest\Asset\ObjectSerializer;
+use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * ResponseOfLpTemplateGetContentResponse Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -57,9 +57,9 @@ class ResponseOfLpTemplateGetContentResponse implements ModelInterface, ArrayAcc
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'errors' => '\MarketoRest\Asset\Model\Error[]',
+        'errors' => '\NecLimDul\MarketoRest\Asset\Model\Error[]',
         'request_id' => 'string',
-        'result' => '\MarketoRest\Asset\Model\LpTemplateGetContentResponse[]',
+        'result' => '\NecLimDul\MarketoRest\Asset\Model\LpTemplateGetContentResponse[]',
         'success' => 'bool',
         'warnings' => 'string[]'
     ];
@@ -231,7 +231,7 @@ class ResponseOfLpTemplateGetContentResponse implements ModelInterface, ArrayAcc
     /**
      * Gets errors
      *
-     * @return \MarketoRest\Asset\Model\Error[]
+     * @return \NecLimDul\MarketoRest\Asset\Model\Error[]
      */
     public function getErrors()
     {
@@ -241,7 +241,7 @@ class ResponseOfLpTemplateGetContentResponse implements ModelInterface, ArrayAcc
     /**
      * Sets errors
      *
-     * @param \MarketoRest\Asset\Model\Error[] $errors errors
+     * @param \NecLimDul\MarketoRest\Asset\Model\Error[] $errors errors
      *
      * @return $this
      */
@@ -279,7 +279,7 @@ class ResponseOfLpTemplateGetContentResponse implements ModelInterface, ArrayAcc
     /**
      * Gets result
      *
-     * @return \MarketoRest\Asset\Model\LpTemplateGetContentResponse[]
+     * @return \NecLimDul\MarketoRest\Asset\Model\LpTemplateGetContentResponse[]
      */
     public function getResult()
     {
@@ -289,7 +289,7 @@ class ResponseOfLpTemplateGetContentResponse implements ModelInterface, ArrayAcc
     /**
      * Sets result
      *
-     * @param \MarketoRest\Asset\Model\LpTemplateGetContentResponse[] $result result
+     * @param \NecLimDul\MarketoRest\Asset\Model\LpTemplateGetContentResponse[] $result result
      *
      * @return $this
      */

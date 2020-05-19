@@ -4,7 +4,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -26,7 +26,7 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Asset\Api;
+namespace NecLimDul\MarketoRest\Asset\Api;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -34,16 +34,16 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
-use MarketoRest\Asset\ApiException;
-use MarketoRest\Asset\Configuration;
-use MarketoRest\Asset\HeaderSelector;
-use MarketoRest\Asset\ObjectSerializer;
+use NecLimDul\MarketoRest\Asset\ApiException;
+use NecLimDul\MarketoRest\Asset\Configuration;
+use NecLimDul\MarketoRest\Asset\HeaderSelector;
+use NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * FormFieldsApi Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -93,11 +93,11 @@ class FormFieldsApi
      * Add Fieldset to Form
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\AddFormFieldSetRequest $add_form_field_set_request addFormFieldSetRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\AddFormFieldSetRequest $add_form_field_set_request addFormFieldSetRequest (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse
      */
     public function addFieldSetUsingPOST($id, $add_form_field_set_request)
     {
@@ -111,15 +111,15 @@ class FormFieldsApi
      * Add Fieldset to Form
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\AddFormFieldSetRequest $add_form_field_set_request addFormFieldSetRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\AddFormFieldSetRequest $add_form_field_set_request addFormFieldSetRequest (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function addFieldSetUsingPOSTWithHttpInfo($id, $add_form_field_set_request)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse';
         $request = $this->addFieldSetUsingPOSTRequest($id, $add_form_field_set_request);
 
         try {
@@ -171,7 +171,7 @@ class FormFieldsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -187,7 +187,7 @@ class FormFieldsApi
      * Add Fieldset to Form
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\AddFormFieldSetRequest $add_form_field_set_request addFormFieldSetRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\AddFormFieldSetRequest $add_form_field_set_request addFormFieldSetRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -208,14 +208,14 @@ class FormFieldsApi
      * Add Fieldset to Form
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\AddFormFieldSetRequest $add_form_field_set_request addFormFieldSetRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\AddFormFieldSetRequest $add_form_field_set_request addFormFieldSetRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function addFieldSetUsingPOSTAsyncWithHttpInfo($id, $add_form_field_set_request)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse';
         $request = $this->addFieldSetUsingPOSTRequest($id, $add_form_field_set_request);
 
         return $this->client
@@ -259,7 +259,7 @@ class FormFieldsApi
      * Create request for operation 'addFieldSetUsingPOST'
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\AddFormFieldSetRequest $add_form_field_set_request addFormFieldSetRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\AddFormFieldSetRequest $add_form_field_set_request addFormFieldSetRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -376,11 +376,11 @@ class FormFieldsApi
      * Add Field to Form
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\AddFormFieldRequest $add_form_field_set_request addFormFieldSetRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\AddFormFieldRequest $add_form_field_set_request addFormFieldSetRequest (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse
      */
     public function addFieldToAFormUsingPOST($id, $add_form_field_set_request)
     {
@@ -394,15 +394,15 @@ class FormFieldsApi
      * Add Field to Form
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\AddFormFieldRequest $add_form_field_set_request addFormFieldSetRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\AddFormFieldRequest $add_form_field_set_request addFormFieldSetRequest (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function addFieldToAFormUsingPOSTWithHttpInfo($id, $add_form_field_set_request)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse';
         $request = $this->addFieldToAFormUsingPOSTRequest($id, $add_form_field_set_request);
 
         try {
@@ -454,7 +454,7 @@ class FormFieldsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -470,7 +470,7 @@ class FormFieldsApi
      * Add Field to Form
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\AddFormFieldRequest $add_form_field_set_request addFormFieldSetRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\AddFormFieldRequest $add_form_field_set_request addFormFieldSetRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -491,14 +491,14 @@ class FormFieldsApi
      * Add Field to Form
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\AddFormFieldRequest $add_form_field_set_request addFormFieldSetRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\AddFormFieldRequest $add_form_field_set_request addFormFieldSetRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function addFieldToAFormUsingPOSTAsyncWithHttpInfo($id, $add_form_field_set_request)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse';
         $request = $this->addFieldToAFormUsingPOSTRequest($id, $add_form_field_set_request);
 
         return $this->client
@@ -542,7 +542,7 @@ class FormFieldsApi
      * Create request for operation 'addFieldToAFormUsingPOST'
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\AddFormFieldRequest $add_form_field_set_request addFormFieldSetRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\AddFormFieldRequest $add_form_field_set_request addFormFieldSetRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -660,11 +660,11 @@ class FormFieldsApi
      *
      * @param  int $form_id formId (required)
      * @param  string $field_id fieldId (required)
-     * @param  \MarketoRest\Asset\Model\AddFormFieldVisibilityRequest $add_form_field_visibility_request addFormFieldVisibilityRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\AddFormFieldVisibilityRequest $add_form_field_visibility_request addFormFieldVisibilityRequest (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfFormVisibilityRuleResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfFormVisibilityRuleResponse
      */
     public function addFormFieldVisibilityRuleUsingPOST($form_id, $field_id, $add_form_field_visibility_request)
     {
@@ -679,15 +679,15 @@ class FormFieldsApi
      *
      * @param  int $form_id formId (required)
      * @param  string $field_id fieldId (required)
-     * @param  \MarketoRest\Asset\Model\AddFormFieldVisibilityRequest $add_form_field_visibility_request addFormFieldVisibilityRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\AddFormFieldVisibilityRequest $add_form_field_visibility_request addFormFieldVisibilityRequest (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfFormVisibilityRuleResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfFormVisibilityRuleResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function addFormFieldVisibilityRuleUsingPOSTWithHttpInfo($form_id, $field_id, $add_form_field_visibility_request)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfFormVisibilityRuleResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFormVisibilityRuleResponse';
         $request = $this->addFormFieldVisibilityRuleUsingPOSTRequest($form_id, $field_id, $add_form_field_visibility_request);
 
         try {
@@ -739,7 +739,7 @@ class FormFieldsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfFormVisibilityRuleResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFormVisibilityRuleResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -756,7 +756,7 @@ class FormFieldsApi
      *
      * @param  int $form_id formId (required)
      * @param  string $field_id fieldId (required)
-     * @param  \MarketoRest\Asset\Model\AddFormFieldVisibilityRequest $add_form_field_visibility_request addFormFieldVisibilityRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\AddFormFieldVisibilityRequest $add_form_field_visibility_request addFormFieldVisibilityRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -778,14 +778,14 @@ class FormFieldsApi
      *
      * @param  int $form_id formId (required)
      * @param  string $field_id fieldId (required)
-     * @param  \MarketoRest\Asset\Model\AddFormFieldVisibilityRequest $add_form_field_visibility_request addFormFieldVisibilityRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\AddFormFieldVisibilityRequest $add_form_field_visibility_request addFormFieldVisibilityRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function addFormFieldVisibilityRuleUsingPOSTAsyncWithHttpInfo($form_id, $field_id, $add_form_field_visibility_request)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfFormVisibilityRuleResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFormVisibilityRuleResponse';
         $request = $this->addFormFieldVisibilityRuleUsingPOSTRequest($form_id, $field_id, $add_form_field_visibility_request);
 
         return $this->client
@@ -830,7 +830,7 @@ class FormFieldsApi
      *
      * @param  int $form_id formId (required)
      * @param  string $field_id fieldId (required)
-     * @param  \MarketoRest\Asset\Model\AddFormFieldVisibilityRequest $add_form_field_visibility_request addFormFieldVisibilityRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\AddFormFieldVisibilityRequest $add_form_field_visibility_request addFormFieldVisibilityRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -961,11 +961,11 @@ class FormFieldsApi
      * Add Rich Text Field
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\AddRichTextRequest $add_rich_text_request addRichTextRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\AddRichTextRequest $add_rich_text_request addRichTextRequest (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse
      */
     public function addRichTextFieldUsingPOST($id, $add_rich_text_request)
     {
@@ -979,15 +979,15 @@ class FormFieldsApi
      * Add Rich Text Field
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\AddRichTextRequest $add_rich_text_request addRichTextRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\AddRichTextRequest $add_rich_text_request addRichTextRequest (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function addRichTextFieldUsingPOSTWithHttpInfo($id, $add_rich_text_request)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse';
         $request = $this->addRichTextFieldUsingPOSTRequest($id, $add_rich_text_request);
 
         try {
@@ -1039,7 +1039,7 @@ class FormFieldsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1055,7 +1055,7 @@ class FormFieldsApi
      * Add Rich Text Field
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\AddRichTextRequest $add_rich_text_request addRichTextRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\AddRichTextRequest $add_rich_text_request addRichTextRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1076,14 +1076,14 @@ class FormFieldsApi
      * Add Rich Text Field
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\AddRichTextRequest $add_rich_text_request addRichTextRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\AddRichTextRequest $add_rich_text_request addRichTextRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function addRichTextFieldUsingPOSTAsyncWithHttpInfo($id, $add_rich_text_request)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse';
         $request = $this->addRichTextFieldUsingPOSTRequest($id, $add_rich_text_request);
 
         return $this->client
@@ -1127,7 +1127,7 @@ class FormFieldsApi
      * Create request for operation 'addRichTextFieldUsingPOST'
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\AddRichTextRequest $add_rich_text_request addRichTextRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\AddRichTextRequest $add_rich_text_request addRichTextRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -1247,9 +1247,9 @@ class FormFieldsApi
      * @param  string $field_set_id fieldSetId (required)
      * @param  string $field_id fieldId (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfIdResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse
      */
     public function deleteFormFieldFromFieldSetUsingPOST($id, $field_set_id, $field_id)
     {
@@ -1266,13 +1266,13 @@ class FormFieldsApi
      * @param  string $field_set_id fieldSetId (required)
      * @param  string $field_id fieldId (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfIdResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function deleteFormFieldFromFieldSetUsingPOSTWithHttpInfo($id, $field_set_id, $field_id)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfIdResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse';
         $request = $this->deleteFormFieldFromFieldSetUsingPOSTRequest($id, $field_set_id, $field_id);
 
         try {
@@ -1324,7 +1324,7 @@ class FormFieldsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfIdResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1370,7 +1370,7 @@ class FormFieldsApi
      */
     public function deleteFormFieldFromFieldSetUsingPOSTAsyncWithHttpInfo($id, $field_set_id, $field_id)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfIdResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse';
         $request = $this->deleteFormFieldFromFieldSetUsingPOSTRequest($id, $field_set_id, $field_id);
 
         return $this->client
@@ -1553,9 +1553,9 @@ class FormFieldsApi
      * @param  int $id id (required)
      * @param  string $field_id fieldId (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfIdResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse
      */
     public function deleteFormFieldUsingPOST($id, $field_id)
     {
@@ -1571,13 +1571,13 @@ class FormFieldsApi
      * @param  int $id id (required)
      * @param  string $field_id fieldId (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfIdResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function deleteFormFieldUsingPOSTWithHttpInfo($id, $field_id)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfIdResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse';
         $request = $this->deleteFormFieldUsingPOSTRequest($id, $field_id);
 
         try {
@@ -1629,7 +1629,7 @@ class FormFieldsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfIdResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1673,7 +1673,7 @@ class FormFieldsApi
      */
     public function deleteFormFieldUsingPOSTAsyncWithHttpInfo($id, $field_id)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfIdResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse';
         $request = $this->deleteFormFieldUsingPOSTRequest($id, $field_id);
 
         return $this->client
@@ -1841,9 +1841,9 @@ class FormFieldsApi
      * @param  int $max_return Maximum number of fields to return.  Max 200, default 20 (optional)
      * @param  int $offset Integer offset for paging (optional)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfFieldsMetaDataResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfFieldsMetaDataResponse
      */
     public function getAllFieldsUsingGET($max_return = null, $offset = null)
     {
@@ -1859,13 +1859,13 @@ class FormFieldsApi
      * @param  int $max_return Maximum number of fields to return.  Max 200, default 20 (optional)
      * @param  int $offset Integer offset for paging (optional)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfFieldsMetaDataResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfFieldsMetaDataResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function getAllFieldsUsingGETWithHttpInfo($max_return = null, $offset = null)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfFieldsMetaDataResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFieldsMetaDataResponse';
         $request = $this->getAllFieldsUsingGETRequest($max_return, $offset);
 
         try {
@@ -1917,7 +1917,7 @@ class FormFieldsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfFieldsMetaDataResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFieldsMetaDataResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1961,7 +1961,7 @@ class FormFieldsApi
      */
     public function getAllFieldsUsingGETAsyncWithHttpInfo($max_return = null, $offset = null)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfFieldsMetaDataResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFieldsMetaDataResponse';
         $request = $this->getAllFieldsUsingGETRequest($max_return, $offset);
 
         return $this->client
@@ -2109,9 +2109,9 @@ class FormFieldsApi
      * @param  int $max_return Maximum number of fields to return.  Max 200, default 20 (optional)
      * @param  int $offset Integer offset for paging (optional)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfFieldsMetaDataResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfFieldsMetaDataResponse
      */
     public function getAllProgramMemberFieldsUsingGET($max_return = null, $offset = null)
     {
@@ -2127,13 +2127,13 @@ class FormFieldsApi
      * @param  int $max_return Maximum number of fields to return.  Max 200, default 20 (optional)
      * @param  int $offset Integer offset for paging (optional)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfFieldsMetaDataResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfFieldsMetaDataResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function getAllProgramMemberFieldsUsingGETWithHttpInfo($max_return = null, $offset = null)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfFieldsMetaDataResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFieldsMetaDataResponse';
         $request = $this->getAllProgramMemberFieldsUsingGETRequest($max_return, $offset);
 
         try {
@@ -2185,7 +2185,7 @@ class FormFieldsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfFieldsMetaDataResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFieldsMetaDataResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2229,7 +2229,7 @@ class FormFieldsApi
      */
     public function getAllProgramMemberFieldsUsingGETAsyncWithHttpInfo($max_return = null, $offset = null)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfFieldsMetaDataResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFieldsMetaDataResponse';
         $request = $this->getAllProgramMemberFieldsUsingGETRequest($max_return, $offset);
 
         return $this->client
@@ -2377,9 +2377,9 @@ class FormFieldsApi
      * @param  int $id id (required)
      * @param  string $status Status filter for draft or approved versions (optional)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse
      */
     public function getFormFieldByFormVidUsingGET($id, $status = null)
     {
@@ -2395,13 +2395,13 @@ class FormFieldsApi
      * @param  int $id id (required)
      * @param  string $status Status filter for draft or approved versions (optional)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function getFormFieldByFormVidUsingGETWithHttpInfo($id, $status = null)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse';
         $request = $this->getFormFieldByFormVidUsingGETRequest($id, $status);
 
         try {
@@ -2453,7 +2453,7 @@ class FormFieldsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2497,7 +2497,7 @@ class FormFieldsApi
      */
     public function getFormFieldByFormVidUsingGETAsyncWithHttpInfo($id, $status = null)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse';
         $request = $this->getFormFieldByFormVidUsingGETRequest($id, $status);
 
         return $this->client
@@ -2653,11 +2653,11 @@ class FormFieldsApi
      * Update Field Positions
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\ReArrangeRequest $re_arrange_request reArrangeRequest (optional)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\ReArrangeRequest $re_arrange_request reArrangeRequest (optional)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfIdResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse
      */
     public function updateFieldPositionsUsingPOST($id, $re_arrange_request = null)
     {
@@ -2671,15 +2671,15 @@ class FormFieldsApi
      * Update Field Positions
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\ReArrangeRequest $re_arrange_request reArrangeRequest (optional)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\ReArrangeRequest $re_arrange_request reArrangeRequest (optional)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfIdResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function updateFieldPositionsUsingPOSTWithHttpInfo($id, $re_arrange_request = null)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfIdResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse';
         $request = $this->updateFieldPositionsUsingPOSTRequest($id, $re_arrange_request);
 
         try {
@@ -2731,7 +2731,7 @@ class FormFieldsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfIdResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2747,7 +2747,7 @@ class FormFieldsApi
      * Update Field Positions
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\ReArrangeRequest $re_arrange_request reArrangeRequest (optional)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\ReArrangeRequest $re_arrange_request reArrangeRequest (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -2768,14 +2768,14 @@ class FormFieldsApi
      * Update Field Positions
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\ReArrangeRequest $re_arrange_request reArrangeRequest (optional)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\ReArrangeRequest $re_arrange_request reArrangeRequest (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function updateFieldPositionsUsingPOSTAsyncWithHttpInfo($id, $re_arrange_request = null)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfIdResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse';
         $request = $this->updateFieldPositionsUsingPOSTRequest($id, $re_arrange_request);
 
         return $this->client
@@ -2819,7 +2819,7 @@ class FormFieldsApi
      * Create request for operation 'updateFieldPositionsUsingPOST'
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\ReArrangeRequest $re_arrange_request reArrangeRequest (optional)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\ReArrangeRequest $re_arrange_request reArrangeRequest (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -2931,11 +2931,11 @@ class FormFieldsApi
      *
      * @param  int $id id (required)
      * @param  string $field_id fieldId (required)
-     * @param  \MarketoRest\Asset\Model\UpdateFormFieldRequest $update_form_field_request updateFormFieldRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateFormFieldRequest $update_form_field_request updateFormFieldRequest (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse
      */
     public function updateFormFieldUsingPOST($id, $field_id, $update_form_field_request)
     {
@@ -2950,15 +2950,15 @@ class FormFieldsApi
      *
      * @param  int $id id (required)
      * @param  string $field_id fieldId (required)
-     * @param  \MarketoRest\Asset\Model\UpdateFormFieldRequest $update_form_field_request updateFormFieldRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateFormFieldRequest $update_form_field_request updateFormFieldRequest (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function updateFormFieldUsingPOSTWithHttpInfo($id, $field_id, $update_form_field_request)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse';
         $request = $this->updateFormFieldUsingPOSTRequest($id, $field_id, $update_form_field_request);
 
         try {
@@ -3010,7 +3010,7 @@ class FormFieldsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3027,7 +3027,7 @@ class FormFieldsApi
      *
      * @param  int $id id (required)
      * @param  string $field_id fieldId (required)
-     * @param  \MarketoRest\Asset\Model\UpdateFormFieldRequest $update_form_field_request updateFormFieldRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateFormFieldRequest $update_form_field_request updateFormFieldRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -3049,14 +3049,14 @@ class FormFieldsApi
      *
      * @param  int $id id (required)
      * @param  string $field_id fieldId (required)
-     * @param  \MarketoRest\Asset\Model\UpdateFormFieldRequest $update_form_field_request updateFormFieldRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateFormFieldRequest $update_form_field_request updateFormFieldRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function updateFormFieldUsingPOSTAsyncWithHttpInfo($id, $field_id, $update_form_field_request)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse';
         $request = $this->updateFormFieldUsingPOSTRequest($id, $field_id, $update_form_field_request);
 
         return $this->client
@@ -3101,7 +3101,7 @@ class FormFieldsApi
      *
      * @param  int $id id (required)
      * @param  string $field_id fieldId (required)
-     * @param  \MarketoRest\Asset\Model\UpdateFormFieldRequest $update_form_field_request updateFormFieldRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateFormFieldRequest $update_form_field_request updateFormFieldRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request

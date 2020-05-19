@@ -1,4 +1,4 @@
-# MarketoRest\Asset\LandingPagesApi
+# NecLimDul\MarketoRest\Asset\LandingPagesApi
 
 All URIs are relative to *https://localhost:8080*
 
@@ -19,7 +19,7 @@ Method | HTTP request | Description
 
 
 # **approveLandingPageUsingPOST**
-> \MarketoRest\Asset\Model\ResponseOfIdResponse approveLandingPageUsingPOST($id)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse approveLandingPageUsingPOST($id)
 
 Approve Landing Page Draft
 
@@ -30,7 +30,7 @@ Approves the current draft of the landing page.  Required Permissions: Approve A
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\LandingPagesApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPagesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -54,7 +54,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfIdResponse**](../Model/ResponseOfIdResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse**](../Model/ResponseOfIdResponse.md)
 
 ### Authorization
 
@@ -68,7 +68,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **browseLandingPagesUsingGET**
-> \MarketoRest\Asset\Model\ResponseOfLandingPageResponse browseLandingPagesUsingGET($status, $max_return, $offset, $folder)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse browseLandingPagesUsingGET($status, $max_return, $offset, $folder)
 
 Get Landing Pages
 
@@ -79,7 +79,7 @@ Retrieves a list of accessible landing pages from the target instance. Required 
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\LandingPagesApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPagesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -109,7 +109,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfLandingPageResponse**](../Model/ResponseOfLandingPageResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse**](../Model/ResponseOfLandingPageResponse.md)
 
 ### Authorization
 
@@ -123,7 +123,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **cloneLandingPageUsingPOST**
-> \MarketoRest\Asset\Model\ResponseOfLandingPageResponse cloneLandingPageUsingPOST($id, $clone_landing_page_request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse cloneLandingPageUsingPOST($id, $clone_landing_page_request)
 
 Clone Landing Page
 
@@ -134,13 +134,13 @@ Clones the target landing page. Required Permissions: Read-Write Assets
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\LandingPagesApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPagesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $id = 56; // int | id
-$clone_landing_page_request = new \MarketoRest\Asset\Model\CloneLandingPageRequest(); // \MarketoRest\Asset\Model\CloneLandingPageRequest | cloneLandingPageRequest
+$clone_landing_page_request = new \NecLimDul\MarketoRest\Asset\Model\CloneLandingPageRequest(); // \NecLimDul\MarketoRest\Asset\Model\CloneLandingPageRequest | cloneLandingPageRequest
 
 try {
     $result = $apiInstance->cloneLandingPageUsingPOST($id, $clone_landing_page_request);
@@ -156,11 +156,11 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| id |
- **clone_landing_page_request** | [**\MarketoRest\Asset\Model\CloneLandingPageRequest**](../Model/CloneLandingPageRequest.md)| cloneLandingPageRequest |
+ **clone_landing_page_request** | [**\NecLimDul\MarketoRest\Asset\Model\CloneLandingPageRequest**](../Model/CloneLandingPageRequest.md)| cloneLandingPageRequest |
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfLandingPageResponse**](../Model/ResponseOfLandingPageResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse**](../Model/ResponseOfLandingPageResponse.md)
 
 ### Authorization
 
@@ -174,7 +174,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **createLandingPageUsingPOST**
-> \MarketoRest\Asset\Model\ResponseOfLandingPageResponse createLandingPageUsingPOST($create_landing_page_request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse createLandingPageUsingPOST($create_landing_page_request)
 
 Create Landing Page
 
@@ -185,12 +185,12 @@ Creates a new landing page.  Required Permissions: Read-Write Assets
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\LandingPagesApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPagesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$create_landing_page_request = new \MarketoRest\Asset\Model\CreateLandingPageRequest(); // \MarketoRest\Asset\Model\CreateLandingPageRequest | createLandingPageRequest
+$create_landing_page_request = new \NecLimDul\MarketoRest\Asset\Model\CreateLandingPageRequest(); // \NecLimDul\MarketoRest\Asset\Model\CreateLandingPageRequest | createLandingPageRequest
 
 try {
     $result = $apiInstance->createLandingPageUsingPOST($create_landing_page_request);
@@ -205,11 +205,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_landing_page_request** | [**\MarketoRest\Asset\Model\CreateLandingPageRequest**](../Model/CreateLandingPageRequest.md)| createLandingPageRequest |
+ **create_landing_page_request** | [**\NecLimDul\MarketoRest\Asset\Model\CreateLandingPageRequest**](../Model/CreateLandingPageRequest.md)| createLandingPageRequest |
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfLandingPageResponse**](../Model/ResponseOfLandingPageResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse**](../Model/ResponseOfLandingPageResponse.md)
 
 ### Authorization
 
@@ -223,7 +223,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **deleteLandingPageByIdUsingPOST**
-> \MarketoRest\Asset\Model\ResponseOfIdResponse deleteLandingPageByIdUsingPOST($id)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse deleteLandingPageByIdUsingPOST($id)
 
 Delete Landing Page
 
@@ -234,7 +234,7 @@ Deletes the target landing page. Required Permissions: Read-Write Assets
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\LandingPagesApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPagesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -258,7 +258,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfIdResponse**](../Model/ResponseOfIdResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse**](../Model/ResponseOfIdResponse.md)
 
 ### Authorization
 
@@ -272,7 +272,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **discardLandingPageByIdUsingPOST**
-> \MarketoRest\Asset\Model\ResponseOfIdResponse discardLandingPageByIdUsingPOST($id)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse discardLandingPageByIdUsingPOST($id)
 
 Discard Landing Page Draft
 
@@ -283,7 +283,7 @@ Discards the current draft of the landing page. Required Permissions: Read-Write
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\LandingPagesApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPagesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -307,7 +307,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfIdResponse**](../Model/ResponseOfIdResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse**](../Model/ResponseOfIdResponse.md)
 
 ### Authorization
 
@@ -321,7 +321,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getLandingPageByIdUsingGET**
-> \MarketoRest\Asset\Model\ResponseOfLandingPageResponse getLandingPageByIdUsingGET($id, $status)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse getLandingPageByIdUsingGET($id, $status)
 
 Get Landing Page by Id
 
@@ -332,7 +332,7 @@ Returns the landning record for the given id. Required Permissions: Read-Only As
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\LandingPagesApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPagesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -358,7 +358,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfLandingPageResponse**](../Model/ResponseOfLandingPageResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse**](../Model/ResponseOfLandingPageResponse.md)
 
 ### Authorization
 
@@ -372,7 +372,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getLandingPageByNameUsingGET**
-> \MarketoRest\Asset\Model\ResponseOfLandingPageResponse getLandingPageByNameUsingGET($name, $status, $max_return, $offset)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse getLandingPageByNameUsingGET($name, $status, $max_return, $offset)
 
 Get Landing Page by Name
 
@@ -383,7 +383,7 @@ Returns the landing page record for the given name. Required Permissions: Read-O
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\LandingPagesApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPagesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -413,7 +413,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfLandingPageResponse**](../Model/ResponseOfLandingPageResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse**](../Model/ResponseOfLandingPageResponse.md)
 
 ### Authorization
 
@@ -427,7 +427,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getVariablesUsingGET**
-> \MarketoRest\Asset\Model\ResponseOfLandingPageVariableResponse getVariablesUsingGET($id, $status)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageVariableResponse getVariablesUsingGET($id, $status)
 
 Get Landing Page Variables
 
@@ -436,7 +436,7 @@ Get Landing Page Variables
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\LandingPagesApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPagesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -462,7 +462,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfLandingPageVariableResponse**](../Model/ResponseOfLandingPageVariableResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageVariableResponse**](../Model/ResponseOfLandingPageVariableResponse.md)
 
 ### Authorization
 
@@ -476,7 +476,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **unapproveLandingPageByIdUsingPOST**
-> \MarketoRest\Asset\Model\ResponseOfLandingPageResponse unapproveLandingPageByIdUsingPOST($id)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse unapproveLandingPageByIdUsingPOST($id)
 
 Unapprove Landing Page
 
@@ -487,7 +487,7 @@ Unapproves the landing page, reverting it to a draft-only state. Required Permis
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\LandingPagesApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPagesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -511,7 +511,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfLandingPageResponse**](../Model/ResponseOfLandingPageResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse**](../Model/ResponseOfLandingPageResponse.md)
 
 ### Authorization
 
@@ -525,7 +525,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **updateLandingPageUsingPOST**
-> \MarketoRest\Asset\Model\ResponseOfLandingPageResponse updateLandingPageUsingPOST($id, $update_landing_page_request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse updateLandingPageUsingPOST($id, $update_landing_page_request)
 
 Update Landing Page Metadata
 
@@ -536,13 +536,13 @@ Updates the metadata for the targe landing page.  Required Permissions: Read-Wri
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\LandingPagesApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPagesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $id = 56; // int | id
-$update_landing_page_request = new \MarketoRest\Asset\Model\UpdateLandingPageRequest(); // \MarketoRest\Asset\Model\UpdateLandingPageRequest | updateLandingPageRequest
+$update_landing_page_request = new \NecLimDul\MarketoRest\Asset\Model\UpdateLandingPageRequest(); // \NecLimDul\MarketoRest\Asset\Model\UpdateLandingPageRequest | updateLandingPageRequest
 
 try {
     $result = $apiInstance->updateLandingPageUsingPOST($id, $update_landing_page_request);
@@ -558,11 +558,11 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| id |
- **update_landing_page_request** | [**\MarketoRest\Asset\Model\UpdateLandingPageRequest**](../Model/UpdateLandingPageRequest.md)| updateLandingPageRequest |
+ **update_landing_page_request** | [**\NecLimDul\MarketoRest\Asset\Model\UpdateLandingPageRequest**](../Model/UpdateLandingPageRequest.md)| updateLandingPageRequest |
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfLandingPageResponse**](../Model/ResponseOfLandingPageResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse**](../Model/ResponseOfLandingPageResponse.md)
 
 ### Authorization
 
@@ -576,7 +576,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **updateLandingPageVariableUsingPOST**
-> \MarketoRest\Asset\Model\ResponseOfLandingPageVariableResponse updateLandingPageVariableUsingPOST($id, $variable_id, $value)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageVariableResponse updateLandingPageVariableUsingPOST($id, $variable_id, $value)
 
 Update Landing Page Variable
 
@@ -587,7 +587,7 @@ Updates the value of the given variable.  Required Permissions: Read-Write Asset
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\LandingPagesApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPagesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -615,7 +615,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfLandingPageVariableResponse**](../Model/ResponseOfLandingPageVariableResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageVariableResponse**](../Model/ResponseOfLandingPageVariableResponse.md)
 
 ### Authorization
 

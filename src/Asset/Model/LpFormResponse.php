@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Asset\Model;
+namespace NecLimDul\MarketoRest\Asset\Model;
 
 use \ArrayAccess;
-use \MarketoRest\Asset\ObjectSerializer;
+use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * LpFormResponse Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -61,18 +61,18 @@ class LpFormResponse implements ModelInterface, ArrayAccess
         'button_location' => 'int',
         'created_at' => '\DateTime',
         'description' => 'string',
-        'folder' => '\MarketoRest\Asset\Model\Folder',
+        'folder' => '\NecLimDul\MarketoRest\Asset\Model\Folder',
         'font_family' => 'string',
         'font_size' => 'string',
         'id' => 'int',
-        'known_visitor' => '\MarketoRest\Asset\Model\FormKnownVisitorDTO',
+        'known_visitor' => '\NecLimDul\MarketoRest\Asset\Model\FormKnownVisitorDTO',
         'label_position' => 'string',
         'language' => 'string',
         'locale' => 'string',
         'name' => 'string',
         'progressive_profiling' => 'bool',
         'status' => 'string',
-        'thank_you_list' => '\MarketoRest\Asset\Model\FormThankYouPageDTO[]',
+        'thank_you_list' => '\NecLimDul\MarketoRest\Asset\Model\FormThankYouPageDTO[]',
         'theme' => 'string',
         'updated_at' => '\DateTime',
         'url' => 'string',
@@ -482,7 +482,7 @@ class LpFormResponse implements ModelInterface, ArrayAccess
     /**
      * Gets folder
      *
-     * @return \MarketoRest\Asset\Model\Folder
+     * @return \NecLimDul\MarketoRest\Asset\Model\Folder
      */
     public function getFolder()
     {
@@ -492,7 +492,7 @@ class LpFormResponse implements ModelInterface, ArrayAccess
     /**
      * Sets folder
      *
-     * @param \MarketoRest\Asset\Model\Folder $folder JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
+     * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
      *
      * @return $this
      */
@@ -578,7 +578,7 @@ class LpFormResponse implements ModelInterface, ArrayAccess
     /**
      * Gets known_visitor
      *
-     * @return \MarketoRest\Asset\Model\FormKnownVisitorDTO
+     * @return \NecLimDul\MarketoRest\Asset\Model\FormKnownVisitorDTO
      */
     public function getKnownVisitor()
     {
@@ -588,7 +588,7 @@ class LpFormResponse implements ModelInterface, ArrayAccess
     /**
      * Sets known_visitor
      *
-     * @param \MarketoRest\Asset\Model\FormKnownVisitorDTO $known_visitor Known visitor behavior for the form
+     * @param \NecLimDul\MarketoRest\Asset\Model\FormKnownVisitorDTO $known_visitor Known visitor behavior for the form
      *
      * @return $this
      */
@@ -755,7 +755,7 @@ class LpFormResponse implements ModelInterface, ArrayAccess
     /**
      * Gets thank_you_list
      *
-     * @return \MarketoRest\Asset\Model\FormThankYouPageDTO[]
+     * @return \NecLimDul\MarketoRest\Asset\Model\FormThankYouPageDTO[]
      */
     public function getThankYouList()
     {
@@ -765,7 +765,7 @@ class LpFormResponse implements ModelInterface, ArrayAccess
     /**
      * Sets thank_you_list
      *
-     * @param \MarketoRest\Asset\Model\FormThankYouPageDTO[] $thank_you_list List of thank you page behaviors for the form
+     * @param \NecLimDul\MarketoRest\Asset\Model\FormThankYouPageDTO[] $thank_you_list List of thank you page behaviors for the form
      *
      * @return $this
      */

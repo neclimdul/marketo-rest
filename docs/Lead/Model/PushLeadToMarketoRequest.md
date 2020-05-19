@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**input** | [**\MarketoRest\Lead\Model\Lead[]**](Lead.md) |  | [optional] 
+**input** | [**\NecLimDul\MarketoRest\Lead\Model\Lead[]**](Lead.md) |  | [optional] 
 **lookup_field** | **string** |  | [optional] 
 **partition_name** | **string** |  | [optional] 
 **program_name** | **string** |  | [optional] 

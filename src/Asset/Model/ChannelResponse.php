@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Asset\Model;
+namespace NecLimDul\MarketoRest\Asset\Model;
 
 use \ArrayAccess;
-use \MarketoRest\Asset\ObjectSerializer;
+use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * ChannelResponse Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -61,7 +61,7 @@ class ChannelResponse implements ModelInterface, ArrayAccess
         'created_at' => '\DateTime',
         'id' => 'int',
         'name' => 'string',
-        'progression_statuses' => '\MarketoRest\Asset\Model\ChannelProgression[]',
+        'progression_statuses' => '\NecLimDul\MarketoRest\Asset\Model\ChannelProgression[]',
         'updated_at' => '\DateTime'
     ];
 
@@ -348,7 +348,7 @@ class ChannelResponse implements ModelInterface, ArrayAccess
     /**
      * Gets progression_statuses
      *
-     * @return \MarketoRest\Asset\Model\ChannelProgression[]
+     * @return \NecLimDul\MarketoRest\Asset\Model\ChannelProgression[]
      */
     public function getProgressionStatuses()
     {
@@ -358,7 +358,7 @@ class ChannelResponse implements ModelInterface, ArrayAccess
     /**
      * Sets progression_statuses
      *
-     * @param \MarketoRest\Asset\Model\ChannelProgression[] $progression_statuses List of available statuses for members of programs with the channel
+     * @param \NecLimDul\MarketoRest\Asset\Model\ChannelProgression[] $progression_statuses List of available statuses for members of programs with the channel
      *
      * @return $this
      */

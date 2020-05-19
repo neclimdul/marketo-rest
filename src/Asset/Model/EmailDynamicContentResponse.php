@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Asset\Model;
+namespace NecLimDul\MarketoRest\Asset\Model;
 
 use \ArrayAccess;
-use \MarketoRest\Asset\ObjectSerializer;
+use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * EmailDynamicContentResponse Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -57,7 +57,7 @@ class EmailDynamicContentResponse implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'content' => '\MarketoRest\Asset\Model\EmailDynamicContentItem[]',
+        'content' => '\NecLimDul\MarketoRest\Asset\Model\EmailDynamicContentItem[]',
         'created_at' => '\DateTime',
         'id' => 'int',
         'segmentation' => 'int',
@@ -231,7 +231,7 @@ class EmailDynamicContentResponse implements ModelInterface, ArrayAccess
     /**
      * Gets content
      *
-     * @return \MarketoRest\Asset\Model\EmailDynamicContentItem[]
+     * @return \NecLimDul\MarketoRest\Asset\Model\EmailDynamicContentItem[]
      */
     public function getContent()
     {
@@ -241,7 +241,7 @@ class EmailDynamicContentResponse implements ModelInterface, ArrayAccess
     /**
      * Sets content
      *
-     * @param \MarketoRest\Asset\Model\EmailDynamicContentItem[] $content List of variations in the section
+     * @param \NecLimDul\MarketoRest\Asset\Model\EmailDynamicContentItem[] $content List of variations in the section
      *
      * @return $this
      */

@@ -4,7 +4,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -26,7 +26,7 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Lead\Api;
+namespace NecLimDul\MarketoRest\Lead\Api;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -34,16 +34,16 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
-use MarketoRest\Lead\ApiException;
-use MarketoRest\Lead\Configuration;
-use MarketoRest\Lead\HeaderSelector;
-use MarketoRest\Lead\ObjectSerializer;
+use NecLimDul\MarketoRest\Lead\ApiException;
+use NecLimDul\MarketoRest\Lead\Configuration;
+use NecLimDul\MarketoRest\Lead\HeaderSelector;
+use NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * CampaignsApi Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -94,9 +94,9 @@ class CampaignsApi
      *
      * @param  int $campaign_id campaignId (required)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Lead\Model\ResponseOfCampaign
+     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign
      */
     public function getCampaignByIdUsingGET($campaign_id)
     {
@@ -111,13 +111,13 @@ class CampaignsApi
      *
      * @param  int $campaign_id campaignId (required)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Lead\Model\ResponseOfCampaign, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign, HTTP status code, HTTP response headers (array of strings)
      */
     public function getCampaignByIdUsingGETWithHttpInfo($campaign_id)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfCampaign';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign';
         $request = $this->getCampaignByIdUsingGETRequest($campaign_id);
 
         try {
@@ -169,7 +169,7 @@ class CampaignsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Lead\Model\ResponseOfCampaign',
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -211,7 +211,7 @@ class CampaignsApi
      */
     public function getCampaignByIdUsingGETAsyncWithHttpInfo($campaign_id)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfCampaign';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign';
         $request = $this->getCampaignByIdUsingGETRequest($campaign_id);
 
         return $this->client
@@ -369,9 +369,9 @@ class CampaignsApi
      * @param  string $next_page_token A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info. (optional)
      * @param  bool $is_triggerable Set to true to return active Campaigns which have a Campaign is Requested trigger and source is Web Service API (optional)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Lead\Model\ResponseOfCampaign
+     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign
      */
     public function getCampaignsUsingGET($id = null, $name = null, $program_name = null, $workspace_name = null, $batch_size = null, $next_page_token = null, $is_triggerable = null)
     {
@@ -392,13 +392,13 @@ class CampaignsApi
      * @param  string $next_page_token A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info. (optional)
      * @param  bool $is_triggerable Set to true to return active Campaigns which have a Campaign is Requested trigger and source is Web Service API (optional)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Lead\Model\ResponseOfCampaign, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign, HTTP status code, HTTP response headers (array of strings)
      */
     public function getCampaignsUsingGETWithHttpInfo($id = null, $name = null, $program_name = null, $workspace_name = null, $batch_size = null, $next_page_token = null, $is_triggerable = null)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfCampaign';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign';
         $request = $this->getCampaignsUsingGETRequest($id, $name, $program_name, $workspace_name, $batch_size, $next_page_token, $is_triggerable);
 
         try {
@@ -450,7 +450,7 @@ class CampaignsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Lead\Model\ResponseOfCampaign',
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -504,7 +504,7 @@ class CampaignsApi
      */
     public function getCampaignsUsingGETAsyncWithHttpInfo($id = null, $name = null, $program_name = null, $workspace_name = null, $batch_size = null, $next_page_token = null, $is_triggerable = null)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfCampaign';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign';
         $request = $this->getCampaignsUsingGETRequest($id, $name, $program_name, $workspace_name, $batch_size, $next_page_token, $is_triggerable);
 
         return $this->client
@@ -687,11 +687,11 @@ class CampaignsApi
      * Schedule Campaign
      *
      * @param  int $campaign_id Id of the batch campaign to schedule. (required)
-     * @param  \MarketoRest\Lead\Model\ScheduleCampaignRequest $schedule_campaign_request scheduleCampaignRequest (optional)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\ScheduleCampaignRequest $schedule_campaign_request scheduleCampaignRequest (optional)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Lead\Model\ResponseOfCampaign
+     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign
      */
     public function scheduleCampaignUsingPOST($campaign_id, $schedule_campaign_request = null)
     {
@@ -705,15 +705,15 @@ class CampaignsApi
      * Schedule Campaign
      *
      * @param  int $campaign_id Id of the batch campaign to schedule. (required)
-     * @param  \MarketoRest\Lead\Model\ScheduleCampaignRequest $schedule_campaign_request scheduleCampaignRequest (optional)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\ScheduleCampaignRequest $schedule_campaign_request scheduleCampaignRequest (optional)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Lead\Model\ResponseOfCampaign, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign, HTTP status code, HTTP response headers (array of strings)
      */
     public function scheduleCampaignUsingPOSTWithHttpInfo($campaign_id, $schedule_campaign_request = null)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfCampaign';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign';
         $request = $this->scheduleCampaignUsingPOSTRequest($campaign_id, $schedule_campaign_request);
 
         try {
@@ -765,7 +765,7 @@ class CampaignsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Lead\Model\ResponseOfCampaign',
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -781,7 +781,7 @@ class CampaignsApi
      * Schedule Campaign
      *
      * @param  int $campaign_id Id of the batch campaign to schedule. (required)
-     * @param  \MarketoRest\Lead\Model\ScheduleCampaignRequest $schedule_campaign_request scheduleCampaignRequest (optional)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\ScheduleCampaignRequest $schedule_campaign_request scheduleCampaignRequest (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -802,14 +802,14 @@ class CampaignsApi
      * Schedule Campaign
      *
      * @param  int $campaign_id Id of the batch campaign to schedule. (required)
-     * @param  \MarketoRest\Lead\Model\ScheduleCampaignRequest $schedule_campaign_request scheduleCampaignRequest (optional)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\ScheduleCampaignRequest $schedule_campaign_request scheduleCampaignRequest (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function scheduleCampaignUsingPOSTAsyncWithHttpInfo($campaign_id, $schedule_campaign_request = null)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfCampaign';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign';
         $request = $this->scheduleCampaignUsingPOSTRequest($campaign_id, $schedule_campaign_request);
 
         return $this->client
@@ -853,7 +853,7 @@ class CampaignsApi
      * Create request for operation 'scheduleCampaignUsingPOST'
      *
      * @param  int $campaign_id Id of the batch campaign to schedule. (required)
-     * @param  \MarketoRest\Lead\Model\ScheduleCampaignRequest $schedule_campaign_request scheduleCampaignRequest (optional)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\ScheduleCampaignRequest $schedule_campaign_request scheduleCampaignRequest (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -964,11 +964,11 @@ class CampaignsApi
      * Request Campaign
      *
      * @param  int $campaign_id The id of the campaign to trigger (required)
-     * @param  \MarketoRest\Lead\Model\TriggerCampaignRequest $trigger_campaign_request triggerCampaignRequest (optional)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\TriggerCampaignRequest $trigger_campaign_request triggerCampaignRequest (optional)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Lead\Model\ResponseOfCampaign
+     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign
      */
     public function triggerCampaignUsingPOST($campaign_id, $trigger_campaign_request = null)
     {
@@ -982,15 +982,15 @@ class CampaignsApi
      * Request Campaign
      *
      * @param  int $campaign_id The id of the campaign to trigger (required)
-     * @param  \MarketoRest\Lead\Model\TriggerCampaignRequest $trigger_campaign_request triggerCampaignRequest (optional)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\TriggerCampaignRequest $trigger_campaign_request triggerCampaignRequest (optional)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Lead\Model\ResponseOfCampaign, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign, HTTP status code, HTTP response headers (array of strings)
      */
     public function triggerCampaignUsingPOSTWithHttpInfo($campaign_id, $trigger_campaign_request = null)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfCampaign';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign';
         $request = $this->triggerCampaignUsingPOSTRequest($campaign_id, $trigger_campaign_request);
 
         try {
@@ -1042,7 +1042,7 @@ class CampaignsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Lead\Model\ResponseOfCampaign',
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1058,7 +1058,7 @@ class CampaignsApi
      * Request Campaign
      *
      * @param  int $campaign_id The id of the campaign to trigger (required)
-     * @param  \MarketoRest\Lead\Model\TriggerCampaignRequest $trigger_campaign_request triggerCampaignRequest (optional)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\TriggerCampaignRequest $trigger_campaign_request triggerCampaignRequest (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1079,14 +1079,14 @@ class CampaignsApi
      * Request Campaign
      *
      * @param  int $campaign_id The id of the campaign to trigger (required)
-     * @param  \MarketoRest\Lead\Model\TriggerCampaignRequest $trigger_campaign_request triggerCampaignRequest (optional)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\TriggerCampaignRequest $trigger_campaign_request triggerCampaignRequest (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function triggerCampaignUsingPOSTAsyncWithHttpInfo($campaign_id, $trigger_campaign_request = null)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfCampaign';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign';
         $request = $this->triggerCampaignUsingPOSTRequest($campaign_id, $trigger_campaign_request);
 
         return $this->client
@@ -1130,7 +1130,7 @@ class CampaignsApi
      * Create request for operation 'triggerCampaignUsingPOST'
      *
      * @param  int $campaign_id The id of the campaign to trigger (required)
-     * @param  \MarketoRest\Lead\Model\TriggerCampaignRequest $trigger_campaign_request triggerCampaignRequest (optional)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\TriggerCampaignRequest $trigger_campaign_request triggerCampaignRequest (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request

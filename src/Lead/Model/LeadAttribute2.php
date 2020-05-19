@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Lead\Model;
+namespace NecLimDul\MarketoRest\Lead\Model;
 
 use \ArrayAccess;
-use \MarketoRest\Lead\ObjectSerializer;
+use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * LeadAttribute2 Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -58,8 +58,8 @@ class LeadAttribute2 implements ModelInterface, ArrayAccess
       */
     protected static $swaggerTypes = [
         'name' => 'string',
-        'searchable_fields' => '\MarketoRest\Lead\Model\LeadAttribute2SearchableFields[]',
-        'fields' => '\MarketoRest\Lead\Model\LeadAttribute2Fields[]'
+        'searchable_fields' => '\NecLimDul\MarketoRest\Lead\Model\LeadAttribute2SearchableFields[]',
+        'fields' => '\NecLimDul\MarketoRest\Lead\Model\LeadAttribute2Fields[]'
     ];
 
     /**
@@ -252,7 +252,7 @@ class LeadAttribute2 implements ModelInterface, ArrayAccess
     /**
      * Gets searchable_fields
      *
-     * @return \MarketoRest\Lead\Model\LeadAttribute2SearchableFields[]
+     * @return \NecLimDul\MarketoRest\Lead\Model\LeadAttribute2SearchableFields[]
      */
     public function getSearchableFields()
     {
@@ -262,7 +262,7 @@ class LeadAttribute2 implements ModelInterface, ArrayAccess
     /**
      * Sets searchable_fields
      *
-     * @param \MarketoRest\Lead\Model\LeadAttribute2SearchableFields[] $searchable_fields List of searchable fields
+     * @param \NecLimDul\MarketoRest\Lead\Model\LeadAttribute2SearchableFields[] $searchable_fields List of searchable fields
      *
      * @return $this
      */
@@ -276,7 +276,7 @@ class LeadAttribute2 implements ModelInterface, ArrayAccess
     /**
      * Gets fields
      *
-     * @return \MarketoRest\Lead\Model\LeadAttribute2Fields[]
+     * @return \NecLimDul\MarketoRest\Lead\Model\LeadAttribute2Fields[]
      */
     public function getFields()
     {
@@ -286,7 +286,7 @@ class LeadAttribute2 implements ModelInterface, ArrayAccess
     /**
      * Sets fields
      *
-     * @param \MarketoRest\Lead\Model\LeadAttribute2Fields[] $fields Description of searchable fields
+     * @param \NecLimDul\MarketoRest\Lead\Model\LeadAttribute2Fields[] $fields Description of searchable fields
      *
      * @return $this
      */

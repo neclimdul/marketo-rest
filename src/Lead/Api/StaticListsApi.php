@@ -4,7 +4,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -26,7 +26,7 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Lead\Api;
+namespace NecLimDul\MarketoRest\Lead\Api;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -34,16 +34,16 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
-use MarketoRest\Lead\ApiException;
-use MarketoRest\Lead\Configuration;
-use MarketoRest\Lead\HeaderSelector;
-use MarketoRest\Lead\ObjectSerializer;
+use NecLimDul\MarketoRest\Lead\ApiException;
+use NecLimDul\MarketoRest\Lead\Configuration;
+use NecLimDul\MarketoRest\Lead\HeaderSelector;
+use NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * StaticListsApi Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -93,12 +93,12 @@ class StaticListsApi
      * Add to List
      *
      * @param  int $list_id Id of target list (required)
-     * @param  \MarketoRest\Lead\Model\ListOperationRequest $list_operation_request Optional JSON request body for submitting leads (optional)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\ListOperationRequest $list_operation_request Optional JSON request body for submitting leads (optional)
      * @param  int[] $id Comma-separated list of lead ids to add to the list (optional)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Lead\Model\ResponseOfListOperationOutputData
+     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData
      */
     public function addLeadsToListUsingPOST($list_id, $list_operation_request = null, $id = null)
     {
@@ -112,16 +112,16 @@ class StaticListsApi
      * Add to List
      *
      * @param  int $list_id Id of target list (required)
-     * @param  \MarketoRest\Lead\Model\ListOperationRequest $list_operation_request Optional JSON request body for submitting leads (optional)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\ListOperationRequest $list_operation_request Optional JSON request body for submitting leads (optional)
      * @param  int[] $id Comma-separated list of lead ids to add to the list (optional)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Lead\Model\ResponseOfListOperationOutputData, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData, HTTP status code, HTTP response headers (array of strings)
      */
     public function addLeadsToListUsingPOSTWithHttpInfo($list_id, $list_operation_request = null, $id = null)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfListOperationOutputData';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData';
         $request = $this->addLeadsToListUsingPOSTRequest($list_id, $list_operation_request, $id);
 
         try {
@@ -173,7 +173,7 @@ class StaticListsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Lead\Model\ResponseOfListOperationOutputData',
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -189,7 +189,7 @@ class StaticListsApi
      * Add to List
      *
      * @param  int $list_id Id of target list (required)
-     * @param  \MarketoRest\Lead\Model\ListOperationRequest $list_operation_request Optional JSON request body for submitting leads (optional)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\ListOperationRequest $list_operation_request Optional JSON request body for submitting leads (optional)
      * @param  int[] $id Comma-separated list of lead ids to add to the list (optional)
      *
      * @throws \InvalidArgumentException
@@ -211,7 +211,7 @@ class StaticListsApi
      * Add to List
      *
      * @param  int $list_id Id of target list (required)
-     * @param  \MarketoRest\Lead\Model\ListOperationRequest $list_operation_request Optional JSON request body for submitting leads (optional)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\ListOperationRequest $list_operation_request Optional JSON request body for submitting leads (optional)
      * @param  int[] $id Comma-separated list of lead ids to add to the list (optional)
      *
      * @throws \InvalidArgumentException
@@ -219,7 +219,7 @@ class StaticListsApi
      */
     public function addLeadsToListUsingPOSTAsyncWithHttpInfo($list_id, $list_operation_request = null, $id = null)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfListOperationOutputData';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData';
         $request = $this->addLeadsToListUsingPOSTRequest($list_id, $list_operation_request, $id);
 
         return $this->client
@@ -263,7 +263,7 @@ class StaticListsApi
      * Create request for operation 'addLeadsToListUsingPOST'
      *
      * @param  int $list_id Id of target list (required)
-     * @param  \MarketoRest\Lead\Model\ListOperationRequest $list_operation_request Optional JSON request body for submitting leads (optional)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\ListOperationRequest $list_operation_request Optional JSON request body for submitting leads (optional)
      * @param  int[] $id Comma-separated list of lead ids to add to the list (optional)
      *
      * @throws \InvalidArgumentException
@@ -382,12 +382,12 @@ class StaticListsApi
      * Member of List
      *
      * @param  int $list_id Id of the static list to check against (required)
-     * @param  \MarketoRest\Lead\Model\ListOperationRequest $list_operation_request Optional JSON request body (optional)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\ListOperationRequest $list_operation_request Optional JSON request body (optional)
      * @param  int[] $id Comma-separated list of lead ids to check (optional)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Lead\Model\ResponseOfListOperationOutputData
+     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData
      */
     public function areLeadsMemberOfListUsingGET($list_id, $list_operation_request = null, $id = null)
     {
@@ -401,16 +401,16 @@ class StaticListsApi
      * Member of List
      *
      * @param  int $list_id Id of the static list to check against (required)
-     * @param  \MarketoRest\Lead\Model\ListOperationRequest $list_operation_request Optional JSON request body (optional)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\ListOperationRequest $list_operation_request Optional JSON request body (optional)
      * @param  int[] $id Comma-separated list of lead ids to check (optional)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Lead\Model\ResponseOfListOperationOutputData, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData, HTTP status code, HTTP response headers (array of strings)
      */
     public function areLeadsMemberOfListUsingGETWithHttpInfo($list_id, $list_operation_request = null, $id = null)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfListOperationOutputData';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData';
         $request = $this->areLeadsMemberOfListUsingGETRequest($list_id, $list_operation_request, $id);
 
         try {
@@ -462,7 +462,7 @@ class StaticListsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Lead\Model\ResponseOfListOperationOutputData',
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -478,7 +478,7 @@ class StaticListsApi
      * Member of List
      *
      * @param  int $list_id Id of the static list to check against (required)
-     * @param  \MarketoRest\Lead\Model\ListOperationRequest $list_operation_request Optional JSON request body (optional)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\ListOperationRequest $list_operation_request Optional JSON request body (optional)
      * @param  int[] $id Comma-separated list of lead ids to check (optional)
      *
      * @throws \InvalidArgumentException
@@ -500,7 +500,7 @@ class StaticListsApi
      * Member of List
      *
      * @param  int $list_id Id of the static list to check against (required)
-     * @param  \MarketoRest\Lead\Model\ListOperationRequest $list_operation_request Optional JSON request body (optional)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\ListOperationRequest $list_operation_request Optional JSON request body (optional)
      * @param  int[] $id Comma-separated list of lead ids to check (optional)
      *
      * @throws \InvalidArgumentException
@@ -508,7 +508,7 @@ class StaticListsApi
      */
     public function areLeadsMemberOfListUsingGETAsyncWithHttpInfo($list_id, $list_operation_request = null, $id = null)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfListOperationOutputData';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData';
         $request = $this->areLeadsMemberOfListUsingGETRequest($list_id, $list_operation_request, $id);
 
         return $this->client
@@ -552,7 +552,7 @@ class StaticListsApi
      * Create request for operation 'areLeadsMemberOfListUsingGET'
      *
      * @param  int $list_id Id of the static list to check against (required)
-     * @param  \MarketoRest\Lead\Model\ListOperationRequest $list_operation_request Optional JSON request body (optional)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\ListOperationRequest $list_operation_request Optional JSON request body (optional)
      * @param  int[] $id Comma-separated list of lead ids to check (optional)
      *
      * @throws \InvalidArgumentException
@@ -675,9 +675,9 @@ class StaticListsApi
      * @param  int $batch_size The batch size to return.  The max and default value is 300. (optional)
      * @param  string $next_page_token A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info. (optional)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Lead\Model\ResponseOfLead
+     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfLead
      */
     public function getLeadsByListIdUsingGET($list_id, $fields = null, $batch_size = null, $next_page_token = null)
     {
@@ -695,13 +695,13 @@ class StaticListsApi
      * @param  int $batch_size The batch size to return.  The max and default value is 300. (optional)
      * @param  string $next_page_token A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info. (optional)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Lead\Model\ResponseOfLead, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfLead, HTTP status code, HTTP response headers (array of strings)
      */
     public function getLeadsByListIdUsingGETWithHttpInfo($list_id, $fields = null, $batch_size = null, $next_page_token = null)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfLead';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead';
         $request = $this->getLeadsByListIdUsingGETRequest($list_id, $fields, $batch_size, $next_page_token);
 
         try {
@@ -753,7 +753,7 @@ class StaticListsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Lead\Model\ResponseOfLead',
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -801,7 +801,7 @@ class StaticListsApi
      */
     public function getLeadsByListIdUsingGETAsyncWithHttpInfo($list_id, $fields = null, $batch_size = null, $next_page_token = null)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfLead';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead';
         $request = $this->getLeadsByListIdUsingGETRequest($list_id, $fields, $batch_size, $next_page_token);
 
         return $this->client
@@ -974,9 +974,9 @@ class StaticListsApi
      * @param  int $batch_size The batch size to return.  The max and default value is 300. (optional)
      * @param  string $next_page_token A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info. (optional)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Lead\Model\ResponseOfLead
+     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfLead
      */
     public function getLeadsByListIdUsingGET1($list_id, $fields = null, $batch_size = null, $next_page_token = null)
     {
@@ -994,13 +994,13 @@ class StaticListsApi
      * @param  int $batch_size The batch size to return.  The max and default value is 300. (optional)
      * @param  string $next_page_token A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info. (optional)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Lead\Model\ResponseOfLead, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfLead, HTTP status code, HTTP response headers (array of strings)
      */
     public function getLeadsByListIdUsingGET1WithHttpInfo($list_id, $fields = null, $batch_size = null, $next_page_token = null)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfLead';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead';
         $request = $this->getLeadsByListIdUsingGET1Request($list_id, $fields, $batch_size, $next_page_token);
 
         try {
@@ -1052,7 +1052,7 @@ class StaticListsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Lead\Model\ResponseOfLead',
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1100,7 +1100,7 @@ class StaticListsApi
      */
     public function getLeadsByListIdUsingGET1AsyncWithHttpInfo($list_id, $fields = null, $batch_size = null, $next_page_token = null)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfLead';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead';
         $request = $this->getLeadsByListIdUsingGET1Request($list_id, $fields, $batch_size, $next_page_token);
 
         return $this->client
@@ -1270,9 +1270,9 @@ class StaticListsApi
      *
      * @param  int $list_id Id of the static list to retrieve records from (required)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Lead\Model\ResponseOfStaticList
+     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfStaticList
      */
     public function getListByIdUsingGET($list_id)
     {
@@ -1287,13 +1287,13 @@ class StaticListsApi
      *
      * @param  int $list_id Id of the static list to retrieve records from (required)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Lead\Model\ResponseOfStaticList, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfStaticList, HTTP status code, HTTP response headers (array of strings)
      */
     public function getListByIdUsingGETWithHttpInfo($list_id)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfStaticList';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfStaticList';
         $request = $this->getListByIdUsingGETRequest($list_id);
 
         try {
@@ -1345,7 +1345,7 @@ class StaticListsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Lead\Model\ResponseOfStaticList',
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfStaticList',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1387,7 +1387,7 @@ class StaticListsApi
      */
     public function getListByIdUsingGETAsyncWithHttpInfo($list_id)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfStaticList';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfStaticList';
         $request = $this->getListByIdUsingGETRequest($list_id);
 
         return $this->client
@@ -1544,9 +1544,9 @@ class StaticListsApi
      * @param  int $batch_size The batch size to return.  The max and default value is 300. (optional)
      * @param  string $next_page_token A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info. (optional)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Lead\Model\ResponseOfStaticList
+     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfStaticList
      */
     public function getListsUsingGET($id = null, $name = null, $program_name = null, $workspace_name = null, $batch_size = null, $next_page_token = null)
     {
@@ -1566,13 +1566,13 @@ class StaticListsApi
      * @param  int $batch_size The batch size to return.  The max and default value is 300. (optional)
      * @param  string $next_page_token A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info. (optional)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Lead\Model\ResponseOfStaticList, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfStaticList, HTTP status code, HTTP response headers (array of strings)
      */
     public function getListsUsingGETWithHttpInfo($id = null, $name = null, $program_name = null, $workspace_name = null, $batch_size = null, $next_page_token = null)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfStaticList';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfStaticList';
         $request = $this->getListsUsingGETRequest($id, $name, $program_name, $workspace_name, $batch_size, $next_page_token);
 
         try {
@@ -1624,7 +1624,7 @@ class StaticListsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Lead\Model\ResponseOfStaticList',
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfStaticList',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1676,7 +1676,7 @@ class StaticListsApi
      */
     public function getListsUsingGETAsyncWithHttpInfo($id = null, $name = null, $program_name = null, $workspace_name = null, $batch_size = null, $next_page_token = null)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfStaticList';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfStaticList';
         $request = $this->getListsUsingGETRequest($id, $name, $program_name, $workspace_name, $batch_size, $next_page_token);
 
         return $this->client
@@ -1854,12 +1854,12 @@ class StaticListsApi
      * Remove from List
      *
      * @param  int $list_id Id of static list to remove leads from (required)
-     * @param  \MarketoRest\Lead\Model\ListOperationRequest $list_operation_request listOperationRequest (required)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\ListOperationRequest $list_operation_request listOperationRequest (required)
      * @param  int[] $id id (required)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Lead\Model\ResponseOfListOperationOutputData
+     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData
      */
     public function removeLeadsFromListUsingDELETE($list_id, $list_operation_request, $id)
     {
@@ -1873,16 +1873,16 @@ class StaticListsApi
      * Remove from List
      *
      * @param  int $list_id Id of static list to remove leads from (required)
-     * @param  \MarketoRest\Lead\Model\ListOperationRequest $list_operation_request listOperationRequest (required)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\ListOperationRequest $list_operation_request listOperationRequest (required)
      * @param  int[] $id id (required)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Lead\Model\ResponseOfListOperationOutputData, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData, HTTP status code, HTTP response headers (array of strings)
      */
     public function removeLeadsFromListUsingDELETEWithHttpInfo($list_id, $list_operation_request, $id)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfListOperationOutputData';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData';
         $request = $this->removeLeadsFromListUsingDELETERequest($list_id, $list_operation_request, $id);
 
         try {
@@ -1934,7 +1934,7 @@ class StaticListsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Lead\Model\ResponseOfListOperationOutputData',
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1950,7 +1950,7 @@ class StaticListsApi
      * Remove from List
      *
      * @param  int $list_id Id of static list to remove leads from (required)
-     * @param  \MarketoRest\Lead\Model\ListOperationRequest $list_operation_request listOperationRequest (required)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\ListOperationRequest $list_operation_request listOperationRequest (required)
      * @param  int[] $id id (required)
      *
      * @throws \InvalidArgumentException
@@ -1972,7 +1972,7 @@ class StaticListsApi
      * Remove from List
      *
      * @param  int $list_id Id of static list to remove leads from (required)
-     * @param  \MarketoRest\Lead\Model\ListOperationRequest $list_operation_request listOperationRequest (required)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\ListOperationRequest $list_operation_request listOperationRequest (required)
      * @param  int[] $id id (required)
      *
      * @throws \InvalidArgumentException
@@ -1980,7 +1980,7 @@ class StaticListsApi
      */
     public function removeLeadsFromListUsingDELETEAsyncWithHttpInfo($list_id, $list_operation_request, $id)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfListOperationOutputData';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData';
         $request = $this->removeLeadsFromListUsingDELETERequest($list_id, $list_operation_request, $id);
 
         return $this->client
@@ -2024,7 +2024,7 @@ class StaticListsApi
      * Create request for operation 'removeLeadsFromListUsingDELETE'
      *
      * @param  int $list_id Id of static list to remove leads from (required)
-     * @param  \MarketoRest\Lead\Model\ListOperationRequest $list_operation_request listOperationRequest (required)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\ListOperationRequest $list_operation_request listOperationRequest (required)
      * @param  int[] $id id (required)
      *
      * @throws \InvalidArgumentException

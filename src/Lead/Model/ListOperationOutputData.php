@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Lead\Model;
+namespace NecLimDul\MarketoRest\Lead\Model;
 
 use \ArrayAccess;
-use \MarketoRest\Lead\ObjectSerializer;
+use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * ListOperationOutputData Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -58,7 +58,7 @@ class ListOperationOutputData implements ModelInterface, ArrayAccess
       */
     protected static $swaggerTypes = [
         'id' => 'int',
-        'reasons' => '\MarketoRest\Lead\Model\Reason[]',
+        'reasons' => '\NecLimDul\MarketoRest\Lead\Model\Reason[]',
         'status' => 'string'
     ];
 
@@ -246,7 +246,7 @@ class ListOperationOutputData implements ModelInterface, ArrayAccess
     /**
      * Gets reasons
      *
-     * @return \MarketoRest\Lead\Model\Reason[]
+     * @return \NecLimDul\MarketoRest\Lead\Model\Reason[]
      */
     public function getReasons()
     {
@@ -256,7 +256,7 @@ class ListOperationOutputData implements ModelInterface, ArrayAccess
     /**
      * Sets reasons
      *
-     * @param \MarketoRest\Lead\Model\Reason[] $reasons List of reasons why an operation did not succeed.  Reasons are only present in API responses and should not be submitted
+     * @param \NecLimDul\MarketoRest\Lead\Model\Reason[] $reasons List of reasons why an operation did not succeed.  Reasons are only present in API responses and should not be submitted
      *
      * @return $this
      */

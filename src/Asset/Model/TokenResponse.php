@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Asset\Model;
+namespace NecLimDul\MarketoRest\Asset\Model;
 
 use \ArrayAccess;
-use \MarketoRest\Asset\ObjectSerializer;
+use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * TokenResponse Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -58,7 +58,7 @@ class TokenResponse implements ModelInterface, ArrayAccess
       */
     protected static $swaggerTypes = [
         'folder' => 'string',
-        'tokens' => '\MarketoRest\Asset\Model\TokenDTO[]'
+        'tokens' => '\NecLimDul\MarketoRest\Asset\Model\TokenDTO[]'
     ];
 
     /**
@@ -240,7 +240,7 @@ class TokenResponse implements ModelInterface, ArrayAccess
     /**
      * Gets tokens
      *
-     * @return \MarketoRest\Asset\Model\TokenDTO[]
+     * @return \NecLimDul\MarketoRest\Asset\Model\TokenDTO[]
      */
     public function getTokens()
     {
@@ -250,7 +250,7 @@ class TokenResponse implements ModelInterface, ArrayAccess
     /**
      * Sets tokens
      *
-     * @param \MarketoRest\Asset\Model\TokenDTO[] $tokens List of tokens in the folder
+     * @param \NecLimDul\MarketoRest\Asset\Model\TokenDTO[] $tokens List of tokens in the folder
      *
      * @return $this
      */

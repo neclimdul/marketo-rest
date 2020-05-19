@@ -4,7 +4,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -26,7 +26,7 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Asset\Api;
+namespace NecLimDul\MarketoRest\Asset\Api;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -34,16 +34,16 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
-use MarketoRest\Asset\ApiException;
-use MarketoRest\Asset\Configuration;
-use MarketoRest\Asset\HeaderSelector;
-use MarketoRest\Asset\ObjectSerializer;
+use NecLimDul\MarketoRest\Asset\ApiException;
+use NecLimDul\MarketoRest\Asset\Configuration;
+use NecLimDul\MarketoRest\Asset\HeaderSelector;
+use NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * FileContentsApi Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -93,11 +93,11 @@ class FileContentsApi
      * Update File Content
      *
      * @param  int $id Id for file in database (required)
-     * @param  \MarketoRest\Asset\Model\UpdateFileContentRequest $request request (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateFileContentRequest $request request (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfFileResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse
      */
     public function updateContentUsingPOST($id, $request)
     {
@@ -111,15 +111,15 @@ class FileContentsApi
      * Update File Content
      *
      * @param  int $id Id for file in database (required)
-     * @param  \MarketoRest\Asset\Model\UpdateFileContentRequest $request request (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateFileContentRequest $request request (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfFileResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function updateContentUsingPOSTWithHttpInfo($id, $request)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfFileResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse';
         $request = $this->updateContentUsingPOSTRequest($id, $request);
 
         try {
@@ -171,7 +171,7 @@ class FileContentsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfFileResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -187,7 +187,7 @@ class FileContentsApi
      * Update File Content
      *
      * @param  int $id Id for file in database (required)
-     * @param  \MarketoRest\Asset\Model\UpdateFileContentRequest $request request (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateFileContentRequest $request request (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -208,14 +208,14 @@ class FileContentsApi
      * Update File Content
      *
      * @param  int $id Id for file in database (required)
-     * @param  \MarketoRest\Asset\Model\UpdateFileContentRequest $request request (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateFileContentRequest $request request (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function updateContentUsingPOSTAsyncWithHttpInfo($id, $request)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfFileResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse';
         $request = $this->updateContentUsingPOSTRequest($id, $request);
 
         return $this->client
@@ -259,7 +259,7 @@ class FileContentsApi
      * Create request for operation 'updateContentUsingPOST'
      *
      * @param  int $id Id for file in database (required)
-     * @param  \MarketoRest\Asset\Model\UpdateFileContentRequest $request request (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateFileContentRequest $request request (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request

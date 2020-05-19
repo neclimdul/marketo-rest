@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Asset\Model;
+namespace NecLimDul\MarketoRest\Asset\Model;
 
 use \ArrayAccess;
-use \MarketoRest\Asset\ObjectSerializer;
+use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * UpdateProgramRequest Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -57,13 +57,13 @@ class UpdateProgramRequest implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'costs' => '\MarketoRest\Asset\Model\CostRequest[]',
+        'costs' => '\NecLimDul\MarketoRest\Asset\Model\CostRequest[]',
         'costs_destructive_update' => 'bool',
         'description' => 'string',
         'end_date' => 'string',
         'name' => 'string',
         'start_date' => 'string',
-        'tags' => '\MarketoRest\Asset\Model\TagRequest[]'
+        'tags' => '\NecLimDul\MarketoRest\Asset\Model\TagRequest[]'
     ];
 
     /**
@@ -243,7 +243,7 @@ class UpdateProgramRequest implements ModelInterface, ArrayAccess
     /**
      * Gets costs
      *
-     * @return \MarketoRest\Asset\Model\CostRequest[]
+     * @return \NecLimDul\MarketoRest\Asset\Model\CostRequest[]
      */
     public function getCosts()
     {
@@ -253,7 +253,7 @@ class UpdateProgramRequest implements ModelInterface, ArrayAccess
     /**
      * Sets costs
      *
-     * @param \MarketoRest\Asset\Model\CostRequest[] $costs Lists of associated period costs that allow you to append, replace, or delete. To append new costs, simply add them to costs array.  To replace costs (destructive update), pass new costs and set costsDestructiveUpdate to true. To delete costs, do not pass costs parameter and set costsDestructiveUpdate to true
+     * @param \NecLimDul\MarketoRest\Asset\Model\CostRequest[] $costs Lists of associated period costs that allow you to append, replace, or delete. To append new costs, simply add them to costs array.  To replace costs (destructive update), pass new costs and set costsDestructiveUpdate to true. To delete costs, do not pass costs parameter and set costsDestructiveUpdate to true
      *
      * @return $this
      */
@@ -387,7 +387,7 @@ class UpdateProgramRequest implements ModelInterface, ArrayAccess
     /**
      * Gets tags
      *
-     * @return \MarketoRest\Asset\Model\TagRequest[]
+     * @return \NecLimDul\MarketoRest\Asset\Model\TagRequest[]
      */
     public function getTags()
     {
@@ -397,7 +397,7 @@ class UpdateProgramRequest implements ModelInterface, ArrayAccess
     /**
      * Sets tags
      *
-     * @param \MarketoRest\Asset\Model\TagRequest[] $tags List of associated program tags
+     * @param \NecLimDul\MarketoRest\Asset\Model\TagRequest[] $tags List of associated program tags
      *
      * @return $this
      */

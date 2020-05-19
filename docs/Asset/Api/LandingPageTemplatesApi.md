@@ -1,4 +1,4 @@
-# MarketoRest\Asset\LandingPageTemplatesApi
+# NecLimDul\MarketoRest\Asset\LandingPageTemplatesApi
 
 All URIs are relative to *https://localhost:8080*
 
@@ -19,7 +19,7 @@ Method | HTTP request | Description
 
 
 # **approveLandingPageTemplateUsingPOST**
-> \MarketoRest\Asset\Model\ResponseOfLpTemplateResponse approveLandingPageTemplateUsingPOST($id)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse approveLandingPageTemplateUsingPOST($id)
 
 Approve Landing Page Template Draft
 
@@ -30,7 +30,7 @@ Approves the current landing page template draft.  This will delete the current 
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\LandingPageTemplatesApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPageTemplatesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -54,7 +54,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse**](../Model/ResponseOfLpTemplateResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse**](../Model/ResponseOfLpTemplateResponse.md)
 
 ### Authorization
 
@@ -68,7 +68,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **cloneLpTemplateUsingPOST**
-> \MarketoRest\Asset\Model\ResponseOfLpTemplateResponse cloneLpTemplateUsingPOST($id, $clone_lp_template_request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse cloneLpTemplateUsingPOST($id, $clone_lp_template_request)
 
 Clone Landing Page Template
 
@@ -79,13 +79,13 @@ Clones the target landing page template.  Required Permissions: Read-Write Asset
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\LandingPageTemplatesApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPageTemplatesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $id = 56; // int | id
-$clone_lp_template_request = new \MarketoRest\Asset\Model\CloneLpTemplateRequest(); // \MarketoRest\Asset\Model\CloneLpTemplateRequest | cloneLpTemplateRequest
+$clone_lp_template_request = new \NecLimDul\MarketoRest\Asset\Model\CloneLpTemplateRequest(); // \NecLimDul\MarketoRest\Asset\Model\CloneLpTemplateRequest | cloneLpTemplateRequest
 
 try {
     $result = $apiInstance->cloneLpTemplateUsingPOST($id, $clone_lp_template_request);
@@ -101,11 +101,11 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| id |
- **clone_lp_template_request** | [**\MarketoRest\Asset\Model\CloneLpTemplateRequest**](../Model/CloneLpTemplateRequest.md)| cloneLpTemplateRequest |
+ **clone_lp_template_request** | [**\NecLimDul\MarketoRest\Asset\Model\CloneLpTemplateRequest**](../Model/CloneLpTemplateRequest.md)| cloneLpTemplateRequest |
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse**](../Model/ResponseOfLpTemplateResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse**](../Model/ResponseOfLpTemplateResponse.md)
 
 ### Authorization
 
@@ -119,7 +119,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **createLpTemplateUsingPOST**
-> \MarketoRest\Asset\Model\ResponseOfLpTemplateResponse createLpTemplateUsingPOST($create_lp_template_request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse createLpTemplateUsingPOST($create_lp_template_request)
 
 Create Landing Page Template
 
@@ -130,12 +130,12 @@ Creates a new landing page template.  Required Permissions: Read-Write Assets
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\LandingPageTemplatesApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPageTemplatesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$create_lp_template_request = new \MarketoRest\Asset\Model\CreateLpTemplateRequest(); // \MarketoRest\Asset\Model\CreateLpTemplateRequest | createLpTemplateRequest
+$create_lp_template_request = new \NecLimDul\MarketoRest\Asset\Model\CreateLpTemplateRequest(); // \NecLimDul\MarketoRest\Asset\Model\CreateLpTemplateRequest | createLpTemplateRequest
 
 try {
     $result = $apiInstance->createLpTemplateUsingPOST($create_lp_template_request);
@@ -150,11 +150,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_lp_template_request** | [**\MarketoRest\Asset\Model\CreateLpTemplateRequest**](../Model/CreateLpTemplateRequest.md)| createLpTemplateRequest |
+ **create_lp_template_request** | [**\NecLimDul\MarketoRest\Asset\Model\CreateLpTemplateRequest**](../Model/CreateLpTemplateRequest.md)| createLpTemplateRequest |
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse**](../Model/ResponseOfLpTemplateResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse**](../Model/ResponseOfLpTemplateResponse.md)
 
 ### Authorization
 
@@ -168,7 +168,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **deleteLpTemplateUsingPOST**
-> \MarketoRest\Asset\Model\ResponseOfIdResponse deleteLpTemplateUsingPOST($id)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse deleteLpTemplateUsingPOST($id)
 
 Delete Landing Page Template
 
@@ -179,7 +179,7 @@ Deletes the target landing page template.  Required Permissions: Read-Write Asse
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\LandingPageTemplatesApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPageTemplatesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -203,7 +203,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfIdResponse**](../Model/ResponseOfIdResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse**](../Model/ResponseOfIdResponse.md)
 
 ### Authorization
 
@@ -217,7 +217,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **discardDraftUsingPOST2**
-> \MarketoRest\Asset\Model\ResponseOfIdResponse discardDraftUsingPOST2($id)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse discardDraftUsingPOST2($id)
 
 Discard Landing Page Template Draft
 
@@ -228,7 +228,7 @@ Discrads the current draft of the landing page template.  Required Permissions: 
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\LandingPageTemplatesApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPageTemplatesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -252,7 +252,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfIdResponse**](../Model/ResponseOfIdResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse**](../Model/ResponseOfIdResponse.md)
 
 ### Authorization
 
@@ -266,7 +266,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getLandingPageTemplateByIdUsingGET**
-> \MarketoRest\Asset\Model\ResponseOfLpTemplateResponse getLandingPageTemplateByIdUsingGET($id, $status)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse getLandingPageTemplateByIdUsingGET($id, $status)
 
 Get Landing Page Template by Id
 
@@ -277,7 +277,7 @@ Retrieves the record for the target landing page template.  Required Permissions
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\LandingPageTemplatesApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPageTemplatesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -303,7 +303,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse**](../Model/ResponseOfLpTemplateResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse**](../Model/ResponseOfLpTemplateResponse.md)
 
 ### Authorization
 
@@ -317,7 +317,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getLandingPageTemplateByNameUsingGET**
-> \MarketoRest\Asset\Model\ResponseOfLpTemplateResponse getLandingPageTemplateByNameUsingGET($name)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse getLandingPageTemplateByNameUsingGET($name)
 
 Get Landing Page Template by Name
 
@@ -328,7 +328,7 @@ Retrieves the landing page template record for the given name.  Required Permiss
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\LandingPageTemplatesApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPageTemplatesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -352,7 +352,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse**](../Model/ResponseOfLpTemplateResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse**](../Model/ResponseOfLpTemplateResponse.md)
 
 ### Authorization
 
@@ -366,7 +366,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getLandingPageTemplateContentUsingGET**
-> \MarketoRest\Asset\Model\ResponseOfLpTemplateGetContentResponse getLandingPageTemplateContentUsingGET($id, $status)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateGetContentResponse getLandingPageTemplateContentUsingGET($id, $status)
 
 Get Landing Page Template Content
 
@@ -377,7 +377,7 @@ Retrieves the content of the target landing page.  Required Permissions: Read-On
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\LandingPageTemplatesApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPageTemplatesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -403,7 +403,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfLpTemplateGetContentResponse**](../Model/ResponseOfLpTemplateGetContentResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateGetContentResponse**](../Model/ResponseOfLpTemplateGetContentResponse.md)
 
 ### Authorization
 
@@ -417,7 +417,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getLandingPageTemplatesUsingGET**
-> \MarketoRest\Asset\Model\ResponseOfLpTemplateResponse getLandingPageTemplatesUsingGET($max_return, $offset, $status, $folder)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse getLandingPageTemplatesUsingGET($max_return, $offset, $status, $folder)
 
 Get Landing Page Templates
 
@@ -428,7 +428,7 @@ Retrieves the list of accessible landing page templates from the target instance
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\LandingPageTemplatesApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPageTemplatesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -458,7 +458,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse**](../Model/ResponseOfLpTemplateResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse**](../Model/ResponseOfLpTemplateResponse.md)
 
 ### Authorization
 
@@ -472,7 +472,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **unapproveLandingPageTemplateUsingPOST**
-> \MarketoRest\Asset\Model\ResponseOfLpTemplateResponse unapproveLandingPageTemplateUsingPOST($id)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse unapproveLandingPageTemplateUsingPOST($id)
 
 Unapprove Landing Page Template
 
@@ -483,7 +483,7 @@ Unapproves the landing page template and reverts it to a draft-only state.  Requ
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\LandingPageTemplatesApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPageTemplatesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -507,7 +507,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse**](../Model/ResponseOfLpTemplateResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse**](../Model/ResponseOfLpTemplateResponse.md)
 
 ### Authorization
 
@@ -521,7 +521,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **updateLandingPageTemplateContentUsingPOST**
-> \MarketoRest\Asset\Model\ResponseOfIdResponse updateLandingPageTemplateContentUsingPOST($id, $content)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse updateLandingPageTemplateContentUsingPOST($id, $content)
 
 Update Landing Page Template Content
 
@@ -532,7 +532,7 @@ Updates the content for the target landing page template.  This update is destru
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\LandingPageTemplatesApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPageTemplatesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -558,7 +558,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfIdResponse**](../Model/ResponseOfIdResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse**](../Model/ResponseOfIdResponse.md)
 
 ### Authorization
 
@@ -572,7 +572,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **updateLpTemplateUsingPOST**
-> \MarketoRest\Asset\Model\ResponseOfLpTemplateResponse updateLpTemplateUsingPOST($id, $update_lp_template_request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse updateLpTemplateUsingPOST($id, $update_lp_template_request)
 
 Update Landing Page Template Metadata
 
@@ -583,13 +583,13 @@ Updates the metadata for the target landing page template.  Required Permissions
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\LandingPageTemplatesApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPageTemplatesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $id = 56; // int | id
-$update_lp_template_request = new \MarketoRest\Asset\Model\UpdateLpTemplateRequest(); // \MarketoRest\Asset\Model\UpdateLpTemplateRequest | updateLpTemplateRequest
+$update_lp_template_request = new \NecLimDul\MarketoRest\Asset\Model\UpdateLpTemplateRequest(); // \NecLimDul\MarketoRest\Asset\Model\UpdateLpTemplateRequest | updateLpTemplateRequest
 
 try {
     $result = $apiInstance->updateLpTemplateUsingPOST($id, $update_lp_template_request);
@@ -605,11 +605,11 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| id |
- **update_lp_template_request** | [**\MarketoRest\Asset\Model\UpdateLpTemplateRequest**](../Model/UpdateLpTemplateRequest.md)| updateLpTemplateRequest |
+ **update_lp_template_request** | [**\NecLimDul\MarketoRest\Asset\Model\UpdateLpTemplateRequest**](../Model/UpdateLpTemplateRequest.md)| updateLpTemplateRequest |
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse**](../Model/ResponseOfLpTemplateResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse**](../Model/ResponseOfLpTemplateResponse.md)
 
 ### Authorization
 

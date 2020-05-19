@@ -4,7 +4,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -26,7 +26,7 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Asset\Api;
+namespace NecLimDul\MarketoRest\Asset\Api;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -34,16 +34,16 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
-use MarketoRest\Asset\ApiException;
-use MarketoRest\Asset\Configuration;
-use MarketoRest\Asset\HeaderSelector;
-use MarketoRest\Asset\ObjectSerializer;
+use NecLimDul\MarketoRest\Asset\ApiException;
+use NecLimDul\MarketoRest\Asset\Configuration;
+use NecLimDul\MarketoRest\Asset\HeaderSelector;
+use NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * TagsApi Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -94,9 +94,9 @@ class TagsApi
      *
      * @param  string $name Name of the tag (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfTagResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfTagResponse
      */
     public function getTagByNameUsingGET($name)
     {
@@ -111,13 +111,13 @@ class TagsApi
      *
      * @param  string $name Name of the tag (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfTagResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfTagResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function getTagByNameUsingGETWithHttpInfo($name)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfTagResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfTagResponse';
         $request = $this->getTagByNameUsingGETRequest($name);
 
         try {
@@ -169,7 +169,7 @@ class TagsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfTagResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfTagResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -211,7 +211,7 @@ class TagsApi
      */
     public function getTagByNameUsingGETAsyncWithHttpInfo($name)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfTagResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfTagResponse';
         $request = $this->getTagByNameUsingGETRequest($name);
 
         return $this->client
@@ -360,9 +360,9 @@ class TagsApi
      * @param  int $max_return Maximum number of channels to return.  Max 200, default 20 (optional)
      * @param  int $offset Integer offset for paging (optional)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfTagResponseGetAll
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfTagResponseGetAll
      */
     public function getTagTypesUsingGET($max_return = null, $offset = null)
     {
@@ -378,13 +378,13 @@ class TagsApi
      * @param  int $max_return Maximum number of channels to return.  Max 200, default 20 (optional)
      * @param  int $offset Integer offset for paging (optional)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfTagResponseGetAll, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfTagResponseGetAll, HTTP status code, HTTP response headers (array of strings)
      */
     public function getTagTypesUsingGETWithHttpInfo($max_return = null, $offset = null)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfTagResponseGetAll';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfTagResponseGetAll';
         $request = $this->getTagTypesUsingGETRequest($max_return, $offset);
 
         try {
@@ -436,7 +436,7 @@ class TagsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfTagResponseGetAll',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfTagResponseGetAll',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -480,7 +480,7 @@ class TagsApi
      */
     public function getTagTypesUsingGETAsyncWithHttpInfo($max_return = null, $offset = null)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfTagResponseGetAll';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfTagResponseGetAll';
         $request = $this->getTagTypesUsingGETRequest($max_return, $offset);
 
         return $this->client

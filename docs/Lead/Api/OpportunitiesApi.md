@@ -1,4 +1,4 @@
-# MarketoRest\Lead\OpportunitiesApi
+# NecLimDul\MarketoRest\Lead\OpportunitiesApi
 
 All URIs are relative to *https://localhost:8080*
 
@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 
 # **deleteOpportunitiesUsingPOST**
-> \MarketoRest\Lead\Model\ResponseOfCustomObject deleteOpportunitiesUsingPOST($delete_custom_object_request)
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject deleteOpportunitiesUsingPOST($delete_custom_object_request)
 
 Delete Opportunities
 
@@ -26,12 +26,12 @@ Deletes a list of opportunity records from the target instance.  Input records s
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Lead\Api\OpportunitiesApi(
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\OpportunitiesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$delete_custom_object_request = new \MarketoRest\Lead\Model\DeleteCustomObjectRequest(); // \MarketoRest\Lead\Model\DeleteCustomObjectRequest | deleteCustomObjectRequest
+$delete_custom_object_request = new \NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectRequest(); // \NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectRequest | deleteCustomObjectRequest
 
 try {
     $result = $apiInstance->deleteOpportunitiesUsingPOST($delete_custom_object_request);
@@ -46,11 +46,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **delete_custom_object_request** | [**\MarketoRest\Lead\Model\DeleteCustomObjectRequest**](../Model/DeleteCustomObjectRequest.md)| deleteCustomObjectRequest | [optional]
+ **delete_custom_object_request** | [**\NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectRequest**](../Model/DeleteCustomObjectRequest.md)| deleteCustomObjectRequest | [optional]
 
 ### Return type
 
-[**\MarketoRest\Lead\Model\ResponseOfCustomObject**](../Model/ResponseOfCustomObject.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject**](../Model/ResponseOfCustomObject.md)
 
 ### Authorization
 
@@ -64,7 +64,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **deleteOpportunityRolesUsingPOST**
-> \MarketoRest\Lead\Model\ResponseOfCustomObject deleteOpportunityRolesUsingPOST($delete_custom_object_request)
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject deleteOpportunityRolesUsingPOST($delete_custom_object_request)
 
 Delete Opportunity Roles
 
@@ -75,12 +75,12 @@ Deletes a list of opportunities from the target instance.  Required Permissions:
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Lead\Api\OpportunitiesApi(
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\OpportunitiesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$delete_custom_object_request = new \MarketoRest\Lead\Model\DeleteCustomObjectRequest(); // \MarketoRest\Lead\Model\DeleteCustomObjectRequest | deleteCustomObjectRequest
+$delete_custom_object_request = new \NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectRequest(); // \NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectRequest | deleteCustomObjectRequest
 
 try {
     $result = $apiInstance->deleteOpportunityRolesUsingPOST($delete_custom_object_request);
@@ -95,11 +95,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **delete_custom_object_request** | [**\MarketoRest\Lead\Model\DeleteCustomObjectRequest**](../Model/DeleteCustomObjectRequest.md)| deleteCustomObjectRequest | [optional]
+ **delete_custom_object_request** | [**\NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectRequest**](../Model/DeleteCustomObjectRequest.md)| deleteCustomObjectRequest | [optional]
 
 ### Return type
 
-[**\MarketoRest\Lead\Model\ResponseOfCustomObject**](../Model/ResponseOfCustomObject.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject**](../Model/ResponseOfCustomObject.md)
 
 ### Authorization
 
@@ -113,7 +113,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **describeOpportunityRoleUsingGET**
-> \MarketoRest\Lead\Model\ResponseOfObjectMetaData describeOpportunityRoleUsingGET()
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData describeOpportunityRoleUsingGET()
 
 Describe Opportunity Role
 
@@ -124,7 +124,7 @@ Returns object and field metadata for Opportunity Roles in the target instance. 
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Lead\Api\OpportunitiesApi(
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\OpportunitiesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -144,7 +144,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**\MarketoRest\Lead\Model\ResponseOfObjectMetaData**](../Model/ResponseOfObjectMetaData.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData**](../Model/ResponseOfObjectMetaData.md)
 
 ### Authorization
 
@@ -158,7 +158,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **describeUsingGET4**
-> \MarketoRest\Lead\Model\ResponseOfObjectMetaData describeUsingGET4()
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData describeUsingGET4()
 
 Describe Opportunity
 
@@ -169,7 +169,7 @@ Returns object and field metadata for Opportunity type records in the target ins
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Lead\Api\OpportunitiesApi(
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\OpportunitiesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -189,7 +189,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**\MarketoRest\Lead\Model\ResponseOfObjectMetaData**](../Model/ResponseOfObjectMetaData.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData**](../Model/ResponseOfObjectMetaData.md)
 
 ### Authorization
 
@@ -203,7 +203,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getOpportunitiesUsingGET**
-> \MarketoRest\Lead\Model\ResponseOfCustomObject getOpportunitiesUsingGET($filter_type, $filter_values, $custom_object_lookup_request, $fields, $batch_size, $next_page_token)
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject getOpportunitiesUsingGET($filter_type, $filter_values, $custom_object_lookup_request, $fields, $batch_size, $next_page_token)
 
 Get Opportunities
 
@@ -214,14 +214,14 @@ Returns a list of opportunities based on a filter and set of values.  Required P
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Lead\Api\OpportunitiesApi(
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\OpportunitiesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $filter_type = "filter_type_example"; // string | Opportunities field to filter on
 $filter_values = array("filter_values_example"); // string[] | Comma-separated list of values to match against
-$custom_object_lookup_request = new \MarketoRest\Lead\Model\LookupCustomObjectRequest(); // \MarketoRest\Lead\Model\LookupCustomObjectRequest | customObjectLookupRequest
+$custom_object_lookup_request = new \NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest(); // \NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest | customObjectLookupRequest
 $fields = array("fields_example"); // string[] | Comma-separated list of fields to include in the response
 $batch_size = 56; // int | Maximum number of records to return in the response.  Max and default is 300
 $next_page_token = "next_page_token_example"; // string | Paging token returned from a previous response
@@ -241,14 +241,14 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **filter_type** | **string**| Opportunities field to filter on |
  **filter_values** | [**string[]**](../Model/string.md)| Comma-separated list of values to match against |
- **custom_object_lookup_request** | [**\MarketoRest\Lead\Model\LookupCustomObjectRequest**](../Model/LookupCustomObjectRequest.md)| customObjectLookupRequest | [optional]
+ **custom_object_lookup_request** | [**\NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest**](../Model/LookupCustomObjectRequest.md)| customObjectLookupRequest | [optional]
  **fields** | [**string[]**](../Model/string.md)| Comma-separated list of fields to include in the response | [optional]
  **batch_size** | **int**| Maximum number of records to return in the response.  Max and default is 300 | [optional]
  **next_page_token** | **string**| Paging token returned from a previous response | [optional]
 
 ### Return type
 
-[**\MarketoRest\Lead\Model\ResponseOfCustomObject**](../Model/ResponseOfCustomObject.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject**](../Model/ResponseOfCustomObject.md)
 
 ### Authorization
 
@@ -262,7 +262,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getOpportunityRolesUsingGET**
-> \MarketoRest\Lead\Model\ResponseOfCustomObject getOpportunityRolesUsingGET($filter_type, $filter_values, $custom_object_lookup_request, $fields, $batch_size, $next_page_token)
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject getOpportunityRolesUsingGET($filter_type, $filter_values, $custom_object_lookup_request, $fields, $batch_size, $next_page_token)
 
 Get Opportunity Roles
 
@@ -273,14 +273,14 @@ Returns a list of opportunity roles based on a filter and set of values.  Requir
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Lead\Api\OpportunitiesApi(
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\OpportunitiesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $filter_type = "filter_type_example"; // string | The role field to filter on.  Searchable fields can be retrieved with the Describe Opportunity call.
 $filter_values = array("filter_values_example"); // string[] | Comma-separated list of field values to return records for
-$custom_object_lookup_request = new \MarketoRest\Lead\Model\LookupCustomObjectRequest(); // \MarketoRest\Lead\Model\LookupCustomObjectRequest | Optional JSON request for retrieving opportunity roles with compound keys
+$custom_object_lookup_request = new \NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest(); // \NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest | Optional JSON request for retrieving opportunity roles with compound keys
 $fields = array("fields_example"); // string[] | Comma-separated list of fields to include in the response
 $batch_size = 56; // int | Maximum number of records to return in the response.  Max and default is 300
 $next_page_token = "next_page_token_example"; // string | Paging token returned from a previous response
@@ -300,14 +300,14 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **filter_type** | **string**| The role field to filter on.  Searchable fields can be retrieved with the Describe Opportunity call. |
  **filter_values** | [**string[]**](../Model/string.md)| Comma-separated list of field values to return records for |
- **custom_object_lookup_request** | [**\MarketoRest\Lead\Model\LookupCustomObjectRequest**](../Model/LookupCustomObjectRequest.md)| Optional JSON request for retrieving opportunity roles with compound keys | [optional]
+ **custom_object_lookup_request** | [**\NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest**](../Model/LookupCustomObjectRequest.md)| Optional JSON request for retrieving opportunity roles with compound keys | [optional]
  **fields** | [**string[]**](../Model/string.md)| Comma-separated list of fields to include in the response | [optional]
  **batch_size** | **int**| Maximum number of records to return in the response.  Max and default is 300 | [optional]
  **next_page_token** | **string**| Paging token returned from a previous response | [optional]
 
 ### Return type
 
-[**\MarketoRest\Lead\Model\ResponseOfCustomObject**](../Model/ResponseOfCustomObject.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject**](../Model/ResponseOfCustomObject.md)
 
 ### Authorization
 
@@ -321,7 +321,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **syncOpportunitiesUsingPOST**
-> \MarketoRest\Lead\Model\ResponseOfCustomObject syncOpportunitiesUsingPOST($sync_custom_object_request)
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject syncOpportunitiesUsingPOST($sync_custom_object_request)
 
 Sync Opportunities
 
@@ -332,12 +332,12 @@ Allows inserting, updating, or upserting of opportunity records into the target 
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Lead\Api\OpportunitiesApi(
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\OpportunitiesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$sync_custom_object_request = new \MarketoRest\Lead\Model\SyncCustomObjectRequest(); // \MarketoRest\Lead\Model\SyncCustomObjectRequest | syncCustomObjectRequest
+$sync_custom_object_request = new \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectRequest(); // \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectRequest | syncCustomObjectRequest
 
 try {
     $result = $apiInstance->syncOpportunitiesUsingPOST($sync_custom_object_request);
@@ -352,11 +352,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **sync_custom_object_request** | [**\MarketoRest\Lead\Model\SyncCustomObjectRequest**](../Model/SyncCustomObjectRequest.md)| syncCustomObjectRequest |
+ **sync_custom_object_request** | [**\NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectRequest**](../Model/SyncCustomObjectRequest.md)| syncCustomObjectRequest |
 
 ### Return type
 
-[**\MarketoRest\Lead\Model\ResponseOfCustomObject**](../Model/ResponseOfCustomObject.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject**](../Model/ResponseOfCustomObject.md)
 
 ### Authorization
 
@@ -370,7 +370,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **syncOpportunityRolesUsingPOST**
-> \MarketoRest\Lead\Model\ResponseOfCustomObject syncOpportunityRolesUsingPOST($sync_custom_object_request)
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject syncOpportunityRolesUsingPOST($sync_custom_object_request)
 
 Sync Opportunity Roles
 
@@ -381,12 +381,12 @@ Allows inserts, updates and upserts of Opportunity Role records in the target in
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Lead\Api\OpportunitiesApi(
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\OpportunitiesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$sync_custom_object_request = new \MarketoRest\Lead\Model\SyncCustomObjectRequest(); // \MarketoRest\Lead\Model\SyncCustomObjectRequest | syncCustomObjectRequest
+$sync_custom_object_request = new \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectRequest(); // \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectRequest | syncCustomObjectRequest
 
 try {
     $result = $apiInstance->syncOpportunityRolesUsingPOST($sync_custom_object_request);
@@ -401,11 +401,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **sync_custom_object_request** | [**\MarketoRest\Lead\Model\SyncCustomObjectRequest**](../Model/SyncCustomObjectRequest.md)| syncCustomObjectRequest |
+ **sync_custom_object_request** | [**\NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectRequest**](../Model/SyncCustomObjectRequest.md)| syncCustomObjectRequest |
 
 ### Return type
 
-[**\MarketoRest\Lead\Model\ResponseOfCustomObject**](../Model/ResponseOfCustomObject.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject**](../Model/ResponseOfCustomObject.md)
 
 ### Authorization
 

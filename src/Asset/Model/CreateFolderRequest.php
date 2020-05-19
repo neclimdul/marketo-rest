@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Asset\Model;
+namespace NecLimDul\MarketoRest\Asset\Model;
 
 use \ArrayAccess;
-use \MarketoRest\Asset\ObjectSerializer;
+use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * CreateFolderRequest Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -59,7 +59,7 @@ class CreateFolderRequest implements ModelInterface, ArrayAccess
     protected static $swaggerTypes = [
         'description' => 'string',
         'name' => 'string',
-        'parent' => '\MarketoRest\Asset\Model\Folder'
+        'parent' => '\NecLimDul\MarketoRest\Asset\Model\Folder'
     ];
 
     /**
@@ -273,7 +273,7 @@ class CreateFolderRequest implements ModelInterface, ArrayAccess
     /**
      * Gets parent
      *
-     * @return \MarketoRest\Asset\Model\Folder
+     * @return \NecLimDul\MarketoRest\Asset\Model\Folder
      */
     public function getParent()
     {
@@ -283,7 +283,7 @@ class CreateFolderRequest implements ModelInterface, ArrayAccess
     /**
      * Sets parent
      *
-     * @param \MarketoRest\Asset\Model\Folder $parent Folder object describing the parent folder
+     * @param \NecLimDul\MarketoRest\Asset\Model\Folder $parent Folder object describing the parent folder
      *
      * @return $this
      */

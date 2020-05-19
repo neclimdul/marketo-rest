@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Lead\Model;
+namespace NecLimDul\MarketoRest\Lead\Model;
 
 use \ArrayAccess;
-use \MarketoRest\Lead\ObjectSerializer;
+use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * ResponseOfChangeLeadProgramStatusOutputData Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -57,13 +57,13 @@ class ResponseOfChangeLeadProgramStatusOutputData implements ModelInterface, Arr
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'errors' => '\MarketoRest\Lead\Model\Error[]',
+        'errors' => '\NecLimDul\MarketoRest\Lead\Model\Error[]',
         'more_result' => 'bool',
         'next_page_token' => 'string',
         'request_id' => 'string',
-        'result' => '\MarketoRest\Lead\Model\ChangeLeadProgramStatusOutputData[]',
+        'result' => '\NecLimDul\MarketoRest\Lead\Model\ChangeLeadProgramStatusOutputData[]',
         'success' => 'bool',
-        'warnings' => '\MarketoRest\Lead\Model\Warning[]'
+        'warnings' => '\NecLimDul\MarketoRest\Lead\Model\Warning[]'
     ];
 
     /**
@@ -258,7 +258,7 @@ class ResponseOfChangeLeadProgramStatusOutputData implements ModelInterface, Arr
     /**
      * Gets errors
      *
-     * @return \MarketoRest\Lead\Model\Error[]
+     * @return \NecLimDul\MarketoRest\Lead\Model\Error[]
      */
     public function getErrors()
     {
@@ -268,7 +268,7 @@ class ResponseOfChangeLeadProgramStatusOutputData implements ModelInterface, Arr
     /**
      * Sets errors
      *
-     * @param \MarketoRest\Lead\Model\Error[] $errors Array of errors that occurred if the request was unsuccessful
+     * @param \NecLimDul\MarketoRest\Lead\Model\Error[] $errors Array of errors that occurred if the request was unsuccessful
      *
      * @return $this
      */
@@ -354,7 +354,7 @@ class ResponseOfChangeLeadProgramStatusOutputData implements ModelInterface, Arr
     /**
      * Gets result
      *
-     * @return \MarketoRest\Lead\Model\ChangeLeadProgramStatusOutputData[]
+     * @return \NecLimDul\MarketoRest\Lead\Model\ChangeLeadProgramStatusOutputData[]
      */
     public function getResult()
     {
@@ -364,7 +364,7 @@ class ResponseOfChangeLeadProgramStatusOutputData implements ModelInterface, Arr
     /**
      * Sets result
      *
-     * @param \MarketoRest\Lead\Model\ChangeLeadProgramStatusOutputData[] $result Array of results for individual records in the operation, may be empty
+     * @param \NecLimDul\MarketoRest\Lead\Model\ChangeLeadProgramStatusOutputData[] $result Array of results for individual records in the operation, may be empty
      *
      * @return $this
      */
@@ -402,7 +402,7 @@ class ResponseOfChangeLeadProgramStatusOutputData implements ModelInterface, Arr
     /**
      * Gets warnings
      *
-     * @return \MarketoRest\Lead\Model\Warning[]
+     * @return \NecLimDul\MarketoRest\Lead\Model\Warning[]
      */
     public function getWarnings()
     {
@@ -412,7 +412,7 @@ class ResponseOfChangeLeadProgramStatusOutputData implements ModelInterface, Arr
     /**
      * Sets warnings
      *
-     * @param \MarketoRest\Lead\Model\Warning[] $warnings Array of warnings given for the operation
+     * @param \NecLimDul\MarketoRest\Lead\Model\Warning[] $warnings Array of warnings given for the operation
      *
      * @return $this
      */

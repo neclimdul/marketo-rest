@@ -4,7 +4,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -26,7 +26,7 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Lead\Api;
+namespace NecLimDul\MarketoRest\Lead\Api;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -34,16 +34,16 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
-use MarketoRest\Lead\ApiException;
-use MarketoRest\Lead\Configuration;
-use MarketoRest\Lead\HeaderSelector;
-use MarketoRest\Lead\ObjectSerializer;
+use NecLimDul\MarketoRest\Lead\ApiException;
+use NecLimDul\MarketoRest\Lead\Configuration;
+use NecLimDul\MarketoRest\Lead\HeaderSelector;
+use NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * ActivitiesApi Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -92,11 +92,11 @@ class ActivitiesApi
      *
      * Add Custom Activities
      *
-     * @param  \MarketoRest\Lead\Model\CustomActivityRequest $custom_activity_request customActivityRequest (required)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\CustomActivityRequest $custom_activity_request customActivityRequest (required)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Lead\Model\ResponseOfCustomActivity
+     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivity
      */
     public function addCustomActivityUsingPOST($custom_activity_request)
     {
@@ -109,15 +109,15 @@ class ActivitiesApi
      *
      * Add Custom Activities
      *
-     * @param  \MarketoRest\Lead\Model\CustomActivityRequest $custom_activity_request customActivityRequest (required)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\CustomActivityRequest $custom_activity_request customActivityRequest (required)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Lead\Model\ResponseOfCustomActivity, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivity, HTTP status code, HTTP response headers (array of strings)
      */
     public function addCustomActivityUsingPOSTWithHttpInfo($custom_activity_request)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfCustomActivity';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivity';
         $request = $this->addCustomActivityUsingPOSTRequest($custom_activity_request);
 
         try {
@@ -169,7 +169,7 @@ class ActivitiesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Lead\Model\ResponseOfCustomActivity',
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivity',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -184,7 +184,7 @@ class ActivitiesApi
      *
      * Add Custom Activities
      *
-     * @param  \MarketoRest\Lead\Model\CustomActivityRequest $custom_activity_request customActivityRequest (required)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\CustomActivityRequest $custom_activity_request customActivityRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -204,14 +204,14 @@ class ActivitiesApi
      *
      * Add Custom Activities
      *
-     * @param  \MarketoRest\Lead\Model\CustomActivityRequest $custom_activity_request customActivityRequest (required)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\CustomActivityRequest $custom_activity_request customActivityRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function addCustomActivityUsingPOSTAsyncWithHttpInfo($custom_activity_request)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfCustomActivity';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivity';
         $request = $this->addCustomActivityUsingPOSTRequest($custom_activity_request);
 
         return $this->client
@@ -254,7 +254,7 @@ class ActivitiesApi
     /**
      * Create request for operation 'addCustomActivityUsingPOST'
      *
-     * @param  \MarketoRest\Lead\Model\CustomActivityRequest $custom_activity_request customActivityRequest (required)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\CustomActivityRequest $custom_activity_request customActivityRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -358,9 +358,9 @@ class ActivitiesApi
      *
      * @param  string $api_name API Name of the activity type (required)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Lead\Model\ResponseOfCustomActivityType
+     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType
      */
     public function approveCustomActivityTypeUsingPOST($api_name)
     {
@@ -375,13 +375,13 @@ class ActivitiesApi
      *
      * @param  string $api_name API Name of the activity type (required)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Lead\Model\ResponseOfCustomActivityType, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType, HTTP status code, HTTP response headers (array of strings)
      */
     public function approveCustomActivityTypeUsingPOSTWithHttpInfo($api_name)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfCustomActivityType';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType';
         $request = $this->approveCustomActivityTypeUsingPOSTRequest($api_name);
 
         try {
@@ -433,7 +433,7 @@ class ActivitiesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -475,7 +475,7 @@ class ActivitiesApi
      */
     public function approveCustomActivityTypeUsingPOSTAsyncWithHttpInfo($api_name)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfCustomActivityType';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType';
         $request = $this->approveCustomActivityTypeUsingPOSTRequest($api_name);
 
         return $this->client
@@ -626,11 +626,11 @@ class ActivitiesApi
      * Create Custom Activity Type Attributes
      *
      * @param  string $api_name API Name of the activity type (required)
-     * @param  \MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request customActivityTypeAttributeRequest (required)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request customActivityTypeAttributeRequest (required)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Lead\Model\ResponseOfCustomActivityType
+     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType
      */
     public function createCustomActivityTypeAttributesUsingPOST($api_name, $custom_activity_type_attribute_request)
     {
@@ -644,15 +644,15 @@ class ActivitiesApi
      * Create Custom Activity Type Attributes
      *
      * @param  string $api_name API Name of the activity type (required)
-     * @param  \MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request customActivityTypeAttributeRequest (required)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request customActivityTypeAttributeRequest (required)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Lead\Model\ResponseOfCustomActivityType, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType, HTTP status code, HTTP response headers (array of strings)
      */
     public function createCustomActivityTypeAttributesUsingPOSTWithHttpInfo($api_name, $custom_activity_type_attribute_request)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfCustomActivityType';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType';
         $request = $this->createCustomActivityTypeAttributesUsingPOSTRequest($api_name, $custom_activity_type_attribute_request);
 
         try {
@@ -704,7 +704,7 @@ class ActivitiesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -720,7 +720,7 @@ class ActivitiesApi
      * Create Custom Activity Type Attributes
      *
      * @param  string $api_name API Name of the activity type (required)
-     * @param  \MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request customActivityTypeAttributeRequest (required)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request customActivityTypeAttributeRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -741,14 +741,14 @@ class ActivitiesApi
      * Create Custom Activity Type Attributes
      *
      * @param  string $api_name API Name of the activity type (required)
-     * @param  \MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request customActivityTypeAttributeRequest (required)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request customActivityTypeAttributeRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function createCustomActivityTypeAttributesUsingPOSTAsyncWithHttpInfo($api_name, $custom_activity_type_attribute_request)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfCustomActivityType';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType';
         $request = $this->createCustomActivityTypeAttributesUsingPOSTRequest($api_name, $custom_activity_type_attribute_request);
 
         return $this->client
@@ -792,7 +792,7 @@ class ActivitiesApi
      * Create request for operation 'createCustomActivityTypeAttributesUsingPOST'
      *
      * @param  string $api_name API Name of the activity type (required)
-     * @param  \MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request customActivityTypeAttributeRequest (required)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request customActivityTypeAttributeRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -908,11 +908,11 @@ class ActivitiesApi
      *
      * Create Custom Activity Type
      *
-     * @param  \MarketoRest\Lead\Model\CustomActivityTypeRequest $custom_activity_type_request customActivityTypeRequest (required)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeRequest $custom_activity_type_request customActivityTypeRequest (required)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Lead\Model\ResponseOfCustomActivityType
+     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType
      */
     public function createCustomActivityTypeUsingPOST($custom_activity_type_request)
     {
@@ -925,15 +925,15 @@ class ActivitiesApi
      *
      * Create Custom Activity Type
      *
-     * @param  \MarketoRest\Lead\Model\CustomActivityTypeRequest $custom_activity_type_request customActivityTypeRequest (required)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeRequest $custom_activity_type_request customActivityTypeRequest (required)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Lead\Model\ResponseOfCustomActivityType, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType, HTTP status code, HTTP response headers (array of strings)
      */
     public function createCustomActivityTypeUsingPOSTWithHttpInfo($custom_activity_type_request)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfCustomActivityType';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType';
         $request = $this->createCustomActivityTypeUsingPOSTRequest($custom_activity_type_request);
 
         try {
@@ -985,7 +985,7 @@ class ActivitiesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1000,7 +1000,7 @@ class ActivitiesApi
      *
      * Create Custom Activity Type
      *
-     * @param  \MarketoRest\Lead\Model\CustomActivityTypeRequest $custom_activity_type_request customActivityTypeRequest (required)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeRequest $custom_activity_type_request customActivityTypeRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1020,14 +1020,14 @@ class ActivitiesApi
      *
      * Create Custom Activity Type
      *
-     * @param  \MarketoRest\Lead\Model\CustomActivityTypeRequest $custom_activity_type_request customActivityTypeRequest (required)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeRequest $custom_activity_type_request customActivityTypeRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function createCustomActivityTypeUsingPOSTAsyncWithHttpInfo($custom_activity_type_request)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfCustomActivityType';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType';
         $request = $this->createCustomActivityTypeUsingPOSTRequest($custom_activity_type_request);
 
         return $this->client
@@ -1070,7 +1070,7 @@ class ActivitiesApi
     /**
      * Create request for operation 'createCustomActivityTypeUsingPOST'
      *
-     * @param  \MarketoRest\Lead\Model\CustomActivityTypeRequest $custom_activity_type_request customActivityTypeRequest (required)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeRequest $custom_activity_type_request customActivityTypeRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -1173,11 +1173,11 @@ class ActivitiesApi
      * Delete Custom Activity Type Attributes
      *
      * @param  string $api_name API Name of the activity type (required)
-     * @param  \MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request customActivityTypeAttributeRequest (required)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request customActivityTypeAttributeRequest (required)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Lead\Model\ResponseOfCustomActivityType
+     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType
      */
     public function deleteCustomActivityTypeAttributesUsingPOST($api_name, $custom_activity_type_attribute_request)
     {
@@ -1191,15 +1191,15 @@ class ActivitiesApi
      * Delete Custom Activity Type Attributes
      *
      * @param  string $api_name API Name of the activity type (required)
-     * @param  \MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request customActivityTypeAttributeRequest (required)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request customActivityTypeAttributeRequest (required)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Lead\Model\ResponseOfCustomActivityType, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType, HTTP status code, HTTP response headers (array of strings)
      */
     public function deleteCustomActivityTypeAttributesUsingPOSTWithHttpInfo($api_name, $custom_activity_type_attribute_request)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfCustomActivityType';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType';
         $request = $this->deleteCustomActivityTypeAttributesUsingPOSTRequest($api_name, $custom_activity_type_attribute_request);
 
         try {
@@ -1251,7 +1251,7 @@ class ActivitiesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1267,7 +1267,7 @@ class ActivitiesApi
      * Delete Custom Activity Type Attributes
      *
      * @param  string $api_name API Name of the activity type (required)
-     * @param  \MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request customActivityTypeAttributeRequest (required)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request customActivityTypeAttributeRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1288,14 +1288,14 @@ class ActivitiesApi
      * Delete Custom Activity Type Attributes
      *
      * @param  string $api_name API Name of the activity type (required)
-     * @param  \MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request customActivityTypeAttributeRequest (required)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request customActivityTypeAttributeRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function deleteCustomActivityTypeAttributesUsingPOSTAsyncWithHttpInfo($api_name, $custom_activity_type_attribute_request)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfCustomActivityType';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType';
         $request = $this->deleteCustomActivityTypeAttributesUsingPOSTRequest($api_name, $custom_activity_type_attribute_request);
 
         return $this->client
@@ -1339,7 +1339,7 @@ class ActivitiesApi
      * Create request for operation 'deleteCustomActivityTypeAttributesUsingPOST'
      *
      * @param  string $api_name API Name of the activity type (required)
-     * @param  \MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request customActivityTypeAttributeRequest (required)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request customActivityTypeAttributeRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -1457,9 +1457,9 @@ class ActivitiesApi
      *
      * @param  string $api_name API Name of the activity type (required)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Lead\Model\ResponseOfCustomActivityType
+     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType
      */
     public function deleteCustomActivityTypeUsingPOST($api_name)
     {
@@ -1474,13 +1474,13 @@ class ActivitiesApi
      *
      * @param  string $api_name API Name of the activity type (required)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Lead\Model\ResponseOfCustomActivityType, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType, HTTP status code, HTTP response headers (array of strings)
      */
     public function deleteCustomActivityTypeUsingPOSTWithHttpInfo($api_name)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfCustomActivityType';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType';
         $request = $this->deleteCustomActivityTypeUsingPOSTRequest($api_name);
 
         try {
@@ -1532,7 +1532,7 @@ class ActivitiesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1574,7 +1574,7 @@ class ActivitiesApi
      */
     public function deleteCustomActivityTypeUsingPOSTAsyncWithHttpInfo($api_name)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfCustomActivityType';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType';
         $request = $this->deleteCustomActivityTypeUsingPOSTRequest($api_name);
 
         return $this->client
@@ -1727,9 +1727,9 @@ class ActivitiesApi
      * @param  string $api_name API Name of the activity type (required)
      * @param  bool $draft draft (optional)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Lead\Model\ResponseOfCustomActivityType
+     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType
      */
     public function describeCustomActivityTypeUsingGET($api_name, $draft = null)
     {
@@ -1745,13 +1745,13 @@ class ActivitiesApi
      * @param  string $api_name API Name of the activity type (required)
      * @param  bool $draft draft (optional)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Lead\Model\ResponseOfCustomActivityType, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType, HTTP status code, HTTP response headers (array of strings)
      */
     public function describeCustomActivityTypeUsingGETWithHttpInfo($api_name, $draft = null)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfCustomActivityType';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType';
         $request = $this->describeCustomActivityTypeUsingGETRequest($api_name, $draft);
 
         try {
@@ -1803,7 +1803,7 @@ class ActivitiesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1847,7 +1847,7 @@ class ActivitiesApi
      */
     public function describeCustomActivityTypeUsingGETAsyncWithHttpInfo($api_name, $draft = null)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfCustomActivityType';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType';
         $request = $this->describeCustomActivityTypeUsingGETRequest($api_name, $draft);
 
         return $this->client
@@ -2004,9 +2004,9 @@ class ActivitiesApi
      *
      * @param  string $api_name API Name of the activity type (required)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Lead\Model\ResponseOfCustomActivityType
+     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType
      */
     public function discardDraftofCustomActivityTypeUsingPOST($api_name)
     {
@@ -2021,13 +2021,13 @@ class ActivitiesApi
      *
      * @param  string $api_name API Name of the activity type (required)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Lead\Model\ResponseOfCustomActivityType, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType, HTTP status code, HTTP response headers (array of strings)
      */
     public function discardDraftofCustomActivityTypeUsingPOSTWithHttpInfo($api_name)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfCustomActivityType';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType';
         $request = $this->discardDraftofCustomActivityTypeUsingPOSTRequest($api_name);
 
         try {
@@ -2079,7 +2079,7 @@ class ActivitiesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2121,7 +2121,7 @@ class ActivitiesApi
      */
     public function discardDraftofCustomActivityTypeUsingPOSTAsyncWithHttpInfo($api_name)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfCustomActivityType';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType';
         $request = $this->discardDraftofCustomActivityTypeUsingPOSTRequest($api_name);
 
         return $this->client
@@ -2273,9 +2273,9 @@ class ActivitiesApi
      *
      * @param  \DateTime $since_datetime Earliest datetime to retrieve activities from (required)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Lead\Model\ResponseOfVoid
+     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfVoid
      */
     public function getActivitiesPagingTokenUsingGET($since_datetime)
     {
@@ -2290,13 +2290,13 @@ class ActivitiesApi
      *
      * @param  \DateTime $since_datetime Earliest datetime to retrieve activities from (required)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Lead\Model\ResponseOfVoid, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfVoid, HTTP status code, HTTP response headers (array of strings)
      */
     public function getActivitiesPagingTokenUsingGETWithHttpInfo($since_datetime)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfVoid';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfVoid';
         $request = $this->getActivitiesPagingTokenUsingGETRequest($since_datetime);
 
         try {
@@ -2348,7 +2348,7 @@ class ActivitiesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Lead\Model\ResponseOfVoid',
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfVoid',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2390,7 +2390,7 @@ class ActivitiesApi
      */
     public function getActivitiesPagingTokenUsingGETAsyncWithHttpInfo($since_datetime)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfVoid';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfVoid';
         $request = $this->getActivitiesPagingTokenUsingGETRequest($since_datetime);
 
         return $this->client
@@ -2537,9 +2537,9 @@ class ActivitiesApi
      * Get Activity Types
      *
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Lead\Model\ResponseOfActivityType
+     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfActivityType
      */
     public function getAllActivityTypesUsingGET()
     {
@@ -2553,13 +2553,13 @@ class ActivitiesApi
      * Get Activity Types
      *
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Lead\Model\ResponseOfActivityType, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfActivityType, HTTP status code, HTTP response headers (array of strings)
      */
     public function getAllActivityTypesUsingGETWithHttpInfo()
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfActivityType';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfActivityType';
         $request = $this->getAllActivityTypesUsingGETRequest();
 
         try {
@@ -2611,7 +2611,7 @@ class ActivitiesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Lead\Model\ResponseOfActivityType',
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfActivityType',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2651,7 +2651,7 @@ class ActivitiesApi
      */
     public function getAllActivityTypesUsingGETAsyncWithHttpInfo()
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfActivityType';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfActivityType';
         $request = $this->getAllActivityTypesUsingGETRequest();
 
         return $this->client
@@ -2787,9 +2787,9 @@ class ActivitiesApi
      * Get Custom Activity Types
      *
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Lead\Model\ResponseOfCustomActivityType
+     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType
      */
     public function getCustomActivityTypeUsingGET()
     {
@@ -2803,13 +2803,13 @@ class ActivitiesApi
      * Get Custom Activity Types
      *
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Lead\Model\ResponseOfCustomActivityType, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType, HTTP status code, HTTP response headers (array of strings)
      */
     public function getCustomActivityTypeUsingGETWithHttpInfo()
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfCustomActivityType';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType';
         $request = $this->getCustomActivityTypeUsingGETRequest();
 
         try {
@@ -2861,7 +2861,7 @@ class ActivitiesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2901,7 +2901,7 @@ class ActivitiesApi
      */
     public function getCustomActivityTypeUsingGETAsyncWithHttpInfo()
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfCustomActivityType';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType';
         $request = $this->getCustomActivityTypeUsingGETRequest();
 
         return $this->client
@@ -3039,9 +3039,9 @@ class ActivitiesApi
      * @param  string $next_page_token Token representation of a datetime returned by the Get Paging Token endpoint.  This endpoint will return activities after this datetime (required)
      * @param  int $batch_size Maximum number of records to return.  Maximum and default is 300. (optional)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Lead\Model\ResponseOfActivity
+     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfActivity
      */
     public function getDeletedLeadsUsingGET($next_page_token, $batch_size = null)
     {
@@ -3057,13 +3057,13 @@ class ActivitiesApi
      * @param  string $next_page_token Token representation of a datetime returned by the Get Paging Token endpoint.  This endpoint will return activities after this datetime (required)
      * @param  int $batch_size Maximum number of records to return.  Maximum and default is 300. (optional)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Lead\Model\ResponseOfActivity, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfActivity, HTTP status code, HTTP response headers (array of strings)
      */
     public function getDeletedLeadsUsingGETWithHttpInfo($next_page_token, $batch_size = null)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfActivity';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfActivity';
         $request = $this->getDeletedLeadsUsingGETRequest($next_page_token, $batch_size);
 
         try {
@@ -3115,7 +3115,7 @@ class ActivitiesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Lead\Model\ResponseOfActivity',
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfActivity',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3159,7 +3159,7 @@ class ActivitiesApi
      */
     public function getDeletedLeadsUsingGETAsyncWithHttpInfo($next_page_token, $batch_size = null)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfActivity';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfActivity';
         $request = $this->getDeletedLeadsUsingGETRequest($next_page_token, $batch_size);
 
         return $this->client
@@ -3317,9 +3317,9 @@ class ActivitiesApi
      * @param  int[] $lead_ids Comma-separated list of lead ids.  If set, will only return activities of the leads with these ids.  Allows up to 30 entries. (optional)
      * @param  int $batch_size Maximum number of records to return.  Maximum and default is 300. (optional)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Lead\Model\ResponseOfActivity
+     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfActivity
      */
     public function getLeadActivitiesUsingGET($next_page_token, $activity_type_ids, $asset_ids = null, $list_id = null, $lead_ids = null, $batch_size = null)
     {
@@ -3339,13 +3339,13 @@ class ActivitiesApi
      * @param  int[] $lead_ids Comma-separated list of lead ids.  If set, will only return activities of the leads with these ids.  Allows up to 30 entries. (optional)
      * @param  int $batch_size Maximum number of records to return.  Maximum and default is 300. (optional)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Lead\Model\ResponseOfActivity, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfActivity, HTTP status code, HTTP response headers (array of strings)
      */
     public function getLeadActivitiesUsingGETWithHttpInfo($next_page_token, $activity_type_ids, $asset_ids = null, $list_id = null, $lead_ids = null, $batch_size = null)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfActivity';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfActivity';
         $request = $this->getLeadActivitiesUsingGETRequest($next_page_token, $activity_type_ids, $asset_ids, $list_id, $lead_ids, $batch_size);
 
         try {
@@ -3397,7 +3397,7 @@ class ActivitiesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Lead\Model\ResponseOfActivity',
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfActivity',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3449,7 +3449,7 @@ class ActivitiesApi
      */
     public function getLeadActivitiesUsingGETAsyncWithHttpInfo($next_page_token, $activity_type_ids, $asset_ids = null, $list_id = null, $lead_ids = null, $batch_size = null)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfActivity';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfActivity';
         $request = $this->getLeadActivitiesUsingGETRequest($next_page_token, $activity_type_ids, $asset_ids, $list_id, $lead_ids, $batch_size);
 
         return $this->client
@@ -3641,9 +3641,9 @@ class ActivitiesApi
      * @param  int[] $lead_ids Comma-separated list of lead ids.  If set, will only return activities of the leads with these ids.  Allows up to 30 entries. (optional)
      * @param  int $batch_size Maximum number of records to return.  Maximum and default is 300. (optional)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Lead\Model\ResponseOfLeadChange
+     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadChange
      */
     public function getLeadChangesUsingGET($next_page_token, $fields, $list_id = null, $lead_ids = null, $batch_size = null)
     {
@@ -3662,13 +3662,13 @@ class ActivitiesApi
      * @param  int[] $lead_ids Comma-separated list of lead ids.  If set, will only return activities of the leads with these ids.  Allows up to 30 entries. (optional)
      * @param  int $batch_size Maximum number of records to return.  Maximum and default is 300. (optional)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Lead\Model\ResponseOfLeadChange, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadChange, HTTP status code, HTTP response headers (array of strings)
      */
     public function getLeadChangesUsingGETWithHttpInfo($next_page_token, $fields, $list_id = null, $lead_ids = null, $batch_size = null)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfLeadChange';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadChange';
         $request = $this->getLeadChangesUsingGETRequest($next_page_token, $fields, $list_id, $lead_ids, $batch_size);
 
         try {
@@ -3720,7 +3720,7 @@ class ActivitiesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Lead\Model\ResponseOfLeadChange',
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadChange',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3770,7 +3770,7 @@ class ActivitiesApi
      */
     public function getLeadChangesUsingGETAsyncWithHttpInfo($next_page_token, $fields, $list_id = null, $lead_ids = null, $batch_size = null)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfLeadChange';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadChange';
         $request = $this->getLeadChangesUsingGETRequest($next_page_token, $fields, $list_id, $lead_ids, $batch_size);
 
         return $this->client
@@ -3949,11 +3949,11 @@ class ActivitiesApi
      * Update Custom Activity Type Attributes
      *
      * @param  string $api_name API Name of the activity type (required)
-     * @param  \MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request customActivityTypeAttributeRequest (required)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request customActivityTypeAttributeRequest (required)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Lead\Model\ResponseOfCustomActivityType
+     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType
      */
     public function updateCustomActivityTypeAttributesUsingPOST($api_name, $custom_activity_type_attribute_request)
     {
@@ -3967,15 +3967,15 @@ class ActivitiesApi
      * Update Custom Activity Type Attributes
      *
      * @param  string $api_name API Name of the activity type (required)
-     * @param  \MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request customActivityTypeAttributeRequest (required)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request customActivityTypeAttributeRequest (required)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Lead\Model\ResponseOfCustomActivityType, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType, HTTP status code, HTTP response headers (array of strings)
      */
     public function updateCustomActivityTypeAttributesUsingPOSTWithHttpInfo($api_name, $custom_activity_type_attribute_request)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfCustomActivityType';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType';
         $request = $this->updateCustomActivityTypeAttributesUsingPOSTRequest($api_name, $custom_activity_type_attribute_request);
 
         try {
@@ -4027,7 +4027,7 @@ class ActivitiesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4043,7 +4043,7 @@ class ActivitiesApi
      * Update Custom Activity Type Attributes
      *
      * @param  string $api_name API Name of the activity type (required)
-     * @param  \MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request customActivityTypeAttributeRequest (required)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request customActivityTypeAttributeRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -4064,14 +4064,14 @@ class ActivitiesApi
      * Update Custom Activity Type Attributes
      *
      * @param  string $api_name API Name of the activity type (required)
-     * @param  \MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request customActivityTypeAttributeRequest (required)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request customActivityTypeAttributeRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function updateCustomActivityTypeAttributesUsingPOSTAsyncWithHttpInfo($api_name, $custom_activity_type_attribute_request)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfCustomActivityType';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType';
         $request = $this->updateCustomActivityTypeAttributesUsingPOSTRequest($api_name, $custom_activity_type_attribute_request);
 
         return $this->client
@@ -4115,7 +4115,7 @@ class ActivitiesApi
      * Create request for operation 'updateCustomActivityTypeAttributesUsingPOST'
      *
      * @param  string $api_name API Name of the activity type (required)
-     * @param  \MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request customActivityTypeAttributeRequest (required)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request customActivityTypeAttributeRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -4232,11 +4232,11 @@ class ActivitiesApi
      * Update Custom Activity Type
      *
      * @param  string $api_name API Name of the activity type (required)
-     * @param  \MarketoRest\Lead\Model\CustomActivityTypeRequest $custom_activity_type_request customActivityTypeRequest (required)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeRequest $custom_activity_type_request customActivityTypeRequest (required)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Lead\Model\ResponseOfCustomActivityType
+     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType
      */
     public function updateCustomActivityTypeUsingPOST($api_name, $custom_activity_type_request)
     {
@@ -4250,15 +4250,15 @@ class ActivitiesApi
      * Update Custom Activity Type
      *
      * @param  string $api_name API Name of the activity type (required)
-     * @param  \MarketoRest\Lead\Model\CustomActivityTypeRequest $custom_activity_type_request customActivityTypeRequest (required)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeRequest $custom_activity_type_request customActivityTypeRequest (required)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Lead\Model\ResponseOfCustomActivityType, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType, HTTP status code, HTTP response headers (array of strings)
      */
     public function updateCustomActivityTypeUsingPOSTWithHttpInfo($api_name, $custom_activity_type_request)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfCustomActivityType';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType';
         $request = $this->updateCustomActivityTypeUsingPOSTRequest($api_name, $custom_activity_type_request);
 
         try {
@@ -4310,7 +4310,7 @@ class ActivitiesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -4326,7 +4326,7 @@ class ActivitiesApi
      * Update Custom Activity Type
      *
      * @param  string $api_name API Name of the activity type (required)
-     * @param  \MarketoRest\Lead\Model\CustomActivityTypeRequest $custom_activity_type_request customActivityTypeRequest (required)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeRequest $custom_activity_type_request customActivityTypeRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -4347,14 +4347,14 @@ class ActivitiesApi
      * Update Custom Activity Type
      *
      * @param  string $api_name API Name of the activity type (required)
-     * @param  \MarketoRest\Lead\Model\CustomActivityTypeRequest $custom_activity_type_request customActivityTypeRequest (required)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeRequest $custom_activity_type_request customActivityTypeRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function updateCustomActivityTypeUsingPOSTAsyncWithHttpInfo($api_name, $custom_activity_type_request)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfCustomActivityType';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType';
         $request = $this->updateCustomActivityTypeUsingPOSTRequest($api_name, $custom_activity_type_request);
 
         return $this->client
@@ -4398,7 +4398,7 @@ class ActivitiesApi
      * Create request for operation 'updateCustomActivityTypeUsingPOST'
      *
      * @param  string $api_name API Name of the activity type (required)
-     * @param  \MarketoRest\Lead\Model\CustomActivityTypeRequest $custom_activity_type_request customActivityTypeRequest (required)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeRequest $custom_activity_type_request customActivityTypeRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request

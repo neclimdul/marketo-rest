@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Lead\Model;
+namespace NecLimDul\MarketoRest\Lead\Model;
 
 use \ArrayAccess;
-use \MarketoRest\Lead\ObjectSerializer;
+use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * NamedAccountList Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -60,7 +60,7 @@ class NamedAccountList implements ModelInterface, ArrayAccess
         'created_at' => 'string',
         'marketo_guid' => 'string',
         'name' => 'string',
-        'reasons' => '\MarketoRest\Lead\Model\Reason[]',
+        'reasons' => '\NecLimDul\MarketoRest\Lead\Model\Reason[]',
         'seq' => 'int',
         'status' => 'string',
         'type' => 'string',
@@ -364,7 +364,7 @@ class NamedAccountList implements ModelInterface, ArrayAccess
     /**
      * Gets reasons
      *
-     * @return \MarketoRest\Lead\Model\Reason[]
+     * @return \NecLimDul\MarketoRest\Lead\Model\Reason[]
      */
     public function getReasons()
     {
@@ -374,7 +374,7 @@ class NamedAccountList implements ModelInterface, ArrayAccess
     /**
      * Sets reasons
      *
-     * @param \MarketoRest\Lead\Model\Reason[] $reasons reasons
+     * @param \NecLimDul\MarketoRest\Lead\Model\Reason[] $reasons reasons
      *
      * @return $this
      */

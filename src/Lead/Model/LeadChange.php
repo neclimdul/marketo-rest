@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Lead\Model;
+namespace NecLimDul\MarketoRest\Lead\Model;
 
 use \ArrayAccess;
-use \MarketoRest\Lead\ObjectSerializer;
+use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * LeadChange Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -59,9 +59,9 @@ class LeadChange implements ModelInterface, ArrayAccess
     protected static $swaggerTypes = [
         'activity_date' => '\DateTime',
         'activity_type_id' => 'int',
-        'attributes' => '\MarketoRest\Lead\Model\Attribute[]',
+        'attributes' => '\NecLimDul\MarketoRest\Lead\Model\Attribute[]',
         'campaign_id' => 'int',
-        'fields' => '\MarketoRest\Lead\Model\LeadChangeField[]',
+        'fields' => '\NecLimDul\MarketoRest\Lead\Model\LeadChangeField[]',
         'id' => 'int',
         'lead_id' => 'int',
         'marketo_guid' => 'string'
@@ -312,7 +312,7 @@ class LeadChange implements ModelInterface, ArrayAccess
     /**
      * Gets attributes
      *
-     * @return \MarketoRest\Lead\Model\Attribute[]
+     * @return \NecLimDul\MarketoRest\Lead\Model\Attribute[]
      */
     public function getAttributes()
     {
@@ -322,7 +322,7 @@ class LeadChange implements ModelInterface, ArrayAccess
     /**
      * Sets attributes
      *
-     * @param \MarketoRest\Lead\Model\Attribute[] $attributes List of secondary attributes
+     * @param \NecLimDul\MarketoRest\Lead\Model\Attribute[] $attributes List of secondary attributes
      *
      * @return $this
      */
@@ -360,7 +360,7 @@ class LeadChange implements ModelInterface, ArrayAccess
     /**
      * Gets fields
      *
-     * @return \MarketoRest\Lead\Model\LeadChangeField[]
+     * @return \NecLimDul\MarketoRest\Lead\Model\LeadChangeField[]
      */
     public function getFields()
     {
@@ -370,7 +370,7 @@ class LeadChange implements ModelInterface, ArrayAccess
     /**
      * Sets fields
      *
-     * @param \MarketoRest\Lead\Model\LeadChangeField[] $fields fields
+     * @param \NecLimDul\MarketoRest\Lead\Model\LeadChangeField[] $fields fields
      *
      * @return $this
      */

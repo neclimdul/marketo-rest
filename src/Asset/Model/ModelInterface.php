@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Asset\Model
+ * @package  NecLimDul\MarketoRest\Asset\Model
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -27,12 +27,12 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Asset\Model;
+namespace NecLimDul\MarketoRest\Asset\Model;
 
 /**
  * Interface abstracting model access.
  *
- * @package MarketoRest\Asset\Model
+ * @package NecLimDul\MarketoRest\Asset\Model
  * @author  Swagger Codegen team
  */
 interface ModelInterface

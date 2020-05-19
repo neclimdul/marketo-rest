@@ -4,7 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** | Unique integer id of the company record | 
-**reasons** | [**\MarketoRest\Lead\Model\Reason[]**](Reason.md) |  | [optional] 
+**reasons** | [**\NecLimDul\MarketoRest\Lead\Model\Reason[]**](Reason.md) |  | [optional] 
 **seq** | **int** | Integer indicating the sequence of the record in response.  This value is correlated to the order of the records included in the request input.  Seq should only be part of responses and should not be submitted. | 
 **status** | **string** | Status of the operation performed on the record | [optional] 
 

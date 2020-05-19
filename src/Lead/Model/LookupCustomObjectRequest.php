@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Lead\Model;
+namespace NecLimDul\MarketoRest\Lead\Model;
 
 use \ArrayAccess;
-use \MarketoRest\Lead\ObjectSerializer;
+use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * LookupCustomObjectRequest Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -60,7 +60,7 @@ class LookupCustomObjectRequest implements ModelInterface, ArrayAccess
         'batch_size' => 'int',
         'fields' => 'string[]',
         'filter_type' => 'string',
-        'input' => '\MarketoRest\Lead\Model\CustomObject[]',
+        'input' => '\NecLimDul\MarketoRest\Lead\Model\CustomObject[]',
         'next_page_token' => 'string'
     ];
 
@@ -306,7 +306,7 @@ class LookupCustomObjectRequest implements ModelInterface, ArrayAccess
     /**
      * Gets input
      *
-     * @return \MarketoRest\Lead\Model\CustomObject[]
+     * @return \NecLimDul\MarketoRest\Lead\Model\CustomObject[]
      */
     public function getInput()
     {
@@ -316,7 +316,7 @@ class LookupCustomObjectRequest implements ModelInterface, ArrayAccess
     /**
      * Sets input
      *
-     * @param \MarketoRest\Lead\Model\CustomObject[] $input Search values when using a compound key.  Each element must include each of the fields in the compound key.  Compound keys are determined by the contents of \"dedupeFields\" in the Describe result for the object
+     * @param \NecLimDul\MarketoRest\Lead\Model\CustomObject[] $input Search values when using a compound key.  Each element must include each of the fields in the compound key.  Compound keys are determined by the contents of \"dedupeFields\" in the Describe result for the object
      *
      * @return $this
      */

@@ -1,4 +1,4 @@
-# MarketoRest\Lead\CompaniesApi
+# NecLimDul\MarketoRest\Lead\CompaniesApi
 
 All URIs are relative to *https://localhost:8080*
 
@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 
 # **deleteCompaniesUsingPOST**
-> \MarketoRest\Lead\Model\ResponseOfCompany deleteCompaniesUsingPOST($delete_company_request)
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany deleteCompaniesUsingPOST($delete_company_request)
 
 Delete Companies
 
@@ -22,12 +22,12 @@ Deletes the included list of company records from the destination instance.  Req
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Lead\Api\CompaniesApi(
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\CompaniesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$delete_company_request = new \MarketoRest\Lead\Model\DeleteCompanyRequest(); // \MarketoRest\Lead\Model\DeleteCompanyRequest | deleteCompanyRequest
+$delete_company_request = new \NecLimDul\MarketoRest\Lead\Model\DeleteCompanyRequest(); // \NecLimDul\MarketoRest\Lead\Model\DeleteCompanyRequest | deleteCompanyRequest
 
 try {
     $result = $apiInstance->deleteCompaniesUsingPOST($delete_company_request);
@@ -42,11 +42,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **delete_company_request** | [**\MarketoRest\Lead\Model\DeleteCompanyRequest**](../Model/DeleteCompanyRequest.md)| deleteCompanyRequest |
+ **delete_company_request** | [**\NecLimDul\MarketoRest\Lead\Model\DeleteCompanyRequest**](../Model/DeleteCompanyRequest.md)| deleteCompanyRequest |
 
 ### Return type
 
-[**\MarketoRest\Lead\Model\ResponseOfCompany**](../Model/ResponseOfCompany.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany**](../Model/ResponseOfCompany.md)
 
 ### Authorization
 
@@ -60,7 +60,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **describeUsingGET**
-> \MarketoRest\Lead\Model\ResponseOfObjectMetaData describeUsingGET()
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData describeUsingGET()
 
 Describe Companies
 
@@ -71,7 +71,7 @@ Returns metadata about companies and the fields available for interaction via th
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Lead\Api\CompaniesApi(
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\CompaniesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -91,7 +91,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**\MarketoRest\Lead\Model\ResponseOfObjectMetaData**](../Model/ResponseOfObjectMetaData.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData**](../Model/ResponseOfObjectMetaData.md)
 
 ### Authorization
 
@@ -105,7 +105,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getCompaniesUsingGET**
-> \MarketoRest\Lead\Model\ResponseOfCompany getCompaniesUsingGET($filter_type, $filter_values, $fields, $batch_size, $next_page_token)
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany getCompaniesUsingGET($filter_type, $filter_values, $fields, $batch_size, $next_page_token)
 
 Get Companies
 
@@ -116,7 +116,7 @@ Retrieves company records from the destination instance based on the submitted f
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Lead\Api\CompaniesApi(
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\CompaniesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -148,7 +148,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Lead\Model\ResponseOfCompany**](../Model/ResponseOfCompany.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany**](../Model/ResponseOfCompany.md)
 
 ### Authorization
 
@@ -162,7 +162,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **syncCompaniesUsingPOST**
-> \MarketoRest\Lead\Model\ResponseOfCompany syncCompaniesUsingPOST($sync_company_request)
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany syncCompaniesUsingPOST($sync_company_request)
 
 Sync Companies
 
@@ -173,12 +173,12 @@ Allows inserting, updating, or upserting of company records into Marketo. Requir
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Lead\Api\CompaniesApi(
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\CompaniesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$sync_company_request = new \MarketoRest\Lead\Model\SyncCompanyRequest(); // \MarketoRest\Lead\Model\SyncCompanyRequest | syncCompanyRequest
+$sync_company_request = new \NecLimDul\MarketoRest\Lead\Model\SyncCompanyRequest(); // \NecLimDul\MarketoRest\Lead\Model\SyncCompanyRequest | syncCompanyRequest
 
 try {
     $result = $apiInstance->syncCompaniesUsingPOST($sync_company_request);
@@ -193,11 +193,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **sync_company_request** | [**\MarketoRest\Lead\Model\SyncCompanyRequest**](../Model/SyncCompanyRequest.md)| syncCompanyRequest |
+ **sync_company_request** | [**\NecLimDul\MarketoRest\Lead\Model\SyncCompanyRequest**](../Model/SyncCompanyRequest.md)| syncCompanyRequest |
 
 ### Return type
 
-[**\MarketoRest\Lead\Model\ResponseOfCompany**](../Model/ResponseOfCompany.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany**](../Model/ResponseOfCompany.md)
 
 ### Authorization
 

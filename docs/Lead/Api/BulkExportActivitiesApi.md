@@ -1,4 +1,4 @@
-# MarketoRest\Lead\BulkExportActivitiesApi
+# NecLimDul\MarketoRest\Lead\BulkExportActivitiesApi
 
 All URIs are relative to *https://localhost:8080*
 
@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 
 # **cancelExportActivitiesUsingPOST**
-> \MarketoRest\Lead\Model\ResponseOfExportResponse cancelExportActivitiesUsingPOST($export_id)
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse cancelExportActivitiesUsingPOST($export_id)
 
 Cancel Export Activity Job
 
@@ -24,7 +24,7 @@ Cancel export job.  Required Permissions: Read-Only Activity
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Lead\Api\BulkExportActivitiesApi(
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\BulkExportActivitiesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -48,7 +48,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Lead\Model\ResponseOfExportResponse**](../Model/ResponseOfExportResponse.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse**](../Model/ResponseOfExportResponse.md)
 
 ### Authorization
 
@@ -62,7 +62,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **createExportActivitiesUsingPOST**
-> \MarketoRest\Lead\Model\ResponseOfExportResponse createExportActivitiesUsingPOST($export_activity_request)
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse createExportActivitiesUsingPOST($export_activity_request)
 
 Create Export Activity Job
 
@@ -73,12 +73,12 @@ Create export job for search criteria defined via \"filter\" parameter.  Request
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Lead\Api\BulkExportActivitiesApi(
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\BulkExportActivitiesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$export_activity_request = new \MarketoRest\Lead\Model\ExportActivityRequest(); // \MarketoRest\Lead\Model\ExportActivityRequest | exportActivityRequest<br><br>ColumnHeaderNames: A JSON object containing key-value pairs of field and column header names.<br><br>Example:<br><code>\"columnHeaderNames\":{<br>  \"primaryAttributeValueId\":\"Attribute ID\",<br>  \"primaryAttributeValue\":\"Attribute Value\",<br>  \"attributes\":\"Secondary Attributes\"<br>}</code><br>
+$export_activity_request = new \NecLimDul\MarketoRest\Lead\Model\ExportActivityRequest(); // \NecLimDul\MarketoRest\Lead\Model\ExportActivityRequest | exportActivityRequest<br><br>ColumnHeaderNames: A JSON object containing key-value pairs of field and column header names.<br><br>Example:<br><code>\"columnHeaderNames\":{<br>  \"primaryAttributeValueId\":\"Attribute ID\",<br>  \"primaryAttributeValue\":\"Attribute Value\",<br>  \"attributes\":\"Secondary Attributes\"<br>}</code><br>
 
 try {
     $result = $apiInstance->createExportActivitiesUsingPOST($export_activity_request);
@@ -93,11 +93,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **export_activity_request** | [**\MarketoRest\Lead\Model\ExportActivityRequest**](../Model/ExportActivityRequest.md)| exportActivityRequest&lt;br&gt;&lt;br&gt;ColumnHeaderNames: A JSON object containing key-value pairs of field and column header names.&lt;br&gt;&lt;br&gt;Example:&lt;br&gt;&lt;code&gt;\&quot;columnHeaderNames\&quot;:{&lt;br&gt;  \&quot;primaryAttributeValueId\&quot;:\&quot;Attribute ID\&quot;,&lt;br&gt;  \&quot;primaryAttributeValue\&quot;:\&quot;Attribute Value\&quot;,&lt;br&gt;  \&quot;attributes\&quot;:\&quot;Secondary Attributes\&quot;&lt;br&gt;}&lt;/code&gt;&lt;br&gt; | [optional]
+ **export_activity_request** | [**\NecLimDul\MarketoRest\Lead\Model\ExportActivityRequest**](../Model/ExportActivityRequest.md)| exportActivityRequest&lt;br&gt;&lt;br&gt;ColumnHeaderNames: A JSON object containing key-value pairs of field and column header names.&lt;br&gt;&lt;br&gt;Example:&lt;br&gt;&lt;code&gt;\&quot;columnHeaderNames\&quot;:{&lt;br&gt;  \&quot;primaryAttributeValueId\&quot;:\&quot;Attribute ID\&quot;,&lt;br&gt;  \&quot;primaryAttributeValue\&quot;:\&quot;Attribute Value\&quot;,&lt;br&gt;  \&quot;attributes\&quot;:\&quot;Secondary Attributes\&quot;&lt;br&gt;}&lt;/code&gt;&lt;br&gt; | [optional]
 
 ### Return type
 
-[**\MarketoRest\Lead\Model\ResponseOfExportResponse**](../Model/ResponseOfExportResponse.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse**](../Model/ResponseOfExportResponse.md)
 
 ### Authorization
 
@@ -111,7 +111,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **enqueueExportActivitiesUsingPOST**
-> \MarketoRest\Lead\Model\ResponseOfExportResponse enqueueExportActivitiesUsingPOST($export_id)
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse enqueueExportActivitiesUsingPOST($export_id)
 
 Enqueue Export Activity Job
 
@@ -122,7 +122,7 @@ Enqueue export job. This will place export job in queue, and will start the job 
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Lead\Api\BulkExportActivitiesApi(
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\BulkExportActivitiesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -146,7 +146,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Lead\Model\ResponseOfExportResponse**](../Model/ResponseOfExportResponse.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse**](../Model/ResponseOfExportResponse.md)
 
 ### Authorization
 
@@ -160,7 +160,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getExportActivitiesFileUsingGET**
-> \MarketoRest\Lead\Model\ObservableOfInputStreamRangeContent getExportActivitiesFileUsingGET($export_id, $range)
+> \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamRangeContent getExportActivitiesFileUsingGET($export_id, $range)
 
 Get Export Activity File
 
@@ -171,7 +171,7 @@ Returns the file content of an export job.  The export job must be in \"Complete
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Lead\Api\BulkExportActivitiesApi(
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\BulkExportActivitiesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -197,7 +197,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Lead\Model\ObservableOfInputStreamRangeContent**](../Model/ObservableOfInputStreamRangeContent.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamRangeContent**](../Model/ObservableOfInputStreamRangeContent.md)
 
 ### Authorization
 
@@ -211,7 +211,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getExportActivitiesStatusUsingGET**
-> \MarketoRest\Lead\Model\ResponseOfExportResponse getExportActivitiesStatusUsingGET($export_id)
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse getExportActivitiesStatusUsingGET($export_id)
 
 Get Export Activity Job Status
 
@@ -222,7 +222,7 @@ Returns status of an export job.  Job status is available for 30 days after Comp
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Lead\Api\BulkExportActivitiesApi(
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\BulkExportActivitiesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -246,7 +246,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Lead\Model\ResponseOfExportResponse**](../Model/ResponseOfExportResponse.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse**](../Model/ResponseOfExportResponse.md)
 
 ### Authorization
 
@@ -260,7 +260,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getExportActivitiesUsingGET**
-> \MarketoRest\Lead\Model\ResponseOfExportResponseWithToken getExportActivitiesUsingGET($status, $batch_size, $next_page_token)
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponseWithToken getExportActivitiesUsingGET($status, $batch_size, $next_page_token)
 
 Get Export Activity Jobs
 
@@ -271,7 +271,7 @@ Returns a list of export jobs that were created in the past 7 days.  Required Pe
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Lead\Api\BulkExportActivitiesApi(
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\BulkExportActivitiesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -299,7 +299,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Lead\Model\ResponseOfExportResponseWithToken**](../Model/ResponseOfExportResponseWithToken.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponseWithToken**](../Model/ResponseOfExportResponseWithToken.md)
 
 ### Authorization
 

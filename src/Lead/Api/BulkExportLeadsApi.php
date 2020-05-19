@@ -4,7 +4,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -26,7 +26,7 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Lead\Api;
+namespace NecLimDul\MarketoRest\Lead\Api;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -34,16 +34,16 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
-use MarketoRest\Lead\ApiException;
-use MarketoRest\Lead\Configuration;
-use MarketoRest\Lead\HeaderSelector;
-use MarketoRest\Lead\ObjectSerializer;
+use NecLimDul\MarketoRest\Lead\ApiException;
+use NecLimDul\MarketoRest\Lead\Configuration;
+use NecLimDul\MarketoRest\Lead\HeaderSelector;
+use NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * BulkExportLeadsApi Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -94,9 +94,9 @@ class BulkExportLeadsApi
      *
      * @param  string $export_id Id of export batch job. (required)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Lead\Model\ResponseOfExportResponse
+     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse
      */
     public function cancelExportLeadsUsingPOST($export_id)
     {
@@ -111,13 +111,13 @@ class BulkExportLeadsApi
      *
      * @param  string $export_id Id of export batch job. (required)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Lead\Model\ResponseOfExportResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function cancelExportLeadsUsingPOSTWithHttpInfo($export_id)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfExportResponse';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse';
         $request = $this->cancelExportLeadsUsingPOSTRequest($export_id);
 
         try {
@@ -169,7 +169,7 @@ class BulkExportLeadsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Lead\Model\ResponseOfExportResponse',
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -211,7 +211,7 @@ class BulkExportLeadsApi
      */
     public function cancelExportLeadsUsingPOSTAsyncWithHttpInfo($export_id)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfExportResponse';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse';
         $request = $this->cancelExportLeadsUsingPOSTRequest($export_id);
 
         return $this->client
@@ -361,11 +361,11 @@ class BulkExportLeadsApi
      *
      * Create Export Lead Job
      *
-     * @param  \MarketoRest\Lead\Model\ExportLeadRequest $export_lead_request exportLeadRequest&lt;br&gt;&lt;br&gt;ColumnHeaderNames: A JSON object containing key-value pairs of field and column header names.&lt;br&gt;&lt;br&gt;Example:&lt;br&gt;&lt;code&gt;\&quot;columnHeaderNames\&quot;:{&lt;br&gt;  \&quot;firstName\&quot;:\&quot;First Name\&quot;,&lt;br&gt;  \&quot;lastName\&quot;:\&quot;Last Name\&quot;,&lt;br&gt;  \&quot;email\&quot;:\&quot;Email Address\&quot;&lt;br&gt;}&lt;/code&gt;&lt;br&gt; (optional)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\ExportLeadRequest $export_lead_request exportLeadRequest&lt;br&gt;&lt;br&gt;ColumnHeaderNames: A JSON object containing key-value pairs of field and column header names.&lt;br&gt;&lt;br&gt;Example:&lt;br&gt;&lt;code&gt;\&quot;columnHeaderNames\&quot;:{&lt;br&gt;  \&quot;firstName\&quot;:\&quot;First Name\&quot;,&lt;br&gt;  \&quot;lastName\&quot;:\&quot;Last Name\&quot;,&lt;br&gt;  \&quot;email\&quot;:\&quot;Email Address\&quot;&lt;br&gt;}&lt;/code&gt;&lt;br&gt; (optional)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Lead\Model\ResponseOfExportResponse
+     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse
      */
     public function createExportLeadsUsingPOST($export_lead_request = null)
     {
@@ -378,15 +378,15 @@ class BulkExportLeadsApi
      *
      * Create Export Lead Job
      *
-     * @param  \MarketoRest\Lead\Model\ExportLeadRequest $export_lead_request exportLeadRequest&lt;br&gt;&lt;br&gt;ColumnHeaderNames: A JSON object containing key-value pairs of field and column header names.&lt;br&gt;&lt;br&gt;Example:&lt;br&gt;&lt;code&gt;\&quot;columnHeaderNames\&quot;:{&lt;br&gt;  \&quot;firstName\&quot;:\&quot;First Name\&quot;,&lt;br&gt;  \&quot;lastName\&quot;:\&quot;Last Name\&quot;,&lt;br&gt;  \&quot;email\&quot;:\&quot;Email Address\&quot;&lt;br&gt;}&lt;/code&gt;&lt;br&gt; (optional)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\ExportLeadRequest $export_lead_request exportLeadRequest&lt;br&gt;&lt;br&gt;ColumnHeaderNames: A JSON object containing key-value pairs of field and column header names.&lt;br&gt;&lt;br&gt;Example:&lt;br&gt;&lt;code&gt;\&quot;columnHeaderNames\&quot;:{&lt;br&gt;  \&quot;firstName\&quot;:\&quot;First Name\&quot;,&lt;br&gt;  \&quot;lastName\&quot;:\&quot;Last Name\&quot;,&lt;br&gt;  \&quot;email\&quot;:\&quot;Email Address\&quot;&lt;br&gt;}&lt;/code&gt;&lt;br&gt; (optional)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Lead\Model\ResponseOfExportResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function createExportLeadsUsingPOSTWithHttpInfo($export_lead_request = null)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfExportResponse';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse';
         $request = $this->createExportLeadsUsingPOSTRequest($export_lead_request);
 
         try {
@@ -438,7 +438,7 @@ class BulkExportLeadsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Lead\Model\ResponseOfExportResponse',
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -453,7 +453,7 @@ class BulkExportLeadsApi
      *
      * Create Export Lead Job
      *
-     * @param  \MarketoRest\Lead\Model\ExportLeadRequest $export_lead_request exportLeadRequest&lt;br&gt;&lt;br&gt;ColumnHeaderNames: A JSON object containing key-value pairs of field and column header names.&lt;br&gt;&lt;br&gt;Example:&lt;br&gt;&lt;code&gt;\&quot;columnHeaderNames\&quot;:{&lt;br&gt;  \&quot;firstName\&quot;:\&quot;First Name\&quot;,&lt;br&gt;  \&quot;lastName\&quot;:\&quot;Last Name\&quot;,&lt;br&gt;  \&quot;email\&quot;:\&quot;Email Address\&quot;&lt;br&gt;}&lt;/code&gt;&lt;br&gt; (optional)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\ExportLeadRequest $export_lead_request exportLeadRequest&lt;br&gt;&lt;br&gt;ColumnHeaderNames: A JSON object containing key-value pairs of field and column header names.&lt;br&gt;&lt;br&gt;Example:&lt;br&gt;&lt;code&gt;\&quot;columnHeaderNames\&quot;:{&lt;br&gt;  \&quot;firstName\&quot;:\&quot;First Name\&quot;,&lt;br&gt;  \&quot;lastName\&quot;:\&quot;Last Name\&quot;,&lt;br&gt;  \&quot;email\&quot;:\&quot;Email Address\&quot;&lt;br&gt;}&lt;/code&gt;&lt;br&gt; (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -473,14 +473,14 @@ class BulkExportLeadsApi
      *
      * Create Export Lead Job
      *
-     * @param  \MarketoRest\Lead\Model\ExportLeadRequest $export_lead_request exportLeadRequest&lt;br&gt;&lt;br&gt;ColumnHeaderNames: A JSON object containing key-value pairs of field and column header names.&lt;br&gt;&lt;br&gt;Example:&lt;br&gt;&lt;code&gt;\&quot;columnHeaderNames\&quot;:{&lt;br&gt;  \&quot;firstName\&quot;:\&quot;First Name\&quot;,&lt;br&gt;  \&quot;lastName\&quot;:\&quot;Last Name\&quot;,&lt;br&gt;  \&quot;email\&quot;:\&quot;Email Address\&quot;&lt;br&gt;}&lt;/code&gt;&lt;br&gt; (optional)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\ExportLeadRequest $export_lead_request exportLeadRequest&lt;br&gt;&lt;br&gt;ColumnHeaderNames: A JSON object containing key-value pairs of field and column header names.&lt;br&gt;&lt;br&gt;Example:&lt;br&gt;&lt;code&gt;\&quot;columnHeaderNames\&quot;:{&lt;br&gt;  \&quot;firstName\&quot;:\&quot;First Name\&quot;,&lt;br&gt;  \&quot;lastName\&quot;:\&quot;Last Name\&quot;,&lt;br&gt;  \&quot;email\&quot;:\&quot;Email Address\&quot;&lt;br&gt;}&lt;/code&gt;&lt;br&gt; (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function createExportLeadsUsingPOSTAsyncWithHttpInfo($export_lead_request = null)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfExportResponse';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse';
         $request = $this->createExportLeadsUsingPOSTRequest($export_lead_request);
 
         return $this->client
@@ -523,7 +523,7 @@ class BulkExportLeadsApi
     /**
      * Create request for operation 'createExportLeadsUsingPOST'
      *
-     * @param  \MarketoRest\Lead\Model\ExportLeadRequest $export_lead_request exportLeadRequest&lt;br&gt;&lt;br&gt;ColumnHeaderNames: A JSON object containing key-value pairs of field and column header names.&lt;br&gt;&lt;br&gt;Example:&lt;br&gt;&lt;code&gt;\&quot;columnHeaderNames\&quot;:{&lt;br&gt;  \&quot;firstName\&quot;:\&quot;First Name\&quot;,&lt;br&gt;  \&quot;lastName\&quot;:\&quot;Last Name\&quot;,&lt;br&gt;  \&quot;email\&quot;:\&quot;Email Address\&quot;&lt;br&gt;}&lt;/code&gt;&lt;br&gt; (optional)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\ExportLeadRequest $export_lead_request exportLeadRequest&lt;br&gt;&lt;br&gt;ColumnHeaderNames: A JSON object containing key-value pairs of field and column header names.&lt;br&gt;&lt;br&gt;Example:&lt;br&gt;&lt;code&gt;\&quot;columnHeaderNames\&quot;:{&lt;br&gt;  \&quot;firstName\&quot;:\&quot;First Name\&quot;,&lt;br&gt;  \&quot;lastName\&quot;:\&quot;Last Name\&quot;,&lt;br&gt;  \&quot;email\&quot;:\&quot;Email Address\&quot;&lt;br&gt;}&lt;/code&gt;&lt;br&gt; (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -621,9 +621,9 @@ class BulkExportLeadsApi
      *
      * @param  string $export_id Id of export batch job. (required)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Lead\Model\ResponseOfExportResponse
+     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse
      */
     public function enqueueExportLeadsUsingPOST($export_id)
     {
@@ -638,13 +638,13 @@ class BulkExportLeadsApi
      *
      * @param  string $export_id Id of export batch job. (required)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Lead\Model\ResponseOfExportResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function enqueueExportLeadsUsingPOSTWithHttpInfo($export_id)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfExportResponse';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse';
         $request = $this->enqueueExportLeadsUsingPOSTRequest($export_id);
 
         try {
@@ -696,7 +696,7 @@ class BulkExportLeadsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Lead\Model\ResponseOfExportResponse',
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -738,7 +738,7 @@ class BulkExportLeadsApi
      */
     public function enqueueExportLeadsUsingPOSTAsyncWithHttpInfo($export_id)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfExportResponse';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse';
         $request = $this->enqueueExportLeadsUsingPOSTRequest($export_id);
 
         return $this->client
@@ -891,9 +891,9 @@ class BulkExportLeadsApi
      * @param  string $export_id Id of export batch job. (required)
      * @param  string $range To support partial retrieval of extracted data, the HTTP header \&quot;Range\&quot; of type \&quot;bytes\&quot; may be specified.  See RFC 2616 \&quot;Range Retrieval Requests\&quot; for more information. If the header is not set, the entire contents will be returned. (optional)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Lead\Model\ObservableOfInputStreamRangeContent
+     * @return \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamRangeContent
      */
     public function getExportLeadsFileUsingGET($export_id, $range = null)
     {
@@ -909,13 +909,13 @@ class BulkExportLeadsApi
      * @param  string $export_id Id of export batch job. (required)
      * @param  string $range To support partial retrieval of extracted data, the HTTP header \&quot;Range\&quot; of type \&quot;bytes\&quot; may be specified.  See RFC 2616 \&quot;Range Retrieval Requests\&quot; for more information. If the header is not set, the entire contents will be returned. (optional)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Lead\Model\ObservableOfInputStreamRangeContent, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamRangeContent, HTTP status code, HTTP response headers (array of strings)
      */
     public function getExportLeadsFileUsingGETWithHttpInfo($export_id, $range = null)
     {
-        $returnType = '\MarketoRest\Lead\Model\ObservableOfInputStreamRangeContent';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamRangeContent';
         $request = $this->getExportLeadsFileUsingGETRequest($export_id, $range);
 
         try {
@@ -967,7 +967,7 @@ class BulkExportLeadsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Lead\Model\ObservableOfInputStreamRangeContent',
+                        '\NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamRangeContent',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1011,7 +1011,7 @@ class BulkExportLeadsApi
      */
     public function getExportLeadsFileUsingGETAsyncWithHttpInfo($export_id, $range = null)
     {
-        $returnType = '\MarketoRest\Lead\Model\ObservableOfInputStreamRangeContent';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamRangeContent';
         $request = $this->getExportLeadsFileUsingGETRequest($export_id, $range);
 
         return $this->client
@@ -1168,9 +1168,9 @@ class BulkExportLeadsApi
      *
      * @param  string $export_id Id of export batch job. (required)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Lead\Model\ResponseOfExportResponse
+     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse
      */
     public function getExportLeadsStatusUsingGET($export_id)
     {
@@ -1185,13 +1185,13 @@ class BulkExportLeadsApi
      *
      * @param  string $export_id Id of export batch job. (required)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Lead\Model\ResponseOfExportResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function getExportLeadsStatusUsingGETWithHttpInfo($export_id)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfExportResponse';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse';
         $request = $this->getExportLeadsStatusUsingGETRequest($export_id);
 
         try {
@@ -1243,7 +1243,7 @@ class BulkExportLeadsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Lead\Model\ResponseOfExportResponse',
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1285,7 +1285,7 @@ class BulkExportLeadsApi
      */
     public function getExportLeadsStatusUsingGETAsyncWithHttpInfo($export_id)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfExportResponse';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse';
         $request = $this->getExportLeadsStatusUsingGETRequest($export_id);
 
         return $this->client
@@ -1439,9 +1439,9 @@ class BulkExportLeadsApi
      * @param  int $batch_size The batch size to return. The max and default value is 300. (optional)
      * @param  string $next_page_token A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info. (optional)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Lead\Model\ResponseOfExportResponseWithToken
+     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponseWithToken
      */
     public function getExportLeadsUsingGET($status = null, $batch_size = null, $next_page_token = null)
     {
@@ -1458,13 +1458,13 @@ class BulkExportLeadsApi
      * @param  int $batch_size The batch size to return. The max and default value is 300. (optional)
      * @param  string $next_page_token A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info. (optional)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Lead\Model\ResponseOfExportResponseWithToken, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponseWithToken, HTTP status code, HTTP response headers (array of strings)
      */
     public function getExportLeadsUsingGETWithHttpInfo($status = null, $batch_size = null, $next_page_token = null)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfExportResponseWithToken';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponseWithToken';
         $request = $this->getExportLeadsUsingGETRequest($status, $batch_size, $next_page_token);
 
         try {
@@ -1516,7 +1516,7 @@ class BulkExportLeadsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Lead\Model\ResponseOfExportResponseWithToken',
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponseWithToken',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1562,7 +1562,7 @@ class BulkExportLeadsApi
      */
     public function getExportLeadsUsingGETAsyncWithHttpInfo($status = null, $batch_size = null, $next_page_token = null)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfExportResponseWithToken';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponseWithToken';
         $request = $this->getExportLeadsUsingGETRequest($status, $batch_size, $next_page_token);
 
         return $this->client

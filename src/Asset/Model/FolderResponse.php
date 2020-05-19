@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Asset\Model;
+namespace NecLimDul\MarketoRest\Asset\Model;
 
 use \ArrayAccess;
-use \MarketoRest\Asset\ObjectSerializer;
+use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * FolderResponse Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -60,13 +60,13 @@ class FolderResponse implements ModelInterface, ArrayAccess
         'access_zone_id' => 'int',
         'created_at' => '\DateTime',
         'description' => 'string',
-        'folder_id' => '\MarketoRest\Asset\Model\Folder',
+        'folder_id' => '\NecLimDul\MarketoRest\Asset\Model\Folder',
         'folder_type' => 'string',
         'id' => 'int',
         'is_archive' => 'bool',
         'is_system' => 'bool',
         'name' => 'string',
-        'parent' => '\MarketoRest\Asset\Model\Folder',
+        'parent' => '\NecLimDul\MarketoRest\Asset\Model\Folder',
         'path' => 'string',
         'updated_at' => '\DateTime',
         'url' => 'string',
@@ -410,7 +410,7 @@ class FolderResponse implements ModelInterface, ArrayAccess
     /**
      * Gets folder_id
      *
-     * @return \MarketoRest\Asset\Model\Folder
+     * @return \NecLimDul\MarketoRest\Asset\Model\Folder
      */
     public function getFolderId()
     {
@@ -420,7 +420,7 @@ class FolderResponse implements ModelInterface, ArrayAccess
     /**
      * Sets folder_id
      *
-     * @param \MarketoRest\Asset\Model\Folder $folder_id Id of the folder
+     * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder_id Id of the folder
      *
      * @return $this
      */
@@ -563,7 +563,7 @@ class FolderResponse implements ModelInterface, ArrayAccess
     /**
      * Gets parent
      *
-     * @return \MarketoRest\Asset\Model\Folder
+     * @return \NecLimDul\MarketoRest\Asset\Model\Folder
      */
     public function getParent()
     {
@@ -573,7 +573,7 @@ class FolderResponse implements ModelInterface, ArrayAccess
     /**
      * Sets parent
      *
-     * @param \MarketoRest\Asset\Model\Folder $parent Parent folder reference
+     * @param \NecLimDul\MarketoRest\Asset\Model\Folder $parent Parent folder reference
      *
      * @return $this
      */

@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Lead\Model;
+namespace NecLimDul\MarketoRest\Lead\Model;
 
 use \ArrayAccess;
-use \MarketoRest\Lead\ObjectSerializer;
+use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * ExportActivityFilter Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -58,7 +58,7 @@ class ExportActivityFilter implements ModelInterface, ArrayAccess
       */
     protected static $swaggerTypes = [
         'activity_type_ids' => 'int[]',
-        'created_at' => '\MarketoRest\Lead\Model\DateRange'
+        'created_at' => '\NecLimDul\MarketoRest\Lead\Model\DateRange'
     ];
 
     /**
@@ -240,7 +240,7 @@ class ExportActivityFilter implements ModelInterface, ArrayAccess
     /**
      * Gets created_at
      *
-     * @return \MarketoRest\Lead\Model\DateRange
+     * @return \NecLimDul\MarketoRest\Lead\Model\DateRange
      */
     public function getCreatedAt()
     {
@@ -250,7 +250,7 @@ class ExportActivityFilter implements ModelInterface, ArrayAccess
     /**
      * Sets created_at
      *
-     * @param \MarketoRest\Lead\Model\DateRange $created_at Date range to filter new activities on
+     * @param \NecLimDul\MarketoRest\Lead\Model\DateRange $created_at Date range to filter new activities on
      *
      * @return $this
      */

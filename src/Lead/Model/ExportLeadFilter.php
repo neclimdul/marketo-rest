@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Lead\Model;
+namespace NecLimDul\MarketoRest\Lead\Model;
 
 use \ArrayAccess;
-use \MarketoRest\Lead\ObjectSerializer;
+use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * ExportLeadFilter Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -57,12 +57,12 @@ class ExportLeadFilter implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'created_at' => '\MarketoRest\Lead\Model\DateRange',
+        'created_at' => '\NecLimDul\MarketoRest\Lead\Model\DateRange',
         'smart_list_id' => 'int',
         'smart_list_name' => 'string',
         'static_list_id' => 'int',
         'static_list_name' => 'string',
-        'updated_at' => '\MarketoRest\Lead\Model\DateRange'
+        'updated_at' => '\NecLimDul\MarketoRest\Lead\Model\DateRange'
     ];
 
     /**
@@ -255,7 +255,7 @@ class ExportLeadFilter implements ModelInterface, ArrayAccess
     /**
      * Gets created_at
      *
-     * @return \MarketoRest\Lead\Model\DateRange
+     * @return \NecLimDul\MarketoRest\Lead\Model\DateRange
      */
     public function getCreatedAt()
     {
@@ -265,7 +265,7 @@ class ExportLeadFilter implements ModelInterface, ArrayAccess
     /**
      * Sets created_at
      *
-     * @param \MarketoRest\Lead\Model\DateRange $created_at Date range to filter new leads on
+     * @param \NecLimDul\MarketoRest\Lead\Model\DateRange $created_at Date range to filter new leads on
      *
      * @return $this
      */
@@ -375,7 +375,7 @@ class ExportLeadFilter implements ModelInterface, ArrayAccess
     /**
      * Gets updated_at
      *
-     * @return \MarketoRest\Lead\Model\DateRange
+     * @return \NecLimDul\MarketoRest\Lead\Model\DateRange
      */
     public function getUpdatedAt()
     {
@@ -385,7 +385,7 @@ class ExportLeadFilter implements ModelInterface, ArrayAccess
     /**
      * Sets updated_at
      *
-     * @param \MarketoRest\Lead\Model\DateRange $updated_at Date range to filter updated leads on
+     * @param \NecLimDul\MarketoRest\Lead\Model\DateRange $updated_at Date range to filter updated leads on
      *
      * @return $this
      */

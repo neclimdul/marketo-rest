@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Asset\Model;
+namespace NecLimDul\MarketoRest\Asset\Model;
 
 use \ArrayAccess;
-use \MarketoRest\Asset\ObjectSerializer;
+use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * ThankYouPageResponse Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -58,7 +58,7 @@ class ThankYouPageResponse implements ModelInterface, ArrayAccess
       */
     protected static $swaggerTypes = [
         'id' => 'int',
-        'thank_you_list' => '\MarketoRest\Asset\Model\FormThankYouPageDTO[]'
+        'thank_you_list' => '\NecLimDul\MarketoRest\Asset\Model\FormThankYouPageDTO[]'
     ];
 
     /**
@@ -237,7 +237,7 @@ class ThankYouPageResponse implements ModelInterface, ArrayAccess
     /**
      * Gets thank_you_list
      *
-     * @return \MarketoRest\Asset\Model\FormThankYouPageDTO[]
+     * @return \NecLimDul\MarketoRest\Asset\Model\FormThankYouPageDTO[]
      */
     public function getThankYouList()
     {
@@ -247,7 +247,7 @@ class ThankYouPageResponse implements ModelInterface, ArrayAccess
     /**
      * Sets thank_you_list
      *
-     * @param \MarketoRest\Asset\Model\FormThankYouPageDTO[] $thank_you_list thank_you_list
+     * @param \NecLimDul\MarketoRest\Asset\Model\FormThankYouPageDTO[] $thank_you_list thank_you_list
      *
      * @return $this
      */

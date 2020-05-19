@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Lead\Model;
+namespace NecLimDul\MarketoRest\Lead\Model;
 
 use \ArrayAccess;
-use \MarketoRest\Lead\ObjectSerializer;
+use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * CustomObject Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -58,7 +58,7 @@ class CustomObject implements ModelInterface, ArrayAccess
       */
     protected static $swaggerTypes = [
         'marketo_guid' => 'string',
-        'reasons' => '\MarketoRest\Lead\Model\Reason[]',
+        'reasons' => '\NecLimDul\MarketoRest\Lead\Model\Reason[]',
         'seq' => 'int'
     ];
 
@@ -249,7 +249,7 @@ class CustomObject implements ModelInterface, ArrayAccess
     /**
      * Gets reasons
      *
-     * @return \MarketoRest\Lead\Model\Reason[]
+     * @return \NecLimDul\MarketoRest\Lead\Model\Reason[]
      */
     public function getReasons()
     {
@@ -259,7 +259,7 @@ class CustomObject implements ModelInterface, ArrayAccess
     /**
      * Sets reasons
      *
-     * @param \MarketoRest\Lead\Model\Reason[] $reasons reasons
+     * @param \NecLimDul\MarketoRest\Lead\Model\Reason[] $reasons reasons
      *
      * @return $this
      */

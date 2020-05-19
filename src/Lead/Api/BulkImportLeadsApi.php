@@ -4,7 +4,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -26,7 +26,7 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Lead\Api;
+namespace NecLimDul\MarketoRest\Lead\Api;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -34,16 +34,16 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
-use MarketoRest\Lead\ApiException;
-use MarketoRest\Lead\Configuration;
-use MarketoRest\Lead\HeaderSelector;
-use MarketoRest\Lead\ObjectSerializer;
+use NecLimDul\MarketoRest\Lead\ApiException;
+use NecLimDul\MarketoRest\Lead\Configuration;
+use NecLimDul\MarketoRest\Lead\HeaderSelector;
+use NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * BulkImportLeadsApi Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -94,9 +94,9 @@ class BulkImportLeadsApi
      *
      * @param  int $batch_id Id of the import batch job. (required)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Lead\Model\ObservableOfInputStreamContent
+     * @return \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent
      */
     public function getImportLeadFailuresUsingGET($batch_id)
     {
@@ -111,13 +111,13 @@ class BulkImportLeadsApi
      *
      * @param  int $batch_id Id of the import batch job. (required)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Lead\Model\ObservableOfInputStreamContent, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent, HTTP status code, HTTP response headers (array of strings)
      */
     public function getImportLeadFailuresUsingGETWithHttpInfo($batch_id)
     {
-        $returnType = '\MarketoRest\Lead\Model\ObservableOfInputStreamContent';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent';
         $request = $this->getImportLeadFailuresUsingGETRequest($batch_id);
 
         try {
@@ -169,7 +169,7 @@ class BulkImportLeadsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Lead\Model\ObservableOfInputStreamContent',
+                        '\NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -211,7 +211,7 @@ class BulkImportLeadsApi
      */
     public function getImportLeadFailuresUsingGETAsyncWithHttpInfo($batch_id)
     {
-        $returnType = '\MarketoRest\Lead\Model\ObservableOfInputStreamContent';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent';
         $request = $this->getImportLeadFailuresUsingGETRequest($batch_id);
 
         return $this->client
@@ -363,9 +363,9 @@ class BulkImportLeadsApi
      *
      * @param  int $batch_id Id of the import batch job. (required)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Lead\Model\ResponseOfImportLeadResponse
+     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportLeadResponse
      */
     public function getImportLeadStatusUsingGET($batch_id)
     {
@@ -380,13 +380,13 @@ class BulkImportLeadsApi
      *
      * @param  int $batch_id Id of the import batch job. (required)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Lead\Model\ResponseOfImportLeadResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportLeadResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function getImportLeadStatusUsingGETWithHttpInfo($batch_id)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfImportLeadResponse';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfImportLeadResponse';
         $request = $this->getImportLeadStatusUsingGETRequest($batch_id);
 
         try {
@@ -438,7 +438,7 @@ class BulkImportLeadsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Lead\Model\ResponseOfImportLeadResponse',
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfImportLeadResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -480,7 +480,7 @@ class BulkImportLeadsApi
      */
     public function getImportLeadStatusUsingGETAsyncWithHttpInfo($batch_id)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfImportLeadResponse';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfImportLeadResponse';
         $request = $this->getImportLeadStatusUsingGETRequest($batch_id);
 
         return $this->client
@@ -632,9 +632,9 @@ class BulkImportLeadsApi
      *
      * @param  int $batch_id Id of the import batch job. (required)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Lead\Model\ObservableOfInputStreamContent
+     * @return \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent
      */
     public function getImportLeadWarningsUsingGET($batch_id)
     {
@@ -649,13 +649,13 @@ class BulkImportLeadsApi
      *
      * @param  int $batch_id Id of the import batch job. (required)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Lead\Model\ObservableOfInputStreamContent, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent, HTTP status code, HTTP response headers (array of strings)
      */
     public function getImportLeadWarningsUsingGETWithHttpInfo($batch_id)
     {
-        $returnType = '\MarketoRest\Lead\Model\ObservableOfInputStreamContent';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent';
         $request = $this->getImportLeadWarningsUsingGETRequest($batch_id);
 
         try {
@@ -707,7 +707,7 @@ class BulkImportLeadsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Lead\Model\ObservableOfInputStreamContent',
+                        '\NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -749,7 +749,7 @@ class BulkImportLeadsApi
      */
     public function getImportLeadWarningsUsingGETAsyncWithHttpInfo($batch_id)
     {
-        $returnType = '\MarketoRest\Lead\Model\ObservableOfInputStreamContent';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent';
         $request = $this->getImportLeadWarningsUsingGETRequest($batch_id);
 
         return $this->client
@@ -905,9 +905,9 @@ class BulkImportLeadsApi
      * @param  string $partition_name Name of the lead partition to import to. (optional)
      * @param  int $list_id Id of the static list to import into. (optional)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Lead\Model\ResponseOfImportLeadResponse
+     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportLeadResponse
      */
     public function importLeadUsingPOST($format, $file, $lookup_field = null, $partition_name = null, $list_id = null)
     {
@@ -926,13 +926,13 @@ class BulkImportLeadsApi
      * @param  string $partition_name Name of the lead partition to import to. (optional)
      * @param  int $list_id Id of the static list to import into. (optional)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Lead\Model\ResponseOfImportLeadResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportLeadResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function importLeadUsingPOSTWithHttpInfo($format, $file, $lookup_field = null, $partition_name = null, $list_id = null)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfImportLeadResponse';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfImportLeadResponse';
         $request = $this->importLeadUsingPOSTRequest($format, $file, $lookup_field, $partition_name, $list_id);
 
         try {
@@ -984,7 +984,7 @@ class BulkImportLeadsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Lead\Model\ResponseOfImportLeadResponse',
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfImportLeadResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1034,7 +1034,7 @@ class BulkImportLeadsApi
      */
     public function importLeadUsingPOSTAsyncWithHttpInfo($format, $file, $lookup_field = null, $partition_name = null, $list_id = null)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfImportLeadResponse';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfImportLeadResponse';
         $request = $this->importLeadUsingPOSTRequest($format, $file, $lookup_field, $partition_name, $list_id);
 
         return $this->client

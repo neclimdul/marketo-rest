@@ -4,7 +4,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -26,7 +26,7 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Asset\Api;
+namespace NecLimDul\MarketoRest\Asset\Api;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -34,16 +34,16 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
-use MarketoRest\Asset\ApiException;
-use MarketoRest\Asset\Configuration;
-use MarketoRest\Asset\HeaderSelector;
-use MarketoRest\Asset\ObjectSerializer;
+use NecLimDul\MarketoRest\Asset\ApiException;
+use NecLimDul\MarketoRest\Asset\Configuration;
+use NecLimDul\MarketoRest\Asset\HeaderSelector;
+use NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * ChannelsApi Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -95,9 +95,9 @@ class ChannelsApi
      * @param  int $max_return Maximum number of channels to return.  Max 200, default 20 (optional)
      * @param  int $offset Integer offset for paging (optional)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfChannelResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfChannelResponse
      */
     public function getAllChannelsUsingGET($max_return = null, $offset = null)
     {
@@ -113,13 +113,13 @@ class ChannelsApi
      * @param  int $max_return Maximum number of channels to return.  Max 200, default 20 (optional)
      * @param  int $offset Integer offset for paging (optional)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfChannelResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfChannelResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function getAllChannelsUsingGETWithHttpInfo($max_return = null, $offset = null)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfChannelResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfChannelResponse';
         $request = $this->getAllChannelsUsingGETRequest($max_return, $offset);
 
         try {
@@ -171,7 +171,7 @@ class ChannelsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfChannelResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfChannelResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -215,7 +215,7 @@ class ChannelsApi
      */
     public function getAllChannelsUsingGETAsyncWithHttpInfo($max_return = null, $offset = null)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfChannelResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfChannelResponse';
         $request = $this->getAllChannelsUsingGETRequest($max_return, $offset);
 
         return $this->client
@@ -362,9 +362,9 @@ class ChannelsApi
      *
      * @param  string $name Name of channel to retrieve (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfChannelResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfChannelResponse
      */
     public function getChannelByNameUsingGET($name)
     {
@@ -379,13 +379,13 @@ class ChannelsApi
      *
      * @param  string $name Name of channel to retrieve (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfChannelResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfChannelResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function getChannelByNameUsingGETWithHttpInfo($name)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfChannelResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfChannelResponse';
         $request = $this->getChannelByNameUsingGETRequest($name);
 
         try {
@@ -437,7 +437,7 @@ class ChannelsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfChannelResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfChannelResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -479,7 +479,7 @@ class ChannelsApi
      */
     public function getChannelByNameUsingGETAsyncWithHttpInfo($name)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfChannelResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfChannelResponse';
         $request = $this->getChannelByNameUsingGETRequest($name);
 
         return $this->client

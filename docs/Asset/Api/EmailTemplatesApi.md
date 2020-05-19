@@ -1,4 +1,4 @@
-# MarketoRest\Asset\EmailTemplatesApi
+# NecLimDul\MarketoRest\Asset\EmailTemplatesApi
 
 All URIs are relative to *https://localhost:8080*
 
@@ -20,7 +20,7 @@ Method | HTTP request | Description
 
 
 # **approveDraftUsingPOST1**
-> \MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse approveDraftUsingPOST1($id)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse approveDraftUsingPOST1($id)
 
 Approve Email Template Draft
 
@@ -31,7 +31,7 @@ Approves the current draft of the email template.  Required Permissions: Approve
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\EmailTemplatesApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailTemplatesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -55,7 +55,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse**](../Model/ResponseOfEmailTemplateResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse**](../Model/ResponseOfEmailTemplateResponse.md)
 
 ### Authorization
 
@@ -69,7 +69,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **cloneTemplateUsingPOST**
-> \MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse cloneTemplateUsingPOST($id, $clone_email_template_request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse cloneTemplateUsingPOST($id, $clone_email_template_request)
 
 Clone Email Template
 
@@ -80,13 +80,13 @@ Clones the designated email template.  Required Permissions: Read-Write Assets
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\EmailTemplatesApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailTemplatesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $id = 56; // int | id
-$clone_email_template_request = new \MarketoRest\Asset\Model\CloneEmailTemplateRequest(); // \MarketoRest\Asset\Model\CloneEmailTemplateRequest | cloneEmailTemplateRequest
+$clone_email_template_request = new \NecLimDul\MarketoRest\Asset\Model\CloneEmailTemplateRequest(); // \NecLimDul\MarketoRest\Asset\Model\CloneEmailTemplateRequest | cloneEmailTemplateRequest
 
 try {
     $result = $apiInstance->cloneTemplateUsingPOST($id, $clone_email_template_request);
@@ -102,11 +102,11 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| id |
- **clone_email_template_request** | [**\MarketoRest\Asset\Model\CloneEmailTemplateRequest**](../Model/CloneEmailTemplateRequest.md)| cloneEmailTemplateRequest |
+ **clone_email_template_request** | [**\NecLimDul\MarketoRest\Asset\Model\CloneEmailTemplateRequest**](../Model/CloneEmailTemplateRequest.md)| cloneEmailTemplateRequest |
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse**](../Model/ResponseOfEmailTemplateResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse**](../Model/ResponseOfEmailTemplateResponse.md)
 
 ### Authorization
 
@@ -120,7 +120,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **createEmailTemplateUsingPOST**
-> \MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse createEmailTemplateUsingPOST($create_email_template_request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse createEmailTemplateUsingPOST($create_email_template_request)
 
 Create Email Template
 
@@ -131,12 +131,12 @@ Creates a new email template.  Required Permissions: Read-Write Assets
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\EmailTemplatesApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailTemplatesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$create_email_template_request = new \MarketoRest\Asset\Model\CreateEmailTemplateRequest(); // \MarketoRest\Asset\Model\CreateEmailTemplateRequest | createEmailTemplateRequest
+$create_email_template_request = new \NecLimDul\MarketoRest\Asset\Model\CreateEmailTemplateRequest(); // \NecLimDul\MarketoRest\Asset\Model\CreateEmailTemplateRequest | createEmailTemplateRequest
 
 try {
     $result = $apiInstance->createEmailTemplateUsingPOST($create_email_template_request);
@@ -151,11 +151,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_email_template_request** | [**\MarketoRest\Asset\Model\CreateEmailTemplateRequest**](../Model/CreateEmailTemplateRequest.md)| createEmailTemplateRequest |
+ **create_email_template_request** | [**\NecLimDul\MarketoRest\Asset\Model\CreateEmailTemplateRequest**](../Model/CreateEmailTemplateRequest.md)| createEmailTemplateRequest |
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse**](../Model/ResponseOfEmailTemplateResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse**](../Model/ResponseOfEmailTemplateResponse.md)
 
 ### Authorization
 
@@ -169,7 +169,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **deleteTemplateUsingPOST**
-> \MarketoRest\Asset\Model\ResponseOfIdResponse deleteTemplateUsingPOST($id)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse deleteTemplateUsingPOST($id)
 
 Delete Email Template
 
@@ -180,7 +180,7 @@ Deletes the designated email template.  Required Permissions: Read-Write Assets
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\EmailTemplatesApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailTemplatesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -204,7 +204,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfIdResponse**](../Model/ResponseOfIdResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse**](../Model/ResponseOfIdResponse.md)
 
 ### Authorization
 
@@ -218,7 +218,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **discardDraftUsingPOST1**
-> \MarketoRest\Asset\Model\ResponseOfIdResponse discardDraftUsingPOST1($id)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse discardDraftUsingPOST1($id)
 
 Discard Email Template Draft
 
@@ -229,7 +229,7 @@ Discards the current draft of the email template.  Required Permissions: Read-Wr
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\EmailTemplatesApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailTemplatesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -253,7 +253,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfIdResponse**](../Model/ResponseOfIdResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse**](../Model/ResponseOfIdResponse.md)
 
 ### Authorization
 
@@ -267,7 +267,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getEmailTemplateUsedByUsingGET**
-> \MarketoRest\Asset\Model\ResponseOfEmailTemplateUsedByResponse getEmailTemplateUsedByUsingGET($id, $offset, $max_return)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateUsedByResponse getEmailTemplateUsedByUsingGET($id, $offset, $max_return)
 
 Get Email Template Used By
 
@@ -278,7 +278,7 @@ Returns a list of email records which depend on a given email template.  Require
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\EmailTemplatesApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailTemplatesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -306,7 +306,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfEmailTemplateUsedByResponse**](../Model/ResponseOfEmailTemplateUsedByResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateUsedByResponse**](../Model/ResponseOfEmailTemplateUsedByResponse.md)
 
 ### Authorization
 
@@ -320,7 +320,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getEmailTemplatesUsingGET**
-> \MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse getEmailTemplatesUsingGET($offset, $max_return, $status)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse getEmailTemplatesUsingGET($offset, $max_return, $status)
 
 Get Email Templates
 
@@ -331,7 +331,7 @@ Returns a list of email template records accessible in the target instance.  Req
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\EmailTemplatesApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailTemplatesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -359,7 +359,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse**](../Model/ResponseOfEmailTemplateResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse**](../Model/ResponseOfEmailTemplateResponse.md)
 
 ### Authorization
 
@@ -373,7 +373,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getTemplateByIdUsingGET**
-> \MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse getTemplateByIdUsingGET($id, $status)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse getTemplateByIdUsingGET($id, $status)
 
 Get Email Template by Id
 
@@ -384,7 +384,7 @@ Returns an email template record by its id. Required Permissions: Read-Only Asse
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\EmailTemplatesApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailTemplatesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -410,7 +410,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse**](../Model/ResponseOfEmailTemplateResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse**](../Model/ResponseOfEmailTemplateResponse.md)
 
 ### Authorization
 
@@ -424,7 +424,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getTemplateByNameUsingGET**
-> \MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse getTemplateByNameUsingGET($name, $status)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse getTemplateByNameUsingGET($name, $status)
 
 Get Email Template by Name
 
@@ -435,7 +435,7 @@ Retrieves and email template record by the given name.  Required Permissions: Re
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\EmailTemplatesApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailTemplatesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -461,7 +461,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse**](../Model/ResponseOfEmailTemplateResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse**](../Model/ResponseOfEmailTemplateResponse.md)
 
 ### Authorization
 
@@ -475,7 +475,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getTemplateContentByIdUsingGET**
-> \MarketoRest\Asset\Model\ResponseOfEmailTemplateContentResponse getTemplateContentByIdUsingGET($id, $status)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateContentResponse getTemplateContentByIdUsingGET($id, $status)
 
 Get Email Template Content by Id
 
@@ -486,7 +486,7 @@ Returns the content for a given email template.  Required Permissions: Read-Only
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\EmailTemplatesApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailTemplatesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -512,7 +512,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfEmailTemplateContentResponse**](../Model/ResponseOfEmailTemplateContentResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateContentResponse**](../Model/ResponseOfEmailTemplateContentResponse.md)
 
 ### Authorization
 
@@ -526,7 +526,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **unapproveDraftUsingPOST1**
-> \MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse unapproveDraftUsingPOST1($id)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse unapproveDraftUsingPOST1($id)
 
 Unapprove Email Template Draft
 
@@ -537,7 +537,7 @@ Unapproves the current approved version of the Email Template.  Required Permiss
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\EmailTemplatesApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailTemplatesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -561,7 +561,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse**](../Model/ResponseOfEmailTemplateResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse**](../Model/ResponseOfEmailTemplateResponse.md)
 
 ### Authorization
 
@@ -575,7 +575,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **updateEmailTemplateContentUsingPOST**
-> \MarketoRest\Asset\Model\ResponseOfIdResponse updateEmailTemplateContentUsingPOST($id, $update_email_template_content_request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse updateEmailTemplateContentUsingPOST($id, $update_email_template_content_request)
 
 Update Email Template Content
 
@@ -586,13 +586,13 @@ Updates the content of the given email template.  Required Permissions: Read-Wri
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\EmailTemplatesApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailTemplatesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $id = 56; // int | id
-$update_email_template_content_request = new \MarketoRest\Asset\Model\UpdateEmailTemplateContentRequest(); // \MarketoRest\Asset\Model\UpdateEmailTemplateContentRequest | updateEmailTemplateContentRequest
+$update_email_template_content_request = new \NecLimDul\MarketoRest\Asset\Model\UpdateEmailTemplateContentRequest(); // \NecLimDul\MarketoRest\Asset\Model\UpdateEmailTemplateContentRequest | updateEmailTemplateContentRequest
 
 try {
     $result = $apiInstance->updateEmailTemplateContentUsingPOST($id, $update_email_template_content_request);
@@ -608,11 +608,11 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| id |
- **update_email_template_content_request** | [**\MarketoRest\Asset\Model\UpdateEmailTemplateContentRequest**](../Model/UpdateEmailTemplateContentRequest.md)| updateEmailTemplateContentRequest | [optional]
+ **update_email_template_content_request** | [**\NecLimDul\MarketoRest\Asset\Model\UpdateEmailTemplateContentRequest**](../Model/UpdateEmailTemplateContentRequest.md)| updateEmailTemplateContentRequest | [optional]
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfIdResponse**](../Model/ResponseOfIdResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse**](../Model/ResponseOfIdResponse.md)
 
 ### Authorization
 
@@ -626,7 +626,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **updateEmailTemplateUsingPOST**
-> \MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse updateEmailTemplateUsingPOST($id, $update_email_meta_data_request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse updateEmailTemplateUsingPOST($id, $update_email_meta_data_request)
 
 Update Email Template Metadata
 
@@ -637,13 +637,13 @@ Updates the metadata for the designated email template.  Required Permissions: R
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\EmailTemplatesApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailTemplatesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $id = 56; // int | id
-$update_email_meta_data_request = new \MarketoRest\Asset\Model\UpdateEmailTemplateMetaDataRequest(); // \MarketoRest\Asset\Model\UpdateEmailTemplateMetaDataRequest | updateEmailMetaDataRequest
+$update_email_meta_data_request = new \NecLimDul\MarketoRest\Asset\Model\UpdateEmailTemplateMetaDataRequest(); // \NecLimDul\MarketoRest\Asset\Model\UpdateEmailTemplateMetaDataRequest | updateEmailMetaDataRequest
 
 try {
     $result = $apiInstance->updateEmailTemplateUsingPOST($id, $update_email_meta_data_request);
@@ -659,11 +659,11 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| id |
- **update_email_meta_data_request** | [**\MarketoRest\Asset\Model\UpdateEmailTemplateMetaDataRequest**](../Model/UpdateEmailTemplateMetaDataRequest.md)| updateEmailMetaDataRequest |
+ **update_email_meta_data_request** | [**\NecLimDul\MarketoRest\Asset\Model\UpdateEmailTemplateMetaDataRequest**](../Model/UpdateEmailTemplateMetaDataRequest.md)| updateEmailMetaDataRequest |
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse**](../Model/ResponseOfEmailTemplateResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse**](../Model/ResponseOfEmailTemplateResponse.md)
 
 ### Authorization
 

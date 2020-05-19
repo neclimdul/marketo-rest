@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Lead\Model;
+namespace NecLimDul\MarketoRest\Lead\Model;
 
 use \ArrayAccess;
-use \MarketoRest\Lead\ObjectSerializer;
+use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * CustomActivityType Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -58,13 +58,13 @@ class CustomActivityType implements ModelInterface, ArrayAccess
       */
     protected static $swaggerTypes = [
         'api_name' => 'string',
-        'attributes' => '\MarketoRest\Lead\Model\CustomActivityTypeAttribute[]',
+        'attributes' => '\NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttribute[]',
         'created_at' => 'string',
         'description' => 'string',
         'filter_name' => 'string',
         'id' => 'int',
         'name' => 'string',
-        'primary_attribute' => '\MarketoRest\Lead\Model\CustomActivityTypeAttribute',
+        'primary_attribute' => '\NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttribute',
         'status' => 'string',
         'trigger_name' => 'string',
         'updated_at' => 'string'
@@ -318,7 +318,7 @@ class CustomActivityType implements ModelInterface, ArrayAccess
     /**
      * Gets attributes
      *
-     * @return \MarketoRest\Lead\Model\CustomActivityTypeAttribute[]
+     * @return \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttribute[]
      */
     public function getAttributes()
     {
@@ -328,7 +328,7 @@ class CustomActivityType implements ModelInterface, ArrayAccess
     /**
      * Sets attributes
      *
-     * @param \MarketoRest\Lead\Model\CustomActivityTypeAttribute[] $attributes List of attributes for the activity type.  May only be added or update through Create or Update Custom Activity Type Attributes
+     * @param \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttribute[] $attributes List of attributes for the activity type.  May only be added or update through Create or Update Custom Activity Type Attributes
      *
      * @return $this
      */
@@ -462,7 +462,7 @@ class CustomActivityType implements ModelInterface, ArrayAccess
     /**
      * Gets primary_attribute
      *
-     * @return \MarketoRest\Lead\Model\CustomActivityTypeAttribute
+     * @return \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttribute
      */
     public function getPrimaryAttribute()
     {
@@ -472,7 +472,7 @@ class CustomActivityType implements ModelInterface, ArrayAccess
     /**
      * Sets primary_attribute
      *
-     * @param \MarketoRest\Lead\Model\CustomActivityTypeAttribute $primary_attribute Primary Attribute of the activity type.  Required on creation
+     * @param \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttribute $primary_attribute Primary Attribute of the activity type.  Required on creation
      *
      * @return $this
      */

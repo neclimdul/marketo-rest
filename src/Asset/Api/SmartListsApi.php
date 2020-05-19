@@ -4,7 +4,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -26,7 +26,7 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Asset\Api;
+namespace NecLimDul\MarketoRest\Asset\Api;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -34,16 +34,16 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
-use MarketoRest\Asset\ApiException;
-use MarketoRest\Asset\Configuration;
-use MarketoRest\Asset\HeaderSelector;
-use MarketoRest\Asset\ObjectSerializer;
+use NecLimDul\MarketoRest\Asset\ApiException;
+use NecLimDul\MarketoRest\Asset\Configuration;
+use NecLimDul\MarketoRest\Asset\HeaderSelector;
+use NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * SmartListsApi Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -93,11 +93,11 @@ class SmartListsApi
      * Clone Smart List
      *
      * @param  int $id Id of smart list to clone (required)
-     * @param  \MarketoRest\Asset\Model\CloneSmartListRequest $clone_smart_list_request cloneSmartListRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CloneSmartListRequest $clone_smart_list_request cloneSmartListRequest (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfSmartListResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponse
      */
     public function cloneSmartListUsingPOST($id, $clone_smart_list_request)
     {
@@ -111,15 +111,15 @@ class SmartListsApi
      * Clone Smart List
      *
      * @param  int $id Id of smart list to clone (required)
-     * @param  \MarketoRest\Asset\Model\CloneSmartListRequest $clone_smart_list_request cloneSmartListRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CloneSmartListRequest $clone_smart_list_request cloneSmartListRequest (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfSmartListResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function cloneSmartListUsingPOSTWithHttpInfo($id, $clone_smart_list_request)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfSmartListResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponse';
         $request = $this->cloneSmartListUsingPOSTRequest($id, $clone_smart_list_request);
 
         try {
@@ -171,7 +171,7 @@ class SmartListsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfSmartListResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -187,7 +187,7 @@ class SmartListsApi
      * Clone Smart List
      *
      * @param  int $id Id of smart list to clone (required)
-     * @param  \MarketoRest\Asset\Model\CloneSmartListRequest $clone_smart_list_request cloneSmartListRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CloneSmartListRequest $clone_smart_list_request cloneSmartListRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -208,14 +208,14 @@ class SmartListsApi
      * Clone Smart List
      *
      * @param  int $id Id of smart list to clone (required)
-     * @param  \MarketoRest\Asset\Model\CloneSmartListRequest $clone_smart_list_request cloneSmartListRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CloneSmartListRequest $clone_smart_list_request cloneSmartListRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function cloneSmartListUsingPOSTAsyncWithHttpInfo($id, $clone_smart_list_request)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfSmartListResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponse';
         $request = $this->cloneSmartListUsingPOSTRequest($id, $clone_smart_list_request);
 
         return $this->client
@@ -259,7 +259,7 @@ class SmartListsApi
      * Create request for operation 'cloneSmartListUsingPOST'
      *
      * @param  int $id Id of smart list to clone (required)
-     * @param  \MarketoRest\Asset\Model\CloneSmartListRequest $clone_smart_list_request cloneSmartListRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CloneSmartListRequest $clone_smart_list_request cloneSmartListRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -377,9 +377,9 @@ class SmartListsApi
      *
      * @param  int $id Id of the smart list to delete (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfIdResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse
      */
     public function deleteSmartListByIdUsingPOST($id)
     {
@@ -394,13 +394,13 @@ class SmartListsApi
      *
      * @param  int $id Id of the smart list to delete (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfIdResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function deleteSmartListByIdUsingPOSTWithHttpInfo($id)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfIdResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse';
         $request = $this->deleteSmartListByIdUsingPOSTRequest($id);
 
         try {
@@ -452,7 +452,7 @@ class SmartListsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfIdResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -494,7 +494,7 @@ class SmartListsApi
      */
     public function deleteSmartListByIdUsingPOSTAsyncWithHttpInfo($id)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfIdResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse';
         $request = $this->deleteSmartListByIdUsingPOSTRequest($id);
 
         return $this->client
@@ -647,9 +647,9 @@ class SmartListsApi
      * @param  int $id Id of the smart list to retrieve (required)
      * @param  bool $include_rules Set true to populate smart list rules.  Default false (optional)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfSmartListResponseWithRules
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponseWithRules
      */
     public function getSmartListByIdUsingGET($id, $include_rules = null)
     {
@@ -665,13 +665,13 @@ class SmartListsApi
      * @param  int $id Id of the smart list to retrieve (required)
      * @param  bool $include_rules Set true to populate smart list rules.  Default false (optional)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfSmartListResponseWithRules, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponseWithRules, HTTP status code, HTTP response headers (array of strings)
      */
     public function getSmartListByIdUsingGETWithHttpInfo($id, $include_rules = null)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfSmartListResponseWithRules';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponseWithRules';
         $request = $this->getSmartListByIdUsingGETRequest($id, $include_rules);
 
         try {
@@ -723,7 +723,7 @@ class SmartListsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfSmartListResponseWithRules',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponseWithRules',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -767,7 +767,7 @@ class SmartListsApi
      */
     public function getSmartListByIdUsingGETAsyncWithHttpInfo($id, $include_rules = null)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfSmartListResponseWithRules';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponseWithRules';
         $request = $this->getSmartListByIdUsingGETRequest($id, $include_rules);
 
         return $this->client
@@ -924,9 +924,9 @@ class SmartListsApi
      *
      * @param  string $name Name of smart list to retrieve (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfSmartListResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponse
      */
     public function getSmartListByNameUsingGET($name)
     {
@@ -941,13 +941,13 @@ class SmartListsApi
      *
      * @param  string $name Name of smart list to retrieve (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfSmartListResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function getSmartListByNameUsingGETWithHttpInfo($name)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfSmartListResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponse';
         $request = $this->getSmartListByNameUsingGETRequest($name);
 
         try {
@@ -999,7 +999,7 @@ class SmartListsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfSmartListResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1041,7 +1041,7 @@ class SmartListsApi
      */
     public function getSmartListByNameUsingGETAsyncWithHttpInfo($name)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfSmartListResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponse';
         $request = $this->getSmartListByNameUsingGETRequest($name);
 
         return $this->client
@@ -1193,9 +1193,9 @@ class SmartListsApi
      * @param  string $earliest_updated_at Exclude smart lists prior to this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. (optional)
      * @param  string $latest_updated_at Exclude smart lists after this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. (optional)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfSmartListResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponse
      */
     public function getSmartListsUsingGET($folder = null, $offset = null, $max_return = null, $earliest_updated_at = null, $latest_updated_at = null)
     {
@@ -1214,13 +1214,13 @@ class SmartListsApi
      * @param  string $earliest_updated_at Exclude smart lists prior to this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. (optional)
      * @param  string $latest_updated_at Exclude smart lists after this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. (optional)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfSmartListResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function getSmartListsUsingGETWithHttpInfo($folder = null, $offset = null, $max_return = null, $earliest_updated_at = null, $latest_updated_at = null)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfSmartListResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponse';
         $request = $this->getSmartListsUsingGETRequest($folder, $offset, $max_return, $earliest_updated_at, $latest_updated_at);
 
         try {
@@ -1272,7 +1272,7 @@ class SmartListsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfSmartListResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1322,7 +1322,7 @@ class SmartListsApi
      */
     public function getSmartListsUsingGETAsyncWithHttpInfo($folder = null, $offset = null, $max_return = null, $earliest_updated_at = null, $latest_updated_at = null)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfSmartListResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponse';
         $request = $this->getSmartListsUsingGETRequest($folder, $offset, $max_return, $earliest_updated_at, $latest_updated_at);
 
         return $this->client

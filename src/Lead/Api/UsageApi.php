@@ -4,7 +4,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -26,7 +26,7 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Lead\Api;
+namespace NecLimDul\MarketoRest\Lead\Api;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -34,16 +34,16 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
-use MarketoRest\Lead\ApiException;
-use MarketoRest\Lead\Configuration;
-use MarketoRest\Lead\HeaderSelector;
-use MarketoRest\Lead\ObjectSerializer;
+use NecLimDul\MarketoRest\Lead\ApiException;
+use NecLimDul\MarketoRest\Lead\Configuration;
+use NecLimDul\MarketoRest\Lead\HeaderSelector;
+use NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * UsageApi Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -93,9 +93,9 @@ class UsageApi
      * Get Daily Errors
      *
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Lead\Model\ResponseOfUsageData
+     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfUsageData
      */
     public function getDailyErrorsUsingGET()
     {
@@ -109,13 +109,13 @@ class UsageApi
      * Get Daily Errors
      *
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Lead\Model\ResponseOfUsageData, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfUsageData, HTTP status code, HTTP response headers (array of strings)
      */
     public function getDailyErrorsUsingGETWithHttpInfo()
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfUsageData';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfUsageData';
         $request = $this->getDailyErrorsUsingGETRequest();
 
         try {
@@ -167,7 +167,7 @@ class UsageApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Lead\Model\ResponseOfUsageData',
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfUsageData',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -207,7 +207,7 @@ class UsageApi
      */
     public function getDailyErrorsUsingGETAsyncWithHttpInfo()
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfUsageData';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfUsageData';
         $request = $this->getDailyErrorsUsingGETRequest();
 
         return $this->client
@@ -343,9 +343,9 @@ class UsageApi
      * Get Daily Usage
      *
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Lead\Model\ResponseOfUsageData
+     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfUsageData
      */
     public function getDailyUsageUsingGET()
     {
@@ -359,13 +359,13 @@ class UsageApi
      * Get Daily Usage
      *
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Lead\Model\ResponseOfUsageData, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfUsageData, HTTP status code, HTTP response headers (array of strings)
      */
     public function getDailyUsageUsingGETWithHttpInfo()
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfUsageData';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfUsageData';
         $request = $this->getDailyUsageUsingGETRequest();
 
         try {
@@ -417,7 +417,7 @@ class UsageApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Lead\Model\ResponseOfUsageData',
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfUsageData',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -457,7 +457,7 @@ class UsageApi
      */
     public function getDailyUsageUsingGETAsyncWithHttpInfo()
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfUsageData';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfUsageData';
         $request = $this->getDailyUsageUsingGETRequest();
 
         return $this->client
@@ -593,9 +593,9 @@ class UsageApi
      * Get Weekly Errors
      *
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Lead\Model\ResponseOfUsageData
+     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfUsageData
      */
     public function getLast7DaysErrorsUsingGET()
     {
@@ -609,13 +609,13 @@ class UsageApi
      * Get Weekly Errors
      *
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Lead\Model\ResponseOfUsageData, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfUsageData, HTTP status code, HTTP response headers (array of strings)
      */
     public function getLast7DaysErrorsUsingGETWithHttpInfo()
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfUsageData';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfUsageData';
         $request = $this->getLast7DaysErrorsUsingGETRequest();
 
         try {
@@ -667,7 +667,7 @@ class UsageApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Lead\Model\ResponseOfUsageData',
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfUsageData',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -707,7 +707,7 @@ class UsageApi
      */
     public function getLast7DaysErrorsUsingGETAsyncWithHttpInfo()
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfUsageData';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfUsageData';
         $request = $this->getLast7DaysErrorsUsingGETRequest();
 
         return $this->client
@@ -843,9 +843,9 @@ class UsageApi
      * Get Weekly Usage
      *
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Lead\Model\ResponseOfUsageData
+     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfUsageData
      */
     public function getLast7DaysUsageUsingGET()
     {
@@ -859,13 +859,13 @@ class UsageApi
      * Get Weekly Usage
      *
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Lead\Model\ResponseOfUsageData, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfUsageData, HTTP status code, HTTP response headers (array of strings)
      */
     public function getLast7DaysUsageUsingGETWithHttpInfo()
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfUsageData';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfUsageData';
         $request = $this->getLast7DaysUsageUsingGETRequest();
 
         try {
@@ -917,7 +917,7 @@ class UsageApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Lead\Model\ResponseOfUsageData',
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfUsageData',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -957,7 +957,7 @@ class UsageApi
      */
     public function getLast7DaysUsageUsingGETAsyncWithHttpInfo()
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfUsageData';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfUsageData';
         $request = $this->getLast7DaysUsageUsingGETRequest();
 
         return $this->client

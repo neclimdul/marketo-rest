@@ -4,7 +4,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -26,7 +26,7 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Asset\Api;
+namespace NecLimDul\MarketoRest\Asset\Api;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -34,16 +34,16 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
-use MarketoRest\Asset\ApiException;
-use MarketoRest\Asset\Configuration;
-use MarketoRest\Asset\HeaderSelector;
-use MarketoRest\Asset\ObjectSerializer;
+use NecLimDul\MarketoRest\Asset\ApiException;
+use NecLimDul\MarketoRest\Asset\Configuration;
+use NecLimDul\MarketoRest\Asset\HeaderSelector;
+use NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * SmartCampaignsApi Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -94,9 +94,9 @@ class SmartCampaignsApi
      *
      * @param  int $id Id of the smart campaign (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfIdResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse
      */
     public function activateSmartCampaignUsingPOST($id)
     {
@@ -111,13 +111,13 @@ class SmartCampaignsApi
      *
      * @param  int $id Id of the smart campaign (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfIdResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function activateSmartCampaignUsingPOSTWithHttpInfo($id)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfIdResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse';
         $request = $this->activateSmartCampaignUsingPOSTRequest($id);
 
         try {
@@ -169,7 +169,7 @@ class SmartCampaignsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfIdResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -211,7 +211,7 @@ class SmartCampaignsApi
      */
     public function activateSmartCampaignUsingPOSTAsyncWithHttpInfo($id)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfIdResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse';
         $request = $this->activateSmartCampaignUsingPOSTRequest($id);
 
         return $this->client
@@ -362,11 +362,11 @@ class SmartCampaignsApi
      * Clone Smart Campaign
      *
      * @param  int $id Id of the smart campaign (required)
-     * @param  \MarketoRest\Asset\Model\CloneSmartCampaignRequest $clone_smart_campaign_request cloneSmartCampaignRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CloneSmartCampaignRequest $clone_smart_campaign_request cloneSmartCampaignRequest (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse
      */
     public function cloneSmartCampaignUsingPOST($id, $clone_smart_campaign_request)
     {
@@ -380,15 +380,15 @@ class SmartCampaignsApi
      * Clone Smart Campaign
      *
      * @param  int $id Id of the smart campaign (required)
-     * @param  \MarketoRest\Asset\Model\CloneSmartCampaignRequest $clone_smart_campaign_request cloneSmartCampaignRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CloneSmartCampaignRequest $clone_smart_campaign_request cloneSmartCampaignRequest (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function cloneSmartCampaignUsingPOSTWithHttpInfo($id, $clone_smart_campaign_request)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse';
         $request = $this->cloneSmartCampaignUsingPOSTRequest($id, $clone_smart_campaign_request);
 
         try {
@@ -440,7 +440,7 @@ class SmartCampaignsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -456,7 +456,7 @@ class SmartCampaignsApi
      * Clone Smart Campaign
      *
      * @param  int $id Id of the smart campaign (required)
-     * @param  \MarketoRest\Asset\Model\CloneSmartCampaignRequest $clone_smart_campaign_request cloneSmartCampaignRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CloneSmartCampaignRequest $clone_smart_campaign_request cloneSmartCampaignRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -477,14 +477,14 @@ class SmartCampaignsApi
      * Clone Smart Campaign
      *
      * @param  int $id Id of the smart campaign (required)
-     * @param  \MarketoRest\Asset\Model\CloneSmartCampaignRequest $clone_smart_campaign_request cloneSmartCampaignRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CloneSmartCampaignRequest $clone_smart_campaign_request cloneSmartCampaignRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function cloneSmartCampaignUsingPOSTAsyncWithHttpInfo($id, $clone_smart_campaign_request)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse';
         $request = $this->cloneSmartCampaignUsingPOSTRequest($id, $clone_smart_campaign_request);
 
         return $this->client
@@ -528,7 +528,7 @@ class SmartCampaignsApi
      * Create request for operation 'cloneSmartCampaignUsingPOST'
      *
      * @param  int $id Id of the smart campaign (required)
-     * @param  \MarketoRest\Asset\Model\CloneSmartCampaignRequest $clone_smart_campaign_request cloneSmartCampaignRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CloneSmartCampaignRequest $clone_smart_campaign_request cloneSmartCampaignRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -644,11 +644,11 @@ class SmartCampaignsApi
      *
      * Create Smart Campaign
      *
-     * @param  \MarketoRest\Asset\Model\CreateSmartCampaignRequest $create_smart_campaign_request createSmartCampaignRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CreateSmartCampaignRequest $create_smart_campaign_request createSmartCampaignRequest (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse
      */
     public function createSmartCampaignUsingPOST($create_smart_campaign_request)
     {
@@ -661,15 +661,15 @@ class SmartCampaignsApi
      *
      * Create Smart Campaign
      *
-     * @param  \MarketoRest\Asset\Model\CreateSmartCampaignRequest $create_smart_campaign_request createSmartCampaignRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CreateSmartCampaignRequest $create_smart_campaign_request createSmartCampaignRequest (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function createSmartCampaignUsingPOSTWithHttpInfo($create_smart_campaign_request)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse';
         $request = $this->createSmartCampaignUsingPOSTRequest($create_smart_campaign_request);
 
         try {
@@ -721,7 +721,7 @@ class SmartCampaignsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -736,7 +736,7 @@ class SmartCampaignsApi
      *
      * Create Smart Campaign
      *
-     * @param  \MarketoRest\Asset\Model\CreateSmartCampaignRequest $create_smart_campaign_request createSmartCampaignRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CreateSmartCampaignRequest $create_smart_campaign_request createSmartCampaignRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -756,14 +756,14 @@ class SmartCampaignsApi
      *
      * Create Smart Campaign
      *
-     * @param  \MarketoRest\Asset\Model\CreateSmartCampaignRequest $create_smart_campaign_request createSmartCampaignRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CreateSmartCampaignRequest $create_smart_campaign_request createSmartCampaignRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function createSmartCampaignUsingPOSTAsyncWithHttpInfo($create_smart_campaign_request)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse';
         $request = $this->createSmartCampaignUsingPOSTRequest($create_smart_campaign_request);
 
         return $this->client
@@ -806,7 +806,7 @@ class SmartCampaignsApi
     /**
      * Create request for operation 'createSmartCampaignUsingPOST'
      *
-     * @param  \MarketoRest\Asset\Model\CreateSmartCampaignRequest $create_smart_campaign_request createSmartCampaignRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CreateSmartCampaignRequest $create_smart_campaign_request createSmartCampaignRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -910,9 +910,9 @@ class SmartCampaignsApi
      *
      * @param  int $id Id of the smart campaign (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfIdResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse
      */
     public function deactivateSmartCampaignUsingPOST($id)
     {
@@ -927,13 +927,13 @@ class SmartCampaignsApi
      *
      * @param  int $id Id of the smart campaign (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfIdResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function deactivateSmartCampaignUsingPOSTWithHttpInfo($id)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfIdResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse';
         $request = $this->deactivateSmartCampaignUsingPOSTRequest($id);
 
         try {
@@ -985,7 +985,7 @@ class SmartCampaignsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfIdResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1027,7 +1027,7 @@ class SmartCampaignsApi
      */
     public function deactivateSmartCampaignUsingPOSTAsyncWithHttpInfo($id)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfIdResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse';
         $request = $this->deactivateSmartCampaignUsingPOSTRequest($id);
 
         return $this->client
@@ -1179,9 +1179,9 @@ class SmartCampaignsApi
      *
      * @param  int $id Id of the smart campaign (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfIdResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse
      */
     public function deleteSmartCampaignUsingPOST($id)
     {
@@ -1196,13 +1196,13 @@ class SmartCampaignsApi
      *
      * @param  int $id Id of the smart campaign (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfIdResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function deleteSmartCampaignUsingPOSTWithHttpInfo($id)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfIdResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse';
         $request = $this->deleteSmartCampaignUsingPOSTRequest($id);
 
         try {
@@ -1254,7 +1254,7 @@ class SmartCampaignsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfIdResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1296,7 +1296,7 @@ class SmartCampaignsApi
      */
     public function deleteSmartCampaignUsingPOSTAsyncWithHttpInfo($id)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfIdResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse';
         $request = $this->deleteSmartCampaignUsingPOSTRequest($id);
 
         return $this->client
@@ -1452,9 +1452,9 @@ class SmartCampaignsApi
      * @param  string $earliest_updated_at Exclude smart campaigns prior to this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. (optional)
      * @param  string $latest_updated_at Exclude smart campaigns after this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. (optional)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse
      */
     public function getAllSmartCampaignsGET($max_return = null, $offset = null, $folder = null, $earliest_updated_at = null, $latest_updated_at = null)
     {
@@ -1473,13 +1473,13 @@ class SmartCampaignsApi
      * @param  string $earliest_updated_at Exclude smart campaigns prior to this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. (optional)
      * @param  string $latest_updated_at Exclude smart campaigns after this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. (optional)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function getAllSmartCampaignsGETWithHttpInfo($max_return = null, $offset = null, $folder = null, $earliest_updated_at = null, $latest_updated_at = null)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse';
         $request = $this->getAllSmartCampaignsGETRequest($max_return, $offset, $folder, $earliest_updated_at, $latest_updated_at);
 
         try {
@@ -1531,7 +1531,7 @@ class SmartCampaignsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1581,7 +1581,7 @@ class SmartCampaignsApi
      */
     public function getAllSmartCampaignsGETAsyncWithHttpInfo($max_return = null, $offset = null, $folder = null, $earliest_updated_at = null, $latest_updated_at = null)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse';
         $request = $this->getAllSmartCampaignsGETRequest($max_return, $offset, $folder, $earliest_updated_at, $latest_updated_at);
 
         return $this->client
@@ -1743,9 +1743,9 @@ class SmartCampaignsApi
      *
      * @param  int $id Id for the smart campaign (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse
      */
     public function getSmartCampaignByIdUsingGET($id)
     {
@@ -1760,13 +1760,13 @@ class SmartCampaignsApi
      *
      * @param  int $id Id for the smart campaign (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function getSmartCampaignByIdUsingGETWithHttpInfo($id)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse';
         $request = $this->getSmartCampaignByIdUsingGETRequest($id);
 
         try {
@@ -1818,7 +1818,7 @@ class SmartCampaignsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1860,7 +1860,7 @@ class SmartCampaignsApi
      */
     public function getSmartCampaignByIdUsingGETAsyncWithHttpInfo($id)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse';
         $request = $this->getSmartCampaignByIdUsingGETRequest($id);
 
         return $this->client
@@ -2012,9 +2012,9 @@ class SmartCampaignsApi
      *
      * @param  string $name Name for the smart campaign (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse
      */
     public function getSmartCampaignByNameUsingGET($name)
     {
@@ -2029,13 +2029,13 @@ class SmartCampaignsApi
      *
      * @param  string $name Name for the smart campaign (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function getSmartCampaignByNameUsingGETWithHttpInfo($name)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse';
         $request = $this->getSmartCampaignByNameUsingGETRequest($name);
 
         try {
@@ -2087,7 +2087,7 @@ class SmartCampaignsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2129,7 +2129,7 @@ class SmartCampaignsApi
      */
     public function getSmartCampaignByNameUsingGETAsyncWithHttpInfo($name)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse';
         $request = $this->getSmartCampaignByNameUsingGETRequest($name);
 
         return $this->client
@@ -2278,9 +2278,9 @@ class SmartCampaignsApi
      * @param  int $id Id for the smart campaign containing smart list to retrieve (required)
      * @param  bool $include_rules Set true to populate smart list rules.  Default false (optional)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfSmartListResponseWithRules
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponseWithRules
      */
     public function getSmartListBySmartCampaignIdUsingGET($id, $include_rules = null)
     {
@@ -2296,13 +2296,13 @@ class SmartCampaignsApi
      * @param  int $id Id for the smart campaign containing smart list to retrieve (required)
      * @param  bool $include_rules Set true to populate smart list rules.  Default false (optional)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfSmartListResponseWithRules, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponseWithRules, HTTP status code, HTTP response headers (array of strings)
      */
     public function getSmartListBySmartCampaignIdUsingGETWithHttpInfo($id, $include_rules = null)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfSmartListResponseWithRules';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponseWithRules';
         $request = $this->getSmartListBySmartCampaignIdUsingGETRequest($id, $include_rules);
 
         try {
@@ -2354,7 +2354,7 @@ class SmartCampaignsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfSmartListResponseWithRules',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponseWithRules',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2398,7 +2398,7 @@ class SmartCampaignsApi
      */
     public function getSmartListBySmartCampaignIdUsingGETAsyncWithHttpInfo($id, $include_rules = null)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfSmartListResponseWithRules';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponseWithRules';
         $request = $this->getSmartListBySmartCampaignIdUsingGETRequest($id, $include_rules);
 
         return $this->client
@@ -2554,11 +2554,11 @@ class SmartCampaignsApi
      * Update Smart Campaign
      *
      * @param  int $id Id for the smart campaign (required)
-     * @param  \MarketoRest\Asset\Model\UpdateSmartCampaignRequest $update_smart_campaign_request updateSmartCampaignRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateSmartCampaignRequest $update_smart_campaign_request updateSmartCampaignRequest (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse
      */
     public function updateSmartCampaignUsingPOST($id, $update_smart_campaign_request)
     {
@@ -2572,15 +2572,15 @@ class SmartCampaignsApi
      * Update Smart Campaign
      *
      * @param  int $id Id for the smart campaign (required)
-     * @param  \MarketoRest\Asset\Model\UpdateSmartCampaignRequest $update_smart_campaign_request updateSmartCampaignRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateSmartCampaignRequest $update_smart_campaign_request updateSmartCampaignRequest (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function updateSmartCampaignUsingPOSTWithHttpInfo($id, $update_smart_campaign_request)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse';
         $request = $this->updateSmartCampaignUsingPOSTRequest($id, $update_smart_campaign_request);
 
         try {
@@ -2632,7 +2632,7 @@ class SmartCampaignsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2648,7 +2648,7 @@ class SmartCampaignsApi
      * Update Smart Campaign
      *
      * @param  int $id Id for the smart campaign (required)
-     * @param  \MarketoRest\Asset\Model\UpdateSmartCampaignRequest $update_smart_campaign_request updateSmartCampaignRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateSmartCampaignRequest $update_smart_campaign_request updateSmartCampaignRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -2669,14 +2669,14 @@ class SmartCampaignsApi
      * Update Smart Campaign
      *
      * @param  int $id Id for the smart campaign (required)
-     * @param  \MarketoRest\Asset\Model\UpdateSmartCampaignRequest $update_smart_campaign_request updateSmartCampaignRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateSmartCampaignRequest $update_smart_campaign_request updateSmartCampaignRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function updateSmartCampaignUsingPOSTAsyncWithHttpInfo($id, $update_smart_campaign_request)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse';
         $request = $this->updateSmartCampaignUsingPOSTRequest($id, $update_smart_campaign_request);
 
         return $this->client
@@ -2720,7 +2720,7 @@ class SmartCampaignsApi
      * Create request for operation 'updateSmartCampaignUsingPOST'
      *
      * @param  int $id Id for the smart campaign (required)
-     * @param  \MarketoRest\Asset\Model\UpdateSmartCampaignRequest $update_smart_campaign_request updateSmartCampaignRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateSmartCampaignRequest $update_smart_campaign_request updateSmartCampaignRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request

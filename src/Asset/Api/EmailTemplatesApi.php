@@ -4,7 +4,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -26,7 +26,7 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Asset\Api;
+namespace NecLimDul\MarketoRest\Asset\Api;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -34,16 +34,16 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
-use MarketoRest\Asset\ApiException;
-use MarketoRest\Asset\Configuration;
-use MarketoRest\Asset\HeaderSelector;
-use MarketoRest\Asset\ObjectSerializer;
+use NecLimDul\MarketoRest\Asset\ApiException;
+use NecLimDul\MarketoRest\Asset\Configuration;
+use NecLimDul\MarketoRest\Asset\HeaderSelector;
+use NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * EmailTemplatesApi Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -94,9 +94,9 @@ class EmailTemplatesApi
      *
      * @param  int $id id (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse
      */
     public function approveDraftUsingPOST1($id)
     {
@@ -111,13 +111,13 @@ class EmailTemplatesApi
      *
      * @param  int $id id (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function approveDraftUsingPOST1WithHttpInfo($id)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse';
         $request = $this->approveDraftUsingPOST1Request($id);
 
         try {
@@ -169,7 +169,7 @@ class EmailTemplatesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -211,7 +211,7 @@ class EmailTemplatesApi
      */
     public function approveDraftUsingPOST1AsyncWithHttpInfo($id)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse';
         $request = $this->approveDraftUsingPOST1Request($id);
 
         return $this->client
@@ -362,11 +362,11 @@ class EmailTemplatesApi
      * Clone Email Template
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\CloneEmailTemplateRequest $clone_email_template_request cloneEmailTemplateRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CloneEmailTemplateRequest $clone_email_template_request cloneEmailTemplateRequest (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse
      */
     public function cloneTemplateUsingPOST($id, $clone_email_template_request)
     {
@@ -380,15 +380,15 @@ class EmailTemplatesApi
      * Clone Email Template
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\CloneEmailTemplateRequest $clone_email_template_request cloneEmailTemplateRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CloneEmailTemplateRequest $clone_email_template_request cloneEmailTemplateRequest (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function cloneTemplateUsingPOSTWithHttpInfo($id, $clone_email_template_request)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse';
         $request = $this->cloneTemplateUsingPOSTRequest($id, $clone_email_template_request);
 
         try {
@@ -440,7 +440,7 @@ class EmailTemplatesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -456,7 +456,7 @@ class EmailTemplatesApi
      * Clone Email Template
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\CloneEmailTemplateRequest $clone_email_template_request cloneEmailTemplateRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CloneEmailTemplateRequest $clone_email_template_request cloneEmailTemplateRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -477,14 +477,14 @@ class EmailTemplatesApi
      * Clone Email Template
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\CloneEmailTemplateRequest $clone_email_template_request cloneEmailTemplateRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CloneEmailTemplateRequest $clone_email_template_request cloneEmailTemplateRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function cloneTemplateUsingPOSTAsyncWithHttpInfo($id, $clone_email_template_request)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse';
         $request = $this->cloneTemplateUsingPOSTRequest($id, $clone_email_template_request);
 
         return $this->client
@@ -528,7 +528,7 @@ class EmailTemplatesApi
      * Create request for operation 'cloneTemplateUsingPOST'
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\CloneEmailTemplateRequest $clone_email_template_request cloneEmailTemplateRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CloneEmailTemplateRequest $clone_email_template_request cloneEmailTemplateRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -644,11 +644,11 @@ class EmailTemplatesApi
      *
      * Create Email Template
      *
-     * @param  \MarketoRest\Asset\Model\CreateEmailTemplateRequest $create_email_template_request createEmailTemplateRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CreateEmailTemplateRequest $create_email_template_request createEmailTemplateRequest (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse
      */
     public function createEmailTemplateUsingPOST($create_email_template_request)
     {
@@ -661,15 +661,15 @@ class EmailTemplatesApi
      *
      * Create Email Template
      *
-     * @param  \MarketoRest\Asset\Model\CreateEmailTemplateRequest $create_email_template_request createEmailTemplateRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CreateEmailTemplateRequest $create_email_template_request createEmailTemplateRequest (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function createEmailTemplateUsingPOSTWithHttpInfo($create_email_template_request)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse';
         $request = $this->createEmailTemplateUsingPOSTRequest($create_email_template_request);
 
         try {
@@ -721,7 +721,7 @@ class EmailTemplatesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -736,7 +736,7 @@ class EmailTemplatesApi
      *
      * Create Email Template
      *
-     * @param  \MarketoRest\Asset\Model\CreateEmailTemplateRequest $create_email_template_request createEmailTemplateRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CreateEmailTemplateRequest $create_email_template_request createEmailTemplateRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -756,14 +756,14 @@ class EmailTemplatesApi
      *
      * Create Email Template
      *
-     * @param  \MarketoRest\Asset\Model\CreateEmailTemplateRequest $create_email_template_request createEmailTemplateRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CreateEmailTemplateRequest $create_email_template_request createEmailTemplateRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function createEmailTemplateUsingPOSTAsyncWithHttpInfo($create_email_template_request)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse';
         $request = $this->createEmailTemplateUsingPOSTRequest($create_email_template_request);
 
         return $this->client
@@ -806,7 +806,7 @@ class EmailTemplatesApi
     /**
      * Create request for operation 'createEmailTemplateUsingPOST'
      *
-     * @param  \MarketoRest\Asset\Model\CreateEmailTemplateRequest $create_email_template_request createEmailTemplateRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CreateEmailTemplateRequest $create_email_template_request createEmailTemplateRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -910,9 +910,9 @@ class EmailTemplatesApi
      *
      * @param  int $id id (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfIdResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse
      */
     public function deleteTemplateUsingPOST($id)
     {
@@ -927,13 +927,13 @@ class EmailTemplatesApi
      *
      * @param  int $id id (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfIdResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function deleteTemplateUsingPOSTWithHttpInfo($id)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfIdResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse';
         $request = $this->deleteTemplateUsingPOSTRequest($id);
 
         try {
@@ -985,7 +985,7 @@ class EmailTemplatesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfIdResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1027,7 +1027,7 @@ class EmailTemplatesApi
      */
     public function deleteTemplateUsingPOSTAsyncWithHttpInfo($id)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfIdResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse';
         $request = $this->deleteTemplateUsingPOSTRequest($id);
 
         return $this->client
@@ -1179,9 +1179,9 @@ class EmailTemplatesApi
      *
      * @param  int $id id (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfIdResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse
      */
     public function discardDraftUsingPOST1($id)
     {
@@ -1196,13 +1196,13 @@ class EmailTemplatesApi
      *
      * @param  int $id id (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfIdResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function discardDraftUsingPOST1WithHttpInfo($id)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfIdResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse';
         $request = $this->discardDraftUsingPOST1Request($id);
 
         try {
@@ -1254,7 +1254,7 @@ class EmailTemplatesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfIdResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1296,7 +1296,7 @@ class EmailTemplatesApi
      */
     public function discardDraftUsingPOST1AsyncWithHttpInfo($id)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfIdResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse';
         $request = $this->discardDraftUsingPOST1Request($id);
 
         return $this->client
@@ -1450,9 +1450,9 @@ class EmailTemplatesApi
      * @param  int $offset Integer offset for paging (optional)
      * @param  int $max_return Maximum number of channels to return.  Max 200, default 20 (optional)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfEmailTemplateUsedByResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateUsedByResponse
      */
     public function getEmailTemplateUsedByUsingGET($id, $offset = null, $max_return = null)
     {
@@ -1469,13 +1469,13 @@ class EmailTemplatesApi
      * @param  int $offset Integer offset for paging (optional)
      * @param  int $max_return Maximum number of channels to return.  Max 200, default 20 (optional)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfEmailTemplateUsedByResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateUsedByResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function getEmailTemplateUsedByUsingGETWithHttpInfo($id, $offset = null, $max_return = null)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfEmailTemplateUsedByResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateUsedByResponse';
         $request = $this->getEmailTemplateUsedByUsingGETRequest($id, $offset, $max_return);
 
         try {
@@ -1527,7 +1527,7 @@ class EmailTemplatesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfEmailTemplateUsedByResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateUsedByResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1573,7 +1573,7 @@ class EmailTemplatesApi
      */
     public function getEmailTemplateUsedByUsingGETAsyncWithHttpInfo($id, $offset = null, $max_return = null)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfEmailTemplateUsedByResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateUsedByResponse';
         $request = $this->getEmailTemplateUsedByUsingGETRequest($id, $offset, $max_return);
 
         return $this->client
@@ -1737,9 +1737,9 @@ class EmailTemplatesApi
      * @param  int $max_return Maximum number of channels to return.  Max 200, default 20 (optional)
      * @param  string $status Status filter for draft or approved versions (optional)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse
      */
     public function getEmailTemplatesUsingGET($offset = null, $max_return = null, $status = null)
     {
@@ -1756,13 +1756,13 @@ class EmailTemplatesApi
      * @param  int $max_return Maximum number of channels to return.  Max 200, default 20 (optional)
      * @param  string $status Status filter for draft or approved versions (optional)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function getEmailTemplatesUsingGETWithHttpInfo($offset = null, $max_return = null, $status = null)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse';
         $request = $this->getEmailTemplatesUsingGETRequest($offset, $max_return, $status);
 
         try {
@@ -1814,7 +1814,7 @@ class EmailTemplatesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1860,7 +1860,7 @@ class EmailTemplatesApi
      */
     public function getEmailTemplatesUsingGETAsyncWithHttpInfo($offset = null, $max_return = null, $status = null)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse';
         $request = $this->getEmailTemplatesUsingGETRequest($offset, $max_return, $status);
 
         return $this->client
@@ -2013,9 +2013,9 @@ class EmailTemplatesApi
      * @param  int $id id (required)
      * @param  string $status Status filter for draft or approved versions (optional)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse
      */
     public function getTemplateByIdUsingGET($id, $status = null)
     {
@@ -2031,13 +2031,13 @@ class EmailTemplatesApi
      * @param  int $id id (required)
      * @param  string $status Status filter for draft or approved versions (optional)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function getTemplateByIdUsingGETWithHttpInfo($id, $status = null)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse';
         $request = $this->getTemplateByIdUsingGETRequest($id, $status);
 
         try {
@@ -2089,7 +2089,7 @@ class EmailTemplatesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2133,7 +2133,7 @@ class EmailTemplatesApi
      */
     public function getTemplateByIdUsingGETAsyncWithHttpInfo($id, $status = null)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse';
         $request = $this->getTemplateByIdUsingGETRequest($id, $status);
 
         return $this->client
@@ -2291,9 +2291,9 @@ class EmailTemplatesApi
      * @param  string $name name (required)
      * @param  string $status Status filter for draft or approved versions (optional)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse
      */
     public function getTemplateByNameUsingGET($name, $status = null)
     {
@@ -2309,13 +2309,13 @@ class EmailTemplatesApi
      * @param  string $name name (required)
      * @param  string $status Status filter for draft or approved versions (optional)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function getTemplateByNameUsingGETWithHttpInfo($name, $status = null)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse';
         $request = $this->getTemplateByNameUsingGETRequest($name, $status);
 
         try {
@@ -2367,7 +2367,7 @@ class EmailTemplatesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2411,7 +2411,7 @@ class EmailTemplatesApi
      */
     public function getTemplateByNameUsingGETAsyncWithHttpInfo($name, $status = null)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse';
         $request = $this->getTemplateByNameUsingGETRequest($name, $status);
 
         return $this->client
@@ -2565,9 +2565,9 @@ class EmailTemplatesApi
      * @param  int $id id (required)
      * @param  string $status Status filter for draft or approved versions (optional)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfEmailTemplateContentResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateContentResponse
      */
     public function getTemplateContentByIdUsingGET($id, $status = null)
     {
@@ -2583,13 +2583,13 @@ class EmailTemplatesApi
      * @param  int $id id (required)
      * @param  string $status Status filter for draft or approved versions (optional)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfEmailTemplateContentResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateContentResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function getTemplateContentByIdUsingGETWithHttpInfo($id, $status = null)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfEmailTemplateContentResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateContentResponse';
         $request = $this->getTemplateContentByIdUsingGETRequest($id, $status);
 
         try {
@@ -2641,7 +2641,7 @@ class EmailTemplatesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfEmailTemplateContentResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateContentResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2685,7 +2685,7 @@ class EmailTemplatesApi
      */
     public function getTemplateContentByIdUsingGETAsyncWithHttpInfo($id, $status = null)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfEmailTemplateContentResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateContentResponse';
         $request = $this->getTemplateContentByIdUsingGETRequest($id, $status);
 
         return $this->client
@@ -2842,9 +2842,9 @@ class EmailTemplatesApi
      *
      * @param  int $id id (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse
      */
     public function unapproveDraftUsingPOST1($id)
     {
@@ -2859,13 +2859,13 @@ class EmailTemplatesApi
      *
      * @param  int $id id (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function unapproveDraftUsingPOST1WithHttpInfo($id)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse';
         $request = $this->unapproveDraftUsingPOST1Request($id);
 
         try {
@@ -2917,7 +2917,7 @@ class EmailTemplatesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2959,7 +2959,7 @@ class EmailTemplatesApi
      */
     public function unapproveDraftUsingPOST1AsyncWithHttpInfo($id)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse';
         $request = $this->unapproveDraftUsingPOST1Request($id);
 
         return $this->client
@@ -3110,11 +3110,11 @@ class EmailTemplatesApi
      * Update Email Template Content
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\UpdateEmailTemplateContentRequest $update_email_template_content_request updateEmailTemplateContentRequest (optional)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateEmailTemplateContentRequest $update_email_template_content_request updateEmailTemplateContentRequest (optional)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfIdResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse
      */
     public function updateEmailTemplateContentUsingPOST($id, $update_email_template_content_request = null)
     {
@@ -3128,15 +3128,15 @@ class EmailTemplatesApi
      * Update Email Template Content
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\UpdateEmailTemplateContentRequest $update_email_template_content_request updateEmailTemplateContentRequest (optional)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateEmailTemplateContentRequest $update_email_template_content_request updateEmailTemplateContentRequest (optional)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfIdResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function updateEmailTemplateContentUsingPOSTWithHttpInfo($id, $update_email_template_content_request = null)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfIdResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse';
         $request = $this->updateEmailTemplateContentUsingPOSTRequest($id, $update_email_template_content_request);
 
         try {
@@ -3188,7 +3188,7 @@ class EmailTemplatesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfIdResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3204,7 +3204,7 @@ class EmailTemplatesApi
      * Update Email Template Content
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\UpdateEmailTemplateContentRequest $update_email_template_content_request updateEmailTemplateContentRequest (optional)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateEmailTemplateContentRequest $update_email_template_content_request updateEmailTemplateContentRequest (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -3225,14 +3225,14 @@ class EmailTemplatesApi
      * Update Email Template Content
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\UpdateEmailTemplateContentRequest $update_email_template_content_request updateEmailTemplateContentRequest (optional)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateEmailTemplateContentRequest $update_email_template_content_request updateEmailTemplateContentRequest (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function updateEmailTemplateContentUsingPOSTAsyncWithHttpInfo($id, $update_email_template_content_request = null)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfIdResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse';
         $request = $this->updateEmailTemplateContentUsingPOSTRequest($id, $update_email_template_content_request);
 
         return $this->client
@@ -3276,7 +3276,7 @@ class EmailTemplatesApi
      * Create request for operation 'updateEmailTemplateContentUsingPOST'
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\UpdateEmailTemplateContentRequest $update_email_template_content_request updateEmailTemplateContentRequest (optional)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateEmailTemplateContentRequest $update_email_template_content_request updateEmailTemplateContentRequest (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -3387,11 +3387,11 @@ class EmailTemplatesApi
      * Update Email Template Metadata
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\UpdateEmailTemplateMetaDataRequest $update_email_meta_data_request updateEmailMetaDataRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateEmailTemplateMetaDataRequest $update_email_meta_data_request updateEmailMetaDataRequest (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse
      */
     public function updateEmailTemplateUsingPOST($id, $update_email_meta_data_request)
     {
@@ -3405,15 +3405,15 @@ class EmailTemplatesApi
      * Update Email Template Metadata
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\UpdateEmailTemplateMetaDataRequest $update_email_meta_data_request updateEmailMetaDataRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateEmailTemplateMetaDataRequest $update_email_meta_data_request updateEmailMetaDataRequest (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function updateEmailTemplateUsingPOSTWithHttpInfo($id, $update_email_meta_data_request)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse';
         $request = $this->updateEmailTemplateUsingPOSTRequest($id, $update_email_meta_data_request);
 
         try {
@@ -3465,7 +3465,7 @@ class EmailTemplatesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3481,7 +3481,7 @@ class EmailTemplatesApi
      * Update Email Template Metadata
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\UpdateEmailTemplateMetaDataRequest $update_email_meta_data_request updateEmailMetaDataRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateEmailTemplateMetaDataRequest $update_email_meta_data_request updateEmailMetaDataRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -3502,14 +3502,14 @@ class EmailTemplatesApi
      * Update Email Template Metadata
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\UpdateEmailTemplateMetaDataRequest $update_email_meta_data_request updateEmailMetaDataRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateEmailTemplateMetaDataRequest $update_email_meta_data_request updateEmailMetaDataRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function updateEmailTemplateUsingPOSTAsyncWithHttpInfo($id, $update_email_meta_data_request)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse';
         $request = $this->updateEmailTemplateUsingPOSTRequest($id, $update_email_meta_data_request);
 
         return $this->client
@@ -3553,7 +3553,7 @@ class EmailTemplatesApi
      * Create request for operation 'updateEmailTemplateUsingPOST'
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\UpdateEmailTemplateMetaDataRequest $update_email_meta_data_request updateEmailMetaDataRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateEmailTemplateMetaDataRequest $update_email_meta_data_request updateEmailMetaDataRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request

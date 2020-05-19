@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Lead\Model;
+namespace NecLimDul\MarketoRest\Lead\Model;
 
 use \ArrayAccess;
-use \MarketoRest\Lead\ObjectSerializer;
+use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * ActivityType Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -58,11 +58,11 @@ class ActivityType implements ModelInterface, ArrayAccess
       */
     protected static $swaggerTypes = [
         'api_name' => 'string',
-        'attributes' => '\MarketoRest\Lead\Model\ActivityTypeAttribute[]',
+        'attributes' => '\NecLimDul\MarketoRest\Lead\Model\ActivityTypeAttribute[]',
         'description' => 'string',
         'id' => 'int',
         'name' => 'string',
-        'primary_attribute' => '\MarketoRest\Lead\Model\ActivityTypeAttribute'
+        'primary_attribute' => '\NecLimDul\MarketoRest\Lead\Model\ActivityTypeAttribute'
     ];
 
     /**
@@ -273,7 +273,7 @@ class ActivityType implements ModelInterface, ArrayAccess
     /**
      * Gets attributes
      *
-     * @return \MarketoRest\Lead\Model\ActivityTypeAttribute[]
+     * @return \NecLimDul\MarketoRest\Lead\Model\ActivityTypeAttribute[]
      */
     public function getAttributes()
     {
@@ -283,7 +283,7 @@ class ActivityType implements ModelInterface, ArrayAccess
     /**
      * Sets attributes
      *
-     * @param \MarketoRest\Lead\Model\ActivityTypeAttribute[] $attributes List of secondary attributes of the type
+     * @param \NecLimDul\MarketoRest\Lead\Model\ActivityTypeAttribute[] $attributes List of secondary attributes of the type
      *
      * @return $this
      */
@@ -369,7 +369,7 @@ class ActivityType implements ModelInterface, ArrayAccess
     /**
      * Gets primary_attribute
      *
-     * @return \MarketoRest\Lead\Model\ActivityTypeAttribute
+     * @return \NecLimDul\MarketoRest\Lead\Model\ActivityTypeAttribute
      */
     public function getPrimaryAttribute()
     {
@@ -379,7 +379,7 @@ class ActivityType implements ModelInterface, ArrayAccess
     /**
      * Sets primary_attribute
      *
-     * @param \MarketoRest\Lead\Model\ActivityTypeAttribute $primary_attribute Primary attribute of the type
+     * @param \NecLimDul\MarketoRest\Lead\Model\ActivityTypeAttribute $primary_attribute Primary attribute of the type
      *
      * @return $this
      */

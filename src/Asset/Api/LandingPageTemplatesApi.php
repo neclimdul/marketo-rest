@@ -4,7 +4,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -26,7 +26,7 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Asset\Api;
+namespace NecLimDul\MarketoRest\Asset\Api;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -34,16 +34,16 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
-use MarketoRest\Asset\ApiException;
-use MarketoRest\Asset\Configuration;
-use MarketoRest\Asset\HeaderSelector;
-use MarketoRest\Asset\ObjectSerializer;
+use NecLimDul\MarketoRest\Asset\ApiException;
+use NecLimDul\MarketoRest\Asset\Configuration;
+use NecLimDul\MarketoRest\Asset\HeaderSelector;
+use NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * LandingPageTemplatesApi Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -94,9 +94,9 @@ class LandingPageTemplatesApi
      *
      * @param  int $id id (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfLpTemplateResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse
      */
     public function approveLandingPageTemplateUsingPOST($id)
     {
@@ -111,13 +111,13 @@ class LandingPageTemplatesApi
      *
      * @param  int $id id (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfLpTemplateResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function approveLandingPageTemplateUsingPOSTWithHttpInfo($id)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse';
         $request = $this->approveLandingPageTemplateUsingPOSTRequest($id);
 
         try {
@@ -169,7 +169,7 @@ class LandingPageTemplatesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -211,7 +211,7 @@ class LandingPageTemplatesApi
      */
     public function approveLandingPageTemplateUsingPOSTAsyncWithHttpInfo($id)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse';
         $request = $this->approveLandingPageTemplateUsingPOSTRequest($id);
 
         return $this->client
@@ -362,11 +362,11 @@ class LandingPageTemplatesApi
      * Clone Landing Page Template
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\CloneLpTemplateRequest $clone_lp_template_request cloneLpTemplateRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CloneLpTemplateRequest $clone_lp_template_request cloneLpTemplateRequest (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfLpTemplateResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse
      */
     public function cloneLpTemplateUsingPOST($id, $clone_lp_template_request)
     {
@@ -380,15 +380,15 @@ class LandingPageTemplatesApi
      * Clone Landing Page Template
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\CloneLpTemplateRequest $clone_lp_template_request cloneLpTemplateRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CloneLpTemplateRequest $clone_lp_template_request cloneLpTemplateRequest (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfLpTemplateResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function cloneLpTemplateUsingPOSTWithHttpInfo($id, $clone_lp_template_request)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse';
         $request = $this->cloneLpTemplateUsingPOSTRequest($id, $clone_lp_template_request);
 
         try {
@@ -440,7 +440,7 @@ class LandingPageTemplatesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -456,7 +456,7 @@ class LandingPageTemplatesApi
      * Clone Landing Page Template
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\CloneLpTemplateRequest $clone_lp_template_request cloneLpTemplateRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CloneLpTemplateRequest $clone_lp_template_request cloneLpTemplateRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -477,14 +477,14 @@ class LandingPageTemplatesApi
      * Clone Landing Page Template
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\CloneLpTemplateRequest $clone_lp_template_request cloneLpTemplateRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CloneLpTemplateRequest $clone_lp_template_request cloneLpTemplateRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function cloneLpTemplateUsingPOSTAsyncWithHttpInfo($id, $clone_lp_template_request)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse';
         $request = $this->cloneLpTemplateUsingPOSTRequest($id, $clone_lp_template_request);
 
         return $this->client
@@ -528,7 +528,7 @@ class LandingPageTemplatesApi
      * Create request for operation 'cloneLpTemplateUsingPOST'
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\CloneLpTemplateRequest $clone_lp_template_request cloneLpTemplateRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CloneLpTemplateRequest $clone_lp_template_request cloneLpTemplateRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -644,11 +644,11 @@ class LandingPageTemplatesApi
      *
      * Create Landing Page Template
      *
-     * @param  \MarketoRest\Asset\Model\CreateLpTemplateRequest $create_lp_template_request createLpTemplateRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CreateLpTemplateRequest $create_lp_template_request createLpTemplateRequest (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfLpTemplateResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse
      */
     public function createLpTemplateUsingPOST($create_lp_template_request)
     {
@@ -661,15 +661,15 @@ class LandingPageTemplatesApi
      *
      * Create Landing Page Template
      *
-     * @param  \MarketoRest\Asset\Model\CreateLpTemplateRequest $create_lp_template_request createLpTemplateRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CreateLpTemplateRequest $create_lp_template_request createLpTemplateRequest (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfLpTemplateResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function createLpTemplateUsingPOSTWithHttpInfo($create_lp_template_request)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse';
         $request = $this->createLpTemplateUsingPOSTRequest($create_lp_template_request);
 
         try {
@@ -721,7 +721,7 @@ class LandingPageTemplatesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -736,7 +736,7 @@ class LandingPageTemplatesApi
      *
      * Create Landing Page Template
      *
-     * @param  \MarketoRest\Asset\Model\CreateLpTemplateRequest $create_lp_template_request createLpTemplateRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CreateLpTemplateRequest $create_lp_template_request createLpTemplateRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -756,14 +756,14 @@ class LandingPageTemplatesApi
      *
      * Create Landing Page Template
      *
-     * @param  \MarketoRest\Asset\Model\CreateLpTemplateRequest $create_lp_template_request createLpTemplateRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CreateLpTemplateRequest $create_lp_template_request createLpTemplateRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function createLpTemplateUsingPOSTAsyncWithHttpInfo($create_lp_template_request)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse';
         $request = $this->createLpTemplateUsingPOSTRequest($create_lp_template_request);
 
         return $this->client
@@ -806,7 +806,7 @@ class LandingPageTemplatesApi
     /**
      * Create request for operation 'createLpTemplateUsingPOST'
      *
-     * @param  \MarketoRest\Asset\Model\CreateLpTemplateRequest $create_lp_template_request createLpTemplateRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CreateLpTemplateRequest $create_lp_template_request createLpTemplateRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -910,9 +910,9 @@ class LandingPageTemplatesApi
      *
      * @param  int $id id (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfIdResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse
      */
     public function deleteLpTemplateUsingPOST($id)
     {
@@ -927,13 +927,13 @@ class LandingPageTemplatesApi
      *
      * @param  int $id id (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfIdResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function deleteLpTemplateUsingPOSTWithHttpInfo($id)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfIdResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse';
         $request = $this->deleteLpTemplateUsingPOSTRequest($id);
 
         try {
@@ -985,7 +985,7 @@ class LandingPageTemplatesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfIdResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1027,7 +1027,7 @@ class LandingPageTemplatesApi
      */
     public function deleteLpTemplateUsingPOSTAsyncWithHttpInfo($id)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfIdResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse';
         $request = $this->deleteLpTemplateUsingPOSTRequest($id);
 
         return $this->client
@@ -1179,9 +1179,9 @@ class LandingPageTemplatesApi
      *
      * @param  int $id id (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfIdResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse
      */
     public function discardDraftUsingPOST2($id)
     {
@@ -1196,13 +1196,13 @@ class LandingPageTemplatesApi
      *
      * @param  int $id id (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfIdResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function discardDraftUsingPOST2WithHttpInfo($id)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfIdResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse';
         $request = $this->discardDraftUsingPOST2Request($id);
 
         try {
@@ -1254,7 +1254,7 @@ class LandingPageTemplatesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfIdResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1296,7 +1296,7 @@ class LandingPageTemplatesApi
      */
     public function discardDraftUsingPOST2AsyncWithHttpInfo($id)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfIdResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse';
         $request = $this->discardDraftUsingPOST2Request($id);
 
         return $this->client
@@ -1449,9 +1449,9 @@ class LandingPageTemplatesApi
      * @param  int $id id (required)
      * @param  string $status Status filter for draft or approved versions (optional)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfLpTemplateResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse
      */
     public function getLandingPageTemplateByIdUsingGET($id, $status = null)
     {
@@ -1467,13 +1467,13 @@ class LandingPageTemplatesApi
      * @param  int $id id (required)
      * @param  string $status Status filter for draft or approved versions (optional)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfLpTemplateResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function getLandingPageTemplateByIdUsingGETWithHttpInfo($id, $status = null)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse';
         $request = $this->getLandingPageTemplateByIdUsingGETRequest($id, $status);
 
         try {
@@ -1525,7 +1525,7 @@ class LandingPageTemplatesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1569,7 +1569,7 @@ class LandingPageTemplatesApi
      */
     public function getLandingPageTemplateByIdUsingGETAsyncWithHttpInfo($id, $status = null)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse';
         $request = $this->getLandingPageTemplateByIdUsingGETRequest($id, $status);
 
         return $this->client
@@ -1726,9 +1726,9 @@ class LandingPageTemplatesApi
      *
      * @param  string $name Name of the landing page template (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfLpTemplateResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse
      */
     public function getLandingPageTemplateByNameUsingGET($name)
     {
@@ -1743,13 +1743,13 @@ class LandingPageTemplatesApi
      *
      * @param  string $name Name of the landing page template (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfLpTemplateResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function getLandingPageTemplateByNameUsingGETWithHttpInfo($name)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse';
         $request = $this->getLandingPageTemplateByNameUsingGETRequest($name);
 
         try {
@@ -1801,7 +1801,7 @@ class LandingPageTemplatesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1843,7 +1843,7 @@ class LandingPageTemplatesApi
      */
     public function getLandingPageTemplateByNameUsingGETAsyncWithHttpInfo($name)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse';
         $request = $this->getLandingPageTemplateByNameUsingGETRequest($name);
 
         return $this->client
@@ -1992,9 +1992,9 @@ class LandingPageTemplatesApi
      * @param  int $id id (required)
      * @param  string $status Status filter for draft or approved versions (optional)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfLpTemplateGetContentResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateGetContentResponse
      */
     public function getLandingPageTemplateContentUsingGET($id, $status = null)
     {
@@ -2010,13 +2010,13 @@ class LandingPageTemplatesApi
      * @param  int $id id (required)
      * @param  string $status Status filter for draft or approved versions (optional)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfLpTemplateGetContentResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateGetContentResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function getLandingPageTemplateContentUsingGETWithHttpInfo($id, $status = null)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfLpTemplateGetContentResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateGetContentResponse';
         $request = $this->getLandingPageTemplateContentUsingGETRequest($id, $status);
 
         try {
@@ -2068,7 +2068,7 @@ class LandingPageTemplatesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfLpTemplateGetContentResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateGetContentResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2112,7 +2112,7 @@ class LandingPageTemplatesApi
      */
     public function getLandingPageTemplateContentUsingGETAsyncWithHttpInfo($id, $status = null)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfLpTemplateGetContentResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateGetContentResponse';
         $request = $this->getLandingPageTemplateContentUsingGETRequest($id, $status);
 
         return $this->client
@@ -2272,9 +2272,9 @@ class LandingPageTemplatesApi
      * @param  string $status Status filter for draft or approved versions (optional)
      * @param  string $folder JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39; (optional)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfLpTemplateResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse
      */
     public function getLandingPageTemplatesUsingGET($max_return = null, $offset = null, $status = null, $folder = null)
     {
@@ -2292,13 +2292,13 @@ class LandingPageTemplatesApi
      * @param  string $status Status filter for draft or approved versions (optional)
      * @param  string $folder JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39; (optional)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfLpTemplateResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function getLandingPageTemplatesUsingGETWithHttpInfo($max_return = null, $offset = null, $status = null, $folder = null)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse';
         $request = $this->getLandingPageTemplatesUsingGETRequest($max_return, $offset, $status, $folder);
 
         try {
@@ -2350,7 +2350,7 @@ class LandingPageTemplatesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2398,7 +2398,7 @@ class LandingPageTemplatesApi
      */
     public function getLandingPageTemplatesUsingGETAsyncWithHttpInfo($max_return = null, $offset = null, $status = null, $folder = null)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse';
         $request = $this->getLandingPageTemplatesUsingGETRequest($max_return, $offset, $status, $folder);
 
         return $this->client
@@ -2555,9 +2555,9 @@ class LandingPageTemplatesApi
      *
      * @param  int $id id (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfLpTemplateResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse
      */
     public function unapproveLandingPageTemplateUsingPOST($id)
     {
@@ -2572,13 +2572,13 @@ class LandingPageTemplatesApi
      *
      * @param  int $id id (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfLpTemplateResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function unapproveLandingPageTemplateUsingPOSTWithHttpInfo($id)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse';
         $request = $this->unapproveLandingPageTemplateUsingPOSTRequest($id);
 
         try {
@@ -2630,7 +2630,7 @@ class LandingPageTemplatesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2672,7 +2672,7 @@ class LandingPageTemplatesApi
      */
     public function unapproveLandingPageTemplateUsingPOSTAsyncWithHttpInfo($id)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse';
         $request = $this->unapproveLandingPageTemplateUsingPOSTRequest($id);
 
         return $this->client
@@ -2825,9 +2825,9 @@ class LandingPageTemplatesApi
      * @param  int $id id (required)
      * @param  string $content content (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfIdResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse
      */
     public function updateLandingPageTemplateContentUsingPOST($id, $content)
     {
@@ -2843,13 +2843,13 @@ class LandingPageTemplatesApi
      * @param  int $id id (required)
      * @param  string $content content (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfIdResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function updateLandingPageTemplateContentUsingPOSTWithHttpInfo($id, $content)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfIdResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse';
         $request = $this->updateLandingPageTemplateContentUsingPOSTRequest($id, $content);
 
         try {
@@ -2901,7 +2901,7 @@ class LandingPageTemplatesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfIdResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2945,7 +2945,7 @@ class LandingPageTemplatesApi
      */
     public function updateLandingPageTemplateContentUsingPOSTAsyncWithHttpInfo($id, $content)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfIdResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse';
         $request = $this->updateLandingPageTemplateContentUsingPOSTRequest($id, $content);
 
         return $this->client
@@ -3107,11 +3107,11 @@ class LandingPageTemplatesApi
      * Update Landing Page Template Metadata
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\UpdateLpTemplateRequest $update_lp_template_request updateLpTemplateRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateLpTemplateRequest $update_lp_template_request updateLpTemplateRequest (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfLpTemplateResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse
      */
     public function updateLpTemplateUsingPOST($id, $update_lp_template_request)
     {
@@ -3125,15 +3125,15 @@ class LandingPageTemplatesApi
      * Update Landing Page Template Metadata
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\UpdateLpTemplateRequest $update_lp_template_request updateLpTemplateRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateLpTemplateRequest $update_lp_template_request updateLpTemplateRequest (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfLpTemplateResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function updateLpTemplateUsingPOSTWithHttpInfo($id, $update_lp_template_request)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse';
         $request = $this->updateLpTemplateUsingPOSTRequest($id, $update_lp_template_request);
 
         try {
@@ -3185,7 +3185,7 @@ class LandingPageTemplatesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3201,7 +3201,7 @@ class LandingPageTemplatesApi
      * Update Landing Page Template Metadata
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\UpdateLpTemplateRequest $update_lp_template_request updateLpTemplateRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateLpTemplateRequest $update_lp_template_request updateLpTemplateRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -3222,14 +3222,14 @@ class LandingPageTemplatesApi
      * Update Landing Page Template Metadata
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\UpdateLpTemplateRequest $update_lp_template_request updateLpTemplateRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateLpTemplateRequest $update_lp_template_request updateLpTemplateRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function updateLpTemplateUsingPOSTAsyncWithHttpInfo($id, $update_lp_template_request)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse';
         $request = $this->updateLpTemplateUsingPOSTRequest($id, $update_lp_template_request);
 
         return $this->client
@@ -3273,7 +3273,7 @@ class LandingPageTemplatesApi
      * Create request for operation 'updateLpTemplateUsingPOST'
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\UpdateLpTemplateRequest $update_lp_template_request updateLpTemplateRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateLpTemplateRequest $update_lp_template_request updateLpTemplateRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request

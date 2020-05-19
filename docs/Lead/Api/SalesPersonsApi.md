@@ -1,4 +1,4 @@
-# MarketoRest\Lead\SalesPersonsApi
+# NecLimDul\MarketoRest\Lead\SalesPersonsApi
 
 All URIs are relative to *https://localhost:8080*
 
@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 
 # **deleteSalesPersonUsingPOST**
-> \MarketoRest\Lead\Model\ResponseOfSalesPerson deleteSalesPersonUsingPOST($delete_sales_person_request)
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson deleteSalesPersonUsingPOST($delete_sales_person_request)
 
 Delete SalesPersons
 
@@ -22,12 +22,12 @@ Deletes a list of salesperson records from the target instance.  Input records s
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Lead\Api\SalesPersonsApi(
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\SalesPersonsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$delete_sales_person_request = new \MarketoRest\Lead\Model\DeleteSalesPersonRequest(); // \MarketoRest\Lead\Model\DeleteSalesPersonRequest | deleteSalesPersonRequest
+$delete_sales_person_request = new \NecLimDul\MarketoRest\Lead\Model\DeleteSalesPersonRequest(); // \NecLimDul\MarketoRest\Lead\Model\DeleteSalesPersonRequest | deleteSalesPersonRequest
 
 try {
     $result = $apiInstance->deleteSalesPersonUsingPOST($delete_sales_person_request);
@@ -42,11 +42,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **delete_sales_person_request** | [**\MarketoRest\Lead\Model\DeleteSalesPersonRequest**](../Model/DeleteSalesPersonRequest.md)| deleteSalesPersonRequest |
+ **delete_sales_person_request** | [**\NecLimDul\MarketoRest\Lead\Model\DeleteSalesPersonRequest**](../Model/DeleteSalesPersonRequest.md)| deleteSalesPersonRequest |
 
 ### Return type
 
-[**\MarketoRest\Lead\Model\ResponseOfSalesPerson**](../Model/ResponseOfSalesPerson.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson**](../Model/ResponseOfSalesPerson.md)
 
 ### Authorization
 
@@ -60,7 +60,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **describeUsingGET5**
-> \MarketoRest\Lead\Model\ResponseOfObjectMetaData describeUsingGET5()
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData describeUsingGET5()
 
 Describe SalesPersons
 
@@ -71,7 +71,7 @@ Returns metadata about salespersons and the fields available for interaction via
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Lead\Api\SalesPersonsApi(
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\SalesPersonsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -91,7 +91,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**\MarketoRest\Lead\Model\ResponseOfObjectMetaData**](../Model/ResponseOfObjectMetaData.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData**](../Model/ResponseOfObjectMetaData.md)
 
 ### Authorization
 
@@ -105,7 +105,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getSalesPersonUsingGET**
-> \MarketoRest\Lead\Model\ResponseOfSalesPerson getSalesPersonUsingGET($filter_type, $filter_values, $fields, $batch_size, $next_page_token)
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson getSalesPersonUsingGET($filter_type, $filter_values, $fields, $batch_size, $next_page_token)
 
 Get SalesPersons
 
@@ -116,7 +116,7 @@ Retrieves salesperson records from the destination instance based on the submitt
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Lead\Api\SalesPersonsApi(
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\SalesPersonsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -148,7 +148,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Lead\Model\ResponseOfSalesPerson**](../Model/ResponseOfSalesPerson.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson**](../Model/ResponseOfSalesPerson.md)
 
 ### Authorization
 
@@ -162,7 +162,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **syncSalesPersonsUsingPOST**
-> \MarketoRest\Lead\Model\ResponseOfSalesPerson syncSalesPersonsUsingPOST($sync_sales_person_request)
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson syncSalesPersonsUsingPOST($sync_sales_person_request)
 
 Sync SalesPersons
 
@@ -173,12 +173,12 @@ Allows inserts, updates, or upserts of salespersons to the target instance.  Req
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Lead\Api\SalesPersonsApi(
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\SalesPersonsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$sync_sales_person_request = new \MarketoRest\Lead\Model\SyncSalesPersonRequest(); // \MarketoRest\Lead\Model\SyncSalesPersonRequest | syncSalesPersonRequest
+$sync_sales_person_request = new \NecLimDul\MarketoRest\Lead\Model\SyncSalesPersonRequest(); // \NecLimDul\MarketoRest\Lead\Model\SyncSalesPersonRequest | syncSalesPersonRequest
 
 try {
     $result = $apiInstance->syncSalesPersonsUsingPOST($sync_sales_person_request);
@@ -193,11 +193,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **sync_sales_person_request** | [**\MarketoRest\Lead\Model\SyncSalesPersonRequest**](../Model/SyncSalesPersonRequest.md)| syncSalesPersonRequest |
+ **sync_sales_person_request** | [**\NecLimDul\MarketoRest\Lead\Model\SyncSalesPersonRequest**](../Model/SyncSalesPersonRequest.md)| syncSalesPersonRequest |
 
 ### Return type
 
-[**\MarketoRest\Lead\Model\ResponseOfSalesPerson**](../Model/ResponseOfSalesPerson.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson**](../Model/ResponseOfSalesPerson.md)
 
 ### Authorization
 

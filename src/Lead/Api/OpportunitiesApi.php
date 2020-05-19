@@ -4,7 +4,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -26,7 +26,7 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Lead\Api;
+namespace NecLimDul\MarketoRest\Lead\Api;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -34,16 +34,16 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
-use MarketoRest\Lead\ApiException;
-use MarketoRest\Lead\Configuration;
-use MarketoRest\Lead\HeaderSelector;
-use MarketoRest\Lead\ObjectSerializer;
+use NecLimDul\MarketoRest\Lead\ApiException;
+use NecLimDul\MarketoRest\Lead\Configuration;
+use NecLimDul\MarketoRest\Lead\HeaderSelector;
+use NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * OpportunitiesApi Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -92,11 +92,11 @@ class OpportunitiesApi
      *
      * Delete Opportunities
      *
-     * @param  \MarketoRest\Lead\Model\DeleteCustomObjectRequest $delete_custom_object_request deleteCustomObjectRequest (optional)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectRequest $delete_custom_object_request deleteCustomObjectRequest (optional)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Lead\Model\ResponseOfCustomObject
+     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject
      */
     public function deleteOpportunitiesUsingPOST($delete_custom_object_request = null)
     {
@@ -109,15 +109,15 @@ class OpportunitiesApi
      *
      * Delete Opportunities
      *
-     * @param  \MarketoRest\Lead\Model\DeleteCustomObjectRequest $delete_custom_object_request deleteCustomObjectRequest (optional)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectRequest $delete_custom_object_request deleteCustomObjectRequest (optional)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Lead\Model\ResponseOfCustomObject, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject, HTTP status code, HTTP response headers (array of strings)
      */
     public function deleteOpportunitiesUsingPOSTWithHttpInfo($delete_custom_object_request = null)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfCustomObject';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject';
         $request = $this->deleteOpportunitiesUsingPOSTRequest($delete_custom_object_request);
 
         try {
@@ -169,7 +169,7 @@ class OpportunitiesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Lead\Model\ResponseOfCustomObject',
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -184,7 +184,7 @@ class OpportunitiesApi
      *
      * Delete Opportunities
      *
-     * @param  \MarketoRest\Lead\Model\DeleteCustomObjectRequest $delete_custom_object_request deleteCustomObjectRequest (optional)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectRequest $delete_custom_object_request deleteCustomObjectRequest (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -204,14 +204,14 @@ class OpportunitiesApi
      *
      * Delete Opportunities
      *
-     * @param  \MarketoRest\Lead\Model\DeleteCustomObjectRequest $delete_custom_object_request deleteCustomObjectRequest (optional)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectRequest $delete_custom_object_request deleteCustomObjectRequest (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function deleteOpportunitiesUsingPOSTAsyncWithHttpInfo($delete_custom_object_request = null)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfCustomObject';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject';
         $request = $this->deleteOpportunitiesUsingPOSTRequest($delete_custom_object_request);
 
         return $this->client
@@ -254,7 +254,7 @@ class OpportunitiesApi
     /**
      * Create request for operation 'deleteOpportunitiesUsingPOST'
      *
-     * @param  \MarketoRest\Lead\Model\DeleteCustomObjectRequest $delete_custom_object_request deleteCustomObjectRequest (optional)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectRequest $delete_custom_object_request deleteCustomObjectRequest (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -350,11 +350,11 @@ class OpportunitiesApi
      *
      * Delete Opportunity Roles
      *
-     * @param  \MarketoRest\Lead\Model\DeleteCustomObjectRequest $delete_custom_object_request deleteCustomObjectRequest (optional)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectRequest $delete_custom_object_request deleteCustomObjectRequest (optional)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Lead\Model\ResponseOfCustomObject
+     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject
      */
     public function deleteOpportunityRolesUsingPOST($delete_custom_object_request = null)
     {
@@ -367,15 +367,15 @@ class OpportunitiesApi
      *
      * Delete Opportunity Roles
      *
-     * @param  \MarketoRest\Lead\Model\DeleteCustomObjectRequest $delete_custom_object_request deleteCustomObjectRequest (optional)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectRequest $delete_custom_object_request deleteCustomObjectRequest (optional)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Lead\Model\ResponseOfCustomObject, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject, HTTP status code, HTTP response headers (array of strings)
      */
     public function deleteOpportunityRolesUsingPOSTWithHttpInfo($delete_custom_object_request = null)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfCustomObject';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject';
         $request = $this->deleteOpportunityRolesUsingPOSTRequest($delete_custom_object_request);
 
         try {
@@ -427,7 +427,7 @@ class OpportunitiesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Lead\Model\ResponseOfCustomObject',
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -442,7 +442,7 @@ class OpportunitiesApi
      *
      * Delete Opportunity Roles
      *
-     * @param  \MarketoRest\Lead\Model\DeleteCustomObjectRequest $delete_custom_object_request deleteCustomObjectRequest (optional)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectRequest $delete_custom_object_request deleteCustomObjectRequest (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -462,14 +462,14 @@ class OpportunitiesApi
      *
      * Delete Opportunity Roles
      *
-     * @param  \MarketoRest\Lead\Model\DeleteCustomObjectRequest $delete_custom_object_request deleteCustomObjectRequest (optional)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectRequest $delete_custom_object_request deleteCustomObjectRequest (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function deleteOpportunityRolesUsingPOSTAsyncWithHttpInfo($delete_custom_object_request = null)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfCustomObject';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject';
         $request = $this->deleteOpportunityRolesUsingPOSTRequest($delete_custom_object_request);
 
         return $this->client
@@ -512,7 +512,7 @@ class OpportunitiesApi
     /**
      * Create request for operation 'deleteOpportunityRolesUsingPOST'
      *
-     * @param  \MarketoRest\Lead\Model\DeleteCustomObjectRequest $delete_custom_object_request deleteCustomObjectRequest (optional)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectRequest $delete_custom_object_request deleteCustomObjectRequest (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -609,9 +609,9 @@ class OpportunitiesApi
      * Describe Opportunity Role
      *
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Lead\Model\ResponseOfObjectMetaData
+     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData
      */
     public function describeOpportunityRoleUsingGET()
     {
@@ -625,13 +625,13 @@ class OpportunitiesApi
      * Describe Opportunity Role
      *
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Lead\Model\ResponseOfObjectMetaData, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData, HTTP status code, HTTP response headers (array of strings)
      */
     public function describeOpportunityRoleUsingGETWithHttpInfo()
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfObjectMetaData';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData';
         $request = $this->describeOpportunityRoleUsingGETRequest();
 
         try {
@@ -683,7 +683,7 @@ class OpportunitiesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Lead\Model\ResponseOfObjectMetaData',
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -723,7 +723,7 @@ class OpportunitiesApi
      */
     public function describeOpportunityRoleUsingGETAsyncWithHttpInfo()
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfObjectMetaData';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData';
         $request = $this->describeOpportunityRoleUsingGETRequest();
 
         return $this->client
@@ -859,9 +859,9 @@ class OpportunitiesApi
      * Describe Opportunity
      *
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Lead\Model\ResponseOfObjectMetaData
+     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData
      */
     public function describeUsingGET4()
     {
@@ -875,13 +875,13 @@ class OpportunitiesApi
      * Describe Opportunity
      *
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Lead\Model\ResponseOfObjectMetaData, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData, HTTP status code, HTTP response headers (array of strings)
      */
     public function describeUsingGET4WithHttpInfo()
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfObjectMetaData';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData';
         $request = $this->describeUsingGET4Request();
 
         try {
@@ -933,7 +933,7 @@ class OpportunitiesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Lead\Model\ResponseOfObjectMetaData',
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -973,7 +973,7 @@ class OpportunitiesApi
      */
     public function describeUsingGET4AsyncWithHttpInfo()
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfObjectMetaData';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData';
         $request = $this->describeUsingGET4Request();
 
         return $this->client
@@ -1110,14 +1110,14 @@ class OpportunitiesApi
      *
      * @param  string $filter_type Opportunities field to filter on (required)
      * @param  string[] $filter_values Comma-separated list of values to match against (required)
-     * @param  \MarketoRest\Lead\Model\LookupCustomObjectRequest $custom_object_lookup_request customObjectLookupRequest (optional)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest $custom_object_lookup_request customObjectLookupRequest (optional)
      * @param  string[] $fields Comma-separated list of fields to include in the response (optional)
      * @param  int $batch_size Maximum number of records to return in the response.  Max and default is 300 (optional)
      * @param  string $next_page_token Paging token returned from a previous response (optional)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Lead\Model\ResponseOfCustomObject
+     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject
      */
     public function getOpportunitiesUsingGET($filter_type, $filter_values, $custom_object_lookup_request = null, $fields = null, $batch_size = null, $next_page_token = null)
     {
@@ -1132,18 +1132,18 @@ class OpportunitiesApi
      *
      * @param  string $filter_type Opportunities field to filter on (required)
      * @param  string[] $filter_values Comma-separated list of values to match against (required)
-     * @param  \MarketoRest\Lead\Model\LookupCustomObjectRequest $custom_object_lookup_request customObjectLookupRequest (optional)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest $custom_object_lookup_request customObjectLookupRequest (optional)
      * @param  string[] $fields Comma-separated list of fields to include in the response (optional)
      * @param  int $batch_size Maximum number of records to return in the response.  Max and default is 300 (optional)
      * @param  string $next_page_token Paging token returned from a previous response (optional)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Lead\Model\ResponseOfCustomObject, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject, HTTP status code, HTTP response headers (array of strings)
      */
     public function getOpportunitiesUsingGETWithHttpInfo($filter_type, $filter_values, $custom_object_lookup_request = null, $fields = null, $batch_size = null, $next_page_token = null)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfCustomObject';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject';
         $request = $this->getOpportunitiesUsingGETRequest($filter_type, $filter_values, $custom_object_lookup_request, $fields, $batch_size, $next_page_token);
 
         try {
@@ -1195,7 +1195,7 @@ class OpportunitiesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Lead\Model\ResponseOfCustomObject',
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1212,7 +1212,7 @@ class OpportunitiesApi
      *
      * @param  string $filter_type Opportunities field to filter on (required)
      * @param  string[] $filter_values Comma-separated list of values to match against (required)
-     * @param  \MarketoRest\Lead\Model\LookupCustomObjectRequest $custom_object_lookup_request customObjectLookupRequest (optional)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest $custom_object_lookup_request customObjectLookupRequest (optional)
      * @param  string[] $fields Comma-separated list of fields to include in the response (optional)
      * @param  int $batch_size Maximum number of records to return in the response.  Max and default is 300 (optional)
      * @param  string $next_page_token Paging token returned from a previous response (optional)
@@ -1237,7 +1237,7 @@ class OpportunitiesApi
      *
      * @param  string $filter_type Opportunities field to filter on (required)
      * @param  string[] $filter_values Comma-separated list of values to match against (required)
-     * @param  \MarketoRest\Lead\Model\LookupCustomObjectRequest $custom_object_lookup_request customObjectLookupRequest (optional)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest $custom_object_lookup_request customObjectLookupRequest (optional)
      * @param  string[] $fields Comma-separated list of fields to include in the response (optional)
      * @param  int $batch_size Maximum number of records to return in the response.  Max and default is 300 (optional)
      * @param  string $next_page_token Paging token returned from a previous response (optional)
@@ -1247,7 +1247,7 @@ class OpportunitiesApi
      */
     public function getOpportunitiesUsingGETAsyncWithHttpInfo($filter_type, $filter_values, $custom_object_lookup_request = null, $fields = null, $batch_size = null, $next_page_token = null)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfCustomObject';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject';
         $request = $this->getOpportunitiesUsingGETRequest($filter_type, $filter_values, $custom_object_lookup_request, $fields, $batch_size, $next_page_token);
 
         return $this->client
@@ -1292,7 +1292,7 @@ class OpportunitiesApi
      *
      * @param  string $filter_type Opportunities field to filter on (required)
      * @param  string[] $filter_values Comma-separated list of values to match against (required)
-     * @param  \MarketoRest\Lead\Model\LookupCustomObjectRequest $custom_object_lookup_request customObjectLookupRequest (optional)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest $custom_object_lookup_request customObjectLookupRequest (optional)
      * @param  string[] $fields Comma-separated list of fields to include in the response (optional)
      * @param  int $batch_size Maximum number of records to return in the response.  Max and default is 300 (optional)
      * @param  string $next_page_token Paging token returned from a previous response (optional)
@@ -1431,14 +1431,14 @@ class OpportunitiesApi
      *
      * @param  string $filter_type The role field to filter on.  Searchable fields can be retrieved with the Describe Opportunity call. (required)
      * @param  string[] $filter_values Comma-separated list of field values to return records for (required)
-     * @param  \MarketoRest\Lead\Model\LookupCustomObjectRequest $custom_object_lookup_request Optional JSON request for retrieving opportunity roles with compound keys (optional)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest $custom_object_lookup_request Optional JSON request for retrieving opportunity roles with compound keys (optional)
      * @param  string[] $fields Comma-separated list of fields to include in the response (optional)
      * @param  int $batch_size Maximum number of records to return in the response.  Max and default is 300 (optional)
      * @param  string $next_page_token Paging token returned from a previous response (optional)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Lead\Model\ResponseOfCustomObject
+     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject
      */
     public function getOpportunityRolesUsingGET($filter_type, $filter_values, $custom_object_lookup_request = null, $fields = null, $batch_size = null, $next_page_token = null)
     {
@@ -1453,18 +1453,18 @@ class OpportunitiesApi
      *
      * @param  string $filter_type The role field to filter on.  Searchable fields can be retrieved with the Describe Opportunity call. (required)
      * @param  string[] $filter_values Comma-separated list of field values to return records for (required)
-     * @param  \MarketoRest\Lead\Model\LookupCustomObjectRequest $custom_object_lookup_request Optional JSON request for retrieving opportunity roles with compound keys (optional)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest $custom_object_lookup_request Optional JSON request for retrieving opportunity roles with compound keys (optional)
      * @param  string[] $fields Comma-separated list of fields to include in the response (optional)
      * @param  int $batch_size Maximum number of records to return in the response.  Max and default is 300 (optional)
      * @param  string $next_page_token Paging token returned from a previous response (optional)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Lead\Model\ResponseOfCustomObject, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject, HTTP status code, HTTP response headers (array of strings)
      */
     public function getOpportunityRolesUsingGETWithHttpInfo($filter_type, $filter_values, $custom_object_lookup_request = null, $fields = null, $batch_size = null, $next_page_token = null)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfCustomObject';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject';
         $request = $this->getOpportunityRolesUsingGETRequest($filter_type, $filter_values, $custom_object_lookup_request, $fields, $batch_size, $next_page_token);
 
         try {
@@ -1516,7 +1516,7 @@ class OpportunitiesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Lead\Model\ResponseOfCustomObject',
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1533,7 +1533,7 @@ class OpportunitiesApi
      *
      * @param  string $filter_type The role field to filter on.  Searchable fields can be retrieved with the Describe Opportunity call. (required)
      * @param  string[] $filter_values Comma-separated list of field values to return records for (required)
-     * @param  \MarketoRest\Lead\Model\LookupCustomObjectRequest $custom_object_lookup_request Optional JSON request for retrieving opportunity roles with compound keys (optional)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest $custom_object_lookup_request Optional JSON request for retrieving opportunity roles with compound keys (optional)
      * @param  string[] $fields Comma-separated list of fields to include in the response (optional)
      * @param  int $batch_size Maximum number of records to return in the response.  Max and default is 300 (optional)
      * @param  string $next_page_token Paging token returned from a previous response (optional)
@@ -1558,7 +1558,7 @@ class OpportunitiesApi
      *
      * @param  string $filter_type The role field to filter on.  Searchable fields can be retrieved with the Describe Opportunity call. (required)
      * @param  string[] $filter_values Comma-separated list of field values to return records for (required)
-     * @param  \MarketoRest\Lead\Model\LookupCustomObjectRequest $custom_object_lookup_request Optional JSON request for retrieving opportunity roles with compound keys (optional)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest $custom_object_lookup_request Optional JSON request for retrieving opportunity roles with compound keys (optional)
      * @param  string[] $fields Comma-separated list of fields to include in the response (optional)
      * @param  int $batch_size Maximum number of records to return in the response.  Max and default is 300 (optional)
      * @param  string $next_page_token Paging token returned from a previous response (optional)
@@ -1568,7 +1568,7 @@ class OpportunitiesApi
      */
     public function getOpportunityRolesUsingGETAsyncWithHttpInfo($filter_type, $filter_values, $custom_object_lookup_request = null, $fields = null, $batch_size = null, $next_page_token = null)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfCustomObject';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject';
         $request = $this->getOpportunityRolesUsingGETRequest($filter_type, $filter_values, $custom_object_lookup_request, $fields, $batch_size, $next_page_token);
 
         return $this->client
@@ -1613,7 +1613,7 @@ class OpportunitiesApi
      *
      * @param  string $filter_type The role field to filter on.  Searchable fields can be retrieved with the Describe Opportunity call. (required)
      * @param  string[] $filter_values Comma-separated list of field values to return records for (required)
-     * @param  \MarketoRest\Lead\Model\LookupCustomObjectRequest $custom_object_lookup_request Optional JSON request for retrieving opportunity roles with compound keys (optional)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest $custom_object_lookup_request Optional JSON request for retrieving opportunity roles with compound keys (optional)
      * @param  string[] $fields Comma-separated list of fields to include in the response (optional)
      * @param  int $batch_size Maximum number of records to return in the response.  Max and default is 300 (optional)
      * @param  string $next_page_token Paging token returned from a previous response (optional)
@@ -1750,11 +1750,11 @@ class OpportunitiesApi
      *
      * Sync Opportunities
      *
-     * @param  \MarketoRest\Lead\Model\SyncCustomObjectRequest $sync_custom_object_request syncCustomObjectRequest (required)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectRequest $sync_custom_object_request syncCustomObjectRequest (required)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Lead\Model\ResponseOfCustomObject
+     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject
      */
     public function syncOpportunitiesUsingPOST($sync_custom_object_request)
     {
@@ -1767,15 +1767,15 @@ class OpportunitiesApi
      *
      * Sync Opportunities
      *
-     * @param  \MarketoRest\Lead\Model\SyncCustomObjectRequest $sync_custom_object_request syncCustomObjectRequest (required)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectRequest $sync_custom_object_request syncCustomObjectRequest (required)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Lead\Model\ResponseOfCustomObject, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject, HTTP status code, HTTP response headers (array of strings)
      */
     public function syncOpportunitiesUsingPOSTWithHttpInfo($sync_custom_object_request)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfCustomObject';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject';
         $request = $this->syncOpportunitiesUsingPOSTRequest($sync_custom_object_request);
 
         try {
@@ -1827,7 +1827,7 @@ class OpportunitiesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Lead\Model\ResponseOfCustomObject',
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1842,7 +1842,7 @@ class OpportunitiesApi
      *
      * Sync Opportunities
      *
-     * @param  \MarketoRest\Lead\Model\SyncCustomObjectRequest $sync_custom_object_request syncCustomObjectRequest (required)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectRequest $sync_custom_object_request syncCustomObjectRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1862,14 +1862,14 @@ class OpportunitiesApi
      *
      * Sync Opportunities
      *
-     * @param  \MarketoRest\Lead\Model\SyncCustomObjectRequest $sync_custom_object_request syncCustomObjectRequest (required)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectRequest $sync_custom_object_request syncCustomObjectRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function syncOpportunitiesUsingPOSTAsyncWithHttpInfo($sync_custom_object_request)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfCustomObject';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject';
         $request = $this->syncOpportunitiesUsingPOSTRequest($sync_custom_object_request);
 
         return $this->client
@@ -1912,7 +1912,7 @@ class OpportunitiesApi
     /**
      * Create request for operation 'syncOpportunitiesUsingPOST'
      *
-     * @param  \MarketoRest\Lead\Model\SyncCustomObjectRequest $sync_custom_object_request syncCustomObjectRequest (required)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectRequest $sync_custom_object_request syncCustomObjectRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -2014,11 +2014,11 @@ class OpportunitiesApi
      *
      * Sync Opportunity Roles
      *
-     * @param  \MarketoRest\Lead\Model\SyncCustomObjectRequest $sync_custom_object_request syncCustomObjectRequest (required)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectRequest $sync_custom_object_request syncCustomObjectRequest (required)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Lead\Model\ResponseOfCustomObject
+     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject
      */
     public function syncOpportunityRolesUsingPOST($sync_custom_object_request)
     {
@@ -2031,15 +2031,15 @@ class OpportunitiesApi
      *
      * Sync Opportunity Roles
      *
-     * @param  \MarketoRest\Lead\Model\SyncCustomObjectRequest $sync_custom_object_request syncCustomObjectRequest (required)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectRequest $sync_custom_object_request syncCustomObjectRequest (required)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Lead\Model\ResponseOfCustomObject, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject, HTTP status code, HTTP response headers (array of strings)
      */
     public function syncOpportunityRolesUsingPOSTWithHttpInfo($sync_custom_object_request)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfCustomObject';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject';
         $request = $this->syncOpportunityRolesUsingPOSTRequest($sync_custom_object_request);
 
         try {
@@ -2091,7 +2091,7 @@ class OpportunitiesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Lead\Model\ResponseOfCustomObject',
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2106,7 +2106,7 @@ class OpportunitiesApi
      *
      * Sync Opportunity Roles
      *
-     * @param  \MarketoRest\Lead\Model\SyncCustomObjectRequest $sync_custom_object_request syncCustomObjectRequest (required)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectRequest $sync_custom_object_request syncCustomObjectRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -2126,14 +2126,14 @@ class OpportunitiesApi
      *
      * Sync Opportunity Roles
      *
-     * @param  \MarketoRest\Lead\Model\SyncCustomObjectRequest $sync_custom_object_request syncCustomObjectRequest (required)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectRequest $sync_custom_object_request syncCustomObjectRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function syncOpportunityRolesUsingPOSTAsyncWithHttpInfo($sync_custom_object_request)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfCustomObject';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject';
         $request = $this->syncOpportunityRolesUsingPOSTRequest($sync_custom_object_request);
 
         return $this->client
@@ -2176,7 +2176,7 @@ class OpportunitiesApi
     /**
      * Create request for operation 'syncOpportunityRolesUsingPOST'
      *
-     * @param  \MarketoRest\Lead\Model\SyncCustomObjectRequest $sync_custom_object_request syncCustomObjectRequest (required)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectRequest $sync_custom_object_request syncCustomObjectRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request

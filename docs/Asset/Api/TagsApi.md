@@ -1,4 +1,4 @@
-# MarketoRest\Asset\TagsApi
+# NecLimDul\MarketoRest\Asset\TagsApi
 
 All URIs are relative to *https://localhost:8080*
 
@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 
 # **getTagByNameUsingGET**
-> \MarketoRest\Asset\Model\ResponseOfTagResponse getTagByNameUsingGET($name)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfTagResponse getTagByNameUsingGET($name)
 
 Get Tag By Name
 
@@ -20,7 +20,7 @@ Retrieves a tag by its name.  This will also return the set of valid values for 
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\TagsApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\TagsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -44,7 +44,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfTagResponse**](../Model/ResponseOfTagResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfTagResponse**](../Model/ResponseOfTagResponse.md)
 
 ### Authorization
 
@@ -58,7 +58,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getTagTypesUsingGET**
-> \MarketoRest\Asset\Model\ResponseOfTagResponseGetAll getTagTypesUsingGET($max_return, $offset)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfTagResponseGetAll getTagTypesUsingGET($max_return, $offset)
 
 Get Tag Types
 
@@ -69,7 +69,7 @@ Retrieves a list of available tag types.  Required Permissions: Read-Only Assets
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\TagsApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\TagsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -95,7 +95,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfTagResponseGetAll**](../Model/ResponseOfTagResponseGetAll.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfTagResponseGetAll**](../Model/ResponseOfTagResponseGetAll.md)
 
 ### Authorization
 

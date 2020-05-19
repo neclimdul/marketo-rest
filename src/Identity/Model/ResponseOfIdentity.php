@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Identity
+ * @package  NecLimDul\MarketoRest\Identity
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Identity\Model;
+namespace NecLimDul\MarketoRest\Identity\Model;
 
 use \ArrayAccess;
-use \MarketoRest\Identity\ObjectSerializer;
+use \NecLimDul\MarketoRest\Identity\ObjectSerializer;
 
 /**
  * ResponseOfIdentity Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Identity
+ * @package  NecLimDul\MarketoRest\Identity
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */

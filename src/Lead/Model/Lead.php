@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -27,17 +27,17 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Lead\Model;
+namespace NecLimDul\MarketoRest\Lead\Model;
 
 use \ArrayAccess;
-use \MarketoRest\Lead\ObjectSerializer;
+use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * Lead Class Doc Comment
  *
  * @category Class
  * @description Lead record.  Always contains id, but may have any number of other fields, depending on the fields available in the target instance.
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -59,8 +59,8 @@ class Lead implements ModelInterface, ArrayAccess
       */
     protected static $swaggerTypes = [
         'id' => 'int',
-        'membership' => '\MarketoRest\Lead\Model\ProgramMembership',
-        'reason' => '\MarketoRest\Lead\Model\Reason',
+        'membership' => '\NecLimDul\MarketoRest\Lead\Model\ProgramMembership',
+        'reason' => '\NecLimDul\MarketoRest\Lead\Model\Reason',
         'status' => 'string'
     ];
 
@@ -250,7 +250,7 @@ class Lead implements ModelInterface, ArrayAccess
     /**
      * Gets membership
      *
-     * @return \MarketoRest\Lead\Model\ProgramMembership
+     * @return \NecLimDul\MarketoRest\Lead\Model\ProgramMembership
      */
     public function getMembership()
     {
@@ -260,7 +260,7 @@ class Lead implements ModelInterface, ArrayAccess
     /**
      * Sets membership
      *
-     * @param \MarketoRest\Lead\Model\ProgramMembership $membership Membership data for the parent program.  Only returned via Get Leads By Program Id
+     * @param \NecLimDul\MarketoRest\Lead\Model\ProgramMembership $membership Membership data for the parent program.  Only returned via Get Leads By Program Id
      *
      * @return $this
      */
@@ -274,7 +274,7 @@ class Lead implements ModelInterface, ArrayAccess
     /**
      * Gets reason
      *
-     * @return \MarketoRest\Lead\Model\Reason
+     * @return \NecLimDul\MarketoRest\Lead\Model\Reason
      */
     public function getReason()
     {
@@ -284,7 +284,7 @@ class Lead implements ModelInterface, ArrayAccess
     /**
      * Sets reason
      *
-     * @param \MarketoRest\Lead\Model\Reason $reason Reason object describing why an operation did not succeed for a record
+     * @param \NecLimDul\MarketoRest\Lead\Model\Reason $reason Reason object describing why an operation did not succeed for a record
      *
      * @return $this
      */

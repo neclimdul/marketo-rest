@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Lead\Model;
+namespace NecLimDul\MarketoRest\Lead\Model;
 
 use \ArrayAccess;
-use \MarketoRest\Lead\ObjectSerializer;
+use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * CustomActivity Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -60,8 +60,8 @@ class CustomActivity implements ModelInterface, ArrayAccess
         'activity_date' => 'string',
         'activity_type_id' => 'int',
         'api_name' => 'string',
-        'attributes' => '\MarketoRest\Lead\Model\Attribute[]',
-        'errors' => '\MarketoRest\Lead\Model\Error[]',
+        'attributes' => '\NecLimDul\MarketoRest\Lead\Model\Attribute[]',
+        'errors' => '\NecLimDul\MarketoRest\Lead\Model\Error[]',
         'id' => 'int',
         'lead_id' => 'int',
         'marketo_guid' => 'string',
@@ -385,7 +385,7 @@ class CustomActivity implements ModelInterface, ArrayAccess
     /**
      * Gets attributes
      *
-     * @return \MarketoRest\Lead\Model\Attribute[]
+     * @return \NecLimDul\MarketoRest\Lead\Model\Attribute[]
      */
     public function getAttributes()
     {
@@ -395,7 +395,7 @@ class CustomActivity implements ModelInterface, ArrayAccess
     /**
      * Sets attributes
      *
-     * @param \MarketoRest\Lead\Model\Attribute[] $attributes List of secondary attributes
+     * @param \NecLimDul\MarketoRest\Lead\Model\Attribute[] $attributes List of secondary attributes
      *
      * @return $this
      */
@@ -409,7 +409,7 @@ class CustomActivity implements ModelInterface, ArrayAccess
     /**
      * Gets errors
      *
-     * @return \MarketoRest\Lead\Model\Error[]
+     * @return \NecLimDul\MarketoRest\Lead\Model\Error[]
      */
     public function getErrors()
     {
@@ -419,7 +419,7 @@ class CustomActivity implements ModelInterface, ArrayAccess
     /**
      * Sets errors
      *
-     * @param \MarketoRest\Lead\Model\Error[] $errors Array of errors that occurred if the request was unsuccessful
+     * @param \NecLimDul\MarketoRest\Lead\Model\Error[] $errors Array of errors that occurred if the request was unsuccessful
      *
      * @return $this
      */

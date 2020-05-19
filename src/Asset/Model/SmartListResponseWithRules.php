@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Asset\Model;
+namespace NecLimDul\MarketoRest\Asset\Model;
 
 use \ArrayAccess;
-use \MarketoRest\Asset\ObjectSerializer;
+use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * SmartListResponseWithRules Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -63,9 +63,9 @@ class SmartListResponseWithRules implements ModelInterface, ArrayAccess
         'created_at' => '\DateTime',
         'updated_at' => '\DateTime',
         'url' => 'string',
-        'folder' => '\MarketoRest\Asset\Model\Folder',
+        'folder' => '\NecLimDul\MarketoRest\Asset\Model\Folder',
         'workspace' => 'string',
-        'rules' => '\MarketoRest\Asset\Model\SmartListRules'
+        'rules' => '\NecLimDul\MarketoRest\Asset\Model\SmartListRules'
     ];
 
     /**
@@ -423,7 +423,7 @@ class SmartListResponseWithRules implements ModelInterface, ArrayAccess
     /**
      * Gets folder
      *
-     * @return \MarketoRest\Asset\Model\Folder
+     * @return \NecLimDul\MarketoRest\Asset\Model\Folder
      */
     public function getFolder()
     {
@@ -433,7 +433,7 @@ class SmartListResponseWithRules implements ModelInterface, ArrayAccess
     /**
      * Sets folder
      *
-     * @param \MarketoRest\Asset\Model\Folder $folder JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
+     * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
      *
      * @return $this
      */
@@ -471,7 +471,7 @@ class SmartListResponseWithRules implements ModelInterface, ArrayAccess
     /**
      * Gets rules
      *
-     * @return \MarketoRest\Asset\Model\SmartListRules
+     * @return \NecLimDul\MarketoRest\Asset\Model\SmartListRules
      */
     public function getRules()
     {
@@ -481,7 +481,7 @@ class SmartListResponseWithRules implements ModelInterface, ArrayAccess
     /**
      * Sets rules
      *
-     * @param \MarketoRest\Asset\Model\SmartListRules $rules Rules contained in the smart list
+     * @param \NecLimDul\MarketoRest\Asset\Model\SmartListRules $rules Rules contained in the smart list
      *
      * @return $this
      */

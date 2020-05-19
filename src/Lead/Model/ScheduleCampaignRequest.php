@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -27,17 +27,17 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Lead\Model;
+namespace NecLimDul\MarketoRest\Lead\Model;
 
 use \ArrayAccess;
-use \MarketoRest\Lead\ObjectSerializer;
+use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * ScheduleCampaignRequest Class Doc Comment
  *
  * @category Class
  * @description Record describe how to schedule the campaign
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -58,7 +58,7 @@ class ScheduleCampaignRequest implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'input' => '\MarketoRest\Lead\Model\ScheduleCampaignData'
+        'input' => '\NecLimDul\MarketoRest\Lead\Model\ScheduleCampaignData'
     ];
 
     /**
@@ -208,7 +208,7 @@ class ScheduleCampaignRequest implements ModelInterface, ArrayAccess
     /**
      * Gets input
      *
-     * @return \MarketoRest\Lead\Model\ScheduleCampaignData
+     * @return \NecLimDul\MarketoRest\Lead\Model\ScheduleCampaignData
      */
     public function getInput()
     {
@@ -218,7 +218,7 @@ class ScheduleCampaignRequest implements ModelInterface, ArrayAccess
     /**
      * Sets input
      *
-     * @param \MarketoRest\Lead\Model\ScheduleCampaignData $input input
+     * @param \NecLimDul\MarketoRest\Lead\Model\ScheduleCampaignData $input input
      *
      * @return $this
      */

@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Lead\Model;
+namespace NecLimDul\MarketoRest\Lead\Model;
 
 use \ArrayAccess;
-use \MarketoRest\Lead\ObjectSerializer;
+use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * AddCustomObjectTypeField Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -62,7 +62,7 @@ class AddCustomObjectTypeField implements ModelInterface, ArrayAccess
         'data_type' => 'string',
         'description' => 'string',
         'is_dedupe_field' => 'bool',
-        'related_to' => '\MarketoRest\Lead\Model\CustomObjectTypeFieldRelatedTo'
+        'related_to' => '\NecLimDul\MarketoRest\Lead\Model\CustomObjectTypeFieldRelatedTo'
     ];
 
     /**
@@ -366,7 +366,7 @@ class AddCustomObjectTypeField implements ModelInterface, ArrayAccess
     /**
      * Gets related_to
      *
-     * @return \MarketoRest\Lead\Model\CustomObjectTypeFieldRelatedTo
+     * @return \NecLimDul\MarketoRest\Lead\Model\CustomObjectTypeFieldRelatedTo
      */
     public function getRelatedTo()
     {
@@ -376,7 +376,7 @@ class AddCustomObjectTypeField implements ModelInterface, ArrayAccess
     /**
      * Sets related_to
      *
-     * @param \MarketoRest\Lead\Model\CustomObjectTypeFieldRelatedTo $related_to Define custom object link field
+     * @param \NecLimDul\MarketoRest\Lead\Model\CustomObjectTypeFieldRelatedTo $related_to Define custom object link field
      *
      * @return $this
      */

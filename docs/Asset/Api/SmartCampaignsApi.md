@@ -1,4 +1,4 @@
-# MarketoRest\Asset\SmartCampaignsApi
+# NecLimDul\MarketoRest\Asset\SmartCampaignsApi
 
 All URIs are relative to *https://localhost:8080*
 
@@ -17,7 +17,7 @@ Method | HTTP request | Description
 
 
 # **activateSmartCampaignUsingPOST**
-> \MarketoRest\Asset\Model\ResponseOfIdResponse activateSmartCampaignUsingPOST($id)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse activateSmartCampaignUsingPOST($id)
 
 Activate Smart Campaign
 
@@ -28,7 +28,7 @@ Activates a trigger smart campaign.  Required Permissions: Activate Campaign
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\SmartCampaignsApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\SmartCampaignsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -52,7 +52,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfIdResponse**](../Model/ResponseOfIdResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse**](../Model/ResponseOfIdResponse.md)
 
 ### Authorization
 
@@ -66,7 +66,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **cloneSmartCampaignUsingPOST**
-> \MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse cloneSmartCampaignUsingPOST($id, $clone_smart_campaign_request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse cloneSmartCampaignUsingPOST($id, $clone_smart_campaign_request)
 
 Clone Smart Campaign
 
@@ -77,13 +77,13 @@ Clones a smart campaign.  Required Permissions: Read-Write Assets
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\SmartCampaignsApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\SmartCampaignsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $id = 56; // int | Id of the smart campaign
-$clone_smart_campaign_request = new \MarketoRest\Asset\Model\CloneSmartCampaignRequest(); // \MarketoRest\Asset\Model\CloneSmartCampaignRequest | cloneSmartCampaignRequest
+$clone_smart_campaign_request = new \NecLimDul\MarketoRest\Asset\Model\CloneSmartCampaignRequest(); // \NecLimDul\MarketoRest\Asset\Model\CloneSmartCampaignRequest | cloneSmartCampaignRequest
 
 try {
     $result = $apiInstance->cloneSmartCampaignUsingPOST($id, $clone_smart_campaign_request);
@@ -99,11 +99,11 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| Id of the smart campaign |
- **clone_smart_campaign_request** | [**\MarketoRest\Asset\Model\CloneSmartCampaignRequest**](../Model/CloneSmartCampaignRequest.md)| cloneSmartCampaignRequest |
+ **clone_smart_campaign_request** | [**\NecLimDul\MarketoRest\Asset\Model\CloneSmartCampaignRequest**](../Model/CloneSmartCampaignRequest.md)| cloneSmartCampaignRequest |
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse**](../Model/ResponseOfSmartCampaignResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse**](../Model/ResponseOfSmartCampaignResponse.md)
 
 ### Authorization
 
@@ -117,7 +117,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **createSmartCampaignUsingPOST**
-> \MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse createSmartCampaignUsingPOST($create_smart_campaign_request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse createSmartCampaignUsingPOST($create_smart_campaign_request)
 
 Create Smart Campaign
 
@@ -128,12 +128,12 @@ Creates a new smart campaign.  Required Permissions: Read-Write Assets
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\SmartCampaignsApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\SmartCampaignsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$create_smart_campaign_request = new \MarketoRest\Asset\Model\CreateSmartCampaignRequest(); // \MarketoRest\Asset\Model\CreateSmartCampaignRequest | createSmartCampaignRequest
+$create_smart_campaign_request = new \NecLimDul\MarketoRest\Asset\Model\CreateSmartCampaignRequest(); // \NecLimDul\MarketoRest\Asset\Model\CreateSmartCampaignRequest | createSmartCampaignRequest
 
 try {
     $result = $apiInstance->createSmartCampaignUsingPOST($create_smart_campaign_request);
@@ -148,11 +148,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_smart_campaign_request** | [**\MarketoRest\Asset\Model\CreateSmartCampaignRequest**](../Model/CreateSmartCampaignRequest.md)| createSmartCampaignRequest |
+ **create_smart_campaign_request** | [**\NecLimDul\MarketoRest\Asset\Model\CreateSmartCampaignRequest**](../Model/CreateSmartCampaignRequest.md)| createSmartCampaignRequest |
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse**](../Model/ResponseOfSmartCampaignResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse**](../Model/ResponseOfSmartCampaignResponse.md)
 
 ### Authorization
 
@@ -166,7 +166,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **deactivateSmartCampaignUsingPOST**
-> \MarketoRest\Asset\Model\ResponseOfIdResponse deactivateSmartCampaignUsingPOST($id)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse deactivateSmartCampaignUsingPOST($id)
 
 Deactivate Smart Campaign
 
@@ -177,7 +177,7 @@ Deactivates a trigger smart campaign.  Required Permissions: Deactivate Campaign
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\SmartCampaignsApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\SmartCampaignsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -201,7 +201,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfIdResponse**](../Model/ResponseOfIdResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse**](../Model/ResponseOfIdResponse.md)
 
 ### Authorization
 
@@ -215,7 +215,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **deleteSmartCampaignUsingPOST**
-> \MarketoRest\Asset\Model\ResponseOfIdResponse deleteSmartCampaignUsingPOST($id)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse deleteSmartCampaignUsingPOST($id)
 
 Delete Smart Campaign
 
@@ -226,7 +226,7 @@ Deletes a smart campaign.  Required Permissions: Read-Write Assets
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\SmartCampaignsApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\SmartCampaignsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -250,7 +250,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfIdResponse**](../Model/ResponseOfIdResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse**](../Model/ResponseOfIdResponse.md)
 
 ### Authorization
 
@@ -264,7 +264,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getAllSmartCampaignsGET**
-> \MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse getAllSmartCampaignsGET($max_return, $offset, $folder, $earliest_updated_at, $latest_updated_at)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse getAllSmartCampaignsGET($max_return, $offset, $folder, $earliest_updated_at, $latest_updated_at)
 
 Get Smart Campaigns
 
@@ -275,7 +275,7 @@ Retrieves all smart campaigns. Required Permissions: Read-Only Assets, Read-Writ
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\SmartCampaignsApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\SmartCampaignsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -307,7 +307,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse**](../Model/ResponseOfSmartCampaignResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse**](../Model/ResponseOfSmartCampaignResponse.md)
 
 ### Authorization
 
@@ -321,7 +321,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getSmartCampaignByIdUsingGET**
-> \MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse getSmartCampaignByIdUsingGET($id)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse getSmartCampaignByIdUsingGET($id)
 
 Get Smart Campaign by Id
 
@@ -332,7 +332,7 @@ Returns the smart campaign for the given id.  Required Permissions: Read-Only As
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\SmartCampaignsApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\SmartCampaignsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -356,7 +356,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse**](../Model/ResponseOfSmartCampaignResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse**](../Model/ResponseOfSmartCampaignResponse.md)
 
 ### Authorization
 
@@ -370,7 +370,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getSmartCampaignByNameUsingGET**
-> \MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse getSmartCampaignByNameUsingGET($name)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse getSmartCampaignByNameUsingGET($name)
 
 Get Smart Campaign by Name
 
@@ -381,7 +381,7 @@ Returns the smart campaign for the given name.  Required Permissions: Read-Only 
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\SmartCampaignsApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\SmartCampaignsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -405,7 +405,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse**](../Model/ResponseOfSmartCampaignResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse**](../Model/ResponseOfSmartCampaignResponse.md)
 
 ### Authorization
 
@@ -419,7 +419,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getSmartListBySmartCampaignIdUsingGET**
-> \MarketoRest\Asset\Model\ResponseOfSmartListResponseWithRules getSmartListBySmartCampaignIdUsingGET($id, $include_rules)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponseWithRules getSmartListBySmartCampaignIdUsingGET($id, $include_rules)
 
 Get Smart List by Smart Campaign Id
 
@@ -430,7 +430,7 @@ Retrieves a Smart List record by its Smart Campaign id. Required Permissions: Re
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\SmartCampaignsApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\SmartCampaignsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -456,7 +456,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfSmartListResponseWithRules**](../Model/ResponseOfSmartListResponseWithRules.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponseWithRules**](../Model/ResponseOfSmartListResponseWithRules.md)
 
 ### Authorization
 
@@ -470,7 +470,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **updateSmartCampaignUsingPOST**
-> \MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse updateSmartCampaignUsingPOST($id, $update_smart_campaign_request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse updateSmartCampaignUsingPOST($id, $update_smart_campaign_request)
 
 Update Smart Campaign
 
@@ -481,13 +481,13 @@ Update the smart campaign for the given id.  Required Permissions: Read-Write As
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$apiInstance = new MarketoRest\Asset\Api\SmartCampaignsApi(
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\SmartCampaignsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $id = 56; // int | Id for the smart campaign
-$update_smart_campaign_request = new \MarketoRest\Asset\Model\UpdateSmartCampaignRequest(); // \MarketoRest\Asset\Model\UpdateSmartCampaignRequest | updateSmartCampaignRequest
+$update_smart_campaign_request = new \NecLimDul\MarketoRest\Asset\Model\UpdateSmartCampaignRequest(); // \NecLimDul\MarketoRest\Asset\Model\UpdateSmartCampaignRequest | updateSmartCampaignRequest
 
 try {
     $result = $apiInstance->updateSmartCampaignUsingPOST($id, $update_smart_campaign_request);
@@ -503,11 +503,11 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| Id for the smart campaign |
- **update_smart_campaign_request** | [**\MarketoRest\Asset\Model\UpdateSmartCampaignRequest**](../Model/UpdateSmartCampaignRequest.md)| updateSmartCampaignRequest |
+ **update_smart_campaign_request** | [**\NecLimDul\MarketoRest\Asset\Model\UpdateSmartCampaignRequest**](../Model/UpdateSmartCampaignRequest.md)| updateSmartCampaignRequest |
 
 ### Return type
 
-[**\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse**](../Model/ResponseOfSmartCampaignResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse**](../Model/ResponseOfSmartCampaignResponse.md)
 
 ### Authorization
 

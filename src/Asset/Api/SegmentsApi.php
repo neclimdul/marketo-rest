@@ -4,7 +4,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -26,7 +26,7 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Asset\Api;
+namespace NecLimDul\MarketoRest\Asset\Api;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -34,16 +34,16 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
-use MarketoRest\Asset\ApiException;
-use MarketoRest\Asset\Configuration;
-use MarketoRest\Asset\HeaderSelector;
-use MarketoRest\Asset\ObjectSerializer;
+use NecLimDul\MarketoRest\Asset\ApiException;
+use NecLimDul\MarketoRest\Asset\Configuration;
+use NecLimDul\MarketoRest\Asset\HeaderSelector;
+use NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * SegmentsApi Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -94,9 +94,9 @@ class SegmentsApi
      *
      * @param  string $status Status filter for draft or approved versions (optional)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfSegmentationResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfSegmentationResponse
      */
     public function getSegmentationUsingGET($status = null)
     {
@@ -111,13 +111,13 @@ class SegmentsApi
      *
      * @param  string $status Status filter for draft or approved versions (optional)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfSegmentationResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfSegmentationResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function getSegmentationUsingGETWithHttpInfo($status = null)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfSegmentationResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSegmentationResponse';
         $request = $this->getSegmentationUsingGETRequest($status);
 
         try {
@@ -169,7 +169,7 @@ class SegmentsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfSegmentationResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSegmentationResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -211,7 +211,7 @@ class SegmentsApi
      */
     public function getSegmentationUsingGETAsyncWithHttpInfo($status = null)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfSegmentationResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSegmentationResponse';
         $request = $this->getSegmentationUsingGETRequest($status);
 
         return $this->client
@@ -356,9 +356,9 @@ class SegmentsApi
      * @param  int $offset Integer offset for paging (optional)
      * @param  int $max_return Maximum number of channels to return.  Max 200, default 20 (optional)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfSegmentsResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfSegmentsResponse
      */
     public function getSegmentsForSegmentationUsingGET($id, $status = null, $offset = null, $max_return = null)
     {
@@ -376,13 +376,13 @@ class SegmentsApi
      * @param  int $offset Integer offset for paging (optional)
      * @param  int $max_return Maximum number of channels to return.  Max 200, default 20 (optional)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfSegmentsResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfSegmentsResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function getSegmentsForSegmentationUsingGETWithHttpInfo($id, $status = null, $offset = null, $max_return = null)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfSegmentsResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSegmentsResponse';
         $request = $this->getSegmentsForSegmentationUsingGETRequest($id, $status, $offset, $max_return);
 
         try {
@@ -434,7 +434,7 @@ class SegmentsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfSegmentsResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSegmentsResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -482,7 +482,7 @@ class SegmentsApi
      */
     public function getSegmentsForSegmentationUsingGETAsyncWithHttpInfo($id, $status = null, $offset = null, $max_return = null)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfSegmentsResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSegmentsResponse';
         $request = $this->getSegmentsForSegmentationUsingGETRequest($id, $status, $offset, $max_return);
 
         return $this->client

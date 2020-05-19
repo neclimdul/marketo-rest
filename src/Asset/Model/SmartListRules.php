@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -27,17 +27,17 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Asset\Model;
+namespace NecLimDul\MarketoRest\Asset\Model;
 
 use \ArrayAccess;
-use \MarketoRest\Asset\ObjectSerializer;
+use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * SmartListRules Class Doc Comment
  *
  * @category Class
  * @description JSON representation of smart list rules
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -60,7 +60,7 @@ class SmartListRules implements ModelInterface, ArrayAccess
     protected static $swaggerTypes = [
         'filter_match_type' => 'string',
         'triggers' => 'string[]',
-        'filters' => '\MarketoRest\Asset\Model\SmartListFilters[]'
+        'filters' => '\NecLimDul\MarketoRest\Asset\Model\SmartListFilters[]'
     ];
 
     /**
@@ -311,7 +311,7 @@ class SmartListRules implements ModelInterface, ArrayAccess
     /**
      * Gets filters
      *
-     * @return \MarketoRest\Asset\Model\SmartListFilters[]
+     * @return \NecLimDul\MarketoRest\Asset\Model\SmartListFilters[]
      */
     public function getFilters()
     {
@@ -321,7 +321,7 @@ class SmartListRules implements ModelInterface, ArrayAccess
     /**
      * Sets filters
      *
-     * @param \MarketoRest\Asset\Model\SmartListFilters[] $filters List of smart list filters
+     * @param \NecLimDul\MarketoRest\Asset\Model\SmartListFilters[] $filters List of smart list filters
      *
      * @return $this
      */

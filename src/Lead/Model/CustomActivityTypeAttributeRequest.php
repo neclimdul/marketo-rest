@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Lead\Model;
+namespace NecLimDul\MarketoRest\Lead\Model;
 
 use \ArrayAccess;
-use \MarketoRest\Lead\ObjectSerializer;
+use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * CustomActivityTypeAttributeRequest Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -57,7 +57,7 @@ class CustomActivityTypeAttributeRequest implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'attributes' => '\MarketoRest\Lead\Model\CustomActivityTypeAttribute[]'
+        'attributes' => '\NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttribute[]'
     ];
 
     /**
@@ -207,7 +207,7 @@ class CustomActivityTypeAttributeRequest implements ModelInterface, ArrayAccess
     /**
      * Gets attributes
      *
-     * @return \MarketoRest\Lead\Model\CustomActivityTypeAttribute[]
+     * @return \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttribute[]
      */
     public function getAttributes()
     {
@@ -217,7 +217,7 @@ class CustomActivityTypeAttributeRequest implements ModelInterface, ArrayAccess
     /**
      * Sets attributes
      *
-     * @param \MarketoRest\Lead\Model\CustomActivityTypeAttribute[] $attributes List of attributes to add to the activity type
+     * @param \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttribute[] $attributes List of attributes to add to the activity type
      *
      * @return $this
      */

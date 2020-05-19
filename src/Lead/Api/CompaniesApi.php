@@ -4,7 +4,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -26,7 +26,7 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Lead\Api;
+namespace NecLimDul\MarketoRest\Lead\Api;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -34,16 +34,16 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
-use MarketoRest\Lead\ApiException;
-use MarketoRest\Lead\Configuration;
-use MarketoRest\Lead\HeaderSelector;
-use MarketoRest\Lead\ObjectSerializer;
+use NecLimDul\MarketoRest\Lead\ApiException;
+use NecLimDul\MarketoRest\Lead\Configuration;
+use NecLimDul\MarketoRest\Lead\HeaderSelector;
+use NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * CompaniesApi Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -92,11 +92,11 @@ class CompaniesApi
      *
      * Delete Companies
      *
-     * @param  \MarketoRest\Lead\Model\DeleteCompanyRequest $delete_company_request deleteCompanyRequest (required)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\DeleteCompanyRequest $delete_company_request deleteCompanyRequest (required)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Lead\Model\ResponseOfCompany
+     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany
      */
     public function deleteCompaniesUsingPOST($delete_company_request)
     {
@@ -109,15 +109,15 @@ class CompaniesApi
      *
      * Delete Companies
      *
-     * @param  \MarketoRest\Lead\Model\DeleteCompanyRequest $delete_company_request deleteCompanyRequest (required)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\DeleteCompanyRequest $delete_company_request deleteCompanyRequest (required)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Lead\Model\ResponseOfCompany, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany, HTTP status code, HTTP response headers (array of strings)
      */
     public function deleteCompaniesUsingPOSTWithHttpInfo($delete_company_request)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfCompany';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany';
         $request = $this->deleteCompaniesUsingPOSTRequest($delete_company_request);
 
         try {
@@ -169,7 +169,7 @@ class CompaniesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Lead\Model\ResponseOfCompany',
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -184,7 +184,7 @@ class CompaniesApi
      *
      * Delete Companies
      *
-     * @param  \MarketoRest\Lead\Model\DeleteCompanyRequest $delete_company_request deleteCompanyRequest (required)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\DeleteCompanyRequest $delete_company_request deleteCompanyRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -204,14 +204,14 @@ class CompaniesApi
      *
      * Delete Companies
      *
-     * @param  \MarketoRest\Lead\Model\DeleteCompanyRequest $delete_company_request deleteCompanyRequest (required)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\DeleteCompanyRequest $delete_company_request deleteCompanyRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function deleteCompaniesUsingPOSTAsyncWithHttpInfo($delete_company_request)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfCompany';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany';
         $request = $this->deleteCompaniesUsingPOSTRequest($delete_company_request);
 
         return $this->client
@@ -254,7 +254,7 @@ class CompaniesApi
     /**
      * Create request for operation 'deleteCompaniesUsingPOST'
      *
-     * @param  \MarketoRest\Lead\Model\DeleteCompanyRequest $delete_company_request deleteCompanyRequest (required)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\DeleteCompanyRequest $delete_company_request deleteCompanyRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -357,9 +357,9 @@ class CompaniesApi
      * Describe Companies
      *
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Lead\Model\ResponseOfObjectMetaData
+     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData
      */
     public function describeUsingGET()
     {
@@ -373,13 +373,13 @@ class CompaniesApi
      * Describe Companies
      *
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Lead\Model\ResponseOfObjectMetaData, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData, HTTP status code, HTTP response headers (array of strings)
      */
     public function describeUsingGETWithHttpInfo()
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfObjectMetaData';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData';
         $request = $this->describeUsingGETRequest();
 
         try {
@@ -431,7 +431,7 @@ class CompaniesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Lead\Model\ResponseOfObjectMetaData',
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -471,7 +471,7 @@ class CompaniesApi
      */
     public function describeUsingGETAsyncWithHttpInfo()
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfObjectMetaData';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData';
         $request = $this->describeUsingGETRequest();
 
         return $this->client
@@ -612,9 +612,9 @@ class CompaniesApi
      * @param  int $batch_size The batch size to return.  The max and default value is 300. (optional)
      * @param  string $next_page_token A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info. (optional)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Lead\Model\ResponseOfCompany
+     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany
      */
     public function getCompaniesUsingGET($filter_type, $filter_values, $fields = null, $batch_size = null, $next_page_token = null)
     {
@@ -633,13 +633,13 @@ class CompaniesApi
      * @param  int $batch_size The batch size to return.  The max and default value is 300. (optional)
      * @param  string $next_page_token A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info. (optional)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Lead\Model\ResponseOfCompany, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany, HTTP status code, HTTP response headers (array of strings)
      */
     public function getCompaniesUsingGETWithHttpInfo($filter_type, $filter_values, $fields = null, $batch_size = null, $next_page_token = null)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfCompany';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany';
         $request = $this->getCompaniesUsingGETRequest($filter_type, $filter_values, $fields, $batch_size, $next_page_token);
 
         try {
@@ -691,7 +691,7 @@ class CompaniesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Lead\Model\ResponseOfCompany',
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -741,7 +741,7 @@ class CompaniesApi
      */
     public function getCompaniesUsingGETAsyncWithHttpInfo($filter_type, $filter_values, $fields = null, $batch_size = null, $next_page_token = null)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfCompany';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany';
         $request = $this->getCompaniesUsingGETRequest($filter_type, $filter_values, $fields, $batch_size, $next_page_token);
 
         return $this->client
@@ -919,11 +919,11 @@ class CompaniesApi
      *
      * Sync Companies
      *
-     * @param  \MarketoRest\Lead\Model\SyncCompanyRequest $sync_company_request syncCompanyRequest (required)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\SyncCompanyRequest $sync_company_request syncCompanyRequest (required)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Lead\Model\ResponseOfCompany
+     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany
      */
     public function syncCompaniesUsingPOST($sync_company_request)
     {
@@ -936,15 +936,15 @@ class CompaniesApi
      *
      * Sync Companies
      *
-     * @param  \MarketoRest\Lead\Model\SyncCompanyRequest $sync_company_request syncCompanyRequest (required)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\SyncCompanyRequest $sync_company_request syncCompanyRequest (required)
      *
-     * @throws \MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Lead\Model\ResponseOfCompany, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany, HTTP status code, HTTP response headers (array of strings)
      */
     public function syncCompaniesUsingPOSTWithHttpInfo($sync_company_request)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfCompany';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany';
         $request = $this->syncCompaniesUsingPOSTRequest($sync_company_request);
 
         try {
@@ -996,7 +996,7 @@ class CompaniesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Lead\Model\ResponseOfCompany',
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1011,7 +1011,7 @@ class CompaniesApi
      *
      * Sync Companies
      *
-     * @param  \MarketoRest\Lead\Model\SyncCompanyRequest $sync_company_request syncCompanyRequest (required)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\SyncCompanyRequest $sync_company_request syncCompanyRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1031,14 +1031,14 @@ class CompaniesApi
      *
      * Sync Companies
      *
-     * @param  \MarketoRest\Lead\Model\SyncCompanyRequest $sync_company_request syncCompanyRequest (required)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\SyncCompanyRequest $sync_company_request syncCompanyRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function syncCompaniesUsingPOSTAsyncWithHttpInfo($sync_company_request)
     {
-        $returnType = '\MarketoRest\Lead\Model\ResponseOfCompany';
+        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany';
         $request = $this->syncCompaniesUsingPOSTRequest($sync_company_request);
 
         return $this->client
@@ -1081,7 +1081,7 @@ class CompaniesApi
     /**
      * Create request for operation 'syncCompaniesUsingPOST'
      *
-     * @param  \MarketoRest\Lead\Model\SyncCompanyRequest $sync_company_request syncCompanyRequest (required)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\SyncCompanyRequest $sync_company_request syncCompanyRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request

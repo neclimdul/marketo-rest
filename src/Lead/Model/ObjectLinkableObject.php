@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Lead\Model;
+namespace NecLimDul\MarketoRest\Lead\Model;
 
 use \ArrayAccess;
-use \MarketoRest\Lead\ObjectSerializer;
+use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * ObjectLinkableObject Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -59,7 +59,7 @@ class ObjectLinkableObject implements ModelInterface, ArrayAccess
     protected static $swaggerTypes = [
         'name' => 'string',
         'display_name' => 'string',
-        'fields' => '\MarketoRest\Lead\Model\ObjectLinkableObjectField[]'
+        'fields' => '\NecLimDul\MarketoRest\Lead\Model\ObjectLinkableObjectField[]'
     ];
 
     /**
@@ -276,7 +276,7 @@ class ObjectLinkableObject implements ModelInterface, ArrayAccess
     /**
      * Gets fields
      *
-     * @return \MarketoRest\Lead\Model\ObjectLinkableObjectField[]
+     * @return \NecLimDul\MarketoRest\Lead\Model\ObjectLinkableObjectField[]
      */
     public function getFields()
     {
@@ -286,7 +286,7 @@ class ObjectLinkableObject implements ModelInterface, ArrayAccess
     /**
      * Sets fields
      *
-     * @param \MarketoRest\Lead\Model\ObjectLinkableObjectField[] $fields List of fields available on the link object
+     * @param \NecLimDul\MarketoRest\Lead\Model\ObjectLinkableObjectField[] $fields List of fields available on the link object
      *
      * @return $this
      */

@@ -27,9 +27,9 @@
         "friendsofphp/php-cs-fixer": "~2.12"
     },
     "autoload": {
-        "psr-4": {"MarketoRest\\": "src/"}
+        "psr-4": {"NecLimDul\\MarketoRest\\": "src/"}
     },
     "autoload-dev": {
-        "psr-4": {"MarketoRest\\": "tests/"}
+        "psr-4": {"NecLimDul\\MarketoRest\\Tests": "tests/"}
     }
 }

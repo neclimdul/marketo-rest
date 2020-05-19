@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -27,16 +27,16 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Lead\Model;
+namespace NecLimDul\MarketoRest\Lead\Model;
 
 use \ArrayAccess;
-use \MarketoRest\Lead\ObjectSerializer;
+use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * TriggerCampaignRequest Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -57,7 +57,7 @@ class TriggerCampaignRequest implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'input' => '\MarketoRest\Lead\Model\TriggerCampaignData'
+        'input' => '\NecLimDul\MarketoRest\Lead\Model\TriggerCampaignData'
     ];
 
     /**
@@ -210,7 +210,7 @@ class TriggerCampaignRequest implements ModelInterface, ArrayAccess
     /**
      * Gets input
      *
-     * @return \MarketoRest\Lead\Model\TriggerCampaignData
+     * @return \NecLimDul\MarketoRest\Lead\Model\TriggerCampaignData
      */
     public function getInput()
     {
@@ -220,7 +220,7 @@ class TriggerCampaignRequest implements ModelInterface, ArrayAccess
     /**
      * Sets input
      *
-     * @param \MarketoRest\Lead\Model\TriggerCampaignData $input Object describing trigger configuration for the campaign
+     * @param \NecLimDul\MarketoRest\Lead\Model\TriggerCampaignData $input Object describing trigger configuration for the campaign
      *
      * @return $this
      */

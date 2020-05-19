@@ -4,7 +4,7 @@
  * PHP version 5
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -26,7 +26,7 @@
  * Do not edit the class manually.
  */
 
-namespace MarketoRest\Asset\Api;
+namespace NecLimDul\MarketoRest\Asset\Api;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -34,16 +34,16 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
-use MarketoRest\Asset\ApiException;
-use MarketoRest\Asset\Configuration;
-use MarketoRest\Asset\HeaderSelector;
-use MarketoRest\Asset\ObjectSerializer;
+use NecLimDul\MarketoRest\Asset\ApiException;
+use NecLimDul\MarketoRest\Asset\Configuration;
+use NecLimDul\MarketoRest\Asset\HeaderSelector;
+use NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * TokensApi Class Doc Comment
  *
  * @category Class
- * @package  MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -93,11 +93,11 @@ class TokensApi
      * Create Token
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\CreateTokenRequest $create_token_request createTokenRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CreateTokenRequest $create_token_request createTokenRequest (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfTokenResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse
      */
     public function addTokenTOFolderUsingPOST($id, $create_token_request)
     {
@@ -111,15 +111,15 @@ class TokensApi
      * Create Token
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\CreateTokenRequest $create_token_request createTokenRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CreateTokenRequest $create_token_request createTokenRequest (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfTokenResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function addTokenTOFolderUsingPOSTWithHttpInfo($id, $create_token_request)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfTokenResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse';
         $request = $this->addTokenTOFolderUsingPOSTRequest($id, $create_token_request);
 
         try {
@@ -171,7 +171,7 @@ class TokensApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfTokenResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -187,7 +187,7 @@ class TokensApi
      * Create Token
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\CreateTokenRequest $create_token_request createTokenRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CreateTokenRequest $create_token_request createTokenRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -208,14 +208,14 @@ class TokensApi
      * Create Token
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\CreateTokenRequest $create_token_request createTokenRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CreateTokenRequest $create_token_request createTokenRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function addTokenTOFolderUsingPOSTAsyncWithHttpInfo($id, $create_token_request)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfTokenResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse';
         $request = $this->addTokenTOFolderUsingPOSTRequest($id, $create_token_request);
 
         return $this->client
@@ -259,7 +259,7 @@ class TokensApi
      * Create request for operation 'addTokenTOFolderUsingPOST'
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\CreateTokenRequest $create_token_request createTokenRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\CreateTokenRequest $create_token_request createTokenRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -376,11 +376,11 @@ class TokensApi
      * Delete Token by Name
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\DeleteTokenRequest $delete_token_request deleteTokenRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\DeleteTokenRequest $delete_token_request deleteTokenRequest (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfIdResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse
      */
     public function deleteTokenByNameUsingPOST($id, $delete_token_request)
     {
@@ -394,15 +394,15 @@ class TokensApi
      * Delete Token by Name
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\DeleteTokenRequest $delete_token_request deleteTokenRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\DeleteTokenRequest $delete_token_request deleteTokenRequest (required)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfIdResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function deleteTokenByNameUsingPOSTWithHttpInfo($id, $delete_token_request)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfIdResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse';
         $request = $this->deleteTokenByNameUsingPOSTRequest($id, $delete_token_request);
 
         try {
@@ -454,7 +454,7 @@ class TokensApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfIdResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -470,7 +470,7 @@ class TokensApi
      * Delete Token by Name
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\DeleteTokenRequest $delete_token_request deleteTokenRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\DeleteTokenRequest $delete_token_request deleteTokenRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -491,14 +491,14 @@ class TokensApi
      * Delete Token by Name
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\DeleteTokenRequest $delete_token_request deleteTokenRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\DeleteTokenRequest $delete_token_request deleteTokenRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function deleteTokenByNameUsingPOSTAsyncWithHttpInfo($id, $delete_token_request)
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfIdResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse';
         $request = $this->deleteTokenByNameUsingPOSTRequest($id, $delete_token_request);
 
         return $this->client
@@ -542,7 +542,7 @@ class TokensApi
      * Create request for operation 'deleteTokenByNameUsingPOST'
      *
      * @param  int $id id (required)
-     * @param  \MarketoRest\Asset\Model\DeleteTokenRequest $delete_token_request deleteTokenRequest (required)
+     * @param  \NecLimDul\MarketoRest\Asset\Model\DeleteTokenRequest $delete_token_request deleteTokenRequest (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -661,9 +661,9 @@ class TokensApi
      * @param  int $id id (required)
      * @param  string $folder_type Type of folder.  &#39;Folder&#39; or &#39;Program&#39; (optional, default to Folder)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MarketoRest\Asset\Model\ResponseOfTokenResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse
      */
     public function getTokensByFolderIdUsingGET($id, $folder_type = 'Folder')
     {
@@ -679,13 +679,13 @@ class TokensApi
      * @param  int $id id (required)
      * @param  string $folder_type Type of folder.  &#39;Folder&#39; or &#39;Program&#39; (optional, default to Folder)
      *
-     * @throws \MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MarketoRest\Asset\Model\ResponseOfTokenResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function getTokensByFolderIdUsingGETWithHttpInfo($id, $folder_type = 'Folder')
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfTokenResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse';
         $request = $this->getTokensByFolderIdUsingGETRequest($id, $folder_type);
 
         try {
@@ -737,7 +737,7 @@ class TokensApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MarketoRest\Asset\Model\ResponseOfTokenResponse',
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -781,7 +781,7 @@ class TokensApi
      */
     public function getTokensByFolderIdUsingGETAsyncWithHttpInfo($id, $folder_type = 'Folder')
     {
-        $returnType = '\MarketoRest\Asset\Model\ResponseOfTokenResponse';
+        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse';
         $request = $this->getTokensByFolderIdUsingGETRequest($id, $folder_type);
 
         return $this->client

@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**content** | [**\MarketoRest\Asset\Model\SegmentContent[]**](SegmentContent.md) | List of variations in the section | [optional] 
+**content** | [**\NecLimDul\MarketoRest\Asset\Model\SegmentContent[]**](SegmentContent.md) | List of variations in the section | [optional] 
 **created_at** | [**\DateTime**](\DateTime.md) | Datetime when the section was created | [optional] 
 **id** | **int** | Id of the dnamic content section | [optional] 
 **segmentation** | **int** | Segmentation to which the section is linked | [optional] 
