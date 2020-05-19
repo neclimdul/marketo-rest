@@ -18,7 +18,8 @@
         "ext-curl": "*",
         "ext-json": "*",
         "ext-mbstring": "*",
-        "guzzlehttp/guzzle": "^6.2"
+        "guzzlehttp/guzzle": "^6.2",
+        "neclimdul/oauth2-marketo": "^2.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^4.8",
