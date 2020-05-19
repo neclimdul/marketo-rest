@@ -18,17 +18,17 @@ class ClientFactory
     /**
      * Create a guzzle client with OAuth middleware setup.
      *
-     * @param array $config
+     * @param \NecLimDul\MarketoRest\Configuration $config
      *   Some config.
      * @param array $guzzleOptions
      *   Additional options to pass to guzzle.
      * @return \GuzzleHttp\Client
      *   A configured guzzle client.
      */
-    public static function create(array $config, array $guzzleOptions = [])
+    public static function create(Configuration $config, array $guzzleOptions = [])
     {
         $guzzleOptions += [
-            'base_uri' => $config['baseUrl'],
+            'base_uri' => $config->getBaseUrl(),
         ];
         return new GuzzleHttpClient($guzzleOptions);
     }
@@ -36,19 +36,19 @@ class ClientFactory
     /**
      * Create a guzzle client with OAuth middleware setup.
      *
-     * @param array $config
+     * @param \NecLimDul\MarketoRest\Configuration $config
      *   Some config.
      * @param \Psr\SimpleCache\CacheInterface|null $cache
      *   An optional cache interface.
      * @return \GuzzleHttp\Client
      *   A configured guzzle client.
      */
-    public static function createOauthClient(array $config, CacheInterface $cache = NULL)
+    public static function createOauthClient(Configuration $config, CacheInterface $cache = NULL)
     {
         $oauthProvider = new Marketo([
-            'clientId' => $config['clientId'],
-            'clientSecret' => $config['clientSecret'],
-            'baseUrl' => $config['baseUrl'],
+            'clientId' => $config->getClientId(),
+            'clientSecret' => $config->getClientSecret(),
+            'baseUrl' => $config->getBaseUrl(),
         ]);
 
         $tokenOptions = [

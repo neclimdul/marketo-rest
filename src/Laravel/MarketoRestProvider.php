@@ -2,7 +2,6 @@
 
 namespace NecLimDul\MarketoRest\Laravel;
 
-use GuzzleHttp\Client as GuzzleHttpClient;
 use Illuminate\Support\ServiceProvider;
 use NecLimDul\MarketoRest\Asset\Api\ChannelsApi;
 use NecLimDul\MarketoRest\Asset\Api\EmailsApi;
@@ -26,6 +25,7 @@ use NecLimDul\MarketoRest\Asset\Api\TagsApi;
 use NecLimDul\MarketoRest\Asset\Api\TokensApi;
 use NecLimDul\MarketoRest\Asset\Configuration as AssetConfiguration;
 use NecLimDul\MarketoRest\ClientFactory;
+use NecLimDul\MarketoRest\Configuration;
 use NecLimDul\MarketoRest\Identity\Api\IdentityApi;
 use NecLimDul\MarketoRest\Identity\Configuration as IdentityConfiguration;
 use NecLimDul\MarketoRest\Lead\Api\ActivitiesApi;
@@ -46,7 +46,6 @@ use NecLimDul\MarketoRest\Lead\Api\SalesPersonsApi;
 use NecLimDul\MarketoRest\Lead\Api\StaticListsApi as LeadStaticListsApi;
 use NecLimDul\MarketoRest\Lead\Api\UsageApi;
 use NecLimDul\MarketoRest\Lead\Configuration as LeadConfiguration;
-use NecLimDul\OAuth2\Client\Provider\Marketo;
 
 /**
  * Laravel service provider class.
@@ -83,65 +82,64 @@ class MarketoRestProvider extends ServiceProvider
         $this->mergeConfigFrom(__DIR__ . '/../config/config.php', 'marketo_rest');
         $system_config = $this->app->get('config');
 
-        // Identity API works different so don't register it the same. Also,
-        // with our oauth wrapper, it shouldn't be needed.
-        $client = ClientFactory::create([
-            'baseUrl' => $system_config['marketo_rest.baseUrl'],
-        ]);
-        $config = IdentityConfiguration::getDefaultConfiguration();
-        $config->setHost($system_config['marketo_rest.baseUrl']);
-        $this->registerSingleton(IdentityApi::class, $client, $config);
-
-        $client = ClientFactory::createOauthClient([
+        $configuration = new Configuration([
             'clientId' => $system_config['marketo_rest.clientId'],
             'clientSecret' => $system_config['marketo_rest.clientSecret'],
             'baseUrl' => $system_config['marketo_rest.baseUrl'],
         ]);
+        $client = ClientFactory::create($configuration);
+        $oauthClient = ClientFactory::createOauthClient($configuration);
+
+        // Identity API works different so don't register it the same. Also,
+        // with our oauth wrapper, it shouldn't be needed.
+        $config = IdentityConfiguration::getDefaultConfiguration();
+        $config->setHost($system_config['marketo_rest.baseUrl']);
+        $this->registerSingleton(IdentityApi::class, $client, $config);
 
         // Asset APIs
         $config = AssetConfiguration::getDefaultConfiguration();
         $config->setHost($system_config['marketo_rest.baseUrl']);
-        $this->registerSingleton(ChannelsApi::class, $client, $config);
-        $this->registerSingleton(EmailsApi::class, $client, $config);
-        $this->registerSingleton(EmailTemplatesApi::class, $client, $config);
-        $this->registerSingleton(FileContentsApi::class, $client, $config);
-        $this->registerSingleton(FilesApi::class, $client, $config);
-        $this->registerSingleton(FoldersApi::class, $client, $config);
-        $this->registerSingleton(FormFieldsApi::class, $client, $config);
-        $this->registerSingleton(FormsApi::class, $client, $config);
-        $this->registerSingleton(LandingPageContentApi::class, $client, $config);
-        $this->registerSingleton(LandingPageRedirectRulesApi::class, $client, $config);
-        $this->registerSingleton(LandingPageTemplatesApi::class, $client, $config);
-        $this->registerSingleton(LandingPagesApi::class, $client, $config);
-        $this->registerSingleton(ProgramsApi::class, $client, $config);
-        $this->registerSingleton(SegmentsApi::class, $client, $config);
-        $this->registerSingleton(SmartCampaignsApi::class, $client, $config);
-        $this->registerSingleton(SmartListsApi::class, $client, $config);
-        $this->registerSingleton(SnippetsApi::class, $client, $config);
-        $this->registerSingleton(StaticListsApi::class, $client, $config);
-        $this->registerSingleton(TagsApi::class, $client, $config);
-        $this->registerSingleton(TokensApi::class, $client, $config);
+        $this->registerSingleton(ChannelsApi::class, $oauthClient, $config);
+        $this->registerSingleton(EmailsApi::class, $oauthClient, $config);
+        $this->registerSingleton(EmailTemplatesApi::class, $oauthClient, $config);
+        $this->registerSingleton(FileContentsApi::class, $oauthClient, $config);
+        $this->registerSingleton(FilesApi::class, $oauthClient, $config);
+        $this->registerSingleton(FoldersApi::class, $oauthClient, $config);
+        $this->registerSingleton(FormFieldsApi::class, $oauthClient, $config);
+        $this->registerSingleton(FormsApi::class, $oauthClient, $config);
+        $this->registerSingleton(LandingPageContentApi::class, $oauthClient, $config);
+        $this->registerSingleton(LandingPageRedirectRulesApi::class, $oauthClient, $config);
+        $this->registerSingleton(LandingPageTemplatesApi::class, $oauthClient, $config);
+        $this->registerSingleton(LandingPagesApi::class, $oauthClient, $config);
+        $this->registerSingleton(ProgramsApi::class, $oauthClient, $config);
+        $this->registerSingleton(SegmentsApi::class, $oauthClient, $config);
+        $this->registerSingleton(SmartCampaignsApi::class, $oauthClient, $config);
+        $this->registerSingleton(SmartListsApi::class, $oauthClient, $config);
+        $this->registerSingleton(SnippetsApi::class, $oauthClient, $config);
+        $this->registerSingleton(StaticListsApi::class, $oauthClient, $config);
+        $this->registerSingleton(TagsApi::class, $oauthClient, $config);
+        $this->registerSingleton(TokensApi::class, $oauthClient, $config);
 
         // Lead APIs
         $config = LeadConfiguration::getDefaultConfiguration();
         $config->setHost($system_config['marketo_rest.baseUrl']);
-        $this->registerSingleton(ActivitiesApi::class, $client, $config);
-        $this->registerSingleton(BulkExportActivitiesApi::class, $client, $config);
-        $this->registerSingleton(BulkExportLeadsApi::class, $client, $config);
-        $this->registerSingleton(BulkExportProgramMembersApi::class, $client, $config);
-        $this->registerSingleton(BulkImportCustomObjectsApi::class, $client, $config);
-        $this->registerSingleton(BulkImportLeadsApi::class, $client, $config);
-        $this->registerSingleton(BulkImportProgramMembersApi::class, $client, $config);
-        $this->registerSingleton(CampaignsApi::class, $client, $config);
-        $this->registerSingleton(CompaniesApi::class, $client, $config);
-        $this->registerSingleton(CustomObjectsApi::class, $client, $config);
-        $this->registerSingleton(LeadsApi::class, $client, $config);
-        $this->registerSingleton(NamedAccountListsApi::class, $client, $config);
-        $this->registerSingleton(NamedAccountsApi::class, $client, $config);
-        $this->registerSingleton(OpportunitiesApi::class, $client, $config);
-        $this->registerSingleton(SalesPersonsApi::class, $client, $config);
-        $this->registerSingleton(LeadStaticListsApi::class, $client, $config);
-        $this->registerSingleton(UsageApi::class, $client, $config);
+        $this->registerSingleton(ActivitiesApi::class, $oauthClient, $config);
+        $this->registerSingleton(BulkExportActivitiesApi::class, $oauthClient, $config);
+        $this->registerSingleton(BulkExportLeadsApi::class, $oauthClient, $config);
+        $this->registerSingleton(BulkExportProgramMembersApi::class, $oauthClient, $config);
+        $this->registerSingleton(BulkImportCustomObjectsApi::class, $oauthClient, $config);
+        $this->registerSingleton(BulkImportLeadsApi::class, $oauthClient, $config);
+        $this->registerSingleton(BulkImportProgramMembersApi::class, $oauthClient, $config);
+        $this->registerSingleton(CampaignsApi::class, $oauthClient, $config);
+        $this->registerSingleton(CompaniesApi::class, $oauthClient, $config);
+        $this->registerSingleton(CustomObjectsApi::class, $oauthClient, $config);
+        $this->registerSingleton(LeadsApi::class, $oauthClient, $config);
+        $this->registerSingleton(NamedAccountListsApi::class, $oauthClient, $config);
+        $this->registerSingleton(NamedAccountsApi::class, $oauthClient, $config);
+        $this->registerSingleton(OpportunitiesApi::class, $oauthClient, $config);
+        $this->registerSingleton(SalesPersonsApi::class, $oauthClient, $config);
+        $this->registerSingleton(LeadStaticListsApi::class, $oauthClient, $config);
+        $this->registerSingleton(UsageApi::class, $oauthClient, $config);
     }
 
     /**
