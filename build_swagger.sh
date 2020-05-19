@@ -24,9 +24,10 @@ MakeSwagger() {
   mv tmp/SwaggerClient-php/lib/* ./src/${2}/
 
   # This copies over template tests that could destroy real tests...
-  mkdir -p tests/${2}/*
-  rm -rf tests/${2}/*
-  mv tmp/SwaggerClient-php/test/* ./tests/${2}/
+  # codegen's tests are very old and empty so skip them for now.
+  # mkdir -p tests/${2}/*
+  # rm -rf tests/${2}/*
+  # mv tmp/SwaggerClient-php/test/* ./tests/${2}/
 
   rm -rf tmp
 }
