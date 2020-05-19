@@ -77,9 +77,7 @@ class MarketoRestProviderTest extends TestCase
         // TODO asserting on a mock like this is really slow but we don't have
         //  a real container from laravel so this is our only option atm.
         foreach ($this->getServiceClasses() as $class) {
-            $this->app->singleton("marketo$class", Argument::any())
-                ->shouldBeCalledOnce();
-            $this->app->singleton($class, "marketo$class")
+            $this->app->singleton($class, Argument::any())
                 ->shouldBeCalledOnce();
         }
         $this->provider->register();

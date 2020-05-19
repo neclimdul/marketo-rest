@@ -3,9 +3,6 @@
 namespace NecLimDul\MarketoRest\Laravel;
 
 use GuzzleHttp\Client as GuzzleHttpClient;
-use GuzzleHttp\Handler\MockHandler;
-use GuzzleHttp\HandlerStack;
-use GuzzleHttp\Middleware;
 use Illuminate\Support\ServiceProvider;
 use NecLimDul\MarketoRest\Asset\Api\ChannelsApi;
 use NecLimDul\MarketoRest\Asset\Api\EmailsApi;
@@ -28,7 +25,7 @@ use NecLimDul\MarketoRest\Asset\Api\StaticListsApi;
 use NecLimDul\MarketoRest\Asset\Api\TagsApi;
 use NecLimDul\MarketoRest\Asset\Api\TokensApi;
 use NecLimDul\MarketoRest\Asset\Configuration as AssetConfiguration;
-use NecLimDul\MarketoRest\Cache\StaticCachePool;
+use NecLimDul\MarketoRest\ClientFactory;
 use NecLimDul\MarketoRest\Identity\Api\IdentityApi;
 use NecLimDul\MarketoRest\Identity\Configuration as IdentityConfiguration;
 use NecLimDul\MarketoRest\Lead\Api\ActivitiesApi;
@@ -50,9 +47,6 @@ use NecLimDul\MarketoRest\Lead\Api\StaticListsApi as LeadStaticListsApi;
 use NecLimDul\MarketoRest\Lead\Api\UsageApi;
 use NecLimDul\MarketoRest\Lead\Configuration as LeadConfiguration;
 use NecLimDul\OAuth2\Client\Provider\Marketo;
-use Softonic\OAuth2\Guzzle\Middleware\AccessTokenCacheHandler;
-use Softonic\OAuth2\Guzzle\Middleware\AddAuthorizationHeader;
-use Softonic\OAuth2\Guzzle\Middleware\RetryOnAuthorizationError;
 
 /**
  * Laravel service provider class.
@@ -88,18 +82,21 @@ class MarketoRestProvider extends ServiceProvider
     {
         $this->mergeConfigFrom(__DIR__ . '/../config/config.php', 'marketo_rest');
         $system_config = $this->app->get('config');
-        $provider = new Marketo([
+
+        // Identity API works different so don't register it the same. Also,
+        // with our oauth wrapper, it shouldn't be needed.
+        $client = ClientFactory::create([
+            'baseUrl' => $system_config['marketo_rest.baseUrl'],
+        ]);
+        $config = IdentityConfiguration::getDefaultConfiguration();
+        $config->setHost($system_config['marketo_rest.baseUrl']);
+        $this->registerSingleton(IdentityApi::class, $client, $config);
+
+        $client = ClientFactory::createOauthClient([
             'clientId' => $system_config['marketo_rest.clientId'],
             'clientSecret' => $system_config['marketo_rest.clientSecret'],
             'baseUrl' => $system_config['marketo_rest.baseUrl'],
         ]);
-        $client = $this->createClient($provider);
-
-        // Identity API works different so don't register it the same. Also,
-        // with our oauth wrapper, it shouldn't be needed.
-        $config = IdentityConfiguration::getDefaultConfiguration();
-        $config->setHost($system_config['marketo_rest.baseUrl']);
-        $this->registerSingleton(IdentityApi::class, $client, $config);
 
         // Asset APIs
         $config = AssetConfiguration::getDefaultConfiguration();
@@ -200,50 +197,19 @@ class MarketoRestProvider extends ServiceProvider
     }
 
     /**
-     * Create a guzzle client with OAuth middleware setup.
-     *
-     * @param Marketo $oauthProvider
-     *   Marketo OAuth provider
-     * @return GuzzleHttpClient
-     *   A configured guzzle client.
+     * Wraps some logic for quickly creating aliased
+     * @param $className
+     * @param $client
+     * @param $config
      */
-    private function createClient(Marketo $oauthProvider)
-    {
-        $tokenOptions = [
-            'grant_type' => 'client_credentials',
-        ];
-        if (!isset($cache)) {
-            $cache = new StaticCachePool();
-        }
-        $cacheHandler = new AccessTokenCacheHandler($cache);
-
-        $stack = HandlerStack::create();
-        $stack->setHandler(new MockHandler());
-        $stack->push(Middleware::mapRequest(new AddAuthorizationHeader(
-            $oauthProvider,
-            $tokenOptions,
-            $cacheHandler
-        )));
-        $stack->push(Middleware::retry(new RetryOnAuthorizationError(
-            $oauthProvider,
-            $tokenOptions,
-            $cacheHandler
-        )));
-
-        $guzzleOptions['handler'] = $stack;
-        return new GuzzleHttpClient($guzzleOptions);
-    }
-
     private function registerSingleton($className, $client, $config)
     {
-        $this->app->singleton("marketo$className",
-            function () use ($className, $client, $config) {
-                return new $className(
-                    $client,
-                    $config
-                );
-            });
-        $this->app->singleton($className, "marketo$className");
+        $this->app->singleton($className, function () use ($className, $client, $config) {
+            return new $className(
+                $client,
+                $config
+            );
+        });
     }
 
 }
