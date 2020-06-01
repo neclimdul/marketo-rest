@@ -1,6 +1,7 @@
 {
     "name": "neclimdul/marketo-rest",
     "description": "Marketo Rest API library",
+    "license": "MIT",
     "keywords": [
         "swagger",
         "php",
