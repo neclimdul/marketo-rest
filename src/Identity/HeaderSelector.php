@@ -1,6 +1,6 @@
 <?php
 /**
- * ApiException
+ * HeaderSelector
  * PHP version 5
  *
  * @category Class
@@ -28,10 +28,8 @@
 
 namespace NecLimDul\MarketoRest\Identity;
 
-use \Exception;
-
 /**
- * ApiException Class Doc Comment
+ * HeaderSelector Class Doc Comment
  *
  * @category Class
  * @package  NecLimDul\MarketoRest\Identity
