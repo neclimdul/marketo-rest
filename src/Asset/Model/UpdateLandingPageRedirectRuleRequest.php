@@ -81,9 +81,7 @@ class UpdateLandingPageRedirectRuleRequest implements ModelInterface, ArrayAcces
     protected $dynamicProperties = [];
 
     /**
-     * Array of property to type mappings. Used for (de)serialization
-     *
-     * @return array
+     * {@inheritdoc}
      */
     public static function swaggerTypes()
     {
@@ -91,9 +89,7 @@ class UpdateLandingPageRedirectRuleRequest implements ModelInterface, ArrayAcces
     }
 
     /**
-     * Array of property to format mappings. Used for (de)serialization
-     *
-     * @return array
+     * {@inheritdoc}
      */
     public static function swaggerFormats()
     {
@@ -135,10 +131,7 @@ class UpdateLandingPageRedirectRuleRequest implements ModelInterface, ArrayAcces
     ];
 
     /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     *
-     * @return array
+     * {@inheritdoc}
      */
     public static function attributeMap()
     {
@@ -146,9 +139,7 @@ class UpdateLandingPageRedirectRuleRequest implements ModelInterface, ArrayAcces
     }
 
     /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     *
-     * @return array
+     * {@inheritdoc}
      */
     public static function setters()
     {
@@ -156,9 +147,7 @@ class UpdateLandingPageRedirectRuleRequest implements ModelInterface, ArrayAcces
     }
 
     /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @return array
+     * {@inheritdoc}
      */
     public static function getters()
     {
@@ -166,9 +155,7 @@ class UpdateLandingPageRedirectRuleRequest implements ModelInterface, ArrayAcces
     }
 
     /**
-     * The original name of the model.
-     *
-     * @return string
+     * {@inheritdoc}
      */
     public function getModelName()
     {
@@ -200,9 +187,7 @@ class UpdateLandingPageRedirectRuleRequest implements ModelInterface, ArrayAcces
     }
 
     /**
-     * Show all the invalid properties with reasons.
-     *
-     * @return array invalid properties with reasons
+     * {@inheritdoc}
      */
     public function listInvalidProperties()
     {
@@ -212,10 +197,7 @@ class UpdateLandingPageRedirectRuleRequest implements ModelInterface, ArrayAcces
     }
 
     /**
-     * Validate all the properties in the model
-     * return true if all passed
-     *
-     * @return bool True if all properties are valid
+     * {@inheritdoc}
      */
     public function valid()
     {
@@ -296,10 +278,7 @@ class UpdateLandingPageRedirectRuleRequest implements ModelInterface, ArrayAcces
     }
 
     /**
-     * Set list of dynamic properties for the model.
-     *
-     * @param mixed[] $fields
-     *   List of dynamic properties
+     * {@inheritdoc}
      */
     public function setDynamicProperties(array $fields)
     {
@@ -307,12 +286,7 @@ class UpdateLandingPageRedirectRuleRequest implements ModelInterface, ArrayAcces
     }
 
     /**
-     * Set a dynamic property for the model.
-     *
-     * @param string $property
-     *   Property name.
-     * @param mixed $value
-     *   Value of the property.
+     * {@inheritdoc}
      */
     public function setDynamicProperty($property, $value)
     {
@@ -320,10 +294,7 @@ class UpdateLandingPageRedirectRuleRequest implements ModelInterface, ArrayAcces
     }
 
     /**
-     * Get list of dynamic properties for the model.
-     *
-     * @return mixed[]
-     *   List of dynamic properties
+     * {@inheritdoc}
      */
     public function getDynamicProperties()
     {
@@ -331,11 +302,7 @@ class UpdateLandingPageRedirectRuleRequest implements ModelInterface, ArrayAcces
     }
 
     /**
-     * Returns true if offset exists. False otherwise.
-     *
-     * @param integer $offset Offset
-     *
-     * @return boolean
+     * {@inheritdoc}
      */
     public function offsetExists($offset)
     {
@@ -343,11 +310,7 @@ class UpdateLandingPageRedirectRuleRequest implements ModelInterface, ArrayAcces
     }
 
     /**
-     * Gets offset.
-     *
-     * @param integer $offset Offset
-     *
-     * @return mixed
+     * {@inheritdoc}
      */
     public function offsetGet($offset)
     {
@@ -355,12 +318,7 @@ class UpdateLandingPageRedirectRuleRequest implements ModelInterface, ArrayAcces
     }
 
     /**
-     * Sets value based on offset.
-     *
-     * @param integer $offset Offset
-     * @param mixed   $value  Value to be set
-     *
-     * @return void
+     * {@inheritdoc}
      */
     public function offsetSet($offset, $value)
     {
@@ -372,11 +330,7 @@ class UpdateLandingPageRedirectRuleRequest implements ModelInterface, ArrayAcces
     }
 
     /**
-     * Unsets offset.
-     *
-     * @param integer $offset Offset
-     *
-     * @return void
+     * {@inheritdoc}
      */
     public function offsetUnset($offset)
     {
@@ -384,9 +338,7 @@ class UpdateLandingPageRedirectRuleRequest implements ModelInterface, ArrayAcces
     }
 
     /**
-     * Gets the string presentation of the object
-     *
-     * @return string
+     * {@inheritdoc}
      */
     public function __toString()
     {

@@ -93,9 +93,7 @@ class Recurrence implements ModelInterface, ArrayAccess
     protected $dynamicProperties = [];
 
     /**
-     * Array of property to type mappings. Used for (de)serialization
-     *
-     * @return array
+     * {@inheritdoc}
      */
     public static function swaggerTypes()
     {
@@ -103,9 +101,7 @@ class Recurrence implements ModelInterface, ArrayAccess
     }
 
     /**
-     * Array of property to format mappings. Used for (de)serialization
-     *
-     * @return array
+     * {@inheritdoc}
      */
     public static function swaggerFormats()
     {
@@ -165,10 +161,7 @@ class Recurrence implements ModelInterface, ArrayAccess
     ];
 
     /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     *
-     * @return array
+     * {@inheritdoc}
      */
     public static function attributeMap()
     {
@@ -176,9 +169,7 @@ class Recurrence implements ModelInterface, ArrayAccess
     }
 
     /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     *
-     * @return array
+     * {@inheritdoc}
      */
     public static function setters()
     {
@@ -186,9 +177,7 @@ class Recurrence implements ModelInterface, ArrayAccess
     }
 
     /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @return array
+     * {@inheritdoc}
      */
     public static function getters()
     {
@@ -196,9 +185,7 @@ class Recurrence implements ModelInterface, ArrayAccess
     }
 
     /**
-     * The original name of the model.
-     *
-     * @return string
+     * {@inheritdoc}
      */
     public function getModelName()
     {
@@ -253,9 +240,7 @@ class Recurrence implements ModelInterface, ArrayAccess
     }
 
     /**
-     * Show all the invalid properties with reasons.
-     *
-     * @return array invalid properties with reasons
+     * {@inheritdoc}
      */
     public function listInvalidProperties()
     {
@@ -300,10 +285,7 @@ class Recurrence implements ModelInterface, ArrayAccess
     }
 
     /**
-     * Validate all the properties in the model
-     * return true if all passed
-     *
-     * @return bool True if all properties are valid
+     * {@inheritdoc}
      */
     public function valid()
     {
@@ -537,10 +519,7 @@ class Recurrence implements ModelInterface, ArrayAccess
     }
 
     /**
-     * Set list of dynamic properties for the model.
-     *
-     * @param mixed[] $fields
-     *   List of dynamic properties
+     * {@inheritdoc}
      */
     public function setDynamicProperties(array $fields)
     {
@@ -548,12 +527,7 @@ class Recurrence implements ModelInterface, ArrayAccess
     }
 
     /**
-     * Set a dynamic property for the model.
-     *
-     * @param string $property
-     *   Property name.
-     * @param mixed $value
-     *   Value of the property.
+     * {@inheritdoc}
      */
     public function setDynamicProperty($property, $value)
     {
@@ -561,10 +535,7 @@ class Recurrence implements ModelInterface, ArrayAccess
     }
 
     /**
-     * Get list of dynamic properties for the model.
-     *
-     * @return mixed[]
-     *   List of dynamic properties
+     * {@inheritdoc}
      */
     public function getDynamicProperties()
     {
@@ -572,11 +543,7 @@ class Recurrence implements ModelInterface, ArrayAccess
     }
 
     /**
-     * Returns true if offset exists. False otherwise.
-     *
-     * @param integer $offset Offset
-     *
-     * @return boolean
+     * {@inheritdoc}
      */
     public function offsetExists($offset)
     {
@@ -584,11 +551,7 @@ class Recurrence implements ModelInterface, ArrayAccess
     }
 
     /**
-     * Gets offset.
-     *
-     * @param integer $offset Offset
-     *
-     * @return mixed
+     * {@inheritdoc}
      */
     public function offsetGet($offset)
     {
@@ -596,12 +559,7 @@ class Recurrence implements ModelInterface, ArrayAccess
     }
 
     /**
-     * Sets value based on offset.
-     *
-     * @param integer $offset Offset
-     * @param mixed   $value  Value to be set
-     *
-     * @return void
+     * {@inheritdoc}
      */
     public function offsetSet($offset, $value)
     {
@@ -613,11 +571,7 @@ class Recurrence implements ModelInterface, ArrayAccess
     }
 
     /**
-     * Unsets offset.
-     *
-     * @param integer $offset Offset
-     *
-     * @return void
+     * {@inheritdoc}
      */
     public function offsetUnset($offset)
     {
@@ -625,9 +579,7 @@ class Recurrence implements ModelInterface, ArrayAccess
     }
 
     /**
-     * Gets the string presentation of the object
-     *
-     * @return string
+     * {@inheritdoc}
      */
     public function __toString()
     {
