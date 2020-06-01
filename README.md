@@ -51,4 +51,4 @@ Pull requests are welcome.
 
 ## License
 
-The MIT License (MIT). Please see [License File](https://github.com/neclimdul/oauth2-marketo/blob/master/LICENSE) for more information.
+The MIT License (MIT). Please see [License File](https://github.com/neclimdul/marketo-rest/blob/master/LICENSE) for more information.
