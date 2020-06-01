@@ -72,6 +72,13 @@ class DeleteNamedAccountListRequest implements ModelInterface, ArrayAccess
     ];
 
     /**
+      * Array of dynamic properties.
+      *
+      * @var mixed[]
+      */
+    protected $dynamicProperties = [];
+
+    /**
      * Array of property to type mappings. Used for (de)serialization
      *
      * @return array
@@ -260,6 +267,42 @@ class DeleteNamedAccountListRequest implements ModelInterface, ArrayAccess
 
         return $this;
     }
+
+    /**
+     * Set list of dynamic properties for the model.
+     *
+     * @param mixed[] $fields
+     *   List of dynamic properties
+     */
+    public function setDynamicProperties(array $fields)
+    {
+        $this->dynamicProperties = $fields;
+    }
+
+    /**
+     * Set a dynamic property for the model.
+     *
+     * @param string $property
+     *   Property name.
+     * @param mixed $value
+     *   Value of the property.
+     */
+    public function setDynamicProperty($property, $value)
+    {
+        $this->dynamicProperties[$property] = $value;
+    }
+
+    /**
+     * Get list of dynamic properties for the model.
+     *
+     * @return mixed[]
+     *   List of dynamic properties
+     */
+    public function getDynamicProperties()
+    {
+        return $this->dynamicProperties;
+    }
+
     /**
      * Returns true if offset exists. False otherwise.
      *

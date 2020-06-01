@@ -294,8 +294,10 @@ class ObjectSerializer
                 }
             }
             $instance = new $class();
+            $dynamic_properties = get_object_vars($data);
             foreach ($instance::swaggerTypes() as $property => $type) {
                 $propertySetter = $instance::setters()[$property];
+                unset($dynamic_properties[$property]);
 
                 if (!isset($propertySetter) || !isset($data->{$instance::attributeMap()[$property]})) {
                     continue;
@@ -305,6 +307,12 @@ class ObjectSerializer
                 if (isset($propertyValue)) {
                     $instance->$propertySetter(self::deserialize($propertyValue, $type, null));
                 }
+            }
+            // Add any additional dynamic properties directly. This doesn't get
+            // any fancy serialization which is unfortunate but it gives us
+            // access to all of Marketo's dynamic properties.
+            foreach ($dynamic_properties as $property => $value) {
+                $instance->setDynamicProperty($property, $value);
             }
             return $instance;
         }
