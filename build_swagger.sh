@@ -5,23 +5,23 @@ IDENTITY_SWAGGER="https://developers.marketo.com/swagger/swagger-identity.json"
 
 MakeSwagger() {
   # Cleanup any lingering temporary directory so we're in a good state for the code generation.
-  sudo rm -rf tmp
-  mkdir tmp
+  sudo find .build/ -mindepth 1 -not -name .gitignore -delete
 
   # Use docker to run the swagger codegen tool.
-  docker run --rm -v ${PWD}/tmp:/local/php swaggerapi/swagger-codegen-cli generate \
-    -i ${1} -l php -o /local/php \
+  docker run --rm -v ${PWD}:/local/ swaggerapi/swagger-codegen-cli generate \
+    -i ${1} -l php -o /local/.build \
+    -t /local/template/php/ \
     -DinvokerPackage=NecLimDul\\MarketoRest\\${2}
 
-  sudo chown ${USER}: tmp -R
+  sudo chown ${USER}: .build/ -R
 
   mkdir -p docs/${2}
   rm -rf docs/${2}/Api docs/${2}/Model
-  mv tmp/SwaggerClient-php/docs/* ./docs/${2}/
+  mv .build/SwaggerClient-php/docs/* ./docs/${2}/
 
   mkdir -p src/${2}
   rm -rf src/${2}/*
-  mv tmp/SwaggerClient-php/lib/* ./src/${2}/
+  mv .build/SwaggerClient-php/lib/* ./src/${2}/
 
   # This copies over template tests that could destroy real tests...
   # codegen's tests are very old and empty so skip them for now.
@@ -29,7 +29,7 @@ MakeSwagger() {
   # rm -rf tests/${2}/*
   # mv tmp/SwaggerClient-php/test/* ./tests/${2}/
 
-  rm -rf tmp
+  find .build/ -mindepth 1 -not -name .gitignore -delete
 }
 
 MakeSwagger ${LEAD_SWAGGER} Lead
