@@ -106,7 +106,7 @@ class CreateLandingPageContentRequest implements ModelInterface, ArrayAccess
       *
       * @var mixed[]
       */
-    protected $dynamicProperties = [];
+    protected $additionalProperties = [];
 
     /**
      * {@inheritdoc}
@@ -745,25 +745,35 @@ class CreateLandingPageContentRequest implements ModelInterface, ArrayAccess
     /**
      * {@inheritdoc}
      */
-    public function setDynamicProperties(array $fields)
+    public function setAdditionalProperties(array $fields)
     {
-        $this->dynamicProperties = $fields;
+        $fields = array_diff_key($fields, static::$attributeMap);
+        foreach ($this->additionalProperties as $additional_properties) {
+            unset($this->container[$additional_properties]);
+        }
+        $this->container += $fields;
+        $this->additionalProperties = array_keys($fields);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function setDynamicProperty($property, $value)
+    public function setAdditionalProperty($property, $value)
     {
-        $this->dynamicProperties[$property] = $value;
+        if (isset(static::$attributeMap[$property])) {
+            throw new \InvalidArgumentException();
+        }
+        $this->additionalProperties[$property] = $property;
+        $this->container[$property] = $value;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getDynamicProperties()
+    public function getAdditionalPropertiess()
     {
-        return $this->dynamicProperties;
+        // TODO Get values.
+        return $this->additionalProperties;
     }
 
     /**

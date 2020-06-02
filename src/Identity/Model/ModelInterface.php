@@ -95,28 +95,28 @@ interface ModelInterface
     public function valid();
 
     /**
-     * Set list of dynamic properties for the model.
+     * Set list of dynamic attribute for the model.
      *
      * @param mixed[] $fields
      *   List of dynamic properties
      */
-    public function setDynamicProperties(array $fields);
+    public function setAdditionalProperties(array $fields);
 
     /**
-     * Set a dynamic property for the model.
+     * Set a dynamic attribute for the model.
      *
      * @param string $property
      *   Property name.
      * @param mixed $value
      *   Value of the property.
      */
-    public function setDynamicProperty($property, $value);
+    public function setAdditionalProperty($property, $value);
 
     /**
-     * Get list of dynamic properties for the model.
+     * Get list of dynamic attribute for the model.
      *
      * @return mixed[]
      *   List of dynamic properties
      */
-    public function getDynamicProperties();
+    public function getAdditionalPropertiess();
 }
