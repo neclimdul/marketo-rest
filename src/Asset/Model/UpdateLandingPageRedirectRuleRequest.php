@@ -336,7 +336,9 @@ class UpdateLandingPageRedirectRuleRequest implements ModelInterface, ArrayAcces
     }
 
     /**
-     * {@inheritdoc}
+     * Gets the string presentation of the object
+     *
+     * @return string
      */
     public function __toString()
     {

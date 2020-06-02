@@ -396,7 +396,9 @@ class ResponseOfUpdateEmailFullContentResponse implements ModelInterface, ArrayA
     }
 
     /**
-     * {@inheritdoc}
+     * Gets the string presentation of the object
+     *
+     * @return string
      */
     public function __toString()
     {

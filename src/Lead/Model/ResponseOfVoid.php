@@ -438,7 +438,9 @@ class ResponseOfVoid implements ModelInterface, ArrayAccess
     }
 
     /**
-     * {@inheritdoc}
+     * Gets the string presentation of the object
+     *
+     * @return string
      */
     public function __toString()
     {

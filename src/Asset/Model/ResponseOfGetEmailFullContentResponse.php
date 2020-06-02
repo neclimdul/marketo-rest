@@ -396,7 +396,9 @@ class ResponseOfGetEmailFullContentResponse implements ModelInterface, ArrayAcce
     }
 
     /**
-     * {@inheritdoc}
+     * Gets the string presentation of the object
+     *
+     * @return string
      */
     public function __toString()
     {
