@@ -150,6 +150,32 @@ class StaticList implements ModelInterface, ArrayAccess
         'workspace_name' => 'getWorkspaceName'
     ];
 
+    
+
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
+
+    /**
+     * Constructor
+     *
+     * @param mixed[] $data Associated array of property values
+     *                      initializing the model
+     */
+    public function __construct(array $data = null)
+    {
+        $this->container['created_at'] = isset($data['created_at']) ? $data['created_at'] : null;
+        $this->container['description'] = isset($data['description']) ? $data['description'] : null;
+        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
+        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
+        $this->container['program_name'] = isset($data['program_name']) ? $data['program_name'] : null;
+        $this->container['updated_at'] = isset($data['updated_at']) ? $data['updated_at'] : null;
+        $this->container['workspace_name'] = isset($data['workspace_name']) ? $data['workspace_name'] : null;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -182,34 +208,6 @@ class StaticList implements ModelInterface, ArrayAccess
         return self::$swaggerModelName;
     }
 
-    
-
-    
-
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-
-    /**
-     * Constructor
-     *
-     * @param mixed[] $data Associated array of property values
-     *                      initializing the model
-     */
-    public function __construct(array $data = null)
-    {
-        $this->container['created_at'] = isset($data['created_at']) ? $data['created_at'] : null;
-        $this->container['description'] = isset($data['description']) ? $data['description'] : null;
-        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['program_name'] = isset($data['program_name']) ? $data['program_name'] : null;
-        $this->container['updated_at'] = isset($data['updated_at']) ? $data['updated_at'] : null;
-        $this->container['workspace_name'] = isset($data['workspace_name']) ? $data['workspace_name'] : null;
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -239,7 +237,7 @@ class StaticList implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
+    
 
     /**
      * Gets created_at

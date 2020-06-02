@@ -145,6 +145,34 @@ class SyncCustomObjectTypeRequest implements ModelInterface, ArrayAccess
         'show_in_lead_detail' => 'getShowInLeadDetail'
     ];
 
+    const ACTION_CREATE_ONLY = 'createOnly';
+    const ACTION_UPDATE_ONLY = 'updateOnly';
+    const ACTION_CREATE_OR_UPDATE = 'createOrUpdate';
+    
+
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
+
+    /**
+     * Constructor
+     *
+     * @param mixed[] $data Associated array of property values
+     *                      initializing the model
+     */
+    public function __construct(array $data = null)
+    {
+        $this->container['action'] = isset($data['action']) ? $data['action'] : null;
+        $this->container['display_name'] = isset($data['display_name']) ? $data['display_name'] : null;
+        $this->container['api_name'] = isset($data['api_name']) ? $data['api_name'] : null;
+        $this->container['plural_name'] = isset($data['plural_name']) ? $data['plural_name'] : null;
+        $this->container['description'] = isset($data['description']) ? $data['description'] : null;
+        $this->container['show_in_lead_detail'] = isset($data['show_in_lead_detail']) ? $data['show_in_lead_detail'] : null;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -177,50 +205,6 @@ class SyncCustomObjectTypeRequest implements ModelInterface, ArrayAccess
         return self::$swaggerModelName;
     }
 
-    const ACTION_CREATE_ONLY = 'createOnly';
-    const ACTION_UPDATE_ONLY = 'updateOnly';
-    const ACTION_CREATE_OR_UPDATE = 'createOrUpdate';
-    
-
-    
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getActionAllowableValues()
-    {
-        return [
-            self::ACTION_CREATE_ONLY,
-            self::ACTION_UPDATE_ONLY,
-            self::ACTION_CREATE_OR_UPDATE,
-        ];
-    }
-    
-
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-
-    /**
-     * Constructor
-     *
-     * @param mixed[] $data Associated array of property values
-     *                      initializing the model
-     */
-    public function __construct(array $data = null)
-    {
-        $this->container['action'] = isset($data['action']) ? $data['action'] : null;
-        $this->container['display_name'] = isset($data['display_name']) ? $data['display_name'] : null;
-        $this->container['api_name'] = isset($data['api_name']) ? $data['api_name'] : null;
-        $this->container['plural_name'] = isset($data['plural_name']) ? $data['plural_name'] : null;
-        $this->container['description'] = isset($data['description']) ? $data['description'] : null;
-        $this->container['show_in_lead_detail'] = isset($data['show_in_lead_detail']) ? $data['show_in_lead_detail'] : null;
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -249,7 +233,22 @@ class SyncCustomObjectTypeRequest implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
+    
 
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getActionAllowableValues()
+    {
+        return [
+            self::ACTION_CREATE_ONLY,
+            self::ACTION_UPDATE_ONLY,
+            self::ACTION_CREATE_OR_UPDATE,
+        ];
+    }
+    
 
     /**
      * Gets action

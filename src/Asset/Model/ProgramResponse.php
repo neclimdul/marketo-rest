@@ -200,38 +200,6 @@ class ProgramResponse implements ModelInterface, ArrayAccess
         'workspace' => 'getWorkspace'
     ];
 
-    /**
-     * {@inheritdoc}
-     */
-    public static function attributeMap()
-    {
-        return self::$attributeMap;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function setters()
-    {
-        return self::$setters;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function getters()
-    {
-        return self::$getters;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getModelName()
-    {
-        return self::$swaggerModelName;
-    }
-
     const STATUS_LOCKED = 'locked';
     const STATUS_UNLOCKED = 'unlocked';
     const STATUS_ON = 'on';
@@ -240,38 +208,6 @@ class ProgramResponse implements ModelInterface, ArrayAccess
     const TYPE_EVENT = 'event';
     const TYPE_WEBINAR = 'webinar';
     const TYPE_NURTURE = 'nurture';
-    
-
-    
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getStatusAllowableValues()
-    {
-        return [
-            self::STATUS_LOCKED,
-            self::STATUS_UNLOCKED,
-            self::STATUS_ON,
-            self::STATUS_OFF,
-        ];
-    }
-    
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getTypeAllowableValues()
-    {
-        return [
-            self::TYPE_PROGRAM,
-            self::TYPE_EVENT,
-            self::TYPE_WEBINAR,
-            self::TYPE_NURTURE,
-        ];
-    }
     
 
     /**
@@ -306,6 +242,38 @@ class ProgramResponse implements ModelInterface, ArrayAccess
         $this->container['updated_at'] = isset($data['updated_at']) ? $data['updated_at'] : null;
         $this->container['url'] = isset($data['url']) ? $data['url'] : null;
         $this->container['workspace'] = isset($data['workspace']) ? $data['workspace'] : null;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function setters()
+    {
+        return self::$setters;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function getters()
+    {
+        return self::$getters;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getModelName()
+    {
+        return self::$swaggerModelName;
     }
 
     /**
@@ -359,7 +327,39 @@ class ProgramResponse implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
+    
 
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getStatusAllowableValues()
+    {
+        return [
+            self::STATUS_LOCKED,
+            self::STATUS_UNLOCKED,
+            self::STATUS_ON,
+            self::STATUS_OFF,
+        ];
+    }
+    
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getTypeAllowableValues()
+    {
+        return [
+            self::TYPE_PROGRAM,
+            self::TYPE_EVENT,
+            self::TYPE_WEBINAR,
+            self::TYPE_NURTURE,
+        ];
+    }
+    
 
     /**
      * Gets channel

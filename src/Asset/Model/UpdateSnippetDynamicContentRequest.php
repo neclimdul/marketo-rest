@@ -125,6 +125,28 @@ class UpdateSnippetDynamicContentRequest implements ModelInterface, ArrayAccess
         'value' => 'getValue'
     ];
 
+    const TYPE_TYPEOFCONTENTEITHERHTMLORTEXT = 'Typeofcontent.Either'HTML'or'Text'';
+    
+
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
+
+    /**
+     * Constructor
+     *
+     * @param mixed[] $data Associated array of property values
+     *                      initializing the model
+     */
+    public function __construct(array $data = null)
+    {
+        $this->container['type'] = isset($data['type']) ? $data['type'] : null;
+        $this->container['value'] = isset($data['value']) ? $data['value'] : null;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -157,42 +179,6 @@ class UpdateSnippetDynamicContentRequest implements ModelInterface, ArrayAccess
         return self::$swaggerModelName;
     }
 
-    const TYPE_TYPEOFCONTENTEITHERHTMLORTEXT = 'Typeofcontent.Either'HTML'or'Text'';
-    
-
-    
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getTypeAllowableValues()
-    {
-        return [
-            self::TYPE_TYPEOFCONTENTEITHERHTMLORTEXT,
-        ];
-    }
-    
-
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-
-    /**
-     * Constructor
-     *
-     * @param mixed[] $data Associated array of property values
-     *                      initializing the model
-     */
-    public function __construct(array $data = null)
-    {
-        $this->container['type'] = isset($data['type']) ? $data['type'] : null;
-        $this->container['value'] = isset($data['value']) ? $data['value'] : null;
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -218,7 +204,20 @@ class UpdateSnippetDynamicContentRequest implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
+    
 
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getTypeAllowableValues()
+    {
+        return [
+            self::TYPE_TYPEOFCONTENTEITHERHTMLORTEXT,
+        ];
+    }
+    
 
     /**
      * Gets type

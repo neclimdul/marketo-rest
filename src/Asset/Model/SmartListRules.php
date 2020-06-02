@@ -131,6 +131,31 @@ class SmartListRules implements ModelInterface, ArrayAccess
         'filters' => 'getFilters'
     ];
 
+    const FILTER_MATCH_TYPE_ALL = 'All';
+    const FILTER_MATCH_TYPE_ANY = 'Any';
+    const FILTER_MATCH_TYPE_ADVANCED = 'Advanced';
+    
+
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
+
+    /**
+     * Constructor
+     *
+     * @param mixed[] $data Associated array of property values
+     *                      initializing the model
+     */
+    public function __construct(array $data = null)
+    {
+        $this->container['filter_match_type'] = isset($data['filter_match_type']) ? $data['filter_match_type'] : null;
+        $this->container['triggers'] = isset($data['triggers']) ? $data['triggers'] : null;
+        $this->container['filters'] = isset($data['filters']) ? $data['filters'] : null;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -161,47 +186,6 @@ class SmartListRules implements ModelInterface, ArrayAccess
     public function getModelName()
     {
         return self::$swaggerModelName;
-    }
-
-    const FILTER_MATCH_TYPE_ALL = 'All';
-    const FILTER_MATCH_TYPE_ANY = 'Any';
-    const FILTER_MATCH_TYPE_ADVANCED = 'Advanced';
-    
-
-    
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getFilterMatchTypeAllowableValues()
-    {
-        return [
-            self::FILTER_MATCH_TYPE_ALL,
-            self::FILTER_MATCH_TYPE_ANY,
-            self::FILTER_MATCH_TYPE_ADVANCED,
-        ];
-    }
-    
-
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-
-    /**
-     * Constructor
-     *
-     * @param mixed[] $data Associated array of property values
-     *                      initializing the model
-     */
-    public function __construct(array $data = null)
-    {
-        $this->container['filter_match_type'] = isset($data['filter_match_type']) ? $data['filter_match_type'] : null;
-        $this->container['triggers'] = isset($data['triggers']) ? $data['triggers'] : null;
-        $this->container['filters'] = isset($data['filters']) ? $data['filters'] : null;
     }
 
     /**
@@ -238,7 +222,22 @@ class SmartListRules implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
+    
 
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getFilterMatchTypeAllowableValues()
+    {
+        return [
+            self::FILTER_MATCH_TYPE_ALL,
+            self::FILTER_MATCH_TYPE_ANY,
+            self::FILTER_MATCH_TYPE_ADVANCED,
+        ];
+    }
+    
 
     /**
      * Gets filter_match_type

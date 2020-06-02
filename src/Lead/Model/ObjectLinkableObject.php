@@ -130,6 +130,28 @@ class ObjectLinkableObject implements ModelInterface, ArrayAccess
         'fields' => 'getFields'
     ];
 
+    
+
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
+
+    /**
+     * Constructor
+     *
+     * @param mixed[] $data Associated array of property values
+     *                      initializing the model
+     */
+    public function __construct(array $data = null)
+    {
+        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
+        $this->container['display_name'] = isset($data['display_name']) ? $data['display_name'] : null;
+        $this->container['fields'] = isset($data['fields']) ? $data['fields'] : null;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -162,30 +184,6 @@ class ObjectLinkableObject implements ModelInterface, ArrayAccess
         return self::$swaggerModelName;
     }
 
-    
-
-    
-
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-
-    /**
-     * Constructor
-     *
-     * @param mixed[] $data Associated array of property values
-     *                      initializing the model
-     */
-    public function __construct(array $data = null)
-    {
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['display_name'] = isset($data['display_name']) ? $data['display_name'] : null;
-        $this->container['fields'] = isset($data['fields']) ? $data['fields'] : null;
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -212,7 +210,7 @@ class ObjectLinkableObject implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
+    
 
     /**
      * Gets name

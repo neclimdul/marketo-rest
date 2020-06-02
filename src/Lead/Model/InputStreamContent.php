@@ -125,6 +125,27 @@ class InputStreamContent implements ModelInterface, ArrayAccess
         'input_stream' => 'getInputStream'
     ];
 
+    
+
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
+
+    /**
+     * Constructor
+     *
+     * @param mixed[] $data Associated array of property values
+     *                      initializing the model
+     */
+    public function __construct(array $data = null)
+    {
+        $this->container['content_type'] = isset($data['content_type']) ? $data['content_type'] : null;
+        $this->container['input_stream'] = isset($data['input_stream']) ? $data['input_stream'] : null;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -157,29 +178,6 @@ class InputStreamContent implements ModelInterface, ArrayAccess
         return self::$swaggerModelName;
     }
 
-    
-
-    
-
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-
-    /**
-     * Constructor
-     *
-     * @param mixed[] $data Associated array of property values
-     *                      initializing the model
-     */
-    public function __construct(array $data = null)
-    {
-        $this->container['content_type'] = isset($data['content_type']) ? $data['content_type'] : null;
-        $this->container['input_stream'] = isset($data['input_stream']) ? $data['input_stream'] : null;
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -197,7 +195,7 @@ class InputStreamContent implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
+    
 
     /**
      * Gets content_type

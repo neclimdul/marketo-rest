@@ -125,6 +125,27 @@ class ErrorCount implements ModelInterface, ArrayAccess
         'error_code' => 'getErrorCode'
     ];
 
+    
+
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
+
+    /**
+     * Constructor
+     *
+     * @param mixed[] $data Associated array of property values
+     *                      initializing the model
+     */
+    public function __construct(array $data = null)
+    {
+        $this->container['count'] = isset($data['count']) ? $data['count'] : null;
+        $this->container['error_code'] = isset($data['error_code']) ? $data['error_code'] : null;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -157,29 +178,6 @@ class ErrorCount implements ModelInterface, ArrayAccess
         return self::$swaggerModelName;
     }
 
-    
-
-    
-
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-
-    /**
-     * Constructor
-     *
-     * @param mixed[] $data Associated array of property values
-     *                      initializing the model
-     */
-    public function __construct(array $data = null)
-    {
-        $this->container['count'] = isset($data['count']) ? $data['count'] : null;
-        $this->container['error_code'] = isset($data['error_code']) ? $data['error_code'] : null;
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -203,7 +201,7 @@ class ErrorCount implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
+    
 
     /**
      * Gets count

@@ -125,6 +125,27 @@ class Tags implements ModelInterface, ArrayAccess
         'tag_value' => 'getTagValue'
     ];
 
+    
+
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
+
+    /**
+     * Constructor
+     *
+     * @param mixed[] $data Associated array of property values
+     *                      initializing the model
+     */
+    public function __construct(array $data = null)
+    {
+        $this->container['tag_type'] = isset($data['tag_type']) ? $data['tag_type'] : null;
+        $this->container['tag_value'] = isset($data['tag_value']) ? $data['tag_value'] : null;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -157,29 +178,6 @@ class Tags implements ModelInterface, ArrayAccess
         return self::$swaggerModelName;
     }
 
-    
-
-    
-
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-
-    /**
-     * Constructor
-     *
-     * @param mixed[] $data Associated array of property values
-     *                      initializing the model
-     */
-    public function __construct(array $data = null)
-    {
-        $this->container['tag_type'] = isset($data['tag_type']) ? $data['tag_type'] : null;
-        $this->container['tag_value'] = isset($data['tag_value']) ? $data['tag_value'] : null;
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -203,7 +201,7 @@ class Tags implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
+    
 
     /**
      * Gets tag_type

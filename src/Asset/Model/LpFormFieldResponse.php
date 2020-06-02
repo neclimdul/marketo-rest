@@ -210,40 +210,6 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess
         'visibility_rules' => 'getVisibilityRules'
     ];
 
-    /**
-     * {@inheritdoc}
-     */
-    public static function attributeMap()
-    {
-        return self::$attributeMap;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function setters()
-    {
-        return self::$setters;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function getters()
-    {
-        return self::$getters;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getModelName()
-    {
-        return self::$swaggerModelName;
-    }
-
-    
-
     
 
     /**
@@ -285,6 +251,38 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess
     /**
      * {@inheritdoc}
      */
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function setters()
+    {
+        return self::$setters;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function getters()
+    {
+        return self::$getters;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getModelName()
+    {
+        return self::$swaggerModelName;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function listInvalidProperties()
     {
         $invalidProperties = [];
@@ -299,7 +297,7 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
+    
 
     /**
      * Gets blank_fields

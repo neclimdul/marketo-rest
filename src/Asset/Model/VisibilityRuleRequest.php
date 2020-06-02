@@ -140,6 +140,54 @@ class VisibilityRuleRequest implements ModelInterface, ArrayAccess
         'values' => 'getValues'
     ];
 
+    const OPERATOR_IS = 'is';
+    const OPERATOR_IS_NOT = 'isNot';
+    const OPERATOR_IS_EMPTY = 'isEmpty';
+    const OPERATOR_IS_NOT_EMPTY = 'isNotEmpty';
+    const OPERATOR_STARTS_WITH = 'startsWith';
+    const OPERATOR_NOT_STARTS_WITH = 'notStartsWith';
+    const OPERATOR_ENDS_WITH = 'endsWith';
+    const OPERATOR_NOT_ENDS_WITH = 'notEndsWith';
+    const OPERATOR_CONTAINS = 'contains';
+    const OPERATOR_NOT_CONTAINS = 'notContains';
+    const OPERATOR_GREATER_THAN = 'greaterThan';
+    const OPERATOR_LESS_THAN = 'lessThan';
+    const OPERATOR_AT_LEAST = 'atLeast';
+    const OPERATOR_AT_MOST = 'atMost';
+    const OPERATOR_BETWEEN = 'between';
+    const OPERATOR_NOT_BETWEEN = 'notBetween';
+    const OPERATOR_NOT_IN_TIME_FRAME = 'notInTimeFrame';
+    const OPERATOR_IN_PAST = 'inPast';
+    const OPERATOR_NOT_IN_PAST = 'notInPast';
+    const OPERATOR_AFTER = 'after';
+    const OPERATOR_BEFORE = 'before';
+    const OPERATOR_IN_TIME_FRAME = 'inTimeFrame';
+    const OPERATOR_ON_OR_AFTER = 'onOrAfter';
+    const OPERATOR_ON_OR_BEFORE = 'onOrBefore';
+    
+
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
+
+    /**
+     * Constructor
+     *
+     * @param mixed[] $data Associated array of property values
+     *                      initializing the model
+     */
+    public function __construct(array $data = null)
+    {
+        $this->container['alt_label'] = isset($data['alt_label']) ? $data['alt_label'] : null;
+        $this->container['operator'] = isset($data['operator']) ? $data['operator'] : null;
+        $this->container['pick_list_values'] = isset($data['pick_list_values']) ? $data['pick_list_values'] : null;
+        $this->container['subject_field'] = isset($data['subject_field']) ? $data['subject_field'] : null;
+        $this->container['values'] = isset($data['values']) ? $data['values'] : null;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -170,91 +218,6 @@ class VisibilityRuleRequest implements ModelInterface, ArrayAccess
     public function getModelName()
     {
         return self::$swaggerModelName;
-    }
-
-    const OPERATOR_IS = 'is';
-    const OPERATOR_IS_NOT = 'isNot';
-    const OPERATOR_IS_EMPTY = 'isEmpty';
-    const OPERATOR_IS_NOT_EMPTY = 'isNotEmpty';
-    const OPERATOR_STARTS_WITH = 'startsWith';
-    const OPERATOR_NOT_STARTS_WITH = 'notStartsWith';
-    const OPERATOR_ENDS_WITH = 'endsWith';
-    const OPERATOR_NOT_ENDS_WITH = 'notEndsWith';
-    const OPERATOR_CONTAINS = 'contains';
-    const OPERATOR_NOT_CONTAINS = 'notContains';
-    const OPERATOR_GREATER_THAN = 'greaterThan';
-    const OPERATOR_LESS_THAN = 'lessThan';
-    const OPERATOR_AT_LEAST = 'atLeast';
-    const OPERATOR_AT_MOST = 'atMost';
-    const OPERATOR_BETWEEN = 'between';
-    const OPERATOR_NOT_BETWEEN = 'notBetween';
-    const OPERATOR_NOT_IN_TIME_FRAME = 'notInTimeFrame';
-    const OPERATOR_IN_PAST = 'inPast';
-    const OPERATOR_NOT_IN_PAST = 'notInPast';
-    const OPERATOR_AFTER = 'after';
-    const OPERATOR_BEFORE = 'before';
-    const OPERATOR_IN_TIME_FRAME = 'inTimeFrame';
-    const OPERATOR_ON_OR_AFTER = 'onOrAfter';
-    const OPERATOR_ON_OR_BEFORE = 'onOrBefore';
-    
-
-    
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getOperatorAllowableValues()
-    {
-        return [
-            self::OPERATOR_IS,
-            self::OPERATOR_IS_NOT,
-            self::OPERATOR_IS_EMPTY,
-            self::OPERATOR_IS_NOT_EMPTY,
-            self::OPERATOR_STARTS_WITH,
-            self::OPERATOR_NOT_STARTS_WITH,
-            self::OPERATOR_ENDS_WITH,
-            self::OPERATOR_NOT_ENDS_WITH,
-            self::OPERATOR_CONTAINS,
-            self::OPERATOR_NOT_CONTAINS,
-            self::OPERATOR_GREATER_THAN,
-            self::OPERATOR_LESS_THAN,
-            self::OPERATOR_AT_LEAST,
-            self::OPERATOR_AT_MOST,
-            self::OPERATOR_BETWEEN,
-            self::OPERATOR_NOT_BETWEEN,
-            self::OPERATOR_NOT_IN_TIME_FRAME,
-            self::OPERATOR_IN_PAST,
-            self::OPERATOR_NOT_IN_PAST,
-            self::OPERATOR_AFTER,
-            self::OPERATOR_BEFORE,
-            self::OPERATOR_IN_TIME_FRAME,
-            self::OPERATOR_ON_OR_AFTER,
-            self::OPERATOR_ON_OR_BEFORE,
-        ];
-    }
-    
-
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-
-    /**
-     * Constructor
-     *
-     * @param mixed[] $data Associated array of property values
-     *                      initializing the model
-     */
-    public function __construct(array $data = null)
-    {
-        $this->container['alt_label'] = isset($data['alt_label']) ? $data['alt_label'] : null;
-        $this->container['operator'] = isset($data['operator']) ? $data['operator'] : null;
-        $this->container['pick_list_values'] = isset($data['pick_list_values']) ? $data['pick_list_values'] : null;
-        $this->container['subject_field'] = isset($data['subject_field']) ? $data['subject_field'] : null;
-        $this->container['values'] = isset($data['values']) ? $data['values'] : null;
     }
 
     /**
@@ -291,7 +254,43 @@ class VisibilityRuleRequest implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
+    
 
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getOperatorAllowableValues()
+    {
+        return [
+            self::OPERATOR_IS,
+            self::OPERATOR_IS_NOT,
+            self::OPERATOR_IS_EMPTY,
+            self::OPERATOR_IS_NOT_EMPTY,
+            self::OPERATOR_STARTS_WITH,
+            self::OPERATOR_NOT_STARTS_WITH,
+            self::OPERATOR_ENDS_WITH,
+            self::OPERATOR_NOT_ENDS_WITH,
+            self::OPERATOR_CONTAINS,
+            self::OPERATOR_NOT_CONTAINS,
+            self::OPERATOR_GREATER_THAN,
+            self::OPERATOR_LESS_THAN,
+            self::OPERATOR_AT_LEAST,
+            self::OPERATOR_AT_MOST,
+            self::OPERATOR_BETWEEN,
+            self::OPERATOR_NOT_BETWEEN,
+            self::OPERATOR_NOT_IN_TIME_FRAME,
+            self::OPERATOR_IN_PAST,
+            self::OPERATOR_NOT_IN_PAST,
+            self::OPERATOR_AFTER,
+            self::OPERATOR_BEFORE,
+            self::OPERATOR_IN_TIME_FRAME,
+            self::OPERATOR_ON_OR_AFTER,
+            self::OPERATOR_ON_OR_BEFORE,
+        ];
+    }
+    
 
     /**
      * Gets alt_label

@@ -140,6 +140,32 @@ class EmailTemplateUsedByResponse implements ModelInterface, ArrayAccess
         'updated_at' => 'getUpdatedAt'
     ];
 
+    const STATUS_APPROVED = 'approved';
+    const STATUS_DRAFT = 'draft';
+    
+
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
+
+    /**
+     * Constructor
+     *
+     * @param mixed[] $data Associated array of property values
+     *                      initializing the model
+     */
+    public function __construct(array $data = null)
+    {
+        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
+        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
+        $this->container['type'] = isset($data['type']) ? $data['type'] : null;
+        $this->container['status'] = isset($data['status']) ? $data['status'] : null;
+        $this->container['updated_at'] = isset($data['updated_at']) ? $data['updated_at'] : null;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -170,47 +196,6 @@ class EmailTemplateUsedByResponse implements ModelInterface, ArrayAccess
     public function getModelName()
     {
         return self::$swaggerModelName;
-    }
-
-    const STATUS_APPROVED = 'approved';
-    const STATUS_DRAFT = 'draft';
-    
-
-    
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getStatusAllowableValues()
-    {
-        return [
-            self::STATUS_APPROVED,
-            self::STATUS_DRAFT,
-        ];
-    }
-    
-
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-
-    /**
-     * Constructor
-     *
-     * @param mixed[] $data Associated array of property values
-     *                      initializing the model
-     */
-    public function __construct(array $data = null)
-    {
-        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['type'] = isset($data['type']) ? $data['type'] : null;
-        $this->container['status'] = isset($data['status']) ? $data['status'] : null;
-        $this->container['updated_at'] = isset($data['updated_at']) ? $data['updated_at'] : null;
     }
 
     /**
@@ -253,7 +238,21 @@ class EmailTemplateUsedByResponse implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
+    
 
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getStatusAllowableValues()
+    {
+        return [
+            self::STATUS_APPROVED,
+            self::STATUS_DRAFT,
+        ];
+    }
+    
 
     /**
      * Gets id

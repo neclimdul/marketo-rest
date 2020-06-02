@@ -120,6 +120,26 @@ class AddRichTextRequest implements ModelInterface, ArrayAccess
         'text' => 'getText'
     ];
 
+    
+
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
+
+    /**
+     * Constructor
+     *
+     * @param mixed[] $data Associated array of property values
+     *                      initializing the model
+     */
+    public function __construct(array $data = null)
+    {
+        $this->container['text'] = isset($data['text']) ? $data['text'] : null;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -152,28 +172,6 @@ class AddRichTextRequest implements ModelInterface, ArrayAccess
         return self::$swaggerModelName;
     }
 
-    
-
-    
-
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-
-    /**
-     * Constructor
-     *
-     * @param mixed[] $data Associated array of property values
-     *                      initializing the model
-     */
-    public function __construct(array $data = null)
-    {
-        $this->container['text'] = isset($data['text']) ? $data['text'] : null;
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -194,7 +192,7 @@ class AddRichTextRequest implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
+    
 
     /**
      * Gets text

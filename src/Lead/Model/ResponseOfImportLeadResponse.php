@@ -150,6 +150,32 @@ class ResponseOfImportLeadResponse implements ModelInterface, ArrayAccess
         'warnings' => 'getWarnings'
     ];
 
+    
+
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
+
+    /**
+     * Constructor
+     *
+     * @param mixed[] $data Associated array of property values
+     *                      initializing the model
+     */
+    public function __construct(array $data = null)
+    {
+        $this->container['errors'] = isset($data['errors']) ? $data['errors'] : null;
+        $this->container['more_result'] = isset($data['more_result']) ? $data['more_result'] : null;
+        $this->container['next_page_token'] = isset($data['next_page_token']) ? $data['next_page_token'] : null;
+        $this->container['request_id'] = isset($data['request_id']) ? $data['request_id'] : null;
+        $this->container['result'] = isset($data['result']) ? $data['result'] : null;
+        $this->container['success'] = isset($data['success']) ? $data['success'] : null;
+        $this->container['warnings'] = isset($data['warnings']) ? $data['warnings'] : null;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -180,34 +206,6 @@ class ResponseOfImportLeadResponse implements ModelInterface, ArrayAccess
     public function getModelName()
     {
         return self::$swaggerModelName;
-    }
-
-    
-
-    
-
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-
-    /**
-     * Constructor
-     *
-     * @param mixed[] $data Associated array of property values
-     *                      initializing the model
-     */
-    public function __construct(array $data = null)
-    {
-        $this->container['errors'] = isset($data['errors']) ? $data['errors'] : null;
-        $this->container['more_result'] = isset($data['more_result']) ? $data['more_result'] : null;
-        $this->container['next_page_token'] = isset($data['next_page_token']) ? $data['next_page_token'] : null;
-        $this->container['request_id'] = isset($data['request_id']) ? $data['request_id'] : null;
-        $this->container['result'] = isset($data['result']) ? $data['result'] : null;
-        $this->container['success'] = isset($data['success']) ? $data['success'] : null;
-        $this->container['warnings'] = isset($data['warnings']) ? $data['warnings'] : null;
     }
 
     /**
@@ -242,7 +240,7 @@ class ResponseOfImportLeadResponse implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
+    
 
     /**
      * Gets errors

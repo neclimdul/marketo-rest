@@ -135,6 +135,31 @@ class UpdateFolderRequest implements ModelInterface, ArrayAccess
         'type' => 'getType'
     ];
 
+    const TYPE_FOLDER = 'Folder';
+    const TYPE_PROGRAM = 'Program';
+    
+
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
+
+    /**
+     * Constructor
+     *
+     * @param mixed[] $data Associated array of property values
+     *                      initializing the model
+     */
+    public function __construct(array $data = null)
+    {
+        $this->container['description'] = isset($data['description']) ? $data['description'] : null;
+        $this->container['is_archive'] = isset($data['is_archive']) ? $data['is_archive'] : null;
+        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
+        $this->container['type'] = isset($data['type']) ? $data['type'] : null;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -167,46 +192,6 @@ class UpdateFolderRequest implements ModelInterface, ArrayAccess
         return self::$swaggerModelName;
     }
 
-    const TYPE_FOLDER = 'Folder';
-    const TYPE_PROGRAM = 'Program';
-    
-
-    
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getTypeAllowableValues()
-    {
-        return [
-            self::TYPE_FOLDER,
-            self::TYPE_PROGRAM,
-        ];
-    }
-    
-
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-
-    /**
-     * Constructor
-     *
-     * @param mixed[] $data Associated array of property values
-     *                      initializing the model
-     */
-    public function __construct(array $data = null)
-    {
-        $this->container['description'] = isset($data['description']) ? $data['description'] : null;
-        $this->container['is_archive'] = isset($data['is_archive']) ? $data['is_archive'] : null;
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['type'] = isset($data['type']) ? $data['type'] : null;
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -235,7 +220,21 @@ class UpdateFolderRequest implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
+    
 
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getTypeAllowableValues()
+    {
+        return [
+            self::TYPE_FOLDER,
+            self::TYPE_PROGRAM,
+        ];
+    }
+    
 
     /**
      * Gets description

@@ -150,6 +150,47 @@ class LandingPageContentResponse implements ModelInterface, ArrayAccess
         'type' => 'getType'
     ];
 
+    const FOLLOWUP_TYPE_URL = 'url';
+    const FOLLOWUP_TYPE_LP = 'lp';
+    const FOLLOWUP_TYPE_FORM_DEFINED = 'formDefined';
+    const TYPE_IMAGE = 'Image';
+    const TYPE_SOCIAL_BUTTON = 'SocialButton';
+    const TYPE_FORM = 'Form';
+    const TYPE_DYNAMIC_CONTENT = 'DynamicContent';
+    const TYPE_RECTANGLE = 'Rectangle';
+    const TYPE_SNIPPET = 'Snippet';
+    const TYPE_RICH_TEXT = 'RichText';
+    const TYPE_HTML = 'HTML';
+    const TYPE_VIDEO = 'Video';
+    const TYPE_POLL = 'Poll';
+    const TYPE_REFERRAL_OFFER = 'ReferralOffer';
+    const TYPE_SWEEPSTAKES = 'Sweepstakes';
+    
+
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
+
+    /**
+     * Constructor
+     *
+     * @param mixed[] $data Associated array of property values
+     *                      initializing the model
+     */
+    public function __construct(array $data = null)
+    {
+        $this->container['content'] = isset($data['content']) ? $data['content'] : null;
+        $this->container['followup_type'] = isset($data['followup_type']) ? $data['followup_type'] : null;
+        $this->container['followup_value'] = isset($data['followup_value']) ? $data['followup_value'] : null;
+        $this->container['formatting_options'] = isset($data['formatting_options']) ? $data['formatting_options'] : null;
+        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
+        $this->container['index'] = isset($data['index']) ? $data['index'] : null;
+        $this->container['type'] = isset($data['type']) ? $data['type'] : null;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -180,86 +221,6 @@ class LandingPageContentResponse implements ModelInterface, ArrayAccess
     public function getModelName()
     {
         return self::$swaggerModelName;
-    }
-
-    const FOLLOWUP_TYPE_URL = 'url';
-    const FOLLOWUP_TYPE_LP = 'lp';
-    const FOLLOWUP_TYPE_FORM_DEFINED = 'formDefined';
-    const TYPE_IMAGE = 'Image';
-    const TYPE_SOCIAL_BUTTON = 'SocialButton';
-    const TYPE_FORM = 'Form';
-    const TYPE_DYNAMIC_CONTENT = 'DynamicContent';
-    const TYPE_RECTANGLE = 'Rectangle';
-    const TYPE_SNIPPET = 'Snippet';
-    const TYPE_RICH_TEXT = 'RichText';
-    const TYPE_HTML = 'HTML';
-    const TYPE_VIDEO = 'Video';
-    const TYPE_POLL = 'Poll';
-    const TYPE_REFERRAL_OFFER = 'ReferralOffer';
-    const TYPE_SWEEPSTAKES = 'Sweepstakes';
-    
-
-    
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getFollowupTypeAllowableValues()
-    {
-        return [
-            self::FOLLOWUP_TYPE_URL,
-            self::FOLLOWUP_TYPE_LP,
-            self::FOLLOWUP_TYPE_FORM_DEFINED,
-        ];
-    }
-    
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getTypeAllowableValues()
-    {
-        return [
-            self::TYPE_IMAGE,
-            self::TYPE_SOCIAL_BUTTON,
-            self::TYPE_FORM,
-            self::TYPE_DYNAMIC_CONTENT,
-            self::TYPE_RECTANGLE,
-            self::TYPE_SNIPPET,
-            self::TYPE_RICH_TEXT,
-            self::TYPE_HTML,
-            self::TYPE_VIDEO,
-            self::TYPE_POLL,
-            self::TYPE_REFERRAL_OFFER,
-            self::TYPE_SWEEPSTAKES,
-        ];
-    }
-    
-
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-
-    /**
-     * Constructor
-     *
-     * @param mixed[] $data Associated array of property values
-     *                      initializing the model
-     */
-    public function __construct(array $data = null)
-    {
-        $this->container['content'] = isset($data['content']) ? $data['content'] : null;
-        $this->container['followup_type'] = isset($data['followup_type']) ? $data['followup_type'] : null;
-        $this->container['followup_value'] = isset($data['followup_value']) ? $data['followup_value'] : null;
-        $this->container['formatting_options'] = isset($data['formatting_options']) ? $data['formatting_options'] : null;
-        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
-        $this->container['index'] = isset($data['index']) ? $data['index'] : null;
-        $this->container['type'] = isset($data['type']) ? $data['type'] : null;
     }
 
     /**
@@ -301,7 +262,46 @@ class LandingPageContentResponse implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
+    
 
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getFollowupTypeAllowableValues()
+    {
+        return [
+            self::FOLLOWUP_TYPE_URL,
+            self::FOLLOWUP_TYPE_LP,
+            self::FOLLOWUP_TYPE_FORM_DEFINED,
+        ];
+    }
+    
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getTypeAllowableValues()
+    {
+        return [
+            self::TYPE_IMAGE,
+            self::TYPE_SOCIAL_BUTTON,
+            self::TYPE_FORM,
+            self::TYPE_DYNAMIC_CONTENT,
+            self::TYPE_RECTANGLE,
+            self::TYPE_SNIPPET,
+            self::TYPE_RICH_TEXT,
+            self::TYPE_HTML,
+            self::TYPE_VIDEO,
+            self::TYPE_POLL,
+            self::TYPE_REFERRAL_OFFER,
+            self::TYPE_SWEEPSTAKES,
+        ];
+    }
+    
 
     /**
      * Gets content

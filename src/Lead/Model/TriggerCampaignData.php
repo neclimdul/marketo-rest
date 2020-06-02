@@ -125,6 +125,27 @@ class TriggerCampaignData implements ModelInterface, ArrayAccess
         'tokens' => 'getTokens'
     ];
 
+    
+
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
+
+    /**
+     * Constructor
+     *
+     * @param mixed[] $data Associated array of property values
+     *                      initializing the model
+     */
+    public function __construct(array $data = null)
+    {
+        $this->container['leads'] = isset($data['leads']) ? $data['leads'] : null;
+        $this->container['tokens'] = isset($data['tokens']) ? $data['tokens'] : null;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -157,29 +178,6 @@ class TriggerCampaignData implements ModelInterface, ArrayAccess
         return self::$swaggerModelName;
     }
 
-    
-
-    
-
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-
-    /**
-     * Constructor
-     *
-     * @param mixed[] $data Associated array of property values
-     *                      initializing the model
-     */
-    public function __construct(array $data = null)
-    {
-        $this->container['leads'] = isset($data['leads']) ? $data['leads'] : null;
-        $this->container['tokens'] = isset($data['tokens']) ? $data['tokens'] : null;
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -200,7 +198,7 @@ class TriggerCampaignData implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
+    
 
     /**
      * Gets leads

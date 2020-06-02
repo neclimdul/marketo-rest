@@ -140,6 +140,30 @@ class UsageData implements ModelInterface, ArrayAccess
         'users' => 'getUsers'
     ];
 
+    
+
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
+
+    /**
+     * Constructor
+     *
+     * @param mixed[] $data Associated array of property values
+     *                      initializing the model
+     */
+    public function __construct(array $data = null)
+    {
+        $this->container['count'] = isset($data['count']) ? $data['count'] : null;
+        $this->container['date'] = isset($data['date']) ? $data['date'] : null;
+        $this->container['errors'] = isset($data['errors']) ? $data['errors'] : null;
+        $this->container['total'] = isset($data['total']) ? $data['total'] : null;
+        $this->container['users'] = isset($data['users']) ? $data['users'] : null;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -172,32 +196,6 @@ class UsageData implements ModelInterface, ArrayAccess
         return self::$swaggerModelName;
     }
 
-    
-
-    
-
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-
-    /**
-     * Constructor
-     *
-     * @param mixed[] $data Associated array of property values
-     *                      initializing the model
-     */
-    public function __construct(array $data = null)
-    {
-        $this->container['count'] = isset($data['count']) ? $data['count'] : null;
-        $this->container['date'] = isset($data['date']) ? $data['date'] : null;
-        $this->container['errors'] = isset($data['errors']) ? $data['errors'] : null;
-        $this->container['total'] = isset($data['total']) ? $data['total'] : null;
-        $this->container['users'] = isset($data['users']) ? $data['users'] : null;
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -218,7 +216,7 @@ class UsageData implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
+    
 
     /**
      * Gets count

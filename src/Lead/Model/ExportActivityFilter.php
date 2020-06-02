@@ -125,6 +125,27 @@ class ExportActivityFilter implements ModelInterface, ArrayAccess
         'created_at' => 'getCreatedAt'
     ];
 
+    
+
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
+
+    /**
+     * Constructor
+     *
+     * @param mixed[] $data Associated array of property values
+     *                      initializing the model
+     */
+    public function __construct(array $data = null)
+    {
+        $this->container['activity_type_ids'] = isset($data['activity_type_ids']) ? $data['activity_type_ids'] : null;
+        $this->container['created_at'] = isset($data['created_at']) ? $data['created_at'] : null;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -157,29 +178,6 @@ class ExportActivityFilter implements ModelInterface, ArrayAccess
         return self::$swaggerModelName;
     }
 
-    
-
-    
-
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-
-    /**
-     * Constructor
-     *
-     * @param mixed[] $data Associated array of property values
-     *                      initializing the model
-     */
-    public function __construct(array $data = null)
-    {
-        $this->container['activity_type_ids'] = isset($data['activity_type_ids']) ? $data['activity_type_ids'] : null;
-        $this->container['created_at'] = isset($data['created_at']) ? $data['created_at'] : null;
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -200,7 +198,7 @@ class ExportActivityFilter implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
+    
 
     /**
      * Gets activity_type_ids

@@ -130,6 +130,28 @@ class CreateLandingPageRedirectRuleRequest implements ModelInterface, ArrayAcces
         'redirect_to' => 'getRedirectTo'
     ];
 
+    
+
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
+
+    /**
+     * Constructor
+     *
+     * @param mixed[] $data Associated array of property values
+     *                      initializing the model
+     */
+    public function __construct(array $data = null)
+    {
+        $this->container['hostname'] = isset($data['hostname']) ? $data['hostname'] : null;
+        $this->container['redirect_from'] = isset($data['redirect_from']) ? $data['redirect_from'] : null;
+        $this->container['redirect_to'] = isset($data['redirect_to']) ? $data['redirect_to'] : null;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -162,30 +184,6 @@ class CreateLandingPageRedirectRuleRequest implements ModelInterface, ArrayAcces
         return self::$swaggerModelName;
     }
 
-    
-
-    
-
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-
-    /**
-     * Constructor
-     *
-     * @param mixed[] $data Associated array of property values
-     *                      initializing the model
-     */
-    public function __construct(array $data = null)
-    {
-        $this->container['hostname'] = isset($data['hostname']) ? $data['hostname'] : null;
-        $this->container['redirect_from'] = isset($data['redirect_from']) ? $data['redirect_from'] : null;
-        $this->container['redirect_to'] = isset($data['redirect_to']) ? $data['redirect_to'] : null;
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -212,7 +210,7 @@ class CreateLandingPageRedirectRuleRequest implements ModelInterface, ArrayAcces
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
+    
 
     /**
      * Gets hostname

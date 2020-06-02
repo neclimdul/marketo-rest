@@ -140,6 +140,32 @@ class CreateLpTemplateRequest implements ModelInterface, ArrayAccess
         'template_type' => 'getTemplateType'
     ];
 
+    const TEMPLATE_TYPE_GUIDED = 'guided';
+    const TEMPLATE_TYPE_FREE_FORM = 'freeForm';
+    
+
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
+
+    /**
+     * Constructor
+     *
+     * @param mixed[] $data Associated array of property values
+     *                      initializing the model
+     */
+    public function __construct(array $data = null)
+    {
+        $this->container['description'] = isset($data['description']) ? $data['description'] : null;
+        $this->container['enable_munchkin'] = isset($data['enable_munchkin']) ? $data['enable_munchkin'] : null;
+        $this->container['folder'] = isset($data['folder']) ? $data['folder'] : null;
+        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
+        $this->container['template_type'] = isset($data['template_type']) ? $data['template_type'] : null;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -170,47 +196,6 @@ class CreateLpTemplateRequest implements ModelInterface, ArrayAccess
     public function getModelName()
     {
         return self::$swaggerModelName;
-    }
-
-    const TEMPLATE_TYPE_GUIDED = 'guided';
-    const TEMPLATE_TYPE_FREE_FORM = 'freeForm';
-    
-
-    
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getTemplateTypeAllowableValues()
-    {
-        return [
-            self::TEMPLATE_TYPE_GUIDED,
-            self::TEMPLATE_TYPE_FREE_FORM,
-        ];
-    }
-    
-
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-
-    /**
-     * Constructor
-     *
-     * @param mixed[] $data Associated array of property values
-     *                      initializing the model
-     */
-    public function __construct(array $data = null)
-    {
-        $this->container['description'] = isset($data['description']) ? $data['description'] : null;
-        $this->container['enable_munchkin'] = isset($data['enable_munchkin']) ? $data['enable_munchkin'] : null;
-        $this->container['folder'] = isset($data['folder']) ? $data['folder'] : null;
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['template_type'] = isset($data['template_type']) ? $data['template_type'] : null;
     }
 
     /**
@@ -244,7 +229,21 @@ class CreateLpTemplateRequest implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
+    
 
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getTemplateTypeAllowableValues()
+    {
+        return [
+            self::TEMPLATE_TYPE_GUIDED,
+            self::TEMPLATE_TYPE_FREE_FORM,
+        ];
+    }
+    
 
     /**
      * Gets description

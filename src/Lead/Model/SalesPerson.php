@@ -135,6 +135,35 @@ class SalesPerson implements ModelInterface, ArrayAccess
         'status' => 'getStatus'
     ];
 
+    const STATUS_CREATED = 'created';
+    const STATUS_UPDATED = 'updated';
+    const STATUS_DELETED = 'deleted';
+    const STATUS_SKIPPED = 'skipped';
+    const STATUS_ADDED = 'added';
+    const STATUS_REMOVED = 'removed';
+    
+
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
+
+    /**
+     * Constructor
+     *
+     * @param mixed[] $data Associated array of property values
+     *                      initializing the model
+     */
+    public function __construct(array $data = null)
+    {
+        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
+        $this->container['reasons'] = isset($data['reasons']) ? $data['reasons'] : null;
+        $this->container['seq'] = isset($data['seq']) ? $data['seq'] : null;
+        $this->container['status'] = isset($data['status']) ? $data['status'] : null;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -167,54 +196,6 @@ class SalesPerson implements ModelInterface, ArrayAccess
         return self::$swaggerModelName;
     }
 
-    const STATUS_CREATED = 'created';
-    const STATUS_UPDATED = 'updated';
-    const STATUS_DELETED = 'deleted';
-    const STATUS_SKIPPED = 'skipped';
-    const STATUS_ADDED = 'added';
-    const STATUS_REMOVED = 'removed';
-    
-
-    
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getStatusAllowableValues()
-    {
-        return [
-            self::STATUS_CREATED,
-            self::STATUS_UPDATED,
-            self::STATUS_DELETED,
-            self::STATUS_SKIPPED,
-            self::STATUS_ADDED,
-            self::STATUS_REMOVED,
-        ];
-    }
-    
-
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-
-    /**
-     * Constructor
-     *
-     * @param mixed[] $data Associated array of property values
-     *                      initializing the model
-     */
-    public function __construct(array $data = null)
-    {
-        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
-        $this->container['reasons'] = isset($data['reasons']) ? $data['reasons'] : null;
-        $this->container['seq'] = isset($data['seq']) ? $data['seq'] : null;
-        $this->container['status'] = isset($data['status']) ? $data['status'] : null;
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -240,7 +221,25 @@ class SalesPerson implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
+    
 
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getStatusAllowableValues()
+    {
+        return [
+            self::STATUS_CREATED,
+            self::STATUS_UPDATED,
+            self::STATUS_DELETED,
+            self::STATUS_SKIPPED,
+            self::STATUS_ADDED,
+            self::STATUS_REMOVED,
+        ];
+    }
+    
 
     /**
      * Gets id

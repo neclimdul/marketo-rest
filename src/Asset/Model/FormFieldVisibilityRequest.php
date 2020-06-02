@@ -125,6 +125,30 @@ class FormFieldVisibilityRequest implements ModelInterface, ArrayAccess
         'rules' => 'getRules'
     ];
 
+    const RULE_TYPE_SHOW = 'show';
+    const RULE_TYPE_ALWAYS_SHOW = 'alwaysShow';
+    const RULE_TYPE_HIDE = 'hide';
+    
+
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
+
+    /**
+     * Constructor
+     *
+     * @param mixed[] $data Associated array of property values
+     *                      initializing the model
+     */
+    public function __construct(array $data = null)
+    {
+        $this->container['rule_type'] = isset($data['rule_type']) ? $data['rule_type'] : null;
+        $this->container['rules'] = isset($data['rules']) ? $data['rules'] : null;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -155,46 +179,6 @@ class FormFieldVisibilityRequest implements ModelInterface, ArrayAccess
     public function getModelName()
     {
         return self::$swaggerModelName;
-    }
-
-    const RULE_TYPE_SHOW = 'show';
-    const RULE_TYPE_ALWAYS_SHOW = 'alwaysShow';
-    const RULE_TYPE_HIDE = 'hide';
-    
-
-    
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getRuleTypeAllowableValues()
-    {
-        return [
-            self::RULE_TYPE_SHOW,
-            self::RULE_TYPE_ALWAYS_SHOW,
-            self::RULE_TYPE_HIDE,
-        ];
-    }
-    
-
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-
-    /**
-     * Constructor
-     *
-     * @param mixed[] $data Associated array of property values
-     *                      initializing the model
-     */
-    public function __construct(array $data = null)
-    {
-        $this->container['rule_type'] = isset($data['rule_type']) ? $data['rule_type'] : null;
-        $this->container['rules'] = isset($data['rules']) ? $data['rules'] : null;
     }
 
     /**
@@ -228,7 +212,22 @@ class FormFieldVisibilityRequest implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
+    
 
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getRuleTypeAllowableValues()
+    {
+        return [
+            self::RULE_TYPE_SHOW,
+            self::RULE_TYPE_ALWAYS_SHOW,
+            self::RULE_TYPE_HIDE,
+        ];
+    }
+    
 
     /**
      * Gets rule_type

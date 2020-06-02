@@ -135,6 +135,29 @@ class SubmitButtonRequest implements ModelInterface, ArrayAccess
         'waiting_label' => 'getWaitingLabel'
     ];
 
+    
+
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
+
+    /**
+     * Constructor
+     *
+     * @param mixed[] $data Associated array of property values
+     *                      initializing the model
+     */
+    public function __construct(array $data = null)
+    {
+        $this->container['button_position'] = isset($data['button_position']) ? $data['button_position'] : null;
+        $this->container['button_style'] = isset($data['button_style']) ? $data['button_style'] : null;
+        $this->container['label'] = isset($data['label']) ? $data['label'] : null;
+        $this->container['waiting_label'] = isset($data['waiting_label']) ? $data['waiting_label'] : null;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -167,31 +190,6 @@ class SubmitButtonRequest implements ModelInterface, ArrayAccess
         return self::$swaggerModelName;
     }
 
-    
-
-    
-
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-
-    /**
-     * Constructor
-     *
-     * @param mixed[] $data Associated array of property values
-     *                      initializing the model
-     */
-    public function __construct(array $data = null)
-    {
-        $this->container['button_position'] = isset($data['button_position']) ? $data['button_position'] : null;
-        $this->container['button_style'] = isset($data['button_style']) ? $data['button_style'] : null;
-        $this->container['label'] = isset($data['label']) ? $data['label'] : null;
-        $this->container['waiting_label'] = isset($data['waiting_label']) ? $data['waiting_label'] : null;
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -209,7 +207,7 @@ class SubmitButtonRequest implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
+    
 
     /**
      * Gets button_position

@@ -150,6 +150,32 @@ class CreateProgramRequest implements ModelInterface, ArrayAccess
         'type' => 'getType'
     ];
 
+    
+
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
+
+    /**
+     * Constructor
+     *
+     * @param mixed[] $data Associated array of property values
+     *                      initializing the model
+     */
+    public function __construct(array $data = null)
+    {
+        $this->container['channel'] = isset($data['channel']) ? $data['channel'] : null;
+        $this->container['costs'] = isset($data['costs']) ? $data['costs'] : null;
+        $this->container['description'] = isset($data['description']) ? $data['description'] : null;
+        $this->container['folder'] = isset($data['folder']) ? $data['folder'] : null;
+        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
+        $this->container['tags'] = isset($data['tags']) ? $data['tags'] : null;
+        $this->container['type'] = isset($data['type']) ? $data['type'] : null;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -182,34 +208,6 @@ class CreateProgramRequest implements ModelInterface, ArrayAccess
         return self::$swaggerModelName;
     }
 
-    
-
-    
-
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-
-    /**
-     * Constructor
-     *
-     * @param mixed[] $data Associated array of property values
-     *                      initializing the model
-     */
-    public function __construct(array $data = null)
-    {
-        $this->container['channel'] = isset($data['channel']) ? $data['channel'] : null;
-        $this->container['costs'] = isset($data['costs']) ? $data['costs'] : null;
-        $this->container['description'] = isset($data['description']) ? $data['description'] : null;
-        $this->container['folder'] = isset($data['folder']) ? $data['folder'] : null;
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['tags'] = isset($data['tags']) ? $data['tags'] : null;
-        $this->container['type'] = isset($data['type']) ? $data['type'] : null;
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -230,7 +228,7 @@ class CreateProgramRequest implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
+    
 
     /**
      * Gets channel

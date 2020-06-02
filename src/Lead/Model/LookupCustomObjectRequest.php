@@ -140,6 +140,30 @@ class LookupCustomObjectRequest implements ModelInterface, ArrayAccess
         'next_page_token' => 'getNextPageToken'
     ];
 
+    
+
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
+
+    /**
+     * Constructor
+     *
+     * @param mixed[] $data Associated array of property values
+     *                      initializing the model
+     */
+    public function __construct(array $data = null)
+    {
+        $this->container['batch_size'] = isset($data['batch_size']) ? $data['batch_size'] : null;
+        $this->container['fields'] = isset($data['fields']) ? $data['fields'] : null;
+        $this->container['filter_type'] = isset($data['filter_type']) ? $data['filter_type'] : null;
+        $this->container['input'] = isset($data['input']) ? $data['input'] : null;
+        $this->container['next_page_token'] = isset($data['next_page_token']) ? $data['next_page_token'] : null;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -172,32 +196,6 @@ class LookupCustomObjectRequest implements ModelInterface, ArrayAccess
         return self::$swaggerModelName;
     }
 
-    
-
-    
-
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-
-    /**
-     * Constructor
-     *
-     * @param mixed[] $data Associated array of property values
-     *                      initializing the model
-     */
-    public function __construct(array $data = null)
-    {
-        $this->container['batch_size'] = isset($data['batch_size']) ? $data['batch_size'] : null;
-        $this->container['fields'] = isset($data['fields']) ? $data['fields'] : null;
-        $this->container['filter_type'] = isset($data['filter_type']) ? $data['filter_type'] : null;
-        $this->container['input'] = isset($data['input']) ? $data['input'] : null;
-        $this->container['next_page_token'] = isset($data['next_page_token']) ? $data['next_page_token'] : null;
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -218,7 +216,7 @@ class LookupCustomObjectRequest implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
+    
 
     /**
      * Gets batch_size

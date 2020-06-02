@@ -150,6 +150,32 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess
         'source' => 'getSource'
     ];
 
+    
+
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
+
+    /**
+     * Constructor
+     *
+     * @param mixed[] $data Associated array of property values
+     *                      initializing the model
+     */
+    public function __construct(array $data = null)
+    {
+        $this->container['input'] = isset($data['input']) ? $data['input'] : null;
+        $this->container['lookup_field'] = isset($data['lookup_field']) ? $data['lookup_field'] : null;
+        $this->container['partition_name'] = isset($data['partition_name']) ? $data['partition_name'] : null;
+        $this->container['program_name'] = isset($data['program_name']) ? $data['program_name'] : null;
+        $this->container['program_status'] = isset($data['program_status']) ? $data['program_status'] : null;
+        $this->container['reason'] = isset($data['reason']) ? $data['reason'] : null;
+        $this->container['source'] = isset($data['source']) ? $data['source'] : null;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -182,34 +208,6 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess
         return self::$swaggerModelName;
     }
 
-    
-
-    
-
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-
-    /**
-     * Constructor
-     *
-     * @param mixed[] $data Associated array of property values
-     *                      initializing the model
-     */
-    public function __construct(array $data = null)
-    {
-        $this->container['input'] = isset($data['input']) ? $data['input'] : null;
-        $this->container['lookup_field'] = isset($data['lookup_field']) ? $data['lookup_field'] : null;
-        $this->container['partition_name'] = isset($data['partition_name']) ? $data['partition_name'] : null;
-        $this->container['program_name'] = isset($data['program_name']) ? $data['program_name'] : null;
-        $this->container['program_status'] = isset($data['program_status']) ? $data['program_status'] : null;
-        $this->container['reason'] = isset($data['reason']) ? $data['reason'] : null;
-        $this->container['source'] = isset($data['source']) ? $data['source'] : null;
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -227,7 +225,7 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
+    
 
     /**
      * Gets input

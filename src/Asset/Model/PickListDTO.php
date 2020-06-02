@@ -135,6 +135,29 @@ class PickListDTO implements ModelInterface, ArrayAccess
         'value' => 'getValue'
     ];
 
+    
+
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
+
+    /**
+     * Constructor
+     *
+     * @param mixed[] $data Associated array of property values
+     *                      initializing the model
+     */
+    public function __construct(array $data = null)
+    {
+        $this->container['is_default'] = isset($data['is_default']) ? $data['is_default'] : null;
+        $this->container['label'] = isset($data['label']) ? $data['label'] : null;
+        $this->container['selected'] = isset($data['selected']) ? $data['selected'] : null;
+        $this->container['value'] = isset($data['value']) ? $data['value'] : null;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -167,31 +190,6 @@ class PickListDTO implements ModelInterface, ArrayAccess
         return self::$swaggerModelName;
     }
 
-    
-
-    
-
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-
-    /**
-     * Constructor
-     *
-     * @param mixed[] $data Associated array of property values
-     *                      initializing the model
-     */
-    public function __construct(array $data = null)
-    {
-        $this->container['is_default'] = isset($data['is_default']) ? $data['is_default'] : null;
-        $this->container['label'] = isset($data['label']) ? $data['label'] : null;
-        $this->container['selected'] = isset($data['selected']) ? $data['selected'] : null;
-        $this->container['value'] = isset($data['value']) ? $data['value'] : null;
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -209,7 +207,7 @@ class PickListDTO implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
+    
 
     /**
      * Gets is_default

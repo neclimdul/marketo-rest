@@ -140,6 +140,30 @@ class CreateFileRequest implements ModelInterface, ArrayAccess
         'name' => 'getName'
     ];
 
+    
+
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
+
+    /**
+     * Constructor
+     *
+     * @param mixed[] $data Associated array of property values
+     *                      initializing the model
+     */
+    public function __construct(array $data = null)
+    {
+        $this->container['description'] = isset($data['description']) ? $data['description'] : null;
+        $this->container['file'] = isset($data['file']) ? $data['file'] : null;
+        $this->container['folder'] = isset($data['folder']) ? $data['folder'] : null;
+        $this->container['insert_only'] = isset($data['insert_only']) ? $data['insert_only'] : null;
+        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -172,32 +196,6 @@ class CreateFileRequest implements ModelInterface, ArrayAccess
         return self::$swaggerModelName;
     }
 
-    
-
-    
-
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-
-    /**
-     * Constructor
-     *
-     * @param mixed[] $data Associated array of property values
-     *                      initializing the model
-     */
-    public function __construct(array $data = null)
-    {
-        $this->container['description'] = isset($data['description']) ? $data['description'] : null;
-        $this->container['file'] = isset($data['file']) ? $data['file'] : null;
-        $this->container['folder'] = isset($data['folder']) ? $data['folder'] : null;
-        $this->container['insert_only'] = isset($data['insert_only']) ? $data['insert_only'] : null;
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -224,7 +222,7 @@ class CreateFileRequest implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
+    
 
     /**
      * Gets description

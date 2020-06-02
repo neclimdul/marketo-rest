@@ -215,55 +215,8 @@ class LpFormResponse implements ModelInterface, ArrayAccess
         'waiting_label' => 'getWaitingLabel'
     ];
 
-    /**
-     * {@inheritdoc}
-     */
-    public static function attributeMap()
-    {
-        return self::$attributeMap;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function setters()
-    {
-        return self::$setters;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function getters()
-    {
-        return self::$getters;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getModelName()
-    {
-        return self::$swaggerModelName;
-    }
-
     const STATUS_APPROVED = 'approved';
     const STATUS_DRAFT = 'draft';
-    
-
-    
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getStatusAllowableValues()
-    {
-        return [
-            self::STATUS_APPROVED,
-            self::STATUS_DRAFT,
-        ];
-    }
     
 
     /**
@@ -301,6 +254,38 @@ class LpFormResponse implements ModelInterface, ArrayAccess
         $this->container['updated_at'] = isset($data['updated_at']) ? $data['updated_at'] : null;
         $this->container['url'] = isset($data['url']) ? $data['url'] : null;
         $this->container['waiting_label'] = isset($data['waiting_label']) ? $data['waiting_label'] : null;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function setters()
+    {
+        return self::$setters;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function getters()
+    {
+        return self::$getters;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getModelName()
+    {
+        return self::$swaggerModelName;
     }
 
     /**
@@ -370,7 +355,21 @@ class LpFormResponse implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
+    
 
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getStatusAllowableValues()
+    {
+        return [
+            self::STATUS_APPROVED,
+            self::STATUS_DRAFT,
+        ];
+    }
+    
 
     /**
      * Gets button_label

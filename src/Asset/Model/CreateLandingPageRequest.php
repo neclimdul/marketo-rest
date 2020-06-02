@@ -180,40 +180,6 @@ class CreateLandingPageRequest implements ModelInterface, ArrayAccess
         'workspace' => 'getWorkspace'
     ];
 
-    /**
-     * {@inheritdoc}
-     */
-    public static function attributeMap()
-    {
-        return self::$attributeMap;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function setters()
-    {
-        return self::$setters;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function getters()
-    {
-        return self::$getters;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getModelName()
-    {
-        return self::$swaggerModelName;
-    }
-
-    
-
     
 
     /**
@@ -249,6 +215,38 @@ class CreateLandingPageRequest implements ModelInterface, ArrayAccess
     /**
      * {@inheritdoc}
      */
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function setters()
+    {
+        return self::$setters;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function getters()
+    {
+        return self::$getters;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getModelName()
+    {
+        return self::$swaggerModelName;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function listInvalidProperties()
     {
         $invalidProperties = [];
@@ -272,7 +270,7 @@ class CreateLandingPageRequest implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
+    
 
     /**
      * Gets custom_head_html

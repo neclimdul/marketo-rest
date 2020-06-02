@@ -126,6 +126,29 @@ class RedirectFrom implements ModelInterface, ArrayAccess
         'value' => 'getValue'
     ];
 
+    const TYPE_LANDING_PAGE_ID = 'landingPageId';
+    const TYPE_PATH = 'path';
+    
+
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
+
+    /**
+     * Constructor
+     *
+     * @param mixed[] $data Associated array of property values
+     *                      initializing the model
+     */
+    public function __construct(array $data = null)
+    {
+        $this->container['type'] = isset($data['type']) ? $data['type'] : null;
+        $this->container['value'] = isset($data['value']) ? $data['value'] : null;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -156,44 +179,6 @@ class RedirectFrom implements ModelInterface, ArrayAccess
     public function getModelName()
     {
         return self::$swaggerModelName;
-    }
-
-    const TYPE_LANDING_PAGE_ID = 'landingPageId';
-    const TYPE_PATH = 'path';
-    
-
-    
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getTypeAllowableValues()
-    {
-        return [
-            self::TYPE_LANDING_PAGE_ID,
-            self::TYPE_PATH,
-        ];
-    }
-    
-
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-
-    /**
-     * Constructor
-     *
-     * @param mixed[] $data Associated array of property values
-     *                      initializing the model
-     */
-    public function __construct(array $data = null)
-    {
-        $this->container['type'] = isset($data['type']) ? $data['type'] : null;
-        $this->container['value'] = isset($data['value']) ? $data['value'] : null;
     }
 
     /**
@@ -227,7 +212,21 @@ class RedirectFrom implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
+    
 
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getTypeAllowableValues()
+    {
+        return [
+            self::TYPE_LANDING_PAGE_ID,
+            self::TYPE_PATH,
+        ];
+    }
+    
 
     /**
      * Gets type

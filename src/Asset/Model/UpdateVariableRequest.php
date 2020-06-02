@@ -125,6 +125,27 @@ class UpdateVariableRequest implements ModelInterface, ArrayAccess
         'module_id' => 'getModuleId'
     ];
 
+    
+
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
+
+    /**
+     * Constructor
+     *
+     * @param mixed[] $data Associated array of property values
+     *                      initializing the model
+     */
+    public function __construct(array $data = null)
+    {
+        $this->container['value'] = isset($data['value']) ? $data['value'] : null;
+        $this->container['module_id'] = isset($data['module_id']) ? $data['module_id'] : null;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -157,29 +178,6 @@ class UpdateVariableRequest implements ModelInterface, ArrayAccess
         return self::$swaggerModelName;
     }
 
-    
-
-    
-
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-
-    /**
-     * Constructor
-     *
-     * @param mixed[] $data Associated array of property values
-     *                      initializing the model
-     */
-    public function __construct(array $data = null)
-    {
-        $this->container['value'] = isset($data['value']) ? $data['value'] : null;
-        $this->container['module_id'] = isset($data['module_id']) ? $data['module_id'] : null;
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -197,7 +195,7 @@ class UpdateVariableRequest implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
+    
 
     /**
      * Gets value

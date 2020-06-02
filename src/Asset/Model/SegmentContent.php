@@ -145,6 +145,31 @@ class SegmentContent implements ModelInterface, ArrayAccess
         'type' => 'getType'
     ];
 
+    
+
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
+
+    /**
+     * Constructor
+     *
+     * @param mixed[] $data Associated array of property values
+     *                      initializing the model
+     */
+    public function __construct(array $data = null)
+    {
+        $this->container['content'] = isset($data['content']) ? $data['content'] : null;
+        $this->container['followup_type'] = isset($data['followup_type']) ? $data['followup_type'] : null;
+        $this->container['followup_value'] = isset($data['followup_value']) ? $data['followup_value'] : null;
+        $this->container['segment_id'] = isset($data['segment_id']) ? $data['segment_id'] : null;
+        $this->container['segment_name'] = isset($data['segment_name']) ? $data['segment_name'] : null;
+        $this->container['type'] = isset($data['type']) ? $data['type'] : null;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -177,33 +202,6 @@ class SegmentContent implements ModelInterface, ArrayAccess
         return self::$swaggerModelName;
     }
 
-    
-
-    
-
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-
-    /**
-     * Constructor
-     *
-     * @param mixed[] $data Associated array of property values
-     *                      initializing the model
-     */
-    public function __construct(array $data = null)
-    {
-        $this->container['content'] = isset($data['content']) ? $data['content'] : null;
-        $this->container['followup_type'] = isset($data['followup_type']) ? $data['followup_type'] : null;
-        $this->container['followup_value'] = isset($data['followup_value']) ? $data['followup_value'] : null;
-        $this->container['segment_id'] = isset($data['segment_id']) ? $data['segment_id'] : null;
-        $this->container['segment_name'] = isset($data['segment_name']) ? $data['segment_name'] : null;
-        $this->container['type'] = isset($data['type']) ? $data['type'] : null;
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -233,7 +231,7 @@ class SegmentContent implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
+    
 
     /**
      * Gets content

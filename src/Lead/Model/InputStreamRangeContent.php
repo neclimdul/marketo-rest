@@ -135,6 +135,29 @@ class InputStreamRangeContent implements ModelInterface, ArrayAccess
         'length' => 'getLength'
     ];
 
+    
+
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
+
+    /**
+     * Constructor
+     *
+     * @param mixed[] $data Associated array of property values
+     *                      initializing the model
+     */
+    public function __construct(array $data = null)
+    {
+        $this->container['content_type'] = isset($data['content_type']) ? $data['content_type'] : null;
+        $this->container['file_range'] = isset($data['file_range']) ? $data['file_range'] : null;
+        $this->container['input_stream'] = isset($data['input_stream']) ? $data['input_stream'] : null;
+        $this->container['length'] = isset($data['length']) ? $data['length'] : null;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -167,31 +190,6 @@ class InputStreamRangeContent implements ModelInterface, ArrayAccess
         return self::$swaggerModelName;
     }
 
-    
-
-    
-
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-
-    /**
-     * Constructor
-     *
-     * @param mixed[] $data Associated array of property values
-     *                      initializing the model
-     */
-    public function __construct(array $data = null)
-    {
-        $this->container['content_type'] = isset($data['content_type']) ? $data['content_type'] : null;
-        $this->container['file_range'] = isset($data['file_range']) ? $data['file_range'] : null;
-        $this->container['input_stream'] = isset($data['input_stream']) ? $data['input_stream'] : null;
-        $this->container['length'] = isset($data['length']) ? $data['length'] : null;
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -209,7 +207,7 @@ class InputStreamRangeContent implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
+    
 
     /**
      * Gets content_type

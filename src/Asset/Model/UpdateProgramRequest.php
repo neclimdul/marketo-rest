@@ -150,6 +150,32 @@ class UpdateProgramRequest implements ModelInterface, ArrayAccess
         'tags' => 'getTags'
     ];
 
+    
+
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
+
+    /**
+     * Constructor
+     *
+     * @param mixed[] $data Associated array of property values
+     *                      initializing the model
+     */
+    public function __construct(array $data = null)
+    {
+        $this->container['costs'] = isset($data['costs']) ? $data['costs'] : null;
+        $this->container['costs_destructive_update'] = isset($data['costs_destructive_update']) ? $data['costs_destructive_update'] : null;
+        $this->container['description'] = isset($data['description']) ? $data['description'] : null;
+        $this->container['end_date'] = isset($data['end_date']) ? $data['end_date'] : null;
+        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
+        $this->container['start_date'] = isset($data['start_date']) ? $data['start_date'] : null;
+        $this->container['tags'] = isset($data['tags']) ? $data['tags'] : null;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -182,34 +208,6 @@ class UpdateProgramRequest implements ModelInterface, ArrayAccess
         return self::$swaggerModelName;
     }
 
-    
-
-    
-
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-
-    /**
-     * Constructor
-     *
-     * @param mixed[] $data Associated array of property values
-     *                      initializing the model
-     */
-    public function __construct(array $data = null)
-    {
-        $this->container['costs'] = isset($data['costs']) ? $data['costs'] : null;
-        $this->container['costs_destructive_update'] = isset($data['costs_destructive_update']) ? $data['costs_destructive_update'] : null;
-        $this->container['description'] = isset($data['description']) ? $data['description'] : null;
-        $this->container['end_date'] = isset($data['end_date']) ? $data['end_date'] : null;
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['start_date'] = isset($data['start_date']) ? $data['start_date'] : null;
-        $this->container['tags'] = isset($data['tags']) ? $data['tags'] : null;
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -227,7 +225,7 @@ class UpdateProgramRequest implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
+    
 
     /**
      * Gets costs

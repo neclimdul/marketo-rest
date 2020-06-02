@@ -140,6 +140,34 @@ class SyncLeadRequest implements ModelInterface, ArrayAccess
         'partition_name' => 'getPartitionName'
     ];
 
+    const ACTION_CREATE_ONLY = 'createOnly';
+    const ACTION_UPDATE_ONLY = 'updateOnly';
+    const ACTION_CREATE_OR_UPDATE = 'createOrUpdate';
+    const ACTION_CREATE_DUPLICATE = 'createDuplicate';
+    
+
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
+
+    /**
+     * Constructor
+     *
+     * @param mixed[] $data Associated array of property values
+     *                      initializing the model
+     */
+    public function __construct(array $data = null)
+    {
+        $this->container['action'] = isset($data['action']) ? $data['action'] : null;
+        $this->container['async_processing'] = isset($data['async_processing']) ? $data['async_processing'] : null;
+        $this->container['input'] = isset($data['input']) ? $data['input'] : null;
+        $this->container['lookup_field'] = isset($data['lookup_field']) ? $data['lookup_field'] : null;
+        $this->container['partition_name'] = isset($data['partition_name']) ? $data['partition_name'] : null;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -172,51 +200,6 @@ class SyncLeadRequest implements ModelInterface, ArrayAccess
         return self::$swaggerModelName;
     }
 
-    const ACTION_CREATE_ONLY = 'createOnly';
-    const ACTION_UPDATE_ONLY = 'updateOnly';
-    const ACTION_CREATE_OR_UPDATE = 'createOrUpdate';
-    const ACTION_CREATE_DUPLICATE = 'createDuplicate';
-    
-
-    
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getActionAllowableValues()
-    {
-        return [
-            self::ACTION_CREATE_ONLY,
-            self::ACTION_UPDATE_ONLY,
-            self::ACTION_CREATE_OR_UPDATE,
-            self::ACTION_CREATE_DUPLICATE,
-        ];
-    }
-    
-
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-
-    /**
-     * Constructor
-     *
-     * @param mixed[] $data Associated array of property values
-     *                      initializing the model
-     */
-    public function __construct(array $data = null)
-    {
-        $this->container['action'] = isset($data['action']) ? $data['action'] : null;
-        $this->container['async_processing'] = isset($data['async_processing']) ? $data['async_processing'] : null;
-        $this->container['input'] = isset($data['input']) ? $data['input'] : null;
-        $this->container['lookup_field'] = isset($data['lookup_field']) ? $data['lookup_field'] : null;
-        $this->container['partition_name'] = isset($data['partition_name']) ? $data['partition_name'] : null;
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -245,7 +228,23 @@ class SyncLeadRequest implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
+    
 
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getActionAllowableValues()
+    {
+        return [
+            self::ACTION_CREATE_ONLY,
+            self::ACTION_UPDATE_ONLY,
+            self::ACTION_CREATE_OR_UPDATE,
+            self::ACTION_CREATE_DUPLICATE,
+        ];
+    }
+    
 
     /**
      * Gets action

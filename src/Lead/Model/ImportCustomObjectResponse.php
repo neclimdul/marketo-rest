@@ -161,6 +161,34 @@ class ImportCustomObjectResponse implements ModelInterface, ArrayAccess
         'status' => 'getStatus'
     ];
 
+    
+
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
+
+    /**
+     * Constructor
+     *
+     * @param mixed[] $data Associated array of property values
+     *                      initializing the model
+     */
+    public function __construct(array $data = null)
+    {
+        $this->container['batch_id'] = isset($data['batch_id']) ? $data['batch_id'] : null;
+        $this->container['import_time'] = isset($data['import_time']) ? $data['import_time'] : null;
+        $this->container['message'] = isset($data['message']) ? $data['message'] : null;
+        $this->container['num_of_objects_processed'] = isset($data['num_of_objects_processed']) ? $data['num_of_objects_processed'] : null;
+        $this->container['num_of_rows_failed'] = isset($data['num_of_rows_failed']) ? $data['num_of_rows_failed'] : null;
+        $this->container['num_of_rows_with_warning'] = isset($data['num_of_rows_with_warning']) ? $data['num_of_rows_with_warning'] : null;
+        $this->container['object_api_name'] = isset($data['object_api_name']) ? $data['object_api_name'] : null;
+        $this->container['operation'] = isset($data['operation']) ? $data['operation'] : null;
+        $this->container['status'] = isset($data['status']) ? $data['status'] : null;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -193,36 +221,6 @@ class ImportCustomObjectResponse implements ModelInterface, ArrayAccess
         return self::$swaggerModelName;
     }
 
-    
-
-    
-
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-
-    /**
-     * Constructor
-     *
-     * @param mixed[] $data Associated array of property values
-     *                      initializing the model
-     */
-    public function __construct(array $data = null)
-    {
-        $this->container['batch_id'] = isset($data['batch_id']) ? $data['batch_id'] : null;
-        $this->container['import_time'] = isset($data['import_time']) ? $data['import_time'] : null;
-        $this->container['message'] = isset($data['message']) ? $data['message'] : null;
-        $this->container['num_of_objects_processed'] = isset($data['num_of_objects_processed']) ? $data['num_of_objects_processed'] : null;
-        $this->container['num_of_rows_failed'] = isset($data['num_of_rows_failed']) ? $data['num_of_rows_failed'] : null;
-        $this->container['num_of_rows_with_warning'] = isset($data['num_of_rows_with_warning']) ? $data['num_of_rows_with_warning'] : null;
-        $this->container['object_api_name'] = isset($data['object_api_name']) ? $data['object_api_name'] : null;
-        $this->container['operation'] = isset($data['operation']) ? $data['operation'] : null;
-        $this->container['status'] = isset($data['status']) ? $data['status'] : null;
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -252,7 +250,7 @@ class ImportCustomObjectResponse implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
+    
 
     /**
      * Gets batch_id

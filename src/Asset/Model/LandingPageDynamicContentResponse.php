@@ -140,6 +140,30 @@ class LandingPageDynamicContentResponse implements ModelInterface, ArrayAccess
         'updated_at' => 'getUpdatedAt'
     ];
 
+    
+
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
+
+    /**
+     * Constructor
+     *
+     * @param mixed[] $data Associated array of property values
+     *                      initializing the model
+     */
+    public function __construct(array $data = null)
+    {
+        $this->container['content'] = isset($data['content']) ? $data['content'] : null;
+        $this->container['created_at'] = isset($data['created_at']) ? $data['created_at'] : null;
+        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
+        $this->container['segmentation'] = isset($data['segmentation']) ? $data['segmentation'] : null;
+        $this->container['updated_at'] = isset($data['updated_at']) ? $data['updated_at'] : null;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -172,32 +196,6 @@ class LandingPageDynamicContentResponse implements ModelInterface, ArrayAccess
         return self::$swaggerModelName;
     }
 
-    
-
-    
-
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-
-    /**
-     * Constructor
-     *
-     * @param mixed[] $data Associated array of property values
-     *                      initializing the model
-     */
-    public function __construct(array $data = null)
-    {
-        $this->container['content'] = isset($data['content']) ? $data['content'] : null;
-        $this->container['created_at'] = isset($data['created_at']) ? $data['created_at'] : null;
-        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
-        $this->container['segmentation'] = isset($data['segmentation']) ? $data['segmentation'] : null;
-        $this->container['updated_at'] = isset($data['updated_at']) ? $data['updated_at'] : null;
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -215,7 +213,7 @@ class LandingPageDynamicContentResponse implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
+    
 
     /**
      * Gets content

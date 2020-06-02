@@ -135,6 +135,29 @@ class EmailResponseCCFields implements ModelInterface, ArrayAccess
         'api_name' => 'getApiName'
     ];
 
+    
+
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
+
+    /**
+     * Constructor
+     *
+     * @param mixed[] $data Associated array of property values
+     *                      initializing the model
+     */
+    public function __construct(array $data = null)
+    {
+        $this->container['attribute_id'] = isset($data['attribute_id']) ? $data['attribute_id'] : null;
+        $this->container['object_name'] = isset($data['object_name']) ? $data['object_name'] : null;
+        $this->container['display_name'] = isset($data['display_name']) ? $data['display_name'] : null;
+        $this->container['api_name'] = isset($data['api_name']) ? $data['api_name'] : null;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -167,31 +190,6 @@ class EmailResponseCCFields implements ModelInterface, ArrayAccess
         return self::$swaggerModelName;
     }
 
-    
-
-    
-
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-
-    /**
-     * Constructor
-     *
-     * @param mixed[] $data Associated array of property values
-     *                      initializing the model
-     */
-    public function __construct(array $data = null)
-    {
-        $this->container['attribute_id'] = isset($data['attribute_id']) ? $data['attribute_id'] : null;
-        $this->container['object_name'] = isset($data['object_name']) ? $data['object_name'] : null;
-        $this->container['display_name'] = isset($data['display_name']) ? $data['display_name'] : null;
-        $this->container['api_name'] = isset($data['api_name']) ? $data['api_name'] : null;
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -221,7 +219,7 @@ class EmailResponseCCFields implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
+    
 
     /**
      * Gets attribute_id

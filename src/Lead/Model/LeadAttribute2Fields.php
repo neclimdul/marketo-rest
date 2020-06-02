@@ -145,6 +145,31 @@ class LeadAttribute2Fields implements ModelInterface, ArrayAccess
         'crm_managed' => 'getCrmManaged'
     ];
 
+    
+
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
+
+    /**
+     * Constructor
+     *
+     * @param mixed[] $data Associated array of property values
+     *                      initializing the model
+     */
+    public function __construct(array $data = null)
+    {
+        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
+        $this->container['display_name'] = isset($data['display_name']) ? $data['display_name'] : null;
+        $this->container['data_type'] = isset($data['data_type']) ? $data['data_type'] : null;
+        $this->container['length'] = isset($data['length']) ? $data['length'] : null;
+        $this->container['updateable'] = isset($data['updateable']) ? $data['updateable'] : null;
+        $this->container['crm_managed'] = isset($data['crm_managed']) ? $data['crm_managed'] : null;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -175,33 +200,6 @@ class LeadAttribute2Fields implements ModelInterface, ArrayAccess
     public function getModelName()
     {
         return self::$swaggerModelName;
-    }
-
-    
-
-    
-
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-
-    /**
-     * Constructor
-     *
-     * @param mixed[] $data Associated array of property values
-     *                      initializing the model
-     */
-    public function __construct(array $data = null)
-    {
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['display_name'] = isset($data['display_name']) ? $data['display_name'] : null;
-        $this->container['data_type'] = isset($data['data_type']) ? $data['data_type'] : null;
-        $this->container['length'] = isset($data['length']) ? $data['length'] : null;
-        $this->container['updateable'] = isset($data['updateable']) ? $data['updateable'] : null;
-        $this->container['crm_managed'] = isset($data['crm_managed']) ? $data['crm_managed'] : null;
     }
 
     /**
@@ -236,7 +234,7 @@ class LeadAttribute2Fields implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
+    
 
     /**
      * Gets name

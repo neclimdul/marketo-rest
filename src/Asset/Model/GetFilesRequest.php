@@ -130,6 +130,28 @@ class GetFilesRequest implements ModelInterface, ArrayAccess
         'offset' => 'getOffset'
     ];
 
+    
+
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
+
+    /**
+     * Constructor
+     *
+     * @param mixed[] $data Associated array of property values
+     *                      initializing the model
+     */
+    public function __construct(array $data = null)
+    {
+        $this->container['folder'] = isset($data['folder']) ? $data['folder'] : null;
+        $this->container['max_return'] = isset($data['max_return']) ? $data['max_return'] : null;
+        $this->container['offset'] = isset($data['offset']) ? $data['offset'] : null;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -162,30 +184,6 @@ class GetFilesRequest implements ModelInterface, ArrayAccess
         return self::$swaggerModelName;
     }
 
-    
-
-    
-
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-
-    /**
-     * Constructor
-     *
-     * @param mixed[] $data Associated array of property values
-     *                      initializing the model
-     */
-    public function __construct(array $data = null)
-    {
-        $this->container['folder'] = isset($data['folder']) ? $data['folder'] : null;
-        $this->container['max_return'] = isset($data['max_return']) ? $data['max_return'] : null;
-        $this->container['offset'] = isset($data['offset']) ? $data['offset'] : null;
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -203,7 +201,7 @@ class GetFilesRequest implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
+    
 
     /**
      * Gets folder

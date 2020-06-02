@@ -185,55 +185,8 @@ class FolderResponse implements ModelInterface, ArrayAccess
         'workspace' => 'getWorkspace'
     ];
 
-    /**
-     * {@inheritdoc}
-     */
-    public static function attributeMap()
-    {
-        return self::$attributeMap;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function setters()
-    {
-        return self::$setters;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function getters()
-    {
-        return self::$getters;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getModelName()
-    {
-        return self::$swaggerModelName;
-    }
-
     const FOLDER_TYPE_FOLDER = 'Folder';
     const FOLDER_TYPE_PROGRAM = 'Program';
-    
-
-    
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getFolderTypeAllowableValues()
-    {
-        return [
-            self::FOLDER_TYPE_FOLDER,
-            self::FOLDER_TYPE_PROGRAM,
-        ];
-    }
     
 
     /**
@@ -265,6 +218,38 @@ class FolderResponse implements ModelInterface, ArrayAccess
         $this->container['updated_at'] = isset($data['updated_at']) ? $data['updated_at'] : null;
         $this->container['url'] = isset($data['url']) ? $data['url'] : null;
         $this->container['workspace'] = isset($data['workspace']) ? $data['workspace'] : null;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function setters()
+    {
+        return self::$setters;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function getters()
+    {
+        return self::$getters;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getModelName()
+    {
+        return self::$swaggerModelName;
     }
 
     /**
@@ -322,7 +307,21 @@ class FolderResponse implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
+    
 
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getFolderTypeAllowableValues()
+    {
+        return [
+            self::FOLDER_TYPE_FOLDER,
+            self::FOLDER_TYPE_PROGRAM,
+        ];
+    }
+    
 
     /**
      * Gets access_zone_id

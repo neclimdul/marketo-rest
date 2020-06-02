@@ -130,6 +130,31 @@ class SyncCompanyRequest implements ModelInterface, ArrayAccess
         'input' => 'getInput'
     ];
 
+    const ACTION_CREATE_ONLY = 'createOnly';
+    const ACTION_UPDATE_ONLY = 'updateOnly';
+    const ACTION_CREATE_OR_UPDATE = 'createOrUpdate';
+    
+
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
+
+    /**
+     * Constructor
+     *
+     * @param mixed[] $data Associated array of property values
+     *                      initializing the model
+     */
+    public function __construct(array $data = null)
+    {
+        $this->container['action'] = isset($data['action']) ? $data['action'] : null;
+        $this->container['dedupe_by'] = isset($data['dedupe_by']) ? $data['dedupe_by'] : null;
+        $this->container['input'] = isset($data['input']) ? $data['input'] : null;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -162,47 +187,6 @@ class SyncCompanyRequest implements ModelInterface, ArrayAccess
         return self::$swaggerModelName;
     }
 
-    const ACTION_CREATE_ONLY = 'createOnly';
-    const ACTION_UPDATE_ONLY = 'updateOnly';
-    const ACTION_CREATE_OR_UPDATE = 'createOrUpdate';
-    
-
-    
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getActionAllowableValues()
-    {
-        return [
-            self::ACTION_CREATE_ONLY,
-            self::ACTION_UPDATE_ONLY,
-            self::ACTION_CREATE_OR_UPDATE,
-        ];
-    }
-    
-
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-
-    /**
-     * Constructor
-     *
-     * @param mixed[] $data Associated array of property values
-     *                      initializing the model
-     */
-    public function __construct(array $data = null)
-    {
-        $this->container['action'] = isset($data['action']) ? $data['action'] : null;
-        $this->container['dedupe_by'] = isset($data['dedupe_by']) ? $data['dedupe_by'] : null;
-        $this->container['input'] = isset($data['input']) ? $data['input'] : null;
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -231,7 +215,22 @@ class SyncCompanyRequest implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
+    
 
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getActionAllowableValues()
+    {
+        return [
+            self::ACTION_CREATE_ONLY,
+            self::ACTION_UPDATE_ONLY,
+            self::ACTION_CREATE_OR_UPDATE,
+        ];
+    }
+    
 
     /**
      * Gets action

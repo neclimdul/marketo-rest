@@ -145,6 +145,31 @@ class EmailContentResponse implements ModelInterface, ArrayAccess
         'value' => 'getValue'
     ];
 
+    
+
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
+
+    /**
+     * Constructor
+     *
+     * @param mixed[] $data Associated array of property values
+     *                      initializing the model
+     */
+    public function __construct(array $data = null)
+    {
+        $this->container['content_type'] = isset($data['content_type']) ? $data['content_type'] : null;
+        $this->container['html_id'] = isset($data['html_id']) ? $data['html_id'] : null;
+        $this->container['index'] = isset($data['index']) ? $data['index'] : null;
+        $this->container['is_locked'] = isset($data['is_locked']) ? $data['is_locked'] : null;
+        $this->container['parent_html_id'] = isset($data['parent_html_id']) ? $data['parent_html_id'] : null;
+        $this->container['value'] = isset($data['value']) ? $data['value'] : null;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -177,33 +202,6 @@ class EmailContentResponse implements ModelInterface, ArrayAccess
         return self::$swaggerModelName;
     }
 
-    
-
-    
-
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-
-    /**
-     * Constructor
-     *
-     * @param mixed[] $data Associated array of property values
-     *                      initializing the model
-     */
-    public function __construct(array $data = null)
-    {
-        $this->container['content_type'] = isset($data['content_type']) ? $data['content_type'] : null;
-        $this->container['html_id'] = isset($data['html_id']) ? $data['html_id'] : null;
-        $this->container['index'] = isset($data['index']) ? $data['index'] : null;
-        $this->container['is_locked'] = isset($data['is_locked']) ? $data['is_locked'] : null;
-        $this->container['parent_html_id'] = isset($data['parent_html_id']) ? $data['parent_html_id'] : null;
-        $this->container['value'] = isset($data['value']) ? $data['value'] : null;
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -230,7 +228,7 @@ class EmailContentResponse implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
+    
 
     /**
      * Gets content_type

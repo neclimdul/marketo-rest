@@ -166,6 +166,37 @@ class Campaign implements ModelInterface, ArrayAccess
         'workspace_name' => 'getWorkspaceName'
     ];
 
+    const TYPE_BATCH = 'batch';
+    const TYPE_TRIGGER = 'trigger';
+    
+
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
+
+    /**
+     * Constructor
+     *
+     * @param mixed[] $data Associated array of property values
+     *                      initializing the model
+     */
+    public function __construct(array $data = null)
+    {
+        $this->container['active'] = isset($data['active']) ? $data['active'] : null;
+        $this->container['created_at'] = isset($data['created_at']) ? $data['created_at'] : null;
+        $this->container['description'] = isset($data['description']) ? $data['description'] : null;
+        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
+        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
+        $this->container['program_id'] = isset($data['program_id']) ? $data['program_id'] : null;
+        $this->container['program_name'] = isset($data['program_name']) ? $data['program_name'] : null;
+        $this->container['type'] = isset($data['type']) ? $data['type'] : null;
+        $this->container['updated_at'] = isset($data['updated_at']) ? $data['updated_at'] : null;
+        $this->container['workspace_name'] = isset($data['workspace_name']) ? $data['workspace_name'] : null;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -196,52 +227,6 @@ class Campaign implements ModelInterface, ArrayAccess
     public function getModelName()
     {
         return self::$swaggerModelName;
-    }
-
-    const TYPE_BATCH = 'batch';
-    const TYPE_TRIGGER = 'trigger';
-    
-
-    
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getTypeAllowableValues()
-    {
-        return [
-            self::TYPE_BATCH,
-            self::TYPE_TRIGGER,
-        ];
-    }
-    
-
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-
-    /**
-     * Constructor
-     *
-     * @param mixed[] $data Associated array of property values
-     *                      initializing the model
-     */
-    public function __construct(array $data = null)
-    {
-        $this->container['active'] = isset($data['active']) ? $data['active'] : null;
-        $this->container['created_at'] = isset($data['created_at']) ? $data['created_at'] : null;
-        $this->container['description'] = isset($data['description']) ? $data['description'] : null;
-        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['program_id'] = isset($data['program_id']) ? $data['program_id'] : null;
-        $this->container['program_name'] = isset($data['program_name']) ? $data['program_name'] : null;
-        $this->container['type'] = isset($data['type']) ? $data['type'] : null;
-        $this->container['updated_at'] = isset($data['updated_at']) ? $data['updated_at'] : null;
-        $this->container['workspace_name'] = isset($data['workspace_name']) ? $data['workspace_name'] : null;
     }
 
     /**
@@ -284,7 +269,21 @@ class Campaign implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
+    
 
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getTypeAllowableValues()
+    {
+        return [
+            self::TYPE_BATCH,
+            self::TYPE_TRIGGER,
+        ];
+    }
+    
 
     /**
      * Gets active

@@ -160,6 +160,34 @@ class Activity implements ModelInterface, ArrayAccess
         'primary_attribute_value_id' => 'getPrimaryAttributeValueId'
     ];
 
+    
+
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
+
+    /**
+     * Constructor
+     *
+     * @param mixed[] $data Associated array of property values
+     *                      initializing the model
+     */
+    public function __construct(array $data = null)
+    {
+        $this->container['activity_date'] = isset($data['activity_date']) ? $data['activity_date'] : null;
+        $this->container['activity_type_id'] = isset($data['activity_type_id']) ? $data['activity_type_id'] : null;
+        $this->container['attributes'] = isset($data['attributes']) ? $data['attributes'] : null;
+        $this->container['campaign_id'] = isset($data['campaign_id']) ? $data['campaign_id'] : null;
+        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
+        $this->container['lead_id'] = isset($data['lead_id']) ? $data['lead_id'] : null;
+        $this->container['marketo_guid'] = isset($data['marketo_guid']) ? $data['marketo_guid'] : null;
+        $this->container['primary_attribute_value'] = isset($data['primary_attribute_value']) ? $data['primary_attribute_value'] : null;
+        $this->container['primary_attribute_value_id'] = isset($data['primary_attribute_value_id']) ? $data['primary_attribute_value_id'] : null;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -190,36 +218,6 @@ class Activity implements ModelInterface, ArrayAccess
     public function getModelName()
     {
         return self::$swaggerModelName;
-    }
-
-    
-
-    
-
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-
-    /**
-     * Constructor
-     *
-     * @param mixed[] $data Associated array of property values
-     *                      initializing the model
-     */
-    public function __construct(array $data = null)
-    {
-        $this->container['activity_date'] = isset($data['activity_date']) ? $data['activity_date'] : null;
-        $this->container['activity_type_id'] = isset($data['activity_type_id']) ? $data['activity_type_id'] : null;
-        $this->container['attributes'] = isset($data['attributes']) ? $data['attributes'] : null;
-        $this->container['campaign_id'] = isset($data['campaign_id']) ? $data['campaign_id'] : null;
-        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
-        $this->container['lead_id'] = isset($data['lead_id']) ? $data['lead_id'] : null;
-        $this->container['marketo_guid'] = isset($data['marketo_guid']) ? $data['marketo_guid'] : null;
-        $this->container['primary_attribute_value'] = isset($data['primary_attribute_value']) ? $data['primary_attribute_value'] : null;
-        $this->container['primary_attribute_value_id'] = isset($data['primary_attribute_value_id']) ? $data['primary_attribute_value_id'] : null;
     }
 
     /**
@@ -260,7 +258,7 @@ class Activity implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
+    
 
     /**
      * Gets activity_date

@@ -151,6 +151,32 @@ class ImportLeadResponse implements ModelInterface, ArrayAccess
         'status' => 'getStatus'
     ];
 
+    
+
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
+
+    /**
+     * Constructor
+     *
+     * @param mixed[] $data Associated array of property values
+     *                      initializing the model
+     */
+    public function __construct(array $data = null)
+    {
+        $this->container['batch_id'] = isset($data['batch_id']) ? $data['batch_id'] : null;
+        $this->container['import_id'] = isset($data['import_id']) ? $data['import_id'] : null;
+        $this->container['message'] = isset($data['message']) ? $data['message'] : null;
+        $this->container['num_of_leads_processed'] = isset($data['num_of_leads_processed']) ? $data['num_of_leads_processed'] : null;
+        $this->container['num_of_rows_failed'] = isset($data['num_of_rows_failed']) ? $data['num_of_rows_failed'] : null;
+        $this->container['num_of_rows_with_warning'] = isset($data['num_of_rows_with_warning']) ? $data['num_of_rows_with_warning'] : null;
+        $this->container['status'] = isset($data['status']) ? $data['status'] : null;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -183,34 +209,6 @@ class ImportLeadResponse implements ModelInterface, ArrayAccess
         return self::$swaggerModelName;
     }
 
-    
-
-    
-
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-
-    /**
-     * Constructor
-     *
-     * @param mixed[] $data Associated array of property values
-     *                      initializing the model
-     */
-    public function __construct(array $data = null)
-    {
-        $this->container['batch_id'] = isset($data['batch_id']) ? $data['batch_id'] : null;
-        $this->container['import_id'] = isset($data['import_id']) ? $data['import_id'] : null;
-        $this->container['message'] = isset($data['message']) ? $data['message'] : null;
-        $this->container['num_of_leads_processed'] = isset($data['num_of_leads_processed']) ? $data['num_of_leads_processed'] : null;
-        $this->container['num_of_rows_failed'] = isset($data['num_of_rows_failed']) ? $data['num_of_rows_failed'] : null;
-        $this->container['num_of_rows_with_warning'] = isset($data['num_of_rows_with_warning']) ? $data['num_of_rows_with_warning'] : null;
-        $this->container['status'] = isset($data['status']) ? $data['status'] : null;
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -237,7 +235,7 @@ class ImportLeadResponse implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
+    
 
     /**
      * Gets batch_id

@@ -200,63 +200,12 @@ class CreateLandingPageContentRequest implements ModelInterface, ArrayAccess
         'z_index' => 'getZIndex'
     ];
 
-    /**
-     * {@inheritdoc}
-     */
-    public static function attributeMap()
-    {
-        return self::$attributeMap;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function setters()
-    {
-        return self::$setters;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function getters()
-    {
-        return self::$getters;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getModelName()
-    {
-        return self::$swaggerModelName;
-    }
-
     const TYPE_IMAGE = 'Image';
     const TYPE_FORM = 'Form';
     const TYPE_RECTANGLE = 'Rectangle';
     const TYPE_SNIPPET = 'Snippet';
     const TYPE_RICH_TEXT = 'RichText';
     const TYPE_HTML = 'HTML';
-    
-
-    
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getTypeAllowableValues()
-    {
-        return [
-            self::TYPE_IMAGE,
-            self::TYPE_FORM,
-            self::TYPE_RECTANGLE,
-            self::TYPE_SNIPPET,
-            self::TYPE_RICH_TEXT,
-            self::TYPE_HTML,
-        ];
-    }
     
 
     /**
@@ -296,6 +245,38 @@ class CreateLandingPageContentRequest implements ModelInterface, ArrayAccess
     /**
      * {@inheritdoc}
      */
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function setters()
+    {
+        return self::$setters;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function getters()
+    {
+        return self::$getters;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getModelName()
+    {
+        return self::$swaggerModelName;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function listInvalidProperties()
     {
         $invalidProperties = [];
@@ -324,7 +305,25 @@ class CreateLandingPageContentRequest implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
+    
 
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getTypeAllowableValues()
+    {
+        return [
+            self::TYPE_IMAGE,
+            self::TYPE_FORM,
+            self::TYPE_RECTANGLE,
+            self::TYPE_SNIPPET,
+            self::TYPE_RICH_TEXT,
+            self::TYPE_HTML,
+        ];
+    }
+    
 
     /**
      * Gets background_color

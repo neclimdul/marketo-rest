@@ -126,6 +126,29 @@ class Folder implements ModelInterface, ArrayAccess
         'type' => 'getType'
     ];
 
+    const TYPE_FOLDER = 'Folder';
+    const TYPE_PROGRAM = 'Program';
+    
+
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
+
+    /**
+     * Constructor
+     *
+     * @param mixed[] $data Associated array of property values
+     *                      initializing the model
+     */
+    public function __construct(array $data = null)
+    {
+        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
+        $this->container['type'] = isset($data['type']) ? $data['type'] : null;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -156,44 +179,6 @@ class Folder implements ModelInterface, ArrayAccess
     public function getModelName()
     {
         return self::$swaggerModelName;
-    }
-
-    const TYPE_FOLDER = 'Folder';
-    const TYPE_PROGRAM = 'Program';
-    
-
-    
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getTypeAllowableValues()
-    {
-        return [
-            self::TYPE_FOLDER,
-            self::TYPE_PROGRAM,
-        ];
-    }
-    
-
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-
-    /**
-     * Constructor
-     *
-     * @param mixed[] $data Associated array of property values
-     *                      initializing the model
-     */
-    public function __construct(array $data = null)
-    {
-        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
-        $this->container['type'] = isset($data['type']) ? $data['type'] : null;
     }
 
     /**
@@ -227,7 +212,21 @@ class Folder implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
+    
 
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getTypeAllowableValues()
+    {
+        return [
+            self::TYPE_FOLDER,
+            self::TYPE_PROGRAM,
+        ];
+    }
+    
 
     /**
      * Gets id

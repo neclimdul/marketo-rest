@@ -170,40 +170,6 @@ class UpdateLandingPageRequest implements ModelInterface, ArrayAccess
         'url_page_name' => 'getUrlPageName'
     ];
 
-    /**
-     * {@inheritdoc}
-     */
-    public static function attributeMap()
-    {
-        return self::$attributeMap;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function setters()
-    {
-        return self::$setters;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function getters()
-    {
-        return self::$getters;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getModelName()
-    {
-        return self::$swaggerModelName;
-    }
-
-    
-
     
 
     /**
@@ -237,6 +203,38 @@ class UpdateLandingPageRequest implements ModelInterface, ArrayAccess
     /**
      * {@inheritdoc}
      */
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function setters()
+    {
+        return self::$setters;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function getters()
+    {
+        return self::$getters;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getModelName()
+    {
+        return self::$swaggerModelName;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function listInvalidProperties()
     {
         $invalidProperties = [];
@@ -251,7 +249,7 @@ class UpdateLandingPageRequest implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
+    
 
     /**
      * Gets custom_head_html

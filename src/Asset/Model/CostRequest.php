@@ -130,6 +130,28 @@ class CostRequest implements ModelInterface, ArrayAccess
         'start_date' => 'getStartDate'
     ];
 
+    
+
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
+
+    /**
+     * Constructor
+     *
+     * @param mixed[] $data Associated array of property values
+     *                      initializing the model
+     */
+    public function __construct(array $data = null)
+    {
+        $this->container['cost'] = isset($data['cost']) ? $data['cost'] : null;
+        $this->container['note'] = isset($data['note']) ? $data['note'] : null;
+        $this->container['start_date'] = isset($data['start_date']) ? $data['start_date'] : null;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -162,30 +184,6 @@ class CostRequest implements ModelInterface, ArrayAccess
         return self::$swaggerModelName;
     }
 
-    
-
-    
-
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-
-    /**
-     * Constructor
-     *
-     * @param mixed[] $data Associated array of property values
-     *                      initializing the model
-     */
-    public function __construct(array $data = null)
-    {
-        $this->container['cost'] = isset($data['cost']) ? $data['cost'] : null;
-        $this->container['note'] = isset($data['note']) ? $data['note'] : null;
-        $this->container['start_date'] = isset($data['start_date']) ? $data['start_date'] : null;
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -209,7 +207,7 @@ class CostRequest implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
+    
 
     /**
      * Gets cost

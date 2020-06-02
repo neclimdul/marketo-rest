@@ -130,6 +130,28 @@ class CustomObject implements ModelInterface, ArrayAccess
         'seq' => 'getSeq'
     ];
 
+    
+
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
+
+    /**
+     * Constructor
+     *
+     * @param mixed[] $data Associated array of property values
+     *                      initializing the model
+     */
+    public function __construct(array $data = null)
+    {
+        $this->container['marketo_guid'] = isset($data['marketo_guid']) ? $data['marketo_guid'] : null;
+        $this->container['reasons'] = isset($data['reasons']) ? $data['reasons'] : null;
+        $this->container['seq'] = isset($data['seq']) ? $data['seq'] : null;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -162,30 +184,6 @@ class CustomObject implements ModelInterface, ArrayAccess
         return self::$swaggerModelName;
     }
 
-    
-
-    
-
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-
-    /**
-     * Constructor
-     *
-     * @param mixed[] $data Associated array of property values
-     *                      initializing the model
-     */
-    public function __construct(array $data = null)
-    {
-        $this->container['marketo_guid'] = isset($data['marketo_guid']) ? $data['marketo_guid'] : null;
-        $this->container['reasons'] = isset($data['reasons']) ? $data['reasons'] : null;
-        $this->container['seq'] = isset($data['seq']) ? $data['seq'] : null;
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -209,7 +207,7 @@ class CustomObject implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
+    
 
     /**
      * Gets marketo_guid

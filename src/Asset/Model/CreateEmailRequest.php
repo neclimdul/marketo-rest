@@ -165,6 +165,35 @@ class CreateEmailRequest implements ModelInterface, ArrayAccess
         'text_only' => 'getTextOnly'
     ];
 
+    
+
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
+
+    /**
+     * Constructor
+     *
+     * @param mixed[] $data Associated array of property values
+     *                      initializing the model
+     */
+    public function __construct(array $data = null)
+    {
+        $this->container['description'] = isset($data['description']) ? $data['description'] : null;
+        $this->container['folder'] = isset($data['folder']) ? $data['folder'] : null;
+        $this->container['from_email'] = isset($data['from_email']) ? $data['from_email'] : null;
+        $this->container['from_name'] = isset($data['from_name']) ? $data['from_name'] : null;
+        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
+        $this->container['operational'] = isset($data['operational']) ? $data['operational'] : null;
+        $this->container['reply_email'] = isset($data['reply_email']) ? $data['reply_email'] : null;
+        $this->container['subject'] = isset($data['subject']) ? $data['subject'] : null;
+        $this->container['template'] = isset($data['template']) ? $data['template'] : null;
+        $this->container['text_only'] = isset($data['text_only']) ? $data['text_only'] : null;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -195,37 +224,6 @@ class CreateEmailRequest implements ModelInterface, ArrayAccess
     public function getModelName()
     {
         return self::$swaggerModelName;
-    }
-
-    
-
-    
-
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-
-    /**
-     * Constructor
-     *
-     * @param mixed[] $data Associated array of property values
-     *                      initializing the model
-     */
-    public function __construct(array $data = null)
-    {
-        $this->container['description'] = isset($data['description']) ? $data['description'] : null;
-        $this->container['folder'] = isset($data['folder']) ? $data['folder'] : null;
-        $this->container['from_email'] = isset($data['from_email']) ? $data['from_email'] : null;
-        $this->container['from_name'] = isset($data['from_name']) ? $data['from_name'] : null;
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['operational'] = isset($data['operational']) ? $data['operational'] : null;
-        $this->container['reply_email'] = isset($data['reply_email']) ? $data['reply_email'] : null;
-        $this->container['subject'] = isset($data['subject']) ? $data['subject'] : null;
-        $this->container['template'] = isset($data['template']) ? $data['template'] : null;
-        $this->container['text_only'] = isset($data['text_only']) ? $data['text_only'] : null;
     }
 
     /**
@@ -266,7 +264,7 @@ class CreateEmailRequest implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
+    
 
     /**
      * Gets description

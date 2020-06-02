@@ -125,6 +125,27 @@ class FormKnownVisitorDTO implements ModelInterface, ArrayAccess
         'type' => 'getType'
     ];
 
+    
+
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
+
+    /**
+     * Constructor
+     *
+     * @param mixed[] $data Associated array of property values
+     *                      initializing the model
+     */
+    public function __construct(array $data = null)
+    {
+        $this->container['template'] = isset($data['template']) ? $data['template'] : null;
+        $this->container['type'] = isset($data['type']) ? $data['type'] : null;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -157,29 +178,6 @@ class FormKnownVisitorDTO implements ModelInterface, ArrayAccess
         return self::$swaggerModelName;
     }
 
-    
-
-    
-
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-
-    /**
-     * Constructor
-     *
-     * @param mixed[] $data Associated array of property values
-     *                      initializing the model
-     */
-    public function __construct(array $data = null)
-    {
-        $this->container['template'] = isset($data['template']) ? $data['template'] : null;
-        $this->container['type'] = isset($data['type']) ? $data['type'] : null;
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -197,7 +195,7 @@ class FormKnownVisitorDTO implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
+    
 
     /**
      * Gets template

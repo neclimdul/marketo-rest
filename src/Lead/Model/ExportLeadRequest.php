@@ -135,6 +135,29 @@ class ExportLeadRequest implements ModelInterface, ArrayAccess
         'format' => 'getFormat'
     ];
 
+    
+
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
+
+    /**
+     * Constructor
+     *
+     * @param mixed[] $data Associated array of property values
+     *                      initializing the model
+     */
+    public function __construct(array $data = null)
+    {
+        $this->container['column_header_names'] = isset($data['column_header_names']) ? $data['column_header_names'] : null;
+        $this->container['fields'] = isset($data['fields']) ? $data['fields'] : null;
+        $this->container['filter'] = isset($data['filter']) ? $data['filter'] : null;
+        $this->container['format'] = isset($data['format']) ? $data['format'] : null;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -167,31 +190,6 @@ class ExportLeadRequest implements ModelInterface, ArrayAccess
         return self::$swaggerModelName;
     }
 
-    
-
-    
-
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-
-    /**
-     * Constructor
-     *
-     * @param mixed[] $data Associated array of property values
-     *                      initializing the model
-     */
-    public function __construct(array $data = null)
-    {
-        $this->container['column_header_names'] = isset($data['column_header_names']) ? $data['column_header_names'] : null;
-        $this->container['fields'] = isset($data['fields']) ? $data['fields'] : null;
-        $this->container['filter'] = isset($data['filter']) ? $data['filter'] : null;
-        $this->container['format'] = isset($data['format']) ? $data['format'] : null;
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -215,7 +213,7 @@ class ExportLeadRequest implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
+    
 
     /**
      * Gets column_header_names

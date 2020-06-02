@@ -120,6 +120,26 @@ class UpdateEmailTemplateContentRequest implements ModelInterface, ArrayAccess
         'content' => 'getContent'
     ];
 
+    
+
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
+
+    /**
+     * Constructor
+     *
+     * @param mixed[] $data Associated array of property values
+     *                      initializing the model
+     */
+    public function __construct(array $data = null)
+    {
+        $this->container['content'] = isset($data['content']) ? $data['content'] : null;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -152,28 +172,6 @@ class UpdateEmailTemplateContentRequest implements ModelInterface, ArrayAccess
         return self::$swaggerModelName;
     }
 
-    
-
-    
-
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-
-    /**
-     * Constructor
-     *
-     * @param mixed[] $data Associated array of property values
-     *                      initializing the model
-     */
-    public function __construct(array $data = null)
-    {
-        $this->container['content'] = isset($data['content']) ? $data['content'] : null;
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -191,7 +189,7 @@ class UpdateEmailTemplateContentRequest implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
+    
 
     /**
      * Gets content

@@ -135,6 +135,29 @@ class UpdateEmailComponentDataRequest implements ModelInterface, ArrayAccess
         'subject' => 'getSubject'
     ];
 
+    
+
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
+
+    /**
+     * Constructor
+     *
+     * @param mixed[] $data Associated array of property values
+     *                      initializing the model
+     */
+    public function __construct(array $data = null)
+    {
+        $this->container['from_email'] = isset($data['from_email']) ? $data['from_email'] : null;
+        $this->container['from_name'] = isset($data['from_name']) ? $data['from_name'] : null;
+        $this->container['reply_to'] = isset($data['reply_to']) ? $data['reply_to'] : null;
+        $this->container['subject'] = isset($data['subject']) ? $data['subject'] : null;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -167,31 +190,6 @@ class UpdateEmailComponentDataRequest implements ModelInterface, ArrayAccess
         return self::$swaggerModelName;
     }
 
-    
-
-    
-
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-
-    /**
-     * Constructor
-     *
-     * @param mixed[] $data Associated array of property values
-     *                      initializing the model
-     */
-    public function __construct(array $data = null)
-    {
-        $this->container['from_email'] = isset($data['from_email']) ? $data['from_email'] : null;
-        $this->container['from_name'] = isset($data['from_name']) ? $data['from_name'] : null;
-        $this->container['reply_to'] = isset($data['reply_to']) ? $data['reply_to'] : null;
-        $this->container['subject'] = isset($data['subject']) ? $data['subject'] : null;
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -209,7 +207,7 @@ class UpdateEmailComponentDataRequest implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
+    
 
     /**
      * Gets from_email

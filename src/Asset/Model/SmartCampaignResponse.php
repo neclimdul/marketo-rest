@@ -215,38 +215,6 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess
         'status' => 'getStatus'
     ];
 
-    /**
-     * {@inheritdoc}
-     */
-    public static function attributeMap()
-    {
-        return self::$attributeMap;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function setters()
-    {
-        return self::$setters;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function getters()
-    {
-        return self::$getters;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getModelName()
-    {
-        return self::$swaggerModelName;
-    }
-
     const TYPE_BATCH = 'batch';
     const TYPE__DEFAULT = 'default';
     const TYPE_TRIGGER = 'trigger';
@@ -264,69 +232,6 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess
     const STATUS_ACTIVE = 'Active';
     const STATUS_REQUESTED = 'Requested';
     const STATUS_NEVER_RUN = 'Never Run';
-    
-
-    
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getTypeAllowableValues()
-    {
-        return [
-            self::TYPE_BATCH,
-            self::TYPE__DEFAULT,
-            self::TYPE_TRIGGER,
-        ];
-    }
-    
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getQualificationRuleTypeAllowableValues()
-    {
-        return [
-            self::QUALIFICATION_RULE_TYPE_ONCE,
-            self::QUALIFICATION_RULE_TYPE_ANY,
-            self::QUALIFICATION_RULE_TYPE_INTERVAL,
-        ];
-    }
-    
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getQualificationRuleUnitAllowableValues()
-    {
-        return [
-            self::QUALIFICATION_RULE_UNIT_HOUR,
-            self::QUALIFICATION_RULE_UNIT_DAY,
-            self::QUALIFICATION_RULE_UNIT_WEEK,
-            self::QUALIFICATION_RULE_UNIT_MONTH,
-        ];
-    }
-    
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getStatusAllowableValues()
-    {
-        return [
-            self::STATUS_INACTIVE,
-            self::STATUS_SINGLE_RUN,
-            self::STATUS_INVALID,
-            self::STATUS_RECURRING_RUN,
-            self::STATUS_ACTIVE,
-            self::STATUS_REQUESTED,
-            self::STATUS_NEVER_RUN,
-        ];
-    }
     
 
     /**
@@ -364,6 +269,38 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess
         $this->container['updated_at'] = isset($data['updated_at']) ? $data['updated_at'] : null;
         $this->container['workspace'] = isset($data['workspace']) ? $data['workspace'] : null;
         $this->container['status'] = isset($data['status']) ? $data['status'] : null;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function setters()
+    {
+        return self::$setters;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function getters()
+    {
+        return self::$getters;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getModelName()
+    {
+        return self::$swaggerModelName;
     }
 
     /**
@@ -475,7 +412,72 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
+    
 
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getTypeAllowableValues()
+    {
+        return [
+            self::TYPE_BATCH,
+            self::TYPE__DEFAULT,
+            self::TYPE_TRIGGER,
+        ];
+    }
+    
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getQualificationRuleTypeAllowableValues()
+    {
+        return [
+            self::QUALIFICATION_RULE_TYPE_ONCE,
+            self::QUALIFICATION_RULE_TYPE_ANY,
+            self::QUALIFICATION_RULE_TYPE_INTERVAL,
+        ];
+    }
+    
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getQualificationRuleUnitAllowableValues()
+    {
+        return [
+            self::QUALIFICATION_RULE_UNIT_HOUR,
+            self::QUALIFICATION_RULE_UNIT_DAY,
+            self::QUALIFICATION_RULE_UNIT_WEEK,
+            self::QUALIFICATION_RULE_UNIT_MONTH,
+        ];
+    }
+    
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getStatusAllowableValues()
+    {
+        return [
+            self::STATUS_INACTIVE,
+            self::STATUS_SINGLE_RUN,
+            self::STATUS_INVALID,
+            self::STATUS_RECURRING_RUN,
+            self::STATUS_ACTIVE,
+            self::STATUS_REQUESTED,
+            self::STATUS_NEVER_RUN,
+        ];
+    }
+    
 
     /**
      * Gets id

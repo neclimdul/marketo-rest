@@ -130,6 +130,28 @@ class ObjectRelation implements ModelInterface, ArrayAccess
         'type' => 'getType'
     ];
 
+    
+
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
+
+    /**
+     * Constructor
+     *
+     * @param mixed[] $data Associated array of property values
+     *                      initializing the model
+     */
+    public function __construct(array $data = null)
+    {
+        $this->container['field'] = isset($data['field']) ? $data['field'] : null;
+        $this->container['related_to'] = isset($data['related_to']) ? $data['related_to'] : null;
+        $this->container['type'] = isset($data['type']) ? $data['type'] : null;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -162,30 +184,6 @@ class ObjectRelation implements ModelInterface, ArrayAccess
         return self::$swaggerModelName;
     }
 
-    
-
-    
-
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-
-    /**
-     * Constructor
-     *
-     * @param mixed[] $data Associated array of property values
-     *                      initializing the model
-     */
-    public function __construct(array $data = null)
-    {
-        $this->container['field'] = isset($data['field']) ? $data['field'] : null;
-        $this->container['related_to'] = isset($data['related_to']) ? $data['related_to'] : null;
-        $this->container['type'] = isset($data['type']) ? $data['type'] : null;
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -212,7 +210,7 @@ class ObjectRelation implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
+    
 
     /**
      * Gets field

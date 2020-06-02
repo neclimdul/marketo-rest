@@ -170,57 +170,9 @@ class UpdateEmailDynamicContentRequest implements ModelInterface, ArrayAccess
         'width' => 'getWidth'
     ];
 
-    /**
-     * {@inheritdoc}
-     */
-    public static function attributeMap()
-    {
-        return self::$attributeMap;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function setters()
-    {
-        return self::$setters;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function getters()
-    {
-        return self::$getters;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getModelName()
-    {
-        return self::$swaggerModelName;
-    }
-
     const TYPE_TEXT = 'Text';
     const TYPE_DYNAMIC_CONTENT = 'DynamicContent';
     const TYPE_SNIPPET = 'Snippet';
-    
-
-    
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getTypeAllowableValues()
-    {
-        return [
-            self::TYPE_TEXT,
-            self::TYPE_DYNAMIC_CONTENT,
-            self::TYPE_SNIPPET,
-        ];
-    }
     
 
     /**
@@ -254,6 +206,38 @@ class UpdateEmailDynamicContentRequest implements ModelInterface, ArrayAccess
     /**
      * {@inheritdoc}
      */
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function setters()
+    {
+        return self::$setters;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function getters()
+    {
+        return self::$getters;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getModelName()
+    {
+        return self::$swaggerModelName;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function listInvalidProperties()
     {
         $invalidProperties = [];
@@ -282,7 +266,22 @@ class UpdateEmailDynamicContentRequest implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
+    
 
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getTypeAllowableValues()
+    {
+        return [
+            self::TYPE_TEXT,
+            self::TYPE_DYNAMIC_CONTENT,
+            self::TYPE_SNIPPET,
+        ];
+    }
+    
 
     /**
      * Gets alt_text

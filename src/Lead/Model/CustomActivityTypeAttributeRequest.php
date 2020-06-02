@@ -120,6 +120,26 @@ class CustomActivityTypeAttributeRequest implements ModelInterface, ArrayAccess
         'attributes' => 'getAttributes'
     ];
 
+    
+
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
+
+    /**
+     * Constructor
+     *
+     * @param mixed[] $data Associated array of property values
+     *                      initializing the model
+     */
+    public function __construct(array $data = null)
+    {
+        $this->container['attributes'] = isset($data['attributes']) ? $data['attributes'] : null;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -152,28 +172,6 @@ class CustomActivityTypeAttributeRequest implements ModelInterface, ArrayAccess
         return self::$swaggerModelName;
     }
 
-    
-
-    
-
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-
-    /**
-     * Constructor
-     *
-     * @param mixed[] $data Associated array of property values
-     *                      initializing the model
-     */
-    public function __construct(array $data = null)
-    {
-        $this->container['attributes'] = isset($data['attributes']) ? $data['attributes'] : null;
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -191,7 +189,7 @@ class CustomActivityTypeAttributeRequest implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
+    
 
     /**
      * Gets attributes

@@ -141,6 +141,30 @@ class SmartListConditions implements ModelInterface, ArrayAccess
         'is_primary' => 'getIsPrimary'
     ];
 
+    
+
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
+
+    /**
+     * Constructor
+     *
+     * @param mixed[] $data Associated array of property values
+     *                      initializing the model
+     */
+    public function __construct(array $data = null)
+    {
+        $this->container['activity_attribute_id'] = isset($data['activity_attribute_id']) ? $data['activity_attribute_id'] : null;
+        $this->container['activity_attribute_name'] = isset($data['activity_attribute_name']) ? $data['activity_attribute_name'] : null;
+        $this->container['operator'] = isset($data['operator']) ? $data['operator'] : null;
+        $this->container['values'] = isset($data['values']) ? $data['values'] : null;
+        $this->container['is_primary'] = isset($data['is_primary']) ? $data['is_primary'] : null;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -171,32 +195,6 @@ class SmartListConditions implements ModelInterface, ArrayAccess
     public function getModelName()
     {
         return self::$swaggerModelName;
-    }
-
-    
-
-    
-
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-
-    /**
-     * Constructor
-     *
-     * @param mixed[] $data Associated array of property values
-     *                      initializing the model
-     */
-    public function __construct(array $data = null)
-    {
-        $this->container['activity_attribute_id'] = isset($data['activity_attribute_id']) ? $data['activity_attribute_id'] : null;
-        $this->container['activity_attribute_name'] = isset($data['activity_attribute_name']) ? $data['activity_attribute_name'] : null;
-        $this->container['operator'] = isset($data['operator']) ? $data['operator'] : null;
-        $this->container['values'] = isset($data['values']) ? $data['values'] : null;
-        $this->container['is_primary'] = isset($data['is_primary']) ? $data['is_primary'] : null;
     }
 
     /**
@@ -231,7 +229,7 @@ class SmartListConditions implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
+    
 
     /**
      * Gets activity_attribute_id

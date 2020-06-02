@@ -146,6 +146,31 @@ class SmartListFilters implements ModelInterface, ArrayAccess
         'conditions' => 'getConditions'
     ];
 
+    
+
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
+
+    /**
+     * Constructor
+     *
+     * @param mixed[] $data Associated array of property values
+     *                      initializing the model
+     */
+    public function __construct(array $data = null)
+    {
+        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
+        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
+        $this->container['rule_type_id'] = isset($data['rule_type_id']) ? $data['rule_type_id'] : null;
+        $this->container['rule_type'] = isset($data['rule_type']) ? $data['rule_type'] : null;
+        $this->container['operator'] = isset($data['operator']) ? $data['operator'] : null;
+        $this->container['conditions'] = isset($data['conditions']) ? $data['conditions'] : null;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -176,33 +201,6 @@ class SmartListFilters implements ModelInterface, ArrayAccess
     public function getModelName()
     {
         return self::$swaggerModelName;
-    }
-
-    
-
-    
-
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-
-    /**
-     * Constructor
-     *
-     * @param mixed[] $data Associated array of property values
-     *                      initializing the model
-     */
-    public function __construct(array $data = null)
-    {
-        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['rule_type_id'] = isset($data['rule_type_id']) ? $data['rule_type_id'] : null;
-        $this->container['rule_type'] = isset($data['rule_type']) ? $data['rule_type'] : null;
-        $this->container['operator'] = isset($data['operator']) ? $data['operator'] : null;
-        $this->container['conditions'] = isset($data['conditions']) ? $data['conditions'] : null;
     }
 
     /**
@@ -240,7 +238,7 @@ class SmartListFilters implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
+    
 
     /**
      * Gets id

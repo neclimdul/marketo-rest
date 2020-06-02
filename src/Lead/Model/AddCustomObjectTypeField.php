@@ -145,6 +145,31 @@ class AddCustomObjectTypeField implements ModelInterface, ArrayAccess
         'related_to' => 'getRelatedTo'
     ];
 
+    
+
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
+
+    /**
+     * Constructor
+     *
+     * @param mixed[] $data Associated array of property values
+     *                      initializing the model
+     */
+    public function __construct(array $data = null)
+    {
+        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
+        $this->container['display_name'] = isset($data['display_name']) ? $data['display_name'] : null;
+        $this->container['data_type'] = isset($data['data_type']) ? $data['data_type'] : null;
+        $this->container['description'] = isset($data['description']) ? $data['description'] : null;
+        $this->container['is_dedupe_field'] = isset($data['is_dedupe_field']) ? $data['is_dedupe_field'] : null;
+        $this->container['related_to'] = isset($data['related_to']) ? $data['related_to'] : null;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -177,33 +202,6 @@ class AddCustomObjectTypeField implements ModelInterface, ArrayAccess
         return self::$swaggerModelName;
     }
 
-    
-
-    
-
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-
-    /**
-     * Constructor
-     *
-     * @param mixed[] $data Associated array of property values
-     *                      initializing the model
-     */
-    public function __construct(array $data = null)
-    {
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['display_name'] = isset($data['display_name']) ? $data['display_name'] : null;
-        $this->container['data_type'] = isset($data['data_type']) ? $data['data_type'] : null;
-        $this->container['description'] = isset($data['description']) ? $data['description'] : null;
-        $this->container['is_dedupe_field'] = isset($data['is_dedupe_field']) ? $data['is_dedupe_field'] : null;
-        $this->container['related_to'] = isset($data['related_to']) ? $data['related_to'] : null;
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -230,7 +228,7 @@ class AddCustomObjectTypeField implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
+    
 
     /**
      * Gets name

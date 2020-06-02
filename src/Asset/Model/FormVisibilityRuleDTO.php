@@ -140,6 +140,30 @@ class FormVisibilityRuleDTO implements ModelInterface, ArrayAccess
         'values' => 'getValues'
     ];
 
+    
+
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
+
+    /**
+     * Constructor
+     *
+     * @param mixed[] $data Associated array of property values
+     *                      initializing the model
+     */
+    public function __construct(array $data = null)
+    {
+        $this->container['alt_label'] = isset($data['alt_label']) ? $data['alt_label'] : null;
+        $this->container['operator'] = isset($data['operator']) ? $data['operator'] : null;
+        $this->container['picklist_filter_values'] = isset($data['picklist_filter_values']) ? $data['picklist_filter_values'] : null;
+        $this->container['subject_field'] = isset($data['subject_field']) ? $data['subject_field'] : null;
+        $this->container['values'] = isset($data['values']) ? $data['values'] : null;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -172,32 +196,6 @@ class FormVisibilityRuleDTO implements ModelInterface, ArrayAccess
         return self::$swaggerModelName;
     }
 
-    
-
-    
-
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-
-    /**
-     * Constructor
-     *
-     * @param mixed[] $data Associated array of property values
-     *                      initializing the model
-     */
-    public function __construct(array $data = null)
-    {
-        $this->container['alt_label'] = isset($data['alt_label']) ? $data['alt_label'] : null;
-        $this->container['operator'] = isset($data['operator']) ? $data['operator'] : null;
-        $this->container['picklist_filter_values'] = isset($data['picklist_filter_values']) ? $data['picklist_filter_values'] : null;
-        $this->container['subject_field'] = isset($data['subject_field']) ? $data['subject_field'] : null;
-        $this->container['values'] = isset($data['values']) ? $data['values'] : null;
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -215,7 +213,7 @@ class FormVisibilityRuleDTO implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
+    
 
     /**
      * Gets alt_label

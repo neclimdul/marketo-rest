@@ -121,6 +121,25 @@ class LeadAttribute2SearchableFields implements ModelInterface, ArrayAccess
         
     ];
 
+    
+
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
+
+    /**
+     * Constructor
+     *
+     * @param mixed[] $data Associated array of property values
+     *                      initializing the model
+     */
+    public function __construct(array $data = null)
+    {
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -153,27 +172,6 @@ class LeadAttribute2SearchableFields implements ModelInterface, ArrayAccess
         return self::$swaggerModelName;
     }
 
-    
-
-    
-
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-
-    /**
-     * Constructor
-     *
-     * @param mixed[] $data Associated array of property values
-     *                      initializing the model
-     */
-    public function __construct(array $data = null)
-    {
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -191,7 +189,7 @@ class LeadAttribute2SearchableFields implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
+    
 
     /**
      * {@inheritdoc}

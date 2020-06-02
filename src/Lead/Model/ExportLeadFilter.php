@@ -145,6 +145,31 @@ class ExportLeadFilter implements ModelInterface, ArrayAccess
         'updated_at' => 'getUpdatedAt'
     ];
 
+    
+
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
+
+    /**
+     * Constructor
+     *
+     * @param mixed[] $data Associated array of property values
+     *                      initializing the model
+     */
+    public function __construct(array $data = null)
+    {
+        $this->container['created_at'] = isset($data['created_at']) ? $data['created_at'] : null;
+        $this->container['smart_list_id'] = isset($data['smart_list_id']) ? $data['smart_list_id'] : null;
+        $this->container['smart_list_name'] = isset($data['smart_list_name']) ? $data['smart_list_name'] : null;
+        $this->container['static_list_id'] = isset($data['static_list_id']) ? $data['static_list_id'] : null;
+        $this->container['static_list_name'] = isset($data['static_list_name']) ? $data['static_list_name'] : null;
+        $this->container['updated_at'] = isset($data['updated_at']) ? $data['updated_at'] : null;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -175,33 +200,6 @@ class ExportLeadFilter implements ModelInterface, ArrayAccess
     public function getModelName()
     {
         return self::$swaggerModelName;
-    }
-
-    
-
-    
-
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-
-    /**
-     * Constructor
-     *
-     * @param mixed[] $data Associated array of property values
-     *                      initializing the model
-     */
-    public function __construct(array $data = null)
-    {
-        $this->container['created_at'] = isset($data['created_at']) ? $data['created_at'] : null;
-        $this->container['smart_list_id'] = isset($data['smart_list_id']) ? $data['smart_list_id'] : null;
-        $this->container['smart_list_name'] = isset($data['smart_list_name']) ? $data['smart_list_name'] : null;
-        $this->container['static_list_id'] = isset($data['static_list_id']) ? $data['static_list_id'] : null;
-        $this->container['static_list_name'] = isset($data['static_list_name']) ? $data['static_list_name'] : null;
-        $this->container['updated_at'] = isset($data['updated_at']) ? $data['updated_at'] : null;
     }
 
     /**
@@ -239,7 +237,7 @@ class ExportLeadFilter implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
+    
 
     /**
      * Gets created_at

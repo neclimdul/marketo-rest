@@ -220,55 +220,8 @@ class EmailResponse implements ModelInterface, ArrayAccess
         'cc_fields' => 'getCcFields'
     ];
 
-    /**
-     * {@inheritdoc}
-     */
-    public static function attributeMap()
-    {
-        return self::$attributeMap;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function setters()
-    {
-        return self::$setters;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function getters()
-    {
-        return self::$getters;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getModelName()
-    {
-        return self::$swaggerModelName;
-    }
-
     const VERSION_1 = 1;
     const VERSION_2 = 2;
-    
-
-    
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getVersionAllowableValues()
-    {
-        return [
-            self::VERSION_1,
-            self::VERSION_2,
-        ];
-    }
     
 
     /**
@@ -307,6 +260,38 @@ class EmailResponse implements ModelInterface, ArrayAccess
         $this->container['workspace'] = isset($data['workspace']) ? $data['workspace'] : null;
         $this->container['auto_copy_to_text'] = isset($data['auto_copy_to_text']) ? $data['auto_copy_to_text'] : null;
         $this->container['cc_fields'] = isset($data['cc_fields']) ? $data['cc_fields'] : null;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function setters()
+    {
+        return self::$setters;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function getters()
+    {
+        return self::$getters;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getModelName()
+    {
+        return self::$swaggerModelName;
     }
 
     /**
@@ -370,7 +355,21 @@ class EmailResponse implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
+    
 
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getVersionAllowableValues()
+    {
+        return [
+            self::VERSION_1,
+            self::VERSION_2,
+        ];
+    }
+    
 
     /**
      * Gets created_at

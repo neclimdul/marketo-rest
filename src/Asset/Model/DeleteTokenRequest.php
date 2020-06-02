@@ -130,6 +130,30 @@ class DeleteTokenRequest implements ModelInterface, ArrayAccess
         'type' => 'getType'
     ];
 
+    const FOLDER_TYPE_PROGRAM = 'Program';
+    const FOLDER_TYPE_FOLDER = 'Folder';
+    
+
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
+
+    /**
+     * Constructor
+     *
+     * @param mixed[] $data Associated array of property values
+     *                      initializing the model
+     */
+    public function __construct(array $data = null)
+    {
+        $this->container['folder_type'] = isset($data['folder_type']) ? $data['folder_type'] : null;
+        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
+        $this->container['type'] = isset($data['type']) ? $data['type'] : null;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -162,45 +186,6 @@ class DeleteTokenRequest implements ModelInterface, ArrayAccess
         return self::$swaggerModelName;
     }
 
-    const FOLDER_TYPE_PROGRAM = 'Program';
-    const FOLDER_TYPE_FOLDER = 'Folder';
-    
-
-    
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getFolderTypeAllowableValues()
-    {
-        return [
-            self::FOLDER_TYPE_PROGRAM,
-            self::FOLDER_TYPE_FOLDER,
-        ];
-    }
-    
-
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-
-    /**
-     * Constructor
-     *
-     * @param mixed[] $data Associated array of property values
-     *                      initializing the model
-     */
-    public function __construct(array $data = null)
-    {
-        $this->container['folder_type'] = isset($data['folder_type']) ? $data['folder_type'] : null;
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['type'] = isset($data['type']) ? $data['type'] : null;
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -226,7 +211,21 @@ class DeleteTokenRequest implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
+    
 
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getFolderTypeAllowableValues()
+    {
+        return [
+            self::FOLDER_TYPE_PROGRAM,
+            self::FOLDER_TYPE_FOLDER,
+        ];
+    }
+    
 
     /**
      * Gets folder_type

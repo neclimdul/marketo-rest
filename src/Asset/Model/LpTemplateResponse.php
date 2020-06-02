@@ -170,6 +170,38 @@ class LpTemplateResponse implements ModelInterface, ArrayAccess
         'workspace' => 'getWorkspace'
     ];
 
+    const TEMPLATE_TYPE_GUIDED = 'guided';
+    const TEMPLATE_TYPE_FREE_FORM = 'freeForm';
+    
+
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
+
+    /**
+     * Constructor
+     *
+     * @param mixed[] $data Associated array of property values
+     *                      initializing the model
+     */
+    public function __construct(array $data = null)
+    {
+        $this->container['created_at'] = isset($data['created_at']) ? $data['created_at'] : null;
+        $this->container['description'] = isset($data['description']) ? $data['description'] : null;
+        $this->container['enable_munchkin'] = isset($data['enable_munchkin']) ? $data['enable_munchkin'] : null;
+        $this->container['folder'] = isset($data['folder']) ? $data['folder'] : null;
+        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
+        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
+        $this->container['status'] = isset($data['status']) ? $data['status'] : null;
+        $this->container['template_type'] = isset($data['template_type']) ? $data['template_type'] : null;
+        $this->container['updated_at'] = isset($data['updated_at']) ? $data['updated_at'] : null;
+        $this->container['url'] = isset($data['url']) ? $data['url'] : null;
+        $this->container['workspace'] = isset($data['workspace']) ? $data['workspace'] : null;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -200,53 +232,6 @@ class LpTemplateResponse implements ModelInterface, ArrayAccess
     public function getModelName()
     {
         return self::$swaggerModelName;
-    }
-
-    const TEMPLATE_TYPE_GUIDED = 'guided';
-    const TEMPLATE_TYPE_FREE_FORM = 'freeForm';
-    
-
-    
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getTemplateTypeAllowableValues()
-    {
-        return [
-            self::TEMPLATE_TYPE_GUIDED,
-            self::TEMPLATE_TYPE_FREE_FORM,
-        ];
-    }
-    
-
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-
-    /**
-     * Constructor
-     *
-     * @param mixed[] $data Associated array of property values
-     *                      initializing the model
-     */
-    public function __construct(array $data = null)
-    {
-        $this->container['created_at'] = isset($data['created_at']) ? $data['created_at'] : null;
-        $this->container['description'] = isset($data['description']) ? $data['description'] : null;
-        $this->container['enable_munchkin'] = isset($data['enable_munchkin']) ? $data['enable_munchkin'] : null;
-        $this->container['folder'] = isset($data['folder']) ? $data['folder'] : null;
-        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['status'] = isset($data['status']) ? $data['status'] : null;
-        $this->container['template_type'] = isset($data['template_type']) ? $data['template_type'] : null;
-        $this->container['updated_at'] = isset($data['updated_at']) ? $data['updated_at'] : null;
-        $this->container['url'] = isset($data['url']) ? $data['url'] : null;
-        $this->container['workspace'] = isset($data['workspace']) ? $data['workspace'] : null;
     }
 
     /**
@@ -286,7 +271,21 @@ class LpTemplateResponse implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
+    
 
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getTemplateTypeAllowableValues()
+    {
+        return [
+            self::TEMPLATE_TYPE_GUIDED,
+            self::TEMPLATE_TYPE_FREE_FORM,
+        ];
+    }
+    
 
     /**
      * Gets created_at

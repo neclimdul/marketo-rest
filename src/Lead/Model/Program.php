@@ -160,6 +160,34 @@ class Program implements ModelInterface, ArrayAccess
         'updated_at' => 'getUpdatedAt'
     ];
 
+    
+
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
+
+    /**
+     * Constructor
+     *
+     * @param mixed[] $data Associated array of property values
+     *                      initializing the model
+     */
+    public function __construct(array $data = null)
+    {
+        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
+        $this->container['acquired_by'] = isset($data['acquired_by']) ? $data['acquired_by'] : null;
+        $this->container['is_exhausted'] = isset($data['is_exhausted']) ? $data['is_exhausted'] : null;
+        $this->container['membership_date'] = isset($data['membership_date']) ? $data['membership_date'] : null;
+        $this->container['nurture_cadence'] = isset($data['nurture_cadence']) ? $data['nurture_cadence'] : null;
+        $this->container['progression_status'] = isset($data['progression_status']) ? $data['progression_status'] : null;
+        $this->container['reached_success'] = isset($data['reached_success']) ? $data['reached_success'] : null;
+        $this->container['stream'] = isset($data['stream']) ? $data['stream'] : null;
+        $this->container['updated_at'] = isset($data['updated_at']) ? $data['updated_at'] : null;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -190,36 +218,6 @@ class Program implements ModelInterface, ArrayAccess
     public function getModelName()
     {
         return self::$swaggerModelName;
-    }
-
-    
-
-    
-
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-
-    /**
-     * Constructor
-     *
-     * @param mixed[] $data Associated array of property values
-     *                      initializing the model
-     */
-    public function __construct(array $data = null)
-    {
-        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
-        $this->container['acquired_by'] = isset($data['acquired_by']) ? $data['acquired_by'] : null;
-        $this->container['is_exhausted'] = isset($data['is_exhausted']) ? $data['is_exhausted'] : null;
-        $this->container['membership_date'] = isset($data['membership_date']) ? $data['membership_date'] : null;
-        $this->container['nurture_cadence'] = isset($data['nurture_cadence']) ? $data['nurture_cadence'] : null;
-        $this->container['progression_status'] = isset($data['progression_status']) ? $data['progression_status'] : null;
-        $this->container['reached_success'] = isset($data['reached_success']) ? $data['reached_success'] : null;
-        $this->container['stream'] = isset($data['stream']) ? $data['stream'] : null;
-        $this->container['updated_at'] = isset($data['updated_at']) ? $data['updated_at'] : null;
     }
 
     /**
@@ -260,7 +258,7 @@ class Program implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
+    
 
     /**
      * Gets id

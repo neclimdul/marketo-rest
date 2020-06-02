@@ -125,6 +125,27 @@ class FormFieldVisibilityRuleResponse implements ModelInterface, ArrayAccess
         'rules' => 'getRules'
     ];
 
+    
+
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
+
+    /**
+     * Constructor
+     *
+     * @param mixed[] $data Associated array of property values
+     *                      initializing the model
+     */
+    public function __construct(array $data = null)
+    {
+        $this->container['rule_type'] = isset($data['rule_type']) ? $data['rule_type'] : null;
+        $this->container['rules'] = isset($data['rules']) ? $data['rules'] : null;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -157,29 +178,6 @@ class FormFieldVisibilityRuleResponse implements ModelInterface, ArrayAccess
         return self::$swaggerModelName;
     }
 
-    
-
-    
-
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-
-    /**
-     * Constructor
-     *
-     * @param mixed[] $data Associated array of property values
-     *                      initializing the model
-     */
-    public function __construct(array $data = null)
-    {
-        $this->container['rule_type'] = isset($data['rule_type']) ? $data['rule_type'] : null;
-        $this->container['rules'] = isset($data['rules']) ? $data['rules'] : null;
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -197,7 +195,7 @@ class FormFieldVisibilityRuleResponse implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
+    
 
     /**
      * Gets rule_type

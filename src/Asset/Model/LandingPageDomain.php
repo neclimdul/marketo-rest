@@ -125,6 +125,29 @@ class LandingPageDomain implements ModelInterface, ArrayAccess
         'type' => 'getType'
     ];
 
+    const TYPE_DOMAIN = 'domain';
+    const TYPE_DOMAIN_ALIAS = 'domain-alias';
+    
+
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
+
+    /**
+     * Constructor
+     *
+     * @param mixed[] $data Associated array of property values
+     *                      initializing the model
+     */
+    public function __construct(array $data = null)
+    {
+        $this->container['hostname'] = isset($data['hostname']) ? $data['hostname'] : null;
+        $this->container['type'] = isset($data['type']) ? $data['type'] : null;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -155,44 +178,6 @@ class LandingPageDomain implements ModelInterface, ArrayAccess
     public function getModelName()
     {
         return self::$swaggerModelName;
-    }
-
-    const TYPE_DOMAIN = 'domain';
-    const TYPE_DOMAIN_ALIAS = 'domain-alias';
-    
-
-    
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getTypeAllowableValues()
-    {
-        return [
-            self::TYPE_DOMAIN,
-            self::TYPE_DOMAIN_ALIAS,
-        ];
-    }
-    
-
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-
-    /**
-     * Constructor
-     *
-     * @param mixed[] $data Associated array of property values
-     *                      initializing the model
-     */
-    public function __construct(array $data = null)
-    {
-        $this->container['hostname'] = isset($data['hostname']) ? $data['hostname'] : null;
-        $this->container['type'] = isset($data['type']) ? $data['type'] : null;
     }
 
     /**
@@ -226,7 +211,21 @@ class LandingPageDomain implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
+    
 
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getTypeAllowableValues()
+    {
+        return [
+            self::TYPE_DOMAIN,
+            self::TYPE_DOMAIN_ALIAS,
+        ];
+    }
+    
 
     /**
      * Gets hostname

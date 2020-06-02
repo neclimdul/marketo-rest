@@ -135,6 +135,30 @@ class ResponseOfIdentity implements ModelInterface, ArrayAccess
         'token_type' => 'getTokenType'
     ];
 
+    const TOKEN_TYPE_BEARER = 'bearer';
+    
+
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
+
+    /**
+     * Constructor
+     *
+     * @param mixed[] $data Associated array of property values
+     *                      initializing the model
+     */
+    public function __construct(array $data = null)
+    {
+        $this->container['access_token'] = isset($data['access_token']) ? $data['access_token'] : null;
+        $this->container['scope'] = isset($data['scope']) ? $data['scope'] : null;
+        $this->container['expires_in'] = isset($data['expires_in']) ? $data['expires_in'] : null;
+        $this->container['token_type'] = isset($data['token_type']) ? $data['token_type'] : null;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -167,44 +191,6 @@ class ResponseOfIdentity implements ModelInterface, ArrayAccess
         return self::$swaggerModelName;
     }
 
-    const TOKEN_TYPE_BEARER = 'bearer';
-    
-
-    
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getTokenTypeAllowableValues()
-    {
-        return [
-            self::TOKEN_TYPE_BEARER,
-        ];
-    }
-    
-
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-
-    /**
-     * Constructor
-     *
-     * @param mixed[] $data Associated array of property values
-     *                      initializing the model
-     */
-    public function __construct(array $data = null)
-    {
-        $this->container['access_token'] = isset($data['access_token']) ? $data['access_token'] : null;
-        $this->container['scope'] = isset($data['scope']) ? $data['scope'] : null;
-        $this->container['expires_in'] = isset($data['expires_in']) ? $data['expires_in'] : null;
-        $this->container['token_type'] = isset($data['token_type']) ? $data['token_type'] : null;
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -230,7 +216,20 @@ class ResponseOfIdentity implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
+    
 
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getTokenTypeAllowableValues()
+    {
+        return [
+            self::TOKEN_TYPE_BEARER,
+        ];
+    }
+    
 
     /**
      * Gets access_token

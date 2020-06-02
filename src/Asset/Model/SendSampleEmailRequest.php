@@ -130,6 +130,28 @@ class SendSampleEmailRequest implements ModelInterface, ArrayAccess
         'text_only' => 'getTextOnly'
     ];
 
+    
+
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
+
+    /**
+     * Constructor
+     *
+     * @param mixed[] $data Associated array of property values
+     *                      initializing the model
+     */
+    public function __construct(array $data = null)
+    {
+        $this->container['email_address'] = isset($data['email_address']) ? $data['email_address'] : null;
+        $this->container['lead_id'] = isset($data['lead_id']) ? $data['lead_id'] : null;
+        $this->container['text_only'] = isset($data['text_only']) ? $data['text_only'] : null;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -162,30 +184,6 @@ class SendSampleEmailRequest implements ModelInterface, ArrayAccess
         return self::$swaggerModelName;
     }
 
-    
-
-    
-
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-
-    /**
-     * Constructor
-     *
-     * @param mixed[] $data Associated array of property values
-     *                      initializing the model
-     */
-    public function __construct(array $data = null)
-    {
-        $this->container['email_address'] = isset($data['email_address']) ? $data['email_address'] : null;
-        $this->container['lead_id'] = isset($data['lead_id']) ? $data['lead_id'] : null;
-        $this->container['text_only'] = isset($data['text_only']) ? $data['text_only'] : null;
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -206,7 +204,7 @@ class SendSampleEmailRequest implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
+    
 
     /**
      * Gets email_address

@@ -220,38 +220,6 @@ class JsonNode implements ModelInterface, ArrayAccess
         'value_node' => 'getValueNode'
     ];
 
-    /**
-     * {@inheritdoc}
-     */
-    public static function attributeMap()
-    {
-        return self::$attributeMap;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function setters()
-    {
-        return self::$setters;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function getters()
-    {
-        return self::$getters;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getModelName()
-    {
-        return self::$swaggerModelName;
-    }
-
     const NODE_TYPE__ARRAY = 'ARRAY';
     const NODE_TYPE_BINARY = 'BINARY';
     const NODE_TYPE_BOOLEAN = 'BOOLEAN';
@@ -261,28 +229,6 @@ class JsonNode implements ModelInterface, ArrayAccess
     const NODE_TYPE_OBJECT = 'OBJECT';
     const NODE_TYPE_POJO = 'POJO';
     const NODE_TYPE_STRING = 'STRING';
-    
-
-    
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getNodeTypeAllowableValues()
-    {
-        return [
-            self::NODE_TYPE__ARRAY,
-            self::NODE_TYPE_BINARY,
-            self::NODE_TYPE_BOOLEAN,
-            self::NODE_TYPE_MISSING,
-            self::NODE_TYPE_NULL,
-            self::NODE_TYPE_NUMBER,
-            self::NODE_TYPE_OBJECT,
-            self::NODE_TYPE_POJO,
-            self::NODE_TYPE_STRING,
-        ];
-    }
     
 
     /**
@@ -326,6 +272,38 @@ class JsonNode implements ModelInterface, ArrayAccess
     /**
      * {@inheritdoc}
      */
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function setters()
+    {
+        return self::$setters;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function getters()
+    {
+        return self::$getters;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getModelName()
+    {
+        return self::$swaggerModelName;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function listInvalidProperties()
     {
         $invalidProperties = [];
@@ -348,7 +326,28 @@ class JsonNode implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
+    
 
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getNodeTypeAllowableValues()
+    {
+        return [
+            self::NODE_TYPE__ARRAY,
+            self::NODE_TYPE_BINARY,
+            self::NODE_TYPE_BOOLEAN,
+            self::NODE_TYPE_MISSING,
+            self::NODE_TYPE_NULL,
+            self::NODE_TYPE_NUMBER,
+            self::NODE_TYPE_OBJECT,
+            self::NODE_TYPE_POJO,
+            self::NODE_TYPE_STRING,
+        ];
+    }
+    
 
     /**
      * Gets array

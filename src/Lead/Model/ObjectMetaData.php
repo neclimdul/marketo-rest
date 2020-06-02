@@ -180,72 +180,11 @@ class ObjectMetaData implements ModelInterface, ArrayAccess
         'version' => 'getVersion'
     ];
 
-    /**
-     * {@inheritdoc}
-     */
-    public static function attributeMap()
-    {
-        return self::$attributeMap;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function setters()
-    {
-        return self::$setters;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function getters()
-    {
-        return self::$getters;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getModelName()
-    {
-        return self::$swaggerModelName;
-    }
-
     const STATE_DRAFT = 'draft';
     const STATE_APPROVED = 'approved';
     const STATE_APPROVED_WITH_DRAFT = 'approvedWithDraft';
     const VERSION_DRAFT = 'draft';
     const VERSION_APPROVED = 'approved';
-    
-
-    
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getStateAllowableValues()
-    {
-        return [
-            self::STATE_DRAFT,
-            self::STATE_APPROVED,
-            self::STATE_APPROVED_WITH_DRAFT,
-        ];
-    }
-    
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getVersionAllowableValues()
-    {
-        return [
-            self::VERSION_DRAFT,
-            self::VERSION_APPROVED,
-        ];
-    }
     
 
     /**
@@ -276,6 +215,38 @@ class ObjectMetaData implements ModelInterface, ArrayAccess
         $this->container['updated_at'] = isset($data['updated_at']) ? $data['updated_at'] : null;
         $this->container['state'] = isset($data['state']) ? $data['state'] : null;
         $this->container['version'] = isset($data['version']) ? $data['version'] : null;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function setters()
+    {
+        return self::$setters;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function getters()
+    {
+        return self::$getters;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getModelName()
+    {
+        return self::$swaggerModelName;
     }
 
     /**
@@ -347,7 +318,36 @@ class ObjectMetaData implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
+    
 
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getStateAllowableValues()
+    {
+        return [
+            self::STATE_DRAFT,
+            self::STATE_APPROVED,
+            self::STATE_APPROVED_WITH_DRAFT,
+        ];
+    }
+    
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getVersionAllowableValues()
+    {
+        return [
+            self::VERSION_DRAFT,
+            self::VERSION_APPROVED,
+        ];
+    }
+    
 
     /**
      * Gets created_at

@@ -145,6 +145,31 @@ class CustomActivityTypeRequest implements ModelInterface, ArrayAccess
         'trigger_name' => 'getTriggerName'
     ];
 
+    
+
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
+
+    /**
+     * Constructor
+     *
+     * @param mixed[] $data Associated array of property values
+     *                      initializing the model
+     */
+    public function __construct(array $data = null)
+    {
+        $this->container['api_name'] = isset($data['api_name']) ? $data['api_name'] : null;
+        $this->container['description'] = isset($data['description']) ? $data['description'] : null;
+        $this->container['filter_name'] = isset($data['filter_name']) ? $data['filter_name'] : null;
+        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
+        $this->container['primary_attribute'] = isset($data['primary_attribute']) ? $data['primary_attribute'] : null;
+        $this->container['trigger_name'] = isset($data['trigger_name']) ? $data['trigger_name'] : null;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -175,33 +200,6 @@ class CustomActivityTypeRequest implements ModelInterface, ArrayAccess
     public function getModelName()
     {
         return self::$swaggerModelName;
-    }
-
-    
-
-    
-
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-
-    /**
-     * Constructor
-     *
-     * @param mixed[] $data Associated array of property values
-     *                      initializing the model
-     */
-    public function __construct(array $data = null)
-    {
-        $this->container['api_name'] = isset($data['api_name']) ? $data['api_name'] : null;
-        $this->container['description'] = isset($data['description']) ? $data['description'] : null;
-        $this->container['filter_name'] = isset($data['filter_name']) ? $data['filter_name'] : null;
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['primary_attribute'] = isset($data['primary_attribute']) ? $data['primary_attribute'] : null;
-        $this->container['trigger_name'] = isset($data['trigger_name']) ? $data['trigger_name'] : null;
     }
 
     /**
@@ -236,7 +234,7 @@ class CustomActivityTypeRequest implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
+    
 
     /**
      * Gets api_name

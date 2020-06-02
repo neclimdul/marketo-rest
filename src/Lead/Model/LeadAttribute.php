@@ -145,6 +145,31 @@ class LeadAttribute implements ModelInterface, ArrayAccess
         'soap' => 'getSoap'
     ];
 
+    
+
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
+
+    /**
+     * Constructor
+     *
+     * @param mixed[] $data Associated array of property values
+     *                      initializing the model
+     */
+    public function __construct(array $data = null)
+    {
+        $this->container['data_type'] = isset($data['data_type']) ? $data['data_type'] : null;
+        $this->container['display_name'] = isset($data['display_name']) ? $data['display_name'] : null;
+        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
+        $this->container['length'] = isset($data['length']) ? $data['length'] : null;
+        $this->container['rest'] = isset($data['rest']) ? $data['rest'] : null;
+        $this->container['soap'] = isset($data['soap']) ? $data['soap'] : null;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -177,33 +202,6 @@ class LeadAttribute implements ModelInterface, ArrayAccess
         return self::$swaggerModelName;
     }
 
-    
-
-    
-
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-
-    /**
-     * Constructor
-     *
-     * @param mixed[] $data Associated array of property values
-     *                      initializing the model
-     */
-    public function __construct(array $data = null)
-    {
-        $this->container['data_type'] = isset($data['data_type']) ? $data['data_type'] : null;
-        $this->container['display_name'] = isset($data['display_name']) ? $data['display_name'] : null;
-        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
-        $this->container['length'] = isset($data['length']) ? $data['length'] : null;
-        $this->container['rest'] = isset($data['rest']) ? $data['rest'] : null;
-        $this->container['soap'] = isset($data['soap']) ? $data['soap'] : null;
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -230,7 +228,7 @@ class LeadAttribute implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
+    
 
     /**
      * Gets data_type

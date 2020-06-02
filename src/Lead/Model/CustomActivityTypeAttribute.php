@@ -140,6 +140,41 @@ class CustomActivityTypeAttribute implements ModelInterface, ArrayAccess
         'name' => 'getName'
     ];
 
+    const DATA_TYPE_STRING = 'string';
+    const DATA_TYPE_BOOLEAN = 'boolean';
+    const DATA_TYPE_INTEGER = 'integer';
+    const DATA_TYPE_FLOAT = 'float';
+    const DATA_TYPE_LINK = 'link';
+    const DATA_TYPE_EMAIL = 'email';
+    const DATA_TYPE_CURRENCY = 'currency';
+    const DATA_TYPE_DATE = 'date';
+    const DATA_TYPE_DATETIME = 'datetime';
+    const DATA_TYPE_PHONE = 'phone';
+    const DATA_TYPE_TEXT = 'text';
+    
+
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
+
+    /**
+     * Constructor
+     *
+     * @param mixed[] $data Associated array of property values
+     *                      initializing the model
+     */
+    public function __construct(array $data = null)
+    {
+        $this->container['api_name'] = isset($data['api_name']) ? $data['api_name'] : null;
+        $this->container['data_type'] = isset($data['data_type']) ? $data['data_type'] : null;
+        $this->container['description'] = isset($data['description']) ? $data['description'] : null;
+        $this->container['is_primary'] = isset($data['is_primary']) ? $data['is_primary'] : null;
+        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -170,65 +205,6 @@ class CustomActivityTypeAttribute implements ModelInterface, ArrayAccess
     public function getModelName()
     {
         return self::$swaggerModelName;
-    }
-
-    const DATA_TYPE_STRING = 'string';
-    const DATA_TYPE_BOOLEAN = 'boolean';
-    const DATA_TYPE_INTEGER = 'integer';
-    const DATA_TYPE_FLOAT = 'float';
-    const DATA_TYPE_LINK = 'link';
-    const DATA_TYPE_EMAIL = 'email';
-    const DATA_TYPE_CURRENCY = 'currency';
-    const DATA_TYPE_DATE = 'date';
-    const DATA_TYPE_DATETIME = 'datetime';
-    const DATA_TYPE_PHONE = 'phone';
-    const DATA_TYPE_TEXT = 'text';
-    
-
-    
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getDataTypeAllowableValues()
-    {
-        return [
-            self::DATA_TYPE_STRING,
-            self::DATA_TYPE_BOOLEAN,
-            self::DATA_TYPE_INTEGER,
-            self::DATA_TYPE_FLOAT,
-            self::DATA_TYPE_LINK,
-            self::DATA_TYPE_EMAIL,
-            self::DATA_TYPE_CURRENCY,
-            self::DATA_TYPE_DATE,
-            self::DATA_TYPE_DATETIME,
-            self::DATA_TYPE_PHONE,
-            self::DATA_TYPE_TEXT,
-        ];
-    }
-    
-
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-
-    /**
-     * Constructor
-     *
-     * @param mixed[] $data Associated array of property values
-     *                      initializing the model
-     */
-    public function __construct(array $data = null)
-    {
-        $this->container['api_name'] = isset($data['api_name']) ? $data['api_name'] : null;
-        $this->container['data_type'] = isset($data['data_type']) ? $data['data_type'] : null;
-        $this->container['description'] = isset($data['description']) ? $data['description'] : null;
-        $this->container['is_primary'] = isset($data['is_primary']) ? $data['is_primary'] : null;
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
     }
 
     /**
@@ -262,7 +238,30 @@ class CustomActivityTypeAttribute implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
+    
 
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getDataTypeAllowableValues()
+    {
+        return [
+            self::DATA_TYPE_STRING,
+            self::DATA_TYPE_BOOLEAN,
+            self::DATA_TYPE_INTEGER,
+            self::DATA_TYPE_FLOAT,
+            self::DATA_TYPE_LINK,
+            self::DATA_TYPE_EMAIL,
+            self::DATA_TYPE_CURRENCY,
+            self::DATA_TYPE_DATE,
+            self::DATA_TYPE_DATETIME,
+            self::DATA_TYPE_PHONE,
+            self::DATA_TYPE_TEXT,
+        ];
+    }
+    
 
     /**
      * Gets api_name

@@ -145,6 +145,31 @@ class ThankYouPageRequest implements ModelInterface, ArrayAccess
         'values' => 'getValues'
     ];
 
+    
+
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
+
+    /**
+     * Constructor
+     *
+     * @param mixed[] $data Associated array of property values
+     *                      initializing the model
+     */
+    public function __construct(array $data = null)
+    {
+        $this->container['default'] = isset($data['default']) ? $data['default'] : null;
+        $this->container['followup_type'] = isset($data['followup_type']) ? $data['followup_type'] : null;
+        $this->container['followup_value'] = isset($data['followup_value']) ? $data['followup_value'] : null;
+        $this->container['operator'] = isset($data['operator']) ? $data['operator'] : null;
+        $this->container['subject_field'] = isset($data['subject_field']) ? $data['subject_field'] : null;
+        $this->container['values'] = isset($data['values']) ? $data['values'] : null;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -175,33 +200,6 @@ class ThankYouPageRequest implements ModelInterface, ArrayAccess
     public function getModelName()
     {
         return self::$swaggerModelName;
-    }
-
-    
-
-    
-
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-
-    /**
-     * Constructor
-     *
-     * @param mixed[] $data Associated array of property values
-     *                      initializing the model
-     */
-    public function __construct(array $data = null)
-    {
-        $this->container['default'] = isset($data['default']) ? $data['default'] : null;
-        $this->container['followup_type'] = isset($data['followup_type']) ? $data['followup_type'] : null;
-        $this->container['followup_value'] = isset($data['followup_value']) ? $data['followup_value'] : null;
-        $this->container['operator'] = isset($data['operator']) ? $data['operator'] : null;
-        $this->container['subject_field'] = isset($data['subject_field']) ? $data['subject_field'] : null;
-        $this->container['values'] = isset($data['values']) ? $data['values'] : null;
     }
 
     /**
@@ -236,7 +234,7 @@ class ThankYouPageRequest implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
+    
 
     /**
      * Gets default

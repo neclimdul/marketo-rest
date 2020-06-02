@@ -170,59 +170,10 @@ class CustomActivityType implements ModelInterface, ArrayAccess
         'updated_at' => 'getUpdatedAt'
     ];
 
-    /**
-     * {@inheritdoc}
-     */
-    public static function attributeMap()
-    {
-        return self::$attributeMap;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function setters()
-    {
-        return self::$setters;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function getters()
-    {
-        return self::$getters;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getModelName()
-    {
-        return self::$swaggerModelName;
-    }
-
     const STATUS_DRAFT = 'draft';
     const STATUS_APPROVED = 'approved';
     const STATUS_DELETED = 'deleted';
     const STATUS_APPROVED_WITH_DRAFT = 'approved with draft';
-    
-
-    
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getStatusAllowableValues()
-    {
-        return [
-            self::STATUS_DRAFT,
-            self::STATUS_APPROVED,
-            self::STATUS_DELETED,
-            self::STATUS_APPROVED_WITH_DRAFT,
-        ];
-    }
     
 
     /**
@@ -256,6 +207,38 @@ class CustomActivityType implements ModelInterface, ArrayAccess
     /**
      * {@inheritdoc}
      */
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function setters()
+    {
+        return self::$setters;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function getters()
+    {
+        return self::$getters;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getModelName()
+    {
+        return self::$swaggerModelName;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function listInvalidProperties()
     {
         $invalidProperties = [];
@@ -278,7 +261,23 @@ class CustomActivityType implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
+    
 
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getStatusAllowableValues()
+    {
+        return [
+            self::STATUS_DRAFT,
+            self::STATUS_APPROVED,
+            self::STATUS_DELETED,
+            self::STATUS_APPROVED_WITH_DRAFT,
+        ];
+    }
+    
 
     /**
      * Gets api_name

@@ -145,6 +145,31 @@ class UpdateEmailMetaDataRequest implements ModelInterface, ArrayAccess
         'web_view' => 'getWebView'
     ];
 
+    
+
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
+
+    /**
+     * Constructor
+     *
+     * @param mixed[] $data Associated array of property values
+     *                      initializing the model
+     */
+    public function __construct(array $data = null)
+    {
+        $this->container['description'] = isset($data['description']) ? $data['description'] : null;
+        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
+        $this->container['operational'] = isset($data['operational']) ? $data['operational'] : null;
+        $this->container['published'] = isset($data['published']) ? $data['published'] : null;
+        $this->container['text_only'] = isset($data['text_only']) ? $data['text_only'] : null;
+        $this->container['web_view'] = isset($data['web_view']) ? $data['web_view'] : null;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -177,33 +202,6 @@ class UpdateEmailMetaDataRequest implements ModelInterface, ArrayAccess
         return self::$swaggerModelName;
     }
 
-    
-
-    
-
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-
-    /**
-     * Constructor
-     *
-     * @param mixed[] $data Associated array of property values
-     *                      initializing the model
-     */
-    public function __construct(array $data = null)
-    {
-        $this->container['description'] = isset($data['description']) ? $data['description'] : null;
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['operational'] = isset($data['operational']) ? $data['operational'] : null;
-        $this->container['published'] = isset($data['published']) ? $data['published'] : null;
-        $this->container['text_only'] = isset($data['text_only']) ? $data['text_only'] : null;
-        $this->container['web_view'] = isset($data['web_view']) ? $data['web_view'] : null;
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -221,7 +219,7 @@ class UpdateEmailMetaDataRequest implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
+    
 
     /**
      * Gets description
