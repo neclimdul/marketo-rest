@@ -88,7 +88,7 @@ $apiInstance = new NecLimDul\MarketoRest\Lead\Api\ActivitiesApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$api_name = "api_name_example"; // string | API Name of the activity type
+$api_name = 'api_name_example'; // string | API Name of the activity type
 
 try {
     $result = $apiInstance->approveCustomActivityTypeUsingPOST($api_name);
@@ -115,7 +115,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -137,7 +137,7 @@ $apiInstance = new NecLimDul\MarketoRest\Lead\Api\ActivitiesApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$api_name = "api_name_example"; // string | API Name of the activity type
+$api_name = 'api_name_example'; // string | API Name of the activity type
 $custom_activity_type_attribute_request = new \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest(); // \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest | customActivityTypeAttributeRequest
 
 try {
@@ -237,7 +237,7 @@ $apiInstance = new NecLimDul\MarketoRest\Lead\Api\ActivitiesApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$api_name = "api_name_example"; // string | API Name of the activity type
+$api_name = 'api_name_example'; // string | API Name of the activity type
 $custom_activity_type_attribute_request = new \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest(); // \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest | customActivityTypeAttributeRequest
 
 try {
@@ -288,7 +288,7 @@ $apiInstance = new NecLimDul\MarketoRest\Lead\Api\ActivitiesApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$api_name = "api_name_example"; // string | API Name of the activity type
+$api_name = 'api_name_example'; // string | API Name of the activity type
 
 try {
     $result = $apiInstance->deleteCustomActivityTypeUsingPOST($api_name);
@@ -315,7 +315,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -337,8 +337,8 @@ $apiInstance = new NecLimDul\MarketoRest\Lead\Api\ActivitiesApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$api_name = "api_name_example"; // string | API Name of the activity type
-$draft = true; // bool | draft
+$api_name = 'api_name_example'; // string | API Name of the activity type
+$draft = True; // bool | draft
 
 try {
     $result = $apiInstance->describeCustomActivityTypeUsingGET($api_name, $draft);
@@ -366,7 +366,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -388,7 +388,7 @@ $apiInstance = new NecLimDul\MarketoRest\Lead\Api\ActivitiesApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$api_name = "api_name_example"; // string | API Name of the activity type
+$api_name = 'api_name_example'; // string | API Name of the activity type
 
 try {
     $result = $apiInstance->discardDraftofCustomActivityTypeUsingPOST($api_name);
@@ -415,7 +415,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -464,7 +464,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -509,7 +509,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -554,7 +554,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -576,7 +576,7 @@ $apiInstance = new NecLimDul\MarketoRest\Lead\Api\ActivitiesApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$next_page_token = "next_page_token_example"; // string | Token representation of a datetime returned by the Get Paging Token endpoint.  This endpoint will return activities after this datetime
+$next_page_token = 'next_page_token_example'; // string | Token representation of a datetime returned by the Get Paging Token endpoint.  This endpoint will return activities after this datetime
 $batch_size = 56; // int | Maximum number of records to return.  Maximum and default is 300.
 
 try {
@@ -605,7 +605,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -627,7 +627,7 @@ $apiInstance = new NecLimDul\MarketoRest\Lead\Api\ActivitiesApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$next_page_token = "next_page_token_example"; // string | Token representation of a datetime returned by the Get Paging Token endpoint.  This endpoint will return activities after this datetime
+$next_page_token = 'next_page_token_example'; // string | Token representation of a datetime returned by the Get Paging Token endpoint.  This endpoint will return activities after this datetime
 $activity_type_ids = array(56); // int[] | Comma-separated list of activity type ids. These can be retrieved with the Get Activity Types API.
 $asset_ids = array(56); // int[] | Id of the primary asset for an activity.  This is based on the primary asset id of a given activity type.  Should only be used when a single activity type is set
 $list_id = 56; // int | Id of a static list.  If set, will only return activities of members of this static list.
@@ -664,7 +664,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -686,8 +686,8 @@ $apiInstance = new NecLimDul\MarketoRest\Lead\Api\ActivitiesApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$next_page_token = "next_page_token_example"; // string | Token representation of a datetime returned by the Get Paging Token endpoint.  This endpoint will return activities after this datetime
-$fields = array("fields_example"); // string[] | Comma-separated list of field names to return changes for.  Field names can be retrieved with the Describe Lead API.
+$next_page_token = 'next_page_token_example'; // string | Token representation of a datetime returned by the Get Paging Token endpoint.  This endpoint will return activities after this datetime
+$fields = array('fields_example'); // string[] | Comma-separated list of field names to return changes for.  Field names can be retrieved with the Describe Lead API.
 $list_id = 56; // int | Id of a static list.  If set, will only return activities of members of this static list.
 $lead_ids = array(56); // int[] | Comma-separated list of lead ids.  If set, will only return activities of the leads with these ids.  Allows up to 30 entries.
 $batch_size = 56; // int | Maximum number of records to return.  Maximum and default is 300.
@@ -721,7 +721,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -743,7 +743,7 @@ $apiInstance = new NecLimDul\MarketoRest\Lead\Api\ActivitiesApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$api_name = "api_name_example"; // string | API Name of the activity type
+$api_name = 'api_name_example'; // string | API Name of the activity type
 $custom_activity_type_attribute_request = new \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest(); // \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest | customActivityTypeAttributeRequest
 
 try {
@@ -794,7 +794,7 @@ $apiInstance = new NecLimDul\MarketoRest\Lead\Api\ActivitiesApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$api_name = "api_name_example"; // string | API Name of the activity type
+$api_name = 'api_name_example'; // string | API Name of the activity type
 $custom_activity_type_request = new \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeRequest(); // \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeRequest | customActivityTypeRequest
 
 try {

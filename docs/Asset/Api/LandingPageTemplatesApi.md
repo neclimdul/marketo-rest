@@ -61,13 +61,13 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **cloneLpTemplateUsingPOST**
-> \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse cloneLpTemplateUsingPOST($id, $clone_lp_template_request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse cloneLpTemplateUsingPOST($id, $folder, $name, $description)
 
 Clone Landing Page Template
 
@@ -84,10 +84,12 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPageTemplatesApi(
     new GuzzleHttp\Client()
 );
 $id = 56; // int | id
-$clone_lp_template_request = new \NecLimDul\MarketoRest\Asset\Model\CloneLpTemplateRequest(); // \NecLimDul\MarketoRest\Asset\Model\CloneLpTemplateRequest | cloneLpTemplateRequest
+$folder = new \NecLimDul\MarketoRest\Asset\Model\Folder(); // \NecLimDul\MarketoRest\Asset\Model\Folder | 
+$name = 'name_example'; // string | Name of the landing page template
+$description = 'description_example'; // string | Description of the landing page template
 
 try {
-    $result = $apiInstance->cloneLpTemplateUsingPOST($id, $clone_lp_template_request);
+    $result = $apiInstance->cloneLpTemplateUsingPOST($id, $folder, $name, $description);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling LandingPageTemplatesApi->cloneLpTemplateUsingPOST: ', $e->getMessage(), PHP_EOL;
@@ -100,7 +102,9 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| id |
- **clone_lp_template_request** | [**\NecLimDul\MarketoRest\Asset\Model\CloneLpTemplateRequest**](../Model/CloneLpTemplateRequest.md)| cloneLpTemplateRequest |
+ **folder** | [**\NecLimDul\MarketoRest\Asset\Model\Folder**](../Model/Folder.md)|  |
+ **name** | **string**| Name of the landing page template |
+ **description** | **string**| Description of the landing page template | [optional]
 
 ### Return type
 
@@ -118,7 +122,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **createLpTemplateUsingPOST**
-> \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse createLpTemplateUsingPOST($create_lp_template_request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse createLpTemplateUsingPOST($folder, $name, $description, $enable_munchkin, $template_type)
 
 Create Landing Page Template
 
@@ -134,10 +138,14 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPageTemplatesApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$create_lp_template_request = new \NecLimDul\MarketoRest\Asset\Model\CreateLpTemplateRequest(); // \NecLimDul\MarketoRest\Asset\Model\CreateLpTemplateRequest | createLpTemplateRequest
+$folder = new \NecLimDul\MarketoRest\Asset\Model\Folder(); // \NecLimDul\MarketoRest\Asset\Model\Folder | 
+$name = 'name_example'; // string | Name of the landing page template
+$description = 'description_example'; // string | Description of the landing page template
+$enable_munchkin = True; // bool | Whether to enable munchkin on the derived pages.  Defaults to true
+$template_type = 'template_type_example'; // string | Type of template to create.  Defaults to freeForm
 
 try {
-    $result = $apiInstance->createLpTemplateUsingPOST($create_lp_template_request);
+    $result = $apiInstance->createLpTemplateUsingPOST($folder, $name, $description, $enable_munchkin, $template_type);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling LandingPageTemplatesApi->createLpTemplateUsingPOST: ', $e->getMessage(), PHP_EOL;
@@ -149,7 +157,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_lp_template_request** | [**\NecLimDul\MarketoRest\Asset\Model\CreateLpTemplateRequest**](../Model/CreateLpTemplateRequest.md)| createLpTemplateRequest |
+ **folder** | [**\NecLimDul\MarketoRest\Asset\Model\Folder**](../Model/Folder.md)|  |
+ **name** | **string**| Name of the landing page template |
+ **description** | **string**| Description of the landing page template | [optional]
+ **enable_munchkin** | **bool**| Whether to enable munchkin on the derived pages.  Defaults to true | [optional]
+ **template_type** | **string**| Type of template to create.  Defaults to freeForm | [optional]
 
 ### Return type
 
@@ -210,7 +222,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -259,7 +271,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -282,7 +294,7 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPageTemplatesApi(
     new GuzzleHttp\Client()
 );
 $id = 56; // int | id
-$status = "status_example"; // string | Status filter for draft or approved versions
+$status = 'status_example'; // string | Status filter for draft or approved versions
 
 try {
     $result = $apiInstance->getLandingPageTemplateByIdUsingGET($id, $status);
@@ -310,7 +322,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -332,7 +344,7 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPageTemplatesApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$name = "name_example"; // string | Name of the landing page template
+$name = 'name_example'; // string | Name of the landing page template
 
 try {
     $result = $apiInstance->getLandingPageTemplateByNameUsingGET($name);
@@ -359,7 +371,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -382,7 +394,7 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPageTemplatesApi(
     new GuzzleHttp\Client()
 );
 $id = 56; // int | id
-$status = "status_example"; // string | Status filter for draft or approved versions
+$status = 'status_example'; // string | Status filter for draft or approved versions
 
 try {
     $result = $apiInstance->getLandingPageTemplateContentUsingGET($id, $status);
@@ -410,7 +422,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -434,8 +446,8 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPageTemplatesApi(
 );
 $max_return = 56; // int | Maximum number of channels to return.  Max 200, default 20
 $offset = 56; // int | Integer offset for paging
-$status = "status_example"; // string | Status filter for draft or approved versions
-$folder = "folder_example"; // string | JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
+$status = 'status_example'; // string | Status filter for draft or approved versions
+$folder = 'folder_example'; // string | JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
 
 try {
     $result = $apiInstance->getLandingPageTemplatesUsingGET($max_return, $offset, $status, $folder);
@@ -465,7 +477,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -514,13 +526,13 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **updateLpTemplateUsingPOST**
-> \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse updateLpTemplateUsingPOST($id, $update_lp_template_request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse updateLpTemplateUsingPOST($id, $description, $enable_munchkin, $name)
 
 Update Landing Page Template Metadata
 
@@ -537,10 +549,12 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPageTemplatesApi(
     new GuzzleHttp\Client()
 );
 $id = 56; // int | id
-$update_lp_template_request = new \NecLimDul\MarketoRest\Asset\Model\UpdateLpTemplateRequest(); // \NecLimDul\MarketoRest\Asset\Model\UpdateLpTemplateRequest | updateLpTemplateRequest
+$description = 'description_example'; // string | Description of the landing page template
+$enable_munchkin = True; // bool | Whether to enable munchkin on the derived pages.  Defaults to true
+$name = 'name_example'; // string | Name of the landing page template
 
 try {
-    $result = $apiInstance->updateLpTemplateUsingPOST($id, $update_lp_template_request);
+    $result = $apiInstance->updateLpTemplateUsingPOST($id, $description, $enable_munchkin, $name);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling LandingPageTemplatesApi->updateLpTemplateUsingPOST: ', $e->getMessage(), PHP_EOL;
@@ -553,7 +567,9 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| id |
- **update_lp_template_request** | [**\NecLimDul\MarketoRest\Asset\Model\UpdateLpTemplateRequest**](../Model/UpdateLpTemplateRequest.md)| updateLpTemplateRequest |
+ **description** | **string**| Description of the landing page template | [optional]
+ **enable_munchkin** | **bool**| Whether to enable munchkin on the derived pages.  Defaults to true | [optional]
+ **name** | **string**| Name of the landing page template | [optional]
 
 ### Return type
 

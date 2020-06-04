@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 
 # **addTokenTOFolderUsingPOST**
-> \NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse addTokenTOFolderUsingPOST($id, $create_token_request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse addTokenTOFolderUsingPOST($id, $folder_type, $name, $type, $value)
 
 Create Token
 
@@ -27,10 +27,13 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\TokensApi(
     new GuzzleHttp\Client()
 );
 $id = 56; // int | id
-$create_token_request = new \NecLimDul\MarketoRest\Asset\Model\CreateTokenRequest(); // \NecLimDul\MarketoRest\Asset\Model\CreateTokenRequest | createTokenRequest
+$folder_type = 'folder_type_example'; // string | Type of folder.  'Folder' or 'Program'
+$name = 'name_example'; // string | Name of the token
+$type = 'type_example'; // string | Type of the token
+$value = 'value_example'; // string | Value of the token
 
 try {
-    $result = $apiInstance->addTokenTOFolderUsingPOST($id, $create_token_request);
+    $result = $apiInstance->addTokenTOFolderUsingPOST($id, $folder_type, $name, $type, $value);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling TokensApi->addTokenTOFolderUsingPOST: ', $e->getMessage(), PHP_EOL;
@@ -43,7 +46,10 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| id |
- **create_token_request** | [**\NecLimDul\MarketoRest\Asset\Model\CreateTokenRequest**](../Model/CreateTokenRequest.md)| createTokenRequest |
+ **folder_type** | **string**| Type of folder.  &#39;Folder&#39; or &#39;Program&#39; |
+ **name** | **string**| Name of the token |
+ **type** | **string**| Type of the token |
+ **value** | **string**| Value of the token |
 
 ### Return type
 
@@ -61,7 +67,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **deleteTokenByNameUsingPOST**
-> \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse deleteTokenByNameUsingPOST($id, $delete_token_request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse deleteTokenByNameUsingPOST($id, $folder_type, $name, $type)
 
 Delete Token by Name
 
@@ -78,10 +84,12 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\TokensApi(
     new GuzzleHttp\Client()
 );
 $id = 56; // int | id
-$delete_token_request = new \NecLimDul\MarketoRest\Asset\Model\DeleteTokenRequest(); // \NecLimDul\MarketoRest\Asset\Model\DeleteTokenRequest | deleteTokenRequest
+$folder_type = 'folder_type_example'; // string | 
+$name = 'name_example'; // string | 
+$type = 'type_example'; // string | 
 
 try {
-    $result = $apiInstance->deleteTokenByNameUsingPOST($id, $delete_token_request);
+    $result = $apiInstance->deleteTokenByNameUsingPOST($id, $folder_type, $name, $type);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling TokensApi->deleteTokenByNameUsingPOST: ', $e->getMessage(), PHP_EOL;
@@ -94,7 +102,9 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| id |
- **delete_token_request** | [**\NecLimDul\MarketoRest\Asset\Model\DeleteTokenRequest**](../Model/DeleteTokenRequest.md)| deleteTokenRequest |
+ **folder_type** | **string**|  | [optional]
+ **name** | **string**|  | [optional]
+ **type** | **string**|  | [optional]
 
 ### Return type
 
@@ -129,7 +139,7 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\TokensApi(
     new GuzzleHttp\Client()
 );
 $id = 56; // int | id
-$folder_type = "Folder"; // string | Type of folder.  'Folder' or 'Program'
+$folder_type = 'Folder'; // string | Type of folder.  'Folder' or 'Program'
 
 try {
     $result = $apiInstance->getTokensByFolderIdUsingGET($id, $folder_type);
@@ -145,7 +155,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| id |
- **folder_type** | **string**| Type of folder.  &#39;Folder&#39; or &#39;Program&#39; | [optional] [default to Folder]
+ **folder_type** | **string**| Type of folder.  &#39;Folder&#39; or &#39;Program&#39; | [optional] [default to &#39;Folder&#39;]
 
 ### Return type
 
@@ -157,7 +167,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)

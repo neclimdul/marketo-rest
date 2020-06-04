@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 
 # **createStaticListUsingPOST**
-> \NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse createStaticListUsingPOST($create_static_list_request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse createStaticListUsingPOST($name, $folder, $description)
 
 Create Static List
 
@@ -29,10 +29,12 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\StaticListsApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$create_static_list_request = new \NecLimDul\MarketoRest\Asset\Model\CreateStaticListRequest(); // \NecLimDul\MarketoRest\Asset\Model\CreateStaticListRequest | createStaticListRequest
+$name = 'name_example'; // string | Name of the static list
+$folder = new \NecLimDul\MarketoRest\Asset\Model\Folder(); // \NecLimDul\MarketoRest\Asset\Model\Folder | 
+$description = 'description_example'; // string | Description of the static list
 
 try {
-    $result = $apiInstance->createStaticListUsingPOST($create_static_list_request);
+    $result = $apiInstance->createStaticListUsingPOST($name, $folder, $description);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling StaticListsApi->createStaticListUsingPOST: ', $e->getMessage(), PHP_EOL;
@@ -44,7 +46,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_static_list_request** | [**\NecLimDul\MarketoRest\Asset\Model\CreateStaticListRequest**](../Model/CreateStaticListRequest.md)| createStaticListRequest |
+ **name** | **string**| Name of the static list |
+ **folder** | [**\NecLimDul\MarketoRest\Asset\Model\Folder**](../Model/Folder.md)|  |
+ **description** | **string**| Description of the static list | [optional]
 
 ### Return type
 
@@ -78,7 +82,7 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\StaticListsApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$id = 789; // int | Id of the static list to delete
+$id = 56; // int | Id of the static list to delete
 
 try {
     $result = $apiInstance->deleteStaticListByIdUsingPOST($id);
@@ -105,7 +109,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -127,7 +131,7 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\StaticListsApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$id = 789; // int | Id of the static list to retrieve
+$id = 56; // int | Id of the static list to retrieve
 
 try {
     $result = $apiInstance->getStaticListByIdUsingGET($id);
@@ -154,7 +158,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -176,7 +180,7 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\StaticListsApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$name = "name_example"; // string | Name of static list to retrieve
+$name = 'name_example'; // string | Name of static list to retrieve
 
 try {
     $result = $apiInstance->getStaticListByNameUsingGET($name);
@@ -203,7 +207,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -225,11 +229,11 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\StaticListsApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$folder = "folder_example"; // string | JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
+$folder = 'folder_example'; // string | JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
 $offset = 56; // int | Integer offset for paging
 $max_return = 56; // int | Maximum number of static lists to return.  Max 200, default 20.
-$earliest_updated_at = "earliest_updated_at_example"; // string | Exclude static lists prior to this date. Must be valid ISO-8601 string.  See <a href=\"http://developers.marketo.com/rest-api/lead-database/fields/field-types/\">Datetime</a> field type description.
-$latest_updated_at = "latest_updated_at_example"; // string | Exclude static lists after this date. Must be valid ISO-8601 string.  See <a href=\"http://developers.marketo.com/rest-api/lead-database/fields/field-types/\">Datetime</a> field type description.
+$earliest_updated_at = 'earliest_updated_at_example'; // string | Exclude static lists prior to this date. Must be valid ISO-8601 string.  See <a href=\"http://developers.marketo.com/rest-api/lead-database/fields/field-types/\">Datetime</a> field type description.
+$latest_updated_at = 'latest_updated_at_example'; // string | Exclude static lists after this date. Must be valid ISO-8601 string.  See <a href=\"http://developers.marketo.com/rest-api/lead-database/fields/field-types/\">Datetime</a> field type description.
 
 try {
     $result = $apiInstance->getStaticListsUsingGET($folder, $offset, $max_return, $earliest_updated_at, $latest_updated_at);
@@ -260,13 +264,13 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **updateStaticListUsingPOST**
-> \NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse updateStaticListUsingPOST($id, $update_static_list_request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse updateStaticListUsingPOST($id, $description, $name)
 
 Update Static List Metadata
 
@@ -283,10 +287,11 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\StaticListsApi(
     new GuzzleHttp\Client()
 );
 $id = 56; // int | Id of static list to update
-$update_static_list_request = new \NecLimDul\MarketoRest\Asset\Model\UpdateStaticListRequest(); // \NecLimDul\MarketoRest\Asset\Model\UpdateStaticListRequest | updateStaticListRequest
+$description = 'description_example'; // string | Description of the static list
+$name = 'name_example'; // string | Name of the static list
 
 try {
-    $result = $apiInstance->updateStaticListUsingPOST($id, $update_static_list_request);
+    $result = $apiInstance->updateStaticListUsingPOST($id, $description, $name);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling StaticListsApi->updateStaticListUsingPOST: ', $e->getMessage(), PHP_EOL;
@@ -299,7 +304,8 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| Id of static list to update |
- **update_static_list_request** | [**\NecLimDul\MarketoRest\Asset\Model\UpdateStaticListRequest**](../Model/UpdateStaticListRequest.md)| updateStaticListRequest |
+ **description** | **string**| Description of the static list | [optional]
+ **name** | **string**| Name of the static list | [optional]
 
 ### Return type
 

@@ -99,7 +99,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -121,11 +121,11 @@ $apiInstance = new NecLimDul\MarketoRest\Lead\Api\SalesPersonsApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$filter_type = "filter_type_example"; // string | The sales person field to filter on. Searchable fields can be retrieved with the Describe Sales Person call.
-$filter_values = array("filter_values_example"); // string[] | Comma seperated list of search values.
-$fields = array("fields_example"); // string[] | Comma-separated list of fields to include in the response
+$filter_type = 'filter_type_example'; // string | The sales person field to filter on. Searchable fields can be retrieved with the Describe Sales Person call.
+$filter_values = array('filter_values_example'); // string[] | Comma seperated list of search values.
+$fields = array('fields_example'); // string[] | Comma-separated list of fields to include in the response
 $batch_size = 56; // int | The batch size to return.  The max and default value is 300.
-$next_page_token = "next_page_token_example"; // string | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info.
+$next_page_token = 'next_page_token_example'; // string | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info.
 
 try {
     $result = $apiInstance->getSalesPersonUsingGET($filter_type, $filter_values, $fields, $batch_size, $next_page_token);
@@ -156,7 +156,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)

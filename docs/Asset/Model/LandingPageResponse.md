@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **custom_head_html** | **string** | Any custom HTML to embed in the &lt;head&gt; tag of the page | 
 **description** | **string** | Description of the asset | [optional] 
 **facebook_og_tags** | **string** | Any OpenGraph meta tags to apply to the page | 
-**folder** | [**\NecLimDul\MarketoRest\Asset\Model\Folder**](Folder.md) | JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39; | [optional] 
+**folder** | [**\NecLimDul\MarketoRest\Asset\Model\Folder**](Folder.md) |  | [optional] 
 **form_prefill** | **bool** | Boolean to toggle whether forms embedded in the page will prefill.  Default false | [optional] 
 **id** | **int** | Id of the asset | [optional] 
 **keywords** | **string** |  | [optional] 

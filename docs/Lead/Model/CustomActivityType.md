@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **filter_name** | **string** | Human-readable name for the associated filter of the activity type.  Required on creation | [optional] 
 **id** | **int** |  | [optional] 
 **name** | **string** | Human-readable display name of the type.  Required on creation | [optional] 
-**primary_attribute** | [**\NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttribute**](CustomActivityTypeAttribute.md) | Primary Attribute of the activity type.  Required on creation | [optional] 
+**primary_attribute** | [**\NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttribute**](CustomActivityTypeAttribute.md) |  | [optional] 
 **status** | **string** | State of the activity type | [optional] 
 **trigger_name** | **string** | Human-readable name for the associated trigger of the activity type.  Required on creation | [optional] 
 **updated_at** | **string** | Datetime when the activity type was most recently updated | [optional] 

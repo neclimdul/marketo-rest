@@ -62,7 +62,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -84,10 +84,10 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\FormsApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$folder = "folder_example"; // string | JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
-$status = "status_example"; // string | Status filter for draft or approved versions
-$max_return = "max_return_example"; // string | Maximum number of channels to return.  Max 200, default 20
-$offset = "offset_example"; // string | Integer offset for paging
+$folder = 'folder_example'; // string | JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
+$status = 'status_example'; // string | Status filter for draft or approved versions
+$max_return = 'max_return_example'; // string | Maximum number of channels to return.  Max 200, default 20
+$offset = 'offset_example'; // string | Integer offset for paging
 
 try {
     $result = $apiInstance->browseForms2UsingGET($folder, $status, $max_return, $offset);
@@ -117,13 +117,13 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **cloneLpFormsUsingPOST**
-> \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse cloneLpFormsUsingPOST($id, $clone_form_request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse cloneLpFormsUsingPOST($id, $name, $folder, $description)
 
 Clone Form
 
@@ -140,10 +140,12 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\FormsApi(
     new GuzzleHttp\Client()
 );
 $id = 56; // int | id
-$clone_form_request = new \NecLimDul\MarketoRest\Asset\Model\CloneFormRequest(); // \NecLimDul\MarketoRest\Asset\Model\CloneFormRequest | cloneFormRequest
+$name = 'name_example'; // string | Name for the cloned form
+$folder = new \NecLimDul\MarketoRest\Asset\Model\Folder(); // \NecLimDul\MarketoRest\Asset\Model\Folder | 
+$description = 'description_example'; // string | Description of the cloned form
 
 try {
-    $result = $apiInstance->cloneLpFormsUsingPOST($id, $clone_form_request);
+    $result = $apiInstance->cloneLpFormsUsingPOST($id, $name, $folder, $description);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling FormsApi->cloneLpFormsUsingPOST: ', $e->getMessage(), PHP_EOL;
@@ -156,7 +158,9 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| id |
- **clone_form_request** | [**\NecLimDul\MarketoRest\Asset\Model\CloneFormRequest**](../Model/CloneFormRequest.md)| cloneFormRequest | [optional]
+ **name** | **string**| Name for the cloned form |
+ **folder** | [**\NecLimDul\MarketoRest\Asset\Model\Folder**](../Model/Folder.md)|  |
+ **description** | **string**| Description of the cloned form | [optional]
 
 ### Return type
 
@@ -174,7 +178,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **createLpFormsUsingPOST**
-> \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse createLpFormsUsingPOST($create_form_request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse createLpFormsUsingPOST($folder, $description, $font_family, $font_size, $known_visitor, $label_position, $language, $locale, $name, $progressive_profiling, $theme)
 
 Create Form
 
@@ -190,10 +194,20 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\FormsApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$create_form_request = new \NecLimDul\MarketoRest\Asset\Model\CreateLpFormRequest(); // \NecLimDul\MarketoRest\Asset\Model\CreateLpFormRequest | createFormRequest
+$folder = new \NecLimDul\MarketoRest\Asset\Model\Folder(); // \NecLimDul\MarketoRest\Asset\Model\Folder | 
+$description = 'description_example'; // string | Description of the form
+$font_family = 'font_family_example'; // string | font-family property for the form
+$font_size = 'font_size_example'; // string | font-size property of the form
+$known_visitor = new \NecLimDul\MarketoRest\Asset\Model\FormKnownVisitorDTO(); // \NecLimDul\MarketoRest\Asset\Model\FormKnownVisitorDTO | 
+$label_position = 'label_position_example'; // string | Default positioning of labels.
+$language = 'language_example'; // string | Language of the form
+$locale = 'locale_example'; // string | Locale of the form
+$name = 'name_example'; // string | Name of the form
+$progressive_profiling = True; // bool | Whether progressive profiling is enabled for the form
+$theme = 'theme_example'; // string | CSS theme for the form to use
 
 try {
-    $result = $apiInstance->createLpFormsUsingPOST($create_form_request);
+    $result = $apiInstance->createLpFormsUsingPOST($folder, $description, $font_family, $font_size, $known_visitor, $label_position, $language, $locale, $name, $progressive_profiling, $theme);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling FormsApi->createLpFormsUsingPOST: ', $e->getMessage(), PHP_EOL;
@@ -205,7 +219,17 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_form_request** | [**\NecLimDul\MarketoRest\Asset\Model\CreateLpFormRequest**](../Model/CreateLpFormRequest.md)| createFormRequest |
+ **folder** | [**\NecLimDul\MarketoRest\Asset\Model\Folder**](../Model/Folder.md)|  |
+ **description** | **string**| Description of the form | [optional]
+ **font_family** | **string**| font-family property for the form | [optional]
+ **font_size** | **string**| font-size property of the form | [optional]
+ **known_visitor** | [**\NecLimDul\MarketoRest\Asset\Model\FormKnownVisitorDTO**](../Model/FormKnownVisitorDTO.md)|  | [optional]
+ **label_position** | **string**| Default positioning of labels. | [optional]
+ **language** | **string**| Language of the form | [optional]
+ **locale** | **string**| Locale of the form | [optional]
+ **name** | **string**| Name of the form | [optional]
+ **progressive_profiling** | **bool**| Whether progressive profiling is enabled for the form | [optional]
+ **theme** | **string**| CSS theme for the form to use | [optional]
 
 ### Return type
 
@@ -266,7 +290,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -315,7 +339,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -338,7 +362,7 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\FormsApi(
     new GuzzleHttp\Client()
 );
 $id = 56; // int | id
-$status = "status_example"; // string | Status filter for draft or approved versions
+$status = 'status_example'; // string | Status filter for draft or approved versions
 
 try {
     $result = $apiInstance->getLpFormByIdUsingGET($id, $status);
@@ -366,7 +390,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -388,9 +412,9 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\FormsApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$name = "name_example"; // string | Name of the form
-$status = "status_example"; // string | Status filter for draft or approved versions
-$folder = "folder_example"; // string | JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
+$name = 'name_example'; // string | Name of the form
+$status = 'status_example'; // string | Status filter for draft or approved versions
+$folder = 'folder_example'; // string | JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
 
 try {
     $result = $apiInstance->getLpFormByNameUsingGET($name, $status, $folder);
@@ -419,7 +443,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -442,7 +466,7 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\FormsApi(
     new GuzzleHttp\Client()
 );
 $id = 56; // int | id
-$status = "status_example"; // string | Status filter for draft or approved versions
+$status = 'status_example'; // string | Status filter for draft or approved versions
 
 try {
     $result = $apiInstance->getThankYouPageByIdUsingGET($id, $status);
@@ -470,13 +494,13 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **updateFormSubmitButtonUsingPOST**
-> \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse updateFormSubmitButtonUsingPOST($id, $submit_button_request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse updateFormSubmitButtonUsingPOST($id, $button_position, $button_style, $label, $waiting_label)
 
 Update Submit Button
 
@@ -493,10 +517,13 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\FormsApi(
     new GuzzleHttp\Client()
 );
 $id = 56; // int | id
-$submit_button_request = new \NecLimDul\MarketoRest\Asset\Model\SubmitButtonRequest(); // \NecLimDul\MarketoRest\Asset\Model\SubmitButtonRequest | submitButtonRequest
+$button_position = 56; // int | Location in pixels of the button relative to the left of the form
+$button_style = 'button_style_example'; // string | Style of the button
+$label = 'label_example'; // string | Label text of the button
+$waiting_label = 'waiting_label_example'; // string | Waiting text of the button
 
 try {
-    $result = $apiInstance->updateFormSubmitButtonUsingPOST($id, $submit_button_request);
+    $result = $apiInstance->updateFormSubmitButtonUsingPOST($id, $button_position, $button_style, $label, $waiting_label);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling FormsApi->updateFormSubmitButtonUsingPOST: ', $e->getMessage(), PHP_EOL;
@@ -509,7 +536,10 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| id |
- **submit_button_request** | [**\NecLimDul\MarketoRest\Asset\Model\SubmitButtonRequest**](../Model/SubmitButtonRequest.md)| submitButtonRequest |
+ **button_position** | **int**| Location in pixels of the button relative to the left of the form | [optional]
+ **button_style** | **string**| Style of the button | [optional]
+ **label** | **string**| Label text of the button | [optional]
+ **waiting_label** | **string**| Waiting text of the button | [optional]
 
 ### Return type
 
@@ -527,7 +557,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **updateFormsUsingPOST**
-> \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse updateFormsUsingPOST($id, $update_form_meta_data_request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse updateFormsUsingPOST($id, $custom_css, $description, $font_family, $font_size, $known_visitor, $label_position, $language, $locale, $name, $progressive_profiling, $theme)
 
 Update Form Metadata
 
@@ -544,10 +574,20 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\FormsApi(
     new GuzzleHttp\Client()
 );
 $id = 56; // int | id
-$update_form_meta_data_request = new \NecLimDul\MarketoRest\Asset\Model\UpdateFormMetaDataRequest(); // \NecLimDul\MarketoRest\Asset\Model\UpdateFormMetaDataRequest | updateFormMetaDataRequest
+$custom_css = 'custom_css_example'; // string | Custom CSS to apply to the form
+$description = 'description_example'; // string | Description of the form
+$font_family = 'font_family_example'; // string | font-family property for the form
+$font_size = 'font_size_example'; // string | font-size property of the form
+$known_visitor = new \NecLimDul\MarketoRest\Asset\Model\FormKnownVisitorDTO(); // \NecLimDul\MarketoRest\Asset\Model\FormKnownVisitorDTO | 
+$label_position = 'label_position_example'; // string | Default positioning of labels.
+$language = 'language_example'; // string | Language of the form
+$locale = 'locale_example'; // string | Locale of the form
+$name = 'name_example'; // string | Name of the form
+$progressive_profiling = True; // bool | Whether progressive profiling is enabled for the form
+$theme = 'theme_example'; // string | CSS theme for the form to use
 
 try {
-    $result = $apiInstance->updateFormsUsingPOST($id, $update_form_meta_data_request);
+    $result = $apiInstance->updateFormsUsingPOST($id, $custom_css, $description, $font_family, $font_size, $known_visitor, $label_position, $language, $locale, $name, $progressive_profiling, $theme);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling FormsApi->updateFormsUsingPOST: ', $e->getMessage(), PHP_EOL;
@@ -560,7 +600,17 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| id |
- **update_form_meta_data_request** | [**\NecLimDul\MarketoRest\Asset\Model\UpdateFormMetaDataRequest**](../Model/UpdateFormMetaDataRequest.md)| updateFormMetaDataRequest |
+ **custom_css** | **string**| Custom CSS to apply to the form | [optional]
+ **description** | **string**| Description of the form | [optional]
+ **font_family** | **string**| font-family property for the form | [optional]
+ **font_size** | **string**| font-size property of the form | [optional]
+ **known_visitor** | [**\NecLimDul\MarketoRest\Asset\Model\FormKnownVisitorDTO**](../Model/FormKnownVisitorDTO.md)|  | [optional]
+ **label_position** | **string**| Default positioning of labels. | [optional]
+ **language** | **string**| Language of the form | [optional]
+ **locale** | **string**| Locale of the form | [optional]
+ **name** | **string**| Name of the form | [optional]
+ **progressive_profiling** | **bool**| Whether progressive profiling is enabled for the form | [optional]
+ **theme** | **string**| CSS theme for the form to use | [optional]
 
 ### Return type
 
@@ -578,7 +628,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **updateThankYouPageByIdUsingPOST**
-> \NecLimDul\MarketoRest\Asset\Model\ResponseOfThankYouPageResponse updateThankYouPageByIdUsingPOST($id, $thank_you_page_request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfThankYouPageResponse updateThankYouPageByIdUsingPOST($id, $thankyou)
 
 Update Thank You Page
 
@@ -595,10 +645,10 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\FormsApi(
     new GuzzleHttp\Client()
 );
 $id = 56; // int | id
-$thank_you_page_request = new \NecLimDul\MarketoRest\Asset\Model\UpdateThankYouPageRequest(); // \NecLimDul\MarketoRest\Asset\Model\UpdateThankYouPageRequest | thankYouPageRequest
+$thankyou = new \NecLimDul\MarketoRest\Asset\Model\ThankYouPageRequest(); // \NecLimDul\MarketoRest\Asset\Model\ThankYouPageRequest[] | JSON array of followup rules
 
 try {
-    $result = $apiInstance->updateThankYouPageByIdUsingPOST($id, $thank_you_page_request);
+    $result = $apiInstance->updateThankYouPageByIdUsingPOST($id, $thankyou);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling FormsApi->updateThankYouPageByIdUsingPOST: ', $e->getMessage(), PHP_EOL;
@@ -611,7 +661,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| id |
- **thank_you_page_request** | [**\NecLimDul\MarketoRest\Asset\Model\UpdateThankYouPageRequest**](../Model/UpdateThankYouPageRequest.md)| thankYouPageRequest |
+ **thankyou** | [**\NecLimDul\MarketoRest\Asset\Model\ThankYouPageRequest[]**](../Model/\NecLimDul\MarketoRest\Asset\Model\ThankYouPageRequest.md)| JSON array of followup rules | [optional]
 
 ### Return type
 

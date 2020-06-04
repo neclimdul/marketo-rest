@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 
 # **updateContentUsingPOST**
-> \NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse updateContentUsingPOST($id, $request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse updateContentUsingPOST($id, $file, $id)
 
 Update File Content
 
@@ -25,10 +25,11 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\FileContentsApi(
     new GuzzleHttp\Client()
 );
 $id = 56; // int | Id for file in database
-$request = new \NecLimDul\MarketoRest\Asset\Model\UpdateFileContentRequest(); // \NecLimDul\MarketoRest\Asset\Model\UpdateFileContentRequest | request
+$file = 'file_example'; // string | Multipart file. Content of the file.
+$id = 56; // int | Id of the file
 
 try {
-    $result = $apiInstance->updateContentUsingPOST($id, $request);
+    $result = $apiInstance->updateContentUsingPOST($id, $file, $id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling FileContentsApi->updateContentUsingPOST: ', $e->getMessage(), PHP_EOL;
@@ -41,7 +42,8 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| Id for file in database |
- **request** | [**\NecLimDul\MarketoRest\Asset\Model\UpdateFileContentRequest**](../Model/UpdateFileContentRequest.md)| request |
+ **file** | **string**| Multipart file. Content of the file. |
+ **id** | **int**| Id of the file |
 
 ### Return type
 

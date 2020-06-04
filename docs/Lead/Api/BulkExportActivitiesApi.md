@@ -29,7 +29,7 @@ $apiInstance = new NecLimDul\MarketoRest\Lead\Api\BulkExportActivitiesApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$export_id = "export_id_example"; // string | Id of export batch job.
+$export_id = 'export_id_example'; // string | Id of export batch job.
 
 try {
     $result = $apiInstance->cancelExportActivitiesUsingPOST($export_id);
@@ -56,7 +56,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -127,7 +127,7 @@ $apiInstance = new NecLimDul\MarketoRest\Lead\Api\BulkExportActivitiesApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$export_id = "export_id_example"; // string | Id of export batch job.
+$export_id = 'export_id_example'; // string | Id of export batch job.
 
 try {
     $result = $apiInstance->enqueueExportActivitiesUsingPOST($export_id);
@@ -154,7 +154,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -176,8 +176,8 @@ $apiInstance = new NecLimDul\MarketoRest\Lead\Api\BulkExportActivitiesApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$export_id = "export_id_example"; // string | Id of export batch job.
-$range = "range_example"; // string | To support partial retrieval of extracted data, the HTTP header \"Range\" of type \"bytes\" may be specified.  See RFC 2616 \"Range Retrieval Requests\" for more information. If the header is not set, the entire contents will be returned.
+$export_id = 'export_id_example'; // string | Id of export batch job.
+$range = 'range_example'; // string | To support partial retrieval of extracted data, the HTTP header \"Range\" of type \"bytes\" may be specified.  See RFC 2616 \"Range Retrieval Requests\" for more information. If the header is not set, the entire contents will be returned.
 
 try {
     $result = $apiInstance->getExportActivitiesFileUsingGET($export_id, $range);
@@ -205,7 +205,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -227,7 +227,7 @@ $apiInstance = new NecLimDul\MarketoRest\Lead\Api\BulkExportActivitiesApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$export_id = "export_id_example"; // string | Id of export batch job.
+$export_id = 'export_id_example'; // string | Id of export batch job.
 
 try {
     $result = $apiInstance->getExportActivitiesStatusUsingGET($export_id);
@@ -254,7 +254,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -276,9 +276,9 @@ $apiInstance = new NecLimDul\MarketoRest\Lead\Api\BulkExportActivitiesApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$status = array("status_example"); // string[] | Comma separated list of statuses to filter on.
+$status = array('status_example'); // string[] | Comma separated list of statuses to filter on.
 $batch_size = 56; // int | The batch size to return. The max and default value is 300.
-$next_page_token = "next_page_token_example"; // string | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
+$next_page_token = 'next_page_token_example'; // string | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
 
 try {
     $result = $apiInstance->getExportActivitiesUsingGET($status, $batch_size, $next_page_token);
@@ -307,7 +307,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)

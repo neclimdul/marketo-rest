@@ -63,13 +63,13 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **cloneSnippetUsingPOST**
-> \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse cloneSnippetUsingPOST($id, $clone_snippet_request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse cloneSnippetUsingPOST($id, $name, $folder, $description)
 
 Clone Snippet
 
@@ -86,10 +86,12 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\SnippetsApi(
     new GuzzleHttp\Client()
 );
 $id = 56; // int | id
-$clone_snippet_request = new \NecLimDul\MarketoRest\Asset\Model\CloneSnippetRequest(); // \NecLimDul\MarketoRest\Asset\Model\CloneSnippetRequest | cloneSnippetRequest
+$name = 'name_example'; // string | Name for the cloned snippet
+$folder = new \NecLimDul\MarketoRest\Asset\Model\Folder(); // \NecLimDul\MarketoRest\Asset\Model\Folder | 
+$description = 'description_example'; // string | Description of the cloned snippet
 
 try {
-    $result = $apiInstance->cloneSnippetUsingPOST($id, $clone_snippet_request);
+    $result = $apiInstance->cloneSnippetUsingPOST($id, $name, $folder, $description);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling SnippetsApi->cloneSnippetUsingPOST: ', $e->getMessage(), PHP_EOL;
@@ -102,7 +104,9 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| id |
- **clone_snippet_request** | [**\NecLimDul\MarketoRest\Asset\Model\CloneSnippetRequest**](../Model/CloneSnippetRequest.md)| cloneSnippetRequest | [optional]
+ **name** | **string**| Name for the cloned snippet |
+ **folder** | [**\NecLimDul\MarketoRest\Asset\Model\Folder**](../Model/Folder.md)|  |
+ **description** | **string**| Description of the cloned snippet | [optional]
 
 ### Return type
 
@@ -120,7 +124,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **createSnippetUsingPOST**
-> \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse createSnippetUsingPOST($create_snippet_request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse createSnippetUsingPOST($folder, $name, $description)
 
 Create Snippet
 
@@ -136,10 +140,12 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\SnippetsApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$create_snippet_request = new \NecLimDul\MarketoRest\Asset\Model\CreateSnippetRequest(); // \NecLimDul\MarketoRest\Asset\Model\CreateSnippetRequest | createSnippetRequest
+$folder = new \NecLimDul\MarketoRest\Asset\Model\Folder(); // \NecLimDul\MarketoRest\Asset\Model\Folder | 
+$name = 'name_example'; // string | Name of the snippet
+$description = 'description_example'; // string | Description of the snippet
 
 try {
-    $result = $apiInstance->createSnippetUsingPOST($create_snippet_request);
+    $result = $apiInstance->createSnippetUsingPOST($folder, $name, $description);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling SnippetsApi->createSnippetUsingPOST: ', $e->getMessage(), PHP_EOL;
@@ -151,7 +157,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_snippet_request** | [**\NecLimDul\MarketoRest\Asset\Model\CreateSnippetRequest**](../Model/CreateSnippetRequest.md)| createSnippetRequest |
+ **folder** | [**\NecLimDul\MarketoRest\Asset\Model\Folder**](../Model/Folder.md)|  |
+ **name** | **string**| Name of the snippet |
+ **description** | **string**| Description of the snippet | [optional]
 
 ### Return type
 
@@ -212,7 +220,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -261,7 +269,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -284,7 +292,7 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\SnippetsApi(
     new GuzzleHttp\Client()
 );
 $id = 56; // int | id
-$status = "status_example"; // string | Status filter for draft or approved versions
+$status = 'status_example'; // string | Status filter for draft or approved versions
 
 try {
     $result = $apiInstance->getDynamicContentUsingGET($id, $status);
@@ -312,7 +320,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -335,7 +343,7 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\SnippetsApi(
     new GuzzleHttp\Client()
 );
 $id = 56; // int | id
-$status = "status_example"; // string | Status filter for draft or approved versions
+$status = 'status_example'; // string | Status filter for draft or approved versions
 
 try {
     $result = $apiInstance->getSnippetByIdUsingGET($id, $status);
@@ -363,7 +371,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -386,7 +394,7 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\SnippetsApi(
     new GuzzleHttp\Client()
 );
 $id = 56; // int | id
-$status = "status_example"; // string | Status filter for draft or approved versions
+$status = 'status_example'; // string | Status filter for draft or approved versions
 
 try {
     $result = $apiInstance->getSnippetContentByIdUsingGET($id, $status);
@@ -414,7 +422,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -436,7 +444,7 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\SnippetsApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$status = "status_example"; // string | Status filter for draft or approved versions
+$status = 'status_example'; // string | Status filter for draft or approved versions
 $max_return = 56; // int | Maximum number of channels to return.  Max 200, default 20
 $offset = 56; // int | Integer offset for paging
 
@@ -467,7 +475,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -516,7 +524,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -539,8 +547,8 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\SnippetsApi(
     new GuzzleHttp\Client()
 );
 $id = 56; // int | id
-$content = "content_example"; // string | Content of the snippet
-$type = "type_example"; // string | Type of snippet content
+$content = 'content_example'; // string | Content of the snippet
+$type = 'type_example'; // string | Type of snippet content
 
 try {
     $result = $apiInstance->updateContentUsingPOST1($id, $content, $type);
@@ -569,13 +577,13 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **updateDynamicContentUsingPOST**
-> \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse updateDynamicContentUsingPOST($id, $segment_id, $request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse updateDynamicContentUsingPOST($id, $segment_id, $type, $value)
 
 Update Snippet Dynamic Content
 
@@ -593,10 +601,11 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\SnippetsApi(
 );
 $id = 56; // int | id
 $segment_id = 56; // int | segmentId
-$request = new \NecLimDul\MarketoRest\Asset\Model\UpdateSnippetDynamicContentRequest(); // \NecLimDul\MarketoRest\Asset\Model\UpdateSnippetDynamicContentRequest | request
+$type = 'type_example'; // string | Type of dynamic content section
+$value = 'value_example'; // string | Value of the dynamic content section
 
 try {
-    $result = $apiInstance->updateDynamicContentUsingPOST($id, $segment_id, $request);
+    $result = $apiInstance->updateDynamicContentUsingPOST($id, $segment_id, $type, $value);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling SnippetsApi->updateDynamicContentUsingPOST: ', $e->getMessage(), PHP_EOL;
@@ -610,7 +619,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| id |
  **segment_id** | **int**| segmentId |
- **request** | [**\NecLimDul\MarketoRest\Asset\Model\UpdateSnippetDynamicContentRequest**](../Model/UpdateSnippetDynamicContentRequest.md)| request |
+ **type** | **string**| Type of dynamic content section | [optional]
+ **value** | **string**| Value of the dynamic content section | [optional]
 
 ### Return type
 
@@ -628,7 +638,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **updateSnippetUsingPOST**
-> \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse updateSnippetUsingPOST($id, $update_snippet_request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse updateSnippetUsingPOST($id, $description, $is_archive, $name)
 
 Update Snippet Metadata
 
@@ -645,10 +655,12 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\SnippetsApi(
     new GuzzleHttp\Client()
 );
 $id = 56; // int | id
-$update_snippet_request = new \NecLimDul\MarketoRest\Asset\Model\UpdateSnippetRequest(); // \NecLimDul\MarketoRest\Asset\Model\UpdateSnippetRequest | updateSnippetRequest
+$description = 'description_example'; // string | Description of the snippet
+$is_archive = 'is_archive_example'; // string | Archival status of the snippet
+$name = 'name_example'; // string | Name of the snippet
 
 try {
-    $result = $apiInstance->updateSnippetUsingPOST($id, $update_snippet_request);
+    $result = $apiInstance->updateSnippetUsingPOST($id, $description, $is_archive, $name);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling SnippetsApi->updateSnippetUsingPOST: ', $e->getMessage(), PHP_EOL;
@@ -661,7 +673,9 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| id |
- **update_snippet_request** | [**\NecLimDul\MarketoRest\Asset\Model\UpdateSnippetRequest**](../Model/UpdateSnippetRequest.md)| updateSnippetRequest |
+ **description** | **string**| Description of the snippet | [optional]
+ **is_archive** | **string**| Archival status of the snippet | [optional]
+ **name** | **string**| Name of the snippet | [optional]
 
 ### Return type
 

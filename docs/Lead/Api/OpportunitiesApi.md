@@ -152,7 +152,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -197,13 +197,13 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getOpportunitiesUsingGET**
-> \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject getOpportunitiesUsingGET($filter_type, $filter_values, $custom_object_lookup_request, $fields, $batch_size, $next_page_token)
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject getOpportunitiesUsingGET($filter_type, $filter_values, $fields, $batch_size, $next_page_token, $lookup_custom_object_request)
 
 Get Opportunities
 
@@ -219,15 +219,15 @@ $apiInstance = new NecLimDul\MarketoRest\Lead\Api\OpportunitiesApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$filter_type = "filter_type_example"; // string | Opportunities field to filter on
-$filter_values = array("filter_values_example"); // string[] | Comma-separated list of values to match against
-$custom_object_lookup_request = new \NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest(); // \NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest | customObjectLookupRequest
-$fields = array("fields_example"); // string[] | Comma-separated list of fields to include in the response
+$filter_type = 'filter_type_example'; // string | Opportunities field to filter on
+$filter_values = array('filter_values_example'); // string[] | Comma-separated list of values to match against
+$fields = array('fields_example'); // string[] | Comma-separated list of fields to include in the response
 $batch_size = 56; // int | Maximum number of records to return in the response.  Max and default is 300
-$next_page_token = "next_page_token_example"; // string | Paging token returned from a previous response
+$next_page_token = 'next_page_token_example'; // string | Paging token returned from a previous response
+$lookup_custom_object_request = new \NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest(); // \NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest | customObjectLookupRequest
 
 try {
-    $result = $apiInstance->getOpportunitiesUsingGET($filter_type, $filter_values, $custom_object_lookup_request, $fields, $batch_size, $next_page_token);
+    $result = $apiInstance->getOpportunitiesUsingGET($filter_type, $filter_values, $fields, $batch_size, $next_page_token, $lookup_custom_object_request);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling OpportunitiesApi->getOpportunitiesUsingGET: ', $e->getMessage(), PHP_EOL;
@@ -241,10 +241,10 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **filter_type** | **string**| Opportunities field to filter on |
  **filter_values** | [**string[]**](../Model/string.md)| Comma-separated list of values to match against |
- **custom_object_lookup_request** | [**\NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest**](../Model/LookupCustomObjectRequest.md)| customObjectLookupRequest | [optional]
  **fields** | [**string[]**](../Model/string.md)| Comma-separated list of fields to include in the response | [optional]
  **batch_size** | **int**| Maximum number of records to return in the response.  Max and default is 300 | [optional]
  **next_page_token** | **string**| Paging token returned from a previous response | [optional]
+ **lookup_custom_object_request** | [**\NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest**](../Model/LookupCustomObjectRequest.md)| customObjectLookupRequest | [optional]
 
 ### Return type
 
@@ -262,7 +262,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getOpportunityRolesUsingGET**
-> \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject getOpportunityRolesUsingGET($filter_type, $filter_values, $custom_object_lookup_request, $fields, $batch_size, $next_page_token)
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject getOpportunityRolesUsingGET($filter_type, $filter_values, $fields, $batch_size, $next_page_token, $lookup_custom_object_request)
 
 Get Opportunity Roles
 
@@ -278,15 +278,15 @@ $apiInstance = new NecLimDul\MarketoRest\Lead\Api\OpportunitiesApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$filter_type = "filter_type_example"; // string | The role field to filter on.  Searchable fields can be retrieved with the Describe Opportunity call.
-$filter_values = array("filter_values_example"); // string[] | Comma-separated list of field values to return records for
-$custom_object_lookup_request = new \NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest(); // \NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest | Optional JSON request for retrieving opportunity roles with compound keys
-$fields = array("fields_example"); // string[] | Comma-separated list of fields to include in the response
+$filter_type = 'filter_type_example'; // string | The role field to filter on.  Searchable fields can be retrieved with the Describe Opportunity call.
+$filter_values = array('filter_values_example'); // string[] | Comma-separated list of field values to return records for
+$fields = array('fields_example'); // string[] | Comma-separated list of fields to include in the response
 $batch_size = 56; // int | Maximum number of records to return in the response.  Max and default is 300
-$next_page_token = "next_page_token_example"; // string | Paging token returned from a previous response
+$next_page_token = 'next_page_token_example'; // string | Paging token returned from a previous response
+$lookup_custom_object_request = new \NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest(); // \NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest | Optional JSON request for retrieving opportunity roles with compound keys
 
 try {
-    $result = $apiInstance->getOpportunityRolesUsingGET($filter_type, $filter_values, $custom_object_lookup_request, $fields, $batch_size, $next_page_token);
+    $result = $apiInstance->getOpportunityRolesUsingGET($filter_type, $filter_values, $fields, $batch_size, $next_page_token, $lookup_custom_object_request);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling OpportunitiesApi->getOpportunityRolesUsingGET: ', $e->getMessage(), PHP_EOL;
@@ -300,10 +300,10 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **filter_type** | **string**| The role field to filter on.  Searchable fields can be retrieved with the Describe Opportunity call. |
  **filter_values** | [**string[]**](../Model/string.md)| Comma-separated list of field values to return records for |
- **custom_object_lookup_request** | [**\NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest**](../Model/LookupCustomObjectRequest.md)| Optional JSON request for retrieving opportunity roles with compound keys | [optional]
  **fields** | [**string[]**](../Model/string.md)| Comma-separated list of fields to include in the response | [optional]
  **batch_size** | **int**| Maximum number of records to return in the response.  Max and default is 300 | [optional]
  **next_page_token** | **string**| Paging token returned from a previous response | [optional]
+ **lookup_custom_object_request** | [**\NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest**](../Model/LookupCustomObjectRequest.md)| Optional JSON request for retrieving opportunity roles with compound keys | [optional]
 
 ### Return type
 

@@ -54,7 +54,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -103,7 +103,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -152,7 +152,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -174,9 +174,9 @@ $apiInstance = new NecLimDul\MarketoRest\Lead\Api\BulkImportProgramMembersApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$program_id = "program_id_example"; // string | Id of the program to add members to.
-$program_member_status = "program_member_status_example"; // string | Program member status for members being added.
-$format = "format_example"; // string | Import file format.
+$program_id = 'program_id_example'; // string | Id of the program to add members to.
+$program_member_status = 'program_member_status_example'; // string | Program member status for members being added.
+$format = 'format_example'; // string | Import file format.
 $file = "/path/to/file.txt"; // \SplFileObject | File containing the data records to import.
 
 try {
@@ -195,7 +195,7 @@ Name | Type | Description  | Notes
  **program_id** | **string**| Id of the program to add members to. |
  **program_member_status** | **string**| Program member status for members being added. |
  **format** | **string**| Import file format. |
- **file** | **\SplFileObject**| File containing the data records to import. |
+ **file** | **\SplFileObject****\SplFileObject**| File containing the data records to import. |
 
 ### Return type
 

@@ -24,10 +24,10 @@ $apiInstance = new NecLimDul\MarketoRest\Identity\Api\IdentityApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$client_id = "client_id_example"; // string | Client ID from Admin > Integration > Launchpoint menu.
-$client_secret = "client_secret_example"; // string | Client Secret from Admin > Integration > Launchpoint menu.
-$grant_type = "grant_type_example"; // string | Grant type.
-$partner_id = "partner_id_example"; // string | LaunchPoint Technology Partner <a href='http://developers.marketo.com/support/Marketo_LaunchPoint_Technology_Partner_API_Key.pdf'>API Key</a>.
+$client_id = 'client_id_example'; // string | Client ID from Admin > Integration > Launchpoint menu.
+$client_secret = 'client_secret_example'; // string | Client Secret from Admin > Integration > Launchpoint menu.
+$grant_type = 'grant_type_example'; // string | Grant type.
+$partner_id = 'partner_id_example'; // string | LaunchPoint Technology Partner <a href='http://developers.marketo.com/support/Marketo_LaunchPoint_Technology_Partner_API_Key.pdf'>API Key</a>.
 
 try {
     $result = $apiInstance->identityUsingGET($client_id, $client_secret, $grant_type, $partner_id);
@@ -57,7 +57,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)

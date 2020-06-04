@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 
 # **createFolderUsingPOST**
-> \NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse createFolderUsingPOST($create_folder_request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse createFolderUsingPOST($name, $parent, $description)
 
 Create Folder
 
@@ -30,10 +30,12 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\FoldersApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$create_folder_request = new \NecLimDul\MarketoRest\Asset\Model\CreateFolderRequest(); // \NecLimDul\MarketoRest\Asset\Model\CreateFolderRequest | createFolderRequest
+$name = 'name_example'; // string | Name of the Folder
+$parent = new \NecLimDul\MarketoRest\Asset\Model\Folder(); // \NecLimDul\MarketoRest\Asset\Model\Folder | 
+$description = 'description_example'; // string | Description of the asset
 
 try {
-    $result = $apiInstance->createFolderUsingPOST($create_folder_request);
+    $result = $apiInstance->createFolderUsingPOST($name, $parent, $description);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling FoldersApi->createFolderUsingPOST: ', $e->getMessage(), PHP_EOL;
@@ -45,7 +47,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_folder_request** | [**\NecLimDul\MarketoRest\Asset\Model\CreateFolderRequest**](../Model/CreateFolderRequest.md)| createFolderRequest |
+ **name** | **string**| Name of the Folder |
+ **parent** | [**\NecLimDul\MarketoRest\Asset\Model\Folder**](../Model/Folder.md)|  |
+ **description** | **string**| Description of the asset | [optional]
 
 ### Return type
 
@@ -80,7 +84,7 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\FoldersApi(
     new GuzzleHttp\Client()
 );
 $id = 56; // int | Id of the folder to delete
-$type = "Folder"; // string | type
+$type = 'Folder'; // string | type
 
 try {
     $result = $apiInstance->deleteFolderUsingPOST($id, $type);
@@ -96,7 +100,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| Id of the folder to delete |
- **type** | **string**| type | [default to Folder]
+ **type** | **string**| type | [default to &#39;Folder&#39;]
 
 ### Return type
 
@@ -131,7 +135,7 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\FoldersApi(
     new GuzzleHttp\Client()
 );
 $id = 56; // int | Id of the folder to retrieve
-$type = "Folder"; // string | Type of folder.  'Folder' or 'Program'
+$type = 'Folder'; // string | Type of folder.  'Folder' or 'Program'
 
 try {
     $result = $apiInstance->getFolderByIdUsingGET($id, $type);
@@ -147,7 +151,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| Id of the folder to retrieve |
- **type** | **string**| Type of folder.  &#39;Folder&#39; or &#39;Program&#39; | [default to Folder]
+ **type** | **string**| Type of folder.  &#39;Folder&#39; or &#39;Program&#39; | [default to &#39;Folder&#39;]
 
 ### Return type
 
@@ -159,7 +163,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -181,10 +185,10 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\FoldersApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$name = "name_example"; // string | Name of the folder.  Not applicable for Programs
-$type = "type_example"; // string | Type of folder.  'Folder' or 'Program'
-$root = "root_example"; // string | Parent folder reference
-$work_space = "work_space_example"; // string | Name of the workspace
+$name = 'name_example'; // string | Name of the folder.  Not applicable for Programs
+$type = 'type_example'; // string | Type of folder.  'Folder' or 'Program'
+$root = 'root_example'; // string | Parent folder reference
+$work_space = 'work_space_example'; // string | Name of the workspace
 
 try {
     $result = $apiInstance->getFolderByNameUsingGET($name, $type, $root, $work_space);
@@ -214,7 +218,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -237,7 +241,7 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\FoldersApi(
     new GuzzleHttp\Client()
 );
 $id = 56; // int | Id of the folder to retrieve
-$type = "type_example"; // string | Type of folder.  'Folder' or 'Program'.  Default is 'Folder'
+$type = 'type_example'; // string | Type of folder.  'Folder' or 'Program'.  Default is 'Folder'
 $max_return = 56; // int | Maximum number of channels to return.  Max 200, default 20
 $offset = 56; // int | Integer offset for paging
 
@@ -269,7 +273,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -291,11 +295,11 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\FoldersApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$root = "root_example"; // string | Parent folder reference
+$root = 'root_example'; // string | Parent folder reference
 $max_depth = 56; // int | Maximum folder depth to traverse, Default 2
 $max_return = 56; // int | Maximum number of folders to return. Default 20, maximum 200
 $offset = 56; // int | Integer offset for paging.  Default 0
-$work_space = "work_space_example"; // string | Name of the workspace
+$work_space = 'work_space_example'; // string | Name of the workspace
 
 try {
     $result = $apiInstance->getFolderUsingGET($root, $max_depth, $max_return, $offset, $work_space);
@@ -326,13 +330,13 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **updateFolderUsingPOST**
-> \NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse updateFolderUsingPOST($id, $update_folder_request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse updateFolderUsingPOST($id, $type, $description, $is_archive, $name)
 
 Update Folder Metadata
 
@@ -349,10 +353,13 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\FoldersApi(
     new GuzzleHttp\Client()
 );
 $id = 56; // int | Id of the folder to update
-$update_folder_request = new \NecLimDul\MarketoRest\Asset\Model\UpdateFolderRequest(); // \NecLimDul\MarketoRest\Asset\Model\UpdateFolderRequest | updateFolderRequest
+$type = 'type_example'; // string | Type of folder.  'Folder' or 'Program'
+$description = 'description_example'; // string | Description of the asset
+$is_archive = True; // bool | Whether the folder is archived or not.  Toggling this value will change the archival status of the folder
+$name = 'name_example'; // string | Name of the Folder
 
 try {
-    $result = $apiInstance->updateFolderUsingPOST($id, $update_folder_request);
+    $result = $apiInstance->updateFolderUsingPOST($id, $type, $description, $is_archive, $name);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling FoldersApi->updateFolderUsingPOST: ', $e->getMessage(), PHP_EOL;
@@ -365,7 +372,10 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| Id of the folder to update |
- **update_folder_request** | [**\NecLimDul\MarketoRest\Asset\Model\UpdateFolderRequest**](../Model/UpdateFolderRequest.md)| updateFolderRequest |
+ **type** | **string**| Type of folder.  &#39;Folder&#39; or &#39;Program&#39; |
+ **description** | **string**| Description of the asset | [optional]
+ **is_archive** | **bool**| Whether the folder is archived or not.  Toggling this value will change the archival status of the folder | [optional]
+ **name** | **string**| Name of the Folder | [optional]
 
 ### Return type
 

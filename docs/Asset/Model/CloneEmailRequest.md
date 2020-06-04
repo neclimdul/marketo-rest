@@ -4,7 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **description** | **string** | Description of the asset | [optional] 
-**folder** | [**\NecLimDul\MarketoRest\Asset\Model\Folder**](Folder.md) | JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39; | 
+**folder** | [**\NecLimDul\MarketoRest\Asset\Model\Folder**](Folder.md) |  | 
 **name** | **string** | Name of the new email asset | 
 **operational** | **bool** | Whether the email is operational.  Operational emails bypass unsubscribe status.  Defaults to false | [optional] 
 

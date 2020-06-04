@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 
 # **createFileUsingPOST**
-> \NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse createFileUsingPOST($create_file_request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse createFileUsingPOST($file, $folder, $name, $description, $insert_only)
 
 Create File
 
@@ -27,10 +27,14 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\FilesApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$create_file_request = new \NecLimDul\MarketoRest\Asset\Model\CreateFileRequest(); // \NecLimDul\MarketoRest\Asset\Model\CreateFileRequest | createFileRequest
+$file = 'file_example'; // string | Multipart file.  Content of the file.
+$folder = new \NecLimDul\MarketoRest\Asset\Model\Folder(); // \NecLimDul\MarketoRest\Asset\Model\Folder | 
+$name = 'name_example'; // string | Name of the File
+$description = 'description_example'; // string | Description of the asset
+$insert_only = True; // bool | Whether the calls hould fail if there is already an existing file with the same name
 
 try {
-    $result = $apiInstance->createFileUsingPOST($create_file_request);
+    $result = $apiInstance->createFileUsingPOST($file, $folder, $name, $description, $insert_only);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling FilesApi->createFileUsingPOST: ', $e->getMessage(), PHP_EOL;
@@ -42,7 +46,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_file_request** | [**\NecLimDul\MarketoRest\Asset\Model\CreateFileRequest**](../Model/CreateFileRequest.md)| createFileRequest |
+ **file** | **string**| Multipart file.  Content of the file. |
+ **folder** | [**\NecLimDul\MarketoRest\Asset\Model\Folder**](../Model/Folder.md)|  |
+ **name** | **string**| Name of the File |
+ **description** | **string**| Description of the asset | [optional]
+ **insert_only** | **bool**| Whether the calls hould fail if there is already an existing file with the same name | [optional]
 
 ### Return type
 
@@ -103,7 +111,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -125,7 +133,7 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\FilesApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$name = "name_example"; // string | Name of the file
+$name = 'name_example'; // string | Name of the file
 
 try {
     $result = $apiInstance->getFileByNameUsingGET($name);
@@ -152,7 +160,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -175,7 +183,7 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\FilesApi(
     new GuzzleHttp\Client()
 );
 $get_files_request = new \NecLimDul\MarketoRest\Asset\Model\GetFilesRequest(); // \NecLimDul\MarketoRest\Asset\Model\GetFilesRequest | getFilesRequest
-$folder = "folder_example"; // string | JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
+$folder = 'folder_example'; // string | JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
 
 try {
     $result = $apiInstance->getFilesUsingGET($get_files_request, $folder);

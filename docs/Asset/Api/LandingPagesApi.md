@@ -62,7 +62,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -84,10 +84,10 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPagesApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$status = "status_example"; // string | Status filter for draft or approved versions
+$status = 'status_example'; // string | Status filter for draft or approved versions
 $max_return = 56; // int | Maximum number of landing pages to return.  Max 200, default 20
 $offset = 56; // int | Integer offset for paging
-$folder = "folder_example"; // string | JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
+$folder = 'folder_example'; // string | JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
 
 try {
     $result = $apiInstance->browseLandingPagesUsingGET($status, $max_return, $offset, $folder);
@@ -117,13 +117,13 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **cloneLandingPageUsingPOST**
-> \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse cloneLandingPageUsingPOST($id, $clone_landing_page_request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse cloneLandingPageUsingPOST($id, $folder, $name, $description, $template)
 
 Clone Landing Page
 
@@ -140,10 +140,13 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPagesApi(
     new GuzzleHttp\Client()
 );
 $id = 56; // int | id
-$clone_landing_page_request = new \NecLimDul\MarketoRest\Asset\Model\CloneLandingPageRequest(); // \NecLimDul\MarketoRest\Asset\Model\CloneLandingPageRequest | cloneLandingPageRequest
+$folder = new \NecLimDul\MarketoRest\Asset\Model\Folder(); // \NecLimDul\MarketoRest\Asset\Model\Folder | 
+$name = 'name_example'; // string | Name of the landing page
+$description = 'description_example'; // string | Description of the asset
+$template = 56; // int | Id of the template used
 
 try {
-    $result = $apiInstance->cloneLandingPageUsingPOST($id, $clone_landing_page_request);
+    $result = $apiInstance->cloneLandingPageUsingPOST($id, $folder, $name, $description, $template);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling LandingPagesApi->cloneLandingPageUsingPOST: ', $e->getMessage(), PHP_EOL;
@@ -156,7 +159,10 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| id |
- **clone_landing_page_request** | [**\NecLimDul\MarketoRest\Asset\Model\CloneLandingPageRequest**](../Model/CloneLandingPageRequest.md)| cloneLandingPageRequest |
+ **folder** | [**\NecLimDul\MarketoRest\Asset\Model\Folder**](../Model/Folder.md)|  |
+ **name** | **string**| Name of the landing page |
+ **description** | **string**| Description of the asset | [optional]
+ **template** | **int**| Id of the template used | [optional]
 
 ### Return type
 
@@ -174,7 +180,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **createLandingPageUsingPOST**
-> \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse createLandingPageUsingPOST($create_landing_page_request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse createLandingPageUsingPOST($folder, $name, $template, $custom_head_html, $description, $facebook_og_tags, $keywords, $mobile_enabled, $prefill_form, $robots, $title, $url_page_name, $workspace)
 
 Create Landing Page
 
@@ -190,10 +196,22 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPagesApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$create_landing_page_request = new \NecLimDul\MarketoRest\Asset\Model\CreateLandingPageRequest(); // \NecLimDul\MarketoRest\Asset\Model\CreateLandingPageRequest | createLandingPageRequest
+$folder = new \NecLimDul\MarketoRest\Asset\Model\Folder(); // \NecLimDul\MarketoRest\Asset\Model\Folder | 
+$name = 'name_example'; // string | Name of the landing page
+$template = 56; // int | Id of the template used
+$custom_head_html = 'custom_head_html_example'; // string | Any custom HTML to embed in the <head> tag of the page
+$description = 'description_example'; // string | Description of the asset
+$facebook_og_tags = 'facebook_og_tags_example'; // string | Any OpenGraph meta tags to apply to the page
+$keywords = 'keywords_example'; // string | 
+$mobile_enabled = True; // bool | Whether the page has mobile viewing enabled.  Free-form pages only.  Default false
+$prefill_form = True; // bool | Boolean to toggle whether forms embedded in the page will prefill.  Default false
+$robots = 'robots_example'; // string | Robots directives to apply to the pages meta tags
+$title = 'title_example'; // string | Title element of the landing page
+$url_page_name = 'url_page_name_example'; // string | URL path of the page.  Derived from the name field if unset
+$workspace = 'workspace_example'; // string | Name of the workspace
 
 try {
-    $result = $apiInstance->createLandingPageUsingPOST($create_landing_page_request);
+    $result = $apiInstance->createLandingPageUsingPOST($folder, $name, $template, $custom_head_html, $description, $facebook_og_tags, $keywords, $mobile_enabled, $prefill_form, $robots, $title, $url_page_name, $workspace);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling LandingPagesApi->createLandingPageUsingPOST: ', $e->getMessage(), PHP_EOL;
@@ -205,7 +223,19 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_landing_page_request** | [**\NecLimDul\MarketoRest\Asset\Model\CreateLandingPageRequest**](../Model/CreateLandingPageRequest.md)| createLandingPageRequest |
+ **folder** | [**\NecLimDul\MarketoRest\Asset\Model\Folder**](../Model/Folder.md)|  |
+ **name** | **string**| Name of the landing page |
+ **template** | **int**| Id of the template used |
+ **custom_head_html** | **string**| Any custom HTML to embed in the &lt;head&gt; tag of the page | [optional]
+ **description** | **string**| Description of the asset | [optional]
+ **facebook_og_tags** | **string**| Any OpenGraph meta tags to apply to the page | [optional]
+ **keywords** | **string**|  | [optional]
+ **mobile_enabled** | **bool**| Whether the page has mobile viewing enabled.  Free-form pages only.  Default false | [optional]
+ **prefill_form** | **bool**| Boolean to toggle whether forms embedded in the page will prefill.  Default false | [optional]
+ **robots** | **string**| Robots directives to apply to the pages meta tags | [optional]
+ **title** | **string**| Title element of the landing page | [optional]
+ **url_page_name** | **string**| URL path of the page.  Derived from the name field if unset | [optional]
+ **workspace** | **string**| Name of the workspace | [optional]
 
 ### Return type
 
@@ -266,7 +296,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -315,7 +345,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -338,7 +368,7 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPagesApi(
     new GuzzleHttp\Client()
 );
 $id = 56; // int | id
-$status = "status_example"; // string | Status filter for draft or approved versions
+$status = 'status_example'; // string | Status filter for draft or approved versions
 
 try {
     $result = $apiInstance->getLandingPageByIdUsingGET($id, $status);
@@ -366,7 +396,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -388,8 +418,8 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPagesApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$name = "name_example"; // string | Name of the landing page
-$status = "status_example"; // string | Status filter for draft or approved versions
+$name = 'name_example'; // string | Name of the landing page
+$status = 'status_example'; // string | Status filter for draft or approved versions
 $max_return = 56; // int | Maximum number of channels to return.  Max 200, default 20
 $offset = 56; // int | Integer offset for paging
 
@@ -421,7 +451,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -442,7 +472,7 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPagesApi(
     new GuzzleHttp\Client()
 );
 $id = 56; // int | Id of the landing page
-$status = "status_example"; // string | Status filter for draft or approved versions
+$status = 'status_example'; // string | Status filter for draft or approved versions
 
 try {
     $result = $apiInstance->getVariablesUsingGET($id, $status);
@@ -470,7 +500,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -519,13 +549,13 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **updateLandingPageUsingPOST**
-> \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse updateLandingPageUsingPOST($id, $update_landing_page_request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse updateLandingPageUsingPOST($id, $custom_head_html, $description, $facebook_og_tags, $keywords, $meta_tags_description, $mobile_enabled, $name, $robots, $style_over_ride, $title, $url_page_name)
 
 Update Landing Page Metadata
 
@@ -542,10 +572,20 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPagesApi(
     new GuzzleHttp\Client()
 );
 $id = 56; // int | id
-$update_landing_page_request = new \NecLimDul\MarketoRest\Asset\Model\UpdateLandingPageRequest(); // \NecLimDul\MarketoRest\Asset\Model\UpdateLandingPageRequest | updateLandingPageRequest
+$custom_head_html = 'custom_head_html_example'; // string | Any custom HTML to embed in the <head> tag of the page
+$description = 'description_example'; // string | Description of the asset
+$facebook_og_tags = 'facebook_og_tags_example'; // string | Any OpenGraph meta tags to apply to the page
+$keywords = 'keywords_example'; // string | 
+$meta_tags_description = 'meta_tags_description_example'; // string | Meta description property of the page
+$mobile_enabled = True; // bool | Whether the page has mobile viewing enabled.  Free-form pages only.  Default false
+$name = 'name_example'; // string | Name of the landing page
+$robots = 'robots_example'; // string | Robots directives to apply to the pages meta tags
+$style_over_ride = 'style_over_ride_example'; // string | Additional CSS styles to append to the landing page <head>
+$title = 'title_example'; // string | Title element of the landing page
+$url_page_name = 'url_page_name_example'; // string | URL path of the page.  Derived from the name field if unset
 
 try {
-    $result = $apiInstance->updateLandingPageUsingPOST($id, $update_landing_page_request);
+    $result = $apiInstance->updateLandingPageUsingPOST($id, $custom_head_html, $description, $facebook_og_tags, $keywords, $meta_tags_description, $mobile_enabled, $name, $robots, $style_over_ride, $title, $url_page_name);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling LandingPagesApi->updateLandingPageUsingPOST: ', $e->getMessage(), PHP_EOL;
@@ -558,7 +598,17 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| id |
- **update_landing_page_request** | [**\NecLimDul\MarketoRest\Asset\Model\UpdateLandingPageRequest**](../Model/UpdateLandingPageRequest.md)| updateLandingPageRequest |
+ **custom_head_html** | **string**| Any custom HTML to embed in the &lt;head&gt; tag of the page | [optional]
+ **description** | **string**| Description of the asset | [optional]
+ **facebook_og_tags** | **string**| Any OpenGraph meta tags to apply to the page | [optional]
+ **keywords** | **string**|  | [optional]
+ **meta_tags_description** | **string**| Meta description property of the page | [optional]
+ **mobile_enabled** | **bool**| Whether the page has mobile viewing enabled.  Free-form pages only.  Default false | [optional]
+ **name** | **string**| Name of the landing page | [optional]
+ **robots** | **string**| Robots directives to apply to the pages meta tags | [optional]
+ **style_over_ride** | **string**| Additional CSS styles to append to the landing page &lt;head&gt; | [optional]
+ **title** | **string**| Title element of the landing page | [optional]
+ **url_page_name** | **string**| URL path of the page.  Derived from the name field if unset | [optional]
 
 ### Return type
 
@@ -593,7 +643,7 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPagesApi(
     new GuzzleHttp\Client()
 );
 $id = 56; // int | id
-$variable_id = "variable_id_example"; // string | variableId
+$variable_id = 'variable_id_example'; // string | variableId
 $value = 56; // int | New value of the variable
 
 try {
@@ -623,7 +673,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)

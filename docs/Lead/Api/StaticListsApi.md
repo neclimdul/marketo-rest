@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 
 # **addLeadsToListUsingPOST**
-> \NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData addLeadsToListUsingPOST($list_id, $list_operation_request, $id)
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData addLeadsToListUsingPOST($list_id, $id, $list_operation_request)
 
 Add to List
 
@@ -31,11 +31,11 @@ $apiInstance = new NecLimDul\MarketoRest\Lead\Api\StaticListsApi(
     new GuzzleHttp\Client()
 );
 $list_id = 56; // int | Id of target list
-$list_operation_request = new \NecLimDul\MarketoRest\Lead\Model\ListOperationRequest(); // \NecLimDul\MarketoRest\Lead\Model\ListOperationRequest | Optional JSON request body for submitting leads
 $id = array(56); // int[] | Comma-separated list of lead ids to add to the list
+$list_operation_request = new \NecLimDul\MarketoRest\Lead\Model\ListOperationRequest(); // \NecLimDul\MarketoRest\Lead\Model\ListOperationRequest | Optional JSON request body for submitting leads
 
 try {
-    $result = $apiInstance->addLeadsToListUsingPOST($list_id, $list_operation_request, $id);
+    $result = $apiInstance->addLeadsToListUsingPOST($list_id, $id, $list_operation_request);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling StaticListsApi->addLeadsToListUsingPOST: ', $e->getMessage(), PHP_EOL;
@@ -48,8 +48,8 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **list_id** | **int**| Id of target list |
- **list_operation_request** | [**\NecLimDul\MarketoRest\Lead\Model\ListOperationRequest**](../Model/ListOperationRequest.md)| Optional JSON request body for submitting leads | [optional]
  **id** | [**int[]**](../Model/int.md)| Comma-separated list of lead ids to add to the list | [optional]
+ **list_operation_request** | [**\NecLimDul\MarketoRest\Lead\Model\ListOperationRequest**](../Model/ListOperationRequest.md)| Optional JSON request body for submitting leads | [optional]
 
 ### Return type
 
@@ -67,7 +67,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **areLeadsMemberOfListUsingGET**
-> \NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData areLeadsMemberOfListUsingGET($list_id, $list_operation_request, $id)
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData areLeadsMemberOfListUsingGET($list_id, $id, $list_operation_request)
 
 Member of List
 
@@ -84,11 +84,11 @@ $apiInstance = new NecLimDul\MarketoRest\Lead\Api\StaticListsApi(
     new GuzzleHttp\Client()
 );
 $list_id = 56; // int | Id of the static list to check against
-$list_operation_request = new \NecLimDul\MarketoRest\Lead\Model\ListOperationRequest(); // \NecLimDul\MarketoRest\Lead\Model\ListOperationRequest | Optional JSON request body
 $id = array(56); // int[] | Comma-separated list of lead ids to check
+$list_operation_request = new \NecLimDul\MarketoRest\Lead\Model\ListOperationRequest(); // \NecLimDul\MarketoRest\Lead\Model\ListOperationRequest | Optional JSON request body
 
 try {
-    $result = $apiInstance->areLeadsMemberOfListUsingGET($list_id, $list_operation_request, $id);
+    $result = $apiInstance->areLeadsMemberOfListUsingGET($list_id, $id, $list_operation_request);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling StaticListsApi->areLeadsMemberOfListUsingGET: ', $e->getMessage(), PHP_EOL;
@@ -101,8 +101,8 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **list_id** | **int**| Id of the static list to check against |
- **list_operation_request** | [**\NecLimDul\MarketoRest\Lead\Model\ListOperationRequest**](../Model/ListOperationRequest.md)| Optional JSON request body | [optional]
  **id** | [**int[]**](../Model/int.md)| Comma-separated list of lead ids to check | [optional]
+ **list_operation_request** | [**\NecLimDul\MarketoRest\Lead\Model\ListOperationRequest**](../Model/ListOperationRequest.md)| Optional JSON request body | [optional]
 
 ### Return type
 
@@ -137,9 +137,9 @@ $apiInstance = new NecLimDul\MarketoRest\Lead\Api\StaticListsApi(
     new GuzzleHttp\Client()
 );
 $list_id = 56; // int | Id of the static list to retrieve records from
-$fields = array("fields_example"); // string[] | Comma-separated list of lead fields to return for each record.  If unset will return email, updatedAt, createdAt, lastName, firstName and id
+$fields = array('fields_example'); // string[] | Comma-separated list of lead fields to return for each record.  If unset will return email, updatedAt, createdAt, lastName, firstName and id
 $batch_size = 56; // int | The batch size to return.  The max and default value is 300.
-$next_page_token = "next_page_token_example"; // string | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info.
+$next_page_token = 'next_page_token_example'; // string | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info.
 
 try {
     $result = $apiInstance->getLeadsByListIdUsingGET($list_id, $fields, $batch_size, $next_page_token);
@@ -169,7 +169,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -192,9 +192,9 @@ $apiInstance = new NecLimDul\MarketoRest\Lead\Api\StaticListsApi(
     new GuzzleHttp\Client()
 );
 $list_id = 56; // int | Id of the static list to retrieve records from
-$fields = array("fields_example"); // string[] | Comma-separated list of lead fields to return for each record.  If unset will return email, updatedAt, createdAt, lastName, firstName and id
+$fields = array('fields_example'); // string[] | Comma-separated list of lead fields to return for each record.  If unset will return email, updatedAt, createdAt, lastName, firstName and id
 $batch_size = 56; // int | The batch size to return.  The max and default value is 300.
-$next_page_token = "next_page_token_example"; // string | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info.
+$next_page_token = 'next_page_token_example'; // string | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info.
 
 try {
     $result = $apiInstance->getLeadsByListIdUsingGET1($list_id, $fields, $batch_size, $next_page_token);
@@ -224,7 +224,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -273,7 +273,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -296,11 +296,11 @@ $apiInstance = new NecLimDul\MarketoRest\Lead\Api\StaticListsApi(
     new GuzzleHttp\Client()
 );
 $id = array(56); // int[] | Comma-separated list of static list ids to return
-$name = array("name_example"); // string[] | Comma-separated list of static list names to return
-$program_name = array("program_name_example"); // string[] | Comma-separated list of program names.  If set will return all static lists that are children of the given programs
-$workspace_name = array("workspace_name_example"); // string[] | Comma-separated list of workspace names.  If set will return all static lists that are children of the given workspaces
+$name = array('name_example'); // string[] | Comma-separated list of static list names to return
+$program_name = array('program_name_example'); // string[] | Comma-separated list of program names.  If set will return all static lists that are children of the given programs
+$workspace_name = array('workspace_name_example'); // string[] | Comma-separated list of workspace names.  If set will return all static lists that are children of the given workspaces
 $batch_size = 56; // int | The batch size to return.  The max and default value is 300.
-$next_page_token = "next_page_token_example"; // string | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info.
+$next_page_token = 'next_page_token_example'; // string | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info.
 
 try {
     $result = $apiInstance->getListsUsingGET($id, $name, $program_name, $workspace_name, $batch_size, $next_page_token);
@@ -332,13 +332,13 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **removeLeadsFromListUsingDELETE**
-> \NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData removeLeadsFromListUsingDELETE($list_id, $list_operation_request, $id)
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData removeLeadsFromListUsingDELETE($list_id, $id, $list_operation_request)
 
 Remove from List
 
@@ -355,11 +355,11 @@ $apiInstance = new NecLimDul\MarketoRest\Lead\Api\StaticListsApi(
     new GuzzleHttp\Client()
 );
 $list_id = 56; // int | Id of static list to remove leads from
-$list_operation_request = new \NecLimDul\MarketoRest\Lead\Model\ListOperationRequest(); // \NecLimDul\MarketoRest\Lead\Model\ListOperationRequest | listOperationRequest
 $id = array(56); // int[] | id
+$list_operation_request = new \NecLimDul\MarketoRest\Lead\Model\ListOperationRequest(); // \NecLimDul\MarketoRest\Lead\Model\ListOperationRequest | listOperationRequest
 
 try {
-    $result = $apiInstance->removeLeadsFromListUsingDELETE($list_id, $list_operation_request, $id);
+    $result = $apiInstance->removeLeadsFromListUsingDELETE($list_id, $id, $list_operation_request);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling StaticListsApi->removeLeadsFromListUsingDELETE: ', $e->getMessage(), PHP_EOL;
@@ -372,8 +372,8 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **list_id** | **int**| Id of static list to remove leads from |
- **list_operation_request** | [**\NecLimDul\MarketoRest\Lead\Model\ListOperationRequest**](../Model/ListOperationRequest.md)| listOperationRequest |
  **id** | [**int[]**](../Model/int.md)| id |
+ **list_operation_request** | [**\NecLimDul\MarketoRest\Lead\Model\ListOperationRequest**](../Model/ListOperationRequest.md)| listOperationRequest |
 
 ### Return type
 

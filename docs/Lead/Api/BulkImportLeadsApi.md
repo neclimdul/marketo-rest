@@ -54,7 +54,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -103,7 +103,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -152,7 +152,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -174,10 +174,10 @@ $apiInstance = new NecLimDul\MarketoRest\Lead\Api\BulkImportLeadsApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$format = "format_example"; // string | Import file format.
+$format = 'format_example'; // string | Import file format.
 $file = "/path/to/file.txt"; // \SplFileObject | File containing the data records to import.
-$lookup_field = "lookup_field_example"; // string | Field to use for deduplication.  Custom fields (string, email, integer), and the following field types are supported: id, cookies, email, twitterId, facebookId, linkedInId, sfdcAccountId, sfdcContactId, sfdcLeadId, sfdcLeadOwnerId, sfdcOpptyId.  Default is email.<br>Note: You can use id for update only operations.
-$partition_name = "partition_name_example"; // string | Name of the lead partition to import to.
+$lookup_field = 'lookup_field_example'; // string | Field to use for deduplication.  Custom fields (string, email, integer), and the following field types are supported: id, cookies, email, twitterId, facebookId, linkedInId, sfdcAccountId, sfdcContactId, sfdcLeadId, sfdcLeadOwnerId, sfdcOpptyId.  Default is email.<br>Note: You can use id for update only operations.
+$partition_name = 'partition_name_example'; // string | Name of the lead partition to import to.
 $list_id = 56; // int | Id of the static list to import into.
 
 try {
@@ -194,7 +194,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **format** | **string**| Import file format. |
- **file** | **\SplFileObject**| File containing the data records to import. |
+ **file** | **\SplFileObject****\SplFileObject**| File containing the data records to import. |
  **lookup_field** | **string**| Field to use for deduplication.  Custom fields (string, email, integer), and the following field types are supported: id, cookies, email, twitterId, facebookId, linkedInId, sfdcAccountId, sfdcContactId, sfdcLeadId, sfdcLeadOwnerId, sfdcOpptyId.  Default is email.&lt;br&gt;Note: You can use id for update only operations. | [optional]
  **partition_name** | **string**| Name of the lead partition to import to. | [optional]
  **list_id** | **int**| Id of the static list to import into. | [optional]

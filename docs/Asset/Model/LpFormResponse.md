@@ -7,11 +7,11 @@ Name | Type | Description | Notes
 **button_location** | **int** | Location in pixels of the button relative to the left of the form | 
 **created_at** | [**\DateTime**](\DateTime.md) | Datetime the asset was created | [optional] 
 **description** | **string** | Description of the asset | [optional] 
-**folder** | [**\NecLimDul\MarketoRest\Asset\Model\Folder**](Folder.md) | JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39; | 
+**folder** | [**\NecLimDul\MarketoRest\Asset\Model\Folder**](Folder.md) |  | 
 **font_family** | **string** | font-family property for the form | 
 **font_size** | **string** | font-size property of the form | 
 **id** | **int** | Id of the asset | [optional] 
-**known_visitor** | [**\NecLimDul\MarketoRest\Asset\Model\FormKnownVisitorDTO**](FormKnownVisitorDTO.md) | Known visitor behavior for the form | 
+**known_visitor** | [**\NecLimDul\MarketoRest\Asset\Model\FormKnownVisitorDTO**](FormKnownVisitorDTO.md) |  | 
 **label_position** | **string** | Default positioning of labels. | 
 **language** | **string** | Language of the form | 
 **locale** | **string** | Locale of the form | 

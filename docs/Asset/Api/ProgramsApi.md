@@ -61,7 +61,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -85,9 +85,9 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\ProgramsApi(
 );
 $max_return = 56; // int | Maximum number of channels to return.  Max 200, default 20
 $offset = 56; // int | Integer offset for paging
-$filter_type = "filter_type_example"; // string | Optional filter.  Requires filterValues
-$earliest_updated_at = "earliest_updated_at_example"; // string | Exclude programs prior to this date. Must be valid ISO-8601 string.  See <a href=\"http://developers.marketo.com/rest-api/lead-database/fields/field-types/\">Datetime</a> field type description.
-$latest_updated_at = "latest_updated_at_example"; // string | Exclude programs after this date. Must be valid ISO-8601 string.  See <a href=\"http://developers.marketo.com/rest-api/lead-database/fields/field-types/\">Datetime</a> field type description.
+$filter_type = 'filter_type_example'; // string | Optional filter.  Requires filterValues
+$earliest_updated_at = 'earliest_updated_at_example'; // string | Exclude programs prior to this date. Must be valid ISO-8601 string.  See <a href=\"http://developers.marketo.com/rest-api/lead-database/fields/field-types/\">Datetime</a> field type description.
+$latest_updated_at = 'latest_updated_at_example'; // string | Exclude programs after this date. Must be valid ISO-8601 string.  See <a href=\"http://developers.marketo.com/rest-api/lead-database/fields/field-types/\">Datetime</a> field type description.
 
 try {
     $result = $apiInstance->browseProgramsUsingGET($max_return, $offset, $filter_type, $earliest_updated_at, $latest_updated_at);
@@ -118,13 +118,13 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **cloneProgramUsingPOST**
-> \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse cloneProgramUsingPOST($id, $clone_program_request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse cloneProgramUsingPOST($id, $folder, $name, $description)
 
 Clone Program
 
@@ -141,10 +141,12 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\ProgramsApi(
     new GuzzleHttp\Client()
 );
 $id = 56; // int | id
-$clone_program_request = new \NecLimDul\MarketoRest\Asset\Model\CloneProgramRequest(); // \NecLimDul\MarketoRest\Asset\Model\CloneProgramRequest | cloneProgramRequest
+$folder = new \NecLimDul\MarketoRest\Asset\Model\Folder(); // \NecLimDul\MarketoRest\Asset\Model\Folder | 
+$name = 'name_example'; // string | Name of the program
+$description = 'description_example'; // string | 
 
 try {
-    $result = $apiInstance->cloneProgramUsingPOST($id, $clone_program_request);
+    $result = $apiInstance->cloneProgramUsingPOST($id, $folder, $name, $description);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ProgramsApi->cloneProgramUsingPOST: ', $e->getMessage(), PHP_EOL;
@@ -157,7 +159,9 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| id |
- **clone_program_request** | [**\NecLimDul\MarketoRest\Asset\Model\CloneProgramRequest**](../Model/CloneProgramRequest.md)| cloneProgramRequest |
+ **folder** | [**\NecLimDul\MarketoRest\Asset\Model\Folder**](../Model/Folder.md)|  |
+ **name** | **string**| Name of the program |
+ **description** | **string**|  | [optional]
 
 ### Return type
 
@@ -175,7 +179,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **createProgramUsingPOST**
-> \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse createProgramUsingPOST($create_program_request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse createProgramUsingPOST($folder, $channel, $costs, $description, $name, $tags, $type)
 
 Create Program
 
@@ -191,10 +195,16 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\ProgramsApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$create_program_request = new \NecLimDul\MarketoRest\Asset\Model\CreateProgramRequest(); // \NecLimDul\MarketoRest\Asset\Model\CreateProgramRequest | createProgramRequest
+$folder = new \NecLimDul\MarketoRest\Asset\Model\Folder(); // \NecLimDul\MarketoRest\Asset\Model\Folder | 
+$channel = 'channel_example'; // string | Channel of the program
+$costs = new \NecLimDul\MarketoRest\Asset\Model\CostRequest(); // \NecLimDul\MarketoRest\Asset\Model\CostRequest[] | Lists of associated period costs
+$description = 'description_example'; // string | 
+$name = 'name_example'; // string | Name of the program
+$tags = new \NecLimDul\MarketoRest\Asset\Model\TagRequest(); // \NecLimDul\MarketoRest\Asset\Model\TagRequest[] | List of associated program tags
+$type = 'type_example'; // string | Type of the program
 
 try {
-    $result = $apiInstance->createProgramUsingPOST($create_program_request);
+    $result = $apiInstance->createProgramUsingPOST($folder, $channel, $costs, $description, $name, $tags, $type);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ProgramsApi->createProgramUsingPOST: ', $e->getMessage(), PHP_EOL;
@@ -206,7 +216,13 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_program_request** | [**\NecLimDul\MarketoRest\Asset\Model\CreateProgramRequest**](../Model/CreateProgramRequest.md)| createProgramRequest |
+ **folder** | [**\NecLimDul\MarketoRest\Asset\Model\Folder**](../Model/Folder.md)|  |
+ **channel** | **string**| Channel of the program | [optional]
+ **costs** | [**\NecLimDul\MarketoRest\Asset\Model\CostRequest[]**](../Model/\NecLimDul\MarketoRest\Asset\Model\CostRequest.md)| Lists of associated period costs | [optional]
+ **description** | **string**|  | [optional]
+ **name** | **string**| Name of the program | [optional]
+ **tags** | [**\NecLimDul\MarketoRest\Asset\Model\TagRequest[]**](../Model/\NecLimDul\MarketoRest\Asset\Model\TagRequest.md)| List of associated program tags | [optional]
+ **type** | **string**| Type of the program | [optional]
 
 ### Return type
 
@@ -267,7 +283,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -316,7 +332,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -338,9 +354,9 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\ProgramsApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$name = "name_example"; // string | Name of the program
-$include_tags = true; // bool | Set true to populate program tags
-$include_costs = true; // bool | Set true to populate program costs
+$name = 'name_example'; // string | Name of the program
+$include_tags = True; // bool | Set true to populate program tags
+$include_costs = True; // bool | Set true to populate program costs
 
 try {
     $result = $apiInstance->getProgramByNameUsingGET($name, $include_tags, $include_costs);
@@ -369,7 +385,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -391,8 +407,8 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\ProgramsApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$tag_type = "tag_type_example"; // string | Type of program tag
-$tag_value = "tag_value_example"; // string | Value of the tag
+$tag_type = 'tag_type_example'; // string | Type of program tag
+$tag_value = 'tag_value_example'; // string | Value of the tag
 $max_return = 56; // int | Maximum number of channels to return.  Max 200, default 20
 $offset = 56; // int | Integer offset for paging
 
@@ -424,7 +440,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -446,8 +462,8 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\ProgramsApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$program_id = 789; // int | Id for the email program containing smart list to retrieve
-$include_rules = true; // bool | Set true to populate smart list rules.  Default false
+$program_id = 56; // int | Id for the email program containing smart list to retrieve
+$include_rules = True; // bool | Set true to populate smart list rules.  Default false
 
 try {
     $result = $apiInstance->getSmartListByProgramIdUsingGET($program_id, $include_rules);
@@ -475,7 +491,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -524,13 +540,13 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **updateProgramUsingPOST**
-> \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse updateProgramUsingPOST($id, $update_program_request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse updateProgramUsingPOST($id, $costs, $costs_destructive_update, $description, $end_date, $name, $start_date, $tags)
 
 Update Program Metadata
 
@@ -547,10 +563,16 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\ProgramsApi(
     new GuzzleHttp\Client()
 );
 $id = 56; // int | id
-$update_program_request = new \NecLimDul\MarketoRest\Asset\Model\UpdateProgramRequest(); // \NecLimDul\MarketoRest\Asset\Model\UpdateProgramRequest | updateProgramRequest
+$costs = new \NecLimDul\MarketoRest\Asset\Model\CostRequest(); // \NecLimDul\MarketoRest\Asset\Model\CostRequest[] | Lists of associated period costs that allow you to append, replace, or delete. To append new costs, simply add them to costs array.  To replace costs (destructive update), pass new costs and set costsDestructiveUpdate to true. To delete costs, do not pass costs parameter and set costsDestructiveUpdate to true
+$costs_destructive_update = True; // bool | Set true to destroy existing costs and replace them with the specified costs
+$description = 'description_example'; // string | Updated description for the program
+$end_date = 'end_date_example'; // string | End date of the program.  Applicable to event, email, and webinar type programs
+$name = 'name_example'; // string | Name of the program
+$start_date = 'start_date_example'; // string | Start date of program.  Applicable to event, email and webinar type programs
+$tags = new \NecLimDul\MarketoRest\Asset\Model\TagRequest(); // \NecLimDul\MarketoRest\Asset\Model\TagRequest[] | List of associated program tags
 
 try {
-    $result = $apiInstance->updateProgramUsingPOST($id, $update_program_request);
+    $result = $apiInstance->updateProgramUsingPOST($id, $costs, $costs_destructive_update, $description, $end_date, $name, $start_date, $tags);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ProgramsApi->updateProgramUsingPOST: ', $e->getMessage(), PHP_EOL;
@@ -563,7 +585,13 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| id |
- **update_program_request** | [**\NecLimDul\MarketoRest\Asset\Model\UpdateProgramRequest**](../Model/UpdateProgramRequest.md)| updateProgramRequest |
+ **costs** | [**\NecLimDul\MarketoRest\Asset\Model\CostRequest[]**](../Model/\NecLimDul\MarketoRest\Asset\Model\CostRequest.md)| Lists of associated period costs that allow you to append, replace, or delete. To append new costs, simply add them to costs array.  To replace costs (destructive update), pass new costs and set costsDestructiveUpdate to true. To delete costs, do not pass costs parameter and set costsDestructiveUpdate to true | [optional]
+ **costs_destructive_update** | **bool**| Set true to destroy existing costs and replace them with the specified costs | [optional]
+ **description** | **string**| Updated description for the program | [optional]
+ **end_date** | **string**| End date of the program.  Applicable to event, email, and webinar type programs | [optional]
+ **name** | **string**| Name of the program | [optional]
+ **start_date** | **string**| Start date of program.  Applicable to event, email and webinar type programs | [optional]
+ **tags** | [**\NecLimDul\MarketoRest\Asset\Model\TagRequest[]**](../Model/\NecLimDul\MarketoRest\Asset\Model\TagRequest.md)| List of associated program tags | [optional]
 
 ### Return type
 

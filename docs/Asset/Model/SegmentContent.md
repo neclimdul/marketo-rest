@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**content** | **object** | Type of content section | 
+**content** | [**object**](.md) | Type of content section | 
 **followup_type** | **string** |  | [optional] 
 **followup_value** | **string** |  | [optional] 
 **segment_id** | **int** | Segmentation to which the section is linked | 
