@@ -40,8 +40,8 @@ $apiInstance = new NecLimDul\MarketoRest\Lead\Api\LeadsApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$lead_id = 789; // int | The id of the lead to associate
-$cookie = "cookie_example"; // string | The cookie value to associate
+$lead_id = 56; // int | The id of the lead to associate
+$cookie = 'cookie_example'; // string | The cookie value to associate
 
 try {
     $result = $apiInstance->associateLeadUsingPOST($lead_id, $cookie);
@@ -69,7 +69,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -126,7 +126,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **deleteLeadsUsingPOST**
-> \NecLimDul\MarketoRest\Lead\Model\ResponseOfLead deleteLeadsUsingPOST($delete_lead_request, $id)
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfLead deleteLeadsUsingPOST($id, $delete_lead_request)
 
 Delete Leads
 
@@ -142,11 +142,11 @@ $apiInstance = new NecLimDul\MarketoRest\Lead\Api\LeadsApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$delete_lead_request = new \NecLimDul\MarketoRest\Lead\Model\DeleteLeadRequest(); // \NecLimDul\MarketoRest\Lead\Model\DeleteLeadRequest | deleteLeadRequest
 $id = array(56); // int[] | Parameter can be specified if the request body is empty. Multiple lead ids can be specified. e.g. id=1,2,3,2342
+$delete_lead_request = new \NecLimDul\MarketoRest\Lead\Model\DeleteLeadRequest(); // \NecLimDul\MarketoRest\Lead\Model\DeleteLeadRequest | deleteLeadRequest
 
 try {
-    $result = $apiInstance->deleteLeadsUsingPOST($delete_lead_request, $id);
+    $result = $apiInstance->deleteLeadsUsingPOST($id, $delete_lead_request);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling LeadsApi->deleteLeadsUsingPOST: ', $e->getMessage(), PHP_EOL;
@@ -158,8 +158,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **delete_lead_request** | [**\NecLimDul\MarketoRest\Lead\Model\DeleteLeadRequest**](../Model/DeleteLeadRequest.md)| deleteLeadRequest | [optional]
  **id** | [**int[]**](../Model/int.md)| Parameter can be specified if the request body is empty. Multiple lead ids can be specified. e.g. id&#x3D;1,2,3,2342 | [optional]
+ **delete_lead_request** | [**\NecLimDul\MarketoRest\Lead\Model\DeleteLeadRequest**](../Model/DeleteLeadRequest.md)| deleteLeadRequest | [optional]
 
 ### Return type
 
@@ -216,7 +216,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -261,7 +261,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -306,7 +306,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -328,8 +328,8 @@ $apiInstance = new NecLimDul\MarketoRest\Lead\Api\LeadsApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$lead_id = 789; // int | The Marketo lead id
-$fields = array("fields_example"); // string[] | Comma separated list of field names. If omitted, the following default fields will be returned: email, updatedAt, createdAt, lastName, firstName, and id.
+$lead_id = 56; // int | The Marketo lead id
+$fields = array('fields_example'); // string[] | Comma separated list of field names. If omitted, the following default fields will be returned: email, updatedAt, createdAt, lastName, firstName, and id.
 
 try {
     $result = $apiInstance->getLeadByIdUsingGET($lead_id, $fields);
@@ -357,7 +357,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -402,7 +402,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -424,11 +424,11 @@ $apiInstance = new NecLimDul\MarketoRest\Lead\Api\LeadsApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$filter_type = "filter_type_example"; // string | The lead field to filter on.  Any custom field (string, email, or integer types only), and any of the following fields are supported: cookies, email, facebookId, id, leadPartitionId, linkedInId, sfdcAccountId, sfdcContactId, sfdcLeadId, sfdcLeadOwnerId, sfdcOpptyId, twitterId.<br><br>A comprehensive list of fields can be obtained via the <a href=\"http://developers.marketo.com/rest-api/endpoint-reference/lead-database-endpoint-reference/#!/Leads/describeUsingGET_6\">Describe Lead2</a> endpoint.
-$filter_values = array("filter_values_example"); // string[] | A comma-separated list of values to filter on in the specified fields.
-$fields = array("fields_example"); // string[] | A comma-separated list of lead fields to return for each record
+$filter_type = 'filter_type_example'; // string | The lead field to filter on.  Any custom field (string, email, or integer types only), and any of the following fields are supported: cookies, email, facebookId, id, leadPartitionId, linkedInId, sfdcAccountId, sfdcContactId, sfdcLeadId, sfdcLeadOwnerId, sfdcOpptyId, twitterId.<br><br>A comprehensive list of fields can be obtained via the <a href=\"http://developers.marketo.com/rest-api/endpoint-reference/lead-database-endpoint-reference/#!/Leads/describeUsingGET_6\">Describe Lead2</a> endpoint.
+$filter_values = array('filter_values_example'); // string[] | A comma-separated list of values to filter on in the specified fields.
+$fields = array('fields_example'); // string[] | A comma-separated list of lead fields to return for each record
 $batch_size = 56; // int | The batch size to return.  The max and default value is 300.
-$next_page_token = "next_page_token_example"; // string | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info.
+$next_page_token = 'next_page_token_example'; // string | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info.
 
 try {
     $result = $apiInstance->getLeadsByFilterUsingGET($filter_type, $filter_values, $fields, $batch_size, $next_page_token);
@@ -459,7 +459,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -482,9 +482,9 @@ $apiInstance = new NecLimDul\MarketoRest\Lead\Api\LeadsApi(
     new GuzzleHttp\Client()
 );
 $program_id = 56; // int | The id of the program to retrieve from
-$fields = array("fields_example"); // string[] | A comma-separated list of fields to be returned for each record
+$fields = array('fields_example'); // string[] | A comma-separated list of fields to be returned for each record
 $batch_size = 56; // int | The batch size to return.  The max and default value is 300.
-$next_page_token = "next_page_token_example"; // string | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info.
+$next_page_token = 'next_page_token_example'; // string | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info.
 
 try {
     $result = $apiInstance->getLeadsByProgramIdUsingGET($program_id, $fields, $batch_size, $next_page_token);
@@ -514,7 +514,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -536,8 +536,8 @@ $apiInstance = new NecLimDul\MarketoRest\Lead\Api\LeadsApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$lead_id = 789; // int | The Marketo lead id
-$next_page_token = "next_page_token_example"; // string | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info.
+$lead_id = 56; // int | The Marketo lead id
+$next_page_token = 'next_page_token_example'; // string | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info.
 $batch_size = 56; // int | Maximum number of records to return.  Maximum and default is 300.
 
 try {
@@ -567,7 +567,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -589,11 +589,11 @@ $apiInstance = new NecLimDul\MarketoRest\Lead\Api\LeadsApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$lead_id = 789; // int | The Marketo lead id
-$next_page_token = "next_page_token_example"; // string | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info.
+$lead_id = 56; // int | The Marketo lead id
+$next_page_token = 'next_page_token_example'; // string | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info.
 $batch_size = 56; // int | Maximum number of records to return.  Maximum and default is 300.
-$earliest_updated_at = "earliest_updated_at_example"; // string | Exclude programs prior to this date. Must be valid ISO-8601 string.  See <a href=\"http://developers.marketo.com/rest-api/lead-database/fields/field-types/\">Datetime</a> field type description.
-$latest_updated_at = "latest_updated_at_example"; // string | Exclude programs after this date. Must be valid ISO-8601 string.  See <a href=\"http://developers.marketo.com/rest-api/lead-database/fields/field-types/\">Datetime</a> field type description.
+$earliest_updated_at = 'earliest_updated_at_example'; // string | Exclude programs prior to this date. Must be valid ISO-8601 string.  See <a href=\"http://developers.marketo.com/rest-api/lead-database/fields/field-types/\">Datetime</a> field type description.
+$latest_updated_at = 'latest_updated_at_example'; // string | Exclude programs after this date. Must be valid ISO-8601 string.  See <a href=\"http://developers.marketo.com/rest-api/lead-database/fields/field-types/\">Datetime</a> field type description.
 
 try {
     $result = $apiInstance->getProgramMembershipUsingGET($lead_id, $next_page_token, $batch_size, $earliest_updated_at, $latest_updated_at);
@@ -624,7 +624,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -646,11 +646,11 @@ $apiInstance = new NecLimDul\MarketoRest\Lead\Api\LeadsApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$lead_id = 789; // int | The Marketo lead id
-$next_page_token = "next_page_token_example"; // string | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info.
+$lead_id = 56; // int | The Marketo lead id
+$next_page_token = 'next_page_token_example'; // string | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info.
 $batch_size = 56; // int | Maximum number of records to return.  Maximum and default is 300.
-$earliest_updated_at = "earliest_updated_at_example"; // string | Exclude smart campaigns prior to this date. Must be valid ISO-8601 string.  See <a href=\"http://developers.marketo.com/rest-api/lead-database/fields/field-types/\">Datetime</a> field type description.
-$latest_updated_at = "latest_updated_at_example"; // string | Exclude smart campaigns after this date. Must be valid ISO-8601 string.  See <a href=\"http://developers.marketo.com/rest-api/lead-database/fields/field-types/\">Datetime</a> field type description.
+$earliest_updated_at = 'earliest_updated_at_example'; // string | Exclude smart campaigns prior to this date. Must be valid ISO-8601 string.  See <a href=\"http://developers.marketo.com/rest-api/lead-database/fields/field-types/\">Datetime</a> field type description.
+$latest_updated_at = 'latest_updated_at_example'; // string | Exclude smart campaigns after this date. Must be valid ISO-8601 string.  See <a href=\"http://developers.marketo.com/rest-api/lead-database/fields/field-types/\">Datetime</a> field type description.
 
 try {
     $result = $apiInstance->getSmartCampaignMembershipUsingGET($lead_id, $next_page_token, $batch_size, $earliest_updated_at, $latest_updated_at);
@@ -681,7 +681,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -703,10 +703,10 @@ $apiInstance = new NecLimDul\MarketoRest\Lead\Api\LeadsApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$lead_id = 789; // int | The id of the winning lead record
-$lead_id2 = 789; // int | The id of the losing record
+$lead_id = 56; // int | The id of the winning lead record
+$lead_id2 = 56; // int | The id of the losing record
 $lead_ids = array(56); // int[] | A comma-separated list of ids of losing records
-$merge_in_crm = true; // bool | If set, will attempt to merge the designated records in a natively-synched CRM.  Only valid for instances with are natively synched to SFDC.
+$merge_in_crm = True; // bool | If set, will attempt to merge the designated records in a natively-synched CRM.  Only valid for instances with are natively synched to SFDC.
 
 try {
     $result = $apiInstance->mergeLeadsUsingPOST($lead_id, $lead_id2, $lead_ids, $merge_in_crm);
@@ -736,7 +736,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)

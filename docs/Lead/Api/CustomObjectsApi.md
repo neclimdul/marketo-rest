@@ -39,7 +39,7 @@ $apiInstance = new NecLimDul\MarketoRest\Lead\Api\CustomObjectsApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$api_name = "api_name_example"; // string | API name of custom object type
+$api_name = 'api_name_example'; // string | API name of custom object type
 $add_custom_object_type_fields_request = new \NecLimDul\MarketoRest\Lead\Model\AddCustomObjectTypeFieldsRequest(); // \NecLimDul\MarketoRest\Lead\Model\AddCustomObjectTypeFieldsRequest | JSON object containing custom object type fields
 
 try {
@@ -90,7 +90,7 @@ $apiInstance = new NecLimDul\MarketoRest\Lead\Api\CustomObjectsApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$api_name = "api_name_example"; // string | API Name of the custom object type to approve
+$api_name = 'api_name_example'; // string | API Name of the custom object type to approve
 
 try {
     $result = $apiInstance->approveCustomObjectTypeUsingPOST($api_name);
@@ -117,7 +117,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -139,7 +139,7 @@ $apiInstance = new NecLimDul\MarketoRest\Lead\Api\CustomObjectsApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$api_name = "api_name_example"; // string | API name of custom object type
+$api_name = 'api_name_example'; // string | API name of custom object type
 $delete_custom_object_type_fields_request = new \NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectTypeFieldsRequest(); // \NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectTypeFieldsRequest | JSON object containing custom object type fields
 
 try {
@@ -190,7 +190,7 @@ $apiInstance = new NecLimDul\MarketoRest\Lead\Api\CustomObjectsApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$api_name = "api_name_example"; // string | API Name of the custom object type to delete
+$api_name = 'api_name_example'; // string | API Name of the custom object type to delete
 
 try {
     $result = $apiInstance->deleteCustomObjectTypeUsingPOST($api_name);
@@ -217,7 +217,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -239,7 +239,7 @@ $apiInstance = new NecLimDul\MarketoRest\Lead\Api\CustomObjectsApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$custom_object_name = "custom_object_name_example"; // string | customObjectName
+$custom_object_name = 'custom_object_name_example'; // string | customObjectName
 $delete_custom_object_request = new \NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectRequest(); // \NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectRequest | deleteCustomObjectRequest
 
 try {
@@ -290,8 +290,8 @@ $apiInstance = new NecLimDul\MarketoRest\Lead\Api\CustomObjectsApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$api_name = "api_name_example"; // string | API name of custom object type to describe
-$state = "state_example"; // string | State of custom object type to filter on.  By default, if an approved version exists, it is returned.  Otherwise, the draft version is returned.
+$api_name = 'api_name_example'; // string | API name of custom object type to describe
+$state = 'state_example'; // string | State of custom object type to filter on.  By default, if an approved version exists, it is returned.  Otherwise, the draft version is returned.
 
 try {
     $result = $apiInstance->describeCustomObjectTypeUsingGET($api_name, $state);
@@ -319,7 +319,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -341,7 +341,7 @@ $apiInstance = new NecLimDul\MarketoRest\Lead\Api\CustomObjectsApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$custom_object_name = "custom_object_name_example"; // string | customObjectName
+$custom_object_name = 'custom_object_name_example'; // string | customObjectName
 
 try {
     $result = $apiInstance->describeUsingGET1($custom_object_name);
@@ -368,7 +368,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -390,7 +390,7 @@ $apiInstance = new NecLimDul\MarketoRest\Lead\Api\CustomObjectsApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$api_name = "api_name_example"; // string | API Name of the custom object type draft to discard
+$api_name = 'api_name_example'; // string | API Name of the custom object type draft to discard
 
 try {
     $result = $apiInstance->discardCustomObjectTypeUsingPOST($api_name);
@@ -417,7 +417,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -462,7 +462,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -507,13 +507,13 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getCustomObjectsUsingGET**
-> \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject getCustomObjectsUsingGET($custom_object_name, $filter_type, $filter_values, $custom_object_lookup_request, $fields, $batch_size, $next_page_token)
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject getCustomObjectsUsingGET($custom_object_name, $filter_type, $filter_values, $fields, $batch_size, $next_page_token, $lookup_custom_object_request)
 
 Get Custom Objects
 
@@ -529,16 +529,16 @@ $apiInstance = new NecLimDul\MarketoRest\Lead\Api\CustomObjectsApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$custom_object_name = "custom_object_name_example"; // string | Name of custom object type to retrieve records for
-$filter_type = "filter_type_example"; // string | Field to filter on. Searchable fields can be retrieved with Describe Custom Object
-$filter_values = array("filter_values_example"); // string[] | Comma-separated list of field values to match against.
-$custom_object_lookup_request = new \NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest(); // \NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest | Optional JSON request for retrieving custom objects with compound keys.  Example:<br><code>{<br>\"filterType\":\"dedupeFields\",<br>\"fields\":[<br>\"marketoGuid\",<br>\"Bedrooms\",<br>\"yearBuilt\"<br>],<br>\"input\":[<br>{<br>\"mlsNum\":\"1962352\",<br>\"houseOwnerId\":\"42645756\"<br>},<br>{<br>\"mlsNum\":\"3962352\",<br>\"houseOwnerId\":\"62645756\"<br>}<br>]<br>}</code><br>
-$fields = array("fields_example"); // string[] | Comma-separated list of fields to return for each record.  If unset marketoGuid, dedupeFields, updatedAt, createdAt will be returned
+$custom_object_name = 'custom_object_name_example'; // string | Name of custom object type to retrieve records for
+$filter_type = 'filter_type_example'; // string | Field to filter on. Searchable fields can be retrieved with Describe Custom Object
+$filter_values = array('filter_values_example'); // string[] | Comma-separated list of field values to match against.
+$fields = array('fields_example'); // string[] | Comma-separated list of fields to return for each record.  If unset marketoGuid, dedupeFields, updatedAt, createdAt will be returned
 $batch_size = 56; // int | The batch size to return.  The max and default value is 300.
-$next_page_token = "next_page_token_example"; // string | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info.
+$next_page_token = 'next_page_token_example'; // string | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info.
+$lookup_custom_object_request = new \NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest(); // \NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest | Optional JSON request for retrieving custom objects with compound keys.  Example:<br><code>{<br>\"filterType\":\"dedupeFields\",<br>\"fields\":[<br>\"marketoGuid\",<br>\"Bedrooms\",<br>\"yearBuilt\"<br>],<br>\"input\":[<br>{<br>\"mlsNum\":\"1962352\",<br>\"houseOwnerId\":\"42645756\"<br>},<br>{<br>\"mlsNum\":\"3962352\",<br>\"houseOwnerId\":\"62645756\"<br>}<br>]<br>}</code><br>
 
 try {
-    $result = $apiInstance->getCustomObjectsUsingGET($custom_object_name, $filter_type, $filter_values, $custom_object_lookup_request, $fields, $batch_size, $next_page_token);
+    $result = $apiInstance->getCustomObjectsUsingGET($custom_object_name, $filter_type, $filter_values, $fields, $batch_size, $next_page_token, $lookup_custom_object_request);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling CustomObjectsApi->getCustomObjectsUsingGET: ', $e->getMessage(), PHP_EOL;
@@ -553,10 +553,10 @@ Name | Type | Description  | Notes
  **custom_object_name** | **string**| Name of custom object type to retrieve records for |
  **filter_type** | **string**| Field to filter on. Searchable fields can be retrieved with Describe Custom Object |
  **filter_values** | [**string[]**](../Model/string.md)| Comma-separated list of field values to match against. |
- **custom_object_lookup_request** | [**\NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest**](../Model/LookupCustomObjectRequest.md)| Optional JSON request for retrieving custom objects with compound keys.  Example:&lt;br&gt;&lt;code&gt;{&lt;br&gt;\&quot;filterType\&quot;:\&quot;dedupeFields\&quot;,&lt;br&gt;\&quot;fields\&quot;:[&lt;br&gt;\&quot;marketoGuid\&quot;,&lt;br&gt;\&quot;Bedrooms\&quot;,&lt;br&gt;\&quot;yearBuilt\&quot;&lt;br&gt;],&lt;br&gt;\&quot;input\&quot;:[&lt;br&gt;{&lt;br&gt;\&quot;mlsNum\&quot;:\&quot;1962352\&quot;,&lt;br&gt;\&quot;houseOwnerId\&quot;:\&quot;42645756\&quot;&lt;br&gt;},&lt;br&gt;{&lt;br&gt;\&quot;mlsNum\&quot;:\&quot;3962352\&quot;,&lt;br&gt;\&quot;houseOwnerId\&quot;:\&quot;62645756\&quot;&lt;br&gt;}&lt;br&gt;]&lt;br&gt;}&lt;/code&gt;&lt;br&gt; | [optional]
  **fields** | [**string[]**](../Model/string.md)| Comma-separated list of fields to return for each record.  If unset marketoGuid, dedupeFields, updatedAt, createdAt will be returned | [optional]
  **batch_size** | **int**| The batch size to return.  The max and default value is 300. | [optional]
  **next_page_token** | **string**| A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info. | [optional]
+ **lookup_custom_object_request** | [**\NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest**](../Model/LookupCustomObjectRequest.md)| Optional JSON request for retrieving custom objects with compound keys.  Example:&lt;br&gt;&lt;code&gt;{&lt;br&gt;\&quot;filterType\&quot;:\&quot;dedupeFields\&quot;,&lt;br&gt;\&quot;fields\&quot;:[&lt;br&gt;\&quot;marketoGuid\&quot;,&lt;br&gt;\&quot;Bedrooms\&quot;,&lt;br&gt;\&quot;yearBuilt\&quot;&lt;br&gt;],&lt;br&gt;\&quot;input\&quot;:[&lt;br&gt;{&lt;br&gt;\&quot;mlsNum\&quot;:\&quot;1962352\&quot;,&lt;br&gt;\&quot;houseOwnerId\&quot;:\&quot;42645756\&quot;&lt;br&gt;},&lt;br&gt;{&lt;br&gt;\&quot;mlsNum\&quot;:\&quot;3962352\&quot;,&lt;br&gt;\&quot;houseOwnerId\&quot;:\&quot;62645756\&quot;&lt;br&gt;}&lt;br&gt;]&lt;br&gt;}&lt;/code&gt;&lt;br&gt; | [optional]
 
 ### Return type
 
@@ -590,8 +590,8 @@ $apiInstance = new NecLimDul\MarketoRest\Lead\Api\CustomObjectsApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$names = array("names_example"); // string[] | Comma-separated list of API names of custom object types to filter on
-$state = "state_example"; // string | State of custom object type to filter on.  By default, if an approved version exists, it is returned.  Otherwise, the draft version is returned.
+$names = array('names_example'); // string[] | Comma-separated list of API names of custom object types to filter on
+$state = 'state_example'; // string | State of custom object type to filter on.  By default, if an approved version exists, it is returned.  Otherwise, the draft version is returned.
 
 try {
     $result = $apiInstance->listCustomObjectTypesUsingGET($names, $state);
@@ -619,7 +619,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -641,7 +641,7 @@ $apiInstance = new NecLimDul\MarketoRest\Lead\Api\CustomObjectsApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$names = array("names_example"); // string[] | Comma-separated list of names to filter types on
+$names = array('names_example'); // string[] | Comma-separated list of names to filter types on
 
 try {
     $result = $apiInstance->listCustomObjectsUsingGET($names);
@@ -668,7 +668,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -739,7 +739,7 @@ $apiInstance = new NecLimDul\MarketoRest\Lead\Api\CustomObjectsApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$custom_object_name = "custom_object_name_example"; // string | customObjectName
+$custom_object_name = 'custom_object_name_example'; // string | customObjectName
 $sync_custom_object_request = new \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectRequest(); // \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectRequest | syncCustomObjectRequest
 
 try {
@@ -790,8 +790,8 @@ $apiInstance = new NecLimDul\MarketoRest\Lead\Api\CustomObjectsApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$api_name = "api_name_example"; // string | API name of custom object type
-$field_api_name = "field_api_name_example"; // string | API name of custom object type field
+$api_name = 'api_name_example'; // string | API name of custom object type
+$field_api_name = 'field_api_name_example'; // string | API name of custom object type field
 $update_custom_object_type_field_request = new \NecLimDul\MarketoRest\Lead\Model\UpdateCustomObjectTypeFieldRequest(); // \NecLimDul\MarketoRest\Lead\Model\UpdateCustomObjectTypeFieldRequest | JSON object containing custom object type fields
 
 try {

@@ -27,7 +27,7 @@ $apiInstance = new NecLimDul\MarketoRest\Lead\Api\BulkImportCustomObjectsApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$api_name = "api_name_example"; // string | API Name of the custom object for the import batch job.
+$api_name = 'api_name_example'; // string | API Name of the custom object for the import batch job.
 $batch_id = 56; // int | Id of the import batch job.
 
 try {
@@ -56,7 +56,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -78,7 +78,7 @@ $apiInstance = new NecLimDul\MarketoRest\Lead\Api\BulkImportCustomObjectsApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$api_name = "api_name_example"; // string | API Name of the custom object for the import batch job.
+$api_name = 'api_name_example'; // string | API Name of the custom object for the import batch job.
 $batch_id = 56; // int | Id of the import batch job.
 
 try {
@@ -107,7 +107,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -129,7 +129,7 @@ $apiInstance = new NecLimDul\MarketoRest\Lead\Api\BulkImportCustomObjectsApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$api_name = "api_name_example"; // string | API Name of the custom object for the import batch job.
+$api_name = 'api_name_example'; // string | API Name of the custom object for the import batch job.
 $batch_id = 56; // int | Id of the import batch job.
 
 try {
@@ -158,7 +158,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -180,8 +180,8 @@ $apiInstance = new NecLimDul\MarketoRest\Lead\Api\BulkImportCustomObjectsApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$api_name = "api_name_example"; // string | API Name of the custom object for the import batch job.
-$format = "format_example"; // string | Import file format.
+$api_name = 'api_name_example'; // string | API Name of the custom object for the import batch job.
+$format = 'format_example'; // string | Import file format.
 $file = "/path/to/file.txt"; // \SplFileObject | File containing the data records to import.
 
 try {
@@ -199,7 +199,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **api_name** | **string**| API Name of the custom object for the import batch job. |
  **format** | **string**| Import file format. |
- **file** | **\SplFileObject**| File containing the data records to import. |
+ **file** | **\SplFileObject****\SplFileObject**| File containing the data records to import. |
 
 ### Return type
 

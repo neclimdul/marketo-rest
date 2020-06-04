@@ -18,7 +18,7 @@ Method | HTTP request | Description
 
 
 # **addFieldSetUsingPOST**
-> \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse addFieldSetUsingPOST($id, $add_form_field_set_request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse addFieldSetUsingPOST($id, $label)
 
 Add Fieldset to Form
 
@@ -35,10 +35,10 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\FormFieldsApi(
     new GuzzleHttp\Client()
 );
 $id = 56; // int | id
-$add_form_field_set_request = new \NecLimDul\MarketoRest\Asset\Model\AddFormFieldSetRequest(); // \NecLimDul\MarketoRest\Asset\Model\AddFormFieldSetRequest | addFormFieldSetRequest
+$label = 'label_example'; // string | Label of the fieldset
 
 try {
-    $result = $apiInstance->addFieldSetUsingPOST($id, $add_form_field_set_request);
+    $result = $apiInstance->addFieldSetUsingPOST($id, $label);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling FormFieldsApi->addFieldSetUsingPOST: ', $e->getMessage(), PHP_EOL;
@@ -51,7 +51,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| id |
- **add_form_field_set_request** | [**\NecLimDul\MarketoRest\Asset\Model\AddFormFieldSetRequest**](../Model/AddFormFieldSetRequest.md)| addFormFieldSetRequest |
+ **label** | **string**| Label of the fieldset |
 
 ### Return type
 
@@ -69,7 +69,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **addFieldToAFormUsingPOST**
-> \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse addFieldToAFormUsingPOST($id, $add_form_field_set_request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse addFieldToAFormUsingPOST($id, $field_id, $blank_fields, $default_value, $field_width, $form_prefill, $hint_text, $initially_checked, $instructions, $label, $label_to_right, $label_width, $mask_input, $max_length, $max_value, $min_value, $multi_select, $required, $validation_message, $values, $visible_lines)
 
 Add Field to Form
 
@@ -86,10 +86,29 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\FormFieldsApi(
     new GuzzleHttp\Client()
 );
 $id = 56; // int | id
-$add_form_field_set_request = new \NecLimDul\MarketoRest\Asset\Model\AddFormFieldRequest(); // \NecLimDul\MarketoRest\Asset\Model\AddFormFieldRequest | addFormFieldSetRequest
+$field_id = 'field_id_example'; // string | Id of the field
+$blank_fields = 56; // int | Number of blank fields to show when progressive profiling is enabled
+$default_value = 'default_value_example'; // string | Optional default value for the field
+$field_width = 56; // int | Width of the input or select element
+$form_prefill = True; // bool | Whether the field should prefill.  Default true
+$hint_text = 'hint_text_example'; // string | Hint text for the field
+$initially_checked = True; // bool | Whether the field should be checked upon loading.  Default false
+$instructions = 'instructions_example'; // string | Instructions for the field
+$label = 'label_example'; // string | Label of the field
+$label_to_right = True; // bool | Whether the field label should be displayed to the right of the input/select element. Default false
+$label_width = 56; // int | Width of the field label element
+$mask_input = 'mask_input_example'; // string | Optional input mask for the field
+$max_length = 56; // int | Maximum length for text type fields
+$max_value = 3.4; // float | Maximum value accepted by the field
+$min_value = 3.4; // float | Minimum value accepted by the field
+$multi_select = True; // bool | Whether the field should allow multiple selections. Default false
+$required = True; // bool | Whether the field is required to submit the form.  Default false
+$validation_message = 'validation_message_example'; // string | Validation message to display on failed validation
+$values = 'values_example'; // string | Comma-separated list of accepted values for the field.  Only for select-field types
+$visible_lines = 56; // int | Number of lines to display for the field element
 
 try {
-    $result = $apiInstance->addFieldToAFormUsingPOST($id, $add_form_field_set_request);
+    $result = $apiInstance->addFieldToAFormUsingPOST($id, $field_id, $blank_fields, $default_value, $field_width, $form_prefill, $hint_text, $initially_checked, $instructions, $label, $label_to_right, $label_width, $mask_input, $max_length, $max_value, $min_value, $multi_select, $required, $validation_message, $values, $visible_lines);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling FormFieldsApi->addFieldToAFormUsingPOST: ', $e->getMessage(), PHP_EOL;
@@ -102,7 +121,26 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| id |
- **add_form_field_set_request** | [**\NecLimDul\MarketoRest\Asset\Model\AddFormFieldRequest**](../Model/AddFormFieldRequest.md)| addFormFieldSetRequest |
+ **field_id** | **string**| Id of the field |
+ **blank_fields** | **int**| Number of blank fields to show when progressive profiling is enabled | [optional]
+ **default_value** | **string**| Optional default value for the field | [optional]
+ **field_width** | **int**| Width of the input or select element | [optional]
+ **form_prefill** | **bool**| Whether the field should prefill.  Default true | [optional]
+ **hint_text** | **string**| Hint text for the field | [optional]
+ **initially_checked** | **bool**| Whether the field should be checked upon loading.  Default false | [optional]
+ **instructions** | **string**| Instructions for the field | [optional]
+ **label** | **string**| Label of the field | [optional]
+ **label_to_right** | **bool**| Whether the field label should be displayed to the right of the input/select element. Default false | [optional]
+ **label_width** | **int**| Width of the field label element | [optional]
+ **mask_input** | **string**| Optional input mask for the field | [optional]
+ **max_length** | **int**| Maximum length for text type fields | [optional]
+ **max_value** | **float**| Maximum value accepted by the field | [optional]
+ **min_value** | **float**| Minimum value accepted by the field | [optional]
+ **multi_select** | **bool**| Whether the field should allow multiple selections. Default false | [optional]
+ **required** | **bool**| Whether the field is required to submit the form.  Default false | [optional]
+ **validation_message** | **string**| Validation message to display on failed validation | [optional]
+ **values** | **string**| Comma-separated list of accepted values for the field.  Only for select-field types | [optional]
+ **visible_lines** | **int**| Number of lines to display for the field element | [optional]
 
 ### Return type
 
@@ -120,7 +158,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **addFormFieldVisibilityRuleUsingPOST**
-> \NecLimDul\MarketoRest\Asset\Model\ResponseOfFormVisibilityRuleResponse addFormFieldVisibilityRuleUsingPOST($form_id, $field_id, $add_form_field_visibility_request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfFormVisibilityRuleResponse addFormFieldVisibilityRuleUsingPOST($form_id, $field_id, $visibility_rule)
 
 Add Form Field Visibility Rules
 
@@ -137,11 +175,11 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\FormFieldsApi(
     new GuzzleHttp\Client()
 );
 $form_id = 56; // int | formId
-$field_id = "field_id_example"; // string | fieldId
-$add_form_field_visibility_request = new \NecLimDul\MarketoRest\Asset\Model\AddFormFieldVisibilityRequest(); // \NecLimDul\MarketoRest\Asset\Model\AddFormFieldVisibilityRequest | addFormFieldVisibilityRequest
+$field_id = 'field_id_example'; // string | fieldId
+$visibility_rule = new \NecLimDul\MarketoRest\Asset\Model\FormFieldVisibilityRequest(); // \NecLimDul\MarketoRest\Asset\Model\FormFieldVisibilityRequest | 
 
 try {
-    $result = $apiInstance->addFormFieldVisibilityRuleUsingPOST($form_id, $field_id, $add_form_field_visibility_request);
+    $result = $apiInstance->addFormFieldVisibilityRuleUsingPOST($form_id, $field_id, $visibility_rule);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling FormFieldsApi->addFormFieldVisibilityRuleUsingPOST: ', $e->getMessage(), PHP_EOL;
@@ -155,7 +193,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **form_id** | **int**| formId |
  **field_id** | **string**| fieldId |
- **add_form_field_visibility_request** | [**\NecLimDul\MarketoRest\Asset\Model\AddFormFieldVisibilityRequest**](../Model/AddFormFieldVisibilityRequest.md)| addFormFieldVisibilityRequest |
+ **visibility_rule** | [**\NecLimDul\MarketoRest\Asset\Model\FormFieldVisibilityRequest**](../Model/FormFieldVisibilityRequest.md)|  | [optional]
 
 ### Return type
 
@@ -173,7 +211,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **addRichTextFieldUsingPOST**
-> \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse addRichTextFieldUsingPOST($id, $add_rich_text_request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse addRichTextFieldUsingPOST($id, $text)
 
 Add Rich Text Field
 
@@ -190,10 +228,10 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\FormFieldsApi(
     new GuzzleHttp\Client()
 );
 $id = 56; // int | id
-$add_rich_text_request = new \NecLimDul\MarketoRest\Asset\Model\AddRichTextRequest(); // \NecLimDul\MarketoRest\Asset\Model\AddRichTextRequest | addRichTextRequest
+$text = 'text_example'; // string | Multipart file. HTML Content for the rich text field.
 
 try {
-    $result = $apiInstance->addRichTextFieldUsingPOST($id, $add_rich_text_request);
+    $result = $apiInstance->addRichTextFieldUsingPOST($id, $text);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling FormFieldsApi->addRichTextFieldUsingPOST: ', $e->getMessage(), PHP_EOL;
@@ -206,7 +244,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| id |
- **add_rich_text_request** | [**\NecLimDul\MarketoRest\Asset\Model\AddRichTextRequest**](../Model/AddRichTextRequest.md)| addRichTextRequest |
+ **text** | **string**| Multipart file. HTML Content for the rich text field. |
 
 ### Return type
 
@@ -241,8 +279,8 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\FormFieldsApi(
     new GuzzleHttp\Client()
 );
 $id = 56; // int | id
-$field_set_id = "field_set_id_example"; // string | fieldSetId
-$field_id = "field_id_example"; // string | fieldId
+$field_set_id = 'field_set_id_example'; // string | fieldSetId
+$field_id = 'field_id_example'; // string | fieldId
 
 try {
     $result = $apiInstance->deleteFormFieldFromFieldSetUsingPOST($id, $field_set_id, $field_id);
@@ -271,7 +309,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -294,7 +332,7 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\FormFieldsApi(
     new GuzzleHttp\Client()
 );
 $id = 56; // int | id
-$field_id = "field_id_example"; // string | fieldId
+$field_id = 'field_id_example'; // string | fieldId
 
 try {
     $result = $apiInstance->deleteFormFieldUsingPOST($id, $field_id);
@@ -322,7 +360,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -373,7 +411,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -424,7 +462,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -447,7 +485,7 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\FormFieldsApi(
     new GuzzleHttp\Client()
 );
 $id = 56; // int | id
-$status = "status_example"; // string | Status filter for draft or approved versions
+$status = 'status_example'; // string | Status filter for draft or approved versions
 
 try {
     $result = $apiInstance->getFormFieldByFormVidUsingGET($id, $status);
@@ -475,13 +513,13 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **updateFieldPositionsUsingPOST**
-> \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse updateFieldPositionsUsingPOST($id, $re_arrange_request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse updateFieldPositionsUsingPOST($id, $positions)
 
 Update Field Positions
 
@@ -498,10 +536,10 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\FormFieldsApi(
     new GuzzleHttp\Client()
 );
 $id = 56; // int | id
-$re_arrange_request = new \NecLimDul\MarketoRest\Asset\Model\ReArrangeRequest(); // \NecLimDul\MarketoRest\Asset\Model\ReArrangeRequest | reArrangeRequest
+$positions = new \NecLimDul\MarketoRest\Asset\Model\UpdateFieldPosition(); // \NecLimDul\MarketoRest\Asset\Model\UpdateFieldPosition[] | 
 
 try {
-    $result = $apiInstance->updateFieldPositionsUsingPOST($id, $re_arrange_request);
+    $result = $apiInstance->updateFieldPositionsUsingPOST($id, $positions);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling FormFieldsApi->updateFieldPositionsUsingPOST: ', $e->getMessage(), PHP_EOL;
@@ -514,7 +552,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| id |
- **re_arrange_request** | [**\NecLimDul\MarketoRest\Asset\Model\ReArrangeRequest**](../Model/ReArrangeRequest.md)| reArrangeRequest | [optional]
+ **positions** | [**\NecLimDul\MarketoRest\Asset\Model\UpdateFieldPosition[]**](../Model/\NecLimDul\MarketoRest\Asset\Model\UpdateFieldPosition.md)|  | [optional]
 
 ### Return type
 
@@ -532,7 +570,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **updateFormFieldUsingPOST**
-> \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse updateFormFieldUsingPOST($id, $field_id, $update_form_field_request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse updateFormFieldUsingPOST($id, $field_id, $blank_fields, $default_value, $field_type, $field_width, $form_prefill, $hint_text, $initially_checked, $instructions, $label, $label_to_right, $label_width, $mask_input, $max_length, $max_value, $min_value, $multi_select, $required, $validation_message, $values, $visible_lines)
 
 Update Form Field
 
@@ -549,11 +587,30 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\FormFieldsApi(
     new GuzzleHttp\Client()
 );
 $id = 56; // int | id
-$field_id = "field_id_example"; // string | fieldId
-$update_form_field_request = new \NecLimDul\MarketoRest\Asset\Model\UpdateFormFieldRequest(); // \NecLimDul\MarketoRest\Asset\Model\UpdateFormFieldRequest | updateFormFieldRequest
+$field_id = 'field_id_example'; // string | fieldId
+$blank_fields = 56; // int | Number of blank fields to show when progressive profiling is enabled
+$default_value = 'default_value_example'; // string | Optional default value for the field
+$field_type = 'field_type_example'; // string | Type of field
+$field_width = 56; // int | Width of the input or select element
+$form_prefill = True; // bool | Whether the field should prefill.  Default true
+$hint_text = 'hint_text_example'; // string | Hint text for the field
+$initially_checked = True; // bool | Whether the field should be checked upon loading.  Default false
+$instructions = 'instructions_example'; // string | Instructions for the field
+$label = 'label_example'; // string | Label of the field
+$label_to_right = True; // bool | Whether the field label should be displayed to the right of the input/select element. Default false
+$label_width = 56; // int | Width of the field label element
+$mask_input = 'mask_input_example'; // string | Optional input mask for the field
+$max_length = 56; // int | Maximum length for text type fields
+$max_value = 3.4; // float | Maximum value accepted by the field
+$min_value = 3.4; // float | Minimum value accepted by the field
+$multi_select = True; // bool | Whether the field should allow multiple selections. Default false
+$required = True; // bool | Whether the field is required to submit the form.  Default false
+$validation_message = 'validation_message_example'; // string | Validation message to display on failed validation
+$values = 'values_example'; // string | Array of JSON objects that contain field attributes. Only for select-field types.  Example: values=[{'label':'Select...','value':'','isDefault':true,'selected':true}, {'label':'MR','value':'Mr'}, {'label':'MS','value':'Ms'}, {'label':'MRS','value':'Mrs'}, {'label':'DR','value':'Dr'}, {'label':'PROF','value':'Prof'}]
+$visible_lines = 56; // int | Number of lines to display for the field element
 
 try {
-    $result = $apiInstance->updateFormFieldUsingPOST($id, $field_id, $update_form_field_request);
+    $result = $apiInstance->updateFormFieldUsingPOST($id, $field_id, $blank_fields, $default_value, $field_type, $field_width, $form_prefill, $hint_text, $initially_checked, $instructions, $label, $label_to_right, $label_width, $mask_input, $max_length, $max_value, $min_value, $multi_select, $required, $validation_message, $values, $visible_lines);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling FormFieldsApi->updateFormFieldUsingPOST: ', $e->getMessage(), PHP_EOL;
@@ -567,7 +624,26 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| id |
  **field_id** | **string**| fieldId |
- **update_form_field_request** | [**\NecLimDul\MarketoRest\Asset\Model\UpdateFormFieldRequest**](../Model/UpdateFormFieldRequest.md)| updateFormFieldRequest |
+ **blank_fields** | **int**| Number of blank fields to show when progressive profiling is enabled | [optional]
+ **default_value** | **string**| Optional default value for the field | [optional]
+ **field_type** | **string**| Type of field | [optional]
+ **field_width** | **int**| Width of the input or select element | [optional]
+ **form_prefill** | **bool**| Whether the field should prefill.  Default true | [optional]
+ **hint_text** | **string**| Hint text for the field | [optional]
+ **initially_checked** | **bool**| Whether the field should be checked upon loading.  Default false | [optional]
+ **instructions** | **string**| Instructions for the field | [optional]
+ **label** | **string**| Label of the field | [optional]
+ **label_to_right** | **bool**| Whether the field label should be displayed to the right of the input/select element. Default false | [optional]
+ **label_width** | **int**| Width of the field label element | [optional]
+ **mask_input** | **string**| Optional input mask for the field | [optional]
+ **max_length** | **int**| Maximum length for text type fields | [optional]
+ **max_value** | **float**| Maximum value accepted by the field | [optional]
+ **min_value** | **float**| Minimum value accepted by the field | [optional]
+ **multi_select** | **bool**| Whether the field should allow multiple selections. Default false | [optional]
+ **required** | **bool**| Whether the field is required to submit the form.  Default false | [optional]
+ **validation_message** | **string**| Validation message to display on failed validation | [optional]
+ **values** | **string**| Array of JSON objects that contain field attributes. Only for select-field types.  Example: values&#x3D;[{&#39;label&#39;:&#39;Select...&#39;,&#39;value&#39;:&#39;&#39;,&#39;isDefault&#39;:true,&#39;selected&#39;:true}, {&#39;label&#39;:&#39;MR&#39;,&#39;value&#39;:&#39;Mr&#39;}, {&#39;label&#39;:&#39;MS&#39;,&#39;value&#39;:&#39;Ms&#39;}, {&#39;label&#39;:&#39;MRS&#39;,&#39;value&#39;:&#39;Mrs&#39;}, {&#39;label&#39;:&#39;DR&#39;,&#39;value&#39;:&#39;Dr&#39;}, {&#39;label&#39;:&#39;PROF&#39;,&#39;value&#39;:&#39;Prof&#39;}] | [optional]
+ **visible_lines** | **int**| Number of lines to display for the field element | [optional]
 
 ### Return type
 

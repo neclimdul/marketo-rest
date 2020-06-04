@@ -60,13 +60,13 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: multipart/form-data
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **cloneSmartCampaignUsingPOST**
-> \NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse cloneSmartCampaignUsingPOST($id, $clone_smart_campaign_request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse cloneSmartCampaignUsingPOST($id, $folder, $name, $description)
 
 Clone Smart Campaign
 
@@ -83,10 +83,12 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\SmartCampaignsApi(
     new GuzzleHttp\Client()
 );
 $id = 56; // int | Id of the smart campaign
-$clone_smart_campaign_request = new \NecLimDul\MarketoRest\Asset\Model\CloneSmartCampaignRequest(); // \NecLimDul\MarketoRest\Asset\Model\CloneSmartCampaignRequest | cloneSmartCampaignRequest
+$folder = new \NecLimDul\MarketoRest\Asset\Model\Folder(); // \NecLimDul\MarketoRest\Asset\Model\Folder | 
+$name = 'name_example'; // string | Name of the smart campaign
+$description = 'description_example'; // string | Description of the smart campaign
 
 try {
-    $result = $apiInstance->cloneSmartCampaignUsingPOST($id, $clone_smart_campaign_request);
+    $result = $apiInstance->cloneSmartCampaignUsingPOST($id, $folder, $name, $description);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling SmartCampaignsApi->cloneSmartCampaignUsingPOST: ', $e->getMessage(), PHP_EOL;
@@ -99,7 +101,9 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| Id of the smart campaign |
- **clone_smart_campaign_request** | [**\NecLimDul\MarketoRest\Asset\Model\CloneSmartCampaignRequest**](../Model/CloneSmartCampaignRequest.md)| cloneSmartCampaignRequest |
+ **folder** | [**\NecLimDul\MarketoRest\Asset\Model\Folder**](../Model/Folder.md)|  |
+ **name** | **string**| Name of the smart campaign |
+ **description** | **string**| Description of the smart campaign | [optional]
 
 ### Return type
 
@@ -117,7 +121,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **createSmartCampaignUsingPOST**
-> \NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse createSmartCampaignUsingPOST($create_smart_campaign_request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse createSmartCampaignUsingPOST($folder, $name, $description)
 
 Create Smart Campaign
 
@@ -133,10 +137,12 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\SmartCampaignsApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$create_smart_campaign_request = new \NecLimDul\MarketoRest\Asset\Model\CreateSmartCampaignRequest(); // \NecLimDul\MarketoRest\Asset\Model\CreateSmartCampaignRequest | createSmartCampaignRequest
+$folder = new \NecLimDul\MarketoRest\Asset\Model\Folder(); // \NecLimDul\MarketoRest\Asset\Model\Folder | 
+$name = 'name_example'; // string | Name of the smart campaign
+$description = 'description_example'; // string | Description of the smart campaign
 
 try {
-    $result = $apiInstance->createSmartCampaignUsingPOST($create_smart_campaign_request);
+    $result = $apiInstance->createSmartCampaignUsingPOST($folder, $name, $description);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling SmartCampaignsApi->createSmartCampaignUsingPOST: ', $e->getMessage(), PHP_EOL;
@@ -148,7 +154,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_smart_campaign_request** | [**\NecLimDul\MarketoRest\Asset\Model\CreateSmartCampaignRequest**](../Model/CreateSmartCampaignRequest.md)| createSmartCampaignRequest |
+ **folder** | [**\NecLimDul\MarketoRest\Asset\Model\Folder**](../Model/Folder.md)|  |
+ **name** | **string**| Name of the smart campaign |
+ **description** | **string**| Description of the smart campaign | [optional]
 
 ### Return type
 
@@ -209,7 +217,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: multipart/form-data
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -258,7 +266,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -282,9 +290,9 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\SmartCampaignsApi(
 );
 $max_return = 56; // int | Maximum number of smart campaigns to return.  Max 200, default 20
 $offset = 56; // int | Integer offset for paging
-$folder = "folder_example"; // string | JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
-$earliest_updated_at = "earliest_updated_at_example"; // string | Exclude smart campaigns prior to this date. Must be valid ISO-8601 string.  See <a href=\"http://developers.marketo.com/rest-api/lead-database/fields/field-types/\">Datetime</a> field type description.
-$latest_updated_at = "latest_updated_at_example"; // string | Exclude smart campaigns after this date. Must be valid ISO-8601 string.  See <a href=\"http://developers.marketo.com/rest-api/lead-database/fields/field-types/\">Datetime</a> field type description.
+$folder = 'folder_example'; // string | JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
+$earliest_updated_at = 'earliest_updated_at_example'; // string | Exclude smart campaigns prior to this date. Must be valid ISO-8601 string.  See <a href=\"http://developers.marketo.com/rest-api/lead-database/fields/field-types/\">Datetime</a> field type description.
+$latest_updated_at = 'latest_updated_at_example'; // string | Exclude smart campaigns after this date. Must be valid ISO-8601 string.  See <a href=\"http://developers.marketo.com/rest-api/lead-database/fields/field-types/\">Datetime</a> field type description.
 
 try {
     $result = $apiInstance->getAllSmartCampaignsGET($max_return, $offset, $folder, $earliest_updated_at, $latest_updated_at);
@@ -315,7 +323,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -364,7 +372,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -386,7 +394,7 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\SmartCampaignsApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$name = "name_example"; // string | Name for the smart campaign
+$name = 'name_example'; // string | Name for the smart campaign
 
 try {
     $result = $apiInstance->getSmartCampaignByNameUsingGET($name);
@@ -413,7 +421,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -435,8 +443,8 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\SmartCampaignsApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$id = 789; // int | Id for the smart campaign containing smart list to retrieve
-$include_rules = true; // bool | Set true to populate smart list rules.  Default false
+$id = 56; // int | Id for the smart campaign containing smart list to retrieve
+$include_rules = True; // bool | Set true to populate smart list rules.  Default false
 
 try {
     $result = $apiInstance->getSmartListBySmartCampaignIdUsingGET($id, $include_rules);
@@ -464,7 +472,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)

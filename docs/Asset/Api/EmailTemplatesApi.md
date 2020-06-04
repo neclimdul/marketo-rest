@@ -63,13 +63,13 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **cloneTemplateUsingPOST**
-> \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse cloneTemplateUsingPOST($id, $clone_email_template_request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse cloneTemplateUsingPOST($id, $folder, $name, $description)
 
 Clone Email Template
 
@@ -86,10 +86,12 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailTemplatesApi(
     new GuzzleHttp\Client()
 );
 $id = 56; // int | id
-$clone_email_template_request = new \NecLimDul\MarketoRest\Asset\Model\CloneEmailTemplateRequest(); // \NecLimDul\MarketoRest\Asset\Model\CloneEmailTemplateRequest | cloneEmailTemplateRequest
+$folder = new \NecLimDul\MarketoRest\Asset\Model\Folder(); // \NecLimDul\MarketoRest\Asset\Model\Folder | 
+$name = 'name_example'; // string | Name of the Email Template
+$description = 'description_example'; // string | Description of the asset
 
 try {
-    $result = $apiInstance->cloneTemplateUsingPOST($id, $clone_email_template_request);
+    $result = $apiInstance->cloneTemplateUsingPOST($id, $folder, $name, $description);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling EmailTemplatesApi->cloneTemplateUsingPOST: ', $e->getMessage(), PHP_EOL;
@@ -102,7 +104,9 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| id |
- **clone_email_template_request** | [**\NecLimDul\MarketoRest\Asset\Model\CloneEmailTemplateRequest**](../Model/CloneEmailTemplateRequest.md)| cloneEmailTemplateRequest |
+ **folder** | [**\NecLimDul\MarketoRest\Asset\Model\Folder**](../Model/Folder.md)|  |
+ **name** | **string**| Name of the Email Template |
+ **description** | **string**| Description of the asset | [optional]
 
 ### Return type
 
@@ -120,7 +124,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **createEmailTemplateUsingPOST**
-> \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse createEmailTemplateUsingPOST($create_email_template_request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse createEmailTemplateUsingPOST($name, $folder, $content, $description)
 
 Create Email Template
 
@@ -136,10 +140,13 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailTemplatesApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$create_email_template_request = new \NecLimDul\MarketoRest\Asset\Model\CreateEmailTemplateRequest(); // \NecLimDul\MarketoRest\Asset\Model\CreateEmailTemplateRequest | createEmailTemplateRequest
+$name = 'name_example'; // string | Name of the Email Template.  Must be unique under the parent folder.
+$folder = new \NecLimDul\MarketoRest\Asset\Model\Folder(); // \NecLimDul\MarketoRest\Asset\Model\Folder | 
+$content = 'content_example'; // string | HTML content for template.  Multipart file.
+$description = 'description_example'; // string | Description of the email template
 
 try {
-    $result = $apiInstance->createEmailTemplateUsingPOST($create_email_template_request);
+    $result = $apiInstance->createEmailTemplateUsingPOST($name, $folder, $content, $description);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling EmailTemplatesApi->createEmailTemplateUsingPOST: ', $e->getMessage(), PHP_EOL;
@@ -151,7 +158,10 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_email_template_request** | [**\NecLimDul\MarketoRest\Asset\Model\CreateEmailTemplateRequest**](../Model/CreateEmailTemplateRequest.md)| createEmailTemplateRequest |
+ **name** | **string**| Name of the Email Template.  Must be unique under the parent folder. |
+ **folder** | [**\NecLimDul\MarketoRest\Asset\Model\Folder**](../Model/Folder.md)|  |
+ **content** | **string**| HTML content for template.  Multipart file. |
+ **description** | **string**| Description of the email template | [optional]
 
 ### Return type
 
@@ -212,7 +222,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -261,7 +271,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -314,7 +324,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -338,7 +348,7 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailTemplatesApi(
 );
 $offset = 56; // int | Integer offset for paging
 $max_return = 56; // int | Maximum number of channels to return.  Max 200, default 20
-$status = "status_example"; // string | Status filter for draft or approved versions
+$status = 'status_example'; // string | Status filter for draft or approved versions
 
 try {
     $result = $apiInstance->getEmailTemplatesUsingGET($offset, $max_return, $status);
@@ -367,7 +377,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -390,7 +400,7 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailTemplatesApi(
     new GuzzleHttp\Client()
 );
 $id = 56; // int | id
-$status = "status_example"; // string | Status filter for draft or approved versions
+$status = 'status_example'; // string | Status filter for draft or approved versions
 
 try {
     $result = $apiInstance->getTemplateByIdUsingGET($id, $status);
@@ -418,7 +428,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -440,8 +450,8 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailTemplatesApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$name = "name_example"; // string | name
-$status = "status_example"; // string | Status filter for draft or approved versions
+$name = 'name_example'; // string | name
+$status = 'status_example'; // string | Status filter for draft or approved versions
 
 try {
     $result = $apiInstance->getTemplateByNameUsingGET($name, $status);
@@ -469,7 +479,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -492,7 +502,7 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailTemplatesApi(
     new GuzzleHttp\Client()
 );
 $id = 56; // int | id
-$status = "status_example"; // string | Status filter for draft or approved versions
+$status = 'status_example'; // string | Status filter for draft or approved versions
 
 try {
     $result = $apiInstance->getTemplateContentByIdUsingGET($id, $status);
@@ -520,7 +530,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -569,13 +579,13 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **updateEmailTemplateContentUsingPOST**
-> \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse updateEmailTemplateContentUsingPOST($id, $update_email_template_content_request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse updateEmailTemplateContentUsingPOST($id, $content)
 
 Update Email Template Content
 
@@ -592,10 +602,10 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailTemplatesApi(
     new GuzzleHttp\Client()
 );
 $id = 56; // int | id
-$update_email_template_content_request = new \NecLimDul\MarketoRest\Asset\Model\UpdateEmailTemplateContentRequest(); // \NecLimDul\MarketoRest\Asset\Model\UpdateEmailTemplateContentRequest | updateEmailTemplateContentRequest
+$content = 'content_example'; // string | Content for the email template.  Multipart file.
 
 try {
-    $result = $apiInstance->updateEmailTemplateContentUsingPOST($id, $update_email_template_content_request);
+    $result = $apiInstance->updateEmailTemplateContentUsingPOST($id, $content);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling EmailTemplatesApi->updateEmailTemplateContentUsingPOST: ', $e->getMessage(), PHP_EOL;
@@ -608,7 +618,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| id |
- **update_email_template_content_request** | [**\NecLimDul\MarketoRest\Asset\Model\UpdateEmailTemplateContentRequest**](../Model/UpdateEmailTemplateContentRequest.md)| updateEmailTemplateContentRequest | [optional]
+ **content** | **string**| Content for the email template.  Multipart file. | [optional]
 
 ### Return type
 
@@ -626,7 +636,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **updateEmailTemplateUsingPOST**
-> \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse updateEmailTemplateUsingPOST($id, $update_email_meta_data_request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse updateEmailTemplateUsingPOST($id, $description, $name)
 
 Update Email Template Metadata
 
@@ -643,10 +653,11 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailTemplatesApi(
     new GuzzleHttp\Client()
 );
 $id = 56; // int | id
-$update_email_meta_data_request = new \NecLimDul\MarketoRest\Asset\Model\UpdateEmailTemplateMetaDataRequest(); // \NecLimDul\MarketoRest\Asset\Model\UpdateEmailTemplateMetaDataRequest | updateEmailMetaDataRequest
+$description = 'description_example'; // string | Description of the asset
+$name = 'name_example'; // string | Name of the Email Template
 
 try {
-    $result = $apiInstance->updateEmailTemplateUsingPOST($id, $update_email_meta_data_request);
+    $result = $apiInstance->updateEmailTemplateUsingPOST($id, $description, $name);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling EmailTemplatesApi->updateEmailTemplateUsingPOST: ', $e->getMessage(), PHP_EOL;
@@ -659,7 +670,8 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| id |
- **update_email_meta_data_request** | [**\NecLimDul\MarketoRest\Asset\Model\UpdateEmailTemplateMetaDataRequest**](../Model/UpdateEmailTemplateMetaDataRequest.md)| updateEmailMetaDataRequest |
+ **description** | **string**| Description of the asset | [optional]
+ **name** | **string**| Name of the Email Template | [optional]
 
 ### Return type
 

@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 
 # **cloneSmartListUsingPOST**
-> \NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponse cloneSmartListUsingPOST($id, $clone_smart_list_request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponse cloneSmartListUsingPOST($id, $name, $folder, $description)
 
 Clone Smart List
 
@@ -29,10 +29,12 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\SmartListsApi(
     new GuzzleHttp\Client()
 );
 $id = 56; // int | Id of smart list to clone
-$clone_smart_list_request = new \NecLimDul\MarketoRest\Asset\Model\CloneSmartListRequest(); // \NecLimDul\MarketoRest\Asset\Model\CloneSmartListRequest | cloneSmartListRequest
+$name = 'name_example'; // string | Name for the cloned smart list
+$folder = new \NecLimDul\MarketoRest\Asset\Model\Folder(); // \NecLimDul\MarketoRest\Asset\Model\Folder | 
+$description = 'description_example'; // string | Description of the cloned smart list
 
 try {
-    $result = $apiInstance->cloneSmartListUsingPOST($id, $clone_smart_list_request);
+    $result = $apiInstance->cloneSmartListUsingPOST($id, $name, $folder, $description);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling SmartListsApi->cloneSmartListUsingPOST: ', $e->getMessage(), PHP_EOL;
@@ -45,7 +47,9 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| Id of smart list to clone |
- **clone_smart_list_request** | [**\NecLimDul\MarketoRest\Asset\Model\CloneSmartListRequest**](../Model/CloneSmartListRequest.md)| cloneSmartListRequest |
+ **name** | **string**| Name for the cloned smart list |
+ **folder** | [**\NecLimDul\MarketoRest\Asset\Model\Folder**](../Model/Folder.md)|  |
+ **description** | **string**| Description of the cloned smart list | [optional]
 
 ### Return type
 
@@ -79,7 +83,7 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\SmartListsApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$id = 789; // int | Id of the smart list to delete
+$id = 56; // int | Id of the smart list to delete
 
 try {
     $result = $apiInstance->deleteSmartListByIdUsingPOST($id);
@@ -106,7 +110,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -128,8 +132,8 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\SmartListsApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$id = 789; // int | Id of the smart list to retrieve
-$include_rules = true; // bool | Set true to populate smart list rules.  Default false
+$id = 56; // int | Id of the smart list to retrieve
+$include_rules = True; // bool | Set true to populate smart list rules.  Default false
 
 try {
     $result = $apiInstance->getSmartListByIdUsingGET($id, $include_rules);
@@ -157,7 +161,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -179,7 +183,7 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\SmartListsApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$name = "name_example"; // string | Name of smart list to retrieve
+$name = 'name_example'; // string | Name of smart list to retrieve
 
 try {
     $result = $apiInstance->getSmartListByNameUsingGET($name);
@@ -206,7 +210,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -228,11 +232,11 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\SmartListsApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$folder = "folder_example"; // string | JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
+$folder = 'folder_example'; // string | JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
 $offset = 56; // int | Integer offset for paging
 $max_return = 56; // int | Maximum number of smart lists to return.  Max 200, default 20.
-$earliest_updated_at = "earliest_updated_at_example"; // string | Exclude smart lists prior to this date. Must be valid ISO-8601 string.  See <a href=\"http://developers.marketo.com/rest-api/lead-database/fields/field-types/\">Datetime</a> field type description.
-$latest_updated_at = "latest_updated_at_example"; // string | Exclude smart lists after this date. Must be valid ISO-8601 string.  See <a href=\"http://developers.marketo.com/rest-api/lead-database/fields/field-types/\">Datetime</a> field type description.
+$earliest_updated_at = 'earliest_updated_at_example'; // string | Exclude smart lists prior to this date. Must be valid ISO-8601 string.  See <a href=\"http://developers.marketo.com/rest-api/lead-database/fields/field-types/\">Datetime</a> field type description.
+$latest_updated_at = 'latest_updated_at_example'; // string | Exclude smart lists after this date. Must be valid ISO-8601 string.  See <a href=\"http://developers.marketo.com/rest-api/lead-database/fields/field-types/\">Datetime</a> field type description.
 
 try {
     $result = $apiInstance->getSmartListsUsingGET($folder, $offset, $max_return, $earliest_updated_at, $latest_updated_at);
@@ -263,7 +267,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)

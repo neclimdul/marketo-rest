@@ -5,7 +5,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **default** | **bool** |  | [optional] 
 **followup_type** | **string** |  | [optional] 
-**followup_value** | **object** |  | [optional] 
+**followup_value** | [**object**](.md) |  | [optional] 
 **operator** | **string** |  | [optional] 
 **subject_field** | **string** |  | [optional] 
 **values** | **string[]** |  | [optional] 

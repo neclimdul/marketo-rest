@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 
 # **createLandingPageRedirectRuleUsingPOST**
-> \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageRedirectRules createLandingPageRedirectRuleUsingPOST($create_landing_page_redirect_rule_request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageRedirectRules createLandingPageRedirectRuleUsingPOST($hostname, $redirect_from, $redirect_to)
 
 Create Landing Page Redirect Rule
 
@@ -29,10 +29,12 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPageRedirectRulesApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$create_landing_page_redirect_rule_request = new \NecLimDul\MarketoRest\Asset\Model\CreateLandingPageRedirectRuleRequest(); // \NecLimDul\MarketoRest\Asset\Model\CreateLandingPageRedirectRuleRequest | createLandingPageRedirectRuleRequest
+$hostname = 'hostname_example'; // string | The hostname for the landing pages.  Branding domain or alias.  Max 255 characters
+$redirect_from = new \NecLimDul\MarketoRest\Asset\Model\RedirectFrom(); // \NecLimDul\MarketoRest\Asset\Model\RedirectFrom | 
+$redirect_to = new \NecLimDul\MarketoRest\Asset\Model\RedirectTo(); // \NecLimDul\MarketoRest\Asset\Model\RedirectTo | 
 
 try {
-    $result = $apiInstance->createLandingPageRedirectRuleUsingPOST($create_landing_page_redirect_rule_request);
+    $result = $apiInstance->createLandingPageRedirectRuleUsingPOST($hostname, $redirect_from, $redirect_to);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling LandingPageRedirectRulesApi->createLandingPageRedirectRuleUsingPOST: ', $e->getMessage(), PHP_EOL;
@@ -44,7 +46,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_landing_page_redirect_rule_request** | [**\NecLimDul\MarketoRest\Asset\Model\CreateLandingPageRedirectRuleRequest**](../Model/CreateLandingPageRedirectRuleRequest.md)| createLandingPageRedirectRuleRequest |
+ **hostname** | **string**| The hostname for the landing pages.  Branding domain or alias.  Max 255 characters |
+ **redirect_from** | [**\NecLimDul\MarketoRest\Asset\Model\RedirectFrom**](../Model/RedirectFrom.md)|  |
+ **redirect_to** | [**\NecLimDul\MarketoRest\Asset\Model\RedirectTo**](../Model/RedirectTo.md)|  |
 
 ### Return type
 
@@ -105,7 +109,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -156,7 +160,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -205,7 +209,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -229,10 +233,10 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPageRedirectRulesApi(
 );
 $max_return = 56; // int | Maximum number of landing page redirect rules to return.  Max 200, default 20
 $offset = 56; // int | Integer offset for paging
-$redirect_tolanding_page_id = "redirect_tolanding_page_id_example"; // string | Landing page id of landing page to redirect to
-$redirect_to_path = "redirect_to_path_example"; // string | Path of landing page to redirect to
-$earliest_updated_at = "earliest_updated_at_example"; // string | Exclude landing page redirect rules prior to this date. Must be valid ISO-8601 string.  See <a href=\"http://developers.marketo.com/rest-api/lead-database/fields/field-types/\">Datetime</a> field type description.
-$latest_updated_at = "latest_updated_at_example"; // string | Exclude landing page redirect rules after this date. Must be valid ISO-8601 string.  See <a href=\"http://developers.marketo.com/rest-api/lead-database/fields/field-types/\">Datetime</a> field type description.
+$redirect_tolanding_page_id = 'redirect_tolanding_page_id_example'; // string | Landing page id of landing page to redirect to
+$redirect_to_path = 'redirect_to_path_example'; // string | Path of landing page to redirect to
+$earliest_updated_at = 'earliest_updated_at_example'; // string | Exclude landing page redirect rules prior to this date. Must be valid ISO-8601 string.  See <a href=\"http://developers.marketo.com/rest-api/lead-database/fields/field-types/\">Datetime</a> field type description.
+$latest_updated_at = 'latest_updated_at_example'; // string | Exclude landing page redirect rules after this date. Must be valid ISO-8601 string.  See <a href=\"http://developers.marketo.com/rest-api/lead-database/fields/field-types/\">Datetime</a> field type description.
 
 try {
     $result = $apiInstance->getLandingPageRedirectRulesUsingGET($max_return, $offset, $redirect_tolanding_page_id, $redirect_to_path, $earliest_updated_at, $latest_updated_at);
@@ -264,13 +268,13 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **updateLandingPageRedirectRuleUsingPOST**
-> \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageRedirectRules updateLandingPageRedirectRuleUsingPOST($id, $update_landing_page_redirect_rule_request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageRedirectRules updateLandingPageRedirectRuleUsingPOST($id, $hostname, $redirect_from, $redirect_to)
 
 Update Landing Page Redirect Rule
 
@@ -287,10 +291,12 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPageRedirectRulesApi(
     new GuzzleHttp\Client()
 );
 $id = 56; // int | Id of landing page redirect rule
-$update_landing_page_redirect_rule_request = new \NecLimDul\MarketoRest\Asset\Model\UpdateLandingPageRedirectRuleRequest(); // \NecLimDul\MarketoRest\Asset\Model\UpdateLandingPageRedirectRuleRequest | updateLandingPageRedirectRuleRequest
+$hostname = 'hostname_example'; // string | The hostname for the landing pages.  Branding domain or alias.  Max 255 characters
+$redirect_from = new \NecLimDul\MarketoRest\Asset\Model\RedirectFrom(); // \NecLimDul\MarketoRest\Asset\Model\RedirectFrom | 
+$redirect_to = new \NecLimDul\MarketoRest\Asset\Model\RedirectTo(); // \NecLimDul\MarketoRest\Asset\Model\RedirectTo | 
 
 try {
-    $result = $apiInstance->updateLandingPageRedirectRuleUsingPOST($id, $update_landing_page_redirect_rule_request);
+    $result = $apiInstance->updateLandingPageRedirectRuleUsingPOST($id, $hostname, $redirect_from, $redirect_to);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling LandingPageRedirectRulesApi->updateLandingPageRedirectRuleUsingPOST: ', $e->getMessage(), PHP_EOL;
@@ -303,7 +309,9 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| Id of landing page redirect rule |
- **update_landing_page_redirect_rule_request** | [**\NecLimDul\MarketoRest\Asset\Model\UpdateLandingPageRedirectRuleRequest**](../Model/UpdateLandingPageRedirectRuleRequest.md)| updateLandingPageRedirectRuleRequest |
+ **hostname** | **string**| The hostname for the landing pages.  Branding domain or alias.  Max 255 characters | [optional]
+ **redirect_from** | [**\NecLimDul\MarketoRest\Asset\Model\RedirectFrom**](../Model/RedirectFrom.md)|  | [optional]
+ **redirect_to** | [**\NecLimDul\MarketoRest\Asset\Model\RedirectTo**](../Model/RedirectTo.md)|  | [optional]
 
 ### Return type
 

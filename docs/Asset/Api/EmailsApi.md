@@ -50,8 +50,8 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailsApi(
     new GuzzleHttp\Client()
 );
 $id = 56; // int | id
-$module_id = "module_id_example"; // string | moduleId
-$name = "name_example"; // string | Name of the module
+$module_id = 'module_id_example'; // string | moduleId
+$name = 'name_example'; // string | Name of the module
 $index = 56; // int | Index of the module.  Determines the order of the module in the email.
 
 try {
@@ -82,7 +82,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -131,13 +131,13 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **cloneEmailUsingPOST**
-> \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse cloneEmailUsingPOST($id, $clone_email_request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse cloneEmailUsingPOST($id, $folder, $name, $description, $operational)
 
 Clone Email
 
@@ -154,10 +154,13 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailsApi(
     new GuzzleHttp\Client()
 );
 $id = 56; // int | id
-$clone_email_request = new \NecLimDul\MarketoRest\Asset\Model\CloneEmailRequest(); // \NecLimDul\MarketoRest\Asset\Model\CloneEmailRequest | cloneEmailRequest
+$folder = new \NecLimDul\MarketoRest\Asset\Model\Folder(); // \NecLimDul\MarketoRest\Asset\Model\Folder | 
+$name = 'name_example'; // string | Name of the new email asset
+$description = 'description_example'; // string | Description of the asset
+$operational = True; // bool | Whether the email is operational.  Operational emails bypass unsubscribe status.  Defaults to false
 
 try {
-    $result = $apiInstance->cloneEmailUsingPOST($id, $clone_email_request);
+    $result = $apiInstance->cloneEmailUsingPOST($id, $folder, $name, $description, $operational);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling EmailsApi->cloneEmailUsingPOST: ', $e->getMessage(), PHP_EOL;
@@ -170,7 +173,10 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| id |
- **clone_email_request** | [**\NecLimDul\MarketoRest\Asset\Model\CloneEmailRequest**](../Model/CloneEmailRequest.md)| cloneEmailRequest |
+ **folder** | [**\NecLimDul\MarketoRest\Asset\Model\Folder**](../Model/Folder.md)|  |
+ **name** | **string**| Name of the new email asset |
+ **description** | **string**| Description of the asset | [optional]
+ **operational** | **bool**| Whether the email is operational.  Operational emails bypass unsubscribe status.  Defaults to false | [optional]
 
 ### Return type
 
@@ -188,7 +194,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **createEmailFullContentUsingPOST**
-> \NecLimDul\MarketoRest\Asset\Model\ResponseOfUpdateEmailFullContentResponse createEmailFullContentUsingPOST($id, $update_email_full_content_request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfUpdateEmailFullContentResponse createEmailFullContentUsingPOST($id, $content)
 
 Update Email Full Content
 
@@ -205,10 +211,10 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailsApi(
     new GuzzleHttp\Client()
 );
 $id = 56; // int | Id of the email
-$update_email_full_content_request = new \NecLimDul\MarketoRest\Asset\Model\UpdateEmailFullContentRequest(); // \NecLimDul\MarketoRest\Asset\Model\UpdateEmailFullContentRequest | Content is multipart file parameter
+$content = 'content_example'; // string | Multipart file. File containing HTML document to update with.  File cannot include JavaScript or script tags.
 
 try {
-    $result = $apiInstance->createEmailFullContentUsingPOST($id, $update_email_full_content_request);
+    $result = $apiInstance->createEmailFullContentUsingPOST($id, $content);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling EmailsApi->createEmailFullContentUsingPOST: ', $e->getMessage(), PHP_EOL;
@@ -221,7 +227,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| Id of the email |
- **update_email_full_content_request** | [**\NecLimDul\MarketoRest\Asset\Model\UpdateEmailFullContentRequest**](../Model/UpdateEmailFullContentRequest.md)| Content is multipart file parameter |
+ **content** | **string**| Multipart file. File containing HTML document to update with.  File cannot include JavaScript or script tags. |
 
 ### Return type
 
@@ -239,7 +245,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **createEmailUsingPOST**
-> \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse createEmailUsingPOST($create_email_request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse createEmailUsingPOST($folder, $from_email, $from_name, $name, $reply_email, $subject, $template, $description, $operational, $text_only)
 
 Create Email
 
@@ -255,10 +261,19 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailsApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$create_email_request = new \NecLimDul\MarketoRest\Asset\Model\CreateEmailRequest(); // \NecLimDul\MarketoRest\Asset\Model\CreateEmailRequest | createEmailRequest
+$folder = new \NecLimDul\MarketoRest\Asset\Model\Folder(); // \NecLimDul\MarketoRest\Asset\Model\Folder | 
+$from_email = 'from_email_example'; // string | From-address of the Email
+$from_name = 'from_name_example'; // string | From-name of the Email
+$name = 'name_example'; // string | Name of the email
+$reply_email = 'reply_email_example'; // string | Reply-To address of the Email
+$subject = 'subject_example'; // string | Subject Line of the Email
+$template = 56; // int | Id of the parent template
+$description = 'description_example'; // string | Description of the asset
+$operational = True; // bool | Whether the email is operational.  Operational emails bypass unsubscribe status.  Defaults to false
+$text_only = 'text_only_example'; // string | Setting to include text-only version of email when sent
 
 try {
-    $result = $apiInstance->createEmailUsingPOST($create_email_request);
+    $result = $apiInstance->createEmailUsingPOST($folder, $from_email, $from_name, $name, $reply_email, $subject, $template, $description, $operational, $text_only);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling EmailsApi->createEmailUsingPOST: ', $e->getMessage(), PHP_EOL;
@@ -270,7 +285,16 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_email_request** | [**\NecLimDul\MarketoRest\Asset\Model\CreateEmailRequest**](../Model/CreateEmailRequest.md)| createEmailRequest |
+ **folder** | [**\NecLimDul\MarketoRest\Asset\Model\Folder**](../Model/Folder.md)|  |
+ **from_email** | **string**| From-address of the Email |
+ **from_name** | **string**| From-name of the Email |
+ **name** | **string**| Name of the email |
+ **reply_email** | **string**| Reply-To address of the Email |
+ **subject** | **string**| Subject Line of the Email |
+ **template** | **int**| Id of the parent template |
+ **description** | **string**| Description of the asset | [optional]
+ **operational** | **bool**| Whether the email is operational.  Operational emails bypass unsubscribe status.  Defaults to false | [optional]
+ **text_only** | **string**| Setting to include text-only version of email when sent | [optional]
 
 ### Return type
 
@@ -331,7 +355,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -354,7 +378,7 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailsApi(
     new GuzzleHttp\Client()
 );
 $id = 56; // int | id
-$module_id = "module_id_example"; // string | moduleId
+$module_id = 'module_id_example'; // string | moduleId
 
 try {
     $result = $apiInstance->deleteModuleUsingPOST($id, $module_id);
@@ -382,7 +406,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -431,7 +455,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -454,8 +478,8 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailsApi(
     new GuzzleHttp\Client()
 );
 $id = 56; // int | id
-$module_id = "module_id_example"; // string | moduleId
-$name = "name_example"; // string | Name of the new module
+$module_id = 'module_id_example'; // string | moduleId
+$name = 'name_example'; // string | Name of the new module
 
 try {
     $result = $apiInstance->duplicateModuleUsingPOST($id, $module_id, $name);
@@ -484,7 +508,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -507,7 +531,7 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailsApi(
     new GuzzleHttp\Client()
 );
 $id = 56; // int | id
-$status = "status_example"; // string | Status filter for draft or approved versions
+$status = 'status_example'; // string | Status filter for draft or approved versions
 
 try {
     $result = $apiInstance->getEmailByIdUsingGET($id, $status);
@@ -535,7 +559,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -557,9 +581,9 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailsApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$name = "name_example"; // string | Name of the email
-$status = "status_example"; // string | Status filter for draft or approved versions
-$folder = "folder_example"; // string | JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
+$name = 'name_example'; // string | Name of the email
+$status = 'status_example'; // string | Status filter for draft or approved versions
+$folder = 'folder_example'; // string | JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
 
 try {
     $result = $apiInstance->getEmailByNameUsingGET($name, $status, $folder);
@@ -588,7 +612,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -633,7 +657,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -656,7 +680,7 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailsApi(
     new GuzzleHttp\Client()
 );
 $id = 56; // int | id
-$status = "status_example"; // string | Status filter for draft or approved versions
+$status = 'status_example'; // string | Status filter for draft or approved versions
 
 try {
     $result = $apiInstance->getEmailContentByIdUsingGET($id, $status);
@@ -684,7 +708,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -707,8 +731,8 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailsApi(
     new GuzzleHttp\Client()
 );
 $id = 56; // int | Id of email
-$content_id = "content_id_example"; // string | Id of email dynamic content section
-$status = "status_example"; // string | Status filter for draft or approved versions
+$content_id = 'content_id_example'; // string | Id of email dynamic content section
+$status = 'status_example'; // string | Status filter for draft or approved versions
 
 try {
     $result = $apiInstance->getEmailDynamicContentUsingGET($id, $content_id, $status);
@@ -737,7 +761,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -760,9 +784,9 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailsApi(
     new GuzzleHttp\Client()
 );
 $id = 56; // int | Id of the email
-$status = "status_example"; // string | Status filter for draft or approved versions.  Defaults to approved if asset is approved, draft if not.
+$status = 'status_example'; // string | Status filter for draft or approved versions.  Defaults to approved if asset is approved, draft if not.
 $lead_id = 56; // int | The lead id to impersonate.  Email is rendered as though it was received by this lead.
-$type = "type_example"; // string | Email content type to return.  Default is HTML.
+$type = 'type_example'; // string | Email content type to return.  Default is HTML.
 
 try {
     $result = $apiInstance->getEmailFullContentUsingGET($id, $status, $lead_id, $type);
@@ -792,7 +816,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -814,8 +838,8 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailsApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$status = "status_example"; // string | Status filter for draft or approved versions
-$folder = "folder_example"; // string | JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
+$status = 'status_example'; // string | Status filter for draft or approved versions
+$folder = 'folder_example'; // string | JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
 $offset = 56; // int | Integer offset for paging
 $max_return = 56; // int | Maximum number of emails to return.  Max 200, default 20
 
@@ -847,7 +871,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -896,13 +920,13 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **rearrangeModulesUsingPOST**
-> \NecLimDul\MarketoRest\Asset\Model\ModelResponse rearrangeModulesUsingPOST($id, $positions)
+> \NecLimDul\MarketoRest\Asset\Model\ModelResponse rearrangeModulesUsingPOST($id)
 
 Rearrange Email Modules
 
@@ -919,10 +943,9 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailsApi(
     new GuzzleHttp\Client()
 );
 $id = 56; // int | id
-$positions = "positions_example"; // string | JSON array of module positions.  Each position must be a JSON object with members 'index' and a 'moduleId'.  Required Permissions: Read-Write Assets
 
 try {
-    $result = $apiInstance->rearrangeModulesUsingPOST($id, $positions);
+    $result = $apiInstance->rearrangeModulesUsingPOST($id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling EmailsApi->rearrangeModulesUsingPOST: ', $e->getMessage(), PHP_EOL;
@@ -935,7 +958,6 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| id |
- **positions** | **string**| JSON array of module positions.  Each position must be a JSON object with members &#39;index&#39; and a &#39;moduleId&#39;.  Required Permissions: Read-Write Assets | [optional]
 
 ### Return type
 
@@ -970,8 +992,8 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailsApi(
     new GuzzleHttp\Client()
 );
 $id = 56; // int | id
-$module_id = "module_id_example"; // string | moduleId
-$name = "name_example"; // string | New module name
+$module_id = 'module_id_example'; // string | moduleId
+$name = 'name_example'; // string | New module name
 
 try {
     $result = $apiInstance->renameUsingPOST($id, $module_id, $name);
@@ -1000,13 +1022,13 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **sendSampleEmailUsingPOST**
-> \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse sendSampleEmailUsingPOST($id, $send_sample_email_request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse sendSampleEmailUsingPOST($id, $email_address, $lead_id, $text_only)
 
 Send Sample Email
 
@@ -1023,10 +1045,12 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailsApi(
     new GuzzleHttp\Client()
 );
 $id = 56; // int | Id of the email
-$send_sample_email_request = new \NecLimDul\MarketoRest\Asset\Model\SendSampleEmailRequest(); // \NecLimDul\MarketoRest\Asset\Model\SendSampleEmailRequest | sendSampleEmailRequest
+$email_address = 'email_address_example'; // string | Email address to receive sample email
+$lead_id = 'lead_id_example'; // string | Id of a lead to impersonate.  Tokens and dynamic content will be populated as though it were sent to the lead.
+$text_only = True; // bool | Whether to send to text only version along with the HTML version.  Default false.
 
 try {
-    $result = $apiInstance->sendSampleEmailUsingPOST($id, $send_sample_email_request);
+    $result = $apiInstance->sendSampleEmailUsingPOST($id, $email_address, $lead_id, $text_only);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling EmailsApi->sendSampleEmailUsingPOST: ', $e->getMessage(), PHP_EOL;
@@ -1039,7 +1063,9 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| Id of the email |
- **send_sample_email_request** | [**\NecLimDul\MarketoRest\Asset\Model\SendSampleEmailRequest**](../Model/SendSampleEmailRequest.md)| sendSampleEmailRequest |
+ **email_address** | **string**| Email address to receive sample email |
+ **lead_id** | **string**| Id of a lead to impersonate.  Tokens and dynamic content will be populated as though it were sent to the lead. | [optional]
+ **text_only** | **bool**| Whether to send to text only version along with the HTML version.  Default false. | [optional]
 
 ### Return type
 
@@ -1100,13 +1126,13 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **updateEmailComponentContentUsingPOST**
-> \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse updateEmailComponentContentUsingPOST($id, $html_id, $request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse updateEmailComponentContentUsingPOST($id, $html_id, $type, $value, $alt_text, $external_url, $height, $image, $link_url, $over_write, $style, $text_value, $video_url, $width)
 
 Update Email Content Section
 
@@ -1123,11 +1149,22 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailsApi(
     new GuzzleHttp\Client()
 );
 $id = 56; // int | id
-$html_id = "html_id_example"; // string | htmlId
-$request = new \NecLimDul\MarketoRest\Asset\Model\UpdateEmailComponentContentRequest(); // \NecLimDul\MarketoRest\Asset\Model\UpdateEmailComponentContentRequest | request
+$html_id = 'html_id_example'; // string | htmlId
+$type = 'type_example'; // string | Type of content to set for the section.
+$value = 'value_example'; // string | Value to set for the section.  For type Text, the HTML content of the section.  For type DynamicContent, the id of the segmentation to use for the content.  For type Snippet, the id of the snippet to embed
+$alt_text = 'alt_text_example'; // string | Sets the value of the alt parameter for the resulting img element
+$external_url = 'external_url_example'; // string | 
+$height = 56; // int | Overrides naitve height of the image.  The resulting file will be resized to the given height
+$image = 'image_example'; // string | Multipart file that allows you to load an image from your computer
+$link_url = 'link_url_example'; // string | 
+$over_write = True; // bool | Allows overwriting of the existing image content section
+$style = 'style_example'; // string | Sets the value of the style parameter for the content section
+$text_value = 'text_value_example'; // string | 
+$video_url = 'video_url_example'; // string | Sets the Url of the video element.  Videos must be either from YouTube or Vimeo
+$width = 56; // int | Overrides native width of the image.  The resulting file will be resized to the given width
 
 try {
-    $result = $apiInstance->updateEmailComponentContentUsingPOST($id, $html_id, $request);
+    $result = $apiInstance->updateEmailComponentContentUsingPOST($id, $html_id, $type, $value, $alt_text, $external_url, $height, $image, $link_url, $over_write, $style, $text_value, $video_url, $width);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling EmailsApi->updateEmailComponentContentUsingPOST: ', $e->getMessage(), PHP_EOL;
@@ -1141,7 +1178,18 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| id |
  **html_id** | **string**| htmlId |
- **request** | [**\NecLimDul\MarketoRest\Asset\Model\UpdateEmailComponentContentRequest**](../Model/UpdateEmailComponentContentRequest.md)| request |
+ **type** | **string**| Type of content to set for the section. |
+ **value** | **string**| Value to set for the section.  For type Text, the HTML content of the section.  For type DynamicContent, the id of the segmentation to use for the content.  For type Snippet, the id of the snippet to embed |
+ **alt_text** | **string**| Sets the value of the alt parameter for the resulting img element | [optional]
+ **external_url** | **string**|  | [optional]
+ **height** | **int**| Overrides naitve height of the image.  The resulting file will be resized to the given height | [optional]
+ **image** | **string**| Multipart file that allows you to load an image from your computer | [optional]
+ **link_url** | **string**|  | [optional]
+ **over_write** | **bool**| Allows overwriting of the existing image content section | [optional]
+ **style** | **string**| Sets the value of the style parameter for the content section | [optional]
+ **text_value** | **string**|  | [optional]
+ **video_url** | **string**| Sets the Url of the video element.  Videos must be either from YouTube or Vimeo | [optional]
+ **width** | **int**| Overrides native width of the image.  The resulting file will be resized to the given width | [optional]
 
 ### Return type
 
@@ -1159,7 +1207,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **updateEmailContentUsingPOST**
-> \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse updateEmailContentUsingPOST($id, $update_email_request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse updateEmailContentUsingPOST($id, $from_email, $from_name, $reply_to, $subject)
 
 Update Email Content
 
@@ -1176,10 +1224,13 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailsApi(
     new GuzzleHttp\Client()
 );
 $id = 56; // int | id
-$update_email_request = new \NecLimDul\MarketoRest\Asset\Model\UpdateEmailComponentDataRequest(); // \NecLimDul\MarketoRest\Asset\Model\UpdateEmailComponentDataRequest | updateEmailRequest
+$from_email = new \NecLimDul\MarketoRest\Asset\Model\EmailHeaderTypeValue(); // \NecLimDul\MarketoRest\Asset\Model\EmailHeaderTypeValue | 
+$from_name = new \NecLimDul\MarketoRest\Asset\Model\EmailHeaderTypeValue(); // \NecLimDul\MarketoRest\Asset\Model\EmailHeaderTypeValue | 
+$reply_to = new \NecLimDul\MarketoRest\Asset\Model\EmailHeaderTypeValue(); // \NecLimDul\MarketoRest\Asset\Model\EmailHeaderTypeValue | 
+$subject = new \NecLimDul\MarketoRest\Asset\Model\EmailHeaderTypeValue(); // \NecLimDul\MarketoRest\Asset\Model\EmailHeaderTypeValue | 
 
 try {
-    $result = $apiInstance->updateEmailContentUsingPOST($id, $update_email_request);
+    $result = $apiInstance->updateEmailContentUsingPOST($id, $from_email, $from_name, $reply_to, $subject);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling EmailsApi->updateEmailContentUsingPOST: ', $e->getMessage(), PHP_EOL;
@@ -1192,7 +1243,10 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| id |
- **update_email_request** | [**\NecLimDul\MarketoRest\Asset\Model\UpdateEmailComponentDataRequest**](../Model/UpdateEmailComponentDataRequest.md)| updateEmailRequest |
+ **from_email** | [**\NecLimDul\MarketoRest\Asset\Model\EmailHeaderTypeValue**](../Model/EmailHeaderTypeValue.md)|  | [optional]
+ **from_name** | [**\NecLimDul\MarketoRest\Asset\Model\EmailHeaderTypeValue**](../Model/EmailHeaderTypeValue.md)|  | [optional]
+ **reply_to** | [**\NecLimDul\MarketoRest\Asset\Model\EmailHeaderTypeValue**](../Model/EmailHeaderTypeValue.md)|  | [optional]
+ **subject** | [**\NecLimDul\MarketoRest\Asset\Model\EmailHeaderTypeValue**](../Model/EmailHeaderTypeValue.md)|  | [optional]
 
 ### Return type
 
@@ -1210,7 +1264,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **updateEmailDynamicContentUsingPOST**
-> \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse updateEmailDynamicContentUsingPOST($id, $content_id, $request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse updateEmailDynamicContentUsingPOST($id, $content_id, $type, $value, $alt_text, $external_url, $height, $image, $link_url, $over_write, $style, $video_url, $width)
 
 Update Email Dynamic Content Section
 
@@ -1227,11 +1281,21 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailsApi(
     new GuzzleHttp\Client()
 );
 $id = 56; // int | Id of email
-$content_id = "content_id_example"; // string | Id of email dynamic content section
-$request = new \NecLimDul\MarketoRest\Asset\Model\UpdateEmailDynamicContentRequest(); // \NecLimDul\MarketoRest\Asset\Model\UpdateEmailDynamicContentRequest | Content properties
+$content_id = 'content_id_example'; // string | Id of email dynamic content section
+$type = 'type_example'; // string | Type of content to set for the section.
+$value = 'value_example'; // string | Value to set for the section.  For type Text, the HTML content of the section.  For type DynamicContent, the id of the segmentation to use for the content.  For type Snippet, the id of the snippet to embed
+$alt_text = 'alt_text_example'; // string | Sets the value of the alt parameter for the resulting img element
+$external_url = 'external_url_example'; // string | 
+$height = 56; // int | Overrides naitve height of the image.  The resulting file will be resized to the given height
+$image = 'image_example'; // string | Multipart file that allows you to add an image from your computer
+$link_url = 'link_url_example'; // string | 
+$over_write = True; // bool | Allows overwriting of the existing image content section
+$style = 'style_example'; // string | Sets the value of the style parameter for the content section
+$video_url = 'video_url_example'; // string | Sets the Url of the video element.  Videos must be either from YouTube or Vimeo
+$width = 56; // int | Overrides native width of the image.  The resulting file will be resized to the given width
 
 try {
-    $result = $apiInstance->updateEmailDynamicContentUsingPOST($id, $content_id, $request);
+    $result = $apiInstance->updateEmailDynamicContentUsingPOST($id, $content_id, $type, $value, $alt_text, $external_url, $height, $image, $link_url, $over_write, $style, $video_url, $width);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling EmailsApi->updateEmailDynamicContentUsingPOST: ', $e->getMessage(), PHP_EOL;
@@ -1245,7 +1309,17 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| Id of email |
  **content_id** | **string**| Id of email dynamic content section |
- **request** | [**\NecLimDul\MarketoRest\Asset\Model\UpdateEmailDynamicContentRequest**](../Model/UpdateEmailDynamicContentRequest.md)| Content properties |
+ **type** | **string**| Type of content to set for the section. |
+ **value** | **string**| Value to set for the section.  For type Text, the HTML content of the section.  For type DynamicContent, the id of the segmentation to use for the content.  For type Snippet, the id of the snippet to embed |
+ **alt_text** | **string**| Sets the value of the alt parameter for the resulting img element | [optional]
+ **external_url** | **string**|  | [optional]
+ **height** | **int**| Overrides naitve height of the image.  The resulting file will be resized to the given height | [optional]
+ **image** | **string**| Multipart file that allows you to add an image from your computer | [optional]
+ **link_url** | **string**|  | [optional]
+ **over_write** | **bool**| Allows overwriting of the existing image content section | [optional]
+ **style** | **string**| Sets the value of the style parameter for the content section | [optional]
+ **video_url** | **string**| Sets the Url of the video element.  Videos must be either from YouTube or Vimeo | [optional]
+ **width** | **int**| Overrides native width of the image.  The resulting file will be resized to the given width | [optional]
 
 ### Return type
 
@@ -1263,7 +1337,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **updateEmailUsingPOST**
-> \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse updateEmailUsingPOST($id, $update_email_request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse updateEmailUsingPOST($id, $description, $name, $pre_header, $operational, $published, $text_only, $web_view)
 
 Update Email Metadata
 
@@ -1280,10 +1354,16 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailsApi(
     new GuzzleHttp\Client()
 );
 $id = 56; // int | id
-$update_email_request = new \NecLimDul\MarketoRest\Asset\Model\UpdateEmailMetaDataRequest(); // \NecLimDul\MarketoRest\Asset\Model\UpdateEmailMetaDataRequest | updateEmailRequest
+$description = 'description_example'; // string | Description of the asset
+$name = 'name_example'; // string | Name of the Email
+$pre_header = 'pre_header_example'; // string | Preheader text for the email
+$operational = True; // bool | Whether the email is operational.  Operational emails bypass unsubscribe status.  Defaults to false
+$published = True; // bool | Whether the email has been published to Sales Insight.  Default false
+$text_only = True; // bool | Setting to include text-only version of email when sent
+$web_view = True; // bool | Whether the email has been enabled to allow the 'View as Web Page' when received
 
 try {
-    $result = $apiInstance->updateEmailUsingPOST($id, $update_email_request);
+    $result = $apiInstance->updateEmailUsingPOST($id, $description, $name, $pre_header, $operational, $published, $text_only, $web_view);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling EmailsApi->updateEmailUsingPOST: ', $e->getMessage(), PHP_EOL;
@@ -1296,7 +1376,13 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| id |
- **update_email_request** | [**\NecLimDul\MarketoRest\Asset\Model\UpdateEmailMetaDataRequest**](../Model/UpdateEmailMetaDataRequest.md)| updateEmailRequest |
+ **description** | **string**| Description of the asset | [optional]
+ **name** | **string**| Name of the Email | [optional]
+ **pre_header** | **string**| Preheader text for the email | [optional]
+ **operational** | **bool**| Whether the email is operational.  Operational emails bypass unsubscribe status.  Defaults to false | [optional]
+ **published** | **bool**| Whether the email has been published to Sales Insight.  Default false | [optional]
+ **text_only** | **bool**| Setting to include text-only version of email when sent | [optional]
+ **web_view** | **bool**| Whether the email has been enabled to allow the &#39;View as Web Page&#39; when received | [optional]
 
 ### Return type
 
@@ -1314,7 +1400,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **updateVariableUsingPOST**
-> \NecLimDul\MarketoRest\Asset\Model\ModelResponse updateVariableUsingPOST($id, $name, $update_variable_request)
+> \NecLimDul\MarketoRest\Asset\Model\ModelResponse updateVariableUsingPOST($id, $name, $value, $module_id)
 
 Update Email Variable
 
@@ -1331,11 +1417,12 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailsApi(
     new GuzzleHttp\Client()
 );
 $id = 56; // int | id
-$name = "name_example"; // string | name
-$update_variable_request = new \NecLimDul\MarketoRest\Asset\Model\UpdateVariableRequest(); // \NecLimDul\MarketoRest\Asset\Model\UpdateVariableRequest | updateVariableRequest
+$name = 'name_example'; // string | name
+$value = 'value_example'; // string | Value to update variable with
+$module_id = 'module_id_example'; // string | Module that variable is associated with. Required for updating module variables. Not needed for global variables.
 
 try {
-    $result = $apiInstance->updateVariableUsingPOST($id, $name, $update_variable_request);
+    $result = $apiInstance->updateVariableUsingPOST($id, $name, $value, $module_id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling EmailsApi->updateVariableUsingPOST: ', $e->getMessage(), PHP_EOL;
@@ -1349,7 +1436,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| id |
  **name** | **string**| name |
- **update_variable_request** | [**\NecLimDul\MarketoRest\Asset\Model\UpdateVariableRequest**](../Model/UpdateVariableRequest.md)| updateVariableRequest | [optional]
+ **value** | **string**| Value to update variable with | [optional]
+ **module_id** | **string**| Module that variable is associated with. Required for updating module variables. Not needed for global variables. | [optional]
 
 ### Return type
 

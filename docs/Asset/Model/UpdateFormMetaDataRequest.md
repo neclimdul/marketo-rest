@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **description** | **string** | Description of the form | [optional] 
 **font_family** | **string** | font-family property for the form | [optional] 
 **font_size** | **string** | font-size property of the form | [optional] 
-**known_visitor** | [**\NecLimDul\MarketoRest\Asset\Model\FormKnownVisitorDTO**](FormKnownVisitorDTO.md) | Known visitor behavior for the form | [optional] 
+**known_visitor** | [**\NecLimDul\MarketoRest\Asset\Model\FormKnownVisitorDTO**](FormKnownVisitorDTO.md) |  | [optional] 
 **label_position** | **string** | Default positioning of labels. | [optional] 
 **language** | **string** | Language of the form | [optional] 
 **locale** | **string** | Locale of the form | [optional] 

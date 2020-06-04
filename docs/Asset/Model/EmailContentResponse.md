@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **index** | **int** |  | [optional] 
 **is_locked** | **bool** |  | [optional] 
 **parent_html_id** | **string** |  | [optional] 
-**value** | **object** | Contents of the section | 
+**value** | [**object**](.md) | Contents of the section | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

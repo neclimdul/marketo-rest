@@ -54,7 +54,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
@@ -77,12 +77,12 @@ $apiInstance = new NecLimDul\MarketoRest\Lead\Api\CampaignsApi(
     new GuzzleHttp\Client()
 );
 $id = array(56); // int[] | Comma-separated list of campaign ids to return records for
-$name = array("name_example"); // string[] | Comma-separated list of names to filter on
-$program_name = array("program_name_example"); // string[] | Comma-separated list of program names to filter on.  If set, will filter to only campaigns which are children of the designated programs.
-$workspace_name = array("workspace_name_example"); // string[] | Comma-separated list of workspace names to filter on.  If set, will only return campaigns in the given workspaces.
+$name = array('name_example'); // string[] | Comma-separated list of names to filter on
+$program_name = array('program_name_example'); // string[] | Comma-separated list of program names to filter on.  If set, will filter to only campaigns which are children of the designated programs.
+$workspace_name = array('workspace_name_example'); // string[] | Comma-separated list of workspace names to filter on.  If set, will only return campaigns in the given workspaces.
 $batch_size = 56; // int | Maximum number of records to return.  Maximum and default is 300.
-$next_page_token = "next_page_token_example"; // string | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info.
-$is_triggerable = true; // bool | Set to true to return active Campaigns which have a Campaign is Requested trigger and source is Web Service API
+$next_page_token = 'next_page_token_example'; // string | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info.
+$is_triggerable = True; // bool | Set to true to return active Campaigns which have a Campaign is Requested trigger and source is Web Service API
 
 try {
     $result = $apiInstance->getCampaignsUsingGET($id, $name, $program_name, $workspace_name, $batch_size, $next_page_token, $is_triggerable);
@@ -115,7 +115,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)

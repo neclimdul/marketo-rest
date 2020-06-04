@@ -5,7 +5,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **created_at** | [**\DateTime**](\DateTime.md) | Datetime the asset was created | [optional] 
 **description** | **string** | Description of the asset | [optional] 
-**folder** | [**\NecLimDul\MarketoRest\Asset\Model\Folder**](Folder.md) | JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39; | 
+**folder** | [**\NecLimDul\MarketoRest\Asset\Model\Folder**](Folder.md) |  | 
 **from_email** | **string** | From-address of the Email | 
 **from_name** | **string** | From-name of the Email | 
 **id** | **int** | Id of the asset | [optional] 
