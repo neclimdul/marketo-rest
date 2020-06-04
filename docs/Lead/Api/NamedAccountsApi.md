@@ -1,26 +1,32 @@
 # NecLimDul\MarketoRest\Lead\NamedAccountsApi
 
-All URIs are relative to *https://localhost:8080*
+All URIs are relative to https://localhost:8080.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**deleteNamedAccountsUsingPOST**](NamedAccountsApi.md#deleteNamedAccountsUsingPOST) | **POST** /rest/v1/namedaccounts/delete.json | Delete NamedAccounts
-[**describeUsingGET3**](NamedAccountsApi.md#describeUsingGET3) | **GET** /rest/v1/namedaccounts/describe.json | Describe NamedAccounts
-[**getNamedAccountsUsingGET**](NamedAccountsApi.md#getNamedAccountsUsingGET) | **GET** /rest/v1/namedaccounts.json | Get NamedAccounts
-[**syncNamedAccountsUsingPOST**](NamedAccountsApi.md#syncNamedAccountsUsingPOST) | **POST** /rest/v1/namedaccounts.json | Sync NamedAccounts
+[**deleteNamedAccountsUsingPOST()**](NamedAccountsApi.md#deleteNamedAccountsUsingPOST) | **POST** /rest/v1/namedaccounts/delete.json | Delete NamedAccounts
+[**describeUsingGET3()**](NamedAccountsApi.md#describeUsingGET3) | **GET** /rest/v1/namedaccounts/describe.json | Describe NamedAccounts
+[**getNamedAccountsUsingGET()**](NamedAccountsApi.md#getNamedAccountsUsingGET) | **GET** /rest/v1/namedaccounts.json | Get NamedAccounts
+[**syncNamedAccountsUsingPOST()**](NamedAccountsApi.md#syncNamedAccountsUsingPOST) | **POST** /rest/v1/namedaccounts.json | Sync NamedAccounts
 
 
-# **deleteNamedAccountsUsingPOST**
-> \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount deleteNamedAccountsUsingPOST($delete_account_request)
+## `deleteNamedAccountsUsingPOST()`
+
+```php
+deleteNamedAccountsUsingPOST($delete_account_request): \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount
+```
 
 Delete NamedAccounts
 
 Deletes a list of namedaccount records from the target instance.  Input records should have only one member, based on the value of 'dedupeBy'.  Required Permissions: Read-Write Named Account
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
+
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\NamedAccountsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
@@ -35,7 +41,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling NamedAccountsApi->deleteNamedAccountsUsingPOST: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -54,22 +59,30 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
-# **describeUsingGET3**
-> \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData describeUsingGET3()
+## `describeUsingGET3()`
+
+```php
+describeUsingGET3(): \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData
+```
 
 Describe NamedAccounts
 
 Returns metadata about namedaccounts and the fields available for interaction via the API.  Required Permissions: Read-Only Named Account, Read-Write Named Account
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
+
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\NamedAccountsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
@@ -83,10 +96,10 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling NamedAccountsApi->describeUsingGET3: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -99,33 +112,41 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
-# **getNamedAccountsUsingGET**
-> \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount getNamedAccountsUsingGET($filter_type, $filter_values, $fields, $batch_size, $next_page_token)
+## `getNamedAccountsUsingGET()`
+
+```php
+getNamedAccountsUsingGET($filter_type, $filter_values, $fields, $batch_size, $next_page_token): \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount
+```
 
 Get NamedAccounts
 
 Retrieves namedaccount records from the destination instance based on the submitted filter.  Required Permissions: Read-Only Named Account, Read-Write Named Account
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
+
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\NamedAccountsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$filter_type = "filter_type_example"; // string | NamedAccounts field to filter on.  Can be any searchable fields
-$filter_values = array("filter_values_example"); // string[] | A comma-separated list of values to match against
-$fields = array("fields_example"); // string[] | Comma-separated list of fields to include in the response
+$filter_type = 'filter_type_example'; // string | NamedAccounts field to filter on.  Can be any searchable fields
+$filter_values = array('filter_values_example'); // string[] | A comma-separated list of values to match against
+$fields = array('fields_example'); // string[] | Comma-separated list of fields to include in the response
 $batch_size = 56; // int | The batch size to return.  The max and default value is 300.
-$next_page_token = "next_page_token_example"; // string | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info.
+$next_page_token = 'next_page_token_example'; // string | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info.
 
 try {
     $result = $apiInstance->getNamedAccountsUsingGET($filter_type, $filter_values, $fields, $batch_size, $next_page_token);
@@ -133,7 +154,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling NamedAccountsApi->getNamedAccountsUsingGET: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -156,22 +176,30 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
-# **syncNamedAccountsUsingPOST**
-> \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount syncNamedAccountsUsingPOST($sync_account_request)
+## `syncNamedAccountsUsingPOST()`
+
+```php
+syncNamedAccountsUsingPOST($sync_account_request): \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount
+```
 
 Sync NamedAccounts
 
 Allows inserts, updates, or upserts of namedaccounts to the target instance.  Required Permissions: Read-Write Named Account
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
+
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\NamedAccountsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
@@ -186,7 +214,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling NamedAccountsApi->syncNamedAccountsUsingPOST: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -205,8 +232,9 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
-
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)

@@ -1,31 +1,37 @@
 # NecLimDul\MarketoRest\Asset\SegmentsApi
 
-All URIs are relative to *https://localhost:8080*
+All URIs are relative to https://localhost:8080.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getSegmentationUsingGET**](SegmentsApi.md#getSegmentationUsingGET) | **GET** /rest/asset/v1/segmentation.json | Get Segmentations
-[**getSegmentsForSegmentationUsingGET**](SegmentsApi.md#getSegmentsForSegmentationUsingGET) | **GET** /rest/asset/v1/segmentation/{id}/segments.json | Get Segments For Segmentation
+[**getSegmentationUsingGET()**](SegmentsApi.md#getSegmentationUsingGET) | **GET** /rest/asset/v1/segmentation.json | Get Segmentations
+[**getSegmentsForSegmentationUsingGET()**](SegmentsApi.md#getSegmentsForSegmentationUsingGET) | **GET** /rest/asset/v1/segmentation/{id}/segments.json | Get Segments For Segmentation
 
 
-# **getSegmentationUsingGET**
-> \NecLimDul\MarketoRest\Asset\Model\ResponseOfSegmentationResponse getSegmentationUsingGET($status)
+## `getSegmentationUsingGET()`
+
+```php
+getSegmentationUsingGET($status): \NecLimDul\MarketoRest\Asset\Model\ResponseOfSegmentationResponse
+```
 
 Get Segmentations
 
 Retrieves a list of accessible segmentations for the target instance.  Required Permissions: Read-Only Assets, Read-Write Assets
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
+
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\SegmentsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$status = "status_example"; // string | Status filter for draft or approved versions
+$status = 'status_example'; // string | Status filter for draft or approved versions
 
 try {
     $result = $apiInstance->getSegmentationUsingGET($status);
@@ -33,7 +39,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling SegmentsApi->getSegmentationUsingGET: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -52,22 +57,30 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
-# **getSegmentsForSegmentationUsingGET**
-> \NecLimDul\MarketoRest\Asset\Model\ResponseOfSegmentsResponse getSegmentsForSegmentationUsingGET($id, $status, $offset, $max_return)
+## `getSegmentsForSegmentationUsingGET()`
+
+```php
+getSegmentsForSegmentationUsingGET($id, $status, $offset, $max_return): \NecLimDul\MarketoRest\Asset\Model\ResponseOfSegmentsResponse
+```
 
 Get Segments For Segmentation
 
 Retrieves a list of segments inside the target segmentation.  Required Permissions: Read-Only Assets, Read-Write Assets
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
+
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\SegmentsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
@@ -75,7 +88,7 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\SegmentsApi(
     new GuzzleHttp\Client()
 );
 $id = 56; // int | id
-$status = "status_example"; // string | Status filter for draft or approved versions
+$status = 'status_example'; // string | Status filter for draft or approved versions
 $offset = 56; // int | Integer offset for paging
 $max_return = 56; // int | Maximum number of channels to return.  Max 200, default 20
 
@@ -85,7 +98,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling SegmentsApi->getSegmentsForSegmentationUsingGET: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -107,8 +119,9 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
-
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)

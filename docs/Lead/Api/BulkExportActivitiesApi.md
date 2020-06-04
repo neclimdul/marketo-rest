@@ -1,35 +1,41 @@
 # NecLimDul\MarketoRest\Lead\BulkExportActivitiesApi
 
-All URIs are relative to *https://localhost:8080*
+All URIs are relative to https://localhost:8080.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**cancelExportActivitiesUsingPOST**](BulkExportActivitiesApi.md#cancelExportActivitiesUsingPOST) | **POST** /bulk/v1/activities/export/{exportId}/cancel.json | Cancel Export Activity Job
-[**createExportActivitiesUsingPOST**](BulkExportActivitiesApi.md#createExportActivitiesUsingPOST) | **POST** /bulk/v1/activities/export/create.json | Create Export Activity Job
-[**enqueueExportActivitiesUsingPOST**](BulkExportActivitiesApi.md#enqueueExportActivitiesUsingPOST) | **POST** /bulk/v1/activities/export/{exportId}/enqueue.json | Enqueue Export Activity Job
-[**getExportActivitiesFileUsingGET**](BulkExportActivitiesApi.md#getExportActivitiesFileUsingGET) | **GET** /bulk/v1/activities/export/{exportId}/file.json | Get Export Activity File
-[**getExportActivitiesStatusUsingGET**](BulkExportActivitiesApi.md#getExportActivitiesStatusUsingGET) | **GET** /bulk/v1/activities/export/{exportId}/status.json | Get Export Activity Job Status
-[**getExportActivitiesUsingGET**](BulkExportActivitiesApi.md#getExportActivitiesUsingGET) | **GET** /bulk/v1/activities/export.json | Get Export Activity Jobs
+[**cancelExportActivitiesUsingPOST()**](BulkExportActivitiesApi.md#cancelExportActivitiesUsingPOST) | **POST** /bulk/v1/activities/export/{exportId}/cancel.json | Cancel Export Activity Job
+[**createExportActivitiesUsingPOST()**](BulkExportActivitiesApi.md#createExportActivitiesUsingPOST) | **POST** /bulk/v1/activities/export/create.json | Create Export Activity Job
+[**enqueueExportActivitiesUsingPOST()**](BulkExportActivitiesApi.md#enqueueExportActivitiesUsingPOST) | **POST** /bulk/v1/activities/export/{exportId}/enqueue.json | Enqueue Export Activity Job
+[**getExportActivitiesFileUsingGET()**](BulkExportActivitiesApi.md#getExportActivitiesFileUsingGET) | **GET** /bulk/v1/activities/export/{exportId}/file.json | Get Export Activity File
+[**getExportActivitiesStatusUsingGET()**](BulkExportActivitiesApi.md#getExportActivitiesStatusUsingGET) | **GET** /bulk/v1/activities/export/{exportId}/status.json | Get Export Activity Job Status
+[**getExportActivitiesUsingGET()**](BulkExportActivitiesApi.md#getExportActivitiesUsingGET) | **GET** /bulk/v1/activities/export.json | Get Export Activity Jobs
 
 
-# **cancelExportActivitiesUsingPOST**
-> \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse cancelExportActivitiesUsingPOST($export_id)
+## `cancelExportActivitiesUsingPOST()`
+
+```php
+cancelExportActivitiesUsingPOST($export_id): \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse
+```
 
 Cancel Export Activity Job
 
 Cancel export job.  Required Permissions: Read-Only Activity
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
+
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\BulkExportActivitiesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$export_id = "export_id_example"; // string | Id of export batch job.
+$export_id = 'export_id_example'; // string | Id of export batch job.
 
 try {
     $result = $apiInstance->cancelExportActivitiesUsingPOST($export_id);
@@ -37,7 +43,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling BulkExportActivitiesApi->cancelExportActivitiesUsingPOST: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -56,22 +61,30 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
-# **createExportActivitiesUsingPOST**
-> \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse createExportActivitiesUsingPOST($export_activity_request)
+## `createExportActivitiesUsingPOST()`
+
+```php
+createExportActivitiesUsingPOST($export_activity_request): \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse
+```
 
 Create Export Activity Job
 
 Create export job for search criteria defined via \"filter\" parameter.  Request returns the \"exportId\" which is passed as a parameter in subsequent calls to Bulk Export Activities endpoints.  Use Enqueue Export Activity Job endpoint to queue the export job for processing.  Use Get Export Activity Job Status endpoint to retrieve status of export job.  Required Permissions: Read-Only Activity
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
+
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\BulkExportActivitiesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
@@ -86,7 +99,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling BulkExportActivitiesApi->createExportActivitiesUsingPOST: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -105,29 +117,37 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
-# **enqueueExportActivitiesUsingPOST**
-> \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse enqueueExportActivitiesUsingPOST($export_id)
+## `enqueueExportActivitiesUsingPOST()`
+
+```php
+enqueueExportActivitiesUsingPOST($export_id): \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse
+```
 
 Enqueue Export Activity Job
 
 Enqueue export job. This will place export job in queue, and will start the job when computing resources become available.  The export job must be in \"Created\" state.  Use Get Export Activity Job Status endpoint to retrieve status of export job.  Required Permissions: Read-Only Activity
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
+
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\BulkExportActivitiesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$export_id = "export_id_example"; // string | Id of export batch job.
+$export_id = 'export_id_example'; // string | Id of export batch job.
 
 try {
     $result = $apiInstance->enqueueExportActivitiesUsingPOST($export_id);
@@ -135,7 +155,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling BulkExportActivitiesApi->enqueueExportActivitiesUsingPOST: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -154,30 +173,38 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
-# **getExportActivitiesFileUsingGET**
-> \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamRangeContent getExportActivitiesFileUsingGET($export_id, $range)
+## `getExportActivitiesFileUsingGET()`
+
+```php
+getExportActivitiesFileUsingGET($export_id, $range): object
+```
 
 Get Export Activity File
 
 Returns the file content of an export job.  The export job must be in \"Completed\" state.  Use Get Export Activity Job Status endpoint to retrieve status of export job.  Required Permissions: Read-Only Activity<br><br>The file format is specified by calling the Create Export Activity Job endpoint. The following is an example of the default file format (\"CSV\"). Note that the \"attributes\" field is formatted as JSON.<br><br><code>marketoGUID,leadId,activityDate,activityTypeId,campaignId,primaryAttributeValueId,primaryAttributeValue, attributes</code><br><code>122323,6,2013-09-26T06:56:35+0000,12,11,6,Owyliphys Iledil,[{\"name\":\"Source Type\",\"value\":\"Web page visit\"}]</code>
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
+
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\BulkExportActivitiesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$export_id = "export_id_example"; // string | Id of export batch job.
-$range = "range_example"; // string | To support partial retrieval of extracted data, the HTTP header \"Range\" of type \"bytes\" may be specified.  See RFC 2616 \"Range Retrieval Requests\" for more information. If the header is not set, the entire contents will be returned.
+$export_id = 'export_id_example'; // string | Id of export batch job.
+$range = 'range_example'; // string | To support partial retrieval of extracted data, the HTTP header \"Range\" of type \"bytes\" may be specified.  See RFC 2616 \"Range Retrieval Requests\" for more information. If the header is not set, the entire contents will be returned.
 
 try {
     $result = $apiInstance->getExportActivitiesFileUsingGET($export_id, $range);
@@ -185,7 +212,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling BulkExportActivitiesApi->getExportActivitiesFileUsingGET: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -197,7 +223,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamRangeContent**](../Model/ObservableOfInputStreamRangeContent.md)
+**object**
 
 ### Authorization
 
@@ -205,29 +231,37 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
-# **getExportActivitiesStatusUsingGET**
-> \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse getExportActivitiesStatusUsingGET($export_id)
+## `getExportActivitiesStatusUsingGET()`
+
+```php
+getExportActivitiesStatusUsingGET($export_id): \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse
+```
 
 Get Export Activity Job Status
 
 Returns status of an export job.  Job status is available for 30 days after Completed or Failed status was reached. Required Permissions: Read-Only Activity
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
+
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\BulkExportActivitiesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$export_id = "export_id_example"; // string | Id of export batch job.
+$export_id = 'export_id_example'; // string | Id of export batch job.
 
 try {
     $result = $apiInstance->getExportActivitiesStatusUsingGET($export_id);
@@ -235,7 +269,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling BulkExportActivitiesApi->getExportActivitiesStatusUsingGET: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -254,31 +287,39 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
-# **getExportActivitiesUsingGET**
-> \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponseWithToken getExportActivitiesUsingGET($status, $batch_size, $next_page_token)
+## `getExportActivitiesUsingGET()`
+
+```php
+getExportActivitiesUsingGET($status, $batch_size, $next_page_token): \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponseWithToken
+```
 
 Get Export Activity Jobs
 
 Returns a list of export jobs that were created in the past 7 days.  Required Permissions: Read-Only Activity
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
+
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\BulkExportActivitiesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$status = array("status_example"); // string[] | Comma separated list of statuses to filter on.
+$status = array('status_example'); // string[] | Comma separated list of statuses to filter on.
 $batch_size = 56; // int | The batch size to return. The max and default value is 300.
-$next_page_token = "next_page_token_example"; // string | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
+$next_page_token = 'next_page_token_example'; // string | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
 
 try {
     $result = $apiInstance->getExportActivitiesUsingGET($status, $batch_size, $next_page_token);
@@ -286,7 +327,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling BulkExportActivitiesApi->getExportActivitiesUsingGET: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -307,8 +347,9 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
-
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)

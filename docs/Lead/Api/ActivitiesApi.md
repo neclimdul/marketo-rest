@@ -1,38 +1,44 @@
 # NecLimDul\MarketoRest\Lead\ActivitiesApi
 
-All URIs are relative to *https://localhost:8080*
+All URIs are relative to https://localhost:8080.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**addCustomActivityUsingPOST**](ActivitiesApi.md#addCustomActivityUsingPOST) | **POST** /rest/v1/activities/external.json | Add Custom Activities
-[**approveCustomActivityTypeUsingPOST**](ActivitiesApi.md#approveCustomActivityTypeUsingPOST) | **POST** /rest/v1/activities/external/type/{apiName}/approve.json | Approve Custom Activity Type
-[**createCustomActivityTypeAttributesUsingPOST**](ActivitiesApi.md#createCustomActivityTypeAttributesUsingPOST) | **POST** /rest/v1/activities/external/type/{apiName}/attributes/create.json | Create Custom Activity Type Attributes
-[**createCustomActivityTypeUsingPOST**](ActivitiesApi.md#createCustomActivityTypeUsingPOST) | **POST** /rest/v1/activities/external/type.json | Create Custom Activity Type
-[**deleteCustomActivityTypeAttributesUsingPOST**](ActivitiesApi.md#deleteCustomActivityTypeAttributesUsingPOST) | **POST** /rest/v1/activities/external/type/{apiName}/attributes/delete.json | Delete Custom Activity Type Attributes
-[**deleteCustomActivityTypeUsingPOST**](ActivitiesApi.md#deleteCustomActivityTypeUsingPOST) | **POST** /rest/v1/activities/external/type/{apiName}/delete.json | Delete Custom Activity Type
-[**describeCustomActivityTypeUsingGET**](ActivitiesApi.md#describeCustomActivityTypeUsingGET) | **GET** /rest/v1/activities/external/type/{apiName}/describe.json | Describe Custom Activity Type
-[**discardDraftofCustomActivityTypeUsingPOST**](ActivitiesApi.md#discardDraftofCustomActivityTypeUsingPOST) | **POST** /rest/v1/activities/external/type/{apiName}/discardDraft.json | Discard Custom Activity Type Draft
-[**getActivitiesPagingTokenUsingGET**](ActivitiesApi.md#getActivitiesPagingTokenUsingGET) | **GET** /rest/v1/activities/pagingtoken.json | Get Paging Token
-[**getAllActivityTypesUsingGET**](ActivitiesApi.md#getAllActivityTypesUsingGET) | **GET** /rest/v1/activities/types.json | Get Activity Types
-[**getCustomActivityTypeUsingGET**](ActivitiesApi.md#getCustomActivityTypeUsingGET) | **GET** /rest/v1/activities/external/types.json | Get Custom Activity Types
-[**getDeletedLeadsUsingGET**](ActivitiesApi.md#getDeletedLeadsUsingGET) | **GET** /rest/v1/activities/deletedleads.json | Get Deleted Leads
-[**getLeadActivitiesUsingGET**](ActivitiesApi.md#getLeadActivitiesUsingGET) | **GET** /rest/v1/activities.json | Get Lead Activities
-[**getLeadChangesUsingGET**](ActivitiesApi.md#getLeadChangesUsingGET) | **GET** /rest/v1/activities/leadchanges.json | Get Lead Changes
-[**updateCustomActivityTypeAttributesUsingPOST**](ActivitiesApi.md#updateCustomActivityTypeAttributesUsingPOST) | **POST** /rest/v1/activities/external/type/{apiName}/attributes/update.json | Update Custom Activity Type Attributes
-[**updateCustomActivityTypeUsingPOST**](ActivitiesApi.md#updateCustomActivityTypeUsingPOST) | **POST** /rest/v1/activities/external/type/{apiName}.json | Update Custom Activity Type
+[**addCustomActivityUsingPOST()**](ActivitiesApi.md#addCustomActivityUsingPOST) | **POST** /rest/v1/activities/external.json | Add Custom Activities
+[**approveCustomActivityTypeUsingPOST()**](ActivitiesApi.md#approveCustomActivityTypeUsingPOST) | **POST** /rest/v1/activities/external/type/{apiName}/approve.json | Approve Custom Activity Type
+[**createCustomActivityTypeAttributesUsingPOST()**](ActivitiesApi.md#createCustomActivityTypeAttributesUsingPOST) | **POST** /rest/v1/activities/external/type/{apiName}/attributes/create.json | Create Custom Activity Type Attributes
+[**createCustomActivityTypeUsingPOST()**](ActivitiesApi.md#createCustomActivityTypeUsingPOST) | **POST** /rest/v1/activities/external/type.json | Create Custom Activity Type
+[**deleteCustomActivityTypeAttributesUsingPOST()**](ActivitiesApi.md#deleteCustomActivityTypeAttributesUsingPOST) | **POST** /rest/v1/activities/external/type/{apiName}/attributes/delete.json | Delete Custom Activity Type Attributes
+[**deleteCustomActivityTypeUsingPOST()**](ActivitiesApi.md#deleteCustomActivityTypeUsingPOST) | **POST** /rest/v1/activities/external/type/{apiName}/delete.json | Delete Custom Activity Type
+[**describeCustomActivityTypeUsingGET()**](ActivitiesApi.md#describeCustomActivityTypeUsingGET) | **GET** /rest/v1/activities/external/type/{apiName}/describe.json | Describe Custom Activity Type
+[**discardDraftofCustomActivityTypeUsingPOST()**](ActivitiesApi.md#discardDraftofCustomActivityTypeUsingPOST) | **POST** /rest/v1/activities/external/type/{apiName}/discardDraft.json | Discard Custom Activity Type Draft
+[**getActivitiesPagingTokenUsingGET()**](ActivitiesApi.md#getActivitiesPagingTokenUsingGET) | **GET** /rest/v1/activities/pagingtoken.json | Get Paging Token
+[**getAllActivityTypesUsingGET()**](ActivitiesApi.md#getAllActivityTypesUsingGET) | **GET** /rest/v1/activities/types.json | Get Activity Types
+[**getCustomActivityTypeUsingGET()**](ActivitiesApi.md#getCustomActivityTypeUsingGET) | **GET** /rest/v1/activities/external/types.json | Get Custom Activity Types
+[**getDeletedLeadsUsingGET()**](ActivitiesApi.md#getDeletedLeadsUsingGET) | **GET** /rest/v1/activities/deletedleads.json | Get Deleted Leads
+[**getLeadActivitiesUsingGET()**](ActivitiesApi.md#getLeadActivitiesUsingGET) | **GET** /rest/v1/activities.json | Get Lead Activities
+[**getLeadChangesUsingGET()**](ActivitiesApi.md#getLeadChangesUsingGET) | **GET** /rest/v1/activities/leadchanges.json | Get Lead Changes
+[**updateCustomActivityTypeAttributesUsingPOST()**](ActivitiesApi.md#updateCustomActivityTypeAttributesUsingPOST) | **POST** /rest/v1/activities/external/type/{apiName}/attributes/update.json | Update Custom Activity Type Attributes
+[**updateCustomActivityTypeUsingPOST()**](ActivitiesApi.md#updateCustomActivityTypeUsingPOST) | **POST** /rest/v1/activities/external/type/{apiName}.json | Update Custom Activity Type
 
 
-# **addCustomActivityUsingPOST**
-> \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivity addCustomActivityUsingPOST($custom_activity_request)
+## `addCustomActivityUsingPOST()`
+
+```php
+addCustomActivityUsingPOST($custom_activity_request): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivity
+```
 
 Add Custom Activities
 
 Allows insertion of custom activities associated to given lead records.  Requires provisioning of custom activity types to utilize.  Required Permissions: Read-Write Activity
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
+
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\ActivitiesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
@@ -47,7 +53,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling ActivitiesApi->addCustomActivityUsingPOST: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -66,29 +71,37 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
-# **approveCustomActivityTypeUsingPOST**
-> \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType approveCustomActivityTypeUsingPOST($api_name)
+## `approveCustomActivityTypeUsingPOST()`
+
+```php
+approveCustomActivityTypeUsingPOST($api_name): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType
+```
 
 Approve Custom Activity Type
 
 Approves the current draft of the type, and makes it the live version.  This will delete the current live version of the type.  Required Permissions: Read-Write Activity Metadata
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
+
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\ActivitiesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$api_name = "api_name_example"; // string | API Name of the activity type
+$api_name = 'api_name_example'; // string | API Name of the activity type
 
 try {
     $result = $apiInstance->approveCustomActivityTypeUsingPOST($api_name);
@@ -96,7 +109,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling ActivitiesApi->approveCustomActivityTypeUsingPOST: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -115,29 +127,37 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
-# **createCustomActivityTypeAttributesUsingPOST**
-> \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType createCustomActivityTypeAttributesUsingPOST($api_name, $custom_activity_type_attribute_request)
+## `createCustomActivityTypeAttributesUsingPOST()`
+
+```php
+createCustomActivityTypeAttributesUsingPOST($api_name, $custom_activity_type_attribute_request): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType
+```
 
 Create Custom Activity Type Attributes
 
 Adds activity attributes to the target type.  These are added to the draft version of the type.  Required Permissions: Read-Write Activity Metadata
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
+
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\ActivitiesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$api_name = "api_name_example"; // string | API Name of the activity type
+$api_name = 'api_name_example'; // string | API Name of the activity type
 $custom_activity_type_attribute_request = new \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest(); // \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest | customActivityTypeAttributeRequest
 
 try {
@@ -146,7 +166,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling ActivitiesApi->createCustomActivityTypeAttributesUsingPOST: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -166,22 +185,30 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
-# **createCustomActivityTypeUsingPOST**
-> \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType createCustomActivityTypeUsingPOST($custom_activity_type_request)
+## `createCustomActivityTypeUsingPOST()`
+
+```php
+createCustomActivityTypeUsingPOST($custom_activity_type_request): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType
+```
 
 Create Custom Activity Type
 
 Creates a new custom activity type draft in the target instance.  Required Permissions: Read-Write Activity Metadata
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
+
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\ActivitiesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
@@ -196,7 +223,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling ActivitiesApi->createCustomActivityTypeUsingPOST: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -215,29 +241,37 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
-# **deleteCustomActivityTypeAttributesUsingPOST**
-> \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType deleteCustomActivityTypeAttributesUsingPOST($api_name, $custom_activity_type_attribute_request)
+## `deleteCustomActivityTypeAttributesUsingPOST()`
+
+```php
+deleteCustomActivityTypeAttributesUsingPOST($api_name, $custom_activity_type_attribute_request): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType
+```
 
 Delete Custom Activity Type Attributes
 
 Deletes the target attributes from the custom activity type draft.  The apiName of each attribute is the primary key for the update.  Required Permissions: Read-Write Activity Metadata
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
+
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\ActivitiesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$api_name = "api_name_example"; // string | API Name of the activity type
+$api_name = 'api_name_example'; // string | API Name of the activity type
 $custom_activity_type_attribute_request = new \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest(); // \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest | customActivityTypeAttributeRequest
 
 try {
@@ -246,7 +280,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling ActivitiesApi->deleteCustomActivityTypeAttributesUsingPOST: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -266,29 +299,37 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
-# **deleteCustomActivityTypeUsingPOST**
-> \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType deleteCustomActivityTypeUsingPOST($api_name)
+## `deleteCustomActivityTypeUsingPOST()`
+
+```php
+deleteCustomActivityTypeUsingPOST($api_name): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType
+```
 
 Delete Custom Activity Type
 
 Deletes the target custom activity type.  The type must first be removed from use by any assets, such as triggers or filters.  Required Permissions: Read-Write Activity Metadata
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
+
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\ActivitiesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$api_name = "api_name_example"; // string | API Name of the activity type
+$api_name = 'api_name_example'; // string | API Name of the activity type
 
 try {
     $result = $apiInstance->deleteCustomActivityTypeUsingPOST($api_name);
@@ -296,7 +337,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling ActivitiesApi->deleteCustomActivityTypeUsingPOST: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -315,30 +355,38 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
-# **describeCustomActivityTypeUsingGET**
-> \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType describeCustomActivityTypeUsingGET($api_name, $draft)
+## `describeCustomActivityTypeUsingGET()`
+
+```php
+describeCustomActivityTypeUsingGET($api_name, $draft): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType
+```
 
 Describe Custom Activity Type
 
 Returns metadata for a specific custom activity type.  Required Permissions: Read-Only Activity Metadata, Read-Write Activity Metadata
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
+
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\ActivitiesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$api_name = "api_name_example"; // string | API Name of the activity type
-$draft = true; // bool | draft
+$api_name = 'api_name_example'; // string | API Name of the activity type
+$draft = True; // bool | draft
 
 try {
     $result = $apiInstance->describeCustomActivityTypeUsingGET($api_name, $draft);
@@ -346,7 +394,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling ActivitiesApi->describeCustomActivityTypeUsingGET: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -366,29 +413,37 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
-# **discardDraftofCustomActivityTypeUsingPOST**
-> \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType discardDraftofCustomActivityTypeUsingPOST($api_name)
+## `discardDraftofCustomActivityTypeUsingPOST()`
+
+```php
+discardDraftofCustomActivityTypeUsingPOST($api_name): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType
+```
 
 Discard Custom Activity Type Draft
 
 Discards the current draft of the custom activity type.  Required Permissions: Read-Write Activity Metadata
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
+
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\ActivitiesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$api_name = "api_name_example"; // string | API Name of the activity type
+$api_name = 'api_name_example'; // string | API Name of the activity type
 
 try {
     $result = $apiInstance->discardDraftofCustomActivityTypeUsingPOST($api_name);
@@ -396,7 +451,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling ActivitiesApi->discardDraftofCustomActivityTypeUsingPOST: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -415,22 +469,30 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
-# **getActivitiesPagingTokenUsingGET**
-> \NecLimDul\MarketoRest\Lead\Model\ResponseOfVoid getActivitiesPagingTokenUsingGET($since_datetime)
+## `getActivitiesPagingTokenUsingGET()`
+
+```php
+getActivitiesPagingTokenUsingGET($since_datetime): \NecLimDul\MarketoRest\Lead\Model\ResponseOfVoid
+```
 
 Get Paging Token
 
 Returns a paging token for use in retrieving activities and data value changes.  Required Permissions: Read-Only Activity, Read-Write Activity
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
+
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\ActivitiesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
@@ -445,7 +507,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling ActivitiesApi->getActivitiesPagingTokenUsingGET: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -464,22 +525,30 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
-# **getAllActivityTypesUsingGET**
-> \NecLimDul\MarketoRest\Lead\Model\ResponseOfActivityType getAllActivityTypesUsingGET()
+## `getAllActivityTypesUsingGET()`
+
+```php
+getAllActivityTypesUsingGET(): \NecLimDul\MarketoRest\Lead\Model\ResponseOfActivityType
+```
 
 Get Activity Types
 
 Returns a list of available activity types in the target instance, along with associated metadata of each type.  Required Permissions: Read-Only Activity, Read-Write Activity
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
+
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\ActivitiesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
@@ -493,10 +562,10 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling ActivitiesApi->getAllActivityTypesUsingGET: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -509,22 +578,30 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
-# **getCustomActivityTypeUsingGET**
-> \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType getCustomActivityTypeUsingGET()
+## `getCustomActivityTypeUsingGET()`
+
+```php
+getCustomActivityTypeUsingGET(): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType
+```
 
 Get Custom Activity Types
 
 Returns metadata regarding custom activities provisioned in the target instance.  Required Permissions: Read-Only Activity Metadata, Read-Write Activity Metadata
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
+
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\ActivitiesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
@@ -538,10 +615,10 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling ActivitiesApi->getCustomActivityTypeUsingGET: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -554,29 +631,37 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
-# **getDeletedLeadsUsingGET**
-> \NecLimDul\MarketoRest\Lead\Model\ResponseOfActivity getDeletedLeadsUsingGET($next_page_token, $batch_size)
+## `getDeletedLeadsUsingGET()`
+
+```php
+getDeletedLeadsUsingGET($next_page_token, $batch_size): \NecLimDul\MarketoRest\Lead\Model\ResponseOfActivity
+```
 
 Get Deleted Leads
 
 Returns a list of leads deleted after a given datetime.  Deletions greater than 14 days old may be pruned.  Required Permissions: Read-Only Activity, Read-Write Activity
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
+
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\ActivitiesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$next_page_token = "next_page_token_example"; // string | Token representation of a datetime returned by the Get Paging Token endpoint.  This endpoint will return activities after this datetime
+$next_page_token = 'next_page_token_example'; // string | Token representation of a datetime returned by the Get Paging Token endpoint.  This endpoint will return activities after this datetime
 $batch_size = 56; // int | Maximum number of records to return.  Maximum and default is 300.
 
 try {
@@ -585,7 +670,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling ActivitiesApi->getDeletedLeadsUsingGET: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -605,29 +689,37 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
-# **getLeadActivitiesUsingGET**
-> \NecLimDul\MarketoRest\Lead\Model\ResponseOfActivity getLeadActivitiesUsingGET($next_page_token, $activity_type_ids, $asset_ids, $list_id, $lead_ids, $batch_size)
+## `getLeadActivitiesUsingGET()`
+
+```php
+getLeadActivitiesUsingGET($next_page_token, $activity_type_ids, $asset_ids, $list_id, $lead_ids, $batch_size): \NecLimDul\MarketoRest\Lead\Model\ResponseOfActivity
+```
 
 Get Lead Activities
 
 Returns a list of activities from after a datetime given by the nextPageToken parameter.  Also allows for filtering by lead static list membership, or by a list of up to 30 lead ids.  Required Permissions: Read-Only Activity, Read-Write Activity
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
+
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\ActivitiesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$next_page_token = "next_page_token_example"; // string | Token representation of a datetime returned by the Get Paging Token endpoint.  This endpoint will return activities after this datetime
+$next_page_token = 'next_page_token_example'; // string | Token representation of a datetime returned by the Get Paging Token endpoint.  This endpoint will return activities after this datetime
 $activity_type_ids = array(56); // int[] | Comma-separated list of activity type ids. These can be retrieved with the Get Activity Types API.
 $asset_ids = array(56); // int[] | Id of the primary asset for an activity.  This is based on the primary asset id of a given activity type.  Should only be used when a single activity type is set
 $list_id = 56; // int | Id of a static list.  If set, will only return activities of members of this static list.
@@ -640,7 +732,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling ActivitiesApi->getLeadActivitiesUsingGET: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -664,30 +755,38 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
-# **getLeadChangesUsingGET**
-> \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadChange getLeadChangesUsingGET($next_page_token, $fields, $list_id, $lead_ids, $batch_size)
+## `getLeadChangesUsingGET()`
+
+```php
+getLeadChangesUsingGET($next_page_token, $fields, $list_id, $lead_ids, $batch_size): \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadChange
+```
 
 Get Lead Changes
 
 Returns a list of Data Value Changes and New Lead activities after a given datetime. Required Permissions: Read-Only Activity, Read-Write Activity
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
+
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\ActivitiesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$next_page_token = "next_page_token_example"; // string | Token representation of a datetime returned by the Get Paging Token endpoint.  This endpoint will return activities after this datetime
-$fields = array("fields_example"); // string[] | Comma-separated list of field names to return changes for.  Field names can be retrieved with the Describe Lead API.
+$next_page_token = 'next_page_token_example'; // string | Token representation of a datetime returned by the Get Paging Token endpoint.  This endpoint will return activities after this datetime
+$fields = array('fields_example'); // string[] | Comma-separated list of field names to return changes for.  Field names can be retrieved with the Describe Lead API.
 $list_id = 56; // int | Id of a static list.  If set, will only return activities of members of this static list.
 $lead_ids = array(56); // int[] | Comma-separated list of lead ids.  If set, will only return activities of the leads with these ids.  Allows up to 30 entries.
 $batch_size = 56; // int | Maximum number of records to return.  Maximum and default is 300.
@@ -698,7 +797,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling ActivitiesApi->getLeadChangesUsingGET: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -721,29 +819,37 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
-# **updateCustomActivityTypeAttributesUsingPOST**
-> \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType updateCustomActivityTypeAttributesUsingPOST($api_name, $custom_activity_type_attribute_request)
+## `updateCustomActivityTypeAttributesUsingPOST()`
+
+```php
+updateCustomActivityTypeAttributesUsingPOST($api_name, $custom_activity_type_attribute_request): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType
+```
 
 Update Custom Activity Type Attributes
 
 Updates the attributes of the custom activity type draft.  The apiName of each attribute is the primary key for the update.  Required Permissions: Read-Write Activity Metadata
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
+
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\ActivitiesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$api_name = "api_name_example"; // string | API Name of the activity type
+$api_name = 'api_name_example'; // string | API Name of the activity type
 $custom_activity_type_attribute_request = new \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest(); // \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest | customActivityTypeAttributeRequest
 
 try {
@@ -752,7 +858,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling ActivitiesApi->updateCustomActivityTypeAttributesUsingPOST: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -772,29 +877,37 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
-# **updateCustomActivityTypeUsingPOST**
-> \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType updateCustomActivityTypeUsingPOST($api_name, $custom_activity_type_request)
+## `updateCustomActivityTypeUsingPOST()`
+
+```php
+updateCustomActivityTypeUsingPOST($api_name, $custom_activity_type_request): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType
+```
 
 Update Custom Activity Type
 
 Updates the target custom activity type.  All changes are applied to the draft version of the type.  Required Permissions: Read-Write Activity Metadata
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
+
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\ActivitiesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$api_name = "api_name_example"; // string | API Name of the activity type
+$api_name = 'api_name_example'; // string | API Name of the activity type
 $custom_activity_type_request = new \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeRequest(); // \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeRequest | customActivityTypeRequest
 
 try {
@@ -803,7 +916,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling ActivitiesApi->updateCustomActivityTypeUsingPOST: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -823,8 +935,9 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
-
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)

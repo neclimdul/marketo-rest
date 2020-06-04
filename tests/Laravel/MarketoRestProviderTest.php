@@ -23,7 +23,7 @@ class MarketoRestProviderTest extends TestCase
     protected $provider;
 
     /**
-     * @var Application|\Prophecy\Prophecy\ObjectProphecy
+     * @var \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Foundation\CachesConfiguration|\Prophecy\Prophecy\ObjectProphecy
      */
     protected $app;
 

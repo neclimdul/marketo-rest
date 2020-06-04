@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<psalm
+    errorLevel="3"
+    resolveFromConfigFile="true"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="https://getpsalm.org/schema/config"
+    xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
+>
+    <projectFiles>
+        <directory name="src" />
+        <ignoreFiles>
+            <directory name="vendor" />
+        </ignoreFiles>
+    </projectFiles>
+    <issueHandlers>
+        <!--
+        Ignore docblocks with map because we can't fix it in a template.
+        https://github.com/OpenAPITools/openapi-generator/pull/8718
+        -->
+        <ArgumentTypeCoercion>
+            <errorLevel type="suppress">
+                <!-- string to class-string coercion ok. -->
+                <referencedFunction name="method_exists"/>
+            </errorLevel>
+        </ArgumentTypeCoercion>
+    </issueHandlers>
+</psalm>
