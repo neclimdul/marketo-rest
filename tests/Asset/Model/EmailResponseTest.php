@@ -234,6 +234,15 @@ class EmailResponseTest extends TestCase
     }
 
     /**
+     * Test attribute "pre_header"
+     */
+    public function testPropertyPreHeader()
+    {
+        $class = new EmailResponse();
+        $this->assertTrue(TRUE);
+    }
+
+    /**
      * Test attribute "cc_fields"
      */
     public function testPropertyCcFields()

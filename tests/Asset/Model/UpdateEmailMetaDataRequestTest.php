@@ -72,6 +72,15 @@ class UpdateEmailMetaDataRequestTest extends TestCase
     }
 
     /**
+     * Test attribute "pre_header"
+     */
+    public function testPropertyPreHeader()
+    {
+        $class = new UpdateEmailMetaDataRequest();
+        $this->assertTrue(TRUE);
+    }
+
+    /**
      * Test attribute "operational"
      */
     public function testPropertyOperational()

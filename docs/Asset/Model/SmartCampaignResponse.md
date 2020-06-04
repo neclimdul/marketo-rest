@@ -22,6 +22,7 @@ Name | Type | Description | Notes
 **created_at** | [**\DateTime**](\DateTime.md) | Datetime when the smart campaign was created | 
 **updated_at** | [**\DateTime**](\DateTime.md) | Datetime when the smart campaign was most recently updated | 
 **workspace** | **string** | Name of the smart campaign workspace | 
+**computed_url** | **string** | URL to asset in Marketo Engage | [optional] 
 **status** | **string** | Status of smart campaign | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -76,6 +76,7 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess
         'created_at' => '\DateTime',
         'updated_at' => '\DateTime',
         'workspace' => 'string',
+        'computed_url' => 'string',
         'status' => 'string'
     ];
 
@@ -104,6 +105,7 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess
         'created_at' => 'date-time',
         'updated_at' => 'date-time',
         'workspace' => null,
+        'computed_url' => null,
         'status' => null
     ];
 
@@ -156,6 +158,7 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess
         'created_at' => 'createdAt',
         'updated_at' => 'updatedAt',
         'workspace' => 'workspace',
+        'computed_url' => 'computedUrl',
         'status' => 'status'
     ];
 
@@ -184,6 +187,7 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess
         'created_at' => 'setCreatedAt',
         'updated_at' => 'setUpdatedAt',
         'workspace' => 'setWorkspace',
+        'computed_url' => 'setComputedUrl',
         'status' => 'setStatus'
     ];
 
@@ -212,6 +216,7 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess
         'created_at' => 'getCreatedAt',
         'updated_at' => 'getUpdatedAt',
         'workspace' => 'getWorkspace',
+        'computed_url' => 'getComputedUrl',
         'status' => 'getStatus'
     ];
 
@@ -268,6 +273,7 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess
         $this->container['created_at'] = isset($data['created_at']) ? $data['created_at'] : null;
         $this->container['updated_at'] = isset($data['updated_at']) ? $data['updated_at'] : null;
         $this->container['workspace'] = isset($data['workspace']) ? $data['workspace'] : null;
+        $this->container['computed_url'] = isset($data['computed_url']) ? $data['computed_url'] : null;
         $this->container['status'] = isset($data['status']) ? $data['status'] : null;
     }
 
@@ -958,6 +964,30 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess
     public function setWorkspace($workspace)
     {
         $this->container['workspace'] = $workspace;
+
+        return $this;
+    }
+
+    /**
+     * Gets computed_url
+     *
+     * @return string
+     */
+    public function getComputedUrl()
+    {
+        return $this->container['computed_url'];
+    }
+
+    /**
+     * Sets computed_url
+     *
+     * @param string $computed_url URL to asset in Marketo Engage
+     *
+     * @return $this
+     */
+    public function setComputedUrl($computed_url)
+    {
+        $this->container['computed_url'] = $computed_url;
 
         return $this;
     }

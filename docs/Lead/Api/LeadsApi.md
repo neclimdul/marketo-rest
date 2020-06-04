@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**associateLeadUsingPOST**](LeadsApi.md#associateLeadUsingPOST) | **POST** /rest/v1/leads/{leadId}/associate.json | Associate Lead
 [**changeLeadProgramStatusUsingPOST**](LeadsApi.md#changeLeadProgramStatusUsingPOST) | **POST** /rest/v1/leads/programs/{programId}/status.json | Change Lead Program Status
 [**deleteLeadsUsingPOST**](LeadsApi.md#deleteLeadsUsingPOST) | **POST** /rest/v1/leads/delete.json | Delete Leads
+[**describeProgramMemberUsingGET**](LeadsApi.md#describeProgramMemberUsingGET) | **GET** /rest/v1/program/members/describe.json | Describe Program Member
 [**describeUsingGET2**](LeadsApi.md#describeUsingGET2) | **GET** /rest/v1/leads/describe.json | Describe Lead
 [**describeUsingGET6**](LeadsApi.md#describeUsingGET6) | **GET** /rest/v1/leads/describe2.json | Describe Lead2
 [**getLeadByIdUsingGET**](LeadsApi.md#getLeadByIdUsingGET) | **GET** /rest/v1/lead/{leadId}.json | Get Lead by Id
@@ -163,6 +164,51 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead**](../Model/ResponseOfLead.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **describeProgramMemberUsingGET**
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberAttributes describeProgramMemberUsingGET()
+
+Describe Program Member
+
+Returns metadata about program member objects in the target instance, including a list of all fields available for interaction via the APIs.  Required Permissions: Read-Only Lead, Read-Write Lead
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\LeadsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+
+try {
+    $result = $apiInstance->describeProgramMemberUsingGET();
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling LeadsApi->describeProgramMemberUsingGET: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberAttributes**](../Model/ResponseOfProgramMemberAttributes.md)
 
 ### Authorization
 

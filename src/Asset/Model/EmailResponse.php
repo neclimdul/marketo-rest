@@ -77,6 +77,7 @@ class EmailResponse implements ModelInterface, ArrayAccess
         'web_view' => 'bool',
         'workspace' => 'string',
         'auto_copy_to_text' => 'bool',
+        'pre_header' => 'string',
         'cc_fields' => '\NecLimDul\MarketoRest\Asset\Model\EmailResponseCCFields[]'
     ];
 
@@ -106,6 +107,7 @@ class EmailResponse implements ModelInterface, ArrayAccess
         'web_view' => null,
         'workspace' => null,
         'auto_copy_to_text' => null,
+        'pre_header' => null,
         'cc_fields' => null
     ];
 
@@ -159,6 +161,7 @@ class EmailResponse implements ModelInterface, ArrayAccess
         'web_view' => 'webView',
         'workspace' => 'workspace',
         'auto_copy_to_text' => 'autoCopyToText',
+        'pre_header' => 'preHeader',
         'cc_fields' => 'ccFields'
     ];
 
@@ -188,6 +191,7 @@ class EmailResponse implements ModelInterface, ArrayAccess
         'web_view' => 'setWebView',
         'workspace' => 'setWorkspace',
         'auto_copy_to_text' => 'setAutoCopyToText',
+        'pre_header' => 'setPreHeader',
         'cc_fields' => 'setCcFields'
     ];
 
@@ -217,6 +221,7 @@ class EmailResponse implements ModelInterface, ArrayAccess
         'web_view' => 'getWebView',
         'workspace' => 'getWorkspace',
         'auto_copy_to_text' => 'getAutoCopyToText',
+        'pre_header' => 'getPreHeader',
         'cc_fields' => 'getCcFields'
     ];
 
@@ -259,6 +264,7 @@ class EmailResponse implements ModelInterface, ArrayAccess
         $this->container['web_view'] = isset($data['web_view']) ? $data['web_view'] : null;
         $this->container['workspace'] = isset($data['workspace']) ? $data['workspace'] : null;
         $this->container['auto_copy_to_text'] = isset($data['auto_copy_to_text']) ? $data['auto_copy_to_text'] : null;
+        $this->container['pre_header'] = isset($data['pre_header']) ? $data['pre_header'] : null;
         $this->container['cc_fields'] = isset($data['cc_fields']) ? $data['cc_fields'] : null;
     }
 
@@ -344,6 +350,9 @@ class EmailResponse implements ModelInterface, ArrayAccess
         }
         if ($this->container['auto_copy_to_text'] === null) {
             $invalidProperties[] = "'auto_copy_to_text' can't be null";
+        }
+        if ($this->container['pre_header'] === null) {
+            $invalidProperties[] = "'pre_header' can't be null";
         }
         return $invalidProperties;
     }
@@ -856,6 +865,30 @@ class EmailResponse implements ModelInterface, ArrayAccess
     public function setAutoCopyToText($auto_copy_to_text)
     {
         $this->container['auto_copy_to_text'] = $auto_copy_to_text;
+
+        return $this;
+    }
+
+    /**
+     * Gets pre_header
+     *
+     * @return string
+     */
+    public function getPreHeader()
+    {
+        return $this->container['pre_header'];
+    }
+
+    /**
+     * Sets pre_header
+     *
+     * @param string $pre_header The email preheader text
+     *
+     * @return $this
+     */
+    public function setPreHeader($pre_header)
+    {
+        $this->container['pre_header'] = $pre_header;
 
         return $this;
     }

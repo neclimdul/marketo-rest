@@ -225,6 +225,15 @@ class SmartCampaignResponseTest extends TestCase
     }
 
     /**
+     * Test attribute "computed_url"
+     */
+    public function testPropertyComputedUrl()
+    {
+        $class = new SmartCampaignResponse();
+        $this->assertTrue(TRUE);
+    }
+
+    /**
      * Test attribute "status"
      */
     public function testPropertyStatus()

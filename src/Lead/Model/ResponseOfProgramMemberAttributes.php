@@ -1,11 +1,11 @@
 <?php
 /**
- * UpdateEmailMetaDataRequest
+ * ResponseOfProgramMemberAttributes
  *
  * PHP version 5
  *
  * @category Class
- * @package  NecLimDul\MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -27,20 +27,20 @@
  * Do not edit the class manually.
  */
 
-namespace NecLimDul\MarketoRest\Asset\Model;
+namespace NecLimDul\MarketoRest\Lead\Model;
 
 use \ArrayAccess;
-use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
+use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
- * UpdateEmailMetaDataRequest Class Doc Comment
+ * ResponseOfProgramMemberAttributes Class Doc Comment
  *
  * @category Class
- * @package  NecLimDul\MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class UpdateEmailMetaDataRequest implements ModelInterface, ArrayAccess
+class ResponseOfProgramMemberAttributes implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class UpdateEmailMetaDataRequest implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $swaggerModelName = 'UpdateEmailMetaDataRequest';
+    protected static $swaggerModelName = 'ResponseOfProgramMemberAttributes';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,13 +57,13 @@ class UpdateEmailMetaDataRequest implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'description' => 'string',
-        'name' => 'string',
-        'pre_header' => 'string',
-        'operational' => 'bool',
-        'published' => 'bool',
-        'text_only' => 'bool',
-        'web_view' => 'bool'
+        'errors' => '\NecLimDul\MarketoRest\Lead\Model\Error[]',
+        'more_result' => 'bool',
+        'next_page_token' => 'string',
+        'request_id' => 'string',
+        'result' => '\NecLimDul\MarketoRest\Lead\Model\ProgramMemberAttribute[]',
+        'success' => 'bool',
+        'warnings' => '\NecLimDul\MarketoRest\Lead\Model\Warning[]'
     ];
 
     /**
@@ -72,13 +72,13 @@ class UpdateEmailMetaDataRequest implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'description' => null,
-        'name' => null,
-        'pre_header' => null,
-        'operational' => null,
-        'published' => null,
-        'text_only' => null,
-        'web_view' => null
+        'errors' => null,
+        'more_result' => null,
+        'next_page_token' => null,
+        'request_id' => null,
+        'result' => null,
+        'success' => null,
+        'warnings' => null
     ];
 
     /**
@@ -111,13 +111,13 @@ class UpdateEmailMetaDataRequest implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'description' => 'description',
-        'name' => 'name',
-        'pre_header' => 'preHeader',
-        'operational' => 'operational',
-        'published' => 'published',
-        'text_only' => 'textOnly',
-        'web_view' => 'webView'
+        'errors' => 'errors',
+        'more_result' => 'moreResult',
+        'next_page_token' => 'nextPageToken',
+        'request_id' => 'requestId',
+        'result' => 'result',
+        'success' => 'success',
+        'warnings' => 'warnings'
     ];
 
     /**
@@ -126,13 +126,13 @@ class UpdateEmailMetaDataRequest implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'description' => 'setDescription',
-        'name' => 'setName',
-        'pre_header' => 'setPreHeader',
-        'operational' => 'setOperational',
-        'published' => 'setPublished',
-        'text_only' => 'setTextOnly',
-        'web_view' => 'setWebView'
+        'errors' => 'setErrors',
+        'more_result' => 'setMoreResult',
+        'next_page_token' => 'setNextPageToken',
+        'request_id' => 'setRequestId',
+        'result' => 'setResult',
+        'success' => 'setSuccess',
+        'warnings' => 'setWarnings'
     ];
 
     /**
@@ -141,13 +141,13 @@ class UpdateEmailMetaDataRequest implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'description' => 'getDescription',
-        'name' => 'getName',
-        'pre_header' => 'getPreHeader',
-        'operational' => 'getOperational',
-        'published' => 'getPublished',
-        'text_only' => 'getTextOnly',
-        'web_view' => 'getWebView'
+        'errors' => 'getErrors',
+        'more_result' => 'getMoreResult',
+        'next_page_token' => 'getNextPageToken',
+        'request_id' => 'getRequestId',
+        'result' => 'getResult',
+        'success' => 'getSuccess',
+        'warnings' => 'getWarnings'
     ];
 
     
@@ -167,13 +167,13 @@ class UpdateEmailMetaDataRequest implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['description'] = isset($data['description']) ? $data['description'] : null;
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['pre_header'] = isset($data['pre_header']) ? $data['pre_header'] : null;
-        $this->container['operational'] = isset($data['operational']) ? $data['operational'] : null;
-        $this->container['published'] = isset($data['published']) ? $data['published'] : null;
-        $this->container['text_only'] = isset($data['text_only']) ? $data['text_only'] : null;
-        $this->container['web_view'] = isset($data['web_view']) ? $data['web_view'] : null;
+        $this->container['errors'] = isset($data['errors']) ? $data['errors'] : null;
+        $this->container['more_result'] = isset($data['more_result']) ? $data['more_result'] : null;
+        $this->container['next_page_token'] = isset($data['next_page_token']) ? $data['next_page_token'] : null;
+        $this->container['request_id'] = isset($data['request_id']) ? $data['request_id'] : null;
+        $this->container['result'] = isset($data['result']) ? $data['result'] : null;
+        $this->container['success'] = isset($data['success']) ? $data['success'] : null;
+        $this->container['warnings'] = isset($data['warnings']) ? $data['warnings'] : null;
     }
 
     /**
@@ -215,6 +215,21 @@ class UpdateEmailMetaDataRequest implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
+        if ($this->container['errors'] === null) {
+            $invalidProperties[] = "'errors' can't be null";
+        }
+        if ($this->container['request_id'] === null) {
+            $invalidProperties[] = "'request_id' can't be null";
+        }
+        if ($this->container['result'] === null) {
+            $invalidProperties[] = "'result' can't be null";
+        }
+        if ($this->container['success'] === null) {
+            $invalidProperties[] = "'success' can't be null";
+        }
+        if ($this->container['warnings'] === null) {
+            $invalidProperties[] = "'warnings' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -228,169 +243,169 @@ class UpdateEmailMetaDataRequest implements ModelInterface, ArrayAccess
     
 
     /**
-     * Gets description
+     * Gets errors
+     *
+     * @return \NecLimDul\MarketoRest\Lead\Model\Error[]
+     */
+    public function getErrors()
+    {
+        return $this->container['errors'];
+    }
+
+    /**
+     * Sets errors
+     *
+     * @param \NecLimDul\MarketoRest\Lead\Model\Error[] $errors Array of errors that occurred if the request was unsuccessful
+     *
+     * @return $this
+     */
+    public function setErrors($errors)
+    {
+        $this->container['errors'] = $errors;
+
+        return $this;
+    }
+
+    /**
+     * Gets more_result
+     *
+     * @return bool
+     */
+    public function getMoreResult()
+    {
+        return $this->container['more_result'];
+    }
+
+    /**
+     * Sets more_result
+     *
+     * @param bool $more_result Boolean indicating if there are more results in subsequent pages
+     *
+     * @return $this
+     */
+    public function setMoreResult($more_result)
+    {
+        $this->container['more_result'] = $more_result;
+
+        return $this;
+    }
+
+    /**
+     * Gets next_page_token
      *
      * @return string
      */
-    public function getDescription()
+    public function getNextPageToken()
     {
-        return $this->container['description'];
+        return $this->container['next_page_token'];
     }
 
     /**
-     * Sets description
+     * Sets next_page_token
      *
-     * @param string $description Description of the asset
+     * @param string $next_page_token Paging token given if the result set exceeded the allowed batch size
      *
      * @return $this
      */
-    public function setDescription($description)
+    public function setNextPageToken($next_page_token)
     {
-        $this->container['description'] = $description;
+        $this->container['next_page_token'] = $next_page_token;
 
         return $this;
     }
 
     /**
-     * Gets name
+     * Gets request_id
      *
      * @return string
      */
-    public function getName()
+    public function getRequestId()
     {
-        return $this->container['name'];
+        return $this->container['request_id'];
     }
 
     /**
-     * Sets name
+     * Sets request_id
      *
-     * @param string $name Name of the Email
+     * @param string $request_id Id of the request made
      *
      * @return $this
      */
-    public function setName($name)
+    public function setRequestId($request_id)
     {
-        $this->container['name'] = $name;
+        $this->container['request_id'] = $request_id;
 
         return $this;
     }
 
     /**
-     * Gets pre_header
+     * Gets result
      *
-     * @return string
+     * @return \NecLimDul\MarketoRest\Lead\Model\ProgramMemberAttribute[]
      */
-    public function getPreHeader()
+    public function getResult()
     {
-        return $this->container['pre_header'];
+        return $this->container['result'];
     }
 
     /**
-     * Sets pre_header
+     * Sets result
      *
-     * @param string $pre_header Preheader text for the email
+     * @param \NecLimDul\MarketoRest\Lead\Model\ProgramMemberAttribute[] $result Array of results for individual records in the operation, may be empty
      *
      * @return $this
      */
-    public function setPreHeader($pre_header)
+    public function setResult($result)
     {
-        $this->container['pre_header'] = $pre_header;
+        $this->container['result'] = $result;
 
         return $this;
     }
 
     /**
-     * Gets operational
+     * Gets success
      *
      * @return bool
      */
-    public function getOperational()
+    public function getSuccess()
     {
-        return $this->container['operational'];
+        return $this->container['success'];
     }
 
     /**
-     * Sets operational
+     * Sets success
      *
-     * @param bool $operational Whether the email is operational.  Operational emails bypass unsubscribe status.  Defaults to false
+     * @param bool $success Whether the request succeeded
      *
      * @return $this
      */
-    public function setOperational($operational)
+    public function setSuccess($success)
     {
-        $this->container['operational'] = $operational;
+        $this->container['success'] = $success;
 
         return $this;
     }
 
     /**
-     * Gets published
+     * Gets warnings
      *
-     * @return bool
+     * @return \NecLimDul\MarketoRest\Lead\Model\Warning[]
      */
-    public function getPublished()
+    public function getWarnings()
     {
-        return $this->container['published'];
+        return $this->container['warnings'];
     }
 
     /**
-     * Sets published
+     * Sets warnings
      *
-     * @param bool $published Whether the email has been published to Sales Insight.  Default false
+     * @param \NecLimDul\MarketoRest\Lead\Model\Warning[] $warnings Array of warnings given for the operation
      *
      * @return $this
      */
-    public function setPublished($published)
+    public function setWarnings($warnings)
     {
-        $this->container['published'] = $published;
-
-        return $this;
-    }
-
-    /**
-     * Gets text_only
-     *
-     * @return bool
-     */
-    public function getTextOnly()
-    {
-        return $this->container['text_only'];
-    }
-
-    /**
-     * Sets text_only
-     *
-     * @param bool $text_only Setting to include text-only version of email when sent
-     *
-     * @return $this
-     */
-    public function setTextOnly($text_only)
-    {
-        $this->container['text_only'] = $text_only;
-
-        return $this;
-    }
-
-    /**
-     * Gets web_view
-     *
-     * @return bool
-     */
-    public function getWebView()
-    {
-        return $this->container['web_view'];
-    }
-
-    /**
-     * Sets web_view
-     *
-     * @param bool $web_view Whether the email has been enabled to allow the 'View as Web Page' when received
-     *
-     * @return $this
-     */
-    public function setWebView($web_view)
-    {
-        $this->container['web_view'] = $web_view;
+        $this->container['warnings'] = $warnings;
 
         return $this;
     }

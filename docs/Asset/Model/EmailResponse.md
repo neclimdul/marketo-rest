@@ -23,6 +23,7 @@ Name | Type | Description | Notes
 **web_view** | **bool** | Whether &#39;View as Webpage&#39; function is enabled for the email | 
 **workspace** | **string** | Name of the workspace | [optional] 
 **auto_copy_to_text** | **bool** | Setting to automatically copy HTML version to Text version | 
+**pre_header** | **string** | The email preheader text | 
 **cc_fields** | [**\NecLimDul\MarketoRest\Asset\Model\EmailResponseCCFields[]**](EmailResponseCCFields.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

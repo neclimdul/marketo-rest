@@ -1,11 +1,11 @@
 <?php
 /**
- * UpdateEmailMetaDataRequest
+ * ProgramMemberAttribute
  *
  * PHP version 5
  *
  * @category Class
- * @package  NecLimDul\MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -27,20 +27,20 @@
  * Do not edit the class manually.
  */
 
-namespace NecLimDul\MarketoRest\Asset\Model;
+namespace NecLimDul\MarketoRest\Lead\Model;
 
 use \ArrayAccess;
-use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
+use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
- * UpdateEmailMetaDataRequest Class Doc Comment
+ * ProgramMemberAttribute Class Doc Comment
  *
  * @category Class
- * @package  NecLimDul\MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class UpdateEmailMetaDataRequest implements ModelInterface, ArrayAccess
+class ProgramMemberAttribute implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class UpdateEmailMetaDataRequest implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $swaggerModelName = 'UpdateEmailMetaDataRequest';
+    protected static $swaggerModelName = 'ProgramMemberAttribute';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,13 +57,8 @@ class UpdateEmailMetaDataRequest implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'description' => 'string',
         'name' => 'string',
-        'pre_header' => 'string',
-        'operational' => 'bool',
-        'published' => 'bool',
-        'text_only' => 'bool',
-        'web_view' => 'bool'
+        'fields' => '\NecLimDul\MarketoRest\Lead\Model\LeadAttribute2Fields[]'
     ];
 
     /**
@@ -72,13 +67,8 @@ class UpdateEmailMetaDataRequest implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'description' => null,
         'name' => null,
-        'pre_header' => null,
-        'operational' => null,
-        'published' => null,
-        'text_only' => null,
-        'web_view' => null
+        'fields' => null
     ];
 
     /**
@@ -111,13 +101,8 @@ class UpdateEmailMetaDataRequest implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'description' => 'description',
         'name' => 'name',
-        'pre_header' => 'preHeader',
-        'operational' => 'operational',
-        'published' => 'published',
-        'text_only' => 'textOnly',
-        'web_view' => 'webView'
+        'fields' => 'fields'
     ];
 
     /**
@@ -126,13 +111,8 @@ class UpdateEmailMetaDataRequest implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'description' => 'setDescription',
         'name' => 'setName',
-        'pre_header' => 'setPreHeader',
-        'operational' => 'setOperational',
-        'published' => 'setPublished',
-        'text_only' => 'setTextOnly',
-        'web_view' => 'setWebView'
+        'fields' => 'setFields'
     ];
 
     /**
@@ -141,13 +121,8 @@ class UpdateEmailMetaDataRequest implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'description' => 'getDescription',
         'name' => 'getName',
-        'pre_header' => 'getPreHeader',
-        'operational' => 'getOperational',
-        'published' => 'getPublished',
-        'text_only' => 'getTextOnly',
-        'web_view' => 'getWebView'
+        'fields' => 'getFields'
     ];
 
     
@@ -167,13 +142,8 @@ class UpdateEmailMetaDataRequest implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['description'] = isset($data['description']) ? $data['description'] : null;
         $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['pre_header'] = isset($data['pre_header']) ? $data['pre_header'] : null;
-        $this->container['operational'] = isset($data['operational']) ? $data['operational'] : null;
-        $this->container['published'] = isset($data['published']) ? $data['published'] : null;
-        $this->container['text_only'] = isset($data['text_only']) ? $data['text_only'] : null;
-        $this->container['web_view'] = isset($data['web_view']) ? $data['web_view'] : null;
+        $this->container['fields'] = isset($data['fields']) ? $data['fields'] : null;
     }
 
     /**
@@ -215,6 +185,9 @@ class UpdateEmailMetaDataRequest implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
+        if ($this->container['fields'] === null) {
+            $invalidProperties[] = "'fields' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -226,30 +199,6 @@ class UpdateEmailMetaDataRequest implements ModelInterface, ArrayAccess
         return count($this->listInvalidProperties()) === 0;
     }
     
-
-    /**
-     * Gets description
-     *
-     * @return string
-     */
-    public function getDescription()
-    {
-        return $this->container['description'];
-    }
-
-    /**
-     * Sets description
-     *
-     * @param string $description Description of the asset
-     *
-     * @return $this
-     */
-    public function setDescription($description)
-    {
-        $this->container['description'] = $description;
-
-        return $this;
-    }
 
     /**
      * Gets name
@@ -264,7 +213,7 @@ class UpdateEmailMetaDataRequest implements ModelInterface, ArrayAccess
     /**
      * Sets name
      *
-     * @param string $name Name of the Email
+     * @param string $name \"API Program Member\"
      *
      * @return $this
      */
@@ -276,121 +225,25 @@ class UpdateEmailMetaDataRequest implements ModelInterface, ArrayAccess
     }
 
     /**
-     * Gets pre_header
+     * Gets fields
      *
-     * @return string
+     * @return \NecLimDul\MarketoRest\Lead\Model\LeadAttribute2Fields[]
      */
-    public function getPreHeader()
+    public function getFields()
     {
-        return $this->container['pre_header'];
+        return $this->container['fields'];
     }
 
     /**
-     * Sets pre_header
+     * Sets fields
      *
-     * @param string $pre_header Preheader text for the email
+     * @param \NecLimDul\MarketoRest\Lead\Model\LeadAttribute2Fields[] $fields Description of searchable fields
      *
      * @return $this
      */
-    public function setPreHeader($pre_header)
+    public function setFields($fields)
     {
-        $this->container['pre_header'] = $pre_header;
-
-        return $this;
-    }
-
-    /**
-     * Gets operational
-     *
-     * @return bool
-     */
-    public function getOperational()
-    {
-        return $this->container['operational'];
-    }
-
-    /**
-     * Sets operational
-     *
-     * @param bool $operational Whether the email is operational.  Operational emails bypass unsubscribe status.  Defaults to false
-     *
-     * @return $this
-     */
-    public function setOperational($operational)
-    {
-        $this->container['operational'] = $operational;
-
-        return $this;
-    }
-
-    /**
-     * Gets published
-     *
-     * @return bool
-     */
-    public function getPublished()
-    {
-        return $this->container['published'];
-    }
-
-    /**
-     * Sets published
-     *
-     * @param bool $published Whether the email has been published to Sales Insight.  Default false
-     *
-     * @return $this
-     */
-    public function setPublished($published)
-    {
-        $this->container['published'] = $published;
-
-        return $this;
-    }
-
-    /**
-     * Gets text_only
-     *
-     * @return bool
-     */
-    public function getTextOnly()
-    {
-        return $this->container['text_only'];
-    }
-
-    /**
-     * Sets text_only
-     *
-     * @param bool $text_only Setting to include text-only version of email when sent
-     *
-     * @return $this
-     */
-    public function setTextOnly($text_only)
-    {
-        $this->container['text_only'] = $text_only;
-
-        return $this;
-    }
-
-    /**
-     * Gets web_view
-     *
-     * @return bool
-     */
-    public function getWebView()
-    {
-        return $this->container['web_view'];
-    }
-
-    /**
-     * Sets web_view
-     *
-     * @param bool $web_view Whether the email has been enabled to allow the 'View as Web Page' when received
-     *
-     * @return $this
-     */
-    public function setWebView($web_view)
-    {
-        $this->container['web_view'] = $web_view;
+        $this->container['fields'] = $fields;
 
         return $this;
     }

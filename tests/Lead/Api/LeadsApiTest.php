@@ -84,6 +84,18 @@ class LeadsApiTest extends TestCase
     }
 
     /**
+     * Test case for describeProgramMemberUsingGET
+     *
+     * Describe Program Member.
+     *
+     */
+    public function testDescribeProgramMemberUsingGET()
+    {
+        //$class = new LeadsApi;
+        $this->assertTrue(TRUE);
+    }
+
+    /**
      * Test case for describeUsingGET2
      *
      * Describe Lead.

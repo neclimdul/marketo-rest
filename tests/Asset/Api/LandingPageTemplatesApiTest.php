@@ -168,18 +168,6 @@ class LandingPageTemplatesApiTest extends TestCase
     }
 
     /**
-     * Test case for updateLandingPageTemplateContentUsingPOST
-     *
-     * Update Landing Page Template Content.
-     *
-     */
-    public function testUpdateLandingPageTemplateContentUsingPOST()
-    {
-        //$class = new LandingPageTemplatesApi;
-        $this->assertTrue(TRUE);
-    }
-
-    /**
      * Test case for updateLpTemplateUsingPOST
      *
      * Update Landing Page Template Metadata.
