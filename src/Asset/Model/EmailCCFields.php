@@ -1,6 +1,6 @@
 <?php
 /**
- * UpdateEmailComponentDataRequest
+ * EmailCCFields
  *
  * PHP version 5
  *
@@ -33,14 +33,14 @@ use \ArrayAccess;
 use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
- * UpdateEmailComponentDataRequest Class Doc Comment
+ * EmailCCFields Class Doc Comment
  *
  * @category Class
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class UpdateEmailComponentDataRequest implements ModelInterface, ArrayAccess
+class EmailCCFields implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class UpdateEmailComponentDataRequest implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $swaggerModelName = 'UpdateEmailComponentDataRequest';
+    protected static $swaggerModelName = 'EmailCCFields';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,10 +57,10 @@ class UpdateEmailComponentDataRequest implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'from_email' => '\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField',
-        'from_name' => '\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField',
-        'reply_to' => '\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField',
-        'subject' => '\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField'
+        'attribute_id' => 'string',
+        'object_name' => 'string',
+        'display_name' => 'string',
+        'api_name' => 'string'
     ];
 
     /**
@@ -69,10 +69,10 @@ class UpdateEmailComponentDataRequest implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'from_email' => null,
-        'from_name' => null,
-        'reply_to' => null,
-        'subject' => null
+        'attribute_id' => null,
+        'object_name' => null,
+        'display_name' => null,
+        'api_name' => null
     ];
 
     /**
@@ -105,10 +105,10 @@ class UpdateEmailComponentDataRequest implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'from_email' => 'fromEmail',
-        'from_name' => 'fromName',
-        'reply_to' => 'replyTO',
-        'subject' => 'subject'
+        'attribute_id' => 'attributeId',
+        'object_name' => 'objectName',
+        'display_name' => 'displayName',
+        'api_name' => 'apiName'
     ];
 
     /**
@@ -117,10 +117,10 @@ class UpdateEmailComponentDataRequest implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'from_email' => 'setFromEmail',
-        'from_name' => 'setFromName',
-        'reply_to' => 'setReplyTo',
-        'subject' => 'setSubject'
+        'attribute_id' => 'setAttributeId',
+        'object_name' => 'setObjectName',
+        'display_name' => 'setDisplayName',
+        'api_name' => 'setApiName'
     ];
 
     /**
@@ -129,10 +129,10 @@ class UpdateEmailComponentDataRequest implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'from_email' => 'getFromEmail',
-        'from_name' => 'getFromName',
-        'reply_to' => 'getReplyTo',
-        'subject' => 'getSubject'
+        'attribute_id' => 'getAttributeId',
+        'object_name' => 'getObjectName',
+        'display_name' => 'getDisplayName',
+        'api_name' => 'getApiName'
     ];
 
     
@@ -152,10 +152,10 @@ class UpdateEmailComponentDataRequest implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['from_email'] = isset($data['from_email']) ? $data['from_email'] : null;
-        $this->container['from_name'] = isset($data['from_name']) ? $data['from_name'] : null;
-        $this->container['reply_to'] = isset($data['reply_to']) ? $data['reply_to'] : null;
-        $this->container['subject'] = isset($data['subject']) ? $data['subject'] : null;
+        $this->container['attribute_id'] = isset($data['attribute_id']) ? $data['attribute_id'] : null;
+        $this->container['object_name'] = isset($data['object_name']) ? $data['object_name'] : null;
+        $this->container['display_name'] = isset($data['display_name']) ? $data['display_name'] : null;
+        $this->container['api_name'] = isset($data['api_name']) ? $data['api_name'] : null;
     }
 
     /**
@@ -197,6 +197,18 @@ class UpdateEmailComponentDataRequest implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
+        if ($this->container['attribute_id'] === null) {
+            $invalidProperties[] = "'attribute_id' can't be null";
+        }
+        if ($this->container['object_name'] === null) {
+            $invalidProperties[] = "'object_name' can't be null";
+        }
+        if ($this->container['display_name'] === null) {
+            $invalidProperties[] = "'display_name' can't be null";
+        }
+        if ($this->container['api_name'] === null) {
+            $invalidProperties[] = "'api_name' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -210,97 +222,97 @@ class UpdateEmailComponentDataRequest implements ModelInterface, ArrayAccess
     
 
     /**
-     * Gets from_email
+     * Gets attribute_id
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField
+     * @return string
      */
-    public function getFromEmail()
+    public function getAttributeId()
     {
-        return $this->container['from_email'];
+        return $this->container['attribute_id'];
     }
 
     /**
-     * Sets from_email
+     * Sets attribute_id
      *
-     * @param \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField $from_email From-address of the Email
+     * @param string $attribute_id Attribute identifier
      *
      * @return $this
      */
-    public function setFromEmail($from_email)
+    public function setAttributeId($attribute_id)
     {
-        $this->container['from_email'] = $from_email;
+        $this->container['attribute_id'] = $attribute_id;
 
         return $this;
     }
 
     /**
-     * Gets from_name
+     * Gets object_name
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField
+     * @return string
      */
-    public function getFromName()
+    public function getObjectName()
     {
-        return $this->container['from_name'];
+        return $this->container['object_name'];
     }
 
     /**
-     * Sets from_name
+     * Sets object_name
      *
-     * @param \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField $from_name From-name of the Email
+     * @param string $object_name Object name.  'lead' or 'company'
      *
      * @return $this
      */
-    public function setFromName($from_name)
+    public function setObjectName($object_name)
     {
-        $this->container['from_name'] = $from_name;
+        $this->container['object_name'] = $object_name;
 
         return $this;
     }
 
     /**
-     * Gets reply_to
+     * Gets display_name
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField
+     * @return string
      */
-    public function getReplyTo()
+    public function getDisplayName()
     {
-        return $this->container['reply_to'];
+        return $this->container['display_name'];
     }
 
     /**
-     * Sets reply_to
+     * Sets display_name
      *
-     * @param \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField $reply_to Reply-To address of the Email
+     * @param string $display_name Display name
      *
      * @return $this
      */
-    public function setReplyTo($reply_to)
+    public function setDisplayName($display_name)
     {
-        $this->container['reply_to'] = $reply_to;
+        $this->container['display_name'] = $display_name;
 
         return $this;
     }
 
     /**
-     * Gets subject
+     * Gets api_name
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField
+     * @return string
      */
-    public function getSubject()
+    public function getApiName()
     {
-        return $this->container['subject'];
+        return $this->container['api_name'];
     }
 
     /**
-     * Sets subject
+     * Sets api_name
      *
-     * @param \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField $subject Subject Line of the Email
+     * @param string $api_name API name
      *
      * @return $this
      */
-    public function setSubject($subject)
+    public function setApiName($api_name)
     {
-        $this->container['subject'] = $subject;
+        $this->container['api_name'] = $api_name;
 
         return $this;
     }

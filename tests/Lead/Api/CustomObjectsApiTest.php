@@ -144,6 +144,18 @@ class CustomObjectsApiTest extends TestCase
     }
 
     /**
+     * Test case for getCustomObjectTypeDependentAssetsUsingGET
+     *
+     * Get Custom Object Dependent Assets.
+     *
+     */
+    public function testGetCustomObjectTypeDependentAssetsUsingGET()
+    {
+        //$class = new CustomObjectsApi;
+        $this->assertTrue(TRUE);
+    }
+
+    /**
      * Test case for getCustomObjectTypeFieldDataTypesUsingGET
      *
      * Get Custom Object Type Field Data Types.

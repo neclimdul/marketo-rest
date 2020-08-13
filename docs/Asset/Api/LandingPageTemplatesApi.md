@@ -14,6 +14,7 @@ Method | HTTP request | Description
 [**getLandingPageTemplateContentUsingGET**](LandingPageTemplatesApi.md#getLandingPageTemplateContentUsingGET) | **GET** /rest/asset/v1/landingPageTemplate/{id}/content.json | Get Landing Page Template Content
 [**getLandingPageTemplatesUsingGET**](LandingPageTemplatesApi.md#getLandingPageTemplatesUsingGET) | **GET** /rest/asset/v1/landingPageTemplates.json | Get Landing Page Templates
 [**unapproveLandingPageTemplateUsingPOST**](LandingPageTemplatesApi.md#unapproveLandingPageTemplateUsingPOST) | **POST** /rest/asset/v1/landingPageTemplate/{id}/unapprove.json | Unapprove Landing Page Template
+[**updateLandingPageTemplateContentUsingPOST**](LandingPageTemplatesApi.md#updateLandingPageTemplateContentUsingPOST) | **POST** /rest/asset/v1/landingPageTemplate/{id}/content.json | Update Landing Page Template Content
 [**updateLpTemplateUsingPOST**](LandingPageTemplatesApi.md#updateLpTemplateUsingPOST) | **POST** /rest/asset/v1/landingPageTemplate/{id}.json | Update Landing Page Template Metadata
 
 
@@ -515,6 +516,57 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **updateLandingPageTemplateContentUsingPOST**
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse updateLandingPageTemplateContentUsingPOST($id, $content)
+
+Update Landing Page Template Content
+
+Updates the content for the target landing page template.  This update is destructive for the draft version of the template.  Required Permissions: Read-Write Assets
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPageTemplatesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$id = 56; // int | id
+$content = "content_example"; // string | content
+
+try {
+    $result = $apiInstance->updateLandingPageTemplateContentUsingPOST($id, $content);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling LandingPageTemplatesApi->updateLandingPageTemplateContentUsingPOST: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| id |
+ **content** | **string**| content |
+
+### Return type
+
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse**](../Model/ResponseOfIdResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)

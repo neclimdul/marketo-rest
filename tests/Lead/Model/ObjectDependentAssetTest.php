@@ -1,11 +1,11 @@
 <?php
 /**
- * EmailResponseCCFieldsTest
+ * ObjectDependentAssetTest
  *
  * PHP version 7
  *
  * @category Class
- * @package  NecLimDul\MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -27,65 +27,65 @@
  * Please update the test case below to test the model.
  */
 
-// namespace NecLimDul\MarketoRest\Asset;
-namespace NecLimDul\MarketoRest\Asset\Model;
+// namespace NecLimDul\MarketoRest\Lead;
+namespace NecLimDul\MarketoRest\Lead\Model;
 
 use PHPUnit\Framework\TestCase;
 
 /**
- * EmailResponseCCFieldsTest Class Doc Comment
+ * ObjectDependentAssetTest Class Doc Comment
  *
  * @category    Class
- * @description EmailResponseCCFields
- * @package     NecLimDul\MarketoRest\Asset
+ * @description ObjectDependentAsset
+ * @package     NecLimDul\MarketoRest\Lead
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class EmailResponseCCFieldsTest extends TestCase
+class ObjectDependentAssetTest extends TestCase
 {
 
     /**
-     * Test "EmailResponseCCFields"
+     * Test "ObjectDependentAsset"
      */
-    public function testEmailResponseCCFields()
+    public function testObjectDependentAsset()
     {
-        $class = new EmailResponseCCFields();
+        $class = new ObjectDependentAsset();
         $this->assertTrue(TRUE);
     }
 
     /**
-     * Test attribute "attribute_id"
+     * Test attribute "asset_type"
      */
-    public function testPropertyAttributeId()
+    public function testPropertyAssetType()
     {
-        $class = new EmailResponseCCFields();
+        $class = new ObjectDependentAsset();
         $this->assertTrue(TRUE);
     }
 
     /**
-     * Test attribute "object_name"
+     * Test attribute "asset_id"
      */
-    public function testPropertyObjectName()
+    public function testPropertyAssetId()
     {
-        $class = new EmailResponseCCFields();
+        $class = new ObjectDependentAsset();
         $this->assertTrue(TRUE);
     }
 
     /**
-     * Test attribute "display_name"
+     * Test attribute "asset_name"
      */
-    public function testPropertyDisplayName()
+    public function testPropertyAssetName()
     {
-        $class = new EmailResponseCCFields();
+        $class = new ObjectDependentAsset();
         $this->assertTrue(TRUE);
     }
 
     /**
-     * Test attribute "api_name"
+     * Test attribute "used_fields"
      */
-    public function testPropertyApiName()
+    public function testPropertyUsedFields()
     {
-        $class = new EmailResponseCCFields();
+        $class = new ObjectDependentAsset();
         $this->assertTrue(TRUE);
     }
 }

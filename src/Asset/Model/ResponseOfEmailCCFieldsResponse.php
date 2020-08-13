@@ -59,7 +59,7 @@ class ResponseOfEmailCCFieldsResponse implements ModelInterface, ArrayAccess
     protected static $swaggerTypes = [
         'errors' => '\NecLimDul\MarketoRest\Asset\Model\Error[]',
         'request_id' => 'string',
-        'result' => '\NecLimDul\MarketoRest\Asset\Model\EmailResponseCCFields[]',
+        'result' => '\NecLimDul\MarketoRest\Asset\Model\EmailCCFields[]',
         'success' => 'bool',
         'warnings' => 'string[]'
     ];
@@ -266,7 +266,7 @@ class ResponseOfEmailCCFieldsResponse implements ModelInterface, ArrayAccess
     /**
      * Gets result
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\EmailResponseCCFields[]
+     * @return \NecLimDul\MarketoRest\Asset\Model\EmailCCFields[]
      */
     public function getResult()
     {
@@ -276,7 +276,7 @@ class ResponseOfEmailCCFieldsResponse implements ModelInterface, ArrayAccess
     /**
      * Sets result
      *
-     * @param \NecLimDul\MarketoRest\Asset\Model\EmailResponseCCFields[] $result result
+     * @param \NecLimDul\MarketoRest\Asset\Model\EmailCCFields[] $result result
      *
      * @return $this
      */

@@ -3114,14 +3114,16 @@ class LeadsApi
      * @param  int $batch_size Maximum number of records to return.  Maximum and default is 300. (optional)
      * @param  string $earliest_updated_at Exclude programs prior to this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. (optional)
      * @param  string $latest_updated_at Exclude programs after this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. (optional)
+     * @param  string $filter_type Set to \&quot;programId\&quot; to filter a set of programs. (optional)
+     * @param  string[] $filter_values Comma-separated list of program ids to match against (optional)
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfPrograms
      */
-    public function getProgramMembershipUsingGET($lead_id, $next_page_token = null, $batch_size = null, $earliest_updated_at = null, $latest_updated_at = null)
+    public function getProgramMembershipUsingGET($lead_id, $next_page_token = null, $batch_size = null, $earliest_updated_at = null, $latest_updated_at = null, $filter_type = null, $filter_values = null)
     {
-        list($response) = $this->getProgramMembershipUsingGETWithHttpInfo($lead_id, $next_page_token, $batch_size, $earliest_updated_at, $latest_updated_at);
+        list($response) = $this->getProgramMembershipUsingGETWithHttpInfo($lead_id, $next_page_token, $batch_size, $earliest_updated_at, $latest_updated_at, $filter_type, $filter_values);
         return $response;
     }
 
@@ -3135,15 +3137,17 @@ class LeadsApi
      * @param  int $batch_size Maximum number of records to return.  Maximum and default is 300. (optional)
      * @param  string $earliest_updated_at Exclude programs prior to this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. (optional)
      * @param  string $latest_updated_at Exclude programs after this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. (optional)
+     * @param  string $filter_type Set to \&quot;programId\&quot; to filter a set of programs. (optional)
+     * @param  string[] $filter_values Comma-separated list of program ids to match against (optional)
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfPrograms, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getProgramMembershipUsingGETWithHttpInfo($lead_id, $next_page_token = null, $batch_size = null, $earliest_updated_at = null, $latest_updated_at = null)
+    public function getProgramMembershipUsingGETWithHttpInfo($lead_id, $next_page_token = null, $batch_size = null, $earliest_updated_at = null, $latest_updated_at = null, $filter_type = null, $filter_values = null)
     {
         $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfPrograms';
-        $request = $this->getProgramMembershipUsingGETRequest($lead_id, $next_page_token, $batch_size, $earliest_updated_at, $latest_updated_at);
+        $request = $this->getProgramMembershipUsingGETRequest($lead_id, $next_page_token, $batch_size, $earliest_updated_at, $latest_updated_at, $filter_type, $filter_values);
 
         try {
             $options = $this->createHttpClientOption();
@@ -3214,13 +3218,15 @@ class LeadsApi
      * @param  int $batch_size Maximum number of records to return.  Maximum and default is 300. (optional)
      * @param  string $earliest_updated_at Exclude programs prior to this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. (optional)
      * @param  string $latest_updated_at Exclude programs after this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. (optional)
+     * @param  string $filter_type Set to \&quot;programId\&quot; to filter a set of programs. (optional)
+     * @param  string[] $filter_values Comma-separated list of program ids to match against (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getProgramMembershipUsingGETAsync($lead_id, $next_page_token = null, $batch_size = null, $earliest_updated_at = null, $latest_updated_at = null)
+    public function getProgramMembershipUsingGETAsync($lead_id, $next_page_token = null, $batch_size = null, $earliest_updated_at = null, $latest_updated_at = null, $filter_type = null, $filter_values = null)
     {
-        return $this->getProgramMembershipUsingGETAsyncWithHttpInfo($lead_id, $next_page_token, $batch_size, $earliest_updated_at, $latest_updated_at)
+        return $this->getProgramMembershipUsingGETAsyncWithHttpInfo($lead_id, $next_page_token, $batch_size, $earliest_updated_at, $latest_updated_at, $filter_type, $filter_values)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -3238,14 +3244,16 @@ class LeadsApi
      * @param  int $batch_size Maximum number of records to return.  Maximum and default is 300. (optional)
      * @param  string $earliest_updated_at Exclude programs prior to this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. (optional)
      * @param  string $latest_updated_at Exclude programs after this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. (optional)
+     * @param  string $filter_type Set to \&quot;programId\&quot; to filter a set of programs. (optional)
+     * @param  string[] $filter_values Comma-separated list of program ids to match against (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getProgramMembershipUsingGETAsyncWithHttpInfo($lead_id, $next_page_token = null, $batch_size = null, $earliest_updated_at = null, $latest_updated_at = null)
+    public function getProgramMembershipUsingGETAsyncWithHttpInfo($lead_id, $next_page_token = null, $batch_size = null, $earliest_updated_at = null, $latest_updated_at = null, $filter_type = null, $filter_values = null)
     {
         $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfPrograms';
-        $request = $this->getProgramMembershipUsingGETRequest($lead_id, $next_page_token, $batch_size, $earliest_updated_at, $latest_updated_at);
+        $request = $this->getProgramMembershipUsingGETRequest($lead_id, $next_page_token, $batch_size, $earliest_updated_at, $latest_updated_at, $filter_type, $filter_values);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -3292,11 +3300,13 @@ class LeadsApi
      * @param  int $batch_size Maximum number of records to return.  Maximum and default is 300. (optional)
      * @param  string $earliest_updated_at Exclude programs prior to this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. (optional)
      * @param  string $latest_updated_at Exclude programs after this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. (optional)
+     * @param  string $filter_type Set to \&quot;programId\&quot; to filter a set of programs. (optional)
+     * @param  string[] $filter_values Comma-separated list of program ids to match against (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getProgramMembershipUsingGETRequest($lead_id, $next_page_token = null, $batch_size = null, $earliest_updated_at = null, $latest_updated_at = null)
+    protected function getProgramMembershipUsingGETRequest($lead_id, $next_page_token = null, $batch_size = null, $earliest_updated_at = null, $latest_updated_at = null, $filter_type = null, $filter_values = null)
     {
         // verify the required parameter 'lead_id' is set
         if ($lead_id === null || (is_array($lead_id) && count($lead_id) === 0)) {
@@ -3327,6 +3337,17 @@ class LeadsApi
         // query params
         if ($latest_updated_at !== null) {
             $queryParams['latestUpdatedAt'] = ObjectSerializer::toQueryValue($latest_updated_at);
+        }
+        // query params
+        if ($filter_type !== null) {
+            $queryParams['filterType'] = ObjectSerializer::toQueryValue($filter_type);
+        }
+        // query params
+        if (is_array($filter_values)) {
+            $queryParams['filterValues'] = $filter_values;
+        } else
+        if ($filter_values !== null) {
+            $queryParams['filterValues'] = ObjectSerializer::toQueryValue($filter_values);
         }
 
         // path params

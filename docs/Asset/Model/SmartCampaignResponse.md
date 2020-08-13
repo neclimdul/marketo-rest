@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **is_communication_limit_enabled** | **bool** | Whether smart campaign communication limit is enabled (i.e. block non-operational emails).  Defaults to false | 
 **smart_list_id** | **int** | Id of the smart campaign&#39;s child smart list | 
 **flow_id** | **int** | Id of the smart campaign&#39;s child flow | 
+**parent_program_id** | **int** | Parent program Id.  Present if smart campaign is under program or nested folder | [optional] 
 **folder** | [**\NecLimDul\MarketoRest\Asset\Model\Folder**](Folder.md) | JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39; | 
 **created_at** | [**\DateTime**](\DateTime.md) | Datetime when the smart campaign was created | 
 **updated_at** | [**\DateTime**](\DateTime.md) | Datetime when the smart campaign was most recently updated | 

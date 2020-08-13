@@ -120,6 +120,18 @@ class FormsApiTest extends TestCase
     }
 
     /**
+     * Test case for getFormUsedByUsingGET
+     *
+     * Get Form Used By.
+     *
+     */
+    public function testGetFormUsedByUsingGET()
+    {
+        //$class = new FormsApi;
+        $this->assertTrue(TRUE);
+    }
+
+    /**
      * Test case for getLpFormByIdUsingGET
      *
      * Get Form By Id.

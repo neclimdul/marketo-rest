@@ -204,7 +204,7 @@ class ProgramResponse implements ModelInterface, ArrayAccess
     const STATUS_UNLOCKED = 'unlocked';
     const STATUS_ON = 'on';
     const STATUS_OFF = 'off';
-    const TYPE_PROGRAM = 'program';
+    const TYPE__DEFAULT = 'default';
     const TYPE_EVENT = 'event';
     const TYPE_WEBINAR = 'webinar';
     const TYPE_NURTURE = 'nurture';
@@ -353,7 +353,7 @@ class ProgramResponse implements ModelInterface, ArrayAccess
     public function getTypeAllowableValues()
     {
         return [
-            self::TYPE_PROGRAM,
+            self::TYPE__DEFAULT,
             self::TYPE_EVENT,
             self::TYPE_WEBINAR,
             self::TYPE_NURTURE,

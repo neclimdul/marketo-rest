@@ -1451,14 +1451,15 @@ class SmartCampaignsApi
      * @param  string $folder JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39; (optional)
      * @param  string $earliest_updated_at Exclude smart campaigns prior to this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. (optional)
      * @param  string $latest_updated_at Exclude smart campaigns after this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. (optional)
+     * @param  bool $is_active Set true to return only active campaigns.  Default false (optional)
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse
      */
-    public function getAllSmartCampaignsGET($max_return = null, $offset = null, $folder = null, $earliest_updated_at = null, $latest_updated_at = null)
+    public function getAllSmartCampaignsGET($max_return = null, $offset = null, $folder = null, $earliest_updated_at = null, $latest_updated_at = null, $is_active = null)
     {
-        list($response) = $this->getAllSmartCampaignsGETWithHttpInfo($max_return, $offset, $folder, $earliest_updated_at, $latest_updated_at);
+        list($response) = $this->getAllSmartCampaignsGETWithHttpInfo($max_return, $offset, $folder, $earliest_updated_at, $latest_updated_at, $is_active);
         return $response;
     }
 
@@ -1472,15 +1473,16 @@ class SmartCampaignsApi
      * @param  string $folder JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39; (optional)
      * @param  string $earliest_updated_at Exclude smart campaigns prior to this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. (optional)
      * @param  string $latest_updated_at Exclude smart campaigns after this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. (optional)
+     * @param  bool $is_active Set true to return only active campaigns.  Default false (optional)
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getAllSmartCampaignsGETWithHttpInfo($max_return = null, $offset = null, $folder = null, $earliest_updated_at = null, $latest_updated_at = null)
+    public function getAllSmartCampaignsGETWithHttpInfo($max_return = null, $offset = null, $folder = null, $earliest_updated_at = null, $latest_updated_at = null, $is_active = null)
     {
         $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse';
-        $request = $this->getAllSmartCampaignsGETRequest($max_return, $offset, $folder, $earliest_updated_at, $latest_updated_at);
+        $request = $this->getAllSmartCampaignsGETRequest($max_return, $offset, $folder, $earliest_updated_at, $latest_updated_at, $is_active);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1551,13 +1553,14 @@ class SmartCampaignsApi
      * @param  string $folder JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39; (optional)
      * @param  string $earliest_updated_at Exclude smart campaigns prior to this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. (optional)
      * @param  string $latest_updated_at Exclude smart campaigns after this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. (optional)
+     * @param  bool $is_active Set true to return only active campaigns.  Default false (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getAllSmartCampaignsGETAsync($max_return = null, $offset = null, $folder = null, $earliest_updated_at = null, $latest_updated_at = null)
+    public function getAllSmartCampaignsGETAsync($max_return = null, $offset = null, $folder = null, $earliest_updated_at = null, $latest_updated_at = null, $is_active = null)
     {
-        return $this->getAllSmartCampaignsGETAsyncWithHttpInfo($max_return, $offset, $folder, $earliest_updated_at, $latest_updated_at)
+        return $this->getAllSmartCampaignsGETAsyncWithHttpInfo($max_return, $offset, $folder, $earliest_updated_at, $latest_updated_at, $is_active)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1575,14 +1578,15 @@ class SmartCampaignsApi
      * @param  string $folder JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39; (optional)
      * @param  string $earliest_updated_at Exclude smart campaigns prior to this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. (optional)
      * @param  string $latest_updated_at Exclude smart campaigns after this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. (optional)
+     * @param  bool $is_active Set true to return only active campaigns.  Default false (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getAllSmartCampaignsGETAsyncWithHttpInfo($max_return = null, $offset = null, $folder = null, $earliest_updated_at = null, $latest_updated_at = null)
+    public function getAllSmartCampaignsGETAsyncWithHttpInfo($max_return = null, $offset = null, $folder = null, $earliest_updated_at = null, $latest_updated_at = null, $is_active = null)
     {
         $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse';
-        $request = $this->getAllSmartCampaignsGETRequest($max_return, $offset, $folder, $earliest_updated_at, $latest_updated_at);
+        $request = $this->getAllSmartCampaignsGETRequest($max_return, $offset, $folder, $earliest_updated_at, $latest_updated_at, $is_active);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1629,11 +1633,12 @@ class SmartCampaignsApi
      * @param  string $folder JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39; (optional)
      * @param  string $earliest_updated_at Exclude smart campaigns prior to this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. (optional)
      * @param  string $latest_updated_at Exclude smart campaigns after this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. (optional)
+     * @param  bool $is_active Set true to return only active campaigns.  Default false (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getAllSmartCampaignsGETRequest($max_return = null, $offset = null, $folder = null, $earliest_updated_at = null, $latest_updated_at = null)
+    protected function getAllSmartCampaignsGETRequest($max_return = null, $offset = null, $folder = null, $earliest_updated_at = null, $latest_updated_at = null, $is_active = null)
     {
 
         $resourcePath = '/rest/asset/v1/smartCampaigns.json';
@@ -1662,6 +1667,10 @@ class SmartCampaignsApi
         // query params
         if ($latest_updated_at !== null) {
             $queryParams['latestUpdatedAt'] = ObjectSerializer::toQueryValue($latest_updated_at);
+        }
+        // query params
+        if ($is_active !== null) {
+            $queryParams['isActive'] = ObjectSerializer::toQueryValue($is_active);
         }
 
 

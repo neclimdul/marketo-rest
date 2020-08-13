@@ -1,11 +1,11 @@
-# ResponseOfEmailCCFieldsResponse
+# ResponseOfFormUsedByResponse
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **errors** | [**\NecLimDul\MarketoRest\Asset\Model\Error[]**](Error.md) |  | [optional] 
 **request_id** | **string** |  | [optional] 
-**result** | [**\NecLimDul\MarketoRest\Asset\Model\EmailCCFields[]**](EmailCCFields.md) |  | [optional] 
+**result** | [**\NecLimDul\MarketoRest\Asset\Model\FormUsedByResponse[]**](FormUsedByResponse.md) |  | [optional] 
 **success** | **bool** |  | [optional] 
 **warnings** | **string[]** |  | [optional] 
 

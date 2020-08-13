@@ -264,7 +264,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getAllSmartCampaignsGET**
-> \NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse getAllSmartCampaignsGET($max_return, $offset, $folder, $earliest_updated_at, $latest_updated_at)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse getAllSmartCampaignsGET($max_return, $offset, $folder, $earliest_updated_at, $latest_updated_at, $is_active)
 
 Get Smart Campaigns
 
@@ -285,9 +285,10 @@ $offset = 56; // int | Integer offset for paging
 $folder = "folder_example"; // string | JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
 $earliest_updated_at = "earliest_updated_at_example"; // string | Exclude smart campaigns prior to this date. Must be valid ISO-8601 string.  See <a href=\"http://developers.marketo.com/rest-api/lead-database/fields/field-types/\">Datetime</a> field type description.
 $latest_updated_at = "latest_updated_at_example"; // string | Exclude smart campaigns after this date. Must be valid ISO-8601 string.  See <a href=\"http://developers.marketo.com/rest-api/lead-database/fields/field-types/\">Datetime</a> field type description.
+$is_active = true; // bool | Set true to return only active campaigns.  Default false
 
 try {
-    $result = $apiInstance->getAllSmartCampaignsGET($max_return, $offset, $folder, $earliest_updated_at, $latest_updated_at);
+    $result = $apiInstance->getAllSmartCampaignsGET($max_return, $offset, $folder, $earliest_updated_at, $latest_updated_at, $is_active);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling SmartCampaignsApi->getAllSmartCampaignsGET: ', $e->getMessage(), PHP_EOL;
@@ -304,6 +305,7 @@ Name | Type | Description  | Notes
  **folder** | **string**| JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39; | [optional]
  **earliest_updated_at** | **string**| Exclude smart campaigns prior to this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. | [optional]
  **latest_updated_at** | **string**| Exclude smart campaigns after this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. | [optional]
+ **is_active** | **bool**| Set true to return only active campaigns.  Default false | [optional]
 
 ### Return type
 

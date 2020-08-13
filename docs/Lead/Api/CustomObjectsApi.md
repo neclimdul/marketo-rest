@@ -12,6 +12,7 @@ Method | HTTP request | Description
 [**describeCustomObjectTypeUsingGET**](CustomObjectsApi.md#describeCustomObjectTypeUsingGET) | **GET** /rest/v1/customobjects/schema/{apiName}/describe.json | Describe Custom Object Type
 [**describeUsingGET1**](CustomObjectsApi.md#describeUsingGET1) | **GET** /rest/v1/customobjects/{customObjectName}/describe.json | Describe Custom Objects
 [**discardCustomObjectTypeUsingPOST**](CustomObjectsApi.md#discardCustomObjectTypeUsingPOST) | **POST** /rest/v1/customobjects/schema/{apiName}/discardDraft.json | Discard Custom Object Type Draft
+[**getCustomObjectTypeDependentAssetsUsingGET**](CustomObjectsApi.md#getCustomObjectTypeDependentAssetsUsingGET) | **GET** /rest/v1/customobjects/schema/{apiName}/dependentAssets.json | Get Custom Object Dependent Assets
 [**getCustomObjectTypeFieldDataTypesUsingGET**](CustomObjectsApi.md#getCustomObjectTypeFieldDataTypesUsingGET) | **GET** /rest/v1/customobjects/schema/fieldDataTypes.json | Get Custom Object Type Field Data Types
 [**getCustomObjectTypeLinkableObjectsUsingGET**](CustomObjectsApi.md#getCustomObjectTypeLinkableObjectsUsingGET) | **GET** /rest/v1/customobjects/schema/linkableObjects.json | Get Custom Object Linkable Objects
 [**getCustomObjectsUsingGET**](CustomObjectsApi.md#getCustomObjectsUsingGET) | **GET** /rest/v1/customobjects/{customObjectName}.json | Get Custom Objects
@@ -410,6 +411,51 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType**](../Model/ResponseOfCustomObjectType.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **getCustomObjectTypeDependentAssetsUsingGET**
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectDependentAssets getCustomObjectTypeDependentAssetsUsingGET()
+
+Get Custom Object Dependent Assets
+
+Returns a list of dependent assets for a custom object type, including their in-instance location.  Required Permissions: Read-Only Custom Object Type, Read-Write Custom Object Type
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\CustomObjectsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+
+try {
+    $result = $apiInstance->getCustomObjectTypeDependentAssetsUsingGET();
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling CustomObjectsApi->getCustomObjectTypeDependentAssetsUsingGET: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectDependentAssets**](../Model/ResponseOfObjectDependentAssets.md)
 
 ### Authorization
 

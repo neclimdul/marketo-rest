@@ -189,6 +189,15 @@ class SmartCampaignResponseTest extends TestCase
     }
 
     /**
+     * Test attribute "parent_program_id"
+     */
+    public function testPropertyParentProgramId()
+    {
+        $class = new SmartCampaignResponse();
+        $this->assertTrue(TRUE);
+    }
+
+    /**
      * Test attribute "folder"
      */
     public function testPropertyFolder()

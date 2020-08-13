@@ -1,6 +1,6 @@
 <?php
 /**
- * EmailHeaderTypeValueTest
+ * EmailCCFieldsTest
  *
  * PHP version 7
  *
@@ -33,41 +33,59 @@ namespace NecLimDul\MarketoRest\Asset\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * EmailHeaderTypeValueTest Class Doc Comment
+ * EmailCCFieldsTest Class Doc Comment
  *
  * @category    Class
- * @description EmailHeaderTypeValue
+ * @description EmailCCFields
  * @package     NecLimDul\MarketoRest\Asset
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class EmailHeaderTypeValueTest extends TestCase
+class EmailCCFieldsTest extends TestCase
 {
 
     /**
-     * Test "EmailHeaderTypeValue"
+     * Test "EmailCCFields"
      */
-    public function testEmailHeaderTypeValue()
+    public function testEmailCCFields()
     {
-        $class = new EmailHeaderTypeValue();
+        $class = new EmailCCFields();
         $this->assertTrue(TRUE);
     }
 
     /**
-     * Test attribute "type"
+     * Test attribute "attribute_id"
      */
-    public function testPropertyType()
+    public function testPropertyAttributeId()
     {
-        $class = new EmailHeaderTypeValue();
+        $class = new EmailCCFields();
         $this->assertTrue(TRUE);
     }
 
     /**
-     * Test attribute "value"
+     * Test attribute "object_name"
      */
-    public function testPropertyValue()
+    public function testPropertyObjectName()
     {
-        $class = new EmailHeaderTypeValue();
+        $class = new EmailCCFields();
+        $this->assertTrue(TRUE);
+    }
+
+    /**
+     * Test attribute "display_name"
+     */
+    public function testPropertyDisplayName()
+    {
+        $class = new EmailCCFields();
+        $this->assertTrue(TRUE);
+    }
+
+    /**
+     * Test attribute "api_name"
+     */
+    public function testPropertyApiName()
+    {
+        $class = new EmailCCFields();
         $this->assertTrue(TRUE);
     }
 }

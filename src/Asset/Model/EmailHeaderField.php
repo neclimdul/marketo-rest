@@ -1,6 +1,6 @@
 <?php
 /**
- * EmailHeaderTypeValue
+ * EmailHeaderField
  *
  * PHP version 5
  *
@@ -33,14 +33,14 @@ use \ArrayAccess;
 use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
- * EmailHeaderTypeValue Class Doc Comment
+ * EmailHeaderField Class Doc Comment
  *
  * @category Class
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class EmailHeaderTypeValue implements ModelInterface, ArrayAccess
+class EmailHeaderField implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class EmailHeaderTypeValue implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $swaggerModelName = 'EmailHeaderTypeValue';
+    protected static $swaggerModelName = 'EmailHeaderField';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -185,6 +185,12 @@ class EmailHeaderTypeValue implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
+        if ($this->container['type'] === null) {
+            $invalidProperties[] = "'type' can't be null";
+        }
+        if ($this->container['value'] === null) {
+            $invalidProperties[] = "'value' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -210,7 +216,7 @@ class EmailHeaderTypeValue implements ModelInterface, ArrayAccess
     /**
      * Sets type
      *
-     * @param string $type type
+     * @param string $type Field type
      *
      * @return $this
      */
@@ -234,7 +240,7 @@ class EmailHeaderTypeValue implements ModelInterface, ArrayAccess
     /**
      * Sets value
      *
-     * @param string $value value
+     * @param string $value Value of field
      *
      * @return $this
      */

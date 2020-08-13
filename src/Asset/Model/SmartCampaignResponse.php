@@ -72,6 +72,7 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess
         'is_communication_limit_enabled' => 'bool',
         'smart_list_id' => 'int',
         'flow_id' => 'int',
+        'parent_program_id' => 'int',
         'folder' => '\NecLimDul\MarketoRest\Asset\Model\Folder',
         'created_at' => '\DateTime',
         'updated_at' => '\DateTime',
@@ -101,6 +102,7 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess
         'is_communication_limit_enabled' => null,
         'smart_list_id' => 'int32',
         'flow_id' => 'int32',
+        'parent_program_id' => 'int32',
         'folder' => null,
         'created_at' => 'date-time',
         'updated_at' => 'date-time',
@@ -154,6 +156,7 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess
         'is_communication_limit_enabled' => 'isCommunicationLimitEnabled',
         'smart_list_id' => 'smartListId',
         'flow_id' => 'flowId',
+        'parent_program_id' => 'parentProgramId',
         'folder' => 'folder',
         'created_at' => 'createdAt',
         'updated_at' => 'updatedAt',
@@ -183,6 +186,7 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess
         'is_communication_limit_enabled' => 'setIsCommunicationLimitEnabled',
         'smart_list_id' => 'setSmartListId',
         'flow_id' => 'setFlowId',
+        'parent_program_id' => 'setParentProgramId',
         'folder' => 'setFolder',
         'created_at' => 'setCreatedAt',
         'updated_at' => 'setUpdatedAt',
@@ -212,6 +216,7 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess
         'is_communication_limit_enabled' => 'getIsCommunicationLimitEnabled',
         'smart_list_id' => 'getSmartListId',
         'flow_id' => 'getFlowId',
+        'parent_program_id' => 'getParentProgramId',
         'folder' => 'getFolder',
         'created_at' => 'getCreatedAt',
         'updated_at' => 'getUpdatedAt',
@@ -269,6 +274,7 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess
         $this->container['is_communication_limit_enabled'] = isset($data['is_communication_limit_enabled']) ? $data['is_communication_limit_enabled'] : null;
         $this->container['smart_list_id'] = isset($data['smart_list_id']) ? $data['smart_list_id'] : null;
         $this->container['flow_id'] = isset($data['flow_id']) ? $data['flow_id'] : null;
+        $this->container['parent_program_id'] = isset($data['parent_program_id']) ? $data['parent_program_id'] : null;
         $this->container['folder'] = isset($data['folder']) ? $data['folder'] : null;
         $this->container['created_at'] = isset($data['created_at']) ? $data['created_at'] : null;
         $this->container['updated_at'] = isset($data['updated_at']) ? $data['updated_at'] : null;
@@ -868,6 +874,30 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess
     public function setFlowId($flow_id)
     {
         $this->container['flow_id'] = $flow_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets parent_program_id
+     *
+     * @return int
+     */
+    public function getParentProgramId()
+    {
+        return $this->container['parent_program_id'];
+    }
+
+    /**
+     * Sets parent_program_id
+     *
+     * @param int $parent_program_id Parent program Id.  Present if smart campaign is under program or nested folder
+     *
+     * @return $this
+     */
+    public function setParentProgramId($parent_program_id)
+    {
+        $this->container['parent_program_id'] = $parent_program_id;
 
         return $this;
     }

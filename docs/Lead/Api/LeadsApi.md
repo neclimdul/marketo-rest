@@ -573,7 +573,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getProgramMembershipUsingGET**
-> \NecLimDul\MarketoRest\Lead\Model\ResponseOfPrograms getProgramMembershipUsingGET($lead_id, $next_page_token, $batch_size, $earliest_updated_at, $latest_updated_at)
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfPrograms getProgramMembershipUsingGET($lead_id, $next_page_token, $batch_size, $earliest_updated_at, $latest_updated_at, $filter_type, $filter_values)
 
 Get Programs by Lead Id
 
@@ -594,9 +594,11 @@ $next_page_token = "next_page_token_example"; // string | A token will be return
 $batch_size = 56; // int | Maximum number of records to return.  Maximum and default is 300.
 $earliest_updated_at = "earliest_updated_at_example"; // string | Exclude programs prior to this date. Must be valid ISO-8601 string.  See <a href=\"http://developers.marketo.com/rest-api/lead-database/fields/field-types/\">Datetime</a> field type description.
 $latest_updated_at = "latest_updated_at_example"; // string | Exclude programs after this date. Must be valid ISO-8601 string.  See <a href=\"http://developers.marketo.com/rest-api/lead-database/fields/field-types/\">Datetime</a> field type description.
+$filter_type = "filter_type_example"; // string | Set to \"programId\" to filter a set of programs.
+$filter_values = array("filter_values_example"); // string[] | Comma-separated list of program ids to match against
 
 try {
-    $result = $apiInstance->getProgramMembershipUsingGET($lead_id, $next_page_token, $batch_size, $earliest_updated_at, $latest_updated_at);
+    $result = $apiInstance->getProgramMembershipUsingGET($lead_id, $next_page_token, $batch_size, $earliest_updated_at, $latest_updated_at, $filter_type, $filter_values);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling LeadsApi->getProgramMembershipUsingGET: ', $e->getMessage(), PHP_EOL;
@@ -613,6 +615,8 @@ Name | Type | Description  | Notes
  **batch_size** | **int**| Maximum number of records to return.  Maximum and default is 300. | [optional]
  **earliest_updated_at** | **string**| Exclude programs prior to this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. | [optional]
  **latest_updated_at** | **string**| Exclude programs after this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. | [optional]
+ **filter_type** | **string**| Set to \&quot;programId\&quot; to filter a set of programs. | [optional]
+ **filter_values** | [**string[]**](../Model/string.md)| Comma-separated list of program ids to match against | [optional]
 
 ### Return type
 

@@ -1,6 +1,6 @@
 <?php
 /**
- * EmailResponseCCFields
+ * FormUsedByResponse
  *
  * PHP version 5
  *
@@ -33,14 +33,14 @@ use \ArrayAccess;
 use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
- * EmailResponseCCFields Class Doc Comment
+ * FormUsedByResponse Class Doc Comment
  *
  * @category Class
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class EmailResponseCCFields implements ModelInterface, ArrayAccess
+class FormUsedByResponse implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class EmailResponseCCFields implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $swaggerModelName = 'EmailResponseCCFields';
+    protected static $swaggerModelName = 'FormUsedByResponse';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,10 +57,11 @@ class EmailResponseCCFields implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'attribute_id' => 'string',
-        'object_name' => 'string',
-        'display_name' => 'string',
-        'api_name' => 'string'
+        'id' => 'int',
+        'name' => 'string',
+        'type' => 'string',
+        'status' => 'string',
+        'updated_at' => '\DateTime'
     ];
 
     /**
@@ -69,10 +70,11 @@ class EmailResponseCCFields implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'attribute_id' => null,
-        'object_name' => null,
-        'display_name' => null,
-        'api_name' => null
+        'id' => 'int64',
+        'name' => null,
+        'type' => null,
+        'status' => null,
+        'updated_at' => 'date-time'
     ];
 
     /**
@@ -105,10 +107,11 @@ class EmailResponseCCFields implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'attribute_id' => 'attributeId',
-        'object_name' => 'objectName',
-        'display_name' => 'displayName',
-        'api_name' => 'apiName'
+        'id' => 'id',
+        'name' => 'name',
+        'type' => 'type',
+        'status' => 'status',
+        'updated_at' => 'updatedAt'
     ];
 
     /**
@@ -117,10 +120,11 @@ class EmailResponseCCFields implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'attribute_id' => 'setAttributeId',
-        'object_name' => 'setObjectName',
-        'display_name' => 'setDisplayName',
-        'api_name' => 'setApiName'
+        'id' => 'setId',
+        'name' => 'setName',
+        'type' => 'setType',
+        'status' => 'setStatus',
+        'updated_at' => 'setUpdatedAt'
     ];
 
     /**
@@ -129,12 +133,15 @@ class EmailResponseCCFields implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'attribute_id' => 'getAttributeId',
-        'object_name' => 'getObjectName',
-        'display_name' => 'getDisplayName',
-        'api_name' => 'getApiName'
+        'id' => 'getId',
+        'name' => 'getName',
+        'type' => 'getType',
+        'status' => 'getStatus',
+        'updated_at' => 'getUpdatedAt'
     ];
 
+    const STATUS_APPROVED = 'approved';
+    const STATUS_DRAFT = 'draft';
     
 
     /**
@@ -152,10 +159,11 @@ class EmailResponseCCFields implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['attribute_id'] = isset($data['attribute_id']) ? $data['attribute_id'] : null;
-        $this->container['object_name'] = isset($data['object_name']) ? $data['object_name'] : null;
-        $this->container['display_name'] = isset($data['display_name']) ? $data['display_name'] : null;
-        $this->container['api_name'] = isset($data['api_name']) ? $data['api_name'] : null;
+        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
+        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
+        $this->container['type'] = isset($data['type']) ? $data['type'] : null;
+        $this->container['status'] = isset($data['status']) ? $data['status'] : null;
+        $this->container['updated_at'] = isset($data['updated_at']) ? $data['updated_at'] : null;
     }
 
     /**
@@ -197,17 +205,28 @@ class EmailResponseCCFields implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
-        if ($this->container['attribute_id'] === null) {
-            $invalidProperties[] = "'attribute_id' can't be null";
+        if ($this->container['id'] === null) {
+            $invalidProperties[] = "'id' can't be null";
         }
-        if ($this->container['object_name'] === null) {
-            $invalidProperties[] = "'object_name' can't be null";
+        if ($this->container['name'] === null) {
+            $invalidProperties[] = "'name' can't be null";
         }
-        if ($this->container['display_name'] === null) {
-            $invalidProperties[] = "'display_name' can't be null";
+        if ($this->container['type'] === null) {
+            $invalidProperties[] = "'type' can't be null";
         }
-        if ($this->container['api_name'] === null) {
-            $invalidProperties[] = "'api_name' can't be null";
+        if ($this->container['status'] === null) {
+            $invalidProperties[] = "'status' can't be null";
+        }
+        $allowedValues = $this->getStatusAllowableValues();
+        if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value for 'status', must be one of '%s'",
+                implode("', '", $allowedValues)
+            );
+        }
+
+        if ($this->container['updated_at'] === null) {
+            $invalidProperties[] = "'updated_at' can't be null";
         }
         return $invalidProperties;
     }
@@ -222,97 +241,144 @@ class EmailResponseCCFields implements ModelInterface, ArrayAccess
     
 
     /**
-     * Gets attribute_id
+     * Gets allowable values of the enum
      *
-     * @return string
+     * @return string[]
      */
-    public function getAttributeId()
+    public function getStatusAllowableValues()
     {
-        return $this->container['attribute_id'];
+        return [
+            self::STATUS_APPROVED,
+            self::STATUS_DRAFT,
+        ];
+    }
+    
+
+    /**
+     * Gets id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->container['id'];
     }
 
     /**
-     * Sets attribute_id
+     * Sets id
      *
-     * @param string $attribute_id Attribute identifier
+     * @param int $id Id of the asset
      *
      * @return $this
      */
-    public function setAttributeId($attribute_id)
+    public function setId($id)
     {
-        $this->container['attribute_id'] = $attribute_id;
+        $this->container['id'] = $id;
 
         return $this;
     }
 
     /**
-     * Gets object_name
+     * Gets name
      *
      * @return string
      */
-    public function getObjectName()
+    public function getName()
     {
-        return $this->container['object_name'];
+        return $this->container['name'];
     }
 
     /**
-     * Sets object_name
+     * Sets name
      *
-     * @param string $object_name Object name.  'lead' or 'company'
+     * @param string $name Name of the asset
      *
      * @return $this
      */
-    public function setObjectName($object_name)
+    public function setName($name)
     {
-        $this->container['object_name'] = $object_name;
+        $this->container['name'] = $name;
 
         return $this;
     }
 
     /**
-     * Gets display_name
+     * Gets type
      *
      * @return string
      */
-    public function getDisplayName()
+    public function getType()
     {
-        return $this->container['display_name'];
+        return $this->container['type'];
     }
 
     /**
-     * Sets display_name
+     * Sets type
      *
-     * @param string $display_name Display name
+     * @param string $type Type of asset
      *
      * @return $this
      */
-    public function setDisplayName($display_name)
+    public function setType($type)
     {
-        $this->container['display_name'] = $display_name;
+        $this->container['type'] = $type;
 
         return $this;
     }
 
     /**
-     * Gets api_name
+     * Gets status
      *
      * @return string
      */
-    public function getApiName()
+    public function getStatus()
     {
-        return $this->container['api_name'];
+        return $this->container['status'];
     }
 
     /**
-     * Sets api_name
+     * Sets status
      *
-     * @param string $api_name API name
+     * @param string $status Status filter for draft or approved versions
      *
      * @return $this
      */
-    public function setApiName($api_name)
+    public function setStatus($status)
     {
-        $this->container['api_name'] = $api_name;
+        $allowedValues = $this->getStatusAllowableValues();
+        if (!in_array($status, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value for 'status', must be one of '%s'",
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['status'] = $status;
+
+        return $this;
+    }
+
+    /**
+     * Gets updated_at
+     *
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->container['updated_at'];
+    }
+
+    /**
+     * Sets updated_at
+     *
+     * @param \DateTime $updated_at Datetime the asset was most recently updated
+     *
+     * @return $this
+     */
+    public function setUpdatedAt($updated_at)
+    {
+        $this->container['updated_at'] = $updated_at;
 
         return $this;
     }

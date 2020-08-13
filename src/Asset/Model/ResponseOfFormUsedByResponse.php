@@ -1,6 +1,6 @@
 <?php
 /**
- * UpdateEmailComponentDataRequest
+ * ResponseOfFormUsedByResponse
  *
  * PHP version 5
  *
@@ -33,14 +33,14 @@ use \ArrayAccess;
 use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
- * UpdateEmailComponentDataRequest Class Doc Comment
+ * ResponseOfFormUsedByResponse Class Doc Comment
  *
  * @category Class
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class UpdateEmailComponentDataRequest implements ModelInterface, ArrayAccess
+class ResponseOfFormUsedByResponse implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class UpdateEmailComponentDataRequest implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $swaggerModelName = 'UpdateEmailComponentDataRequest';
+    protected static $swaggerModelName = 'ResponseOfFormUsedByResponse';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,10 +57,11 @@ class UpdateEmailComponentDataRequest implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'from_email' => '\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField',
-        'from_name' => '\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField',
-        'reply_to' => '\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField',
-        'subject' => '\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField'
+        'errors' => '\NecLimDul\MarketoRest\Asset\Model\Error[]',
+        'request_id' => 'string',
+        'result' => '\NecLimDul\MarketoRest\Asset\Model\FormUsedByResponse[]',
+        'success' => 'bool',
+        'warnings' => 'string[]'
     ];
 
     /**
@@ -69,10 +70,11 @@ class UpdateEmailComponentDataRequest implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'from_email' => null,
-        'from_name' => null,
-        'reply_to' => null,
-        'subject' => null
+        'errors' => null,
+        'request_id' => null,
+        'result' => null,
+        'success' => null,
+        'warnings' => null
     ];
 
     /**
@@ -105,10 +107,11 @@ class UpdateEmailComponentDataRequest implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'from_email' => 'fromEmail',
-        'from_name' => 'fromName',
-        'reply_to' => 'replyTO',
-        'subject' => 'subject'
+        'errors' => 'errors',
+        'request_id' => 'requestId',
+        'result' => 'result',
+        'success' => 'success',
+        'warnings' => 'warnings'
     ];
 
     /**
@@ -117,10 +120,11 @@ class UpdateEmailComponentDataRequest implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'from_email' => 'setFromEmail',
-        'from_name' => 'setFromName',
-        'reply_to' => 'setReplyTo',
-        'subject' => 'setSubject'
+        'errors' => 'setErrors',
+        'request_id' => 'setRequestId',
+        'result' => 'setResult',
+        'success' => 'setSuccess',
+        'warnings' => 'setWarnings'
     ];
 
     /**
@@ -129,10 +133,11 @@ class UpdateEmailComponentDataRequest implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'from_email' => 'getFromEmail',
-        'from_name' => 'getFromName',
-        'reply_to' => 'getReplyTo',
-        'subject' => 'getSubject'
+        'errors' => 'getErrors',
+        'request_id' => 'getRequestId',
+        'result' => 'getResult',
+        'success' => 'getSuccess',
+        'warnings' => 'getWarnings'
     ];
 
     
@@ -152,10 +157,11 @@ class UpdateEmailComponentDataRequest implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['from_email'] = isset($data['from_email']) ? $data['from_email'] : null;
-        $this->container['from_name'] = isset($data['from_name']) ? $data['from_name'] : null;
-        $this->container['reply_to'] = isset($data['reply_to']) ? $data['reply_to'] : null;
-        $this->container['subject'] = isset($data['subject']) ? $data['subject'] : null;
+        $this->container['errors'] = isset($data['errors']) ? $data['errors'] : null;
+        $this->container['request_id'] = isset($data['request_id']) ? $data['request_id'] : null;
+        $this->container['result'] = isset($data['result']) ? $data['result'] : null;
+        $this->container['success'] = isset($data['success']) ? $data['success'] : null;
+        $this->container['warnings'] = isset($data['warnings']) ? $data['warnings'] : null;
     }
 
     /**
@@ -210,97 +216,121 @@ class UpdateEmailComponentDataRequest implements ModelInterface, ArrayAccess
     
 
     /**
-     * Gets from_email
+     * Gets errors
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField
+     * @return \NecLimDul\MarketoRest\Asset\Model\Error[]
      */
-    public function getFromEmail()
+    public function getErrors()
     {
-        return $this->container['from_email'];
+        return $this->container['errors'];
     }
 
     /**
-     * Sets from_email
+     * Sets errors
      *
-     * @param \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField $from_email From-address of the Email
+     * @param \NecLimDul\MarketoRest\Asset\Model\Error[] $errors errors
      *
      * @return $this
      */
-    public function setFromEmail($from_email)
+    public function setErrors($errors)
     {
-        $this->container['from_email'] = $from_email;
+        $this->container['errors'] = $errors;
 
         return $this;
     }
 
     /**
-     * Gets from_name
+     * Gets request_id
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField
+     * @return string
      */
-    public function getFromName()
+    public function getRequestId()
     {
-        return $this->container['from_name'];
+        return $this->container['request_id'];
     }
 
     /**
-     * Sets from_name
+     * Sets request_id
      *
-     * @param \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField $from_name From-name of the Email
+     * @param string $request_id request_id
      *
      * @return $this
      */
-    public function setFromName($from_name)
+    public function setRequestId($request_id)
     {
-        $this->container['from_name'] = $from_name;
+        $this->container['request_id'] = $request_id;
 
         return $this;
     }
 
     /**
-     * Gets reply_to
+     * Gets result
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField
+     * @return \NecLimDul\MarketoRest\Asset\Model\FormUsedByResponse[]
      */
-    public function getReplyTo()
+    public function getResult()
     {
-        return $this->container['reply_to'];
+        return $this->container['result'];
     }
 
     /**
-     * Sets reply_to
+     * Sets result
      *
-     * @param \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField $reply_to Reply-To address of the Email
+     * @param \NecLimDul\MarketoRest\Asset\Model\FormUsedByResponse[] $result result
      *
      * @return $this
      */
-    public function setReplyTo($reply_to)
+    public function setResult($result)
     {
-        $this->container['reply_to'] = $reply_to;
+        $this->container['result'] = $result;
 
         return $this;
     }
 
     /**
-     * Gets subject
+     * Gets success
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField
+     * @return bool
      */
-    public function getSubject()
+    public function getSuccess()
     {
-        return $this->container['subject'];
+        return $this->container['success'];
     }
 
     /**
-     * Sets subject
+     * Sets success
      *
-     * @param \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField $subject Subject Line of the Email
+     * @param bool $success success
      *
      * @return $this
      */
-    public function setSubject($subject)
+    public function setSuccess($success)
     {
-        $this->container['subject'] = $subject;
+        $this->container['success'] = $success;
+
+        return $this;
+    }
+
+    /**
+     * Gets warnings
+     *
+     * @return string[]
+     */
+    public function getWarnings()
+    {
+        return $this->container['warnings'];
+    }
+
+    /**
+     * Sets warnings
+     *
+     * @param string[] $warnings warnings
+     *
+     * @return $this
+     */
+    public function setWarnings($warnings)
+    {
+        $this->container['warnings'] = $warnings;
 
         return $this;
     }

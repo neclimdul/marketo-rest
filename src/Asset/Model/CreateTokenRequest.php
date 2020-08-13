@@ -291,7 +291,7 @@ class CreateTokenRequest implements ModelInterface, ArrayAccess
     /**
      * Sets name
      *
-     * @param string $name Name of the token
+     * @param string $name Name of the token. Max length is 50 characters)
      *
      * @return $this
      */

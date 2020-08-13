@@ -10,6 +10,7 @@ Method | HTTP request | Description
 [**createLpFormsUsingPOST**](FormsApi.md#createLpFormsUsingPOST) | **POST** /rest/asset/v1/forms.json | Create Form
 [**deleteFormByIdUsingPOST**](FormsApi.md#deleteFormByIdUsingPOST) | **POST** /rest/asset/v1/form/{id}/delete.json | Delete Form
 [**discardFormByIdUsingPOST**](FormsApi.md#discardFormByIdUsingPOST) | **POST** /rest/asset/v1/form/{id}/discardDraft.json | Discard Form Draft
+[**getFormUsedByUsingGET**](FormsApi.md#getFormUsedByUsingGET) | **GET** /rest/asset/v1/form/{id}/usedBy.json | Get Form Used By
 [**getLpFormByIdUsingGET**](FormsApi.md#getLpFormByIdUsingGET) | **GET** /rest/asset/v1/form/{id}.json | Get Form By Id
 [**getLpFormByNameUsingGET**](FormsApi.md#getLpFormByNameUsingGET) | **GET** /rest/asset/v1/form/byName.json | Get Form by Name
 [**getThankYouPageByIdUsingGET**](FormsApi.md#getThankYouPageByIdUsingGET) | **GET** /rest/asset/v1/form/{id}/thankYouPage.json | Get Thank You Page by Form Id
@@ -308,6 +309,59 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse**](../Model/ResponseOfIdResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **getFormUsedByUsingGET**
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfFormUsedByResponse getFormUsedByUsingGET($id, $offset, $max_return)
+
+Get Form Used By
+
+Returns a list of asset records which depend on a given form.  Required Permissions: Read-Only Assets, Read-Write Assets
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\FormsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$id = 56; // int | Id of the form
+$offset = 56; // int | Integer offset for paging
+$max_return = 56; // int | Maximum number of assets to return.  Max 200, default 20
+
+try {
+    $result = $apiInstance->getFormUsedByUsingGET($id, $offset, $max_return);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling FormsApi->getFormUsedByUsingGET: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| Id of the form |
+ **offset** | **int**| Integer offset for paging | [optional]
+ **max_return** | **int**| Maximum number of assets to return.  Max 200, default 20 | [optional]
+
+### Return type
+
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfFormUsedByResponse**](../Model/ResponseOfFormUsedByResponse.md)
 
 ### Authorization
 

@@ -60,15 +60,15 @@ class EmailResponse implements ModelInterface, ArrayAccess
         'created_at' => '\DateTime',
         'description' => 'string',
         'folder' => '\NecLimDul\MarketoRest\Asset\Model\Folder',
-        'from_email' => 'string',
-        'from_name' => 'string',
+        'from_email' => '\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField',
+        'from_name' => '\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField',
         'id' => 'int',
         'name' => 'string',
         'operational' => 'bool',
         'publish_to_msi' => 'bool',
-        'reply_email' => 'string',
+        'reply_email' => '\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField',
         'status' => 'string',
-        'subject' => 'string',
+        'subject' => '\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField',
         'template' => 'int',
         'text_only' => 'bool',
         'updated_at' => '\DateTime',
@@ -78,7 +78,7 @@ class EmailResponse implements ModelInterface, ArrayAccess
         'workspace' => 'string',
         'auto_copy_to_text' => 'bool',
         'pre_header' => 'string',
-        'cc_fields' => '\NecLimDul\MarketoRest\Asset\Model\EmailResponseCCFields[]'
+        'cc_fields' => '\NecLimDul\MarketoRest\Asset\Model\EmailCCFields[]'
     ];
 
     /**
@@ -455,7 +455,7 @@ class EmailResponse implements ModelInterface, ArrayAccess
     /**
      * Gets from_email
      *
-     * @return string
+     * @return \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField
      */
     public function getFromEmail()
     {
@@ -465,7 +465,7 @@ class EmailResponse implements ModelInterface, ArrayAccess
     /**
      * Sets from_email
      *
-     * @param string $from_email From-address of the Email
+     * @param \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField $from_email From-address of the Email
      *
      * @return $this
      */
@@ -479,7 +479,7 @@ class EmailResponse implements ModelInterface, ArrayAccess
     /**
      * Gets from_name
      *
-     * @return string
+     * @return \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField
      */
     public function getFromName()
     {
@@ -489,7 +489,7 @@ class EmailResponse implements ModelInterface, ArrayAccess
     /**
      * Sets from_name
      *
-     * @param string $from_name From-name of the Email
+     * @param \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField $from_name From-name of the Email
      *
      * @return $this
      */
@@ -599,7 +599,7 @@ class EmailResponse implements ModelInterface, ArrayAccess
     /**
      * Gets reply_email
      *
-     * @return string
+     * @return \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField
      */
     public function getReplyEmail()
     {
@@ -609,7 +609,7 @@ class EmailResponse implements ModelInterface, ArrayAccess
     /**
      * Sets reply_email
      *
-     * @param string $reply_email Reply-To address of the Email
+     * @param \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField $reply_email Reply-To address of the Email
      *
      * @return $this
      */
@@ -647,7 +647,7 @@ class EmailResponse implements ModelInterface, ArrayAccess
     /**
      * Gets subject
      *
-     * @return string
+     * @return \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField
      */
     public function getSubject()
     {
@@ -657,7 +657,7 @@ class EmailResponse implements ModelInterface, ArrayAccess
     /**
      * Sets subject
      *
-     * @param string $subject Subject Line of the Email
+     * @param \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField $subject Subject Line of the Email
      *
      * @return $this
      */
@@ -882,7 +882,7 @@ class EmailResponse implements ModelInterface, ArrayAccess
     /**
      * Sets pre_header
      *
-     * @param string $pre_header The email preheader text
+     * @param string $pre_header The email preheader text (max 1024 characters)
      *
      * @return $this
      */
@@ -896,7 +896,7 @@ class EmailResponse implements ModelInterface, ArrayAccess
     /**
      * Gets cc_fields
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\EmailResponseCCFields[]
+     * @return \NecLimDul\MarketoRest\Asset\Model\EmailCCFields[]
      */
     public function getCcFields()
     {
@@ -906,7 +906,7 @@ class EmailResponse implements ModelInterface, ArrayAccess
     /**
      * Sets cc_fields
      *
-     * @param \NecLimDul\MarketoRest\Asset\Model\EmailResponseCCFields[] $cc_fields cc_fields
+     * @param \NecLimDul\MarketoRest\Asset\Model\EmailCCFields[] $cc_fields cc_fields
      *
      * @return $this
      */
