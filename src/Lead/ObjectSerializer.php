@@ -65,7 +65,8 @@ class ObjectSerializer
             }
             return $data;
         } elseif (is_object($data)) {
-            $values = [];
+            // TODO These additional properties should probably be "sanitized".
+            $values = $data->getAdditionalProperties() ?: [];
             $formats = $data::swaggerFormats();
             foreach ($data::swaggerTypes() as $property => $swaggerType) {
                 $getter = $data::getters()[$property];
