@@ -276,7 +276,7 @@ class TokenResponse implements ModelInterface, ArrayAccess
     /**
      * {@inheritdoc}
      */
-    public function getAdditionalPropertiess()
+    public function getAdditionalProperties()
     {
         // TODO Get values.
         return $this->additionalProperties;

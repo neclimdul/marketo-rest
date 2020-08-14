@@ -363,7 +363,7 @@ class ResponseOfUpdateEmailFullContentResponse implements ModelInterface, ArrayA
     /**
      * {@inheritdoc}
      */
-    public function getAdditionalPropertiess()
+    public function getAdditionalProperties()
     {
         // TODO Get values.
         return $this->additionalProperties;

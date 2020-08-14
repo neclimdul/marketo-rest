@@ -363,7 +363,7 @@ class ResponseOfLandingPageDynamicContentResponse implements ModelInterface, Arr
     /**
      * {@inheritdoc}
      */
-    public function getAdditionalPropertiess()
+    public function getAdditionalProperties()
     {
         // TODO Get values.
         return $this->additionalProperties;
