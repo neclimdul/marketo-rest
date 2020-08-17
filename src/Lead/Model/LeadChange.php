@@ -470,8 +470,10 @@ class LeadChange implements ModelInterface, ArrayAccess
      */
     public function getAdditionalProperties()
     {
-        // TODO Get values.
-        return $this->additionalProperties;
+        $container = $this->container;
+        return array_map(function($key) use ($container) {
+            return $container[$key];
+        }, $this->additionalProperties);
     }
 
     /**
