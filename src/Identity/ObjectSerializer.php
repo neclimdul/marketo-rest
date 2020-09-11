@@ -323,7 +323,7 @@ class ObjectSerializer
             // any fancy serialization which is unfortunate but it gives us
             // access to all of Marketo's dynamic properties.
             foreach ($dynamic_properties as $property => $value) {
-                $instance->setDynamicProperty($property, $value);
+                $instance->setAdditionalProperty($property, $value);
             }
             return $instance;
         }
