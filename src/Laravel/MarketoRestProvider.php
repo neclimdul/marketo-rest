@@ -70,7 +70,7 @@ class MarketoRestProvider extends ServiceProvider
     {
         // Publish config files.
         $this->publishes([
-            __DIR__ . '/../config/config.php' => $this->app->basePath() . '/config/marketo_rest.php',
+            __DIR__ . '/../../config/config.php' => $this->app->basePath() . '/config/marketo_rest.php',
         ]);
     }
 
@@ -79,7 +79,7 @@ class MarketoRestProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/config.php', 'marketo_rest');
+        $this->mergeConfigFrom(__DIR__ . '/../../config/config.php', 'marketo_rest');
         $system_config = $this->app->get('config');
 
         $configuration = new Configuration([
