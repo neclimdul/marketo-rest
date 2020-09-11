@@ -3,9 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**count** | **int** | Number of calls made in the time period | [optional] 
 **date** | [**\DateTime**](\DateTime.md) | Date of the collected calls | 
-**errors** | [**\NecLimDul\MarketoRest\Lead\Model\ErrorCount[]**](ErrorCount.md) | Counts for individual error codes | [optional] 
 **total** | **int** | Total number of errors in the time period | [optional] 
 **users** | [**\NecLimDul\MarketoRest\Lead\Model\UserCount[]**](UserCount.md) | Counts for individual users | [optional] 
 

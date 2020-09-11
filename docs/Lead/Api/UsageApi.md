@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 
 # **getDailyErrorsUsingGET**
-> \NecLimDul\MarketoRest\Lead\Model\ResponseOfUsageData getDailyErrorsUsingGET()
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfErrorsData getDailyErrorsUsingGET()
 
 Get Daily Errors
 
@@ -42,7 +42,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfUsageData**](../Model/ResponseOfUsageData.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfErrorsData**](../Model/ResponseOfErrorsData.md)
 
 ### Authorization
 
@@ -101,7 +101,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getLast7DaysErrorsUsingGET**
-> \NecLimDul\MarketoRest\Lead\Model\ResponseOfUsageData getLast7DaysErrorsUsingGET()
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfErrorsData getLast7DaysErrorsUsingGET()
 
 Get Weekly Errors
 
@@ -132,7 +132,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfUsageData**](../Model/ResponseOfUsageData.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfErrorsData**](../Model/ResponseOfErrorsData.md)
 
 ### Authorization
 

@@ -164,7 +164,7 @@ No authorization required
 
 Get Export Program Member File
 
-Returns the file content of an export job.  The export job must be in \"Completed\" state.  Use Get Export Program Member Job Status endpoint to retrieve status of export job.  Required Permissions: Read-Only Lead<br><br>The file format is specified by calling the Create Export Program Member Job endpoint. The following is an example of the default file format (\"CSV\").<br><br><code>firstName,lastName,email</code><br><code>Ivanka,Trump,ivanka@invankatrump.com</code>
+Returns the file content of an export job.  The export job must be in \"Completed\" state.  Use Get Export Program Member Job Status endpoint to retrieve status of export job.  Required Permissions: Read-Only Lead<br><br>The file format is specified by calling the Create Export Program Member Job endpoint. The following is an example of the default file format (\"CSV\").<br><br><code>firstName,lastName,email</code><br><code>Marvin,Gaye,marvin.gaye@motown.com</code>
 
 ### Example
 ```php
