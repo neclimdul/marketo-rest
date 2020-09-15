@@ -4,13 +4,15 @@
 
 This package provides a simple set of classes for interacting with Marketo's Rest API. Built using Swagger Codegen directly from Marketo's documentation.
 
-## Installation
+## Install using composer
 
-Soon, to install, use composer:
 
 ```
 composer require neclimdul/marketo-rest
 ```
+
+You can read more about Composer on its [official webpage](https://getcomposer.org).
+
 
 ## Usage
 
