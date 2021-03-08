@@ -26,7 +26,7 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\TokensApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$id = 56; // int | id
+$id = 56; // int | Id of the folder to which the token will be associated with
 $create_token_request = new \NecLimDul\MarketoRest\Asset\Model\CreateTokenRequest(); // \NecLimDul\MarketoRest\Asset\Model\CreateTokenRequest | createTokenRequest
 
 try {
@@ -42,7 +42,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| id |
+ **id** | **int**| Id of the folder to which the token will be associated with |
  **create_token_request** | [**\NecLimDul\MarketoRest\Asset\Model\CreateTokenRequest**](../Model/CreateTokenRequest.md)| createTokenRequest |
 
 ### Return type

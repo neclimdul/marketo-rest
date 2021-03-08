@@ -12,6 +12,7 @@ Method | HTTP request | Description
 [**discardLandingPageByIdUsingPOST**](LandingPagesApi.md#discardLandingPageByIdUsingPOST) | **POST** /rest/asset/v1/landingPage/{id}/discardDraft.json | Discard Landing Page Draft
 [**getLandingPageByIdUsingGET**](LandingPagesApi.md#getLandingPageByIdUsingGET) | **GET** /rest/asset/v1/landingPage/{id}.json | Get Landing Page by Id
 [**getLandingPageByNameUsingGET**](LandingPagesApi.md#getLandingPageByNameUsingGET) | **GET** /rest/asset/v1/landingPage/byName.json | Get Landing Page by Name
+[**getLandingPageFullContentUsingGET**](LandingPagesApi.md#getLandingPageFullContentUsingGET) | **GET** /rest/asset/v1/landingPage/{id}/fullContent.json | Get Landing Page Full Content
 [**getVariablesUsingGET**](LandingPagesApi.md#getVariablesUsingGET) | **GET** /rest/asset/v1/landingPage/{id}/variables.json | Get Landing Page Variables
 [**unapproveLandingPageByIdUsingPOST**](LandingPagesApi.md#unapproveLandingPageByIdUsingPOST) | **POST** /rest/asset/v1/landingPage/{id}/unapprove.json | Unapprove Landing Page
 [**updateLandingPageUsingPOST**](LandingPagesApi.md#updateLandingPageUsingPOST) | **POST** /rest/asset/v1/landingPage/{id}.json | Update Landing Page Metadata
@@ -414,6 +415,59 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse**](../Model/ResponseOfLandingPageResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **getLandingPageFullContentUsingGET**
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfGetLandingPageFullContentResponse getLandingPageFullContentUsingGET($id, $lead_id, $segmentation)
+
+Get Landing Page Full Content
+
+Returns the serialized HTML version of the landing page.  Required Permissions: Read-Only Assets, Read-Write Assets.  If leadId is passed in the request: Read-Only Lead, Read-Write Lead.
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$apiInstance = new NecLimDul\MarketoRest\Asset\Api\LandingPagesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$id = 56; // int | Id of the landing page.
+$lead_id = 56; // int | The lead id to impersonate.  Landing page is rendered as though it was viewed by this lead.
+$segmentation = "segmentation_example"; // string | JSON array of of segmentations.  Each segmentation must be a JSON object with members 'segmentationId', and 'segmentId'.<br>Example: [{\"segmentationId\":1030,\"segmentId\":1103}]
+
+try {
+    $result = $apiInstance->getLandingPageFullContentUsingGET($id, $lead_id, $segmentation);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling LandingPagesApi->getLandingPageFullContentUsingGET: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| Id of the landing page. |
+ **lead_id** | **int**| The lead id to impersonate.  Landing page is rendered as though it was viewed by this lead. | [optional]
+ **segmentation** | **string**| JSON array of of segmentations.  Each segmentation must be a JSON object with members &#39;segmentationId&#39;, and &#39;segmentId&#39;.&lt;br&gt;Example: [{\&quot;segmentationId\&quot;:1030,\&quot;segmentId\&quot;:1103}] | [optional]
+
+### Return type
+
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfGetLandingPageFullContentResponse**](../Model/ResponseOfGetLandingPageFullContentResponse.md)
 
 ### Authorization
 

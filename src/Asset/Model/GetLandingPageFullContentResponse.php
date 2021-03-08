@@ -1,6 +1,6 @@
 <?php
 /**
- * CloneProgramRequest
+ * GetLandingPageFullContentResponse
  *
  * PHP version 5
  *
@@ -33,14 +33,14 @@ use \ArrayAccess;
 use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
- * CloneProgramRequest Class Doc Comment
+ * GetLandingPageFullContentResponse Class Doc Comment
  *
  * @category Class
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class CloneProgramRequest implements ModelInterface, ArrayAccess
+class GetLandingPageFullContentResponse implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class CloneProgramRequest implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $swaggerModelName = 'CloneProgramRequest';
+    protected static $swaggerModelName = 'GetLandingPageFullContentResponse';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,9 +57,8 @@ class CloneProgramRequest implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'description' => 'string',
-        'folder' => '\NecLimDul\MarketoRest\Asset\Model\Folder',
-        'name' => 'string'
+        'content' => 'string',
+        'id' => 'int'
     ];
 
     /**
@@ -68,9 +67,8 @@ class CloneProgramRequest implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'description' => null,
-        'folder' => null,
-        'name' => null
+        'content' => null,
+        'id' => 'int32'
     ];
 
     /**
@@ -103,9 +101,8 @@ class CloneProgramRequest implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'description' => 'description',
-        'folder' => 'folder',
-        'name' => 'name'
+        'content' => 'content',
+        'id' => 'id'
     ];
 
     /**
@@ -114,9 +111,8 @@ class CloneProgramRequest implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'description' => 'setDescription',
-        'folder' => 'setFolder',
-        'name' => 'setName'
+        'content' => 'setContent',
+        'id' => 'setId'
     ];
 
     /**
@@ -125,9 +121,8 @@ class CloneProgramRequest implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'description' => 'getDescription',
-        'folder' => 'getFolder',
-        'name' => 'getName'
+        'content' => 'getContent',
+        'id' => 'getId'
     ];
 
     
@@ -147,9 +142,8 @@ class CloneProgramRequest implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['description'] = isset($data['description']) ? $data['description'] : null;
-        $this->container['folder'] = isset($data['folder']) ? $data['folder'] : null;
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
+        $this->container['content'] = isset($data['content']) ? $data['content'] : null;
+        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
     }
 
     /**
@@ -191,11 +185,11 @@ class CloneProgramRequest implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
-        if ($this->container['folder'] === null) {
-            $invalidProperties[] = "'folder' can't be null";
+        if ($this->container['content'] === null) {
+            $invalidProperties[] = "'content' can't be null";
         }
-        if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
+        if ($this->container['id'] === null) {
+            $invalidProperties[] = "'id' can't be null";
         }
         return $invalidProperties;
     }
@@ -210,73 +204,49 @@ class CloneProgramRequest implements ModelInterface, ArrayAccess
     
 
     /**
-     * Gets description
+     * Gets content
      *
      * @return string
      */
-    public function getDescription()
+    public function getContent()
     {
-        return $this->container['description'];
+        return $this->container['content'];
     }
 
     /**
-     * Sets description
+     * Sets content
      *
-     * @param string $description description
+     * @param string $content HTML content of the landing page
      *
      * @return $this
      */
-    public function setDescription($description)
+    public function setContent($content)
     {
-        $this->container['description'] = $description;
+        $this->container['content'] = $content;
 
         return $this;
     }
 
     /**
-     * Gets folder
+     * Gets id
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\Folder
+     * @return int
      */
-    public function getFolder()
+    public function getId()
     {
-        return $this->container['folder'];
+        return $this->container['id'];
     }
 
     /**
-     * Sets folder
+     * Sets id
      *
-     * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
+     * @param int $id Unique integer id of the landing page
      *
      * @return $this
      */
-    public function setFolder($folder)
+    public function setId($id)
     {
-        $this->container['folder'] = $folder;
-
-        return $this;
-    }
-
-    /**
-     * Gets name
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string $name Name of the program.  Max 255 characters
-     *
-     * @return $this
-     */
-    public function setName($name)
-    {
-        $this->container['name'] = $name;
+        $this->container['id'] = $id;
 
         return $this;
     }

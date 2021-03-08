@@ -19,6 +19,7 @@ Method | HTTP request | Description
 [**getSmartCampaignMembershipUsingGET**](LeadsApi.md#getSmartCampaignMembershipUsingGET) | **GET** /rest/v1/leads/{leadId}/smartCampaignMembership.json | Get Smart Campaigns by Lead Id
 [**mergeLeadsUsingPOST**](LeadsApi.md#mergeLeadsUsingPOST) | **POST** /rest/v1/leads/{leadId}/merge.json | Merge Leads
 [**pushToMarketoUsingPOST**](LeadsApi.md#pushToMarketoUsingPOST) | **POST** /rest/v1/leads/push.json | Push Lead to Marketo
+[**submitFormUsingPOST**](LeadsApi.md#submitFormUsingPOST) | **POST** /rest/v1/leads/submitForm.json | Submit Form
 [**syncLeadUsingPOST**](LeadsApi.md#syncLeadUsingPOST) | **POST** /rest/v1/leads.json | Sync Leads
 [**updatePartitionsUsingPOST**](LeadsApi.md#updatePartitionsUsingPOST) | **POST** /rest/v1/leads/partitions.json | Update Lead Partition
 
@@ -750,7 +751,7 @@ No authorization required
 
 Push Lead to Marketo
 
-Upserts a lead, and generates a Push Lead to Marketo activity.  Required Permissions: Read-Write Lead
+Upserts a lead and generates a Push Lead to Marketo activity.  Required Permissions: Read-Write Lead
 
 ### Example
 ```php
@@ -782,6 +783,55 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**\NecLimDul\MarketoRest\Lead\Model\ResponseOfPushLeadToMarketo**](../Model/ResponseOfPushLeadToMarketo.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **submitFormUsingPOST**
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfSubmitForm submitFormUsingPOST($submit_form_request)
+
+Submit Form
+
+Upserts a lead and generates a \"Fill out Form\" activity which is associated back to program and/or campaign.  Required Permissions: Read-Write Lead
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\LeadsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$submit_form_request = new \NecLimDul\MarketoRest\Lead\Model\SubmitFormRequest(); // \NecLimDul\MarketoRest\Lead\Model\SubmitFormRequest | submitFormRequest
+
+try {
+    $result = $apiInstance->submitFormUsingPOST($submit_form_request);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling LeadsApi->submitFormUsingPOST: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **submit_form_request** | [**\NecLimDul\MarketoRest\Lead\Model\SubmitFormRequest**](../Model/SubmitFormRequest.md)| submitFormRequest |
+
+### Return type
+
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfSubmitForm**](../Model/ResponseOfSubmitForm.md)
 
 ### Authorization
 

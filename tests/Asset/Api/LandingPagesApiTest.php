@@ -144,6 +144,18 @@ class LandingPagesApiTest extends TestCase
     }
 
     /**
+     * Test case for getLandingPageFullContentUsingGET
+     *
+     * Get Landing Page Full Content.
+     *
+     */
+    public function testGetLandingPageFullContentUsingGET()
+    {
+        //$class = new LandingPagesApi;
+        $this->assertTrue(TRUE);
+    }
+
+    /**
      * Test case for getVariablesUsingGET
      *
      * Get Landing Page Variables.

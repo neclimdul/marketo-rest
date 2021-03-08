@@ -4876,7 +4876,7 @@ class EmailsApi
      * Rearrange Email Modules
      *
      * @param  int $id id (required)
-     * @param  string $positions JSON array of module positions.  Each position must be a JSON object with members &#39;index&#39; and a &#39;moduleId&#39;.  Required Permissions: Read-Write Assets (optional)
+     * @param  string $positions JSON array of module positions.  Each position must be a JSON object with members &#39;index&#39; and a &#39;moduleId&#39; (optional)
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -4894,7 +4894,7 @@ class EmailsApi
      * Rearrange Email Modules
      *
      * @param  int $id id (required)
-     * @param  string $positions JSON array of module positions.  Each position must be a JSON object with members &#39;index&#39; and a &#39;moduleId&#39;.  Required Permissions: Read-Write Assets (optional)
+     * @param  string $positions JSON array of module positions.  Each position must be a JSON object with members &#39;index&#39; and a &#39;moduleId&#39; (optional)
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -4970,7 +4970,7 @@ class EmailsApi
      * Rearrange Email Modules
      *
      * @param  int $id id (required)
-     * @param  string $positions JSON array of module positions.  Each position must be a JSON object with members &#39;index&#39; and a &#39;moduleId&#39;.  Required Permissions: Read-Write Assets (optional)
+     * @param  string $positions JSON array of module positions.  Each position must be a JSON object with members &#39;index&#39; and a &#39;moduleId&#39; (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -4991,7 +4991,7 @@ class EmailsApi
      * Rearrange Email Modules
      *
      * @param  int $id id (required)
-     * @param  string $positions JSON array of module positions.  Each position must be a JSON object with members &#39;index&#39; and a &#39;moduleId&#39;.  Required Permissions: Read-Write Assets (optional)
+     * @param  string $positions JSON array of module positions.  Each position must be a JSON object with members &#39;index&#39; and a &#39;moduleId&#39; (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -5042,7 +5042,7 @@ class EmailsApi
      * Create request for operation 'rearrangeModulesUsingPOST'
      *
      * @param  int $id id (required)
-     * @param  string $positions JSON array of module positions.  Each position must be a JSON object with members &#39;index&#39; and a &#39;moduleId&#39;.  Required Permissions: Read-Write Assets (optional)
+     * @param  string $positions JSON array of module positions.  Each position must be a JSON object with members &#39;index&#39; and a &#39;moduleId&#39; (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request

@@ -424,7 +424,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getCustomObjectTypeDependentAssetsUsingGET**
-> \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectDependentAssets getCustomObjectTypeDependentAssetsUsingGET()
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectDependentAssets getCustomObjectTypeDependentAssetsUsingGET($api_name)
 
 Get Custom Object Dependent Assets
 
@@ -440,9 +440,10 @@ $apiInstance = new NecLimDul\MarketoRest\Lead\Api\CustomObjectsApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
+$api_name = "api_name_example"; // string | REST API name for custom object
 
 try {
-    $result = $apiInstance->getCustomObjectTypeDependentAssetsUsingGET();
+    $result = $apiInstance->getCustomObjectTypeDependentAssetsUsingGET($api_name);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling CustomObjectsApi->getCustomObjectTypeDependentAssetsUsingGET: ', $e->getMessage(), PHP_EOL;
@@ -451,7 +452,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **api_name** | **string**| REST API name for custom object |
 
 ### Return type
 

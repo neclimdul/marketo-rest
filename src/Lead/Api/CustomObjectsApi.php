@@ -2289,14 +2289,15 @@ class CustomObjectsApi
      *
      * Get Custom Object Dependent Assets
      *
+     * @param  string $api_name REST API name for custom object (required)
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectDependentAssets
      */
-    public function getCustomObjectTypeDependentAssetsUsingGET()
+    public function getCustomObjectTypeDependentAssetsUsingGET($api_name)
     {
-        list($response) = $this->getCustomObjectTypeDependentAssetsUsingGETWithHttpInfo();
+        list($response) = $this->getCustomObjectTypeDependentAssetsUsingGETWithHttpInfo($api_name);
         return $response;
     }
 
@@ -2305,15 +2306,16 @@ class CustomObjectsApi
      *
      * Get Custom Object Dependent Assets
      *
+     * @param  string $api_name REST API name for custom object (required)
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectDependentAssets, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getCustomObjectTypeDependentAssetsUsingGETWithHttpInfo()
+    public function getCustomObjectTypeDependentAssetsUsingGETWithHttpInfo($api_name)
     {
         $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectDependentAssets';
-        $request = $this->getCustomObjectTypeDependentAssetsUsingGETRequest();
+        $request = $this->getCustomObjectTypeDependentAssetsUsingGETRequest($api_name);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2379,13 +2381,14 @@ class CustomObjectsApi
      *
      * Get Custom Object Dependent Assets
      *
+     * @param  string $api_name REST API name for custom object (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getCustomObjectTypeDependentAssetsUsingGETAsync()
+    public function getCustomObjectTypeDependentAssetsUsingGETAsync($api_name)
     {
-        return $this->getCustomObjectTypeDependentAssetsUsingGETAsyncWithHttpInfo()
+        return $this->getCustomObjectTypeDependentAssetsUsingGETAsyncWithHttpInfo($api_name)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2398,14 +2401,15 @@ class CustomObjectsApi
      *
      * Get Custom Object Dependent Assets
      *
+     * @param  string $api_name REST API name for custom object (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getCustomObjectTypeDependentAssetsUsingGETAsyncWithHttpInfo()
+    public function getCustomObjectTypeDependentAssetsUsingGETAsyncWithHttpInfo($api_name)
     {
         $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectDependentAssets';
-        $request = $this->getCustomObjectTypeDependentAssetsUsingGETRequest();
+        $request = $this->getCustomObjectTypeDependentAssetsUsingGETRequest($api_name);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2447,12 +2451,19 @@ class CustomObjectsApi
     /**
      * Create request for operation 'getCustomObjectTypeDependentAssetsUsingGET'
      *
+     * @param  string $api_name REST API name for custom object (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getCustomObjectTypeDependentAssetsUsingGETRequest()
+    protected function getCustomObjectTypeDependentAssetsUsingGETRequest($api_name)
     {
+        // verify the required parameter 'api_name' is set
+        if ($api_name === null || (is_array($api_name) && count($api_name) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $api_name when calling getCustomObjectTypeDependentAssetsUsingGET'
+            );
+        }
 
         $resourcePath = '/rest/v1/customobjects/schema/{apiName}/dependentAssets.json';
         $formParams = [];
@@ -2462,6 +2473,14 @@ class CustomObjectsApi
         $multipart = false;
 
 
+        // path params
+        if ($api_name !== null) {
+            $resourcePath = str_replace(
+                '{' . 'apiName' . '}',
+                ObjectSerializer::toPathValue($api_name),
+                $resourcePath
+            );
+        }
 
         // body params
         $_tempBody = null;

@@ -64,7 +64,7 @@ class Recurrence implements ModelInterface, ArrayAccess
         'weekday_only' => 'bool',
         'weekday_mask' => 'string[]',
         'day_of_month' => 'int',
-        'day_of_week' => 'int',
+        'day_of_week' => 'string',
         'week_of_month' => 'int'
     ];
 
@@ -163,6 +163,13 @@ class Recurrence implements ModelInterface, ArrayAccess
     const INTERVAL_TYPE_DAILY = 'Daily';
     const INTERVAL_TYPE_WEEKLY = 'Weekly';
     const INTERVAL_TYPE_MONTHLY = 'Monthly';
+    const DAY_OF_WEEK_MONDAY = 'Monday';
+    const DAY_OF_WEEK_TUESDAY = 'Tuesday';
+    const DAY_OF_WEEK_WEDNESDAY = 'Wednesday';
+    const DAY_OF_WEEK_THURSDAY = 'Thursday';
+    const DAY_OF_WEEK_FRIDAY = 'Friday';
+    const DAY_OF_WEEK_SATURDAY = 'Saturday';
+    const DAY_OF_WEEK_SUNDAY = 'Sunday';
     
 
     /**
@@ -262,6 +269,14 @@ class Recurrence implements ModelInterface, ArrayAccess
         if ($this->container['day_of_week'] === null) {
             $invalidProperties[] = "'day_of_week' can't be null";
         }
+        $allowedValues = $this->getDayOfWeekAllowableValues();
+        if (!is_null($this->container['day_of_week']) && !in_array($this->container['day_of_week'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value for 'day_of_week', must be one of '%s'",
+                implode("', '", $allowedValues)
+            );
+        }
+
         if ($this->container['week_of_month'] === null) {
             $invalidProperties[] = "'week_of_month' can't be null";
         }
@@ -288,6 +303,25 @@ class Recurrence implements ModelInterface, ArrayAccess
             self::INTERVAL_TYPE_DAILY,
             self::INTERVAL_TYPE_WEEKLY,
             self::INTERVAL_TYPE_MONTHLY,
+        ];
+    }
+    
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getDayOfWeekAllowableValues()
+    {
+        return [
+            self::DAY_OF_WEEK_MONDAY,
+            self::DAY_OF_WEEK_TUESDAY,
+            self::DAY_OF_WEEK_WEDNESDAY,
+            self::DAY_OF_WEEK_THURSDAY,
+            self::DAY_OF_WEEK_FRIDAY,
+            self::DAY_OF_WEEK_SATURDAY,
+            self::DAY_OF_WEEK_SUNDAY,
         ];
     }
     
@@ -472,7 +506,7 @@ class Recurrence implements ModelInterface, ArrayAccess
     /**
      * Gets day_of_week
      *
-     * @return int
+     * @return string
      */
     public function getDayOfWeek()
     {
@@ -482,12 +516,21 @@ class Recurrence implements ModelInterface, ArrayAccess
     /**
      * Sets day_of_week
      *
-     * @param int $day_of_week Day of the week to recur. May only be set if dayOfMonth is not set, and weekOfMonth is set
+     * @param string $day_of_week Day of the week to recur. May only be set if dayOfMonth is not set, and weekOfMonth is set
      *
      * @return $this
      */
     public function setDayOfWeek($day_of_week)
     {
+        $allowedValues = $this->getDayOfWeekAllowableValues();
+        if (!in_array($day_of_week, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value for 'day_of_week', must be one of '%s'",
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
         $this->container['day_of_week'] = $day_of_week;
 
         return $this;

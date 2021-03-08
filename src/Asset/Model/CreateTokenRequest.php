@@ -137,6 +137,12 @@ class CreateTokenRequest implements ModelInterface, ArrayAccess
 
     const FOLDER_TYPE_PROGRAM = 'Program';
     const FOLDER_TYPE_FOLDER = 'Folder';
+    const TYPE_DATE = 'date';
+    const TYPE_NUMBER = 'number';
+    const TYPE_RICH_TEXT = 'rich text';
+    const TYPE_SCORE = 'score';
+    const TYPE_SFDC_CAMPAIGN = 'sfdc campaign';
+    const TYPE_TEXT = 'text';
     
 
     /**
@@ -216,6 +222,14 @@ class CreateTokenRequest implements ModelInterface, ArrayAccess
         if ($this->container['type'] === null) {
             $invalidProperties[] = "'type' can't be null";
         }
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value for 'type', must be one of '%s'",
+                implode("', '", $allowedValues)
+            );
+        }
+
         if ($this->container['value'] === null) {
             $invalidProperties[] = "'value' can't be null";
         }
@@ -241,6 +255,24 @@ class CreateTokenRequest implements ModelInterface, ArrayAccess
         return [
             self::FOLDER_TYPE_PROGRAM,
             self::FOLDER_TYPE_FOLDER,
+        ];
+    }
+    
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getTypeAllowableValues()
+    {
+        return [
+            self::TYPE_DATE,
+            self::TYPE_NUMBER,
+            self::TYPE_RICH_TEXT,
+            self::TYPE_SCORE,
+            self::TYPE_SFDC_CAMPAIGN,
+            self::TYPE_TEXT,
         ];
     }
     
@@ -321,6 +353,15 @@ class CreateTokenRequest implements ModelInterface, ArrayAccess
      */
     public function setType($type)
     {
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!in_array($type, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value for 'type', must be one of '%s'",
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
         $this->container['type'] = $type;
 
         return $this;

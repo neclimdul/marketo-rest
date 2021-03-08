@@ -1,11 +1,11 @@
 <?php
 /**
- * CloneProgramRequest
+ * LeadFormFields
  *
  * PHP version 5
  *
  * @category Class
- * @package  NecLimDul\MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -27,20 +27,21 @@
  * Do not edit the class manually.
  */
 
-namespace NecLimDul\MarketoRest\Asset\Model;
+namespace NecLimDul\MarketoRest\Lead\Model;
 
 use \ArrayAccess;
-use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
+use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
- * CloneProgramRequest Class Doc Comment
+ * LeadFormFields Class Doc Comment
  *
  * @category Class
- * @package  NecLimDul\MarketoRest\Asset
+ * @description Form fields.  Always contains email, but may have any number of other fields depending on the fields available in the form.
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class CloneProgramRequest implements ModelInterface, ArrayAccess
+class LeadFormFields implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -49,7 +50,7 @@ class CloneProgramRequest implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $swaggerModelName = 'CloneProgramRequest';
+    protected static $swaggerModelName = 'LeadFormFields';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,9 +58,7 @@ class CloneProgramRequest implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'description' => 'string',
-        'folder' => '\NecLimDul\MarketoRest\Asset\Model\Folder',
-        'name' => 'string'
+        'email' => 'string'
     ];
 
     /**
@@ -68,9 +67,7 @@ class CloneProgramRequest implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'description' => null,
-        'folder' => null,
-        'name' => null
+        'email' => null
     ];
 
     /**
@@ -103,9 +100,7 @@ class CloneProgramRequest implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'description' => 'description',
-        'folder' => 'folder',
-        'name' => 'name'
+        'email' => 'email'
     ];
 
     /**
@@ -114,9 +109,7 @@ class CloneProgramRequest implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'description' => 'setDescription',
-        'folder' => 'setFolder',
-        'name' => 'setName'
+        'email' => 'setEmail'
     ];
 
     /**
@@ -125,9 +118,7 @@ class CloneProgramRequest implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'description' => 'getDescription',
-        'folder' => 'getFolder',
-        'name' => 'getName'
+        'email' => 'getEmail'
     ];
 
     
@@ -147,9 +138,7 @@ class CloneProgramRequest implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['description'] = isset($data['description']) ? $data['description'] : null;
-        $this->container['folder'] = isset($data['folder']) ? $data['folder'] : null;
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
+        $this->container['email'] = isset($data['email']) ? $data['email'] : null;
     }
 
     /**
@@ -191,11 +180,8 @@ class CloneProgramRequest implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
-        if ($this->container['folder'] === null) {
-            $invalidProperties[] = "'folder' can't be null";
-        }
-        if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
+        if ($this->container['email'] === null) {
+            $invalidProperties[] = "'email' can't be null";
         }
         return $invalidProperties;
     }
@@ -210,73 +196,25 @@ class CloneProgramRequest implements ModelInterface, ArrayAccess
     
 
     /**
-     * Gets description
+     * Gets email
      *
      * @return string
      */
-    public function getDescription()
+    public function getEmail()
     {
-        return $this->container['description'];
+        return $this->container['email'];
     }
 
     /**
-     * Sets description
+     * Sets email
      *
-     * @param string $description description
+     * @param string $email Email address used as primary key during lead upsert
      *
      * @return $this
      */
-    public function setDescription($description)
+    public function setEmail($email)
     {
-        $this->container['description'] = $description;
-
-        return $this;
-    }
-
-    /**
-     * Gets folder
-     *
-     * @return \NecLimDul\MarketoRest\Asset\Model\Folder
-     */
-    public function getFolder()
-    {
-        return $this->container['folder'];
-    }
-
-    /**
-     * Sets folder
-     *
-     * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
-     *
-     * @return $this
-     */
-    public function setFolder($folder)
-    {
-        $this->container['folder'] = $folder;
-
-        return $this;
-    }
-
-    /**
-     * Gets name
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string $name Name of the program.  Max 255 characters
-     *
-     * @return $this
-     */
-    public function setName($name)
-    {
-        $this->container['name'] = $name;
+        $this->container['email'] = $email;
 
         return $this;
     }

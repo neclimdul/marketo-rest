@@ -1,11 +1,11 @@
 <?php
 /**
- * CloneProgramRequest
+ * VisitorData
  *
  * PHP version 5
  *
  * @category Class
- * @package  NecLimDul\MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -27,20 +27,21 @@
  * Do not edit the class manually.
  */
 
-namespace NecLimDul\MarketoRest\Asset\Model;
+namespace NecLimDul\MarketoRest\Lead\Model;
 
 use \ArrayAccess;
-use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
+use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
- * CloneProgramRequest Class Doc Comment
+ * VisitorData Class Doc Comment
  *
  * @category Class
- * @package  NecLimDul\MarketoRest\Asset
+ * @description Page visit related data.  Used to populate additional activity fields for filtering and triggering.
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class CloneProgramRequest implements ModelInterface, ArrayAccess
+class VisitorData implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -49,7 +50,7 @@ class CloneProgramRequest implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $swaggerModelName = 'CloneProgramRequest';
+    protected static $swaggerModelName = 'VisitorData';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,9 +58,10 @@ class CloneProgramRequest implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'description' => 'string',
-        'folder' => '\NecLimDul\MarketoRest\Asset\Model\Folder',
-        'name' => 'string'
+        'page_url' => 'string',
+        'query_string' => 'string',
+        'lead_client_ip_address' => 'string',
+        'user_agent_string' => 'string'
     ];
 
     /**
@@ -68,9 +70,10 @@ class CloneProgramRequest implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'description' => null,
-        'folder' => null,
-        'name' => null
+        'page_url' => null,
+        'query_string' => null,
+        'lead_client_ip_address' => null,
+        'user_agent_string' => null
     ];
 
     /**
@@ -103,9 +106,10 @@ class CloneProgramRequest implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'description' => 'description',
-        'folder' => 'folder',
-        'name' => 'name'
+        'page_url' => 'pageUrl',
+        'query_string' => 'queryString',
+        'lead_client_ip_address' => 'leadClientIpAddress',
+        'user_agent_string' => 'userAgentString'
     ];
 
     /**
@@ -114,9 +118,10 @@ class CloneProgramRequest implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'description' => 'setDescription',
-        'folder' => 'setFolder',
-        'name' => 'setName'
+        'page_url' => 'setPageUrl',
+        'query_string' => 'setQueryString',
+        'lead_client_ip_address' => 'setLeadClientIpAddress',
+        'user_agent_string' => 'setUserAgentString'
     ];
 
     /**
@@ -125,9 +130,10 @@ class CloneProgramRequest implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'description' => 'getDescription',
-        'folder' => 'getFolder',
-        'name' => 'getName'
+        'page_url' => 'getPageUrl',
+        'query_string' => 'getQueryString',
+        'lead_client_ip_address' => 'getLeadClientIpAddress',
+        'user_agent_string' => 'getUserAgentString'
     ];
 
     
@@ -147,9 +153,10 @@ class CloneProgramRequest implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['description'] = isset($data['description']) ? $data['description'] : null;
-        $this->container['folder'] = isset($data['folder']) ? $data['folder'] : null;
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
+        $this->container['page_url'] = isset($data['page_url']) ? $data['page_url'] : null;
+        $this->container['query_string'] = isset($data['query_string']) ? $data['query_string'] : null;
+        $this->container['lead_client_ip_address'] = isset($data['lead_client_ip_address']) ? $data['lead_client_ip_address'] : null;
+        $this->container['user_agent_string'] = isset($data['user_agent_string']) ? $data['user_agent_string'] : null;
     }
 
     /**
@@ -191,12 +198,6 @@ class CloneProgramRequest implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
-        if ($this->container['folder'] === null) {
-            $invalidProperties[] = "'folder' can't be null";
-        }
-        if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -210,73 +211,97 @@ class CloneProgramRequest implements ModelInterface, ArrayAccess
     
 
     /**
-     * Gets description
+     * Gets page_url
      *
      * @return string
      */
-    public function getDescription()
+    public function getPageUrl()
     {
-        return $this->container['description'];
+        return $this->container['page_url'];
     }
 
     /**
-     * Sets description
+     * Sets page_url
      *
-     * @param string $description description
+     * @param string $page_url Web page that hosts the form.  Must be a fully formed URL
      *
      * @return $this
      */
-    public function setDescription($description)
+    public function setPageUrl($page_url)
     {
-        $this->container['description'] = $description;
+        $this->container['page_url'] = $page_url;
 
         return $this;
     }
 
     /**
-     * Gets folder
+     * Gets query_string
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\Folder
+     * @return string
      */
-    public function getFolder()
+    public function getQueryString()
     {
-        return $this->container['folder'];
+        return $this->container['query_string'];
     }
 
     /**
-     * Sets folder
+     * Sets query_string
      *
-     * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
+     * @param string $query_string Web page query string.  Contains one or more ampersand delimited key=value pairs
      *
      * @return $this
      */
-    public function setFolder($folder)
+    public function setQueryString($query_string)
     {
-        $this->container['folder'] = $folder;
+        $this->container['query_string'] = $query_string;
 
         return $this;
     }
 
     /**
-     * Gets name
+     * Gets lead_client_ip_address
      *
      * @return string
      */
-    public function getName()
+    public function getLeadClientIpAddress()
     {
-        return $this->container['name'];
+        return $this->container['lead_client_ip_address'];
     }
 
     /**
-     * Sets name
+     * Sets lead_client_ip_address
      *
-     * @param string $name Name of the program.  Max 255 characters
+     * @param string $lead_client_ip_address Client IP address.  IPv4 format.  Used to populate inferred fields on upserted lead record.
      *
      * @return $this
      */
-    public function setName($name)
+    public function setLeadClientIpAddress($lead_client_ip_address)
     {
-        $this->container['name'] = $name;
+        $this->container['lead_client_ip_address'] = $lead_client_ip_address;
+
+        return $this;
+    }
+
+    /**
+     * Gets user_agent_string
+     *
+     * @return string
+     */
+    public function getUserAgentString()
+    {
+        return $this->container['user_agent_string'];
+    }
+
+    /**
+     * Sets user_agent_string
+     *
+     * @param string $user_agent_string User agent of browser hosting the form
+     *
+     * @return $this
+     */
+    public function setUserAgentString($user_agent_string)
+    {
+        $this->container['user_agent_string'] = $user_agent_string;
 
         return $this;
     }

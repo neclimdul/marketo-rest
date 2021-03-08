@@ -549,7 +549,7 @@ class LpTemplateResponse implements ModelInterface, ArrayAccess
     /**
      * Sets workspace
      *
-     * @param string $workspace Name of the workspace
+     * @param string $workspace Name of the workspace.  Max 255 characters
      *
      * @return $this
      */

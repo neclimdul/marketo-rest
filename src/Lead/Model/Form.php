@@ -1,11 +1,11 @@
 <?php
 /**
- * CloneProgramRequest
+ * Form
  *
  * PHP version 5
  *
  * @category Class
- * @package  NecLimDul\MarketoRest\Asset
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -27,20 +27,21 @@
  * Do not edit the class manually.
  */
 
-namespace NecLimDul\MarketoRest\Asset\Model;
+namespace NecLimDul\MarketoRest\Lead\Model;
 
 use \ArrayAccess;
-use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
+use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
- * CloneProgramRequest Class Doc Comment
+ * Form Class Doc Comment
  *
  * @category Class
- * @package  NecLimDul\MarketoRest\Asset
+ * @description Form field data.  May have any number of fields depending on the fields available in the form.
+ * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class CloneProgramRequest implements ModelInterface, ArrayAccess
+class Form implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -49,7 +50,7 @@ class CloneProgramRequest implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $swaggerModelName = 'CloneProgramRequest';
+    protected static $swaggerModelName = 'Form';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,9 +58,9 @@ class CloneProgramRequest implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'description' => 'string',
-        'folder' => '\NecLimDul\MarketoRest\Asset\Model\Folder',
-        'name' => 'string'
+        'lead_form_fields' => '\NecLimDul\MarketoRest\Lead\Model\LeadFormFields',
+        'visitor_data' => '\NecLimDul\MarketoRest\Lead\Model\VisitorData',
+        'cookie' => 'string'
     ];
 
     /**
@@ -68,9 +69,9 @@ class CloneProgramRequest implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'description' => null,
-        'folder' => null,
-        'name' => null
+        'lead_form_fields' => null,
+        'visitor_data' => null,
+        'cookie' => null
     ];
 
     /**
@@ -103,9 +104,9 @@ class CloneProgramRequest implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'description' => 'description',
-        'folder' => 'folder',
-        'name' => 'name'
+        'lead_form_fields' => 'leadFormFields',
+        'visitor_data' => 'visitorData',
+        'cookie' => 'cookie'
     ];
 
     /**
@@ -114,9 +115,9 @@ class CloneProgramRequest implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'description' => 'setDescription',
-        'folder' => 'setFolder',
-        'name' => 'setName'
+        'lead_form_fields' => 'setLeadFormFields',
+        'visitor_data' => 'setVisitorData',
+        'cookie' => 'setCookie'
     ];
 
     /**
@@ -125,9 +126,9 @@ class CloneProgramRequest implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'description' => 'getDescription',
-        'folder' => 'getFolder',
-        'name' => 'getName'
+        'lead_form_fields' => 'getLeadFormFields',
+        'visitor_data' => 'getVisitorData',
+        'cookie' => 'getCookie'
     ];
 
     
@@ -147,9 +148,9 @@ class CloneProgramRequest implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['description'] = isset($data['description']) ? $data['description'] : null;
-        $this->container['folder'] = isset($data['folder']) ? $data['folder'] : null;
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
+        $this->container['lead_form_fields'] = isset($data['lead_form_fields']) ? $data['lead_form_fields'] : null;
+        $this->container['visitor_data'] = isset($data['visitor_data']) ? $data['visitor_data'] : null;
+        $this->container['cookie'] = isset($data['cookie']) ? $data['cookie'] : null;
     }
 
     /**
@@ -191,11 +192,8 @@ class CloneProgramRequest implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
-        if ($this->container['folder'] === null) {
-            $invalidProperties[] = "'folder' can't be null";
-        }
-        if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
+        if ($this->container['lead_form_fields'] === null) {
+            $invalidProperties[] = "'lead_form_fields' can't be null";
         }
         return $invalidProperties;
     }
@@ -210,73 +208,73 @@ class CloneProgramRequest implements ModelInterface, ArrayAccess
     
 
     /**
-     * Gets description
+     * Gets lead_form_fields
      *
-     * @return string
+     * @return \NecLimDul\MarketoRest\Lead\Model\LeadFormFields
      */
-    public function getDescription()
+    public function getLeadFormFields()
     {
-        return $this->container['description'];
+        return $this->container['lead_form_fields'];
     }
 
     /**
-     * Sets description
+     * Sets lead_form_fields
      *
-     * @param string $description description
+     * @param \NecLimDul\MarketoRest\Lead\Model\LeadFormFields $lead_form_fields List of form fields.  Email is required field
      *
      * @return $this
      */
-    public function setDescription($description)
+    public function setLeadFormFields($lead_form_fields)
     {
-        $this->container['description'] = $description;
+        $this->container['lead_form_fields'] = $lead_form_fields;
 
         return $this;
     }
 
     /**
-     * Gets folder
+     * Gets visitor_data
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\Folder
+     * @return \NecLimDul\MarketoRest\Lead\Model\VisitorData
      */
-    public function getFolder()
+    public function getVisitorData()
     {
-        return $this->container['folder'];
+        return $this->container['visitor_data'];
     }
 
     /**
-     * Sets folder
+     * Sets visitor_data
      *
-     * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
+     * @param \NecLimDul\MarketoRest\Lead\Model\VisitorData $visitor_data Page visit-related data
      *
      * @return $this
      */
-    public function setFolder($folder)
+    public function setVisitorData($visitor_data)
     {
-        $this->container['folder'] = $folder;
+        $this->container['visitor_data'] = $visitor_data;
 
         return $this;
     }
 
     /**
-     * Gets name
+     * Gets cookie
      *
      * @return string
      */
-    public function getName()
+    public function getCookie()
     {
-        return $this->container['name'];
+        return $this->container['cookie'];
     }
 
     /**
-     * Sets name
+     * Sets cookie
      *
-     * @param string $name Name of the program.  Max 255 characters
+     * @param string $cookie Munchkin cookie value used to associate new lead with anonymous activities.  e.g. id:123-XYZ-456&token:_mch-marketo.com-1594662481190-60776
      *
      * @return $this
      */
-    public function setName($name)
+    public function setCookie($cookie)
     {
-        $this->container['name'] = $name;
+        $this->container['cookie'] = $cookie;
 
         return $this;
     }

@@ -1,6 +1,6 @@
 <?php
 /**
- * CloneProgramRequest
+ * ResponseOfGetLandingPageFullContentResponse
  *
  * PHP version 5
  *
@@ -33,14 +33,14 @@ use \ArrayAccess;
 use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
- * CloneProgramRequest Class Doc Comment
+ * ResponseOfGetLandingPageFullContentResponse Class Doc Comment
  *
  * @category Class
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class CloneProgramRequest implements ModelInterface, ArrayAccess
+class ResponseOfGetLandingPageFullContentResponse implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class CloneProgramRequest implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $swaggerModelName = 'CloneProgramRequest';
+    protected static $swaggerModelName = 'ResponseOfGetLandingPageFullContentResponse';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,9 +57,11 @@ class CloneProgramRequest implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'description' => 'string',
-        'folder' => '\NecLimDul\MarketoRest\Asset\Model\Folder',
-        'name' => 'string'
+        'errors' => '\NecLimDul\MarketoRest\Asset\Model\Error[]',
+        'request_id' => 'string',
+        'result' => '\NecLimDul\MarketoRest\Asset\Model\GetLandingPageFullContentResponse[]',
+        'success' => 'bool',
+        'warnings' => 'string[]'
     ];
 
     /**
@@ -68,9 +70,11 @@ class CloneProgramRequest implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'description' => null,
-        'folder' => null,
-        'name' => null
+        'errors' => null,
+        'request_id' => null,
+        'result' => null,
+        'success' => null,
+        'warnings' => null
     ];
 
     /**
@@ -103,9 +107,11 @@ class CloneProgramRequest implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'description' => 'description',
-        'folder' => 'folder',
-        'name' => 'name'
+        'errors' => 'errors',
+        'request_id' => 'requestId',
+        'result' => 'result',
+        'success' => 'success',
+        'warnings' => 'warnings'
     ];
 
     /**
@@ -114,9 +120,11 @@ class CloneProgramRequest implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'description' => 'setDescription',
-        'folder' => 'setFolder',
-        'name' => 'setName'
+        'errors' => 'setErrors',
+        'request_id' => 'setRequestId',
+        'result' => 'setResult',
+        'success' => 'setSuccess',
+        'warnings' => 'setWarnings'
     ];
 
     /**
@@ -125,9 +133,11 @@ class CloneProgramRequest implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'description' => 'getDescription',
-        'folder' => 'getFolder',
-        'name' => 'getName'
+        'errors' => 'getErrors',
+        'request_id' => 'getRequestId',
+        'result' => 'getResult',
+        'success' => 'getSuccess',
+        'warnings' => 'getWarnings'
     ];
 
     
@@ -147,9 +157,11 @@ class CloneProgramRequest implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['description'] = isset($data['description']) ? $data['description'] : null;
-        $this->container['folder'] = isset($data['folder']) ? $data['folder'] : null;
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
+        $this->container['errors'] = isset($data['errors']) ? $data['errors'] : null;
+        $this->container['request_id'] = isset($data['request_id']) ? $data['request_id'] : null;
+        $this->container['result'] = isset($data['result']) ? $data['result'] : null;
+        $this->container['success'] = isset($data['success']) ? $data['success'] : null;
+        $this->container['warnings'] = isset($data['warnings']) ? $data['warnings'] : null;
     }
 
     /**
@@ -191,12 +203,6 @@ class CloneProgramRequest implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
-        if ($this->container['folder'] === null) {
-            $invalidProperties[] = "'folder' can't be null";
-        }
-        if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -210,73 +216,121 @@ class CloneProgramRequest implements ModelInterface, ArrayAccess
     
 
     /**
-     * Gets description
+     * Gets errors
      *
-     * @return string
+     * @return \NecLimDul\MarketoRest\Asset\Model\Error[]
      */
-    public function getDescription()
+    public function getErrors()
     {
-        return $this->container['description'];
+        return $this->container['errors'];
     }
 
     /**
-     * Sets description
+     * Sets errors
      *
-     * @param string $description description
+     * @param \NecLimDul\MarketoRest\Asset\Model\Error[] $errors errors
      *
      * @return $this
      */
-    public function setDescription($description)
+    public function setErrors($errors)
     {
-        $this->container['description'] = $description;
+        $this->container['errors'] = $errors;
 
         return $this;
     }
 
     /**
-     * Gets folder
+     * Gets request_id
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\Folder
+     * @return string
      */
-    public function getFolder()
+    public function getRequestId()
     {
-        return $this->container['folder'];
+        return $this->container['request_id'];
     }
 
     /**
-     * Sets folder
+     * Sets request_id
      *
-     * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
+     * @param string $request_id request_id
      *
      * @return $this
      */
-    public function setFolder($folder)
+    public function setRequestId($request_id)
     {
-        $this->container['folder'] = $folder;
+        $this->container['request_id'] = $request_id;
 
         return $this;
     }
 
     /**
-     * Gets name
+     * Gets result
      *
-     * @return string
+     * @return \NecLimDul\MarketoRest\Asset\Model\GetLandingPageFullContentResponse[]
      */
-    public function getName()
+    public function getResult()
     {
-        return $this->container['name'];
+        return $this->container['result'];
     }
 
     /**
-     * Sets name
+     * Sets result
      *
-     * @param string $name Name of the program.  Max 255 characters
+     * @param \NecLimDul\MarketoRest\Asset\Model\GetLandingPageFullContentResponse[] $result result
      *
      * @return $this
      */
-    public function setName($name)
+    public function setResult($result)
     {
-        $this->container['name'] = $name;
+        $this->container['result'] = $result;
+
+        return $this;
+    }
+
+    /**
+     * Gets success
+     *
+     * @return bool
+     */
+    public function getSuccess()
+    {
+        return $this->container['success'];
+    }
+
+    /**
+     * Sets success
+     *
+     * @param bool $success success
+     *
+     * @return $this
+     */
+    public function setSuccess($success)
+    {
+        $this->container['success'] = $success;
+
+        return $this;
+    }
+
+    /**
+     * Gets warnings
+     *
+     * @return string[]
+     */
+    public function getWarnings()
+    {
+        return $this->container['warnings'];
+    }
+
+    /**
+     * Sets warnings
+     *
+     * @param string[] $warnings warnings
+     *
+     * @return $this
+     */
+    public function setWarnings($warnings)
+    {
+        $this->container['warnings'] = $warnings;
 
         return $this;
     }

@@ -906,7 +906,7 @@ No authorization required
 
 Rearrange Email Modules
 
-Rearranges the modules in an email
+Rearranges the modules in an email.  Required Permissions: Read-Write Assets
 
 ### Example
 ```php
@@ -919,7 +919,7 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\EmailsApi(
     new GuzzleHttp\Client()
 );
 $id = 56; // int | id
-$positions = "positions_example"; // string | JSON array of module positions.  Each position must be a JSON object with members 'index' and a 'moduleId'.  Required Permissions: Read-Write Assets
+$positions = "positions_example"; // string | JSON array of module positions.  Each position must be a JSON object with members 'index' and a 'moduleId'
 
 try {
     $result = $apiInstance->rearrangeModulesUsingPOST($id, $positions);
@@ -935,7 +935,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| id |
- **positions** | **string**| JSON array of module positions.  Each position must be a JSON object with members &#39;index&#39; and a &#39;moduleId&#39;.  Required Permissions: Read-Write Assets | [optional]
+ **positions** | **string**| JSON array of module positions.  Each position must be a JSON object with members &#39;index&#39; and a &#39;moduleId&#39; | [optional]
 
 ### Return type
 

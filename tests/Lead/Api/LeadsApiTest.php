@@ -228,6 +228,18 @@ class LeadsApiTest extends TestCase
     }
 
     /**
+     * Test case for submitFormUsingPOST
+     *
+     * Submit Form.
+     *
+     */
+    public function testSubmitFormUsingPOST()
+    {
+        //$class = new LeadsApi;
+        $this->assertTrue(TRUE);
+    }
+
+    /**
      * Test case for syncLeadUsingPOST
      *
      * Sync Leads.

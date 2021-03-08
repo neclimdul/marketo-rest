@@ -92,7 +92,7 @@ class TokensApi
      *
      * Create Token
      *
-     * @param  int $id id (required)
+     * @param  int $id Id of the folder to which the token will be associated with (required)
      * @param  \NecLimDul\MarketoRest\Asset\Model\CreateTokenRequest $create_token_request createTokenRequest (required)
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
@@ -110,7 +110,7 @@ class TokensApi
      *
      * Create Token
      *
-     * @param  int $id id (required)
+     * @param  int $id Id of the folder to which the token will be associated with (required)
      * @param  \NecLimDul\MarketoRest\Asset\Model\CreateTokenRequest $create_token_request createTokenRequest (required)
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
@@ -186,7 +186,7 @@ class TokensApi
      *
      * Create Token
      *
-     * @param  int $id id (required)
+     * @param  int $id Id of the folder to which the token will be associated with (required)
      * @param  \NecLimDul\MarketoRest\Asset\Model\CreateTokenRequest $create_token_request createTokenRequest (required)
      *
      * @throws \InvalidArgumentException
@@ -207,7 +207,7 @@ class TokensApi
      *
      * Create Token
      *
-     * @param  int $id id (required)
+     * @param  int $id Id of the folder to which the token will be associated with (required)
      * @param  \NecLimDul\MarketoRest\Asset\Model\CreateTokenRequest $create_token_request createTokenRequest (required)
      *
      * @throws \InvalidArgumentException
@@ -258,7 +258,7 @@ class TokensApi
     /**
      * Create request for operation 'addTokenTOFolderUsingPOST'
      *
-     * @param  int $id id (required)
+     * @param  int $id Id of the folder to which the token will be associated with (required)
      * @param  \NecLimDul\MarketoRest\Asset\Model\CreateTokenRequest $create_token_request createTokenRequest (required)
      *
      * @throws \InvalidArgumentException
