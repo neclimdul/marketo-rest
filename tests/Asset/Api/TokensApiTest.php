@@ -1,7 +1,6 @@
 <?php
 /**
  * TokensApiTest
- * PHP version 5
  *
  * @category Class
  * @package  NecLimDul\MarketoRest\Asset
@@ -26,14 +25,12 @@
  * Please update the test case below to test the endpoint.
  */
 
-// namespace NecLimDul\MarketoRest\Asset;
-namespace NecLimDul\MarketoRest\Asset\Model;
+namespace NecLimDul\MarketoRest\Asset\Test\Api;
 
+use NecLimDul\MarketoRest\Asset\Configuration;
+use NecLimDul\MarketoRest\Asset\ApiException;
+use NecLimDul\MarketoRest\Asset\ObjectSerializer;
 use PHPUnit\Framework\TestCase;
-
-use \NecLimDul\MarketoRest\Asset\Configuration;
-use \NecLimDul\MarketoRest\Asset\ApiException;
-use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * TokensApiTest Class Doc Comment
@@ -42,44 +39,42 @@ use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
+ * @coversDefaultClass \NecLimDul\MarketoRest\Asset\Api\TokensApi
  */
 class TokensApiTest extends TestCase
 {
 
 
     /**
-     * Test case for addTokenTOFolderUsingPOST
-     *
      * Create Token.
      *
+     * @covers ::addTokenTOFolderUsingPOST
      */
     public function testAddTokenTOFolderUsingPOST()
     {
-        //$class = new TokensApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for deleteTokenByNameUsingPOST
-     *
      * Delete Token by Name.
      *
+     * @covers ::deleteTokenByNameUsingPOST
      */
     public function testDeleteTokenByNameUsingPOST()
     {
-        //$class = new TokensApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getTokensByFolderIdUsingGET
-     *
      * Get Tokens by Folder Id.
      *
+     * @covers ::getTokensByFolderIdUsingGET
      */
     public function testGetTokensByFolderIdUsingGET()
     {
-        //$class = new TokensApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

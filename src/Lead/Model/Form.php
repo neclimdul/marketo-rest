@@ -2,8 +2,6 @@
 /**
  * Form
  *
- * PHP version 5
- *
  * @category Class
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
@@ -40,10 +38,13 @@ use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
+ * @implements \ArrayAccess<TKey, TValue>
+ * @template TKey int|null
+ * @template TValue mixed|null
  */
-class Form implements ModelInterface, ArrayAccess
+class Form implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -67,6 +68,8 @@ class Form implements ModelInterface, ArrayAccess
       * Array of property to format mappings. Used for (de)serialization
       *
       * @var string[]
+      * @phpstan-var array<string, string|null>
+      * @psalm-var array<string, string|null>
       */
     protected static $swaggerFormats = [
         'lead_form_fields' => null,
@@ -75,14 +78,16 @@ class Form implements ModelInterface, ArrayAccess
     ];
 
     /**
-      * Array of dynamic properties.
+      * Array of additional properties.
       *
       * @var mixed[]
       */
     protected $additionalProperties = [];
 
     /**
-     * {@inheritdoc}
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
      */
     public static function swaggerTypes()
     {
@@ -222,7 +227,7 @@ class Form implements ModelInterface, ArrayAccess
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\LeadFormFields $lead_form_fields List of form fields.  Email is required field
      *
-     * @return $this
+     * @return self
      */
     public function setLeadFormFields($lead_form_fields)
     {
@@ -246,7 +251,7 @@ class Form implements ModelInterface, ArrayAccess
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\VisitorData $visitor_data Page visit-related data
      *
-     * @return $this
+     * @return self
      */
     public function setVisitorData($visitor_data)
     {
@@ -270,7 +275,7 @@ class Form implements ModelInterface, ArrayAccess
      *
      * @param string $cookie Munchkin cookie value used to associate new lead with anonymous activities.  e.g. id:123-XYZ-456&token:_mch-marketo.com-1594662481190-60776
      *
-     * @return $this
+     * @return self
      */
     public function setCookie($cookie)
     {
@@ -328,7 +333,7 @@ class Form implements ModelInterface, ArrayAccess
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**
@@ -352,19 +357,37 @@ class Form implements ModelInterface, ArrayAccess
     }
 
     /**
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     *
+     * @return mixed Returns data which can be serialized by json_encode(), which is a value
+     * of any type other than a resource.
+     */
+    public function jsonSerialize()
+    {
+       return ObjectSerializer::sanitizeForSerialization($this);
+    }
+
+    /**
      * Gets the string presentation of the object
      *
      * @return string
      */
     public function __toString()
     {
-        if (defined('JSON_PRETTY_PRINT')) { // use JSON pretty print
-            return json_encode(
-                ObjectSerializer::sanitizeForSerialization($this),
-                JSON_PRETTY_PRINT
-            );
-        }
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
+    }
 
+    /**
+     * Gets a header-safe presentation of the object
+     *
+     * @return string
+     */
+    public function toHeaderValue()
+    {
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }

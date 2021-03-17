@@ -2,8 +2,6 @@
 /**
  * SyncCustomObjectTypeRequest
  *
- * PHP version 5
- *
  * @category Class
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
@@ -39,10 +37,13 @@ use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
+ * @implements \ArrayAccess<TKey, TValue>
+ * @template TKey int|null
+ * @template TValue mixed|null
  */
-class SyncCustomObjectTypeRequest implements ModelInterface, ArrayAccess
+class SyncCustomObjectTypeRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -69,6 +70,8 @@ class SyncCustomObjectTypeRequest implements ModelInterface, ArrayAccess
       * Array of property to format mappings. Used for (de)serialization
       *
       * @var string[]
+      * @phpstan-var array<string, string|null>
+      * @psalm-var array<string, string|null>
       */
     protected static $swaggerFormats = [
         'action' => null,
@@ -80,14 +83,16 @@ class SyncCustomObjectTypeRequest implements ModelInterface, ArrayAccess
     ];
 
     /**
-      * Array of dynamic properties.
+      * Array of additional properties.
       *
       * @var mixed[]
       */
     protected $additionalProperties = [];
 
     /**
-     * {@inheritdoc}
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
      */
     public static function swaggerTypes()
     {
@@ -215,7 +220,8 @@ class SyncCustomObjectTypeRequest implements ModelInterface, ArrayAccess
         $allowedValues = $this->getActionAllowableValues();
         if (!is_null($this->container['action']) && !in_array($this->container['action'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
-                "invalid value for 'action', must be one of '%s'",
+                "invalid value '%s' for 'action', must be one of '%s'",
+                $this->container['action'],
                 implode("', '", $allowedValues)
             );
         }
@@ -265,7 +271,7 @@ class SyncCustomObjectTypeRequest implements ModelInterface, ArrayAccess
      *
      * @param string $action Type of sync operation to perform.  Default is createOrUpdate.
      *
-     * @return $this
+     * @return self
      */
     public function setAction($action)
     {
@@ -273,7 +279,8 @@ class SyncCustomObjectTypeRequest implements ModelInterface, ArrayAccess
         if (!is_null($action) && !in_array($action, $allowedValues, true)) {
             throw new \InvalidArgumentException(
                 sprintf(
-                    "Invalid value for 'action', must be one of '%s'",
+                    "Invalid value '%s' for 'action', must be one of '%s'",
+                    $action,
                     implode("', '", $allowedValues)
                 )
             );
@@ -298,7 +305,7 @@ class SyncCustomObjectTypeRequest implements ModelInterface, ArrayAccess
      *
      * @param string $display_name UI display-name of the custom object type
      *
-     * @return $this
+     * @return self
      */
     public function setDisplayName($display_name)
     {
@@ -322,7 +329,7 @@ class SyncCustomObjectTypeRequest implements ModelInterface, ArrayAccess
      *
      * @param string $api_name API name of the custom object type
      *
-     * @return $this
+     * @return self
      */
     public function setApiName($api_name)
     {
@@ -346,7 +353,7 @@ class SyncCustomObjectTypeRequest implements ModelInterface, ArrayAccess
      *
      * @param string $plural_name UI plural-name of the custom object type
      *
-     * @return $this
+     * @return self
      */
     public function setPluralName($plural_name)
     {
@@ -370,7 +377,7 @@ class SyncCustomObjectTypeRequest implements ModelInterface, ArrayAccess
      *
      * @param string $description Description of the custom object type
      *
-     * @return $this
+     * @return self
      */
     public function setDescription($description)
     {
@@ -394,7 +401,7 @@ class SyncCustomObjectTypeRequest implements ModelInterface, ArrayAccess
      *
      * @param bool $show_in_lead_detail Whether to show custom object type in lead detail of UI.  Default is false
      *
-     * @return $this
+     * @return self
      */
     public function setShowInLeadDetail($show_in_lead_detail)
     {
@@ -452,7 +459,7 @@ class SyncCustomObjectTypeRequest implements ModelInterface, ArrayAccess
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**
@@ -476,19 +483,37 @@ class SyncCustomObjectTypeRequest implements ModelInterface, ArrayAccess
     }
 
     /**
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     *
+     * @return mixed Returns data which can be serialized by json_encode(), which is a value
+     * of any type other than a resource.
+     */
+    public function jsonSerialize()
+    {
+       return ObjectSerializer::sanitizeForSerialization($this);
+    }
+
+    /**
      * Gets the string presentation of the object
      *
      * @return string
      */
     public function __toString()
     {
-        if (defined('JSON_PRETTY_PRINT')) { // use JSON pretty print
-            return json_encode(
-                ObjectSerializer::sanitizeForSerialization($this),
-                JSON_PRETTY_PRINT
-            );
-        }
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
+    }
 
+    /**
+     * Gets a header-safe presentation of the object
+     *
+     * @return string
+     */
+    public function toHeaderValue()
+    {
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }

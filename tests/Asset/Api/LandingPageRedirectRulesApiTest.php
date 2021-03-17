@@ -1,7 +1,6 @@
 <?php
 /**
  * LandingPageRedirectRulesApiTest
- * PHP version 5
  *
  * @category Class
  * @package  NecLimDul\MarketoRest\Asset
@@ -26,14 +25,12 @@
  * Please update the test case below to test the endpoint.
  */
 
-// namespace NecLimDul\MarketoRest\Asset;
-namespace NecLimDul\MarketoRest\Asset\Model;
+namespace NecLimDul\MarketoRest\Asset\Test\Api;
 
+use NecLimDul\MarketoRest\Asset\Configuration;
+use NecLimDul\MarketoRest\Asset\ApiException;
+use NecLimDul\MarketoRest\Asset\ObjectSerializer;
 use PHPUnit\Framework\TestCase;
-
-use \NecLimDul\MarketoRest\Asset\Configuration;
-use \NecLimDul\MarketoRest\Asset\ApiException;
-use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * LandingPageRedirectRulesApiTest Class Doc Comment
@@ -42,80 +39,75 @@ use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
+ * @coversDefaultClass \NecLimDul\MarketoRest\Asset\Api\LandingPageRedirectRulesApi
  */
 class LandingPageRedirectRulesApiTest extends TestCase
 {
 
 
     /**
-     * Test case for createLandingPageRedirectRuleUsingPOST
-     *
      * Create Landing Page Redirect Rule.
      *
+     * @covers ::createLandingPageRedirectRuleUsingPOST
      */
     public function testCreateLandingPageRedirectRuleUsingPOST()
     {
-        //$class = new LandingPageRedirectRulesApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for deleteLandingPageRedirectRuleUsingPOST
-     *
      * Delete Landing Page Redirect Rule.
      *
+     * @covers ::deleteLandingPageRedirectRuleUsingPOST
      */
     public function testDeleteLandingPageRedirectRuleUsingPOST()
     {
-        //$class = new LandingPageRedirectRulesApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getLandingPageDomainsUsingGET
-     *
      * Get Landing Page Domains.
      *
+     * @covers ::getLandingPageDomainsUsingGET
      */
     public function testGetLandingPageDomainsUsingGET()
     {
-        //$class = new LandingPageRedirectRulesApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getLandingPageRedirectRuleByIdUsingGET
-     *
      * Get Landing Page Redirect Rule by Id.
      *
+     * @covers ::getLandingPageRedirectRuleByIdUsingGET
      */
     public function testGetLandingPageRedirectRuleByIdUsingGET()
     {
-        //$class = new LandingPageRedirectRulesApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getLandingPageRedirectRulesUsingGET
-     *
      * Get Landing Page Redirect Rules.
      *
+     * @covers ::getLandingPageRedirectRulesUsingGET
      */
     public function testGetLandingPageRedirectRulesUsingGET()
     {
-        //$class = new LandingPageRedirectRulesApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for updateLandingPageRedirectRuleUsingPOST
-     *
      * Update Landing Page Redirect Rule.
      *
+     * @covers ::updateLandingPageRedirectRuleUsingPOST
      */
     public function testUpdateLandingPageRedirectRuleUsingPOST()
     {
-        //$class = new LandingPageRedirectRulesApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

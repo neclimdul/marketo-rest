@@ -1,7 +1,6 @@
 <?php
 /**
  * LandingPagesApiTest
- * PHP version 5
  *
  * @category Class
  * @package  NecLimDul\MarketoRest\Asset
@@ -26,14 +25,12 @@
  * Please update the test case below to test the endpoint.
  */
 
-// namespace NecLimDul\MarketoRest\Asset;
-namespace NecLimDul\MarketoRest\Asset\Model;
+namespace NecLimDul\MarketoRest\Asset\Test\Api;
 
+use NecLimDul\MarketoRest\Asset\Configuration;
+use NecLimDul\MarketoRest\Asset\ApiException;
+use NecLimDul\MarketoRest\Asset\ObjectSerializer;
 use PHPUnit\Framework\TestCase;
-
-use \NecLimDul\MarketoRest\Asset\Configuration;
-use \NecLimDul\MarketoRest\Asset\ApiException;
-use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * LandingPagesApiTest Class Doc Comment
@@ -42,164 +39,152 @@ use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
+ * @coversDefaultClass \NecLimDul\MarketoRest\Asset\Api\LandingPagesApi
  */
 class LandingPagesApiTest extends TestCase
 {
 
 
     /**
-     * Test case for approveLandingPageUsingPOST
-     *
      * Approve Landing Page Draft.
      *
+     * @covers ::approveLandingPageUsingPOST
      */
     public function testApproveLandingPageUsingPOST()
     {
-        //$class = new LandingPagesApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for browseLandingPagesUsingGET
-     *
      * Get Landing Pages.
      *
+     * @covers ::browseLandingPagesUsingGET
      */
     public function testBrowseLandingPagesUsingGET()
     {
-        //$class = new LandingPagesApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for cloneLandingPageUsingPOST
-     *
      * Clone Landing Page.
      *
+     * @covers ::cloneLandingPageUsingPOST
      */
     public function testCloneLandingPageUsingPOST()
     {
-        //$class = new LandingPagesApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for createLandingPageUsingPOST
-     *
      * Create Landing Page.
      *
+     * @covers ::createLandingPageUsingPOST
      */
     public function testCreateLandingPageUsingPOST()
     {
-        //$class = new LandingPagesApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for deleteLandingPageByIdUsingPOST
-     *
      * Delete Landing Page.
      *
+     * @covers ::deleteLandingPageByIdUsingPOST
      */
     public function testDeleteLandingPageByIdUsingPOST()
     {
-        //$class = new LandingPagesApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for discardLandingPageByIdUsingPOST
-     *
      * Discard Landing Page Draft.
      *
+     * @covers ::discardLandingPageByIdUsingPOST
      */
     public function testDiscardLandingPageByIdUsingPOST()
     {
-        //$class = new LandingPagesApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getLandingPageByIdUsingGET
-     *
      * Get Landing Page by Id.
      *
+     * @covers ::getLandingPageByIdUsingGET
      */
     public function testGetLandingPageByIdUsingGET()
     {
-        //$class = new LandingPagesApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getLandingPageByNameUsingGET
-     *
      * Get Landing Page by Name.
      *
+     * @covers ::getLandingPageByNameUsingGET
      */
     public function testGetLandingPageByNameUsingGET()
     {
-        //$class = new LandingPagesApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getLandingPageFullContentUsingGET
-     *
      * Get Landing Page Full Content.
      *
+     * @covers ::getLandingPageFullContentUsingGET
      */
     public function testGetLandingPageFullContentUsingGET()
     {
-        //$class = new LandingPagesApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getVariablesUsingGET
-     *
      * Get Landing Page Variables.
      *
+     * @covers ::getVariablesUsingGET
      */
     public function testGetVariablesUsingGET()
     {
-        //$class = new LandingPagesApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for unapproveLandingPageByIdUsingPOST
-     *
      * Unapprove Landing Page.
      *
+     * @covers ::unapproveLandingPageByIdUsingPOST
      */
     public function testUnapproveLandingPageByIdUsingPOST()
     {
-        //$class = new LandingPagesApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for updateLandingPageUsingPOST
-     *
      * Update Landing Page Metadata.
      *
+     * @covers ::updateLandingPageUsingPOST
      */
     public function testUpdateLandingPageUsingPOST()
     {
-        //$class = new LandingPagesApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for updateLandingPageVariableUsingPOST
-     *
      * Update Landing Page Variable.
      *
+     * @covers ::updateLandingPageVariableUsingPOST
      */
     public function testUpdateLandingPageVariableUsingPOST()
     {
-        //$class = new LandingPagesApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

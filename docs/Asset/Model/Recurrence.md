@@ -1,6 +1,7 @@
 # Recurrence
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **start_at** | [**\DateTime**](\DateTime.md) | Datetime of the first scheduled campaign to run. Required if setting recurrence. Not required to create a smart campaign that has no recurrence | 
@@ -14,5 +15,3 @@ Name | Type | Description | Notes
 **week_of_month** | **int** | Week of the month to recur. Permissible range 1-4. May only be set if dayOfMonth is not set, and dayOfWeek is set | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

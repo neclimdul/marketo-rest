@@ -1,6 +1,7 @@
 # UpdateFolderRequest
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **description** | **string** | Description of the asset | [optional] 
@@ -9,5 +10,3 @@ Name | Type | Description | Notes
 **type** | **string** | Type of folder.  &#39;Folder&#39; or &#39;Program&#39; | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

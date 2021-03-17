@@ -1,7 +1,6 @@
 <?php
 /**
  * EmailsApiTest
- * PHP version 5
  *
  * @category Class
  * @package  NecLimDul\MarketoRest\Asset
@@ -26,14 +25,12 @@
  * Please update the test case below to test the endpoint.
  */
 
-// namespace NecLimDul\MarketoRest\Asset;
-namespace NecLimDul\MarketoRest\Asset\Model;
+namespace NecLimDul\MarketoRest\Asset\Test\Api;
 
+use NecLimDul\MarketoRest\Asset\Configuration;
+use NecLimDul\MarketoRest\Asset\ApiException;
+use NecLimDul\MarketoRest\Asset\ObjectSerializer;
 use PHPUnit\Framework\TestCase;
-
-use \NecLimDul\MarketoRest\Asset\Configuration;
-use \NecLimDul\MarketoRest\Asset\ApiException;
-use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * EmailsApiTest Class Doc Comment
@@ -42,320 +39,295 @@ use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
+ * @coversDefaultClass \NecLimDul\MarketoRest\Asset\Api\EmailsApi
  */
 class EmailsApiTest extends TestCase
 {
 
 
     /**
-     * Test case for addModuleUsingPOST
-     *
      * Add Email Module.
      *
+     * @covers ::addModuleUsingPOST
      */
     public function testAddModuleUsingPOST()
     {
-        //$class = new EmailsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for approveDraftUsingPOST
-     *
      * Approve Email Draft.
      *
+     * @covers ::approveDraftUsingPOST
      */
     public function testApproveDraftUsingPOST()
     {
-        //$class = new EmailsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for cloneEmailUsingPOST
-     *
      * Clone Email.
      *
+     * @covers ::cloneEmailUsingPOST
      */
     public function testCloneEmailUsingPOST()
     {
-        //$class = new EmailsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for createEmailFullContentUsingPOST
-     *
      * Update Email Full Content.
      *
+     * @covers ::createEmailFullContentUsingPOST
      */
     public function testCreateEmailFullContentUsingPOST()
     {
-        //$class = new EmailsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for createEmailUsingPOST
-     *
      * Create Email.
      *
+     * @covers ::createEmailUsingPOST
      */
     public function testCreateEmailUsingPOST()
     {
-        //$class = new EmailsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for deleteEmailUsingPOST
-     *
      * Delete Email.
      *
+     * @covers ::deleteEmailUsingPOST
      */
     public function testDeleteEmailUsingPOST()
     {
-        //$class = new EmailsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for deleteModuleUsingPOST
-     *
      * Delete Module.
      *
+     * @covers ::deleteModuleUsingPOST
      */
     public function testDeleteModuleUsingPOST()
     {
-        //$class = new EmailsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for discardDraftUsingPOST
-     *
      * Discard Email Draft.
      *
+     * @covers ::discardDraftUsingPOST
      */
     public function testDiscardDraftUsingPOST()
     {
-        //$class = new EmailsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for duplicateModuleUsingPOST
-     *
      * Duplicate Email Module.
      *
+     * @covers ::duplicateModuleUsingPOST
      */
     public function testDuplicateModuleUsingPOST()
     {
-        //$class = new EmailsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getEmailByIdUsingGET
-     *
      * Get Email By Id.
      *
+     * @covers ::getEmailByIdUsingGET
      */
     public function testGetEmailByIdUsingGET()
     {
-        //$class = new EmailsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getEmailByNameUsingGET
-     *
      * Get Email by Name.
      *
+     * @covers ::getEmailByNameUsingGET
      */
     public function testGetEmailByNameUsingGET()
     {
-        //$class = new EmailsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getEmailCCFieldsUsingGET
-     *
      * Get Email CC Fields.
      *
+     * @covers ::getEmailCCFieldsUsingGET
      */
     public function testGetEmailCCFieldsUsingGET()
     {
-        //$class = new EmailsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getEmailContentByIdUsingGET
-     *
      * Get Email Content.
      *
+     * @covers ::getEmailContentByIdUsingGET
      */
     public function testGetEmailContentByIdUsingGET()
     {
-        //$class = new EmailsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getEmailDynamicContentUsingGET
-     *
      * Get Email Dynamic Content.
      *
+     * @covers ::getEmailDynamicContentUsingGET
      */
     public function testGetEmailDynamicContentUsingGET()
     {
-        //$class = new EmailsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getEmailFullContentUsingGET
-     *
      * Get Email Full Content.
      *
+     * @covers ::getEmailFullContentUsingGET
      */
     public function testGetEmailFullContentUsingGET()
     {
-        //$class = new EmailsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getEmailUsingGET
-     *
      * Get Emails.
      *
+     * @covers ::getEmailUsingGET
      */
     public function testGetEmailUsingGET()
     {
-        //$class = new EmailsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getEmailVariablesUsingGET
-     *
      * Get Email Variables.
      *
+     * @covers ::getEmailVariablesUsingGET
      */
     public function testGetEmailVariablesUsingGET()
     {
-        //$class = new EmailsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for rearrangeModulesUsingPOST
-     *
      * Rearrange Email Modules.
      *
+     * @covers ::rearrangeModulesUsingPOST
      */
     public function testRearrangeModulesUsingPOST()
     {
-        //$class = new EmailsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for renameUsingPOST
-     *
      * Rename Email Module.
      *
+     * @covers ::renameUsingPOST
      */
     public function testRenameUsingPOST()
     {
-        //$class = new EmailsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for sendSampleEmailUsingPOST
-     *
      * Send Sample Email.
      *
+     * @covers ::sendSampleEmailUsingPOST
      */
     public function testSendSampleEmailUsingPOST()
     {
-        //$class = new EmailsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for unapproveDraftUsingPOST
-     *
      * Unapprove Email.
      *
+     * @covers ::unapproveDraftUsingPOST
      */
     public function testUnapproveDraftUsingPOST()
     {
-        //$class = new EmailsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for updateEmailComponentContentUsingPOST
-     *
      * Update Email Content Section.
      *
+     * @covers ::updateEmailComponentContentUsingPOST
      */
     public function testUpdateEmailComponentContentUsingPOST()
     {
-        //$class = new EmailsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for updateEmailContentUsingPOST
-     *
      * Update Email Content.
      *
+     * @covers ::updateEmailContentUsingPOST
      */
     public function testUpdateEmailContentUsingPOST()
     {
-        //$class = new EmailsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for updateEmailDynamicContentUsingPOST
-     *
      * Update Email Dynamic Content Section.
      *
+     * @covers ::updateEmailDynamicContentUsingPOST
      */
     public function testUpdateEmailDynamicContentUsingPOST()
     {
-        //$class = new EmailsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for updateEmailUsingPOST
-     *
      * Update Email Metadata.
      *
+     * @covers ::updateEmailUsingPOST
      */
     public function testUpdateEmailUsingPOST()
     {
-        //$class = new EmailsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for updateVariableUsingPOST
-     *
      * Update Email Variable.
      *
+     * @covers ::updateVariableUsingPOST
      */
     public function testUpdateVariableUsingPOST()
     {
-        //$class = new EmailsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

@@ -1,6 +1,7 @@
 # CreateLpTemplateRequest
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **description** | **string** | Description of the landing page template | [optional] 
@@ -10,5 +11,3 @@ Name | Type | Description | Notes
 **template_type** | **string** | Type of template to create.  Defaults to freeForm | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

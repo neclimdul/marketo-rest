@@ -1,7 +1,6 @@
 <?php
 /**
  * FoldersApi
- * PHP version 5
  *
  * @category Class
  * @package  NecLimDul\MarketoRest\Asset
@@ -32,8 +31,10 @@ use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
+use GuzzleHttp\Psr7\Query;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
+use Psr\Http\Message\ResponseInterface;
 use NecLimDul\MarketoRest\Asset\ApiException;
 use NecLimDul\MarketoRest\Asset\Configuration;
 use NecLimDul\MarketoRest\Asset\HeaderSelector;
@@ -49,6 +50,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  */
 class FoldersApi
 {
+
     /**
      * @var ClientInterface
      */
@@ -65,18 +67,46 @@ class FoldersApi
     protected $headerSelector;
 
     /**
-     * @param ClientInterface $client
-     * @param Configuration   $config
-     * @param HeaderSelector  $selector
+     * @var int Host index
+     */
+    protected $hostIndex;
+
+    /**
+     * @param ClientInterface|null $client
+     * @param Configuration|null   $config
+     * @param HeaderSelector|null  $selector
+     * @param int                  $hostIndex (Optional) host index to select the list of hosts if defined in the OpenAPI spec
      */
     public function __construct(
         ClientInterface $client = null,
         Configuration $config = null,
-        HeaderSelector $selector = null
+        HeaderSelector $selector = null,
+        $hostIndex = 0
     ) {
         $this->client = $client ?: new Client();
         $this->config = $config ?: new Configuration();
         $this->headerSelector = $selector ?: new HeaderSelector();
+        $this->hostIndex = $hostIndex;
+    }
+
+    /**
+     * Set the host index
+     *
+     * @param int $hostIndex Host index (required)
+     */
+    public function setHostIndex($hostIndex)
+    {
+        $this->hostIndex = $hostIndex;
+    }
+
+    /**
+     * Get the host index
+     *
+     * @return int Host index
+     */
+    public function getHostIndex()
+    {
+        return $this->hostIndex;
     }
 
     /**
@@ -117,62 +147,28 @@ class FoldersApi
      */
     public function createFolderUsingPOSTWithHttpInfo($create_folder_request)
     {
-        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse';
         $request = $this->createFolderUsingPOSTRequest($create_folder_request);
 
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
-                );
+            $response = $this->makeRequest($request);
+
+            switch ($response->getStatusCode()) {
+                case 200:
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse');
             }
 
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    $response->getBody()
-                );
-            }
-
-            $responseBody = $response->getBody();
-            if ($returnType === '\SplFileObject') {
-                $content = $responseBody; //stream goes to serializer
-            } else {
-                $content = $responseBody->getContents();
-                if ($returnType !== 'string') {
-                    $content = json_decode($content);
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
+            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse');
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse',
-                        $e->getResponseHeaders()
+                    $e->setResponseObject(
+                        $this->deserializeResponseBody(
+                            $e->getResponseBody(),
+                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse',
+                            $e->getResponseHeaders()
+                        )
                     );
-                    $e->setResponseObject($data);
                     break;
             }
             throw $e;
@@ -211,41 +207,25 @@ class FoldersApi
      */
     public function createFolderUsingPOSTAsyncWithHttpInfo($create_folder_request)
     {
-        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse';
         $request = $this->createFolderUsingPOSTRequest($create_folder_request);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
-                function ($response) use ($returnType) {
-                    $responseBody = $response->getBody();
-                    if ($returnType === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = $responseBody->getContents();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
+                function ($response) {
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse');
                 },
-                function ($exception) {
+                function (RequestException $exception) {
                     $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
                     throw new ApiException(
                         sprintf(
                             '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
                         ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        $response->getBody()
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
                     );
                 }
             );
@@ -259,74 +239,33 @@ class FoldersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function createFolderUsingPOSTRequest($create_folder_request)
+    public function createFolderUsingPOSTRequest($create_folder_request)
     {
-        // verify the required parameter 'create_folder_request' is set
-        if ($create_folder_request === null || (is_array($create_folder_request) && count($create_folder_request) === 0)) {
+        // Verify the required parameter 'create_folder_request' is set.
+        if ($create_folder_request === null || (is_array($create_folder_request) && empty($create_folder_request))) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $create_folder_request when calling createFolderUsingPOST'
             );
         }
 
         $resourcePath = '/rest/asset/v1/folders.json';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
-
-
-
-        // body params
-        $_tempBody = null;
-        if (isset($create_folder_request)) {
-            $_tempBody = $create_folder_request;
-        }
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/x-www-form-urlencoded']
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json'],
+            ['application/x-www-form-urlencoded']
+        );
 
         // for model (json/xml)
-        if (isset($_tempBody)) {
-            // $_tempBody is the method argument, if present
-            $httpBody = $_tempBody;
-            
-            if($headers['Content-Type'] === 'application/json') {
-                // \stdClass has no __toString(), so we should encode it manually
-                if ($httpBody instanceof \stdClass) {
-                    $httpBody = \GuzzleHttp\json_encode($httpBody);
-                }
-                // array has no __toString(), so we should encode it manually
-                if(is_array($httpBody)) {
-                    $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($httpBody));
-                }
+        if (!empty($create_folder_request)) {
+            if ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($create_folder_request));
+            } elseif (!is_array($create_folder_request)) {
+                $httpBody = (string) $create_folder_request;
             }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $multipartContents[] = [
-                        'name' => $formParamName,
-                        'contents' => $formParamValue
-                    ];
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-
-            } else {
-                // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            else {
+                $httpBody = '';
             }
         }
 
@@ -342,7 +281,7 @@ class FoldersApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        $query = Query::build($queryParams);
         return new Request(
             'POST',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
@@ -383,62 +322,28 @@ class FoldersApi
      */
     public function deleteFolderUsingPOSTWithHttpInfo($id, $type)
     {
-        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse';
         $request = $this->deleteFolderUsingPOSTRequest($id, $type);
 
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
-                );
+            $response = $this->makeRequest($request);
+
+            switch ($response->getStatusCode()) {
+                case 200:
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
             }
 
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    $response->getBody()
-                );
-            }
-
-            $responseBody = $response->getBody();
-            if ($returnType === '\SplFileObject') {
-                $content = $responseBody; //stream goes to serializer
-            } else {
-                $content = $responseBody->getContents();
-                if ($returnType !== 'string') {
-                    $content = json_decode($content);
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
+            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
-                        $e->getResponseHeaders()
+                    $e->setResponseObject(
+                        $this->deserializeResponseBody(
+                            $e->getResponseBody(),
+                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+                            $e->getResponseHeaders()
+                        )
                     );
-                    $e->setResponseObject($data);
                     break;
             }
             throw $e;
@@ -479,41 +384,25 @@ class FoldersApi
      */
     public function deleteFolderUsingPOSTAsyncWithHttpInfo($id, $type)
     {
-        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse';
         $request = $this->deleteFolderUsingPOSTRequest($id, $type);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
-                function ($response) use ($returnType) {
-                    $responseBody = $response->getBody();
-                    if ($returnType === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = $responseBody->getContents();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
+                function ($response) {
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
                 },
-                function ($exception) {
+                function (RequestException $exception) {
                     $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
                     throw new ApiException(
                         sprintf(
                             '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
                         ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        $response->getBody()
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
                     );
                 }
             );
@@ -528,45 +417,40 @@ class FoldersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function deleteFolderUsingPOSTRequest($id, $type)
+    public function deleteFolderUsingPOSTRequest($id, $type)
     {
-        // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
+        // Verify the required parameter 'id' is set.
+        if ($id === null || (is_array($id) && empty($id))) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $id when calling deleteFolderUsingPOST'
             );
         }
-        // verify the required parameter 'type' is set
-        if ($type === null || (is_array($type) && count($type) === 0)) {
+        // Verify the required parameter 'type' is set.
+        if ($type === null || (is_array($type) && empty($type))) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $type when calling deleteFolderUsingPOST'
             );
         }
 
         $resourcePath = '/rest/asset/v1/folder/{id}/delete.json';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
+
+        // Path parameters.
+        $resourcePath = str_replace(
+            '{' . 'id' . '}',
+            ObjectSerializer::toPathValue($id),
+            $resourcePath
+        );
+
+        // Form parameters.
+        /** @var string[][] $formParams */
+        $formParams = [];
         $multipart = false;
-
-
-        // path params
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'id' . '}',
-                ObjectSerializer::toPathValue($id),
-                $resourcePath
-            );
-        }
-
-        // form params
-        if ($type !== null) {
-            $formParams['type'] = ObjectSerializer::toFormValue($type);
-        }
-        // body params
-        $_tempBody = null;
-
+        $formParams['type'] = ObjectSerializer::toFormValue($type);
+        // Remove any null (optional values).
+        $formParams = array_filter($formParams, function($v) { return $v !== null; });
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
                 ['application/json']
@@ -577,30 +461,16 @@ class FoldersApi
                 ['application/x-www-form-urlencoded']
             );
         }
-
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            // $_tempBody is the method argument, if present
-            $httpBody = $_tempBody;
-            
-            if($headers['Content-Type'] === 'application/json') {
-                // \stdClass has no __toString(), so we should encode it manually
-                if ($httpBody instanceof \stdClass) {
-                    $httpBody = \GuzzleHttp\json_encode($httpBody);
-                }
-                // array has no __toString(), so we should encode it manually
-                if(is_array($httpBody)) {
-                    $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($httpBody));
-                }
-            }
-        } elseif (count($formParams) > 0) {
+        if (!empty($formParams)) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
-                    $multipartContents[] = [
-                        'name' => $formParamName,
-                        'contents' => $formParamValue
-                    ];
+                    foreach ((array) $formParamValue as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
                 }
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
@@ -610,7 +480,7 @@ class FoldersApi
 
             } else {
                 // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+                $httpBody = Query::build($formParams);
             }
         }
 
@@ -626,7 +496,7 @@ class FoldersApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        $query = Query::build($queryParams);
         return new Request(
             'POST',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
@@ -667,62 +537,28 @@ class FoldersApi
      */
     public function getFolderByIdUsingGETWithHttpInfo($id, $type)
     {
-        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse';
         $request = $this->getFolderByIdUsingGETRequest($id, $type);
 
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
-                );
+            $response = $this->makeRequest($request);
+
+            switch ($response->getStatusCode()) {
+                case 200:
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse');
             }
 
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    $response->getBody()
-                );
-            }
-
-            $responseBody = $response->getBody();
-            if ($returnType === '\SplFileObject') {
-                $content = $responseBody; //stream goes to serializer
-            } else {
-                $content = $responseBody->getContents();
-                if ($returnType !== 'string') {
-                    $content = json_decode($content);
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
+            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse');
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse',
-                        $e->getResponseHeaders()
+                    $e->setResponseObject(
+                        $this->deserializeResponseBody(
+                            $e->getResponseBody(),
+                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse',
+                            $e->getResponseHeaders()
+                        )
                     );
-                    $e->setResponseObject($data);
                     break;
             }
             throw $e;
@@ -763,41 +599,25 @@ class FoldersApi
      */
     public function getFolderByIdUsingGETAsyncWithHttpInfo($id, $type)
     {
-        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse';
         $request = $this->getFolderByIdUsingGETRequest($id, $type);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
-                function ($response) use ($returnType) {
-                    $responseBody = $response->getBody();
-                    if ($returnType === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = $responseBody->getContents();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
+                function ($response) {
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse');
                 },
-                function ($exception) {
+                function (RequestException $exception) {
                     $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
                     throw new ApiException(
                         sprintf(
                             '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
                         ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        $response->getBody()
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
                     );
                 }
             );
@@ -812,91 +632,44 @@ class FoldersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getFolderByIdUsingGETRequest($id, $type)
+    public function getFolderByIdUsingGETRequest($id, $type)
     {
-        // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
+        // Verify the required parameter 'id' is set.
+        if ($id === null || (is_array($id) && empty($id))) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $id when calling getFolderByIdUsingGET'
             );
         }
-        // verify the required parameter 'type' is set
-        if ($type === null || (is_array($type) && count($type) === 0)) {
+        // Verify the required parameter 'type' is set.
+        if ($type === null || (is_array($type) && empty($type))) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $type when calling getFolderByIdUsingGET'
             );
         }
 
         $resourcePath = '/rest/asset/v1/folder/{id}.json';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-        // query params
-        if ($type !== null) {
-            $queryParams['type'] = ObjectSerializer::toQueryValue($type);
+        // Query parameters.
+        if (is_array($type)) {
+            $type = ObjectSerializer::serializeCollection($type, '', true);
         }
+        $queryParams['type'] = $type;
+        // Remove any null (optional values).
+        $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
 
-        // path params
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'id' . '}',
-                ObjectSerializer::toPathValue($id),
-                $resourcePath
-            );
-        }
-
-        // body params
-        $_tempBody = null;
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/x-www-form-urlencoded']
-            );
-        }
-
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            // $_tempBody is the method argument, if present
-            $httpBody = $_tempBody;
-            
-            if($headers['Content-Type'] === 'application/json') {
-                // \stdClass has no __toString(), so we should encode it manually
-                if ($httpBody instanceof \stdClass) {
-                    $httpBody = \GuzzleHttp\json_encode($httpBody);
-                }
-                // array has no __toString(), so we should encode it manually
-                if(is_array($httpBody)) {
-                    $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($httpBody));
-                }
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $multipartContents[] = [
-                        'name' => $formParamName,
-                        'contents' => $formParamValue
-                    ];
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-
-            } else {
-                // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
-            }
-        }
+        // Path parameters.
+        $resourcePath = str_replace(
+            '{' . 'id' . '}',
+            ObjectSerializer::toPathValue($id),
+            $resourcePath
+        );
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json'],
+            ['application/x-www-form-urlencoded']
+        );
 
 
         $defaultHeaders = [];
@@ -910,7 +683,7 @@ class FoldersApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        $query = Query::build($queryParams);
         return new Request(
             'GET',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
@@ -955,62 +728,28 @@ class FoldersApi
      */
     public function getFolderByNameUsingGETWithHttpInfo($name, $type = null, $root = null, $work_space = null)
     {
-        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse';
         $request = $this->getFolderByNameUsingGETRequest($name, $type, $root, $work_space);
 
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
-                );
+            $response = $this->makeRequest($request);
+
+            switch ($response->getStatusCode()) {
+                case 200:
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse');
             }
 
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    $response->getBody()
-                );
-            }
-
-            $responseBody = $response->getBody();
-            if ($returnType === '\SplFileObject') {
-                $content = $responseBody; //stream goes to serializer
-            } else {
-                $content = $responseBody->getContents();
-                if ($returnType !== 'string') {
-                    $content = json_decode($content);
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
+            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse');
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse',
-                        $e->getResponseHeaders()
+                    $e->setResponseObject(
+                        $this->deserializeResponseBody(
+                            $e->getResponseBody(),
+                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse',
+                            $e->getResponseHeaders()
+                        )
                     );
-                    $e->setResponseObject($data);
                     break;
             }
             throw $e;
@@ -1055,41 +794,25 @@ class FoldersApi
      */
     public function getFolderByNameUsingGETAsyncWithHttpInfo($name, $type = null, $root = null, $work_space = null)
     {
-        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse';
         $request = $this->getFolderByNameUsingGETRequest($name, $type, $root, $work_space);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
-                function ($response) use ($returnType) {
-                    $responseBody = $response->getBody();
-                    if ($returnType === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = $responseBody->getContents();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
+                function ($response) {
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse');
                 },
-                function ($exception) {
+                function (RequestException $exception) {
                     $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
                     throw new ApiException(
                         sprintf(
                             '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
                         ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        $response->getBody()
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
                     );
                 }
             );
@@ -1106,89 +829,43 @@ class FoldersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getFolderByNameUsingGETRequest($name, $type = null, $root = null, $work_space = null)
+    public function getFolderByNameUsingGETRequest($name, $type = null, $root = null, $work_space = null)
     {
-        // verify the required parameter 'name' is set
-        if ($name === null || (is_array($name) && count($name) === 0)) {
+        // Verify the required parameter 'name' is set.
+        if ($name === null || (is_array($name) && empty($name))) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $name when calling getFolderByNameUsingGET'
             );
         }
 
         $resourcePath = '/rest/asset/v1/folder/byName.json';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-        // query params
-        if ($name !== null) {
-            $queryParams['name'] = ObjectSerializer::toQueryValue($name);
+        // Query parameters.
+        if (is_array($name)) {
+            $name = ObjectSerializer::serializeCollection($name, '', true);
         }
-        // query params
-        if ($type !== null) {
-            $queryParams['type'] = ObjectSerializer::toQueryValue($type);
+        $queryParams['name'] = $name;
+        if (is_array($type)) {
+            $type = ObjectSerializer::serializeCollection($type, '', true);
         }
-        // query params
-        if ($root !== null) {
-            $queryParams['root'] = ObjectSerializer::toQueryValue($root);
+        $queryParams['type'] = $type;
+        if (is_array($root)) {
+            $root = ObjectSerializer::serializeCollection($root, '', true);
         }
-        // query params
-        if ($work_space !== null) {
-            $queryParams['workSpace'] = ObjectSerializer::toQueryValue($work_space);
+        $queryParams['root'] = $root;
+        if (is_array($work_space)) {
+            $work_space = ObjectSerializer::serializeCollection($work_space, '', true);
         }
-
-
-        // body params
-        $_tempBody = null;
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/x-www-form-urlencoded']
-            );
-        }
-
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            // $_tempBody is the method argument, if present
-            $httpBody = $_tempBody;
-            
-            if($headers['Content-Type'] === 'application/json') {
-                // \stdClass has no __toString(), so we should encode it manually
-                if ($httpBody instanceof \stdClass) {
-                    $httpBody = \GuzzleHttp\json_encode($httpBody);
-                }
-                // array has no __toString(), so we should encode it manually
-                if(is_array($httpBody)) {
-                    $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($httpBody));
-                }
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $multipartContents[] = [
-                        'name' => $formParamName,
-                        'contents' => $formParamValue
-                    ];
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-
-            } else {
-                // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
-            }
-        }
+        $queryParams['workSpace'] = $work_space;
+        // Remove any null (optional values).
+        $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json'],
+            ['application/x-www-form-urlencoded']
+        );
 
 
         $defaultHeaders = [];
@@ -1202,7 +879,7 @@ class FoldersApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        $query = Query::build($queryParams);
         return new Request(
             'GET',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
@@ -1247,62 +924,28 @@ class FoldersApi
      */
     public function getFolderContentUsingGETWithHttpInfo($id, $type, $max_return = null, $offset = null)
     {
-        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderContentResponse';
         $request = $this->getFolderContentUsingGETRequest($id, $type, $max_return, $offset);
 
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
-                );
+            $response = $this->makeRequest($request);
+
+            switch ($response->getStatusCode()) {
+                case 200:
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderContentResponse');
             }
 
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    $response->getBody()
-                );
-            }
-
-            $responseBody = $response->getBody();
-            if ($returnType === '\SplFileObject') {
-                $content = $responseBody; //stream goes to serializer
-            } else {
-                $content = $responseBody->getContents();
-                if ($returnType !== 'string') {
-                    $content = json_decode($content);
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
+            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderContentResponse');
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderContentResponse',
-                        $e->getResponseHeaders()
+                    $e->setResponseObject(
+                        $this->deserializeResponseBody(
+                            $e->getResponseBody(),
+                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderContentResponse',
+                            $e->getResponseHeaders()
+                        )
                     );
-                    $e->setResponseObject($data);
                     break;
             }
             throw $e;
@@ -1347,41 +990,25 @@ class FoldersApi
      */
     public function getFolderContentUsingGETAsyncWithHttpInfo($id, $type, $max_return = null, $offset = null)
     {
-        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderContentResponse';
         $request = $this->getFolderContentUsingGETRequest($id, $type, $max_return, $offset);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
-                function ($response) use ($returnType) {
-                    $responseBody = $response->getBody();
-                    if ($returnType === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = $responseBody->getContents();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
+                function ($response) {
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderContentResponse');
                 },
-                function ($exception) {
+                function (RequestException $exception) {
                     $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
                     throw new ApiException(
                         sprintf(
                             '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
                         ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        $response->getBody()
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
                     );
                 }
             );
@@ -1398,99 +1025,52 @@ class FoldersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getFolderContentUsingGETRequest($id, $type, $max_return = null, $offset = null)
+    public function getFolderContentUsingGETRequest($id, $type, $max_return = null, $offset = null)
     {
-        // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
+        // Verify the required parameter 'id' is set.
+        if ($id === null || (is_array($id) && empty($id))) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $id when calling getFolderContentUsingGET'
             );
         }
-        // verify the required parameter 'type' is set
-        if ($type === null || (is_array($type) && count($type) === 0)) {
+        // Verify the required parameter 'type' is set.
+        if ($type === null || (is_array($type) && empty($type))) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $type when calling getFolderContentUsingGET'
             );
         }
 
         $resourcePath = '/rest/asset/v1/folder/{id}/content.json';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-        // query params
-        if ($max_return !== null) {
-            $queryParams['maxReturn'] = ObjectSerializer::toQueryValue($max_return);
+        // Query parameters.
+        if (is_array($max_return)) {
+            $max_return = ObjectSerializer::serializeCollection($max_return, '', true);
         }
-        // query params
-        if ($offset !== null) {
-            $queryParams['offset'] = ObjectSerializer::toQueryValue($offset);
+        $queryParams['maxReturn'] = $max_return;
+        if (is_array($offset)) {
+            $offset = ObjectSerializer::serializeCollection($offset, '', true);
         }
-        // query params
-        if ($type !== null) {
-            $queryParams['type'] = ObjectSerializer::toQueryValue($type);
+        $queryParams['offset'] = $offset;
+        if (is_array($type)) {
+            $type = ObjectSerializer::serializeCollection($type, '', true);
         }
+        $queryParams['type'] = $type;
+        // Remove any null (optional values).
+        $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
 
-        // path params
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'id' . '}',
-                ObjectSerializer::toPathValue($id),
-                $resourcePath
-            );
-        }
-
-        // body params
-        $_tempBody = null;
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/x-www-form-urlencoded']
-            );
-        }
-
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            // $_tempBody is the method argument, if present
-            $httpBody = $_tempBody;
-            
-            if($headers['Content-Type'] === 'application/json') {
-                // \stdClass has no __toString(), so we should encode it manually
-                if ($httpBody instanceof \stdClass) {
-                    $httpBody = \GuzzleHttp\json_encode($httpBody);
-                }
-                // array has no __toString(), so we should encode it manually
-                if(is_array($httpBody)) {
-                    $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($httpBody));
-                }
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $multipartContents[] = [
-                        'name' => $formParamName,
-                        'contents' => $formParamValue
-                    ];
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-
-            } else {
-                // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
-            }
-        }
+        // Path parameters.
+        $resourcePath = str_replace(
+            '{' . 'id' . '}',
+            ObjectSerializer::toPathValue($id),
+            $resourcePath
+        );
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json'],
+            ['application/x-www-form-urlencoded']
+        );
 
 
         $defaultHeaders = [];
@@ -1504,7 +1084,7 @@ class FoldersApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        $query = Query::build($queryParams);
         return new Request(
             'GET',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
@@ -1551,62 +1131,28 @@ class FoldersApi
      */
     public function getFolderUsingGETWithHttpInfo($root = null, $max_depth = null, $max_return = null, $offset = null, $work_space = null)
     {
-        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse';
         $request = $this->getFolderUsingGETRequest($root, $max_depth, $max_return, $offset, $work_space);
 
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
-                );
+            $response = $this->makeRequest($request);
+
+            switch ($response->getStatusCode()) {
+                case 200:
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse');
             }
 
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    $response->getBody()
-                );
-            }
-
-            $responseBody = $response->getBody();
-            if ($returnType === '\SplFileObject') {
-                $content = $responseBody; //stream goes to serializer
-            } else {
-                $content = $responseBody->getContents();
-                if ($returnType !== 'string') {
-                    $content = json_decode($content);
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
+            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse');
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse',
-                        $e->getResponseHeaders()
+                    $e->setResponseObject(
+                        $this->deserializeResponseBody(
+                            $e->getResponseBody(),
+                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse',
+                            $e->getResponseHeaders()
+                        )
                     );
-                    $e->setResponseObject($data);
                     break;
             }
             throw $e;
@@ -1653,41 +1199,25 @@ class FoldersApi
      */
     public function getFolderUsingGETAsyncWithHttpInfo($root = null, $max_depth = null, $max_return = null, $offset = null, $work_space = null)
     {
-        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse';
         $request = $this->getFolderUsingGETRequest($root, $max_depth, $max_return, $offset, $work_space);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
-                function ($response) use ($returnType) {
-                    $responseBody = $response->getBody();
-                    if ($returnType === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = $responseBody->getContents();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
+                function ($response) {
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse');
                 },
-                function ($exception) {
+                function (RequestException $exception) {
                     $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
                     throw new ApiException(
                         sprintf(
                             '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
                         ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        $response->getBody()
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
                     );
                 }
             );
@@ -1705,87 +1235,41 @@ class FoldersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getFolderUsingGETRequest($root = null, $max_depth = null, $max_return = null, $offset = null, $work_space = null)
+    public function getFolderUsingGETRequest($root = null, $max_depth = null, $max_return = null, $offset = null, $work_space = null)
     {
 
         $resourcePath = '/rest/asset/v1/folders.json';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-        // query params
-        if ($root !== null) {
-            $queryParams['root'] = ObjectSerializer::toQueryValue($root);
+        // Query parameters.
+        if (is_array($root)) {
+            $root = ObjectSerializer::serializeCollection($root, '', true);
         }
-        // query params
-        if ($max_depth !== null) {
-            $queryParams['maxDepth'] = ObjectSerializer::toQueryValue($max_depth);
+        $queryParams['root'] = $root;
+        if (is_array($max_depth)) {
+            $max_depth = ObjectSerializer::serializeCollection($max_depth, '', true);
         }
-        // query params
-        if ($max_return !== null) {
-            $queryParams['maxReturn'] = ObjectSerializer::toQueryValue($max_return);
+        $queryParams['maxDepth'] = $max_depth;
+        if (is_array($max_return)) {
+            $max_return = ObjectSerializer::serializeCollection($max_return, '', true);
         }
-        // query params
-        if ($offset !== null) {
-            $queryParams['offset'] = ObjectSerializer::toQueryValue($offset);
+        $queryParams['maxReturn'] = $max_return;
+        if (is_array($offset)) {
+            $offset = ObjectSerializer::serializeCollection($offset, '', true);
         }
-        // query params
-        if ($work_space !== null) {
-            $queryParams['workSpace'] = ObjectSerializer::toQueryValue($work_space);
+        $queryParams['offset'] = $offset;
+        if (is_array($work_space)) {
+            $work_space = ObjectSerializer::serializeCollection($work_space, '', true);
         }
-
-
-        // body params
-        $_tempBody = null;
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/x-www-form-urlencoded']
-            );
-        }
-
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            // $_tempBody is the method argument, if present
-            $httpBody = $_tempBody;
-            
-            if($headers['Content-Type'] === 'application/json') {
-                // \stdClass has no __toString(), so we should encode it manually
-                if ($httpBody instanceof \stdClass) {
-                    $httpBody = \GuzzleHttp\json_encode($httpBody);
-                }
-                // array has no __toString(), so we should encode it manually
-                if(is_array($httpBody)) {
-                    $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($httpBody));
-                }
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $multipartContents[] = [
-                        'name' => $formParamName,
-                        'contents' => $formParamValue
-                    ];
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-
-            } else {
-                // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
-            }
-        }
+        $queryParams['workSpace'] = $work_space;
+        // Remove any null (optional values).
+        $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json'],
+            ['application/x-www-form-urlencoded']
+        );
 
 
         $defaultHeaders = [];
@@ -1799,7 +1283,7 @@ class FoldersApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        $query = Query::build($queryParams);
         return new Request(
             'GET',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
@@ -1840,62 +1324,28 @@ class FoldersApi
      */
     public function updateFolderUsingPOSTWithHttpInfo($id, $update_folder_request)
     {
-        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse';
         $request = $this->updateFolderUsingPOSTRequest($id, $update_folder_request);
 
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
-                );
+            $response = $this->makeRequest($request);
+
+            switch ($response->getStatusCode()) {
+                case 200:
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse');
             }
 
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    $response->getBody()
-                );
-            }
-
-            $responseBody = $response->getBody();
-            if ($returnType === '\SplFileObject') {
-                $content = $responseBody; //stream goes to serializer
-            } else {
-                $content = $responseBody->getContents();
-                if ($returnType !== 'string') {
-                    $content = json_decode($content);
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
+            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse');
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse',
-                        $e->getResponseHeaders()
+                    $e->setResponseObject(
+                        $this->deserializeResponseBody(
+                            $e->getResponseBody(),
+                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse',
+                            $e->getResponseHeaders()
+                        )
                     );
-                    $e->setResponseObject($data);
                     break;
             }
             throw $e;
@@ -1936,41 +1386,25 @@ class FoldersApi
      */
     public function updateFolderUsingPOSTAsyncWithHttpInfo($id, $update_folder_request)
     {
-        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse';
         $request = $this->updateFolderUsingPOSTRequest($id, $update_folder_request);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
-                function ($response) use ($returnType) {
-                    $responseBody = $response->getBody();
-                    if ($returnType === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = $responseBody->getContents();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
+                function ($response) {
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse');
                 },
-                function ($exception) {
+                function (RequestException $exception) {
                     $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
                     throw new ApiException(
                         sprintf(
                             '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
                         ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        $response->getBody()
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
                     );
                 }
             );
@@ -1985,88 +1419,46 @@ class FoldersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function updateFolderUsingPOSTRequest($id, $update_folder_request)
+    public function updateFolderUsingPOSTRequest($id, $update_folder_request)
     {
-        // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
+        // Verify the required parameter 'id' is set.
+        if ($id === null || (is_array($id) && empty($id))) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $id when calling updateFolderUsingPOST'
             );
         }
-        // verify the required parameter 'update_folder_request' is set
-        if ($update_folder_request === null || (is_array($update_folder_request) && count($update_folder_request) === 0)) {
+        // Verify the required parameter 'update_folder_request' is set.
+        if ($update_folder_request === null || (is_array($update_folder_request) && empty($update_folder_request))) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $update_folder_request when calling updateFolderUsingPOST'
             );
         }
 
         $resourcePath = '/rest/asset/v1/folder/{id}.json';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-
-        // path params
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'id' . '}',
-                ObjectSerializer::toPathValue($id),
-                $resourcePath
-            );
-        }
-
-        // body params
-        $_tempBody = null;
-        if (isset($update_folder_request)) {
-            $_tempBody = $update_folder_request;
-        }
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/x-www-form-urlencoded']
-            );
-        }
+        // Path parameters.
+        $resourcePath = str_replace(
+            '{' . 'id' . '}',
+            ObjectSerializer::toPathValue($id),
+            $resourcePath
+        );
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json'],
+            ['application/x-www-form-urlencoded']
+        );
 
         // for model (json/xml)
-        if (isset($_tempBody)) {
-            // $_tempBody is the method argument, if present
-            $httpBody = $_tempBody;
-            
-            if($headers['Content-Type'] === 'application/json') {
-                // \stdClass has no __toString(), so we should encode it manually
-                if ($httpBody instanceof \stdClass) {
-                    $httpBody = \GuzzleHttp\json_encode($httpBody);
-                }
-                // array has no __toString(), so we should encode it manually
-                if(is_array($httpBody)) {
-                    $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($httpBody));
-                }
+        if (!empty($update_folder_request)) {
+            if ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($update_folder_request));
+            } elseif (!is_array($update_folder_request)) {
+                $httpBody = (string) $update_folder_request;
             }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $multipartContents[] = [
-                        'name' => $formParamName,
-                        'contents' => $formParamValue
-                    ];
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-
-            } else {
-                // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            else {
+                $httpBody = '';
             }
         }
 
@@ -2082,7 +1474,7 @@ class FoldersApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        $query = Query::build($queryParams);
         return new Request(
             'POST',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
@@ -2109,4 +1501,83 @@ class FoldersApi
 
         return $options;
     }
+
+    /**
+     * Make a request.
+     *
+     * @param \GuzzleHttp\Psr7\Request $request
+     *   An initialized request object.
+     *
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
+     * @return \Psr\Http\Message\ResponseInterface
+     */
+    private function makeRequest(Request $request) {
+        $options = $this->createHttpClientOption();
+        try {
+           $response = $this->client->send($request, $options);
+        } catch (RequestException $e) {
+            $response = $e->getResponse();
+            throw new ApiException(
+                "[{$e->getCode()}] {$e->getMessage()}",
+                (int) $e->getCode(),
+                $response ? $response->getHeaders() : null,
+                $response ? (string) $response->getBody() : null
+            );
+        }
+
+        $statusCode = $response->getStatusCode();
+        if ($statusCode < 200 || $statusCode > 299) {
+            throw new ApiException(
+                sprintf(
+                    '[%d] Error connecting to the API (%s)',
+                    $statusCode,
+                    (string) $request->getUri()
+                ),
+                $statusCode,
+                $response->getHeaders(),
+                (string) $response->getBody()
+            );
+        }
+        return $response;
+    }
+
+    /**
+     * Convert a response to a return standard return array.
+     *
+     * @param \Psr\Http\Message\ResponseInterface $response
+     *   A response from a request with a serialized body.
+     * @param string $returnType
+     *   The return type.
+     *
+     * @return array
+     */
+    private function responseToReturn(ResponseInterface $response, string $returnType) {
+        return [
+            $this->deserializeResponseBody($response->getBody(), $returnType),
+            $response->getStatusCode(),
+            $response->getHeaders()
+        ];
+    }
+
+    /**
+     * Deserialize a response body.
+     *
+     * @param mixed $responseBody
+     *   The response body.
+     * @param string $returnType
+     *   The return type.
+     * @param array|null $headers
+     *   The a list of headers from the response.
+     * @return mixed
+     *   Either a string or a stream to be passed to a file object.
+     */
+    private function deserializeResponseBody($responseBody, $returnType, $headers = [])
+    {
+        return ObjectSerializer::deserialize(
+            $returnType === '\SplFileObject' ? $responseBody : (string) $responseBody,
+            $returnType,
+            $headers
+        );
+    }
+
 }

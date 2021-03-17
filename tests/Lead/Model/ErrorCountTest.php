@@ -2,8 +2,6 @@
 /**
  * ErrorCountTest
  *
- * PHP version 7
- *
  * @category Class
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
@@ -27,8 +25,7 @@
  * Please update the test case below to test the model.
  */
 
-// namespace NecLimDul\MarketoRest\Lead;
-namespace NecLimDul\MarketoRest\Lead\Model;
+namespace NecLimDul\MarketoRest\Lead\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
@@ -49,8 +46,8 @@ class ErrorCountTest extends TestCase
      */
     public function testErrorCount()
     {
-        $class = new ErrorCount();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -58,8 +55,8 @@ class ErrorCountTest extends TestCase
      */
     public function testPropertyCount()
     {
-        $class = new ErrorCount();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -67,7 +64,7 @@ class ErrorCountTest extends TestCase
      */
     public function testPropertyErrorCode()
     {
-        $class = new ErrorCount();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

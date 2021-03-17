@@ -1,7 +1,6 @@
 <?php
 /**
  * CustomObjectsApiTest
- * PHP version 5
  *
  * @category Class
  * @package  NecLimDul\MarketoRest\Lead
@@ -26,14 +25,12 @@
  * Please update the test case below to test the endpoint.
  */
 
-// namespace NecLimDul\MarketoRest\Lead;
-namespace NecLimDul\MarketoRest\Lead\Model;
+namespace NecLimDul\MarketoRest\Lead\Test\Api;
 
+use NecLimDul\MarketoRest\Lead\Configuration;
+use NecLimDul\MarketoRest\Lead\ApiException;
+use NecLimDul\MarketoRest\Lead\ObjectSerializer;
 use PHPUnit\Framework\TestCase;
-
-use \NecLimDul\MarketoRest\Lead\Configuration;
-use \NecLimDul\MarketoRest\Lead\ApiException;
-use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * CustomObjectsApiTest Class Doc Comment
@@ -42,212 +39,196 @@ use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
+ * @coversDefaultClass \NecLimDul\MarketoRest\Lead\Api\CustomObjectsApi
  */
 class CustomObjectsApiTest extends TestCase
 {
 
 
     /**
-     * Test case for addCustomObjectTypeFieldsUsingPOST
-     *
      * Add Custom Object Type Fields.
      *
+     * @covers ::addCustomObjectTypeFieldsUsingPOST
      */
     public function testAddCustomObjectTypeFieldsUsingPOST()
     {
-        //$class = new CustomObjectsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for approveCustomObjectTypeUsingPOST
-     *
      * Approve Custom Object Type.
      *
+     * @covers ::approveCustomObjectTypeUsingPOST
      */
     public function testApproveCustomObjectTypeUsingPOST()
     {
-        //$class = new CustomObjectsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for deleteCustomObjectTypeFieldsUsingPOST
-     *
      * Delete Custom Object Type Fields.
      *
+     * @covers ::deleteCustomObjectTypeFieldsUsingPOST
      */
     public function testDeleteCustomObjectTypeFieldsUsingPOST()
     {
-        //$class = new CustomObjectsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for deleteCustomObjectTypeUsingPOST
-     *
      * Delete Custom Object Type.
      *
+     * @covers ::deleteCustomObjectTypeUsingPOST
      */
     public function testDeleteCustomObjectTypeUsingPOST()
     {
-        //$class = new CustomObjectsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for deleteCustomObjectsUsingPOST
-     *
      * Delete Custom Objects.
      *
+     * @covers ::deleteCustomObjectsUsingPOST
      */
     public function testDeleteCustomObjectsUsingPOST()
     {
-        //$class = new CustomObjectsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for describeCustomObjectTypeUsingGET
-     *
      * Describe Custom Object Type.
      *
+     * @covers ::describeCustomObjectTypeUsingGET
      */
     public function testDescribeCustomObjectTypeUsingGET()
     {
-        //$class = new CustomObjectsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for describeUsingGET1
-     *
      * Describe Custom Objects.
      *
+     * @covers ::describeUsingGET1
      */
     public function testDescribeUsingGET1()
     {
-        //$class = new CustomObjectsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for discardCustomObjectTypeUsingPOST
-     *
      * Discard Custom Object Type Draft.
      *
+     * @covers ::discardCustomObjectTypeUsingPOST
      */
     public function testDiscardCustomObjectTypeUsingPOST()
     {
-        //$class = new CustomObjectsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getCustomObjectTypeDependentAssetsUsingGET
-     *
      * Get Custom Object Dependent Assets.
      *
+     * @covers ::getCustomObjectTypeDependentAssetsUsingGET
      */
     public function testGetCustomObjectTypeDependentAssetsUsingGET()
     {
-        //$class = new CustomObjectsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getCustomObjectTypeFieldDataTypesUsingGET
-     *
      * Get Custom Object Type Field Data Types.
      *
+     * @covers ::getCustomObjectTypeFieldDataTypesUsingGET
      */
     public function testGetCustomObjectTypeFieldDataTypesUsingGET()
     {
-        //$class = new CustomObjectsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getCustomObjectTypeLinkableObjectsUsingGET
-     *
      * Get Custom Object Linkable Objects.
      *
+     * @covers ::getCustomObjectTypeLinkableObjectsUsingGET
      */
     public function testGetCustomObjectTypeLinkableObjectsUsingGET()
     {
-        //$class = new CustomObjectsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getCustomObjectsUsingGET
-     *
      * Get Custom Objects.
      *
+     * @covers ::getCustomObjectsUsingGET
      */
     public function testGetCustomObjectsUsingGET()
     {
-        //$class = new CustomObjectsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for listCustomObjectTypesUsingGET
-     *
      * List Custom Object Types.
      *
+     * @covers ::listCustomObjectTypesUsingGET
      */
     public function testListCustomObjectTypesUsingGET()
     {
-        //$class = new CustomObjectsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for listCustomObjectsUsingGET
-     *
      * List Custom Objects.
      *
+     * @covers ::listCustomObjectsUsingGET
      */
     public function testListCustomObjectsUsingGET()
     {
-        //$class = new CustomObjectsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for syncCustomObjectTypeUsingPOST
-     *
      * Sync Custom Object Type.
      *
+     * @covers ::syncCustomObjectTypeUsingPOST
      */
     public function testSyncCustomObjectTypeUsingPOST()
     {
-        //$class = new CustomObjectsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for syncCustomObjectsUsingPOST
-     *
      * Sync Custom Objects.
      *
+     * @covers ::syncCustomObjectsUsingPOST
      */
     public function testSyncCustomObjectsUsingPOST()
     {
-        //$class = new CustomObjectsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for updateCustomObjectTypeFieldUsingPOST
-     *
      * Update Custom Object Type Field.
      *
+     * @covers ::updateCustomObjectTypeFieldUsingPOST
      */
     public function testUpdateCustomObjectTypeFieldUsingPOST()
     {
-        //$class = new CustomObjectsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

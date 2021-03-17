@@ -2,8 +2,6 @@
 /**
  * ObjectMetaDataTest
  *
- * PHP version 7
- *
  * @category Class
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
@@ -27,8 +25,7 @@
  * Please update the test case below to test the model.
  */
 
-// namespace NecLimDul\MarketoRest\Lead;
-namespace NecLimDul\MarketoRest\Lead\Model;
+namespace NecLimDul\MarketoRest\Lead\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
@@ -49,8 +46,8 @@ class ObjectMetaDataTest extends TestCase
      */
     public function testObjectMetaData()
     {
-        $class = new ObjectMetaData();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -58,8 +55,8 @@ class ObjectMetaDataTest extends TestCase
      */
     public function testPropertyCreatedAt()
     {
-        $class = new ObjectMetaData();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -67,8 +64,8 @@ class ObjectMetaDataTest extends TestCase
      */
     public function testPropertyDedupeFields()
     {
-        $class = new ObjectMetaData();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -76,8 +73,8 @@ class ObjectMetaDataTest extends TestCase
      */
     public function testPropertyDescription()
     {
-        $class = new ObjectMetaData();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -85,8 +82,8 @@ class ObjectMetaDataTest extends TestCase
      */
     public function testPropertyDisplayName()
     {
-        $class = new ObjectMetaData();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -94,8 +91,8 @@ class ObjectMetaDataTest extends TestCase
      */
     public function testPropertyPluralName()
     {
-        $class = new ObjectMetaData();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -103,8 +100,8 @@ class ObjectMetaDataTest extends TestCase
      */
     public function testPropertyFields()
     {
-        $class = new ObjectMetaData();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -112,8 +109,8 @@ class ObjectMetaDataTest extends TestCase
      */
     public function testPropertyIdField()
     {
-        $class = new ObjectMetaData();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -121,8 +118,8 @@ class ObjectMetaDataTest extends TestCase
      */
     public function testPropertyApiName()
     {
-        $class = new ObjectMetaData();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -130,8 +127,8 @@ class ObjectMetaDataTest extends TestCase
      */
     public function testPropertyRelationships()
     {
-        $class = new ObjectMetaData();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -139,8 +136,8 @@ class ObjectMetaDataTest extends TestCase
      */
     public function testPropertySearchableFields()
     {
-        $class = new ObjectMetaData();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -148,8 +145,8 @@ class ObjectMetaDataTest extends TestCase
      */
     public function testPropertyUpdatedAt()
     {
-        $class = new ObjectMetaData();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -157,8 +154,8 @@ class ObjectMetaDataTest extends TestCase
      */
     public function testPropertyState()
     {
-        $class = new ObjectMetaData();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -166,7 +163,7 @@ class ObjectMetaDataTest extends TestCase
      */
     public function testPropertyVersion()
     {
-        $class = new ObjectMetaData();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

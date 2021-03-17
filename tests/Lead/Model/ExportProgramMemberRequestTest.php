@@ -2,8 +2,6 @@
 /**
  * ExportProgramMemberRequestTest
  *
- * PHP version 7
- *
  * @category Class
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
@@ -27,8 +25,7 @@
  * Please update the test case below to test the model.
  */
 
-// namespace NecLimDul\MarketoRest\Lead;
-namespace NecLimDul\MarketoRest\Lead\Model;
+namespace NecLimDul\MarketoRest\Lead\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
@@ -49,8 +46,8 @@ class ExportProgramMemberRequestTest extends TestCase
      */
     public function testExportProgramMemberRequest()
     {
-        $class = new ExportProgramMemberRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -58,8 +55,8 @@ class ExportProgramMemberRequestTest extends TestCase
      */
     public function testPropertyColumnHeaderNames()
     {
-        $class = new ExportProgramMemberRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -67,8 +64,8 @@ class ExportProgramMemberRequestTest extends TestCase
      */
     public function testPropertyFields()
     {
-        $class = new ExportProgramMemberRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -76,8 +73,8 @@ class ExportProgramMemberRequestTest extends TestCase
      */
     public function testPropertyFilter()
     {
-        $class = new ExportProgramMemberRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -85,7 +82,7 @@ class ExportProgramMemberRequestTest extends TestCase
      */
     public function testPropertyFormat()
     {
-        $class = new ExportProgramMemberRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

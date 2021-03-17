@@ -2,8 +2,6 @@
 /**
  * EmailDynamicContentResponseTest
  *
- * PHP version 7
- *
  * @category Class
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
@@ -27,8 +25,7 @@
  * Please update the test case below to test the model.
  */
 
-// namespace NecLimDul\MarketoRest\Asset;
-namespace NecLimDul\MarketoRest\Asset\Model;
+namespace NecLimDul\MarketoRest\Asset\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
@@ -49,8 +46,8 @@ class EmailDynamicContentResponseTest extends TestCase
      */
     public function testEmailDynamicContentResponse()
     {
-        $class = new EmailDynamicContentResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -58,8 +55,8 @@ class EmailDynamicContentResponseTest extends TestCase
      */
     public function testPropertyContent()
     {
-        $class = new EmailDynamicContentResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -67,8 +64,8 @@ class EmailDynamicContentResponseTest extends TestCase
      */
     public function testPropertyCreatedAt()
     {
-        $class = new EmailDynamicContentResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -76,8 +73,8 @@ class EmailDynamicContentResponseTest extends TestCase
      */
     public function testPropertyId()
     {
-        $class = new EmailDynamicContentResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -85,8 +82,8 @@ class EmailDynamicContentResponseTest extends TestCase
      */
     public function testPropertySegmentation()
     {
-        $class = new EmailDynamicContentResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -94,7 +91,7 @@ class EmailDynamicContentResponseTest extends TestCase
      */
     public function testPropertyUpdatedAt()
     {
-        $class = new EmailDynamicContentResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

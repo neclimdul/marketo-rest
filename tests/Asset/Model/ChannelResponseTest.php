@@ -2,8 +2,6 @@
 /**
  * ChannelResponseTest
  *
- * PHP version 7
- *
  * @category Class
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
@@ -27,8 +25,7 @@
  * Please update the test case below to test the model.
  */
 
-// namespace NecLimDul\MarketoRest\Asset;
-namespace NecLimDul\MarketoRest\Asset\Model;
+namespace NecLimDul\MarketoRest\Asset\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
@@ -49,8 +46,8 @@ class ChannelResponseTest extends TestCase
      */
     public function testChannelResponse()
     {
-        $class = new ChannelResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -58,8 +55,8 @@ class ChannelResponseTest extends TestCase
      */
     public function testPropertyApplicableProgramType()
     {
-        $class = new ChannelResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -67,8 +64,8 @@ class ChannelResponseTest extends TestCase
      */
     public function testPropertyCreatedAt()
     {
-        $class = new ChannelResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -76,8 +73,8 @@ class ChannelResponseTest extends TestCase
      */
     public function testPropertyId()
     {
-        $class = new ChannelResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -85,8 +82,8 @@ class ChannelResponseTest extends TestCase
      */
     public function testPropertyName()
     {
-        $class = new ChannelResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -94,8 +91,8 @@ class ChannelResponseTest extends TestCase
      */
     public function testPropertyProgressionStatuses()
     {
-        $class = new ChannelResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -103,7 +100,7 @@ class ChannelResponseTest extends TestCase
      */
     public function testPropertyUpdatedAt()
     {
-        $class = new ChannelResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

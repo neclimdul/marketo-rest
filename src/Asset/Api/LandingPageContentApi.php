@@ -1,7 +1,6 @@
 <?php
 /**
  * LandingPageContentApi
- * PHP version 5
  *
  * @category Class
  * @package  NecLimDul\MarketoRest\Asset
@@ -32,8 +31,10 @@ use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
+use GuzzleHttp\Psr7\Query;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
+use Psr\Http\Message\ResponseInterface;
 use NecLimDul\MarketoRest\Asset\ApiException;
 use NecLimDul\MarketoRest\Asset\Configuration;
 use NecLimDul\MarketoRest\Asset\HeaderSelector;
@@ -49,6 +50,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  */
 class LandingPageContentApi
 {
+
     /**
      * @var ClientInterface
      */
@@ -65,18 +67,46 @@ class LandingPageContentApi
     protected $headerSelector;
 
     /**
-     * @param ClientInterface $client
-     * @param Configuration   $config
-     * @param HeaderSelector  $selector
+     * @var int Host index
+     */
+    protected $hostIndex;
+
+    /**
+     * @param ClientInterface|null $client
+     * @param Configuration|null   $config
+     * @param HeaderSelector|null  $selector
+     * @param int                  $hostIndex (Optional) host index to select the list of hosts if defined in the OpenAPI spec
      */
     public function __construct(
         ClientInterface $client = null,
         Configuration $config = null,
-        HeaderSelector $selector = null
+        HeaderSelector $selector = null,
+        $hostIndex = 0
     ) {
         $this->client = $client ?: new Client();
         $this->config = $config ?: new Configuration();
         $this->headerSelector = $selector ?: new HeaderSelector();
+        $this->hostIndex = $hostIndex;
+    }
+
+    /**
+     * Set the host index
+     *
+     * @param int $hostIndex Host index (required)
+     */
+    public function setHostIndex($hostIndex)
+    {
+        $this->hostIndex = $hostIndex;
+    }
+
+    /**
+     * Get the host index
+     *
+     * @return int Host index
+     */
+    public function getHostIndex()
+    {
+        return $this->hostIndex;
     }
 
     /**
@@ -119,62 +149,28 @@ class LandingPageContentApi
      */
     public function addLandingPageContentUsingPOSTWithHttpInfo($id, $request)
     {
-        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse';
         $request = $this->addLandingPageContentUsingPOSTRequest($id, $request);
 
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
-                );
+            $response = $this->makeRequest($request);
+
+            switch ($response->getStatusCode()) {
+                case 200:
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
             }
 
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    $response->getBody()
-                );
-            }
-
-            $responseBody = $response->getBody();
-            if ($returnType === '\SplFileObject') {
-                $content = $responseBody; //stream goes to serializer
-            } else {
-                $content = $responseBody->getContents();
-                if ($returnType !== 'string') {
-                    $content = json_decode($content);
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
+            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
-                        $e->getResponseHeaders()
+                    $e->setResponseObject(
+                        $this->deserializeResponseBody(
+                            $e->getResponseBody(),
+                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+                            $e->getResponseHeaders()
+                        )
                     );
-                    $e->setResponseObject($data);
                     break;
             }
             throw $e;
@@ -215,41 +211,25 @@ class LandingPageContentApi
      */
     public function addLandingPageContentUsingPOSTAsyncWithHttpInfo($id, $request)
     {
-        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse';
         $request = $this->addLandingPageContentUsingPOSTRequest($id, $request);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
-                function ($response) use ($returnType) {
-                    $responseBody = $response->getBody();
-                    if ($returnType === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = $responseBody->getContents();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
+                function ($response) {
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
                 },
-                function ($exception) {
+                function (RequestException $exception) {
                     $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
                     throw new ApiException(
                         sprintf(
                             '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
                         ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        $response->getBody()
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
                     );
                 }
             );
@@ -264,88 +244,46 @@ class LandingPageContentApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function addLandingPageContentUsingPOSTRequest($id, $request)
+    public function addLandingPageContentUsingPOSTRequest($id, $request)
     {
-        // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
+        // Verify the required parameter 'id' is set.
+        if ($id === null || (is_array($id) && empty($id))) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $id when calling addLandingPageContentUsingPOST'
             );
         }
-        // verify the required parameter 'request' is set
-        if ($request === null || (is_array($request) && count($request) === 0)) {
+        // Verify the required parameter 'request' is set.
+        if ($request === null || (is_array($request) && empty($request))) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $request when calling addLandingPageContentUsingPOST'
             );
         }
 
         $resourcePath = '/rest/asset/v1/landingPage/{id}/content.json';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-
-        // path params
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'id' . '}',
-                ObjectSerializer::toPathValue($id),
-                $resourcePath
-            );
-        }
-
-        // body params
-        $_tempBody = null;
-        if (isset($request)) {
-            $_tempBody = $request;
-        }
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/x-www-form-urlencoded']
-            );
-        }
+        // Path parameters.
+        $resourcePath = str_replace(
+            '{' . 'id' . '}',
+            ObjectSerializer::toPathValue($id),
+            $resourcePath
+        );
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json'],
+            ['application/x-www-form-urlencoded']
+        );
 
         // for model (json/xml)
-        if (isset($_tempBody)) {
-            // $_tempBody is the method argument, if present
-            $httpBody = $_tempBody;
-            
-            if($headers['Content-Type'] === 'application/json') {
-                // \stdClass has no __toString(), so we should encode it manually
-                if ($httpBody instanceof \stdClass) {
-                    $httpBody = \GuzzleHttp\json_encode($httpBody);
-                }
-                // array has no __toString(), so we should encode it manually
-                if(is_array($httpBody)) {
-                    $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($httpBody));
-                }
+        if (!empty($request)) {
+            if ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($request));
+            } elseif (!is_array($request)) {
+                $httpBody = (string) $request;
             }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $multipartContents[] = [
-                        'name' => $formParamName,
-                        'contents' => $formParamValue
-                    ];
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-
-            } else {
-                // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            else {
+                $httpBody = '';
             }
         }
 
@@ -361,7 +299,7 @@ class LandingPageContentApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        $query = Query::build($queryParams);
         return new Request(
             'POST',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
@@ -402,62 +340,28 @@ class LandingPageContentApi
      */
     public function getLandingPageContentUsingGETWithHttpInfo($id, $status = null)
     {
-        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageContentResponse';
         $request = $this->getLandingPageContentUsingGETRequest($id, $status);
 
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
-                );
+            $response = $this->makeRequest($request);
+
+            switch ($response->getStatusCode()) {
+                case 200:
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageContentResponse');
             }
 
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    $response->getBody()
-                );
-            }
-
-            $responseBody = $response->getBody();
-            if ($returnType === '\SplFileObject') {
-                $content = $responseBody; //stream goes to serializer
-            } else {
-                $content = $responseBody->getContents();
-                if ($returnType !== 'string') {
-                    $content = json_decode($content);
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
+            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageContentResponse');
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageContentResponse',
-                        $e->getResponseHeaders()
+                    $e->setResponseObject(
+                        $this->deserializeResponseBody(
+                            $e->getResponseBody(),
+                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageContentResponse',
+                            $e->getResponseHeaders()
+                        )
                     );
-                    $e->setResponseObject($data);
                     break;
             }
             throw $e;
@@ -498,41 +402,25 @@ class LandingPageContentApi
      */
     public function getLandingPageContentUsingGETAsyncWithHttpInfo($id, $status = null)
     {
-        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageContentResponse';
         $request = $this->getLandingPageContentUsingGETRequest($id, $status);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
-                function ($response) use ($returnType) {
-                    $responseBody = $response->getBody();
-                    if ($returnType === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = $responseBody->getContents();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
+                function ($response) {
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageContentResponse');
                 },
-                function ($exception) {
+                function (RequestException $exception) {
                     $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
                     throw new ApiException(
                         sprintf(
                             '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
                         ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        $response->getBody()
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
                     );
                 }
             );
@@ -547,85 +435,38 @@ class LandingPageContentApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getLandingPageContentUsingGETRequest($id, $status = null)
+    public function getLandingPageContentUsingGETRequest($id, $status = null)
     {
-        // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
+        // Verify the required parameter 'id' is set.
+        if ($id === null || (is_array($id) && empty($id))) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $id when calling getLandingPageContentUsingGET'
             );
         }
 
         $resourcePath = '/rest/asset/v1/landingPage/{id}/content.json';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-        // query params
-        if ($status !== null) {
-            $queryParams['status'] = ObjectSerializer::toQueryValue($status);
+        // Query parameters.
+        if (is_array($status)) {
+            $status = ObjectSerializer::serializeCollection($status, '', true);
         }
+        $queryParams['status'] = $status;
+        // Remove any null (optional values).
+        $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
 
-        // path params
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'id' . '}',
-                ObjectSerializer::toPathValue($id),
-                $resourcePath
-            );
-        }
-
-        // body params
-        $_tempBody = null;
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/x-www-form-urlencoded']
-            );
-        }
-
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            // $_tempBody is the method argument, if present
-            $httpBody = $_tempBody;
-            
-            if($headers['Content-Type'] === 'application/json') {
-                // \stdClass has no __toString(), so we should encode it manually
-                if ($httpBody instanceof \stdClass) {
-                    $httpBody = \GuzzleHttp\json_encode($httpBody);
-                }
-                // array has no __toString(), so we should encode it manually
-                if(is_array($httpBody)) {
-                    $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($httpBody));
-                }
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $multipartContents[] = [
-                        'name' => $formParamName,
-                        'contents' => $formParamValue
-                    ];
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-
-            } else {
-                // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
-            }
-        }
+        // Path parameters.
+        $resourcePath = str_replace(
+            '{' . 'id' . '}',
+            ObjectSerializer::toPathValue($id),
+            $resourcePath
+        );
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json'],
+            ['application/x-www-form-urlencoded']
+        );
 
 
         $defaultHeaders = [];
@@ -639,7 +480,7 @@ class LandingPageContentApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        $query = Query::build($queryParams);
         return new Request(
             'GET',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
@@ -680,62 +521,28 @@ class LandingPageContentApi
      */
     public function getLandingPageDynamicContentsUsingGETWithHttpInfo($id, $content_id)
     {
-        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageDynamicContentResponse';
         $request = $this->getLandingPageDynamicContentsUsingGETRequest($id, $content_id);
 
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
-                );
+            $response = $this->makeRequest($request);
+
+            switch ($response->getStatusCode()) {
+                case 200:
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageDynamicContentResponse');
             }
 
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    $response->getBody()
-                );
-            }
-
-            $responseBody = $response->getBody();
-            if ($returnType === '\SplFileObject') {
-                $content = $responseBody; //stream goes to serializer
-            } else {
-                $content = $responseBody->getContents();
-                if ($returnType !== 'string') {
-                    $content = json_decode($content);
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
+            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageDynamicContentResponse');
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageDynamicContentResponse',
-                        $e->getResponseHeaders()
+                    $e->setResponseObject(
+                        $this->deserializeResponseBody(
+                            $e->getResponseBody(),
+                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageDynamicContentResponse',
+                            $e->getResponseHeaders()
+                        )
                     );
-                    $e->setResponseObject($data);
                     break;
             }
             throw $e;
@@ -776,41 +583,25 @@ class LandingPageContentApi
      */
     public function getLandingPageDynamicContentsUsingGETAsyncWithHttpInfo($id, $content_id)
     {
-        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageDynamicContentResponse';
         $request = $this->getLandingPageDynamicContentsUsingGETRequest($id, $content_id);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
-                function ($response) use ($returnType) {
-                    $responseBody = $response->getBody();
-                    if ($returnType === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = $responseBody->getContents();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
+                function ($response) {
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageDynamicContentResponse');
                 },
-                function ($exception) {
+                function (RequestException $exception) {
                     $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
                     throw new ApiException(
                         sprintf(
                             '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
                         ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        $response->getBody()
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
                     );
                 }
             );
@@ -825,95 +616,41 @@ class LandingPageContentApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getLandingPageDynamicContentsUsingGETRequest($id, $content_id)
+    public function getLandingPageDynamicContentsUsingGETRequest($id, $content_id)
     {
-        // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
+        // Verify the required parameter 'id' is set.
+        if ($id === null || (is_array($id) && empty($id))) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $id when calling getLandingPageDynamicContentsUsingGET'
             );
         }
-        // verify the required parameter 'content_id' is set
-        if ($content_id === null || (is_array($content_id) && count($content_id) === 0)) {
+        // Verify the required parameter 'content_id' is set.
+        if ($content_id === null || (is_array($content_id) && empty($content_id))) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $content_id when calling getLandingPageDynamicContentsUsingGET'
             );
         }
 
         $resourcePath = '/rest/asset/v1/landingPage/{id}/dynamicContent/{contentId}.json';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-
-        // path params
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'id' . '}',
-                ObjectSerializer::toPathValue($id),
-                $resourcePath
-            );
-        }
-        // path params
-        if ($content_id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'contentId' . '}',
-                ObjectSerializer::toPathValue($content_id),
-                $resourcePath
-            );
-        }
-
-        // body params
-        $_tempBody = null;
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/x-www-form-urlencoded']
-            );
-        }
-
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            // $_tempBody is the method argument, if present
-            $httpBody = $_tempBody;
-            
-            if($headers['Content-Type'] === 'application/json') {
-                // \stdClass has no __toString(), so we should encode it manually
-                if ($httpBody instanceof \stdClass) {
-                    $httpBody = \GuzzleHttp\json_encode($httpBody);
-                }
-                // array has no __toString(), so we should encode it manually
-                if(is_array($httpBody)) {
-                    $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($httpBody));
-                }
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $multipartContents[] = [
-                        'name' => $formParamName,
-                        'contents' => $formParamValue
-                    ];
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-
-            } else {
-                // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
-            }
-        }
+        // Path parameters.
+        $resourcePath = str_replace(
+            '{' . 'id' . '}',
+            ObjectSerializer::toPathValue($id),
+            $resourcePath
+        );
+        $resourcePath = str_replace(
+            '{' . 'contentId' . '}',
+            ObjectSerializer::toPathValue($content_id),
+            $resourcePath
+        );
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json'],
+            ['application/x-www-form-urlencoded']
+        );
 
 
         $defaultHeaders = [];
@@ -927,7 +664,7 @@ class LandingPageContentApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        $query = Query::build($queryParams);
         return new Request(
             'GET',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
@@ -968,62 +705,28 @@ class LandingPageContentApi
      */
     public function removeLandingPageContentUsingPOSTWithHttpInfo($id, $content_id)
     {
-        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse';
         $request = $this->removeLandingPageContentUsingPOSTRequest($id, $content_id);
 
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
-                );
+            $response = $this->makeRequest($request);
+
+            switch ($response->getStatusCode()) {
+                case 200:
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
             }
 
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    $response->getBody()
-                );
-            }
-
-            $responseBody = $response->getBody();
-            if ($returnType === '\SplFileObject') {
-                $content = $responseBody; //stream goes to serializer
-            } else {
-                $content = $responseBody->getContents();
-                if ($returnType !== 'string') {
-                    $content = json_decode($content);
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
+            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
-                        $e->getResponseHeaders()
+                    $e->setResponseObject(
+                        $this->deserializeResponseBody(
+                            $e->getResponseBody(),
+                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+                            $e->getResponseHeaders()
+                        )
                     );
-                    $e->setResponseObject($data);
                     break;
             }
             throw $e;
@@ -1064,41 +767,25 @@ class LandingPageContentApi
      */
     public function removeLandingPageContentUsingPOSTAsyncWithHttpInfo($id, $content_id)
     {
-        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse';
         $request = $this->removeLandingPageContentUsingPOSTRequest($id, $content_id);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
-                function ($response) use ($returnType) {
-                    $responseBody = $response->getBody();
-                    if ($returnType === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = $responseBody->getContents();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
+                function ($response) {
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
                 },
-                function ($exception) {
+                function (RequestException $exception) {
                     $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
                     throw new ApiException(
                         sprintf(
                             '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
                         ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        $response->getBody()
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
                     );
                 }
             );
@@ -1113,95 +800,41 @@ class LandingPageContentApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function removeLandingPageContentUsingPOSTRequest($id, $content_id)
+    public function removeLandingPageContentUsingPOSTRequest($id, $content_id)
     {
-        // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
+        // Verify the required parameter 'id' is set.
+        if ($id === null || (is_array($id) && empty($id))) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $id when calling removeLandingPageContentUsingPOST'
             );
         }
-        // verify the required parameter 'content_id' is set
-        if ($content_id === null || (is_array($content_id) && count($content_id) === 0)) {
+        // Verify the required parameter 'content_id' is set.
+        if ($content_id === null || (is_array($content_id) && empty($content_id))) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $content_id when calling removeLandingPageContentUsingPOST'
             );
         }
 
         $resourcePath = '/rest/asset/v1/landingPage/{id}/content/{contentId}/delete.json';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-
-        // path params
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'id' . '}',
-                ObjectSerializer::toPathValue($id),
-                $resourcePath
-            );
-        }
-        // path params
-        if ($content_id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'contentId' . '}',
-                ObjectSerializer::toPathValue($content_id),
-                $resourcePath
-            );
-        }
-
-        // body params
-        $_tempBody = null;
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/x-www-form-urlencoded']
-            );
-        }
-
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            // $_tempBody is the method argument, if present
-            $httpBody = $_tempBody;
-            
-            if($headers['Content-Type'] === 'application/json') {
-                // \stdClass has no __toString(), so we should encode it manually
-                if ($httpBody instanceof \stdClass) {
-                    $httpBody = \GuzzleHttp\json_encode($httpBody);
-                }
-                // array has no __toString(), so we should encode it manually
-                if(is_array($httpBody)) {
-                    $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($httpBody));
-                }
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $multipartContents[] = [
-                        'name' => $formParamName,
-                        'contents' => $formParamValue
-                    ];
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-
-            } else {
-                // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
-            }
-        }
+        // Path parameters.
+        $resourcePath = str_replace(
+            '{' . 'id' . '}',
+            ObjectSerializer::toPathValue($id),
+            $resourcePath
+        );
+        $resourcePath = str_replace(
+            '{' . 'contentId' . '}',
+            ObjectSerializer::toPathValue($content_id),
+            $resourcePath
+        );
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json'],
+            ['application/x-www-form-urlencoded']
+        );
 
 
         $defaultHeaders = [];
@@ -1215,7 +848,7 @@ class LandingPageContentApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        $query = Query::build($queryParams);
         return new Request(
             'POST',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
@@ -1258,62 +891,28 @@ class LandingPageContentApi
      */
     public function updateLandingPageContentUsingPOSTWithHttpInfo($id, $content_id, $request)
     {
-        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse';
         $request = $this->updateLandingPageContentUsingPOSTRequest($id, $content_id, $request);
 
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
-                );
+            $response = $this->makeRequest($request);
+
+            switch ($response->getStatusCode()) {
+                case 200:
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
             }
 
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    $response->getBody()
-                );
-            }
-
-            $responseBody = $response->getBody();
-            if ($returnType === '\SplFileObject') {
-                $content = $responseBody; //stream goes to serializer
-            } else {
-                $content = $responseBody->getContents();
-                if ($returnType !== 'string') {
-                    $content = json_decode($content);
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
+            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
-                        $e->getResponseHeaders()
+                    $e->setResponseObject(
+                        $this->deserializeResponseBody(
+                            $e->getResponseBody(),
+                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+                            $e->getResponseHeaders()
+                        )
                     );
-                    $e->setResponseObject($data);
                     break;
             }
             throw $e;
@@ -1356,41 +955,25 @@ class LandingPageContentApi
      */
     public function updateLandingPageContentUsingPOSTAsyncWithHttpInfo($id, $content_id, $request)
     {
-        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse';
         $request = $this->updateLandingPageContentUsingPOSTRequest($id, $content_id, $request);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
-                function ($response) use ($returnType) {
-                    $responseBody = $response->getBody();
-                    if ($returnType === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = $responseBody->getContents();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
+                function ($response) {
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
                 },
-                function ($exception) {
+                function (RequestException $exception) {
                     $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
                     throw new ApiException(
                         sprintf(
                             '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
                         ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        $response->getBody()
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
                     );
                 }
             );
@@ -1406,102 +989,57 @@ class LandingPageContentApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function updateLandingPageContentUsingPOSTRequest($id, $content_id, $request)
+    public function updateLandingPageContentUsingPOSTRequest($id, $content_id, $request)
     {
-        // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
+        // Verify the required parameter 'id' is set.
+        if ($id === null || (is_array($id) && empty($id))) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $id when calling updateLandingPageContentUsingPOST'
             );
         }
-        // verify the required parameter 'content_id' is set
-        if ($content_id === null || (is_array($content_id) && count($content_id) === 0)) {
+        // Verify the required parameter 'content_id' is set.
+        if ($content_id === null || (is_array($content_id) && empty($content_id))) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $content_id when calling updateLandingPageContentUsingPOST'
             );
         }
-        // verify the required parameter 'request' is set
-        if ($request === null || (is_array($request) && count($request) === 0)) {
+        // Verify the required parameter 'request' is set.
+        if ($request === null || (is_array($request) && empty($request))) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $request when calling updateLandingPageContentUsingPOST'
             );
         }
 
         $resourcePath = '/rest/asset/v1/landingPage/{id}/content/{contentId}.json';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-
-        // path params
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'id' . '}',
-                ObjectSerializer::toPathValue($id),
-                $resourcePath
-            );
-        }
-        // path params
-        if ($content_id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'contentId' . '}',
-                ObjectSerializer::toPathValue($content_id),
-                $resourcePath
-            );
-        }
-
-        // body params
-        $_tempBody = null;
-        if (isset($request)) {
-            $_tempBody = $request;
-        }
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/x-www-form-urlencoded']
-            );
-        }
+        // Path parameters.
+        $resourcePath = str_replace(
+            '{' . 'id' . '}',
+            ObjectSerializer::toPathValue($id),
+            $resourcePath
+        );
+        $resourcePath = str_replace(
+            '{' . 'contentId' . '}',
+            ObjectSerializer::toPathValue($content_id),
+            $resourcePath
+        );
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json'],
+            ['application/x-www-form-urlencoded']
+        );
 
         // for model (json/xml)
-        if (isset($_tempBody)) {
-            // $_tempBody is the method argument, if present
-            $httpBody = $_tempBody;
-            
-            if($headers['Content-Type'] === 'application/json') {
-                // \stdClass has no __toString(), so we should encode it manually
-                if ($httpBody instanceof \stdClass) {
-                    $httpBody = \GuzzleHttp\json_encode($httpBody);
-                }
-                // array has no __toString(), so we should encode it manually
-                if(is_array($httpBody)) {
-                    $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($httpBody));
-                }
+        if (!empty($request)) {
+            if ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($request));
+            } elseif (!is_array($request)) {
+                $httpBody = (string) $request;
             }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $multipartContents[] = [
-                        'name' => $formParamName,
-                        'contents' => $formParamValue
-                    ];
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-
-            } else {
-                // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            else {
+                $httpBody = '';
             }
         }
 
@@ -1517,7 +1055,7 @@ class LandingPageContentApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        $query = Query::build($queryParams);
         return new Request(
             'POST',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
@@ -1560,62 +1098,28 @@ class LandingPageContentApi
      */
     public function updateLandingPageDynamicContentUsingPOSTWithHttpInfo($id, $content_id, $request = null)
     {
-        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse';
         $request = $this->updateLandingPageDynamicContentUsingPOSTRequest($id, $content_id, $request);
 
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
-                );
+            $response = $this->makeRequest($request);
+
+            switch ($response->getStatusCode()) {
+                case 200:
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
             }
 
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    $response->getBody()
-                );
-            }
-
-            $responseBody = $response->getBody();
-            if ($returnType === '\SplFileObject') {
-                $content = $responseBody; //stream goes to serializer
-            } else {
-                $content = $responseBody->getContents();
-                if ($returnType !== 'string') {
-                    $content = json_decode($content);
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
+            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
-                        $e->getResponseHeaders()
+                    $e->setResponseObject(
+                        $this->deserializeResponseBody(
+                            $e->getResponseBody(),
+                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+                            $e->getResponseHeaders()
+                        )
                     );
-                    $e->setResponseObject($data);
                     break;
             }
             throw $e;
@@ -1658,41 +1162,25 @@ class LandingPageContentApi
      */
     public function updateLandingPageDynamicContentUsingPOSTAsyncWithHttpInfo($id, $content_id, $request = null)
     {
-        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse';
         $request = $this->updateLandingPageDynamicContentUsingPOSTRequest($id, $content_id, $request);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
-                function ($response) use ($returnType) {
-                    $responseBody = $response->getBody();
-                    if ($returnType === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = $responseBody->getContents();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
+                function ($response) {
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
                 },
-                function ($exception) {
+                function (RequestException $exception) {
                     $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
                     throw new ApiException(
                         sprintf(
                             '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
                         ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        $response->getBody()
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
                     );
                 }
             );
@@ -1708,96 +1196,51 @@ class LandingPageContentApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function updateLandingPageDynamicContentUsingPOSTRequest($id, $content_id, $request = null)
+    public function updateLandingPageDynamicContentUsingPOSTRequest($id, $content_id, $request = null)
     {
-        // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
+        // Verify the required parameter 'id' is set.
+        if ($id === null || (is_array($id) && empty($id))) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $id when calling updateLandingPageDynamicContentUsingPOST'
             );
         }
-        // verify the required parameter 'content_id' is set
-        if ($content_id === null || (is_array($content_id) && count($content_id) === 0)) {
+        // Verify the required parameter 'content_id' is set.
+        if ($content_id === null || (is_array($content_id) && empty($content_id))) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $content_id when calling updateLandingPageDynamicContentUsingPOST'
             );
         }
 
         $resourcePath = '/rest/asset/v1/landingPage/{id}/dynamicContent/{contentId}.json';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-
-        // path params
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'id' . '}',
-                ObjectSerializer::toPathValue($id),
-                $resourcePath
-            );
-        }
-        // path params
-        if ($content_id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'contentId' . '}',
-                ObjectSerializer::toPathValue($content_id),
-                $resourcePath
-            );
-        }
-
-        // body params
-        $_tempBody = null;
-        if (isset($request)) {
-            $_tempBody = $request;
-        }
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/x-www-form-urlencoded']
-            );
-        }
+        // Path parameters.
+        $resourcePath = str_replace(
+            '{' . 'id' . '}',
+            ObjectSerializer::toPathValue($id),
+            $resourcePath
+        );
+        $resourcePath = str_replace(
+            '{' . 'contentId' . '}',
+            ObjectSerializer::toPathValue($content_id),
+            $resourcePath
+        );
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json'],
+            ['application/x-www-form-urlencoded']
+        );
 
         // for model (json/xml)
-        if (isset($_tempBody)) {
-            // $_tempBody is the method argument, if present
-            $httpBody = $_tempBody;
-            
-            if($headers['Content-Type'] === 'application/json') {
-                // \stdClass has no __toString(), so we should encode it manually
-                if ($httpBody instanceof \stdClass) {
-                    $httpBody = \GuzzleHttp\json_encode($httpBody);
-                }
-                // array has no __toString(), so we should encode it manually
-                if(is_array($httpBody)) {
-                    $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($httpBody));
-                }
+        if (!empty($request)) {
+            if ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($request));
+            } elseif (!is_array($request)) {
+                $httpBody = (string) $request;
             }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $multipartContents[] = [
-                        'name' => $formParamName,
-                        'contents' => $formParamValue
-                    ];
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-
-            } else {
-                // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            else {
+                $httpBody = '';
             }
         }
 
@@ -1813,7 +1256,7 @@ class LandingPageContentApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        $query = Query::build($queryParams);
         return new Request(
             'POST',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
@@ -1840,4 +1283,83 @@ class LandingPageContentApi
 
         return $options;
     }
+
+    /**
+     * Make a request.
+     *
+     * @param \GuzzleHttp\Psr7\Request $request
+     *   An initialized request object.
+     *
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
+     * @return \Psr\Http\Message\ResponseInterface
+     */
+    private function makeRequest(Request $request) {
+        $options = $this->createHttpClientOption();
+        try {
+           $response = $this->client->send($request, $options);
+        } catch (RequestException $e) {
+            $response = $e->getResponse();
+            throw new ApiException(
+                "[{$e->getCode()}] {$e->getMessage()}",
+                (int) $e->getCode(),
+                $response ? $response->getHeaders() : null,
+                $response ? (string) $response->getBody() : null
+            );
+        }
+
+        $statusCode = $response->getStatusCode();
+        if ($statusCode < 200 || $statusCode > 299) {
+            throw new ApiException(
+                sprintf(
+                    '[%d] Error connecting to the API (%s)',
+                    $statusCode,
+                    (string) $request->getUri()
+                ),
+                $statusCode,
+                $response->getHeaders(),
+                (string) $response->getBody()
+            );
+        }
+        return $response;
+    }
+
+    /**
+     * Convert a response to a return standard return array.
+     *
+     * @param \Psr\Http\Message\ResponseInterface $response
+     *   A response from a request with a serialized body.
+     * @param string $returnType
+     *   The return type.
+     *
+     * @return array
+     */
+    private function responseToReturn(ResponseInterface $response, string $returnType) {
+        return [
+            $this->deserializeResponseBody($response->getBody(), $returnType),
+            $response->getStatusCode(),
+            $response->getHeaders()
+        ];
+    }
+
+    /**
+     * Deserialize a response body.
+     *
+     * @param mixed $responseBody
+     *   The response body.
+     * @param string $returnType
+     *   The return type.
+     * @param array|null $headers
+     *   The a list of headers from the response.
+     * @return mixed
+     *   Either a string or a stream to be passed to a file object.
+     */
+    private function deserializeResponseBody($responseBody, $returnType, $headers = [])
+    {
+        return ObjectSerializer::deserialize(
+            $returnType === '\SplFileObject' ? $responseBody : (string) $responseBody,
+            $returnType,
+            $headers
+        );
+    }
+
 }

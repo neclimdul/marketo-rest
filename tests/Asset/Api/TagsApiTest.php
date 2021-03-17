@@ -1,7 +1,6 @@
 <?php
 /**
  * TagsApiTest
- * PHP version 5
  *
  * @category Class
  * @package  NecLimDul\MarketoRest\Asset
@@ -26,14 +25,12 @@
  * Please update the test case below to test the endpoint.
  */
 
-// namespace NecLimDul\MarketoRest\Asset;
-namespace NecLimDul\MarketoRest\Asset\Model;
+namespace NecLimDul\MarketoRest\Asset\Test\Api;
 
+use NecLimDul\MarketoRest\Asset\Configuration;
+use NecLimDul\MarketoRest\Asset\ApiException;
+use NecLimDul\MarketoRest\Asset\ObjectSerializer;
 use PHPUnit\Framework\TestCase;
-
-use \NecLimDul\MarketoRest\Asset\Configuration;
-use \NecLimDul\MarketoRest\Asset\ApiException;
-use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * TagsApiTest Class Doc Comment
@@ -42,32 +39,31 @@ use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
+ * @coversDefaultClass \NecLimDul\MarketoRest\Asset\Api\TagsApi
  */
 class TagsApiTest extends TestCase
 {
 
 
     /**
-     * Test case for getTagByNameUsingGET
-     *
      * Get Tag By Name.
      *
+     * @covers ::getTagByNameUsingGET
      */
     public function testGetTagByNameUsingGET()
     {
-        //$class = new TagsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getTagTypesUsingGET
-     *
      * Get Tag Types.
      *
+     * @covers ::getTagTypesUsingGET
      */
     public function testGetTagTypesUsingGET()
     {
-        //$class = new TagsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

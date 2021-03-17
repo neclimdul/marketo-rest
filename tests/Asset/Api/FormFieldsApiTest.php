@@ -1,7 +1,6 @@
 <?php
 /**
  * FormFieldsApiTest
- * PHP version 5
  *
  * @category Class
  * @package  NecLimDul\MarketoRest\Asset
@@ -26,14 +25,12 @@
  * Please update the test case below to test the endpoint.
  */
 
-// namespace NecLimDul\MarketoRest\Asset;
-namespace NecLimDul\MarketoRest\Asset\Model;
+namespace NecLimDul\MarketoRest\Asset\Test\Api;
 
+use NecLimDul\MarketoRest\Asset\Configuration;
+use NecLimDul\MarketoRest\Asset\ApiException;
+use NecLimDul\MarketoRest\Asset\ObjectSerializer;
 use PHPUnit\Framework\TestCase;
-
-use \NecLimDul\MarketoRest\Asset\Configuration;
-use \NecLimDul\MarketoRest\Asset\ApiException;
-use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * FormFieldsApiTest Class Doc Comment
@@ -42,140 +39,130 @@ use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
+ * @coversDefaultClass \NecLimDul\MarketoRest\Asset\Api\FormFieldsApi
  */
 class FormFieldsApiTest extends TestCase
 {
 
 
     /**
-     * Test case for addFieldSetUsingPOST
-     *
      * Add Fieldset to Form.
      *
+     * @covers ::addFieldSetUsingPOST
      */
     public function testAddFieldSetUsingPOST()
     {
-        //$class = new FormFieldsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for addFieldToAFormUsingPOST
-     *
      * Add Field to Form.
      *
+     * @covers ::addFieldToAFormUsingPOST
      */
     public function testAddFieldToAFormUsingPOST()
     {
-        //$class = new FormFieldsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for addFormFieldVisibilityRuleUsingPOST
-     *
      * Add Form Field Visibility Rules.
      *
+     * @covers ::addFormFieldVisibilityRuleUsingPOST
      */
     public function testAddFormFieldVisibilityRuleUsingPOST()
     {
-        //$class = new FormFieldsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for addRichTextFieldUsingPOST
-     *
      * Add Rich Text Field.
      *
+     * @covers ::addRichTextFieldUsingPOST
      */
     public function testAddRichTextFieldUsingPOST()
     {
-        //$class = new FormFieldsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for deleteFormFieldFromFieldSetUsingPOST
-     *
      * Delete Field from Fieldset.
      *
+     * @covers ::deleteFormFieldFromFieldSetUsingPOST
      */
     public function testDeleteFormFieldFromFieldSetUsingPOST()
     {
-        //$class = new FormFieldsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for deleteFormFieldUsingPOST
-     *
      * Delete Form Field.
      *
+     * @covers ::deleteFormFieldUsingPOST
      */
     public function testDeleteFormFieldUsingPOST()
     {
-        //$class = new FormFieldsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getAllFieldsUsingGET
-     *
      * Get Available Form Fields.
      *
+     * @covers ::getAllFieldsUsingGET
      */
     public function testGetAllFieldsUsingGET()
     {
-        //$class = new FormFieldsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getAllProgramMemberFieldsUsingGET
-     *
      * Get Available Form Program Member Fields.
      *
+     * @covers ::getAllProgramMemberFieldsUsingGET
      */
     public function testGetAllProgramMemberFieldsUsingGET()
     {
-        //$class = new FormFieldsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getFormFieldByFormVidUsingGET
-     *
      * Get Fields for Form.
      *
+     * @covers ::getFormFieldByFormVidUsingGET
      */
     public function testGetFormFieldByFormVidUsingGET()
     {
-        //$class = new FormFieldsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for updateFieldPositionsUsingPOST
-     *
      * Update Field Positions.
      *
+     * @covers ::updateFieldPositionsUsingPOST
      */
     public function testUpdateFieldPositionsUsingPOST()
     {
-        //$class = new FormFieldsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for updateFormFieldUsingPOST
-     *
      * Update Form Field.
      *
+     * @covers ::updateFormFieldUsingPOST
      */
     public function testUpdateFormFieldUsingPOST()
     {
-        //$class = new FormFieldsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

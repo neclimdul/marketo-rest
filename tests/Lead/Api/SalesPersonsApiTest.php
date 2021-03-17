@@ -1,7 +1,6 @@
 <?php
 /**
  * SalesPersonsApiTest
- * PHP version 5
  *
  * @category Class
  * @package  NecLimDul\MarketoRest\Lead
@@ -26,14 +25,12 @@
  * Please update the test case below to test the endpoint.
  */
 
-// namespace NecLimDul\MarketoRest\Lead;
-namespace NecLimDul\MarketoRest\Lead\Model;
+namespace NecLimDul\MarketoRest\Lead\Test\Api;
 
+use NecLimDul\MarketoRest\Lead\Configuration;
+use NecLimDul\MarketoRest\Lead\ApiException;
+use NecLimDul\MarketoRest\Lead\ObjectSerializer;
 use PHPUnit\Framework\TestCase;
-
-use \NecLimDul\MarketoRest\Lead\Configuration;
-use \NecLimDul\MarketoRest\Lead\ApiException;
-use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * SalesPersonsApiTest Class Doc Comment
@@ -42,56 +39,53 @@ use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
+ * @coversDefaultClass \NecLimDul\MarketoRest\Lead\Api\SalesPersonsApi
  */
 class SalesPersonsApiTest extends TestCase
 {
 
 
     /**
-     * Test case for deleteSalesPersonUsingPOST
-     *
      * Delete SalesPersons.
      *
+     * @covers ::deleteSalesPersonUsingPOST
      */
     public function testDeleteSalesPersonUsingPOST()
     {
-        //$class = new SalesPersonsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for describeUsingGET5
-     *
      * Describe SalesPersons.
      *
+     * @covers ::describeUsingGET5
      */
     public function testDescribeUsingGET5()
     {
-        //$class = new SalesPersonsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getSalesPersonUsingGET
-     *
      * Get SalesPersons.
      *
+     * @covers ::getSalesPersonUsingGET
      */
     public function testGetSalesPersonUsingGET()
     {
-        //$class = new SalesPersonsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for syncSalesPersonsUsingPOST
-     *
      * Sync SalesPersons.
      *
+     * @covers ::syncSalesPersonsUsingPOST
      */
     public function testSyncSalesPersonsUsingPOST()
     {
-        //$class = new SalesPersonsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

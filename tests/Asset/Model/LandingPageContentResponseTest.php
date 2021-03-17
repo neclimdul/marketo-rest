@@ -2,8 +2,6 @@
 /**
  * LandingPageContentResponseTest
  *
- * PHP version 7
- *
  * @category Class
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
@@ -27,8 +25,7 @@
  * Please update the test case below to test the model.
  */
 
-// namespace NecLimDul\MarketoRest\Asset;
-namespace NecLimDul\MarketoRest\Asset\Model;
+namespace NecLimDul\MarketoRest\Asset\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
@@ -49,8 +46,8 @@ class LandingPageContentResponseTest extends TestCase
      */
     public function testLandingPageContentResponse()
     {
-        $class = new LandingPageContentResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -58,8 +55,8 @@ class LandingPageContentResponseTest extends TestCase
      */
     public function testPropertyContent()
     {
-        $class = new LandingPageContentResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -67,8 +64,8 @@ class LandingPageContentResponseTest extends TestCase
      */
     public function testPropertyFollowupType()
     {
-        $class = new LandingPageContentResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -76,8 +73,8 @@ class LandingPageContentResponseTest extends TestCase
      */
     public function testPropertyFollowupValue()
     {
-        $class = new LandingPageContentResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -85,8 +82,8 @@ class LandingPageContentResponseTest extends TestCase
      */
     public function testPropertyFormattingOptions()
     {
-        $class = new LandingPageContentResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -94,8 +91,8 @@ class LandingPageContentResponseTest extends TestCase
      */
     public function testPropertyId()
     {
-        $class = new LandingPageContentResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -103,8 +100,8 @@ class LandingPageContentResponseTest extends TestCase
      */
     public function testPropertyIndex()
     {
-        $class = new LandingPageContentResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -112,7 +109,7 @@ class LandingPageContentResponseTest extends TestCase
      */
     public function testPropertyType()
     {
-        $class = new LandingPageContentResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

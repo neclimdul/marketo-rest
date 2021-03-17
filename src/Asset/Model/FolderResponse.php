@@ -2,8 +2,6 @@
 /**
  * FolderResponse
  *
- * PHP version 5
- *
  * @category Class
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
@@ -39,10 +37,13 @@ use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
+ * @implements \ArrayAccess<TKey, TValue>
+ * @template TKey int|null
+ * @template TValue mixed|null
  */
-class FolderResponse implements ModelInterface, ArrayAccess
+class FolderResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -77,6 +78,8 @@ class FolderResponse implements ModelInterface, ArrayAccess
       * Array of property to format mappings. Used for (de)serialization
       *
       * @var string[]
+      * @phpstan-var array<string, string|null>
+      * @psalm-var array<string, string|null>
       */
     protected static $swaggerFormats = [
         'access_zone_id' => 'int32',
@@ -96,14 +99,16 @@ class FolderResponse implements ModelInterface, ArrayAccess
     ];
 
     /**
-      * Array of dynamic properties.
+      * Array of additional properties.
       *
       * @var mixed[]
       */
     protected $additionalProperties = [];
 
     /**
-     * {@inheritdoc}
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
      */
     public static function swaggerTypes()
     {
@@ -271,7 +276,8 @@ class FolderResponse implements ModelInterface, ArrayAccess
         $allowedValues = $this->getFolderTypeAllowableValues();
         if (!is_null($this->container['folder_type']) && !in_array($this->container['folder_type'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
-                "invalid value for 'folder_type', must be one of '%s'",
+                "invalid value '%s' for 'folder_type', must be one of '%s'",
+                $this->container['folder_type'],
                 implode("', '", $allowedValues)
             );
         }
@@ -338,7 +344,7 @@ class FolderResponse implements ModelInterface, ArrayAccess
      *
      * @param int $access_zone_id access_zone_id
      *
-     * @return $this
+     * @return self
      */
     public function setAccessZoneId($access_zone_id)
     {
@@ -362,7 +368,7 @@ class FolderResponse implements ModelInterface, ArrayAccess
      *
      * @param \DateTime $created_at Datetime the folder was created
      *
-     * @return $this
+     * @return self
      */
     public function setCreatedAt($created_at)
     {
@@ -386,7 +392,7 @@ class FolderResponse implements ModelInterface, ArrayAccess
      *
      * @param string $description Description of the folder
      *
-     * @return $this
+     * @return self
      */
     public function setDescription($description)
     {
@@ -410,7 +416,7 @@ class FolderResponse implements ModelInterface, ArrayAccess
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder_id Id of the folder
      *
-     * @return $this
+     * @return self
      */
     public function setFolderId($folder_id)
     {
@@ -434,7 +440,7 @@ class FolderResponse implements ModelInterface, ArrayAccess
      *
      * @param string $folder_type Type of folder.  'Folder' or 'Program'
      *
-     * @return $this
+     * @return self
      */
     public function setFolderType($folder_type)
     {
@@ -442,7 +448,8 @@ class FolderResponse implements ModelInterface, ArrayAccess
         if (!in_array($folder_type, $allowedValues, true)) {
             throw new \InvalidArgumentException(
                 sprintf(
-                    "Invalid value for 'folder_type', must be one of '%s'",
+                    "Invalid value '%s' for 'folder_type', must be one of '%s'",
+                    $folder_type,
                     implode("', '", $allowedValues)
                 )
             );
@@ -467,7 +474,7 @@ class FolderResponse implements ModelInterface, ArrayAccess
      *
      * @param int $id Id of the folder
      *
-     * @return $this
+     * @return self
      */
     public function setId($id)
     {
@@ -491,7 +498,7 @@ class FolderResponse implements ModelInterface, ArrayAccess
      *
      * @param bool $is_archive Archival status of the folder
      *
-     * @return $this
+     * @return self
      */
     public function setIsArchive($is_archive)
     {
@@ -515,7 +522,7 @@ class FolderResponse implements ModelInterface, ArrayAccess
      *
      * @param bool $is_system Whether the folder is system-managed
      *
-     * @return $this
+     * @return self
      */
     public function setIsSystem($is_system)
     {
@@ -539,7 +546,7 @@ class FolderResponse implements ModelInterface, ArrayAccess
      *
      * @param string $name Name of the folder.  Not applicable for Programs
      *
-     * @return $this
+     * @return self
      */
     public function setName($name)
     {
@@ -563,7 +570,7 @@ class FolderResponse implements ModelInterface, ArrayAccess
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\Folder $parent Parent folder reference
      *
-     * @return $this
+     * @return self
      */
     public function setParent($parent)
     {
@@ -587,7 +594,7 @@ class FolderResponse implements ModelInterface, ArrayAccess
      *
      * @param string $path Path of the folder
      *
-     * @return $this
+     * @return self
      */
     public function setPath($path)
     {
@@ -611,7 +618,7 @@ class FolderResponse implements ModelInterface, ArrayAccess
      *
      * @param \DateTime $updated_at Datetime the folder was last updated
      *
-     * @return $this
+     * @return self
      */
     public function setUpdatedAt($updated_at)
     {
@@ -635,7 +642,7 @@ class FolderResponse implements ModelInterface, ArrayAccess
      *
      * @param string $url Url of the folder
      *
-     * @return $this
+     * @return self
      */
     public function setUrl($url)
     {
@@ -659,7 +666,7 @@ class FolderResponse implements ModelInterface, ArrayAccess
      *
      * @param string $workspace Name of the workspace
      *
-     * @return $this
+     * @return self
      */
     public function setWorkspace($workspace)
     {
@@ -717,7 +724,7 @@ class FolderResponse implements ModelInterface, ArrayAccess
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**
@@ -741,19 +748,37 @@ class FolderResponse implements ModelInterface, ArrayAccess
     }
 
     /**
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     *
+     * @return mixed Returns data which can be serialized by json_encode(), which is a value
+     * of any type other than a resource.
+     */
+    public function jsonSerialize()
+    {
+       return ObjectSerializer::sanitizeForSerialization($this);
+    }
+
+    /**
      * Gets the string presentation of the object
      *
      * @return string
      */
     public function __toString()
     {
-        if (defined('JSON_PRETTY_PRINT')) { // use JSON pretty print
-            return json_encode(
-                ObjectSerializer::sanitizeForSerialization($this),
-                JSON_PRETTY_PRINT
-            );
-        }
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
+    }
 
+    /**
+     * Gets a header-safe presentation of the object
+     *
+     * @return string
+     */
+    public function toHeaderValue()
+    {
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }

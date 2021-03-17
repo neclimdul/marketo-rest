@@ -2,8 +2,6 @@
 /**
  * SmartCampaignResponse
  *
- * PHP version 5
- *
  * @category Class
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
@@ -39,10 +37,13 @@ use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
+ * @implements \ArrayAccess<TKey, TValue>
+ * @template TKey int|null
+ * @template TValue mixed|null
  */
-class SmartCampaignResponse implements ModelInterface, ArrayAccess
+class SmartCampaignResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -85,6 +86,8 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess
       * Array of property to format mappings. Used for (de)serialization
       *
       * @var string[]
+      * @phpstan-var array<string, string|null>
+      * @psalm-var array<string, string|null>
       */
     protected static $swaggerFormats = [
         'id' => 'int32',
@@ -112,14 +115,16 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess
     ];
 
     /**
-      * Array of dynamic properties.
+      * Array of additional properties.
       *
       * @var mixed[]
       */
     protected $additionalProperties = [];
 
     /**
-     * {@inheritdoc}
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
      */
     public static function swaggerTypes()
     {
@@ -337,7 +342,8 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess
         $allowedValues = $this->getTypeAllowableValues();
         if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
-                "invalid value for 'type', must be one of '%s'",
+                "invalid value '%s' for 'type', must be one of '%s'",
+                $this->container['type'],
                 implode("', '", $allowedValues)
             );
         }
@@ -360,7 +366,8 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess
         $allowedValues = $this->getQualificationRuleTypeAllowableValues();
         if (!is_null($this->container['qualification_rule_type']) && !in_array($this->container['qualification_rule_type'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
-                "invalid value for 'qualification_rule_type', must be one of '%s'",
+                "invalid value '%s' for 'qualification_rule_type', must be one of '%s'",
+                $this->container['qualification_rule_type'],
                 implode("', '", $allowedValues)
             );
         }
@@ -374,7 +381,8 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess
         $allowedValues = $this->getQualificationRuleUnitAllowableValues();
         if (!is_null($this->container['qualification_rule_unit']) && !in_array($this->container['qualification_rule_unit'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
-                "invalid value for 'qualification_rule_unit', must be one of '%s'",
+                "invalid value '%s' for 'qualification_rule_unit', must be one of '%s'",
+                $this->container['qualification_rule_unit'],
                 implode("', '", $allowedValues)
             );
         }
@@ -409,7 +417,8 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess
         $allowedValues = $this->getStatusAllowableValues();
         if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
-                "invalid value for 'status', must be one of '%s'",
+                "invalid value '%s' for 'status', must be one of '%s'",
+                $this->container['status'],
                 implode("', '", $allowedValues)
             );
         }
@@ -506,7 +515,7 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess
      *
      * @param int $id Id of the smart campaign (system managed)
      *
-     * @return $this
+     * @return self
      */
     public function setId($id)
     {
@@ -530,7 +539,7 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess
      *
      * @param string $name Name of the smart campaign
      *
-     * @return $this
+     * @return self
      */
     public function setName($name)
     {
@@ -554,7 +563,7 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess
      *
      * @param string $description Description of the smart campaign
      *
-     * @return $this
+     * @return self
      */
     public function setDescription($description)
     {
@@ -578,7 +587,7 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess
      *
      * @param string $type Type of the smart campaign. Batch: has at least one filter and no triggers. Trigger: has at least one trigger. Default: has no smart list rules
      *
-     * @return $this
+     * @return self
      */
     public function setType($type)
     {
@@ -586,7 +595,8 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess
         if (!in_array($type, $allowedValues, true)) {
             throw new \InvalidArgumentException(
                 sprintf(
-                    "Invalid value for 'type', must be one of '%s'",
+                    "Invalid value '%s' for 'type', must be one of '%s'",
+                    $type,
                     implode("', '", $allowedValues)
                 )
             );
@@ -611,7 +621,7 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess
      *
      * @param bool $is_system Whether smart campaign is system managed.  Defaults to false
      *
-     * @return $this
+     * @return self
      */
     public function setIsSystem($is_system)
     {
@@ -635,7 +645,7 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess
      *
      * @param bool $is_active Whether smart campaign is active.  Defaults to false
      *
-     * @return $this
+     * @return self
      */
     public function setIsActive($is_active)
     {
@@ -659,7 +669,7 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess
      *
      * @param bool $is_requestable Whether smart campaign is requestable (is active and contains 'Campaign is Requested' trigger with Source of 'Web Service API').  Defaults to false
      *
-     * @return $this
+     * @return self
      */
     public function setIsRequestable($is_requestable)
     {
@@ -683,7 +693,7 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\Recurrence $recurrence Recurrence schedule of batch smart campaign
      *
-     * @return $this
+     * @return self
      */
     public function setRecurrence($recurrence)
     {
@@ -707,7 +717,7 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess
      *
      * @param string $qualification_rule_type Type of qualification rule.  Defaults to 'once'
      *
-     * @return $this
+     * @return self
      */
     public function setQualificationRuleType($qualification_rule_type)
     {
@@ -715,7 +725,8 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess
         if (!in_array($qualification_rule_type, $allowedValues, true)) {
             throw new \InvalidArgumentException(
                 sprintf(
-                    "Invalid value for 'qualification_rule_type', must be one of '%s'",
+                    "Invalid value '%s' for 'qualification_rule_type', must be one of '%s'",
+                    $qualification_rule_type,
                     implode("', '", $allowedValues)
                 )
             );
@@ -740,7 +751,7 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess
      *
      * @param int $qualification_rule_interval Interval of qualification rule.  Only set when qualificationRuleType is 'interval'
      *
-     * @return $this
+     * @return self
      */
     public function setQualificationRuleInterval($qualification_rule_interval)
     {
@@ -764,7 +775,7 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess
      *
      * @param string $qualification_rule_unit Unit of measure of qualification rule.  Only set when qualificationRuleType is 'interval'
      *
-     * @return $this
+     * @return self
      */
     public function setQualificationRuleUnit($qualification_rule_unit)
     {
@@ -772,7 +783,8 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess
         if (!in_array($qualification_rule_unit, $allowedValues, true)) {
             throw new \InvalidArgumentException(
                 sprintf(
-                    "Invalid value for 'qualification_rule_unit', must be one of '%s'",
+                    "Invalid value '%s' for 'qualification_rule_unit', must be one of '%s'",
+                    $qualification_rule_unit,
                     implode("', '", $allowedValues)
                 )
             );
@@ -797,7 +809,7 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess
      *
      * @param int $max_members Smart campaign membership limit
      *
-     * @return $this
+     * @return self
      */
     public function setMaxMembers($max_members)
     {
@@ -821,7 +833,7 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess
      *
      * @param bool $is_communication_limit_enabled Whether smart campaign communication limit is enabled (i.e. block non-operational emails).  Defaults to false
      *
-     * @return $this
+     * @return self
      */
     public function setIsCommunicationLimitEnabled($is_communication_limit_enabled)
     {
@@ -845,7 +857,7 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess
      *
      * @param int $smart_list_id Id of the smart campaign's child smart list
      *
-     * @return $this
+     * @return self
      */
     public function setSmartListId($smart_list_id)
     {
@@ -869,7 +881,7 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess
      *
      * @param int $flow_id Id of the smart campaign's child flow
      *
-     * @return $this
+     * @return self
      */
     public function setFlowId($flow_id)
     {
@@ -893,7 +905,7 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess
      *
      * @param int $parent_program_id Parent program Id.  Present if smart campaign is under program or nested folder
      *
-     * @return $this
+     * @return self
      */
     public function setParentProgramId($parent_program_id)
     {
@@ -917,7 +929,7 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
      *
-     * @return $this
+     * @return self
      */
     public function setFolder($folder)
     {
@@ -941,7 +953,7 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess
      *
      * @param \DateTime $created_at Datetime when the smart campaign was created
      *
-     * @return $this
+     * @return self
      */
     public function setCreatedAt($created_at)
     {
@@ -965,7 +977,7 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess
      *
      * @param \DateTime $updated_at Datetime when the smart campaign was most recently updated
      *
-     * @return $this
+     * @return self
      */
     public function setUpdatedAt($updated_at)
     {
@@ -989,7 +1001,7 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess
      *
      * @param string $workspace Name of the smart campaign workspace
      *
-     * @return $this
+     * @return self
      */
     public function setWorkspace($workspace)
     {
@@ -1013,7 +1025,7 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess
      *
      * @param string $computed_url URL to asset in Marketo Engage
      *
-     * @return $this
+     * @return self
      */
     public function setComputedUrl($computed_url)
     {
@@ -1037,7 +1049,7 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess
      *
      * @param string $status Status of smart campaign
      *
-     * @return $this
+     * @return self
      */
     public function setStatus($status)
     {
@@ -1045,7 +1057,8 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess
         if (!in_array($status, $allowedValues, true)) {
             throw new \InvalidArgumentException(
                 sprintf(
-                    "Invalid value for 'status', must be one of '%s'",
+                    "Invalid value '%s' for 'status', must be one of '%s'",
+                    $status,
                     implode("', '", $allowedValues)
                 )
             );
@@ -1104,7 +1117,7 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**
@@ -1128,19 +1141,37 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess
     }
 
     /**
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     *
+     * @return mixed Returns data which can be serialized by json_encode(), which is a value
+     * of any type other than a resource.
+     */
+    public function jsonSerialize()
+    {
+       return ObjectSerializer::sanitizeForSerialization($this);
+    }
+
+    /**
      * Gets the string presentation of the object
      *
      * @return string
      */
     public function __toString()
     {
-        if (defined('JSON_PRETTY_PRINT')) { // use JSON pretty print
-            return json_encode(
-                ObjectSerializer::sanitizeForSerialization($this),
-                JSON_PRETTY_PRINT
-            );
-        }
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
+    }
 
+    /**
+     * Gets a header-safe presentation of the object
+     *
+     * @return string
+     */
+    public function toHeaderValue()
+    {
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }

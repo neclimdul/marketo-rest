@@ -2,8 +2,6 @@
 /**
  * UpdateLandingPageContentRequestTest
  *
- * PHP version 7
- *
  * @category Class
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
@@ -27,8 +25,7 @@
  * Please update the test case below to test the model.
  */
 
-// namespace NecLimDul\MarketoRest\Asset;
-namespace NecLimDul\MarketoRest\Asset\Model;
+namespace NecLimDul\MarketoRest\Asset\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
@@ -49,8 +46,8 @@ class UpdateLandingPageContentRequestTest extends TestCase
      */
     public function testUpdateLandingPageContentRequest()
     {
-        $class = new UpdateLandingPageContentRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -58,8 +55,8 @@ class UpdateLandingPageContentRequestTest extends TestCase
      */
     public function testPropertyBackgroundColor()
     {
-        $class = new UpdateLandingPageContentRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -67,8 +64,8 @@ class UpdateLandingPageContentRequestTest extends TestCase
      */
     public function testPropertyBorderColor()
     {
-        $class = new UpdateLandingPageContentRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -76,8 +73,8 @@ class UpdateLandingPageContentRequestTest extends TestCase
      */
     public function testPropertyBorderStyle()
     {
-        $class = new UpdateLandingPageContentRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -85,8 +82,8 @@ class UpdateLandingPageContentRequestTest extends TestCase
      */
     public function testPropertyBorderWidth()
     {
-        $class = new UpdateLandingPageContentRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -94,8 +91,8 @@ class UpdateLandingPageContentRequestTest extends TestCase
      */
     public function testPropertyHeight()
     {
-        $class = new UpdateLandingPageContentRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -103,8 +100,8 @@ class UpdateLandingPageContentRequestTest extends TestCase
      */
     public function testPropertyHideDesktop()
     {
-        $class = new UpdateLandingPageContentRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -112,8 +109,8 @@ class UpdateLandingPageContentRequestTest extends TestCase
      */
     public function testPropertyHideMobile()
     {
-        $class = new UpdateLandingPageContentRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -121,8 +118,8 @@ class UpdateLandingPageContentRequestTest extends TestCase
      */
     public function testPropertyImageOpenNewWindow()
     {
-        $class = new UpdateLandingPageContentRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -130,8 +127,8 @@ class UpdateLandingPageContentRequestTest extends TestCase
      */
     public function testPropertyIndex()
     {
-        $class = new UpdateLandingPageContentRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -139,8 +136,8 @@ class UpdateLandingPageContentRequestTest extends TestCase
      */
     public function testPropertyLeft()
     {
-        $class = new UpdateLandingPageContentRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -148,8 +145,8 @@ class UpdateLandingPageContentRequestTest extends TestCase
      */
     public function testPropertyLinkUrl()
     {
-        $class = new UpdateLandingPageContentRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -157,8 +154,8 @@ class UpdateLandingPageContentRequestTest extends TestCase
      */
     public function testPropertyOpacity()
     {
-        $class = new UpdateLandingPageContentRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -166,8 +163,8 @@ class UpdateLandingPageContentRequestTest extends TestCase
      */
     public function testPropertyTop()
     {
-        $class = new UpdateLandingPageContentRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -175,8 +172,8 @@ class UpdateLandingPageContentRequestTest extends TestCase
      */
     public function testPropertyType()
     {
-        $class = new UpdateLandingPageContentRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -184,8 +181,8 @@ class UpdateLandingPageContentRequestTest extends TestCase
      */
     public function testPropertyValue()
     {
-        $class = new UpdateLandingPageContentRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -193,8 +190,8 @@ class UpdateLandingPageContentRequestTest extends TestCase
      */
     public function testPropertyWidth()
     {
-        $class = new UpdateLandingPageContentRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -202,7 +199,7 @@ class UpdateLandingPageContentRequestTest extends TestCase
      */
     public function testPropertyZIndex()
     {
-        $class = new UpdateLandingPageContentRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

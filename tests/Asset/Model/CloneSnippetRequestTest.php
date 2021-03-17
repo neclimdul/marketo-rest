@@ -2,8 +2,6 @@
 /**
  * CloneSnippetRequestTest
  *
- * PHP version 7
- *
  * @category Class
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
@@ -27,8 +25,7 @@
  * Please update the test case below to test the model.
  */
 
-// namespace NecLimDul\MarketoRest\Asset;
-namespace NecLimDul\MarketoRest\Asset\Model;
+namespace NecLimDul\MarketoRest\Asset\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
@@ -49,8 +46,8 @@ class CloneSnippetRequestTest extends TestCase
      */
     public function testCloneSnippetRequest()
     {
-        $class = new CloneSnippetRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -58,8 +55,8 @@ class CloneSnippetRequestTest extends TestCase
      */
     public function testPropertyName()
     {
-        $class = new CloneSnippetRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -67,8 +64,8 @@ class CloneSnippetRequestTest extends TestCase
      */
     public function testPropertyFolder()
     {
-        $class = new CloneSnippetRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -76,7 +73,7 @@ class CloneSnippetRequestTest extends TestCase
      */
     public function testPropertyDescription()
     {
-        $class = new CloneSnippetRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

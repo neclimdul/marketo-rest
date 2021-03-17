@@ -1,7 +1,6 @@
 <?php
 /**
  * EmailTemplatesApiTest
- * PHP version 5
  *
  * @category Class
  * @package  NecLimDul\MarketoRest\Asset
@@ -26,14 +25,12 @@
  * Please update the test case below to test the endpoint.
  */
 
-// namespace NecLimDul\MarketoRest\Asset;
-namespace NecLimDul\MarketoRest\Asset\Model;
+namespace NecLimDul\MarketoRest\Asset\Test\Api;
 
+use NecLimDul\MarketoRest\Asset\Configuration;
+use NecLimDul\MarketoRest\Asset\ApiException;
+use NecLimDul\MarketoRest\Asset\ObjectSerializer;
 use PHPUnit\Framework\TestCase;
-
-use \NecLimDul\MarketoRest\Asset\Configuration;
-use \NecLimDul\MarketoRest\Asset\ApiException;
-use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * EmailTemplatesApiTest Class Doc Comment
@@ -42,164 +39,152 @@ use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
+ * @coversDefaultClass \NecLimDul\MarketoRest\Asset\Api\EmailTemplatesApi
  */
 class EmailTemplatesApiTest extends TestCase
 {
 
 
     /**
-     * Test case for approveDraftUsingPOST1
-     *
      * Approve Email Template Draft.
      *
+     * @covers ::approveDraftUsingPOST1
      */
     public function testApproveDraftUsingPOST1()
     {
-        //$class = new EmailTemplatesApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for cloneTemplateUsingPOST
-     *
      * Clone Email Template.
      *
+     * @covers ::cloneTemplateUsingPOST
      */
     public function testCloneTemplateUsingPOST()
     {
-        //$class = new EmailTemplatesApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for createEmailTemplateUsingPOST
-     *
      * Create Email Template.
      *
+     * @covers ::createEmailTemplateUsingPOST
      */
     public function testCreateEmailTemplateUsingPOST()
     {
-        //$class = new EmailTemplatesApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for deleteTemplateUsingPOST
-     *
      * Delete Email Template.
      *
+     * @covers ::deleteTemplateUsingPOST
      */
     public function testDeleteTemplateUsingPOST()
     {
-        //$class = new EmailTemplatesApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for discardDraftUsingPOST1
-     *
      * Discard Email Template Draft.
      *
+     * @covers ::discardDraftUsingPOST1
      */
     public function testDiscardDraftUsingPOST1()
     {
-        //$class = new EmailTemplatesApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getEmailTemplateUsedByUsingGET
-     *
      * Get Email Template Used By.
      *
+     * @covers ::getEmailTemplateUsedByUsingGET
      */
     public function testGetEmailTemplateUsedByUsingGET()
     {
-        //$class = new EmailTemplatesApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getEmailTemplatesUsingGET
-     *
      * Get Email Templates.
      *
+     * @covers ::getEmailTemplatesUsingGET
      */
     public function testGetEmailTemplatesUsingGET()
     {
-        //$class = new EmailTemplatesApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getTemplateByIdUsingGET
-     *
      * Get Email Template by Id.
      *
+     * @covers ::getTemplateByIdUsingGET
      */
     public function testGetTemplateByIdUsingGET()
     {
-        //$class = new EmailTemplatesApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getTemplateByNameUsingGET
-     *
      * Get Email Template by Name.
      *
+     * @covers ::getTemplateByNameUsingGET
      */
     public function testGetTemplateByNameUsingGET()
     {
-        //$class = new EmailTemplatesApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getTemplateContentByIdUsingGET
-     *
      * Get Email Template Content by Id.
      *
+     * @covers ::getTemplateContentByIdUsingGET
      */
     public function testGetTemplateContentByIdUsingGET()
     {
-        //$class = new EmailTemplatesApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for unapproveDraftUsingPOST1
-     *
      * Unapprove Email Template Draft.
      *
+     * @covers ::unapproveDraftUsingPOST1
      */
     public function testUnapproveDraftUsingPOST1()
     {
-        //$class = new EmailTemplatesApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for updateEmailTemplateContentUsingPOST
-     *
      * Update Email Template Content.
      *
+     * @covers ::updateEmailTemplateContentUsingPOST
      */
     public function testUpdateEmailTemplateContentUsingPOST()
     {
-        //$class = new EmailTemplatesApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for updateEmailTemplateUsingPOST
-     *
      * Update Email Template Metadata.
      *
+     * @covers ::updateEmailTemplateUsingPOST
      */
     public function testUpdateEmailTemplateUsingPOST()
     {
-        //$class = new EmailTemplatesApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

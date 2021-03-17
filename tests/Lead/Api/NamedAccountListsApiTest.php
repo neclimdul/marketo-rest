@@ -1,7 +1,6 @@
 <?php
 /**
  * NamedAccountListsApiTest
- * PHP version 5
  *
  * @category Class
  * @package  NecLimDul\MarketoRest\Lead
@@ -26,14 +25,12 @@
  * Please update the test case below to test the endpoint.
  */
 
-// namespace NecLimDul\MarketoRest\Lead;
-namespace NecLimDul\MarketoRest\Lead\Model;
+namespace NecLimDul\MarketoRest\Lead\Test\Api;
 
+use NecLimDul\MarketoRest\Lead\Configuration;
+use NecLimDul\MarketoRest\Lead\ApiException;
+use NecLimDul\MarketoRest\Lead\ObjectSerializer;
 use PHPUnit\Framework\TestCase;
-
-use \NecLimDul\MarketoRest\Lead\Configuration;
-use \NecLimDul\MarketoRest\Lead\ApiException;
-use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * NamedAccountListsApiTest Class Doc Comment
@@ -42,80 +39,75 @@ use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
+ * @coversDefaultClass \NecLimDul\MarketoRest\Lead\Api\NamedAccountListsApi
  */
 class NamedAccountListsApiTest extends TestCase
 {
 
 
     /**
-     * Test case for addNamedAccountListMembersUsingPOST
-     *
      * Add Named Account List Members.
      *
+     * @covers ::addNamedAccountListMembersUsingPOST
      */
     public function testAddNamedAccountListMembersUsingPOST()
     {
-        //$class = new NamedAccountListsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for deleteNamedAccountListsUsingPOST
-     *
      * Delete Named Account Lists.
      *
+     * @covers ::deleteNamedAccountListsUsingPOST
      */
     public function testDeleteNamedAccountListsUsingPOST()
     {
-        //$class = new NamedAccountListsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getNamedAccountListMembersUsingGET
-     *
      * Get Named Account List Members.
      *
+     * @covers ::getNamedAccountListMembersUsingGET
      */
     public function testGetNamedAccountListMembersUsingGET()
     {
-        //$class = new NamedAccountListsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getNamedAccountListsUsingGET
-     *
      * Get Named Account Lists.
      *
+     * @covers ::getNamedAccountListsUsingGET
      */
     public function testGetNamedAccountListsUsingGET()
     {
-        //$class = new NamedAccountListsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for removeNamedAccountListMembersUsingPOST
-     *
      * Remove Named Account List Members.
      *
+     * @covers ::removeNamedAccountListMembersUsingPOST
      */
     public function testRemoveNamedAccountListMembersUsingPOST()
     {
-        //$class = new NamedAccountListsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for syncNamedAccountListsUsingPOST
-     *
      * Sync Named Account Lists.
      *
+     * @covers ::syncNamedAccountListsUsingPOST
      */
     public function testSyncNamedAccountListsUsingPOST()
     {
-        //$class = new NamedAccountListsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

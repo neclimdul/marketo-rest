@@ -1,7 +1,6 @@
 <?php
 /**
  * ProgramsApiTest
- * PHP version 5
  *
  * @category Class
  * @package  NecLimDul\MarketoRest\Asset
@@ -26,14 +25,12 @@
  * Please update the test case below to test the endpoint.
  */
 
-// namespace NecLimDul\MarketoRest\Asset;
-namespace NecLimDul\MarketoRest\Asset\Model;
+namespace NecLimDul\MarketoRest\Asset\Test\Api;
 
+use NecLimDul\MarketoRest\Asset\Configuration;
+use NecLimDul\MarketoRest\Asset\ApiException;
+use NecLimDul\MarketoRest\Asset\ObjectSerializer;
 use PHPUnit\Framework\TestCase;
-
-use \NecLimDul\MarketoRest\Asset\Configuration;
-use \NecLimDul\MarketoRest\Asset\ApiException;
-use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * ProgramsApiTest Class Doc Comment
@@ -42,140 +39,130 @@ use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
+ * @coversDefaultClass \NecLimDul\MarketoRest\Asset\Api\ProgramsApi
  */
 class ProgramsApiTest extends TestCase
 {
 
 
     /**
-     * Test case for approveProgramUsingPOST
-     *
      * Approve Program.
      *
+     * @covers ::approveProgramUsingPOST
      */
     public function testApproveProgramUsingPOST()
     {
-        //$class = new ProgramsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for browseProgramsUsingGET
-     *
      * Get Programs.
      *
+     * @covers ::browseProgramsUsingGET
      */
     public function testBrowseProgramsUsingGET()
     {
-        //$class = new ProgramsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for cloneProgramUsingPOST
-     *
      * Clone Program.
      *
+     * @covers ::cloneProgramUsingPOST
      */
     public function testCloneProgramUsingPOST()
     {
-        //$class = new ProgramsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for createProgramUsingPOST
-     *
      * Create Program.
      *
+     * @covers ::createProgramUsingPOST
      */
     public function testCreateProgramUsingPOST()
     {
-        //$class = new ProgramsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for deleteProgramUsingPOST
-     *
      * Delete Program.
      *
+     * @covers ::deleteProgramUsingPOST
      */
     public function testDeleteProgramUsingPOST()
     {
-        //$class = new ProgramsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getProgramByIdUsingGET
-     *
      * Get Program by Id.
      *
+     * @covers ::getProgramByIdUsingGET
      */
     public function testGetProgramByIdUsingGET()
     {
-        //$class = new ProgramsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getProgramByNameUsingGET
-     *
      * Get Program by Name.
      *
+     * @covers ::getProgramByNameUsingGET
      */
     public function testGetProgramByNameUsingGET()
     {
-        //$class = new ProgramsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getProgramListByTagUsingGET
-     *
      * Get Programs by Tag.
      *
+     * @covers ::getProgramListByTagUsingGET
      */
     public function testGetProgramListByTagUsingGET()
     {
-        //$class = new ProgramsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getSmartListByProgramIdUsingGET
-     *
      * Get Smart List by Program Id.
      *
+     * @covers ::getSmartListByProgramIdUsingGET
      */
     public function testGetSmartListByProgramIdUsingGET()
     {
-        //$class = new ProgramsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for unapproveProgramUsingPOST
-     *
      * Unapprove Program.
      *
+     * @covers ::unapproveProgramUsingPOST
      */
     public function testUnapproveProgramUsingPOST()
     {
-        //$class = new ProgramsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for updateProgramUsingPOST
-     *
      * Update Program Metadata.
      *
+     * @covers ::updateProgramUsingPOST
      */
     public function testUpdateProgramUsingPOST()
     {
-        //$class = new ProgramsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

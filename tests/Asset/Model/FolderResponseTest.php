@@ -2,8 +2,6 @@
 /**
  * FolderResponseTest
  *
- * PHP version 7
- *
  * @category Class
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
@@ -27,8 +25,7 @@
  * Please update the test case below to test the model.
  */
 
-// namespace NecLimDul\MarketoRest\Asset;
-namespace NecLimDul\MarketoRest\Asset\Model;
+namespace NecLimDul\MarketoRest\Asset\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
@@ -49,8 +46,8 @@ class FolderResponseTest extends TestCase
      */
     public function testFolderResponse()
     {
-        $class = new FolderResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -58,8 +55,8 @@ class FolderResponseTest extends TestCase
      */
     public function testPropertyAccessZoneId()
     {
-        $class = new FolderResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -67,8 +64,8 @@ class FolderResponseTest extends TestCase
      */
     public function testPropertyCreatedAt()
     {
-        $class = new FolderResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -76,8 +73,8 @@ class FolderResponseTest extends TestCase
      */
     public function testPropertyDescription()
     {
-        $class = new FolderResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -85,8 +82,8 @@ class FolderResponseTest extends TestCase
      */
     public function testPropertyFolderId()
     {
-        $class = new FolderResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -94,8 +91,8 @@ class FolderResponseTest extends TestCase
      */
     public function testPropertyFolderType()
     {
-        $class = new FolderResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -103,8 +100,8 @@ class FolderResponseTest extends TestCase
      */
     public function testPropertyId()
     {
-        $class = new FolderResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -112,8 +109,8 @@ class FolderResponseTest extends TestCase
      */
     public function testPropertyIsArchive()
     {
-        $class = new FolderResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -121,8 +118,8 @@ class FolderResponseTest extends TestCase
      */
     public function testPropertyIsSystem()
     {
-        $class = new FolderResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -130,8 +127,8 @@ class FolderResponseTest extends TestCase
      */
     public function testPropertyName()
     {
-        $class = new FolderResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -139,8 +136,8 @@ class FolderResponseTest extends TestCase
      */
     public function testPropertyParent()
     {
-        $class = new FolderResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -148,8 +145,8 @@ class FolderResponseTest extends TestCase
      */
     public function testPropertyPath()
     {
-        $class = new FolderResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -157,8 +154,8 @@ class FolderResponseTest extends TestCase
      */
     public function testPropertyUpdatedAt()
     {
-        $class = new FolderResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -166,8 +163,8 @@ class FolderResponseTest extends TestCase
      */
     public function testPropertyUrl()
     {
-        $class = new FolderResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -175,7 +172,7 @@ class FolderResponseTest extends TestCase
      */
     public function testPropertyWorkspace()
     {
-        $class = new FolderResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

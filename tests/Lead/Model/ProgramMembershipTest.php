@@ -2,8 +2,6 @@
 /**
  * ProgramMembershipTest
  *
- * PHP version 7
- *
  * @category Class
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
@@ -27,8 +25,7 @@
  * Please update the test case below to test the model.
  */
 
-// namespace NecLimDul\MarketoRest\Lead;
-namespace NecLimDul\MarketoRest\Lead\Model;
+namespace NecLimDul\MarketoRest\Lead\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
@@ -49,8 +46,8 @@ class ProgramMembershipTest extends TestCase
      */
     public function testProgramMembership()
     {
-        $class = new ProgramMembership();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -58,8 +55,8 @@ class ProgramMembershipTest extends TestCase
      */
     public function testPropertyAcquiredBy()
     {
-        $class = new ProgramMembership();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -67,8 +64,8 @@ class ProgramMembershipTest extends TestCase
      */
     public function testPropertyIsExhausted()
     {
-        $class = new ProgramMembership();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -76,8 +73,8 @@ class ProgramMembershipTest extends TestCase
      */
     public function testPropertyMembershipDate()
     {
-        $class = new ProgramMembership();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -85,8 +82,8 @@ class ProgramMembershipTest extends TestCase
      */
     public function testPropertyNurtureCadence()
     {
-        $class = new ProgramMembership();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -94,8 +91,8 @@ class ProgramMembershipTest extends TestCase
      */
     public function testPropertyProgressionStatus()
     {
-        $class = new ProgramMembership();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -103,8 +100,8 @@ class ProgramMembershipTest extends TestCase
      */
     public function testPropertyReachedSuccess()
     {
-        $class = new ProgramMembership();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -112,7 +109,7 @@ class ProgramMembershipTest extends TestCase
      */
     public function testPropertyStream()
     {
-        $class = new ProgramMembership();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

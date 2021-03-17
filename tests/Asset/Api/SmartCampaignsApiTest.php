@@ -1,7 +1,6 @@
 <?php
 /**
  * SmartCampaignsApiTest
- * PHP version 5
  *
  * @category Class
  * @package  NecLimDul\MarketoRest\Asset
@@ -26,14 +25,12 @@
  * Please update the test case below to test the endpoint.
  */
 
-// namespace NecLimDul\MarketoRest\Asset;
-namespace NecLimDul\MarketoRest\Asset\Model;
+namespace NecLimDul\MarketoRest\Asset\Test\Api;
 
+use NecLimDul\MarketoRest\Asset\Configuration;
+use NecLimDul\MarketoRest\Asset\ApiException;
+use NecLimDul\MarketoRest\Asset\ObjectSerializer;
 use PHPUnit\Framework\TestCase;
-
-use \NecLimDul\MarketoRest\Asset\Configuration;
-use \NecLimDul\MarketoRest\Asset\ApiException;
-use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * SmartCampaignsApiTest Class Doc Comment
@@ -42,128 +39,119 @@ use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
+ * @coversDefaultClass \NecLimDul\MarketoRest\Asset\Api\SmartCampaignsApi
  */
 class SmartCampaignsApiTest extends TestCase
 {
 
 
     /**
-     * Test case for activateSmartCampaignUsingPOST
-     *
      * Activate Smart Campaign.
      *
+     * @covers ::activateSmartCampaignUsingPOST
      */
     public function testActivateSmartCampaignUsingPOST()
     {
-        //$class = new SmartCampaignsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for cloneSmartCampaignUsingPOST
-     *
      * Clone Smart Campaign.
      *
+     * @covers ::cloneSmartCampaignUsingPOST
      */
     public function testCloneSmartCampaignUsingPOST()
     {
-        //$class = new SmartCampaignsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for createSmartCampaignUsingPOST
-     *
      * Create Smart Campaign.
      *
+     * @covers ::createSmartCampaignUsingPOST
      */
     public function testCreateSmartCampaignUsingPOST()
     {
-        //$class = new SmartCampaignsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for deactivateSmartCampaignUsingPOST
-     *
      * Deactivate Smart Campaign.
      *
+     * @covers ::deactivateSmartCampaignUsingPOST
      */
     public function testDeactivateSmartCampaignUsingPOST()
     {
-        //$class = new SmartCampaignsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for deleteSmartCampaignUsingPOST
-     *
      * Delete Smart Campaign.
      *
+     * @covers ::deleteSmartCampaignUsingPOST
      */
     public function testDeleteSmartCampaignUsingPOST()
     {
-        //$class = new SmartCampaignsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getAllSmartCampaignsGET
-     *
      * Get Smart Campaigns.
      *
+     * @covers ::getAllSmartCampaignsGET
      */
     public function testGetAllSmartCampaignsGET()
     {
-        //$class = new SmartCampaignsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getSmartCampaignByIdUsingGET
-     *
      * Get Smart Campaign by Id.
      *
+     * @covers ::getSmartCampaignByIdUsingGET
      */
     public function testGetSmartCampaignByIdUsingGET()
     {
-        //$class = new SmartCampaignsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getSmartCampaignByNameUsingGET
-     *
      * Get Smart Campaign by Name.
      *
+     * @covers ::getSmartCampaignByNameUsingGET
      */
     public function testGetSmartCampaignByNameUsingGET()
     {
-        //$class = new SmartCampaignsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getSmartListBySmartCampaignIdUsingGET
-     *
      * Get Smart List by Smart Campaign Id.
      *
+     * @covers ::getSmartListBySmartCampaignIdUsingGET
      */
     public function testGetSmartListBySmartCampaignIdUsingGET()
     {
-        //$class = new SmartCampaignsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for updateSmartCampaignUsingPOST
-     *
      * Update Smart Campaign.
      *
+     * @covers ::updateSmartCampaignUsingPOST
      */
     public function testUpdateSmartCampaignUsingPOST()
     {
-        //$class = new SmartCampaignsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

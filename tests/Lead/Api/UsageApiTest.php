@@ -1,7 +1,6 @@
 <?php
 /**
  * UsageApiTest
- * PHP version 5
  *
  * @category Class
  * @package  NecLimDul\MarketoRest\Lead
@@ -26,14 +25,12 @@
  * Please update the test case below to test the endpoint.
  */
 
-// namespace NecLimDul\MarketoRest\Lead;
-namespace NecLimDul\MarketoRest\Lead\Model;
+namespace NecLimDul\MarketoRest\Lead\Test\Api;
 
+use NecLimDul\MarketoRest\Lead\Configuration;
+use NecLimDul\MarketoRest\Lead\ApiException;
+use NecLimDul\MarketoRest\Lead\ObjectSerializer;
 use PHPUnit\Framework\TestCase;
-
-use \NecLimDul\MarketoRest\Lead\Configuration;
-use \NecLimDul\MarketoRest\Lead\ApiException;
-use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * UsageApiTest Class Doc Comment
@@ -42,56 +39,53 @@ use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
+ * @coversDefaultClass \NecLimDul\MarketoRest\Lead\Api\UsageApi
  */
 class UsageApiTest extends TestCase
 {
 
 
     /**
-     * Test case for getDailyErrorsUsingGET
-     *
      * Get Daily Errors.
      *
+     * @covers ::getDailyErrorsUsingGET
      */
     public function testGetDailyErrorsUsingGET()
     {
-        //$class = new UsageApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getDailyUsageUsingGET
-     *
      * Get Daily Usage.
      *
+     * @covers ::getDailyUsageUsingGET
      */
     public function testGetDailyUsageUsingGET()
     {
-        //$class = new UsageApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getLast7DaysErrorsUsingGET
-     *
      * Get Weekly Errors.
      *
+     * @covers ::getLast7DaysErrorsUsingGET
      */
     public function testGetLast7DaysErrorsUsingGET()
     {
-        //$class = new UsageApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getLast7DaysUsageUsingGET
-     *
      * Get Weekly Usage.
      *
+     * @covers ::getLast7DaysUsageUsingGET
      */
     public function testGetLast7DaysUsageUsingGET()
     {
-        //$class = new UsageApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

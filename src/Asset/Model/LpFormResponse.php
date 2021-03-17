@@ -2,8 +2,6 @@
 /**
  * LpFormResponse
  *
- * PHP version 5
- *
  * @category Class
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
@@ -39,10 +37,13 @@ use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
+ * @implements \ArrayAccess<TKey, TValue>
+ * @template TKey int|null
+ * @template TValue mixed|null
  */
-class LpFormResponse implements ModelInterface, ArrayAccess
+class LpFormResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -83,6 +84,8 @@ class LpFormResponse implements ModelInterface, ArrayAccess
       * Array of property to format mappings. Used for (de)serialization
       *
       * @var string[]
+      * @phpstan-var array<string, string|null>
+      * @psalm-var array<string, string|null>
       */
     protected static $swaggerFormats = [
         'button_label' => null,
@@ -108,14 +111,16 @@ class LpFormResponse implements ModelInterface, ArrayAccess
     ];
 
     /**
-      * Array of dynamic properties.
+      * Array of additional properties.
       *
       * @var mixed[]
       */
     protected $additionalProperties = [];
 
     /**
-     * {@inheritdoc}
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
      */
     public static function swaggerTypes()
     {
@@ -331,7 +336,8 @@ class LpFormResponse implements ModelInterface, ArrayAccess
         $allowedValues = $this->getStatusAllowableValues();
         if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
-                "invalid value for 'status', must be one of '%s'",
+                "invalid value '%s' for 'status', must be one of '%s'",
+                $this->container['status'],
                 implode("', '", $allowedValues)
             );
         }
@@ -386,7 +392,7 @@ class LpFormResponse implements ModelInterface, ArrayAccess
      *
      * @param string $button_label Label text of the button
      *
-     * @return $this
+     * @return self
      */
     public function setButtonLabel($button_label)
     {
@@ -410,7 +416,7 @@ class LpFormResponse implements ModelInterface, ArrayAccess
      *
      * @param int $button_location Location in pixels of the button relative to the left of the form
      *
-     * @return $this
+     * @return self
      */
     public function setButtonLocation($button_location)
     {
@@ -434,7 +440,7 @@ class LpFormResponse implements ModelInterface, ArrayAccess
      *
      * @param \DateTime $created_at Datetime the asset was created
      *
-     * @return $this
+     * @return self
      */
     public function setCreatedAt($created_at)
     {
@@ -458,7 +464,7 @@ class LpFormResponse implements ModelInterface, ArrayAccess
      *
      * @param string $description Description of the asset
      *
-     * @return $this
+     * @return self
      */
     public function setDescription($description)
     {
@@ -482,7 +488,7 @@ class LpFormResponse implements ModelInterface, ArrayAccess
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
      *
-     * @return $this
+     * @return self
      */
     public function setFolder($folder)
     {
@@ -506,7 +512,7 @@ class LpFormResponse implements ModelInterface, ArrayAccess
      *
      * @param string $font_family font-family property for the form
      *
-     * @return $this
+     * @return self
      */
     public function setFontFamily($font_family)
     {
@@ -530,7 +536,7 @@ class LpFormResponse implements ModelInterface, ArrayAccess
      *
      * @param string $font_size font-size property of the form
      *
-     * @return $this
+     * @return self
      */
     public function setFontSize($font_size)
     {
@@ -554,7 +560,7 @@ class LpFormResponse implements ModelInterface, ArrayAccess
      *
      * @param int $id Id of the asset
      *
-     * @return $this
+     * @return self
      */
     public function setId($id)
     {
@@ -578,7 +584,7 @@ class LpFormResponse implements ModelInterface, ArrayAccess
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\FormKnownVisitorDTO $known_visitor Known visitor behavior for the form
      *
-     * @return $this
+     * @return self
      */
     public function setKnownVisitor($known_visitor)
     {
@@ -602,7 +608,7 @@ class LpFormResponse implements ModelInterface, ArrayAccess
      *
      * @param string $label_position Default positioning of labels.
      *
-     * @return $this
+     * @return self
      */
     public function setLabelPosition($label_position)
     {
@@ -626,7 +632,7 @@ class LpFormResponse implements ModelInterface, ArrayAccess
      *
      * @param string $language Language of the form
      *
-     * @return $this
+     * @return self
      */
     public function setLanguage($language)
     {
@@ -650,7 +656,7 @@ class LpFormResponse implements ModelInterface, ArrayAccess
      *
      * @param string $locale Locale of the form
      *
-     * @return $this
+     * @return self
      */
     public function setLocale($locale)
     {
@@ -674,7 +680,7 @@ class LpFormResponse implements ModelInterface, ArrayAccess
      *
      * @param string $name Name of the asset
      *
-     * @return $this
+     * @return self
      */
     public function setName($name)
     {
@@ -698,7 +704,7 @@ class LpFormResponse implements ModelInterface, ArrayAccess
      *
      * @param bool $progressive_profiling Whether progressive profiling is enabled for the form
      *
-     * @return $this
+     * @return self
      */
     public function setProgressiveProfiling($progressive_profiling)
     {
@@ -722,7 +728,7 @@ class LpFormResponse implements ModelInterface, ArrayAccess
      *
      * @param string $status Status filter for draft or approved versions
      *
-     * @return $this
+     * @return self
      */
     public function setStatus($status)
     {
@@ -730,7 +736,8 @@ class LpFormResponse implements ModelInterface, ArrayAccess
         if (!in_array($status, $allowedValues, true)) {
             throw new \InvalidArgumentException(
                 sprintf(
-                    "Invalid value for 'status', must be one of '%s'",
+                    "Invalid value '%s' for 'status', must be one of '%s'",
+                    $status,
                     implode("', '", $allowedValues)
                 )
             );
@@ -755,7 +762,7 @@ class LpFormResponse implements ModelInterface, ArrayAccess
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\FormThankYouPageDTO[] $thank_you_list List of thank you page behaviors for the form
      *
-     * @return $this
+     * @return self
      */
     public function setThankYouList($thank_you_list)
     {
@@ -779,7 +786,7 @@ class LpFormResponse implements ModelInterface, ArrayAccess
      *
      * @param string $theme CSS theme for the form to use
      *
-     * @return $this
+     * @return self
      */
     public function setTheme($theme)
     {
@@ -803,7 +810,7 @@ class LpFormResponse implements ModelInterface, ArrayAccess
      *
      * @param \DateTime $updated_at Datetime the asset was most recently updated
      *
-     * @return $this
+     * @return self
      */
     public function setUpdatedAt($updated_at)
     {
@@ -827,7 +834,7 @@ class LpFormResponse implements ModelInterface, ArrayAccess
      *
      * @param string $url Url of the asset in the Marketo UI
      *
-     * @return $this
+     * @return self
      */
     public function setUrl($url)
     {
@@ -851,7 +858,7 @@ class LpFormResponse implements ModelInterface, ArrayAccess
      *
      * @param string $waiting_label Waiting text of the button
      *
-     * @return $this
+     * @return self
      */
     public function setWaitingLabel($waiting_label)
     {
@@ -909,7 +916,7 @@ class LpFormResponse implements ModelInterface, ArrayAccess
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**
@@ -933,19 +940,37 @@ class LpFormResponse implements ModelInterface, ArrayAccess
     }
 
     /**
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     *
+     * @return mixed Returns data which can be serialized by json_encode(), which is a value
+     * of any type other than a resource.
+     */
+    public function jsonSerialize()
+    {
+       return ObjectSerializer::sanitizeForSerialization($this);
+    }
+
+    /**
      * Gets the string presentation of the object
      *
      * @return string
      */
     public function __toString()
     {
-        if (defined('JSON_PRETTY_PRINT')) { // use JSON pretty print
-            return json_encode(
-                ObjectSerializer::sanitizeForSerialization($this),
-                JSON_PRETTY_PRINT
-            );
-        }
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
+    }
 
+    /**
+     * Gets a header-safe presentation of the object
+     *
+     * @return string
+     */
+    public function toHeaderValue()
+    {
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }

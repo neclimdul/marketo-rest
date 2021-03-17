@@ -1,7 +1,6 @@
 <?php
 /**
  * BulkImportProgramMembersApiTest
- * PHP version 5
  *
  * @category Class
  * @package  NecLimDul\MarketoRest\Lead
@@ -26,14 +25,12 @@
  * Please update the test case below to test the endpoint.
  */
 
-// namespace NecLimDul\MarketoRest\Lead;
-namespace NecLimDul\MarketoRest\Lead\Model;
+namespace NecLimDul\MarketoRest\Lead\Test\Api;
 
+use NecLimDul\MarketoRest\Lead\Configuration;
+use NecLimDul\MarketoRest\Lead\ApiException;
+use NecLimDul\MarketoRest\Lead\ObjectSerializer;
 use PHPUnit\Framework\TestCase;
-
-use \NecLimDul\MarketoRest\Lead\Configuration;
-use \NecLimDul\MarketoRest\Lead\ApiException;
-use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * BulkImportProgramMembersApiTest Class Doc Comment
@@ -42,56 +39,53 @@ use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
+ * @coversDefaultClass \NecLimDul\MarketoRest\Lead\Api\BulkImportProgramMembersApi
  */
 class BulkImportProgramMembersApiTest extends TestCase
 {
 
 
     /**
-     * Test case for getImportProgramMemberFailuresUsingGET
-     *
      * Get Import Program Member Failures.
      *
+     * @covers ::getImportProgramMemberFailuresUsingGET
      */
     public function testGetImportProgramMemberFailuresUsingGET()
     {
-        //$class = new BulkImportProgramMembersApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getImportProgramMemberStatusUsingGET
-     *
      * Get Import Program Member Status.
      *
+     * @covers ::getImportProgramMemberStatusUsingGET
      */
     public function testGetImportProgramMemberStatusUsingGET()
     {
-        //$class = new BulkImportProgramMembersApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getImportProgramMemberWarningsUsingGET
-     *
      * Get Import Program Member Warnings.
      *
+     * @covers ::getImportProgramMemberWarningsUsingGET
      */
     public function testGetImportProgramMemberWarningsUsingGET()
     {
-        //$class = new BulkImportProgramMembersApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for importProgramMemberUsingPOST
-     *
      * Import Program Members.
      *
+     * @covers ::importProgramMemberUsingPOST
      */
     public function testImportProgramMemberUsingPOST()
     {
-        //$class = new BulkImportProgramMembersApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

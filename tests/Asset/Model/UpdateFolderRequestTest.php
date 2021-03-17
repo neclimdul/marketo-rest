@@ -2,8 +2,6 @@
 /**
  * UpdateFolderRequestTest
  *
- * PHP version 7
- *
  * @category Class
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
@@ -27,8 +25,7 @@
  * Please update the test case below to test the model.
  */
 
-// namespace NecLimDul\MarketoRest\Asset;
-namespace NecLimDul\MarketoRest\Asset\Model;
+namespace NecLimDul\MarketoRest\Asset\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
@@ -49,8 +46,8 @@ class UpdateFolderRequestTest extends TestCase
      */
     public function testUpdateFolderRequest()
     {
-        $class = new UpdateFolderRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -58,8 +55,8 @@ class UpdateFolderRequestTest extends TestCase
      */
     public function testPropertyDescription()
     {
-        $class = new UpdateFolderRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -67,8 +64,8 @@ class UpdateFolderRequestTest extends TestCase
      */
     public function testPropertyIsArchive()
     {
-        $class = new UpdateFolderRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -76,8 +73,8 @@ class UpdateFolderRequestTest extends TestCase
      */
     public function testPropertyName()
     {
-        $class = new UpdateFolderRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -85,7 +82,7 @@ class UpdateFolderRequestTest extends TestCase
      */
     public function testPropertyType()
     {
-        $class = new UpdateFolderRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

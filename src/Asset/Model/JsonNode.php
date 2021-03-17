@@ -2,8 +2,6 @@
 /**
  * JsonNode
  *
- * PHP version 5
- *
  * @category Class
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
@@ -39,10 +37,13 @@ use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
+ * @implements \ArrayAccess<TKey, TValue>
+ * @template TKey int|null
+ * @template TValue mixed|null
  */
-class JsonNode implements ModelInterface, ArrayAccess
+class JsonNode implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -84,6 +85,8 @@ class JsonNode implements ModelInterface, ArrayAccess
       * Array of property to format mappings. Used for (de)serialization
       *
       * @var string[]
+      * @phpstan-var array<string, string|null>
+      * @psalm-var array<string, string|null>
       */
     protected static $swaggerFormats = [
         'array' => null,
@@ -110,14 +113,16 @@ class JsonNode implements ModelInterface, ArrayAccess
     ];
 
     /**
-      * Array of dynamic properties.
+      * Array of additional properties.
       *
       * @var mixed[]
       */
     protected $additionalProperties = [];
 
     /**
-     * {@inheritdoc}
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
      */
     public static function swaggerTypes()
     {
@@ -311,7 +316,8 @@ class JsonNode implements ModelInterface, ArrayAccess
         $allowedValues = $this->getNodeTypeAllowableValues();
         if (!is_null($this->container['node_type']) && !in_array($this->container['node_type'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
-                "invalid value for 'node_type', must be one of '%s'",
+                "invalid value '%s' for 'node_type', must be one of '%s'",
+                $this->container['node_type'],
                 implode("', '", $allowedValues)
             );
         }
@@ -364,7 +370,7 @@ class JsonNode implements ModelInterface, ArrayAccess
      *
      * @param bool $array array
      *
-     * @return $this
+     * @return self
      */
     public function setArray($array)
     {
@@ -388,7 +394,7 @@ class JsonNode implements ModelInterface, ArrayAccess
      *
      * @param bool $big_decimal big_decimal
      *
-     * @return $this
+     * @return self
      */
     public function setBigDecimal($big_decimal)
     {
@@ -412,7 +418,7 @@ class JsonNode implements ModelInterface, ArrayAccess
      *
      * @param bool $big_integer big_integer
      *
-     * @return $this
+     * @return self
      */
     public function setBigInteger($big_integer)
     {
@@ -436,7 +442,7 @@ class JsonNode implements ModelInterface, ArrayAccess
      *
      * @param bool $binary binary
      *
-     * @return $this
+     * @return self
      */
     public function setBinary($binary)
     {
@@ -460,7 +466,7 @@ class JsonNode implements ModelInterface, ArrayAccess
      *
      * @param bool $boolean boolean
      *
-     * @return $this
+     * @return self
      */
     public function setBoolean($boolean)
     {
@@ -484,7 +490,7 @@ class JsonNode implements ModelInterface, ArrayAccess
      *
      * @param bool $container_node container_node
      *
-     * @return $this
+     * @return self
      */
     public function setContainerNode($container_node)
     {
@@ -508,7 +514,7 @@ class JsonNode implements ModelInterface, ArrayAccess
      *
      * @param bool $double double
      *
-     * @return $this
+     * @return self
      */
     public function setDouble($double)
     {
@@ -532,7 +538,7 @@ class JsonNode implements ModelInterface, ArrayAccess
      *
      * @param bool $float float
      *
-     * @return $this
+     * @return self
      */
     public function setFloat($float)
     {
@@ -556,7 +562,7 @@ class JsonNode implements ModelInterface, ArrayAccess
      *
      * @param bool $floating_point_number floating_point_number
      *
-     * @return $this
+     * @return self
      */
     public function setFloatingPointNumber($floating_point_number)
     {
@@ -580,7 +586,7 @@ class JsonNode implements ModelInterface, ArrayAccess
      *
      * @param bool $int int
      *
-     * @return $this
+     * @return self
      */
     public function setInt($int)
     {
@@ -604,7 +610,7 @@ class JsonNode implements ModelInterface, ArrayAccess
      *
      * @param bool $integral_number integral_number
      *
-     * @return $this
+     * @return self
      */
     public function setIntegralNumber($integral_number)
     {
@@ -628,7 +634,7 @@ class JsonNode implements ModelInterface, ArrayAccess
      *
      * @param bool $long long
      *
-     * @return $this
+     * @return self
      */
     public function setLong($long)
     {
@@ -652,7 +658,7 @@ class JsonNode implements ModelInterface, ArrayAccess
      *
      * @param bool $missing_node missing_node
      *
-     * @return $this
+     * @return self
      */
     public function setMissingNode($missing_node)
     {
@@ -676,7 +682,7 @@ class JsonNode implements ModelInterface, ArrayAccess
      *
      * @param string $node_type node_type
      *
-     * @return $this
+     * @return self
      */
     public function setNodeType($node_type)
     {
@@ -684,7 +690,8 @@ class JsonNode implements ModelInterface, ArrayAccess
         if (!is_null($node_type) && !in_array($node_type, $allowedValues, true)) {
             throw new \InvalidArgumentException(
                 sprintf(
-                    "Invalid value for 'node_type', must be one of '%s'",
+                    "Invalid value '%s' for 'node_type', must be one of '%s'",
+                    $node_type,
                     implode("', '", $allowedValues)
                 )
             );
@@ -709,7 +716,7 @@ class JsonNode implements ModelInterface, ArrayAccess
      *
      * @param bool $null null
      *
-     * @return $this
+     * @return self
      */
     public function setNull($null)
     {
@@ -733,7 +740,7 @@ class JsonNode implements ModelInterface, ArrayAccess
      *
      * @param bool $number number
      *
-     * @return $this
+     * @return self
      */
     public function setNumber($number)
     {
@@ -757,7 +764,7 @@ class JsonNode implements ModelInterface, ArrayAccess
      *
      * @param bool $object object
      *
-     * @return $this
+     * @return self
      */
     public function setObject($object)
     {
@@ -781,7 +788,7 @@ class JsonNode implements ModelInterface, ArrayAccess
      *
      * @param bool $pojo pojo
      *
-     * @return $this
+     * @return self
      */
     public function setPojo($pojo)
     {
@@ -805,7 +812,7 @@ class JsonNode implements ModelInterface, ArrayAccess
      *
      * @param bool $short short
      *
-     * @return $this
+     * @return self
      */
     public function setShort($short)
     {
@@ -829,7 +836,7 @@ class JsonNode implements ModelInterface, ArrayAccess
      *
      * @param bool $textual textual
      *
-     * @return $this
+     * @return self
      */
     public function setTextual($textual)
     {
@@ -853,7 +860,7 @@ class JsonNode implements ModelInterface, ArrayAccess
      *
      * @param bool $value_node value_node
      *
-     * @return $this
+     * @return self
      */
     public function setValueNode($value_node)
     {
@@ -911,7 +918,7 @@ class JsonNode implements ModelInterface, ArrayAccess
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**
@@ -935,19 +942,37 @@ class JsonNode implements ModelInterface, ArrayAccess
     }
 
     /**
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     *
+     * @return mixed Returns data which can be serialized by json_encode(), which is a value
+     * of any type other than a resource.
+     */
+    public function jsonSerialize()
+    {
+       return ObjectSerializer::sanitizeForSerialization($this);
+    }
+
+    /**
      * Gets the string presentation of the object
      *
      * @return string
      */
     public function __toString()
     {
-        if (defined('JSON_PRETTY_PRINT')) { // use JSON pretty print
-            return json_encode(
-                ObjectSerializer::sanitizeForSerialization($this),
-                JSON_PRETTY_PRINT
-            );
-        }
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
+    }
 
+    /**
+     * Gets a header-safe presentation of the object
+     *
+     * @return string
+     */
+    public function toHeaderValue()
+    {
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }

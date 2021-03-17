@@ -2,8 +2,6 @@
 /**
  * ExportResponseTest
  *
- * PHP version 7
- *
  * @category Class
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
@@ -27,8 +25,7 @@
  * Please update the test case below to test the model.
  */
 
-// namespace NecLimDul\MarketoRest\Lead;
-namespace NecLimDul\MarketoRest\Lead\Model;
+namespace NecLimDul\MarketoRest\Lead\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
@@ -49,8 +46,8 @@ class ExportResponseTest extends TestCase
      */
     public function testExportResponse()
     {
-        $class = new ExportResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -58,8 +55,8 @@ class ExportResponseTest extends TestCase
      */
     public function testPropertyCreatedAt()
     {
-        $class = new ExportResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -67,8 +64,8 @@ class ExportResponseTest extends TestCase
      */
     public function testPropertyErrorMsg()
     {
-        $class = new ExportResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -76,8 +73,8 @@ class ExportResponseTest extends TestCase
      */
     public function testPropertyExportId()
     {
-        $class = new ExportResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -85,8 +82,8 @@ class ExportResponseTest extends TestCase
      */
     public function testPropertyFileSize()
     {
-        $class = new ExportResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -94,8 +91,8 @@ class ExportResponseTest extends TestCase
      */
     public function testPropertyFileChecksum()
     {
-        $class = new ExportResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -103,8 +100,8 @@ class ExportResponseTest extends TestCase
      */
     public function testPropertyFinishedAt()
     {
-        $class = new ExportResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -112,8 +109,8 @@ class ExportResponseTest extends TestCase
      */
     public function testPropertyFormat()
     {
-        $class = new ExportResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -121,8 +118,8 @@ class ExportResponseTest extends TestCase
      */
     public function testPropertyNumberOfRecords()
     {
-        $class = new ExportResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -130,8 +127,8 @@ class ExportResponseTest extends TestCase
      */
     public function testPropertyQueuedAt()
     {
-        $class = new ExportResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -139,8 +136,8 @@ class ExportResponseTest extends TestCase
      */
     public function testPropertyStartedAt()
     {
-        $class = new ExportResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -148,7 +145,7 @@ class ExportResponseTest extends TestCase
      */
     public function testPropertyStatus()
     {
-        $class = new ExportResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

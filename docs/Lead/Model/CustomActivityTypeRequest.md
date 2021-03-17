@@ -1,6 +1,7 @@
 # CustomActivityTypeRequest
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **api_name** | **string** |  | 
@@ -11,5 +12,3 @@ Name | Type | Description | Notes
 **trigger_name** | **string** | Human-readable name of the associated trigger | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

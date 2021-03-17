@@ -2,8 +2,6 @@
 /**
  * UpdateEmailFullContentResponseTest
  *
- * PHP version 7
- *
  * @category Class
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
@@ -27,8 +25,7 @@
  * Please update the test case below to test the model.
  */
 
-// namespace NecLimDul\MarketoRest\Asset;
-namespace NecLimDul\MarketoRest\Asset\Model;
+namespace NecLimDul\MarketoRest\Asset\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
@@ -49,8 +46,8 @@ class UpdateEmailFullContentResponseTest extends TestCase
      */
     public function testUpdateEmailFullContentResponse()
     {
-        $class = new UpdateEmailFullContentResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -58,7 +55,7 @@ class UpdateEmailFullContentResponseTest extends TestCase
      */
     public function testPropertyId()
     {
-        $class = new UpdateEmailFullContentResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

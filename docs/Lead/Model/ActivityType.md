@@ -1,6 +1,7 @@
 # ActivityType
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **api_name** | **string** |  | [optional] 
@@ -11,5 +12,3 @@ Name | Type | Description | Notes
 **primary_attribute** | [**\NecLimDul\MarketoRest\Lead\Model\ActivityTypeAttribute**](ActivityTypeAttribute.md) | Primary attribute of the type | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

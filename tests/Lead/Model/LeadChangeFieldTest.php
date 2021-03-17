@@ -2,8 +2,6 @@
 /**
  * LeadChangeFieldTest
  *
- * PHP version 7
- *
  * @category Class
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
@@ -27,8 +25,7 @@
  * Please update the test case below to test the model.
  */
 
-// namespace NecLimDul\MarketoRest\Lead;
-namespace NecLimDul\MarketoRest\Lead\Model;
+namespace NecLimDul\MarketoRest\Lead\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
@@ -49,8 +46,8 @@ class LeadChangeFieldTest extends TestCase
      */
     public function testLeadChangeField()
     {
-        $class = new LeadChangeField();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -58,8 +55,8 @@ class LeadChangeFieldTest extends TestCase
      */
     public function testPropertyId()
     {
-        $class = new LeadChangeField();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -67,8 +64,8 @@ class LeadChangeFieldTest extends TestCase
      */
     public function testPropertyName()
     {
-        $class = new LeadChangeField();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -76,8 +73,8 @@ class LeadChangeFieldTest extends TestCase
      */
     public function testPropertyNewValue()
     {
-        $class = new LeadChangeField();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -85,7 +82,7 @@ class LeadChangeFieldTest extends TestCase
      */
     public function testPropertyOldValue()
     {
-        $class = new LeadChangeField();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

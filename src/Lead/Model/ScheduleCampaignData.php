@@ -2,8 +2,6 @@
 /**
  * ScheduleCampaignData
  *
- * PHP version 5
- *
  * @category Class
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
@@ -39,10 +37,13 @@ use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
+ * @implements \ArrayAccess<TKey, TValue>
+ * @template TKey int|null
+ * @template TValue mixed|null
  */
-class ScheduleCampaignData implements ModelInterface, ArrayAccess
+class ScheduleCampaignData implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -66,6 +67,8 @@ class ScheduleCampaignData implements ModelInterface, ArrayAccess
       * Array of property to format mappings. Used for (de)serialization
       *
       * @var string[]
+      * @phpstan-var array<string, string|null>
+      * @psalm-var array<string, string|null>
       */
     protected static $swaggerFormats = [
         'clone_to_program_name' => null,
@@ -74,14 +77,16 @@ class ScheduleCampaignData implements ModelInterface, ArrayAccess
     ];
 
     /**
-      * Array of dynamic properties.
+      * Array of additional properties.
       *
       * @var mixed[]
       */
     protected $additionalProperties = [];
 
     /**
-     * {@inheritdoc}
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
      */
     public static function swaggerTypes()
     {
@@ -218,7 +223,7 @@ class ScheduleCampaignData implements ModelInterface, ArrayAccess
      *
      * @param string $clone_to_program_name Name of the resulting program.  When set, this attribute will cause the campaign, parent program, and all of its assets, to be created with the resulting new name.  The parent program will be cloned and the newly created campaign will be scheduled.  The resulting program is created underneath the parent.  Programs with snippets, push notifications, in-app messages, static lists, reports, and social assets may not be cloned in this way
      *
-     * @return $this
+     * @return self
      */
     public function setCloneToProgramName($clone_to_program_name)
     {
@@ -242,7 +247,7 @@ class ScheduleCampaignData implements ModelInterface, ArrayAccess
      *
      * @param \DateTime $run_at Datetime to run the campaign at.  If unset, the campaign will be run five minutes after the call is made
      *
-     * @return $this
+     * @return self
      */
     public function setRunAt($run_at)
     {
@@ -266,7 +271,7 @@ class ScheduleCampaignData implements ModelInterface, ArrayAccess
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\Token[] $tokens List of my tokens to replace during the run of the target campaign.  The tokens must be available in a parent program or folder to be replaced during the run
      *
-     * @return $this
+     * @return self
      */
     public function setTokens($tokens)
     {
@@ -324,7 +329,7 @@ class ScheduleCampaignData implements ModelInterface, ArrayAccess
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**
@@ -348,19 +353,37 @@ class ScheduleCampaignData implements ModelInterface, ArrayAccess
     }
 
     /**
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     *
+     * @return mixed Returns data which can be serialized by json_encode(), which is a value
+     * of any type other than a resource.
+     */
+    public function jsonSerialize()
+    {
+       return ObjectSerializer::sanitizeForSerialization($this);
+    }
+
+    /**
      * Gets the string presentation of the object
      *
      * @return string
      */
     public function __toString()
     {
-        if (defined('JSON_PRETTY_PRINT')) { // use JSON pretty print
-            return json_encode(
-                ObjectSerializer::sanitizeForSerialization($this),
-                JSON_PRETTY_PRINT
-            );
-        }
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
+    }
 
+    /**
+     * Gets a header-safe presentation of the object
+     *
+     * @return string
+     */
+    public function toHeaderValue()
+    {
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }

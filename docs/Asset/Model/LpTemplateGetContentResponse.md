@@ -1,6 +1,7 @@
 # LpTemplateGetContentResponse
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **content** | **string** | HTML content of the landing page template | 
@@ -10,5 +11,3 @@ Name | Type | Description | Notes
 **template_type** | **string** | Type of template to create.  Defaults to freeForm | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

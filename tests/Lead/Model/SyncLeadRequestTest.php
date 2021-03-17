@@ -2,8 +2,6 @@
 /**
  * SyncLeadRequestTest
  *
- * PHP version 7
- *
  * @category Class
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
@@ -27,8 +25,7 @@
  * Please update the test case below to test the model.
  */
 
-// namespace NecLimDul\MarketoRest\Lead;
-namespace NecLimDul\MarketoRest\Lead\Model;
+namespace NecLimDul\MarketoRest\Lead\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
@@ -49,8 +46,8 @@ class SyncLeadRequestTest extends TestCase
      */
     public function testSyncLeadRequest()
     {
-        $class = new SyncLeadRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -58,8 +55,8 @@ class SyncLeadRequestTest extends TestCase
      */
     public function testPropertyAction()
     {
-        $class = new SyncLeadRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -67,8 +64,8 @@ class SyncLeadRequestTest extends TestCase
      */
     public function testPropertyAsyncProcessing()
     {
-        $class = new SyncLeadRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -76,8 +73,8 @@ class SyncLeadRequestTest extends TestCase
      */
     public function testPropertyInput()
     {
-        $class = new SyncLeadRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -85,8 +82,8 @@ class SyncLeadRequestTest extends TestCase
      */
     public function testPropertyLookupField()
     {
-        $class = new SyncLeadRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -94,7 +91,7 @@ class SyncLeadRequestTest extends TestCase
      */
     public function testPropertyPartitionName()
     {
-        $class = new SyncLeadRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

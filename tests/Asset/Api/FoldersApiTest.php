@@ -1,7 +1,6 @@
 <?php
 /**
  * FoldersApiTest
- * PHP version 5
  *
  * @category Class
  * @package  NecLimDul\MarketoRest\Asset
@@ -26,14 +25,12 @@
  * Please update the test case below to test the endpoint.
  */
 
-// namespace NecLimDul\MarketoRest\Asset;
-namespace NecLimDul\MarketoRest\Asset\Model;
+namespace NecLimDul\MarketoRest\Asset\Test\Api;
 
+use NecLimDul\MarketoRest\Asset\Configuration;
+use NecLimDul\MarketoRest\Asset\ApiException;
+use NecLimDul\MarketoRest\Asset\ObjectSerializer;
 use PHPUnit\Framework\TestCase;
-
-use \NecLimDul\MarketoRest\Asset\Configuration;
-use \NecLimDul\MarketoRest\Asset\ApiException;
-use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * FoldersApiTest Class Doc Comment
@@ -42,92 +39,86 @@ use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
+ * @coversDefaultClass \NecLimDul\MarketoRest\Asset\Api\FoldersApi
  */
 class FoldersApiTest extends TestCase
 {
 
 
     /**
-     * Test case for createFolderUsingPOST
-     *
      * Create Folder.
      *
+     * @covers ::createFolderUsingPOST
      */
     public function testCreateFolderUsingPOST()
     {
-        //$class = new FoldersApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for deleteFolderUsingPOST
-     *
      * Delete Folder.
      *
+     * @covers ::deleteFolderUsingPOST
      */
     public function testDeleteFolderUsingPOST()
     {
-        //$class = new FoldersApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getFolderByIdUsingGET
-     *
      * Get Folder by Id.
      *
+     * @covers ::getFolderByIdUsingGET
      */
     public function testGetFolderByIdUsingGET()
     {
-        //$class = new FoldersApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getFolderByNameUsingGET
-     *
      * Get Folder by Name.
      *
+     * @covers ::getFolderByNameUsingGET
      */
     public function testGetFolderByNameUsingGET()
     {
-        //$class = new FoldersApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getFolderContentUsingGET
-     *
      * Get Folder Contents.
      *
+     * @covers ::getFolderContentUsingGET
      */
     public function testGetFolderContentUsingGET()
     {
-        //$class = new FoldersApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getFolderUsingGET
-     *
      * Get Folders.
      *
+     * @covers ::getFolderUsingGET
      */
     public function testGetFolderUsingGET()
     {
-        //$class = new FoldersApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for updateFolderUsingPOST
-     *
      * Update Folder Metadata.
      *
+     * @covers ::updateFolderUsingPOST
      */
     public function testUpdateFolderUsingPOST()
     {
-        //$class = new FoldersApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

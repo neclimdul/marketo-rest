@@ -2,8 +2,6 @@
 /**
  * UpdateSnippetDynamicContentRequest
  *
- * PHP version 5
- *
  * @category Class
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
@@ -39,10 +37,13 @@ use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
+ * @implements \ArrayAccess<TKey, TValue>
+ * @template TKey int|null
+ * @template TValue mixed|null
  */
-class UpdateSnippetDynamicContentRequest implements ModelInterface, ArrayAccess
+class UpdateSnippetDynamicContentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -65,6 +66,8 @@ class UpdateSnippetDynamicContentRequest implements ModelInterface, ArrayAccess
       * Array of property to format mappings. Used for (de)serialization
       *
       * @var string[]
+      * @phpstan-var array<string, string|null>
+      * @psalm-var array<string, string|null>
       */
     protected static $swaggerFormats = [
         'type' => null,
@@ -72,14 +75,16 @@ class UpdateSnippetDynamicContentRequest implements ModelInterface, ArrayAccess
     ];
 
     /**
-      * Array of dynamic properties.
+      * Array of additional properties.
       *
       * @var mixed[]
       */
     protected $additionalProperties = [];
 
     /**
-     * {@inheritdoc}
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
      */
     public static function swaggerTypes()
     {
@@ -189,7 +194,8 @@ class UpdateSnippetDynamicContentRequest implements ModelInterface, ArrayAccess
         $allowedValues = $this->getTypeAllowableValues();
         if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
-                "invalid value for 'type', must be one of '%s'",
+                "invalid value '%s' for 'type', must be one of '%s'",
+                $this->container['type'],
                 implode("', '", $allowedValues)
             );
         }
@@ -234,7 +240,7 @@ class UpdateSnippetDynamicContentRequest implements ModelInterface, ArrayAccess
      *
      * @param string $type Type of dynamic content section
      *
-     * @return $this
+     * @return self
      */
     public function setType($type)
     {
@@ -242,7 +248,8 @@ class UpdateSnippetDynamicContentRequest implements ModelInterface, ArrayAccess
         if (!is_null($type) && !in_array($type, $allowedValues, true)) {
             throw new \InvalidArgumentException(
                 sprintf(
-                    "Invalid value for 'type', must be one of '%s'",
+                    "Invalid value '%s' for 'type', must be one of '%s'",
+                    $type,
                     implode("', '", $allowedValues)
                 )
             );
@@ -267,7 +274,7 @@ class UpdateSnippetDynamicContentRequest implements ModelInterface, ArrayAccess
      *
      * @param string $value Value of the dynamic content section
      *
-     * @return $this
+     * @return self
      */
     public function setValue($value)
     {
@@ -325,7 +332,7 @@ class UpdateSnippetDynamicContentRequest implements ModelInterface, ArrayAccess
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**
@@ -349,19 +356,37 @@ class UpdateSnippetDynamicContentRequest implements ModelInterface, ArrayAccess
     }
 
     /**
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     *
+     * @return mixed Returns data which can be serialized by json_encode(), which is a value
+     * of any type other than a resource.
+     */
+    public function jsonSerialize()
+    {
+       return ObjectSerializer::sanitizeForSerialization($this);
+    }
+
+    /**
      * Gets the string presentation of the object
      *
      * @return string
      */
     public function __toString()
     {
-        if (defined('JSON_PRETTY_PRINT')) { // use JSON pretty print
-            return json_encode(
-                ObjectSerializer::sanitizeForSerialization($this),
-                JSON_PRETTY_PRINT
-            );
-        }
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
+    }
 
+    /**
+     * Gets a header-safe presentation of the object
+     *
+     * @return string
+     */
+    public function toHeaderValue()
+    {
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }

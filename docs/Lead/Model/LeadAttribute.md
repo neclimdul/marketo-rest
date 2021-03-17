@@ -1,6 +1,7 @@
 # LeadAttribute
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **data_type** | **string** | Datatype of the field | 
@@ -11,5 +12,3 @@ Name | Type | Description | Notes
 **soap** | [**\NecLimDul\MarketoRest\Lead\Model\LeadMapAttribute**](LeadMapAttribute.md) | Description of SOAP API usage attributes | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -1,6 +1,7 @@
 # ExportLeadFilter
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **created_at** | [**\NecLimDul\MarketoRest\Lead\Model\DateRange**](DateRange.md) | Date range to filter new leads on | 
@@ -11,5 +12,3 @@ Name | Type | Description | Notes
 **updated_at** | [**\NecLimDul\MarketoRest\Lead\Model\DateRange**](DateRange.md) | Date range to filter updated leads on | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -2,8 +2,6 @@
 /**
  * TokenDTOTest
  *
- * PHP version 7
- *
  * @category Class
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
@@ -27,8 +25,7 @@
  * Please update the test case below to test the model.
  */
 
-// namespace NecLimDul\MarketoRest\Asset;
-namespace NecLimDul\MarketoRest\Asset\Model;
+namespace NecLimDul\MarketoRest\Asset\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
@@ -49,8 +46,8 @@ class TokenDTOTest extends TestCase
      */
     public function testTokenDTO()
     {
-        $class = new TokenDTO();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -58,8 +55,8 @@ class TokenDTOTest extends TestCase
      */
     public function testPropertyComputedUrl()
     {
-        $class = new TokenDTO();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -67,8 +64,8 @@ class TokenDTOTest extends TestCase
      */
     public function testPropertyName()
     {
-        $class = new TokenDTO();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -76,8 +73,8 @@ class TokenDTOTest extends TestCase
      */
     public function testPropertyType()
     {
-        $class = new TokenDTO();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -85,7 +82,7 @@ class TokenDTOTest extends TestCase
      */
     public function testPropertyValue()
     {
-        $class = new TokenDTO();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

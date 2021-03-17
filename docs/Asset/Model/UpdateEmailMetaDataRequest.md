@@ -1,6 +1,7 @@
 # UpdateEmailMetaDataRequest
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **description** | **string** | Description of the asset | [optional] 
@@ -12,5 +13,3 @@ Name | Type | Description | Notes
 **web_view** | **bool** | Whether the email has been enabled to allow the &#39;View as Web Page&#39; when received | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

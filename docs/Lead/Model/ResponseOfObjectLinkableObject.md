@@ -1,6 +1,7 @@
 # ResponseOfObjectLinkableObject
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **errors** | [**\NecLimDul\MarketoRest\Lead\Model\Error[]**](Error.md) | Array of errors that occurred if the request was unsuccessful | 
@@ -10,5 +11,3 @@ Name | Type | Description | Notes
 **warnings** | [**\NecLimDul\MarketoRest\Lead\Model\Warning[]**](Warning.md) | Array of warnings given for the operation | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

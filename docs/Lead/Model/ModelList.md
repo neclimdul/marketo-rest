@@ -1,6 +1,7 @@
 # ModelList
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **created_at** | **string** | Datetime when the static list was created | 
@@ -8,5 +9,3 @@ Name | Type | Description | Notes
 **updated_at** | **string** | Datetime when the static list was most recently updated | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

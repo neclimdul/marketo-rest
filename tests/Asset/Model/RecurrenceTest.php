@@ -2,8 +2,6 @@
 /**
  * RecurrenceTest
  *
- * PHP version 7
- *
  * @category Class
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
@@ -27,8 +25,7 @@
  * Please update the test case below to test the model.
  */
 
-// namespace NecLimDul\MarketoRest\Asset;
-namespace NecLimDul\MarketoRest\Asset\Model;
+namespace NecLimDul\MarketoRest\Asset\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
@@ -49,8 +46,8 @@ class RecurrenceTest extends TestCase
      */
     public function testRecurrence()
     {
-        $class = new Recurrence();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -58,8 +55,8 @@ class RecurrenceTest extends TestCase
      */
     public function testPropertyStartAt()
     {
-        $class = new Recurrence();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -67,8 +64,8 @@ class RecurrenceTest extends TestCase
      */
     public function testPropertyEndAt()
     {
-        $class = new Recurrence();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -76,8 +73,8 @@ class RecurrenceTest extends TestCase
      */
     public function testPropertyIntervalType()
     {
-        $class = new Recurrence();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -85,8 +82,8 @@ class RecurrenceTest extends TestCase
      */
     public function testPropertyInterval()
     {
-        $class = new Recurrence();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -94,8 +91,8 @@ class RecurrenceTest extends TestCase
      */
     public function testPropertyWeekdayOnly()
     {
-        $class = new Recurrence();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -103,8 +100,8 @@ class RecurrenceTest extends TestCase
      */
     public function testPropertyWeekdayMask()
     {
-        $class = new Recurrence();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -112,8 +109,8 @@ class RecurrenceTest extends TestCase
      */
     public function testPropertyDayOfMonth()
     {
-        $class = new Recurrence();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -121,8 +118,8 @@ class RecurrenceTest extends TestCase
      */
     public function testPropertyDayOfWeek()
     {
-        $class = new Recurrence();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -130,7 +127,7 @@ class RecurrenceTest extends TestCase
      */
     public function testPropertyWeekOfMonth()
     {
-        $class = new Recurrence();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

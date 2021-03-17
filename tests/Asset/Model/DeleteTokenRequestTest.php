@@ -2,8 +2,6 @@
 /**
  * DeleteTokenRequestTest
  *
- * PHP version 7
- *
  * @category Class
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
@@ -27,8 +25,7 @@
  * Please update the test case below to test the model.
  */
 
-// namespace NecLimDul\MarketoRest\Asset;
-namespace NecLimDul\MarketoRest\Asset\Model;
+namespace NecLimDul\MarketoRest\Asset\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
@@ -49,8 +46,8 @@ class DeleteTokenRequestTest extends TestCase
      */
     public function testDeleteTokenRequest()
     {
-        $class = new DeleteTokenRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -58,8 +55,8 @@ class DeleteTokenRequestTest extends TestCase
      */
     public function testPropertyFolderType()
     {
-        $class = new DeleteTokenRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -67,8 +64,8 @@ class DeleteTokenRequestTest extends TestCase
      */
     public function testPropertyName()
     {
-        $class = new DeleteTokenRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -76,7 +73,7 @@ class DeleteTokenRequestTest extends TestCase
      */
     public function testPropertyType()
     {
-        $class = new DeleteTokenRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

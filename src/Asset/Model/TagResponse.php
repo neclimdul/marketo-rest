@@ -2,8 +2,6 @@
 /**
  * TagResponse
  *
- * PHP version 5
- *
  * @category Class
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
@@ -39,10 +37,13 @@ use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
+ * @implements \ArrayAccess<TKey, TValue>
+ * @template TKey int|null
+ * @template TValue mixed|null
  */
-class TagResponse implements ModelInterface, ArrayAccess
+class TagResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -67,6 +68,8 @@ class TagResponse implements ModelInterface, ArrayAccess
       * Array of property to format mappings. Used for (de)serialization
       *
       * @var string[]
+      * @phpstan-var array<string, string|null>
+      * @psalm-var array<string, string|null>
       */
     protected static $swaggerFormats = [
         'allowable_values' => null,
@@ -76,14 +79,16 @@ class TagResponse implements ModelInterface, ArrayAccess
     ];
 
     /**
-      * Array of dynamic properties.
+      * Array of additional properties.
       *
       * @var mixed[]
       */
     protected $additionalProperties = [];
 
     /**
-     * {@inheritdoc}
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
      */
     public static function swaggerTypes()
     {
@@ -233,7 +238,7 @@ class TagResponse implements ModelInterface, ArrayAccess
      *
      * @param string $allowable_values The list of acceptable values for the tag type
      *
-     * @return $this
+     * @return self
      */
     public function setAllowableValues($allowable_values)
     {
@@ -257,7 +262,7 @@ class TagResponse implements ModelInterface, ArrayAccess
      *
      * @param string $applicable_program_types Types of programs to which the tag can apply
      *
-     * @return $this
+     * @return self
      */
     public function setApplicableProgramTypes($applicable_program_types)
     {
@@ -281,7 +286,7 @@ class TagResponse implements ModelInterface, ArrayAccess
      *
      * @param bool $required Whether the tag is required for its applicable program types
      *
-     * @return $this
+     * @return self
      */
     public function setRequired($required)
     {
@@ -305,7 +310,7 @@ class TagResponse implements ModelInterface, ArrayAccess
      *
      * @param string $tag_type Name of the tag
      *
-     * @return $this
+     * @return self
      */
     public function setTagType($tag_type)
     {
@@ -363,7 +368,7 @@ class TagResponse implements ModelInterface, ArrayAccess
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**
@@ -387,19 +392,37 @@ class TagResponse implements ModelInterface, ArrayAccess
     }
 
     /**
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     *
+     * @return mixed Returns data which can be serialized by json_encode(), which is a value
+     * of any type other than a resource.
+     */
+    public function jsonSerialize()
+    {
+       return ObjectSerializer::sanitizeForSerialization($this);
+    }
+
+    /**
      * Gets the string presentation of the object
      *
      * @return string
      */
     public function __toString()
     {
-        if (defined('JSON_PRETTY_PRINT')) { // use JSON pretty print
-            return json_encode(
-                ObjectSerializer::sanitizeForSerialization($this),
-                JSON_PRETTY_PRINT
-            );
-        }
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
+    }
 
+    /**
+     * Gets a header-safe presentation of the object
+     *
+     * @return string
+     */
+    public function toHeaderValue()
+    {
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }

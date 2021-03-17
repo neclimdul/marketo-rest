@@ -1,6 +1,7 @@
 # EmailCCFields
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **attribute_id** | **string** | Attribute identifier | 
@@ -9,5 +10,3 @@ Name | Type | Description | Notes
 **api_name** | **string** | API name | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

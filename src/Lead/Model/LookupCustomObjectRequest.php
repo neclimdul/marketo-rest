@@ -2,8 +2,6 @@
 /**
  * LookupCustomObjectRequest
  *
- * PHP version 5
- *
  * @category Class
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
@@ -39,10 +37,13 @@ use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
+ * @implements \ArrayAccess<TKey, TValue>
+ * @template TKey int|null
+ * @template TValue mixed|null
  */
-class LookupCustomObjectRequest implements ModelInterface, ArrayAccess
+class LookupCustomObjectRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -68,6 +69,8 @@ class LookupCustomObjectRequest implements ModelInterface, ArrayAccess
       * Array of property to format mappings. Used for (de)serialization
       *
       * @var string[]
+      * @phpstan-var array<string, string|null>
+      * @psalm-var array<string, string|null>
       */
     protected static $swaggerFormats = [
         'batch_size' => 'int32',
@@ -78,14 +81,16 @@ class LookupCustomObjectRequest implements ModelInterface, ArrayAccess
     ];
 
     /**
-      * Array of dynamic properties.
+      * Array of additional properties.
       *
       * @var mixed[]
       */
     protected $additionalProperties = [];
 
     /**
-     * {@inheritdoc}
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
      */
     public static function swaggerTypes()
     {
@@ -233,7 +238,7 @@ class LookupCustomObjectRequest implements ModelInterface, ArrayAccess
      *
      * @param int $batch_size Maximum number of records to return in the response.  Max and default is 300
      *
-     * @return $this
+     * @return self
      */
     public function setBatchSize($batch_size)
     {
@@ -257,7 +262,7 @@ class LookupCustomObjectRequest implements ModelInterface, ArrayAccess
      *
      * @param string[] $fields List of fields to return. If not specified, will return the following fields: marketoGuid, dedupeFields, updatedAt, createdAt, filterType
      *
-     * @return $this
+     * @return self
      */
     public function setFields($fields)
     {
@@ -281,7 +286,7 @@ class LookupCustomObjectRequest implements ModelInterface, ArrayAccess
      *
      * @param string $filter_type Field to search on.  Valid values are: dedupeFields, idFields, and any field defined in searchableFields attribute of Describe endpoint.  Default is dedupeFields
      *
-     * @return $this
+     * @return self
      */
     public function setFilterType($filter_type)
     {
@@ -305,7 +310,7 @@ class LookupCustomObjectRequest implements ModelInterface, ArrayAccess
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\CustomObject[] $input Search values when using a compound key.  Each element must include each of the fields in the compound key.  Compound keys are determined by the contents of \"dedupeFields\" in the Describe result for the object
      *
-     * @return $this
+     * @return self
      */
     public function setInput($input)
     {
@@ -329,7 +334,7 @@ class LookupCustomObjectRequest implements ModelInterface, ArrayAccess
      *
      * @param string $next_page_token Paging token returned from a previous response
      *
-     * @return $this
+     * @return self
      */
     public function setNextPageToken($next_page_token)
     {
@@ -387,7 +392,7 @@ class LookupCustomObjectRequest implements ModelInterface, ArrayAccess
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**
@@ -411,19 +416,37 @@ class LookupCustomObjectRequest implements ModelInterface, ArrayAccess
     }
 
     /**
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     *
+     * @return mixed Returns data which can be serialized by json_encode(), which is a value
+     * of any type other than a resource.
+     */
+    public function jsonSerialize()
+    {
+       return ObjectSerializer::sanitizeForSerialization($this);
+    }
+
+    /**
      * Gets the string presentation of the object
      *
      * @return string
      */
     public function __toString()
     {
-        if (defined('JSON_PRETTY_PRINT')) { // use JSON pretty print
-            return json_encode(
-                ObjectSerializer::sanitizeForSerialization($this),
-                JSON_PRETTY_PRINT
-            );
-        }
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
+    }
 
+    /**
+     * Gets a header-safe presentation of the object
+     *
+     * @return string
+     */
+    public function toHeaderValue()
+    {
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }

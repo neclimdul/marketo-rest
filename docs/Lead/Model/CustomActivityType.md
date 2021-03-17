@@ -1,6 +1,7 @@
 # CustomActivityType
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **api_name** | **string** | API Name of the type.  The API name must be unique and alphanumeric, containing at least one letter.  It is highly recommended to prepend a unique namespace of up to sixteen characters to the API name.  Required on creation | [optional] 
@@ -16,5 +17,3 @@ Name | Type | Description | Notes
 **updated_at** | **string** | Datetime when the activity type was most recently updated | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

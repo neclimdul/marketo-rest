@@ -1,6 +1,7 @@
 # SmartListConditions
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **activity_attribute_id** | **int** | Id of the activity attribute | 
@@ -10,5 +11,3 @@ Name | Type | Description | Notes
 **is_primary** | **bool** | Whether the condition is primary or not (first condition of the smart list) | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

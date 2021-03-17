@@ -2,8 +2,6 @@
 /**
  * SmartListRules
  *
- * PHP version 5
- *
  * @category Class
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
@@ -40,10 +38,13 @@ use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
+ * @implements \ArrayAccess<TKey, TValue>
+ * @template TKey int|null
+ * @template TValue mixed|null
  */
-class SmartListRules implements ModelInterface, ArrayAccess
+class SmartListRules implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -67,6 +68,8 @@ class SmartListRules implements ModelInterface, ArrayAccess
       * Array of property to format mappings. Used for (de)serialization
       *
       * @var string[]
+      * @phpstan-var array<string, string|null>
+      * @psalm-var array<string, string|null>
       */
     protected static $swaggerFormats = [
         'filter_match_type' => null,
@@ -75,14 +78,16 @@ class SmartListRules implements ModelInterface, ArrayAccess
     ];
 
     /**
-      * Array of dynamic properties.
+      * Array of additional properties.
       *
       * @var mixed[]
       */
     protected $additionalProperties = [];
 
     /**
-     * {@inheritdoc}
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
      */
     public static function swaggerTypes()
     {
@@ -201,7 +206,8 @@ class SmartListRules implements ModelInterface, ArrayAccess
         $allowedValues = $this->getFilterMatchTypeAllowableValues();
         if (!is_null($this->container['filter_match_type']) && !in_array($this->container['filter_match_type'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
-                "invalid value for 'filter_match_type', must be one of '%s'",
+                "invalid value '%s' for 'filter_match_type', must be one of '%s'",
+                $this->container['filter_match_type'],
                 implode("', '", $allowedValues)
             );
         }
@@ -254,7 +260,7 @@ class SmartListRules implements ModelInterface, ArrayAccess
      *
      * @param string $filter_match_type Smart list filter match type (rule logic)
      *
-     * @return $this
+     * @return self
      */
     public function setFilterMatchType($filter_match_type)
     {
@@ -262,7 +268,8 @@ class SmartListRules implements ModelInterface, ArrayAccess
         if (!in_array($filter_match_type, $allowedValues, true)) {
             throw new \InvalidArgumentException(
                 sprintf(
-                    "Invalid value for 'filter_match_type', must be one of '%s'",
+                    "Invalid value '%s' for 'filter_match_type', must be one of '%s'",
+                    $filter_match_type,
                     implode("', '", $allowedValues)
                 )
             );
@@ -287,7 +294,7 @@ class SmartListRules implements ModelInterface, ArrayAccess
      *
      * @param string[] $triggers List of smart list triggers
      *
-     * @return $this
+     * @return self
      */
     public function setTriggers($triggers)
     {
@@ -311,7 +318,7 @@ class SmartListRules implements ModelInterface, ArrayAccess
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\SmartListFilters[] $filters List of smart list filters
      *
-     * @return $this
+     * @return self
      */
     public function setFilters($filters)
     {
@@ -369,7 +376,7 @@ class SmartListRules implements ModelInterface, ArrayAccess
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**
@@ -393,19 +400,37 @@ class SmartListRules implements ModelInterface, ArrayAccess
     }
 
     /**
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     *
+     * @return mixed Returns data which can be serialized by json_encode(), which is a value
+     * of any type other than a resource.
+     */
+    public function jsonSerialize()
+    {
+       return ObjectSerializer::sanitizeForSerialization($this);
+    }
+
+    /**
      * Gets the string presentation of the object
      *
      * @return string
      */
     public function __toString()
     {
-        if (defined('JSON_PRETTY_PRINT')) { // use JSON pretty print
-            return json_encode(
-                ObjectSerializer::sanitizeForSerialization($this),
-                JSON_PRETTY_PRINT
-            );
-        }
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
+    }
 
+    /**
+     * Gets a header-safe presentation of the object
+     *
+     * @return string
+     */
+    public function toHeaderValue()
+    {
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }

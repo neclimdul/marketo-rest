@@ -1,6 +1,7 @@
 # LookupCustomObjectRequest
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **batch_size** | **int** | Maximum number of records to return in the response.  Max and default is 300 | [optional] 
@@ -10,5 +11,3 @@ Name | Type | Description | Notes
 **next_page_token** | **string** | Paging token returned from a previous response | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

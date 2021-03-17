@@ -1,6 +1,7 @@
 # SmartListResponseWithRules
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** | Id of the smart list | 
@@ -14,5 +15,3 @@ Name | Type | Description | Notes
 **rules** | [**\NecLimDul\MarketoRest\Asset\Model\SmartListRules**](SmartListRules.md) | Rules contained in the smart list | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

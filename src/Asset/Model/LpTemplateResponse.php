@@ -2,8 +2,6 @@
 /**
  * LpTemplateResponse
  *
- * PHP version 5
- *
  * @category Class
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
@@ -39,10 +37,13 @@ use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
+ * @implements \ArrayAccess<TKey, TValue>
+ * @template TKey int|null
+ * @template TValue mixed|null
  */
-class LpTemplateResponse implements ModelInterface, ArrayAccess
+class LpTemplateResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -74,6 +75,8 @@ class LpTemplateResponse implements ModelInterface, ArrayAccess
       * Array of property to format mappings. Used for (de)serialization
       *
       * @var string[]
+      * @phpstan-var array<string, string|null>
+      * @psalm-var array<string, string|null>
       */
     protected static $swaggerFormats = [
         'created_at' => 'date-time',
@@ -90,14 +93,16 @@ class LpTemplateResponse implements ModelInterface, ArrayAccess
     ];
 
     /**
-      * Array of dynamic properties.
+      * Array of additional properties.
       *
       * @var mixed[]
       */
     protected $additionalProperties = [];
 
     /**
-     * {@inheritdoc}
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
      */
     public static function swaggerTypes()
     {
@@ -256,7 +261,8 @@ class LpTemplateResponse implements ModelInterface, ArrayAccess
         $allowedValues = $this->getTemplateTypeAllowableValues();
         if (!is_null($this->container['template_type']) && !in_array($this->container['template_type'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
-                "invalid value for 'template_type', must be one of '%s'",
+                "invalid value '%s' for 'template_type', must be one of '%s'",
+                $this->container['template_type'],
                 implode("', '", $allowedValues)
             );
         }
@@ -302,7 +308,7 @@ class LpTemplateResponse implements ModelInterface, ArrayAccess
      *
      * @param \DateTime $created_at Datetime the asset was created
      *
-     * @return $this
+     * @return self
      */
     public function setCreatedAt($created_at)
     {
@@ -326,7 +332,7 @@ class LpTemplateResponse implements ModelInterface, ArrayAccess
      *
      * @param string $description Description of the asset
      *
-     * @return $this
+     * @return self
      */
     public function setDescription($description)
     {
@@ -350,7 +356,7 @@ class LpTemplateResponse implements ModelInterface, ArrayAccess
      *
      * @param bool $enable_munchkin Whether to enable munchkin on the derived pages.  Defaults to true
      *
-     * @return $this
+     * @return self
      */
     public function setEnableMunchkin($enable_munchkin)
     {
@@ -374,7 +380,7 @@ class LpTemplateResponse implements ModelInterface, ArrayAccess
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
      *
-     * @return $this
+     * @return self
      */
     public function setFolder($folder)
     {
@@ -398,7 +404,7 @@ class LpTemplateResponse implements ModelInterface, ArrayAccess
      *
      * @param int $id Id of the asset
      *
-     * @return $this
+     * @return self
      */
     public function setId($id)
     {
@@ -422,7 +428,7 @@ class LpTemplateResponse implements ModelInterface, ArrayAccess
      *
      * @param string $name Name of the asset
      *
-     * @return $this
+     * @return self
      */
     public function setName($name)
     {
@@ -446,7 +452,7 @@ class LpTemplateResponse implements ModelInterface, ArrayAccess
      *
      * @param string $status Status filter for draft or approved versions
      *
-     * @return $this
+     * @return self
      */
     public function setStatus($status)
     {
@@ -470,7 +476,7 @@ class LpTemplateResponse implements ModelInterface, ArrayAccess
      *
      * @param string $template_type Type of template to create.  Defaults to freeForm
      *
-     * @return $this
+     * @return self
      */
     public function setTemplateType($template_type)
     {
@@ -478,7 +484,8 @@ class LpTemplateResponse implements ModelInterface, ArrayAccess
         if (!in_array($template_type, $allowedValues, true)) {
             throw new \InvalidArgumentException(
                 sprintf(
-                    "Invalid value for 'template_type', must be one of '%s'",
+                    "Invalid value '%s' for 'template_type', must be one of '%s'",
+                    $template_type,
                     implode("', '", $allowedValues)
                 )
             );
@@ -503,7 +510,7 @@ class LpTemplateResponse implements ModelInterface, ArrayAccess
      *
      * @param \DateTime $updated_at Datetime the asset was most recently updated
      *
-     * @return $this
+     * @return self
      */
     public function setUpdatedAt($updated_at)
     {
@@ -527,7 +534,7 @@ class LpTemplateResponse implements ModelInterface, ArrayAccess
      *
      * @param string $url Url of the asset in the Marketo UI
      *
-     * @return $this
+     * @return self
      */
     public function setUrl($url)
     {
@@ -551,7 +558,7 @@ class LpTemplateResponse implements ModelInterface, ArrayAccess
      *
      * @param string $workspace Name of the workspace.  Max 255 characters
      *
-     * @return $this
+     * @return self
      */
     public function setWorkspace($workspace)
     {
@@ -609,7 +616,7 @@ class LpTemplateResponse implements ModelInterface, ArrayAccess
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**
@@ -633,19 +640,37 @@ class LpTemplateResponse implements ModelInterface, ArrayAccess
     }
 
     /**
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     *
+     * @return mixed Returns data which can be serialized by json_encode(), which is a value
+     * of any type other than a resource.
+     */
+    public function jsonSerialize()
+    {
+       return ObjectSerializer::sanitizeForSerialization($this);
+    }
+
+    /**
      * Gets the string presentation of the object
      *
      * @return string
      */
     public function __toString()
     {
-        if (defined('JSON_PRETTY_PRINT')) { // use JSON pretty print
-            return json_encode(
-                ObjectSerializer::sanitizeForSerialization($this),
-                JSON_PRETTY_PRINT
-            );
-        }
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
+    }
 
+    /**
+     * Gets a header-safe presentation of the object
+     *
+     * @return string
+     */
+    public function toHeaderValue()
+    {
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }

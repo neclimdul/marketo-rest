@@ -1,7 +1,6 @@
 <?php
 /**
  * IdentityApiTest
- * PHP version 5
  *
  * @category Class
  * @package  NecLimDul\MarketoRest\Identity
@@ -26,14 +25,12 @@
  * Please update the test case below to test the endpoint.
  */
 
-// namespace NecLimDul\MarketoRest\Identity;
-namespace NecLimDul\MarketoRest\Identity\Model;
+namespace NecLimDul\MarketoRest\Identity\Test\Api;
 
+use NecLimDul\MarketoRest\Identity\Configuration;
+use NecLimDul\MarketoRest\Identity\ApiException;
+use NecLimDul\MarketoRest\Identity\ObjectSerializer;
 use PHPUnit\Framework\TestCase;
-
-use \NecLimDul\MarketoRest\Identity\Configuration;
-use \NecLimDul\MarketoRest\Identity\ApiException;
-use \NecLimDul\MarketoRest\Identity\ObjectSerializer;
 
 /**
  * IdentityApiTest Class Doc Comment
@@ -42,20 +39,20 @@ use \NecLimDul\MarketoRest\Identity\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Identity
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
+ * @coversDefaultClass \NecLimDul\MarketoRest\Identity\Api\IdentityApi
  */
 class IdentityApiTest extends TestCase
 {
 
 
     /**
-     * Test case for identityUsingGET
-     *
      * Identity.
      *
+     * @covers ::identityUsingGET
      */
     public function testIdentityUsingGET()
     {
-        //$class = new IdentityApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

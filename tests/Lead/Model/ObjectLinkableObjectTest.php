@@ -2,8 +2,6 @@
 /**
  * ObjectLinkableObjectTest
  *
- * PHP version 7
- *
  * @category Class
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
@@ -27,8 +25,7 @@
  * Please update the test case below to test the model.
  */
 
-// namespace NecLimDul\MarketoRest\Lead;
-namespace NecLimDul\MarketoRest\Lead\Model;
+namespace NecLimDul\MarketoRest\Lead\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
@@ -49,8 +46,8 @@ class ObjectLinkableObjectTest extends TestCase
      */
     public function testObjectLinkableObject()
     {
-        $class = new ObjectLinkableObject();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -58,8 +55,8 @@ class ObjectLinkableObjectTest extends TestCase
      */
     public function testPropertyName()
     {
-        $class = new ObjectLinkableObject();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -67,8 +64,8 @@ class ObjectLinkableObjectTest extends TestCase
      */
     public function testPropertyDisplayName()
     {
-        $class = new ObjectLinkableObject();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -76,7 +73,7 @@ class ObjectLinkableObjectTest extends TestCase
      */
     public function testPropertyFields()
     {
-        $class = new ObjectLinkableObject();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

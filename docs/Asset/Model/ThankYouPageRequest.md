@@ -1,6 +1,7 @@
 # ThankYouPageRequest
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **default** | **bool** | When true, this is the default rule, and will be applied when a user does not qualify for any of the other rules | [optional] 
@@ -11,5 +12,3 @@ Name | Type | Description | Notes
 **values** | **string[]** | Comma-separated list of values to compare to with the operator | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

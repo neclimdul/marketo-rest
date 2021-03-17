@@ -1,7 +1,6 @@
 <?php
 /**
  * ActivitiesApi
- * PHP version 5
  *
  * @category Class
  * @package  NecLimDul\MarketoRest\Lead
@@ -32,8 +31,10 @@ use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
+use GuzzleHttp\Psr7\Query;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
+use Psr\Http\Message\ResponseInterface;
 use NecLimDul\MarketoRest\Lead\ApiException;
 use NecLimDul\MarketoRest\Lead\Configuration;
 use NecLimDul\MarketoRest\Lead\HeaderSelector;
@@ -49,6 +50,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  */
 class ActivitiesApi
 {
+
     /**
      * @var ClientInterface
      */
@@ -65,18 +67,46 @@ class ActivitiesApi
     protected $headerSelector;
 
     /**
-     * @param ClientInterface $client
-     * @param Configuration   $config
-     * @param HeaderSelector  $selector
+     * @var int Host index
+     */
+    protected $hostIndex;
+
+    /**
+     * @param ClientInterface|null $client
+     * @param Configuration|null   $config
+     * @param HeaderSelector|null  $selector
+     * @param int                  $hostIndex (Optional) host index to select the list of hosts if defined in the OpenAPI spec
      */
     public function __construct(
         ClientInterface $client = null,
         Configuration $config = null,
-        HeaderSelector $selector = null
+        HeaderSelector $selector = null,
+        $hostIndex = 0
     ) {
         $this->client = $client ?: new Client();
         $this->config = $config ?: new Configuration();
         $this->headerSelector = $selector ?: new HeaderSelector();
+        $this->hostIndex = $hostIndex;
+    }
+
+    /**
+     * Set the host index
+     *
+     * @param int $hostIndex Host index (required)
+     */
+    public function setHostIndex($hostIndex)
+    {
+        $this->hostIndex = $hostIndex;
+    }
+
+    /**
+     * Get the host index
+     *
+     * @return int Host index
+     */
+    public function getHostIndex()
+    {
+        return $this->hostIndex;
     }
 
     /**
@@ -117,62 +147,28 @@ class ActivitiesApi
      */
     public function addCustomActivityUsingPOSTWithHttpInfo($custom_activity_request)
     {
-        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivity';
         $request = $this->addCustomActivityUsingPOSTRequest($custom_activity_request);
 
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
-                );
+            $response = $this->makeRequest($request);
+
+            switch ($response->getStatusCode()) {
+                case 200:
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivity');
             }
 
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    $response->getBody()
-                );
-            }
-
-            $responseBody = $response->getBody();
-            if ($returnType === '\SplFileObject') {
-                $content = $responseBody; //stream goes to serializer
-            } else {
-                $content = $responseBody->getContents();
-                if ($returnType !== 'string') {
-                    $content = json_decode($content);
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
+            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivity');
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivity',
-                        $e->getResponseHeaders()
+                    $e->setResponseObject(
+                        $this->deserializeResponseBody(
+                            $e->getResponseBody(),
+                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivity',
+                            $e->getResponseHeaders()
+                        )
                     );
-                    $e->setResponseObject($data);
                     break;
             }
             throw $e;
@@ -211,41 +207,25 @@ class ActivitiesApi
      */
     public function addCustomActivityUsingPOSTAsyncWithHttpInfo($custom_activity_request)
     {
-        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivity';
         $request = $this->addCustomActivityUsingPOSTRequest($custom_activity_request);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
-                function ($response) use ($returnType) {
-                    $responseBody = $response->getBody();
-                    if ($returnType === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = $responseBody->getContents();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
+                function ($response) {
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivity');
                 },
-                function ($exception) {
+                function (RequestException $exception) {
                     $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
                     throw new ApiException(
                         sprintf(
                             '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
                         ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        $response->getBody()
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
                     );
                 }
             );
@@ -259,74 +239,33 @@ class ActivitiesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function addCustomActivityUsingPOSTRequest($custom_activity_request)
+    public function addCustomActivityUsingPOSTRequest($custom_activity_request)
     {
-        // verify the required parameter 'custom_activity_request' is set
-        if ($custom_activity_request === null || (is_array($custom_activity_request) && count($custom_activity_request) === 0)) {
+        // Verify the required parameter 'custom_activity_request' is set.
+        if ($custom_activity_request === null || (is_array($custom_activity_request) && empty($custom_activity_request))) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $custom_activity_request when calling addCustomActivityUsingPOST'
             );
         }
 
         $resourcePath = '/rest/v1/activities/external.json';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
-
-
-
-        // body params
-        $_tempBody = null;
-        if (isset($custom_activity_request)) {
-            $_tempBody = $custom_activity_request;
-        }
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json'],
+            ['application/json']
+        );
 
         // for model (json/xml)
-        if (isset($_tempBody)) {
-            // $_tempBody is the method argument, if present
-            $httpBody = $_tempBody;
-            
-            if($headers['Content-Type'] === 'application/json') {
-                // \stdClass has no __toString(), so we should encode it manually
-                if ($httpBody instanceof \stdClass) {
-                    $httpBody = \GuzzleHttp\json_encode($httpBody);
-                }
-                // array has no __toString(), so we should encode it manually
-                if(is_array($httpBody)) {
-                    $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($httpBody));
-                }
+        if (!empty($custom_activity_request)) {
+            if ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($custom_activity_request));
+            } elseif (!is_array($custom_activity_request)) {
+                $httpBody = (string) $custom_activity_request;
             }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $multipartContents[] = [
-                        'name' => $formParamName,
-                        'contents' => $formParamValue
-                    ];
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-
-            } else {
-                // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            else {
+                $httpBody = '';
             }
         }
 
@@ -342,7 +281,7 @@ class ActivitiesApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        $query = Query::build($queryParams);
         return new Request(
             'POST',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
@@ -381,62 +320,28 @@ class ActivitiesApi
      */
     public function approveCustomActivityTypeUsingPOSTWithHttpInfo($api_name)
     {
-        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType';
         $request = $this->approveCustomActivityTypeUsingPOSTRequest($api_name);
 
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
-                );
+            $response = $this->makeRequest($request);
+
+            switch ($response->getStatusCode()) {
+                case 200:
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType');
             }
 
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    $response->getBody()
-                );
-            }
-
-            $responseBody = $response->getBody();
-            if ($returnType === '\SplFileObject') {
-                $content = $responseBody; //stream goes to serializer
-            } else {
-                $content = $responseBody->getContents();
-                if ($returnType !== 'string') {
-                    $content = json_decode($content);
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
+            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType');
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
-                        $e->getResponseHeaders()
+                    $e->setResponseObject(
+                        $this->deserializeResponseBody(
+                            $e->getResponseBody(),
+                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
+                            $e->getResponseHeaders()
+                        )
                     );
-                    $e->setResponseObject($data);
                     break;
             }
             throw $e;
@@ -475,41 +380,25 @@ class ActivitiesApi
      */
     public function approveCustomActivityTypeUsingPOSTAsyncWithHttpInfo($api_name)
     {
-        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType';
         $request = $this->approveCustomActivityTypeUsingPOSTRequest($api_name);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
-                function ($response) use ($returnType) {
-                    $responseBody = $response->getBody();
-                    if ($returnType === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = $responseBody->getContents();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
+                function ($response) {
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType');
                 },
-                function ($exception) {
+                function (RequestException $exception) {
                     $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
                     throw new ApiException(
                         sprintf(
                             '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
                         ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        $response->getBody()
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
                     );
                 }
             );
@@ -523,81 +412,30 @@ class ActivitiesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function approveCustomActivityTypeUsingPOSTRequest($api_name)
+    public function approveCustomActivityTypeUsingPOSTRequest($api_name)
     {
-        // verify the required parameter 'api_name' is set
-        if ($api_name === null || (is_array($api_name) && count($api_name) === 0)) {
+        // Verify the required parameter 'api_name' is set.
+        if ($api_name === null || (is_array($api_name) && empty($api_name))) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $api_name when calling approveCustomActivityTypeUsingPOST'
             );
         }
 
         $resourcePath = '/rest/v1/activities/external/type/{apiName}/approve.json';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-
-        // path params
-        if ($api_name !== null) {
-            $resourcePath = str_replace(
-                '{' . 'apiName' . '}',
-                ObjectSerializer::toPathValue($api_name),
-                $resourcePath
-            );
-        }
-
-        // body params
-        $_tempBody = null;
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
-
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            // $_tempBody is the method argument, if present
-            $httpBody = $_tempBody;
-            
-            if($headers['Content-Type'] === 'application/json') {
-                // \stdClass has no __toString(), so we should encode it manually
-                if ($httpBody instanceof \stdClass) {
-                    $httpBody = \GuzzleHttp\json_encode($httpBody);
-                }
-                // array has no __toString(), so we should encode it manually
-                if(is_array($httpBody)) {
-                    $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($httpBody));
-                }
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $multipartContents[] = [
-                        'name' => $formParamName,
-                        'contents' => $formParamValue
-                    ];
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-
-            } else {
-                // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
-            }
-        }
+        // Path parameters.
+        $resourcePath = str_replace(
+            '{' . 'apiName' . '}',
+            ObjectSerializer::toPathValue($api_name),
+            $resourcePath
+        );
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json'],
+            ['application/json']
+        );
 
 
         $defaultHeaders = [];
@@ -611,7 +449,7 @@ class ActivitiesApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        $query = Query::build($queryParams);
         return new Request(
             'POST',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
@@ -652,62 +490,28 @@ class ActivitiesApi
      */
     public function createCustomActivityTypeAttributesUsingPOSTWithHttpInfo($api_name, $custom_activity_type_attribute_request)
     {
-        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType';
         $request = $this->createCustomActivityTypeAttributesUsingPOSTRequest($api_name, $custom_activity_type_attribute_request);
 
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
-                );
+            $response = $this->makeRequest($request);
+
+            switch ($response->getStatusCode()) {
+                case 200:
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType');
             }
 
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    $response->getBody()
-                );
-            }
-
-            $responseBody = $response->getBody();
-            if ($returnType === '\SplFileObject') {
-                $content = $responseBody; //stream goes to serializer
-            } else {
-                $content = $responseBody->getContents();
-                if ($returnType !== 'string') {
-                    $content = json_decode($content);
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
+            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType');
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
-                        $e->getResponseHeaders()
+                    $e->setResponseObject(
+                        $this->deserializeResponseBody(
+                            $e->getResponseBody(),
+                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
+                            $e->getResponseHeaders()
+                        )
                     );
-                    $e->setResponseObject($data);
                     break;
             }
             throw $e;
@@ -748,41 +552,25 @@ class ActivitiesApi
      */
     public function createCustomActivityTypeAttributesUsingPOSTAsyncWithHttpInfo($api_name, $custom_activity_type_attribute_request)
     {
-        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType';
         $request = $this->createCustomActivityTypeAttributesUsingPOSTRequest($api_name, $custom_activity_type_attribute_request);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
-                function ($response) use ($returnType) {
-                    $responseBody = $response->getBody();
-                    if ($returnType === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = $responseBody->getContents();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
+                function ($response) {
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType');
                 },
-                function ($exception) {
+                function (RequestException $exception) {
                     $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
                     throw new ApiException(
                         sprintf(
                             '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
                         ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        $response->getBody()
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
                     );
                 }
             );
@@ -797,88 +585,46 @@ class ActivitiesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function createCustomActivityTypeAttributesUsingPOSTRequest($api_name, $custom_activity_type_attribute_request)
+    public function createCustomActivityTypeAttributesUsingPOSTRequest($api_name, $custom_activity_type_attribute_request)
     {
-        // verify the required parameter 'api_name' is set
-        if ($api_name === null || (is_array($api_name) && count($api_name) === 0)) {
+        // Verify the required parameter 'api_name' is set.
+        if ($api_name === null || (is_array($api_name) && empty($api_name))) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $api_name when calling createCustomActivityTypeAttributesUsingPOST'
             );
         }
-        // verify the required parameter 'custom_activity_type_attribute_request' is set
-        if ($custom_activity_type_attribute_request === null || (is_array($custom_activity_type_attribute_request) && count($custom_activity_type_attribute_request) === 0)) {
+        // Verify the required parameter 'custom_activity_type_attribute_request' is set.
+        if ($custom_activity_type_attribute_request === null || (is_array($custom_activity_type_attribute_request) && empty($custom_activity_type_attribute_request))) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $custom_activity_type_attribute_request when calling createCustomActivityTypeAttributesUsingPOST'
             );
         }
 
         $resourcePath = '/rest/v1/activities/external/type/{apiName}/attributes/create.json';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-
-        // path params
-        if ($api_name !== null) {
-            $resourcePath = str_replace(
-                '{' . 'apiName' . '}',
-                ObjectSerializer::toPathValue($api_name),
-                $resourcePath
-            );
-        }
-
-        // body params
-        $_tempBody = null;
-        if (isset($custom_activity_type_attribute_request)) {
-            $_tempBody = $custom_activity_type_attribute_request;
-        }
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
+        // Path parameters.
+        $resourcePath = str_replace(
+            '{' . 'apiName' . '}',
+            ObjectSerializer::toPathValue($api_name),
+            $resourcePath
+        );
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json'],
+            ['application/json']
+        );
 
         // for model (json/xml)
-        if (isset($_tempBody)) {
-            // $_tempBody is the method argument, if present
-            $httpBody = $_tempBody;
-            
-            if($headers['Content-Type'] === 'application/json') {
-                // \stdClass has no __toString(), so we should encode it manually
-                if ($httpBody instanceof \stdClass) {
-                    $httpBody = \GuzzleHttp\json_encode($httpBody);
-                }
-                // array has no __toString(), so we should encode it manually
-                if(is_array($httpBody)) {
-                    $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($httpBody));
-                }
+        if (!empty($custom_activity_type_attribute_request)) {
+            if ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($custom_activity_type_attribute_request));
+            } elseif (!is_array($custom_activity_type_attribute_request)) {
+                $httpBody = (string) $custom_activity_type_attribute_request;
             }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $multipartContents[] = [
-                        'name' => $formParamName,
-                        'contents' => $formParamValue
-                    ];
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-
-            } else {
-                // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            else {
+                $httpBody = '';
             }
         }
 
@@ -894,7 +640,7 @@ class ActivitiesApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        $query = Query::build($queryParams);
         return new Request(
             'POST',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
@@ -933,62 +679,28 @@ class ActivitiesApi
      */
     public function createCustomActivityTypeUsingPOSTWithHttpInfo($custom_activity_type_request)
     {
-        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType';
         $request = $this->createCustomActivityTypeUsingPOSTRequest($custom_activity_type_request);
 
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
-                );
+            $response = $this->makeRequest($request);
+
+            switch ($response->getStatusCode()) {
+                case 200:
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType');
             }
 
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    $response->getBody()
-                );
-            }
-
-            $responseBody = $response->getBody();
-            if ($returnType === '\SplFileObject') {
-                $content = $responseBody; //stream goes to serializer
-            } else {
-                $content = $responseBody->getContents();
-                if ($returnType !== 'string') {
-                    $content = json_decode($content);
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
+            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType');
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
-                        $e->getResponseHeaders()
+                    $e->setResponseObject(
+                        $this->deserializeResponseBody(
+                            $e->getResponseBody(),
+                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
+                            $e->getResponseHeaders()
+                        )
                     );
-                    $e->setResponseObject($data);
                     break;
             }
             throw $e;
@@ -1027,41 +739,25 @@ class ActivitiesApi
      */
     public function createCustomActivityTypeUsingPOSTAsyncWithHttpInfo($custom_activity_type_request)
     {
-        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType';
         $request = $this->createCustomActivityTypeUsingPOSTRequest($custom_activity_type_request);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
-                function ($response) use ($returnType) {
-                    $responseBody = $response->getBody();
-                    if ($returnType === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = $responseBody->getContents();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
+                function ($response) {
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType');
                 },
-                function ($exception) {
+                function (RequestException $exception) {
                     $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
                     throw new ApiException(
                         sprintf(
                             '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
                         ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        $response->getBody()
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
                     );
                 }
             );
@@ -1075,74 +771,33 @@ class ActivitiesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function createCustomActivityTypeUsingPOSTRequest($custom_activity_type_request)
+    public function createCustomActivityTypeUsingPOSTRequest($custom_activity_type_request)
     {
-        // verify the required parameter 'custom_activity_type_request' is set
-        if ($custom_activity_type_request === null || (is_array($custom_activity_type_request) && count($custom_activity_type_request) === 0)) {
+        // Verify the required parameter 'custom_activity_type_request' is set.
+        if ($custom_activity_type_request === null || (is_array($custom_activity_type_request) && empty($custom_activity_type_request))) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $custom_activity_type_request when calling createCustomActivityTypeUsingPOST'
             );
         }
 
         $resourcePath = '/rest/v1/activities/external/type.json';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
-
-
-
-        // body params
-        $_tempBody = null;
-        if (isset($custom_activity_type_request)) {
-            $_tempBody = $custom_activity_type_request;
-        }
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json'],
+            ['application/json']
+        );
 
         // for model (json/xml)
-        if (isset($_tempBody)) {
-            // $_tempBody is the method argument, if present
-            $httpBody = $_tempBody;
-            
-            if($headers['Content-Type'] === 'application/json') {
-                // \stdClass has no __toString(), so we should encode it manually
-                if ($httpBody instanceof \stdClass) {
-                    $httpBody = \GuzzleHttp\json_encode($httpBody);
-                }
-                // array has no __toString(), so we should encode it manually
-                if(is_array($httpBody)) {
-                    $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($httpBody));
-                }
+        if (!empty($custom_activity_type_request)) {
+            if ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($custom_activity_type_request));
+            } elseif (!is_array($custom_activity_type_request)) {
+                $httpBody = (string) $custom_activity_type_request;
             }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $multipartContents[] = [
-                        'name' => $formParamName,
-                        'contents' => $formParamValue
-                    ];
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-
-            } else {
-                // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            else {
+                $httpBody = '';
             }
         }
 
@@ -1158,7 +813,7 @@ class ActivitiesApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        $query = Query::build($queryParams);
         return new Request(
             'POST',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
@@ -1199,62 +854,28 @@ class ActivitiesApi
      */
     public function deleteCustomActivityTypeAttributesUsingPOSTWithHttpInfo($api_name, $custom_activity_type_attribute_request)
     {
-        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType';
         $request = $this->deleteCustomActivityTypeAttributesUsingPOSTRequest($api_name, $custom_activity_type_attribute_request);
 
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
-                );
+            $response = $this->makeRequest($request);
+
+            switch ($response->getStatusCode()) {
+                case 200:
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType');
             }
 
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    $response->getBody()
-                );
-            }
-
-            $responseBody = $response->getBody();
-            if ($returnType === '\SplFileObject') {
-                $content = $responseBody; //stream goes to serializer
-            } else {
-                $content = $responseBody->getContents();
-                if ($returnType !== 'string') {
-                    $content = json_decode($content);
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
+            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType');
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
-                        $e->getResponseHeaders()
+                    $e->setResponseObject(
+                        $this->deserializeResponseBody(
+                            $e->getResponseBody(),
+                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
+                            $e->getResponseHeaders()
+                        )
                     );
-                    $e->setResponseObject($data);
                     break;
             }
             throw $e;
@@ -1295,41 +916,25 @@ class ActivitiesApi
      */
     public function deleteCustomActivityTypeAttributesUsingPOSTAsyncWithHttpInfo($api_name, $custom_activity_type_attribute_request)
     {
-        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType';
         $request = $this->deleteCustomActivityTypeAttributesUsingPOSTRequest($api_name, $custom_activity_type_attribute_request);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
-                function ($response) use ($returnType) {
-                    $responseBody = $response->getBody();
-                    if ($returnType === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = $responseBody->getContents();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
+                function ($response) {
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType');
                 },
-                function ($exception) {
+                function (RequestException $exception) {
                     $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
                     throw new ApiException(
                         sprintf(
                             '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
                         ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        $response->getBody()
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
                     );
                 }
             );
@@ -1344,88 +949,46 @@ class ActivitiesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function deleteCustomActivityTypeAttributesUsingPOSTRequest($api_name, $custom_activity_type_attribute_request)
+    public function deleteCustomActivityTypeAttributesUsingPOSTRequest($api_name, $custom_activity_type_attribute_request)
     {
-        // verify the required parameter 'api_name' is set
-        if ($api_name === null || (is_array($api_name) && count($api_name) === 0)) {
+        // Verify the required parameter 'api_name' is set.
+        if ($api_name === null || (is_array($api_name) && empty($api_name))) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $api_name when calling deleteCustomActivityTypeAttributesUsingPOST'
             );
         }
-        // verify the required parameter 'custom_activity_type_attribute_request' is set
-        if ($custom_activity_type_attribute_request === null || (is_array($custom_activity_type_attribute_request) && count($custom_activity_type_attribute_request) === 0)) {
+        // Verify the required parameter 'custom_activity_type_attribute_request' is set.
+        if ($custom_activity_type_attribute_request === null || (is_array($custom_activity_type_attribute_request) && empty($custom_activity_type_attribute_request))) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $custom_activity_type_attribute_request when calling deleteCustomActivityTypeAttributesUsingPOST'
             );
         }
 
         $resourcePath = '/rest/v1/activities/external/type/{apiName}/attributes/delete.json';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-
-        // path params
-        if ($api_name !== null) {
-            $resourcePath = str_replace(
-                '{' . 'apiName' . '}',
-                ObjectSerializer::toPathValue($api_name),
-                $resourcePath
-            );
-        }
-
-        // body params
-        $_tempBody = null;
-        if (isset($custom_activity_type_attribute_request)) {
-            $_tempBody = $custom_activity_type_attribute_request;
-        }
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
+        // Path parameters.
+        $resourcePath = str_replace(
+            '{' . 'apiName' . '}',
+            ObjectSerializer::toPathValue($api_name),
+            $resourcePath
+        );
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json'],
+            ['application/json']
+        );
 
         // for model (json/xml)
-        if (isset($_tempBody)) {
-            // $_tempBody is the method argument, if present
-            $httpBody = $_tempBody;
-            
-            if($headers['Content-Type'] === 'application/json') {
-                // \stdClass has no __toString(), so we should encode it manually
-                if ($httpBody instanceof \stdClass) {
-                    $httpBody = \GuzzleHttp\json_encode($httpBody);
-                }
-                // array has no __toString(), so we should encode it manually
-                if(is_array($httpBody)) {
-                    $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($httpBody));
-                }
+        if (!empty($custom_activity_type_attribute_request)) {
+            if ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($custom_activity_type_attribute_request));
+            } elseif (!is_array($custom_activity_type_attribute_request)) {
+                $httpBody = (string) $custom_activity_type_attribute_request;
             }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $multipartContents[] = [
-                        'name' => $formParamName,
-                        'contents' => $formParamValue
-                    ];
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-
-            } else {
-                // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            else {
+                $httpBody = '';
             }
         }
 
@@ -1441,7 +1004,7 @@ class ActivitiesApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        $query = Query::build($queryParams);
         return new Request(
             'POST',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
@@ -1480,62 +1043,28 @@ class ActivitiesApi
      */
     public function deleteCustomActivityTypeUsingPOSTWithHttpInfo($api_name)
     {
-        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType';
         $request = $this->deleteCustomActivityTypeUsingPOSTRequest($api_name);
 
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
-                );
+            $response = $this->makeRequest($request);
+
+            switch ($response->getStatusCode()) {
+                case 200:
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType');
             }
 
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    $response->getBody()
-                );
-            }
-
-            $responseBody = $response->getBody();
-            if ($returnType === '\SplFileObject') {
-                $content = $responseBody; //stream goes to serializer
-            } else {
-                $content = $responseBody->getContents();
-                if ($returnType !== 'string') {
-                    $content = json_decode($content);
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
+            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType');
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
-                        $e->getResponseHeaders()
+                    $e->setResponseObject(
+                        $this->deserializeResponseBody(
+                            $e->getResponseBody(),
+                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
+                            $e->getResponseHeaders()
+                        )
                     );
-                    $e->setResponseObject($data);
                     break;
             }
             throw $e;
@@ -1574,41 +1103,25 @@ class ActivitiesApi
      */
     public function deleteCustomActivityTypeUsingPOSTAsyncWithHttpInfo($api_name)
     {
-        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType';
         $request = $this->deleteCustomActivityTypeUsingPOSTRequest($api_name);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
-                function ($response) use ($returnType) {
-                    $responseBody = $response->getBody();
-                    if ($returnType === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = $responseBody->getContents();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
+                function ($response) {
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType');
                 },
-                function ($exception) {
+                function (RequestException $exception) {
                     $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
                     throw new ApiException(
                         sprintf(
                             '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
                         ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        $response->getBody()
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
                     );
                 }
             );
@@ -1622,81 +1135,30 @@ class ActivitiesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function deleteCustomActivityTypeUsingPOSTRequest($api_name)
+    public function deleteCustomActivityTypeUsingPOSTRequest($api_name)
     {
-        // verify the required parameter 'api_name' is set
-        if ($api_name === null || (is_array($api_name) && count($api_name) === 0)) {
+        // Verify the required parameter 'api_name' is set.
+        if ($api_name === null || (is_array($api_name) && empty($api_name))) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $api_name when calling deleteCustomActivityTypeUsingPOST'
             );
         }
 
         $resourcePath = '/rest/v1/activities/external/type/{apiName}/delete.json';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-
-        // path params
-        if ($api_name !== null) {
-            $resourcePath = str_replace(
-                '{' . 'apiName' . '}',
-                ObjectSerializer::toPathValue($api_name),
-                $resourcePath
-            );
-        }
-
-        // body params
-        $_tempBody = null;
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
-
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            // $_tempBody is the method argument, if present
-            $httpBody = $_tempBody;
-            
-            if($headers['Content-Type'] === 'application/json') {
-                // \stdClass has no __toString(), so we should encode it manually
-                if ($httpBody instanceof \stdClass) {
-                    $httpBody = \GuzzleHttp\json_encode($httpBody);
-                }
-                // array has no __toString(), so we should encode it manually
-                if(is_array($httpBody)) {
-                    $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($httpBody));
-                }
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $multipartContents[] = [
-                        'name' => $formParamName,
-                        'contents' => $formParamValue
-                    ];
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-
-            } else {
-                // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
-            }
-        }
+        // Path parameters.
+        $resourcePath = str_replace(
+            '{' . 'apiName' . '}',
+            ObjectSerializer::toPathValue($api_name),
+            $resourcePath
+        );
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json'],
+            ['application/json']
+        );
 
 
         $defaultHeaders = [];
@@ -1710,7 +1172,7 @@ class ActivitiesApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        $query = Query::build($queryParams);
         return new Request(
             'POST',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
@@ -1751,62 +1213,28 @@ class ActivitiesApi
      */
     public function describeCustomActivityTypeUsingGETWithHttpInfo($api_name, $draft = null)
     {
-        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType';
         $request = $this->describeCustomActivityTypeUsingGETRequest($api_name, $draft);
 
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
-                );
+            $response = $this->makeRequest($request);
+
+            switch ($response->getStatusCode()) {
+                case 200:
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType');
             }
 
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    $response->getBody()
-                );
-            }
-
-            $responseBody = $response->getBody();
-            if ($returnType === '\SplFileObject') {
-                $content = $responseBody; //stream goes to serializer
-            } else {
-                $content = $responseBody->getContents();
-                if ($returnType !== 'string') {
-                    $content = json_decode($content);
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
+            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType');
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
-                        $e->getResponseHeaders()
+                    $e->setResponseObject(
+                        $this->deserializeResponseBody(
+                            $e->getResponseBody(),
+                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
+                            $e->getResponseHeaders()
+                        )
                     );
-                    $e->setResponseObject($data);
                     break;
             }
             throw $e;
@@ -1847,41 +1275,25 @@ class ActivitiesApi
      */
     public function describeCustomActivityTypeUsingGETAsyncWithHttpInfo($api_name, $draft = null)
     {
-        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType';
         $request = $this->describeCustomActivityTypeUsingGETRequest($api_name, $draft);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
-                function ($response) use ($returnType) {
-                    $responseBody = $response->getBody();
-                    if ($returnType === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = $responseBody->getContents();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
+                function ($response) {
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType');
                 },
-                function ($exception) {
+                function (RequestException $exception) {
                     $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
                     throw new ApiException(
                         sprintf(
                             '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
                         ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        $response->getBody()
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
                     );
                 }
             );
@@ -1896,85 +1308,38 @@ class ActivitiesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function describeCustomActivityTypeUsingGETRequest($api_name, $draft = null)
+    public function describeCustomActivityTypeUsingGETRequest($api_name, $draft = null)
     {
-        // verify the required parameter 'api_name' is set
-        if ($api_name === null || (is_array($api_name) && count($api_name) === 0)) {
+        // Verify the required parameter 'api_name' is set.
+        if ($api_name === null || (is_array($api_name) && empty($api_name))) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $api_name when calling describeCustomActivityTypeUsingGET'
             );
         }
 
         $resourcePath = '/rest/v1/activities/external/type/{apiName}/describe.json';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-        // query params
-        if ($draft !== null) {
-            $queryParams['draft'] = ObjectSerializer::toQueryValue($draft);
+        // Query parameters.
+        if (is_array($draft)) {
+            $draft = ObjectSerializer::serializeCollection($draft, '', true);
         }
+        $queryParams['draft'] = $draft;
+        // Remove any null (optional values).
+        $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
 
-        // path params
-        if ($api_name !== null) {
-            $resourcePath = str_replace(
-                '{' . 'apiName' . '}',
-                ObjectSerializer::toPathValue($api_name),
-                $resourcePath
-            );
-        }
-
-        // body params
-        $_tempBody = null;
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
-
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            // $_tempBody is the method argument, if present
-            $httpBody = $_tempBody;
-            
-            if($headers['Content-Type'] === 'application/json') {
-                // \stdClass has no __toString(), so we should encode it manually
-                if ($httpBody instanceof \stdClass) {
-                    $httpBody = \GuzzleHttp\json_encode($httpBody);
-                }
-                // array has no __toString(), so we should encode it manually
-                if(is_array($httpBody)) {
-                    $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($httpBody));
-                }
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $multipartContents[] = [
-                        'name' => $formParamName,
-                        'contents' => $formParamValue
-                    ];
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-
-            } else {
-                // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
-            }
-        }
+        // Path parameters.
+        $resourcePath = str_replace(
+            '{' . 'apiName' . '}',
+            ObjectSerializer::toPathValue($api_name),
+            $resourcePath
+        );
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json'],
+            ['application/json']
+        );
 
 
         $defaultHeaders = [];
@@ -1988,7 +1353,7 @@ class ActivitiesApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        $query = Query::build($queryParams);
         return new Request(
             'GET',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
@@ -2027,62 +1392,28 @@ class ActivitiesApi
      */
     public function discardDraftofCustomActivityTypeUsingPOSTWithHttpInfo($api_name)
     {
-        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType';
         $request = $this->discardDraftofCustomActivityTypeUsingPOSTRequest($api_name);
 
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
-                );
+            $response = $this->makeRequest($request);
+
+            switch ($response->getStatusCode()) {
+                case 200:
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType');
             }
 
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    $response->getBody()
-                );
-            }
-
-            $responseBody = $response->getBody();
-            if ($returnType === '\SplFileObject') {
-                $content = $responseBody; //stream goes to serializer
-            } else {
-                $content = $responseBody->getContents();
-                if ($returnType !== 'string') {
-                    $content = json_decode($content);
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
+            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType');
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
-                        $e->getResponseHeaders()
+                    $e->setResponseObject(
+                        $this->deserializeResponseBody(
+                            $e->getResponseBody(),
+                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
+                            $e->getResponseHeaders()
+                        )
                     );
-                    $e->setResponseObject($data);
                     break;
             }
             throw $e;
@@ -2121,41 +1452,25 @@ class ActivitiesApi
      */
     public function discardDraftofCustomActivityTypeUsingPOSTAsyncWithHttpInfo($api_name)
     {
-        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType';
         $request = $this->discardDraftofCustomActivityTypeUsingPOSTRequest($api_name);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
-                function ($response) use ($returnType) {
-                    $responseBody = $response->getBody();
-                    if ($returnType === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = $responseBody->getContents();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
+                function ($response) {
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType');
                 },
-                function ($exception) {
+                function (RequestException $exception) {
                     $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
                     throw new ApiException(
                         sprintf(
                             '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
                         ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        $response->getBody()
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
                     );
                 }
             );
@@ -2169,81 +1484,30 @@ class ActivitiesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function discardDraftofCustomActivityTypeUsingPOSTRequest($api_name)
+    public function discardDraftofCustomActivityTypeUsingPOSTRequest($api_name)
     {
-        // verify the required parameter 'api_name' is set
-        if ($api_name === null || (is_array($api_name) && count($api_name) === 0)) {
+        // Verify the required parameter 'api_name' is set.
+        if ($api_name === null || (is_array($api_name) && empty($api_name))) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $api_name when calling discardDraftofCustomActivityTypeUsingPOST'
             );
         }
 
         $resourcePath = '/rest/v1/activities/external/type/{apiName}/discardDraft.json';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-
-        // path params
-        if ($api_name !== null) {
-            $resourcePath = str_replace(
-                '{' . 'apiName' . '}',
-                ObjectSerializer::toPathValue($api_name),
-                $resourcePath
-            );
-        }
-
-        // body params
-        $_tempBody = null;
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
-
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            // $_tempBody is the method argument, if present
-            $httpBody = $_tempBody;
-            
-            if($headers['Content-Type'] === 'application/json') {
-                // \stdClass has no __toString(), so we should encode it manually
-                if ($httpBody instanceof \stdClass) {
-                    $httpBody = \GuzzleHttp\json_encode($httpBody);
-                }
-                // array has no __toString(), so we should encode it manually
-                if(is_array($httpBody)) {
-                    $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($httpBody));
-                }
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $multipartContents[] = [
-                        'name' => $formParamName,
-                        'contents' => $formParamValue
-                    ];
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-
-            } else {
-                // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
-            }
-        }
+        // Path parameters.
+        $resourcePath = str_replace(
+            '{' . 'apiName' . '}',
+            ObjectSerializer::toPathValue($api_name),
+            $resourcePath
+        );
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json'],
+            ['application/json']
+        );
 
 
         $defaultHeaders = [];
@@ -2257,7 +1521,7 @@ class ActivitiesApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        $query = Query::build($queryParams);
         return new Request(
             'POST',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
@@ -2296,62 +1560,28 @@ class ActivitiesApi
      */
     public function getActivitiesPagingTokenUsingGETWithHttpInfo($since_datetime)
     {
-        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfVoid';
         $request = $this->getActivitiesPagingTokenUsingGETRequest($since_datetime);
 
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
-                );
+            $response = $this->makeRequest($request);
+
+            switch ($response->getStatusCode()) {
+                case 200:
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfVoid');
             }
 
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    $response->getBody()
-                );
-            }
-
-            $responseBody = $response->getBody();
-            if ($returnType === '\SplFileObject') {
-                $content = $responseBody; //stream goes to serializer
-            } else {
-                $content = $responseBody->getContents();
-                if ($returnType !== 'string') {
-                    $content = json_decode($content);
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
+            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfVoid');
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfVoid',
-                        $e->getResponseHeaders()
+                    $e->setResponseObject(
+                        $this->deserializeResponseBody(
+                            $e->getResponseBody(),
+                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfVoid',
+                            $e->getResponseHeaders()
+                        )
                     );
-                    $e->setResponseObject($data);
                     break;
             }
             throw $e;
@@ -2390,41 +1620,25 @@ class ActivitiesApi
      */
     public function getActivitiesPagingTokenUsingGETAsyncWithHttpInfo($since_datetime)
     {
-        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfVoid';
         $request = $this->getActivitiesPagingTokenUsingGETRequest($since_datetime);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
-                function ($response) use ($returnType) {
-                    $responseBody = $response->getBody();
-                    if ($returnType === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = $responseBody->getContents();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
+                function ($response) {
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfVoid');
                 },
-                function ($exception) {
+                function (RequestException $exception) {
                     $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
                     throw new ApiException(
                         sprintf(
                             '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
                         ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        $response->getBody()
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
                     );
                 }
             );
@@ -2438,77 +1652,31 @@ class ActivitiesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getActivitiesPagingTokenUsingGETRequest($since_datetime)
+    public function getActivitiesPagingTokenUsingGETRequest($since_datetime)
     {
-        // verify the required parameter 'since_datetime' is set
-        if ($since_datetime === null || (is_array($since_datetime) && count($since_datetime) === 0)) {
+        // Verify the required parameter 'since_datetime' is set.
+        if ($since_datetime === null || (is_array($since_datetime) && empty($since_datetime))) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $since_datetime when calling getActivitiesPagingTokenUsingGET'
             );
         }
 
         $resourcePath = '/rest/v1/activities/pagingtoken.json';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-        // query params
-        if ($since_datetime !== null) {
-            $queryParams['sinceDatetime'] = ObjectSerializer::toQueryValue($since_datetime);
+        // Query parameters.
+        if (is_array($since_datetime)) {
+            $since_datetime = ObjectSerializer::serializeCollection($since_datetime, '', true);
         }
-
-
-        // body params
-        $_tempBody = null;
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
-
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            // $_tempBody is the method argument, if present
-            $httpBody = $_tempBody;
-            
-            if($headers['Content-Type'] === 'application/json') {
-                // \stdClass has no __toString(), so we should encode it manually
-                if ($httpBody instanceof \stdClass) {
-                    $httpBody = \GuzzleHttp\json_encode($httpBody);
-                }
-                // array has no __toString(), so we should encode it manually
-                if(is_array($httpBody)) {
-                    $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($httpBody));
-                }
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $multipartContents[] = [
-                        'name' => $formParamName,
-                        'contents' => $formParamValue
-                    ];
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-
-            } else {
-                // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
-            }
-        }
+        $queryParams['sinceDatetime'] = $since_datetime;
+        // Remove any null (optional values).
+        $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json'],
+            ['application/json']
+        );
 
 
         $defaultHeaders = [];
@@ -2522,7 +1690,7 @@ class ActivitiesApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        $query = Query::build($queryParams);
         return new Request(
             'GET',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
@@ -2559,62 +1727,28 @@ class ActivitiesApi
      */
     public function getAllActivityTypesUsingGETWithHttpInfo()
     {
-        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfActivityType';
         $request = $this->getAllActivityTypesUsingGETRequest();
 
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
-                );
+            $response = $this->makeRequest($request);
+
+            switch ($response->getStatusCode()) {
+                case 200:
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfActivityType');
             }
 
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    $response->getBody()
-                );
-            }
-
-            $responseBody = $response->getBody();
-            if ($returnType === '\SplFileObject') {
-                $content = $responseBody; //stream goes to serializer
-            } else {
-                $content = $responseBody->getContents();
-                if ($returnType !== 'string') {
-                    $content = json_decode($content);
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
+            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfActivityType');
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfActivityType',
-                        $e->getResponseHeaders()
+                    $e->setResponseObject(
+                        $this->deserializeResponseBody(
+                            $e->getResponseBody(),
+                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfActivityType',
+                            $e->getResponseHeaders()
+                        )
                     );
-                    $e->setResponseObject($data);
                     break;
             }
             throw $e;
@@ -2651,41 +1785,25 @@ class ActivitiesApi
      */
     public function getAllActivityTypesUsingGETAsyncWithHttpInfo()
     {
-        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfActivityType';
         $request = $this->getAllActivityTypesUsingGETRequest();
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
-                function ($response) use ($returnType) {
-                    $responseBody = $response->getBody();
-                    if ($returnType === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = $responseBody->getContents();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
+                function ($response) {
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfActivityType');
                 },
-                function ($exception) {
+                function (RequestException $exception) {
                     $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
                     throw new ApiException(
                         sprintf(
                             '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
                         ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        $response->getBody()
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
                     );
                 }
             );
@@ -2698,67 +1816,17 @@ class ActivitiesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getAllActivityTypesUsingGETRequest()
+    public function getAllActivityTypesUsingGETRequest()
     {
 
         $resourcePath = '/rest/v1/activities/types.json';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
-
-
-
-        // body params
-        $_tempBody = null;
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
-
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            // $_tempBody is the method argument, if present
-            $httpBody = $_tempBody;
-            
-            if($headers['Content-Type'] === 'application/json') {
-                // \stdClass has no __toString(), so we should encode it manually
-                if ($httpBody instanceof \stdClass) {
-                    $httpBody = \GuzzleHttp\json_encode($httpBody);
-                }
-                // array has no __toString(), so we should encode it manually
-                if(is_array($httpBody)) {
-                    $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($httpBody));
-                }
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $multipartContents[] = [
-                        'name' => $formParamName,
-                        'contents' => $formParamValue
-                    ];
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-
-            } else {
-                // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
-            }
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json'],
+            ['application/json']
+        );
 
 
         $defaultHeaders = [];
@@ -2772,7 +1840,7 @@ class ActivitiesApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        $query = Query::build($queryParams);
         return new Request(
             'GET',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
@@ -2809,62 +1877,28 @@ class ActivitiesApi
      */
     public function getCustomActivityTypeUsingGETWithHttpInfo()
     {
-        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType';
         $request = $this->getCustomActivityTypeUsingGETRequest();
 
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
-                );
+            $response = $this->makeRequest($request);
+
+            switch ($response->getStatusCode()) {
+                case 200:
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType');
             }
 
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    $response->getBody()
-                );
-            }
-
-            $responseBody = $response->getBody();
-            if ($returnType === '\SplFileObject') {
-                $content = $responseBody; //stream goes to serializer
-            } else {
-                $content = $responseBody->getContents();
-                if ($returnType !== 'string') {
-                    $content = json_decode($content);
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
+            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType');
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
-                        $e->getResponseHeaders()
+                    $e->setResponseObject(
+                        $this->deserializeResponseBody(
+                            $e->getResponseBody(),
+                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
+                            $e->getResponseHeaders()
+                        )
                     );
-                    $e->setResponseObject($data);
                     break;
             }
             throw $e;
@@ -2901,41 +1935,25 @@ class ActivitiesApi
      */
     public function getCustomActivityTypeUsingGETAsyncWithHttpInfo()
     {
-        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType';
         $request = $this->getCustomActivityTypeUsingGETRequest();
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
-                function ($response) use ($returnType) {
-                    $responseBody = $response->getBody();
-                    if ($returnType === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = $responseBody->getContents();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
+                function ($response) {
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType');
                 },
-                function ($exception) {
+                function (RequestException $exception) {
                     $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
                     throw new ApiException(
                         sprintf(
                             '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
                         ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        $response->getBody()
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
                     );
                 }
             );
@@ -2948,67 +1966,17 @@ class ActivitiesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getCustomActivityTypeUsingGETRequest()
+    public function getCustomActivityTypeUsingGETRequest()
     {
 
         $resourcePath = '/rest/v1/activities/external/types.json';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
-
-
-
-        // body params
-        $_tempBody = null;
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
-
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            // $_tempBody is the method argument, if present
-            $httpBody = $_tempBody;
-            
-            if($headers['Content-Type'] === 'application/json') {
-                // \stdClass has no __toString(), so we should encode it manually
-                if ($httpBody instanceof \stdClass) {
-                    $httpBody = \GuzzleHttp\json_encode($httpBody);
-                }
-                // array has no __toString(), so we should encode it manually
-                if(is_array($httpBody)) {
-                    $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($httpBody));
-                }
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $multipartContents[] = [
-                        'name' => $formParamName,
-                        'contents' => $formParamValue
-                    ];
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-
-            } else {
-                // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
-            }
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json'],
+            ['application/json']
+        );
 
 
         $defaultHeaders = [];
@@ -3022,7 +1990,7 @@ class ActivitiesApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        $query = Query::build($queryParams);
         return new Request(
             'GET',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
@@ -3063,62 +2031,28 @@ class ActivitiesApi
      */
     public function getDeletedLeadsUsingGETWithHttpInfo($next_page_token, $batch_size = null)
     {
-        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfActivity';
         $request = $this->getDeletedLeadsUsingGETRequest($next_page_token, $batch_size);
 
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
-                );
+            $response = $this->makeRequest($request);
+
+            switch ($response->getStatusCode()) {
+                case 200:
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfActivity');
             }
 
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    $response->getBody()
-                );
-            }
-
-            $responseBody = $response->getBody();
-            if ($returnType === '\SplFileObject') {
-                $content = $responseBody; //stream goes to serializer
-            } else {
-                $content = $responseBody->getContents();
-                if ($returnType !== 'string') {
-                    $content = json_decode($content);
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
+            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfActivity');
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfActivity',
-                        $e->getResponseHeaders()
+                    $e->setResponseObject(
+                        $this->deserializeResponseBody(
+                            $e->getResponseBody(),
+                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfActivity',
+                            $e->getResponseHeaders()
+                        )
                     );
-                    $e->setResponseObject($data);
                     break;
             }
             throw $e;
@@ -3159,41 +2093,25 @@ class ActivitiesApi
      */
     public function getDeletedLeadsUsingGETAsyncWithHttpInfo($next_page_token, $batch_size = null)
     {
-        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfActivity';
         $request = $this->getDeletedLeadsUsingGETRequest($next_page_token, $batch_size);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
-                function ($response) use ($returnType) {
-                    $responseBody = $response->getBody();
-                    if ($returnType === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = $responseBody->getContents();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
+                function ($response) {
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfActivity');
                 },
-                function ($exception) {
+                function (RequestException $exception) {
                     $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
                     throw new ApiException(
                         sprintf(
                             '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
                         ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        $response->getBody()
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
                     );
                 }
             );
@@ -3208,81 +2126,35 @@ class ActivitiesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getDeletedLeadsUsingGETRequest($next_page_token, $batch_size = null)
+    public function getDeletedLeadsUsingGETRequest($next_page_token, $batch_size = null)
     {
-        // verify the required parameter 'next_page_token' is set
-        if ($next_page_token === null || (is_array($next_page_token) && count($next_page_token) === 0)) {
+        // Verify the required parameter 'next_page_token' is set.
+        if ($next_page_token === null || (is_array($next_page_token) && empty($next_page_token))) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $next_page_token when calling getDeletedLeadsUsingGET'
             );
         }
 
         $resourcePath = '/rest/v1/activities/deletedleads.json';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-        // query params
-        if ($next_page_token !== null) {
-            $queryParams['nextPageToken'] = ObjectSerializer::toQueryValue($next_page_token);
+        // Query parameters.
+        if (is_array($next_page_token)) {
+            $next_page_token = ObjectSerializer::serializeCollection($next_page_token, '', true);
         }
-        // query params
-        if ($batch_size !== null) {
-            $queryParams['batchSize'] = ObjectSerializer::toQueryValue($batch_size);
+        $queryParams['nextPageToken'] = $next_page_token;
+        if (is_array($batch_size)) {
+            $batch_size = ObjectSerializer::serializeCollection($batch_size, '', true);
         }
-
-
-        // body params
-        $_tempBody = null;
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
-
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            // $_tempBody is the method argument, if present
-            $httpBody = $_tempBody;
-            
-            if($headers['Content-Type'] === 'application/json') {
-                // \stdClass has no __toString(), so we should encode it manually
-                if ($httpBody instanceof \stdClass) {
-                    $httpBody = \GuzzleHttp\json_encode($httpBody);
-                }
-                // array has no __toString(), so we should encode it manually
-                if(is_array($httpBody)) {
-                    $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($httpBody));
-                }
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $multipartContents[] = [
-                        'name' => $formParamName,
-                        'contents' => $formParamValue
-                    ];
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-
-            } else {
-                // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
-            }
-        }
+        $queryParams['batchSize'] = $batch_size;
+        // Remove any null (optional values).
+        $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json'],
+            ['application/json']
+        );
 
 
         $defaultHeaders = [];
@@ -3296,7 +2168,7 @@ class ActivitiesApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        $query = Query::build($queryParams);
         return new Request(
             'GET',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
@@ -3345,62 +2217,28 @@ class ActivitiesApi
      */
     public function getLeadActivitiesUsingGETWithHttpInfo($next_page_token, $activity_type_ids, $asset_ids = null, $list_id = null, $lead_ids = null, $batch_size = null)
     {
-        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfActivity';
         $request = $this->getLeadActivitiesUsingGETRequest($next_page_token, $activity_type_ids, $asset_ids, $list_id, $lead_ids, $batch_size);
 
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
-                );
+            $response = $this->makeRequest($request);
+
+            switch ($response->getStatusCode()) {
+                case 200:
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfActivity');
             }
 
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    $response->getBody()
-                );
-            }
-
-            $responseBody = $response->getBody();
-            if ($returnType === '\SplFileObject') {
-                $content = $responseBody; //stream goes to serializer
-            } else {
-                $content = $responseBody->getContents();
-                if ($returnType !== 'string') {
-                    $content = json_decode($content);
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
+            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfActivity');
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfActivity',
-                        $e->getResponseHeaders()
+                    $e->setResponseObject(
+                        $this->deserializeResponseBody(
+                            $e->getResponseBody(),
+                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfActivity',
+                            $e->getResponseHeaders()
+                        )
                     );
-                    $e->setResponseObject($data);
                     break;
             }
             throw $e;
@@ -3449,41 +2287,25 @@ class ActivitiesApi
      */
     public function getLeadActivitiesUsingGETAsyncWithHttpInfo($next_page_token, $activity_type_ids, $asset_ids = null, $list_id = null, $lead_ids = null, $batch_size = null)
     {
-        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfActivity';
         $request = $this->getLeadActivitiesUsingGETRequest($next_page_token, $activity_type_ids, $asset_ids, $list_id, $lead_ids, $batch_size);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
-                function ($response) use ($returnType) {
-                    $responseBody = $response->getBody();
-                    if ($returnType === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = $responseBody->getContents();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
+                function ($response) {
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfActivity');
                 },
-                function ($exception) {
+                function (RequestException $exception) {
                     $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
                     throw new ApiException(
                         sprintf(
                             '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
                         ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        $response->getBody()
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
                     );
                 }
             );
@@ -3502,112 +2324,57 @@ class ActivitiesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getLeadActivitiesUsingGETRequest($next_page_token, $activity_type_ids, $asset_ids = null, $list_id = null, $lead_ids = null, $batch_size = null)
+    public function getLeadActivitiesUsingGETRequest($next_page_token, $activity_type_ids, $asset_ids = null, $list_id = null, $lead_ids = null, $batch_size = null)
     {
-        // verify the required parameter 'next_page_token' is set
-        if ($next_page_token === null || (is_array($next_page_token) && count($next_page_token) === 0)) {
+        // Verify the required parameter 'next_page_token' is set.
+        if ($next_page_token === null || (is_array($next_page_token) && empty($next_page_token))) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $next_page_token when calling getLeadActivitiesUsingGET'
             );
         }
-        // verify the required parameter 'activity_type_ids' is set
-        if ($activity_type_ids === null || (is_array($activity_type_ids) && count($activity_type_ids) === 0)) {
+        // Verify the required parameter 'activity_type_ids' is set.
+        if ($activity_type_ids === null || (is_array($activity_type_ids) && empty($activity_type_ids))) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $activity_type_ids when calling getLeadActivitiesUsingGET'
             );
         }
 
         $resourcePath = '/rest/v1/activities.json';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-        // query params
-        if ($next_page_token !== null) {
-            $queryParams['nextPageToken'] = ObjectSerializer::toQueryValue($next_page_token);
+        // Query parameters.
+        if (is_array($next_page_token)) {
+            $next_page_token = ObjectSerializer::serializeCollection($next_page_token, '', true);
         }
-        // query params
+        $queryParams['nextPageToken'] = $next_page_token;
         if (is_array($activity_type_ids)) {
-            $queryParams['activityTypeIds'] = $activity_type_ids;
-        } else
-        if ($activity_type_ids !== null) {
-            $queryParams['activityTypeIds'] = ObjectSerializer::toQueryValue($activity_type_ids);
+            $activity_type_ids = ObjectSerializer::serializeCollection($activity_type_ids, 'multi', true);
         }
-        // query params
+        $queryParams['activityTypeIds'] = $activity_type_ids;
         if (is_array($asset_ids)) {
-            $queryParams['assetIds'] = $asset_ids;
-        } else
-        if ($asset_ids !== null) {
-            $queryParams['assetIds'] = ObjectSerializer::toQueryValue($asset_ids);
+            $asset_ids = ObjectSerializer::serializeCollection($asset_ids, 'multi', true);
         }
-        // query params
-        if ($list_id !== null) {
-            $queryParams['listId'] = ObjectSerializer::toQueryValue($list_id);
+        $queryParams['assetIds'] = $asset_ids;
+        if (is_array($list_id)) {
+            $list_id = ObjectSerializer::serializeCollection($list_id, '', true);
         }
-        // query params
+        $queryParams['listId'] = $list_id;
         if (is_array($lead_ids)) {
-            $queryParams['leadIds'] = $lead_ids;
-        } else
-        if ($lead_ids !== null) {
-            $queryParams['leadIds'] = ObjectSerializer::toQueryValue($lead_ids);
+            $lead_ids = ObjectSerializer::serializeCollection($lead_ids, 'multi', true);
         }
-        // query params
-        if ($batch_size !== null) {
-            $queryParams['batchSize'] = ObjectSerializer::toQueryValue($batch_size);
+        $queryParams['leadIds'] = $lead_ids;
+        if (is_array($batch_size)) {
+            $batch_size = ObjectSerializer::serializeCollection($batch_size, '', true);
         }
-
-
-        // body params
-        $_tempBody = null;
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
-
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            // $_tempBody is the method argument, if present
-            $httpBody = $_tempBody;
-            
-            if($headers['Content-Type'] === 'application/json') {
-                // \stdClass has no __toString(), so we should encode it manually
-                if ($httpBody instanceof \stdClass) {
-                    $httpBody = \GuzzleHttp\json_encode($httpBody);
-                }
-                // array has no __toString(), so we should encode it manually
-                if(is_array($httpBody)) {
-                    $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($httpBody));
-                }
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $multipartContents[] = [
-                        'name' => $formParamName,
-                        'contents' => $formParamValue
-                    ];
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-
-            } else {
-                // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
-            }
-        }
+        $queryParams['batchSize'] = $batch_size;
+        // Remove any null (optional values).
+        $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json'],
+            ['application/json']
+        );
 
 
         $defaultHeaders = [];
@@ -3621,7 +2388,7 @@ class ActivitiesApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        $query = Query::build($queryParams);
         return new Request(
             'GET',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
@@ -3668,62 +2435,28 @@ class ActivitiesApi
      */
     public function getLeadChangesUsingGETWithHttpInfo($next_page_token, $fields, $list_id = null, $lead_ids = null, $batch_size = null)
     {
-        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadChange';
         $request = $this->getLeadChangesUsingGETRequest($next_page_token, $fields, $list_id, $lead_ids, $batch_size);
 
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
-                );
+            $response = $this->makeRequest($request);
+
+            switch ($response->getStatusCode()) {
+                case 200:
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadChange');
             }
 
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    $response->getBody()
-                );
-            }
-
-            $responseBody = $response->getBody();
-            if ($returnType === '\SplFileObject') {
-                $content = $responseBody; //stream goes to serializer
-            } else {
-                $content = $responseBody->getContents();
-                if ($returnType !== 'string') {
-                    $content = json_decode($content);
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
+            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadChange');
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadChange',
-                        $e->getResponseHeaders()
+                    $e->setResponseObject(
+                        $this->deserializeResponseBody(
+                            $e->getResponseBody(),
+                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadChange',
+                            $e->getResponseHeaders()
+                        )
                     );
-                    $e->setResponseObject($data);
                     break;
             }
             throw $e;
@@ -3770,41 +2503,25 @@ class ActivitiesApi
      */
     public function getLeadChangesUsingGETAsyncWithHttpInfo($next_page_token, $fields, $list_id = null, $lead_ids = null, $batch_size = null)
     {
-        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadChange';
         $request = $this->getLeadChangesUsingGETRequest($next_page_token, $fields, $list_id, $lead_ids, $batch_size);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
-                function ($response) use ($returnType) {
-                    $responseBody = $response->getBody();
-                    if ($returnType === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = $responseBody->getContents();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
+                function ($response) {
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadChange');
                 },
-                function ($exception) {
+                function (RequestException $exception) {
                     $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
                     throw new ApiException(
                         sprintf(
                             '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
                         ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        $response->getBody()
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
                     );
                 }
             );
@@ -3822,105 +2539,53 @@ class ActivitiesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getLeadChangesUsingGETRequest($next_page_token, $fields, $list_id = null, $lead_ids = null, $batch_size = null)
+    public function getLeadChangesUsingGETRequest($next_page_token, $fields, $list_id = null, $lead_ids = null, $batch_size = null)
     {
-        // verify the required parameter 'next_page_token' is set
-        if ($next_page_token === null || (is_array($next_page_token) && count($next_page_token) === 0)) {
+        // Verify the required parameter 'next_page_token' is set.
+        if ($next_page_token === null || (is_array($next_page_token) && empty($next_page_token))) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $next_page_token when calling getLeadChangesUsingGET'
             );
         }
-        // verify the required parameter 'fields' is set
-        if ($fields === null || (is_array($fields) && count($fields) === 0)) {
+        // Verify the required parameter 'fields' is set.
+        if ($fields === null || (is_array($fields) && empty($fields))) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $fields when calling getLeadChangesUsingGET'
             );
         }
 
         $resourcePath = '/rest/v1/activities/leadchanges.json';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-        // query params
-        if ($next_page_token !== null) {
-            $queryParams['nextPageToken'] = ObjectSerializer::toQueryValue($next_page_token);
+        // Query parameters.
+        if (is_array($next_page_token)) {
+            $next_page_token = ObjectSerializer::serializeCollection($next_page_token, '', true);
         }
-        // query params
+        $queryParams['nextPageToken'] = $next_page_token;
         if (is_array($fields)) {
-            $queryParams['fields'] = $fields;
-        } else
-        if ($fields !== null) {
-            $queryParams['fields'] = ObjectSerializer::toQueryValue($fields);
+            $fields = ObjectSerializer::serializeCollection($fields, 'multi', true);
         }
-        // query params
-        if ($list_id !== null) {
-            $queryParams['listId'] = ObjectSerializer::toQueryValue($list_id);
+        $queryParams['fields'] = $fields;
+        if (is_array($list_id)) {
+            $list_id = ObjectSerializer::serializeCollection($list_id, '', true);
         }
-        // query params
+        $queryParams['listId'] = $list_id;
         if (is_array($lead_ids)) {
-            $queryParams['leadIds'] = $lead_ids;
-        } else
-        if ($lead_ids !== null) {
-            $queryParams['leadIds'] = ObjectSerializer::toQueryValue($lead_ids);
+            $lead_ids = ObjectSerializer::serializeCollection($lead_ids, 'multi', true);
         }
-        // query params
-        if ($batch_size !== null) {
-            $queryParams['batchSize'] = ObjectSerializer::toQueryValue($batch_size);
+        $queryParams['leadIds'] = $lead_ids;
+        if (is_array($batch_size)) {
+            $batch_size = ObjectSerializer::serializeCollection($batch_size, '', true);
         }
-
-
-        // body params
-        $_tempBody = null;
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
-
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            // $_tempBody is the method argument, if present
-            $httpBody = $_tempBody;
-            
-            if($headers['Content-Type'] === 'application/json') {
-                // \stdClass has no __toString(), so we should encode it manually
-                if ($httpBody instanceof \stdClass) {
-                    $httpBody = \GuzzleHttp\json_encode($httpBody);
-                }
-                // array has no __toString(), so we should encode it manually
-                if(is_array($httpBody)) {
-                    $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($httpBody));
-                }
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $multipartContents[] = [
-                        'name' => $formParamName,
-                        'contents' => $formParamValue
-                    ];
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-
-            } else {
-                // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
-            }
-        }
+        $queryParams['batchSize'] = $batch_size;
+        // Remove any null (optional values).
+        $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json'],
+            ['application/json']
+        );
 
 
         $defaultHeaders = [];
@@ -3934,7 +2599,7 @@ class ActivitiesApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        $query = Query::build($queryParams);
         return new Request(
             'GET',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
@@ -3975,62 +2640,28 @@ class ActivitiesApi
      */
     public function updateCustomActivityTypeAttributesUsingPOSTWithHttpInfo($api_name, $custom_activity_type_attribute_request)
     {
-        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType';
         $request = $this->updateCustomActivityTypeAttributesUsingPOSTRequest($api_name, $custom_activity_type_attribute_request);
 
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
-                );
+            $response = $this->makeRequest($request);
+
+            switch ($response->getStatusCode()) {
+                case 200:
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType');
             }
 
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    $response->getBody()
-                );
-            }
-
-            $responseBody = $response->getBody();
-            if ($returnType === '\SplFileObject') {
-                $content = $responseBody; //stream goes to serializer
-            } else {
-                $content = $responseBody->getContents();
-                if ($returnType !== 'string') {
-                    $content = json_decode($content);
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
+            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType');
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
-                        $e->getResponseHeaders()
+                    $e->setResponseObject(
+                        $this->deserializeResponseBody(
+                            $e->getResponseBody(),
+                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
+                            $e->getResponseHeaders()
+                        )
                     );
-                    $e->setResponseObject($data);
                     break;
             }
             throw $e;
@@ -4071,41 +2702,25 @@ class ActivitiesApi
      */
     public function updateCustomActivityTypeAttributesUsingPOSTAsyncWithHttpInfo($api_name, $custom_activity_type_attribute_request)
     {
-        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType';
         $request = $this->updateCustomActivityTypeAttributesUsingPOSTRequest($api_name, $custom_activity_type_attribute_request);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
-                function ($response) use ($returnType) {
-                    $responseBody = $response->getBody();
-                    if ($returnType === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = $responseBody->getContents();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
+                function ($response) {
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType');
                 },
-                function ($exception) {
+                function (RequestException $exception) {
                     $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
                     throw new ApiException(
                         sprintf(
                             '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
                         ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        $response->getBody()
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
                     );
                 }
             );
@@ -4120,88 +2735,46 @@ class ActivitiesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function updateCustomActivityTypeAttributesUsingPOSTRequest($api_name, $custom_activity_type_attribute_request)
+    public function updateCustomActivityTypeAttributesUsingPOSTRequest($api_name, $custom_activity_type_attribute_request)
     {
-        // verify the required parameter 'api_name' is set
-        if ($api_name === null || (is_array($api_name) && count($api_name) === 0)) {
+        // Verify the required parameter 'api_name' is set.
+        if ($api_name === null || (is_array($api_name) && empty($api_name))) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $api_name when calling updateCustomActivityTypeAttributesUsingPOST'
             );
         }
-        // verify the required parameter 'custom_activity_type_attribute_request' is set
-        if ($custom_activity_type_attribute_request === null || (is_array($custom_activity_type_attribute_request) && count($custom_activity_type_attribute_request) === 0)) {
+        // Verify the required parameter 'custom_activity_type_attribute_request' is set.
+        if ($custom_activity_type_attribute_request === null || (is_array($custom_activity_type_attribute_request) && empty($custom_activity_type_attribute_request))) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $custom_activity_type_attribute_request when calling updateCustomActivityTypeAttributesUsingPOST'
             );
         }
 
         $resourcePath = '/rest/v1/activities/external/type/{apiName}/attributes/update.json';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-
-        // path params
-        if ($api_name !== null) {
-            $resourcePath = str_replace(
-                '{' . 'apiName' . '}',
-                ObjectSerializer::toPathValue($api_name),
-                $resourcePath
-            );
-        }
-
-        // body params
-        $_tempBody = null;
-        if (isset($custom_activity_type_attribute_request)) {
-            $_tempBody = $custom_activity_type_attribute_request;
-        }
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
+        // Path parameters.
+        $resourcePath = str_replace(
+            '{' . 'apiName' . '}',
+            ObjectSerializer::toPathValue($api_name),
+            $resourcePath
+        );
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json'],
+            ['application/json']
+        );
 
         // for model (json/xml)
-        if (isset($_tempBody)) {
-            // $_tempBody is the method argument, if present
-            $httpBody = $_tempBody;
-            
-            if($headers['Content-Type'] === 'application/json') {
-                // \stdClass has no __toString(), so we should encode it manually
-                if ($httpBody instanceof \stdClass) {
-                    $httpBody = \GuzzleHttp\json_encode($httpBody);
-                }
-                // array has no __toString(), so we should encode it manually
-                if(is_array($httpBody)) {
-                    $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($httpBody));
-                }
+        if (!empty($custom_activity_type_attribute_request)) {
+            if ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($custom_activity_type_attribute_request));
+            } elseif (!is_array($custom_activity_type_attribute_request)) {
+                $httpBody = (string) $custom_activity_type_attribute_request;
             }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $multipartContents[] = [
-                        'name' => $formParamName,
-                        'contents' => $formParamValue
-                    ];
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-
-            } else {
-                // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            else {
+                $httpBody = '';
             }
         }
 
@@ -4217,7 +2790,7 @@ class ActivitiesApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        $query = Query::build($queryParams);
         return new Request(
             'POST',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
@@ -4258,62 +2831,28 @@ class ActivitiesApi
      */
     public function updateCustomActivityTypeUsingPOSTWithHttpInfo($api_name, $custom_activity_type_request)
     {
-        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType';
         $request = $this->updateCustomActivityTypeUsingPOSTRequest($api_name, $custom_activity_type_request);
 
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
-                );
+            $response = $this->makeRequest($request);
+
+            switch ($response->getStatusCode()) {
+                case 200:
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType');
             }
 
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    $response->getBody()
-                );
-            }
-
-            $responseBody = $response->getBody();
-            if ($returnType === '\SplFileObject') {
-                $content = $responseBody; //stream goes to serializer
-            } else {
-                $content = $responseBody->getContents();
-                if ($returnType !== 'string') {
-                    $content = json_decode($content);
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
+            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType');
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
-                        $e->getResponseHeaders()
+                    $e->setResponseObject(
+                        $this->deserializeResponseBody(
+                            $e->getResponseBody(),
+                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
+                            $e->getResponseHeaders()
+                        )
                     );
-                    $e->setResponseObject($data);
                     break;
             }
             throw $e;
@@ -4354,41 +2893,25 @@ class ActivitiesApi
      */
     public function updateCustomActivityTypeUsingPOSTAsyncWithHttpInfo($api_name, $custom_activity_type_request)
     {
-        $returnType = '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType';
         $request = $this->updateCustomActivityTypeUsingPOSTRequest($api_name, $custom_activity_type_request);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
-                function ($response) use ($returnType) {
-                    $responseBody = $response->getBody();
-                    if ($returnType === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = $responseBody->getContents();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
+                function ($response) {
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType');
                 },
-                function ($exception) {
+                function (RequestException $exception) {
                     $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
                     throw new ApiException(
                         sprintf(
                             '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
                         ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        $response->getBody()
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
                     );
                 }
             );
@@ -4403,88 +2926,46 @@ class ActivitiesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function updateCustomActivityTypeUsingPOSTRequest($api_name, $custom_activity_type_request)
+    public function updateCustomActivityTypeUsingPOSTRequest($api_name, $custom_activity_type_request)
     {
-        // verify the required parameter 'api_name' is set
-        if ($api_name === null || (is_array($api_name) && count($api_name) === 0)) {
+        // Verify the required parameter 'api_name' is set.
+        if ($api_name === null || (is_array($api_name) && empty($api_name))) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $api_name when calling updateCustomActivityTypeUsingPOST'
             );
         }
-        // verify the required parameter 'custom_activity_type_request' is set
-        if ($custom_activity_type_request === null || (is_array($custom_activity_type_request) && count($custom_activity_type_request) === 0)) {
+        // Verify the required parameter 'custom_activity_type_request' is set.
+        if ($custom_activity_type_request === null || (is_array($custom_activity_type_request) && empty($custom_activity_type_request))) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $custom_activity_type_request when calling updateCustomActivityTypeUsingPOST'
             );
         }
 
         $resourcePath = '/rest/v1/activities/external/type/{apiName}.json';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-
-        // path params
-        if ($api_name !== null) {
-            $resourcePath = str_replace(
-                '{' . 'apiName' . '}',
-                ObjectSerializer::toPathValue($api_name),
-                $resourcePath
-            );
-        }
-
-        // body params
-        $_tempBody = null;
-        if (isset($custom_activity_type_request)) {
-            $_tempBody = $custom_activity_type_request;
-        }
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
+        // Path parameters.
+        $resourcePath = str_replace(
+            '{' . 'apiName' . '}',
+            ObjectSerializer::toPathValue($api_name),
+            $resourcePath
+        );
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json'],
+            ['application/json']
+        );
 
         // for model (json/xml)
-        if (isset($_tempBody)) {
-            // $_tempBody is the method argument, if present
-            $httpBody = $_tempBody;
-            
-            if($headers['Content-Type'] === 'application/json') {
-                // \stdClass has no __toString(), so we should encode it manually
-                if ($httpBody instanceof \stdClass) {
-                    $httpBody = \GuzzleHttp\json_encode($httpBody);
-                }
-                // array has no __toString(), so we should encode it manually
-                if(is_array($httpBody)) {
-                    $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($httpBody));
-                }
+        if (!empty($custom_activity_type_request)) {
+            if ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($custom_activity_type_request));
+            } elseif (!is_array($custom_activity_type_request)) {
+                $httpBody = (string) $custom_activity_type_request;
             }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $multipartContents[] = [
-                        'name' => $formParamName,
-                        'contents' => $formParamValue
-                    ];
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-
-            } else {
-                // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            else {
+                $httpBody = '';
             }
         }
 
@@ -4500,7 +2981,7 @@ class ActivitiesApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        $query = Query::build($queryParams);
         return new Request(
             'POST',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
@@ -4527,4 +3008,83 @@ class ActivitiesApi
 
         return $options;
     }
+
+    /**
+     * Make a request.
+     *
+     * @param \GuzzleHttp\Psr7\Request $request
+     *   An initialized request object.
+     *
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
+     * @return \Psr\Http\Message\ResponseInterface
+     */
+    private function makeRequest(Request $request) {
+        $options = $this->createHttpClientOption();
+        try {
+           $response = $this->client->send($request, $options);
+        } catch (RequestException $e) {
+            $response = $e->getResponse();
+            throw new ApiException(
+                "[{$e->getCode()}] {$e->getMessage()}",
+                (int) $e->getCode(),
+                $response ? $response->getHeaders() : null,
+                $response ? (string) $response->getBody() : null
+            );
+        }
+
+        $statusCode = $response->getStatusCode();
+        if ($statusCode < 200 || $statusCode > 299) {
+            throw new ApiException(
+                sprintf(
+                    '[%d] Error connecting to the API (%s)',
+                    $statusCode,
+                    (string) $request->getUri()
+                ),
+                $statusCode,
+                $response->getHeaders(),
+                (string) $response->getBody()
+            );
+        }
+        return $response;
+    }
+
+    /**
+     * Convert a response to a return standard return array.
+     *
+     * @param \Psr\Http\Message\ResponseInterface $response
+     *   A response from a request with a serialized body.
+     * @param string $returnType
+     *   The return type.
+     *
+     * @return array
+     */
+    private function responseToReturn(ResponseInterface $response, string $returnType) {
+        return [
+            $this->deserializeResponseBody($response->getBody(), $returnType),
+            $response->getStatusCode(),
+            $response->getHeaders()
+        ];
+    }
+
+    /**
+     * Deserialize a response body.
+     *
+     * @param mixed $responseBody
+     *   The response body.
+     * @param string $returnType
+     *   The return type.
+     * @param array|null $headers
+     *   The a list of headers from the response.
+     * @return mixed
+     *   Either a string or a stream to be passed to a file object.
+     */
+    private function deserializeResponseBody($responseBody, $returnType, $headers = [])
+    {
+        return ObjectSerializer::deserialize(
+            $returnType === '\SplFileObject' ? $responseBody : (string) $responseBody,
+            $returnType,
+            $headers
+        );
+    }
+
 }

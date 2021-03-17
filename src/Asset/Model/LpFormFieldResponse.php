@@ -2,8 +2,6 @@
 /**
  * LpFormFieldResponse
  *
- * PHP version 5
- *
  * @category Class
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
@@ -39,10 +37,13 @@ use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
+ * @implements \ArrayAccess<TKey, TValue>
+ * @template TKey int|null
+ * @template TValue mixed|null
  */
-class LpFormFieldResponse implements ModelInterface, ArrayAccess
+class LpFormFieldResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -82,6 +83,8 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess
       * Array of property to format mappings. Used for (de)serialization
       *
       * @var string[]
+      * @phpstan-var array<string, string|null>
+      * @psalm-var array<string, string|null>
       */
     protected static $swaggerFormats = [
         'blank_fields' => 'int32',
@@ -106,14 +109,16 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess
     ];
 
     /**
-      * Array of dynamic properties.
+      * Array of additional properties.
       *
       * @var mixed[]
       */
     protected $additionalProperties = [];
 
     /**
-     * {@inheritdoc}
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
      */
     public static function swaggerTypes()
     {
@@ -314,7 +319,7 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess
      *
      * @param int $blank_fields blank_fields
      *
-     * @return $this
+     * @return self
      */
     public function setBlankFields($blank_fields)
     {
@@ -338,7 +343,7 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess
      *
      * @param int $column_number column_number
      *
-     * @return $this
+     * @return self
      */
     public function setColumnNumber($column_number)
     {
@@ -362,7 +367,7 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess
      *
      * @param string $data_type data_type
      *
-     * @return $this
+     * @return self
      */
     public function setDataType($data_type)
     {
@@ -386,7 +391,7 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess
      *
      * @param string $default_value default_value
      *
-     * @return $this
+     * @return self
      */
     public function setDefaultValue($default_value)
     {
@@ -410,7 +415,7 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess
      *
      * @param object $field_meta_data field_meta_data
      *
-     * @return $this
+     * @return self
      */
     public function setFieldMetaData($field_meta_data)
     {
@@ -434,7 +439,7 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess
      *
      * @param int $field_width field_width
      *
-     * @return $this
+     * @return self
      */
     public function setFieldWidth($field_width)
     {
@@ -458,7 +463,7 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess
      *
      * @param string[] $fields fields
      *
-     * @return $this
+     * @return self
      */
     public function setFields($fields)
     {
@@ -482,7 +487,7 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess
      *
      * @param bool $form_prefill form_prefill
      *
-     * @return $this
+     * @return self
      */
     public function setFormPrefill($form_prefill)
     {
@@ -506,7 +511,7 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess
      *
      * @param string $hint_text hint_text
      *
-     * @return $this
+     * @return self
      */
     public function setHintText($hint_text)
     {
@@ -530,7 +535,7 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess
      *
      * @param string $id id
      *
-     * @return $this
+     * @return self
      */
     public function setId($id)
     {
@@ -554,7 +559,7 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess
      *
      * @param string $instructions instructions
      *
-     * @return $this
+     * @return self
      */
     public function setInstructions($instructions)
     {
@@ -578,7 +583,7 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess
      *
      * @param string $label label
      *
-     * @return $this
+     * @return self
      */
     public function setLabel($label)
     {
@@ -602,7 +607,7 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess
      *
      * @param int $label_width label_width
      *
-     * @return $this
+     * @return self
      */
     public function setLabelWidth($label_width)
     {
@@ -626,7 +631,7 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess
      *
      * @param int $max_length max_length
      *
-     * @return $this
+     * @return self
      */
     public function setMaxLength($max_length)
     {
@@ -650,7 +655,7 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess
      *
      * @param bool $required required
      *
-     * @return $this
+     * @return self
      */
     public function setRequired($required)
     {
@@ -674,7 +679,7 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess
      *
      * @param int $row_number row_number
      *
-     * @return $this
+     * @return self
      */
     public function setRowNumber($row_number)
     {
@@ -698,7 +703,7 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess
      *
      * @param string $text text
      *
-     * @return $this
+     * @return self
      */
     public function setText($text)
     {
@@ -722,7 +727,7 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess
      *
      * @param object $validation_message validation_message
      *
-     * @return $this
+     * @return self
      */
     public function setValidationMessage($validation_message)
     {
@@ -746,7 +751,7 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\FormFieldVisibilityRuleResponse $visibility_rules visibility_rules
      *
-     * @return $this
+     * @return self
      */
     public function setVisibilityRules($visibility_rules)
     {
@@ -804,7 +809,7 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**
@@ -828,19 +833,37 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess
     }
 
     /**
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     *
+     * @return mixed Returns data which can be serialized by json_encode(), which is a value
+     * of any type other than a resource.
+     */
+    public function jsonSerialize()
+    {
+       return ObjectSerializer::sanitizeForSerialization($this);
+    }
+
+    /**
      * Gets the string presentation of the object
      *
      * @return string
      */
     public function __toString()
     {
-        if (defined('JSON_PRETTY_PRINT')) { // use JSON pretty print
-            return json_encode(
-                ObjectSerializer::sanitizeForSerialization($this),
-                JSON_PRETTY_PRINT
-            );
-        }
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
+    }
 
+    /**
+     * Gets a header-safe presentation of the object
+     *
+     * @return string
+     */
+    public function toHeaderValue()
+    {
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }

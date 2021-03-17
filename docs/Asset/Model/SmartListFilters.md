@@ -1,6 +1,7 @@
 # SmartListFilters
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** | Id of the filter | 
@@ -11,5 +12,3 @@ Name | Type | Description | Notes
 **conditions** | [**\NecLimDul\MarketoRest\Asset\Model\SmartListConditions[]**](SmartListConditions.md) | List of smart list conditions | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

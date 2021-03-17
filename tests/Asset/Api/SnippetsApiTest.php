@@ -1,7 +1,6 @@
 <?php
 /**
  * SnippetsApiTest
- * PHP version 5
  *
  * @category Class
  * @package  NecLimDul\MarketoRest\Asset
@@ -26,14 +25,12 @@
  * Please update the test case below to test the endpoint.
  */
 
-// namespace NecLimDul\MarketoRest\Asset;
-namespace NecLimDul\MarketoRest\Asset\Model;
+namespace NecLimDul\MarketoRest\Asset\Test\Api;
 
+use NecLimDul\MarketoRest\Asset\Configuration;
+use NecLimDul\MarketoRest\Asset\ApiException;
+use NecLimDul\MarketoRest\Asset\ObjectSerializer;
 use PHPUnit\Framework\TestCase;
-
-use \NecLimDul\MarketoRest\Asset\Configuration;
-use \NecLimDul\MarketoRest\Asset\ApiException;
-use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * SnippetsApiTest Class Doc Comment
@@ -42,164 +39,152 @@ use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
+ * @coversDefaultClass \NecLimDul\MarketoRest\Asset\Api\SnippetsApi
  */
 class SnippetsApiTest extends TestCase
 {
 
 
     /**
-     * Test case for approveSnippetUsingPOST
-     *
      * Approve Snippet Draft.
      *
+     * @covers ::approveSnippetUsingPOST
      */
     public function testApproveSnippetUsingPOST()
     {
-        //$class = new SnippetsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for cloneSnippetUsingPOST
-     *
      * Clone Snippet.
      *
+     * @covers ::cloneSnippetUsingPOST
      */
     public function testCloneSnippetUsingPOST()
     {
-        //$class = new SnippetsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for createSnippetUsingPOST
-     *
      * Create Snippet.
      *
+     * @covers ::createSnippetUsingPOST
      */
     public function testCreateSnippetUsingPOST()
     {
-        //$class = new SnippetsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for deleteSnippetUsingPOST
-     *
      * Delete Snippet.
      *
+     * @covers ::deleteSnippetUsingPOST
      */
     public function testDeleteSnippetUsingPOST()
     {
-        //$class = new SnippetsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for discardSnippetUsingPOST
-     *
      * Discard Snippet Draft.
      *
+     * @covers ::discardSnippetUsingPOST
      */
     public function testDiscardSnippetUsingPOST()
     {
-        //$class = new SnippetsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getDynamicContentUsingGET
-     *
      * Get Dynamic Content.
      *
+     * @covers ::getDynamicContentUsingGET
      */
     public function testGetDynamicContentUsingGET()
     {
-        //$class = new SnippetsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getSnippetByIdUsingGET
-     *
      * Get Snippet by Id.
      *
+     * @covers ::getSnippetByIdUsingGET
      */
     public function testGetSnippetByIdUsingGET()
     {
-        //$class = new SnippetsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getSnippetContentByIdUsingGET
-     *
      * Get Snippet Content.
      *
+     * @covers ::getSnippetContentByIdUsingGET
      */
     public function testGetSnippetContentByIdUsingGET()
     {
-        //$class = new SnippetsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getSnippetUsingGET
-     *
      * Get Snippets.
      *
+     * @covers ::getSnippetUsingGET
      */
     public function testGetSnippetUsingGET()
     {
-        //$class = new SnippetsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for unapproveSnippetUsingPOST
-     *
      * Unapprove Snippet.
      *
+     * @covers ::unapproveSnippetUsingPOST
      */
     public function testUnapproveSnippetUsingPOST()
     {
-        //$class = new SnippetsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for updateContentUsingPOST1
-     *
      * Update Snippet Content.
      *
+     * @covers ::updateContentUsingPOST1
      */
     public function testUpdateContentUsingPOST1()
     {
-        //$class = new SnippetsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for updateDynamicContentUsingPOST
-     *
      * Update Snippet Dynamic Content.
      *
+     * @covers ::updateDynamicContentUsingPOST
      */
     public function testUpdateDynamicContentUsingPOST()
     {
-        //$class = new SnippetsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for updateSnippetUsingPOST
-     *
      * Update Snippet Metadata.
      *
+     * @covers ::updateSnippetUsingPOST
      */
     public function testUpdateSnippetUsingPOST()
     {
-        //$class = new SnippetsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

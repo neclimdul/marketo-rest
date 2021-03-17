@@ -2,8 +2,6 @@
 /**
  * LeadLookupInputDataTest
  *
- * PHP version 7
- *
  * @category Class
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
@@ -27,8 +25,7 @@
  * Please update the test case below to test the model.
  */
 
-// namespace NecLimDul\MarketoRest\Lead;
-namespace NecLimDul\MarketoRest\Lead\Model;
+namespace NecLimDul\MarketoRest\Lead\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
@@ -49,8 +46,8 @@ class LeadLookupInputDataTest extends TestCase
      */
     public function testLeadLookupInputData()
     {
-        $class = new LeadLookupInputData();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -58,7 +55,7 @@ class LeadLookupInputDataTest extends TestCase
      */
     public function testPropertyId()
     {
-        $class = new LeadLookupInputData();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

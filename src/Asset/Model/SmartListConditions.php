@@ -2,8 +2,6 @@
 /**
  * SmartListConditions
  *
- * PHP version 5
- *
  * @category Class
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
@@ -40,10 +38,13 @@ use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
+ * @implements \ArrayAccess<TKey, TValue>
+ * @template TKey int|null
+ * @template TValue mixed|null
  */
-class SmartListConditions implements ModelInterface, ArrayAccess
+class SmartListConditions implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -69,6 +70,8 @@ class SmartListConditions implements ModelInterface, ArrayAccess
       * Array of property to format mappings. Used for (de)serialization
       *
       * @var string[]
+      * @phpstan-var array<string, string|null>
+      * @psalm-var array<string, string|null>
       */
     protected static $swaggerFormats = [
         'activity_attribute_id' => 'int32',
@@ -79,14 +82,16 @@ class SmartListConditions implements ModelInterface, ArrayAccess
     ];
 
     /**
-      * Array of dynamic properties.
+      * Array of additional properties.
       *
       * @var mixed[]
       */
     protected $additionalProperties = [];
 
     /**
-     * {@inheritdoc}
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
      */
     public static function swaggerTypes()
     {
@@ -246,7 +251,7 @@ class SmartListConditions implements ModelInterface, ArrayAccess
      *
      * @param int $activity_attribute_id Id of the activity attribute
      *
-     * @return $this
+     * @return self
      */
     public function setActivityAttributeId($activity_attribute_id)
     {
@@ -270,7 +275,7 @@ class SmartListConditions implements ModelInterface, ArrayAccess
      *
      * @param string $activity_attribute_name Name of activity attribute
      *
-     * @return $this
+     * @return self
      */
     public function setActivityAttributeName($activity_attribute_name)
     {
@@ -294,7 +299,7 @@ class SmartListConditions implements ModelInterface, ArrayAccess
      *
      * @param string $operator Value of operator
      *
-     * @return $this
+     * @return self
      */
     public function setOperator($operator)
     {
@@ -318,7 +323,7 @@ class SmartListConditions implements ModelInterface, ArrayAccess
      *
      * @param string[] $values List of values
      *
-     * @return $this
+     * @return self
      */
     public function setValues($values)
     {
@@ -342,7 +347,7 @@ class SmartListConditions implements ModelInterface, ArrayAccess
      *
      * @param bool $is_primary Whether the condition is primary or not (first condition of the smart list)
      *
-     * @return $this
+     * @return self
      */
     public function setIsPrimary($is_primary)
     {
@@ -400,7 +405,7 @@ class SmartListConditions implements ModelInterface, ArrayAccess
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**
@@ -424,19 +429,37 @@ class SmartListConditions implements ModelInterface, ArrayAccess
     }
 
     /**
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     *
+     * @return mixed Returns data which can be serialized by json_encode(), which is a value
+     * of any type other than a resource.
+     */
+    public function jsonSerialize()
+    {
+       return ObjectSerializer::sanitizeForSerialization($this);
+    }
+
+    /**
      * Gets the string presentation of the object
      *
      * @return string
      */
     public function __toString()
     {
-        if (defined('JSON_PRETTY_PRINT')) { // use JSON pretty print
-            return json_encode(
-                ObjectSerializer::sanitizeForSerialization($this),
-                JSON_PRETTY_PRINT
-            );
-        }
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
+    }
 
+    /**
+     * Gets a header-safe presentation of the object
+     *
+     * @return string
+     */
+    public function toHeaderValue()
+    {
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }

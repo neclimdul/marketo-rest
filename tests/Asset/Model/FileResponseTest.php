@@ -2,8 +2,6 @@
 /**
  * FileResponseTest
  *
- * PHP version 7
- *
  * @category Class
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
@@ -27,8 +25,7 @@
  * Please update the test case below to test the model.
  */
 
-// namespace NecLimDul\MarketoRest\Asset;
-namespace NecLimDul\MarketoRest\Asset\Model;
+namespace NecLimDul\MarketoRest\Asset\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
@@ -49,8 +46,8 @@ class FileResponseTest extends TestCase
      */
     public function testFileResponse()
     {
-        $class = new FileResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -58,8 +55,8 @@ class FileResponseTest extends TestCase
      */
     public function testPropertyCreatedAt()
     {
-        $class = new FileResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -67,8 +64,8 @@ class FileResponseTest extends TestCase
      */
     public function testPropertyDescription()
     {
-        $class = new FileResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -76,8 +73,8 @@ class FileResponseTest extends TestCase
      */
     public function testPropertyFolder()
     {
-        $class = new FileResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -85,8 +82,8 @@ class FileResponseTest extends TestCase
      */
     public function testPropertyId()
     {
-        $class = new FileResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -94,8 +91,8 @@ class FileResponseTest extends TestCase
      */
     public function testPropertyMimeType()
     {
-        $class = new FileResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -103,8 +100,8 @@ class FileResponseTest extends TestCase
      */
     public function testPropertyName()
     {
-        $class = new FileResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -112,8 +109,8 @@ class FileResponseTest extends TestCase
      */
     public function testPropertySize()
     {
-        $class = new FileResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -121,8 +118,8 @@ class FileResponseTest extends TestCase
      */
     public function testPropertyUpdatedAt()
     {
-        $class = new FileResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -130,7 +127,7 @@ class FileResponseTest extends TestCase
      */
     public function testPropertyUrl()
     {
-        $class = new FileResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

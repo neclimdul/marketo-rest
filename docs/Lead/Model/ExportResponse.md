@@ -1,6 +1,7 @@
 # ExportResponse
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **created_at** | [**\DateTime**](\DateTime.md) | Date when the export request was created | [optional] 
@@ -16,5 +17,3 @@ Name | Type | Description | Notes
 **status** | **string** | Status of the export job (\&quot;Created\&quot;,\&quot;Queued\&quot;,\&quot;Processing\&quot;,\&quot;Canceled\&quot;,\&quot;Completed\&quot;,\&quot;Failed\&quot;) | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

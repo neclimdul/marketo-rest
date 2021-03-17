@@ -1,7 +1,6 @@
 <?php
 /**
  * ProgramsApi
- * PHP version 5
  *
  * @category Class
  * @package  NecLimDul\MarketoRest\Asset
@@ -32,8 +31,10 @@ use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
+use GuzzleHttp\Psr7\Query;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
+use Psr\Http\Message\ResponseInterface;
 use NecLimDul\MarketoRest\Asset\ApiException;
 use NecLimDul\MarketoRest\Asset\Configuration;
 use NecLimDul\MarketoRest\Asset\HeaderSelector;
@@ -49,6 +50,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  */
 class ProgramsApi
 {
+
     /**
      * @var ClientInterface
      */
@@ -65,18 +67,46 @@ class ProgramsApi
     protected $headerSelector;
 
     /**
-     * @param ClientInterface $client
-     * @param Configuration   $config
-     * @param HeaderSelector  $selector
+     * @var int Host index
+     */
+    protected $hostIndex;
+
+    /**
+     * @param ClientInterface|null $client
+     * @param Configuration|null   $config
+     * @param HeaderSelector|null  $selector
+     * @param int                  $hostIndex (Optional) host index to select the list of hosts if defined in the OpenAPI spec
      */
     public function __construct(
         ClientInterface $client = null,
         Configuration $config = null,
-        HeaderSelector $selector = null
+        HeaderSelector $selector = null,
+        $hostIndex = 0
     ) {
         $this->client = $client ?: new Client();
         $this->config = $config ?: new Configuration();
         $this->headerSelector = $selector ?: new HeaderSelector();
+        $this->hostIndex = $hostIndex;
+    }
+
+    /**
+     * Set the host index
+     *
+     * @param int $hostIndex Host index (required)
+     */
+    public function setHostIndex($hostIndex)
+    {
+        $this->hostIndex = $hostIndex;
+    }
+
+    /**
+     * Get the host index
+     *
+     * @return int Host index
+     */
+    public function getHostIndex()
+    {
+        return $this->hostIndex;
     }
 
     /**
@@ -117,62 +147,28 @@ class ProgramsApi
      */
     public function approveProgramUsingPOSTWithHttpInfo($id)
     {
-        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse';
         $request = $this->approveProgramUsingPOSTRequest($id);
 
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
-                );
+            $response = $this->makeRequest($request);
+
+            switch ($response->getStatusCode()) {
+                case 200:
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
             }
 
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    $response->getBody()
-                );
-            }
-
-            $responseBody = $response->getBody();
-            if ($returnType === '\SplFileObject') {
-                $content = $responseBody; //stream goes to serializer
-            } else {
-                $content = $responseBody->getContents();
-                if ($returnType !== 'string') {
-                    $content = json_decode($content);
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
+            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
-                        $e->getResponseHeaders()
+                    $e->setResponseObject(
+                        $this->deserializeResponseBody(
+                            $e->getResponseBody(),
+                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+                            $e->getResponseHeaders()
+                        )
                     );
-                    $e->setResponseObject($data);
                     break;
             }
             throw $e;
@@ -211,41 +207,25 @@ class ProgramsApi
      */
     public function approveProgramUsingPOSTAsyncWithHttpInfo($id)
     {
-        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse';
         $request = $this->approveProgramUsingPOSTRequest($id);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
-                function ($response) use ($returnType) {
-                    $responseBody = $response->getBody();
-                    if ($returnType === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = $responseBody->getContents();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
+                function ($response) {
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
                 },
-                function ($exception) {
+                function (RequestException $exception) {
                     $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
                     throw new ApiException(
                         sprintf(
                             '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
                         ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        $response->getBody()
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
                     );
                 }
             );
@@ -259,81 +239,30 @@ class ProgramsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function approveProgramUsingPOSTRequest($id)
+    public function approveProgramUsingPOSTRequest($id)
     {
-        // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
+        // Verify the required parameter 'id' is set.
+        if ($id === null || (is_array($id) && empty($id))) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $id when calling approveProgramUsingPOST'
             );
         }
 
         $resourcePath = '/rest/asset/v1/program/{id}/approve.json';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-
-        // path params
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'id' . '}',
-                ObjectSerializer::toPathValue($id),
-                $resourcePath
-            );
-        }
-
-        // body params
-        $_tempBody = null;
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/x-www-form-urlencoded']
-            );
-        }
-
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            // $_tempBody is the method argument, if present
-            $httpBody = $_tempBody;
-            
-            if($headers['Content-Type'] === 'application/json') {
-                // \stdClass has no __toString(), so we should encode it manually
-                if ($httpBody instanceof \stdClass) {
-                    $httpBody = \GuzzleHttp\json_encode($httpBody);
-                }
-                // array has no __toString(), so we should encode it manually
-                if(is_array($httpBody)) {
-                    $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($httpBody));
-                }
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $multipartContents[] = [
-                        'name' => $formParamName,
-                        'contents' => $formParamValue
-                    ];
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-
-            } else {
-                // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
-            }
-        }
+        // Path parameters.
+        $resourcePath = str_replace(
+            '{' . 'id' . '}',
+            ObjectSerializer::toPathValue($id),
+            $resourcePath
+        );
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json'],
+            ['application/x-www-form-urlencoded']
+        );
 
 
         $defaultHeaders = [];
@@ -347,7 +276,7 @@ class ProgramsApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        $query = Query::build($queryParams);
         return new Request(
             'POST',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
@@ -394,62 +323,28 @@ class ProgramsApi
      */
     public function browseProgramsUsingGETWithHttpInfo($max_return = null, $offset = null, $filter_type = null, $earliest_updated_at = null, $latest_updated_at = null)
     {
-        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfBrowseAllPrograms';
         $request = $this->browseProgramsUsingGETRequest($max_return, $offset, $filter_type, $earliest_updated_at, $latest_updated_at);
 
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
-                );
+            $response = $this->makeRequest($request);
+
+            switch ($response->getStatusCode()) {
+                case 200:
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfBrowseAllPrograms');
             }
 
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    $response->getBody()
-                );
-            }
-
-            $responseBody = $response->getBody();
-            if ($returnType === '\SplFileObject') {
-                $content = $responseBody; //stream goes to serializer
-            } else {
-                $content = $responseBody->getContents();
-                if ($returnType !== 'string') {
-                    $content = json_decode($content);
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
+            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfBrowseAllPrograms');
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfBrowseAllPrograms',
-                        $e->getResponseHeaders()
+                    $e->setResponseObject(
+                        $this->deserializeResponseBody(
+                            $e->getResponseBody(),
+                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfBrowseAllPrograms',
+                            $e->getResponseHeaders()
+                        )
                     );
-                    $e->setResponseObject($data);
                     break;
             }
             throw $e;
@@ -496,41 +391,25 @@ class ProgramsApi
      */
     public function browseProgramsUsingGETAsyncWithHttpInfo($max_return = null, $offset = null, $filter_type = null, $earliest_updated_at = null, $latest_updated_at = null)
     {
-        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfBrowseAllPrograms';
         $request = $this->browseProgramsUsingGETRequest($max_return, $offset, $filter_type, $earliest_updated_at, $latest_updated_at);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
-                function ($response) use ($returnType) {
-                    $responseBody = $response->getBody();
-                    if ($returnType === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = $responseBody->getContents();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
+                function ($response) {
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfBrowseAllPrograms');
                 },
-                function ($exception) {
+                function (RequestException $exception) {
                     $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
                     throw new ApiException(
                         sprintf(
                             '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
                         ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        $response->getBody()
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
                     );
                 }
             );
@@ -548,87 +427,41 @@ class ProgramsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function browseProgramsUsingGETRequest($max_return = null, $offset = null, $filter_type = null, $earliest_updated_at = null, $latest_updated_at = null)
+    public function browseProgramsUsingGETRequest($max_return = null, $offset = null, $filter_type = null, $earliest_updated_at = null, $latest_updated_at = null)
     {
 
         $resourcePath = '/rest/asset/v1/programs.json';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-        // query params
-        if ($max_return !== null) {
-            $queryParams['maxReturn'] = ObjectSerializer::toQueryValue($max_return);
+        // Query parameters.
+        if (is_array($max_return)) {
+            $max_return = ObjectSerializer::serializeCollection($max_return, '', true);
         }
-        // query params
-        if ($offset !== null) {
-            $queryParams['offset'] = ObjectSerializer::toQueryValue($offset);
+        $queryParams['maxReturn'] = $max_return;
+        if (is_array($offset)) {
+            $offset = ObjectSerializer::serializeCollection($offset, '', true);
         }
-        // query params
-        if ($filter_type !== null) {
-            $queryParams['filterType'] = ObjectSerializer::toQueryValue($filter_type);
+        $queryParams['offset'] = $offset;
+        if (is_array($filter_type)) {
+            $filter_type = ObjectSerializer::serializeCollection($filter_type, '', true);
         }
-        // query params
-        if ($earliest_updated_at !== null) {
-            $queryParams['earliestUpdatedAt'] = ObjectSerializer::toQueryValue($earliest_updated_at);
+        $queryParams['filterType'] = $filter_type;
+        if (is_array($earliest_updated_at)) {
+            $earliest_updated_at = ObjectSerializer::serializeCollection($earliest_updated_at, '', true);
         }
-        // query params
-        if ($latest_updated_at !== null) {
-            $queryParams['latestUpdatedAt'] = ObjectSerializer::toQueryValue($latest_updated_at);
+        $queryParams['earliestUpdatedAt'] = $earliest_updated_at;
+        if (is_array($latest_updated_at)) {
+            $latest_updated_at = ObjectSerializer::serializeCollection($latest_updated_at, '', true);
         }
-
-
-        // body params
-        $_tempBody = null;
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/x-www-form-urlencoded']
-            );
-        }
-
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            // $_tempBody is the method argument, if present
-            $httpBody = $_tempBody;
-            
-            if($headers['Content-Type'] === 'application/json') {
-                // \stdClass has no __toString(), so we should encode it manually
-                if ($httpBody instanceof \stdClass) {
-                    $httpBody = \GuzzleHttp\json_encode($httpBody);
-                }
-                // array has no __toString(), so we should encode it manually
-                if(is_array($httpBody)) {
-                    $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($httpBody));
-                }
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $multipartContents[] = [
-                        'name' => $formParamName,
-                        'contents' => $formParamValue
-                    ];
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-
-            } else {
-                // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
-            }
-        }
+        $queryParams['latestUpdatedAt'] = $latest_updated_at;
+        // Remove any null (optional values).
+        $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json'],
+            ['application/x-www-form-urlencoded']
+        );
 
 
         $defaultHeaders = [];
@@ -642,7 +475,7 @@ class ProgramsApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        $query = Query::build($queryParams);
         return new Request(
             'GET',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
@@ -683,62 +516,28 @@ class ProgramsApi
      */
     public function cloneProgramUsingPOSTWithHttpInfo($id, $clone_program_request)
     {
-        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse';
         $request = $this->cloneProgramUsingPOSTRequest($id, $clone_program_request);
 
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
-                );
+            $response = $this->makeRequest($request);
+
+            switch ($response->getStatusCode()) {
+                case 200:
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse');
             }
 
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    $response->getBody()
-                );
-            }
-
-            $responseBody = $response->getBody();
-            if ($returnType === '\SplFileObject') {
-                $content = $responseBody; //stream goes to serializer
-            } else {
-                $content = $responseBody->getContents();
-                if ($returnType !== 'string') {
-                    $content = json_decode($content);
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
+            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse');
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse',
-                        $e->getResponseHeaders()
+                    $e->setResponseObject(
+                        $this->deserializeResponseBody(
+                            $e->getResponseBody(),
+                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse',
+                            $e->getResponseHeaders()
+                        )
                     );
-                    $e->setResponseObject($data);
                     break;
             }
             throw $e;
@@ -779,41 +578,25 @@ class ProgramsApi
      */
     public function cloneProgramUsingPOSTAsyncWithHttpInfo($id, $clone_program_request)
     {
-        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse';
         $request = $this->cloneProgramUsingPOSTRequest($id, $clone_program_request);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
-                function ($response) use ($returnType) {
-                    $responseBody = $response->getBody();
-                    if ($returnType === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = $responseBody->getContents();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
+                function ($response) {
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse');
                 },
-                function ($exception) {
+                function (RequestException $exception) {
                     $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
                     throw new ApiException(
                         sprintf(
                             '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
                         ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        $response->getBody()
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
                     );
                 }
             );
@@ -828,88 +611,46 @@ class ProgramsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function cloneProgramUsingPOSTRequest($id, $clone_program_request)
+    public function cloneProgramUsingPOSTRequest($id, $clone_program_request)
     {
-        // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
+        // Verify the required parameter 'id' is set.
+        if ($id === null || (is_array($id) && empty($id))) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $id when calling cloneProgramUsingPOST'
             );
         }
-        // verify the required parameter 'clone_program_request' is set
-        if ($clone_program_request === null || (is_array($clone_program_request) && count($clone_program_request) === 0)) {
+        // Verify the required parameter 'clone_program_request' is set.
+        if ($clone_program_request === null || (is_array($clone_program_request) && empty($clone_program_request))) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $clone_program_request when calling cloneProgramUsingPOST'
             );
         }
 
         $resourcePath = '/rest/asset/v1/program/{id}/clone.json';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-
-        // path params
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'id' . '}',
-                ObjectSerializer::toPathValue($id),
-                $resourcePath
-            );
-        }
-
-        // body params
-        $_tempBody = null;
-        if (isset($clone_program_request)) {
-            $_tempBody = $clone_program_request;
-        }
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/x-www-form-urlencoded']
-            );
-        }
+        // Path parameters.
+        $resourcePath = str_replace(
+            '{' . 'id' . '}',
+            ObjectSerializer::toPathValue($id),
+            $resourcePath
+        );
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json'],
+            ['application/x-www-form-urlencoded']
+        );
 
         // for model (json/xml)
-        if (isset($_tempBody)) {
-            // $_tempBody is the method argument, if present
-            $httpBody = $_tempBody;
-            
-            if($headers['Content-Type'] === 'application/json') {
-                // \stdClass has no __toString(), so we should encode it manually
-                if ($httpBody instanceof \stdClass) {
-                    $httpBody = \GuzzleHttp\json_encode($httpBody);
-                }
-                // array has no __toString(), so we should encode it manually
-                if(is_array($httpBody)) {
-                    $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($httpBody));
-                }
+        if (!empty($clone_program_request)) {
+            if ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($clone_program_request));
+            } elseif (!is_array($clone_program_request)) {
+                $httpBody = (string) $clone_program_request;
             }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $multipartContents[] = [
-                        'name' => $formParamName,
-                        'contents' => $formParamValue
-                    ];
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-
-            } else {
-                // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            else {
+                $httpBody = '';
             }
         }
 
@@ -925,7 +666,7 @@ class ProgramsApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        $query = Query::build($queryParams);
         return new Request(
             'POST',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
@@ -964,62 +705,28 @@ class ProgramsApi
      */
     public function createProgramUsingPOSTWithHttpInfo($create_program_request)
     {
-        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse';
         $request = $this->createProgramUsingPOSTRequest($create_program_request);
 
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
-                );
+            $response = $this->makeRequest($request);
+
+            switch ($response->getStatusCode()) {
+                case 200:
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse');
             }
 
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    $response->getBody()
-                );
-            }
-
-            $responseBody = $response->getBody();
-            if ($returnType === '\SplFileObject') {
-                $content = $responseBody; //stream goes to serializer
-            } else {
-                $content = $responseBody->getContents();
-                if ($returnType !== 'string') {
-                    $content = json_decode($content);
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
+            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse');
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse',
-                        $e->getResponseHeaders()
+                    $e->setResponseObject(
+                        $this->deserializeResponseBody(
+                            $e->getResponseBody(),
+                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse',
+                            $e->getResponseHeaders()
+                        )
                     );
-                    $e->setResponseObject($data);
                     break;
             }
             throw $e;
@@ -1058,41 +765,25 @@ class ProgramsApi
      */
     public function createProgramUsingPOSTAsyncWithHttpInfo($create_program_request)
     {
-        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse';
         $request = $this->createProgramUsingPOSTRequest($create_program_request);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
-                function ($response) use ($returnType) {
-                    $responseBody = $response->getBody();
-                    if ($returnType === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = $responseBody->getContents();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
+                function ($response) {
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse');
                 },
-                function ($exception) {
+                function (RequestException $exception) {
                     $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
                     throw new ApiException(
                         sprintf(
                             '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
                         ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        $response->getBody()
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
                     );
                 }
             );
@@ -1106,74 +797,33 @@ class ProgramsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function createProgramUsingPOSTRequest($create_program_request)
+    public function createProgramUsingPOSTRequest($create_program_request)
     {
-        // verify the required parameter 'create_program_request' is set
-        if ($create_program_request === null || (is_array($create_program_request) && count($create_program_request) === 0)) {
+        // Verify the required parameter 'create_program_request' is set.
+        if ($create_program_request === null || (is_array($create_program_request) && empty($create_program_request))) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $create_program_request when calling createProgramUsingPOST'
             );
         }
 
         $resourcePath = '/rest/asset/v1/programs.json';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
-
-
-
-        // body params
-        $_tempBody = null;
-        if (isset($create_program_request)) {
-            $_tempBody = $create_program_request;
-        }
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/x-www-form-urlencoded']
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json'],
+            ['application/x-www-form-urlencoded']
+        );
 
         // for model (json/xml)
-        if (isset($_tempBody)) {
-            // $_tempBody is the method argument, if present
-            $httpBody = $_tempBody;
-            
-            if($headers['Content-Type'] === 'application/json') {
-                // \stdClass has no __toString(), so we should encode it manually
-                if ($httpBody instanceof \stdClass) {
-                    $httpBody = \GuzzleHttp\json_encode($httpBody);
-                }
-                // array has no __toString(), so we should encode it manually
-                if(is_array($httpBody)) {
-                    $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($httpBody));
-                }
+        if (!empty($create_program_request)) {
+            if ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($create_program_request));
+            } elseif (!is_array($create_program_request)) {
+                $httpBody = (string) $create_program_request;
             }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $multipartContents[] = [
-                        'name' => $formParamName,
-                        'contents' => $formParamValue
-                    ];
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-
-            } else {
-                // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            else {
+                $httpBody = '';
             }
         }
 
@@ -1189,7 +839,7 @@ class ProgramsApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        $query = Query::build($queryParams);
         return new Request(
             'POST',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
@@ -1228,62 +878,28 @@ class ProgramsApi
      */
     public function deleteProgramUsingPOSTWithHttpInfo($id)
     {
-        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse';
         $request = $this->deleteProgramUsingPOSTRequest($id);
 
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
-                );
+            $response = $this->makeRequest($request);
+
+            switch ($response->getStatusCode()) {
+                case 200:
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
             }
 
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    $response->getBody()
-                );
-            }
-
-            $responseBody = $response->getBody();
-            if ($returnType === '\SplFileObject') {
-                $content = $responseBody; //stream goes to serializer
-            } else {
-                $content = $responseBody->getContents();
-                if ($returnType !== 'string') {
-                    $content = json_decode($content);
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
+            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
-                        $e->getResponseHeaders()
+                    $e->setResponseObject(
+                        $this->deserializeResponseBody(
+                            $e->getResponseBody(),
+                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+                            $e->getResponseHeaders()
+                        )
                     );
-                    $e->setResponseObject($data);
                     break;
             }
             throw $e;
@@ -1322,41 +938,25 @@ class ProgramsApi
      */
     public function deleteProgramUsingPOSTAsyncWithHttpInfo($id)
     {
-        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse';
         $request = $this->deleteProgramUsingPOSTRequest($id);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
-                function ($response) use ($returnType) {
-                    $responseBody = $response->getBody();
-                    if ($returnType === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = $responseBody->getContents();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
+                function ($response) {
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
                 },
-                function ($exception) {
+                function (RequestException $exception) {
                     $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
                     throw new ApiException(
                         sprintf(
                             '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
                         ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        $response->getBody()
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
                     );
                 }
             );
@@ -1370,81 +970,30 @@ class ProgramsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function deleteProgramUsingPOSTRequest($id)
+    public function deleteProgramUsingPOSTRequest($id)
     {
-        // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
+        // Verify the required parameter 'id' is set.
+        if ($id === null || (is_array($id) && empty($id))) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $id when calling deleteProgramUsingPOST'
             );
         }
 
         $resourcePath = '/rest/asset/v1/program/{id}/delete.json';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-
-        // path params
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'id' . '}',
-                ObjectSerializer::toPathValue($id),
-                $resourcePath
-            );
-        }
-
-        // body params
-        $_tempBody = null;
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/x-www-form-urlencoded']
-            );
-        }
-
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            // $_tempBody is the method argument, if present
-            $httpBody = $_tempBody;
-            
-            if($headers['Content-Type'] === 'application/json') {
-                // \stdClass has no __toString(), so we should encode it manually
-                if ($httpBody instanceof \stdClass) {
-                    $httpBody = \GuzzleHttp\json_encode($httpBody);
-                }
-                // array has no __toString(), so we should encode it manually
-                if(is_array($httpBody)) {
-                    $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($httpBody));
-                }
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $multipartContents[] = [
-                        'name' => $formParamName,
-                        'contents' => $formParamValue
-                    ];
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-
-            } else {
-                // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
-            }
-        }
+        // Path parameters.
+        $resourcePath = str_replace(
+            '{' . 'id' . '}',
+            ObjectSerializer::toPathValue($id),
+            $resourcePath
+        );
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json'],
+            ['application/x-www-form-urlencoded']
+        );
 
 
         $defaultHeaders = [];
@@ -1458,7 +1007,7 @@ class ProgramsApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        $query = Query::build($queryParams);
         return new Request(
             'POST',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
@@ -1497,62 +1046,28 @@ class ProgramsApi
      */
     public function getProgramByIdUsingGETWithHttpInfo($id)
     {
-        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse';
         $request = $this->getProgramByIdUsingGETRequest($id);
 
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
-                );
+            $response = $this->makeRequest($request);
+
+            switch ($response->getStatusCode()) {
+                case 200:
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse');
             }
 
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    $response->getBody()
-                );
-            }
-
-            $responseBody = $response->getBody();
-            if ($returnType === '\SplFileObject') {
-                $content = $responseBody; //stream goes to serializer
-            } else {
-                $content = $responseBody->getContents();
-                if ($returnType !== 'string') {
-                    $content = json_decode($content);
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
+            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse');
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse',
-                        $e->getResponseHeaders()
+                    $e->setResponseObject(
+                        $this->deserializeResponseBody(
+                            $e->getResponseBody(),
+                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse',
+                            $e->getResponseHeaders()
+                        )
                     );
-                    $e->setResponseObject($data);
                     break;
             }
             throw $e;
@@ -1591,41 +1106,25 @@ class ProgramsApi
      */
     public function getProgramByIdUsingGETAsyncWithHttpInfo($id)
     {
-        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse';
         $request = $this->getProgramByIdUsingGETRequest($id);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
-                function ($response) use ($returnType) {
-                    $responseBody = $response->getBody();
-                    if ($returnType === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = $responseBody->getContents();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
+                function ($response) {
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse');
                 },
-                function ($exception) {
+                function (RequestException $exception) {
                     $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
                     throw new ApiException(
                         sprintf(
                             '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
                         ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        $response->getBody()
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
                     );
                 }
             );
@@ -1639,81 +1138,30 @@ class ProgramsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getProgramByIdUsingGETRequest($id)
+    public function getProgramByIdUsingGETRequest($id)
     {
-        // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
+        // Verify the required parameter 'id' is set.
+        if ($id === null || (is_array($id) && empty($id))) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $id when calling getProgramByIdUsingGET'
             );
         }
 
         $resourcePath = '/rest/asset/v1/program/{id}.json';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-
-        // path params
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'id' . '}',
-                ObjectSerializer::toPathValue($id),
-                $resourcePath
-            );
-        }
-
-        // body params
-        $_tempBody = null;
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/x-www-form-urlencoded']
-            );
-        }
-
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            // $_tempBody is the method argument, if present
-            $httpBody = $_tempBody;
-            
-            if($headers['Content-Type'] === 'application/json') {
-                // \stdClass has no __toString(), so we should encode it manually
-                if ($httpBody instanceof \stdClass) {
-                    $httpBody = \GuzzleHttp\json_encode($httpBody);
-                }
-                // array has no __toString(), so we should encode it manually
-                if(is_array($httpBody)) {
-                    $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($httpBody));
-                }
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $multipartContents[] = [
-                        'name' => $formParamName,
-                        'contents' => $formParamValue
-                    ];
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-
-            } else {
-                // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
-            }
-        }
+        // Path parameters.
+        $resourcePath = str_replace(
+            '{' . 'id' . '}',
+            ObjectSerializer::toPathValue($id),
+            $resourcePath
+        );
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json'],
+            ['application/x-www-form-urlencoded']
+        );
 
 
         $defaultHeaders = [];
@@ -1727,7 +1175,7 @@ class ProgramsApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        $query = Query::build($queryParams);
         return new Request(
             'GET',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
@@ -1770,62 +1218,28 @@ class ProgramsApi
      */
     public function getProgramByNameUsingGETWithHttpInfo($name, $include_tags = null, $include_costs = null)
     {
-        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse';
         $request = $this->getProgramByNameUsingGETRequest($name, $include_tags, $include_costs);
 
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
-                );
+            $response = $this->makeRequest($request);
+
+            switch ($response->getStatusCode()) {
+                case 200:
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse');
             }
 
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    $response->getBody()
-                );
-            }
-
-            $responseBody = $response->getBody();
-            if ($returnType === '\SplFileObject') {
-                $content = $responseBody; //stream goes to serializer
-            } else {
-                $content = $responseBody->getContents();
-                if ($returnType !== 'string') {
-                    $content = json_decode($content);
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
+            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse');
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse',
-                        $e->getResponseHeaders()
+                    $e->setResponseObject(
+                        $this->deserializeResponseBody(
+                            $e->getResponseBody(),
+                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse',
+                            $e->getResponseHeaders()
+                        )
                     );
-                    $e->setResponseObject($data);
                     break;
             }
             throw $e;
@@ -1868,41 +1282,25 @@ class ProgramsApi
      */
     public function getProgramByNameUsingGETAsyncWithHttpInfo($name, $include_tags = null, $include_costs = null)
     {
-        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse';
         $request = $this->getProgramByNameUsingGETRequest($name, $include_tags, $include_costs);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
-                function ($response) use ($returnType) {
-                    $responseBody = $response->getBody();
-                    if ($returnType === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = $responseBody->getContents();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
+                function ($response) {
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse');
                 },
-                function ($exception) {
+                function (RequestException $exception) {
                     $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
                     throw new ApiException(
                         sprintf(
                             '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
                         ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        $response->getBody()
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
                     );
                 }
             );
@@ -1918,85 +1316,39 @@ class ProgramsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getProgramByNameUsingGETRequest($name, $include_tags = null, $include_costs = null)
+    public function getProgramByNameUsingGETRequest($name, $include_tags = null, $include_costs = null)
     {
-        // verify the required parameter 'name' is set
-        if ($name === null || (is_array($name) && count($name) === 0)) {
+        // Verify the required parameter 'name' is set.
+        if ($name === null || (is_array($name) && empty($name))) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $name when calling getProgramByNameUsingGET'
             );
         }
 
         $resourcePath = '/rest/asset/v1/program/byName.json';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-        // query params
-        if ($name !== null) {
-            $queryParams['name'] = ObjectSerializer::toQueryValue($name);
+        // Query parameters.
+        if (is_array($name)) {
+            $name = ObjectSerializer::serializeCollection($name, '', true);
         }
-        // query params
-        if ($include_tags !== null) {
-            $queryParams['includeTags'] = ObjectSerializer::toQueryValue($include_tags);
+        $queryParams['name'] = $name;
+        if (is_array($include_tags)) {
+            $include_tags = ObjectSerializer::serializeCollection($include_tags, '', true);
         }
-        // query params
-        if ($include_costs !== null) {
-            $queryParams['includeCosts'] = ObjectSerializer::toQueryValue($include_costs);
+        $queryParams['includeTags'] = $include_tags;
+        if (is_array($include_costs)) {
+            $include_costs = ObjectSerializer::serializeCollection($include_costs, '', true);
         }
-
-
-        // body params
-        $_tempBody = null;
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/x-www-form-urlencoded']
-            );
-        }
-
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            // $_tempBody is the method argument, if present
-            $httpBody = $_tempBody;
-            
-            if($headers['Content-Type'] === 'application/json') {
-                // \stdClass has no __toString(), so we should encode it manually
-                if ($httpBody instanceof \stdClass) {
-                    $httpBody = \GuzzleHttp\json_encode($httpBody);
-                }
-                // array has no __toString(), so we should encode it manually
-                if(is_array($httpBody)) {
-                    $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($httpBody));
-                }
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $multipartContents[] = [
-                        'name' => $formParamName,
-                        'contents' => $formParamValue
-                    ];
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-
-            } else {
-                // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
-            }
-        }
+        $queryParams['includeCosts'] = $include_costs;
+        // Remove any null (optional values).
+        $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json'],
+            ['application/x-www-form-urlencoded']
+        );
 
 
         $defaultHeaders = [];
@@ -2010,7 +1362,7 @@ class ProgramsApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        $query = Query::build($queryParams);
         return new Request(
             'GET',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
@@ -2055,62 +1407,28 @@ class ProgramsApi
      */
     public function getProgramListByTagUsingGETWithHttpInfo($tag_type, $tag_value, $max_return = null, $offset = null)
     {
-        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse';
         $request = $this->getProgramListByTagUsingGETRequest($tag_type, $tag_value, $max_return, $offset);
 
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
-                );
+            $response = $this->makeRequest($request);
+
+            switch ($response->getStatusCode()) {
+                case 200:
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse');
             }
 
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    $response->getBody()
-                );
-            }
-
-            $responseBody = $response->getBody();
-            if ($returnType === '\SplFileObject') {
-                $content = $responseBody; //stream goes to serializer
-            } else {
-                $content = $responseBody->getContents();
-                if ($returnType !== 'string') {
-                    $content = json_decode($content);
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
+            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse');
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse',
-                        $e->getResponseHeaders()
+                    $e->setResponseObject(
+                        $this->deserializeResponseBody(
+                            $e->getResponseBody(),
+                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse',
+                            $e->getResponseHeaders()
+                        )
                     );
-                    $e->setResponseObject($data);
                     break;
             }
             throw $e;
@@ -2155,41 +1473,25 @@ class ProgramsApi
      */
     public function getProgramListByTagUsingGETAsyncWithHttpInfo($tag_type, $tag_value, $max_return = null, $offset = null)
     {
-        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse';
         $request = $this->getProgramListByTagUsingGETRequest($tag_type, $tag_value, $max_return, $offset);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
-                function ($response) use ($returnType) {
-                    $responseBody = $response->getBody();
-                    if ($returnType === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = $responseBody->getContents();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
+                function ($response) {
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse');
                 },
-                function ($exception) {
+                function (RequestException $exception) {
                     $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
                     throw new ApiException(
                         sprintf(
                             '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
                         ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        $response->getBody()
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
                     );
                 }
             );
@@ -2206,95 +1508,49 @@ class ProgramsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getProgramListByTagUsingGETRequest($tag_type, $tag_value, $max_return = null, $offset = null)
+    public function getProgramListByTagUsingGETRequest($tag_type, $tag_value, $max_return = null, $offset = null)
     {
-        // verify the required parameter 'tag_type' is set
-        if ($tag_type === null || (is_array($tag_type) && count($tag_type) === 0)) {
+        // Verify the required parameter 'tag_type' is set.
+        if ($tag_type === null || (is_array($tag_type) && empty($tag_type))) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $tag_type when calling getProgramListByTagUsingGET'
             );
         }
-        // verify the required parameter 'tag_value' is set
-        if ($tag_value === null || (is_array($tag_value) && count($tag_value) === 0)) {
+        // Verify the required parameter 'tag_value' is set.
+        if ($tag_value === null || (is_array($tag_value) && empty($tag_value))) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $tag_value when calling getProgramListByTagUsingGET'
             );
         }
 
         $resourcePath = '/rest/asset/v1/program/byTag.json';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-        // query params
-        if ($tag_type !== null) {
-            $queryParams['tagType'] = ObjectSerializer::toQueryValue($tag_type);
+        // Query parameters.
+        if (is_array($tag_type)) {
+            $tag_type = ObjectSerializer::serializeCollection($tag_type, '', true);
         }
-        // query params
-        if ($tag_value !== null) {
-            $queryParams['tagValue'] = ObjectSerializer::toQueryValue($tag_value);
+        $queryParams['tagType'] = $tag_type;
+        if (is_array($tag_value)) {
+            $tag_value = ObjectSerializer::serializeCollection($tag_value, '', true);
         }
-        // query params
-        if ($max_return !== null) {
-            $queryParams['maxReturn'] = ObjectSerializer::toQueryValue($max_return);
+        $queryParams['tagValue'] = $tag_value;
+        if (is_array($max_return)) {
+            $max_return = ObjectSerializer::serializeCollection($max_return, '', true);
         }
-        // query params
-        if ($offset !== null) {
-            $queryParams['offset'] = ObjectSerializer::toQueryValue($offset);
+        $queryParams['maxReturn'] = $max_return;
+        if (is_array($offset)) {
+            $offset = ObjectSerializer::serializeCollection($offset, '', true);
         }
-
-
-        // body params
-        $_tempBody = null;
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/x-www-form-urlencoded']
-            );
-        }
-
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            // $_tempBody is the method argument, if present
-            $httpBody = $_tempBody;
-            
-            if($headers['Content-Type'] === 'application/json') {
-                // \stdClass has no __toString(), so we should encode it manually
-                if ($httpBody instanceof \stdClass) {
-                    $httpBody = \GuzzleHttp\json_encode($httpBody);
-                }
-                // array has no __toString(), so we should encode it manually
-                if(is_array($httpBody)) {
-                    $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($httpBody));
-                }
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $multipartContents[] = [
-                        'name' => $formParamName,
-                        'contents' => $formParamValue
-                    ];
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-
-            } else {
-                // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
-            }
-        }
+        $queryParams['offset'] = $offset;
+        // Remove any null (optional values).
+        $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json'],
+            ['application/x-www-form-urlencoded']
+        );
 
 
         $defaultHeaders = [];
@@ -2308,7 +1564,7 @@ class ProgramsApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        $query = Query::build($queryParams);
         return new Request(
             'GET',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
@@ -2349,62 +1605,28 @@ class ProgramsApi
      */
     public function getSmartListByProgramIdUsingGETWithHttpInfo($program_id, $include_rules = null)
     {
-        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponseWithRules';
         $request = $this->getSmartListByProgramIdUsingGETRequest($program_id, $include_rules);
 
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
-                );
+            $response = $this->makeRequest($request);
+
+            switch ($response->getStatusCode()) {
+                case 200:
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponseWithRules');
             }
 
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    $response->getBody()
-                );
-            }
-
-            $responseBody = $response->getBody();
-            if ($returnType === '\SplFileObject') {
-                $content = $responseBody; //stream goes to serializer
-            } else {
-                $content = $responseBody->getContents();
-                if ($returnType !== 'string') {
-                    $content = json_decode($content);
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
+            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponseWithRules');
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponseWithRules',
-                        $e->getResponseHeaders()
+                    $e->setResponseObject(
+                        $this->deserializeResponseBody(
+                            $e->getResponseBody(),
+                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponseWithRules',
+                            $e->getResponseHeaders()
+                        )
                     );
-                    $e->setResponseObject($data);
                     break;
             }
             throw $e;
@@ -2445,41 +1667,25 @@ class ProgramsApi
      */
     public function getSmartListByProgramIdUsingGETAsyncWithHttpInfo($program_id, $include_rules = null)
     {
-        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponseWithRules';
         $request = $this->getSmartListByProgramIdUsingGETRequest($program_id, $include_rules);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
-                function ($response) use ($returnType) {
-                    $responseBody = $response->getBody();
-                    if ($returnType === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = $responseBody->getContents();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
+                function ($response) {
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponseWithRules');
                 },
-                function ($exception) {
+                function (RequestException $exception) {
                     $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
                     throw new ApiException(
                         sprintf(
                             '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
                         ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        $response->getBody()
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
                     );
                 }
             );
@@ -2494,85 +1700,38 @@ class ProgramsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getSmartListByProgramIdUsingGETRequest($program_id, $include_rules = null)
+    public function getSmartListByProgramIdUsingGETRequest($program_id, $include_rules = null)
     {
-        // verify the required parameter 'program_id' is set
-        if ($program_id === null || (is_array($program_id) && count($program_id) === 0)) {
+        // Verify the required parameter 'program_id' is set.
+        if ($program_id === null || (is_array($program_id) && empty($program_id))) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $program_id when calling getSmartListByProgramIdUsingGET'
             );
         }
 
         $resourcePath = '/rest/asset/v1/program/{programId}/smartList.json';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-        // query params
-        if ($include_rules !== null) {
-            $queryParams['includeRules'] = ObjectSerializer::toQueryValue($include_rules);
+        // Query parameters.
+        if (is_array($include_rules)) {
+            $include_rules = ObjectSerializer::serializeCollection($include_rules, '', true);
         }
+        $queryParams['includeRules'] = $include_rules;
+        // Remove any null (optional values).
+        $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
 
-        // path params
-        if ($program_id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'programId' . '}',
-                ObjectSerializer::toPathValue($program_id),
-                $resourcePath
-            );
-        }
-
-        // body params
-        $_tempBody = null;
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/x-www-form-urlencoded']
-            );
-        }
-
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            // $_tempBody is the method argument, if present
-            $httpBody = $_tempBody;
-            
-            if($headers['Content-Type'] === 'application/json') {
-                // \stdClass has no __toString(), so we should encode it manually
-                if ($httpBody instanceof \stdClass) {
-                    $httpBody = \GuzzleHttp\json_encode($httpBody);
-                }
-                // array has no __toString(), so we should encode it manually
-                if(is_array($httpBody)) {
-                    $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($httpBody));
-                }
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $multipartContents[] = [
-                        'name' => $formParamName,
-                        'contents' => $formParamValue
-                    ];
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-
-            } else {
-                // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
-            }
-        }
+        // Path parameters.
+        $resourcePath = str_replace(
+            '{' . 'programId' . '}',
+            ObjectSerializer::toPathValue($program_id),
+            $resourcePath
+        );
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json'],
+            ['application/x-www-form-urlencoded']
+        );
 
 
         $defaultHeaders = [];
@@ -2586,7 +1745,7 @@ class ProgramsApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        $query = Query::build($queryParams);
         return new Request(
             'GET',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
@@ -2625,62 +1784,28 @@ class ProgramsApi
      */
     public function unapproveProgramUsingPOSTWithHttpInfo($id)
     {
-        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse';
         $request = $this->unapproveProgramUsingPOSTRequest($id);
 
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
-                );
+            $response = $this->makeRequest($request);
+
+            switch ($response->getStatusCode()) {
+                case 200:
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
             }
 
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    $response->getBody()
-                );
-            }
-
-            $responseBody = $response->getBody();
-            if ($returnType === '\SplFileObject') {
-                $content = $responseBody; //stream goes to serializer
-            } else {
-                $content = $responseBody->getContents();
-                if ($returnType !== 'string') {
-                    $content = json_decode($content);
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
+            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
-                        $e->getResponseHeaders()
+                    $e->setResponseObject(
+                        $this->deserializeResponseBody(
+                            $e->getResponseBody(),
+                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+                            $e->getResponseHeaders()
+                        )
                     );
-                    $e->setResponseObject($data);
                     break;
             }
             throw $e;
@@ -2719,41 +1844,25 @@ class ProgramsApi
      */
     public function unapproveProgramUsingPOSTAsyncWithHttpInfo($id)
     {
-        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse';
         $request = $this->unapproveProgramUsingPOSTRequest($id);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
-                function ($response) use ($returnType) {
-                    $responseBody = $response->getBody();
-                    if ($returnType === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = $responseBody->getContents();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
+                function ($response) {
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
                 },
-                function ($exception) {
+                function (RequestException $exception) {
                     $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
                     throw new ApiException(
                         sprintf(
                             '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
                         ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        $response->getBody()
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
                     );
                 }
             );
@@ -2767,81 +1876,30 @@ class ProgramsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function unapproveProgramUsingPOSTRequest($id)
+    public function unapproveProgramUsingPOSTRequest($id)
     {
-        // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
+        // Verify the required parameter 'id' is set.
+        if ($id === null || (is_array($id) && empty($id))) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $id when calling unapproveProgramUsingPOST'
             );
         }
 
         $resourcePath = '/rest/asset/v1/program/{id}/unapprove.json';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-
-        // path params
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'id' . '}',
-                ObjectSerializer::toPathValue($id),
-                $resourcePath
-            );
-        }
-
-        // body params
-        $_tempBody = null;
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/x-www-form-urlencoded']
-            );
-        }
-
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            // $_tempBody is the method argument, if present
-            $httpBody = $_tempBody;
-            
-            if($headers['Content-Type'] === 'application/json') {
-                // \stdClass has no __toString(), so we should encode it manually
-                if ($httpBody instanceof \stdClass) {
-                    $httpBody = \GuzzleHttp\json_encode($httpBody);
-                }
-                // array has no __toString(), so we should encode it manually
-                if(is_array($httpBody)) {
-                    $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($httpBody));
-                }
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $multipartContents[] = [
-                        'name' => $formParamName,
-                        'contents' => $formParamValue
-                    ];
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-
-            } else {
-                // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
-            }
-        }
+        // Path parameters.
+        $resourcePath = str_replace(
+            '{' . 'id' . '}',
+            ObjectSerializer::toPathValue($id),
+            $resourcePath
+        );
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json'],
+            ['application/x-www-form-urlencoded']
+        );
 
 
         $defaultHeaders = [];
@@ -2855,7 +1913,7 @@ class ProgramsApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        $query = Query::build($queryParams);
         return new Request(
             'POST',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
@@ -2896,62 +1954,28 @@ class ProgramsApi
      */
     public function updateProgramUsingPOSTWithHttpInfo($id, $update_program_request)
     {
-        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse';
         $request = $this->updateProgramUsingPOSTRequest($id, $update_program_request);
 
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
-                );
+            $response = $this->makeRequest($request);
+
+            switch ($response->getStatusCode()) {
+                case 200:
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse');
             }
 
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    $response->getBody()
-                );
-            }
-
-            $responseBody = $response->getBody();
-            if ($returnType === '\SplFileObject') {
-                $content = $responseBody; //stream goes to serializer
-            } else {
-                $content = $responseBody->getContents();
-                if ($returnType !== 'string') {
-                    $content = json_decode($content);
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
+            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse');
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse',
-                        $e->getResponseHeaders()
+                    $e->setResponseObject(
+                        $this->deserializeResponseBody(
+                            $e->getResponseBody(),
+                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse',
+                            $e->getResponseHeaders()
+                        )
                     );
-                    $e->setResponseObject($data);
                     break;
             }
             throw $e;
@@ -2992,41 +2016,25 @@ class ProgramsApi
      */
     public function updateProgramUsingPOSTAsyncWithHttpInfo($id, $update_program_request)
     {
-        $returnType = '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse';
         $request = $this->updateProgramUsingPOSTRequest($id, $update_program_request);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
-                function ($response) use ($returnType) {
-                    $responseBody = $response->getBody();
-                    if ($returnType === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = $responseBody->getContents();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
+                function ($response) {
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse');
                 },
-                function ($exception) {
+                function (RequestException $exception) {
                     $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
                     throw new ApiException(
                         sprintf(
                             '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
                         ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        $response->getBody()
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
                     );
                 }
             );
@@ -3041,88 +2049,46 @@ class ProgramsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function updateProgramUsingPOSTRequest($id, $update_program_request)
+    public function updateProgramUsingPOSTRequest($id, $update_program_request)
     {
-        // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
+        // Verify the required parameter 'id' is set.
+        if ($id === null || (is_array($id) && empty($id))) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $id when calling updateProgramUsingPOST'
             );
         }
-        // verify the required parameter 'update_program_request' is set
-        if ($update_program_request === null || (is_array($update_program_request) && count($update_program_request) === 0)) {
+        // Verify the required parameter 'update_program_request' is set.
+        if ($update_program_request === null || (is_array($update_program_request) && empty($update_program_request))) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $update_program_request when calling updateProgramUsingPOST'
             );
         }
 
         $resourcePath = '/rest/asset/v1/program/{id}.json';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-
-        // path params
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'id' . '}',
-                ObjectSerializer::toPathValue($id),
-                $resourcePath
-            );
-        }
-
-        // body params
-        $_tempBody = null;
-        if (isset($update_program_request)) {
-            $_tempBody = $update_program_request;
-        }
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/x-www-form-urlencoded']
-            );
-        }
+        // Path parameters.
+        $resourcePath = str_replace(
+            '{' . 'id' . '}',
+            ObjectSerializer::toPathValue($id),
+            $resourcePath
+        );
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json'],
+            ['application/x-www-form-urlencoded']
+        );
 
         // for model (json/xml)
-        if (isset($_tempBody)) {
-            // $_tempBody is the method argument, if present
-            $httpBody = $_tempBody;
-            
-            if($headers['Content-Type'] === 'application/json') {
-                // \stdClass has no __toString(), so we should encode it manually
-                if ($httpBody instanceof \stdClass) {
-                    $httpBody = \GuzzleHttp\json_encode($httpBody);
-                }
-                // array has no __toString(), so we should encode it manually
-                if(is_array($httpBody)) {
-                    $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($httpBody));
-                }
+        if (!empty($update_program_request)) {
+            if ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($update_program_request));
+            } elseif (!is_array($update_program_request)) {
+                $httpBody = (string) $update_program_request;
             }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $multipartContents[] = [
-                        'name' => $formParamName,
-                        'contents' => $formParamValue
-                    ];
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-
-            } else {
-                // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            else {
+                $httpBody = '';
             }
         }
 
@@ -3138,7 +2104,7 @@ class ProgramsApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        $query = Query::build($queryParams);
         return new Request(
             'POST',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
@@ -3165,4 +2131,83 @@ class ProgramsApi
 
         return $options;
     }
+
+    /**
+     * Make a request.
+     *
+     * @param \GuzzleHttp\Psr7\Request $request
+     *   An initialized request object.
+     *
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
+     * @return \Psr\Http\Message\ResponseInterface
+     */
+    private function makeRequest(Request $request) {
+        $options = $this->createHttpClientOption();
+        try {
+           $response = $this->client->send($request, $options);
+        } catch (RequestException $e) {
+            $response = $e->getResponse();
+            throw new ApiException(
+                "[{$e->getCode()}] {$e->getMessage()}",
+                (int) $e->getCode(),
+                $response ? $response->getHeaders() : null,
+                $response ? (string) $response->getBody() : null
+            );
+        }
+
+        $statusCode = $response->getStatusCode();
+        if ($statusCode < 200 || $statusCode > 299) {
+            throw new ApiException(
+                sprintf(
+                    '[%d] Error connecting to the API (%s)',
+                    $statusCode,
+                    (string) $request->getUri()
+                ),
+                $statusCode,
+                $response->getHeaders(),
+                (string) $response->getBody()
+            );
+        }
+        return $response;
+    }
+
+    /**
+     * Convert a response to a return standard return array.
+     *
+     * @param \Psr\Http\Message\ResponseInterface $response
+     *   A response from a request with a serialized body.
+     * @param string $returnType
+     *   The return type.
+     *
+     * @return array
+     */
+    private function responseToReturn(ResponseInterface $response, string $returnType) {
+        return [
+            $this->deserializeResponseBody($response->getBody(), $returnType),
+            $response->getStatusCode(),
+            $response->getHeaders()
+        ];
+    }
+
+    /**
+     * Deserialize a response body.
+     *
+     * @param mixed $responseBody
+     *   The response body.
+     * @param string $returnType
+     *   The return type.
+     * @param array|null $headers
+     *   The a list of headers from the response.
+     * @return mixed
+     *   Either a string or a stream to be passed to a file object.
+     */
+    private function deserializeResponseBody($responseBody, $returnType, $headers = [])
+    {
+        return ObjectSerializer::deserialize(
+            $returnType === '\SplFileObject' ? $responseBody : (string) $responseBody,
+            $returnType,
+            $headers
+        );
+    }
+
 }

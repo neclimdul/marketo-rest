@@ -2,8 +2,6 @@
 /**
  * CreateLpFormRequestTest
  *
- * PHP version 7
- *
  * @category Class
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
@@ -27,8 +25,7 @@
  * Please update the test case below to test the model.
  */
 
-// namespace NecLimDul\MarketoRest\Asset;
-namespace NecLimDul\MarketoRest\Asset\Model;
+namespace NecLimDul\MarketoRest\Asset\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
@@ -49,8 +46,8 @@ class CreateLpFormRequestTest extends TestCase
      */
     public function testCreateLpFormRequest()
     {
-        $class = new CreateLpFormRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -58,8 +55,8 @@ class CreateLpFormRequestTest extends TestCase
      */
     public function testPropertyDescription()
     {
-        $class = new CreateLpFormRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -67,8 +64,8 @@ class CreateLpFormRequestTest extends TestCase
      */
     public function testPropertyFolder()
     {
-        $class = new CreateLpFormRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -76,8 +73,8 @@ class CreateLpFormRequestTest extends TestCase
      */
     public function testPropertyFontFamily()
     {
-        $class = new CreateLpFormRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -85,8 +82,8 @@ class CreateLpFormRequestTest extends TestCase
      */
     public function testPropertyFontSize()
     {
-        $class = new CreateLpFormRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -94,8 +91,8 @@ class CreateLpFormRequestTest extends TestCase
      */
     public function testPropertyKnownVisitor()
     {
-        $class = new CreateLpFormRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -103,8 +100,8 @@ class CreateLpFormRequestTest extends TestCase
      */
     public function testPropertyLabelPosition()
     {
-        $class = new CreateLpFormRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -112,8 +109,8 @@ class CreateLpFormRequestTest extends TestCase
      */
     public function testPropertyLanguage()
     {
-        $class = new CreateLpFormRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -121,8 +118,8 @@ class CreateLpFormRequestTest extends TestCase
      */
     public function testPropertyLocale()
     {
-        $class = new CreateLpFormRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -130,8 +127,8 @@ class CreateLpFormRequestTest extends TestCase
      */
     public function testPropertyName()
     {
-        $class = new CreateLpFormRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -139,8 +136,8 @@ class CreateLpFormRequestTest extends TestCase
      */
     public function testPropertyProgressiveProfiling()
     {
-        $class = new CreateLpFormRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -148,7 +145,7 @@ class CreateLpFormRequestTest extends TestCase
      */
     public function testPropertyTheme()
     {
-        $class = new CreateLpFormRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

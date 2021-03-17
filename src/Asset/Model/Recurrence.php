@@ -2,8 +2,6 @@
 /**
  * Recurrence
  *
- * PHP version 5
- *
  * @category Class
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
@@ -39,10 +37,13 @@ use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
+ * @implements \ArrayAccess<TKey, TValue>
+ * @template TKey int|null
+ * @template TValue mixed|null
  */
-class Recurrence implements ModelInterface, ArrayAccess
+class Recurrence implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -72,6 +73,8 @@ class Recurrence implements ModelInterface, ArrayAccess
       * Array of property to format mappings. Used for (de)serialization
       *
       * @var string[]
+      * @phpstan-var array<string, string|null>
+      * @psalm-var array<string, string|null>
       */
     protected static $swaggerFormats = [
         'start_at' => 'date-time',
@@ -86,14 +89,16 @@ class Recurrence implements ModelInterface, ArrayAccess
     ];
 
     /**
-      * Array of dynamic properties.
+      * Array of additional properties.
       *
       * @var mixed[]
       */
     protected $additionalProperties = [];
 
     /**
-     * {@inheritdoc}
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
      */
     public static function swaggerTypes()
     {
@@ -249,7 +254,8 @@ class Recurrence implements ModelInterface, ArrayAccess
         $allowedValues = $this->getIntervalTypeAllowableValues();
         if (!is_null($this->container['interval_type']) && !in_array($this->container['interval_type'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
-                "invalid value for 'interval_type', must be one of '%s'",
+                "invalid value '%s' for 'interval_type', must be one of '%s'",
+                $this->container['interval_type'],
                 implode("', '", $allowedValues)
             );
         }
@@ -272,7 +278,8 @@ class Recurrence implements ModelInterface, ArrayAccess
         $allowedValues = $this->getDayOfWeekAllowableValues();
         if (!is_null($this->container['day_of_week']) && !in_array($this->container['day_of_week'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
-                "invalid value for 'day_of_week', must be one of '%s'",
+                "invalid value '%s' for 'day_of_week', must be one of '%s'",
+                $this->container['day_of_week'],
                 implode("', '", $allowedValues)
             );
         }
@@ -341,7 +348,7 @@ class Recurrence implements ModelInterface, ArrayAccess
      *
      * @param \DateTime $start_at Datetime of the first scheduled campaign to run. Required if setting recurrence. Not required to create a smart campaign that has no recurrence
      *
-     * @return $this
+     * @return self
      */
     public function setStartAt($start_at)
     {
@@ -365,7 +372,7 @@ class Recurrence implements ModelInterface, ArrayAccess
      *
      * @param \DateTime $end_at Datetime after which no further runs will be automatically scheduled
      *
-     * @return $this
+     * @return self
      */
     public function setEndAt($end_at)
     {
@@ -389,7 +396,7 @@ class Recurrence implements ModelInterface, ArrayAccess
      *
      * @param string $interval_type Recurrence interval. Not required to create a smart campaign that has no recurrence
      *
-     * @return $this
+     * @return self
      */
     public function setIntervalType($interval_type)
     {
@@ -397,7 +404,8 @@ class Recurrence implements ModelInterface, ArrayAccess
         if (!in_array($interval_type, $allowedValues, true)) {
             throw new \InvalidArgumentException(
                 sprintf(
-                    "Invalid value for 'interval_type', must be one of '%s'",
+                    "Invalid value '%s' for 'interval_type', must be one of '%s'",
+                    $interval_type,
                     implode("', '", $allowedValues)
                 )
             );
@@ -422,7 +430,7 @@ class Recurrence implements ModelInterface, ArrayAccess
      *
      * @param int $interval Number of interval units between recurrences
      *
-     * @return $this
+     * @return self
      */
     public function setInterval($interval)
     {
@@ -446,7 +454,7 @@ class Recurrence implements ModelInterface, ArrayAccess
      *
      * @param bool $weekday_only Only run smart campaign on weekdays. May only be set if intervalType is 'Daily'.  Defaults to false
      *
-     * @return $this
+     * @return self
      */
     public function setWeekdayOnly($weekday_only)
     {
@@ -470,7 +478,7 @@ class Recurrence implements ModelInterface, ArrayAccess
      *
      * @param string[] $weekday_mask String array of empty or one or more of 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'. May only be set if intervalType is 'Weekly'
      *
-     * @return $this
+     * @return self
      */
     public function setWeekdayMask($weekday_mask)
     {
@@ -494,7 +502,7 @@ class Recurrence implements ModelInterface, ArrayAccess
      *
      * @param int $day_of_month Day of the month to recur. Permissible range 1-31. May only be set if intervalType is 'Monthly' and dayOfWeek and weekOfMonth are unset.
      *
-     * @return $this
+     * @return self
      */
     public function setDayOfMonth($day_of_month)
     {
@@ -518,7 +526,7 @@ class Recurrence implements ModelInterface, ArrayAccess
      *
      * @param string $day_of_week Day of the week to recur. May only be set if dayOfMonth is not set, and weekOfMonth is set
      *
-     * @return $this
+     * @return self
      */
     public function setDayOfWeek($day_of_week)
     {
@@ -526,7 +534,8 @@ class Recurrence implements ModelInterface, ArrayAccess
         if (!in_array($day_of_week, $allowedValues, true)) {
             throw new \InvalidArgumentException(
                 sprintf(
-                    "Invalid value for 'day_of_week', must be one of '%s'",
+                    "Invalid value '%s' for 'day_of_week', must be one of '%s'",
+                    $day_of_week,
                     implode("', '", $allowedValues)
                 )
             );
@@ -551,7 +560,7 @@ class Recurrence implements ModelInterface, ArrayAccess
      *
      * @param int $week_of_month Week of the month to recur. Permissible range 1-4. May only be set if dayOfMonth is not set, and dayOfWeek is set
      *
-     * @return $this
+     * @return self
      */
     public function setWeekOfMonth($week_of_month)
     {
@@ -609,7 +618,7 @@ class Recurrence implements ModelInterface, ArrayAccess
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**
@@ -633,19 +642,37 @@ class Recurrence implements ModelInterface, ArrayAccess
     }
 
     /**
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     *
+     * @return mixed Returns data which can be serialized by json_encode(), which is a value
+     * of any type other than a resource.
+     */
+    public function jsonSerialize()
+    {
+       return ObjectSerializer::sanitizeForSerialization($this);
+    }
+
+    /**
      * Gets the string presentation of the object
      *
      * @return string
      */
     public function __toString()
     {
-        if (defined('JSON_PRETTY_PRINT')) { // use JSON pretty print
-            return json_encode(
-                ObjectSerializer::sanitizeForSerialization($this),
-                JSON_PRETTY_PRINT
-            );
-        }
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
+    }
 
+    /**
+     * Gets a header-safe presentation of the object
+     *
+     * @return string
+     */
+    public function toHeaderValue()
+    {
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }

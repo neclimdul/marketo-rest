@@ -2,8 +2,6 @@
 /**
  * ImportCustomObjectResponse
  *
- * PHP version 5
- *
  * @category Class
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
@@ -40,10 +38,13 @@ use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
+ * @implements \ArrayAccess<TKey, TValue>
+ * @template TKey int|null
+ * @template TValue mixed|null
  */
-class ImportCustomObjectResponse implements ModelInterface, ArrayAccess
+class ImportCustomObjectResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -73,6 +74,8 @@ class ImportCustomObjectResponse implements ModelInterface, ArrayAccess
       * Array of property to format mappings. Used for (de)serialization
       *
       * @var string[]
+      * @phpstan-var array<string, string|null>
+      * @psalm-var array<string, string|null>
       */
     protected static $swaggerFormats = [
         'batch_id' => 'int32',
@@ -87,14 +90,16 @@ class ImportCustomObjectResponse implements ModelInterface, ArrayAccess
     ];
 
     /**
-      * Array of dynamic properties.
+      * Array of additional properties.
       *
       * @var mixed[]
       */
     protected $additionalProperties = [];
 
     /**
-     * {@inheritdoc}
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
      */
     public static function swaggerTypes()
     {
@@ -267,7 +272,7 @@ class ImportCustomObjectResponse implements ModelInterface, ArrayAccess
      *
      * @param int $batch_id Unique integer id of the import batch
      *
-     * @return $this
+     * @return self
      */
     public function setBatchId($batch_id)
     {
@@ -291,7 +296,7 @@ class ImportCustomObjectResponse implements ModelInterface, ArrayAccess
      *
      * @param string $import_time Time spent on the batch
      *
-     * @return $this
+     * @return self
      */
     public function setImportTime($import_time)
     {
@@ -315,7 +320,7 @@ class ImportCustomObjectResponse implements ModelInterface, ArrayAccess
      *
      * @param string $message Status message of the batch
      *
-     * @return $this
+     * @return self
      */
     public function setMessage($message)
     {
@@ -339,7 +344,7 @@ class ImportCustomObjectResponse implements ModelInterface, ArrayAccess
      *
      * @param int $num_of_objects_processed Number of rows processed so far
      *
-     * @return $this
+     * @return self
      */
     public function setNumOfObjectsProcessed($num_of_objects_processed)
     {
@@ -363,7 +368,7 @@ class ImportCustomObjectResponse implements ModelInterface, ArrayAccess
      *
      * @param int $num_of_rows_failed Number of rows failed so far
      *
-     * @return $this
+     * @return self
      */
     public function setNumOfRowsFailed($num_of_rows_failed)
     {
@@ -387,7 +392,7 @@ class ImportCustomObjectResponse implements ModelInterface, ArrayAccess
      *
      * @param int $num_of_rows_with_warning Number of rows with a warning so far
      *
-     * @return $this
+     * @return self
      */
     public function setNumOfRowsWithWarning($num_of_rows_with_warning)
     {
@@ -411,7 +416,7 @@ class ImportCustomObjectResponse implements ModelInterface, ArrayAccess
      *
      * @param string $object_api_name Object API Name
      *
-     * @return $this
+     * @return self
      */
     public function setObjectApiName($object_api_name)
     {
@@ -435,7 +440,7 @@ class ImportCustomObjectResponse implements ModelInterface, ArrayAccess
      *
      * @param string $operation Bulk operation type. Can be import or export
      *
-     * @return $this
+     * @return self
      */
     public function setOperation($operation)
     {
@@ -459,7 +464,7 @@ class ImportCustomObjectResponse implements ModelInterface, ArrayAccess
      *
      * @param string $status Status of the batch
      *
-     * @return $this
+     * @return self
      */
     public function setStatus($status)
     {
@@ -517,7 +522,7 @@ class ImportCustomObjectResponse implements ModelInterface, ArrayAccess
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**
@@ -541,19 +546,37 @@ class ImportCustomObjectResponse implements ModelInterface, ArrayAccess
     }
 
     /**
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     *
+     * @return mixed Returns data which can be serialized by json_encode(), which is a value
+     * of any type other than a resource.
+     */
+    public function jsonSerialize()
+    {
+       return ObjectSerializer::sanitizeForSerialization($this);
+    }
+
+    /**
      * Gets the string presentation of the object
      *
      * @return string
      */
     public function __toString()
     {
-        if (defined('JSON_PRETTY_PRINT')) { // use JSON pretty print
-            return json_encode(
-                ObjectSerializer::sanitizeForSerialization($this),
-                JSON_PRETTY_PRINT
-            );
-        }
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
+    }
 
+    /**
+     * Gets a header-safe presentation of the object
+     *
+     * @return string
+     */
+    public function toHeaderValue()
+    {
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }

@@ -2,8 +2,6 @@
 /**
  * SmartCampaignResponseTest
  *
- * PHP version 7
- *
  * @category Class
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
@@ -27,8 +25,7 @@
  * Please update the test case below to test the model.
  */
 
-// namespace NecLimDul\MarketoRest\Asset;
-namespace NecLimDul\MarketoRest\Asset\Model;
+namespace NecLimDul\MarketoRest\Asset\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
@@ -49,8 +46,8 @@ class SmartCampaignResponseTest extends TestCase
      */
     public function testSmartCampaignResponse()
     {
-        $class = new SmartCampaignResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -58,8 +55,8 @@ class SmartCampaignResponseTest extends TestCase
      */
     public function testPropertyId()
     {
-        $class = new SmartCampaignResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -67,8 +64,8 @@ class SmartCampaignResponseTest extends TestCase
      */
     public function testPropertyName()
     {
-        $class = new SmartCampaignResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -76,8 +73,8 @@ class SmartCampaignResponseTest extends TestCase
      */
     public function testPropertyDescription()
     {
-        $class = new SmartCampaignResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -85,8 +82,8 @@ class SmartCampaignResponseTest extends TestCase
      */
     public function testPropertyType()
     {
-        $class = new SmartCampaignResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -94,8 +91,8 @@ class SmartCampaignResponseTest extends TestCase
      */
     public function testPropertyIsSystem()
     {
-        $class = new SmartCampaignResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -103,8 +100,8 @@ class SmartCampaignResponseTest extends TestCase
      */
     public function testPropertyIsActive()
     {
-        $class = new SmartCampaignResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -112,8 +109,8 @@ class SmartCampaignResponseTest extends TestCase
      */
     public function testPropertyIsRequestable()
     {
-        $class = new SmartCampaignResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -121,8 +118,8 @@ class SmartCampaignResponseTest extends TestCase
      */
     public function testPropertyRecurrence()
     {
-        $class = new SmartCampaignResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -130,8 +127,8 @@ class SmartCampaignResponseTest extends TestCase
      */
     public function testPropertyQualificationRuleType()
     {
-        $class = new SmartCampaignResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -139,8 +136,8 @@ class SmartCampaignResponseTest extends TestCase
      */
     public function testPropertyQualificationRuleInterval()
     {
-        $class = new SmartCampaignResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -148,8 +145,8 @@ class SmartCampaignResponseTest extends TestCase
      */
     public function testPropertyQualificationRuleUnit()
     {
-        $class = new SmartCampaignResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -157,8 +154,8 @@ class SmartCampaignResponseTest extends TestCase
      */
     public function testPropertyMaxMembers()
     {
-        $class = new SmartCampaignResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -166,8 +163,8 @@ class SmartCampaignResponseTest extends TestCase
      */
     public function testPropertyIsCommunicationLimitEnabled()
     {
-        $class = new SmartCampaignResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -175,8 +172,8 @@ class SmartCampaignResponseTest extends TestCase
      */
     public function testPropertySmartListId()
     {
-        $class = new SmartCampaignResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -184,8 +181,8 @@ class SmartCampaignResponseTest extends TestCase
      */
     public function testPropertyFlowId()
     {
-        $class = new SmartCampaignResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -193,8 +190,8 @@ class SmartCampaignResponseTest extends TestCase
      */
     public function testPropertyParentProgramId()
     {
-        $class = new SmartCampaignResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -202,8 +199,8 @@ class SmartCampaignResponseTest extends TestCase
      */
     public function testPropertyFolder()
     {
-        $class = new SmartCampaignResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -211,8 +208,8 @@ class SmartCampaignResponseTest extends TestCase
      */
     public function testPropertyCreatedAt()
     {
-        $class = new SmartCampaignResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -220,8 +217,8 @@ class SmartCampaignResponseTest extends TestCase
      */
     public function testPropertyUpdatedAt()
     {
-        $class = new SmartCampaignResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -229,8 +226,8 @@ class SmartCampaignResponseTest extends TestCase
      */
     public function testPropertyWorkspace()
     {
-        $class = new SmartCampaignResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -238,8 +235,8 @@ class SmartCampaignResponseTest extends TestCase
      */
     public function testPropertyComputedUrl()
     {
-        $class = new SmartCampaignResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -247,7 +244,7 @@ class SmartCampaignResponseTest extends TestCase
      */
     public function testPropertyStatus()
     {
-        $class = new SmartCampaignResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

@@ -1,7 +1,6 @@
 <?php
 /**
  * Configuration
- * PHP version 5
  *
  * @category Class
  * @package  NecLimDul\MarketoRest\Lead
@@ -30,7 +29,6 @@ namespace NecLimDul\MarketoRest\Lead;
 
 /**
  * Configuration Class Doc Comment
- * PHP version 5
  *
  * @category Class
  * @package  NecLimDul\MarketoRest\Lead
@@ -39,6 +37,9 @@ namespace NecLimDul\MarketoRest\Lead;
  */
 class Configuration
 {
+    /**
+     * @var Configuration
+     */
     private static $defaultConfiguration;
 
     /**
@@ -56,7 +57,7 @@ class Configuration
     protected $apiKeyPrefixes = [];
 
     /**
-     * Access token for OAuth
+     * Access token for OAuth/Bearer authentication
      *
      * @var string
      */
@@ -138,7 +139,7 @@ class Configuration
      *
      * @param string $apiKeyIdentifier API key identifier (authentication scheme)
      *
-     * @return string API key or token
+     * @return string|null API key or token
      */
     public function getApiKey($apiKeyIdentifier)
     {
@@ -164,7 +165,7 @@ class Configuration
      *
      * @param string $apiKeyIdentifier API key identifier (authentication scheme)
      *
-     * @return string
+     * @return string|null
      */
     public function getApiKeyPrefix($apiKeyIdentifier)
     {
@@ -407,7 +408,7 @@ class Configuration
      *
      * @param  string $apiKeyIdentifier name of apikey
      *
-     * @return string API key with the prefix
+     * @return string|null API key with the prefix
      */
     public function getApiKeyWithPrefix($apiKeyIdentifier)
     {

@@ -1,7 +1,6 @@
 <?php
 /**
  * StaticListsApiTest
- * PHP version 5
  *
  * @category Class
  * @package  NecLimDul\MarketoRest\Lead
@@ -26,14 +25,12 @@
  * Please update the test case below to test the endpoint.
  */
 
-// namespace NecLimDul\MarketoRest\Lead;
-namespace NecLimDul\MarketoRest\Lead\Model;
+namespace NecLimDul\MarketoRest\Lead\Test\Api;
 
+use NecLimDul\MarketoRest\Lead\Configuration;
+use NecLimDul\MarketoRest\Lead\ApiException;
+use NecLimDul\MarketoRest\Lead\ObjectSerializer;
 use PHPUnit\Framework\TestCase;
-
-use \NecLimDul\MarketoRest\Lead\Configuration;
-use \NecLimDul\MarketoRest\Lead\ApiException;
-use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * StaticListsApiTest Class Doc Comment
@@ -42,92 +39,86 @@ use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
+ * @coversDefaultClass \NecLimDul\MarketoRest\Lead\Api\StaticListsApi
  */
 class StaticListsApiTest extends TestCase
 {
 
 
     /**
-     * Test case for addLeadsToListUsingPOST
-     *
      * Add to List.
      *
+     * @covers ::addLeadsToListUsingPOST
      */
     public function testAddLeadsToListUsingPOST()
     {
-        //$class = new StaticListsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for areLeadsMemberOfListUsingGET
-     *
      * Member of List.
      *
+     * @covers ::areLeadsMemberOfListUsingGET
      */
     public function testAreLeadsMemberOfListUsingGET()
     {
-        //$class = new StaticListsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getLeadsByListIdUsingGET
-     *
      * Get Leads By List Id.
      *
+     * @covers ::getLeadsByListIdUsingGET
      */
     public function testGetLeadsByListIdUsingGET()
     {
-        //$class = new StaticListsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getLeadsByListIdUsingGET1
-     *
      * Get Leads By List Id.
      *
+     * @covers ::getLeadsByListIdUsingGET1
      */
     public function testGetLeadsByListIdUsingGET1()
     {
-        //$class = new StaticListsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getListByIdUsingGET
-     *
      * Get List by Id.
      *
+     * @covers ::getListByIdUsingGET
      */
     public function testGetListByIdUsingGET()
     {
-        //$class = new StaticListsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getListsUsingGET
-     *
      * Get Lists.
      *
+     * @covers ::getListsUsingGET
      */
     public function testGetListsUsingGET()
     {
-        //$class = new StaticListsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for removeLeadsFromListUsingDELETE
-     *
      * Remove from List.
      *
+     * @covers ::removeLeadsFromListUsingDELETE
      */
     public function testRemoveLeadsFromListUsingDELETE()
     {
-        //$class = new StaticListsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

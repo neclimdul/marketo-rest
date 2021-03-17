@@ -1,6 +1,7 @@
 # CreateEmailRequest
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **description** | **string** | Description of the asset | [optional] 
@@ -15,5 +16,3 @@ Name | Type | Description | Notes
 **text_only** | **string** | Setting to include text-only version of email when sent | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

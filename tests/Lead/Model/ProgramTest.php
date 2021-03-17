@@ -2,8 +2,6 @@
 /**
  * ProgramTest
  *
- * PHP version 7
- *
  * @category Class
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
@@ -27,8 +25,7 @@
  * Please update the test case below to test the model.
  */
 
-// namespace NecLimDul\MarketoRest\Lead;
-namespace NecLimDul\MarketoRest\Lead\Model;
+namespace NecLimDul\MarketoRest\Lead\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
@@ -49,8 +46,8 @@ class ProgramTest extends TestCase
      */
     public function testProgram()
     {
-        $class = new Program();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -58,8 +55,8 @@ class ProgramTest extends TestCase
      */
     public function testPropertyId()
     {
-        $class = new Program();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -67,8 +64,8 @@ class ProgramTest extends TestCase
      */
     public function testPropertyAcquiredBy()
     {
-        $class = new Program();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -76,8 +73,8 @@ class ProgramTest extends TestCase
      */
     public function testPropertyIsExhausted()
     {
-        $class = new Program();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -85,8 +82,8 @@ class ProgramTest extends TestCase
      */
     public function testPropertyMembershipDate()
     {
-        $class = new Program();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -94,8 +91,8 @@ class ProgramTest extends TestCase
      */
     public function testPropertyNurtureCadence()
     {
-        $class = new Program();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -103,8 +100,8 @@ class ProgramTest extends TestCase
      */
     public function testPropertyProgressionStatus()
     {
-        $class = new Program();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -112,8 +109,8 @@ class ProgramTest extends TestCase
      */
     public function testPropertyReachedSuccess()
     {
-        $class = new Program();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -121,8 +118,8 @@ class ProgramTest extends TestCase
      */
     public function testPropertyStream()
     {
-        $class = new Program();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -130,7 +127,7 @@ class ProgramTest extends TestCase
      */
     public function testPropertyUpdatedAt()
     {
-        $class = new Program();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

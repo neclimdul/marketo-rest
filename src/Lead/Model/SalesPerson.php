@@ -2,8 +2,6 @@
 /**
  * SalesPerson
  *
- * PHP version 5
- *
  * @category Class
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
@@ -39,10 +37,13 @@ use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
+ * @implements \ArrayAccess<TKey, TValue>
+ * @template TKey int|null
+ * @template TValue mixed|null
  */
-class SalesPerson implements ModelInterface, ArrayAccess
+class SalesPerson implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -67,6 +68,8 @@ class SalesPerson implements ModelInterface, ArrayAccess
       * Array of property to format mappings. Used for (de)serialization
       *
       * @var string[]
+      * @phpstan-var array<string, string|null>
+      * @psalm-var array<string, string|null>
       */
     protected static $swaggerFormats = [
         'id' => 'int64',
@@ -76,14 +79,16 @@ class SalesPerson implements ModelInterface, ArrayAccess
     ];
 
     /**
-      * Array of dynamic properties.
+      * Array of additional properties.
       *
       * @var mixed[]
       */
     protected $additionalProperties = [];
 
     /**
-     * {@inheritdoc}
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
      */
     public static function swaggerTypes()
     {
@@ -206,7 +211,8 @@ class SalesPerson implements ModelInterface, ArrayAccess
         $allowedValues = $this->getStatusAllowableValues();
         if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
-                "invalid value for 'status', must be one of '%s'",
+                "invalid value '%s' for 'status', must be one of '%s'",
+                $this->container['status'],
                 implode("', '", $allowedValues)
             );
         }
@@ -256,7 +262,7 @@ class SalesPerson implements ModelInterface, ArrayAccess
      *
      * @param int $id Unique integer id of the salesperson record
      *
-     * @return $this
+     * @return self
      */
     public function setId($id)
     {
@@ -280,7 +286,7 @@ class SalesPerson implements ModelInterface, ArrayAccess
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\Reason[] $reasons List of reasons why an operation did not succeed.  Reasons are only present in API responses and should not be submitted
      *
-     * @return $this
+     * @return self
      */
     public function setReasons($reasons)
     {
@@ -304,7 +310,7 @@ class SalesPerson implements ModelInterface, ArrayAccess
      *
      * @param int $seq Integer indicating the sequence of the record in response.  This value is correlated to the order of the records included in the request input.  Seq should only be part of responses and should not be submitted.
      *
-     * @return $this
+     * @return self
      */
     public function setSeq($seq)
     {
@@ -328,7 +334,7 @@ class SalesPerson implements ModelInterface, ArrayAccess
      *
      * @param string $status Status of the operation performed on the record
      *
-     * @return $this
+     * @return self
      */
     public function setStatus($status)
     {
@@ -336,7 +342,8 @@ class SalesPerson implements ModelInterface, ArrayAccess
         if (!is_null($status) && !in_array($status, $allowedValues, true)) {
             throw new \InvalidArgumentException(
                 sprintf(
-                    "Invalid value for 'status', must be one of '%s'",
+                    "Invalid value '%s' for 'status', must be one of '%s'",
+                    $status,
                     implode("', '", $allowedValues)
                 )
             );
@@ -395,7 +402,7 @@ class SalesPerson implements ModelInterface, ArrayAccess
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**
@@ -419,19 +426,37 @@ class SalesPerson implements ModelInterface, ArrayAccess
     }
 
     /**
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     *
+     * @return mixed Returns data which can be serialized by json_encode(), which is a value
+     * of any type other than a resource.
+     */
+    public function jsonSerialize()
+    {
+       return ObjectSerializer::sanitizeForSerialization($this);
+    }
+
+    /**
      * Gets the string presentation of the object
      *
      * @return string
      */
     public function __toString()
     {
-        if (defined('JSON_PRETTY_PRINT')) { // use JSON pretty print
-            return json_encode(
-                ObjectSerializer::sanitizeForSerialization($this),
-                JSON_PRETTY_PRINT
-            );
-        }
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
+    }
 
+    /**
+     * Gets a header-safe presentation of the object
+     *
+     * @return string
+     */
+    public function toHeaderValue()
+    {
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }

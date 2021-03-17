@@ -1,6 +1,7 @@
 # LandingPageRedirectRule
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** | Internal id for landing page redirect rule | 
@@ -13,5 +14,3 @@ Name | Type | Description | Notes
 **updated_at** | [**\DateTime**](\DateTime.md) | Datetime the landing page redirect rule was most recently updated | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

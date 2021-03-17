@@ -1,6 +1,7 @@
 # UsageData
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **date** | [**\DateTime**](\DateTime.md) | Date of the collected calls | 
@@ -8,5 +9,3 @@ Name | Type | Description | Notes
 **users** | [**\NecLimDul\MarketoRest\Lead\Model\UserCount[]**](UserCount.md) | Counts for individual users | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

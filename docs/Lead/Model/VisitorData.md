@@ -1,6 +1,7 @@
 # VisitorData
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **page_url** | **string** | Web page that hosts the form.  Must be a fully formed URL | [optional] 
@@ -9,5 +10,3 @@ Name | Type | Description | Notes
 **user_agent_string** | **string** | User agent of browser hosting the form | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

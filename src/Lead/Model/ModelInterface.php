@@ -2,8 +2,6 @@
 /**
  * ModelInterface
  *
- * PHP version 5
- *
  * @category Class
  * @package  NecLimDul\MarketoRest\Lead\Model
  * @author   Swagger Codegen team
@@ -95,15 +93,15 @@ interface ModelInterface
     public function valid();
 
     /**
-     * Set list of dynamic attribute for the model.
+     * Set list of additional properties for the model.
      *
      * @param mixed[] $fields
-     *   List of dynamic properties
+     *   List of additional properties
      */
     public function setAdditionalProperties(array $fields);
 
     /**
-     * Set a dynamic attribute for the model.
+     * Set an additional property for the model.
      *
      * @param string $property
      *   Property name.
@@ -113,10 +111,10 @@ interface ModelInterface
     public function setAdditionalProperty($property, $value);
 
     /**
-     * Get list of dynamic attribute for the model.
+     * Get list of additional properties for the model.
      *
      * @return mixed[]
-     *   List of dynamic properties
+     *   List of additional properties
      */
     public function getAdditionalProperties();
 }

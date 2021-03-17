@@ -2,8 +2,6 @@
 /**
  * PushLeadToMarketoRequest
  *
- * PHP version 5
- *
  * @category Class
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
@@ -39,10 +37,13 @@ use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
+ * @implements \ArrayAccess<TKey, TValue>
+ * @template TKey int|null
+ * @template TValue mixed|null
  */
-class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess
+class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -70,6 +71,8 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess
       * Array of property to format mappings. Used for (de)serialization
       *
       * @var string[]
+      * @phpstan-var array<string, string|null>
+      * @psalm-var array<string, string|null>
       */
     protected static $swaggerFormats = [
         'input' => null,
@@ -82,14 +85,16 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess
     ];
 
     /**
-      * Array of dynamic properties.
+      * Array of additional properties.
       *
       * @var mixed[]
       */
     protected $additionalProperties = [];
 
     /**
-     * {@inheritdoc}
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
      */
     public static function swaggerTypes()
     {
@@ -242,7 +247,7 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\Lead[] $input input
      *
-     * @return $this
+     * @return self
      */
     public function setInput($input)
     {
@@ -266,7 +271,7 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess
      *
      * @param string $lookup_field lookup_field
      *
-     * @return $this
+     * @return self
      */
     public function setLookupField($lookup_field)
     {
@@ -290,7 +295,7 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess
      *
      * @param string $partition_name partition_name
      *
-     * @return $this
+     * @return self
      */
     public function setPartitionName($partition_name)
     {
@@ -314,7 +319,7 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess
      *
      * @param string $program_name program_name
      *
-     * @return $this
+     * @return self
      */
     public function setProgramName($program_name)
     {
@@ -338,7 +343,7 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess
      *
      * @param string $program_status program_status
      *
-     * @return $this
+     * @return self
      */
     public function setProgramStatus($program_status)
     {
@@ -362,7 +367,7 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess
      *
      * @param string $reason reason
      *
-     * @return $this
+     * @return self
      */
     public function setReason($reason)
     {
@@ -386,7 +391,7 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess
      *
      * @param string $source source
      *
-     * @return $this
+     * @return self
      */
     public function setSource($source)
     {
@@ -444,7 +449,7 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**
@@ -468,19 +473,37 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess
     }
 
     /**
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     *
+     * @return mixed Returns data which can be serialized by json_encode(), which is a value
+     * of any type other than a resource.
+     */
+    public function jsonSerialize()
+    {
+       return ObjectSerializer::sanitizeForSerialization($this);
+    }
+
+    /**
      * Gets the string presentation of the object
      *
      * @return string
      */
     public function __toString()
     {
-        if (defined('JSON_PRETTY_PRINT')) { // use JSON pretty print
-            return json_encode(
-                ObjectSerializer::sanitizeForSerialization($this),
-                JSON_PRETTY_PRINT
-            );
-        }
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
+    }
 
+    /**
+     * Gets a header-safe presentation of the object
+     *
+     * @return string
+     */
+    public function toHeaderValue()
+    {
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }

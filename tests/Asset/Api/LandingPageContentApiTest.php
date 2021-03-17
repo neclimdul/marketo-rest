@@ -1,7 +1,6 @@
 <?php
 /**
  * LandingPageContentApiTest
- * PHP version 5
  *
  * @category Class
  * @package  NecLimDul\MarketoRest\Asset
@@ -26,14 +25,12 @@
  * Please update the test case below to test the endpoint.
  */
 
-// namespace NecLimDul\MarketoRest\Asset;
-namespace NecLimDul\MarketoRest\Asset\Model;
+namespace NecLimDul\MarketoRest\Asset\Test\Api;
 
+use NecLimDul\MarketoRest\Asset\Configuration;
+use NecLimDul\MarketoRest\Asset\ApiException;
+use NecLimDul\MarketoRest\Asset\ObjectSerializer;
 use PHPUnit\Framework\TestCase;
-
-use \NecLimDul\MarketoRest\Asset\Configuration;
-use \NecLimDul\MarketoRest\Asset\ApiException;
-use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * LandingPageContentApiTest Class Doc Comment
@@ -42,80 +39,75 @@ use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
+ * @coversDefaultClass \NecLimDul\MarketoRest\Asset\Api\LandingPageContentApi
  */
 class LandingPageContentApiTest extends TestCase
 {
 
 
     /**
-     * Test case for addLandingPageContentUsingPOST
-     *
      * Add Landing Page Content Section.
      *
+     * @covers ::addLandingPageContentUsingPOST
      */
     public function testAddLandingPageContentUsingPOST()
     {
-        //$class = new LandingPageContentApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getLandingPageContentUsingGET
-     *
      * Get Landing Page Content.
      *
+     * @covers ::getLandingPageContentUsingGET
      */
     public function testGetLandingPageContentUsingGET()
     {
-        //$class = new LandingPageContentApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getLandingPageDynamicContentsUsingGET
-     *
      * Get Landing Page Dynamic Content.
      *
+     * @covers ::getLandingPageDynamicContentsUsingGET
      */
     public function testGetLandingPageDynamicContentsUsingGET()
     {
-        //$class = new LandingPageContentApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for removeLandingPageContentUsingPOST
-     *
      * Delete Landing Page Content Section.
      *
+     * @covers ::removeLandingPageContentUsingPOST
      */
     public function testRemoveLandingPageContentUsingPOST()
     {
-        //$class = new LandingPageContentApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for updateLandingPageContentUsingPOST
-     *
      * Update Landing Page Content Section.
      *
+     * @covers ::updateLandingPageContentUsingPOST
      */
     public function testUpdateLandingPageContentUsingPOST()
     {
-        //$class = new LandingPageContentApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for updateLandingPageDynamicContentUsingPOST
-     *
      * Update Landing Page Dynamic Content Section.
      *
+     * @covers ::updateLandingPageDynamicContentUsingPOST
      */
     public function testUpdateLandingPageDynamicContentUsingPOST()
     {
-        //$class = new LandingPageContentApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

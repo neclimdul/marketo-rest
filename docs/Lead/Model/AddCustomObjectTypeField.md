@@ -1,6 +1,7 @@
 # AddCustomObjectTypeField
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **string** | API Name of custom object field | 
@@ -11,5 +12,3 @@ Name | Type | Description | Notes
 **related_to** | [**\NecLimDul\MarketoRest\Lead\Model\CustomObjectTypeFieldRelatedTo**](CustomObjectTypeFieldRelatedTo.md) | Define custom object link field | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

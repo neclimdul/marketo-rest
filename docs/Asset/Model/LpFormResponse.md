@@ -1,6 +1,7 @@
 # LpFormResponse
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **button_label** | **string** | Label text of the button | 
@@ -25,5 +26,3 @@ Name | Type | Description | Notes
 **waiting_label** | **string** | Waiting text of the button | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

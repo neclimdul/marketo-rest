@@ -1,6 +1,7 @@
 # Campaign
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **active** | **bool** | Whether the campaign is active.  Only applicable to trigger campaigns | [optional] 
@@ -15,5 +16,3 @@ Name | Type | Description | Notes
 **workspace_name** | **string** | Name of the parent workspace if applicable | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

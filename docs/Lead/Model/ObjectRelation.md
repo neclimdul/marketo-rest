@@ -1,6 +1,7 @@
 # ObjectRelation
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **field** | **string** | API Name of link field | 
@@ -8,5 +9,3 @@ Name | Type | Description | Notes
 **type** | **string** | Type of the relationship field | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

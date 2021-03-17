@@ -1,6 +1,7 @@
 # ImportCustomObjectResponse
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **batch_id** | **int** | Unique integer id of the import batch | 
@@ -14,5 +15,3 @@ Name | Type | Description | Notes
 **status** | **string** | Status of the batch | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

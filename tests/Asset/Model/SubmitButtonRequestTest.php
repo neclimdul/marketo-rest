@@ -2,8 +2,6 @@
 /**
  * SubmitButtonRequestTest
  *
- * PHP version 7
- *
  * @category Class
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
@@ -27,8 +25,7 @@
  * Please update the test case below to test the model.
  */
 
-// namespace NecLimDul\MarketoRest\Asset;
-namespace NecLimDul\MarketoRest\Asset\Model;
+namespace NecLimDul\MarketoRest\Asset\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
@@ -49,8 +46,8 @@ class SubmitButtonRequestTest extends TestCase
      */
     public function testSubmitButtonRequest()
     {
-        $class = new SubmitButtonRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -58,8 +55,8 @@ class SubmitButtonRequestTest extends TestCase
      */
     public function testPropertyButtonPosition()
     {
-        $class = new SubmitButtonRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -67,8 +64,8 @@ class SubmitButtonRequestTest extends TestCase
      */
     public function testPropertyButtonStyle()
     {
-        $class = new SubmitButtonRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -76,8 +73,8 @@ class SubmitButtonRequestTest extends TestCase
      */
     public function testPropertyLabel()
     {
-        $class = new SubmitButtonRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -85,7 +82,7 @@ class SubmitButtonRequestTest extends TestCase
      */
     public function testPropertyWaitingLabel()
     {
-        $class = new SubmitButtonRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

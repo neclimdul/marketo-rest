@@ -1,6 +1,7 @@
 # UpdateFormMetaDataRequest
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **custom_css** | **string** | Custom CSS to apply to the form | [optional] 
@@ -16,5 +17,3 @@ Name | Type | Description | Notes
 **theme** | **string** | CSS theme for the form to use | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

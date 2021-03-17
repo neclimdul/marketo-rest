@@ -1,6 +1,7 @@
 # ProgramMembership
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **acquired_by** | **bool** | Whether the lead was acquired by the parent program | [optional] 
@@ -12,5 +13,3 @@ Name | Type | Description | Notes
 **stream** | **string** | Stream that the lead is a member of, if the parent program is an engagement program | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

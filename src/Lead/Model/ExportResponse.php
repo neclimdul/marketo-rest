@@ -2,8 +2,6 @@
 /**
  * ExportResponse
  *
- * PHP version 5
- *
  * @category Class
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
@@ -40,10 +38,13 @@ use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
+ * @implements \ArrayAccess<TKey, TValue>
+ * @template TKey int|null
+ * @template TValue mixed|null
  */
-class ExportResponse implements ModelInterface, ArrayAccess
+class ExportResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -75,6 +76,8 @@ class ExportResponse implements ModelInterface, ArrayAccess
       * Array of property to format mappings. Used for (de)serialization
       *
       * @var string[]
+      * @phpstan-var array<string, string|null>
+      * @psalm-var array<string, string|null>
       */
     protected static $swaggerFormats = [
         'created_at' => 'date-time',
@@ -91,14 +94,16 @@ class ExportResponse implements ModelInterface, ArrayAccess
     ];
 
     /**
-      * Array of dynamic properties.
+      * Array of additional properties.
       *
       * @var mixed[]
       */
     protected $additionalProperties = [];
 
     /**
-     * {@inheritdoc}
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
      */
     public static function swaggerTypes()
     {
@@ -273,7 +278,7 @@ class ExportResponse implements ModelInterface, ArrayAccess
      *
      * @param \DateTime $created_at Date when the export request was created
      *
-     * @return $this
+     * @return self
      */
     public function setCreatedAt($created_at)
     {
@@ -297,7 +302,7 @@ class ExportResponse implements ModelInterface, ArrayAccess
      *
      * @param string $error_msg Error message in case of \"Failed\" status
      *
-     * @return $this
+     * @return self
      */
     public function setErrorMsg($error_msg)
     {
@@ -321,7 +326,7 @@ class ExportResponse implements ModelInterface, ArrayAccess
      *
      * @param string $export_id Unique id of the export job
      *
-     * @return $this
+     * @return self
      */
     public function setExportId($export_id)
     {
@@ -345,7 +350,7 @@ class ExportResponse implements ModelInterface, ArrayAccess
      *
      * @param int $file_size Size of exported file in bytes. This will have a value only when status is \"Completed\", otherwise null
      *
-     * @return $this
+     * @return self
      */
     public function setFileSize($file_size)
     {
@@ -369,7 +374,7 @@ class ExportResponse implements ModelInterface, ArrayAccess
      *
      * @param string $file_checksum SHA-256 hash of exported file. This will have a value only when status is \"Completed\", otherwise null
      *
-     * @return $this
+     * @return self
      */
     public function setFileChecksum($file_checksum)
     {
@@ -393,7 +398,7 @@ class ExportResponse implements ModelInterface, ArrayAccess
      *
      * @param \DateTime $finished_at Finish time of export job. This will have value only when status is \"Completed\" or \"Failed\", otherwise null
      *
-     * @return $this
+     * @return self
      */
     public function setFinishedAt($finished_at)
     {
@@ -417,7 +422,7 @@ class ExportResponse implements ModelInterface, ArrayAccess
      *
      * @param string $format Format of file as given in the request (\"CSV\", \"TSV\", \"SSV\")
      *
-     * @return $this
+     * @return self
      */
     public function setFormat($format)
     {
@@ -441,7 +446,7 @@ class ExportResponse implements ModelInterface, ArrayAccess
      *
      * @param int $number_of_records Number of records in the export file.  This will have value only when status is \"Completed\", otherwise null
      *
-     * @return $this
+     * @return self
      */
     public function setNumberOfRecords($number_of_records)
     {
@@ -465,7 +470,7 @@ class ExportResponse implements ModelInterface, ArrayAccess
      *
      * @param \DateTime $queued_at Queue time of export job. This will have value when \"Queued\" status is reached, before that null
      *
-     * @return $this
+     * @return self
      */
     public function setQueuedAt($queued_at)
     {
@@ -489,7 +494,7 @@ class ExportResponse implements ModelInterface, ArrayAccess
      *
      * @param \DateTime $started_at Start time of export job. This will have value when \"Processing\" status is reached, before that null
      *
-     * @return $this
+     * @return self
      */
     public function setStartedAt($started_at)
     {
@@ -513,7 +518,7 @@ class ExportResponse implements ModelInterface, ArrayAccess
      *
      * @param string $status Status of the export job (\"Created\",\"Queued\",\"Processing\",\"Canceled\",\"Completed\",\"Failed\")
      *
-     * @return $this
+     * @return self
      */
     public function setStatus($status)
     {
@@ -571,7 +576,7 @@ class ExportResponse implements ModelInterface, ArrayAccess
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**
@@ -595,19 +600,37 @@ class ExportResponse implements ModelInterface, ArrayAccess
     }
 
     /**
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     *
+     * @return mixed Returns data which can be serialized by json_encode(), which is a value
+     * of any type other than a resource.
+     */
+    public function jsonSerialize()
+    {
+       return ObjectSerializer::sanitizeForSerialization($this);
+    }
+
+    /**
      * Gets the string presentation of the object
      *
      * @return string
      */
     public function __toString()
     {
-        if (defined('JSON_PRETTY_PRINT')) { // use JSON pretty print
-            return json_encode(
-                ObjectSerializer::sanitizeForSerialization($this),
-                JSON_PRETTY_PRINT
-            );
-        }
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
+    }
 
+    /**
+     * Gets a header-safe presentation of the object
+     *
+     * @return string
+     */
+    public function toHeaderValue()
+    {
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }

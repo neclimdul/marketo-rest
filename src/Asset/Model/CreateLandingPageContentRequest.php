@@ -2,8 +2,6 @@
 /**
  * CreateLandingPageContentRequest
  *
- * PHP version 5
- *
  * @category Class
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
@@ -39,10 +37,13 @@ use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
+ * @implements \ArrayAccess<TKey, TValue>
+ * @template TKey int|null
+ * @template TValue mixed|null
  */
-class CreateLandingPageContentRequest implements ModelInterface, ArrayAccess
+class CreateLandingPageContentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -80,6 +81,8 @@ class CreateLandingPageContentRequest implements ModelInterface, ArrayAccess
       * Array of property to format mappings. Used for (de)serialization
       *
       * @var string[]
+      * @phpstan-var array<string, string|null>
+      * @psalm-var array<string, string|null>
       */
     protected static $swaggerFormats = [
         'background_color' => null,
@@ -102,14 +105,16 @@ class CreateLandingPageContentRequest implements ModelInterface, ArrayAccess
     ];
 
     /**
-      * Array of dynamic properties.
+      * Array of additional properties.
       *
       * @var mixed[]
       */
     protected $additionalProperties = [];
 
     /**
-     * {@inheritdoc}
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
      */
     public static function swaggerTypes()
     {
@@ -290,7 +295,8 @@ class CreateLandingPageContentRequest implements ModelInterface, ArrayAccess
         $allowedValues = $this->getTypeAllowableValues();
         if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
-                "invalid value for 'type', must be one of '%s'",
+                "invalid value '%s' for 'type', must be one of '%s'",
+                $this->container['type'],
                 implode("', '", $allowedValues)
             );
         }
@@ -340,7 +346,7 @@ class CreateLandingPageContentRequest implements ModelInterface, ArrayAccess
      *
      * @param string $background_color background-color property of the HTML section
      *
-     * @return $this
+     * @return self
      */
     public function setBackgroundColor($background_color)
     {
@@ -364,7 +370,7 @@ class CreateLandingPageContentRequest implements ModelInterface, ArrayAccess
      *
      * @param string $border_color border-color property of the HTML section
      *
-     * @return $this
+     * @return self
      */
     public function setBorderColor($border_color)
     {
@@ -388,7 +394,7 @@ class CreateLandingPageContentRequest implements ModelInterface, ArrayAccess
      *
      * @param string $border_style border-style property of the HTML section
      *
-     * @return $this
+     * @return self
      */
     public function setBorderStyle($border_style)
     {
@@ -412,7 +418,7 @@ class CreateLandingPageContentRequest implements ModelInterface, ArrayAccess
      *
      * @param string $border_width border-width property of the HTML section
      *
-     * @return $this
+     * @return self
      */
     public function setBorderWidth($border_width)
     {
@@ -436,7 +442,7 @@ class CreateLandingPageContentRequest implements ModelInterface, ArrayAccess
      *
      * @param string $content_id Id of the content section.  Also the HTML id of the section.
      *
-     * @return $this
+     * @return self
      */
     public function setContentId($content_id)
     {
@@ -460,7 +466,7 @@ class CreateLandingPageContentRequest implements ModelInterface, ArrayAccess
      *
      * @param string $height height property of the HTML section
      *
-     * @return $this
+     * @return self
      */
     public function setHeight($height)
     {
@@ -484,7 +490,7 @@ class CreateLandingPageContentRequest implements ModelInterface, ArrayAccess
      *
      * @param bool $hide_desktop Hide the section when displayed on a desktop browser.  Default false
      *
-     * @return $this
+     * @return self
      */
     public function setHideDesktop($hide_desktop)
     {
@@ -508,7 +514,7 @@ class CreateLandingPageContentRequest implements ModelInterface, ArrayAccess
      *
      * @param bool $hide_mobile Hide the section when displayed on a mobile browser.  Default false
      *
-     * @return $this
+     * @return self
      */
     public function setHideMobile($hide_mobile)
     {
@@ -532,7 +538,7 @@ class CreateLandingPageContentRequest implements ModelInterface, ArrayAccess
      *
      * @param string $image_open_new_window image_open_new_window
      *
-     * @return $this
+     * @return self
      */
     public function setImageOpenNewWindow($image_open_new_window)
     {
@@ -556,7 +562,7 @@ class CreateLandingPageContentRequest implements ModelInterface, ArrayAccess
      *
      * @param string $left left property of the HTML section
      *
-     * @return $this
+     * @return self
      */
     public function setLeft($left)
     {
@@ -580,7 +586,7 @@ class CreateLandingPageContentRequest implements ModelInterface, ArrayAccess
      *
      * @param string $link_url URL parameter of a link type section
      *
-     * @return $this
+     * @return self
      */
     public function setLinkUrl($link_url)
     {
@@ -604,7 +610,7 @@ class CreateLandingPageContentRequest implements ModelInterface, ArrayAccess
      *
      * @param string $opacity opacity property of the HTML section
      *
-     * @return $this
+     * @return self
      */
     public function setOpacity($opacity)
     {
@@ -628,7 +634,7 @@ class CreateLandingPageContentRequest implements ModelInterface, ArrayAccess
      *
      * @param string $top top property of the HTML section
      *
-     * @return $this
+     * @return self
      */
     public function setTop($top)
     {
@@ -652,7 +658,7 @@ class CreateLandingPageContentRequest implements ModelInterface, ArrayAccess
      *
      * @param string $type Type of content section
      *
-     * @return $this
+     * @return self
      */
     public function setType($type)
     {
@@ -660,7 +666,8 @@ class CreateLandingPageContentRequest implements ModelInterface, ArrayAccess
         if (!in_array($type, $allowedValues, true)) {
             throw new \InvalidArgumentException(
                 sprintf(
-                    "Invalid value for 'type', must be one of '%s'",
+                    "Invalid value '%s' for 'type', must be one of '%s'",
+                    $type,
                     implode("', '", $allowedValues)
                 )
             );
@@ -685,7 +692,7 @@ class CreateLandingPageContentRequest implements ModelInterface, ArrayAccess
      *
      * @param string $value Type of content section
      *
-     * @return $this
+     * @return self
      */
     public function setValue($value)
     {
@@ -709,7 +716,7 @@ class CreateLandingPageContentRequest implements ModelInterface, ArrayAccess
      *
      * @param string $width width property of the HTML section
      *
-     * @return $this
+     * @return self
      */
     public function setWidth($width)
     {
@@ -733,7 +740,7 @@ class CreateLandingPageContentRequest implements ModelInterface, ArrayAccess
      *
      * @param string $z_index z-index property of the HTML section
      *
-     * @return $this
+     * @return self
      */
     public function setZIndex($z_index)
     {
@@ -791,7 +798,7 @@ class CreateLandingPageContentRequest implements ModelInterface, ArrayAccess
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**
@@ -815,19 +822,37 @@ class CreateLandingPageContentRequest implements ModelInterface, ArrayAccess
     }
 
     /**
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     *
+     * @return mixed Returns data which can be serialized by json_encode(), which is a value
+     * of any type other than a resource.
+     */
+    public function jsonSerialize()
+    {
+       return ObjectSerializer::sanitizeForSerialization($this);
+    }
+
+    /**
      * Gets the string presentation of the object
      *
      * @return string
      */
     public function __toString()
     {
-        if (defined('JSON_PRETTY_PRINT')) { // use JSON pretty print
-            return json_encode(
-                ObjectSerializer::sanitizeForSerialization($this),
-                JSON_PRETTY_PRINT
-            );
-        }
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
+    }
 
+    /**
+     * Gets a header-safe presentation of the object
+     *
+     * @return string
+     */
+    public function toHeaderValue()
+    {
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }

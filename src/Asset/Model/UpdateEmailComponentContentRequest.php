@@ -2,8 +2,6 @@
 /**
  * UpdateEmailComponentContentRequest
  *
- * PHP version 5
- *
  * @category Class
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
@@ -39,10 +37,13 @@ use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
+ * @implements \ArrayAccess<TKey, TValue>
+ * @template TKey int|null
+ * @template TValue mixed|null
  */
-class UpdateEmailComponentContentRequest implements ModelInterface, ArrayAccess
+class UpdateEmailComponentContentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -75,6 +76,8 @@ class UpdateEmailComponentContentRequest implements ModelInterface, ArrayAccess
       * Array of property to format mappings. Used for (de)serialization
       *
       * @var string[]
+      * @phpstan-var array<string, string|null>
+      * @psalm-var array<string, string|null>
       */
     protected static $swaggerFormats = [
         'alt_text' => null,
@@ -92,14 +95,16 @@ class UpdateEmailComponentContentRequest implements ModelInterface, ArrayAccess
     ];
 
     /**
-      * Array of dynamic properties.
+      * Array of additional properties.
       *
       * @var mixed[]
       */
     protected $additionalProperties = [];
 
     /**
-     * {@inheritdoc}
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
      */
     public static function swaggerTypes()
     {
@@ -254,7 +259,8 @@ class UpdateEmailComponentContentRequest implements ModelInterface, ArrayAccess
         $allowedValues = $this->getTypeAllowableValues();
         if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
-                "invalid value for 'type', must be one of '%s'",
+                "invalid value '%s' for 'type', must be one of '%s'",
+                $this->container['type'],
                 implode("', '", $allowedValues)
             );
         }
@@ -304,7 +310,7 @@ class UpdateEmailComponentContentRequest implements ModelInterface, ArrayAccess
      *
      * @param string $alt_text Sets the value of the alt parameter for the resulting img element
      *
-     * @return $this
+     * @return self
      */
     public function setAltText($alt_text)
     {
@@ -328,7 +334,7 @@ class UpdateEmailComponentContentRequest implements ModelInterface, ArrayAccess
      *
      * @param string $external_url external_url
      *
-     * @return $this
+     * @return self
      */
     public function setExternalUrl($external_url)
     {
@@ -352,7 +358,7 @@ class UpdateEmailComponentContentRequest implements ModelInterface, ArrayAccess
      *
      * @param int $height Overrides naitve height of the image.  The resulting file will be resized to the given height
      *
-     * @return $this
+     * @return self
      */
     public function setHeight($height)
     {
@@ -376,7 +382,7 @@ class UpdateEmailComponentContentRequest implements ModelInterface, ArrayAccess
      *
      * @param string $image Multipart file that allows you to load an image from your computer
      *
-     * @return $this
+     * @return self
      */
     public function setImage($image)
     {
@@ -400,7 +406,7 @@ class UpdateEmailComponentContentRequest implements ModelInterface, ArrayAccess
      *
      * @param string $link_url link_url
      *
-     * @return $this
+     * @return self
      */
     public function setLinkUrl($link_url)
     {
@@ -424,7 +430,7 @@ class UpdateEmailComponentContentRequest implements ModelInterface, ArrayAccess
      *
      * @param bool $over_write Allows overwriting of the existing image content section
      *
-     * @return $this
+     * @return self
      */
     public function setOverWrite($over_write)
     {
@@ -448,7 +454,7 @@ class UpdateEmailComponentContentRequest implements ModelInterface, ArrayAccess
      *
      * @param string $style Sets the value of the style parameter for the content section
      *
-     * @return $this
+     * @return self
      */
     public function setStyle($style)
     {
@@ -472,7 +478,7 @@ class UpdateEmailComponentContentRequest implements ModelInterface, ArrayAccess
      *
      * @param string $text_value text_value
      *
-     * @return $this
+     * @return self
      */
     public function setTextValue($text_value)
     {
@@ -496,7 +502,7 @@ class UpdateEmailComponentContentRequest implements ModelInterface, ArrayAccess
      *
      * @param string $type Type of content to set for the section.
      *
-     * @return $this
+     * @return self
      */
     public function setType($type)
     {
@@ -504,7 +510,8 @@ class UpdateEmailComponentContentRequest implements ModelInterface, ArrayAccess
         if (!in_array($type, $allowedValues, true)) {
             throw new \InvalidArgumentException(
                 sprintf(
-                    "Invalid value for 'type', must be one of '%s'",
+                    "Invalid value '%s' for 'type', must be one of '%s'",
+                    $type,
                     implode("', '", $allowedValues)
                 )
             );
@@ -529,7 +536,7 @@ class UpdateEmailComponentContentRequest implements ModelInterface, ArrayAccess
      *
      * @param string $value Value to set for the section.  For type Text, the HTML content of the section.  For type DynamicContent, the id of the segmentation to use for the content.  For type Snippet, the id of the snippet to embed
      *
-     * @return $this
+     * @return self
      */
     public function setValue($value)
     {
@@ -553,7 +560,7 @@ class UpdateEmailComponentContentRequest implements ModelInterface, ArrayAccess
      *
      * @param string $video_url Sets the Url of the video element.  Videos must be either from YouTube or Vimeo
      *
-     * @return $this
+     * @return self
      */
     public function setVideoUrl($video_url)
     {
@@ -577,7 +584,7 @@ class UpdateEmailComponentContentRequest implements ModelInterface, ArrayAccess
      *
      * @param int $width Overrides native width of the image.  The resulting file will be resized to the given width
      *
-     * @return $this
+     * @return self
      */
     public function setWidth($width)
     {
@@ -635,7 +642,7 @@ class UpdateEmailComponentContentRequest implements ModelInterface, ArrayAccess
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**
@@ -659,19 +666,37 @@ class UpdateEmailComponentContentRequest implements ModelInterface, ArrayAccess
     }
 
     /**
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     *
+     * @return mixed Returns data which can be serialized by json_encode(), which is a value
+     * of any type other than a resource.
+     */
+    public function jsonSerialize()
+    {
+       return ObjectSerializer::sanitizeForSerialization($this);
+    }
+
+    /**
      * Gets the string presentation of the object
      *
      * @return string
      */
     public function __toString()
     {
-        if (defined('JSON_PRETTY_PRINT')) { // use JSON pretty print
-            return json_encode(
-                ObjectSerializer::sanitizeForSerialization($this),
-                JSON_PRETTY_PRINT
-            );
-        }
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
+    }
 
+    /**
+     * Gets a header-safe presentation of the object
+     *
+     * @return string
+     */
+    public function toHeaderValue()
+    {
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }

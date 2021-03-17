@@ -2,8 +2,6 @@
 /**
  * SyncCustomObjectRequest
  *
- * PHP version 5
- *
  * @category Class
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
@@ -39,10 +37,13 @@ use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
+ * @implements \ArrayAccess<TKey, TValue>
+ * @template TKey int|null
+ * @template TValue mixed|null
  */
-class SyncCustomObjectRequest implements ModelInterface, ArrayAccess
+class SyncCustomObjectRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -66,6 +67,8 @@ class SyncCustomObjectRequest implements ModelInterface, ArrayAccess
       * Array of property to format mappings. Used for (de)serialization
       *
       * @var string[]
+      * @phpstan-var array<string, string|null>
+      * @psalm-var array<string, string|null>
       */
     protected static $swaggerFormats = [
         'action' => null,
@@ -74,14 +77,16 @@ class SyncCustomObjectRequest implements ModelInterface, ArrayAccess
     ];
 
     /**
-      * Array of dynamic properties.
+      * Array of additional properties.
       *
       * @var mixed[]
       */
     protected $additionalProperties = [];
 
     /**
-     * {@inheritdoc}
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
      */
     public static function swaggerTypes()
     {
@@ -197,7 +202,8 @@ class SyncCustomObjectRequest implements ModelInterface, ArrayAccess
         $allowedValues = $this->getActionAllowableValues();
         if (!is_null($this->container['action']) && !in_array($this->container['action'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
-                "invalid value for 'action', must be one of '%s'",
+                "invalid value '%s' for 'action', must be one of '%s'",
+                $this->container['action'],
                 implode("', '", $allowedValues)
             );
         }
@@ -247,7 +253,7 @@ class SyncCustomObjectRequest implements ModelInterface, ArrayAccess
      *
      * @param string $action Type of sync operation to perform
      *
-     * @return $this
+     * @return self
      */
     public function setAction($action)
     {
@@ -255,7 +261,8 @@ class SyncCustomObjectRequest implements ModelInterface, ArrayAccess
         if (!is_null($action) && !in_array($action, $allowedValues, true)) {
             throw new \InvalidArgumentException(
                 sprintf(
-                    "Invalid value for 'action', must be one of '%s'",
+                    "Invalid value '%s' for 'action', must be one of '%s'",
+                    $action,
                     implode("', '", $allowedValues)
                 )
             );
@@ -280,7 +287,7 @@ class SyncCustomObjectRequest implements ModelInterface, ArrayAccess
      *
      * @param string $dedupe_by Field to deduplicate on.  If the value in the field for a given record is not unique, an error will be returned for the individual record.
      *
-     * @return $this
+     * @return self
      */
     public function setDedupeBy($dedupe_by)
     {
@@ -304,7 +311,7 @@ class SyncCustomObjectRequest implements ModelInterface, ArrayAccess
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\CustomObject[] $input List of input records
      *
-     * @return $this
+     * @return self
      */
     public function setInput($input)
     {
@@ -362,7 +369,7 @@ class SyncCustomObjectRequest implements ModelInterface, ArrayAccess
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**
@@ -386,19 +393,37 @@ class SyncCustomObjectRequest implements ModelInterface, ArrayAccess
     }
 
     /**
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     *
+     * @return mixed Returns data which can be serialized by json_encode(), which is a value
+     * of any type other than a resource.
+     */
+    public function jsonSerialize()
+    {
+       return ObjectSerializer::sanitizeForSerialization($this);
+    }
+
+    /**
      * Gets the string presentation of the object
      *
      * @return string
      */
     public function __toString()
     {
-        if (defined('JSON_PRETTY_PRINT')) { // use JSON pretty print
-            return json_encode(
-                ObjectSerializer::sanitizeForSerialization($this),
-                JSON_PRETTY_PRINT
-            );
-        }
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
+    }
 
+    /**
+     * Gets a header-safe presentation of the object
+     *
+     * @return string
+     */
+    public function toHeaderValue()
+    {
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }

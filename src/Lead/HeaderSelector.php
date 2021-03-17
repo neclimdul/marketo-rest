@@ -1,7 +1,6 @@
 <?php
 /**
  * HeaderSelector
- * PHP version 5
  *
  * @category Class
  * @package  NecLimDul\MarketoRest\Lead
@@ -74,7 +73,7 @@ class HeaderSelector
      *
      * @param string[] $accept Array of header
      *
-     * @return string Accept (e.g. application/json)
+     * @return string|null Accept (e.g. application/json)
      */
     private function selectAcceptHeader($accept)
     {
@@ -105,3 +104,4 @@ class HeaderSelector
         }
     }
 }
+

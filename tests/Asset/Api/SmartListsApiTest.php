@@ -1,7 +1,6 @@
 <?php
 /**
  * SmartListsApiTest
- * PHP version 5
  *
  * @category Class
  * @package  NecLimDul\MarketoRest\Asset
@@ -26,14 +25,12 @@
  * Please update the test case below to test the endpoint.
  */
 
-// namespace NecLimDul\MarketoRest\Asset;
-namespace NecLimDul\MarketoRest\Asset\Model;
+namespace NecLimDul\MarketoRest\Asset\Test\Api;
 
+use NecLimDul\MarketoRest\Asset\Configuration;
+use NecLimDul\MarketoRest\Asset\ApiException;
+use NecLimDul\MarketoRest\Asset\ObjectSerializer;
 use PHPUnit\Framework\TestCase;
-
-use \NecLimDul\MarketoRest\Asset\Configuration;
-use \NecLimDul\MarketoRest\Asset\ApiException;
-use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * SmartListsApiTest Class Doc Comment
@@ -42,68 +39,64 @@ use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
+ * @coversDefaultClass \NecLimDul\MarketoRest\Asset\Api\SmartListsApi
  */
 class SmartListsApiTest extends TestCase
 {
 
 
     /**
-     * Test case for cloneSmartListUsingPOST
-     *
      * Clone Smart List.
      *
+     * @covers ::cloneSmartListUsingPOST
      */
     public function testCloneSmartListUsingPOST()
     {
-        //$class = new SmartListsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for deleteSmartListByIdUsingPOST
-     *
      * Delete Smart List.
      *
+     * @covers ::deleteSmartListByIdUsingPOST
      */
     public function testDeleteSmartListByIdUsingPOST()
     {
-        //$class = new SmartListsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getSmartListByIdUsingGET
-     *
      * Get Smart List by Id.
      *
+     * @covers ::getSmartListByIdUsingGET
      */
     public function testGetSmartListByIdUsingGET()
     {
-        //$class = new SmartListsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getSmartListByNameUsingGET
-     *
      * Get Smart List by Name.
      *
+     * @covers ::getSmartListByNameUsingGET
      */
     public function testGetSmartListByNameUsingGET()
     {
-        //$class = new SmartListsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getSmartListsUsingGET
-     *
      * Get Smart Lists.
      *
+     * @covers ::getSmartListsUsingGET
      */
     public function testGetSmartListsUsingGET()
     {
-        //$class = new SmartListsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

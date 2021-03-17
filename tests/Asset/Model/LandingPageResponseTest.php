@@ -2,8 +2,6 @@
 /**
  * LandingPageResponseTest
  *
- * PHP version 7
- *
  * @category Class
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
@@ -27,8 +25,7 @@
  * Please update the test case below to test the model.
  */
 
-// namespace NecLimDul\MarketoRest\Asset;
-namespace NecLimDul\MarketoRest\Asset\Model;
+namespace NecLimDul\MarketoRest\Asset\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
@@ -49,8 +46,8 @@ class LandingPageResponseTest extends TestCase
      */
     public function testLandingPageResponse()
     {
-        $class = new LandingPageResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -58,8 +55,8 @@ class LandingPageResponseTest extends TestCase
      */
     public function testPropertyUrl()
     {
-        $class = new LandingPageResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -67,8 +64,8 @@ class LandingPageResponseTest extends TestCase
      */
     public function testPropertyComputedUrl()
     {
-        $class = new LandingPageResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -76,8 +73,8 @@ class LandingPageResponseTest extends TestCase
      */
     public function testPropertyCreatedAt()
     {
-        $class = new LandingPageResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -85,8 +82,8 @@ class LandingPageResponseTest extends TestCase
      */
     public function testPropertyCustomHeadHtml()
     {
-        $class = new LandingPageResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -94,8 +91,8 @@ class LandingPageResponseTest extends TestCase
      */
     public function testPropertyDescription()
     {
-        $class = new LandingPageResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -103,8 +100,8 @@ class LandingPageResponseTest extends TestCase
      */
     public function testPropertyFacebookOgTags()
     {
-        $class = new LandingPageResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -112,8 +109,8 @@ class LandingPageResponseTest extends TestCase
      */
     public function testPropertyFolder()
     {
-        $class = new LandingPageResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -121,8 +118,8 @@ class LandingPageResponseTest extends TestCase
      */
     public function testPropertyFormPrefill()
     {
-        $class = new LandingPageResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -130,8 +127,8 @@ class LandingPageResponseTest extends TestCase
      */
     public function testPropertyId()
     {
-        $class = new LandingPageResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -139,8 +136,8 @@ class LandingPageResponseTest extends TestCase
      */
     public function testPropertyKeywords()
     {
-        $class = new LandingPageResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -148,8 +145,8 @@ class LandingPageResponseTest extends TestCase
      */
     public function testPropertyMobileEnabled()
     {
-        $class = new LandingPageResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -157,8 +154,8 @@ class LandingPageResponseTest extends TestCase
      */
     public function testPropertyName()
     {
-        $class = new LandingPageResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -166,8 +163,8 @@ class LandingPageResponseTest extends TestCase
      */
     public function testPropertyRobots()
     {
-        $class = new LandingPageResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -175,8 +172,8 @@ class LandingPageResponseTest extends TestCase
      */
     public function testPropertyStatus()
     {
-        $class = new LandingPageResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -184,8 +181,8 @@ class LandingPageResponseTest extends TestCase
      */
     public function testPropertyTemplate()
     {
-        $class = new LandingPageResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -193,8 +190,8 @@ class LandingPageResponseTest extends TestCase
      */
     public function testPropertyTitle()
     {
-        $class = new LandingPageResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -202,8 +199,8 @@ class LandingPageResponseTest extends TestCase
      */
     public function testPropertyUpdatedAt()
     {
-        $class = new LandingPageResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -211,7 +208,7 @@ class LandingPageResponseTest extends TestCase
      */
     public function testPropertyWorkspace()
     {
-        $class = new LandingPageResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

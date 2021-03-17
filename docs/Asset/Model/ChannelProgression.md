@@ -1,6 +1,7 @@
 # ChannelProgression
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **description** | **string** | Description of the program status | [optional] 
@@ -10,5 +11,3 @@ Name | Type | Description | Notes
 **success** | **bool** | Whether this status is a success step for program members | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

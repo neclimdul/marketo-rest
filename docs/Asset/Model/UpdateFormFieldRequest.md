@@ -1,6 +1,7 @@
 # UpdateFormFieldRequest
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **blank_fields** | **int** | Number of blank fields to show when progressive profiling is enabled | [optional] 
@@ -25,5 +26,3 @@ Name | Type | Description | Notes
 **visible_lines** | **int** | Number of lines to display for the field element | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

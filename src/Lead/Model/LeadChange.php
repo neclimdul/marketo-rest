@@ -2,8 +2,6 @@
 /**
  * LeadChange
  *
- * PHP version 5
- *
  * @category Class
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
@@ -39,10 +37,13 @@ use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
+ * @implements \ArrayAccess<TKey, TValue>
+ * @template TKey int|null
+ * @template TValue mixed|null
  */
-class LeadChange implements ModelInterface, ArrayAccess
+class LeadChange implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -71,6 +72,8 @@ class LeadChange implements ModelInterface, ArrayAccess
       * Array of property to format mappings. Used for (de)serialization
       *
       * @var string[]
+      * @phpstan-var array<string, string|null>
+      * @psalm-var array<string, string|null>
       */
     protected static $swaggerFormats = [
         'activity_date' => 'date-time',
@@ -84,14 +87,16 @@ class LeadChange implements ModelInterface, ArrayAccess
     ];
 
     /**
-      * Array of dynamic properties.
+      * Array of additional properties.
       *
       * @var mixed[]
       */
     protected $additionalProperties = [];
 
     /**
-     * {@inheritdoc}
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
      */
     public static function swaggerTypes()
     {
@@ -263,7 +268,7 @@ class LeadChange implements ModelInterface, ArrayAccess
      *
      * @param \DateTime $activity_date Datetime of the activity
      *
-     * @return $this
+     * @return self
      */
     public function setActivityDate($activity_date)
     {
@@ -287,7 +292,7 @@ class LeadChange implements ModelInterface, ArrayAccess
      *
      * @param int $activity_type_id Id of the activity type
      *
-     * @return $this
+     * @return self
      */
     public function setActivityTypeId($activity_type_id)
     {
@@ -311,7 +316,7 @@ class LeadChange implements ModelInterface, ArrayAccess
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\Attribute[] $attributes List of secondary attributes
      *
-     * @return $this
+     * @return self
      */
     public function setAttributes($attributes)
     {
@@ -335,7 +340,7 @@ class LeadChange implements ModelInterface, ArrayAccess
      *
      * @param int $campaign_id campaign_id
      *
-     * @return $this
+     * @return self
      */
     public function setCampaignId($campaign_id)
     {
@@ -359,7 +364,7 @@ class LeadChange implements ModelInterface, ArrayAccess
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\LeadChangeField[] $fields fields
      *
-     * @return $this
+     * @return self
      */
     public function setFields($fields)
     {
@@ -383,7 +388,7 @@ class LeadChange implements ModelInterface, ArrayAccess
      *
      * @param int $id Integer id of the activity.  For instances which have been migrated to Activity Service, this field may not be present, and should not be treated as unique.
      *
-     * @return $this
+     * @return self
      */
     public function setId($id)
     {
@@ -407,7 +412,7 @@ class LeadChange implements ModelInterface, ArrayAccess
      *
      * @param int $lead_id Id of the lead associated to the activity
      *
-     * @return $this
+     * @return self
      */
     public function setLeadId($lead_id)
     {
@@ -431,7 +436,7 @@ class LeadChange implements ModelInterface, ArrayAccess
      *
      * @param string $marketo_guid Unique id of the activity (128 character string)
      *
-     * @return $this
+     * @return self
      */
     public function setMarketoGuid($marketo_guid)
     {
@@ -489,7 +494,7 @@ class LeadChange implements ModelInterface, ArrayAccess
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**
@@ -513,19 +518,37 @@ class LeadChange implements ModelInterface, ArrayAccess
     }
 
     /**
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     *
+     * @return mixed Returns data which can be serialized by json_encode(), which is a value
+     * of any type other than a resource.
+     */
+    public function jsonSerialize()
+    {
+       return ObjectSerializer::sanitizeForSerialization($this);
+    }
+
+    /**
      * Gets the string presentation of the object
      *
      * @return string
      */
     public function __toString()
     {
-        if (defined('JSON_PRETTY_PRINT')) { // use JSON pretty print
-            return json_encode(
-                ObjectSerializer::sanitizeForSerialization($this),
-                JSON_PRETTY_PRINT
-            );
-        }
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
+    }
 
+    /**
+     * Gets a header-safe presentation of the object
+     *
+     * @return string
+     */
+    public function toHeaderValue()
+    {
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }

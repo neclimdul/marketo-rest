@@ -2,8 +2,6 @@
 /**
  * LeadAttribute
  *
- * PHP version 5
- *
  * @category Class
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
@@ -39,10 +37,13 @@ use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
+ * @implements \ArrayAccess<TKey, TValue>
+ * @template TKey int|null
+ * @template TValue mixed|null
  */
-class LeadAttribute implements ModelInterface, ArrayAccess
+class LeadAttribute implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -69,6 +70,8 @@ class LeadAttribute implements ModelInterface, ArrayAccess
       * Array of property to format mappings. Used for (de)serialization
       *
       * @var string[]
+      * @phpstan-var array<string, string|null>
+      * @psalm-var array<string, string|null>
       */
     protected static $swaggerFormats = [
         'data_type' => null,
@@ -80,14 +83,16 @@ class LeadAttribute implements ModelInterface, ArrayAccess
     ];
 
     /**
-      * Array of dynamic properties.
+      * Array of additional properties.
       *
       * @var mixed[]
       */
     protected $additionalProperties = [];
 
     /**
-     * {@inheritdoc}
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
      */
     public static function swaggerTypes()
     {
@@ -245,7 +250,7 @@ class LeadAttribute implements ModelInterface, ArrayAccess
      *
      * @param string $data_type Datatype of the field
      *
-     * @return $this
+     * @return self
      */
     public function setDataType($data_type)
     {
@@ -269,7 +274,7 @@ class LeadAttribute implements ModelInterface, ArrayAccess
      *
      * @param string $display_name UI display-name of the field
      *
-     * @return $this
+     * @return self
      */
     public function setDisplayName($display_name)
     {
@@ -293,7 +298,7 @@ class LeadAttribute implements ModelInterface, ArrayAccess
      *
      * @param int $id Unique integer id of the field
      *
-     * @return $this
+     * @return self
      */
     public function setId($id)
     {
@@ -317,7 +322,7 @@ class LeadAttribute implements ModelInterface, ArrayAccess
      *
      * @param int $length Max length of the field.  Only applicable to text, string, and text area.
      *
-     * @return $this
+     * @return self
      */
     public function setLength($length)
     {
@@ -341,7 +346,7 @@ class LeadAttribute implements ModelInterface, ArrayAccess
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\LeadMapAttribute $rest Description of REST API usage attributes
      *
-     * @return $this
+     * @return self
      */
     public function setRest($rest)
     {
@@ -365,7 +370,7 @@ class LeadAttribute implements ModelInterface, ArrayAccess
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\LeadMapAttribute $soap Description of SOAP API usage attributes
      *
-     * @return $this
+     * @return self
      */
     public function setSoap($soap)
     {
@@ -423,7 +428,7 @@ class LeadAttribute implements ModelInterface, ArrayAccess
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**
@@ -447,19 +452,37 @@ class LeadAttribute implements ModelInterface, ArrayAccess
     }
 
     /**
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     *
+     * @return mixed Returns data which can be serialized by json_encode(), which is a value
+     * of any type other than a resource.
+     */
+    public function jsonSerialize()
+    {
+       return ObjectSerializer::sanitizeForSerialization($this);
+    }
+
+    /**
      * Gets the string presentation of the object
      *
      * @return string
      */
     public function __toString()
     {
-        if (defined('JSON_PRETTY_PRINT')) { // use JSON pretty print
-            return json_encode(
-                ObjectSerializer::sanitizeForSerialization($this),
-                JSON_PRETTY_PRINT
-            );
-        }
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
+    }
 
+    /**
+     * Gets a header-safe presentation of the object
+     *
+     * @return string
+     */
+    public function toHeaderValue()
+    {
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }

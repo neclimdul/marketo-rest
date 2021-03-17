@@ -1,6 +1,7 @@
 # BrowseAllPrograms
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **channel** | **string** | Channel of the program | 
@@ -18,5 +19,3 @@ Name | Type | Description | Notes
 **workspace** | **string** | Name of the workspace | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

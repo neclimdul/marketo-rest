@@ -1,7 +1,6 @@
 <?php
 /**
  * IdentityApi
- * PHP version 5
  *
  * @category Class
  * @package  NecLimDul\MarketoRest\Identity
@@ -32,8 +31,10 @@ use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
+use GuzzleHttp\Psr7\Query;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
+use Psr\Http\Message\ResponseInterface;
 use NecLimDul\MarketoRest\Identity\ApiException;
 use NecLimDul\MarketoRest\Identity\Configuration;
 use NecLimDul\MarketoRest\Identity\HeaderSelector;
@@ -49,6 +50,7 @@ use NecLimDul\MarketoRest\Identity\ObjectSerializer;
  */
 class IdentityApi
 {
+
     /**
      * @var ClientInterface
      */
@@ -65,18 +67,46 @@ class IdentityApi
     protected $headerSelector;
 
     /**
-     * @param ClientInterface $client
-     * @param Configuration   $config
-     * @param HeaderSelector  $selector
+     * @var int Host index
+     */
+    protected $hostIndex;
+
+    /**
+     * @param ClientInterface|null $client
+     * @param Configuration|null   $config
+     * @param HeaderSelector|null  $selector
+     * @param int                  $hostIndex (Optional) host index to select the list of hosts if defined in the OpenAPI spec
      */
     public function __construct(
         ClientInterface $client = null,
         Configuration $config = null,
-        HeaderSelector $selector = null
+        HeaderSelector $selector = null,
+        $hostIndex = 0
     ) {
         $this->client = $client ?: new Client();
         $this->config = $config ?: new Configuration();
         $this->headerSelector = $selector ?: new HeaderSelector();
+        $this->hostIndex = $hostIndex;
+    }
+
+    /**
+     * Set the host index
+     *
+     * @param int $hostIndex Host index (required)
+     */
+    public function setHostIndex($hostIndex)
+    {
+        $this->hostIndex = $hostIndex;
+    }
+
+    /**
+     * Get the host index
+     *
+     * @return int Host index
+     */
+    public function getHostIndex()
+    {
+        return $this->hostIndex;
     }
 
     /**
@@ -123,62 +153,28 @@ class IdentityApi
      */
     public function identityUsingGETWithHttpInfo($client_id, $client_secret, $grant_type, $partner_id = null)
     {
-        $returnType = '\NecLimDul\MarketoRest\Identity\Model\ResponseOfIdentity';
         $request = $this->identityUsingGETRequest($client_id, $client_secret, $grant_type, $partner_id);
 
         try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
-                );
+            $response = $this->makeRequest($request);
+
+            switch ($response->getStatusCode()) {
+                case 200:
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Identity\Model\ResponseOfIdentity');
             }
 
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    $response->getBody()
-                );
-            }
-
-            $responseBody = $response->getBody();
-            if ($returnType === '\SplFileObject') {
-                $content = $responseBody; //stream goes to serializer
-            } else {
-                $content = $responseBody->getContents();
-                if ($returnType !== 'string') {
-                    $content = json_decode($content);
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
+            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Identity\Model\ResponseOfIdentity');
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Identity\Model\ResponseOfIdentity',
-                        $e->getResponseHeaders()
+                    $e->setResponseObject(
+                        $this->deserializeResponseBody(
+                            $e->getResponseBody(),
+                            '\NecLimDul\MarketoRest\Identity\Model\ResponseOfIdentity',
+                            $e->getResponseHeaders()
+                        )
                     );
-                    $e->setResponseObject($data);
                     break;
             }
             throw $e;
@@ -223,41 +219,25 @@ class IdentityApi
      */
     public function identityUsingGETAsyncWithHttpInfo($client_id, $client_secret, $grant_type, $partner_id = null)
     {
-        $returnType = '\NecLimDul\MarketoRest\Identity\Model\ResponseOfIdentity';
         $request = $this->identityUsingGETRequest($client_id, $client_secret, $grant_type, $partner_id);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
-                function ($response) use ($returnType) {
-                    $responseBody = $response->getBody();
-                    if ($returnType === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = $responseBody->getContents();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
+                function ($response) {
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Identity\Model\ResponseOfIdentity');
                 },
-                function ($exception) {
+                function (RequestException $exception) {
                     $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
                     throw new ApiException(
                         sprintf(
                             '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
                         ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        $response->getBody()
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
                     );
                 }
             );
@@ -274,101 +254,55 @@ class IdentityApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function identityUsingGETRequest($client_id, $client_secret, $grant_type, $partner_id = null)
+    public function identityUsingGETRequest($client_id, $client_secret, $grant_type, $partner_id = null)
     {
-        // verify the required parameter 'client_id' is set
-        if ($client_id === null || (is_array($client_id) && count($client_id) === 0)) {
+        // Verify the required parameter 'client_id' is set.
+        if ($client_id === null || (is_array($client_id) && empty($client_id))) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $client_id when calling identityUsingGET'
             );
         }
-        // verify the required parameter 'client_secret' is set
-        if ($client_secret === null || (is_array($client_secret) && count($client_secret) === 0)) {
+        // Verify the required parameter 'client_secret' is set.
+        if ($client_secret === null || (is_array($client_secret) && empty($client_secret))) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $client_secret when calling identityUsingGET'
             );
         }
-        // verify the required parameter 'grant_type' is set
-        if ($grant_type === null || (is_array($grant_type) && count($grant_type) === 0)) {
+        // Verify the required parameter 'grant_type' is set.
+        if ($grant_type === null || (is_array($grant_type) && empty($grant_type))) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $grant_type when calling identityUsingGET'
             );
         }
 
         $resourcePath = '/identity/oauth/token';
-        $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
-        $multipart = false;
 
-        // query params
-        if ($client_id !== null) {
-            $queryParams['client_id'] = ObjectSerializer::toQueryValue($client_id);
+        // Query parameters.
+        if (is_array($client_id)) {
+            $client_id = ObjectSerializer::serializeCollection($client_id, '', true);
         }
-        // query params
-        if ($client_secret !== null) {
-            $queryParams['client_secret'] = ObjectSerializer::toQueryValue($client_secret);
+        $queryParams['client_id'] = $client_id;
+        if (is_array($client_secret)) {
+            $client_secret = ObjectSerializer::serializeCollection($client_secret, '', true);
         }
-        // query params
-        if ($grant_type !== null) {
-            $queryParams['grant_type'] = ObjectSerializer::toQueryValue($grant_type);
+        $queryParams['client_secret'] = $client_secret;
+        if (is_array($grant_type)) {
+            $grant_type = ObjectSerializer::serializeCollection($grant_type, '', true);
         }
-        // query params
-        if ($partner_id !== null) {
-            $queryParams['partner_id'] = ObjectSerializer::toQueryValue($partner_id);
+        $queryParams['grant_type'] = $grant_type;
+        if (is_array($partner_id)) {
+            $partner_id = ObjectSerializer::serializeCollection($partner_id, '', true);
         }
-
-
-        // body params
-        $_tempBody = null;
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
-
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            // $_tempBody is the method argument, if present
-            $httpBody = $_tempBody;
-            
-            if($headers['Content-Type'] === 'application/json') {
-                // \stdClass has no __toString(), so we should encode it manually
-                if ($httpBody instanceof \stdClass) {
-                    $httpBody = \GuzzleHttp\json_encode($httpBody);
-                }
-                // array has no __toString(), so we should encode it manually
-                if(is_array($httpBody)) {
-                    $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($httpBody));
-                }
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $multipartContents[] = [
-                        'name' => $formParamName,
-                        'contents' => $formParamValue
-                    ];
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-
-            } else {
-                // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
-            }
-        }
+        $queryParams['partner_id'] = $partner_id;
+        // Remove any null (optional values).
+        $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json'],
+            ['application/json']
+        );
 
 
         $defaultHeaders = [];
@@ -382,7 +316,7 @@ class IdentityApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        $query = Query::build($queryParams);
         return new Request(
             'GET',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
@@ -409,4 +343,83 @@ class IdentityApi
 
         return $options;
     }
+
+    /**
+     * Make a request.
+     *
+     * @param \GuzzleHttp\Psr7\Request $request
+     *   An initialized request object.
+     *
+     * @throws \NecLimDul\MarketoRest\Identity\ApiException on non-2xx response
+     * @return \Psr\Http\Message\ResponseInterface
+     */
+    private function makeRequest(Request $request) {
+        $options = $this->createHttpClientOption();
+        try {
+           $response = $this->client->send($request, $options);
+        } catch (RequestException $e) {
+            $response = $e->getResponse();
+            throw new ApiException(
+                "[{$e->getCode()}] {$e->getMessage()}",
+                (int) $e->getCode(),
+                $response ? $response->getHeaders() : null,
+                $response ? (string) $response->getBody() : null
+            );
+        }
+
+        $statusCode = $response->getStatusCode();
+        if ($statusCode < 200 || $statusCode > 299) {
+            throw new ApiException(
+                sprintf(
+                    '[%d] Error connecting to the API (%s)',
+                    $statusCode,
+                    (string) $request->getUri()
+                ),
+                $statusCode,
+                $response->getHeaders(),
+                (string) $response->getBody()
+            );
+        }
+        return $response;
+    }
+
+    /**
+     * Convert a response to a return standard return array.
+     *
+     * @param \Psr\Http\Message\ResponseInterface $response
+     *   A response from a request with a serialized body.
+     * @param string $returnType
+     *   The return type.
+     *
+     * @return array
+     */
+    private function responseToReturn(ResponseInterface $response, string $returnType) {
+        return [
+            $this->deserializeResponseBody($response->getBody(), $returnType),
+            $response->getStatusCode(),
+            $response->getHeaders()
+        ];
+    }
+
+    /**
+     * Deserialize a response body.
+     *
+     * @param mixed $responseBody
+     *   The response body.
+     * @param string $returnType
+     *   The return type.
+     * @param array|null $headers
+     *   The a list of headers from the response.
+     * @return mixed
+     *   Either a string or a stream to be passed to a file object.
+     */
+    private function deserializeResponseBody($responseBody, $returnType, $headers = [])
+    {
+        return ObjectSerializer::deserialize(
+            $returnType === '\SplFileObject' ? $responseBody : (string) $responseBody,
+            $returnType,
+            $headers
+        );
+    }
+
 }

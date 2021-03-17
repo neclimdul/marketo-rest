@@ -1,7 +1,6 @@
 <?php
 /**
  * LandingPageTemplatesApiTest
- * PHP version 5
  *
  * @category Class
  * @package  NecLimDul\MarketoRest\Asset
@@ -26,14 +25,12 @@
  * Please update the test case below to test the endpoint.
  */
 
-// namespace NecLimDul\MarketoRest\Asset;
-namespace NecLimDul\MarketoRest\Asset\Model;
+namespace NecLimDul\MarketoRest\Asset\Test\Api;
 
+use NecLimDul\MarketoRest\Asset\Configuration;
+use NecLimDul\MarketoRest\Asset\ApiException;
+use NecLimDul\MarketoRest\Asset\ObjectSerializer;
 use PHPUnit\Framework\TestCase;
-
-use \NecLimDul\MarketoRest\Asset\Configuration;
-use \NecLimDul\MarketoRest\Asset\ApiException;
-use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * LandingPageTemplatesApiTest Class Doc Comment
@@ -42,152 +39,141 @@ use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
+ * @coversDefaultClass \NecLimDul\MarketoRest\Asset\Api\LandingPageTemplatesApi
  */
 class LandingPageTemplatesApiTest extends TestCase
 {
 
 
     /**
-     * Test case for approveLandingPageTemplateUsingPOST
-     *
      * Approve Landing Page Template Draft.
      *
+     * @covers ::approveLandingPageTemplateUsingPOST
      */
     public function testApproveLandingPageTemplateUsingPOST()
     {
-        //$class = new LandingPageTemplatesApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for cloneLpTemplateUsingPOST
-     *
      * Clone Landing Page Template.
      *
+     * @covers ::cloneLpTemplateUsingPOST
      */
     public function testCloneLpTemplateUsingPOST()
     {
-        //$class = new LandingPageTemplatesApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for createLpTemplateUsingPOST
-     *
      * Create Landing Page Template.
      *
+     * @covers ::createLpTemplateUsingPOST
      */
     public function testCreateLpTemplateUsingPOST()
     {
-        //$class = new LandingPageTemplatesApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for deleteLpTemplateUsingPOST
-     *
      * Delete Landing Page Template.
      *
+     * @covers ::deleteLpTemplateUsingPOST
      */
     public function testDeleteLpTemplateUsingPOST()
     {
-        //$class = new LandingPageTemplatesApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for discardDraftUsingPOST2
-     *
      * Discard Landing Page Template Draft.
      *
+     * @covers ::discardDraftUsingPOST2
      */
     public function testDiscardDraftUsingPOST2()
     {
-        //$class = new LandingPageTemplatesApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getLandingPageTemplateByIdUsingGET
-     *
      * Get Landing Page Template by Id.
      *
+     * @covers ::getLandingPageTemplateByIdUsingGET
      */
     public function testGetLandingPageTemplateByIdUsingGET()
     {
-        //$class = new LandingPageTemplatesApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getLandingPageTemplateByNameUsingGET
-     *
      * Get Landing Page Template by Name.
      *
+     * @covers ::getLandingPageTemplateByNameUsingGET
      */
     public function testGetLandingPageTemplateByNameUsingGET()
     {
-        //$class = new LandingPageTemplatesApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getLandingPageTemplateContentUsingGET
-     *
      * Get Landing Page Template Content.
      *
+     * @covers ::getLandingPageTemplateContentUsingGET
      */
     public function testGetLandingPageTemplateContentUsingGET()
     {
-        //$class = new LandingPageTemplatesApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getLandingPageTemplatesUsingGET
-     *
      * Get Landing Page Templates.
      *
+     * @covers ::getLandingPageTemplatesUsingGET
      */
     public function testGetLandingPageTemplatesUsingGET()
     {
-        //$class = new LandingPageTemplatesApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for unapproveLandingPageTemplateUsingPOST
-     *
      * Unapprove Landing Page Template.
      *
+     * @covers ::unapproveLandingPageTemplateUsingPOST
      */
     public function testUnapproveLandingPageTemplateUsingPOST()
     {
-        //$class = new LandingPageTemplatesApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for updateLandingPageTemplateContentUsingPOST
-     *
      * Update Landing Page Template Content.
      *
+     * @covers ::updateLandingPageTemplateContentUsingPOST
      */
     public function testUpdateLandingPageTemplateContentUsingPOST()
     {
-        //$class = new LandingPageTemplatesApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for updateLpTemplateUsingPOST
-     *
      * Update Landing Page Template Metadata.
      *
+     * @covers ::updateLpTemplateUsingPOST
      */
     public function testUpdateLpTemplateUsingPOST()
     {
-        //$class = new LandingPageTemplatesApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

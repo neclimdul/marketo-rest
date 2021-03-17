@@ -2,8 +2,6 @@
 /**
  * FormFieldVisibilityRuleResponseTest
  *
- * PHP version 7
- *
  * @category Class
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
@@ -27,8 +25,7 @@
  * Please update the test case below to test the model.
  */
 
-// namespace NecLimDul\MarketoRest\Asset;
-namespace NecLimDul\MarketoRest\Asset\Model;
+namespace NecLimDul\MarketoRest\Asset\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
@@ -49,8 +46,8 @@ class FormFieldVisibilityRuleResponseTest extends TestCase
      */
     public function testFormFieldVisibilityRuleResponse()
     {
-        $class = new FormFieldVisibilityRuleResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -58,8 +55,8 @@ class FormFieldVisibilityRuleResponseTest extends TestCase
      */
     public function testPropertyRuleType()
     {
-        $class = new FormFieldVisibilityRuleResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -67,7 +64,7 @@ class FormFieldVisibilityRuleResponseTest extends TestCase
      */
     public function testPropertyRules()
     {
-        $class = new FormFieldVisibilityRuleResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

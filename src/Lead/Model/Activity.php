@@ -2,8 +2,6 @@
 /**
  * Activity
  *
- * PHP version 5
- *
  * @category Class
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
@@ -39,10 +37,13 @@ use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
+ * @implements \ArrayAccess<TKey, TValue>
+ * @template TKey int|null
+ * @template TValue mixed|null
  */
-class Activity implements ModelInterface, ArrayAccess
+class Activity implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -72,6 +73,8 @@ class Activity implements ModelInterface, ArrayAccess
       * Array of property to format mappings. Used for (de)serialization
       *
       * @var string[]
+      * @phpstan-var array<string, string|null>
+      * @psalm-var array<string, string|null>
       */
     protected static $swaggerFormats = [
         'activity_date' => 'date-time',
@@ -86,14 +89,16 @@ class Activity implements ModelInterface, ArrayAccess
     ];
 
     /**
-      * Array of dynamic properties.
+      * Array of additional properties.
       *
       * @var mixed[]
       */
     protected $additionalProperties = [];
 
     /**
-     * {@inheritdoc}
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
      */
     public static function swaggerTypes()
     {
@@ -275,7 +280,7 @@ class Activity implements ModelInterface, ArrayAccess
      *
      * @param \DateTime $activity_date Datetime of the activity
      *
-     * @return $this
+     * @return self
      */
     public function setActivityDate($activity_date)
     {
@@ -299,7 +304,7 @@ class Activity implements ModelInterface, ArrayAccess
      *
      * @param int $activity_type_id Id of the activity type
      *
-     * @return $this
+     * @return self
      */
     public function setActivityTypeId($activity_type_id)
     {
@@ -323,7 +328,7 @@ class Activity implements ModelInterface, ArrayAccess
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\Attribute[] $attributes List of secondary attributes
      *
-     * @return $this
+     * @return self
      */
     public function setAttributes($attributes)
     {
@@ -347,7 +352,7 @@ class Activity implements ModelInterface, ArrayAccess
      *
      * @param int $campaign_id Id of the associated Smart Campaign, if applicable
      *
-     * @return $this
+     * @return self
      */
     public function setCampaignId($campaign_id)
     {
@@ -371,7 +376,7 @@ class Activity implements ModelInterface, ArrayAccess
      *
      * @param int $id Integer id of the activity.  For instances which have been migrated to Activity Service, this field may not be present, and should not be treated as unique.
      *
-     * @return $this
+     * @return self
      */
     public function setId($id)
     {
@@ -395,7 +400,7 @@ class Activity implements ModelInterface, ArrayAccess
      *
      * @param int $lead_id Id of the lead associated to the activity
      *
-     * @return $this
+     * @return self
      */
     public function setLeadId($lead_id)
     {
@@ -419,7 +424,7 @@ class Activity implements ModelInterface, ArrayAccess
      *
      * @param string $marketo_guid Unique id of the activity (128 character string)
      *
-     * @return $this
+     * @return self
      */
     public function setMarketoGuid($marketo_guid)
     {
@@ -443,7 +448,7 @@ class Activity implements ModelInterface, ArrayAccess
      *
      * @param string $primary_attribute_value Value of the primary attribute
      *
-     * @return $this
+     * @return self
      */
     public function setPrimaryAttributeValue($primary_attribute_value)
     {
@@ -467,7 +472,7 @@ class Activity implements ModelInterface, ArrayAccess
      *
      * @param int $primary_attribute_value_id Id of the primary attribute field
      *
-     * @return $this
+     * @return self
      */
     public function setPrimaryAttributeValueId($primary_attribute_value_id)
     {
@@ -525,7 +530,7 @@ class Activity implements ModelInterface, ArrayAccess
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**
@@ -549,19 +554,37 @@ class Activity implements ModelInterface, ArrayAccess
     }
 
     /**
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     *
+     * @return mixed Returns data which can be serialized by json_encode(), which is a value
+     * of any type other than a resource.
+     */
+    public function jsonSerialize()
+    {
+       return ObjectSerializer::sanitizeForSerialization($this);
+    }
+
+    /**
      * Gets the string presentation of the object
      *
      * @return string
      */
     public function __toString()
     {
-        if (defined('JSON_PRETTY_PRINT')) { // use JSON pretty print
-            return json_encode(
-                ObjectSerializer::sanitizeForSerialization($this),
-                JSON_PRETTY_PRINT
-            );
-        }
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
+    }
 
+    /**
+     * Gets a header-safe presentation of the object
+     *
+     * @return string
+     */
+    public function toHeaderValue()
+    {
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }

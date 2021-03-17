@@ -2,8 +2,6 @@
 /**
  * LandingPageContentResponse
  *
- * PHP version 5
- *
  * @category Class
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
@@ -39,10 +37,13 @@ use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
+ * @implements \ArrayAccess<TKey, TValue>
+ * @template TKey int|null
+ * @template TValue mixed|null
  */
-class LandingPageContentResponse implements ModelInterface, ArrayAccess
+class LandingPageContentResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -70,6 +71,8 @@ class LandingPageContentResponse implements ModelInterface, ArrayAccess
       * Array of property to format mappings. Used for (de)serialization
       *
       * @var string[]
+      * @phpstan-var array<string, string|null>
+      * @psalm-var array<string, string|null>
       */
     protected static $swaggerFormats = [
         'content' => null,
@@ -82,14 +85,16 @@ class LandingPageContentResponse implements ModelInterface, ArrayAccess
     ];
 
     /**
-      * Array of dynamic properties.
+      * Array of additional properties.
       *
       * @var mixed[]
       */
     protected $additionalProperties = [];
 
     /**
-     * {@inheritdoc}
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
      */
     public static function swaggerTypes()
     {
@@ -233,7 +238,8 @@ class LandingPageContentResponse implements ModelInterface, ArrayAccess
         $allowedValues = $this->getFollowupTypeAllowableValues();
         if (!is_null($this->container['followup_type']) && !in_array($this->container['followup_type'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
-                "invalid value for 'followup_type', must be one of '%s'",
+                "invalid value '%s' for 'followup_type', must be one of '%s'",
+                $this->container['followup_type'],
                 implode("', '", $allowedValues)
             );
         }
@@ -247,7 +253,8 @@ class LandingPageContentResponse implements ModelInterface, ArrayAccess
         $allowedValues = $this->getTypeAllowableValues();
         if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
-                "invalid value for 'type', must be one of '%s'",
+                "invalid value '%s' for 'type', must be one of '%s'",
+                $this->container['type'],
                 implode("', '", $allowedValues)
             );
         }
@@ -318,7 +325,7 @@ class LandingPageContentResponse implements ModelInterface, ArrayAccess
      *
      * @param object $content Content of the section.  Expected values vary based on type.  Image: An image URL.  RichText: HTML Content.  HTML: HTML Content.  Form: A form id.  Rectangle: Empty. Snippet: A snippet id.
      *
-     * @return $this
+     * @return self
      */
     public function setContent($content)
     {
@@ -342,7 +349,7 @@ class LandingPageContentResponse implements ModelInterface, ArrayAccess
      *
      * @param string $followup_type Follow-up behavior of a form.  Only available for form-type content sections.  Defaults to form defined behavior.
      *
-     * @return $this
+     * @return self
      */
     public function setFollowupType($followup_type)
     {
@@ -350,7 +357,8 @@ class LandingPageContentResponse implements ModelInterface, ArrayAccess
         if (!is_null($followup_type) && !in_array($followup_type, $allowedValues, true)) {
             throw new \InvalidArgumentException(
                 sprintf(
-                    "Invalid value for 'followup_type', must be one of '%s'",
+                    "Invalid value '%s' for 'followup_type', must be one of '%s'",
+                    $followup_type,
                     implode("', '", $allowedValues)
                 )
             );
@@ -375,7 +383,7 @@ class LandingPageContentResponse implements ModelInterface, ArrayAccess
      *
      * @param string $followup_value Where to follow-up on form submission.  When followupType is lp, accepts the integer id of a landing page.  For url, it accepts a url string.
      *
-     * @return $this
+     * @return self
      */
     public function setFollowupValue($followup_value)
     {
@@ -399,7 +407,7 @@ class LandingPageContentResponse implements ModelInterface, ArrayAccess
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\JsonNode $formatting_options formatting_options
      *
-     * @return $this
+     * @return self
      */
     public function setFormattingOptions($formatting_options)
     {
@@ -423,7 +431,7 @@ class LandingPageContentResponse implements ModelInterface, ArrayAccess
      *
      * @param object $id Id of the content section, may be a string or an int
      *
-     * @return $this
+     * @return self
      */
     public function setId($id)
     {
@@ -447,7 +455,7 @@ class LandingPageContentResponse implements ModelInterface, ArrayAccess
      *
      * @param int $index Index of the content section.  Index orients the elements from lowest to highest
      *
-     * @return $this
+     * @return self
      */
     public function setIndex($index)
     {
@@ -471,7 +479,7 @@ class LandingPageContentResponse implements ModelInterface, ArrayAccess
      *
      * @param string $type Type of content section
      *
-     * @return $this
+     * @return self
      */
     public function setType($type)
     {
@@ -479,7 +487,8 @@ class LandingPageContentResponse implements ModelInterface, ArrayAccess
         if (!in_array($type, $allowedValues, true)) {
             throw new \InvalidArgumentException(
                 sprintf(
-                    "Invalid value for 'type', must be one of '%s'",
+                    "Invalid value '%s' for 'type', must be one of '%s'",
+                    $type,
                     implode("', '", $allowedValues)
                 )
             );
@@ -538,7 +547,7 @@ class LandingPageContentResponse implements ModelInterface, ArrayAccess
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**
@@ -562,19 +571,37 @@ class LandingPageContentResponse implements ModelInterface, ArrayAccess
     }
 
     /**
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     *
+     * @return mixed Returns data which can be serialized by json_encode(), which is a value
+     * of any type other than a resource.
+     */
+    public function jsonSerialize()
+    {
+       return ObjectSerializer::sanitizeForSerialization($this);
+    }
+
+    /**
      * Gets the string presentation of the object
      *
      * @return string
      */
     public function __toString()
     {
-        if (defined('JSON_PRETTY_PRINT')) { // use JSON pretty print
-            return json_encode(
-                ObjectSerializer::sanitizeForSerialization($this),
-                JSON_PRETTY_PRINT
-            );
-        }
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
+    }
 
+    /**
+     * Gets a header-safe presentation of the object
+     *
+     * @return string
+     */
+    public function toHeaderValue()
+    {
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }

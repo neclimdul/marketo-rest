@@ -1,7 +1,6 @@
 <?php
 /**
  * FormsApiTest
- * PHP version 5
  *
  * @category Class
  * @package  NecLimDul\MarketoRest\Asset
@@ -26,14 +25,12 @@
  * Please update the test case below to test the endpoint.
  */
 
-// namespace NecLimDul\MarketoRest\Asset;
-namespace NecLimDul\MarketoRest\Asset\Model;
+namespace NecLimDul\MarketoRest\Asset\Test\Api;
 
+use NecLimDul\MarketoRest\Asset\Configuration;
+use NecLimDul\MarketoRest\Asset\ApiException;
+use NecLimDul\MarketoRest\Asset\ObjectSerializer;
 use PHPUnit\Framework\TestCase;
-
-use \NecLimDul\MarketoRest\Asset\Configuration;
-use \NecLimDul\MarketoRest\Asset\ApiException;
-use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * FormsApiTest Class Doc Comment
@@ -42,164 +39,152 @@ use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
+ * @coversDefaultClass \NecLimDul\MarketoRest\Asset\Api\FormsApi
  */
 class FormsApiTest extends TestCase
 {
 
 
     /**
-     * Test case for approveFromUsingPOST
-     *
      * Approve Form Draft.
      *
+     * @covers ::approveFromUsingPOST
      */
     public function testApproveFromUsingPOST()
     {
-        //$class = new FormsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for browseForms2UsingGET
-     *
      * Get Forms.
      *
+     * @covers ::browseForms2UsingGET
      */
     public function testBrowseForms2UsingGET()
     {
-        //$class = new FormsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for cloneLpFormsUsingPOST
-     *
      * Clone Form.
      *
+     * @covers ::cloneLpFormsUsingPOST
      */
     public function testCloneLpFormsUsingPOST()
     {
-        //$class = new FormsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for createLpFormsUsingPOST
-     *
      * Create Form.
      *
+     * @covers ::createLpFormsUsingPOST
      */
     public function testCreateLpFormsUsingPOST()
     {
-        //$class = new FormsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for deleteFormByIdUsingPOST
-     *
      * Delete Form.
      *
+     * @covers ::deleteFormByIdUsingPOST
      */
     public function testDeleteFormByIdUsingPOST()
     {
-        //$class = new FormsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for discardFormByIdUsingPOST
-     *
      * Discard Form Draft.
      *
+     * @covers ::discardFormByIdUsingPOST
      */
     public function testDiscardFormByIdUsingPOST()
     {
-        //$class = new FormsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getFormUsedByUsingGET
-     *
      * Get Form Used By.
      *
+     * @covers ::getFormUsedByUsingGET
      */
     public function testGetFormUsedByUsingGET()
     {
-        //$class = new FormsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getLpFormByIdUsingGET
-     *
      * Get Form By Id.
      *
+     * @covers ::getLpFormByIdUsingGET
      */
     public function testGetLpFormByIdUsingGET()
     {
-        //$class = new FormsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getLpFormByNameUsingGET
-     *
      * Get Form by Name.
      *
+     * @covers ::getLpFormByNameUsingGET
      */
     public function testGetLpFormByNameUsingGET()
     {
-        //$class = new FormsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getThankYouPageByIdUsingGET
-     *
      * Get Thank You Page by Form Id.
      *
+     * @covers ::getThankYouPageByIdUsingGET
      */
     public function testGetThankYouPageByIdUsingGET()
     {
-        //$class = new FormsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for updateFormSubmitButtonUsingPOST
-     *
      * Update Submit Button.
      *
+     * @covers ::updateFormSubmitButtonUsingPOST
      */
     public function testUpdateFormSubmitButtonUsingPOST()
     {
-        //$class = new FormsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for updateFormsUsingPOST
-     *
      * Update Form Metadata.
      *
+     * @covers ::updateFormsUsingPOST
      */
     public function testUpdateFormsUsingPOST()
     {
-        //$class = new FormsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for updateThankYouPageByIdUsingPOST
-     *
      * Update Thank You Page.
      *
+     * @covers ::updateThankYouPageByIdUsingPOST
      */
     public function testUpdateThankYouPageByIdUsingPOST()
     {
-        //$class = new FormsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

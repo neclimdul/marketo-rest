@@ -2,8 +2,6 @@
 /**
  * CreateProgramRequestTest
  *
- * PHP version 7
- *
  * @category Class
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
@@ -27,8 +25,7 @@
  * Please update the test case below to test the model.
  */
 
-// namespace NecLimDul\MarketoRest\Asset;
-namespace NecLimDul\MarketoRest\Asset\Model;
+namespace NecLimDul\MarketoRest\Asset\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
@@ -49,8 +46,8 @@ class CreateProgramRequestTest extends TestCase
      */
     public function testCreateProgramRequest()
     {
-        $class = new CreateProgramRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -58,8 +55,8 @@ class CreateProgramRequestTest extends TestCase
      */
     public function testPropertyChannel()
     {
-        $class = new CreateProgramRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -67,8 +64,8 @@ class CreateProgramRequestTest extends TestCase
      */
     public function testPropertyCosts()
     {
-        $class = new CreateProgramRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -76,8 +73,8 @@ class CreateProgramRequestTest extends TestCase
      */
     public function testPropertyDescription()
     {
-        $class = new CreateProgramRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -85,8 +82,8 @@ class CreateProgramRequestTest extends TestCase
      */
     public function testPropertyFolder()
     {
-        $class = new CreateProgramRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -94,8 +91,8 @@ class CreateProgramRequestTest extends TestCase
      */
     public function testPropertyName()
     {
-        $class = new CreateProgramRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -103,8 +100,8 @@ class CreateProgramRequestTest extends TestCase
      */
     public function testPropertyTags()
     {
-        $class = new CreateProgramRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -112,7 +109,7 @@ class CreateProgramRequestTest extends TestCase
      */
     public function testPropertyType()
     {
-        $class = new CreateProgramRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

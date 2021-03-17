@@ -1,6 +1,7 @@
 # SyncLeadRequest
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **action** | **string** | Type of sync operation to perform.  Defaults to createOrUpdate if unset | [optional] 
@@ -10,5 +11,3 @@ Name | Type | Description | Notes
 **partition_name** | **string** | Name of the partition to operate on, if applicable.  Should be set whenever possible, when interacting with an instance where partitions are enabled. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

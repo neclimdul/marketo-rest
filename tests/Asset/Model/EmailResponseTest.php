@@ -2,8 +2,6 @@
 /**
  * EmailResponseTest
  *
- * PHP version 7
- *
  * @category Class
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
@@ -27,8 +25,7 @@
  * Please update the test case below to test the model.
  */
 
-// namespace NecLimDul\MarketoRest\Asset;
-namespace NecLimDul\MarketoRest\Asset\Model;
+namespace NecLimDul\MarketoRest\Asset\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
@@ -49,8 +46,8 @@ class EmailResponseTest extends TestCase
      */
     public function testEmailResponse()
     {
-        $class = new EmailResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -58,8 +55,8 @@ class EmailResponseTest extends TestCase
      */
     public function testPropertyCreatedAt()
     {
-        $class = new EmailResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -67,8 +64,8 @@ class EmailResponseTest extends TestCase
      */
     public function testPropertyDescription()
     {
-        $class = new EmailResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -76,8 +73,8 @@ class EmailResponseTest extends TestCase
      */
     public function testPropertyFolder()
     {
-        $class = new EmailResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -85,8 +82,8 @@ class EmailResponseTest extends TestCase
      */
     public function testPropertyFromEmail()
     {
-        $class = new EmailResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -94,8 +91,8 @@ class EmailResponseTest extends TestCase
      */
     public function testPropertyFromName()
     {
-        $class = new EmailResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -103,8 +100,8 @@ class EmailResponseTest extends TestCase
      */
     public function testPropertyId()
     {
-        $class = new EmailResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -112,8 +109,8 @@ class EmailResponseTest extends TestCase
      */
     public function testPropertyName()
     {
-        $class = new EmailResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -121,8 +118,8 @@ class EmailResponseTest extends TestCase
      */
     public function testPropertyOperational()
     {
-        $class = new EmailResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -130,8 +127,8 @@ class EmailResponseTest extends TestCase
      */
     public function testPropertyPublishToMsi()
     {
-        $class = new EmailResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -139,8 +136,8 @@ class EmailResponseTest extends TestCase
      */
     public function testPropertyReplyEmail()
     {
-        $class = new EmailResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -148,8 +145,8 @@ class EmailResponseTest extends TestCase
      */
     public function testPropertyStatus()
     {
-        $class = new EmailResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -157,8 +154,8 @@ class EmailResponseTest extends TestCase
      */
     public function testPropertySubject()
     {
-        $class = new EmailResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -166,8 +163,8 @@ class EmailResponseTest extends TestCase
      */
     public function testPropertyTemplate()
     {
-        $class = new EmailResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -175,8 +172,8 @@ class EmailResponseTest extends TestCase
      */
     public function testPropertyTextOnly()
     {
-        $class = new EmailResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -184,8 +181,8 @@ class EmailResponseTest extends TestCase
      */
     public function testPropertyUpdatedAt()
     {
-        $class = new EmailResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -193,8 +190,8 @@ class EmailResponseTest extends TestCase
      */
     public function testPropertyUrl()
     {
-        $class = new EmailResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -202,8 +199,8 @@ class EmailResponseTest extends TestCase
      */
     public function testPropertyVersion()
     {
-        $class = new EmailResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -211,8 +208,8 @@ class EmailResponseTest extends TestCase
      */
     public function testPropertyWebView()
     {
-        $class = new EmailResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -220,8 +217,8 @@ class EmailResponseTest extends TestCase
      */
     public function testPropertyWorkspace()
     {
-        $class = new EmailResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -229,8 +226,8 @@ class EmailResponseTest extends TestCase
      */
     public function testPropertyAutoCopyToText()
     {
-        $class = new EmailResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -238,8 +235,8 @@ class EmailResponseTest extends TestCase
      */
     public function testPropertyPreHeader()
     {
-        $class = new EmailResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -247,7 +244,7 @@ class EmailResponseTest extends TestCase
      */
     public function testPropertyCcFields()
     {
-        $class = new EmailResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

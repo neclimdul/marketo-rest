@@ -2,8 +2,6 @@
 /**
  * JsonNodeTest
  *
- * PHP version 7
- *
  * @category Class
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
@@ -27,8 +25,7 @@
  * Please update the test case below to test the model.
  */
 
-// namespace NecLimDul\MarketoRest\Asset;
-namespace NecLimDul\MarketoRest\Asset\Model;
+namespace NecLimDul\MarketoRest\Asset\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
@@ -49,8 +46,8 @@ class JsonNodeTest extends TestCase
      */
     public function testJsonNode()
     {
-        $class = new JsonNode();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -58,8 +55,8 @@ class JsonNodeTest extends TestCase
      */
     public function testPropertyArray()
     {
-        $class = new JsonNode();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -67,8 +64,8 @@ class JsonNodeTest extends TestCase
      */
     public function testPropertyBigDecimal()
     {
-        $class = new JsonNode();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -76,8 +73,8 @@ class JsonNodeTest extends TestCase
      */
     public function testPropertyBigInteger()
     {
-        $class = new JsonNode();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -85,8 +82,8 @@ class JsonNodeTest extends TestCase
      */
     public function testPropertyBinary()
     {
-        $class = new JsonNode();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -94,8 +91,8 @@ class JsonNodeTest extends TestCase
      */
     public function testPropertyBoolean()
     {
-        $class = new JsonNode();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -103,8 +100,8 @@ class JsonNodeTest extends TestCase
      */
     public function testPropertyContainerNode()
     {
-        $class = new JsonNode();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -112,8 +109,8 @@ class JsonNodeTest extends TestCase
      */
     public function testPropertyDouble()
     {
-        $class = new JsonNode();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -121,8 +118,8 @@ class JsonNodeTest extends TestCase
      */
     public function testPropertyFloat()
     {
-        $class = new JsonNode();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -130,8 +127,8 @@ class JsonNodeTest extends TestCase
      */
     public function testPropertyFloatingPointNumber()
     {
-        $class = new JsonNode();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -139,8 +136,8 @@ class JsonNodeTest extends TestCase
      */
     public function testPropertyInt()
     {
-        $class = new JsonNode();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -148,8 +145,8 @@ class JsonNodeTest extends TestCase
      */
     public function testPropertyIntegralNumber()
     {
-        $class = new JsonNode();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -157,8 +154,8 @@ class JsonNodeTest extends TestCase
      */
     public function testPropertyLong()
     {
-        $class = new JsonNode();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -166,8 +163,8 @@ class JsonNodeTest extends TestCase
      */
     public function testPropertyMissingNode()
     {
-        $class = new JsonNode();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -175,8 +172,8 @@ class JsonNodeTest extends TestCase
      */
     public function testPropertyNodeType()
     {
-        $class = new JsonNode();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -184,8 +181,8 @@ class JsonNodeTest extends TestCase
      */
     public function testPropertyNull()
     {
-        $class = new JsonNode();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -193,8 +190,8 @@ class JsonNodeTest extends TestCase
      */
     public function testPropertyNumber()
     {
-        $class = new JsonNode();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -202,8 +199,8 @@ class JsonNodeTest extends TestCase
      */
     public function testPropertyObject()
     {
-        $class = new JsonNode();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -211,8 +208,8 @@ class JsonNodeTest extends TestCase
      */
     public function testPropertyPojo()
     {
-        $class = new JsonNode();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -220,8 +217,8 @@ class JsonNodeTest extends TestCase
      */
     public function testPropertyShort()
     {
-        $class = new JsonNode();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -229,8 +226,8 @@ class JsonNodeTest extends TestCase
      */
     public function testPropertyTextual()
     {
-        $class = new JsonNode();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -238,7 +235,7 @@ class JsonNodeTest extends TestCase
      */
     public function testPropertyValueNode()
     {
-        $class = new JsonNode();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

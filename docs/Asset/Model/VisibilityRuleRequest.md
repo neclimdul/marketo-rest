@@ -1,6 +1,7 @@
 # VisibilityRuleRequest
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **alt_label** | **string** |  | [optional] 
@@ -10,5 +11,3 @@ Name | Type | Description | Notes
 **values** | **string[]** | Comma-separated list of values to match against.  Valid for operators &#39;is&#39;, &#39;isNot&#39;, &#39;startsWith&#39;, &#39;notStartsWith&#39;, &#39;endsWith&#39;, &#39;notEndsWith&#39;, &#39;contains&#39;, and &#39;notContains&#39; | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

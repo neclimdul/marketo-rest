@@ -2,8 +2,6 @@
 /**
  * Program
  *
- * PHP version 5
- *
  * @category Class
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
@@ -39,10 +37,13 @@ use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
+ * @implements \ArrayAccess<TKey, TValue>
+ * @template TKey int|null
+ * @template TValue mixed|null
  */
-class Program implements ModelInterface, ArrayAccess
+class Program implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -72,6 +73,8 @@ class Program implements ModelInterface, ArrayAccess
       * Array of property to format mappings. Used for (de)serialization
       *
       * @var string[]
+      * @phpstan-var array<string, string|null>
+      * @psalm-var array<string, string|null>
       */
     protected static $swaggerFormats = [
         'id' => 'int64',
@@ -86,14 +89,16 @@ class Program implements ModelInterface, ArrayAccess
     ];
 
     /**
-      * Array of dynamic properties.
+      * Array of additional properties.
       *
       * @var mixed[]
       */
     protected $additionalProperties = [];
 
     /**
-     * {@inheritdoc}
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
      */
     public static function swaggerTypes()
     {
@@ -275,7 +280,7 @@ class Program implements ModelInterface, ArrayAccess
      *
      * @param int $id Unique integer id of a program record
      *
-     * @return $this
+     * @return self
      */
     public function setId($id)
     {
@@ -299,7 +304,7 @@ class Program implements ModelInterface, ArrayAccess
      *
      * @param bool $acquired_by Whether the lead was acquired by the parent program
      *
-     * @return $this
+     * @return self
      */
     public function setAcquiredBy($acquired_by)
     {
@@ -323,7 +328,7 @@ class Program implements ModelInterface, ArrayAccess
      *
      * @param bool $is_exhausted Whether the lead is currently exhausted in the stream, if applicable
      *
-     * @return $this
+     * @return self
      */
     public function setIsExhausted($is_exhausted)
     {
@@ -347,7 +352,7 @@ class Program implements ModelInterface, ArrayAccess
      *
      * @param string $membership_date Date the lead first became a member of the program
      *
-     * @return $this
+     * @return self
      */
     public function setMembershipDate($membership_date)
     {
@@ -371,7 +376,7 @@ class Program implements ModelInterface, ArrayAccess
      *
      * @param string $nurture_cadence Cadence of the parent stream if applicable
      *
-     * @return $this
+     * @return self
      */
     public function setNurtureCadence($nurture_cadence)
     {
@@ -395,7 +400,7 @@ class Program implements ModelInterface, ArrayAccess
      *
      * @param string $progression_status Program status of the lead in the parent program
      *
-     * @return $this
+     * @return self
      */
     public function setProgressionStatus($progression_status)
     {
@@ -419,7 +424,7 @@ class Program implements ModelInterface, ArrayAccess
      *
      * @param bool $reached_success Whether the lead is in a success-status in the parent program
      *
-     * @return $this
+     * @return self
      */
     public function setReachedSuccess($reached_success)
     {
@@ -443,7 +448,7 @@ class Program implements ModelInterface, ArrayAccess
      *
      * @param string $stream Stream that the lead is a member of, if the parent program is an engagement program
      *
-     * @return $this
+     * @return self
      */
     public function setStream($stream)
     {
@@ -467,7 +472,7 @@ class Program implements ModelInterface, ArrayAccess
      *
      * @param string $updated_at Datetime when the program was most recently updated
      *
-     * @return $this
+     * @return self
      */
     public function setUpdatedAt($updated_at)
     {
@@ -525,7 +530,7 @@ class Program implements ModelInterface, ArrayAccess
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**
@@ -549,19 +554,37 @@ class Program implements ModelInterface, ArrayAccess
     }
 
     /**
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     *
+     * @return mixed Returns data which can be serialized by json_encode(), which is a value
+     * of any type other than a resource.
+     */
+    public function jsonSerialize()
+    {
+       return ObjectSerializer::sanitizeForSerialization($this);
+    }
+
+    /**
      * Gets the string presentation of the object
      *
      * @return string
      */
     public function __toString()
     {
-        if (defined('JSON_PRETTY_PRINT')) { // use JSON pretty print
-            return json_encode(
-                ObjectSerializer::sanitizeForSerialization($this),
-                JSON_PRETTY_PRINT
-            );
-        }
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
+    }
 
+    /**
+     * Gets a header-safe presentation of the object
+     *
+     * @return string
+     */
+    public function toHeaderValue()
+    {
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }

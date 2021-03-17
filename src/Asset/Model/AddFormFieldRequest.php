@@ -2,8 +2,6 @@
 /**
  * AddFormFieldRequest
  *
- * PHP version 5
- *
  * @category Class
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
@@ -39,10 +37,13 @@ use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
+ * @implements \ArrayAccess<TKey, TValue>
+ * @template TKey int|null
+ * @template TValue mixed|null
  */
-class AddFormFieldRequest implements ModelInterface, ArrayAccess
+class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -83,6 +84,8 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess
       * Array of property to format mappings. Used for (de)serialization
       *
       * @var string[]
+      * @phpstan-var array<string, string|null>
+      * @psalm-var array<string, string|null>
       */
     protected static $swaggerFormats = [
         'blank_fields' => 'int32',
@@ -108,14 +111,16 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess
     ];
 
     /**
-      * Array of dynamic properties.
+      * Array of additional properties.
       *
       * @var mixed[]
       */
     protected $additionalProperties = [];
 
     /**
-     * {@inheritdoc}
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
      */
     public static function swaggerTypes()
     {
@@ -323,7 +328,7 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess
      *
      * @param int $blank_fields Number of blank fields to show when progressive profiling is enabled
      *
-     * @return $this
+     * @return self
      */
     public function setBlankFields($blank_fields)
     {
@@ -347,7 +352,7 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess
      *
      * @param string $default_value Optional default value for the field
      *
-     * @return $this
+     * @return self
      */
     public function setDefaultValue($default_value)
     {
@@ -371,7 +376,7 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess
      *
      * @param string $field_id Id of the field
      *
-     * @return $this
+     * @return self
      */
     public function setFieldId($field_id)
     {
@@ -395,7 +400,7 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess
      *
      * @param int $field_width Width of the input or select element
      *
-     * @return $this
+     * @return self
      */
     public function setFieldWidth($field_width)
     {
@@ -419,7 +424,7 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess
      *
      * @param bool $form_prefill Whether the field should prefill.  Default true
      *
-     * @return $this
+     * @return self
      */
     public function setFormPrefill($form_prefill)
     {
@@ -443,7 +448,7 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess
      *
      * @param string $hint_text Hint text for the field
      *
-     * @return $this
+     * @return self
      */
     public function setHintText($hint_text)
     {
@@ -467,7 +472,7 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess
      *
      * @param bool $initially_checked Whether the field should be checked upon loading.  Default false
      *
-     * @return $this
+     * @return self
      */
     public function setInitiallyChecked($initially_checked)
     {
@@ -491,7 +496,7 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess
      *
      * @param string $instructions Instructions for the field
      *
-     * @return $this
+     * @return self
      */
     public function setInstructions($instructions)
     {
@@ -515,7 +520,7 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess
      *
      * @param string $label Label of the field
      *
-     * @return $this
+     * @return self
      */
     public function setLabel($label)
     {
@@ -539,7 +544,7 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess
      *
      * @param bool $label_to_right Whether the field label should be displayed to the right of the input/select element. Default false
      *
-     * @return $this
+     * @return self
      */
     public function setLabelToRight($label_to_right)
     {
@@ -563,7 +568,7 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess
      *
      * @param int $label_width Width of the field label element
      *
-     * @return $this
+     * @return self
      */
     public function setLabelWidth($label_width)
     {
@@ -587,7 +592,7 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess
      *
      * @param string $mask_input Optional input mask for the field
      *
-     * @return $this
+     * @return self
      */
     public function setMaskInput($mask_input)
     {
@@ -611,7 +616,7 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess
      *
      * @param int $max_length Maximum length for text type fields
      *
-     * @return $this
+     * @return self
      */
     public function setMaxLength($max_length)
     {
@@ -635,7 +640,7 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess
      *
      * @param float $max_value Maximum value accepted by the field
      *
-     * @return $this
+     * @return self
      */
     public function setMaxValue($max_value)
     {
@@ -659,7 +664,7 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess
      *
      * @param float $min_value Minimum value accepted by the field
      *
-     * @return $this
+     * @return self
      */
     public function setMinValue($min_value)
     {
@@ -683,7 +688,7 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess
      *
      * @param bool $multi_select Whether the field should allow multiple selections. Default false
      *
-     * @return $this
+     * @return self
      */
     public function setMultiSelect($multi_select)
     {
@@ -707,7 +712,7 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess
      *
      * @param bool $required Whether the field is required to submit the form.  Default false
      *
-     * @return $this
+     * @return self
      */
     public function setRequired($required)
     {
@@ -731,7 +736,7 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess
      *
      * @param string $validation_message Validation message to display on failed validation
      *
-     * @return $this
+     * @return self
      */
     public function setValidationMessage($validation_message)
     {
@@ -755,7 +760,7 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess
      *
      * @param string $values Comma-separated list of accepted values for the field.  Only for select-field types
      *
-     * @return $this
+     * @return self
      */
     public function setValues($values)
     {
@@ -779,7 +784,7 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess
      *
      * @param int $visible_lines Number of lines to display for the field element
      *
-     * @return $this
+     * @return self
      */
     public function setVisibleLines($visible_lines)
     {
@@ -837,7 +842,7 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**
@@ -861,19 +866,37 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess
     }
 
     /**
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     *
+     * @return mixed Returns data which can be serialized by json_encode(), which is a value
+     * of any type other than a resource.
+     */
+    public function jsonSerialize()
+    {
+       return ObjectSerializer::sanitizeForSerialization($this);
+    }
+
+    /**
      * Gets the string presentation of the object
      *
      * @return string
      */
     public function __toString()
     {
-        if (defined('JSON_PRETTY_PRINT')) { // use JSON pretty print
-            return json_encode(
-                ObjectSerializer::sanitizeForSerialization($this),
-                JSON_PRETTY_PRINT
-            );
-        }
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
+    }
 
+    /**
+     * Gets a header-safe presentation of the object
+     *
+     * @return string
+     */
+    public function toHeaderValue()
+    {
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }

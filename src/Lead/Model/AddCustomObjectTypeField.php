@@ -2,8 +2,6 @@
 /**
  * AddCustomObjectTypeField
  *
- * PHP version 5
- *
  * @category Class
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
@@ -39,10 +37,13 @@ use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
+ * @implements \ArrayAccess<TKey, TValue>
+ * @template TKey int|null
+ * @template TValue mixed|null
  */
-class AddCustomObjectTypeField implements ModelInterface, ArrayAccess
+class AddCustomObjectTypeField implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -69,6 +70,8 @@ class AddCustomObjectTypeField implements ModelInterface, ArrayAccess
       * Array of property to format mappings. Used for (de)serialization
       *
       * @var string[]
+      * @phpstan-var array<string, string|null>
+      * @psalm-var array<string, string|null>
       */
     protected static $swaggerFormats = [
         'name' => null,
@@ -80,14 +83,16 @@ class AddCustomObjectTypeField implements ModelInterface, ArrayAccess
     ];
 
     /**
-      * Array of dynamic properties.
+      * Array of additional properties.
       *
       * @var mixed[]
       */
     protected $additionalProperties = [];
 
     /**
-     * {@inheritdoc}
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
      */
     public static function swaggerTypes()
     {
@@ -245,7 +250,7 @@ class AddCustomObjectTypeField implements ModelInterface, ArrayAccess
      *
      * @param string $name API Name of custom object field
      *
-     * @return $this
+     * @return self
      */
     public function setName($name)
     {
@@ -269,7 +274,7 @@ class AddCustomObjectTypeField implements ModelInterface, ArrayAccess
      *
      * @param string $display_name UI display-name of the custom object field
      *
-     * @return $this
+     * @return self
      */
     public function setDisplayName($display_name)
     {
@@ -293,7 +298,7 @@ class AddCustomObjectTypeField implements ModelInterface, ArrayAccess
      *
      * @param string $data_type Datatype of the custom object field
      *
-     * @return $this
+     * @return self
      */
     public function setDataType($data_type)
     {
@@ -317,7 +322,7 @@ class AddCustomObjectTypeField implements ModelInterface, ArrayAccess
      *
      * @param string $description Description of the custom object field
      *
-     * @return $this
+     * @return self
      */
     public function setDescription($description)
     {
@@ -341,7 +346,7 @@ class AddCustomObjectTypeField implements ModelInterface, ArrayAccess
      *
      * @param bool $is_dedupe_field Set to true to enable field as unique identifier for deduplicating records.  Default is false
      *
-     * @return $this
+     * @return self
      */
     public function setIsDedupeField($is_dedupe_field)
     {
@@ -365,7 +370,7 @@ class AddCustomObjectTypeField implements ModelInterface, ArrayAccess
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\CustomObjectTypeFieldRelatedTo $related_to Define custom object link field
      *
-     * @return $this
+     * @return self
      */
     public function setRelatedTo($related_to)
     {
@@ -423,7 +428,7 @@ class AddCustomObjectTypeField implements ModelInterface, ArrayAccess
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**
@@ -447,19 +452,37 @@ class AddCustomObjectTypeField implements ModelInterface, ArrayAccess
     }
 
     /**
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     *
+     * @return mixed Returns data which can be serialized by json_encode(), which is a value
+     * of any type other than a resource.
+     */
+    public function jsonSerialize()
+    {
+       return ObjectSerializer::sanitizeForSerialization($this);
+    }
+
+    /**
      * Gets the string presentation of the object
      *
      * @return string
      */
     public function __toString()
     {
-        if (defined('JSON_PRETTY_PRINT')) { // use JSON pretty print
-            return json_encode(
-                ObjectSerializer::sanitizeForSerialization($this),
-                JSON_PRETTY_PRINT
-            );
-        }
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
+    }
 
+    /**
+     * Gets a header-safe presentation of the object
+     *
+     * @return string
+     */
+    public function toHeaderValue()
+    {
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }

@@ -1,7 +1,6 @@
 <?php
 /**
  * CampaignsApiTest
- * PHP version 5
  *
  * @category Class
  * @package  NecLimDul\MarketoRest\Lead
@@ -26,14 +25,12 @@
  * Please update the test case below to test the endpoint.
  */
 
-// namespace NecLimDul\MarketoRest\Lead;
-namespace NecLimDul\MarketoRest\Lead\Model;
+namespace NecLimDul\MarketoRest\Lead\Test\Api;
 
+use NecLimDul\MarketoRest\Lead\Configuration;
+use NecLimDul\MarketoRest\Lead\ApiException;
+use NecLimDul\MarketoRest\Lead\ObjectSerializer;
 use PHPUnit\Framework\TestCase;
-
-use \NecLimDul\MarketoRest\Lead\Configuration;
-use \NecLimDul\MarketoRest\Lead\ApiException;
-use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * CampaignsApiTest Class Doc Comment
@@ -42,56 +39,53 @@ use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
+ * @coversDefaultClass \NecLimDul\MarketoRest\Lead\Api\CampaignsApi
  */
 class CampaignsApiTest extends TestCase
 {
 
 
     /**
-     * Test case for getCampaignByIdUsingGET
-     *
      * Get Campaign By Id.
      *
+     * @covers ::getCampaignByIdUsingGET
      */
     public function testGetCampaignByIdUsingGET()
     {
-        //$class = new CampaignsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getCampaignsUsingGET
-     *
      * Get Campaigns.
      *
+     * @covers ::getCampaignsUsingGET
      */
     public function testGetCampaignsUsingGET()
     {
-        //$class = new CampaignsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for scheduleCampaignUsingPOST
-     *
      * Schedule Campaign.
      *
+     * @covers ::scheduleCampaignUsingPOST
      */
     public function testScheduleCampaignUsingPOST()
     {
-        //$class = new CampaignsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for triggerCampaignUsingPOST
-     *
      * Request Campaign.
      *
+     * @covers ::triggerCampaignUsingPOST
      */
     public function testTriggerCampaignUsingPOST()
     {
-        //$class = new CampaignsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

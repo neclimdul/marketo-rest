@@ -2,8 +2,6 @@
 /**
  * ThankYouPageRequest
  *
- * PHP version 5
- *
  * @category Class
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
@@ -39,10 +37,13 @@ use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
+ * @implements \ArrayAccess<TKey, TValue>
+ * @template TKey int|null
+ * @template TValue mixed|null
  */
-class ThankYouPageRequest implements ModelInterface, ArrayAccess
+class ThankYouPageRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -69,6 +70,8 @@ class ThankYouPageRequest implements ModelInterface, ArrayAccess
       * Array of property to format mappings. Used for (de)serialization
       *
       * @var string[]
+      * @phpstan-var array<string, string|null>
+      * @psalm-var array<string, string|null>
       */
     protected static $swaggerFormats = [
         'default' => null,
@@ -80,14 +83,16 @@ class ThankYouPageRequest implements ModelInterface, ArrayAccess
     ];
 
     /**
-      * Array of dynamic properties.
+      * Array of additional properties.
       *
       * @var mixed[]
       */
     protected $additionalProperties = [];
 
     /**
-     * {@inheritdoc}
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
      */
     public static function swaggerTypes()
     {
@@ -251,7 +256,7 @@ class ThankYouPageRequest implements ModelInterface, ArrayAccess
      *
      * @param bool $default When true, this is the default rule, and will be applied when a user does not qualify for any of the other rules
      *
-     * @return $this
+     * @return self
      */
     public function setDefault($default)
     {
@@ -275,7 +280,7 @@ class ThankYouPageRequest implements ModelInterface, ArrayAccess
      *
      * @param string $followup_type Type of followup.  When set to url, will follow to the url set in followupValue.  When set to lp, will follow to the Landing page with the id given in followupValue
      *
-     * @return $this
+     * @return self
      */
     public function setFollowupType($followup_type)
     {
@@ -299,7 +304,7 @@ class ThankYouPageRequest implements ModelInterface, ArrayAccess
      *
      * @param string $followup_value Where to follow to on submission.  Given as a URL or and Integer depending on followupType
      *
-     * @return $this
+     * @return self
      */
     public function setFollowupValue($followup_value)
     {
@@ -323,7 +328,7 @@ class ThankYouPageRequest implements ModelInterface, ArrayAccess
      *
      * @param string $operator Operator to evaluate aginst the subject field
      *
-     * @return $this
+     * @return self
      */
     public function setOperator($operator)
     {
@@ -347,7 +352,7 @@ class ThankYouPageRequest implements ModelInterface, ArrayAccess
      *
      * @param string $subject_field Field to apply to operator to
      *
-     * @return $this
+     * @return self
      */
     public function setSubjectField($subject_field)
     {
@@ -371,7 +376,7 @@ class ThankYouPageRequest implements ModelInterface, ArrayAccess
      *
      * @param string[] $values Comma-separated list of values to compare to with the operator
      *
-     * @return $this
+     * @return self
      */
     public function setValues($values)
     {
@@ -429,7 +434,7 @@ class ThankYouPageRequest implements ModelInterface, ArrayAccess
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**
@@ -453,19 +458,37 @@ class ThankYouPageRequest implements ModelInterface, ArrayAccess
     }
 
     /**
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     *
+     * @return mixed Returns data which can be serialized by json_encode(), which is a value
+     * of any type other than a resource.
+     */
+    public function jsonSerialize()
+    {
+       return ObjectSerializer::sanitizeForSerialization($this);
+    }
+
+    /**
      * Gets the string presentation of the object
      *
      * @return string
      */
     public function __toString()
     {
-        if (defined('JSON_PRETTY_PRINT')) { // use JSON pretty print
-            return json_encode(
-                ObjectSerializer::sanitizeForSerialization($this),
-                JSON_PRETTY_PRINT
-            );
-        }
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
+    }
 
+    /**
+     * Gets a header-safe presentation of the object
+     *
+     * @return string
+     */
+    public function toHeaderValue()
+    {
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }

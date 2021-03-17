@@ -2,8 +2,6 @@
 /**
  * ObjectRelationTest
  *
- * PHP version 7
- *
  * @category Class
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
@@ -27,8 +25,7 @@
  * Please update the test case below to test the model.
  */
 
-// namespace NecLimDul\MarketoRest\Lead;
-namespace NecLimDul\MarketoRest\Lead\Model;
+namespace NecLimDul\MarketoRest\Lead\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
@@ -49,8 +46,8 @@ class ObjectRelationTest extends TestCase
      */
     public function testObjectRelation()
     {
-        $class = new ObjectRelation();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -58,8 +55,8 @@ class ObjectRelationTest extends TestCase
      */
     public function testPropertyField()
     {
-        $class = new ObjectRelation();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -67,8 +64,8 @@ class ObjectRelationTest extends TestCase
      */
     public function testPropertyRelatedTo()
     {
-        $class = new ObjectRelation();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -76,7 +73,7 @@ class ObjectRelationTest extends TestCase
      */
     public function testPropertyType()
     {
-        $class = new ObjectRelation();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

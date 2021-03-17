@@ -2,8 +2,6 @@
 /**
  * UpdateLandingPageRequest
  *
- * PHP version 5
- *
  * @category Class
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
@@ -39,10 +37,13 @@ use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
+ * @implements \ArrayAccess<TKey, TValue>
+ * @template TKey int|null
+ * @template TValue mixed|null
  */
-class UpdateLandingPageRequest implements ModelInterface, ArrayAccess
+class UpdateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -74,6 +75,8 @@ class UpdateLandingPageRequest implements ModelInterface, ArrayAccess
       * Array of property to format mappings. Used for (de)serialization
       *
       * @var string[]
+      * @phpstan-var array<string, string|null>
+      * @psalm-var array<string, string|null>
       */
     protected static $swaggerFormats = [
         'custom_head_html' => null,
@@ -90,14 +93,16 @@ class UpdateLandingPageRequest implements ModelInterface, ArrayAccess
     ];
 
     /**
-      * Array of dynamic properties.
+      * Array of additional properties.
       *
       * @var mixed[]
       */
     protected $additionalProperties = [];
 
     /**
-     * {@inheritdoc}
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
      */
     public static function swaggerTypes()
     {
@@ -266,7 +271,7 @@ class UpdateLandingPageRequest implements ModelInterface, ArrayAccess
      *
      * @param string $custom_head_html Any custom HTML to embed in the <head> tag of the page
      *
-     * @return $this
+     * @return self
      */
     public function setCustomHeadHtml($custom_head_html)
     {
@@ -290,7 +295,7 @@ class UpdateLandingPageRequest implements ModelInterface, ArrayAccess
      *
      * @param string $description Description of the asset
      *
-     * @return $this
+     * @return self
      */
     public function setDescription($description)
     {
@@ -314,7 +319,7 @@ class UpdateLandingPageRequest implements ModelInterface, ArrayAccess
      *
      * @param string $facebook_og_tags Any OpenGraph meta tags to apply to the page
      *
-     * @return $this
+     * @return self
      */
     public function setFacebookOgTags($facebook_og_tags)
     {
@@ -338,7 +343,7 @@ class UpdateLandingPageRequest implements ModelInterface, ArrayAccess
      *
      * @param string $keywords keywords
      *
-     * @return $this
+     * @return self
      */
     public function setKeywords($keywords)
     {
@@ -362,7 +367,7 @@ class UpdateLandingPageRequest implements ModelInterface, ArrayAccess
      *
      * @param string $meta_tags_description Meta description property of the page
      *
-     * @return $this
+     * @return self
      */
     public function setMetaTagsDescription($meta_tags_description)
     {
@@ -386,7 +391,7 @@ class UpdateLandingPageRequest implements ModelInterface, ArrayAccess
      *
      * @param bool $mobile_enabled Whether the page has mobile viewing enabled.  Free-form pages only.  Default false
      *
-     * @return $this
+     * @return self
      */
     public function setMobileEnabled($mobile_enabled)
     {
@@ -410,7 +415,7 @@ class UpdateLandingPageRequest implements ModelInterface, ArrayAccess
      *
      * @param string $name Name of the landing page
      *
-     * @return $this
+     * @return self
      */
     public function setName($name)
     {
@@ -434,7 +439,7 @@ class UpdateLandingPageRequest implements ModelInterface, ArrayAccess
      *
      * @param string $robots Robots directives to apply to the pages meta tags
      *
-     * @return $this
+     * @return self
      */
     public function setRobots($robots)
     {
@@ -458,7 +463,7 @@ class UpdateLandingPageRequest implements ModelInterface, ArrayAccess
      *
      * @param string $style_over_ride Additional CSS styles to append to the landing page <head>
      *
-     * @return $this
+     * @return self
      */
     public function setStyleOverRide($style_over_ride)
     {
@@ -482,7 +487,7 @@ class UpdateLandingPageRequest implements ModelInterface, ArrayAccess
      *
      * @param string $title Title element of the landing page
      *
-     * @return $this
+     * @return self
      */
     public function setTitle($title)
     {
@@ -506,7 +511,7 @@ class UpdateLandingPageRequest implements ModelInterface, ArrayAccess
      *
      * @param string $url_page_name URL path of the page.  Derived from the name field if unset
      *
-     * @return $this
+     * @return self
      */
     public function setUrlPageName($url_page_name)
     {
@@ -564,7 +569,7 @@ class UpdateLandingPageRequest implements ModelInterface, ArrayAccess
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**
@@ -588,19 +593,37 @@ class UpdateLandingPageRequest implements ModelInterface, ArrayAccess
     }
 
     /**
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     *
+     * @return mixed Returns data which can be serialized by json_encode(), which is a value
+     * of any type other than a resource.
+     */
+    public function jsonSerialize()
+    {
+       return ObjectSerializer::sanitizeForSerialization($this);
+    }
+
+    /**
      * Gets the string presentation of the object
      *
      * @return string
      */
     public function __toString()
     {
-        if (defined('JSON_PRETTY_PRINT')) { // use JSON pretty print
-            return json_encode(
-                ObjectSerializer::sanitizeForSerialization($this),
-                JSON_PRETTY_PRINT
-            );
-        }
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
+    }
 
+    /**
+     * Gets a header-safe presentation of the object
+     *
+     * @return string
+     */
+    public function toHeaderValue()
+    {
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }

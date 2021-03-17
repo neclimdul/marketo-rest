@@ -2,8 +2,6 @@
 /**
  * UpdateEmailComponentContentRequestTest
  *
- * PHP version 7
- *
  * @category Class
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
@@ -27,8 +25,7 @@
  * Please update the test case below to test the model.
  */
 
-// namespace NecLimDul\MarketoRest\Asset;
-namespace NecLimDul\MarketoRest\Asset\Model;
+namespace NecLimDul\MarketoRest\Asset\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
@@ -49,8 +46,8 @@ class UpdateEmailComponentContentRequestTest extends TestCase
      */
     public function testUpdateEmailComponentContentRequest()
     {
-        $class = new UpdateEmailComponentContentRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -58,8 +55,8 @@ class UpdateEmailComponentContentRequestTest extends TestCase
      */
     public function testPropertyAltText()
     {
-        $class = new UpdateEmailComponentContentRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -67,8 +64,8 @@ class UpdateEmailComponentContentRequestTest extends TestCase
      */
     public function testPropertyExternalUrl()
     {
-        $class = new UpdateEmailComponentContentRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -76,8 +73,8 @@ class UpdateEmailComponentContentRequestTest extends TestCase
      */
     public function testPropertyHeight()
     {
-        $class = new UpdateEmailComponentContentRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -85,8 +82,8 @@ class UpdateEmailComponentContentRequestTest extends TestCase
      */
     public function testPropertyImage()
     {
-        $class = new UpdateEmailComponentContentRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -94,8 +91,8 @@ class UpdateEmailComponentContentRequestTest extends TestCase
      */
     public function testPropertyLinkUrl()
     {
-        $class = new UpdateEmailComponentContentRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -103,8 +100,8 @@ class UpdateEmailComponentContentRequestTest extends TestCase
      */
     public function testPropertyOverWrite()
     {
-        $class = new UpdateEmailComponentContentRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -112,8 +109,8 @@ class UpdateEmailComponentContentRequestTest extends TestCase
      */
     public function testPropertyStyle()
     {
-        $class = new UpdateEmailComponentContentRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -121,8 +118,8 @@ class UpdateEmailComponentContentRequestTest extends TestCase
      */
     public function testPropertyTextValue()
     {
-        $class = new UpdateEmailComponentContentRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -130,8 +127,8 @@ class UpdateEmailComponentContentRequestTest extends TestCase
      */
     public function testPropertyType()
     {
-        $class = new UpdateEmailComponentContentRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -139,8 +136,8 @@ class UpdateEmailComponentContentRequestTest extends TestCase
      */
     public function testPropertyValue()
     {
-        $class = new UpdateEmailComponentContentRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -148,8 +145,8 @@ class UpdateEmailComponentContentRequestTest extends TestCase
      */
     public function testPropertyVideoUrl()
     {
-        $class = new UpdateEmailComponentContentRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -157,7 +154,7 @@ class UpdateEmailComponentContentRequestTest extends TestCase
      */
     public function testPropertyWidth()
     {
-        $class = new UpdateEmailComponentContentRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

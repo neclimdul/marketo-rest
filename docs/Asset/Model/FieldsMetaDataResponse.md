@@ -1,6 +1,7 @@
 # FieldsMetaDataResponse
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **data_type** | **string** | Type of field | [optional] 
@@ -23,5 +24,3 @@ Name | Type | Description | Notes
 **visible_rows** | **int** | Number of rows visible for progressive profiling | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

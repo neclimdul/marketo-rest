@@ -2,8 +2,6 @@
 /**
  * ResponseOfIdentityTest
  *
- * PHP version 7
- *
  * @category Class
  * @package  NecLimDul\MarketoRest\Identity
  * @author   Swagger Codegen team
@@ -27,8 +25,7 @@
  * Please update the test case below to test the model.
  */
 
-// namespace NecLimDul\MarketoRest\Identity;
-namespace NecLimDul\MarketoRest\Identity\Model;
+namespace NecLimDul\MarketoRest\Identity\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
@@ -49,8 +46,8 @@ class ResponseOfIdentityTest extends TestCase
      */
     public function testResponseOfIdentity()
     {
-        $class = new ResponseOfIdentity();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -58,8 +55,8 @@ class ResponseOfIdentityTest extends TestCase
      */
     public function testPropertyAccessToken()
     {
-        $class = new ResponseOfIdentity();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -67,8 +64,8 @@ class ResponseOfIdentityTest extends TestCase
      */
     public function testPropertyScope()
     {
-        $class = new ResponseOfIdentity();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -76,8 +73,8 @@ class ResponseOfIdentityTest extends TestCase
      */
     public function testPropertyExpiresIn()
     {
-        $class = new ResponseOfIdentity();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -85,7 +82,7 @@ class ResponseOfIdentityTest extends TestCase
      */
     public function testPropertyTokenType()
     {
-        $class = new ResponseOfIdentity();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

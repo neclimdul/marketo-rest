@@ -2,8 +2,6 @@
 /**
  * LpFormResponseTest
  *
- * PHP version 7
- *
  * @category Class
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
@@ -27,8 +25,7 @@
  * Please update the test case below to test the model.
  */
 
-// namespace NecLimDul\MarketoRest\Asset;
-namespace NecLimDul\MarketoRest\Asset\Model;
+namespace NecLimDul\MarketoRest\Asset\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
@@ -49,8 +46,8 @@ class LpFormResponseTest extends TestCase
      */
     public function testLpFormResponse()
     {
-        $class = new LpFormResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -58,8 +55,8 @@ class LpFormResponseTest extends TestCase
      */
     public function testPropertyButtonLabel()
     {
-        $class = new LpFormResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -67,8 +64,8 @@ class LpFormResponseTest extends TestCase
      */
     public function testPropertyButtonLocation()
     {
-        $class = new LpFormResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -76,8 +73,8 @@ class LpFormResponseTest extends TestCase
      */
     public function testPropertyCreatedAt()
     {
-        $class = new LpFormResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -85,8 +82,8 @@ class LpFormResponseTest extends TestCase
      */
     public function testPropertyDescription()
     {
-        $class = new LpFormResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -94,8 +91,8 @@ class LpFormResponseTest extends TestCase
      */
     public function testPropertyFolder()
     {
-        $class = new LpFormResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -103,8 +100,8 @@ class LpFormResponseTest extends TestCase
      */
     public function testPropertyFontFamily()
     {
-        $class = new LpFormResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -112,8 +109,8 @@ class LpFormResponseTest extends TestCase
      */
     public function testPropertyFontSize()
     {
-        $class = new LpFormResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -121,8 +118,8 @@ class LpFormResponseTest extends TestCase
      */
     public function testPropertyId()
     {
-        $class = new LpFormResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -130,8 +127,8 @@ class LpFormResponseTest extends TestCase
      */
     public function testPropertyKnownVisitor()
     {
-        $class = new LpFormResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -139,8 +136,8 @@ class LpFormResponseTest extends TestCase
      */
     public function testPropertyLabelPosition()
     {
-        $class = new LpFormResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -148,8 +145,8 @@ class LpFormResponseTest extends TestCase
      */
     public function testPropertyLanguage()
     {
-        $class = new LpFormResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -157,8 +154,8 @@ class LpFormResponseTest extends TestCase
      */
     public function testPropertyLocale()
     {
-        $class = new LpFormResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -166,8 +163,8 @@ class LpFormResponseTest extends TestCase
      */
     public function testPropertyName()
     {
-        $class = new LpFormResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -175,8 +172,8 @@ class LpFormResponseTest extends TestCase
      */
     public function testPropertyProgressiveProfiling()
     {
-        $class = new LpFormResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -184,8 +181,8 @@ class LpFormResponseTest extends TestCase
      */
     public function testPropertyStatus()
     {
-        $class = new LpFormResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -193,8 +190,8 @@ class LpFormResponseTest extends TestCase
      */
     public function testPropertyThankYouList()
     {
-        $class = new LpFormResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -202,8 +199,8 @@ class LpFormResponseTest extends TestCase
      */
     public function testPropertyTheme()
     {
-        $class = new LpFormResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -211,8 +208,8 @@ class LpFormResponseTest extends TestCase
      */
     public function testPropertyUpdatedAt()
     {
-        $class = new LpFormResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -220,8 +217,8 @@ class LpFormResponseTest extends TestCase
      */
     public function testPropertyUrl()
     {
-        $class = new LpFormResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -229,7 +226,7 @@ class LpFormResponseTest extends TestCase
      */
     public function testPropertyWaitingLabel()
     {
-        $class = new LpFormResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

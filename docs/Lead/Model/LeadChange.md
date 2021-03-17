@@ -1,6 +1,7 @@
 # LeadChange
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **activity_date** | [**\DateTime**](\DateTime.md) | Datetime of the activity | 
@@ -13,5 +14,3 @@ Name | Type | Description | Notes
 **marketo_guid** | **string** | Unique id of the activity (128 character string) | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

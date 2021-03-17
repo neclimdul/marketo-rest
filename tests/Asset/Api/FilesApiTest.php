@@ -1,7 +1,6 @@
 <?php
 /**
  * FilesApiTest
- * PHP version 5
  *
  * @category Class
  * @package  NecLimDul\MarketoRest\Asset
@@ -26,14 +25,12 @@
  * Please update the test case below to test the endpoint.
  */
 
-// namespace NecLimDul\MarketoRest\Asset;
-namespace NecLimDul\MarketoRest\Asset\Model;
+namespace NecLimDul\MarketoRest\Asset\Test\Api;
 
+use NecLimDul\MarketoRest\Asset\Configuration;
+use NecLimDul\MarketoRest\Asset\ApiException;
+use NecLimDul\MarketoRest\Asset\ObjectSerializer;
 use PHPUnit\Framework\TestCase;
-
-use \NecLimDul\MarketoRest\Asset\Configuration;
-use \NecLimDul\MarketoRest\Asset\ApiException;
-use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * FilesApiTest Class Doc Comment
@@ -42,56 +39,53 @@ use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
+ * @coversDefaultClass \NecLimDul\MarketoRest\Asset\Api\FilesApi
  */
 class FilesApiTest extends TestCase
 {
 
 
     /**
-     * Test case for createFileUsingPOST
-     *
      * Create File.
      *
+     * @covers ::createFileUsingPOST
      */
     public function testCreateFileUsingPOST()
     {
-        //$class = new FilesApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getFileByIdUsingGET
-     *
      * Get File by Id.
      *
+     * @covers ::getFileByIdUsingGET
      */
     public function testGetFileByIdUsingGET()
     {
-        //$class = new FilesApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getFileByNameUsingGET
-     *
      * Get File by Name.
      *
+     * @covers ::getFileByNameUsingGET
      */
     public function testGetFileByNameUsingGET()
     {
-        //$class = new FilesApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getFilesUsingGET
-     *
      * Get Files.
      *
+     * @covers ::getFilesUsingGET
      */
     public function testGetFilesUsingGET()
     {
-        //$class = new FilesApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

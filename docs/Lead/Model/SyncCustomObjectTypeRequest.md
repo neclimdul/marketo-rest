@@ -1,6 +1,7 @@
 # SyncCustomObjectTypeRequest
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **action** | **string** | Type of sync operation to perform.  Default is createOrUpdate. | [optional] 
@@ -11,5 +12,3 @@ Name | Type | Description | Notes
 **show_in_lead_detail** | **bool** | Whether to show custom object type in lead detail of UI.  Default is false | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

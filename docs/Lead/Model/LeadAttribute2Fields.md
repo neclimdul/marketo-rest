@@ -1,6 +1,7 @@
 # LeadAttribute2Fields
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **string** | REST API name of field | 
@@ -11,5 +12,3 @@ Name | Type | Description | Notes
 **crm_managed** | **bool** | Is field managed by CRM | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -1,7 +1,6 @@
 <?php
 /**
  * BulkExportActivitiesApiTest
- * PHP version 5
  *
  * @category Class
  * @package  NecLimDul\MarketoRest\Lead
@@ -26,14 +25,12 @@
  * Please update the test case below to test the endpoint.
  */
 
-// namespace NecLimDul\MarketoRest\Lead;
-namespace NecLimDul\MarketoRest\Lead\Model;
+namespace NecLimDul\MarketoRest\Lead\Test\Api;
 
+use NecLimDul\MarketoRest\Lead\Configuration;
+use NecLimDul\MarketoRest\Lead\ApiException;
+use NecLimDul\MarketoRest\Lead\ObjectSerializer;
 use PHPUnit\Framework\TestCase;
-
-use \NecLimDul\MarketoRest\Lead\Configuration;
-use \NecLimDul\MarketoRest\Lead\ApiException;
-use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * BulkExportActivitiesApiTest Class Doc Comment
@@ -42,80 +39,75 @@ use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
+ * @coversDefaultClass \NecLimDul\MarketoRest\Lead\Api\BulkExportActivitiesApi
  */
 class BulkExportActivitiesApiTest extends TestCase
 {
 
 
     /**
-     * Test case for cancelExportActivitiesUsingPOST
-     *
      * Cancel Export Activity Job.
      *
+     * @covers ::cancelExportActivitiesUsingPOST
      */
     public function testCancelExportActivitiesUsingPOST()
     {
-        //$class = new BulkExportActivitiesApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for createExportActivitiesUsingPOST
-     *
      * Create Export Activity Job.
      *
+     * @covers ::createExportActivitiesUsingPOST
      */
     public function testCreateExportActivitiesUsingPOST()
     {
-        //$class = new BulkExportActivitiesApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for enqueueExportActivitiesUsingPOST
-     *
      * Enqueue Export Activity Job.
      *
+     * @covers ::enqueueExportActivitiesUsingPOST
      */
     public function testEnqueueExportActivitiesUsingPOST()
     {
-        //$class = new BulkExportActivitiesApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getExportActivitiesFileUsingGET
-     *
      * Get Export Activity File.
      *
+     * @covers ::getExportActivitiesFileUsingGET
      */
     public function testGetExportActivitiesFileUsingGET()
     {
-        //$class = new BulkExportActivitiesApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getExportActivitiesStatusUsingGET
-     *
      * Get Export Activity Job Status.
      *
+     * @covers ::getExportActivitiesStatusUsingGET
      */
     public function testGetExportActivitiesStatusUsingGET()
     {
-        //$class = new BulkExportActivitiesApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getExportActivitiesUsingGET
-     *
      * Get Export Activity Jobs.
      *
+     * @covers ::getExportActivitiesUsingGET
      */
     public function testGetExportActivitiesUsingGET()
     {
-        //$class = new BulkExportActivitiesApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

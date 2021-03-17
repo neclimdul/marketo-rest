@@ -1,7 +1,6 @@
 <?php
 /**
  * ActivitiesApiTest
- * PHP version 5
  *
  * @category Class
  * @package  NecLimDul\MarketoRest\Lead
@@ -26,14 +25,12 @@
  * Please update the test case below to test the endpoint.
  */
 
-// namespace NecLimDul\MarketoRest\Lead;
-namespace NecLimDul\MarketoRest\Lead\Model;
+namespace NecLimDul\MarketoRest\Lead\Test\Api;
 
+use NecLimDul\MarketoRest\Lead\Configuration;
+use NecLimDul\MarketoRest\Lead\ApiException;
+use NecLimDul\MarketoRest\Lead\ObjectSerializer;
 use PHPUnit\Framework\TestCase;
-
-use \NecLimDul\MarketoRest\Lead\Configuration;
-use \NecLimDul\MarketoRest\Lead\ApiException;
-use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * ActivitiesApiTest Class Doc Comment
@@ -42,200 +39,185 @@ use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
+ * @coversDefaultClass \NecLimDul\MarketoRest\Lead\Api\ActivitiesApi
  */
 class ActivitiesApiTest extends TestCase
 {
 
 
     /**
-     * Test case for addCustomActivityUsingPOST
-     *
      * Add Custom Activities.
      *
+     * @covers ::addCustomActivityUsingPOST
      */
     public function testAddCustomActivityUsingPOST()
     {
-        //$class = new ActivitiesApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for approveCustomActivityTypeUsingPOST
-     *
      * Approve Custom Activity Type.
      *
+     * @covers ::approveCustomActivityTypeUsingPOST
      */
     public function testApproveCustomActivityTypeUsingPOST()
     {
-        //$class = new ActivitiesApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for createCustomActivityTypeAttributesUsingPOST
-     *
      * Create Custom Activity Type Attributes.
      *
+     * @covers ::createCustomActivityTypeAttributesUsingPOST
      */
     public function testCreateCustomActivityTypeAttributesUsingPOST()
     {
-        //$class = new ActivitiesApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for createCustomActivityTypeUsingPOST
-     *
      * Create Custom Activity Type.
      *
+     * @covers ::createCustomActivityTypeUsingPOST
      */
     public function testCreateCustomActivityTypeUsingPOST()
     {
-        //$class = new ActivitiesApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for deleteCustomActivityTypeAttributesUsingPOST
-     *
      * Delete Custom Activity Type Attributes.
      *
+     * @covers ::deleteCustomActivityTypeAttributesUsingPOST
      */
     public function testDeleteCustomActivityTypeAttributesUsingPOST()
     {
-        //$class = new ActivitiesApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for deleteCustomActivityTypeUsingPOST
-     *
      * Delete Custom Activity Type.
      *
+     * @covers ::deleteCustomActivityTypeUsingPOST
      */
     public function testDeleteCustomActivityTypeUsingPOST()
     {
-        //$class = new ActivitiesApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for describeCustomActivityTypeUsingGET
-     *
      * Describe Custom Activity Type.
      *
+     * @covers ::describeCustomActivityTypeUsingGET
      */
     public function testDescribeCustomActivityTypeUsingGET()
     {
-        //$class = new ActivitiesApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for discardDraftofCustomActivityTypeUsingPOST
-     *
      * Discard Custom Activity Type Draft.
      *
+     * @covers ::discardDraftofCustomActivityTypeUsingPOST
      */
     public function testDiscardDraftofCustomActivityTypeUsingPOST()
     {
-        //$class = new ActivitiesApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getActivitiesPagingTokenUsingGET
-     *
      * Get Paging Token.
      *
+     * @covers ::getActivitiesPagingTokenUsingGET
      */
     public function testGetActivitiesPagingTokenUsingGET()
     {
-        //$class = new ActivitiesApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getAllActivityTypesUsingGET
-     *
      * Get Activity Types.
      *
+     * @covers ::getAllActivityTypesUsingGET
      */
     public function testGetAllActivityTypesUsingGET()
     {
-        //$class = new ActivitiesApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getCustomActivityTypeUsingGET
-     *
      * Get Custom Activity Types.
      *
+     * @covers ::getCustomActivityTypeUsingGET
      */
     public function testGetCustomActivityTypeUsingGET()
     {
-        //$class = new ActivitiesApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getDeletedLeadsUsingGET
-     *
      * Get Deleted Leads.
      *
+     * @covers ::getDeletedLeadsUsingGET
      */
     public function testGetDeletedLeadsUsingGET()
     {
-        //$class = new ActivitiesApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getLeadActivitiesUsingGET
-     *
      * Get Lead Activities.
      *
+     * @covers ::getLeadActivitiesUsingGET
      */
     public function testGetLeadActivitiesUsingGET()
     {
-        //$class = new ActivitiesApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getLeadChangesUsingGET
-     *
      * Get Lead Changes.
      *
+     * @covers ::getLeadChangesUsingGET
      */
     public function testGetLeadChangesUsingGET()
     {
-        //$class = new ActivitiesApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for updateCustomActivityTypeAttributesUsingPOST
-     *
      * Update Custom Activity Type Attributes.
      *
+     * @covers ::updateCustomActivityTypeAttributesUsingPOST
      */
     public function testUpdateCustomActivityTypeAttributesUsingPOST()
     {
-        //$class = new ActivitiesApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for updateCustomActivityTypeUsingPOST
-     *
      * Update Custom Activity Type.
      *
+     * @covers ::updateCustomActivityTypeUsingPOST
      */
     public function testUpdateCustomActivityTypeUsingPOST()
     {
-        //$class = new ActivitiesApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

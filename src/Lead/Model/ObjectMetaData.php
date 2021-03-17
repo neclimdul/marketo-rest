@@ -2,8 +2,6 @@
 /**
  * ObjectMetaData
  *
- * PHP version 5
- *
  * @category Class
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
@@ -39,10 +37,13 @@ use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
+ * @implements \ArrayAccess<TKey, TValue>
+ * @template TKey int|null
+ * @template TValue mixed|null
  */
-class ObjectMetaData implements ModelInterface, ArrayAccess
+class ObjectMetaData implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -76,6 +77,8 @@ class ObjectMetaData implements ModelInterface, ArrayAccess
       * Array of property to format mappings. Used for (de)serialization
       *
       * @var string[]
+      * @phpstan-var array<string, string|null>
+      * @psalm-var array<string, string|null>
       */
     protected static $swaggerFormats = [
         'created_at' => 'date-time',
@@ -94,14 +97,16 @@ class ObjectMetaData implements ModelInterface, ArrayAccess
     ];
 
     /**
-      * Array of dynamic properties.
+      * Array of additional properties.
       *
       * @var mixed[]
       */
     protected $additionalProperties = [];
 
     /**
-     * {@inheritdoc}
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
      */
     public static function swaggerTypes()
     {
@@ -292,7 +297,8 @@ class ObjectMetaData implements ModelInterface, ArrayAccess
         $allowedValues = $this->getStateAllowableValues();
         if (!is_null($this->container['state']) && !in_array($this->container['state'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
-                "invalid value for 'state', must be one of '%s'",
+                "invalid value '%s' for 'state', must be one of '%s'",
+                $this->container['state'],
                 implode("', '", $allowedValues)
             );
         }
@@ -303,7 +309,8 @@ class ObjectMetaData implements ModelInterface, ArrayAccess
         $allowedValues = $this->getVersionAllowableValues();
         if (!is_null($this->container['version']) && !in_array($this->container['version'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
-                "invalid value for 'version', must be one of '%s'",
+                "invalid value '%s' for 'version', must be one of '%s'",
+                $this->container['version'],
                 implode("', '", $allowedValues)
             );
         }
@@ -364,7 +371,7 @@ class ObjectMetaData implements ModelInterface, ArrayAccess
      *
      * @param \DateTime $created_at Datetime when the object type was created
      *
-     * @return $this
+     * @return self
      */
     public function setCreatedAt($created_at)
     {
@@ -388,7 +395,7 @@ class ObjectMetaData implements ModelInterface, ArrayAccess
      *
      * @param string[] $dedupe_fields List of dedupe fields.  Arrays with multiple members are compound keys
      *
-     * @return $this
+     * @return self
      */
     public function setDedupeFields($dedupe_fields)
     {
@@ -412,7 +419,7 @@ class ObjectMetaData implements ModelInterface, ArrayAccess
      *
      * @param string $description Description of the object type
      *
-     * @return $this
+     * @return self
      */
     public function setDescription($description)
     {
@@ -436,7 +443,7 @@ class ObjectMetaData implements ModelInterface, ArrayAccess
      *
      * @param string $display_name UI display-name of the object type
      *
-     * @return $this
+     * @return self
      */
     public function setDisplayName($display_name)
     {
@@ -460,7 +467,7 @@ class ObjectMetaData implements ModelInterface, ArrayAccess
      *
      * @param string $plural_name UI plural-name of the custom object type
      *
-     * @return $this
+     * @return self
      */
     public function setPluralName($plural_name)
     {
@@ -484,7 +491,7 @@ class ObjectMetaData implements ModelInterface, ArrayAccess
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\ObjectField[] $fields List of fields available on the object type
      *
-     * @return $this
+     * @return self
      */
     public function setFields($fields)
     {
@@ -508,7 +515,7 @@ class ObjectMetaData implements ModelInterface, ArrayAccess
      *
      * @param string $id_field Primary id key of the object type
      *
-     * @return $this
+     * @return self
      */
     public function setIdField($id_field)
     {
@@ -532,7 +539,7 @@ class ObjectMetaData implements ModelInterface, ArrayAccess
      *
      * @param string $api_name Name of the object type
      *
-     * @return $this
+     * @return self
      */
     public function setApiName($api_name)
     {
@@ -556,7 +563,7 @@ class ObjectMetaData implements ModelInterface, ArrayAccess
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\ObjectRelation[] $relationships List of relationships which the object has
      *
-     * @return $this
+     * @return self
      */
     public function setRelationships($relationships)
     {
@@ -580,7 +587,7 @@ class ObjectMetaData implements ModelInterface, ArrayAccess
      *
      * @param string[][] $searchable_fields List of fields valid for use as a filter type in a query
      *
-     * @return $this
+     * @return self
      */
     public function setSearchableFields($searchable_fields)
     {
@@ -604,7 +611,7 @@ class ObjectMetaData implements ModelInterface, ArrayAccess
      *
      * @param \DateTime $updated_at Datetime when the object type was most recently updated
      *
-     * @return $this
+     * @return self
      */
     public function setUpdatedAt($updated_at)
     {
@@ -628,7 +635,7 @@ class ObjectMetaData implements ModelInterface, ArrayAccess
      *
      * @param string $state Approval state of object type
      *
-     * @return $this
+     * @return self
      */
     public function setState($state)
     {
@@ -636,7 +643,8 @@ class ObjectMetaData implements ModelInterface, ArrayAccess
         if (!is_null($state) && !in_array($state, $allowedValues, true)) {
             throw new \InvalidArgumentException(
                 sprintf(
-                    "Invalid value for 'state', must be one of '%s'",
+                    "Invalid value '%s' for 'state', must be one of '%s'",
+                    $state,
                     implode("', '", $allowedValues)
                 )
             );
@@ -661,7 +669,7 @@ class ObjectMetaData implements ModelInterface, ArrayAccess
      *
      * @param string $version Version of object type that is returned in response
      *
-     * @return $this
+     * @return self
      */
     public function setVersion($version)
     {
@@ -669,7 +677,8 @@ class ObjectMetaData implements ModelInterface, ArrayAccess
         if (!in_array($version, $allowedValues, true)) {
             throw new \InvalidArgumentException(
                 sprintf(
-                    "Invalid value for 'version', must be one of '%s'",
+                    "Invalid value '%s' for 'version', must be one of '%s'",
+                    $version,
                     implode("', '", $allowedValues)
                 )
             );
@@ -728,7 +737,7 @@ class ObjectMetaData implements ModelInterface, ArrayAccess
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**
@@ -752,19 +761,37 @@ class ObjectMetaData implements ModelInterface, ArrayAccess
     }
 
     /**
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     *
+     * @return mixed Returns data which can be serialized by json_encode(), which is a value
+     * of any type other than a resource.
+     */
+    public function jsonSerialize()
+    {
+       return ObjectSerializer::sanitizeForSerialization($this);
+    }
+
+    /**
      * Gets the string presentation of the object
      *
      * @return string
      */
     public function __toString()
     {
-        if (defined('JSON_PRETTY_PRINT')) { // use JSON pretty print
-            return json_encode(
-                ObjectSerializer::sanitizeForSerialization($this),
-                JSON_PRETTY_PRINT
-            );
-        }
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
+    }
 
+    /**
+     * Gets a header-safe presentation of the object
+     *
+     * @return string
+     */
+    public function toHeaderValue()
+    {
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }

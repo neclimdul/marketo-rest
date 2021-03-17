@@ -1,6 +1,7 @@
 # SegmentContent
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **content** | **object** | Type of content section | 
@@ -11,5 +12,3 @@ Name | Type | Description | Notes
 **type** | **string** | Type of content section | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

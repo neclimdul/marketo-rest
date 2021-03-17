@@ -1,6 +1,7 @@
 # UpdateLandingPageRequest
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **custom_head_html** | **string** | Any custom HTML to embed in the &lt;head&gt; tag of the page | [optional] 
@@ -16,5 +17,3 @@ Name | Type | Description | Notes
 **url_page_name** | **string** | URL path of the page.  Derived from the name field if unset | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

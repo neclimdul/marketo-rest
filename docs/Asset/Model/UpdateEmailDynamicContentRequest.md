@@ -1,6 +1,7 @@
 # UpdateEmailDynamicContentRequest
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **alt_text** | **string** | Sets the value of the alt parameter for the resulting img element | [optional] 
@@ -16,5 +17,3 @@ Name | Type | Description | Notes
 **width** | **int** | Overrides native width of the image.  The resulting file will be resized to the given width | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

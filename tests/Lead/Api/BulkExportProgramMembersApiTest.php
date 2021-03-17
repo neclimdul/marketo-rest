@@ -1,7 +1,6 @@
 <?php
 /**
  * BulkExportProgramMembersApiTest
- * PHP version 5
  *
  * @category Class
  * @package  NecLimDul\MarketoRest\Lead
@@ -26,14 +25,12 @@
  * Please update the test case below to test the endpoint.
  */
 
-// namespace NecLimDul\MarketoRest\Lead;
-namespace NecLimDul\MarketoRest\Lead\Model;
+namespace NecLimDul\MarketoRest\Lead\Test\Api;
 
+use NecLimDul\MarketoRest\Lead\Configuration;
+use NecLimDul\MarketoRest\Lead\ApiException;
+use NecLimDul\MarketoRest\Lead\ObjectSerializer;
 use PHPUnit\Framework\TestCase;
-
-use \NecLimDul\MarketoRest\Lead\Configuration;
-use \NecLimDul\MarketoRest\Lead\ApiException;
-use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * BulkExportProgramMembersApiTest Class Doc Comment
@@ -42,80 +39,75 @@ use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
+ * @coversDefaultClass \NecLimDul\MarketoRest\Lead\Api\BulkExportProgramMembersApi
  */
 class BulkExportProgramMembersApiTest extends TestCase
 {
 
 
     /**
-     * Test case for cancelExportProgramMembersUsingPOST
-     *
      * Cancel Export Program Member Job.
      *
+     * @covers ::cancelExportProgramMembersUsingPOST
      */
     public function testCancelExportProgramMembersUsingPOST()
     {
-        //$class = new BulkExportProgramMembersApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for createExportProgramMembersUsingPOST
-     *
      * Create Export Program Member Job.
      *
+     * @covers ::createExportProgramMembersUsingPOST
      */
     public function testCreateExportProgramMembersUsingPOST()
     {
-        //$class = new BulkExportProgramMembersApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for enqueueExportProgramMembersUsingPOST
-     *
      * Enqueue Export Program Member Job.
      *
+     * @covers ::enqueueExportProgramMembersUsingPOST
      */
     public function testEnqueueExportProgramMembersUsingPOST()
     {
-        //$class = new BulkExportProgramMembersApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getExportProgramMembersFileUsingGET
-     *
      * Get Export Program Member File.
      *
+     * @covers ::getExportProgramMembersFileUsingGET
      */
     public function testGetExportProgramMembersFileUsingGET()
     {
-        //$class = new BulkExportProgramMembersApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getExportProgramMembersStatusUsingGET
-     *
      * Get Export Program Member Job Status.
      *
+     * @covers ::getExportProgramMembersStatusUsingGET
      */
     public function testGetExportProgramMembersStatusUsingGET()
     {
-        //$class = new BulkExportProgramMembersApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getExportProgramMembersUsingGET
-     *
      * Get Export Program Member Jobs.
      *
+     * @covers ::getExportProgramMembersUsingGET
      */
     public function testGetExportProgramMembersUsingGET()
     {
-        //$class = new BulkExportProgramMembersApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

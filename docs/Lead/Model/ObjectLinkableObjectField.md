@@ -1,6 +1,7 @@
 # ObjectLinkableObjectField
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **string** | Link field API name | 
@@ -8,5 +9,3 @@ Name | Type | Description | Notes
 **data_type** | **string** | Link field data type | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

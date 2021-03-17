@@ -2,8 +2,6 @@
 /**
  * ImportCustomObjectResponseTest
  *
- * PHP version 7
- *
  * @category Class
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
@@ -27,8 +25,7 @@
  * Please update the test case below to test the model.
  */
 
-// namespace NecLimDul\MarketoRest\Lead;
-namespace NecLimDul\MarketoRest\Lead\Model;
+namespace NecLimDul\MarketoRest\Lead\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
@@ -49,8 +46,8 @@ class ImportCustomObjectResponseTest extends TestCase
      */
     public function testImportCustomObjectResponse()
     {
-        $class = new ImportCustomObjectResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -58,8 +55,8 @@ class ImportCustomObjectResponseTest extends TestCase
      */
     public function testPropertyBatchId()
     {
-        $class = new ImportCustomObjectResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -67,8 +64,8 @@ class ImportCustomObjectResponseTest extends TestCase
      */
     public function testPropertyImportTime()
     {
-        $class = new ImportCustomObjectResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -76,8 +73,8 @@ class ImportCustomObjectResponseTest extends TestCase
      */
     public function testPropertyMessage()
     {
-        $class = new ImportCustomObjectResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -85,8 +82,8 @@ class ImportCustomObjectResponseTest extends TestCase
      */
     public function testPropertyNumOfObjectsProcessed()
     {
-        $class = new ImportCustomObjectResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -94,8 +91,8 @@ class ImportCustomObjectResponseTest extends TestCase
      */
     public function testPropertyNumOfRowsFailed()
     {
-        $class = new ImportCustomObjectResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -103,8 +100,8 @@ class ImportCustomObjectResponseTest extends TestCase
      */
     public function testPropertyNumOfRowsWithWarning()
     {
-        $class = new ImportCustomObjectResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -112,8 +109,8 @@ class ImportCustomObjectResponseTest extends TestCase
      */
     public function testPropertyObjectApiName()
     {
-        $class = new ImportCustomObjectResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -121,8 +118,8 @@ class ImportCustomObjectResponseTest extends TestCase
      */
     public function testPropertyOperation()
     {
-        $class = new ImportCustomObjectResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -130,7 +127,7 @@ class ImportCustomObjectResponseTest extends TestCase
      */
     public function testPropertyStatus()
     {
-        $class = new ImportCustomObjectResponse();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

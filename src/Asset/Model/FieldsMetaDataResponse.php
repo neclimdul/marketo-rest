@@ -2,8 +2,6 @@
 /**
  * FieldsMetaDataResponse
  *
- * PHP version 5
- *
  * @category Class
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
@@ -39,10 +37,13 @@ use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
+ * @implements \ArrayAccess<TKey, TValue>
+ * @template TKey int|null
+ * @template TValue mixed|null
  */
-class FieldsMetaDataResponse implements ModelInterface, ArrayAccess
+class FieldsMetaDataResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -81,6 +82,8 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess
       * Array of property to format mappings. Used for (de)serialization
       *
       * @var string[]
+      * @phpstan-var array<string, string|null>
+      * @psalm-var array<string, string|null>
       */
     protected static $swaggerFormats = [
         'data_type' => null,
@@ -104,14 +107,16 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess
     ];
 
     /**
-      * Array of dynamic properties.
+      * Array of additional properties.
       *
       * @var mixed[]
       */
     protected $additionalProperties = [];
 
     /**
-     * {@inheritdoc}
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
      */
     public static function swaggerTypes()
     {
@@ -311,7 +316,7 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess
      *
      * @param string $data_type Type of field
      *
-     * @return $this
+     * @return self
      */
     public function setDataType($data_type)
     {
@@ -335,7 +340,7 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess
      *
      * @param string $default_value Optional default value for the field
      *
-     * @return $this
+     * @return self
      */
     public function setDefaultValue($default_value)
     {
@@ -359,7 +364,7 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess
      *
      * @param string $description Description of the field
      *
-     * @return $this
+     * @return self
      */
     public function setDescription($description)
     {
@@ -383,7 +388,7 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess
      *
      * @param string $field_mask_values Optional input mask for the field
      *
-     * @return $this
+     * @return self
      */
     public function setFieldMaskValues($field_mask_values)
     {
@@ -407,7 +412,7 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess
      *
      * @param int $field_width Width of the input or select element
      *
-     * @return $this
+     * @return self
      */
     public function setFieldWidth($field_width)
     {
@@ -431,7 +436,7 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess
      *
      * @param string $id Id of the field
      *
-     * @return $this
+     * @return self
      */
     public function setId($id)
     {
@@ -455,7 +460,7 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess
      *
      * @param bool $initially_checked Whether the field should be checked upon loading.  Default false
      *
-     * @return $this
+     * @return self
      */
     public function setInitiallyChecked($initially_checked)
     {
@@ -479,7 +484,7 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess
      *
      * @param bool $is_label_to_right Whether the field label should be displayed to the right of the input/select element. Default false
      *
-     * @return $this
+     * @return self
      */
     public function setIsLabelToRight($is_label_to_right)
     {
@@ -503,7 +508,7 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess
      *
      * @param bool $is_multiselect Whether the field should allow multiple selections. Default false
      *
-     * @return $this
+     * @return self
      */
     public function setIsMultiselect($is_multiselect)
     {
@@ -527,7 +532,7 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess
      *
      * @param bool $is_required Whether the field is required to submit the form.  Default false
      *
-     * @return $this
+     * @return self
      */
     public function setIsRequired($is_required)
     {
@@ -551,7 +556,7 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess
      *
      * @param int $label_width Width of the field label element
      *
-     * @return $this
+     * @return self
      */
     public function setLabelWidth($label_width)
     {
@@ -575,7 +580,7 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess
      *
      * @param int $max_length Maximum length for text type fields
      *
-     * @return $this
+     * @return self
      */
     public function setMaxLength($max_length)
     {
@@ -599,7 +604,7 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess
      *
      * @param float $maximum_number Maximum value accepted by the field
      *
-     * @return $this
+     * @return self
      */
     public function setMaximumNumber($maximum_number)
     {
@@ -623,7 +628,7 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess
      *
      * @param float $minimum_number Minimum value accepted by the field
      *
-     * @return $this
+     * @return self
      */
     public function setMinimumNumber($minimum_number)
     {
@@ -647,7 +652,7 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess
      *
      * @param string $picklist_values Comma-separated list of available picklist values for the field
      *
-     * @return $this
+     * @return self
      */
     public function setPicklistValues($picklist_values)
     {
@@ -671,7 +676,7 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess
      *
      * @param string $placeholder_text Placeholder text for the field
      *
-     * @return $this
+     * @return self
      */
     public function setPlaceholderText($placeholder_text)
     {
@@ -695,7 +700,7 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess
      *
      * @param string $validation_message Validation message to display on failed validation
      *
-     * @return $this
+     * @return self
      */
     public function setValidationMessage($validation_message)
     {
@@ -719,7 +724,7 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess
      *
      * @param int $visible_rows Number of rows visible for progressive profiling
      *
-     * @return $this
+     * @return self
      */
     public function setVisibleRows($visible_rows)
     {
@@ -777,7 +782,7 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**
@@ -801,19 +806,37 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess
     }
 
     /**
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     *
+     * @return mixed Returns data which can be serialized by json_encode(), which is a value
+     * of any type other than a resource.
+     */
+    public function jsonSerialize()
+    {
+       return ObjectSerializer::sanitizeForSerialization($this);
+    }
+
+    /**
      * Gets the string presentation of the object
      *
      * @return string
      */
     public function __toString()
     {
-        if (defined('JSON_PRETTY_PRINT')) { // use JSON pretty print
-            return json_encode(
-                ObjectSerializer::sanitizeForSerialization($this),
-                JSON_PRETTY_PRINT
-            );
-        }
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
+    }
 
+    /**
+     * Gets a header-safe presentation of the object
+     *
+     * @return string
+     */
+    public function toHeaderValue()
+    {
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }

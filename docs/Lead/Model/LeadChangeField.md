@@ -1,6 +1,7 @@
 # LeadChangeField
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** | Unique integer id of the change record | 
@@ -9,5 +10,3 @@ Name | Type | Description | Notes
 **old_value** | **string** | Old value before the change | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

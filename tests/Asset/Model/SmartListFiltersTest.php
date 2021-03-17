@@ -2,8 +2,6 @@
 /**
  * SmartListFiltersTest
  *
- * PHP version 7
- *
  * @category Class
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
@@ -27,8 +25,7 @@
  * Please update the test case below to test the model.
  */
 
-// namespace NecLimDul\MarketoRest\Asset;
-namespace NecLimDul\MarketoRest\Asset\Model;
+namespace NecLimDul\MarketoRest\Asset\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
@@ -49,8 +46,8 @@ class SmartListFiltersTest extends TestCase
      */
     public function testSmartListFilters()
     {
-        $class = new SmartListFilters();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -58,8 +55,8 @@ class SmartListFiltersTest extends TestCase
      */
     public function testPropertyId()
     {
-        $class = new SmartListFilters();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -67,8 +64,8 @@ class SmartListFiltersTest extends TestCase
      */
     public function testPropertyName()
     {
-        $class = new SmartListFilters();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -76,8 +73,8 @@ class SmartListFiltersTest extends TestCase
      */
     public function testPropertyRuleTypeId()
     {
-        $class = new SmartListFilters();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -85,8 +82,8 @@ class SmartListFiltersTest extends TestCase
      */
     public function testPropertyRuleType()
     {
-        $class = new SmartListFilters();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -94,8 +91,8 @@ class SmartListFiltersTest extends TestCase
      */
     public function testPropertyOperator()
     {
-        $class = new SmartListFilters();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -103,7 +100,7 @@ class SmartListFiltersTest extends TestCase
      */
     public function testPropertyConditions()
     {
-        $class = new SmartListFilters();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

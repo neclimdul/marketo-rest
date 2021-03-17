@@ -1,7 +1,6 @@
 <?php
 /**
  * SegmentsApiTest
- * PHP version 5
  *
  * @category Class
  * @package  NecLimDul\MarketoRest\Asset
@@ -26,14 +25,12 @@
  * Please update the test case below to test the endpoint.
  */
 
-// namespace NecLimDul\MarketoRest\Asset;
-namespace NecLimDul\MarketoRest\Asset\Model;
+namespace NecLimDul\MarketoRest\Asset\Test\Api;
 
+use NecLimDul\MarketoRest\Asset\Configuration;
+use NecLimDul\MarketoRest\Asset\ApiException;
+use NecLimDul\MarketoRest\Asset\ObjectSerializer;
 use PHPUnit\Framework\TestCase;
-
-use \NecLimDul\MarketoRest\Asset\Configuration;
-use \NecLimDul\MarketoRest\Asset\ApiException;
-use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * SegmentsApiTest Class Doc Comment
@@ -42,32 +39,31 @@ use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
+ * @coversDefaultClass \NecLimDul\MarketoRest\Asset\Api\SegmentsApi
  */
 class SegmentsApiTest extends TestCase
 {
 
 
     /**
-     * Test case for getSegmentationUsingGET
-     *
      * Get Segmentations.
      *
+     * @covers ::getSegmentationUsingGET
      */
     public function testGetSegmentationUsingGET()
     {
-        //$class = new SegmentsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getSegmentsForSegmentationUsingGET
-     *
      * Get Segments For Segmentation.
      *
+     * @covers ::getSegmentsForSegmentationUsingGET
      */
     public function testGetSegmentsForSegmentationUsingGET()
     {
-        //$class = new SegmentsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

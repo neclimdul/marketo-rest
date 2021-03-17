@@ -1,7 +1,6 @@
 <?php
 /**
  * LeadsApiTest
- * PHP version 5
  *
  * @category Class
  * @package  NecLimDul\MarketoRest\Lead
@@ -26,14 +25,12 @@
  * Please update the test case below to test the endpoint.
  */
 
-// namespace NecLimDul\MarketoRest\Lead;
-namespace NecLimDul\MarketoRest\Lead\Model;
+namespace NecLimDul\MarketoRest\Lead\Test\Api;
 
+use NecLimDul\MarketoRest\Lead\Configuration;
+use NecLimDul\MarketoRest\Lead\ApiException;
+use NecLimDul\MarketoRest\Lead\ObjectSerializer;
 use PHPUnit\Framework\TestCase;
-
-use \NecLimDul\MarketoRest\Lead\Configuration;
-use \NecLimDul\MarketoRest\Lead\ApiException;
-use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * LeadsApiTest Class Doc Comment
@@ -42,224 +39,207 @@ use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
+ * @coversDefaultClass \NecLimDul\MarketoRest\Lead\Api\LeadsApi
  */
 class LeadsApiTest extends TestCase
 {
 
 
     /**
-     * Test case for associateLeadUsingPOST
-     *
      * Associate Lead.
      *
+     * @covers ::associateLeadUsingPOST
      */
     public function testAssociateLeadUsingPOST()
     {
-        //$class = new LeadsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for changeLeadProgramStatusUsingPOST
-     *
      * Change Lead Program Status.
      *
+     * @covers ::changeLeadProgramStatusUsingPOST
      */
     public function testChangeLeadProgramStatusUsingPOST()
     {
-        //$class = new LeadsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for deleteLeadsUsingPOST
-     *
      * Delete Leads.
      *
+     * @covers ::deleteLeadsUsingPOST
      */
     public function testDeleteLeadsUsingPOST()
     {
-        //$class = new LeadsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for describeProgramMemberUsingGET
-     *
      * Describe Program Member.
      *
+     * @covers ::describeProgramMemberUsingGET
      */
     public function testDescribeProgramMemberUsingGET()
     {
-        //$class = new LeadsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for describeUsingGET2
-     *
      * Describe Lead.
      *
+     * @covers ::describeUsingGET2
      */
     public function testDescribeUsingGET2()
     {
-        //$class = new LeadsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for describeUsingGET6
-     *
      * Describe Lead2.
      *
+     * @covers ::describeUsingGET6
      */
     public function testDescribeUsingGET6()
     {
-        //$class = new LeadsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getLeadByIdUsingGET
-     *
      * Get Lead by Id.
      *
+     * @covers ::getLeadByIdUsingGET
      */
     public function testGetLeadByIdUsingGET()
     {
-        //$class = new LeadsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getLeadPartitionsUsingGET
-     *
      * Get Lead Partitions.
      *
+     * @covers ::getLeadPartitionsUsingGET
      */
     public function testGetLeadPartitionsUsingGET()
     {
-        //$class = new LeadsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getLeadsByFilterUsingGET
-     *
      * Get Leads by Filter Type.
      *
+     * @covers ::getLeadsByFilterUsingGET
      */
     public function testGetLeadsByFilterUsingGET()
     {
-        //$class = new LeadsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getLeadsByProgramIdUsingGET
-     *
      * Get Leads by Program Id.
      *
+     * @covers ::getLeadsByProgramIdUsingGET
      */
     public function testGetLeadsByProgramIdUsingGET()
     {
-        //$class = new LeadsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getListMembershipUsingGET
-     *
      * Get Lists by Lead Id.
      *
+     * @covers ::getListMembershipUsingGET
      */
     public function testGetListMembershipUsingGET()
     {
-        //$class = new LeadsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getProgramMembershipUsingGET
-     *
      * Get Programs by Lead Id.
      *
+     * @covers ::getProgramMembershipUsingGET
      */
     public function testGetProgramMembershipUsingGET()
     {
-        //$class = new LeadsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getSmartCampaignMembershipUsingGET
-     *
      * Get Smart Campaigns by Lead Id.
      *
+     * @covers ::getSmartCampaignMembershipUsingGET
      */
     public function testGetSmartCampaignMembershipUsingGET()
     {
-        //$class = new LeadsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for mergeLeadsUsingPOST
-     *
      * Merge Leads.
      *
+     * @covers ::mergeLeadsUsingPOST
      */
     public function testMergeLeadsUsingPOST()
     {
-        //$class = new LeadsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for pushToMarketoUsingPOST
-     *
      * Push Lead to Marketo.
      *
+     * @covers ::pushToMarketoUsingPOST
      */
     public function testPushToMarketoUsingPOST()
     {
-        //$class = new LeadsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for submitFormUsingPOST
-     *
      * Submit Form.
      *
+     * @covers ::submitFormUsingPOST
      */
     public function testSubmitFormUsingPOST()
     {
-        //$class = new LeadsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for syncLeadUsingPOST
-     *
      * Sync Leads.
      *
+     * @covers ::syncLeadUsingPOST
      */
     public function testSyncLeadUsingPOST()
     {
-        //$class = new LeadsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for updatePartitionsUsingPOST
-     *
      * Update Lead Partition.
      *
+     * @covers ::updatePartitionsUsingPOST
      */
     public function testUpdatePartitionsUsingPOST()
     {
-        //$class = new LeadsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

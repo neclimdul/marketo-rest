@@ -2,8 +2,6 @@
 /**
  * EmailResponse
  *
- * PHP version 5
- *
  * @category Class
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
@@ -39,10 +37,13 @@ use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
+ * @implements \ArrayAccess<TKey, TValue>
+ * @template TKey int|null
+ * @template TValue mixed|null
  */
-class EmailResponse implements ModelInterface, ArrayAccess
+class EmailResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -85,6 +86,8 @@ class EmailResponse implements ModelInterface, ArrayAccess
       * Array of property to format mappings. Used for (de)serialization
       *
       * @var string[]
+      * @phpstan-var array<string, string|null>
+      * @psalm-var array<string, string|null>
       */
     protected static $swaggerFormats = [
         'created_at' => 'date-time',
@@ -112,14 +115,16 @@ class EmailResponse implements ModelInterface, ArrayAccess
     ];
 
     /**
-      * Array of dynamic properties.
+      * Array of additional properties.
       *
       * @var mixed[]
       */
     protected $additionalProperties = [];
 
     /**
-     * {@inheritdoc}
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
      */
     public static function swaggerTypes()
     {
@@ -340,7 +345,8 @@ class EmailResponse implements ModelInterface, ArrayAccess
         $allowedValues = $this->getVersionAllowableValues();
         if (!is_null($this->container['version']) && !in_array($this->container['version'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
-                "invalid value for 'version', must be one of '%s'",
+                "invalid value '%s' for 'version', must be one of '%s'",
+                $this->container['version'],
                 implode("', '", $allowedValues)
             );
         }
@@ -395,7 +401,7 @@ class EmailResponse implements ModelInterface, ArrayAccess
      *
      * @param \DateTime $created_at Datetime the asset was created
      *
-     * @return $this
+     * @return self
      */
     public function setCreatedAt($created_at)
     {
@@ -419,7 +425,7 @@ class EmailResponse implements ModelInterface, ArrayAccess
      *
      * @param string $description Description of the asset
      *
-     * @return $this
+     * @return self
      */
     public function setDescription($description)
     {
@@ -443,7 +449,7 @@ class EmailResponse implements ModelInterface, ArrayAccess
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
      *
-     * @return $this
+     * @return self
      */
     public function setFolder($folder)
     {
@@ -467,7 +473,7 @@ class EmailResponse implements ModelInterface, ArrayAccess
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField $from_email From-address of the Email
      *
-     * @return $this
+     * @return self
      */
     public function setFromEmail($from_email)
     {
@@ -491,7 +497,7 @@ class EmailResponse implements ModelInterface, ArrayAccess
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField $from_name From-name of the Email
      *
-     * @return $this
+     * @return self
      */
     public function setFromName($from_name)
     {
@@ -515,7 +521,7 @@ class EmailResponse implements ModelInterface, ArrayAccess
      *
      * @param int $id Id of the asset
      *
-     * @return $this
+     * @return self
      */
     public function setId($id)
     {
@@ -539,7 +545,7 @@ class EmailResponse implements ModelInterface, ArrayAccess
      *
      * @param string $name Name of the asset
      *
-     * @return $this
+     * @return self
      */
     public function setName($name)
     {
@@ -563,7 +569,7 @@ class EmailResponse implements ModelInterface, ArrayAccess
      *
      * @param bool $operational Whether the email is operational.  Operational emails bypass unsubscribe status.  Defaults to false
      *
-     * @return $this
+     * @return self
      */
     public function setOperational($operational)
     {
@@ -587,7 +593,7 @@ class EmailResponse implements ModelInterface, ArrayAccess
      *
      * @param bool $publish_to_msi Whether the email is published to Marketo Sales Insight
      *
-     * @return $this
+     * @return self
      */
     public function setPublishToMsi($publish_to_msi)
     {
@@ -611,7 +617,7 @@ class EmailResponse implements ModelInterface, ArrayAccess
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField $reply_email Reply-To address of the Email
      *
-     * @return $this
+     * @return self
      */
     public function setReplyEmail($reply_email)
     {
@@ -635,7 +641,7 @@ class EmailResponse implements ModelInterface, ArrayAccess
      *
      * @param string $status Status filter for draft or approved versions
      *
-     * @return $this
+     * @return self
      */
     public function setStatus($status)
     {
@@ -659,7 +665,7 @@ class EmailResponse implements ModelInterface, ArrayAccess
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField $subject Subject Line of the Email
      *
-     * @return $this
+     * @return self
      */
     public function setSubject($subject)
     {
@@ -683,7 +689,7 @@ class EmailResponse implements ModelInterface, ArrayAccess
      *
      * @param int $template Id of the parent template
      *
-     * @return $this
+     * @return self
      */
     public function setTemplate($template)
     {
@@ -707,7 +713,7 @@ class EmailResponse implements ModelInterface, ArrayAccess
      *
      * @param bool $text_only Setting to include text-only version of email when sent
      *
-     * @return $this
+     * @return self
      */
     public function setTextOnly($text_only)
     {
@@ -731,7 +737,7 @@ class EmailResponse implements ModelInterface, ArrayAccess
      *
      * @param \DateTime $updated_at Datetime the asset was most recently updated
      *
-     * @return $this
+     * @return self
      */
     public function setUpdatedAt($updated_at)
     {
@@ -755,7 +761,7 @@ class EmailResponse implements ModelInterface, ArrayAccess
      *
      * @param string $url Url of the asset in the Marketo UI
      *
-     * @return $this
+     * @return self
      */
     public function setUrl($url)
     {
@@ -779,7 +785,7 @@ class EmailResponse implements ModelInterface, ArrayAccess
      *
      * @param int $version The type version of the email
      *
-     * @return $this
+     * @return self
      */
     public function setVersion($version)
     {
@@ -787,7 +793,8 @@ class EmailResponse implements ModelInterface, ArrayAccess
         if (!is_null($version) && !in_array($version, $allowedValues, true)) {
             throw new \InvalidArgumentException(
                 sprintf(
-                    "Invalid value for 'version', must be one of '%s'",
+                    "Invalid value '%s' for 'version', must be one of '%s'",
+                    $version,
                     implode("', '", $allowedValues)
                 )
             );
@@ -812,7 +819,7 @@ class EmailResponse implements ModelInterface, ArrayAccess
      *
      * @param bool $web_view Whether 'View as Webpage' function is enabled for the email
      *
-     * @return $this
+     * @return self
      */
     public function setWebView($web_view)
     {
@@ -836,7 +843,7 @@ class EmailResponse implements ModelInterface, ArrayAccess
      *
      * @param string $workspace Name of the workspace
      *
-     * @return $this
+     * @return self
      */
     public function setWorkspace($workspace)
     {
@@ -860,7 +867,7 @@ class EmailResponse implements ModelInterface, ArrayAccess
      *
      * @param bool $auto_copy_to_text Setting to automatically copy HTML version to Text version
      *
-     * @return $this
+     * @return self
      */
     public function setAutoCopyToText($auto_copy_to_text)
     {
@@ -884,7 +891,7 @@ class EmailResponse implements ModelInterface, ArrayAccess
      *
      * @param string $pre_header The email preheader text (max 1024 characters)
      *
-     * @return $this
+     * @return self
      */
     public function setPreHeader($pre_header)
     {
@@ -908,7 +915,7 @@ class EmailResponse implements ModelInterface, ArrayAccess
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\EmailCCFields[] $cc_fields cc_fields
      *
-     * @return $this
+     * @return self
      */
     public function setCcFields($cc_fields)
     {
@@ -966,7 +973,7 @@ class EmailResponse implements ModelInterface, ArrayAccess
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**
@@ -990,19 +997,37 @@ class EmailResponse implements ModelInterface, ArrayAccess
     }
 
     /**
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     *
+     * @return mixed Returns data which can be serialized by json_encode(), which is a value
+     * of any type other than a resource.
+     */
+    public function jsonSerialize()
+    {
+       return ObjectSerializer::sanitizeForSerialization($this);
+    }
+
+    /**
      * Gets the string presentation of the object
      *
      * @return string
      */
     public function __toString()
     {
-        if (defined('JSON_PRETTY_PRINT')) { // use JSON pretty print
-            return json_encode(
-                ObjectSerializer::sanitizeForSerialization($this),
-                JSON_PRETTY_PRINT
-            );
-        }
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
+    }
 
+    /**
+     * Gets a header-safe presentation of the object
+     *
+     * @return string
+     */
+    public function toHeaderValue()
+    {
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }

@@ -1,7 +1,6 @@
 <?php
 /**
  * BulkImportLeadsApiTest
- * PHP version 5
  *
  * @category Class
  * @package  NecLimDul\MarketoRest\Lead
@@ -26,14 +25,12 @@
  * Please update the test case below to test the endpoint.
  */
 
-// namespace NecLimDul\MarketoRest\Lead;
-namespace NecLimDul\MarketoRest\Lead\Model;
+namespace NecLimDul\MarketoRest\Lead\Test\Api;
 
+use NecLimDul\MarketoRest\Lead\Configuration;
+use NecLimDul\MarketoRest\Lead\ApiException;
+use NecLimDul\MarketoRest\Lead\ObjectSerializer;
 use PHPUnit\Framework\TestCase;
-
-use \NecLimDul\MarketoRest\Lead\Configuration;
-use \NecLimDul\MarketoRest\Lead\ApiException;
-use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * BulkImportLeadsApiTest Class Doc Comment
@@ -42,56 +39,53 @@ use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
+ * @coversDefaultClass \NecLimDul\MarketoRest\Lead\Api\BulkImportLeadsApi
  */
 class BulkImportLeadsApiTest extends TestCase
 {
 
 
     /**
-     * Test case for getImportLeadFailuresUsingGET
-     *
      * Get Import Lead Failures.
      *
+     * @covers ::getImportLeadFailuresUsingGET
      */
     public function testGetImportLeadFailuresUsingGET()
     {
-        //$class = new BulkImportLeadsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getImportLeadStatusUsingGET
-     *
      * Get Import Lead Status.
      *
+     * @covers ::getImportLeadStatusUsingGET
      */
     public function testGetImportLeadStatusUsingGET()
     {
-        //$class = new BulkImportLeadsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getImportLeadWarningsUsingGET
-     *
      * Get Import Lead Warnings.
      *
+     * @covers ::getImportLeadWarningsUsingGET
      */
     public function testGetImportLeadWarningsUsingGET()
     {
-        //$class = new BulkImportLeadsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for importLeadUsingPOST
-     *
      * Import Leads.
      *
+     * @covers ::importLeadUsingPOST
      */
     public function testImportLeadUsingPOST()
     {
-        //$class = new BulkImportLeadsApi;
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

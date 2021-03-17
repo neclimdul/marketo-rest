@@ -2,8 +2,6 @@
 /**
  * CustomActivityTypeRequestTest
  *
- * PHP version 7
- *
  * @category Class
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
@@ -27,8 +25,7 @@
  * Please update the test case below to test the model.
  */
 
-// namespace NecLimDul\MarketoRest\Lead;
-namespace NecLimDul\MarketoRest\Lead\Model;
+namespace NecLimDul\MarketoRest\Lead\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
@@ -49,8 +46,8 @@ class CustomActivityTypeRequestTest extends TestCase
      */
     public function testCustomActivityTypeRequest()
     {
-        $class = new CustomActivityTypeRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -58,8 +55,8 @@ class CustomActivityTypeRequestTest extends TestCase
      */
     public function testPropertyApiName()
     {
-        $class = new CustomActivityTypeRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -67,8 +64,8 @@ class CustomActivityTypeRequestTest extends TestCase
      */
     public function testPropertyDescription()
     {
-        $class = new CustomActivityTypeRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -76,8 +73,8 @@ class CustomActivityTypeRequestTest extends TestCase
      */
     public function testPropertyFilterName()
     {
-        $class = new CustomActivityTypeRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -85,8 +82,8 @@ class CustomActivityTypeRequestTest extends TestCase
      */
     public function testPropertyName()
     {
-        $class = new CustomActivityTypeRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -94,8 +91,8 @@ class CustomActivityTypeRequestTest extends TestCase
      */
     public function testPropertyPrimaryAttribute()
     {
-        $class = new CustomActivityTypeRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -103,7 +100,7 @@ class CustomActivityTypeRequestTest extends TestCase
      */
     public function testPropertyTriggerName()
     {
-        $class = new CustomActivityTypeRequest();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

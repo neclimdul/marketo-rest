@@ -2,8 +2,6 @@
 /**
  * CustomActivityTest
  *
- * PHP version 7
- *
  * @category Class
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
@@ -27,8 +25,7 @@
  * Please update the test case below to test the model.
  */
 
-// namespace NecLimDul\MarketoRest\Lead;
-namespace NecLimDul\MarketoRest\Lead\Model;
+namespace NecLimDul\MarketoRest\Lead\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
@@ -49,8 +46,8 @@ class CustomActivityTest extends TestCase
      */
     public function testCustomActivity()
     {
-        $class = new CustomActivity();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -58,8 +55,8 @@ class CustomActivityTest extends TestCase
      */
     public function testPropertyActivityDate()
     {
-        $class = new CustomActivity();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -67,8 +64,8 @@ class CustomActivityTest extends TestCase
      */
     public function testPropertyActivityTypeId()
     {
-        $class = new CustomActivity();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -76,8 +73,8 @@ class CustomActivityTest extends TestCase
      */
     public function testPropertyApiName()
     {
-        $class = new CustomActivity();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -85,8 +82,8 @@ class CustomActivityTest extends TestCase
      */
     public function testPropertyAttributes()
     {
-        $class = new CustomActivity();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -94,8 +91,8 @@ class CustomActivityTest extends TestCase
      */
     public function testPropertyErrors()
     {
-        $class = new CustomActivity();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -103,8 +100,8 @@ class CustomActivityTest extends TestCase
      */
     public function testPropertyId()
     {
-        $class = new CustomActivity();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -112,8 +109,8 @@ class CustomActivityTest extends TestCase
      */
     public function testPropertyLeadId()
     {
-        $class = new CustomActivity();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -121,8 +118,8 @@ class CustomActivityTest extends TestCase
      */
     public function testPropertyMarketoGuid()
     {
-        $class = new CustomActivity();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -130,8 +127,8 @@ class CustomActivityTest extends TestCase
      */
     public function testPropertyPrimaryAttributeValue()
     {
-        $class = new CustomActivity();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -139,7 +136,7 @@ class CustomActivityTest extends TestCase
      */
     public function testPropertyStatus()
     {
-        $class = new CustomActivity();
-        $this->assertTrue(TRUE);
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

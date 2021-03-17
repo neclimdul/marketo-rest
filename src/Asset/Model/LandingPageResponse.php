@@ -2,8 +2,6 @@
 /**
  * LandingPageResponse
  *
- * PHP version 5
- *
  * @category Class
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
@@ -39,10 +37,13 @@ use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
+ * @implements \ArrayAccess<TKey, TValue>
+ * @template TKey int|null
+ * @template TValue mixed|null
  */
-class LandingPageResponse implements ModelInterface, ArrayAccess
+class LandingPageResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -81,6 +82,8 @@ class LandingPageResponse implements ModelInterface, ArrayAccess
       * Array of property to format mappings. Used for (de)serialization
       *
       * @var string[]
+      * @phpstan-var array<string, string|null>
+      * @psalm-var array<string, string|null>
       */
     protected static $swaggerFormats = [
         'url' => null,
@@ -104,14 +107,16 @@ class LandingPageResponse implements ModelInterface, ArrayAccess
     ];
 
     /**
-      * Array of dynamic properties.
+      * Array of additional properties.
       *
       * @var mixed[]
       */
     protected $additionalProperties = [];
 
     /**
-     * {@inheritdoc}
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
      */
     public static function swaggerTypes()
     {
@@ -320,7 +325,7 @@ class LandingPageResponse implements ModelInterface, ArrayAccess
      *
      * @param string $url Url of the asset in the Marketo UI
      *
-     * @return $this
+     * @return self
      */
     public function setUrl($url)
     {
@@ -344,7 +349,7 @@ class LandingPageResponse implements ModelInterface, ArrayAccess
      *
      * @param string $computed_url computed_url
      *
-     * @return $this
+     * @return self
      */
     public function setComputedUrl($computed_url)
     {
@@ -368,7 +373,7 @@ class LandingPageResponse implements ModelInterface, ArrayAccess
      *
      * @param \DateTime $created_at Datetime the asset was created
      *
-     * @return $this
+     * @return self
      */
     public function setCreatedAt($created_at)
     {
@@ -392,7 +397,7 @@ class LandingPageResponse implements ModelInterface, ArrayAccess
      *
      * @param string $custom_head_html Any custom HTML to embed in the <head> tag of the page
      *
-     * @return $this
+     * @return self
      */
     public function setCustomHeadHtml($custom_head_html)
     {
@@ -416,7 +421,7 @@ class LandingPageResponse implements ModelInterface, ArrayAccess
      *
      * @param string $description Description of the asset
      *
-     * @return $this
+     * @return self
      */
     public function setDescription($description)
     {
@@ -440,7 +445,7 @@ class LandingPageResponse implements ModelInterface, ArrayAccess
      *
      * @param string $facebook_og_tags Any OpenGraph meta tags to apply to the page
      *
-     * @return $this
+     * @return self
      */
     public function setFacebookOgTags($facebook_og_tags)
     {
@@ -464,7 +469,7 @@ class LandingPageResponse implements ModelInterface, ArrayAccess
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
      *
-     * @return $this
+     * @return self
      */
     public function setFolder($folder)
     {
@@ -488,7 +493,7 @@ class LandingPageResponse implements ModelInterface, ArrayAccess
      *
      * @param bool $form_prefill Boolean to toggle whether forms embedded in the page will prefill.  Default false
      *
-     * @return $this
+     * @return self
      */
     public function setFormPrefill($form_prefill)
     {
@@ -512,7 +517,7 @@ class LandingPageResponse implements ModelInterface, ArrayAccess
      *
      * @param int $id Id of the asset
      *
-     * @return $this
+     * @return self
      */
     public function setId($id)
     {
@@ -536,7 +541,7 @@ class LandingPageResponse implements ModelInterface, ArrayAccess
      *
      * @param string $keywords keywords
      *
-     * @return $this
+     * @return self
      */
     public function setKeywords($keywords)
     {
@@ -560,7 +565,7 @@ class LandingPageResponse implements ModelInterface, ArrayAccess
      *
      * @param bool $mobile_enabled Whether the page has mobile viewing enabled.  Free-form pages only.  Default false
      *
-     * @return $this
+     * @return self
      */
     public function setMobileEnabled($mobile_enabled)
     {
@@ -584,7 +589,7 @@ class LandingPageResponse implements ModelInterface, ArrayAccess
      *
      * @param string $name Name of the asset
      *
-     * @return $this
+     * @return self
      */
     public function setName($name)
     {
@@ -608,7 +613,7 @@ class LandingPageResponse implements ModelInterface, ArrayAccess
      *
      * @param string $robots Robots directives to apply to the pages meta tags
      *
-     * @return $this
+     * @return self
      */
     public function setRobots($robots)
     {
@@ -632,7 +637,7 @@ class LandingPageResponse implements ModelInterface, ArrayAccess
      *
      * @param string $status Status filter for draft or approved versions
      *
-     * @return $this
+     * @return self
      */
     public function setStatus($status)
     {
@@ -656,7 +661,7 @@ class LandingPageResponse implements ModelInterface, ArrayAccess
      *
      * @param int $template Id of the template used
      *
-     * @return $this
+     * @return self
      */
     public function setTemplate($template)
     {
@@ -680,7 +685,7 @@ class LandingPageResponse implements ModelInterface, ArrayAccess
      *
      * @param string $title Title element of the landing page
      *
-     * @return $this
+     * @return self
      */
     public function setTitle($title)
     {
@@ -704,7 +709,7 @@ class LandingPageResponse implements ModelInterface, ArrayAccess
      *
      * @param \DateTime $updated_at Datetime the asset was most recently updated
      *
-     * @return $this
+     * @return self
      */
     public function setUpdatedAt($updated_at)
     {
@@ -728,7 +733,7 @@ class LandingPageResponse implements ModelInterface, ArrayAccess
      *
      * @param string $workspace Name of the workspace
      *
-     * @return $this
+     * @return self
      */
     public function setWorkspace($workspace)
     {
@@ -786,7 +791,7 @@ class LandingPageResponse implements ModelInterface, ArrayAccess
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**
@@ -810,19 +815,37 @@ class LandingPageResponse implements ModelInterface, ArrayAccess
     }
 
     /**
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     *
+     * @return mixed Returns data which can be serialized by json_encode(), which is a value
+     * of any type other than a resource.
+     */
+    public function jsonSerialize()
+    {
+       return ObjectSerializer::sanitizeForSerialization($this);
+    }
+
+    /**
      * Gets the string presentation of the object
      *
      * @return string
      */
     public function __toString()
     {
-        if (defined('JSON_PRETTY_PRINT')) { // use JSON pretty print
-            return json_encode(
-                ObjectSerializer::sanitizeForSerialization($this),
-                JSON_PRETTY_PRINT
-            );
-        }
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_PRETTY_PRINT
+        );
+    }
 
+    /**
+     * Gets a header-safe presentation of the object
+     *
+     * @return string
+     */
+    public function toHeaderValue()
+    {
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }

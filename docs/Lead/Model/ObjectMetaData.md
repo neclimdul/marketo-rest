@@ -1,6 +1,7 @@
 # ObjectMetaData
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **created_at** | [**\DateTime**](\DateTime.md) | Datetime when the object type was created | 
@@ -18,5 +19,3 @@ Name | Type | Description | Notes
 **version** | **string** | Version of object type that is returned in response | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-
