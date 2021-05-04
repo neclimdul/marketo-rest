@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **created_at** | **string** | Datetime when the named account list was created | [optional] 
 **marketo_guid** | **string** | Unique GUID of the custom object records | 
 **name** | **string** | Name of named account list | [optional] 
-**reasons** | [**\NecLimDul\MarketoRest\Lead\Model\Reason[]**](Reason.md) |  | [optional] 
+**reasons** | [**\NecLimDul\MarketoRest\Lead\Model\Reason[]**](Reason.md) | List of reasons why an operation did not succeed.  Reasons are only present in API responses and should not be submitted | [optional] 
 **seq** | **int** | Integer indicating the sequence of the record in response.  This value is correlated to the order of the records included in the request input.  Seq should only be part of responses and should not be submitted. | 
 **status** | **string** |  | [optional] 
 **type** | **string** | Type of named account list (\&quot;default\&quot; if created by user or API, \&quot;external\&quot; if managed by CRM-View) | [optional] 

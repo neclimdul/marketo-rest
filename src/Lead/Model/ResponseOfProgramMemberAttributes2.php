@@ -1,6 +1,6 @@
 <?php
 /**
- * Company
+ * ResponseOfProgramMemberAttributes2
  *
  * @category Class
  * @package  NecLimDul\MarketoRest\Lead
@@ -31,10 +31,9 @@ use \ArrayAccess;
 use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
- * Company Class Doc Comment
+ * ResponseOfProgramMemberAttributes2 Class Doc Comment
  *
  * @category Class
- * @description Company record.  May include any additional fields listed in the corresponding describe method
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
@@ -42,7 +41,7 @@ use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class Company implements ModelInterface, ArrayAccess, \JsonSerializable
+class ResponseOfProgramMemberAttributes2 implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -51,7 +50,7 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $swaggerModelName = 'Company';
+    protected static $swaggerModelName = 'ResponseOfProgramMemberAttributes2';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -59,10 +58,13 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'id' => 'int',
-        'reasons' => '\NecLimDul\MarketoRest\Lead\Model\Reason[]',
-        'seq' => 'int',
-        'status' => 'string'
+        'errors' => '\NecLimDul\MarketoRest\Lead\Model\Error[]',
+        'more_result' => 'bool',
+        'next_page_token' => 'string',
+        'request_id' => 'string',
+        'result' => '\NecLimDul\MarketoRest\Lead\Model\ProgramMemberAttribute2[]',
+        'success' => 'bool',
+        'warnings' => '\NecLimDul\MarketoRest\Lead\Model\Warning[]'
     ];
 
     /**
@@ -73,10 +75,13 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $swaggerFormats = [
-        'id' => 'int64',
-        'reasons' => null,
-        'seq' => 'int32',
-        'status' => null
+        'errors' => null,
+        'more_result' => null,
+        'next_page_token' => null,
+        'request_id' => null,
+        'result' => null,
+        'success' => null,
+        'warnings' => null
     ];
 
     /**
@@ -111,10 +116,13 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'id' => 'id',
-        'reasons' => 'reasons',
-        'seq' => 'seq',
-        'status' => 'status'
+        'errors' => 'errors',
+        'more_result' => 'moreResult',
+        'next_page_token' => 'nextPageToken',
+        'request_id' => 'requestId',
+        'result' => 'result',
+        'success' => 'success',
+        'warnings' => 'warnings'
     ];
 
     /**
@@ -123,10 +131,13 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'id' => 'setId',
-        'reasons' => 'setReasons',
-        'seq' => 'setSeq',
-        'status' => 'setStatus'
+        'errors' => 'setErrors',
+        'more_result' => 'setMoreResult',
+        'next_page_token' => 'setNextPageToken',
+        'request_id' => 'setRequestId',
+        'result' => 'setResult',
+        'success' => 'setSuccess',
+        'warnings' => 'setWarnings'
     ];
 
     /**
@@ -135,18 +146,15 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'id' => 'getId',
-        'reasons' => 'getReasons',
-        'seq' => 'getSeq',
-        'status' => 'getStatus'
+        'errors' => 'getErrors',
+        'more_result' => 'getMoreResult',
+        'next_page_token' => 'getNextPageToken',
+        'request_id' => 'getRequestId',
+        'result' => 'getResult',
+        'success' => 'getSuccess',
+        'warnings' => 'getWarnings'
     ];
 
-    const STATUS_CREATED = 'created';
-    const STATUS_UPDATED = 'updated';
-    const STATUS_DELETED = 'deleted';
-    const STATUS_SKIPPED = 'skipped';
-    const STATUS_ADDED = 'added';
-    const STATUS_REMOVED = 'removed';
     
 
     /**
@@ -164,10 +172,13 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
-        $this->container['reasons'] = isset($data['reasons']) ? $data['reasons'] : null;
-        $this->container['seq'] = isset($data['seq']) ? $data['seq'] : null;
-        $this->container['status'] = isset($data['status']) ? $data['status'] : null;
+        $this->container['errors'] = isset($data['errors']) ? $data['errors'] : null;
+        $this->container['more_result'] = isset($data['more_result']) ? $data['more_result'] : null;
+        $this->container['next_page_token'] = isset($data['next_page_token']) ? $data['next_page_token'] : null;
+        $this->container['request_id'] = isset($data['request_id']) ? $data['request_id'] : null;
+        $this->container['result'] = isset($data['result']) ? $data['result'] : null;
+        $this->container['success'] = isset($data['success']) ? $data['success'] : null;
+        $this->container['warnings'] = isset($data['warnings']) ? $data['warnings'] : null;
     }
 
     /**
@@ -209,21 +220,21 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['id'] === null) {
-            $invalidProperties[] = "'id' can't be null";
+        if ($this->container['errors'] === null) {
+            $invalidProperties[] = "'errors' can't be null";
         }
-        if ($this->container['seq'] === null) {
-            $invalidProperties[] = "'seq' can't be null";
+        if ($this->container['request_id'] === null) {
+            $invalidProperties[] = "'request_id' can't be null";
         }
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'status', must be one of '%s'",
-                $this->container['status'],
-                implode("', '", $allowedValues)
-            );
+        if ($this->container['result'] === null) {
+            $invalidProperties[] = "'result' can't be null";
         }
-
+        if ($this->container['success'] === null) {
+            $invalidProperties[] = "'success' can't be null";
+        }
+        if ($this->container['warnings'] === null) {
+            $invalidProperties[] = "'warnings' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -237,125 +248,169 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
     
 
     /**
-     * Gets allowable values of the enum
+     * Gets errors
      *
-     * @return string[]
+     * @return \NecLimDul\MarketoRest\Lead\Model\Error[]
      */
-    public function getStatusAllowableValues()
+    public function getErrors()
     {
-        return [
-            self::STATUS_CREATED,
-            self::STATUS_UPDATED,
-            self::STATUS_DELETED,
-            self::STATUS_SKIPPED,
-            self::STATUS_ADDED,
-            self::STATUS_REMOVED,
-        ];
-    }
-    
-
-    /**
-     * Gets id
-     *
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->container['id'];
+        return $this->container['errors'];
     }
 
     /**
-     * Sets id
+     * Sets errors
      *
-     * @param int $id Unique integer id of the company record
+     * @param \NecLimDul\MarketoRest\Lead\Model\Error[] $errors Array of errors that occurred if the request was unsuccessful
      *
      * @return self
      */
-    public function setId($id)
+    public function setErrors($errors)
     {
-        $this->container['id'] = $id;
+        $this->container['errors'] = $errors;
 
         return $this;
     }
 
     /**
-     * Gets reasons
+     * Gets more_result
      *
-     * @return \NecLimDul\MarketoRest\Lead\Model\Reason[]
+     * @return bool
      */
-    public function getReasons()
+    public function getMoreResult()
     {
-        return $this->container['reasons'];
+        return $this->container['more_result'];
     }
 
     /**
-     * Sets reasons
+     * Sets more_result
      *
-     * @param \NecLimDul\MarketoRest\Lead\Model\Reason[] $reasons List of reasons why an operation did not succeed.  Reasons are only present in API responses and should not be submitted
+     * @param bool $more_result Boolean indicating if there are more results in subsequent pages
      *
      * @return self
      */
-    public function setReasons($reasons)
+    public function setMoreResult($more_result)
     {
-        $this->container['reasons'] = $reasons;
+        $this->container['more_result'] = $more_result;
 
         return $this;
     }
 
     /**
-     * Gets seq
-     *
-     * @return int
-     */
-    public function getSeq()
-    {
-        return $this->container['seq'];
-    }
-
-    /**
-     * Sets seq
-     *
-     * @param int $seq Integer indicating the sequence of the record in response.  This value is correlated to the order of the records included in the request input.  Seq should only be part of responses and should not be submitted.
-     *
-     * @return self
-     */
-    public function setSeq($seq)
-    {
-        $this->container['seq'] = $seq;
-
-        return $this;
-    }
-
-    /**
-     * Gets status
+     * Gets next_page_token
      *
      * @return string
      */
-    public function getStatus()
+    public function getNextPageToken()
     {
-        return $this->container['status'];
+        return $this->container['next_page_token'];
     }
 
     /**
-     * Sets status
+     * Sets next_page_token
      *
-     * @param string $status Status of the operation performed on the record
+     * @param string $next_page_token Paging token given if the result set exceeded the allowed batch size
      *
      * @return self
      */
-    public function setStatus($status)
+    public function setNextPageToken($next_page_token)
     {
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!is_null($status) && !in_array($status, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'status', must be one of '%s'",
-                    $status,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['status'] = $status;
+        $this->container['next_page_token'] = $next_page_token;
+
+        return $this;
+    }
+
+    /**
+     * Gets request_id
+     *
+     * @return string
+     */
+    public function getRequestId()
+    {
+        return $this->container['request_id'];
+    }
+
+    /**
+     * Sets request_id
+     *
+     * @param string $request_id Id of the request made
+     *
+     * @return self
+     */
+    public function setRequestId($request_id)
+    {
+        $this->container['request_id'] = $request_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets result
+     *
+     * @return \NecLimDul\MarketoRest\Lead\Model\ProgramMemberAttribute2[]
+     */
+    public function getResult()
+    {
+        return $this->container['result'];
+    }
+
+    /**
+     * Sets result
+     *
+     * @param \NecLimDul\MarketoRest\Lead\Model\ProgramMemberAttribute2[] $result Array of results for individual records in the operation, may be empty
+     *
+     * @return self
+     */
+    public function setResult($result)
+    {
+        $this->container['result'] = $result;
+
+        return $this;
+    }
+
+    /**
+     * Gets success
+     *
+     * @return bool
+     */
+    public function getSuccess()
+    {
+        return $this->container['success'];
+    }
+
+    /**
+     * Sets success
+     *
+     * @param bool $success Whether the request succeeded
+     *
+     * @return self
+     */
+    public function setSuccess($success)
+    {
+        $this->container['success'] = $success;
+
+        return $this;
+    }
+
+    /**
+     * Gets warnings
+     *
+     * @return \NecLimDul\MarketoRest\Lead\Model\Warning[]
+     */
+    public function getWarnings()
+    {
+        return $this->container['warnings'];
+    }
+
+    /**
+     * Sets warnings
+     *
+     * @param \NecLimDul\MarketoRest\Lead\Model\Warning[] $warnings Array of warnings given for the operation
+     *
+     * @return self
+     */
+    public function setWarnings($warnings)
+    {
+        $this->container['warnings'] = $warnings;
 
         return $this;
     }

@@ -1,6 +1,6 @@
 <?php
 /**
- * Company
+ * ProgramMemberDataResponse
  *
  * @category Class
  * @package  NecLimDul\MarketoRest\Lead
@@ -31,10 +31,9 @@ use \ArrayAccess;
 use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
- * Company Class Doc Comment
+ * ProgramMemberDataResponse Class Doc Comment
  *
  * @category Class
- * @description Company record.  May include any additional fields listed in the corresponding describe method
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
@@ -42,7 +41,7 @@ use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class Company implements ModelInterface, ArrayAccess, \JsonSerializable
+class ProgramMemberDataResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -51,7 +50,7 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $swaggerModelName = 'Company';
+    protected static $swaggerModelName = 'ProgramMemberDataResponse';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -59,10 +58,10 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'id' => 'int',
+        'status' => 'string',
         'reasons' => '\NecLimDul\MarketoRest\Lead\Model\Reason[]',
-        'seq' => 'int',
-        'status' => 'string'
+        'lead_id' => 'int',
+        'seq' => 'int'
     ];
 
     /**
@@ -73,10 +72,10 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $swaggerFormats = [
-        'id' => 'int64',
+        'status' => null,
         'reasons' => null,
-        'seq' => 'int32',
-        'status' => null
+        'lead_id' => 'int64',
+        'seq' => 'int32'
     ];
 
     /**
@@ -111,10 +110,10 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'id' => 'id',
+        'status' => 'status',
         'reasons' => 'reasons',
-        'seq' => 'seq',
-        'status' => 'status'
+        'lead_id' => 'leadId',
+        'seq' => 'seq'
     ];
 
     /**
@@ -123,10 +122,10 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'id' => 'setId',
+        'status' => 'setStatus',
         'reasons' => 'setReasons',
-        'seq' => 'setSeq',
-        'status' => 'setStatus'
+        'lead_id' => 'setLeadId',
+        'seq' => 'setSeq'
     ];
 
     /**
@@ -135,18 +134,15 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'id' => 'getId',
+        'status' => 'getStatus',
         'reasons' => 'getReasons',
-        'seq' => 'getSeq',
-        'status' => 'getStatus'
+        'lead_id' => 'getLeadId',
+        'seq' => 'getSeq'
     ];
 
     const STATUS_CREATED = 'created';
     const STATUS_UPDATED = 'updated';
-    const STATUS_DELETED = 'deleted';
     const STATUS_SKIPPED = 'skipped';
-    const STATUS_ADDED = 'added';
-    const STATUS_REMOVED = 'removed';
     
 
     /**
@@ -164,10 +160,10 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
-        $this->container['reasons'] = isset($data['reasons']) ? $data['reasons'] : null;
-        $this->container['seq'] = isset($data['seq']) ? $data['seq'] : null;
         $this->container['status'] = isset($data['status']) ? $data['status'] : null;
+        $this->container['reasons'] = isset($data['reasons']) ? $data['reasons'] : null;
+        $this->container['lead_id'] = isset($data['lead_id']) ? $data['lead_id'] : null;
+        $this->container['seq'] = isset($data['seq']) ? $data['seq'] : null;
     }
 
     /**
@@ -209,11 +205,8 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['id'] === null) {
-            $invalidProperties[] = "'id' can't be null";
-        }
-        if ($this->container['seq'] === null) {
-            $invalidProperties[] = "'seq' can't be null";
+        if ($this->container['status'] === null) {
+            $invalidProperties[] = "'status' can't be null";
         }
         $allowedValues = $this->getStatusAllowableValues();
         if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
@@ -224,6 +217,12 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
             );
         }
 
+        if ($this->container['lead_id'] === null) {
+            $invalidProperties[] = "'lead_id' can't be null";
+        }
+        if ($this->container['seq'] === null) {
+            $invalidProperties[] = "'seq' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -246,34 +245,41 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
         return [
             self::STATUS_CREATED,
             self::STATUS_UPDATED,
-            self::STATUS_DELETED,
             self::STATUS_SKIPPED,
-            self::STATUS_ADDED,
-            self::STATUS_REMOVED,
         ];
     }
     
 
     /**
-     * Gets id
+     * Gets status
      *
-     * @return int
+     * @return string
      */
-    public function getId()
+    public function getStatus()
     {
-        return $this->container['id'];
+        return $this->container['status'];
     }
 
     /**
-     * Sets id
+     * Sets status
      *
-     * @param int $id Unique integer id of the company record
+     * @param string $status Status of the operation performed on the record
      *
      * @return self
      */
-    public function setId($id)
+    public function setStatus($status)
     {
-        $this->container['id'] = $id;
+        $allowedValues = $this->getStatusAllowableValues();
+        if (!in_array($status, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'status', must be one of '%s'",
+                    $status,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['status'] = $status;
 
         return $this;
     }
@@ -303,6 +309,30 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets lead_id
+     *
+     * @return int
+     */
+    public function getLeadId()
+    {
+        return $this->container['lead_id'];
+    }
+
+    /**
+     * Sets lead_id
+     *
+     * @param int $lead_id Id of the lead associated to the program member
+     *
+     * @return self
+     */
+    public function setLeadId($lead_id)
+    {
+        $this->container['lead_id'] = $lead_id;
+
+        return $this;
+    }
+
+    /**
      * Gets seq
      *
      * @return int
@@ -322,40 +352,6 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setSeq($seq)
     {
         $this->container['seq'] = $seq;
-
-        return $this;
-    }
-
-    /**
-     * Gets status
-     *
-     * @return string
-     */
-    public function getStatus()
-    {
-        return $this->container['status'];
-    }
-
-    /**
-     * Sets status
-     *
-     * @param string $status Status of the operation performed on the record
-     *
-     * @return self
-     */
-    public function setStatus($status)
-    {
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!is_null($status) && !in_array($status, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'status', must be one of '%s'",
-                    $status,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['status'] = $status;
 
         return $this;
     }

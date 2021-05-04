@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 Get Campaign By Id
 
-Returns the record of a campaign by its id.  Required Permissions: Read-Only Campaigns, Read-Write Campaigns<br><br>Note: This endpoint has been superceded.  Use <a href=\"/rest-api/endpoint-reference/asset-endpoint-reference/#!/Smart_Campaigns/getSmartCampaignByIdUsingGET\">Get Smart Campaign by Id</a> endpoint instead.
+Returns the record of a campaign by its id.  Required Permissions: Read-Only Campaigns, Read-Write Campaigns<br><br><b>Note: This endpoint has been superceded.</b>  Use <a href=\"/rest-api/endpoint-reference/asset-endpoint-reference/#!/Smart_Campaigns/getSmartCampaignByIdUsingGET\">Get Smart Campaign by Id</a> endpoint instead.
 
 ### Example
 ```php
@@ -64,7 +64,7 @@ No authorization required
 
 Get Campaigns
 
-Returns a list of campaign records.  Required Permissions: Read-Only Campaigns, Read-Write Campaigns<br><br>Note: This endpoint has been superceded.  Use <a href=\"/rest-api/endpoint-reference/asset-endpoint-reference/#/Smart_Campaigns/getAllSmartCampaignsGET\">Get Smart Campaigns</a> endpoint instead.
+Returns a list of campaign records.  Required Permissions: Read-Only Campaigns, Read-Write Campaigns<br><br><b>Note: This endpoint has been superceded.</b>  Use <a href=\"/rest-api/endpoint-reference/asset-endpoint-reference/#/Smart_Campaigns/getAllSmartCampaignsGET\">Get Smart Campaigns</a> endpoint instead.
 
 ### Example
 ```php

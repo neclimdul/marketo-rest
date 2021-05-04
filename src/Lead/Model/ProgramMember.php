@@ -1,6 +1,6 @@
 <?php
 /**
- * Company
+ * ProgramMember
  *
  * @category Class
  * @package  NecLimDul\MarketoRest\Lead
@@ -31,10 +31,10 @@ use \ArrayAccess;
 use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
- * Company Class Doc Comment
+ * ProgramMember Class Doc Comment
  *
  * @category Class
- * @description Company record.  May include any additional fields listed in the corresponding describe method
+ * @description Program member record.  Always contains lead id, but may have any number of other fields, depending on the fields available in the target instance.
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
@@ -42,7 +42,7 @@ use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class Company implements ModelInterface, ArrayAccess, \JsonSerializable
+class ProgramMember implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -51,7 +51,7 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $swaggerModelName = 'Company';
+    protected static $swaggerModelName = 'ProgramMember';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -59,10 +59,12 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'id' => 'int',
-        'reasons' => '\NecLimDul\MarketoRest\Lead\Model\Reason[]',
         'seq' => 'int',
-        'status' => 'string'
+        'lead_id' => 'int',
+        'reached_success' => 'bool',
+        'program_id' => 'int',
+        'acquired_by' => 'bool',
+        'membership_date' => 'string'
     ];
 
     /**
@@ -73,10 +75,12 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $swaggerFormats = [
-        'id' => 'int64',
-        'reasons' => null,
         'seq' => 'int32',
-        'status' => null
+        'lead_id' => 'int32',
+        'reached_success' => null,
+        'program_id' => 'int32',
+        'acquired_by' => null,
+        'membership_date' => null
     ];
 
     /**
@@ -111,10 +115,12 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'id' => 'id',
-        'reasons' => 'reasons',
         'seq' => 'seq',
-        'status' => 'status'
+        'lead_id' => 'leadId',
+        'reached_success' => 'reachedSuccess',
+        'program_id' => 'programId',
+        'acquired_by' => 'acquiredBy',
+        'membership_date' => 'membershipDate'
     ];
 
     /**
@@ -123,10 +129,12 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'id' => 'setId',
-        'reasons' => 'setReasons',
         'seq' => 'setSeq',
-        'status' => 'setStatus'
+        'lead_id' => 'setLeadId',
+        'reached_success' => 'setReachedSuccess',
+        'program_id' => 'setProgramId',
+        'acquired_by' => 'setAcquiredBy',
+        'membership_date' => 'setMembershipDate'
     ];
 
     /**
@@ -135,18 +143,14 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'id' => 'getId',
-        'reasons' => 'getReasons',
         'seq' => 'getSeq',
-        'status' => 'getStatus'
+        'lead_id' => 'getLeadId',
+        'reached_success' => 'getReachedSuccess',
+        'program_id' => 'getProgramId',
+        'acquired_by' => 'getAcquiredBy',
+        'membership_date' => 'getMembershipDate'
     ];
 
-    const STATUS_CREATED = 'created';
-    const STATUS_UPDATED = 'updated';
-    const STATUS_DELETED = 'deleted';
-    const STATUS_SKIPPED = 'skipped';
-    const STATUS_ADDED = 'added';
-    const STATUS_REMOVED = 'removed';
     
 
     /**
@@ -164,10 +168,12 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
-        $this->container['reasons'] = isset($data['reasons']) ? $data['reasons'] : null;
         $this->container['seq'] = isset($data['seq']) ? $data['seq'] : null;
-        $this->container['status'] = isset($data['status']) ? $data['status'] : null;
+        $this->container['lead_id'] = isset($data['lead_id']) ? $data['lead_id'] : null;
+        $this->container['reached_success'] = isset($data['reached_success']) ? $data['reached_success'] : null;
+        $this->container['program_id'] = isset($data['program_id']) ? $data['program_id'] : null;
+        $this->container['acquired_by'] = isset($data['acquired_by']) ? $data['acquired_by'] : null;
+        $this->container['membership_date'] = isset($data['membership_date']) ? $data['membership_date'] : null;
     }
 
     /**
@@ -209,21 +215,24 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['id'] === null) {
-            $invalidProperties[] = "'id' can't be null";
-        }
         if ($this->container['seq'] === null) {
             $invalidProperties[] = "'seq' can't be null";
         }
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'status', must be one of '%s'",
-                $this->container['status'],
-                implode("', '", $allowedValues)
-            );
+        if ($this->container['lead_id'] === null) {
+            $invalidProperties[] = "'lead_id' can't be null";
         }
-
+        if ($this->container['reached_success'] === null) {
+            $invalidProperties[] = "'reached_success' can't be null";
+        }
+        if ($this->container['program_id'] === null) {
+            $invalidProperties[] = "'program_id' can't be null";
+        }
+        if ($this->container['acquired_by'] === null) {
+            $invalidProperties[] = "'acquired_by' can't be null";
+        }
+        if ($this->container['membership_date'] === null) {
+            $invalidProperties[] = "'membership_date' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -235,72 +244,6 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
         return count($this->listInvalidProperties()) === 0;
     }
     
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getStatusAllowableValues()
-    {
-        return [
-            self::STATUS_CREATED,
-            self::STATUS_UPDATED,
-            self::STATUS_DELETED,
-            self::STATUS_SKIPPED,
-            self::STATUS_ADDED,
-            self::STATUS_REMOVED,
-        ];
-    }
-    
-
-    /**
-     * Gets id
-     *
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->container['id'];
-    }
-
-    /**
-     * Sets id
-     *
-     * @param int $id Unique integer id of the company record
-     *
-     * @return self
-     */
-    public function setId($id)
-    {
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-
-    /**
-     * Gets reasons
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\Reason[]
-     */
-    public function getReasons()
-    {
-        return $this->container['reasons'];
-    }
-
-    /**
-     * Sets reasons
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\Reason[] $reasons List of reasons why an operation did not succeed.  Reasons are only present in API responses and should not be submitted
-     *
-     * @return self
-     */
-    public function setReasons($reasons)
-    {
-        $this->container['reasons'] = $reasons;
-
-        return $this;
-    }
 
     /**
      * Gets seq
@@ -327,35 +270,121 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets status
+     * Gets lead_id
      *
-     * @return string
+     * @return int
      */
-    public function getStatus()
+    public function getLeadId()
     {
-        return $this->container['status'];
+        return $this->container['lead_id'];
     }
 
     /**
-     * Sets status
+     * Sets lead_id
      *
-     * @param string $status Status of the operation performed on the record
+     * @param int $lead_id Unique integer id of a lead record
      *
      * @return self
      */
-    public function setStatus($status)
+    public function setLeadId($lead_id)
     {
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!is_null($status) && !in_array($status, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'status', must be one of '%s'",
-                    $status,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['status'] = $status;
+        $this->container['lead_id'] = $lead_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets reached_success
+     *
+     * @return bool
+     */
+    public function getReachedSuccess()
+    {
+        return $this->container['reached_success'];
+    }
+
+    /**
+     * Sets reached_success
+     *
+     * @param bool $reached_success Boolean indicating if program member has reached success criteria for program
+     *
+     * @return self
+     */
+    public function setReachedSuccess($reached_success)
+    {
+        $this->container['reached_success'] = $reached_success;
+
+        return $this;
+    }
+
+    /**
+     * Gets program_id
+     *
+     * @return int
+     */
+    public function getProgramId()
+    {
+        return $this->container['program_id'];
+    }
+
+    /**
+     * Sets program_id
+     *
+     * @param int $program_id Unique integer id of a program
+     *
+     * @return self
+     */
+    public function setProgramId($program_id)
+    {
+        $this->container['program_id'] = $program_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets acquired_by
+     *
+     * @return bool
+     */
+    public function getAcquiredBy()
+    {
+        return $this->container['acquired_by'];
+    }
+
+    /**
+     * Sets acquired_by
+     *
+     * @param bool $acquired_by Boolean indicating if program member was acquired by program
+     *
+     * @return self
+     */
+    public function setAcquiredBy($acquired_by)
+    {
+        $this->container['acquired_by'] = $acquired_by;
+
+        return $this;
+    }
+
+    /**
+     * Gets membership_date
+     *
+     * @return string
+     */
+    public function getMembershipDate()
+    {
+        return $this->container['membership_date'];
+    }
+
+    /**
+     * Sets membership_date
+     *
+     * @param string $membership_date Date the lead first became a member of the program
+     *
+     * @return self
+     */
+    public function setMembershipDate($membership_date)
+    {
+        $this->container['membership_date'] = $membership_date;
 
         return $this;
     }

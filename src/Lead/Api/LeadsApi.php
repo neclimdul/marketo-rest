@@ -309,7 +309,7 @@ class LeadsApi
      *
      * Change Lead Program Status
      *
-     * @param  int $program_id programId (required)
+     * @param  int $program_id The id of target program (required)
      * @param  \NecLimDul\MarketoRest\Lead\Model\ChangeLeadProgramStatusRequest $change_lead_program_status_request changeLeadProgramStatusRequest (required)
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
@@ -327,7 +327,7 @@ class LeadsApi
      *
      * Change Lead Program Status
      *
-     * @param  int $program_id programId (required)
+     * @param  int $program_id The id of target program (required)
      * @param  \NecLimDul\MarketoRest\Lead\Model\ChangeLeadProgramStatusRequest $change_lead_program_status_request changeLeadProgramStatusRequest (required)
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
@@ -369,7 +369,7 @@ class LeadsApi
      *
      * Change Lead Program Status
      *
-     * @param  int $program_id programId (required)
+     * @param  int $program_id The id of target program (required)
      * @param  \NecLimDul\MarketoRest\Lead\Model\ChangeLeadProgramStatusRequest $change_lead_program_status_request changeLeadProgramStatusRequest (required)
      *
      * @throws \InvalidArgumentException
@@ -390,7 +390,7 @@ class LeadsApi
      *
      * Change Lead Program Status
      *
-     * @param  int $program_id programId (required)
+     * @param  int $program_id The id of target program (required)
      * @param  \NecLimDul\MarketoRest\Lead\Model\ChangeLeadProgramStatusRequest $change_lead_program_status_request changeLeadProgramStatusRequest (required)
      *
      * @throws \InvalidArgumentException
@@ -425,7 +425,7 @@ class LeadsApi
     /**
      * Create request for operation 'changeLeadProgramStatusUsingPOST'
      *
-     * @param  int $program_id programId (required)
+     * @param  int $program_id The id of target program (required)
      * @param  \NecLimDul\MarketoRest\Lead\Model\ChangeLeadProgramStatusRequest $change_lead_program_status_request changeLeadProgramStatusRequest (required)
      *
      * @throws \InvalidArgumentException
@@ -1461,7 +1461,7 @@ class LeadsApi
      *
      * Get Leads by Filter Type
      *
-     * @param  string $filter_type The lead field to filter on.  Any custom field (string, email, or integer types only), and any of the following fields are supported: cookies, email, facebookId, id, leadPartitionId, linkedInId, sfdcAccountId, sfdcContactId, sfdcLeadId, sfdcLeadOwnerId, sfdcOpptyId, twitterId.&lt;br&gt;&lt;br&gt;A comprehensive list of fields can be obtained via the &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/endpoint-reference/lead-database-endpoint-reference/#!/Leads/describeUsingGET_6\&quot;&gt;Describe Lead2&lt;/a&gt; endpoint. (required)
+     * @param  string $filter_type The lead field to filter on.  Any custom field (string, email, or integer types only), and any of the following fields are supported: cookies, email, facebookId, id, leadPartitionId, linkedInId, sfdcAccountId, sfdcContactId, sfdcLeadId, sfdcLeadOwnerId, sfdcOpptyId, twitterId.&lt;br&gt;&lt;br&gt;A comprehensive list of fields can be obtained via the &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/endpoint-reference/lead-database-endpoint-reference/#/Leads/describeUsingGET_6\&quot;&gt;Describe Lead2&lt;/a&gt; endpoint. (required)
      * @param  string[] $filter_values A comma-separated list of values to filter on in the specified fields. (required)
      * @param  string[] $fields A comma-separated list of lead fields to return for each record (optional)
      * @param  int $batch_size The batch size to return.  The max and default value is 300. (optional)
@@ -1482,7 +1482,7 @@ class LeadsApi
      *
      * Get Leads by Filter Type
      *
-     * @param  string $filter_type The lead field to filter on.  Any custom field (string, email, or integer types only), and any of the following fields are supported: cookies, email, facebookId, id, leadPartitionId, linkedInId, sfdcAccountId, sfdcContactId, sfdcLeadId, sfdcLeadOwnerId, sfdcOpptyId, twitterId.&lt;br&gt;&lt;br&gt;A comprehensive list of fields can be obtained via the &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/endpoint-reference/lead-database-endpoint-reference/#!/Leads/describeUsingGET_6\&quot;&gt;Describe Lead2&lt;/a&gt; endpoint. (required)
+     * @param  string $filter_type The lead field to filter on.  Any custom field (string, email, or integer types only), and any of the following fields are supported: cookies, email, facebookId, id, leadPartitionId, linkedInId, sfdcAccountId, sfdcContactId, sfdcLeadId, sfdcLeadOwnerId, sfdcOpptyId, twitterId.&lt;br&gt;&lt;br&gt;A comprehensive list of fields can be obtained via the &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/endpoint-reference/lead-database-endpoint-reference/#/Leads/describeUsingGET_6\&quot;&gt;Describe Lead2&lt;/a&gt; endpoint. (required)
      * @param  string[] $filter_values A comma-separated list of values to filter on in the specified fields. (required)
      * @param  string[] $fields A comma-separated list of lead fields to return for each record (optional)
      * @param  int $batch_size The batch size to return.  The max and default value is 300. (optional)
@@ -1527,7 +1527,7 @@ class LeadsApi
      *
      * Get Leads by Filter Type
      *
-     * @param  string $filter_type The lead field to filter on.  Any custom field (string, email, or integer types only), and any of the following fields are supported: cookies, email, facebookId, id, leadPartitionId, linkedInId, sfdcAccountId, sfdcContactId, sfdcLeadId, sfdcLeadOwnerId, sfdcOpptyId, twitterId.&lt;br&gt;&lt;br&gt;A comprehensive list of fields can be obtained via the &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/endpoint-reference/lead-database-endpoint-reference/#!/Leads/describeUsingGET_6\&quot;&gt;Describe Lead2&lt;/a&gt; endpoint. (required)
+     * @param  string $filter_type The lead field to filter on.  Any custom field (string, email, or integer types only), and any of the following fields are supported: cookies, email, facebookId, id, leadPartitionId, linkedInId, sfdcAccountId, sfdcContactId, sfdcLeadId, sfdcLeadOwnerId, sfdcOpptyId, twitterId.&lt;br&gt;&lt;br&gt;A comprehensive list of fields can be obtained via the &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/endpoint-reference/lead-database-endpoint-reference/#/Leads/describeUsingGET_6\&quot;&gt;Describe Lead2&lt;/a&gt; endpoint. (required)
      * @param  string[] $filter_values A comma-separated list of values to filter on in the specified fields. (required)
      * @param  string[] $fields A comma-separated list of lead fields to return for each record (optional)
      * @param  int $batch_size The batch size to return.  The max and default value is 300. (optional)
@@ -1551,7 +1551,7 @@ class LeadsApi
      *
      * Get Leads by Filter Type
      *
-     * @param  string $filter_type The lead field to filter on.  Any custom field (string, email, or integer types only), and any of the following fields are supported: cookies, email, facebookId, id, leadPartitionId, linkedInId, sfdcAccountId, sfdcContactId, sfdcLeadId, sfdcLeadOwnerId, sfdcOpptyId, twitterId.&lt;br&gt;&lt;br&gt;A comprehensive list of fields can be obtained via the &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/endpoint-reference/lead-database-endpoint-reference/#!/Leads/describeUsingGET_6\&quot;&gt;Describe Lead2&lt;/a&gt; endpoint. (required)
+     * @param  string $filter_type The lead field to filter on.  Any custom field (string, email, or integer types only), and any of the following fields are supported: cookies, email, facebookId, id, leadPartitionId, linkedInId, sfdcAccountId, sfdcContactId, sfdcLeadId, sfdcLeadOwnerId, sfdcOpptyId, twitterId.&lt;br&gt;&lt;br&gt;A comprehensive list of fields can be obtained via the &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/endpoint-reference/lead-database-endpoint-reference/#/Leads/describeUsingGET_6\&quot;&gt;Describe Lead2&lt;/a&gt; endpoint. (required)
      * @param  string[] $filter_values A comma-separated list of values to filter on in the specified fields. (required)
      * @param  string[] $fields A comma-separated list of lead fields to return for each record (optional)
      * @param  int $batch_size The batch size to return.  The max and default value is 300. (optional)
@@ -1589,7 +1589,7 @@ class LeadsApi
     /**
      * Create request for operation 'getLeadsByFilterUsingGET'
      *
-     * @param  string $filter_type The lead field to filter on.  Any custom field (string, email, or integer types only), and any of the following fields are supported: cookies, email, facebookId, id, leadPartitionId, linkedInId, sfdcAccountId, sfdcContactId, sfdcLeadId, sfdcLeadOwnerId, sfdcOpptyId, twitterId.&lt;br&gt;&lt;br&gt;A comprehensive list of fields can be obtained via the &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/endpoint-reference/lead-database-endpoint-reference/#!/Leads/describeUsingGET_6\&quot;&gt;Describe Lead2&lt;/a&gt; endpoint. (required)
+     * @param  string $filter_type The lead field to filter on.  Any custom field (string, email, or integer types only), and any of the following fields are supported: cookies, email, facebookId, id, leadPartitionId, linkedInId, sfdcAccountId, sfdcContactId, sfdcLeadId, sfdcLeadOwnerId, sfdcOpptyId, twitterId.&lt;br&gt;&lt;br&gt;A comprehensive list of fields can be obtained via the &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/endpoint-reference/lead-database-endpoint-reference/#/Leads/describeUsingGET_6\&quot;&gt;Describe Lead2&lt;/a&gt; endpoint. (required)
      * @param  string[] $filter_values A comma-separated list of values to filter on in the specified fields. (required)
      * @param  string[] $fields A comma-separated list of lead fields to return for each record (optional)
      * @param  int $batch_size The batch size to return.  The max and default value is 300. (optional)

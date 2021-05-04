@@ -1,6 +1,6 @@
 <?php
 /**
- * Company
+ * ProgramMemberData
  *
  * @category Class
  * @package  NecLimDul\MarketoRest\Lead
@@ -31,10 +31,9 @@ use \ArrayAccess;
 use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
- * Company Class Doc Comment
+ * ProgramMemberData Class Doc Comment
  *
  * @category Class
- * @description Company record.  May include any additional fields listed in the corresponding describe method
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
@@ -42,7 +41,7 @@ use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class Company implements ModelInterface, ArrayAccess, \JsonSerializable
+class ProgramMemberData implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -51,7 +50,7 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $swaggerModelName = 'Company';
+    protected static $swaggerModelName = 'ProgramMemberData';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -59,10 +58,9 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'id' => 'int',
-        'reasons' => '\NecLimDul\MarketoRest\Lead\Model\Reason[]',
-        'seq' => 'int',
-        'status' => 'string'
+        'lead_id' => 'int',
+        'field_api_name' => 'string',
+        'field_api_name2' => 'string'
     ];
 
     /**
@@ -73,10 +71,9 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $swaggerFormats = [
-        'id' => 'int64',
-        'reasons' => null,
-        'seq' => 'int32',
-        'status' => null
+        'lead_id' => 'int64',
+        'field_api_name' => null,
+        'field_api_name2' => null
     ];
 
     /**
@@ -111,10 +108,9 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'id' => 'id',
-        'reasons' => 'reasons',
-        'seq' => 'seq',
-        'status' => 'status'
+        'lead_id' => 'leadId',
+        'field_api_name' => '{fieldApiName}',
+        'field_api_name2' => '{fieldApiName2}'
     ];
 
     /**
@@ -123,10 +119,9 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'id' => 'setId',
-        'reasons' => 'setReasons',
-        'seq' => 'setSeq',
-        'status' => 'setStatus'
+        'lead_id' => 'setLeadId',
+        'field_api_name' => 'setFieldApiName',
+        'field_api_name2' => 'setFieldApiName2'
     ];
 
     /**
@@ -135,18 +130,11 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'id' => 'getId',
-        'reasons' => 'getReasons',
-        'seq' => 'getSeq',
-        'status' => 'getStatus'
+        'lead_id' => 'getLeadId',
+        'field_api_name' => 'getFieldApiName',
+        'field_api_name2' => 'getFieldApiName2'
     ];
 
-    const STATUS_CREATED = 'created';
-    const STATUS_UPDATED = 'updated';
-    const STATUS_DELETED = 'deleted';
-    const STATUS_SKIPPED = 'skipped';
-    const STATUS_ADDED = 'added';
-    const STATUS_REMOVED = 'removed';
     
 
     /**
@@ -164,10 +152,9 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
-        $this->container['reasons'] = isset($data['reasons']) ? $data['reasons'] : null;
-        $this->container['seq'] = isset($data['seq']) ? $data['seq'] : null;
-        $this->container['status'] = isset($data['status']) ? $data['status'] : null;
+        $this->container['lead_id'] = isset($data['lead_id']) ? $data['lead_id'] : null;
+        $this->container['field_api_name'] = isset($data['field_api_name']) ? $data['field_api_name'] : null;
+        $this->container['field_api_name2'] = isset($data['field_api_name2']) ? $data['field_api_name2'] : null;
     }
 
     /**
@@ -209,21 +196,12 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['id'] === null) {
-            $invalidProperties[] = "'id' can't be null";
+        if ($this->container['lead_id'] === null) {
+            $invalidProperties[] = "'lead_id' can't be null";
         }
-        if ($this->container['seq'] === null) {
-            $invalidProperties[] = "'seq' can't be null";
+        if ($this->container['field_api_name'] === null) {
+            $invalidProperties[] = "'field_api_name' can't be null";
         }
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'status', must be one of '%s'",
-                $this->container['status'],
-                implode("', '", $allowedValues)
-            );
-        }
-
         return $invalidProperties;
     }
 
@@ -237,125 +215,73 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
     
 
     /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getStatusAllowableValues()
-    {
-        return [
-            self::STATUS_CREATED,
-            self::STATUS_UPDATED,
-            self::STATUS_DELETED,
-            self::STATUS_SKIPPED,
-            self::STATUS_ADDED,
-            self::STATUS_REMOVED,
-        ];
-    }
-    
-
-    /**
-     * Gets id
+     * Gets lead_id
      *
      * @return int
      */
-    public function getId()
+    public function getLeadId()
     {
-        return $this->container['id'];
+        return $this->container['lead_id'];
     }
 
     /**
-     * Sets id
+     * Sets lead_id
      *
-     * @param int $id Unique integer id of the company record
+     * @param int $lead_id Unique integer id of a lead record
      *
      * @return self
      */
-    public function setId($id)
+    public function setLeadId($lead_id)
     {
-        $this->container['id'] = $id;
+        $this->container['lead_id'] = $lead_id;
 
         return $this;
     }
 
     /**
-     * Gets reasons
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\Reason[]
-     */
-    public function getReasons()
-    {
-        return $this->container['reasons'];
-    }
-
-    /**
-     * Sets reasons
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\Reason[] $reasons List of reasons why an operation did not succeed.  Reasons are only present in API responses and should not be submitted
-     *
-     * @return self
-     */
-    public function setReasons($reasons)
-    {
-        $this->container['reasons'] = $reasons;
-
-        return $this;
-    }
-
-    /**
-     * Gets seq
-     *
-     * @return int
-     */
-    public function getSeq()
-    {
-        return $this->container['seq'];
-    }
-
-    /**
-     * Sets seq
-     *
-     * @param int $seq Integer indicating the sequence of the record in response.  This value is correlated to the order of the records included in the request input.  Seq should only be part of responses and should not be submitted.
-     *
-     * @return self
-     */
-    public function setSeq($seq)
-    {
-        $this->container['seq'] = $seq;
-
-        return $this;
-    }
-
-    /**
-     * Gets status
+     * Gets field_api_name
      *
      * @return string
      */
-    public function getStatus()
+    public function getFieldApiName()
     {
-        return $this->container['status'];
+        return $this->container['field_api_name'];
     }
 
     /**
-     * Sets status
+     * Sets field_api_name
      *
-     * @param string $status Status of the operation performed on the record
+     * @param string $field_api_name API Name of field to update.  Must be updateable as described by <a href=\"/rest-api/endpoint-reference/lead-database-endpoint-reference/#/Leads/describeProgramMemberUsingGET2\">Describe Program Member</a> endpoint.
      *
      * @return self
      */
-    public function setStatus($status)
+    public function setFieldApiName($field_api_name)
     {
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!is_null($status) && !in_array($status, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'status', must be one of '%s'",
-                    $status,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['status'] = $status;
+        $this->container['field_api_name'] = $field_api_name;
+
+        return $this;
+    }
+
+    /**
+     * Gets field_api_name2
+     *
+     * @return string
+     */
+    public function getFieldApiName2()
+    {
+        return $this->container['field_api_name2'];
+    }
+
+    /**
+     * Sets field_api_name2
+     *
+     * @param string $field_api_name2 API Name of another field to update (and so forth).  Must be updateable as described by <a href=\"/rest-api/endpoint-reference/lead-database-endpoint-reference/#/Leads/describeProgramMemberUsingGET2\">Describe Program Member</a> endpoint.
+     *
+     * @return self
+     */
+    public function setFieldApiName2($field_api_name2)
+    {
+        $this->container['field_api_name2'] = $field_api_name2;
 
         return $this;
     }

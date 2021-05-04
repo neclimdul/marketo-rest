@@ -1,6 +1,6 @@
 <?php
 /**
- * Company
+ * ProgramMemberAttribute2
  *
  * @category Class
  * @package  NecLimDul\MarketoRest\Lead
@@ -31,10 +31,9 @@ use \ArrayAccess;
 use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
- * Company Class Doc Comment
+ * ProgramMemberAttribute2 Class Doc Comment
  *
  * @category Class
- * @description Company record.  May include any additional fields listed in the corresponding describe method
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
@@ -42,7 +41,7 @@ use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class Company implements ModelInterface, ArrayAccess, \JsonSerializable
+class ProgramMemberAttribute2 implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -51,7 +50,7 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $swaggerModelName = 'Company';
+    protected static $swaggerModelName = 'ProgramMemberAttribute2';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -59,10 +58,13 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'id' => 'int',
-        'reasons' => '\NecLimDul\MarketoRest\Lead\Model\Reason[]',
-        'seq' => 'int',
-        'status' => 'string'
+        'name' => 'string',
+        'description' => 'string',
+        'created_at' => 'string',
+        'updated_at' => 'string',
+        'dedupe_fields' => 'string[]',
+        'searchable_fields' => '\NecLimDul\MarketoRest\Lead\Model\LeadAttribute2SearchableFields[]',
+        'fields' => '\NecLimDul\MarketoRest\Lead\Model\LeadAttribute2Fields2[]'
     ];
 
     /**
@@ -73,10 +75,13 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $swaggerFormats = [
-        'id' => 'int64',
-        'reasons' => null,
-        'seq' => 'int32',
-        'status' => null
+        'name' => null,
+        'description' => null,
+        'created_at' => null,
+        'updated_at' => null,
+        'dedupe_fields' => null,
+        'searchable_fields' => null,
+        'fields' => null
     ];
 
     /**
@@ -111,10 +116,13 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'id' => 'id',
-        'reasons' => 'reasons',
-        'seq' => 'seq',
-        'status' => 'status'
+        'name' => 'name',
+        'description' => 'description',
+        'created_at' => 'createdAt',
+        'updated_at' => 'updatedAt',
+        'dedupe_fields' => 'dedupeFields',
+        'searchable_fields' => 'searchableFields',
+        'fields' => 'fields'
     ];
 
     /**
@@ -123,10 +131,13 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'id' => 'setId',
-        'reasons' => 'setReasons',
-        'seq' => 'setSeq',
-        'status' => 'setStatus'
+        'name' => 'setName',
+        'description' => 'setDescription',
+        'created_at' => 'setCreatedAt',
+        'updated_at' => 'setUpdatedAt',
+        'dedupe_fields' => 'setDedupeFields',
+        'searchable_fields' => 'setSearchableFields',
+        'fields' => 'setFields'
     ];
 
     /**
@@ -135,18 +146,15 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'id' => 'getId',
-        'reasons' => 'getReasons',
-        'seq' => 'getSeq',
-        'status' => 'getStatus'
+        'name' => 'getName',
+        'description' => 'getDescription',
+        'created_at' => 'getCreatedAt',
+        'updated_at' => 'getUpdatedAt',
+        'dedupe_fields' => 'getDedupeFields',
+        'searchable_fields' => 'getSearchableFields',
+        'fields' => 'getFields'
     ];
 
-    const STATUS_CREATED = 'created';
-    const STATUS_UPDATED = 'updated';
-    const STATUS_DELETED = 'deleted';
-    const STATUS_SKIPPED = 'skipped';
-    const STATUS_ADDED = 'added';
-    const STATUS_REMOVED = 'removed';
     
 
     /**
@@ -164,10 +172,13 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
-        $this->container['reasons'] = isset($data['reasons']) ? $data['reasons'] : null;
-        $this->container['seq'] = isset($data['seq']) ? $data['seq'] : null;
-        $this->container['status'] = isset($data['status']) ? $data['status'] : null;
+        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
+        $this->container['description'] = isset($data['description']) ? $data['description'] : null;
+        $this->container['created_at'] = isset($data['created_at']) ? $data['created_at'] : null;
+        $this->container['updated_at'] = isset($data['updated_at']) ? $data['updated_at'] : null;
+        $this->container['dedupe_fields'] = isset($data['dedupe_fields']) ? $data['dedupe_fields'] : null;
+        $this->container['searchable_fields'] = isset($data['searchable_fields']) ? $data['searchable_fields'] : null;
+        $this->container['fields'] = isset($data['fields']) ? $data['fields'] : null;
     }
 
     /**
@@ -209,21 +220,27 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['id'] === null) {
-            $invalidProperties[] = "'id' can't be null";
+        if ($this->container['name'] === null) {
+            $invalidProperties[] = "'name' can't be null";
         }
-        if ($this->container['seq'] === null) {
-            $invalidProperties[] = "'seq' can't be null";
+        if ($this->container['description'] === null) {
+            $invalidProperties[] = "'description' can't be null";
         }
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'status', must be one of '%s'",
-                $this->container['status'],
-                implode("', '", $allowedValues)
-            );
+        if ($this->container['created_at'] === null) {
+            $invalidProperties[] = "'created_at' can't be null";
         }
-
+        if ($this->container['updated_at'] === null) {
+            $invalidProperties[] = "'updated_at' can't be null";
+        }
+        if ($this->container['dedupe_fields'] === null) {
+            $invalidProperties[] = "'dedupe_fields' can't be null";
+        }
+        if ($this->container['searchable_fields'] === null) {
+            $invalidProperties[] = "'searchable_fields' can't be null";
+        }
+        if ($this->container['fields'] === null) {
+            $invalidProperties[] = "'fields' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -237,125 +254,169 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
     
 
     /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getStatusAllowableValues()
-    {
-        return [
-            self::STATUS_CREATED,
-            self::STATUS_UPDATED,
-            self::STATUS_DELETED,
-            self::STATUS_SKIPPED,
-            self::STATUS_ADDED,
-            self::STATUS_REMOVED,
-        ];
-    }
-    
-
-    /**
-     * Gets id
-     *
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->container['id'];
-    }
-
-    /**
-     * Sets id
-     *
-     * @param int $id Unique integer id of the company record
-     *
-     * @return self
-     */
-    public function setId($id)
-    {
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-
-    /**
-     * Gets reasons
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\Reason[]
-     */
-    public function getReasons()
-    {
-        return $this->container['reasons'];
-    }
-
-    /**
-     * Sets reasons
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\Reason[] $reasons List of reasons why an operation did not succeed.  Reasons are only present in API responses and should not be submitted
-     *
-     * @return self
-     */
-    public function setReasons($reasons)
-    {
-        $this->container['reasons'] = $reasons;
-
-        return $this;
-    }
-
-    /**
-     * Gets seq
-     *
-     * @return int
-     */
-    public function getSeq()
-    {
-        return $this->container['seq'];
-    }
-
-    /**
-     * Sets seq
-     *
-     * @param int $seq Integer indicating the sequence of the record in response.  This value is correlated to the order of the records included in the request input.  Seq should only be part of responses and should not be submitted.
-     *
-     * @return self
-     */
-    public function setSeq($seq)
-    {
-        $this->container['seq'] = $seq;
-
-        return $this;
-    }
-
-    /**
-     * Gets status
+     * Gets name
      *
      * @return string
      */
-    public function getStatus()
+    public function getName()
     {
-        return $this->container['status'];
+        return $this->container['name'];
     }
 
     /**
-     * Sets status
+     * Sets name
      *
-     * @param string $status Status of the operation performed on the record
+     * @param string $name \"API Program Member\"
      *
      * @return self
      */
-    public function setStatus($status)
+    public function setName($name)
     {
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!is_null($status) && !in_array($status, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'status', must be one of '%s'",
-                    $status,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['status'] = $status;
+        $this->container['name'] = $name;
+
+        return $this;
+    }
+
+    /**
+     * Gets description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->container['description'];
+    }
+
+    /**
+     * Sets description
+     *
+     * @param string $description \"API Program Member Map\"
+     *
+     * @return self
+     */
+    public function setDescription($description)
+    {
+        $this->container['description'] = $description;
+
+        return $this;
+    }
+
+    /**
+     * Gets created_at
+     *
+     * @return string
+     */
+    public function getCreatedAt()
+    {
+        return $this->container['created_at'];
+    }
+
+    /**
+     * Sets created_at
+     *
+     * @param string $created_at Datetime when created
+     *
+     * @return self
+     */
+    public function setCreatedAt($created_at)
+    {
+        $this->container['created_at'] = $created_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets updated_at
+     *
+     * @return string
+     */
+    public function getUpdatedAt()
+    {
+        return $this->container['updated_at'];
+    }
+
+    /**
+     * Sets updated_at
+     *
+     * @param string $updated_at Datetime updated
+     *
+     * @return self
+     */
+    public function setUpdatedAt($updated_at)
+    {
+        $this->container['updated_at'] = $updated_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets dedupe_fields
+     *
+     * @return string[]
+     */
+    public function getDedupeFields()
+    {
+        return $this->container['dedupe_fields'];
+    }
+
+    /**
+     * Sets dedupe_fields
+     *
+     * @param string[] $dedupe_fields List of dedupe fields
+     *
+     * @return self
+     */
+    public function setDedupeFields($dedupe_fields)
+    {
+        $this->container['dedupe_fields'] = $dedupe_fields;
+
+        return $this;
+    }
+
+    /**
+     * Gets searchable_fields
+     *
+     * @return \NecLimDul\MarketoRest\Lead\Model\LeadAttribute2SearchableFields[]
+     */
+    public function getSearchableFields()
+    {
+        return $this->container['searchable_fields'];
+    }
+
+    /**
+     * Sets searchable_fields
+     *
+     * @param \NecLimDul\MarketoRest\Lead\Model\LeadAttribute2SearchableFields[] $searchable_fields List of searchable fields
+     *
+     * @return self
+     */
+    public function setSearchableFields($searchable_fields)
+    {
+        $this->container['searchable_fields'] = $searchable_fields;
+
+        return $this;
+    }
+
+    /**
+     * Gets fields
+     *
+     * @return \NecLimDul\MarketoRest\Lead\Model\LeadAttribute2Fields2[]
+     */
+    public function getFields()
+    {
+        return $this->container['fields'];
+    }
+
+    /**
+     * Sets fields
+     *
+     * @param \NecLimDul\MarketoRest\Lead\Model\LeadAttribute2Fields2[] $fields Description of searchable fields
+     *
+     * @return self
+     */
+    public function setFields($fields)
+    {
+        $this->container['fields'] = $fields;
 
         return $this;
     }

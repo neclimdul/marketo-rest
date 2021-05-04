@@ -80,7 +80,7 @@ No authorization required
 
 Change Lead Program Status
 
-Changes the program status of a list of leads in a target program.  Only existing members of the program may have their status changed with this API.  Required Permissions: Read-Write Lead
+Changes the program status of a list of leads in a target program.  Only existing members of the program may have their status changed with this API.  Required Permissions: Read-Write Lead<br><br><b>Note: This endpoint has been superceded.</b>  Use <a href=\"/rest-api/endpoint-reference/lead-database-endpoint-reference/#/Program_Members/syncProgramMemberStatusUsingPOST\">Sync Program Member Status</a> endpoint instead.
 
 ### Example
 ```php
@@ -92,7 +92,7 @@ $apiInstance = new NecLimDul\MarketoRest\Lead\Api\LeadsApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$program_id = 56; // int | programId
+$program_id = 56; // int | The id of target program
 $change_lead_program_status_request = new \NecLimDul\MarketoRest\Lead\Model\ChangeLeadProgramStatusRequest(); // \NecLimDul\MarketoRest\Lead\Model\ChangeLeadProgramStatusRequest | changeLeadProgramStatusRequest
 
 try {
@@ -108,7 +108,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **program_id** | **int**| programId |
+ **program_id** | **int**| The id of target program |
  **change_lead_program_status_request** | [**\NecLimDul\MarketoRest\Lead\Model\ChangeLeadProgramStatusRequest**](../Model/ChangeLeadProgramStatusRequest.md)| changeLeadProgramStatusRequest |
 
 ### Return type
@@ -182,7 +182,7 @@ No authorization required
 
 Describe Program Member
 
-Returns metadata about program member objects in the target instance, including a list of all fields available for interaction via the APIs.  Required Permissions: Read-Only Lead, Read-Write Lead
+Returns metadata about program member objects in the target instance, including a list of all fields available for interaction via the APIs.  Required Permissions: Read-Only Lead, Read-Write Lead<br><br><b>Note: This endpoint has been superceded.</b>  Use <a href=\"/rest-api/endpoint-reference/lead-database-endpoint-reference/#/Leads/describeProgramMemberUsingGET2\">Describe Program Member</a> endpoint instead.
 
 ### Example
 ```php
@@ -227,7 +227,7 @@ No authorization required
 
 Describe Lead
 
-Returns metadata about lead objects in the target instance, including a list of all fields available for interaction via the APIs.  Required Permissions: Read-Only Lead, Read-Write Lead
+Returns metadata about lead objects in the target instance, including a list of all fields available for interaction via the APIs.  Required Permissions: Read-Only Lead, Read-Write Lead<br><br><b>Note: This endpoint has been superceded.</b>  Use <a href=\"/rest-api/endpoint-reference/lead-database-endpoint-reference/#!/Leads/describeUsingGET_6\">Describe Lead2</a> endpoint instead.
 
 ### Example
 ```php
@@ -425,7 +425,7 @@ $apiInstance = new NecLimDul\MarketoRest\Lead\Api\LeadsApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$filter_type = "filter_type_example"; // string | The lead field to filter on.  Any custom field (string, email, or integer types only), and any of the following fields are supported: cookies, email, facebookId, id, leadPartitionId, linkedInId, sfdcAccountId, sfdcContactId, sfdcLeadId, sfdcLeadOwnerId, sfdcOpptyId, twitterId.<br><br>A comprehensive list of fields can be obtained via the <a href=\"http://developers.marketo.com/rest-api/endpoint-reference/lead-database-endpoint-reference/#!/Leads/describeUsingGET_6\">Describe Lead2</a> endpoint.
+$filter_type = "filter_type_example"; // string | The lead field to filter on.  Any custom field (string, email, or integer types only), and any of the following fields are supported: cookies, email, facebookId, id, leadPartitionId, linkedInId, sfdcAccountId, sfdcContactId, sfdcLeadId, sfdcLeadOwnerId, sfdcOpptyId, twitterId.<br><br>A comprehensive list of fields can be obtained via the <a href=\"http://developers.marketo.com/rest-api/endpoint-reference/lead-database-endpoint-reference/#/Leads/describeUsingGET_6\">Describe Lead2</a> endpoint.
 $filter_values = array("filter_values_example"); // string[] | A comma-separated list of values to filter on in the specified fields.
 $fields = array("fields_example"); // string[] | A comma-separated list of lead fields to return for each record
 $batch_size = 56; // int | The batch size to return.  The max and default value is 300.
@@ -444,7 +444,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **filter_type** | **string**| The lead field to filter on.  Any custom field (string, email, or integer types only), and any of the following fields are supported: cookies, email, facebookId, id, leadPartitionId, linkedInId, sfdcAccountId, sfdcContactId, sfdcLeadId, sfdcLeadOwnerId, sfdcOpptyId, twitterId.&lt;br&gt;&lt;br&gt;A comprehensive list of fields can be obtained via the &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/endpoint-reference/lead-database-endpoint-reference/#!/Leads/describeUsingGET_6\&quot;&gt;Describe Lead2&lt;/a&gt; endpoint. |
+ **filter_type** | **string**| The lead field to filter on.  Any custom field (string, email, or integer types only), and any of the following fields are supported: cookies, email, facebookId, id, leadPartitionId, linkedInId, sfdcAccountId, sfdcContactId, sfdcLeadId, sfdcLeadOwnerId, sfdcOpptyId, twitterId.&lt;br&gt;&lt;br&gt;A comprehensive list of fields can be obtained via the &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/endpoint-reference/lead-database-endpoint-reference/#/Leads/describeUsingGET_6\&quot;&gt;Describe Lead2&lt;/a&gt; endpoint. |
  **filter_values** | [**string[]**](../Model/string.md)| A comma-separated list of values to filter on in the specified fields. |
  **fields** | [**string[]**](../Model/string.md)| A comma-separated list of lead fields to return for each record | [optional]
  **batch_size** | **int**| The batch size to return.  The max and default value is 300. | [optional]

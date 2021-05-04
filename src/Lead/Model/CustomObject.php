@@ -251,7 +251,7 @@ class CustomObject implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets reasons
      *
-     * @param \NecLimDul\MarketoRest\Lead\Model\Reason[] $reasons reasons
+     * @param \NecLimDul\MarketoRest\Lead\Model\Reason[] $reasons List of reasons why an operation did not succeed.  Reasons are only present in API responses and should not be submitted
      *
      * @return self
      */
