@@ -78,6 +78,15 @@ class ChannelProgressionTest extends TestCase
     }
 
     /**
+     * Test attribute "type"
+     */
+    public function testPropertyType()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "step"
      */
     public function testPropertyStep()

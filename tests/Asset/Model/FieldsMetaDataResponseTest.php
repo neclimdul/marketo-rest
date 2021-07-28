@@ -141,6 +141,15 @@ class FieldsMetaDataResponseTest extends TestCase
     }
 
     /**
+     * Test attribute "is_sensitive"
+     */
+    public function testPropertyIsSensitive()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "label_width"
      */
     public function testPropertyLabelWidth()

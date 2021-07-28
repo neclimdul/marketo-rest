@@ -96,6 +96,15 @@ class AddFormFieldRequestTest extends TestCase
     }
 
     /**
+     * Test attribute "is_sensitive"
+     */
+    public function testPropertyIsSensitive()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "hint_text"
      */
     public function testPropertyHintText()

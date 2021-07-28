@@ -112,7 +112,7 @@ No authorization required
 
 Get Program Members
 
-Returns a list of up to 300 program members on a list of values in a particular field.  Required Permissions: Read-Only Lead, Read-Write Lead
+Returns a list of up to 300 program members on a list of values in a particular field.  If you specify a filterType that is a custom field, the custom field’s dataType must be either “string” or “integer”.  If you specify a filterType other than “leadId”, a maximum of 100,000 program member records can be processed by the request.  Required Permissions: Read-Only Lead, Read-Write Lead
 
 ### Example
 ```php

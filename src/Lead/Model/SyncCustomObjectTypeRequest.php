@@ -226,6 +226,9 @@ class SyncCustomObjectTypeRequest implements ModelInterface, ArrayAccess, \JsonS
             );
         }
 
+        if ($this->container['display_name'] === null) {
+            $invalidProperties[] = "'display_name' can't be null";
+        }
         if ($this->container['api_name'] === null) {
             $invalidProperties[] = "'api_name' can't be null";
         }

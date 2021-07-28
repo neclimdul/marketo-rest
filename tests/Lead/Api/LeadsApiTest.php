@@ -68,6 +68,17 @@ class LeadsApiTest extends TestCase
     }
 
     /**
+     * Create Lead Fields.
+     *
+     * @covers ::createLeadFieldUsingPOST
+     */
+    public function testCreateLeadFieldUsingPOST()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Delete Leads.
      *
      * @covers ::deleteLeadsUsingPOST
@@ -117,6 +128,28 @@ class LeadsApiTest extends TestCase
      * @covers ::getLeadByIdUsingGET
      */
     public function testGetLeadByIdUsingGET()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Get Lead Field by Name.
+     *
+     * @covers ::getLeadFieldByNameUsingGET
+     */
+    public function testGetLeadFieldByNameUsingGET()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Get Lead Fields.
+     *
+     * @covers ::getLeadFieldsUsingGET
+     */
+    public function testGetLeadFieldsUsingGET()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -227,6 +260,17 @@ class LeadsApiTest extends TestCase
      * @covers ::syncLeadUsingPOST
      */
     public function testSyncLeadUsingPOST()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Update Lead Field.
+     *
+     * @covers ::updateLeadFieldUsingPOST
+     */
+    public function testUpdateLeadFieldUsingPOST()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

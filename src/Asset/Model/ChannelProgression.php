@@ -61,6 +61,7 @@ class ChannelProgression implements ModelInterface, ArrayAccess, \JsonSerializab
         'description' => 'string',
         'hidden' => 'bool',
         'name' => 'string',
+        'type' => 'string',
         'step' => 'int',
         'success' => 'bool'
     ];
@@ -76,6 +77,7 @@ class ChannelProgression implements ModelInterface, ArrayAccess, \JsonSerializab
         'description' => null,
         'hidden' => null,
         'name' => null,
+        'type' => null,
         'step' => 'int32',
         'success' => null
     ];
@@ -115,6 +117,7 @@ class ChannelProgression implements ModelInterface, ArrayAccess, \JsonSerializab
         'description' => 'description',
         'hidden' => 'hidden',
         'name' => 'name',
+        'type' => 'type',
         'step' => 'step',
         'success' => 'success'
     ];
@@ -128,6 +131,7 @@ class ChannelProgression implements ModelInterface, ArrayAccess, \JsonSerializab
         'description' => 'setDescription',
         'hidden' => 'setHidden',
         'name' => 'setName',
+        'type' => 'setType',
         'step' => 'setStep',
         'success' => 'setSuccess'
     ];
@@ -141,6 +145,7 @@ class ChannelProgression implements ModelInterface, ArrayAccess, \JsonSerializab
         'description' => 'getDescription',
         'hidden' => 'getHidden',
         'name' => 'getName',
+        'type' => 'getType',
         'step' => 'getStep',
         'success' => 'getSuccess'
     ];
@@ -165,6 +170,7 @@ class ChannelProgression implements ModelInterface, ArrayAccess, \JsonSerializab
         $this->container['description'] = isset($data['description']) ? $data['description'] : null;
         $this->container['hidden'] = isset($data['hidden']) ? $data['hidden'] : null;
         $this->container['name'] = isset($data['name']) ? $data['name'] : null;
+        $this->container['type'] = isset($data['type']) ? $data['type'] : null;
         $this->container['step'] = isset($data['step']) ? $data['step'] : null;
         $this->container['success'] = isset($data['success']) ? $data['success'] : null;
     }
@@ -288,6 +294,30 @@ class ChannelProgression implements ModelInterface, ArrayAccess, \JsonSerializab
     public function setName($name)
     {
         $this->container['name'] = $name;
+
+        return $this;
+    }
+
+    /**
+     * Gets type
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->container['type'];
+    }
+
+    /**
+     * Sets type
+     *
+     * @param string $type Type of the status
+     *
+     * @return self
+     */
+    public function setType($type)
+    {
+        $this->container['type'] = $type;
 
         return $this;
     }

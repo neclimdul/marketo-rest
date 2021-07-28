@@ -309,7 +309,7 @@ class SyncCompanyRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets input
      *
-     * @param \NecLimDul\MarketoRest\Lead\Model\Company[] $input List of input records
+     * @param \NecLimDul\MarketoRest\Lead\Model\Company[] $input List of input records. Each 'Company' object contains a 'searchableField' for lookup purposes, and one or more 'fields' to create or update.  Both can be retrieved using the Describe Companies endpoint
      *
      * @return self
      */

@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 Get Daily Errors
 
-Retrieves a list of API users and a count of each error type they have encountered in the current day.  Required Permissions: None
+Retrieves a count of each error type they have encountered in the current day.  Required Permissions: None
 
 ### Example
 ```php
@@ -60,7 +60,7 @@ No authorization required
 
 Get Daily Usage
 
-Returns a list of API users and the number of calls they have consumed for the day.  Required Permissions: None
+Returns the number of calls consumed for the day.  Required Permissions: None
 
 ### Example
 ```php
@@ -105,7 +105,7 @@ No authorization required
 
 Get Weekly Errors
 
-Returns a list of API users and a count of each error type they have encountered in the past 7 days.  Required Permissions: None
+Returns a count of each error type they have encountered in the past 7 days.  Required Permissions: None
 
 ### Example
 ```php
@@ -150,7 +150,7 @@ No authorization required
 
 Get Weekly Usage
 
-Returns a list of API users and the number of calls they have consumed in the past 7 days.  Required Permissions: None
+Returns the number of calls consumed in the past 7 days.  Required Permissions: None
 
 ### Example
 ```php

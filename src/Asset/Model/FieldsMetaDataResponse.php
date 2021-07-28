@@ -68,6 +68,7 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess, \JsonSerial
         'is_label_to_right' => 'bool',
         'is_multiselect' => 'bool',
         'is_required' => 'bool',
+        'is_sensitive' => 'bool',
         'label_width' => 'int',
         'max_length' => 'int',
         'maximum_number' => 'float',
@@ -96,6 +97,7 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess, \JsonSerial
         'is_label_to_right' => null,
         'is_multiselect' => null,
         'is_required' => null,
+        'is_sensitive' => null,
         'label_width' => 'int32',
         'max_length' => 'int32',
         'maximum_number' => 'float',
@@ -148,6 +150,7 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess, \JsonSerial
         'is_label_to_right' => 'isLabelToRight',
         'is_multiselect' => 'isMultiselect',
         'is_required' => 'isRequired',
+        'is_sensitive' => 'isSensitive',
         'label_width' => 'labelWidth',
         'max_length' => 'maxLength',
         'maximum_number' => 'maximumNumber',
@@ -174,6 +177,7 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess, \JsonSerial
         'is_label_to_right' => 'setIsLabelToRight',
         'is_multiselect' => 'setIsMultiselect',
         'is_required' => 'setIsRequired',
+        'is_sensitive' => 'setIsSensitive',
         'label_width' => 'setLabelWidth',
         'max_length' => 'setMaxLength',
         'maximum_number' => 'setMaximumNumber',
@@ -200,6 +204,7 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess, \JsonSerial
         'is_label_to_right' => 'getIsLabelToRight',
         'is_multiselect' => 'getIsMultiselect',
         'is_required' => 'getIsRequired',
+        'is_sensitive' => 'getIsSensitive',
         'label_width' => 'getLabelWidth',
         'max_length' => 'getMaxLength',
         'maximum_number' => 'getMaximumNumber',
@@ -237,6 +242,7 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess, \JsonSerial
         $this->container['is_label_to_right'] = isset($data['is_label_to_right']) ? $data['is_label_to_right'] : null;
         $this->container['is_multiselect'] = isset($data['is_multiselect']) ? $data['is_multiselect'] : null;
         $this->container['is_required'] = isset($data['is_required']) ? $data['is_required'] : null;
+        $this->container['is_sensitive'] = isset($data['is_sensitive']) ? $data['is_sensitive'] : null;
         $this->container['label_width'] = isset($data['label_width']) ? $data['label_width'] : null;
         $this->container['max_length'] = isset($data['max_length']) ? $data['max_length'] : null;
         $this->container['maximum_number'] = isset($data['maximum_number']) ? $data['maximum_number'] : null;
@@ -537,6 +543,30 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess, \JsonSerial
     public function setIsRequired($is_required)
     {
         $this->container['is_required'] = $is_required;
+
+        return $this;
+    }
+
+    /**
+     * Gets is_sensitive
+     *
+     * @return bool
+     */
+    public function getIsSensitive()
+    {
+        return $this->container['is_sensitive'];
+    }
+
+    /**
+     * Sets is_sensitive
+     *
+     * @param bool $is_sensitive Whether the field is marked as sensitive.  Default false
+     *
+     * @return self
+     */
+    public function setIsSensitive($is_sensitive)
+    {
+        $this->container['is_sensitive'] = $is_sensitive;
 
         return $this;
     }

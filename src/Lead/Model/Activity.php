@@ -247,12 +247,6 @@ class Activity implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['lead_id'] === null) {
             $invalidProperties[] = "'lead_id' can't be null";
         }
-        if ($this->container['primary_attribute_value'] === null) {
-            $invalidProperties[] = "'primary_attribute_value' can't be null";
-        }
-        if ($this->container['primary_attribute_value_id'] === null) {
-            $invalidProperties[] = "'primary_attribute_value_id' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -374,7 +368,7 @@ class Activity implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets id
      *
-     * @param int $id Integer id of the activity.  For instances which have been migrated to Activity Service, this field may not be present, and should not be treated as unique.
+     * @param int $id Integer id of the activity. This value could exceed Int.MAX. For instances which have been migrated to Activity Service, this field may not be present, and should not be treated as unique.
      *
      * @return self
      */

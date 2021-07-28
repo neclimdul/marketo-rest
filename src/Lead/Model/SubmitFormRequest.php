@@ -221,7 +221,7 @@ class SubmitFormRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets input
      *
-     * @param \NecLimDul\MarketoRest\Lead\Model\Form[] $input Form fields and visitor data to use during form submittal
+     * @param \NecLimDul\MarketoRest\Lead\Model\Form[] $input Single array item that contains form fields and visitor data to use during a form submittal
      *
      * @return self
      */

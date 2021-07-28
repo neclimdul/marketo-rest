@@ -34,7 +34,7 @@ use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * Company Class Doc Comment
  *
  * @category Class
- * @description Company record.  May include any additional fields listed in the corresponding describe method
+ * @description Company record.  May include any additional &#39;fields&#39; listed in the Describe Companies endpoint
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
@@ -59,10 +59,9 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $swaggerTypes = [
+        'external_company_id' => 'string',
         'id' => 'int',
-        'reasons' => '\NecLimDul\MarketoRest\Lead\Model\Reason[]',
-        'seq' => 'int',
-        'status' => 'string'
+        'company' => 'string'
     ];
 
     /**
@@ -73,10 +72,9 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $swaggerFormats = [
-        'id' => 'int64',
-        'reasons' => null,
-        'seq' => 'int32',
-        'status' => null
+        'external_company_id' => null,
+        'id' => null,
+        'company' => null
     ];
 
     /**
@@ -111,10 +109,9 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
+        'external_company_id' => 'externalCompanyId',
         'id' => 'id',
-        'reasons' => 'reasons',
-        'seq' => 'seq',
-        'status' => 'status'
+        'company' => 'company'
     ];
 
     /**
@@ -123,10 +120,9 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
+        'external_company_id' => 'setExternalCompanyId',
         'id' => 'setId',
-        'reasons' => 'setReasons',
-        'seq' => 'setSeq',
-        'status' => 'setStatus'
+        'company' => 'setCompany'
     ];
 
     /**
@@ -135,18 +131,11 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
+        'external_company_id' => 'getExternalCompanyId',
         'id' => 'getId',
-        'reasons' => 'getReasons',
-        'seq' => 'getSeq',
-        'status' => 'getStatus'
+        'company' => 'getCompany'
     ];
 
-    const STATUS_CREATED = 'created';
-    const STATUS_UPDATED = 'updated';
-    const STATUS_DELETED = 'deleted';
-    const STATUS_SKIPPED = 'skipped';
-    const STATUS_ADDED = 'added';
-    const STATUS_REMOVED = 'removed';
     
 
     /**
@@ -164,10 +153,9 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
+        $this->container['external_company_id'] = isset($data['external_company_id']) ? $data['external_company_id'] : null;
         $this->container['id'] = isset($data['id']) ? $data['id'] : null;
-        $this->container['reasons'] = isset($data['reasons']) ? $data['reasons'] : null;
-        $this->container['seq'] = isset($data['seq']) ? $data['seq'] : null;
-        $this->container['status'] = isset($data['status']) ? $data['status'] : null;
+        $this->container['company'] = isset($data['company']) ? $data['company'] : null;
     }
 
     /**
@@ -209,21 +197,6 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['id'] === null) {
-            $invalidProperties[] = "'id' can't be null";
-        }
-        if ($this->container['seq'] === null) {
-            $invalidProperties[] = "'seq' can't be null";
-        }
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'status', must be one of '%s'",
-                $this->container['status'],
-                implode("', '", $allowedValues)
-            );
-        }
-
         return $invalidProperties;
     }
 
@@ -237,22 +210,28 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
     
 
     /**
-     * Gets allowable values of the enum
+     * Gets external_company_id
      *
-     * @return string[]
+     * @return string
      */
-    public function getStatusAllowableValues()
+    public function getExternalCompanyId()
     {
-        return [
-            self::STATUS_CREATED,
-            self::STATUS_UPDATED,
-            self::STATUS_DELETED,
-            self::STATUS_SKIPPED,
-            self::STATUS_ADDED,
-            self::STATUS_REMOVED,
-        ];
+        return $this->container['external_company_id'];
     }
-    
+
+    /**
+     * Sets external_company_id
+     *
+     * @param string $external_company_id Unique id of the company record
+     *
+     * @return self
+     */
+    public function setExternalCompanyId($external_company_id)
+    {
+        $this->container['external_company_id'] = $external_company_id;
+
+        return $this;
+    }
 
     /**
      * Gets id
@@ -279,83 +258,25 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets reasons
-     *
-     * @return \NecLimDul\MarketoRest\Lead\Model\Reason[]
-     */
-    public function getReasons()
-    {
-        return $this->container['reasons'];
-    }
-
-    /**
-     * Sets reasons
-     *
-     * @param \NecLimDul\MarketoRest\Lead\Model\Reason[] $reasons List of reasons why an operation did not succeed.  Reasons are only present in API responses and should not be submitted
-     *
-     * @return self
-     */
-    public function setReasons($reasons)
-    {
-        $this->container['reasons'] = $reasons;
-
-        return $this;
-    }
-
-    /**
-     * Gets seq
-     *
-     * @return int
-     */
-    public function getSeq()
-    {
-        return $this->container['seq'];
-    }
-
-    /**
-     * Sets seq
-     *
-     * @param int $seq Integer indicating the sequence of the record in response.  This value is correlated to the order of the records included in the request input.  Seq should only be part of responses and should not be submitted.
-     *
-     * @return self
-     */
-    public function setSeq($seq)
-    {
-        $this->container['seq'] = $seq;
-
-        return $this;
-    }
-
-    /**
-     * Gets status
+     * Gets company
      *
      * @return string
      */
-    public function getStatus()
+    public function getCompany()
     {
-        return $this->container['status'];
+        return $this->container['company'];
     }
 
     /**
-     * Sets status
+     * Sets company
      *
-     * @param string $status Status of the operation performed on the record
+     * @param string $company Unique name of the company record
      *
      * @return self
      */
-    public function setStatus($status)
+    public function setCompany($company)
     {
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!is_null($status) && !in_array($status, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'status', must be one of '%s'",
-                    $status,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['status'] = $status;
+        $this->container['company'] = $company;
 
         return $this;
     }

@@ -62,7 +62,7 @@ class ResponseOfCompany implements ModelInterface, ArrayAccess, \JsonSerializabl
         'more_result' => 'bool',
         'next_page_token' => 'string',
         'request_id' => 'string',
-        'result' => '\NecLimDul\MarketoRest\Lead\Model\Company[]',
+        'result' => '\NecLimDul\MarketoRest\Lead\Model\CompanyResponse[]',
         'success' => 'bool',
         'warnings' => '\NecLimDul\MarketoRest\Lead\Model\Warning[]'
     ];
@@ -346,7 +346,7 @@ class ResponseOfCompany implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets result
      *
-     * @return \NecLimDul\MarketoRest\Lead\Model\Company[]
+     * @return \NecLimDul\MarketoRest\Lead\Model\CompanyResponse[]
      */
     public function getResult()
     {
@@ -356,7 +356,7 @@ class ResponseOfCompany implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets result
      *
-     * @param \NecLimDul\MarketoRest\Lead\Model\Company[] $result Array of results for individual records in the operation, may be empty
+     * @param \NecLimDul\MarketoRest\Lead\Model\CompanyResponse[] $result Array of results for individual records in the operation, may be empty
      *
      * @return self
      */

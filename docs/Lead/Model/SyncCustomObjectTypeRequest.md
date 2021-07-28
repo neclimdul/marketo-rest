@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **action** | **string** | Type of sync operation to perform.  Default is createOrUpdate. | [optional] 
-**display_name** | **string** | UI display-name of the custom object type | [optional] 
+**display_name** | **string** | UI display-name of the custom object type | 
 **api_name** | **string** | API name of the custom object type | 
 **plural_name** | **string** | UI plural-name of the custom object type | [optional] 
 **description** | **string** | Description of the custom object type | [optional] 

@@ -111,7 +111,7 @@ class VisitorData implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'page_url' => 'pageUrl',
+        'page_url' => 'pageURL',
         'query_string' => 'queryString',
         'lead_client_ip_address' => 'leadClientIpAddress',
         'user_agent_string' => 'userAgentString'

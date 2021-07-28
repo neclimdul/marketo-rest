@@ -63,6 +63,7 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
         'field_id' => 'string',
         'field_width' => 'int',
         'form_prefill' => 'bool',
+        'is_sensitive' => 'bool',
         'hint_text' => 'string',
         'initially_checked' => 'bool',
         'instructions' => 'string',
@@ -93,6 +94,7 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
         'field_id' => null,
         'field_width' => 'int32',
         'form_prefill' => null,
+        'is_sensitive' => null,
         'hint_text' => null,
         'initially_checked' => null,
         'instructions' => null,
@@ -147,6 +149,7 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
         'field_id' => 'fieldId',
         'field_width' => 'fieldWidth',
         'form_prefill' => 'formPrefill',
+        'is_sensitive' => 'isSensitive',
         'hint_text' => 'hintText',
         'initially_checked' => 'initiallyChecked',
         'instructions' => 'instructions',
@@ -175,6 +178,7 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
         'field_id' => 'setFieldId',
         'field_width' => 'setFieldWidth',
         'form_prefill' => 'setFormPrefill',
+        'is_sensitive' => 'setIsSensitive',
         'hint_text' => 'setHintText',
         'initially_checked' => 'setInitiallyChecked',
         'instructions' => 'setInstructions',
@@ -203,6 +207,7 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
         'field_id' => 'getFieldId',
         'field_width' => 'getFieldWidth',
         'form_prefill' => 'getFormPrefill',
+        'is_sensitive' => 'getIsSensitive',
         'hint_text' => 'getHintText',
         'initially_checked' => 'getInitiallyChecked',
         'instructions' => 'getInstructions',
@@ -242,6 +247,7 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
         $this->container['field_id'] = isset($data['field_id']) ? $data['field_id'] : null;
         $this->container['field_width'] = isset($data['field_width']) ? $data['field_width'] : null;
         $this->container['form_prefill'] = isset($data['form_prefill']) ? $data['form_prefill'] : null;
+        $this->container['is_sensitive'] = isset($data['is_sensitive']) ? $data['is_sensitive'] : null;
         $this->container['hint_text'] = isset($data['hint_text']) ? $data['hint_text'] : null;
         $this->container['initially_checked'] = isset($data['initially_checked']) ? $data['initially_checked'] : null;
         $this->container['instructions'] = isset($data['instructions']) ? $data['instructions'] : null;
@@ -429,6 +435,30 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     public function setFormPrefill($form_prefill)
     {
         $this->container['form_prefill'] = $form_prefill;
+
+        return $this;
+    }
+
+    /**
+     * Gets is_sensitive
+     *
+     * @return bool
+     */
+    public function getIsSensitive()
+    {
+        return $this->container['is_sensitive'];
+    }
+
+    /**
+     * Sets is_sensitive
+     *
+     * @param bool $is_sensitive Whether the field is marked as sensitive.  Default false
+     *
+     * @return self
+     */
+    public function setIsSensitive($is_sensitive)
+    {
+        $this->container['is_sensitive'] = $is_sensitive;
 
         return $this;
     }

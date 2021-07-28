@@ -33,7 +33,7 @@ use PHPUnit\Framework\TestCase;
  * CompanyTest Class Doc Comment
  *
  * @category    Class
- * @description Company record.  May include any additional fields listed in the corresponding describe method
+ * @description Company record.  May include any additional &#39;fields&#39; listed in the Describe Companies endpoint
  * @package     NecLimDul\MarketoRest\Lead
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
@@ -51,6 +51,15 @@ class CompanyTest extends TestCase
     }
 
     /**
+     * Test attribute "external_company_id"
+     */
+    public function testPropertyExternalCompanyId()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "id"
      */
     public function testPropertyId()
@@ -60,27 +69,9 @@ class CompanyTest extends TestCase
     }
 
     /**
-     * Test attribute "reasons"
+     * Test attribute "company"
      */
-    public function testPropertyReasons()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "seq"
-     */
-    public function testPropertySeq()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "status"
-     */
-    public function testPropertyStatus()
+    public function testPropertyCompany()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

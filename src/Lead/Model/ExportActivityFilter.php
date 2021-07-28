@@ -59,6 +59,8 @@ class ExportActivityFilter implements ModelInterface, ArrayAccess, \JsonSerializ
       */
     protected static $swaggerTypes = [
         'activity_type_ids' => 'int[]',
+        'primary_attribute_value_ids' => 'int[]',
+        'primary_attribute_values' => 'string[]',
         'created_at' => '\NecLimDul\MarketoRest\Lead\Model\DateRange'
     ];
 
@@ -71,6 +73,8 @@ class ExportActivityFilter implements ModelInterface, ArrayAccess, \JsonSerializ
       */
     protected static $swaggerFormats = [
         'activity_type_ids' => 'int32',
+        'primary_attribute_value_ids' => 'int32',
+        'primary_attribute_values' => null,
         'created_at' => null
     ];
 
@@ -107,6 +111,8 @@ class ExportActivityFilter implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     protected static $attributeMap = [
         'activity_type_ids' => 'activityTypeIds',
+        'primary_attribute_value_ids' => 'primaryAttributeValueIds',
+        'primary_attribute_values' => 'primaryAttributeValues',
         'created_at' => 'createdAt'
     ];
 
@@ -117,6 +123,8 @@ class ExportActivityFilter implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     protected static $setters = [
         'activity_type_ids' => 'setActivityTypeIds',
+        'primary_attribute_value_ids' => 'setPrimaryAttributeValueIds',
+        'primary_attribute_values' => 'setPrimaryAttributeValues',
         'created_at' => 'setCreatedAt'
     ];
 
@@ -127,6 +135,8 @@ class ExportActivityFilter implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     protected static $getters = [
         'activity_type_ids' => 'getActivityTypeIds',
+        'primary_attribute_value_ids' => 'getPrimaryAttributeValueIds',
+        'primary_attribute_values' => 'getPrimaryAttributeValues',
         'created_at' => 'getCreatedAt'
     ];
 
@@ -148,6 +158,8 @@ class ExportActivityFilter implements ModelInterface, ArrayAccess, \JsonSerializ
     public function __construct(array $data = null)
     {
         $this->container['activity_type_ids'] = isset($data['activity_type_ids']) ? $data['activity_type_ids'] : null;
+        $this->container['primary_attribute_value_ids'] = isset($data['primary_attribute_value_ids']) ? $data['primary_attribute_value_ids'] : null;
+        $this->container['primary_attribute_values'] = isset($data['primary_attribute_values']) ? $data['primary_attribute_values'] : null;
         $this->container['created_at'] = isset($data['created_at']) ? $data['created_at'] : null;
     }
 
@@ -225,6 +237,54 @@ class ExportActivityFilter implements ModelInterface, ArrayAccess, \JsonSerializ
     public function setActivityTypeIds($activity_type_ids)
     {
         $this->container['activity_type_ids'] = $activity_type_ids;
+
+        return $this;
+    }
+
+    /**
+     * Gets primary_attribute_value_ids
+     *
+     * @return int[]
+     */
+    public function getPrimaryAttributeValueIds()
+    {
+        return $this->container['primary_attribute_value_ids'];
+    }
+
+    /**
+     * Sets primary_attribute_value_ids
+     *
+     * @param int[] $primary_attribute_value_ids List of primary attribute ids to filter on
+     *
+     * @return self
+     */
+    public function setPrimaryAttributeValueIds($primary_attribute_value_ids)
+    {
+        $this->container['primary_attribute_value_ids'] = $primary_attribute_value_ids;
+
+        return $this;
+    }
+
+    /**
+     * Gets primary_attribute_values
+     *
+     * @return string[]
+     */
+    public function getPrimaryAttributeValues()
+    {
+        return $this->container['primary_attribute_values'];
+    }
+
+    /**
+     * Sets primary_attribute_values
+     *
+     * @param string[] $primary_attribute_values List of primary attribute values to filter on
+     *
+     * @return self
+     */
+    public function setPrimaryAttributeValues($primary_attribute_values)
+    {
+        $this->container['primary_attribute_values'] = $primary_attribute_values;
 
         return $this;
     }

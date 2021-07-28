@@ -33,7 +33,7 @@ use PHPUnit\Framework\TestCase;
  * FormResponseTest Class Doc Comment
  *
  * @category    Class
- * @description FormResponse
+ * @description Disposition of lead
  * @package     NecLimDul\MarketoRest\Lead
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
@@ -63,6 +63,15 @@ class FormResponseTest extends TestCase
      * Test attribute "status"
      */
     public function testPropertyStatus()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "reasons"
+     */
+    public function testPropertyReasons()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

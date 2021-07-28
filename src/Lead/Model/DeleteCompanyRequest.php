@@ -239,7 +239,7 @@ class DeleteCompanyRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets input
      *
-     * @param \NecLimDul\MarketoRest\Lead\Model\Company[] $input List of company records. Companies in the list should only contain a member matching the dedupeBy value
+     * @param \NecLimDul\MarketoRest\Lead\Model\Company[] $input List of company objects. Companies in the list should only contain a member matching the dedupeBy value. Each 'Company' object contains a 'searchableField' for lookup purposes which can be retrieved using the Describe Companies endpoint
      *
      * @return self
      */

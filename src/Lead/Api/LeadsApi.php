@@ -496,6 +496,179 @@ class LeadsApi
     }
 
     /**
+     * Operation createLeadFieldUsingPOST
+     *
+     * Create Lead Fields
+     *
+     * @param  \NecLimDul\MarketoRest\Lead\Model\CreateLeadFieldRequest $create_lead_field_request createLeadFieldRequest (required)
+     *
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfCreateLeadField
+     */
+    public function createLeadFieldUsingPOST($create_lead_field_request)
+    {
+        list($response) = $this->createLeadFieldUsingPOSTWithHttpInfo($create_lead_field_request);
+        return $response;
+    }
+
+    /**
+     * Operation createLeadFieldUsingPOSTWithHttpInfo
+     *
+     * Create Lead Fields
+     *
+     * @param  \NecLimDul\MarketoRest\Lead\Model\CreateLeadFieldRequest $create_lead_field_request createLeadFieldRequest (required)
+     *
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfCreateLeadField, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function createLeadFieldUsingPOSTWithHttpInfo($create_lead_field_request)
+    {
+        $request = $this->createLeadFieldUsingPOSTRequest($create_lead_field_request);
+
+        try {
+            $response = $this->makeRequest($request);
+
+            switch ($response->getStatusCode()) {
+                case 200:
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCreateLeadField');
+            }
+
+            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCreateLeadField');
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $e->setResponseObject(
+                        $this->deserializeResponseBody(
+                            $e->getResponseBody(),
+                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCreateLeadField',
+                            $e->getResponseHeaders()
+                        )
+                    );
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation createLeadFieldUsingPOSTAsync
+     *
+     * Create Lead Fields
+     *
+     * @param  \NecLimDul\MarketoRest\Lead\Model\CreateLeadFieldRequest $create_lead_field_request createLeadFieldRequest (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createLeadFieldUsingPOSTAsync($create_lead_field_request)
+    {
+        return $this->createLeadFieldUsingPOSTAsyncWithHttpInfo($create_lead_field_request)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation createLeadFieldUsingPOSTAsyncWithHttpInfo
+     *
+     * Create Lead Fields
+     *
+     * @param  \NecLimDul\MarketoRest\Lead\Model\CreateLeadFieldRequest $create_lead_field_request createLeadFieldRequest (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createLeadFieldUsingPOSTAsyncWithHttpInfo($create_lead_field_request)
+    {
+        $request = $this->createLeadFieldUsingPOSTRequest($create_lead_field_request);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) {
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCreateLeadField');
+                },
+                function (RequestException $exception) {
+                    $response = $exception->getResponse();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
+                        ),
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'createLeadFieldUsingPOST'
+     *
+     * @param  \NecLimDul\MarketoRest\Lead\Model\CreateLeadFieldRequest $create_lead_field_request createLeadFieldRequest (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function createLeadFieldUsingPOSTRequest($create_lead_field_request)
+    {
+        // Verify the required parameter 'create_lead_field_request' is set.
+        if ($create_lead_field_request === null || (is_array($create_lead_field_request) && empty($create_lead_field_request))) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $create_lead_field_request when calling createLeadFieldUsingPOST'
+            );
+        }
+
+        $resourcePath = '/rest/v1/leads/schema/fields.json';
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json'],
+            ['application/json']
+        );
+
+        // for model (json/xml)
+        if (!empty($create_lead_field_request)) {
+            if ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($create_lead_field_request));
+            } elseif (!is_array($create_lead_field_request)) {
+                $httpBody = (string) $create_lead_field_request;
+            }
+            else {
+                $httpBody = '';
+            }
+        }
+
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = Query::build($queryParams);
+        return new Request(
+            'POST',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation deleteLeadsUsingPOST
      *
      * Delete Leads
@@ -1280,6 +1453,346 @@ class LeadsApi
             ObjectSerializer::toPathValue($lead_id),
             $resourcePath
         );
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json'],
+            ['application/json']
+        );
+
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = Query::build($queryParams);
+        return new Request(
+            'GET',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation getLeadFieldByNameUsingGET
+     *
+     * Get Lead Field by Name
+     *
+     * @param  string $field_api_name The API name of lead field (required)
+     *
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField
+     */
+    public function getLeadFieldByNameUsingGET($field_api_name)
+    {
+        list($response) = $this->getLeadFieldByNameUsingGETWithHttpInfo($field_api_name);
+        return $response;
+    }
+
+    /**
+     * Operation getLeadFieldByNameUsingGETWithHttpInfo
+     *
+     * Get Lead Field by Name
+     *
+     * @param  string $field_api_name The API name of lead field (required)
+     *
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getLeadFieldByNameUsingGETWithHttpInfo($field_api_name)
+    {
+        $request = $this->getLeadFieldByNameUsingGETRequest($field_api_name);
+
+        try {
+            $response = $this->makeRequest($request);
+
+            switch ($response->getStatusCode()) {
+                case 200:
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField');
+            }
+
+            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField');
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $e->setResponseObject(
+                        $this->deserializeResponseBody(
+                            $e->getResponseBody(),
+                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField',
+                            $e->getResponseHeaders()
+                        )
+                    );
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getLeadFieldByNameUsingGETAsync
+     *
+     * Get Lead Field by Name
+     *
+     * @param  string $field_api_name The API name of lead field (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getLeadFieldByNameUsingGETAsync($field_api_name)
+    {
+        return $this->getLeadFieldByNameUsingGETAsyncWithHttpInfo($field_api_name)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getLeadFieldByNameUsingGETAsyncWithHttpInfo
+     *
+     * Get Lead Field by Name
+     *
+     * @param  string $field_api_name The API name of lead field (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getLeadFieldByNameUsingGETAsyncWithHttpInfo($field_api_name)
+    {
+        $request = $this->getLeadFieldByNameUsingGETRequest($field_api_name);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) {
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField');
+                },
+                function (RequestException $exception) {
+                    $response = $exception->getResponse();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
+                        ),
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getLeadFieldByNameUsingGET'
+     *
+     * @param  string $field_api_name The API name of lead field (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function getLeadFieldByNameUsingGETRequest($field_api_name)
+    {
+        // Verify the required parameter 'field_api_name' is set.
+        if ($field_api_name === null || (is_array($field_api_name) && empty($field_api_name))) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $field_api_name when calling getLeadFieldByNameUsingGET'
+            );
+        }
+
+        $resourcePath = '/rest/v1/leads/schema/fields/{fieldApiName}.json';
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+
+        // Path parameters.
+        $resourcePath = str_replace(
+            '{' . 'fieldApiName' . '}',
+            ObjectSerializer::toPathValue($field_api_name),
+            $resourcePath
+        );
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json'],
+            ['application/json']
+        );
+
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = Query::build($queryParams);
+        return new Request(
+            'GET',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation getLeadFieldsUsingGET
+     *
+     * Get Lead Fields
+     *
+     * @param  int $batch_size The batch size to return. The max and default value is 300. (optional)
+     * @param  string $next_page_token A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info. (optional)
+     *
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField
+     */
+    public function getLeadFieldsUsingGET($batch_size = null, $next_page_token = null)
+    {
+        list($response) = $this->getLeadFieldsUsingGETWithHttpInfo($batch_size, $next_page_token);
+        return $response;
+    }
+
+    /**
+     * Operation getLeadFieldsUsingGETWithHttpInfo
+     *
+     * Get Lead Fields
+     *
+     * @param  int $batch_size The batch size to return. The max and default value is 300. (optional)
+     * @param  string $next_page_token A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info. (optional)
+     *
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getLeadFieldsUsingGETWithHttpInfo($batch_size = null, $next_page_token = null)
+    {
+        $request = $this->getLeadFieldsUsingGETRequest($batch_size, $next_page_token);
+
+        try {
+            $response = $this->makeRequest($request);
+
+            switch ($response->getStatusCode()) {
+                case 200:
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField');
+            }
+
+            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField');
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $e->setResponseObject(
+                        $this->deserializeResponseBody(
+                            $e->getResponseBody(),
+                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField',
+                            $e->getResponseHeaders()
+                        )
+                    );
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getLeadFieldsUsingGETAsync
+     *
+     * Get Lead Fields
+     *
+     * @param  int $batch_size The batch size to return. The max and default value is 300. (optional)
+     * @param  string $next_page_token A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getLeadFieldsUsingGETAsync($batch_size = null, $next_page_token = null)
+    {
+        return $this->getLeadFieldsUsingGETAsyncWithHttpInfo($batch_size, $next_page_token)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getLeadFieldsUsingGETAsyncWithHttpInfo
+     *
+     * Get Lead Fields
+     *
+     * @param  int $batch_size The batch size to return. The max and default value is 300. (optional)
+     * @param  string $next_page_token A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getLeadFieldsUsingGETAsyncWithHttpInfo($batch_size = null, $next_page_token = null)
+    {
+        $request = $this->getLeadFieldsUsingGETRequest($batch_size, $next_page_token);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) {
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField');
+                },
+                function (RequestException $exception) {
+                    $response = $exception->getResponse();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
+                        ),
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getLeadFieldsUsingGET'
+     *
+     * @param  int $batch_size The batch size to return. The max and default value is 300. (optional)
+     * @param  string $next_page_token A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function getLeadFieldsUsingGETRequest($batch_size = null, $next_page_token = null)
+    {
+
+        $resourcePath = '/rest/v1/leads/schema/fields.json';
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+
+        // Query parameters.
+        if (is_array($batch_size)) {
+            $batch_size = ObjectSerializer::serializeCollection($batch_size, '', true);
+        }
+        $queryParams['batchSize'] = $batch_size;
+        if (is_array($next_page_token)) {
+            $next_page_token = ObjectSerializer::serializeCollection($next_page_token, '', true);
+        }
+        $queryParams['nextPageToken'] = $next_page_token;
+        // Remove any null (optional values).
+        $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
             ['application/json']
@@ -3181,6 +3694,197 @@ class LeadsApi
                 $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($sync_lead_request));
             } elseif (!is_array($sync_lead_request)) {
                 $httpBody = (string) $sync_lead_request;
+            }
+            else {
+                $httpBody = '';
+            }
+        }
+
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = Query::build($queryParams);
+        return new Request(
+            'POST',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation updateLeadFieldUsingPOST
+     *
+     * Update Lead Field
+     *
+     * @param  string $field_api_name The API name of lead field (required)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\UpdateLeadFieldRequest $update_lead_field_request updateLeadFieldRequest (required)
+     *
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfUpdateLeadField
+     */
+    public function updateLeadFieldUsingPOST($field_api_name, $update_lead_field_request)
+    {
+        list($response) = $this->updateLeadFieldUsingPOSTWithHttpInfo($field_api_name, $update_lead_field_request);
+        return $response;
+    }
+
+    /**
+     * Operation updateLeadFieldUsingPOSTWithHttpInfo
+     *
+     * Update Lead Field
+     *
+     * @param  string $field_api_name The API name of lead field (required)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\UpdateLeadFieldRequest $update_lead_field_request updateLeadFieldRequest (required)
+     *
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfUpdateLeadField, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function updateLeadFieldUsingPOSTWithHttpInfo($field_api_name, $update_lead_field_request)
+    {
+        $request = $this->updateLeadFieldUsingPOSTRequest($field_api_name, $update_lead_field_request);
+
+        try {
+            $response = $this->makeRequest($request);
+
+            switch ($response->getStatusCode()) {
+                case 200:
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfUpdateLeadField');
+            }
+
+            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfUpdateLeadField');
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $e->setResponseObject(
+                        $this->deserializeResponseBody(
+                            $e->getResponseBody(),
+                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfUpdateLeadField',
+                            $e->getResponseHeaders()
+                        )
+                    );
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation updateLeadFieldUsingPOSTAsync
+     *
+     * Update Lead Field
+     *
+     * @param  string $field_api_name The API name of lead field (required)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\UpdateLeadFieldRequest $update_lead_field_request updateLeadFieldRequest (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function updateLeadFieldUsingPOSTAsync($field_api_name, $update_lead_field_request)
+    {
+        return $this->updateLeadFieldUsingPOSTAsyncWithHttpInfo($field_api_name, $update_lead_field_request)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation updateLeadFieldUsingPOSTAsyncWithHttpInfo
+     *
+     * Update Lead Field
+     *
+     * @param  string $field_api_name The API name of lead field (required)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\UpdateLeadFieldRequest $update_lead_field_request updateLeadFieldRequest (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function updateLeadFieldUsingPOSTAsyncWithHttpInfo($field_api_name, $update_lead_field_request)
+    {
+        $request = $this->updateLeadFieldUsingPOSTRequest($field_api_name, $update_lead_field_request);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) {
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfUpdateLeadField');
+                },
+                function (RequestException $exception) {
+                    $response = $exception->getResponse();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
+                        ),
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'updateLeadFieldUsingPOST'
+     *
+     * @param  string $field_api_name The API name of lead field (required)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\UpdateLeadFieldRequest $update_lead_field_request updateLeadFieldRequest (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function updateLeadFieldUsingPOSTRequest($field_api_name, $update_lead_field_request)
+    {
+        // Verify the required parameter 'field_api_name' is set.
+        if ($field_api_name === null || (is_array($field_api_name) && empty($field_api_name))) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $field_api_name when calling updateLeadFieldUsingPOST'
+            );
+        }
+        // Verify the required parameter 'update_lead_field_request' is set.
+        if ($update_lead_field_request === null || (is_array($update_lead_field_request) && empty($update_lead_field_request))) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $update_lead_field_request when calling updateLeadFieldUsingPOST'
+            );
+        }
+
+        $resourcePath = '/rest/v1/leads/schema/fields/{fieldApiName}.json';
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+
+        // Path parameters.
+        $resourcePath = str_replace(
+            '{' . 'fieldApiName' . '}',
+            ObjectSerializer::toPathValue($field_api_name),
+            $resourcePath
+        );
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json'],
+            ['application/json']
+        );
+
+        // for model (json/xml)
+        if (!empty($update_lead_field_request)) {
+            if ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($update_lead_field_request));
+            } elseif (!is_array($update_lead_field_request)) {
+                $httpBody = (string) $update_lead_field_request;
             }
             else {
                 $httpBody = '';

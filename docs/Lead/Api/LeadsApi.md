@@ -6,11 +6,14 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**associateLeadUsingPOST**](LeadsApi.md#associateLeadUsingPOST) | **POST** /rest/v1/leads/{leadId}/associate.json | Associate Lead
 [**changeLeadProgramStatusUsingPOST**](LeadsApi.md#changeLeadProgramStatusUsingPOST) | **POST** /rest/v1/leads/programs/{programId}/status.json | Change Lead Program Status
+[**createLeadFieldUsingPOST**](LeadsApi.md#createLeadFieldUsingPOST) | **POST** /rest/v1/leads/schema/fields.json | Create Lead Fields
 [**deleteLeadsUsingPOST**](LeadsApi.md#deleteLeadsUsingPOST) | **POST** /rest/v1/leads/delete.json | Delete Leads
 [**describeProgramMemberUsingGET**](LeadsApi.md#describeProgramMemberUsingGET) | **GET** /rest/v1/program/members/describe.json | Describe Program Member
 [**describeUsingGET2**](LeadsApi.md#describeUsingGET2) | **GET** /rest/v1/leads/describe.json | Describe Lead
 [**describeUsingGET6**](LeadsApi.md#describeUsingGET6) | **GET** /rest/v1/leads/describe2.json | Describe Lead2
 [**getLeadByIdUsingGET**](LeadsApi.md#getLeadByIdUsingGET) | **GET** /rest/v1/lead/{leadId}.json | Get Lead by Id
+[**getLeadFieldByNameUsingGET**](LeadsApi.md#getLeadFieldByNameUsingGET) | **GET** /rest/v1/leads/schema/fields/{fieldApiName}.json | Get Lead Field by Name
+[**getLeadFieldsUsingGET**](LeadsApi.md#getLeadFieldsUsingGET) | **GET** /rest/v1/leads/schema/fields.json | Get Lead Fields
 [**getLeadPartitionsUsingGET**](LeadsApi.md#getLeadPartitionsUsingGET) | **GET** /rest/v1/leads/partitions.json | Get Lead Partitions
 [**getLeadsByFilterUsingGET**](LeadsApi.md#getLeadsByFilterUsingGET) | **GET** /rest/v1/leads.json | Get Leads by Filter Type
 [**getLeadsByProgramIdUsingGET**](LeadsApi.md#getLeadsByProgramIdUsingGET) | **GET** /rest/v1/leads/programs/{programId}.json | Get Leads by Program Id
@@ -21,6 +24,7 @@ Method | HTTP request | Description
 [**pushToMarketoUsingPOST**](LeadsApi.md#pushToMarketoUsingPOST) | **POST** /rest/v1/leads/push.json | Push Lead to Marketo
 [**submitFormUsingPOST**](LeadsApi.md#submitFormUsingPOST) | **POST** /rest/v1/leads/submitForm.json | Submit Form
 [**syncLeadUsingPOST**](LeadsApi.md#syncLeadUsingPOST) | **POST** /rest/v1/leads.json | Sync Leads
+[**updateLeadFieldUsingPOST**](LeadsApi.md#updateLeadFieldUsingPOST) | **POST** /rest/v1/leads/schema/fields/{fieldApiName}.json | Update Lead Field
 [**updatePartitionsUsingPOST**](LeadsApi.md#updatePartitionsUsingPOST) | **POST** /rest/v1/leads/partitions.json | Update Lead Partition
 
 
@@ -114,6 +118,55 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**\NecLimDul\MarketoRest\Lead\Model\ResponseOfChangeLeadProgramStatusOutputData**](../Model/ResponseOfChangeLeadProgramStatusOutputData.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **createLeadFieldUsingPOST**
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfCreateLeadField createLeadFieldUsingPOST($create_lead_field_request)
+
+Create Lead Fields
+
+Create lead fields in the target instance.  Required Permissions: Read-Write Schema Custom Field
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\LeadsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$create_lead_field_request = new \NecLimDul\MarketoRest\Lead\Model\CreateLeadFieldRequest(); // \NecLimDul\MarketoRest\Lead\Model\CreateLeadFieldRequest | createLeadFieldRequest
+
+try {
+    $result = $apiInstance->createLeadFieldUsingPOST($create_lead_field_request);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling LeadsApi->createLeadFieldUsingPOST: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **create_lead_field_request** | [**\NecLimDul\MarketoRest\Lead\Model\CreateLeadFieldRequest**](../Model/CreateLeadFieldRequest.md)| createLeadFieldRequest |
+
+### Return type
+
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfCreateLeadField**](../Model/ResponseOfCreateLeadField.md)
 
 ### Authorization
 
@@ -351,6 +404,106 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead**](../Model/ResponseOfLead.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **getLeadFieldByNameUsingGET**
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField getLeadFieldByNameUsingGET($field_api_name)
+
+Get Lead Field by Name
+
+Retrieves metadata for single lead field.  Required Permissions: Read-Write Schema Standard Field, Read-Write Schema Custom Field
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\LeadsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$field_api_name = "field_api_name_example"; // string | The API name of lead field
+
+try {
+    $result = $apiInstance->getLeadFieldByNameUsingGET($field_api_name);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling LeadsApi->getLeadFieldByNameUsingGET: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **field_api_name** | **string**| The API name of lead field |
+
+### Return type
+
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField**](../Model/ResponseOfLeadField.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **getLeadFieldsUsingGET**
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField getLeadFieldsUsingGET($batch_size, $next_page_token)
+
+Get Lead Fields
+
+Retrieves metadata for all lead fields in the target instance.  Required Permissions: Read-Write Schema Standard Field, Read-Write Schema Custom Field
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\LeadsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$batch_size = 56; // int | The batch size to return. The max and default value is 300.
+$next_page_token = "next_page_token_example"; // string | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
+
+try {
+    $result = $apiInstance->getLeadFieldsUsingGET($batch_size, $next_page_token);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling LeadsApi->getLeadFieldsUsingGET: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **batch_size** | **int**| The batch size to return. The max and default value is 300. | [optional]
+ **next_page_token** | **string**| A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info. | [optional]
+
+### Return type
+
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField**](../Model/ResponseOfLeadField.md)
 
 ### Authorization
 
@@ -881,6 +1034,57 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead**](../Model/ResponseOfLead.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **updateLeadFieldUsingPOST**
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfUpdateLeadField updateLeadFieldUsingPOST($field_api_name, $update_lead_field_request)
+
+Update Lead Field
+
+Update metadata for a lead field in the target instance.  See update rules <a href=\"https://developers.marketo.com/rest-api/lead-database/leads/#update_field\">here</a>.  Required Permissions: Read-Write Schema Standard Field, Read-Write Schema Custom Field
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\LeadsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$field_api_name = "field_api_name_example"; // string | The API name of lead field
+$update_lead_field_request = new \NecLimDul\MarketoRest\Lead\Model\UpdateLeadFieldRequest(); // \NecLimDul\MarketoRest\Lead\Model\UpdateLeadFieldRequest | updateLeadFieldRequest
+
+try {
+    $result = $apiInstance->updateLeadFieldUsingPOST($field_api_name, $update_lead_field_request);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling LeadsApi->updateLeadFieldUsingPOST: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **field_api_name** | **string**| The API name of lead field |
+ **update_lead_field_request** | [**\NecLimDul\MarketoRest\Lead\Model\UpdateLeadFieldRequest**](../Model/UpdateLeadFieldRequest.md)| updateLeadFieldRequest |
+
+### Return type
+
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfUpdateLeadField**](../Model/ResponseOfUpdateLeadField.md)
 
 ### Authorization
 

@@ -58,7 +58,7 @@ class Error implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'code' => 'int',
+        'code' => 'string',
         'message' => 'string'
     ];
 
@@ -70,7 +70,7 @@ class Error implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $swaggerFormats = [
-        'code' => 'int32',
+        'code' => null,
         'message' => null
     ];
 
@@ -211,7 +211,7 @@ class Error implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets code
      *
-     * @return int
+     * @return string
      */
     public function getCode()
     {
@@ -221,7 +221,7 @@ class Error implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets code
      *
-     * @param int $code Integer error code of the error
+     * @param string $code Error code of the error.  See full list of error codes <a href=\"https://developers.marketo.com/rest-api/error-codes/\">here</a>
      *
      * @return self
      */
@@ -245,7 +245,7 @@ class Error implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets message
      *
-     * @param string $message Message describing the cause of the Error
+     * @param string $message Message describing the cause of the error
      *
      * @return self
      */

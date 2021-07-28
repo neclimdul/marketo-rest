@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **field_width** | **int** |  | [optional] 
 **fields** | **string[]** |  | [optional] 
 **form_prefill** | **bool** |  | [optional] 
+**is_sensitive** | **bool** |  | [optional] 
 **hint_text** | **string** |  | [optional] 
 **id** | **string** |  | [optional] 
 **instructions** | **string** |  | [optional] 

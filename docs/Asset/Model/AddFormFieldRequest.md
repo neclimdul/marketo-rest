@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **field_id** | **string** | Id of the field | 
 **field_width** | **int** | Width of the input or select element | [optional] 
 **form_prefill** | **bool** | Whether the field should prefill.  Default true | [optional] 
+**is_sensitive** | **bool** | Whether the field is marked as sensitive.  Default false | [optional] 
 **hint_text** | **string** | Hint text for the field | [optional] 
 **initially_checked** | **bool** | Whether the field should be checked upon loading.  Default false | [optional] 
 **instructions** | **string** | Instructions for the field | [optional] 

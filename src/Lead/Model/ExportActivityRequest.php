@@ -281,7 +281,7 @@ class ExportActivityRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets filter
      *
-     * @param \NecLimDul\MarketoRest\Lead\Model\ExportActivityFilter $filter Record selection criteria. \"createAt\" is required, \"activityTypeIds\" is optional
+     * @param \NecLimDul\MarketoRest\Lead\Model\ExportActivityFilter $filter Record selection criteria. \"createAt\" is required, \"activityTypeIds\", \"primaryAttributeValueIds\", and \"primaryAttributeValues\" are optional
      *
      * @return self
      */

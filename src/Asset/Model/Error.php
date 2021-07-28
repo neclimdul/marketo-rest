@@ -190,6 +190,12 @@ class Error implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
+        if ($this->container['code'] === null) {
+            $invalidProperties[] = "'code' can't be null";
+        }
+        if ($this->container['message'] === null) {
+            $invalidProperties[] = "'message' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -215,7 +221,7 @@ class Error implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets code
      *
-     * @param string $code code
+     * @param string $code Error code of the error.  See full list of error codes <a href=\"https://developers.marketo.com/rest-api/error-codes/\">here</a>
      *
      * @return self
      */
@@ -239,7 +245,7 @@ class Error implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets message
      *
-     * @param string $message message
+     * @param string $message Message describing the cause of the error
      *
      * @return self
      */

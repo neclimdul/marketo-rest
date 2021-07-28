@@ -66,6 +66,7 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess, \JsonSerializa
         'field_width' => 'int',
         'fields' => 'string[]',
         'form_prefill' => 'bool',
+        'is_sensitive' => 'bool',
         'hint_text' => 'string',
         'id' => 'string',
         'instructions' => 'string',
@@ -95,6 +96,7 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess, \JsonSerializa
         'field_width' => 'int32',
         'fields' => null,
         'form_prefill' => null,
+        'is_sensitive' => null,
         'hint_text' => null,
         'id' => null,
         'instructions' => null,
@@ -148,6 +150,7 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess, \JsonSerializa
         'field_width' => 'fieldWidth',
         'fields' => 'fields',
         'form_prefill' => 'formPrefill',
+        'is_sensitive' => 'isSensitive',
         'hint_text' => 'hintText',
         'id' => 'id',
         'instructions' => 'instructions',
@@ -175,6 +178,7 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess, \JsonSerializa
         'field_width' => 'setFieldWidth',
         'fields' => 'setFields',
         'form_prefill' => 'setFormPrefill',
+        'is_sensitive' => 'setIsSensitive',
         'hint_text' => 'setHintText',
         'id' => 'setId',
         'instructions' => 'setInstructions',
@@ -202,6 +206,7 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess, \JsonSerializa
         'field_width' => 'getFieldWidth',
         'fields' => 'getFields',
         'form_prefill' => 'getFormPrefill',
+        'is_sensitive' => 'getIsSensitive',
         'hint_text' => 'getHintText',
         'id' => 'getId',
         'instructions' => 'getInstructions',
@@ -240,6 +245,7 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess, \JsonSerializa
         $this->container['field_width'] = isset($data['field_width']) ? $data['field_width'] : null;
         $this->container['fields'] = isset($data['fields']) ? $data['fields'] : null;
         $this->container['form_prefill'] = isset($data['form_prefill']) ? $data['form_prefill'] : null;
+        $this->container['is_sensitive'] = isset($data['is_sensitive']) ? $data['is_sensitive'] : null;
         $this->container['hint_text'] = isset($data['hint_text']) ? $data['hint_text'] : null;
         $this->container['id'] = isset($data['id']) ? $data['id'] : null;
         $this->container['instructions'] = isset($data['instructions']) ? $data['instructions'] : null;
@@ -492,6 +498,30 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     public function setFormPrefill($form_prefill)
     {
         $this->container['form_prefill'] = $form_prefill;
+
+        return $this;
+    }
+
+    /**
+     * Gets is_sensitive
+     *
+     * @return bool
+     */
+    public function getIsSensitive()
+    {
+        return $this->container['is_sensitive'];
+    }
+
+    /**
+     * Sets is_sensitive
+     *
+     * @param bool $is_sensitive is_sensitive
+     *
+     * @return self
+     */
+    public function setIsSensitive($is_sensitive)
+    {
+        $this->container['is_sensitive'] = $is_sensitive;
 
         return $this;
     }

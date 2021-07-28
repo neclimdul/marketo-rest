@@ -60,6 +60,24 @@ class ExportActivityFilterTest extends TestCase
     }
 
     /**
+     * Test attribute "primary_attribute_value_ids"
+     */
+    public function testPropertyPrimaryAttributeValueIds()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "primary_attribute_values"
+     */
+    public function testPropertyPrimaryAttributeValues()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "created_at"
      */
     public function testPropertyCreatedAt()

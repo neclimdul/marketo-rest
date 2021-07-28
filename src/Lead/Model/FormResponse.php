@@ -34,6 +34,7 @@ use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * FormResponse Class Doc Comment
  *
  * @category Class
+ * @description Disposition of lead
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
@@ -59,7 +60,8 @@ class FormResponse implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $swaggerTypes = [
         'id' => 'int',
-        'status' => 'string'
+        'status' => 'string',
+        'reasons' => '\NecLimDul\MarketoRest\Lead\Model\Reason[]'
     ];
 
     /**
@@ -71,7 +73,8 @@ class FormResponse implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $swaggerFormats = [
         'id' => 'int32',
-        'status' => null
+        'status' => null,
+        'reasons' => null
     ];
 
     /**
@@ -107,7 +110,8 @@ class FormResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $attributeMap = [
         'id' => 'id',
-        'status' => 'status'
+        'status' => 'status',
+        'reasons' => 'reasons'
     ];
 
     /**
@@ -117,7 +121,8 @@ class FormResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $setters = [
         'id' => 'setId',
-        'status' => 'setStatus'
+        'status' => 'setStatus',
+        'reasons' => 'setReasons'
     ];
 
     /**
@@ -127,11 +132,13 @@ class FormResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $getters = [
         'id' => 'getId',
-        'status' => 'getStatus'
+        'status' => 'getStatus',
+        'reasons' => 'getReasons'
     ];
 
     const STATUS_CREATED = 'created';
     const STATUS_UPDATED = 'updated';
+    const STATUS_SKIPPED = 'skipped';
     
 
     /**
@@ -151,6 +158,7 @@ class FormResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $this->container['id'] = isset($data['id']) ? $data['id'] : null;
         $this->container['status'] = isset($data['status']) ? $data['status'] : null;
+        $this->container['reasons'] = isset($data['reasons']) ? $data['reasons'] : null;
     }
 
     /**
@@ -229,6 +237,7 @@ class FormResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         return [
             self::STATUS_CREATED,
             self::STATUS_UPDATED,
+            self::STATUS_SKIPPED,
         ];
     }
     
@@ -270,7 +279,7 @@ class FormResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets status
      *
-     * @param string $status Disposition of lead
+     * @param string $status status
      *
      * @return self
      */
@@ -287,6 +296,30 @@ class FormResponse implements ModelInterface, ArrayAccess, \JsonSerializable
             );
         }
         $this->container['status'] = $status;
+
+        return $this;
+    }
+
+    /**
+     * Gets reasons
+     *
+     * @return \NecLimDul\MarketoRest\Lead\Model\Reason[]
+     */
+    public function getReasons()
+    {
+        return $this->container['reasons'];
+    }
+
+    /**
+     * Sets reasons
+     *
+     * @param \NecLimDul\MarketoRest\Lead\Model\Reason[] $reasons List of reasons why an operation did not succeed.  Reasons are only present in API responses and should not be submitted
+     *
+     * @return self
+     */
+    public function setReasons($reasons)
+    {
+        $this->container['reasons'] = $reasons;
 
         return $this;
     }

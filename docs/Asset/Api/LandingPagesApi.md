@@ -326,7 +326,7 @@ No authorization required
 
 Get Landing Page by Id
 
-Returns the landning record for the given id. Required Permissions: Read-Only Assets, Read-Write Assets
+Returns the landing record for the given id. Required Permissions: Read-Only Assets, Read-Write Assets
 
 ### Example
 ```php

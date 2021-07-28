@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **is_label_to_right** | **bool** | Whether the field label should be displayed to the right of the input/select element. Default false | [optional] 
 **is_multiselect** | **bool** | Whether the field should allow multiple selections. Default false | [optional] 
 **is_required** | **bool** | Whether the field is required to submit the form.  Default false | [optional] 
+**is_sensitive** | **bool** | Whether the field is marked as sensitive.  Default false | [optional] 
 **label_width** | **int** | Width of the field label element | [optional] 
 **max_length** | **int** | Maximum length for text type fields | [optional] 
 **maximum_number** | **float** | Maximum value accepted by the field | [optional] 
