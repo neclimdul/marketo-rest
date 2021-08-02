@@ -16,7 +16,7 @@ use Softonic\OAuth2\Guzzle\Middleware\RetryOnAuthorizationError;
 class ClientFactory
 {
     /**
-     * Create a guzzle client with OAuth middleware setup.
+     * Create a basic guzzle client.
      *
      * @param \NecLimDul\MarketoRest\Configuration $config
      *   Some config.
