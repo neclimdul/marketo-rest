@@ -63,7 +63,7 @@ class ProgramMemberAttribute2 implements ModelInterface, ArrayAccess, \JsonSeria
         'created_at' => 'string',
         'updated_at' => 'string',
         'dedupe_fields' => 'string[]',
-        'searchable_fields' => '\NecLimDul\MarketoRest\Lead\Model\array[]',
+        'searchable_fields' => 'array[]',
         'fields' => '\NecLimDul\MarketoRest\Lead\Model\LeadAttribute2Fields2[]'
     ];
 
@@ -378,7 +378,7 @@ class ProgramMemberAttribute2 implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets searchable_fields
      *
-     * @return \NecLimDul\MarketoRest\Lead\Model\array[]
+     * @return array[]
      */
     public function getSearchableFields()
     {
@@ -388,7 +388,7 @@ class ProgramMemberAttribute2 implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets searchable_fields
      *
-     * @param \NecLimDul\MarketoRest\Lead\Model\array[] $searchable_fields List of searchable fields
+     * @param array[] $searchable_fields List of searchable fields
      *
      * @return self
      */
