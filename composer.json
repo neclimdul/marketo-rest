@@ -38,7 +38,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "NecLimDul\\MarketoRest\\MarketoRestProvider"
+                "NecLimDul\\MarketoRest\\Laravel\\MarketoRestProvider"
             ]
         }
     },
