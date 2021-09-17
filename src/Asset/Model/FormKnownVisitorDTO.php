@@ -260,7 +260,8 @@ class FormKnownVisitorDTO implements ModelInterface, ArrayAccess, \JsonSerializa
             unset($this->container[$additional_properties]);
         }
         $this->container += $fields;
-        $this->additionalProperties = array_keys($fields);
+        $keys = array_keys($fields);
+        $this->additionalProperties = array_combine($keys, $keys);
     }
 
     /**
