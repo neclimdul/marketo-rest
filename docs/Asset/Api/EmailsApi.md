@@ -33,7 +33,7 @@ Method | HTTP request | Description
 
 
 # **addModuleUsingPOST**
-> \NecLimDul\MarketoRest\Asset\Model\ModelResponse addModuleUsingPOST($id, $module_id, $name, $index)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse addModuleUsingPOST($id, $module_id, $name, $index)
 
 Add Email Module
 
@@ -74,7 +74,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\NecLimDul\MarketoRest\Asset\Model\ModelResponse**](../Model/ModelResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse**](../Model/ResponseOfEmailModuleResponse.md)
 
 ### Authorization
 
@@ -337,7 +337,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **deleteModuleUsingPOST**
-> \NecLimDul\MarketoRest\Asset\Model\ModelResponse deleteModuleUsingPOST($id, $module_id)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse deleteModuleUsingPOST($id, $module_id)
 
 Delete Module
 
@@ -374,7 +374,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\NecLimDul\MarketoRest\Asset\Model\ModelResponse**](../Model/ModelResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse**](../Model/ResponseOfEmailModuleResponse.md)
 
 ### Authorization
 
@@ -437,7 +437,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **duplicateModuleUsingPOST**
-> \NecLimDul\MarketoRest\Asset\Model\ModelResponse duplicateModuleUsingPOST($id, $module_id, $name)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse duplicateModuleUsingPOST($id, $module_id, $name)
 
 Duplicate Email Module
 
@@ -476,7 +476,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\NecLimDul\MarketoRest\Asset\Model\ModelResponse**](../Model/ModelResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse**](../Model/ResponseOfEmailModuleResponse.md)
 
 ### Authorization
 
@@ -798,7 +798,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getEmailUsingGET**
-> \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse getEmailUsingGET($status, $folder, $offset, $max_return)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse getEmailUsingGET($status, $folder, $offset, $max_return, $earliest_updated_at, $latest_updated_at)
 
 Get Emails
 
@@ -818,9 +818,11 @@ $status = "status_example"; // string | Status filter for draft or approved vers
 $folder = "folder_example"; // string | JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
 $offset = 56; // int | Integer offset for paging
 $max_return = 56; // int | Maximum number of emails to return.  Max 200, default 20
+$earliest_updated_at = "earliest_updated_at_example"; // string | Exclude emails prior to this date. Must be valid ISO-8601 string.  See <a href=\"http://developers.marketo.com/rest-api/lead-database/fields/field-types/\">Datetime</a> field type description.
+$latest_updated_at = "latest_updated_at_example"; // string | Exclude emails after this date. Must be valid ISO-8601 string.  See <a href=\"http://developers.marketo.com/rest-api/lead-database/fields/field-types/\">Datetime</a> field type description.
 
 try {
-    $result = $apiInstance->getEmailUsingGET($status, $folder, $offset, $max_return);
+    $result = $apiInstance->getEmailUsingGET($status, $folder, $offset, $max_return, $earliest_updated_at, $latest_updated_at);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling EmailsApi->getEmailUsingGET: ', $e->getMessage(), PHP_EOL;
@@ -836,6 +838,8 @@ Name | Type | Description  | Notes
  **folder** | **string**| JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39; | [optional]
  **offset** | **int**| Integer offset for paging | [optional]
  **max_return** | **int**| Maximum number of emails to return.  Max 200, default 20 | [optional]
+ **earliest_updated_at** | **string**| Exclude emails prior to this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. | [optional]
+ **latest_updated_at** | **string**| Exclude emails after this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. | [optional]
 
 ### Return type
 
@@ -853,7 +857,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getEmailVariablesUsingGET**
-> \NecLimDul\MarketoRest\Asset\Model\ModelResponse getEmailVariablesUsingGET($id)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailVariableResponse getEmailVariablesUsingGET($id)
 
 Get Email Variables
 
@@ -888,7 +892,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\NecLimDul\MarketoRest\Asset\Model\ModelResponse**](../Model/ModelResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailVariableResponse**](../Model/ResponseOfEmailVariableResponse.md)
 
 ### Authorization
 
@@ -902,7 +906,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **rearrangeModulesUsingPOST**
-> \NecLimDul\MarketoRest\Asset\Model\ModelResponse rearrangeModulesUsingPOST($id, $positions)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse rearrangeModulesUsingPOST($id, $positions)
 
 Rearrange Email Modules
 
@@ -939,7 +943,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\NecLimDul\MarketoRest\Asset\Model\ModelResponse**](../Model/ModelResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse**](../Model/ResponseOfEmailModuleResponse.md)
 
 ### Authorization
 
@@ -953,7 +957,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **renameUsingPOST**
-> \NecLimDul\MarketoRest\Asset\Model\ModelResponse renameUsingPOST($id, $module_id, $name)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse renameUsingPOST($id, $module_id, $name)
 
 Rename Email Module
 
@@ -992,7 +996,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\NecLimDul\MarketoRest\Asset\Model\ModelResponse**](../Model/ModelResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse**](../Model/ResponseOfEmailModuleResponse.md)
 
 ### Authorization
 
@@ -1314,7 +1318,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **updateVariableUsingPOST**
-> \NecLimDul\MarketoRest\Asset\Model\ModelResponse updateVariableUsingPOST($id, $name, $update_variable_request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailVariableResponse updateVariableUsingPOST($id, $name, $update_variable_request)
 
 Update Email Variable
 
@@ -1353,7 +1357,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\NecLimDul\MarketoRest\Asset\Model\ModelResponse**](../Model/ModelResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailVariableResponse**](../Model/ResponseOfEmailVariableResponse.md)
 
 ### Authorization
 

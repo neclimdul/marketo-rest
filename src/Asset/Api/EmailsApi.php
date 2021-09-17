@@ -129,7 +129,7 @@ class EmailsApi
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ModelResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse
      */
     public function addModuleUsingPOST($id, $module_id, $name, $index)
     {
@@ -149,7 +149,7 @@ class EmailsApi
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Asset\Model\ModelResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function addModuleUsingPOSTWithHttpInfo($id, $module_id, $name, $index)
     {
@@ -160,10 +160,10 @@ class EmailsApi
 
             switch ($response->getStatusCode()) {
                 case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ModelResponse');
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse');
             }
 
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ModelResponse');
+            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse');
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -171,7 +171,7 @@ class EmailsApi
                     $e->setResponseObject(
                         $this->deserializeResponseBody(
                             $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ModelResponse',
+                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse',
                             $e->getResponseHeaders()
                         )
                     );
@@ -225,7 +225,7 @@ class EmailsApi
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
                 function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ModelResponse');
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse');
                 },
                 function (RequestException $exception) {
                     $response = $exception->getResponse();
@@ -1236,7 +1236,7 @@ class EmailsApi
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ModelResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse
      */
     public function deleteModuleUsingPOST($id, $module_id)
     {
@@ -1254,7 +1254,7 @@ class EmailsApi
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Asset\Model\ModelResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function deleteModuleUsingPOSTWithHttpInfo($id, $module_id)
     {
@@ -1265,10 +1265,10 @@ class EmailsApi
 
             switch ($response->getStatusCode()) {
                 case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ModelResponse');
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse');
             }
 
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ModelResponse');
+            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse');
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -1276,7 +1276,7 @@ class EmailsApi
                     $e->setResponseObject(
                         $this->deserializeResponseBody(
                             $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ModelResponse',
+                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse',
                             $e->getResponseHeaders()
                         )
                     );
@@ -1326,7 +1326,7 @@ class EmailsApi
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
                 function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ModelResponse');
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse');
                 },
                 function (RequestException $exception) {
                     $response = $exception->getResponse();
@@ -1589,7 +1589,7 @@ class EmailsApi
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ModelResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse
      */
     public function duplicateModuleUsingPOST($id, $module_id, $name)
     {
@@ -1608,7 +1608,7 @@ class EmailsApi
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Asset\Model\ModelResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function duplicateModuleUsingPOSTWithHttpInfo($id, $module_id, $name)
     {
@@ -1619,10 +1619,10 @@ class EmailsApi
 
             switch ($response->getStatusCode()) {
                 case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ModelResponse');
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse');
             }
 
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ModelResponse');
+            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse');
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -1630,7 +1630,7 @@ class EmailsApi
                     $e->setResponseObject(
                         $this->deserializeResponseBody(
                             $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ModelResponse',
+                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse',
                             $e->getResponseHeaders()
                         )
                     );
@@ -1682,7 +1682,7 @@ class EmailsApi
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
                 function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ModelResponse');
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse');
                 },
                 function (RequestException $exception) {
                     $response = $exception->getResponse();
@@ -2885,14 +2885,16 @@ class EmailsApi
      * @param  string $folder JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39; (optional)
      * @param  int $offset Integer offset for paging (optional)
      * @param  int $max_return Maximum number of emails to return.  Max 200, default 20 (optional)
+     * @param  string $earliest_updated_at Exclude emails prior to this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. (optional)
+     * @param  string $latest_updated_at Exclude emails after this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. (optional)
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse
      */
-    public function getEmailUsingGET($status = null, $folder = null, $offset = null, $max_return = null)
+    public function getEmailUsingGET($status = null, $folder = null, $offset = null, $max_return = null, $earliest_updated_at = null, $latest_updated_at = null)
     {
-        list($response) = $this->getEmailUsingGETWithHttpInfo($status, $folder, $offset, $max_return);
+        list($response) = $this->getEmailUsingGETWithHttpInfo($status, $folder, $offset, $max_return, $earliest_updated_at, $latest_updated_at);
         return $response;
     }
 
@@ -2905,14 +2907,16 @@ class EmailsApi
      * @param  string $folder JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39; (optional)
      * @param  int $offset Integer offset for paging (optional)
      * @param  int $max_return Maximum number of emails to return.  Max 200, default 20 (optional)
+     * @param  string $earliest_updated_at Exclude emails prior to this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. (optional)
+     * @param  string $latest_updated_at Exclude emails after this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. (optional)
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getEmailUsingGETWithHttpInfo($status = null, $folder = null, $offset = null, $max_return = null)
+    public function getEmailUsingGETWithHttpInfo($status = null, $folder = null, $offset = null, $max_return = null, $earliest_updated_at = null, $latest_updated_at = null)
     {
-        $request = $this->getEmailUsingGETRequest($status, $folder, $offset, $max_return);
+        $request = $this->getEmailUsingGETRequest($status, $folder, $offset, $max_return, $earliest_updated_at, $latest_updated_at);
 
         try {
             $response = $this->makeRequest($request);
@@ -2949,13 +2953,15 @@ class EmailsApi
      * @param  string $folder JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39; (optional)
      * @param  int $offset Integer offset for paging (optional)
      * @param  int $max_return Maximum number of emails to return.  Max 200, default 20 (optional)
+     * @param  string $earliest_updated_at Exclude emails prior to this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. (optional)
+     * @param  string $latest_updated_at Exclude emails after this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getEmailUsingGETAsync($status = null, $folder = null, $offset = null, $max_return = null)
+    public function getEmailUsingGETAsync($status = null, $folder = null, $offset = null, $max_return = null, $earliest_updated_at = null, $latest_updated_at = null)
     {
-        return $this->getEmailUsingGETAsyncWithHttpInfo($status, $folder, $offset, $max_return)
+        return $this->getEmailUsingGETAsyncWithHttpInfo($status, $folder, $offset, $max_return, $earliest_updated_at, $latest_updated_at)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2972,13 +2978,15 @@ class EmailsApi
      * @param  string $folder JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39; (optional)
      * @param  int $offset Integer offset for paging (optional)
      * @param  int $max_return Maximum number of emails to return.  Max 200, default 20 (optional)
+     * @param  string $earliest_updated_at Exclude emails prior to this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. (optional)
+     * @param  string $latest_updated_at Exclude emails after this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getEmailUsingGETAsyncWithHttpInfo($status = null, $folder = null, $offset = null, $max_return = null)
+    public function getEmailUsingGETAsyncWithHttpInfo($status = null, $folder = null, $offset = null, $max_return = null, $earliest_updated_at = null, $latest_updated_at = null)
     {
-        $request = $this->getEmailUsingGETRequest($status, $folder, $offset, $max_return);
+        $request = $this->getEmailUsingGETRequest($status, $folder, $offset, $max_return, $earliest_updated_at, $latest_updated_at);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -3009,11 +3017,13 @@ class EmailsApi
      * @param  string $folder JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39; (optional)
      * @param  int $offset Integer offset for paging (optional)
      * @param  int $max_return Maximum number of emails to return.  Max 200, default 20 (optional)
+     * @param  string $earliest_updated_at Exclude emails prior to this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. (optional)
+     * @param  string $latest_updated_at Exclude emails after this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getEmailUsingGETRequest($status = null, $folder = null, $offset = null, $max_return = null)
+    public function getEmailUsingGETRequest($status = null, $folder = null, $offset = null, $max_return = null, $earliest_updated_at = null, $latest_updated_at = null)
     {
 
         $resourcePath = '/rest/asset/v1/emails.json';
@@ -3038,6 +3048,14 @@ class EmailsApi
             $max_return = ObjectSerializer::serializeCollection($max_return, '', true);
         }
         $queryParams['maxReturn'] = $max_return;
+        if (is_array($earliest_updated_at)) {
+            $earliest_updated_at = ObjectSerializer::serializeCollection($earliest_updated_at, '', true);
+        }
+        $queryParams['earliestUpdatedAt'] = $earliest_updated_at;
+        if (is_array($latest_updated_at)) {
+            $latest_updated_at = ObjectSerializer::serializeCollection($latest_updated_at, '', true);
+        }
+        $queryParams['latestUpdatedAt'] = $latest_updated_at;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
         $headers = $this->headerSelector->selectHeaders(
@@ -3075,7 +3093,7 @@ class EmailsApi
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ModelResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailVariableResponse
      */
     public function getEmailVariablesUsingGET($id)
     {
@@ -3092,7 +3110,7 @@ class EmailsApi
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Asset\Model\ModelResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailVariableResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function getEmailVariablesUsingGETWithHttpInfo($id)
     {
@@ -3103,10 +3121,10 @@ class EmailsApi
 
             switch ($response->getStatusCode()) {
                 case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ModelResponse');
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailVariableResponse');
             }
 
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ModelResponse');
+            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailVariableResponse');
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -3114,7 +3132,7 @@ class EmailsApi
                     $e->setResponseObject(
                         $this->deserializeResponseBody(
                             $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ModelResponse',
+                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailVariableResponse',
                             $e->getResponseHeaders()
                         )
                     );
@@ -3162,7 +3180,7 @@ class EmailsApi
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
                 function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ModelResponse');
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailVariableResponse');
                 },
                 function (RequestException $exception) {
                     $response = $exception->getResponse();
@@ -3244,7 +3262,7 @@ class EmailsApi
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ModelResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse
      */
     public function rearrangeModulesUsingPOST($id, $positions = null)
     {
@@ -3262,7 +3280,7 @@ class EmailsApi
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Asset\Model\ModelResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function rearrangeModulesUsingPOSTWithHttpInfo($id, $positions = null)
     {
@@ -3273,10 +3291,10 @@ class EmailsApi
 
             switch ($response->getStatusCode()) {
                 case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ModelResponse');
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse');
             }
 
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ModelResponse');
+            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse');
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -3284,7 +3302,7 @@ class EmailsApi
                     $e->setResponseObject(
                         $this->deserializeResponseBody(
                             $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ModelResponse',
+                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse',
                             $e->getResponseHeaders()
                         )
                     );
@@ -3334,7 +3352,7 @@ class EmailsApi
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
                 function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ModelResponse');
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse');
                 },
                 function (RequestException $exception) {
                     $response = $exception->getResponse();
@@ -3430,7 +3448,7 @@ class EmailsApi
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ModelResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse
      */
     public function renameUsingPOST($id, $module_id, $name)
     {
@@ -3449,7 +3467,7 @@ class EmailsApi
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Asset\Model\ModelResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function renameUsingPOSTWithHttpInfo($id, $module_id, $name)
     {
@@ -3460,10 +3478,10 @@ class EmailsApi
 
             switch ($response->getStatusCode()) {
                 case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ModelResponse');
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse');
             }
 
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ModelResponse');
+            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse');
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -3471,7 +3489,7 @@ class EmailsApi
                     $e->setResponseObject(
                         $this->deserializeResponseBody(
                             $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ModelResponse',
+                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse',
                             $e->getResponseHeaders()
                         )
                     );
@@ -3523,7 +3541,7 @@ class EmailsApi
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
                 function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ModelResponse');
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse');
                 },
                 function (RequestException $exception) {
                     $response = $exception->getResponse();
@@ -4788,7 +4806,7 @@ class EmailsApi
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ModelResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailVariableResponse
      */
     public function updateVariableUsingPOST($id, $name, $update_variable_request = null)
     {
@@ -4807,7 +4825,7 @@ class EmailsApi
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Asset\Model\ModelResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailVariableResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function updateVariableUsingPOSTWithHttpInfo($id, $name, $update_variable_request = null)
     {
@@ -4818,10 +4836,10 @@ class EmailsApi
 
             switch ($response->getStatusCode()) {
                 case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ModelResponse');
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailVariableResponse');
             }
 
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ModelResponse');
+            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailVariableResponse');
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -4829,7 +4847,7 @@ class EmailsApi
                     $e->setResponseObject(
                         $this->deserializeResponseBody(
                             $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ModelResponse',
+                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailVariableResponse',
                             $e->getResponseHeaders()
                         )
                     );
@@ -4881,7 +4899,7 @@ class EmailsApi
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
                 function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ModelResponse');
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailVariableResponse');
                 },
                 function (RequestException $exception) {
                     $response = $exception->getResponse();

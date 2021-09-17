@@ -1,9 +1,9 @@
 <?php
 /**
- * PushLeadToMarketoRequest
+ * SnippetFolder
  *
  * @category Class
- * @package  NecLimDul\MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -25,23 +25,24 @@
  * Do not edit the class manually.
  */
 
-namespace NecLimDul\MarketoRest\Lead\Model;
+namespace NecLimDul\MarketoRest\Asset\Model;
 
 use \ArrayAccess;
-use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
+use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
- * PushLeadToMarketoRequest Class Doc Comment
+ * SnippetFolder Class Doc Comment
  *
  * @category Class
- * @package  NecLimDul\MarketoRest\Lead
+ * @description JSON representation of a folder
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  * @implements \ArrayAccess<TKey, TValue>
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class SnippetFolder implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +51,7 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess, \JsonSeri
       *
       * @var string
       */
-    protected static $swaggerModelName = 'PushLeadToMarketoRequest';
+    protected static $swaggerModelName = 'SnippetFolder';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,13 +59,9 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess, \JsonSeri
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'input' => '\NecLimDul\MarketoRest\Lead\Model\PushLead[]',
-        'lookup_field' => 'string',
-        'partition_name' => 'string',
-        'program_name' => 'string',
-        'program_status' => 'string',
-        'reason' => 'string',
-        'source' => 'string'
+        'value' => 'int',
+        'type' => 'string',
+        'folder_name' => 'string'
     ];
 
     /**
@@ -75,13 +72,9 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess, \JsonSeri
       * @psalm-var array<string, string|null>
       */
     protected static $swaggerFormats = [
-        'input' => null,
-        'lookup_field' => null,
-        'partition_name' => null,
-        'program_name' => null,
-        'program_status' => null,
-        'reason' => null,
-        'source' => null
+        'value' => 'int32',
+        'type' => null,
+        'folder_name' => null
     ];
 
     /**
@@ -116,13 +109,9 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $attributeMap = [
-        'input' => 'input',
-        'lookup_field' => 'lookupField',
-        'partition_name' => 'partitionName',
-        'program_name' => 'programName',
-        'program_status' => 'programStatus',
-        'reason' => 'reason',
-        'source' => 'source'
+        'value' => 'value',
+        'type' => 'type',
+        'folder_name' => 'folderName'
     ];
 
     /**
@@ -131,13 +120,9 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $setters = [
-        'input' => 'setInput',
-        'lookup_field' => 'setLookupField',
-        'partition_name' => 'setPartitionName',
-        'program_name' => 'setProgramName',
-        'program_status' => 'setProgramStatus',
-        'reason' => 'setReason',
-        'source' => 'setSource'
+        'value' => 'setValue',
+        'type' => 'setType',
+        'folder_name' => 'setFolderName'
     ];
 
     /**
@@ -146,15 +131,13 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $getters = [
-        'input' => 'getInput',
-        'lookup_field' => 'getLookupField',
-        'partition_name' => 'getPartitionName',
-        'program_name' => 'getProgramName',
-        'program_status' => 'getProgramStatus',
-        'reason' => 'getReason',
-        'source' => 'getSource'
+        'value' => 'getValue',
+        'type' => 'getType',
+        'folder_name' => 'getFolderName'
     ];
 
+    const TYPE_FOLDER = 'Folder';
+    const TYPE_PROGRAM = 'Program';
     
 
     /**
@@ -172,13 +155,9 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function __construct(array $data = null)
     {
-        $this->container['input'] = isset($data['input']) ? $data['input'] : null;
-        $this->container['lookup_field'] = isset($data['lookup_field']) ? $data['lookup_field'] : null;
-        $this->container['partition_name'] = isset($data['partition_name']) ? $data['partition_name'] : null;
-        $this->container['program_name'] = isset($data['program_name']) ? $data['program_name'] : null;
-        $this->container['program_status'] = isset($data['program_status']) ? $data['program_status'] : null;
-        $this->container['reason'] = isset($data['reason']) ? $data['reason'] : null;
-        $this->container['source'] = isset($data['source']) ? $data['source'] : null;
+        $this->container['value'] = isset($data['value']) ? $data['value'] : null;
+        $this->container['type'] = isset($data['type']) ? $data['type'] : null;
+        $this->container['folder_name'] = isset($data['folder_name']) ? $data['folder_name'] : null;
     }
 
     /**
@@ -220,6 +199,24 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess, \JsonSeri
     {
         $invalidProperties = [];
 
+        if ($this->container['value'] === null) {
+            $invalidProperties[] = "'value' can't be null";
+        }
+        if ($this->container['type'] === null) {
+            $invalidProperties[] = "'type' can't be null";
+        }
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'type', must be one of '%s'",
+                $this->container['type'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        if ($this->container['folder_name'] === null) {
+            $invalidProperties[] = "'folder_name' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -233,169 +230,97 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess, \JsonSeri
     
 
     /**
-     * Gets input
+     * Gets allowable values of the enum
      *
-     * @return \NecLimDul\MarketoRest\Lead\Model\PushLead[]
+     * @return string[]
      */
-    public function getInput()
+    public function getTypeAllowableValues()
     {
-        return $this->container['input'];
+        return [
+            self::TYPE_FOLDER,
+            self::TYPE_PROGRAM,
+        ];
+    }
+    
+
+    /**
+     * Gets value
+     *
+     * @return int
+     */
+    public function getValue()
+    {
+        return $this->container['value'];
     }
 
     /**
-     * Sets input
+     * Sets value
      *
-     * @param \NecLimDul\MarketoRest\Lead\Model\PushLead[] $input input
+     * @param int $value Id of the folder
      *
      * @return self
      */
-    public function setInput($input)
+    public function setValue($value)
     {
-        $this->container['input'] = $input;
+        $this->container['value'] = $value;
 
         return $this;
     }
 
     /**
-     * Gets lookup_field
+     * Gets type
      *
      * @return string
      */
-    public function getLookupField()
+    public function getType()
     {
-        return $this->container['lookup_field'];
+        return $this->container['type'];
     }
 
     /**
-     * Sets lookup_field
+     * Sets type
      *
-     * @param string $lookup_field lookup_field
+     * @param string $type Type of folder
      *
      * @return self
      */
-    public function setLookupField($lookup_field)
+    public function setType($type)
     {
-        $this->container['lookup_field'] = $lookup_field;
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!in_array($type, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'type', must be one of '%s'",
+                    $type,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['type'] = $type;
 
         return $this;
     }
 
     /**
-     * Gets partition_name
+     * Gets folder_name
      *
      * @return string
      */
-    public function getPartitionName()
+    public function getFolderName()
     {
-        return $this->container['partition_name'];
+        return $this->container['folder_name'];
     }
 
     /**
-     * Sets partition_name
+     * Sets folder_name
      *
-     * @param string $partition_name partition_name
+     * @param string $folder_name Name of folder
      *
      * @return self
      */
-    public function setPartitionName($partition_name)
+    public function setFolderName($folder_name)
     {
-        $this->container['partition_name'] = $partition_name;
-
-        return $this;
-    }
-
-    /**
-     * Gets program_name
-     *
-     * @return string
-     */
-    public function getProgramName()
-    {
-        return $this->container['program_name'];
-    }
-
-    /**
-     * Sets program_name
-     *
-     * @param string $program_name program_name
-     *
-     * @return self
-     */
-    public function setProgramName($program_name)
-    {
-        $this->container['program_name'] = $program_name;
-
-        return $this;
-    }
-
-    /**
-     * Gets program_status
-     *
-     * @return string
-     */
-    public function getProgramStatus()
-    {
-        return $this->container['program_status'];
-    }
-
-    /**
-     * Sets program_status
-     *
-     * @param string $program_status program_status
-     *
-     * @return self
-     */
-    public function setProgramStatus($program_status)
-    {
-        $this->container['program_status'] = $program_status;
-
-        return $this;
-    }
-
-    /**
-     * Gets reason
-     *
-     * @return string
-     */
-    public function getReason()
-    {
-        return $this->container['reason'];
-    }
-
-    /**
-     * Sets reason
-     *
-     * @param string $reason reason
-     *
-     * @return self
-     */
-    public function setReason($reason)
-    {
-        $this->container['reason'] = $reason;
-
-        return $this;
-    }
-
-    /**
-     * Gets source
-     *
-     * @return string
-     */
-    public function getSource()
-    {
-        return $this->container['source'];
-    }
-
-    /**
-     * Sets source
-     *
-     * @param string $source source
-     *
-     * @return self
-     */
-    public function setSource($source)
-    {
-        $this->container['source'] = $source;
+        $this->container['folder_name'] = $folder_name;
 
         return $this;
     }

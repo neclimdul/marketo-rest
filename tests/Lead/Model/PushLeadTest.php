@@ -1,6 +1,6 @@
 <?php
 /**
- * ResponseOfCompanyTest
+ * PushLeadTest
  *
  * @category Class
  * @package  NecLimDul\MarketoRest\Lead
@@ -30,75 +30,48 @@ namespace NecLimDul\MarketoRest\Lead\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * ResponseOfCompanyTest Class Doc Comment
+ * PushLeadTest Class Doc Comment
  *
  * @category    Class
- * @description ResponseOfCompany
+ * @description Lead record.  Always contains id, but may have any number of other fields, depending on the fields available in the target instance.
  * @package     NecLimDul\MarketoRest\Lead
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class ResponseOfCompanyTest extends TestCase
+class PushLeadTest extends TestCase
 {
 
     /**
-     * Test "ResponseOfCompany"
+     * Test "PushLead"
      */
-    public function testResponseOfCompany()
+    public function testPushLead()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "errors"
+     * Test attribute "id"
      */
-    public function testPropertyErrors()
+    public function testPropertyId()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "next_page_token"
+     * Test attribute "reason"
      */
-    public function testPropertyNextPageToken()
+    public function testPropertyReason()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "request_id"
+     * Test attribute "status"
      */
-    public function testPropertyRequestId()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "result"
-     */
-    public function testPropertyResult()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "success"
-     */
-    public function testPropertySuccess()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "warnings"
-     */
-    public function testPropertyWarnings()
+    public function testPropertyStatus()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

@@ -1,9 +1,9 @@
 <?php
 /**
- * PushLeadToMarketoRequest
+ * EmailVariableResponse
  *
  * @category Class
- * @package  NecLimDul\MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -25,23 +25,23 @@
  * Do not edit the class manually.
  */
 
-namespace NecLimDul\MarketoRest\Lead\Model;
+namespace NecLimDul\MarketoRest\Asset\Model;
 
 use \ArrayAccess;
-use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
+use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
- * PushLeadToMarketoRequest Class Doc Comment
+ * EmailVariableResponse Class Doc Comment
  *
  * @category Class
- * @package  NecLimDul\MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  * @implements \ArrayAccess<TKey, TValue>
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class EmailVariableResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess, \JsonSeri
       *
       * @var string
       */
-    protected static $swaggerModelName = 'PushLeadToMarketoRequest';
+    protected static $swaggerModelName = 'EmailVariableResponse';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,13 +58,10 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess, \JsonSeri
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'input' => '\NecLimDul\MarketoRest\Lead\Model\PushLead[]',
-        'lookup_field' => 'string',
-        'partition_name' => 'string',
-        'program_name' => 'string',
-        'program_status' => 'string',
-        'reason' => 'string',
-        'source' => 'string'
+        'name' => 'string',
+        'value' => 'string',
+        'module_scope' => 'bool',
+        'module_id' => 'string'
     ];
 
     /**
@@ -75,13 +72,10 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess, \JsonSeri
       * @psalm-var array<string, string|null>
       */
     protected static $swaggerFormats = [
-        'input' => null,
-        'lookup_field' => null,
-        'partition_name' => null,
-        'program_name' => null,
-        'program_status' => null,
-        'reason' => null,
-        'source' => null
+        'name' => null,
+        'value' => null,
+        'module_scope' => null,
+        'module_id' => null
     ];
 
     /**
@@ -116,13 +110,10 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $attributeMap = [
-        'input' => 'input',
-        'lookup_field' => 'lookupField',
-        'partition_name' => 'partitionName',
-        'program_name' => 'programName',
-        'program_status' => 'programStatus',
-        'reason' => 'reason',
-        'source' => 'source'
+        'name' => 'name',
+        'value' => 'value',
+        'module_scope' => 'moduleScope',
+        'module_id' => 'moduleId'
     ];
 
     /**
@@ -131,13 +122,10 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $setters = [
-        'input' => 'setInput',
-        'lookup_field' => 'setLookupField',
-        'partition_name' => 'setPartitionName',
-        'program_name' => 'setProgramName',
-        'program_status' => 'setProgramStatus',
-        'reason' => 'setReason',
-        'source' => 'setSource'
+        'name' => 'setName',
+        'value' => 'setValue',
+        'module_scope' => 'setModuleScope',
+        'module_id' => 'setModuleId'
     ];
 
     /**
@@ -146,13 +134,10 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $getters = [
-        'input' => 'getInput',
-        'lookup_field' => 'getLookupField',
-        'partition_name' => 'getPartitionName',
-        'program_name' => 'getProgramName',
-        'program_status' => 'getProgramStatus',
-        'reason' => 'getReason',
-        'source' => 'getSource'
+        'name' => 'getName',
+        'value' => 'getValue',
+        'module_scope' => 'getModuleScope',
+        'module_id' => 'getModuleId'
     ];
 
     
@@ -172,13 +157,10 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function __construct(array $data = null)
     {
-        $this->container['input'] = isset($data['input']) ? $data['input'] : null;
-        $this->container['lookup_field'] = isset($data['lookup_field']) ? $data['lookup_field'] : null;
-        $this->container['partition_name'] = isset($data['partition_name']) ? $data['partition_name'] : null;
-        $this->container['program_name'] = isset($data['program_name']) ? $data['program_name'] : null;
-        $this->container['program_status'] = isset($data['program_status']) ? $data['program_status'] : null;
-        $this->container['reason'] = isset($data['reason']) ? $data['reason'] : null;
-        $this->container['source'] = isset($data['source']) ? $data['source'] : null;
+        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
+        $this->container['value'] = isset($data['value']) ? $data['value'] : null;
+        $this->container['module_scope'] = isset($data['module_scope']) ? $data['module_scope'] : null;
+        $this->container['module_id'] = isset($data['module_id']) ? $data['module_id'] : null;
     }
 
     /**
@@ -220,6 +202,15 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess, \JsonSeri
     {
         $invalidProperties = [];
 
+        if ($this->container['name'] === null) {
+            $invalidProperties[] = "'name' can't be null";
+        }
+        if ($this->container['value'] === null) {
+            $invalidProperties[] = "'value' can't be null";
+        }
+        if ($this->container['module_scope'] === null) {
+            $invalidProperties[] = "'module_scope' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -233,169 +224,97 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess, \JsonSeri
     
 
     /**
-     * Gets input
+     * Gets name
      *
-     * @return \NecLimDul\MarketoRest\Lead\Model\PushLead[]
+     * @return string
      */
-    public function getInput()
+    public function getName()
     {
-        return $this->container['input'];
+        return $this->container['name'];
     }
 
     /**
-     * Sets input
+     * Sets name
      *
-     * @param \NecLimDul\MarketoRest\Lead\Model\PushLead[] $input input
+     * @param string $name Name of the email variable
      *
      * @return self
      */
-    public function setInput($input)
+    public function setName($name)
     {
-        $this->container['input'] = $input;
+        $this->container['name'] = $name;
 
         return $this;
     }
 
     /**
-     * Gets lookup_field
+     * Gets value
      *
      * @return string
      */
-    public function getLookupField()
+    public function getValue()
     {
-        return $this->container['lookup_field'];
+        return $this->container['value'];
     }
 
     /**
-     * Sets lookup_field
+     * Sets value
      *
-     * @param string $lookup_field lookup_field
+     * @param string $value Value of the email variable
      *
      * @return self
      */
-    public function setLookupField($lookup_field)
+    public function setValue($value)
     {
-        $this->container['lookup_field'] = $lookup_field;
+        $this->container['value'] = $value;
 
         return $this;
     }
 
     /**
-     * Gets partition_name
+     * Gets module_scope
      *
-     * @return string
+     * @return bool
      */
-    public function getPartitionName()
+    public function getModuleScope()
     {
-        return $this->container['partition_name'];
+        return $this->container['module_scope'];
     }
 
     /**
-     * Sets partition_name
+     * Sets module_scope
      *
-     * @param string $partition_name partition_name
+     * @param bool $module_scope Returns true for local variables else returns false
      *
      * @return self
      */
-    public function setPartitionName($partition_name)
+    public function setModuleScope($module_scope)
     {
-        $this->container['partition_name'] = $partition_name;
+        $this->container['module_scope'] = $module_scope;
 
         return $this;
     }
 
     /**
-     * Gets program_name
+     * Gets module_id
      *
      * @return string
      */
-    public function getProgramName()
+    public function getModuleId()
     {
-        return $this->container['program_name'];
+        return $this->container['module_id'];
     }
 
     /**
-     * Sets program_name
+     * Sets module_id
      *
-     * @param string $program_name program_name
+     * @param string $module_id Returns the moduleId associated with the variable, only in case of local variable
      *
      * @return self
      */
-    public function setProgramName($program_name)
+    public function setModuleId($module_id)
     {
-        $this->container['program_name'] = $program_name;
-
-        return $this;
-    }
-
-    /**
-     * Gets program_status
-     *
-     * @return string
-     */
-    public function getProgramStatus()
-    {
-        return $this->container['program_status'];
-    }
-
-    /**
-     * Sets program_status
-     *
-     * @param string $program_status program_status
-     *
-     * @return self
-     */
-    public function setProgramStatus($program_status)
-    {
-        $this->container['program_status'] = $program_status;
-
-        return $this;
-    }
-
-    /**
-     * Gets reason
-     *
-     * @return string
-     */
-    public function getReason()
-    {
-        return $this->container['reason'];
-    }
-
-    /**
-     * Sets reason
-     *
-     * @param string $reason reason
-     *
-     * @return self
-     */
-    public function setReason($reason)
-    {
-        $this->container['reason'] = $reason;
-
-        return $this;
-    }
-
-    /**
-     * Gets source
-     *
-     * @return string
-     */
-    public function getSource()
-    {
-        return $this->container['source'];
-    }
-
-    /**
-     * Sets source
-     *
-     * @param string $source source
-     *
-     * @return self
-     */
-    public function setSource($source)
-    {
-        $this->container['source'] = $source;
+        $this->container['module_id'] = $module_id;
 
         return $this;
     }

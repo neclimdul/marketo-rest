@@ -1,6 +1,6 @@
 <?php
 /**
- * PushLeadToMarketoRequest
+ * PushLead
  *
  * @category Class
  * @package  NecLimDul\MarketoRest\Lead
@@ -31,9 +31,10 @@ use \ArrayAccess;
 use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
- * PushLeadToMarketoRequest Class Doc Comment
+ * PushLead Class Doc Comment
  *
  * @category Class
+ * @description Lead record.  Always contains id, but may have any number of other fields, depending on the fields available in the target instance.
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
@@ -41,7 +42,7 @@ use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class PushLead implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +51,7 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess, \JsonSeri
       *
       * @var string
       */
-    protected static $swaggerModelName = 'PushLeadToMarketoRequest';
+    protected static $swaggerModelName = 'PushLead';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,13 +59,9 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess, \JsonSeri
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'input' => '\NecLimDul\MarketoRest\Lead\Model\PushLead[]',
-        'lookup_field' => 'string',
-        'partition_name' => 'string',
-        'program_name' => 'string',
-        'program_status' => 'string',
-        'reason' => 'string',
-        'source' => 'string'
+        'id' => 'int',
+        'reason' => '\NecLimDul\MarketoRest\Lead\Model\Reason',
+        'status' => 'string'
     ];
 
     /**
@@ -75,13 +72,9 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess, \JsonSeri
       * @psalm-var array<string, string|null>
       */
     protected static $swaggerFormats = [
-        'input' => null,
-        'lookup_field' => null,
-        'partition_name' => null,
-        'program_name' => null,
-        'program_status' => null,
+        'id' => 'int32',
         'reason' => null,
-        'source' => null
+        'status' => null
     ];
 
     /**
@@ -116,13 +109,9 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $attributeMap = [
-        'input' => 'input',
-        'lookup_field' => 'lookupField',
-        'partition_name' => 'partitionName',
-        'program_name' => 'programName',
-        'program_status' => 'programStatus',
+        'id' => 'id',
         'reason' => 'reason',
-        'source' => 'source'
+        'status' => 'status'
     ];
 
     /**
@@ -131,13 +120,9 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $setters = [
-        'input' => 'setInput',
-        'lookup_field' => 'setLookupField',
-        'partition_name' => 'setPartitionName',
-        'program_name' => 'setProgramName',
-        'program_status' => 'setProgramStatus',
+        'id' => 'setId',
         'reason' => 'setReason',
-        'source' => 'setSource'
+        'status' => 'setStatus'
     ];
 
     /**
@@ -146,13 +131,9 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $getters = [
-        'input' => 'getInput',
-        'lookup_field' => 'getLookupField',
-        'partition_name' => 'getPartitionName',
-        'program_name' => 'getProgramName',
-        'program_status' => 'getProgramStatus',
+        'id' => 'getId',
         'reason' => 'getReason',
-        'source' => 'getSource'
+        'status' => 'getStatus'
     ];
 
     
@@ -172,13 +153,9 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function __construct(array $data = null)
     {
-        $this->container['input'] = isset($data['input']) ? $data['input'] : null;
-        $this->container['lookup_field'] = isset($data['lookup_field']) ? $data['lookup_field'] : null;
-        $this->container['partition_name'] = isset($data['partition_name']) ? $data['partition_name'] : null;
-        $this->container['program_name'] = isset($data['program_name']) ? $data['program_name'] : null;
-        $this->container['program_status'] = isset($data['program_status']) ? $data['program_status'] : null;
+        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
         $this->container['reason'] = isset($data['reason']) ? $data['reason'] : null;
-        $this->container['source'] = isset($data['source']) ? $data['source'] : null;
+        $this->container['status'] = isset($data['status']) ? $data['status'] : null;
     }
 
     /**
@@ -233,121 +210,25 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess, \JsonSeri
     
 
     /**
-     * Gets input
+     * Gets id
      *
-     * @return \NecLimDul\MarketoRest\Lead\Model\PushLead[]
+     * @return int
      */
-    public function getInput()
+    public function getId()
     {
-        return $this->container['input'];
+        return $this->container['id'];
     }
 
     /**
-     * Sets input
+     * Sets id
      *
-     * @param \NecLimDul\MarketoRest\Lead\Model\PushLead[] $input input
+     * @param int $id Unique integer id of a lead record
      *
      * @return self
      */
-    public function setInput($input)
+    public function setId($id)
     {
-        $this->container['input'] = $input;
-
-        return $this;
-    }
-
-    /**
-     * Gets lookup_field
-     *
-     * @return string
-     */
-    public function getLookupField()
-    {
-        return $this->container['lookup_field'];
-    }
-
-    /**
-     * Sets lookup_field
-     *
-     * @param string $lookup_field lookup_field
-     *
-     * @return self
-     */
-    public function setLookupField($lookup_field)
-    {
-        $this->container['lookup_field'] = $lookup_field;
-
-        return $this;
-    }
-
-    /**
-     * Gets partition_name
-     *
-     * @return string
-     */
-    public function getPartitionName()
-    {
-        return $this->container['partition_name'];
-    }
-
-    /**
-     * Sets partition_name
-     *
-     * @param string $partition_name partition_name
-     *
-     * @return self
-     */
-    public function setPartitionName($partition_name)
-    {
-        $this->container['partition_name'] = $partition_name;
-
-        return $this;
-    }
-
-    /**
-     * Gets program_name
-     *
-     * @return string
-     */
-    public function getProgramName()
-    {
-        return $this->container['program_name'];
-    }
-
-    /**
-     * Sets program_name
-     *
-     * @param string $program_name program_name
-     *
-     * @return self
-     */
-    public function setProgramName($program_name)
-    {
-        $this->container['program_name'] = $program_name;
-
-        return $this;
-    }
-
-    /**
-     * Gets program_status
-     *
-     * @return string
-     */
-    public function getProgramStatus()
-    {
-        return $this->container['program_status'];
-    }
-
-    /**
-     * Sets program_status
-     *
-     * @param string $program_status program_status
-     *
-     * @return self
-     */
-    public function setProgramStatus($program_status)
-    {
-        $this->container['program_status'] = $program_status;
+        $this->container['id'] = $id;
 
         return $this;
     }
@@ -355,7 +236,7 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets reason
      *
-     * @return string
+     * @return \NecLimDul\MarketoRest\Lead\Model\Reason
      */
     public function getReason()
     {
@@ -365,7 +246,7 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets reason
      *
-     * @param string $reason reason
+     * @param \NecLimDul\MarketoRest\Lead\Model\Reason $reason Reason object describing why an operation did not succeed for a record
      *
      * @return self
      */
@@ -377,25 +258,25 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess, \JsonSeri
     }
 
     /**
-     * Gets source
+     * Gets status
      *
      * @return string
      */
-    public function getSource()
+    public function getStatus()
     {
-        return $this->container['source'];
+        return $this->container['status'];
     }
 
     /**
-     * Sets source
+     * Sets status
      *
-     * @param string $source source
+     * @param string $status Status of the operation performed on the record
      *
      * @return self
      */
-    public function setSource($source)
+    public function setStatus($status)
     {
-        $this->container['source'] = $source;
+        $this->container['status'] = $status;
 
         return $this;
     }

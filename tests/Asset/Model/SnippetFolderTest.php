@@ -1,9 +1,9 @@
 <?php
 /**
- * ResponseOfCompanyTest
+ * SnippetFolderTest
  *
  * @category Class
- * @package  NecLimDul\MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -25,80 +25,53 @@
  * Please update the test case below to test the model.
  */
 
-namespace NecLimDul\MarketoRest\Lead\Test\Model;
+namespace NecLimDul\MarketoRest\Asset\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
 /**
- * ResponseOfCompanyTest Class Doc Comment
+ * SnippetFolderTest Class Doc Comment
  *
  * @category    Class
- * @description ResponseOfCompany
- * @package     NecLimDul\MarketoRest\Lead
+ * @description JSON representation of a folder
+ * @package     NecLimDul\MarketoRest\Asset
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class ResponseOfCompanyTest extends TestCase
+class SnippetFolderTest extends TestCase
 {
 
     /**
-     * Test "ResponseOfCompany"
+     * Test "SnippetFolder"
      */
-    public function testResponseOfCompany()
+    public function testSnippetFolder()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "errors"
+     * Test attribute "value"
      */
-    public function testPropertyErrors()
+    public function testPropertyValue()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "next_page_token"
+     * Test attribute "type"
      */
-    public function testPropertyNextPageToken()
+    public function testPropertyType()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "request_id"
+     * Test attribute "folder_name"
      */
-    public function testPropertyRequestId()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "result"
-     */
-    public function testPropertyResult()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "success"
-     */
-    public function testPropertySuccess()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "warnings"
-     */
-    public function testPropertyWarnings()
+    public function testPropertyFolderName()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

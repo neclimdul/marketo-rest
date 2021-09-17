@@ -60,7 +60,7 @@ class SnippetResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $swaggerTypes = [
         'created_at' => '\DateTime',
         'description' => 'string',
-        'folder' => '\NecLimDul\MarketoRest\Asset\Model\Folder',
+        'folder' => '\NecLimDul\MarketoRest\Asset\Model\SnippetFolder',
         'id' => 'int',
         'name' => 'string',
         'status' => 'string',
@@ -301,7 +301,7 @@ class SnippetResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets folder
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\Folder
+     * @return \NecLimDul\MarketoRest\Asset\Model\SnippetFolder
      */
     public function getFolder()
     {
@@ -311,7 +311,7 @@ class SnippetResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets folder
      *
-     * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
+     * @param \NecLimDul\MarketoRest\Asset\Model\SnippetFolder $folder JSON representation of parent folder, with members 'folderName', 'value', and 'type' which may be 'Folder' or 'Program'
      *
      * @return self
      */

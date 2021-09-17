@@ -1,6 +1,6 @@
 <?php
 /**
- * PushLeadToMarketoRequest
+ * ResponseOfLeadByListId
  *
  * @category Class
  * @package  NecLimDul\MarketoRest\Lead
@@ -31,7 +31,7 @@ use \ArrayAccess;
 use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
- * PushLeadToMarketoRequest Class Doc Comment
+ * ResponseOfLeadByListId Class Doc Comment
  *
  * @category Class
  * @package  NecLimDul\MarketoRest\Lead
@@ -41,7 +41,7 @@ use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class ResponseOfLeadByListId implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess, \JsonSeri
       *
       * @var string
       */
-    protected static $swaggerModelName = 'PushLeadToMarketoRequest';
+    protected static $swaggerModelName = 'ResponseOfLeadByListId';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,13 +58,12 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess, \JsonSeri
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'input' => '\NecLimDul\MarketoRest\Lead\Model\PushLead[]',
-        'lookup_field' => 'string',
-        'partition_name' => 'string',
-        'program_name' => 'string',
-        'program_status' => 'string',
-        'reason' => 'string',
-        'source' => 'string'
+        'errors' => '\NecLimDul\MarketoRest\Lead\Model\Error[]',
+        'next_page_token' => 'string',
+        'request_id' => 'string',
+        'result' => '\NecLimDul\MarketoRest\Lead\Model\Lead[]',
+        'success' => 'bool',
+        'warnings' => '\NecLimDul\MarketoRest\Lead\Model\Warning[]'
     ];
 
     /**
@@ -75,13 +74,12 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess, \JsonSeri
       * @psalm-var array<string, string|null>
       */
     protected static $swaggerFormats = [
-        'input' => null,
-        'lookup_field' => null,
-        'partition_name' => null,
-        'program_name' => null,
-        'program_status' => null,
-        'reason' => null,
-        'source' => null
+        'errors' => null,
+        'next_page_token' => null,
+        'request_id' => null,
+        'result' => null,
+        'success' => null,
+        'warnings' => null
     ];
 
     /**
@@ -116,13 +114,12 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $attributeMap = [
-        'input' => 'input',
-        'lookup_field' => 'lookupField',
-        'partition_name' => 'partitionName',
-        'program_name' => 'programName',
-        'program_status' => 'programStatus',
-        'reason' => 'reason',
-        'source' => 'source'
+        'errors' => 'errors',
+        'next_page_token' => 'nextPageToken',
+        'request_id' => 'requestId',
+        'result' => 'result',
+        'success' => 'success',
+        'warnings' => 'warnings'
     ];
 
     /**
@@ -131,13 +128,12 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $setters = [
-        'input' => 'setInput',
-        'lookup_field' => 'setLookupField',
-        'partition_name' => 'setPartitionName',
-        'program_name' => 'setProgramName',
-        'program_status' => 'setProgramStatus',
-        'reason' => 'setReason',
-        'source' => 'setSource'
+        'errors' => 'setErrors',
+        'next_page_token' => 'setNextPageToken',
+        'request_id' => 'setRequestId',
+        'result' => 'setResult',
+        'success' => 'setSuccess',
+        'warnings' => 'setWarnings'
     ];
 
     /**
@@ -146,13 +142,12 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $getters = [
-        'input' => 'getInput',
-        'lookup_field' => 'getLookupField',
-        'partition_name' => 'getPartitionName',
-        'program_name' => 'getProgramName',
-        'program_status' => 'getProgramStatus',
-        'reason' => 'getReason',
-        'source' => 'getSource'
+        'errors' => 'getErrors',
+        'next_page_token' => 'getNextPageToken',
+        'request_id' => 'getRequestId',
+        'result' => 'getResult',
+        'success' => 'getSuccess',
+        'warnings' => 'getWarnings'
     ];
 
     
@@ -172,13 +167,12 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function __construct(array $data = null)
     {
-        $this->container['input'] = isset($data['input']) ? $data['input'] : null;
-        $this->container['lookup_field'] = isset($data['lookup_field']) ? $data['lookup_field'] : null;
-        $this->container['partition_name'] = isset($data['partition_name']) ? $data['partition_name'] : null;
-        $this->container['program_name'] = isset($data['program_name']) ? $data['program_name'] : null;
-        $this->container['program_status'] = isset($data['program_status']) ? $data['program_status'] : null;
-        $this->container['reason'] = isset($data['reason']) ? $data['reason'] : null;
-        $this->container['source'] = isset($data['source']) ? $data['source'] : null;
+        $this->container['errors'] = isset($data['errors']) ? $data['errors'] : null;
+        $this->container['next_page_token'] = isset($data['next_page_token']) ? $data['next_page_token'] : null;
+        $this->container['request_id'] = isset($data['request_id']) ? $data['request_id'] : null;
+        $this->container['result'] = isset($data['result']) ? $data['result'] : null;
+        $this->container['success'] = isset($data['success']) ? $data['success'] : null;
+        $this->container['warnings'] = isset($data['warnings']) ? $data['warnings'] : null;
     }
 
     /**
@@ -220,6 +214,21 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess, \JsonSeri
     {
         $invalidProperties = [];
 
+        if ($this->container['errors'] === null) {
+            $invalidProperties[] = "'errors' can't be null";
+        }
+        if ($this->container['request_id'] === null) {
+            $invalidProperties[] = "'request_id' can't be null";
+        }
+        if ($this->container['result'] === null) {
+            $invalidProperties[] = "'result' can't be null";
+        }
+        if ($this->container['success'] === null) {
+            $invalidProperties[] = "'success' can't be null";
+        }
+        if ($this->container['warnings'] === null) {
+            $invalidProperties[] = "'warnings' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -233,169 +242,145 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess, \JsonSeri
     
 
     /**
-     * Gets input
+     * Gets errors
      *
-     * @return \NecLimDul\MarketoRest\Lead\Model\PushLead[]
+     * @return \NecLimDul\MarketoRest\Lead\Model\Error[]
      */
-    public function getInput()
+    public function getErrors()
     {
-        return $this->container['input'];
+        return $this->container['errors'];
     }
 
     /**
-     * Sets input
+     * Sets errors
      *
-     * @param \NecLimDul\MarketoRest\Lead\Model\PushLead[] $input input
+     * @param \NecLimDul\MarketoRest\Lead\Model\Error[] $errors Array of errors that occurred if the request was unsuccessful
      *
      * @return self
      */
-    public function setInput($input)
+    public function setErrors($errors)
     {
-        $this->container['input'] = $input;
+        $this->container['errors'] = $errors;
 
         return $this;
     }
 
     /**
-     * Gets lookup_field
+     * Gets next_page_token
      *
      * @return string
      */
-    public function getLookupField()
+    public function getNextPageToken()
     {
-        return $this->container['lookup_field'];
+        return $this->container['next_page_token'];
     }
 
     /**
-     * Sets lookup_field
+     * Sets next_page_token
      *
-     * @param string $lookup_field lookup_field
+     * @param string $next_page_token Paging token given if the result set exceeded the allowed batch size
      *
      * @return self
      */
-    public function setLookupField($lookup_field)
+    public function setNextPageToken($next_page_token)
     {
-        $this->container['lookup_field'] = $lookup_field;
+        $this->container['next_page_token'] = $next_page_token;
 
         return $this;
     }
 
     /**
-     * Gets partition_name
+     * Gets request_id
      *
      * @return string
      */
-    public function getPartitionName()
+    public function getRequestId()
     {
-        return $this->container['partition_name'];
+        return $this->container['request_id'];
     }
 
     /**
-     * Sets partition_name
+     * Sets request_id
      *
-     * @param string $partition_name partition_name
+     * @param string $request_id Id of the request made
      *
      * @return self
      */
-    public function setPartitionName($partition_name)
+    public function setRequestId($request_id)
     {
-        $this->container['partition_name'] = $partition_name;
+        $this->container['request_id'] = $request_id;
 
         return $this;
     }
 
     /**
-     * Gets program_name
+     * Gets result
      *
-     * @return string
+     * @return \NecLimDul\MarketoRest\Lead\Model\Lead[]
      */
-    public function getProgramName()
+    public function getResult()
     {
-        return $this->container['program_name'];
+        return $this->container['result'];
     }
 
     /**
-     * Sets program_name
+     * Sets result
      *
-     * @param string $program_name program_name
+     * @param \NecLimDul\MarketoRest\Lead\Model\Lead[] $result Array of results for individual records in the operation, may be empty
      *
      * @return self
      */
-    public function setProgramName($program_name)
+    public function setResult($result)
     {
-        $this->container['program_name'] = $program_name;
+        $this->container['result'] = $result;
 
         return $this;
     }
 
     /**
-     * Gets program_status
+     * Gets success
      *
-     * @return string
+     * @return bool
      */
-    public function getProgramStatus()
+    public function getSuccess()
     {
-        return $this->container['program_status'];
+        return $this->container['success'];
     }
 
     /**
-     * Sets program_status
+     * Sets success
      *
-     * @param string $program_status program_status
+     * @param bool $success Whether the request succeeded
      *
      * @return self
      */
-    public function setProgramStatus($program_status)
+    public function setSuccess($success)
     {
-        $this->container['program_status'] = $program_status;
+        $this->container['success'] = $success;
 
         return $this;
     }
 
     /**
-     * Gets reason
+     * Gets warnings
      *
-     * @return string
+     * @return \NecLimDul\MarketoRest\Lead\Model\Warning[]
      */
-    public function getReason()
+    public function getWarnings()
     {
-        return $this->container['reason'];
+        return $this->container['warnings'];
     }
 
     /**
-     * Sets reason
+     * Sets warnings
      *
-     * @param string $reason reason
+     * @param \NecLimDul\MarketoRest\Lead\Model\Warning[] $warnings Array of warnings given for the operation
      *
      * @return self
      */
-    public function setReason($reason)
+    public function setWarnings($warnings)
     {
-        $this->container['reason'] = $reason;
-
-        return $this;
-    }
-
-    /**
-     * Gets source
-     *
-     * @return string
-     */
-    public function getSource()
-    {
-        return $this->container['source'];
-    }
-
-    /**
-     * Sets source
-     *
-     * @param string $source source
-     *
-     * @return self
-     */
-    public function setSource($source)
-    {
-        $this->container['source'] = $source;
+        $this->container['warnings'] = $warnings;
 
         return $this;
     }

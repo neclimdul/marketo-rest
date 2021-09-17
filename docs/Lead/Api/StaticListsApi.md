@@ -120,7 +120,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getLeadsByListIdUsingGET**
-> \NecLimDul\MarketoRest\Lead\Model\ResponseOfLead getLeadsByListIdUsingGET($list_id, $fields, $batch_size, $next_page_token)
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadByListId getLeadsByListIdUsingGET($list_id, $fields, $batch_size, $next_page_token)
 
 Get Leads By List Id
 
@@ -161,7 +161,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead**](../Model/ResponseOfLead.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadByListId**](../Model/ResponseOfLeadByListId.md)
 
 ### Authorization
 

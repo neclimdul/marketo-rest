@@ -1,9 +1,9 @@
 <?php
 /**
- * ResponseOfCompanyTest
+ * EmailVariableResponseTest
  *
  * @category Class
- * @package  NecLimDul\MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -25,80 +25,62 @@
  * Please update the test case below to test the model.
  */
 
-namespace NecLimDul\MarketoRest\Lead\Test\Model;
+namespace NecLimDul\MarketoRest\Asset\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
 /**
- * ResponseOfCompanyTest Class Doc Comment
+ * EmailVariableResponseTest Class Doc Comment
  *
  * @category    Class
- * @description ResponseOfCompany
- * @package     NecLimDul\MarketoRest\Lead
+ * @description EmailVariableResponse
+ * @package     NecLimDul\MarketoRest\Asset
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class ResponseOfCompanyTest extends TestCase
+class EmailVariableResponseTest extends TestCase
 {
 
     /**
-     * Test "ResponseOfCompany"
+     * Test "EmailVariableResponse"
      */
-    public function testResponseOfCompany()
+    public function testEmailVariableResponse()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "errors"
+     * Test attribute "name"
      */
-    public function testPropertyErrors()
+    public function testPropertyName()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "next_page_token"
+     * Test attribute "value"
      */
-    public function testPropertyNextPageToken()
+    public function testPropertyValue()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "request_id"
+     * Test attribute "module_scope"
      */
-    public function testPropertyRequestId()
+    public function testPropertyModuleScope()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "result"
+     * Test attribute "module_id"
      */
-    public function testPropertyResult()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "success"
-     */
-    public function testPropertySuccess()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "warnings"
-     */
-    public function testPropertyWarnings()
+    public function testPropertyModuleId()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

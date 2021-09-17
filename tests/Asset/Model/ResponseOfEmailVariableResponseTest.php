@@ -1,9 +1,9 @@
 <?php
 /**
- * ResponseOfCompanyTest
+ * ResponseOfEmailVariableResponseTest
  *
  * @category Class
- * @package  NecLimDul\MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -25,26 +25,26 @@
  * Please update the test case below to test the model.
  */
 
-namespace NecLimDul\MarketoRest\Lead\Test\Model;
+namespace NecLimDul\MarketoRest\Asset\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
 /**
- * ResponseOfCompanyTest Class Doc Comment
+ * ResponseOfEmailVariableResponseTest Class Doc Comment
  *
  * @category    Class
- * @description ResponseOfCompany
- * @package     NecLimDul\MarketoRest\Lead
+ * @description ResponseOfEmailVariableResponse
+ * @package     NecLimDul\MarketoRest\Asset
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class ResponseOfCompanyTest extends TestCase
+class ResponseOfEmailVariableResponseTest extends TestCase
 {
 
     /**
-     * Test "ResponseOfCompany"
+     * Test "ResponseOfEmailVariableResponse"
      */
-    public function testResponseOfCompany()
+    public function testResponseOfEmailVariableResponse()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -54,15 +54,6 @@ class ResponseOfCompanyTest extends TestCase
      * Test attribute "errors"
      */
     public function testPropertyErrors()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "next_page_token"
-     */
-    public function testPropertyNextPageToken()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

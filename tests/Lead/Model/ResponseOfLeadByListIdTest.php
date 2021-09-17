@@ -1,6 +1,6 @@
 <?php
 /**
- * ResponseOfCompanyTest
+ * ResponseOfLeadByListIdTest
  *
  * @category Class
  * @package  NecLimDul\MarketoRest\Lead
@@ -30,21 +30,21 @@ namespace NecLimDul\MarketoRest\Lead\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * ResponseOfCompanyTest Class Doc Comment
+ * ResponseOfLeadByListIdTest Class Doc Comment
  *
  * @category    Class
- * @description ResponseOfCompany
+ * @description ResponseOfLeadByListId
  * @package     NecLimDul\MarketoRest\Lead
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class ResponseOfCompanyTest extends TestCase
+class ResponseOfLeadByListIdTest extends TestCase
 {
 
     /**
-     * Test "ResponseOfCompany"
+     * Test "ResponseOfLeadByListId"
      */
-    public function testResponseOfCompany()
+    public function testResponseOfLeadByListId()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
