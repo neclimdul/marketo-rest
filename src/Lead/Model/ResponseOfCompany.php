@@ -59,7 +59,6 @@ class ResponseOfCompany implements ModelInterface, ArrayAccess, \JsonSerializabl
       */
     protected static $openAPITypes = [
         'errors' => '\NecLimDul\MarketoRest\Lead\Model\Error[]',
-        'more_result' => 'bool',
         'next_page_token' => 'string',
         'request_id' => 'string',
         'result' => '\NecLimDul\MarketoRest\Lead\Model\CompanyResponse[]',
@@ -76,7 +75,6 @@ class ResponseOfCompany implements ModelInterface, ArrayAccess, \JsonSerializabl
       */
     protected static $openAPIFormats = [
         'errors' => null,
-        'more_result' => null,
         'next_page_token' => null,
         'request_id' => null,
         'result' => null,
@@ -119,7 +117,6 @@ class ResponseOfCompany implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     protected static $attributeMap = [
         'errors' => 'errors',
-        'more_result' => 'moreResult',
         'next_page_token' => 'nextPageToken',
         'request_id' => 'requestId',
         'result' => 'result',
@@ -134,7 +131,6 @@ class ResponseOfCompany implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     protected static $setters = [
         'errors' => 'setErrors',
-        'more_result' => 'setMoreResult',
         'next_page_token' => 'setNextPageToken',
         'request_id' => 'setRequestId',
         'result' => 'setResult',
@@ -149,7 +145,6 @@ class ResponseOfCompany implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     protected static $getters = [
         'errors' => 'getErrors',
-        'more_result' => 'getMoreResult',
         'next_page_token' => 'getNextPageToken',
         'request_id' => 'getRequestId',
         'result' => 'getResult',
@@ -207,7 +202,6 @@ class ResponseOfCompany implements ModelInterface, ArrayAccess, \JsonSerializabl
     public function __construct(array $data = null)
     {
         $this->container['errors'] = $data['errors'] ?? null;
-        $this->container['more_result'] = $data['more_result'] ?? null;
         $this->container['next_page_token'] = $data['next_page_token'] ?? null;
         $this->container['request_id'] = $data['request_id'] ?? null;
         $this->container['result'] = $data['result'] ?? null;
@@ -269,30 +263,6 @@ class ResponseOfCompany implements ModelInterface, ArrayAccess, \JsonSerializabl
     public function setErrors($errors)
     {
         $this->container['errors'] = $errors;
-
-        return $this;
-    }
-
-    /**
-     * Gets more_result
-     *
-     * @return bool|null
-     */
-    public function getMoreResult()
-    {
-        return $this->container['more_result'];
-    }
-
-    /**
-     * Sets more_result
-     *
-     * @param bool|null $more_result Boolean indicating if there are more results in subsequent pages
-     *
-     * @return self
-     */
-    public function setMoreResult($more_result)
-    {
-        $this->container['more_result'] = $more_result;
 
         return $this;
     }
@@ -427,7 +397,8 @@ class ResponseOfCompany implements ModelInterface, ArrayAccess, \JsonSerializabl
             unset($this->container[$additional_properties]);
         }
         $this->container += $fields;
-        $this->additionalProperties = array_keys($fields);
+        $keys = array_keys($fields);
+        $this->additionalProperties = array_combine($keys, $keys);
     }
 
     /**

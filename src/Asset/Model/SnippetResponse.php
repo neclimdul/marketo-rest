@@ -60,7 +60,7 @@ class SnippetResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPITypes = [
         'created_at' => '\DateTime',
         'description' => 'string',
-        'folder' => '\NecLimDul\MarketoRest\Asset\Model\Folder',
+        'folder' => '\NecLimDul\MarketoRest\Asset\Model\SnippetFolder',
         'id' => 'int',
         'name' => 'string',
         'status' => 'string',
@@ -303,7 +303,7 @@ class SnippetResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets folder
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\Folder
+     * @return \NecLimDul\MarketoRest\Asset\Model\SnippetFolder
      */
     public function getFolder()
     {
@@ -313,7 +313,7 @@ class SnippetResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets folder
      *
-     * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder folder
+     * @param \NecLimDul\MarketoRest\Asset\Model\SnippetFolder $folder folder
      *
      * @return self
      */
@@ -478,7 +478,8 @@ class SnippetResponse implements ModelInterface, ArrayAccess, \JsonSerializable
             unset($this->container[$additional_properties]);
         }
         $this->container += $fields;
-        $this->additionalProperties = array_keys($fields);
+        $keys = array_keys($fields);
+        $this->additionalProperties = array_combine($keys, $keys);
     }
 
     /**

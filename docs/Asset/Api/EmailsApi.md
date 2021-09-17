@@ -35,7 +35,7 @@ Method | HTTP request | Description
 ## `addModuleUsingPOST()`
 
 ```php
-addModuleUsingPOST($id, $module_id, $name, $index): object
+addModuleUsingPOST($id, $module_id, $name, $index): \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse
 ```
 
 Add Email Module
@@ -79,7 +79,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse**](../Model/ResponseOfEmailModuleResponse.md)
 
 ### Authorization
 
@@ -405,7 +405,7 @@ No authorization required
 ## `deleteModuleUsingPOST()`
 
 ```php
-deleteModuleUsingPOST($id, $module_id): object
+deleteModuleUsingPOST($id, $module_id): \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse
 ```
 
 Delete Module
@@ -445,7 +445,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse**](../Model/ResponseOfEmailModuleResponse.md)
 
 ### Authorization
 
@@ -519,7 +519,7 @@ No authorization required
 ## `duplicateModuleUsingPOST()`
 
 ```php
-duplicateModuleUsingPOST($id, $module_id, $name): object
+duplicateModuleUsingPOST($id, $module_id, $name): \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse
 ```
 
 Duplicate Email Module
@@ -561,7 +561,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse**](../Model/ResponseOfEmailModuleResponse.md)
 
 ### Authorization
 
@@ -930,7 +930,7 @@ No authorization required
 ## `getEmailUsingGET()`
 
 ```php
-getEmailUsingGET($status, $folder, $offset, $max_return): \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse
+getEmailUsingGET($status, $folder, $offset, $max_return, $earliest_updated_at, $latest_updated_at): \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse
 ```
 
 Get Emails
@@ -954,9 +954,11 @@ $status = 'status_example'; // string | Status filter for draft or approved vers
 $folder = 'folder_example'; // string | JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
 $offset = 56; // int | Integer offset for paging
 $max_return = 56; // int | Maximum number of emails to return.  Max 200, default 20
+$earliest_updated_at = 'earliest_updated_at_example'; // string | Exclude emails prior to this date. Must be valid ISO-8601 string.  See <a href=\"http://developers.marketo.com/rest-api/lead-database/fields/field-types/\">Datetime</a> field type description.
+$latest_updated_at = 'latest_updated_at_example'; // string | Exclude emails after this date. Must be valid ISO-8601 string.  See <a href=\"http://developers.marketo.com/rest-api/lead-database/fields/field-types/\">Datetime</a> field type description.
 
 try {
-    $result = $apiInstance->getEmailUsingGET($status, $folder, $offset, $max_return);
+    $result = $apiInstance->getEmailUsingGET($status, $folder, $offset, $max_return, $earliest_updated_at, $latest_updated_at);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling EmailsApi->getEmailUsingGET: ', $e->getMessage(), PHP_EOL;
@@ -971,6 +973,8 @@ Name | Type | Description  | Notes
  **folder** | **string**| JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39; | [optional]
  **offset** | **int**| Integer offset for paging | [optional]
  **max_return** | **int**| Maximum number of emails to return.  Max 200, default 20 | [optional]
+ **earliest_updated_at** | **string**| Exclude emails prior to this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. | [optional]
+ **latest_updated_at** | **string**| Exclude emails after this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. | [optional]
 
 ### Return type
 
@@ -992,7 +996,7 @@ No authorization required
 ## `getEmailVariablesUsingGET()`
 
 ```php
-getEmailVariablesUsingGET($id): object
+getEmailVariablesUsingGET($id): \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailVariableResponse
 ```
 
 Get Email Variables
@@ -1030,7 +1034,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailVariableResponse**](../Model/ResponseOfEmailVariableResponse.md)
 
 ### Authorization
 
@@ -1048,7 +1052,7 @@ No authorization required
 ## `rearrangeModulesUsingPOST()`
 
 ```php
-rearrangeModulesUsingPOST($id): object
+rearrangeModulesUsingPOST($id): \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse
 ```
 
 Rearrange Email Modules
@@ -1086,7 +1090,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse**](../Model/ResponseOfEmailModuleResponse.md)
 
 ### Authorization
 
@@ -1104,7 +1108,7 @@ No authorization required
 ## `renameUsingPOST()`
 
 ```php
-renameUsingPOST($id, $module_id, $name): object
+renameUsingPOST($id, $module_id, $name): \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse
 ```
 
 Rename Email Module
@@ -1146,7 +1150,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse**](../Model/ResponseOfEmailModuleResponse.md)
 
 ### Authorization
 
@@ -1578,7 +1582,7 @@ No authorization required
 ## `updateVariableUsingPOST()`
 
 ```php
-updateVariableUsingPOST($id, $name, $value, $module_id): object
+updateVariableUsingPOST($id, $name, $value, $module_id): \NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailVariableResponse
 ```
 
 Update Email Variable
@@ -1622,7 +1626,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailVariableResponse**](../Model/ResponseOfEmailVariableResponse.md)
 
 ### Authorization
 

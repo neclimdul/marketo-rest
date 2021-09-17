@@ -59,7 +59,7 @@ class LeadAttribute2 implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPITypes = [
         'name' => 'string',
-        'searchable_fields' => 'array[]',
+        'searchable_fields' => '\NecLimDul\MarketoRest\Lead\Model\array[]',
         'fields' => '\NecLimDul\MarketoRest\Lead\Model\LeadAttribute2Fields[]'
     ];
 
@@ -246,7 +246,7 @@ class LeadAttribute2 implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets searchable_fields
      *
-     * @return array[]
+     * @return \NecLimDul\MarketoRest\Lead\Model\array[]
      */
     public function getSearchableFields()
     {
@@ -256,7 +256,7 @@ class LeadAttribute2 implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets searchable_fields
      *
-     * @param array[] $searchable_fields List of searchable fields
+     * @param \NecLimDul\MarketoRest\Lead\Model\array[] $searchable_fields List of searchable fields
      *
      * @return self
      */
@@ -301,7 +301,8 @@ class LeadAttribute2 implements ModelInterface, ArrayAccess, \JsonSerializable
             unset($this->container[$additional_properties]);
         }
         $this->container += $fields;
-        $this->additionalProperties = array_keys($fields);
+        $keys = array_keys($fields);
+        $this->additionalProperties = array_combine($keys, $keys);
     }
 
     /**

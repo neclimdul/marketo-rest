@@ -88,7 +88,7 @@ class ObjectSerializer
                 foreach ($data::openAPITypes() as $property => $openAPIType) {
                     $getter = $data::getters()[$property];
                     $value = $data->$getter();
-                    if ($value !== null && !in_array($openAPIType, ['DateTime', 'array', 'bool', 'boolean', 'byte', 'double', 'float', 'int', 'integer', 'mixed', 'number', 'object', 'string', 'void'], true)) {
+                    if ($value !== null && !in_array($openAPIType, ['DateTime', 'bool', 'boolean', 'byte', 'double', 'float', 'int', 'integer', 'mixed', 'number', 'object', 'string', 'void'], true)) {
                         $callable = [$openAPIType, 'getAllowableEnumValues'];
                         if (is_callable($callable)) {
                             /** array $callable */
@@ -184,7 +184,7 @@ class ObjectSerializer
         if ($style === 'form' && is_array($value)) {
             return $value;
         }
-        return [$name => static::toString($value)];
+        return [$name => isset($value) ? static::toString($value) : NULL];
     }
 
     /**
@@ -312,7 +312,7 @@ class ObjectSerializer
             return $values;
         }
 
-        if (substr($class, 0, 4) === 'map[') { // for associative array e.g. map[string,int]
+        if (preg_match('/^(array<|map\[)/', $class)) { // for associative array e.g. array<string,int>
             $data = is_string($data) ? json_decode($data) : $data;
             settype($data, 'array');
             $inner = substr($class, 4, -1);
@@ -355,7 +355,7 @@ class ObjectSerializer
         }
 
         /** @psalm-suppress ParadoxicalCondition */
-        if (in_array($class, ['DateTime', 'array', 'bool', 'boolean', 'byte', 'double', 'float', 'int', 'integer', 'mixed', 'number', 'object', 'string', 'void'], true)) {
+        if (in_array($class, ['DateTime', 'bool', 'boolean', 'byte', 'double', 'float', 'int', 'integer', 'mixed', 'number', 'object', 'string', 'void'], true)) {
             settype($data, $class);
             return $data;
         }

@@ -136,7 +136,7 @@ No authorization required
 ## `getLeadsByListIdUsingGET()`
 
 ```php
-getLeadsByListIdUsingGET($list_id, $fields, $batch_size, $next_page_token): \NecLimDul\MarketoRest\Lead\Model\ResponseOfLead
+getLeadsByListIdUsingGET($list_id, $fields, $batch_size, $next_page_token): \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadByListId
 ```
 
 Get Leads By List Id
@@ -180,7 +180,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead**](../Model/ResponseOfLead.md)
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadByListId**](../Model/ResponseOfLeadByListId.md)
 
 ### Authorization
 

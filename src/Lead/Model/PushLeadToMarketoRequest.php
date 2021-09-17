@@ -58,7 +58,7 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess, \JsonSeri
       * @var string[]
       */
     protected static $openAPITypes = [
-        'input' => '\NecLimDul\MarketoRest\Lead\Model\Lead[]',
+        'input' => '\NecLimDul\MarketoRest\Lead\Model\PushLead[]',
         'lookup_field' => 'string',
         'partition_name' => 'string',
         'program_name' => 'string',
@@ -237,7 +237,7 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets input
      *
-     * @return \NecLimDul\MarketoRest\Lead\Model\Lead[]|null
+     * @return \NecLimDul\MarketoRest\Lead\Model\PushLead[]|null
      */
     public function getInput()
     {
@@ -247,7 +247,7 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets input
      *
-     * @param \NecLimDul\MarketoRest\Lead\Model\Lead[]|null $input input
+     * @param \NecLimDul\MarketoRest\Lead\Model\PushLead[]|null $input input
      *
      * @return self
      */
@@ -412,7 +412,8 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess, \JsonSeri
             unset($this->container[$additional_properties]);
         }
         $this->container += $fields;
-        $this->additionalProperties = array_keys($fields);
+        $keys = array_keys($fields);
+        $this->additionalProperties = array_combine($keys, $keys);
     }
 
     /**

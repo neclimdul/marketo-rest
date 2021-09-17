@@ -519,7 +519,7 @@ class StaticListsApi
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfLead
+     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadByListId
      */
     public function getLeadsByListIdUsingGET($list_id, $fields = null, $batch_size = null, $next_page_token = null)
     {
@@ -539,7 +539,7 @@ class StaticListsApi
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfLead, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadByListId, HTTP status code, HTTP response headers (array of strings)
      */
     public function getLeadsByListIdUsingGETWithHttpInfo($list_id, $fields = null, $batch_size = null, $next_page_token = null)
     {
@@ -550,10 +550,10 @@ class StaticListsApi
 
             switch ($response->getStatusCode()) {
                 case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead');
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadByListId');
             }
 
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead');
+            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadByListId');
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -561,7 +561,7 @@ class StaticListsApi
                     $e->setResponseObject(
                         $this->deserializeResponseBody(
                             $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead',
+                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadByListId',
                             $e->getResponseHeaders()
                         )
                     );
@@ -615,7 +615,7 @@ class StaticListsApi
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
                 function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead');
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadByListId');
                 },
                 function (RequestException $exception) {
                     $response = $exception->getResponse();

@@ -60,15 +60,6 @@ class ResponseOfCompanyTest extends TestCase
     }
 
     /**
-     * Test attribute "more_result"
-     */
-    public function testPropertyMoreResult()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
      * Test attribute "next_page_token"
      */
     public function testPropertyNextPageToken()
