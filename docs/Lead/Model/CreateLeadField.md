@@ -10,5 +10,6 @@ Name | Type | Description | Notes
 **data_type** | **string** | Datatype of the field | 
 **is_hidden** | **bool** | If set to true, the field is hidden.  Default is false | [optional] 
 **is_html_encoding_in_email** | **bool** | If set to true, field is encoded as HTML in email.  Default is true | [optional] 
+**is_sensitive** | **bool** | If set to true, field is marked as sensitive.  Default is false | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
