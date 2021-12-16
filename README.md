@@ -24,6 +24,8 @@ You can read more about Composer on its [official webpage](https://getcomposer.o
 ### Laravel
 This package comes with a provider to register all the API's and configuration.
 
+### Drupal
+The 3.x release of the Drupal [marketo_ma](https://www.drupal.org/project/marketo_ma) module will use and support this library.
 
 ### Custom
 
