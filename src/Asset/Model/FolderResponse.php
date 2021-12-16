@@ -221,20 +221,20 @@ class FolderResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['access_zone_id'] = isset($data['access_zone_id']) ? $data['access_zone_id'] : null;
-        $this->container['created_at'] = isset($data['created_at']) ? $data['created_at'] : null;
-        $this->container['description'] = isset($data['description']) ? $data['description'] : null;
-        $this->container['folder_id'] = isset($data['folder_id']) ? $data['folder_id'] : null;
-        $this->container['folder_type'] = isset($data['folder_type']) ? $data['folder_type'] : null;
-        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
-        $this->container['is_archive'] = isset($data['is_archive']) ? $data['is_archive'] : null;
-        $this->container['is_system'] = isset($data['is_system']) ? $data['is_system'] : null;
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['parent'] = isset($data['parent']) ? $data['parent'] : null;
-        $this->container['path'] = isset($data['path']) ? $data['path'] : null;
-        $this->container['updated_at'] = isset($data['updated_at']) ? $data['updated_at'] : null;
-        $this->container['url'] = isset($data['url']) ? $data['url'] : null;
-        $this->container['workspace'] = isset($data['workspace']) ? $data['workspace'] : null;
+        $this->container['access_zone_id'] = $data['access_zone_id'] ?? null;
+        $this->container['created_at'] = $data['created_at'] ?? null;
+        $this->container['description'] = $data['description'] ?? null;
+        $this->container['folder_id'] = $data['folder_id'] ?? null;
+        $this->container['folder_type'] = $data['folder_type'] ?? null;
+        $this->container['id'] = $data['id'] ?? null;
+        $this->container['is_archive'] = $data['is_archive'] ?? null;
+        $this->container['is_system'] = $data['is_system'] ?? null;
+        $this->container['name'] = $data['name'] ?? null;
+        $this->container['parent'] = $data['parent'] ?? null;
+        $this->container['path'] = $data['path'] ?? null;
+        $this->container['updated_at'] = $data['updated_at'] ?? null;
+        $this->container['url'] = $data['url'] ?? null;
+        $this->container['workspace'] = $data['workspace'] ?? null;
     }
 
     /**

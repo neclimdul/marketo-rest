@@ -147,8 +147,8 @@ class FileRange implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['end'] = isset($data['end']) ? $data['end'] : null;
-        $this->container['start'] = isset($data['start']) ? $data['start'] : null;
+        $this->container['end'] = $data['end'] ?? null;
+        $this->container['start'] = $data['start'] ?? null;
     }
 
     /**

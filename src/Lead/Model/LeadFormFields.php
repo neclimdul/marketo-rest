@@ -143,7 +143,7 @@ class LeadFormFields implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['email'] = isset($data['email']) ? $data['email'] : null;
+        $this->container['email'] = $data['email'] ?? null;
     }
 
     /**

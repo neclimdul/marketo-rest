@@ -147,8 +147,8 @@ class ErrorCount implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['count'] = isset($data['count']) ? $data['count'] : null;
-        $this->container['error_code'] = isset($data['error_code']) ? $data['error_code'] : null;
+        $this->container['count'] = $data['count'] ?? null;
+        $this->container['error_code'] = $data['error_code'] ?? null;
     }
 
     /**

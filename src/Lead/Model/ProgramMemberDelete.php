@@ -142,7 +142,7 @@ class ProgramMemberDelete implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function __construct(array $data = null)
     {
-        $this->container['lead_id'] = isset($data['lead_id']) ? $data['lead_id'] : null;
+        $this->container['lead_id'] = $data['lead_id'] ?? null;
     }
 
     /**

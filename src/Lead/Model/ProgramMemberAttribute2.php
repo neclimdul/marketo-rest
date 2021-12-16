@@ -172,13 +172,13 @@ class ProgramMemberAttribute2 implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function __construct(array $data = null)
     {
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['description'] = isset($data['description']) ? $data['description'] : null;
-        $this->container['created_at'] = isset($data['created_at']) ? $data['created_at'] : null;
-        $this->container['updated_at'] = isset($data['updated_at']) ? $data['updated_at'] : null;
-        $this->container['dedupe_fields'] = isset($data['dedupe_fields']) ? $data['dedupe_fields'] : null;
-        $this->container['searchable_fields'] = isset($data['searchable_fields']) ? $data['searchable_fields'] : null;
-        $this->container['fields'] = isset($data['fields']) ? $data['fields'] : null;
+        $this->container['name'] = $data['name'] ?? null;
+        $this->container['description'] = $data['description'] ?? null;
+        $this->container['created_at'] = $data['created_at'] ?? null;
+        $this->container['updated_at'] = $data['updated_at'] ?? null;
+        $this->container['dedupe_fields'] = $data['dedupe_fields'] ?? null;
+        $this->container['searchable_fields'] = $data['searchable_fields'] ?? null;
+        $this->container['fields'] = $data['fields'] ?? null;
     }
 
     /**

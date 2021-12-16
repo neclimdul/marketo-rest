@@ -158,10 +158,10 @@ class VisitorData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['page_url'] = isset($data['page_url']) ? $data['page_url'] : null;
-        $this->container['query_string'] = isset($data['query_string']) ? $data['query_string'] : null;
-        $this->container['lead_client_ip_address'] = isset($data['lead_client_ip_address']) ? $data['lead_client_ip_address'] : null;
-        $this->container['user_agent_string'] = isset($data['user_agent_string']) ? $data['user_agent_string'] : null;
+        $this->container['page_url'] = $data['page_url'] ?? null;
+        $this->container['query_string'] = $data['query_string'] ?? null;
+        $this->container['lead_client_ip_address'] = $data['lead_client_ip_address'] ?? null;
+        $this->container['user_agent_string'] = $data['user_agent_string'] ?? null;
     }
 
     /**

@@ -167,12 +167,12 @@ class ActivityType implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['api_name'] = isset($data['api_name']) ? $data['api_name'] : null;
-        $this->container['attributes'] = isset($data['attributes']) ? $data['attributes'] : null;
-        $this->container['description'] = isset($data['description']) ? $data['description'] : null;
-        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['primary_attribute'] = isset($data['primary_attribute']) ? $data['primary_attribute'] : null;
+        $this->container['api_name'] = $data['api_name'] ?? null;
+        $this->container['attributes'] = $data['attributes'] ?? null;
+        $this->container['description'] = $data['description'] ?? null;
+        $this->container['id'] = $data['id'] ?? null;
+        $this->container['name'] = $data['name'] ?? null;
+        $this->container['primary_attribute'] = $data['primary_attribute'] ?? null;
     }
 
     /**

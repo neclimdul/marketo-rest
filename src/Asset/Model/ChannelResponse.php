@@ -167,12 +167,12 @@ class ChannelResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['applicable_program_type'] = isset($data['applicable_program_type']) ? $data['applicable_program_type'] : null;
-        $this->container['created_at'] = isset($data['created_at']) ? $data['created_at'] : null;
-        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['progression_statuses'] = isset($data['progression_statuses']) ? $data['progression_statuses'] : null;
-        $this->container['updated_at'] = isset($data['updated_at']) ? $data['updated_at'] : null;
+        $this->container['applicable_program_type'] = $data['applicable_program_type'] ?? null;
+        $this->container['created_at'] = $data['created_at'] ?? null;
+        $this->container['id'] = $data['id'] ?? null;
+        $this->container['name'] = $data['name'] ?? null;
+        $this->container['progression_statuses'] = $data['progression_statuses'] ?? null;
+        $this->container['updated_at'] = $data['updated_at'] ?? null;
     }
 
     /**

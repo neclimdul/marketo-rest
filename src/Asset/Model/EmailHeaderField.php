@@ -147,8 +147,8 @@ class EmailHeaderField implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['type'] = isset($data['type']) ? $data['type'] : null;
-        $this->container['value'] = isset($data['value']) ? $data['value'] : null;
+        $this->container['type'] = $data['type'] ?? null;
+        $this->container['value'] = $data['value'] ?? null;
     }
 
     /**

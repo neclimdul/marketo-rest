@@ -187,13 +187,13 @@ class LandingPageContentResponse implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function __construct(array $data = null)
     {
-        $this->container['content'] = isset($data['content']) ? $data['content'] : null;
-        $this->container['followup_type'] = isset($data['followup_type']) ? $data['followup_type'] : null;
-        $this->container['followup_value'] = isset($data['followup_value']) ? $data['followup_value'] : null;
-        $this->container['formatting_options'] = isset($data['formatting_options']) ? $data['formatting_options'] : null;
-        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
-        $this->container['index'] = isset($data['index']) ? $data['index'] : null;
-        $this->container['type'] = isset($data['type']) ? $data['type'] : null;
+        $this->container['content'] = $data['content'] ?? null;
+        $this->container['followup_type'] = $data['followup_type'] ?? null;
+        $this->container['followup_value'] = $data['followup_value'] ?? null;
+        $this->container['formatting_options'] = $data['formatting_options'] ?? null;
+        $this->container['id'] = $data['id'] ?? null;
+        $this->container['index'] = $data['index'] ?? null;
+        $this->container['type'] = $data['type'] ?? null;
     }
 
     /**

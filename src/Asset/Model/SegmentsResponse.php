@@ -172,13 +172,13 @@ class SegmentsResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['created_at'] = isset($data['created_at']) ? $data['created_at'] : null;
-        $this->container['description'] = isset($data['description']) ? $data['description'] : null;
-        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['segmentation_id'] = isset($data['segmentation_id']) ? $data['segmentation_id'] : null;
-        $this->container['updated_at'] = isset($data['updated_at']) ? $data['updated_at'] : null;
-        $this->container['url'] = isset($data['url']) ? $data['url'] : null;
+        $this->container['created_at'] = $data['created_at'] ?? null;
+        $this->container['description'] = $data['description'] ?? null;
+        $this->container['id'] = $data['id'] ?? null;
+        $this->container['name'] = $data['name'] ?? null;
+        $this->container['segmentation_id'] = $data['segmentation_id'] ?? null;
+        $this->container['updated_at'] = $data['updated_at'] ?? null;
+        $this->container['url'] = $data['url'] ?? null;
     }
 
     /**

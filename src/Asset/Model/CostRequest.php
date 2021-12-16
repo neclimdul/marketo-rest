@@ -152,9 +152,9 @@ class CostRequest implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['cost'] = isset($data['cost']) ? $data['cost'] : null;
-        $this->container['note'] = isset($data['note']) ? $data['note'] : null;
-        $this->container['start_date'] = isset($data['start_date']) ? $data['start_date'] : null;
+        $this->container['cost'] = $data['cost'] ?? null;
+        $this->container['note'] = $data['note'] ?? null;
+        $this->container['start_date'] = $data['start_date'] ?? null;
     }
 
     /**

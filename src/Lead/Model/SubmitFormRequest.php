@@ -152,9 +152,9 @@ class SubmitFormRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function __construct(array $data = null)
     {
-        $this->container['input'] = isset($data['input']) ? $data['input'] : null;
-        $this->container['form_id'] = isset($data['form_id']) ? $data['form_id'] : null;
-        $this->container['program_id'] = isset($data['program_id']) ? $data['program_id'] : null;
+        $this->container['input'] = $data['input'] ?? null;
+        $this->container['form_id'] = $data['form_id'] ?? null;
+        $this->container['program_id'] = $data['program_id'] ?? null;
     }
 
     /**

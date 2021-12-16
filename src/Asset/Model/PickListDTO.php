@@ -157,10 +157,10 @@ class PickListDTO implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['is_default'] = isset($data['is_default']) ? $data['is_default'] : null;
-        $this->container['label'] = isset($data['label']) ? $data['label'] : null;
-        $this->container['selected'] = isset($data['selected']) ? $data['selected'] : null;
-        $this->container['value'] = isset($data['value']) ? $data['value'] : null;
+        $this->container['is_default'] = $data['is_default'] ?? null;
+        $this->container['label'] = $data['label'] ?? null;
+        $this->container['selected'] = $data['selected'] ?? null;
+        $this->container['value'] = $data['value'] ?? null;
     }
 
     /**

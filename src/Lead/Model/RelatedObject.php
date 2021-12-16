@@ -147,8 +147,8 @@ class RelatedObject implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['field'] = isset($data['field']) ? $data['field'] : null;
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
+        $this->container['field'] = $data['field'] ?? null;
+        $this->container['name'] = $data['name'] ?? null;
     }
 
     /**

@@ -142,7 +142,7 @@ class ReArrangeRequest implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['positions'] = isset($data['positions']) ? $data['positions'] : null;
+        $this->container['positions'] = $data['positions'] ?? null;
     }
 
     /**

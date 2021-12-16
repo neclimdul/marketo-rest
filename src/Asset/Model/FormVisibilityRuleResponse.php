@@ -152,9 +152,9 @@ class FormVisibilityRuleResponse implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function __construct(array $data = null)
     {
-        $this->container['form_field_id'] = isset($data['form_field_id']) ? $data['form_field_id'] : null;
-        $this->container['rule_type'] = isset($data['rule_type']) ? $data['rule_type'] : null;
-        $this->container['rules'] = isset($data['rules']) ? $data['rules'] : null;
+        $this->container['form_field_id'] = $data['form_field_id'] ?? null;
+        $this->container['rule_type'] = $data['rule_type'] ?? null;
+        $this->container['rules'] = $data['rules'] ?? null;
     }
 
     /**

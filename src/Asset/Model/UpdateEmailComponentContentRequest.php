@@ -200,18 +200,18 @@ class UpdateEmailComponentContentRequest implements ModelInterface, ArrayAccess,
      */
     public function __construct(array $data = null)
     {
-        $this->container['alt_text'] = isset($data['alt_text']) ? $data['alt_text'] : null;
-        $this->container['external_url'] = isset($data['external_url']) ? $data['external_url'] : null;
-        $this->container['height'] = isset($data['height']) ? $data['height'] : null;
-        $this->container['image'] = isset($data['image']) ? $data['image'] : null;
-        $this->container['link_url'] = isset($data['link_url']) ? $data['link_url'] : null;
-        $this->container['over_write'] = isset($data['over_write']) ? $data['over_write'] : null;
-        $this->container['style'] = isset($data['style']) ? $data['style'] : null;
-        $this->container['text_value'] = isset($data['text_value']) ? $data['text_value'] : null;
-        $this->container['type'] = isset($data['type']) ? $data['type'] : null;
-        $this->container['value'] = isset($data['value']) ? $data['value'] : null;
-        $this->container['video_url'] = isset($data['video_url']) ? $data['video_url'] : null;
-        $this->container['width'] = isset($data['width']) ? $data['width'] : null;
+        $this->container['alt_text'] = $data['alt_text'] ?? null;
+        $this->container['external_url'] = $data['external_url'] ?? null;
+        $this->container['height'] = $data['height'] ?? null;
+        $this->container['image'] = $data['image'] ?? null;
+        $this->container['link_url'] = $data['link_url'] ?? null;
+        $this->container['over_write'] = $data['over_write'] ?? null;
+        $this->container['style'] = $data['style'] ?? null;
+        $this->container['text_value'] = $data['text_value'] ?? null;
+        $this->container['type'] = $data['type'] ?? null;
+        $this->container['value'] = $data['value'] ?? null;
+        $this->container['video_url'] = $data['video_url'] ?? null;
+        $this->container['width'] = $data['width'] ?? null;
     }
 
     /**

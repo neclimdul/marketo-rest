@@ -152,9 +152,9 @@ class UpdateLpTemplateRequest implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function __construct(array $data = null)
     {
-        $this->container['description'] = isset($data['description']) ? $data['description'] : null;
-        $this->container['enable_munchkin'] = isset($data['enable_munchkin']) ? $data['enable_munchkin'] : null;
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
+        $this->container['description'] = $data['description'] ?? null;
+        $this->container['enable_munchkin'] = $data['enable_munchkin'] ?? null;
+        $this->container['name'] = $data['name'] ?? null;
     }
 
     /**

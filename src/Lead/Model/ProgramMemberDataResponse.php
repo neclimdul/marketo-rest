@@ -160,10 +160,10 @@ class ProgramMemberDataResponse implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function __construct(array $data = null)
     {
-        $this->container['status'] = isset($data['status']) ? $data['status'] : null;
-        $this->container['reasons'] = isset($data['reasons']) ? $data['reasons'] : null;
-        $this->container['lead_id'] = isset($data['lead_id']) ? $data['lead_id'] : null;
-        $this->container['seq'] = isset($data['seq']) ? $data['seq'] : null;
+        $this->container['status'] = $data['status'] ?? null;
+        $this->container['reasons'] = $data['reasons'] ?? null;
+        $this->container['lead_id'] = $data['lead_id'] ?? null;
+        $this->container['seq'] = $data['seq'] ?? null;
     }
 
     /**

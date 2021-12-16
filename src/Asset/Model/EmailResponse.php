@@ -249,28 +249,28 @@ class EmailResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['created_at'] = isset($data['created_at']) ? $data['created_at'] : null;
-        $this->container['description'] = isset($data['description']) ? $data['description'] : null;
-        $this->container['folder'] = isset($data['folder']) ? $data['folder'] : null;
-        $this->container['from_email'] = isset($data['from_email']) ? $data['from_email'] : null;
-        $this->container['from_name'] = isset($data['from_name']) ? $data['from_name'] : null;
-        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['operational'] = isset($data['operational']) ? $data['operational'] : null;
-        $this->container['publish_to_msi'] = isset($data['publish_to_msi']) ? $data['publish_to_msi'] : null;
-        $this->container['reply_email'] = isset($data['reply_email']) ? $data['reply_email'] : null;
-        $this->container['status'] = isset($data['status']) ? $data['status'] : null;
-        $this->container['subject'] = isset($data['subject']) ? $data['subject'] : null;
-        $this->container['template'] = isset($data['template']) ? $data['template'] : null;
-        $this->container['text_only'] = isset($data['text_only']) ? $data['text_only'] : null;
-        $this->container['updated_at'] = isset($data['updated_at']) ? $data['updated_at'] : null;
-        $this->container['url'] = isset($data['url']) ? $data['url'] : null;
-        $this->container['version'] = isset($data['version']) ? $data['version'] : null;
-        $this->container['web_view'] = isset($data['web_view']) ? $data['web_view'] : null;
-        $this->container['workspace'] = isset($data['workspace']) ? $data['workspace'] : null;
-        $this->container['auto_copy_to_text'] = isset($data['auto_copy_to_text']) ? $data['auto_copy_to_text'] : null;
-        $this->container['pre_header'] = isset($data['pre_header']) ? $data['pre_header'] : null;
-        $this->container['cc_fields'] = isset($data['cc_fields']) ? $data['cc_fields'] : null;
+        $this->container['created_at'] = $data['created_at'] ?? null;
+        $this->container['description'] = $data['description'] ?? null;
+        $this->container['folder'] = $data['folder'] ?? null;
+        $this->container['from_email'] = $data['from_email'] ?? null;
+        $this->container['from_name'] = $data['from_name'] ?? null;
+        $this->container['id'] = $data['id'] ?? null;
+        $this->container['name'] = $data['name'] ?? null;
+        $this->container['operational'] = $data['operational'] ?? null;
+        $this->container['publish_to_msi'] = $data['publish_to_msi'] ?? null;
+        $this->container['reply_email'] = $data['reply_email'] ?? null;
+        $this->container['status'] = $data['status'] ?? null;
+        $this->container['subject'] = $data['subject'] ?? null;
+        $this->container['template'] = $data['template'] ?? null;
+        $this->container['text_only'] = $data['text_only'] ?? null;
+        $this->container['updated_at'] = $data['updated_at'] ?? null;
+        $this->container['url'] = $data['url'] ?? null;
+        $this->container['version'] = $data['version'] ?? null;
+        $this->container['web_view'] = $data['web_view'] ?? null;
+        $this->container['workspace'] = $data['workspace'] ?? null;
+        $this->container['auto_copy_to_text'] = $data['auto_copy_to_text'] ?? null;
+        $this->container['pre_header'] = $data['pre_header'] ?? null;
+        $this->container['cc_fields'] = $data['cc_fields'] ?? null;
     }
 
     /**

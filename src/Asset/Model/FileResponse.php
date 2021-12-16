@@ -182,15 +182,15 @@ class FileResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['created_at'] = isset($data['created_at']) ? $data['created_at'] : null;
-        $this->container['description'] = isset($data['description']) ? $data['description'] : null;
-        $this->container['folder'] = isset($data['folder']) ? $data['folder'] : null;
-        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
-        $this->container['mime_type'] = isset($data['mime_type']) ? $data['mime_type'] : null;
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['size'] = isset($data['size']) ? $data['size'] : null;
-        $this->container['updated_at'] = isset($data['updated_at']) ? $data['updated_at'] : null;
-        $this->container['url'] = isset($data['url']) ? $data['url'] : null;
+        $this->container['created_at'] = $data['created_at'] ?? null;
+        $this->container['description'] = $data['description'] ?? null;
+        $this->container['folder'] = $data['folder'] ?? null;
+        $this->container['id'] = $data['id'] ?? null;
+        $this->container['mime_type'] = $data['mime_type'] ?? null;
+        $this->container['name'] = $data['name'] ?? null;
+        $this->container['size'] = $data['size'] ?? null;
+        $this->container['updated_at'] = $data['updated_at'] ?? null;
+        $this->container['url'] = $data['url'] ?? null;
     }
 
     /**

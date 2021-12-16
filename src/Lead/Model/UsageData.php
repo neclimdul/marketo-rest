@@ -152,9 +152,9 @@ class UsageData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['date'] = isset($data['date']) ? $data['date'] : null;
-        $this->container['total'] = isset($data['total']) ? $data['total'] : null;
-        $this->container['users'] = isset($data['users']) ? $data['users'] : null;
+        $this->container['date'] = $data['date'] ?? null;
+        $this->container['total'] = $data['total'] ?? null;
+        $this->container['users'] = $data['users'] ?? null;
     }
 
     /**

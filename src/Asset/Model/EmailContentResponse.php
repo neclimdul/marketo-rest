@@ -167,12 +167,12 @@ class EmailContentResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function __construct(array $data = null)
     {
-        $this->container['content_type'] = isset($data['content_type']) ? $data['content_type'] : null;
-        $this->container['html_id'] = isset($data['html_id']) ? $data['html_id'] : null;
-        $this->container['index'] = isset($data['index']) ? $data['index'] : null;
-        $this->container['is_locked'] = isset($data['is_locked']) ? $data['is_locked'] : null;
-        $this->container['parent_html_id'] = isset($data['parent_html_id']) ? $data['parent_html_id'] : null;
-        $this->container['value'] = isset($data['value']) ? $data['value'] : null;
+        $this->container['content_type'] = $data['content_type'] ?? null;
+        $this->container['html_id'] = $data['html_id'] ?? null;
+        $this->container['index'] = $data['index'] ?? null;
+        $this->container['is_locked'] = $data['is_locked'] ?? null;
+        $this->container['parent_html_id'] = $data['parent_html_id'] ?? null;
+        $this->container['value'] = $data['value'] ?? null;
     }
 
     /**

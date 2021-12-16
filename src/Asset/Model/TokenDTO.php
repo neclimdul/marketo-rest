@@ -157,10 +157,10 @@ class TokenDTO implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['computed_url'] = isset($data['computed_url']) ? $data['computed_url'] : null;
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['type'] = isset($data['type']) ? $data['type'] : null;
-        $this->container['value'] = isset($data['value']) ? $data['value'] : null;
+        $this->container['computed_url'] = $data['computed_url'] ?? null;
+        $this->container['name'] = $data['name'] ?? null;
+        $this->container['type'] = $data['type'] ?? null;
+        $this->container['value'] = $data['value'] ?? null;
     }
 
     /**

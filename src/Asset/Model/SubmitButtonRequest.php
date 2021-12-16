@@ -157,10 +157,10 @@ class SubmitButtonRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function __construct(array $data = null)
     {
-        $this->container['button_position'] = isset($data['button_position']) ? $data['button_position'] : null;
-        $this->container['button_style'] = isset($data['button_style']) ? $data['button_style'] : null;
-        $this->container['label'] = isset($data['label']) ? $data['label'] : null;
-        $this->container['waiting_label'] = isset($data['waiting_label']) ? $data['waiting_label'] : null;
+        $this->container['button_position'] = $data['button_position'] ?? null;
+        $this->container['button_style'] = $data['button_style'] ?? null;
+        $this->container['label'] = $data['label'] ?? null;
+        $this->container['waiting_label'] = $data['waiting_label'] ?? null;
     }
 
     /**

@@ -157,10 +157,10 @@ class CloneEmailRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function __construct(array $data = null)
     {
-        $this->container['description'] = isset($data['description']) ? $data['description'] : null;
-        $this->container['folder'] = isset($data['folder']) ? $data['folder'] : null;
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['operational'] = isset($data['operational']) ? $data['operational'] : null;
+        $this->container['description'] = $data['description'] ?? null;
+        $this->container['folder'] = $data['folder'] ?? null;
+        $this->container['name'] = $data['name'] ?? null;
+        $this->container['operational'] = $data['operational'] ?? null;
     }
 
     /**

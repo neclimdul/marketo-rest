@@ -159,10 +159,10 @@ class UpdateFolderRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function __construct(array $data = null)
     {
-        $this->container['description'] = isset($data['description']) ? $data['description'] : null;
-        $this->container['is_archive'] = isset($data['is_archive']) ? $data['is_archive'] : null;
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['type'] = isset($data['type']) ? $data['type'] : null;
+        $this->container['description'] = $data['description'] ?? null;
+        $this->container['is_archive'] = $data['is_archive'] ?? null;
+        $this->container['name'] = $data['name'] ?? null;
+        $this->container['type'] = $data['type'] ?? null;
     }
 
     /**

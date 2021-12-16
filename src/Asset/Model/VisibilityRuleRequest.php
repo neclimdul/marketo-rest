@@ -186,11 +186,11 @@ class VisibilityRuleRequest implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function __construct(array $data = null)
     {
-        $this->container['alt_label'] = isset($data['alt_label']) ? $data['alt_label'] : null;
-        $this->container['operator'] = isset($data['operator']) ? $data['operator'] : null;
-        $this->container['pick_list_values'] = isset($data['pick_list_values']) ? $data['pick_list_values'] : null;
-        $this->container['subject_field'] = isset($data['subject_field']) ? $data['subject_field'] : null;
-        $this->container['values'] = isset($data['values']) ? $data['values'] : null;
+        $this->container['alt_label'] = $data['alt_label'] ?? null;
+        $this->container['operator'] = $data['operator'] ?? null;
+        $this->container['pick_list_values'] = $data['pick_list_values'] ?? null;
+        $this->container['subject_field'] = $data['subject_field'] ?? null;
+        $this->container['values'] = $data['values'] ?? null;
     }
 
     /**

@@ -142,7 +142,7 @@ class UpdateEmailFullContentResponse implements ModelInterface, ArrayAccess, \Js
      */
     public function __construct(array $data = null)
     {
-        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
+        $this->container['id'] = $data['id'] ?? null;
     }
 
     /**

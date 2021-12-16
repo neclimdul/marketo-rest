@@ -172,13 +172,13 @@ class UpdateProgramRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function __construct(array $data = null)
     {
-        $this->container['costs'] = isset($data['costs']) ? $data['costs'] : null;
-        $this->container['costs_destructive_update'] = isset($data['costs_destructive_update']) ? $data['costs_destructive_update'] : null;
-        $this->container['description'] = isset($data['description']) ? $data['description'] : null;
-        $this->container['end_date'] = isset($data['end_date']) ? $data['end_date'] : null;
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['start_date'] = isset($data['start_date']) ? $data['start_date'] : null;
-        $this->container['tags'] = isset($data['tags']) ? $data['tags'] : null;
+        $this->container['costs'] = $data['costs'] ?? null;
+        $this->container['costs_destructive_update'] = $data['costs_destructive_update'] ?? null;
+        $this->container['description'] = $data['description'] ?? null;
+        $this->container['end_date'] = $data['end_date'] ?? null;
+        $this->container['name'] = $data['name'] ?? null;
+        $this->container['start_date'] = $data['start_date'] ?? null;
+        $this->container['tags'] = $data['tags'] ?? null;
     }
 
     /**

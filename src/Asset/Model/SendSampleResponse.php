@@ -148,8 +148,8 @@ class SendSampleResponse implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function __construct(array $data = null)
     {
-        $this->container['service'] = isset($data['service']) ? $data['service'] : null;
-        $this->container['result'] = isset($data['result']) ? $data['result'] : null;
+        $this->container['service'] = $data['service'] ?? null;
+        $this->container['result'] = $data['result'] ?? null;
     }
 
     /**

@@ -162,11 +162,11 @@ class EmailDynamicContentItem implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function __construct(array $data = null)
     {
-        $this->container['content'] = isset($data['content']) ? $data['content'] : null;
-        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
-        $this->container['segment_id'] = isset($data['segment_id']) ? $data['segment_id'] : null;
-        $this->container['segment_name'] = isset($data['segment_name']) ? $data['segment_name'] : null;
-        $this->container['type'] = isset($data['type']) ? $data['type'] : null;
+        $this->container['content'] = $data['content'] ?? null;
+        $this->container['id'] = $data['id'] ?? null;
+        $this->container['segment_id'] = $data['segment_id'] ?? null;
+        $this->container['segment_name'] = $data['segment_name'] ?? null;
+        $this->container['type'] = $data['type'] ?? null;
     }
 
     /**

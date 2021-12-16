@@ -147,8 +147,8 @@ class DeleteNamedAccountListRequest implements ModelInterface, ArrayAccess, \Jso
      */
     public function __construct(array $data = null)
     {
-        $this->container['delete_by'] = isset($data['delete_by']) ? $data['delete_by'] : null;
-        $this->container['input'] = isset($data['input']) ? $data['input'] : null;
+        $this->container['delete_by'] = $data['delete_by'] ?? null;
+        $this->container['input'] = $data['input'] ?? null;
     }
 
     /**

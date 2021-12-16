@@ -152,9 +152,9 @@ class ActivityTypeAttribute implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function __construct(array $data = null)
     {
-        $this->container['api_name'] = isset($data['api_name']) ? $data['api_name'] : null;
-        $this->container['data_type'] = isset($data['data_type']) ? $data['data_type'] : null;
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
+        $this->container['api_name'] = $data['api_name'] ?? null;
+        $this->container['data_type'] = $data['data_type'] ?? null;
+        $this->container['name'] = $data['name'] ?? null;
     }
 
     /**

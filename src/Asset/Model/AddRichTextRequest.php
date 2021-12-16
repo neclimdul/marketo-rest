@@ -142,7 +142,7 @@ class AddRichTextRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function __construct(array $data = null)
     {
-        $this->container['text'] = isset($data['text']) ? $data['text'] : null;
+        $this->container['text'] = $data['text'] ?? null;
     }
 
     /**

@@ -153,9 +153,9 @@ class ImportProgramMemberResponse implements ModelInterface, ArrayAccess, \JsonS
      */
     public function __construct(array $data = null)
     {
-        $this->container['batch_id'] = isset($data['batch_id']) ? $data['batch_id'] : null;
-        $this->container['import_id'] = isset($data['import_id']) ? $data['import_id'] : null;
-        $this->container['status'] = isset($data['status']) ? $data['status'] : null;
+        $this->container['batch_id'] = $data['batch_id'] ?? null;
+        $this->container['import_id'] = $data['import_id'] ?? null;
+        $this->container['status'] = $data['status'] ?? null;
     }
 
     /**

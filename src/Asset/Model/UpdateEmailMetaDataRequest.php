@@ -172,13 +172,13 @@ class UpdateEmailMetaDataRequest implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function __construct(array $data = null)
     {
-        $this->container['description'] = isset($data['description']) ? $data['description'] : null;
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['pre_header'] = isset($data['pre_header']) ? $data['pre_header'] : null;
-        $this->container['operational'] = isset($data['operational']) ? $data['operational'] : null;
-        $this->container['published'] = isset($data['published']) ? $data['published'] : null;
-        $this->container['text_only'] = isset($data['text_only']) ? $data['text_only'] : null;
-        $this->container['web_view'] = isset($data['web_view']) ? $data['web_view'] : null;
+        $this->container['description'] = $data['description'] ?? null;
+        $this->container['name'] = $data['name'] ?? null;
+        $this->container['pre_header'] = $data['pre_header'] ?? null;
+        $this->container['operational'] = $data['operational'] ?? null;
+        $this->container['published'] = $data['published'] ?? null;
+        $this->container['text_only'] = $data['text_only'] ?? null;
+        $this->container['web_view'] = $data['web_view'] ?? null;
     }
 
     /**

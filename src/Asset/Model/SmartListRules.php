@@ -156,9 +156,9 @@ class SmartListRules implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['filter_match_type'] = isset($data['filter_match_type']) ? $data['filter_match_type'] : null;
-        $this->container['triggers'] = isset($data['triggers']) ? $data['triggers'] : null;
-        $this->container['filters'] = isset($data['filters']) ? $data['filters'] : null;
+        $this->container['filter_match_type'] = $data['filter_match_type'] ?? null;
+        $this->container['triggers'] = $data['triggers'] ?? null;
+        $this->container['filters'] = $data['filters'] ?? null;
     }
 
     /**

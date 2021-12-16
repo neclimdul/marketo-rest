@@ -154,9 +154,9 @@ class GetEmailFullContentResponse implements ModelInterface, ArrayAccess, \JsonS
      */
     public function __construct(array $data = null)
     {
-        $this->container['content'] = isset($data['content']) ? $data['content'] : null;
-        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
-        $this->container['status'] = isset($data['status']) ? $data['status'] : null;
+        $this->container['content'] = $data['content'] ?? null;
+        $this->container['id'] = $data['id'] ?? null;
+        $this->container['status'] = $data['status'] ?? null;
     }
 
     /**

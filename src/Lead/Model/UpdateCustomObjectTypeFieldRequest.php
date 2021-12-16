@@ -167,12 +167,12 @@ class UpdateCustomObjectTypeFieldRequest implements ModelInterface, ArrayAccess,
      */
     public function __construct(array $data = null)
     {
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['display_name'] = isset($data['display_name']) ? $data['display_name'] : null;
-        $this->container['data_type'] = isset($data['data_type']) ? $data['data_type'] : null;
-        $this->container['description'] = isset($data['description']) ? $data['description'] : null;
-        $this->container['is_dedupe_field'] = isset($data['is_dedupe_field']) ? $data['is_dedupe_field'] : null;
-        $this->container['related_to'] = isset($data['related_to']) ? $data['related_to'] : null;
+        $this->container['name'] = $data['name'] ?? null;
+        $this->container['display_name'] = $data['display_name'] ?? null;
+        $this->container['data_type'] = $data['data_type'] ?? null;
+        $this->container['description'] = $data['description'] ?? null;
+        $this->container['is_dedupe_field'] = $data['is_dedupe_field'] ?? null;
+        $this->container['related_to'] = $data['related_to'] ?? null;
     }
 
     /**

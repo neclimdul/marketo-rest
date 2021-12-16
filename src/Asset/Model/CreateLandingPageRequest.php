@@ -202,19 +202,19 @@ class CreateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function __construct(array $data = null)
     {
-        $this->container['custom_head_html'] = isset($data['custom_head_html']) ? $data['custom_head_html'] : null;
-        $this->container['description'] = isset($data['description']) ? $data['description'] : null;
-        $this->container['facebook_og_tags'] = isset($data['facebook_og_tags']) ? $data['facebook_og_tags'] : null;
-        $this->container['folder'] = isset($data['folder']) ? $data['folder'] : null;
-        $this->container['keywords'] = isset($data['keywords']) ? $data['keywords'] : null;
-        $this->container['mobile_enabled'] = isset($data['mobile_enabled']) ? $data['mobile_enabled'] : null;
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['prefill_form'] = isset($data['prefill_form']) ? $data['prefill_form'] : null;
-        $this->container['robots'] = isset($data['robots']) ? $data['robots'] : null;
-        $this->container['template'] = isset($data['template']) ? $data['template'] : null;
-        $this->container['title'] = isset($data['title']) ? $data['title'] : null;
-        $this->container['url_page_name'] = isset($data['url_page_name']) ? $data['url_page_name'] : null;
-        $this->container['workspace'] = isset($data['workspace']) ? $data['workspace'] : null;
+        $this->container['custom_head_html'] = $data['custom_head_html'] ?? null;
+        $this->container['description'] = $data['description'] ?? null;
+        $this->container['facebook_og_tags'] = $data['facebook_og_tags'] ?? null;
+        $this->container['folder'] = $data['folder'] ?? null;
+        $this->container['keywords'] = $data['keywords'] ?? null;
+        $this->container['mobile_enabled'] = $data['mobile_enabled'] ?? null;
+        $this->container['name'] = $data['name'] ?? null;
+        $this->container['prefill_form'] = $data['prefill_form'] ?? null;
+        $this->container['robots'] = $data['robots'] ?? null;
+        $this->container['template'] = $data['template'] ?? null;
+        $this->container['title'] = $data['title'] ?? null;
+        $this->container['url_page_name'] = $data['url_page_name'] ?? null;
+        $this->container['workspace'] = $data['workspace'] ?? null;
     }
 
     /**

@@ -142,7 +142,7 @@ class AddFormFieldSetRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function __construct(array $data = null)
     {
-        $this->container['label'] = isset($data['label']) ? $data['label'] : null;
+        $this->container['label'] = $data['label'] ?? null;
     }
 
     /**

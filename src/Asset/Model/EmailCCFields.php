@@ -157,10 +157,10 @@ class EmailCCFields implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['attribute_id'] = isset($data['attribute_id']) ? $data['attribute_id'] : null;
-        $this->container['object_name'] = isset($data['object_name']) ? $data['object_name'] : null;
-        $this->container['display_name'] = isset($data['display_name']) ? $data['display_name'] : null;
-        $this->container['api_name'] = isset($data['api_name']) ? $data['api_name'] : null;
+        $this->container['attribute_id'] = $data['attribute_id'] ?? null;
+        $this->container['object_name'] = $data['object_name'] ?? null;
+        $this->container['display_name'] = $data['display_name'] ?? null;
+        $this->container['api_name'] = $data['api_name'] ?? null;
     }
 
     /**

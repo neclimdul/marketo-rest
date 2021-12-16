@@ -162,11 +162,11 @@ class LookupCustomObjectRequest implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function __construct(array $data = null)
     {
-        $this->container['batch_size'] = isset($data['batch_size']) ? $data['batch_size'] : null;
-        $this->container['fields'] = isset($data['fields']) ? $data['fields'] : null;
-        $this->container['filter_type'] = isset($data['filter_type']) ? $data['filter_type'] : null;
-        $this->container['input'] = isset($data['input']) ? $data['input'] : null;
-        $this->container['next_page_token'] = isset($data['next_page_token']) ? $data['next_page_token'] : null;
+        $this->container['batch_size'] = $data['batch_size'] ?? null;
+        $this->container['fields'] = $data['fields'] ?? null;
+        $this->container['filter_type'] = $data['filter_type'] ?? null;
+        $this->container['input'] = $data['input'] ?? null;
+        $this->container['next_page_token'] = $data['next_page_token'] ?? null;
     }
 
     /**

@@ -147,8 +147,8 @@ class FormKnownVisitorDTO implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function __construct(array $data = null)
     {
-        $this->container['template'] = isset($data['template']) ? $data['template'] : null;
-        $this->container['type'] = isset($data['type']) ? $data['type'] : null;
+        $this->container['template'] = $data['template'] ?? null;
+        $this->container['type'] = $data['type'] ?? null;
     }
 
     /**

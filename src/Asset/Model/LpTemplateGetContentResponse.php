@@ -166,11 +166,11 @@ class LpTemplateGetContentResponse implements ModelInterface, ArrayAccess, \Json
      */
     public function __construct(array $data = null)
     {
-        $this->container['content'] = isset($data['content']) ? $data['content'] : null;
-        $this->container['enable_munchkin'] = isset($data['enable_munchkin']) ? $data['enable_munchkin'] : null;
-        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
-        $this->container['status'] = isset($data['status']) ? $data['status'] : null;
-        $this->container['template_type'] = isset($data['template_type']) ? $data['template_type'] : null;
+        $this->container['content'] = $data['content'] ?? null;
+        $this->container['enable_munchkin'] = $data['enable_munchkin'] ?? null;
+        $this->container['id'] = $data['id'] ?? null;
+        $this->container['status'] = $data['status'] ?? null;
+        $this->container['template_type'] = $data['template_type'] ?? null;
     }
 
     /**

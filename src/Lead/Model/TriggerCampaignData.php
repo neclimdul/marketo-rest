@@ -147,8 +147,8 @@ class TriggerCampaignData implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function __construct(array $data = null)
     {
-        $this->container['leads'] = isset($data['leads']) ? $data['leads'] : null;
-        $this->container['tokens'] = isset($data['tokens']) ? $data['tokens'] : null;
+        $this->container['leads'] = $data['leads'] ?? null;
+        $this->container['tokens'] = $data['tokens'] ?? null;
     }
 
     /**

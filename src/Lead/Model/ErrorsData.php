@@ -152,9 +152,9 @@ class ErrorsData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['date'] = isset($data['date']) ? $data['date'] : null;
-        $this->container['errors'] = isset($data['errors']) ? $data['errors'] : null;
-        $this->container['total'] = isset($data['total']) ? $data['total'] : null;
+        $this->container['date'] = $data['date'] ?? null;
+        $this->container['errors'] = $data['errors'] ?? null;
+        $this->container['total'] = $data['total'] ?? null;
     }
 
     /**

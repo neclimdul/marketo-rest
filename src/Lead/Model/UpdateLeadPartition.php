@@ -147,8 +147,8 @@ class UpdateLeadPartition implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function __construct(array $data = null)
     {
-        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
-        $this->container['partition_name'] = isset($data['partition_name']) ? $data['partition_name'] : null;
+        $this->container['id'] = $data['id'] ?? null;
+        $this->container['partition_name'] = $data['partition_name'] ?? null;
     }
 
     /**

@@ -142,7 +142,7 @@ class DeleteLeadRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function __construct(array $data = null)
     {
-        $this->container['input'] = isset($data['input']) ? $data['input'] : null;
+        $this->container['input'] = $data['input'] ?? null;
     }
 
     /**

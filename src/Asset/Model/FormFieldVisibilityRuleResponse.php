@@ -147,8 +147,8 @@ class FormFieldVisibilityRuleResponse implements ModelInterface, ArrayAccess, \J
      */
     public function __construct(array $data = null)
     {
-        $this->container['rule_type'] = isset($data['rule_type']) ? $data['rule_type'] : null;
-        $this->container['rules'] = isset($data['rules']) ? $data['rules'] : null;
+        $this->container['rule_type'] = $data['rule_type'] ?? null;
+        $this->container['rules'] = $data['rules'] ?? null;
     }
 
     /**

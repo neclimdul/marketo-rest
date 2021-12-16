@@ -207,19 +207,19 @@ class ObjectMetaData implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['created_at'] = isset($data['created_at']) ? $data['created_at'] : null;
-        $this->container['dedupe_fields'] = isset($data['dedupe_fields']) ? $data['dedupe_fields'] : null;
-        $this->container['description'] = isset($data['description']) ? $data['description'] : null;
-        $this->container['display_name'] = isset($data['display_name']) ? $data['display_name'] : null;
-        $this->container['plural_name'] = isset($data['plural_name']) ? $data['plural_name'] : null;
-        $this->container['fields'] = isset($data['fields']) ? $data['fields'] : null;
-        $this->container['id_field'] = isset($data['id_field']) ? $data['id_field'] : null;
-        $this->container['api_name'] = isset($data['api_name']) ? $data['api_name'] : null;
-        $this->container['relationships'] = isset($data['relationships']) ? $data['relationships'] : null;
-        $this->container['searchable_fields'] = isset($data['searchable_fields']) ? $data['searchable_fields'] : null;
-        $this->container['updated_at'] = isset($data['updated_at']) ? $data['updated_at'] : null;
-        $this->container['state'] = isset($data['state']) ? $data['state'] : null;
-        $this->container['version'] = isset($data['version']) ? $data['version'] : null;
+        $this->container['created_at'] = $data['created_at'] ?? null;
+        $this->container['dedupe_fields'] = $data['dedupe_fields'] ?? null;
+        $this->container['description'] = $data['description'] ?? null;
+        $this->container['display_name'] = $data['display_name'] ?? null;
+        $this->container['plural_name'] = $data['plural_name'] ?? null;
+        $this->container['fields'] = $data['fields'] ?? null;
+        $this->container['id_field'] = $data['id_field'] ?? null;
+        $this->container['api_name'] = $data['api_name'] ?? null;
+        $this->container['relationships'] = $data['relationships'] ?? null;
+        $this->container['searchable_fields'] = $data['searchable_fields'] ?? null;
+        $this->container['updated_at'] = $data['updated_at'] ?? null;
+        $this->container['state'] = $data['state'] ?? null;
+        $this->container['version'] = $data['version'] ?? null;
     }
 
     /**

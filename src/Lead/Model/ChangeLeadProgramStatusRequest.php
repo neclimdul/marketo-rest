@@ -147,8 +147,8 @@ class ChangeLeadProgramStatusRequest implements ModelInterface, ArrayAccess, \Js
      */
     public function __construct(array $data = null)
     {
-        $this->container['input'] = isset($data['input']) ? $data['input'] : null;
-        $this->container['status'] = isset($data['status']) ? $data['status'] : null;
+        $this->container['input'] = $data['input'] ?? null;
+        $this->container['status'] = $data['status'] ?? null;
     }
 
     /**

@@ -172,13 +172,13 @@ class CreateProgramRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function __construct(array $data = null)
     {
-        $this->container['channel'] = isset($data['channel']) ? $data['channel'] : null;
-        $this->container['costs'] = isset($data['costs']) ? $data['costs'] : null;
-        $this->container['description'] = isset($data['description']) ? $data['description'] : null;
-        $this->container['folder'] = isset($data['folder']) ? $data['folder'] : null;
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['tags'] = isset($data['tags']) ? $data['tags'] : null;
-        $this->container['type'] = isset($data['type']) ? $data['type'] : null;
+        $this->container['channel'] = $data['channel'] ?? null;
+        $this->container['costs'] = $data['costs'] ?? null;
+        $this->container['description'] = $data['description'] ?? null;
+        $this->container['folder'] = $data['folder'] ?? null;
+        $this->container['name'] = $data['name'] ?? null;
+        $this->container['tags'] = $data['tags'] ?? null;
+        $this->container['type'] = $data['type'] ?? null;
     }
 
     /**

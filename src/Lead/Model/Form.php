@@ -153,9 +153,9 @@ class Form implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['lead_form_fields'] = isset($data['lead_form_fields']) ? $data['lead_form_fields'] : null;
-        $this->container['visitor_data'] = isset($data['visitor_data']) ? $data['visitor_data'] : null;
-        $this->container['cookie'] = isset($data['cookie']) ? $data['cookie'] : null;
+        $this->container['lead_form_fields'] = $data['lead_form_fields'] ?? null;
+        $this->container['visitor_data'] = $data['visitor_data'] ?? null;
+        $this->container['cookie'] = $data['cookie'] ?? null;
     }
 
     /**

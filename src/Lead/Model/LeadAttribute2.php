@@ -152,9 +152,9 @@ class LeadAttribute2 implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['searchable_fields'] = isset($data['searchable_fields']) ? $data['searchable_fields'] : null;
-        $this->container['fields'] = isset($data['fields']) ? $data['fields'] : null;
+        $this->container['name'] = $data['name'] ?? null;
+        $this->container['searchable_fields'] = $data['searchable_fields'] ?? null;
+        $this->container['fields'] = $data['fields'] ?? null;
     }
 
     /**

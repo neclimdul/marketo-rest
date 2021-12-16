@@ -142,7 +142,7 @@ class DeleteCustomObjectTypeField implements ModelInterface, ArrayAccess, \JsonS
      */
     public function __construct(array $data = null)
     {
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
+        $this->container['name'] = $data['name'] ?? null;
     }
 
     /**

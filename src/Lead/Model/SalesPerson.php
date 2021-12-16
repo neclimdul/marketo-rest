@@ -163,10 +163,10 @@ class SalesPerson implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
-        $this->container['reasons'] = isset($data['reasons']) ? $data['reasons'] : null;
-        $this->container['seq'] = isset($data['seq']) ? $data['seq'] : null;
-        $this->container['status'] = isset($data['status']) ? $data['status'] : null;
+        $this->container['id'] = $data['id'] ?? null;
+        $this->container['reasons'] = $data['reasons'] ?? null;
+        $this->container['seq'] = $data['seq'] ?? null;
+        $this->container['status'] = $data['status'] ?? null;
     }
 
     /**

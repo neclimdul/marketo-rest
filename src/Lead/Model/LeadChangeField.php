@@ -158,10 +158,10 @@ class LeadChangeField implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['new_value'] = isset($data['new_value']) ? $data['new_value'] : null;
-        $this->container['old_value'] = isset($data['old_value']) ? $data['old_value'] : null;
+        $this->container['id'] = $data['id'] ?? null;
+        $this->container['name'] = $data['name'] ?? null;
+        $this->container['new_value'] = $data['new_value'] ?? null;
+        $this->container['old_value'] = $data['old_value'] ?? null;
     }
 
     /**

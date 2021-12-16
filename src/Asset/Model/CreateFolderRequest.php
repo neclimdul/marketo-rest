@@ -152,9 +152,9 @@ class CreateFolderRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function __construct(array $data = null)
     {
-        $this->container['description'] = isset($data['description']) ? $data['description'] : null;
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['parent'] = isset($data['parent']) ? $data['parent'] : null;
+        $this->container['description'] = $data['description'] ?? null;
+        $this->container['name'] = $data['name'] ?? null;
+        $this->container['parent'] = $data['parent'] ?? null;
     }
 
     /**

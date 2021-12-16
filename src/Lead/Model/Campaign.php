@@ -190,16 +190,16 @@ class Campaign implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['active'] = isset($data['active']) ? $data['active'] : null;
-        $this->container['created_at'] = isset($data['created_at']) ? $data['created_at'] : null;
-        $this->container['description'] = isset($data['description']) ? $data['description'] : null;
-        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['program_id'] = isset($data['program_id']) ? $data['program_id'] : null;
-        $this->container['program_name'] = isset($data['program_name']) ? $data['program_name'] : null;
-        $this->container['type'] = isset($data['type']) ? $data['type'] : null;
-        $this->container['updated_at'] = isset($data['updated_at']) ? $data['updated_at'] : null;
-        $this->container['workspace_name'] = isset($data['workspace_name']) ? $data['workspace_name'] : null;
+        $this->container['active'] = $data['active'] ?? null;
+        $this->container['created_at'] = $data['created_at'] ?? null;
+        $this->container['description'] = $data['description'] ?? null;
+        $this->container['id'] = $data['id'] ?? null;
+        $this->container['name'] = $data['name'] ?? null;
+        $this->container['program_id'] = $data['program_id'] ?? null;
+        $this->container['program_name'] = $data['program_name'] ?? null;
+        $this->container['type'] = $data['type'] ?? null;
+        $this->container['updated_at'] = $data['updated_at'] ?? null;
+        $this->container['workspace_name'] = $data['workspace_name'] ?? null;
     }
 
     /**

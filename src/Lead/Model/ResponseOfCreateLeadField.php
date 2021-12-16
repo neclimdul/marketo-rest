@@ -172,13 +172,13 @@ class ResponseOfCreateLeadField implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function __construct(array $data = null)
     {
-        $this->container['errors'] = isset($data['errors']) ? $data['errors'] : null;
-        $this->container['more_result'] = isset($data['more_result']) ? $data['more_result'] : null;
-        $this->container['next_page_token'] = isset($data['next_page_token']) ? $data['next_page_token'] : null;
-        $this->container['request_id'] = isset($data['request_id']) ? $data['request_id'] : null;
-        $this->container['result'] = isset($data['result']) ? $data['result'] : null;
-        $this->container['success'] = isset($data['success']) ? $data['success'] : null;
-        $this->container['warnings'] = isset($data['warnings']) ? $data['warnings'] : null;
+        $this->container['errors'] = $data['errors'] ?? null;
+        $this->container['more_result'] = $data['more_result'] ?? null;
+        $this->container['next_page_token'] = $data['next_page_token'] ?? null;
+        $this->container['request_id'] = $data['request_id'] ?? null;
+        $this->container['result'] = $data['result'] ?? null;
+        $this->container['success'] = $data['success'] ?? null;
+        $this->container['warnings'] = $data['warnings'] ?? null;
     }
 
     /**

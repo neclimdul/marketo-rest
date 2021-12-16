@@ -152,9 +152,9 @@ class SmartCampaign implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['created_at'] = isset($data['created_at']) ? $data['created_at'] : null;
-        $this->container['smart_campaign_id'] = isset($data['smart_campaign_id']) ? $data['smart_campaign_id'] : null;
-        $this->container['updated_at'] = isset($data['updated_at']) ? $data['updated_at'] : null;
+        $this->container['created_at'] = $data['created_at'] ?? null;
+        $this->container['smart_campaign_id'] = $data['smart_campaign_id'] ?? null;
+        $this->container['updated_at'] = $data['updated_at'] ?? null;
     }
 
     /**

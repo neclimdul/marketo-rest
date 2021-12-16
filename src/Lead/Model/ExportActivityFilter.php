@@ -157,10 +157,10 @@ class ExportActivityFilter implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function __construct(array $data = null)
     {
-        $this->container['activity_type_ids'] = isset($data['activity_type_ids']) ? $data['activity_type_ids'] : null;
-        $this->container['primary_attribute_value_ids'] = isset($data['primary_attribute_value_ids']) ? $data['primary_attribute_value_ids'] : null;
-        $this->container['primary_attribute_values'] = isset($data['primary_attribute_values']) ? $data['primary_attribute_values'] : null;
-        $this->container['created_at'] = isset($data['created_at']) ? $data['created_at'] : null;
+        $this->container['activity_type_ids'] = $data['activity_type_ids'] ?? null;
+        $this->container['primary_attribute_value_ids'] = $data['primary_attribute_value_ids'] ?? null;
+        $this->container['primary_attribute_values'] = $data['primary_attribute_values'] ?? null;
+        $this->container['created_at'] = $data['created_at'] ?? null;
     }
 
     /**

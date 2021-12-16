@@ -157,10 +157,10 @@ class UpdateFieldPosition implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function __construct(array $data = null)
     {
-        $this->container['column_number'] = isset($data['column_number']) ? $data['column_number'] : null;
-        $this->container['field_list'] = isset($data['field_list']) ? $data['field_list'] : null;
-        $this->container['field_name'] = isset($data['field_name']) ? $data['field_name'] : null;
-        $this->container['row_number'] = isset($data['row_number']) ? $data['row_number'] : null;
+        $this->container['column_number'] = $data['column_number'] ?? null;
+        $this->container['field_list'] = $data['field_list'] ?? null;
+        $this->container['field_name'] = $data['field_name'] ?? null;
+        $this->container['row_number'] = $data['row_number'] ?? null;
     }
 
     /**

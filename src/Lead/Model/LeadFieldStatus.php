@@ -150,8 +150,8 @@ class LeadFieldStatus implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['status'] = isset($data['status']) ? $data['status'] : null;
+        $this->container['name'] = $data['name'] ?? null;
+        $this->container['status'] = $data['status'] ?? null;
     }
 
     /**

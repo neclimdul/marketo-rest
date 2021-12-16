@@ -152,9 +152,9 @@ class ObjectLinkableObjectField implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function __construct(array $data = null)
     {
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['display_name'] = isset($data['display_name']) ? $data['display_name'] : null;
-        $this->container['data_type'] = isset($data['data_type']) ? $data['data_type'] : null;
+        $this->container['name'] = $data['name'] ?? null;
+        $this->container['display_name'] = $data['display_name'] ?? null;
+        $this->container['data_type'] = $data['data_type'] ?? null;
     }
 
     /**

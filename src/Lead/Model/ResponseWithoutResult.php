@@ -162,11 +162,11 @@ class ResponseWithoutResult implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function __construct(array $data = null)
     {
-        $this->container['errors'] = isset($data['errors']) ? $data['errors'] : null;
-        $this->container['next_page_token'] = isset($data['next_page_token']) ? $data['next_page_token'] : null;
-        $this->container['request_id'] = isset($data['request_id']) ? $data['request_id'] : null;
-        $this->container['success'] = isset($data['success']) ? $data['success'] : null;
-        $this->container['warnings'] = isset($data['warnings']) ? $data['warnings'] : null;
+        $this->container['errors'] = $data['errors'] ?? null;
+        $this->container['next_page_token'] = $data['next_page_token'] ?? null;
+        $this->container['request_id'] = $data['request_id'] ?? null;
+        $this->container['success'] = $data['success'] ?? null;
+        $this->container['warnings'] = $data['warnings'] ?? null;
     }
 
     /**

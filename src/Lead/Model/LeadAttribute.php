@@ -167,12 +167,12 @@ class LeadAttribute implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['data_type'] = isset($data['data_type']) ? $data['data_type'] : null;
-        $this->container['display_name'] = isset($data['display_name']) ? $data['display_name'] : null;
-        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
-        $this->container['length'] = isset($data['length']) ? $data['length'] : null;
-        $this->container['rest'] = isset($data['rest']) ? $data['rest'] : null;
-        $this->container['soap'] = isset($data['soap']) ? $data['soap'] : null;
+        $this->container['data_type'] = $data['data_type'] ?? null;
+        $this->container['display_name'] = $data['display_name'] ?? null;
+        $this->container['id'] = $data['id'] ?? null;
+        $this->container['length'] = $data['length'] ?? null;
+        $this->container['rest'] = $data['rest'] ?? null;
+        $this->container['soap'] = $data['soap'] ?? null;
     }
 
     /**

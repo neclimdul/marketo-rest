@@ -147,8 +147,8 @@ class InputStreamContent implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function __construct(array $data = null)
     {
-        $this->container['content_type'] = isset($data['content_type']) ? $data['content_type'] : null;
-        $this->container['input_stream'] = isset($data['input_stream']) ? $data['input_stream'] : null;
+        $this->container['content_type'] = $data['content_type'] ?? null;
+        $this->container['input_stream'] = $data['input_stream'] ?? null;
     }
 
     /**

@@ -147,8 +147,8 @@ class SnippetContentResponse implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function __construct(array $data = null)
     {
-        $this->container['content'] = isset($data['content']) ? $data['content'] : null;
-        $this->container['type'] = isset($data['type']) ? $data['type'] : null;
+        $this->container['content'] = $data['content'] ?? null;
+        $this->container['type'] = $data['type'] ?? null;
     }
 
     /**

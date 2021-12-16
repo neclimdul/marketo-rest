@@ -149,8 +149,8 @@ class LandingPageDomain implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function __construct(array $data = null)
     {
-        $this->container['hostname'] = isset($data['hostname']) ? $data['hostname'] : null;
-        $this->container['type'] = isset($data['type']) ? $data['type'] : null;
+        $this->container['hostname'] = $data['hostname'] ?? null;
+        $this->container['type'] = $data['type'] ?? null;
     }
 
     /**

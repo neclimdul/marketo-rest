@@ -152,9 +152,9 @@ class CreateLandingPageRedirectRuleRequest implements ModelInterface, ArrayAcces
      */
     public function __construct(array $data = null)
     {
-        $this->container['hostname'] = isset($data['hostname']) ? $data['hostname'] : null;
-        $this->container['redirect_from'] = isset($data['redirect_from']) ? $data['redirect_from'] : null;
-        $this->container['redirect_to'] = isset($data['redirect_to']) ? $data['redirect_to'] : null;
+        $this->container['hostname'] = $data['hostname'] ?? null;
+        $this->container['redirect_from'] = $data['redirect_from'] ?? null;
+        $this->container['redirect_to'] = $data['redirect_to'] ?? null;
     }
 
     /**

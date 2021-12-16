@@ -152,9 +152,9 @@ class ObjectLinkableObject implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function __construct(array $data = null)
     {
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['display_name'] = isset($data['display_name']) ? $data['display_name'] : null;
-        $this->container['fields'] = isset($data['fields']) ? $data['fields'] : null;
+        $this->container['name'] = $data['name'] ?? null;
+        $this->container['display_name'] = $data['display_name'] ?? null;
+        $this->container['fields'] = $data['fields'] ?? null;
     }
 
     /**

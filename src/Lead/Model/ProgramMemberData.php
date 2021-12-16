@@ -152,9 +152,9 @@ class ProgramMemberData implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function __construct(array $data = null)
     {
-        $this->container['lead_id'] = isset($data['lead_id']) ? $data['lead_id'] : null;
-        $this->container['field_api_name'] = isset($data['field_api_name']) ? $data['field_api_name'] : null;
-        $this->container['field_api_name2'] = isset($data['field_api_name2']) ? $data['field_api_name2'] : null;
+        $this->container['lead_id'] = $data['lead_id'] ?? null;
+        $this->container['field_api_name'] = $data['field_api_name'] ?? null;
+        $this->container['field_api_name2'] = $data['field_api_name2'] ?? null;
     }
 
     /**

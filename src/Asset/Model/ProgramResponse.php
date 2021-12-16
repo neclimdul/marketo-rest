@@ -230,23 +230,23 @@ class ProgramResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['channel'] = isset($data['channel']) ? $data['channel'] : null;
-        $this->container['costs'] = isset($data['costs']) ? $data['costs'] : null;
-        $this->container['created_at'] = isset($data['created_at']) ? $data['created_at'] : null;
-        $this->container['description'] = isset($data['description']) ? $data['description'] : null;
-        $this->container['end_date'] = isset($data['end_date']) ? $data['end_date'] : null;
-        $this->container['folder'] = isset($data['folder']) ? $data['folder'] : null;
-        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['sfdc_id'] = isset($data['sfdc_id']) ? $data['sfdc_id'] : null;
-        $this->container['sfdc_name'] = isset($data['sfdc_name']) ? $data['sfdc_name'] : null;
-        $this->container['start_date'] = isset($data['start_date']) ? $data['start_date'] : null;
-        $this->container['status'] = isset($data['status']) ? $data['status'] : null;
-        $this->container['tags'] = isset($data['tags']) ? $data['tags'] : null;
-        $this->container['type'] = isset($data['type']) ? $data['type'] : null;
-        $this->container['updated_at'] = isset($data['updated_at']) ? $data['updated_at'] : null;
-        $this->container['url'] = isset($data['url']) ? $data['url'] : null;
-        $this->container['workspace'] = isset($data['workspace']) ? $data['workspace'] : null;
+        $this->container['channel'] = $data['channel'] ?? null;
+        $this->container['costs'] = $data['costs'] ?? null;
+        $this->container['created_at'] = $data['created_at'] ?? null;
+        $this->container['description'] = $data['description'] ?? null;
+        $this->container['end_date'] = $data['end_date'] ?? null;
+        $this->container['folder'] = $data['folder'] ?? null;
+        $this->container['id'] = $data['id'] ?? null;
+        $this->container['name'] = $data['name'] ?? null;
+        $this->container['sfdc_id'] = $data['sfdc_id'] ?? null;
+        $this->container['sfdc_name'] = $data['sfdc_name'] ?? null;
+        $this->container['start_date'] = $data['start_date'] ?? null;
+        $this->container['status'] = $data['status'] ?? null;
+        $this->container['tags'] = $data['tags'] ?? null;
+        $this->container['type'] = $data['type'] ?? null;
+        $this->container['updated_at'] = $data['updated_at'] ?? null;
+        $this->container['url'] = $data['url'] ?? null;
+        $this->container['workspace'] = $data['workspace'] ?? null;
     }
 
     /**

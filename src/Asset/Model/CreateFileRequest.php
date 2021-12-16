@@ -162,11 +162,11 @@ class CreateFileRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function __construct(array $data = null)
     {
-        $this->container['description'] = isset($data['description']) ? $data['description'] : null;
-        $this->container['file'] = isset($data['file']) ? $data['file'] : null;
-        $this->container['folder'] = isset($data['folder']) ? $data['folder'] : null;
-        $this->container['insert_only'] = isset($data['insert_only']) ? $data['insert_only'] : null;
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
+        $this->container['description'] = $data['description'] ?? null;
+        $this->container['file'] = $data['file'] ?? null;
+        $this->container['folder'] = $data['folder'] ?? null;
+        $this->container['insert_only'] = $data['insert_only'] ?? null;
+        $this->container['name'] = $data['name'] ?? null;
     }
 
     /**

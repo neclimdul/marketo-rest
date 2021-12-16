@@ -147,8 +147,8 @@ class ThankYouPageResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function __construct(array $data = null)
     {
-        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
-        $this->container['thank_you_list'] = isset($data['thank_you_list']) ? $data['thank_you_list'] : null;
+        $this->container['id'] = $data['id'] ?? null;
+        $this->container['thank_you_list'] = $data['thank_you_list'] ?? null;
     }
 
     /**

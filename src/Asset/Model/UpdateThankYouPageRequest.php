@@ -142,7 +142,7 @@ class UpdateThankYouPageRequest implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function __construct(array $data = null)
     {
-        $this->container['thankyou'] = isset($data['thankyou']) ? $data['thankyou'] : null;
+        $this->container['thankyou'] = $data['thankyou'] ?? null;
     }
 
     /**

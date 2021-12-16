@@ -147,8 +147,8 @@ class SyncProgramMemberStatusRequest implements ModelInterface, ArrayAccess, \Js
      */
     public function __construct(array $data = null)
     {
-        $this->container['status_name'] = isset($data['status_name']) ? $data['status_name'] : null;
-        $this->container['input'] = isset($data['input']) ? $data['input'] : null;
+        $this->container['status_name'] = $data['status_name'] ?? null;
+        $this->container['input'] = $data['input'] ?? null;
     }
 
     /**

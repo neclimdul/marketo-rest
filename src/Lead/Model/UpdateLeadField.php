@@ -163,11 +163,11 @@ class UpdateLeadField implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['display_name'] = isset($data['display_name']) ? $data['display_name'] : null;
-        $this->container['description'] = isset($data['description']) ? $data['description'] : null;
-        $this->container['is_hidden'] = isset($data['is_hidden']) ? $data['is_hidden'] : null;
-        $this->container['is_html_encoding_in_email'] = isset($data['is_html_encoding_in_email']) ? $data['is_html_encoding_in_email'] : null;
-        $this->container['is_sensitive'] = isset($data['is_sensitive']) ? $data['is_sensitive'] : null;
+        $this->container['display_name'] = $data['display_name'] ?? null;
+        $this->container['description'] = $data['description'] ?? null;
+        $this->container['is_hidden'] = $data['is_hidden'] ?? null;
+        $this->container['is_html_encoding_in_email'] = $data['is_html_encoding_in_email'] ?? null;
+        $this->container['is_sensitive'] = $data['is_sensitive'] ?? null;
     }
 
     /**

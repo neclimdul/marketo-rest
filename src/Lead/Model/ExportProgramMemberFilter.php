@@ -142,7 +142,7 @@ class ExportProgramMemberFilter implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function __construct(array $data = null)
     {
-        $this->container['program_id'] = isset($data['program_id']) ? $data['program_id'] : null;
+        $this->container['program_id'] = $data['program_id'] ?? null;
     }
 
     /**

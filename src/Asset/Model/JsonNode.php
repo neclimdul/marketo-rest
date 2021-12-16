@@ -251,27 +251,27 @@ class JsonNode implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['array'] = isset($data['array']) ? $data['array'] : null;
-        $this->container['big_decimal'] = isset($data['big_decimal']) ? $data['big_decimal'] : null;
-        $this->container['big_integer'] = isset($data['big_integer']) ? $data['big_integer'] : null;
-        $this->container['binary'] = isset($data['binary']) ? $data['binary'] : null;
-        $this->container['boolean'] = isset($data['boolean']) ? $data['boolean'] : null;
-        $this->container['container_node'] = isset($data['container_node']) ? $data['container_node'] : null;
-        $this->container['double'] = isset($data['double']) ? $data['double'] : null;
-        $this->container['float'] = isset($data['float']) ? $data['float'] : null;
-        $this->container['floating_point_number'] = isset($data['floating_point_number']) ? $data['floating_point_number'] : null;
-        $this->container['int'] = isset($data['int']) ? $data['int'] : null;
-        $this->container['integral_number'] = isset($data['integral_number']) ? $data['integral_number'] : null;
-        $this->container['long'] = isset($data['long']) ? $data['long'] : null;
-        $this->container['missing_node'] = isset($data['missing_node']) ? $data['missing_node'] : null;
-        $this->container['node_type'] = isset($data['node_type']) ? $data['node_type'] : null;
-        $this->container['null'] = isset($data['null']) ? $data['null'] : null;
-        $this->container['number'] = isset($data['number']) ? $data['number'] : null;
-        $this->container['object'] = isset($data['object']) ? $data['object'] : null;
-        $this->container['pojo'] = isset($data['pojo']) ? $data['pojo'] : null;
-        $this->container['short'] = isset($data['short']) ? $data['short'] : null;
-        $this->container['textual'] = isset($data['textual']) ? $data['textual'] : null;
-        $this->container['value_node'] = isset($data['value_node']) ? $data['value_node'] : null;
+        $this->container['array'] = $data['array'] ?? null;
+        $this->container['big_decimal'] = $data['big_decimal'] ?? null;
+        $this->container['big_integer'] = $data['big_integer'] ?? null;
+        $this->container['binary'] = $data['binary'] ?? null;
+        $this->container['boolean'] = $data['boolean'] ?? null;
+        $this->container['container_node'] = $data['container_node'] ?? null;
+        $this->container['double'] = $data['double'] ?? null;
+        $this->container['float'] = $data['float'] ?? null;
+        $this->container['floating_point_number'] = $data['floating_point_number'] ?? null;
+        $this->container['int'] = $data['int'] ?? null;
+        $this->container['integral_number'] = $data['integral_number'] ?? null;
+        $this->container['long'] = $data['long'] ?? null;
+        $this->container['missing_node'] = $data['missing_node'] ?? null;
+        $this->container['node_type'] = $data['node_type'] ?? null;
+        $this->container['null'] = $data['null'] ?? null;
+        $this->container['number'] = $data['number'] ?? null;
+        $this->container['object'] = $data['object'] ?? null;
+        $this->container['pojo'] = $data['pojo'] ?? null;
+        $this->container['short'] = $data['short'] ?? null;
+        $this->container['textual'] = $data['textual'] ?? null;
+        $this->container['value_node'] = $data['value_node'] ?? null;
     }
 
     /**

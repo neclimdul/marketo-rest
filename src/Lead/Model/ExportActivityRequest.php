@@ -157,10 +157,10 @@ class ExportActivityRequest implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function __construct(array $data = null)
     {
-        $this->container['column_header_names'] = isset($data['column_header_names']) ? $data['column_header_names'] : null;
-        $this->container['fields'] = isset($data['fields']) ? $data['fields'] : null;
-        $this->container['filter'] = isset($data['filter']) ? $data['filter'] : null;
-        $this->container['format'] = isset($data['format']) ? $data['format'] : null;
+        $this->container['column_header_names'] = $data['column_header_names'] ?? null;
+        $this->container['fields'] = $data['fields'] ?? null;
+        $this->container['filter'] = $data['filter'] ?? null;
+        $this->container['format'] = $data['format'] ?? null;
     }
 
     /**

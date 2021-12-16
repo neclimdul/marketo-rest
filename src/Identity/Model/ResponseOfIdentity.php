@@ -158,10 +158,10 @@ class ResponseOfIdentity implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function __construct(array $data = null)
     {
-        $this->container['access_token'] = isset($data['access_token']) ? $data['access_token'] : null;
-        $this->container['scope'] = isset($data['scope']) ? $data['scope'] : null;
-        $this->container['expires_in'] = isset($data['expires_in']) ? $data['expires_in'] : null;
-        $this->container['token_type'] = isset($data['token_type']) ? $data['token_type'] : null;
+        $this->container['access_token'] = $data['access_token'] ?? null;
+        $this->container['scope'] = $data['scope'] ?? null;
+        $this->container['expires_in'] = $data['expires_in'] ?? null;
+        $this->container['token_type'] = $data['token_type'] ?? null;
     }
 
     /**

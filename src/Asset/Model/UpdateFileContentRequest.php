@@ -147,8 +147,8 @@ class UpdateFileContentRequest implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function __construct(array $data = null)
     {
-        $this->container['file'] = isset($data['file']) ? $data['file'] : null;
-        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
+        $this->container['file'] = $data['file'] ?? null;
+        $this->container['id'] = $data['id'] ?? null;
     }
 
     /**

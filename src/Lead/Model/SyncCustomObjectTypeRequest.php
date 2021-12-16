@@ -170,12 +170,12 @@ class SyncCustomObjectTypeRequest implements ModelInterface, ArrayAccess, \JsonS
      */
     public function __construct(array $data = null)
     {
-        $this->container['action'] = isset($data['action']) ? $data['action'] : null;
-        $this->container['display_name'] = isset($data['display_name']) ? $data['display_name'] : null;
-        $this->container['api_name'] = isset($data['api_name']) ? $data['api_name'] : null;
-        $this->container['plural_name'] = isset($data['plural_name']) ? $data['plural_name'] : null;
-        $this->container['description'] = isset($data['description']) ? $data['description'] : null;
-        $this->container['show_in_lead_detail'] = isset($data['show_in_lead_detail']) ? $data['show_in_lead_detail'] : null;
+        $this->container['action'] = $data['action'] ?? null;
+        $this->container['display_name'] = $data['display_name'] ?? null;
+        $this->container['api_name'] = $data['api_name'] ?? null;
+        $this->container['plural_name'] = $data['plural_name'] ?? null;
+        $this->container['description'] = $data['description'] ?? null;
+        $this->container['show_in_lead_detail'] = $data['show_in_lead_detail'] ?? null;
     }
 
     /**

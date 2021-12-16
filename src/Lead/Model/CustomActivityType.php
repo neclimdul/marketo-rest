@@ -196,17 +196,17 @@ class CustomActivityType implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function __construct(array $data = null)
     {
-        $this->container['api_name'] = isset($data['api_name']) ? $data['api_name'] : null;
-        $this->container['attributes'] = isset($data['attributes']) ? $data['attributes'] : null;
-        $this->container['created_at'] = isset($data['created_at']) ? $data['created_at'] : null;
-        $this->container['description'] = isset($data['description']) ? $data['description'] : null;
-        $this->container['filter_name'] = isset($data['filter_name']) ? $data['filter_name'] : null;
-        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['primary_attribute'] = isset($data['primary_attribute']) ? $data['primary_attribute'] : null;
-        $this->container['status'] = isset($data['status']) ? $data['status'] : null;
-        $this->container['trigger_name'] = isset($data['trigger_name']) ? $data['trigger_name'] : null;
-        $this->container['updated_at'] = isset($data['updated_at']) ? $data['updated_at'] : null;
+        $this->container['api_name'] = $data['api_name'] ?? null;
+        $this->container['attributes'] = $data['attributes'] ?? null;
+        $this->container['created_at'] = $data['created_at'] ?? null;
+        $this->container['description'] = $data['description'] ?? null;
+        $this->container['filter_name'] = $data['filter_name'] ?? null;
+        $this->container['id'] = $data['id'] ?? null;
+        $this->container['name'] = $data['name'] ?? null;
+        $this->container['primary_attribute'] = $data['primary_attribute'] ?? null;
+        $this->container['status'] = $data['status'] ?? null;
+        $this->container['trigger_name'] = $data['trigger_name'] ?? null;
+        $this->container['updated_at'] = $data['updated_at'] ?? null;
     }
 
     /**

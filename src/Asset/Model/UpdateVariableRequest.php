@@ -147,8 +147,8 @@ class UpdateVariableRequest implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function __construct(array $data = null)
     {
-        $this->container['value'] = isset($data['value']) ? $data['value'] : null;
-        $this->container['module_id'] = isset($data['module_id']) ? $data['module_id'] : null;
+        $this->container['value'] = $data['value'] ?? null;
+        $this->container['module_id'] = $data['module_id'] ?? null;
     }
 
     /**

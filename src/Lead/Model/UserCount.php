@@ -147,8 +147,8 @@ class UserCount implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['count'] = isset($data['count']) ? $data['count'] : null;
-        $this->container['user_id'] = isset($data['user_id']) ? $data['user_id'] : null;
+        $this->container['count'] = $data['count'] ?? null;
+        $this->container['user_id'] = $data['user_id'] ?? null;
     }
 
     /**

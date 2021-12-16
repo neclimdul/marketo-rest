@@ -147,8 +147,8 @@ class GetLandingPageFullContentResponse implements ModelInterface, ArrayAccess, 
      */
     public function __construct(array $data = null)
     {
-        $this->container['content'] = isset($data['content']) ? $data['content'] : null;
-        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
+        $this->container['content'] = $data['content'] ?? null;
+        $this->container['id'] = $data['id'] ?? null;
     }
 
     /**

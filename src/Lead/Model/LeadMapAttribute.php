@@ -147,8 +147,8 @@ class LeadMapAttribute implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['read_only'] = isset($data['read_only']) ? $data['read_only'] : null;
+        $this->container['name'] = $data['name'] ?? null;
+        $this->container['read_only'] = $data['read_only'] ?? null;
     }
 
     /**

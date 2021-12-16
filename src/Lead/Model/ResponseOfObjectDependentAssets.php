@@ -162,11 +162,11 @@ class ResponseOfObjectDependentAssets implements ModelInterface, ArrayAccess, \J
      */
     public function __construct(array $data = null)
     {
-        $this->container['errors'] = isset($data['errors']) ? $data['errors'] : null;
-        $this->container['request_id'] = isset($data['request_id']) ? $data['request_id'] : null;
-        $this->container['result'] = isset($data['result']) ? $data['result'] : null;
-        $this->container['success'] = isset($data['success']) ? $data['success'] : null;
-        $this->container['warnings'] = isset($data['warnings']) ? $data['warnings'] : null;
+        $this->container['errors'] = $data['errors'] ?? null;
+        $this->container['request_id'] = $data['request_id'] ?? null;
+        $this->container['result'] = $data['result'] ?? null;
+        $this->container['success'] = $data['success'] ?? null;
+        $this->container['warnings'] = $data['warnings'] ?? null;
     }
 
     /**

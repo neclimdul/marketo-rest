@@ -155,9 +155,9 @@ class SyncCustomObjectRequest implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function __construct(array $data = null)
     {
-        $this->container['action'] = isset($data['action']) ? $data['action'] : null;
-        $this->container['dedupe_by'] = isset($data['dedupe_by']) ? $data['dedupe_by'] : null;
-        $this->container['input'] = isset($data['input']) ? $data['input'] : null;
+        $this->container['action'] = $data['action'] ?? null;
+        $this->container['dedupe_by'] = $data['dedupe_by'] ?? null;
+        $this->container['input'] = $data['input'] ?? null;
     }
 
     /**

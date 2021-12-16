@@ -147,8 +147,8 @@ class DateRange implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['end_at'] = isset($data['end_at']) ? $data['end_at'] : null;
-        $this->container['start_at'] = isset($data['start_at']) ? $data['start_at'] : null;
+        $this->container['end_at'] = $data['end_at'] ?? null;
+        $this->container['start_at'] = $data['start_at'] ?? null;
     }
 
     /**

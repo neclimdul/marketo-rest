@@ -167,12 +167,12 @@ class ChannelProgression implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function __construct(array $data = null)
     {
-        $this->container['description'] = isset($data['description']) ? $data['description'] : null;
-        $this->container['hidden'] = isset($data['hidden']) ? $data['hidden'] : null;
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['type'] = isset($data['type']) ? $data['type'] : null;
-        $this->container['step'] = isset($data['step']) ? $data['step'] : null;
-        $this->container['success'] = isset($data['success']) ? $data['success'] : null;
+        $this->container['description'] = $data['description'] ?? null;
+        $this->container['hidden'] = $data['hidden'] ?? null;
+        $this->container['name'] = $data['name'] ?? null;
+        $this->container['type'] = $data['type'] ?? null;
+        $this->container['step'] = $data['step'] ?? null;
+        $this->container['success'] = $data['success'] ?? null;
     }
 
     /**

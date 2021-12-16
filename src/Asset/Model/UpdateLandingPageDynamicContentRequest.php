@@ -222,23 +222,23 @@ class UpdateLandingPageDynamicContentRequest implements ModelInterface, ArrayAcc
      */
     public function __construct(array $data = null)
     {
-        $this->container['background_color'] = isset($data['background_color']) ? $data['background_color'] : null;
-        $this->container['border_color'] = isset($data['border_color']) ? $data['border_color'] : null;
-        $this->container['border_style'] = isset($data['border_style']) ? $data['border_style'] : null;
-        $this->container['border_width'] = isset($data['border_width']) ? $data['border_width'] : null;
-        $this->container['height'] = isset($data['height']) ? $data['height'] : null;
-        $this->container['hide_desktop'] = isset($data['hide_desktop']) ? $data['hide_desktop'] : null;
-        $this->container['hide_mobile'] = isset($data['hide_mobile']) ? $data['hide_mobile'] : null;
-        $this->container['image_open_new_window'] = isset($data['image_open_new_window']) ? $data['image_open_new_window'] : null;
-        $this->container['left'] = isset($data['left']) ? $data['left'] : null;
-        $this->container['link_url'] = isset($data['link_url']) ? $data['link_url'] : null;
-        $this->container['opacity'] = isset($data['opacity']) ? $data['opacity'] : null;
-        $this->container['segment'] = isset($data['segment']) ? $data['segment'] : null;
-        $this->container['top'] = isset($data['top']) ? $data['top'] : null;
-        $this->container['type'] = isset($data['type']) ? $data['type'] : null;
-        $this->container['value'] = isset($data['value']) ? $data['value'] : null;
-        $this->container['width'] = isset($data['width']) ? $data['width'] : null;
-        $this->container['z_index'] = isset($data['z_index']) ? $data['z_index'] : null;
+        $this->container['background_color'] = $data['background_color'] ?? null;
+        $this->container['border_color'] = $data['border_color'] ?? null;
+        $this->container['border_style'] = $data['border_style'] ?? null;
+        $this->container['border_width'] = $data['border_width'] ?? null;
+        $this->container['height'] = $data['height'] ?? null;
+        $this->container['hide_desktop'] = $data['hide_desktop'] ?? null;
+        $this->container['hide_mobile'] = $data['hide_mobile'] ?? null;
+        $this->container['image_open_new_window'] = $data['image_open_new_window'] ?? null;
+        $this->container['left'] = $data['left'] ?? null;
+        $this->container['link_url'] = $data['link_url'] ?? null;
+        $this->container['opacity'] = $data['opacity'] ?? null;
+        $this->container['segment'] = $data['segment'] ?? null;
+        $this->container['top'] = $data['top'] ?? null;
+        $this->container['type'] = $data['type'] ?? null;
+        $this->container['value'] = $data['value'] ?? null;
+        $this->container['width'] = $data['width'] ?? null;
+        $this->container['z_index'] = $data['z_index'] ?? null;
     }
 
     /**

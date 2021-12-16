@@ -163,11 +163,11 @@ class SmartListConditions implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function __construct(array $data = null)
     {
-        $this->container['activity_attribute_id'] = isset($data['activity_attribute_id']) ? $data['activity_attribute_id'] : null;
-        $this->container['activity_attribute_name'] = isset($data['activity_attribute_name']) ? $data['activity_attribute_name'] : null;
-        $this->container['operator'] = isset($data['operator']) ? $data['operator'] : null;
-        $this->container['values'] = isset($data['values']) ? $data['values'] : null;
-        $this->container['is_primary'] = isset($data['is_primary']) ? $data['is_primary'] : null;
+        $this->container['activity_attribute_id'] = $data['activity_attribute_id'] ?? null;
+        $this->container['activity_attribute_name'] = $data['activity_attribute_name'] ?? null;
+        $this->container['operator'] = $data['operator'] ?? null;
+        $this->container['values'] = $data['values'] ?? null;
+        $this->container['is_primary'] = $data['is_primary'] ?? null;
     }
 
     /**

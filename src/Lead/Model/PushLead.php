@@ -153,9 +153,9 @@ class PushLead implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
-        $this->container['reason'] = isset($data['reason']) ? $data['reason'] : null;
-        $this->container['status'] = isset($data['status']) ? $data['status'] : null;
+        $this->container['id'] = $data['id'] ?? null;
+        $this->container['reason'] = $data['reason'] ?? null;
+        $this->container['status'] = $data['status'] ?? null;
     }
 
     /**

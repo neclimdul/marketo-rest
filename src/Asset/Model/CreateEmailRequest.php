@@ -187,16 +187,16 @@ class CreateEmailRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function __construct(array $data = null)
     {
-        $this->container['description'] = isset($data['description']) ? $data['description'] : null;
-        $this->container['folder'] = isset($data['folder']) ? $data['folder'] : null;
-        $this->container['from_email'] = isset($data['from_email']) ? $data['from_email'] : null;
-        $this->container['from_name'] = isset($data['from_name']) ? $data['from_name'] : null;
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['operational'] = isset($data['operational']) ? $data['operational'] : null;
-        $this->container['reply_email'] = isset($data['reply_email']) ? $data['reply_email'] : null;
-        $this->container['subject'] = isset($data['subject']) ? $data['subject'] : null;
-        $this->container['template'] = isset($data['template']) ? $data['template'] : null;
-        $this->container['text_only'] = isset($data['text_only']) ? $data['text_only'] : null;
+        $this->container['description'] = $data['description'] ?? null;
+        $this->container['folder'] = $data['folder'] ?? null;
+        $this->container['from_email'] = $data['from_email'] ?? null;
+        $this->container['from_name'] = $data['from_name'] ?? null;
+        $this->container['name'] = $data['name'] ?? null;
+        $this->container['operational'] = $data['operational'] ?? null;
+        $this->container['reply_email'] = $data['reply_email'] ?? null;
+        $this->container['subject'] = $data['subject'] ?? null;
+        $this->container['template'] = $data['template'] ?? null;
+        $this->container['text_only'] = $data['text_only'] ?? null;
     }
 
     /**

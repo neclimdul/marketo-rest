@@ -157,10 +157,10 @@ class ExportCustomObjectFilter implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function __construct(array $data = null)
     {
-        $this->container['smart_list_id'] = isset($data['smart_list_id']) ? $data['smart_list_id'] : null;
-        $this->container['smart_list_name'] = isset($data['smart_list_name']) ? $data['smart_list_name'] : null;
-        $this->container['static_list_id'] = isset($data['static_list_id']) ? $data['static_list_id'] : null;
-        $this->container['static_list_name'] = isset($data['static_list_name']) ? $data['static_list_name'] : null;
+        $this->container['smart_list_id'] = $data['smart_list_id'] ?? null;
+        $this->container['smart_list_name'] = $data['smart_list_name'] ?? null;
+        $this->container['static_list_id'] = $data['static_list_id'] ?? null;
+        $this->container['static_list_name'] = $data['static_list_name'] ?? null;
     }
 
     /**

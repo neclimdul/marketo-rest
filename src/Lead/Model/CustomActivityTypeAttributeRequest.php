@@ -142,7 +142,7 @@ class CustomActivityTypeAttributeRequest implements ModelInterface, ArrayAccess,
      */
     public function __construct(array $data = null)
     {
-        $this->container['attributes'] = isset($data['attributes']) ? $data['attributes'] : null;
+        $this->container['attributes'] = $data['attributes'] ?? null;
     }
 
     /**

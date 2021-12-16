@@ -166,11 +166,11 @@ class SyncLeadRequest implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['action'] = isset($data['action']) ? $data['action'] : null;
-        $this->container['async_processing'] = isset($data['async_processing']) ? $data['async_processing'] : null;
-        $this->container['input'] = isset($data['input']) ? $data['input'] : null;
-        $this->container['lookup_field'] = isset($data['lookup_field']) ? $data['lookup_field'] : null;
-        $this->container['partition_name'] = isset($data['partition_name']) ? $data['partition_name'] : null;
+        $this->container['action'] = $data['action'] ?? null;
+        $this->container['async_processing'] = $data['async_processing'] ?? null;
+        $this->container['input'] = $data['input'] ?? null;
+        $this->container['lookup_field'] = $data['lookup_field'] ?? null;
+        $this->container['partition_name'] = $data['partition_name'] ?? null;
     }
 
     /**

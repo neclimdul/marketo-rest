@@ -147,8 +147,8 @@ class Tags implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['tag_type'] = isset($data['tag_type']) ? $data['tag_type'] : null;
-        $this->container['tag_value'] = isset($data['tag_value']) ? $data['tag_value'] : null;
+        $this->container['tag_type'] = $data['tag_type'] ?? null;
+        $this->container['tag_value'] = $data['tag_value'] ?? null;
     }
 
     /**

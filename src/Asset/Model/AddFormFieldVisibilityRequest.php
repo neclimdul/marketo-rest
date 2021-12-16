@@ -142,7 +142,7 @@ class AddFormFieldVisibilityRequest implements ModelInterface, ArrayAccess, \Jso
      */
     public function __construct(array $data = null)
     {
-        $this->container['visibility_rule'] = isset($data['visibility_rule']) ? $data['visibility_rule'] : null;
+        $this->container['visibility_rule'] = $data['visibility_rule'] ?? null;
     }
 
     /**

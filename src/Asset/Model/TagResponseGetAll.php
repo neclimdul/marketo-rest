@@ -152,9 +152,9 @@ class TagResponseGetAll implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function __construct(array $data = null)
     {
-        $this->container['applicable_program_types'] = isset($data['applicable_program_types']) ? $data['applicable_program_types'] : null;
-        $this->container['required'] = isset($data['required']) ? $data['required'] : null;
-        $this->container['tag_type'] = isset($data['tag_type']) ? $data['tag_type'] : null;
+        $this->container['applicable_program_types'] = $data['applicable_program_types'] ?? null;
+        $this->container['required'] = $data['required'] ?? null;
+        $this->container['tag_type'] = $data['tag_type'] ?? null;
     }
 
     /**

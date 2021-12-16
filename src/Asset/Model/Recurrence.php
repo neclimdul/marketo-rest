@@ -192,15 +192,15 @@ class Recurrence implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['start_at'] = isset($data['start_at']) ? $data['start_at'] : null;
-        $this->container['end_at'] = isset($data['end_at']) ? $data['end_at'] : null;
-        $this->container['interval_type'] = isset($data['interval_type']) ? $data['interval_type'] : null;
-        $this->container['interval'] = isset($data['interval']) ? $data['interval'] : null;
-        $this->container['weekday_only'] = isset($data['weekday_only']) ? $data['weekday_only'] : null;
-        $this->container['weekday_mask'] = isset($data['weekday_mask']) ? $data['weekday_mask'] : null;
-        $this->container['day_of_month'] = isset($data['day_of_month']) ? $data['day_of_month'] : null;
-        $this->container['day_of_week'] = isset($data['day_of_week']) ? $data['day_of_week'] : null;
-        $this->container['week_of_month'] = isset($data['week_of_month']) ? $data['week_of_month'] : null;
+        $this->container['start_at'] = $data['start_at'] ?? null;
+        $this->container['end_at'] = $data['end_at'] ?? null;
+        $this->container['interval_type'] = $data['interval_type'] ?? null;
+        $this->container['interval'] = $data['interval'] ?? null;
+        $this->container['weekday_only'] = $data['weekday_only'] ?? null;
+        $this->container['weekday_mask'] = $data['weekday_mask'] ?? null;
+        $this->container['day_of_month'] = $data['day_of_month'] ?? null;
+        $this->container['day_of_week'] = $data['day_of_week'] ?? null;
+        $this->container['week_of_month'] = $data['week_of_month'] ?? null;
     }
 
     /**

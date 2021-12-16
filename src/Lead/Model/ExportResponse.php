@@ -193,17 +193,17 @@ class ExportResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['created_at'] = isset($data['created_at']) ? $data['created_at'] : null;
-        $this->container['error_msg'] = isset($data['error_msg']) ? $data['error_msg'] : null;
-        $this->container['export_id'] = isset($data['export_id']) ? $data['export_id'] : null;
-        $this->container['file_size'] = isset($data['file_size']) ? $data['file_size'] : null;
-        $this->container['file_checksum'] = isset($data['file_checksum']) ? $data['file_checksum'] : null;
-        $this->container['finished_at'] = isset($data['finished_at']) ? $data['finished_at'] : null;
-        $this->container['format'] = isset($data['format']) ? $data['format'] : null;
-        $this->container['number_of_records'] = isset($data['number_of_records']) ? $data['number_of_records'] : null;
-        $this->container['queued_at'] = isset($data['queued_at']) ? $data['queued_at'] : null;
-        $this->container['started_at'] = isset($data['started_at']) ? $data['started_at'] : null;
-        $this->container['status'] = isset($data['status']) ? $data['status'] : null;
+        $this->container['created_at'] = $data['created_at'] ?? null;
+        $this->container['error_msg'] = $data['error_msg'] ?? null;
+        $this->container['export_id'] = $data['export_id'] ?? null;
+        $this->container['file_size'] = $data['file_size'] ?? null;
+        $this->container['file_checksum'] = $data['file_checksum'] ?? null;
+        $this->container['finished_at'] = $data['finished_at'] ?? null;
+        $this->container['format'] = $data['format'] ?? null;
+        $this->container['number_of_records'] = $data['number_of_records'] ?? null;
+        $this->container['queued_at'] = $data['queued_at'] ?? null;
+        $this->container['started_at'] = $data['started_at'] ?? null;
+        $this->container['status'] = $data['status'] ?? null;
     }
 
     /**

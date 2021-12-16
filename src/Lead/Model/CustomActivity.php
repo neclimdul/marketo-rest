@@ -193,16 +193,16 @@ class CustomActivity implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['activity_date'] = isset($data['activity_date']) ? $data['activity_date'] : null;
-        $this->container['activity_type_id'] = isset($data['activity_type_id']) ? $data['activity_type_id'] : null;
-        $this->container['api_name'] = isset($data['api_name']) ? $data['api_name'] : null;
-        $this->container['attributes'] = isset($data['attributes']) ? $data['attributes'] : null;
-        $this->container['errors'] = isset($data['errors']) ? $data['errors'] : null;
-        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
-        $this->container['lead_id'] = isset($data['lead_id']) ? $data['lead_id'] : null;
-        $this->container['marketo_guid'] = isset($data['marketo_guid']) ? $data['marketo_guid'] : null;
-        $this->container['primary_attribute_value'] = isset($data['primary_attribute_value']) ? $data['primary_attribute_value'] : null;
-        $this->container['status'] = isset($data['status']) ? $data['status'] : null;
+        $this->container['activity_date'] = $data['activity_date'] ?? null;
+        $this->container['activity_type_id'] = $data['activity_type_id'] ?? null;
+        $this->container['api_name'] = $data['api_name'] ?? null;
+        $this->container['attributes'] = $data['attributes'] ?? null;
+        $this->container['errors'] = $data['errors'] ?? null;
+        $this->container['id'] = $data['id'] ?? null;
+        $this->container['lead_id'] = $data['lead_id'] ?? null;
+        $this->container['marketo_guid'] = $data['marketo_guid'] ?? null;
+        $this->container['primary_attribute_value'] = $data['primary_attribute_value'] ?? null;
+        $this->container['status'] = $data['status'] ?? null;
     }
 
     /**

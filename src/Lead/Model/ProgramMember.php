@@ -168,12 +168,12 @@ class ProgramMember implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['seq'] = isset($data['seq']) ? $data['seq'] : null;
-        $this->container['lead_id'] = isset($data['lead_id']) ? $data['lead_id'] : null;
-        $this->container['reached_success'] = isset($data['reached_success']) ? $data['reached_success'] : null;
-        $this->container['program_id'] = isset($data['program_id']) ? $data['program_id'] : null;
-        $this->container['acquired_by'] = isset($data['acquired_by']) ? $data['acquired_by'] : null;
-        $this->container['membership_date'] = isset($data['membership_date']) ? $data['membership_date'] : null;
+        $this->container['seq'] = $data['seq'] ?? null;
+        $this->container['lead_id'] = $data['lead_id'] ?? null;
+        $this->container['reached_success'] = $data['reached_success'] ?? null;
+        $this->container['program_id'] = $data['program_id'] ?? null;
+        $this->container['acquired_by'] = $data['acquired_by'] ?? null;
+        $this->container['membership_date'] = $data['membership_date'] ?? null;
     }
 
     /**

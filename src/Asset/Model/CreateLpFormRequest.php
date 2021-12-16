@@ -192,17 +192,17 @@ class CreateLpFormRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function __construct(array $data = null)
     {
-        $this->container['description'] = isset($data['description']) ? $data['description'] : null;
-        $this->container['folder'] = isset($data['folder']) ? $data['folder'] : null;
-        $this->container['font_family'] = isset($data['font_family']) ? $data['font_family'] : null;
-        $this->container['font_size'] = isset($data['font_size']) ? $data['font_size'] : null;
-        $this->container['known_visitor'] = isset($data['known_visitor']) ? $data['known_visitor'] : null;
-        $this->container['label_position'] = isset($data['label_position']) ? $data['label_position'] : null;
-        $this->container['language'] = isset($data['language']) ? $data['language'] : null;
-        $this->container['locale'] = isset($data['locale']) ? $data['locale'] : null;
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['progressive_profiling'] = isset($data['progressive_profiling']) ? $data['progressive_profiling'] : null;
-        $this->container['theme'] = isset($data['theme']) ? $data['theme'] : null;
+        $this->container['description'] = $data['description'] ?? null;
+        $this->container['folder'] = $data['folder'] ?? null;
+        $this->container['font_family'] = $data['font_family'] ?? null;
+        $this->container['font_size'] = $data['font_size'] ?? null;
+        $this->container['known_visitor'] = $data['known_visitor'] ?? null;
+        $this->container['label_position'] = $data['label_position'] ?? null;
+        $this->container['language'] = $data['language'] ?? null;
+        $this->container['locale'] = $data['locale'] ?? null;
+        $this->container['name'] = $data['name'] ?? null;
+        $this->container['progressive_profiling'] = $data['progressive_profiling'] ?? null;
+        $this->container['theme'] = $data['theme'] ?? null;
     }
 
     /**

@@ -142,7 +142,7 @@ class UpdateEmailFullContentRequest implements ModelInterface, ArrayAccess, \Jso
      */
     public function __construct(array $data = null)
     {
-        $this->container['content'] = isset($data['content']) ? $data['content'] : null;
+        $this->container['content'] = $data['content'] ?? null;
     }
 
     /**

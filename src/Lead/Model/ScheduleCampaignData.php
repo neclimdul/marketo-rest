@@ -152,9 +152,9 @@ class ScheduleCampaignData implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function __construct(array $data = null)
     {
-        $this->container['clone_to_program_name'] = isset($data['clone_to_program_name']) ? $data['clone_to_program_name'] : null;
-        $this->container['run_at'] = isset($data['run_at']) ? $data['run_at'] : null;
-        $this->container['tokens'] = isset($data['tokens']) ? $data['tokens'] : null;
+        $this->container['clone_to_program_name'] = $data['clone_to_program_name'] ?? null;
+        $this->container['run_at'] = $data['run_at'] ?? null;
+        $this->container['tokens'] = $data['tokens'] ?? null;
     }
 
     /**

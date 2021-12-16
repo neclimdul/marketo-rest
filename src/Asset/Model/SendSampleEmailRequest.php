@@ -152,9 +152,9 @@ class SendSampleEmailRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function __construct(array $data = null)
     {
-        $this->container['email_address'] = isset($data['email_address']) ? $data['email_address'] : null;
-        $this->container['lead_id'] = isset($data['lead_id']) ? $data['lead_id'] : null;
-        $this->container['text_only'] = isset($data['text_only']) ? $data['text_only'] : null;
+        $this->container['email_address'] = $data['email_address'] ?? null;
+        $this->container['lead_id'] = $data['lead_id'] ?? null;
+        $this->container['text_only'] = $data['text_only'] ?? null;
     }
 
     /**

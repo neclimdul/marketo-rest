@@ -152,9 +152,9 @@ class GetFilesRequest implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['folder'] = isset($data['folder']) ? $data['folder'] : null;
-        $this->container['max_return'] = isset($data['max_return']) ? $data['max_return'] : null;
-        $this->container['offset'] = isset($data['offset']) ? $data['offset'] : null;
+        $this->container['folder'] = $data['folder'] ?? null;
+        $this->container['max_return'] = $data['max_return'] ?? null;
+        $this->container['offset'] = $data['offset'] ?? null;
     }
 
     /**

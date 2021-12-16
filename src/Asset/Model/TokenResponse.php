@@ -147,8 +147,8 @@ class TokenResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['folder'] = isset($data['folder']) ? $data['folder'] : null;
-        $this->container['tokens'] = isset($data['tokens']) ? $data['tokens'] : null;
+        $this->container['folder'] = $data['folder'] ?? null;
+        $this->container['tokens'] = $data['tokens'] ?? null;
     }
 
     /**

@@ -172,13 +172,13 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function __construct(array $data = null)
     {
-        $this->container['input'] = isset($data['input']) ? $data['input'] : null;
-        $this->container['lookup_field'] = isset($data['lookup_field']) ? $data['lookup_field'] : null;
-        $this->container['partition_name'] = isset($data['partition_name']) ? $data['partition_name'] : null;
-        $this->container['program_name'] = isset($data['program_name']) ? $data['program_name'] : null;
-        $this->container['program_status'] = isset($data['program_status']) ? $data['program_status'] : null;
-        $this->container['reason'] = isset($data['reason']) ? $data['reason'] : null;
-        $this->container['source'] = isset($data['source']) ? $data['source'] : null;
+        $this->container['input'] = $data['input'] ?? null;
+        $this->container['lookup_field'] = $data['lookup_field'] ?? null;
+        $this->container['partition_name'] = $data['partition_name'] ?? null;
+        $this->container['program_name'] = $data['program_name'] ?? null;
+        $this->container['program_status'] = $data['program_status'] ?? null;
+        $this->container['reason'] = $data['reason'] ?? null;
+        $this->container['source'] = $data['source'] ?? null;
     }
 
     /**

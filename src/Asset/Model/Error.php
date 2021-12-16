@@ -147,8 +147,8 @@ class Error implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['code'] = isset($data['code']) ? $data['code'] : null;
-        $this->container['message'] = isset($data['message']) ? $data['message'] : null;
+        $this->container['code'] = $data['code'] ?? null;
+        $this->container['message'] = $data['message'] ?? null;
     }
 
     /**

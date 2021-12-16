@@ -153,9 +153,9 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['external_company_id'] = isset($data['external_company_id']) ? $data['external_company_id'] : null;
-        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
-        $this->container['company'] = isset($data['company']) ? $data['company'] : null;
+        $this->container['external_company_id'] = $data['external_company_id'] ?? null;
+        $this->container['id'] = $data['id'] ?? null;
+        $this->container['company'] = $data['company'] ?? null;
     }
 
     /**

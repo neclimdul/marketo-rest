@@ -152,9 +152,9 @@ class ObjectRelation implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['field'] = isset($data['field']) ? $data['field'] : null;
-        $this->container['related_to'] = isset($data['related_to']) ? $data['related_to'] : null;
-        $this->container['type'] = isset($data['type']) ? $data['type'] : null;
+        $this->container['field'] = $data['field'] ?? null;
+        $this->container['related_to'] = $data['related_to'] ?? null;
+        $this->container['type'] = $data['type'] ?? null;
     }
 
     /**
