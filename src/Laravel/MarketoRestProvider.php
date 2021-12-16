@@ -30,6 +30,7 @@ use NecLimDul\MarketoRest\Identity\Api\IdentityApi;
 use NecLimDul\MarketoRest\Identity\Configuration as IdentityConfiguration;
 use NecLimDul\MarketoRest\Lead\Api\ActivitiesApi;
 use NecLimDul\MarketoRest\Lead\Api\BulkExportActivitiesApi;
+use NecLimDul\MarketoRest\Lead\Api\BulkExportCustomObjectsApi;
 use NecLimDul\MarketoRest\Lead\Api\BulkExportLeadsApi;
 use NecLimDul\MarketoRest\Lead\Api\BulkExportProgramMembersApi;
 use NecLimDul\MarketoRest\Lead\Api\BulkImportCustomObjectsApi;
@@ -42,6 +43,7 @@ use NecLimDul\MarketoRest\Lead\Api\LeadsApi;
 use NecLimDul\MarketoRest\Lead\Api\NamedAccountListsApi;
 use NecLimDul\MarketoRest\Lead\Api\NamedAccountsApi;
 use NecLimDul\MarketoRest\Lead\Api\OpportunitiesApi;
+use NecLimDul\MarketoRest\Lead\Api\ProgramMembersApi;
 use NecLimDul\MarketoRest\Lead\Api\SalesPersonsApi;
 use NecLimDul\MarketoRest\Lead\Api\StaticListsApi as LeadStaticListsApi;
 use NecLimDul\MarketoRest\Lead\Api\UsageApi;
@@ -125,6 +127,7 @@ class MarketoRestProvider extends ServiceProvider
         $config->setHost($system_config['marketo_rest.baseUrl']);
         $this->registerSingleton(ActivitiesApi::class, $oauthClient, $config);
         $this->registerSingleton(BulkExportActivitiesApi::class, $oauthClient, $config);
+        $this->registerSingleton(BulkExportCustomObjectsApi::class, $oauthClient, $config);
         $this->registerSingleton(BulkExportLeadsApi::class, $oauthClient, $config);
         $this->registerSingleton(BulkExportProgramMembersApi::class, $oauthClient, $config);
         $this->registerSingleton(BulkImportCustomObjectsApi::class, $oauthClient, $config);
@@ -137,6 +140,7 @@ class MarketoRestProvider extends ServiceProvider
         $this->registerSingleton(NamedAccountListsApi::class, $oauthClient, $config);
         $this->registerSingleton(NamedAccountsApi::class, $oauthClient, $config);
         $this->registerSingleton(OpportunitiesApi::class, $oauthClient, $config);
+        $this->registerSingleton(ProgramMembersApi::class, $oauthClient, $config);
         $this->registerSingleton(SalesPersonsApi::class, $oauthClient, $config);
         $this->registerSingleton(LeadStaticListsApi::class, $oauthClient, $config);
         $this->registerSingleton(UsageApi::class, $oauthClient, $config);
@@ -176,6 +180,7 @@ class MarketoRestProvider extends ServiceProvider
             // Lead APIs
             ActivitiesApi::class,
             BulkExportActivitiesApi::class,
+            BulkExportCustomObjectsApi::class,
             BulkExportLeadsApi::class,
             BulkExportProgramMembersApi::class,
             BulkImportCustomObjectsApi::class,
@@ -188,6 +193,7 @@ class MarketoRestProvider extends ServiceProvider
             NamedAccountListsApi::class,
             NamedAccountsApi::class,
             OpportunitiesApi::class,
+            ProgramMembersApi::class,
             SalesPersonsApi::class,
             LeadStaticListsApi::class,
             UsageApi::class,
