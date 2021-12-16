@@ -62,7 +62,8 @@ class UpdateLeadField implements ModelInterface, ArrayAccess, \JsonSerializable
         'display_name' => 'string',
         'description' => 'string',
         'is_hidden' => 'bool',
-        'is_html_encoding_in_email' => 'bool'
+        'is_html_encoding_in_email' => 'bool',
+        'is_sensitive' => 'bool'
     ];
 
     /**
@@ -76,7 +77,8 @@ class UpdateLeadField implements ModelInterface, ArrayAccess, \JsonSerializable
         'display_name' => null,
         'description' => null,
         'is_hidden' => null,
-        'is_html_encoding_in_email' => null
+        'is_html_encoding_in_email' => null,
+        'is_sensitive' => null
     ];
 
     /**
@@ -114,7 +116,8 @@ class UpdateLeadField implements ModelInterface, ArrayAccess, \JsonSerializable
         'display_name' => 'displayName',
         'description' => 'description',
         'is_hidden' => 'isHidden',
-        'is_html_encoding_in_email' => 'isHtmlEncodingInEmail'
+        'is_html_encoding_in_email' => 'isHtmlEncodingInEmail',
+        'is_sensitive' => 'isSensitive'
     ];
 
     /**
@@ -126,7 +129,8 @@ class UpdateLeadField implements ModelInterface, ArrayAccess, \JsonSerializable
         'display_name' => 'setDisplayName',
         'description' => 'setDescription',
         'is_hidden' => 'setIsHidden',
-        'is_html_encoding_in_email' => 'setIsHtmlEncodingInEmail'
+        'is_html_encoding_in_email' => 'setIsHtmlEncodingInEmail',
+        'is_sensitive' => 'setIsSensitive'
     ];
 
     /**
@@ -138,7 +142,8 @@ class UpdateLeadField implements ModelInterface, ArrayAccess, \JsonSerializable
         'display_name' => 'getDisplayName',
         'description' => 'getDescription',
         'is_hidden' => 'getIsHidden',
-        'is_html_encoding_in_email' => 'getIsHtmlEncodingInEmail'
+        'is_html_encoding_in_email' => 'getIsHtmlEncodingInEmail',
+        'is_sensitive' => 'getIsSensitive'
     ];
 
     
@@ -162,6 +167,7 @@ class UpdateLeadField implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['description'] = isset($data['description']) ? $data['description'] : null;
         $this->container['is_hidden'] = isset($data['is_hidden']) ? $data['is_hidden'] : null;
         $this->container['is_html_encoding_in_email'] = isset($data['is_html_encoding_in_email']) ? $data['is_html_encoding_in_email'] : null;
+        $this->container['is_sensitive'] = isset($data['is_sensitive']) ? $data['is_sensitive'] : null;
     }
 
     /**
@@ -307,6 +313,30 @@ class UpdateLeadField implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setIsHtmlEncodingInEmail($is_html_encoding_in_email)
     {
         $this->container['is_html_encoding_in_email'] = $is_html_encoding_in_email;
+
+        return $this;
+    }
+
+    /**
+     * Gets is_sensitive
+     *
+     * @return bool
+     */
+    public function getIsSensitive()
+    {
+        return $this->container['is_sensitive'];
+    }
+
+    /**
+     * Sets is_sensitive
+     *
+     * @param bool $is_sensitive If set to true, field is marked as sensitive.  Default is false
+     *
+     * @return self
+     */
+    public function setIsSensitive($is_sensitive)
+    {
+        $this->container['is_sensitive'] = $is_sensitive;
 
         return $this;
     }

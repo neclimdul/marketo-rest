@@ -103,4 +103,13 @@ class CreateLeadFieldTest extends TestCase
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "is_sensitive"
+     */
+    public function testPropertyIsSensitive()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
 }

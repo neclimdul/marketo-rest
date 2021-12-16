@@ -3650,7 +3650,7 @@ class EmailsApi
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfSendSampleResponse
      */
     public function sendSampleEmailUsingPOST($id, $send_sample_email_request)
     {
@@ -3668,7 +3668,7 @@ class EmailsApi
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfSendSampleResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function sendSampleEmailUsingPOSTWithHttpInfo($id, $send_sample_email_request)
     {
@@ -3679,10 +3679,10 @@ class EmailsApi
 
             switch ($response->getStatusCode()) {
                 case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSendSampleResponse');
             }
 
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
+            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSendSampleResponse');
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -3690,7 +3690,7 @@ class EmailsApi
                     $e->setResponseObject(
                         $this->deserializeResponseBody(
                             $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSendSampleResponse',
                             $e->getResponseHeaders()
                         )
                     );
@@ -3740,7 +3740,7 @@ class EmailsApi
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
                 function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSendSampleResponse');
                 },
                 function (RequestException $exception) {
                     $response = $exception->getResponse();

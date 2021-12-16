@@ -4,6 +4,11 @@
 
 This package provides a simple set of classes for interacting with Marketo's Rest API. Built using Swagger Codegen directly from Marketo's documentation.
 
+Notes on versioning. I will do my best to start providing some sort of semversion-ish tags to releases. Marketo doesn't really provide any such versioning and just makes changes seemingly at random so this is the plan.
+1) Any major language or drastic template changes will be accompanied by a major version release.
+2) I will do my best to watch for signature changes to methods and treat those as "minor" releases. This would probably be a normal major release but they are generally "bug fixes" to APIs.
+3) Any documentation or other smaller fixes will be minor releases.
+
 ## Install using composer
 
 

@@ -1010,7 +1010,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **sendSampleEmailUsingPOST**
-> \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse sendSampleEmailUsingPOST($id, $send_sample_email_request)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfSendSampleResponse sendSampleEmailUsingPOST($id, $send_sample_email_request)
 
 Send Sample Email
 
@@ -1047,7 +1047,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse**](../Model/ResponseOfIdResponse.md)
+[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfSendSampleResponse**](../Model/ResponseOfSendSampleResponse.md)
 
 ### Authorization
 

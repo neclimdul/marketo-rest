@@ -1,9 +1,9 @@
 <?php
 /**
- * SubmitFormRequest
+ * ResponseOfSendSampleResponse
  *
  * @category Class
- * @package  NecLimDul\MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -25,23 +25,23 @@
  * Do not edit the class manually.
  */
 
-namespace NecLimDul\MarketoRest\Lead\Model;
+namespace NecLimDul\MarketoRest\Asset\Model;
 
 use \ArrayAccess;
-use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
+use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
- * SubmitFormRequest Class Doc Comment
+ * ResponseOfSendSampleResponse Class Doc Comment
  *
  * @category Class
- * @package  NecLimDul\MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  * @implements \ArrayAccess<TKey, TValue>
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class SubmitFormRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class ResponseOfSendSampleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class SubmitFormRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
       *
       * @var string
       */
-    protected static $swaggerModelName = 'SubmitFormRequest';
+    protected static $swaggerModelName = 'ResponseOfSendSampleResponse';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,9 +58,11 @@ class SubmitFormRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'input' => '\NecLimDul\MarketoRest\Lead\Model\Form[]',
-        'form_id' => 'int',
-        'program_id' => 'int'
+        'errors' => '\NecLimDul\MarketoRest\Asset\Model\Error[]',
+        'request_id' => 'string',
+        'result' => '\NecLimDul\MarketoRest\Asset\Model\SendSampleResponse[]',
+        'success' => 'bool',
+        'warnings' => 'string[]'
     ];
 
     /**
@@ -71,9 +73,11 @@ class SubmitFormRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @psalm-var array<string, string|null>
       */
     protected static $swaggerFormats = [
-        'input' => null,
-        'form_id' => 'int32',
-        'program_id' => 'int32'
+        'errors' => null,
+        'request_id' => null,
+        'result' => null,
+        'success' => null,
+        'warnings' => null
     ];
 
     /**
@@ -108,9 +112,11 @@ class SubmitFormRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $attributeMap = [
-        'input' => 'input',
-        'form_id' => 'formId',
-        'program_id' => 'programId'
+        'errors' => 'errors',
+        'request_id' => 'requestId',
+        'result' => 'result',
+        'success' => 'success',
+        'warnings' => 'warnings'
     ];
 
     /**
@@ -119,9 +125,11 @@ class SubmitFormRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $setters = [
-        'input' => 'setInput',
-        'form_id' => 'setFormId',
-        'program_id' => 'setProgramId'
+        'errors' => 'setErrors',
+        'request_id' => 'setRequestId',
+        'result' => 'setResult',
+        'success' => 'setSuccess',
+        'warnings' => 'setWarnings'
     ];
 
     /**
@@ -130,9 +138,11 @@ class SubmitFormRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $getters = [
-        'input' => 'getInput',
-        'form_id' => 'getFormId',
-        'program_id' => 'getProgramId'
+        'errors' => 'getErrors',
+        'request_id' => 'getRequestId',
+        'result' => 'getResult',
+        'success' => 'getSuccess',
+        'warnings' => 'getWarnings'
     ];
 
     
@@ -152,9 +162,11 @@ class SubmitFormRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function __construct(array $data = null)
     {
-        $this->container['input'] = isset($data['input']) ? $data['input'] : null;
-        $this->container['form_id'] = isset($data['form_id']) ? $data['form_id'] : null;
-        $this->container['program_id'] = isset($data['program_id']) ? $data['program_id'] : null;
+        $this->container['errors'] = isset($data['errors']) ? $data['errors'] : null;
+        $this->container['request_id'] = isset($data['request_id']) ? $data['request_id'] : null;
+        $this->container['result'] = isset($data['result']) ? $data['result'] : null;
+        $this->container['success'] = isset($data['success']) ? $data['success'] : null;
+        $this->container['warnings'] = isset($data['warnings']) ? $data['warnings'] : null;
     }
 
     /**
@@ -196,12 +208,6 @@ class SubmitFormRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
     {
         $invalidProperties = [];
 
-        if ($this->container['input'] === null) {
-            $invalidProperties[] = "'input' can't be null";
-        }
-        if ($this->container['form_id'] === null) {
-            $invalidProperties[] = "'form_id' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -215,73 +221,121 @@ class SubmitFormRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
     
 
     /**
-     * Gets input
+     * Gets errors
      *
-     * @return \NecLimDul\MarketoRest\Lead\Model\Form[]
+     * @return \NecLimDul\MarketoRest\Asset\Model\Error[]
      */
-    public function getInput()
+    public function getErrors()
     {
-        return $this->container['input'];
+        return $this->container['errors'];
     }
 
     /**
-     * Sets input
+     * Sets errors
      *
-     * @param \NecLimDul\MarketoRest\Lead\Model\Form[] $input Single array item that contains form fields and visitor data to use during a form submittal
+     * @param \NecLimDul\MarketoRest\Asset\Model\Error[] $errors errors
      *
      * @return self
      */
-    public function setInput($input)
+    public function setErrors($errors)
     {
-        $this->container['input'] = $input;
+        $this->container['errors'] = $errors;
 
         return $this;
     }
 
     /**
-     * Gets form_id
+     * Gets request_id
      *
-     * @return int
+     * @return string
      */
-    public function getFormId()
+    public function getRequestId()
     {
-        return $this->container['form_id'];
+        return $this->container['request_id'];
     }
 
     /**
-     * Sets form_id
+     * Sets request_id
      *
-     * @param int $form_id Id of the form
+     * @param string $request_id request_id
      *
      * @return self
      */
-    public function setFormId($form_id)
+    public function setRequestId($request_id)
     {
-        $this->container['form_id'] = $form_id;
+        $this->container['request_id'] = $request_id;
 
         return $this;
     }
 
     /**
-     * Gets program_id
+     * Gets result
      *
-     * @return int
+     * @return \NecLimDul\MarketoRest\Asset\Model\SendSampleResponse[]
      */
-    public function getProgramId()
+    public function getResult()
     {
-        return $this->container['program_id'];
+        return $this->container['result'];
     }
 
     /**
-     * Sets program_id
+     * Sets result
      *
-     * @param int $program_id Id of the program to add lead and/or program member custom fields to
+     * @param \NecLimDul\MarketoRest\Asset\Model\SendSampleResponse[] $result result
      *
      * @return self
      */
-    public function setProgramId($program_id)
+    public function setResult($result)
     {
-        $this->container['program_id'] = $program_id;
+        $this->container['result'] = $result;
+
+        return $this;
+    }
+
+    /**
+     * Gets success
+     *
+     * @return bool
+     */
+    public function getSuccess()
+    {
+        return $this->container['success'];
+    }
+
+    /**
+     * Sets success
+     *
+     * @param bool $success success
+     *
+     * @return self
+     */
+    public function setSuccess($success)
+    {
+        $this->container['success'] = $success;
+
+        return $this;
+    }
+
+    /**
+     * Gets warnings
+     *
+     * @return string[]
+     */
+    public function getWarnings()
+    {
+        return $this->container['warnings'];
+    }
+
+    /**
+     * Sets warnings
+     *
+     * @param string[] $warnings warnings
+     *
+     * @return self
+     */
+    public function setWarnings($warnings)
+    {
+        $this->container['warnings'] = $warnings;
 
         return $this;
     }

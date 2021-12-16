@@ -1,9 +1,9 @@
 <?php
 /**
- * UpdateLeadFieldTest
+ * ResponseOfSendSampleResponseTest
  *
  * @category Class
- * @package  NecLimDul\MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -25,71 +25,71 @@
  * Please update the test case below to test the model.
  */
 
-namespace NecLimDul\MarketoRest\Lead\Test\Model;
+namespace NecLimDul\MarketoRest\Asset\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
 /**
- * UpdateLeadFieldTest Class Doc Comment
+ * ResponseOfSendSampleResponseTest Class Doc Comment
  *
  * @category    Class
- * @description Lead field record for update
- * @package     NecLimDul\MarketoRest\Lead
+ * @description ResponseOfSendSampleResponse
+ * @package     NecLimDul\MarketoRest\Asset
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class UpdateLeadFieldTest extends TestCase
+class ResponseOfSendSampleResponseTest extends TestCase
 {
 
     /**
-     * Test "UpdateLeadField"
+     * Test "ResponseOfSendSampleResponse"
      */
-    public function testUpdateLeadField()
+    public function testResponseOfSendSampleResponse()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "display_name"
+     * Test attribute "errors"
      */
-    public function testPropertyDisplayName()
+    public function testPropertyErrors()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "description"
+     * Test attribute "request_id"
      */
-    public function testPropertyDescription()
+    public function testPropertyRequestId()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "is_hidden"
+     * Test attribute "result"
      */
-    public function testPropertyIsHidden()
+    public function testPropertyResult()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "is_html_encoding_in_email"
+     * Test attribute "success"
      */
-    public function testPropertyIsHtmlEncodingInEmail()
+    public function testPropertySuccess()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "is_sensitive"
+     * Test attribute "warnings"
      */
-    public function testPropertyIsSensitive()
+    public function testPropertyWarnings()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

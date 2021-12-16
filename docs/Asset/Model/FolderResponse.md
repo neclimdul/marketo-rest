@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **created_at** | [**\DateTime**](\DateTime.md) | Datetime the folder was created | 
 **description** | **string** | Description of the folder | [optional] 
 **folder_id** | [**\NecLimDul\MarketoRest\Asset\Model\Folder**](Folder.md) | Id of the folder | 
-**folder_type** | **string** | Type of folder.  &#39;Folder&#39; or &#39;Program&#39; | 
+**folder_type** | **string** | Type of folder | 
 **id** | **int** | Id of the folder | 
 **is_archive** | **bool** | Archival status of the folder | 
 **is_system** | **bool** | Whether the folder is system-managed | [optional] 

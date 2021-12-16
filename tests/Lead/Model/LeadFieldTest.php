@@ -114,6 +114,15 @@ class LeadFieldTest extends TestCase
     }
 
     /**
+     * Test attribute "is_sensitive"
+     */
+    public function testPropertyIsSensitive()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "is_custom"
      */
     public function testPropertyIsCustom()

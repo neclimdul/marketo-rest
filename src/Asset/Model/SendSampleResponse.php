@@ -1,9 +1,9 @@
 <?php
 /**
- * SubmitFormRequest
+ * SendSampleResponse
  *
  * @category Class
- * @package  NecLimDul\MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -25,23 +25,23 @@
  * Do not edit the class manually.
  */
 
-namespace NecLimDul\MarketoRest\Lead\Model;
+namespace NecLimDul\MarketoRest\Asset\Model;
 
 use \ArrayAccess;
-use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
+use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
- * SubmitFormRequest Class Doc Comment
+ * SendSampleResponse Class Doc Comment
  *
  * @category Class
- * @package  NecLimDul\MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  * @implements \ArrayAccess<TKey, TValue>
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class SubmitFormRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class SendSampleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class SubmitFormRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
       *
       * @var string
       */
-    protected static $swaggerModelName = 'SubmitFormRequest';
+    protected static $swaggerModelName = 'SendSampleResponse';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,9 +58,8 @@ class SubmitFormRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'input' => '\NecLimDul\MarketoRest\Lead\Model\Form[]',
-        'form_id' => 'int',
-        'program_id' => 'int'
+        'service' => 'string',
+        'result' => 'bool'
     ];
 
     /**
@@ -71,9 +70,8 @@ class SubmitFormRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @psalm-var array<string, string|null>
       */
     protected static $swaggerFormats = [
-        'input' => null,
-        'form_id' => 'int32',
-        'program_id' => 'int32'
+        'service' => null,
+        'result' => null
     ];
 
     /**
@@ -108,9 +106,8 @@ class SubmitFormRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $attributeMap = [
-        'input' => 'input',
-        'form_id' => 'formId',
-        'program_id' => 'programId'
+        'service' => 'service',
+        'result' => 'result'
     ];
 
     /**
@@ -119,9 +116,8 @@ class SubmitFormRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $setters = [
-        'input' => 'setInput',
-        'form_id' => 'setFormId',
-        'program_id' => 'setProgramId'
+        'service' => 'setService',
+        'result' => 'setResult'
     ];
 
     /**
@@ -130,11 +126,11 @@ class SubmitFormRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $getters = [
-        'input' => 'getInput',
-        'form_id' => 'getFormId',
-        'program_id' => 'getProgramId'
+        'service' => 'getService',
+        'result' => 'getResult'
     ];
 
+    const SERVICE_SEND_TEST_EMAIL = 'sendTestEmail';
     
 
     /**
@@ -152,9 +148,8 @@ class SubmitFormRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function __construct(array $data = null)
     {
-        $this->container['input'] = isset($data['input']) ? $data['input'] : null;
-        $this->container['form_id'] = isset($data['form_id']) ? $data['form_id'] : null;
-        $this->container['program_id'] = isset($data['program_id']) ? $data['program_id'] : null;
+        $this->container['service'] = isset($data['service']) ? $data['service'] : null;
+        $this->container['result'] = isset($data['result']) ? $data['result'] : null;
     }
 
     /**
@@ -196,11 +191,20 @@ class SubmitFormRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
     {
         $invalidProperties = [];
 
-        if ($this->container['input'] === null) {
-            $invalidProperties[] = "'input' can't be null";
+        if ($this->container['service'] === null) {
+            $invalidProperties[] = "'service' can't be null";
         }
-        if ($this->container['form_id'] === null) {
-            $invalidProperties[] = "'form_id' can't be null";
+        $allowedValues = $this->getServiceAllowableValues();
+        if (!is_null($this->container['service']) && !in_array($this->container['service'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'service', must be one of '%s'",
+                $this->container['service'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        if ($this->container['result'] === null) {
+            $invalidProperties[] = "'result' can't be null";
         }
         return $invalidProperties;
     }
@@ -215,73 +219,72 @@ class SubmitFormRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
     
 
     /**
-     * Gets input
+     * Gets allowable values of the enum
      *
-     * @return \NecLimDul\MarketoRest\Lead\Model\Form[]
+     * @return string[]
      */
-    public function getInput()
+    public function getServiceAllowableValues()
     {
-        return $this->container['input'];
+        return [
+            self::SERVICE_SEND_TEST_EMAIL,
+        ];
+    }
+    
+
+    /**
+     * Gets service
+     *
+     * @return string
+     */
+    public function getService()
+    {
+        return $this->container['service'];
     }
 
     /**
-     * Sets input
+     * Sets service
      *
-     * @param \NecLimDul\MarketoRest\Lead\Model\Form[] $input Single array item that contains form fields and visitor data to use during a form submittal
+     * @param string $service API call name
      *
      * @return self
      */
-    public function setInput($input)
+    public function setService($service)
     {
-        $this->container['input'] = $input;
+        $allowedValues = $this->getServiceAllowableValues();
+        if (!in_array($service, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'service', must be one of '%s'",
+                    $service,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['service'] = $service;
 
         return $this;
     }
 
     /**
-     * Gets form_id
+     * Gets result
      *
-     * @return int
+     * @return bool
      */
-    public function getFormId()
+    public function getResult()
     {
-        return $this->container['form_id'];
+        return $this->container['result'];
     }
 
     /**
-     * Sets form_id
+     * Sets result
      *
-     * @param int $form_id Id of the form
+     * @param bool $result Whether call was successful
      *
      * @return self
      */
-    public function setFormId($form_id)
+    public function setResult($result)
     {
-        $this->container['form_id'] = $form_id;
-
-        return $this;
-    }
-
-    /**
-     * Gets program_id
-     *
-     * @return int
-     */
-    public function getProgramId()
-    {
-        return $this->container['program_id'];
-    }
-
-    /**
-     * Sets program_id
-     *
-     * @param int $program_id Id of the program to add lead and/or program member custom fields to
-     *
-     * @return self
-     */
-    public function setProgramId($program_id)
-    {
-        $this->container['program_id'] = $program_id;
+        $this->container['result'] = $result;
 
         return $this;
     }

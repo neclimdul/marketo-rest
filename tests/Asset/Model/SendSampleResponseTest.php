@@ -1,9 +1,9 @@
 <?php
 /**
- * SubmitFormRequestTest
+ * SendSampleResponseTest
  *
  * @category Class
- * @package  NecLimDul\MarketoRest\Lead
+ * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -25,53 +25,44 @@
  * Please update the test case below to test the model.
  */
 
-namespace NecLimDul\MarketoRest\Lead\Test\Model;
+namespace NecLimDul\MarketoRest\Asset\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
 /**
- * SubmitFormRequestTest Class Doc Comment
+ * SendSampleResponseTest Class Doc Comment
  *
  * @category    Class
- * @description SubmitFormRequest
- * @package     NecLimDul\MarketoRest\Lead
+ * @description SendSampleResponse
+ * @package     NecLimDul\MarketoRest\Asset
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class SubmitFormRequestTest extends TestCase
+class SendSampleResponseTest extends TestCase
 {
 
     /**
-     * Test "SubmitFormRequest"
+     * Test "SendSampleResponse"
      */
-    public function testSubmitFormRequest()
+    public function testSendSampleResponse()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "input"
+     * Test attribute "service"
      */
-    public function testPropertyInput()
+    public function testPropertyService()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "form_id"
+     * Test attribute "result"
      */
-    public function testPropertyFormId()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "program_id"
-     */
-    public function testPropertyProgramId()
+    public function testPropertyResult()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

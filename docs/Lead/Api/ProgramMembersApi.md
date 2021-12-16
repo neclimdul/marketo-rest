@@ -108,7 +108,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getProgramMembersUsingGET**
-> \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMember getProgramMembersUsingGET($program_id, $filter_type, $filter_values, $fields, $batch_size, $next_page_token)
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMember getProgramMembersUsingGET($program_id, $filter_type, $filter_values, $start_at, $end_at, $fields, $batch_size, $next_page_token)
 
 Get Program Members
 
@@ -125,14 +125,16 @@ $apiInstance = new NecLimDul\MarketoRest\Lead\Api\ProgramMembersApi(
     new GuzzleHttp\Client()
 );
 $program_id = 789; // int | The id of target program.
-$filter_type = "filter_type_example"; // string | The program member field to filter on.  Any custom field (string or integer types only) or any searchable field.  Searchable fields can be obtained via the <a href=\"/rest-api/endpoint-reference/lead-database-endpoint-reference/#/Leads/describeProgramMemberUsingGET2\">Describe Program Member</a> endpoint.
+$filter_type = "filter_type_example"; // string | The program member field to filter on.  Any custom field (string or integer types only), \"updatedAt\", or any searchable field.  Searchable fields can be obtained via the <a href=\"/rest-api/endpoint-reference/lead-database-endpoint-reference/#/Leads/describeProgramMemberUsingGET2\">Describe Program Member</a> endpoint.
 $filter_values = array("filter_values_example"); // string[] | A comma-separated list of values to filter on in the specified fields.
+$start_at = "start_at_example"; // string | When using filterType=updatedAt, the start of date range filter (ISO 8601-format)
+$end_at = "end_at_example"; // string | When using filterType=updatedAt, the end of date range filter (ISO 8601-format)
 $fields = array("fields_example"); // string[] | A comma-separated list of lead fields to return for each record.
 $batch_size = 56; // int | The batch size to return.  The max and default value is 300.
 $next_page_token = "next_page_token_example"; // string | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info.
 
 try {
-    $result = $apiInstance->getProgramMembersUsingGET($program_id, $filter_type, $filter_values, $fields, $batch_size, $next_page_token);
+    $result = $apiInstance->getProgramMembersUsingGET($program_id, $filter_type, $filter_values, $start_at, $end_at, $fields, $batch_size, $next_page_token);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ProgramMembersApi->getProgramMembersUsingGET: ', $e->getMessage(), PHP_EOL;
@@ -145,8 +147,10 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **program_id** | **int**| The id of target program. |
- **filter_type** | **string**| The program member field to filter on.  Any custom field (string or integer types only) or any searchable field.  Searchable fields can be obtained via the &lt;a href&#x3D;\&quot;/rest-api/endpoint-reference/lead-database-endpoint-reference/#/Leads/describeProgramMemberUsingGET2\&quot;&gt;Describe Program Member&lt;/a&gt; endpoint. |
+ **filter_type** | **string**| The program member field to filter on.  Any custom field (string or integer types only), \&quot;updatedAt\&quot;, or any searchable field.  Searchable fields can be obtained via the &lt;a href&#x3D;\&quot;/rest-api/endpoint-reference/lead-database-endpoint-reference/#/Leads/describeProgramMemberUsingGET2\&quot;&gt;Describe Program Member&lt;/a&gt; endpoint. |
  **filter_values** | [**string[]**](../Model/string.md)| A comma-separated list of values to filter on in the specified fields. |
+ **start_at** | **string**| When using filterType&#x3D;updatedAt, the start of date range filter (ISO 8601-format) | [optional]
+ **end_at** | **string**| When using filterType&#x3D;updatedAt, the end of date range filter (ISO 8601-format) | [optional]
  **fields** | [**string[]**](../Model/string.md)| A comma-separated list of lead fields to return for each record. | [optional]
  **batch_size** | **int**| The batch size to return.  The max and default value is 300. | [optional]
  **next_page_token** | **string**| A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info. | [optional]
