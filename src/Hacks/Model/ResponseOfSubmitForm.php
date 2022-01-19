@@ -18,4 +18,13 @@ class ResponseOfSubmitForm extends LeadResponseOfSubmitForm
         'warnings' => '\NecLimDul\MarketoRest\Lead\Model\Warning[]'
     ];
 
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes()
+    {
+        // Override works around static binding.
+        return self::$swaggerTypes;
+    }
+
 }
