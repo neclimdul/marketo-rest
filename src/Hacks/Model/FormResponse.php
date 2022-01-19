@@ -51,4 +51,10 @@ class FormResponse extends LeadFormResponse
         return $this;
     }
 
+    public function getStatusAllowableValues() {
+        $values = parent::getStatusAllowableValues();
+        $values[] = self::STATUS_WARNING;
+        return $values;
+    }
+
 }
