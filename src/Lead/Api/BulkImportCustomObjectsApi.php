@@ -850,13 +850,17 @@ class BulkImportCustomObjectsApi
         $formParams['file'] = [];
         $paramFiles = is_array($file) ? $file : [$file];
         foreach ($paramFiles as $paramFile) {
-            $formParams['file'][] = \GuzzleHttp\Psr7\try_fopen(
+            $formParams['file'][] = \GuzzleHttp\Psr7\Utils::tryFopen(
                 ObjectSerializer::toFormValue($paramFile),
                 'rb'
             );
         }
         // Remove any null (optional values).
         $formParams = array_filter($formParams, function($v) { return $v !== null; });
+        /**
+         * @psalm-suppress RedundantCondition,TypeDoesNotContainType
+         * @phpstan-ignore-next-line
+         */
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
                 ['application/json']
@@ -868,6 +872,10 @@ class BulkImportCustomObjectsApi
             );
         }
         if (!empty($formParams)) {
+            /**
+             * @psalm-suppress RedundantCondition,TypeDoesNotContainType
+             * @phpstan-ignore-next-line
+             */
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {

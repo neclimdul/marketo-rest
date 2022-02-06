@@ -274,17 +274,13 @@ class FormFieldsApi
             ['application/json'],
             ['application/x-www-form-urlencoded']
         );
-
-        // for model (json/xml)
-        if (!empty($add_form_field_set_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($add_form_field_set_request));
-            } elseif (!is_array($add_form_field_set_request)) {
-                $httpBody = (string) $add_form_field_set_request;
-            }
-            else {
-                $httpBody = '';
-            }
+        if ($headers['Content-Type'] === 'application/json') {
+          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($add_form_field_set_request));
+        } elseif (!is_array($add_form_field_set_request)) {
+          $httpBody = (string) $add_form_field_set_request;
+        }
+        else {
+          $httpBody = '';
         }
 
 
@@ -465,17 +461,13 @@ class FormFieldsApi
             ['application/json'],
             ['application/x-www-form-urlencoded']
         );
-
-        // for model (json/xml)
-        if (!empty($add_form_field_set_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($add_form_field_set_request));
-            } elseif (!is_array($add_form_field_set_request)) {
-                $httpBody = (string) $add_form_field_set_request;
-            }
-            else {
-                $httpBody = '';
-            }
+        if ($headers['Content-Type'] === 'application/json') {
+          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($add_form_field_set_request));
+        } elseif (!is_array($add_form_field_set_request)) {
+          $httpBody = (string) $add_form_field_set_request;
+        }
+        else {
+          $httpBody = '';
         }
 
 
@@ -672,17 +664,13 @@ class FormFieldsApi
             ['application/json'],
             ['application/x-www-form-urlencoded']
         );
-
-        // for model (json/xml)
-        if (!empty($add_form_field_visibility_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($add_form_field_visibility_request));
-            } elseif (!is_array($add_form_field_visibility_request)) {
-                $httpBody = (string) $add_form_field_visibility_request;
-            }
-            else {
-                $httpBody = '';
-            }
+        if ($headers['Content-Type'] === 'application/json') {
+          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($add_form_field_visibility_request));
+        } elseif (!is_array($add_form_field_visibility_request)) {
+          $httpBody = (string) $add_form_field_visibility_request;
+        }
+        else {
+          $httpBody = '';
         }
 
 
@@ -863,17 +851,13 @@ class FormFieldsApi
             ['application/json'],
             ['application/x-www-form-urlencoded']
         );
-
-        // for model (json/xml)
-        if (!empty($add_rich_text_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($add_rich_text_request));
-            } elseif (!is_array($add_rich_text_request)) {
-                $httpBody = (string) $add_rich_text_request;
-            }
-            else {
-                $httpBody = '';
-            }
+        if ($headers['Content-Type'] === 'application/json') {
+          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($add_rich_text_request));
+        } elseif (!is_array($add_rich_text_request)) {
+          $httpBody = (string) $add_rich_text_request;
+        }
+        else {
+          $httpBody = '';
         }
 
 
@@ -1957,7 +1941,6 @@ class FormFieldsApi
             ['application/json'],
             ['application/x-www-form-urlencoded']
         );
-
         // for model (json/xml)
         if (!empty($re_arrange_request)) {
             if ($headers['Content-Type'] === 'application/json') {
@@ -2164,17 +2147,13 @@ class FormFieldsApi
             ['application/json'],
             ['application/x-www-form-urlencoded']
         );
-
-        // for model (json/xml)
-        if (!empty($update_form_field_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($update_form_field_request));
-            } elseif (!is_array($update_form_field_request)) {
-                $httpBody = (string) $update_form_field_request;
-            }
-            else {
-                $httpBody = '';
-            }
+        if ($headers['Content-Type'] === 'application/json') {
+          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($update_form_field_request));
+        } elseif (!is_array($update_form_field_request)) {
+          $httpBody = (string) $update_form_field_request;
+        }
+        else {
+          $httpBody = '';
         }
 
 

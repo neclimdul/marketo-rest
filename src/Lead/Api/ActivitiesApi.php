@@ -256,17 +256,13 @@ class ActivitiesApi
             ['application/json'],
             ['application/json']
         );
-
-        // for model (json/xml)
-        if (!empty($custom_activity_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($custom_activity_request));
-            } elseif (!is_array($custom_activity_request)) {
-                $httpBody = (string) $custom_activity_request;
-            }
-            else {
-                $httpBody = '';
-            }
+        if ($headers['Content-Type'] === 'application/json') {
+          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($custom_activity_request));
+        } elseif (!is_array($custom_activity_request)) {
+          $httpBody = (string) $custom_activity_request;
+        }
+        else {
+          $httpBody = '';
         }
 
 
@@ -615,17 +611,13 @@ class ActivitiesApi
             ['application/json'],
             ['application/json']
         );
-
-        // for model (json/xml)
-        if (!empty($custom_activity_type_attribute_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($custom_activity_type_attribute_request));
-            } elseif (!is_array($custom_activity_type_attribute_request)) {
-                $httpBody = (string) $custom_activity_type_attribute_request;
-            }
-            else {
-                $httpBody = '';
-            }
+        if ($headers['Content-Type'] === 'application/json') {
+          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($custom_activity_type_attribute_request));
+        } elseif (!is_array($custom_activity_type_attribute_request)) {
+          $httpBody = (string) $custom_activity_type_attribute_request;
+        }
+        else {
+          $httpBody = '';
         }
 
 
@@ -788,17 +780,13 @@ class ActivitiesApi
             ['application/json'],
             ['application/json']
         );
-
-        // for model (json/xml)
-        if (!empty($custom_activity_type_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($custom_activity_type_request));
-            } elseif (!is_array($custom_activity_type_request)) {
-                $httpBody = (string) $custom_activity_type_request;
-            }
-            else {
-                $httpBody = '';
-            }
+        if ($headers['Content-Type'] === 'application/json') {
+          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($custom_activity_type_request));
+        } elseif (!is_array($custom_activity_type_request)) {
+          $httpBody = (string) $custom_activity_type_request;
+        }
+        else {
+          $httpBody = '';
         }
 
 
@@ -979,17 +967,13 @@ class ActivitiesApi
             ['application/json'],
             ['application/json']
         );
-
-        // for model (json/xml)
-        if (!empty($custom_activity_type_attribute_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($custom_activity_type_attribute_request));
-            } elseif (!is_array($custom_activity_type_attribute_request)) {
-                $httpBody = (string) $custom_activity_type_attribute_request;
-            }
-            else {
-                $httpBody = '';
-            }
+        if ($headers['Content-Type'] === 'application/json') {
+          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($custom_activity_type_attribute_request));
+        } elseif (!is_array($custom_activity_type_attribute_request)) {
+          $httpBody = (string) $custom_activity_type_attribute_request;
+        }
+        else {
+          $httpBody = '';
         }
 
 
@@ -2765,17 +2749,13 @@ class ActivitiesApi
             ['application/json'],
             ['application/json']
         );
-
-        // for model (json/xml)
-        if (!empty($custom_activity_type_attribute_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($custom_activity_type_attribute_request));
-            } elseif (!is_array($custom_activity_type_attribute_request)) {
-                $httpBody = (string) $custom_activity_type_attribute_request;
-            }
-            else {
-                $httpBody = '';
-            }
+        if ($headers['Content-Type'] === 'application/json') {
+          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($custom_activity_type_attribute_request));
+        } elseif (!is_array($custom_activity_type_attribute_request)) {
+          $httpBody = (string) $custom_activity_type_attribute_request;
+        }
+        else {
+          $httpBody = '';
         }
 
 
@@ -2956,17 +2936,13 @@ class ActivitiesApi
             ['application/json'],
             ['application/json']
         );
-
-        // for model (json/xml)
-        if (!empty($custom_activity_type_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($custom_activity_type_request));
-            } elseif (!is_array($custom_activity_type_request)) {
-                $httpBody = (string) $custom_activity_type_request;
-            }
-            else {
-                $httpBody = '';
-            }
+        if ($headers['Content-Type'] === 'application/json') {
+          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($custom_activity_type_request));
+        } elseif (!is_array($custom_activity_type_request)) {
+          $httpBody = (string) $custom_activity_type_request;
+        }
+        else {
+          $httpBody = '';
         }
 
 

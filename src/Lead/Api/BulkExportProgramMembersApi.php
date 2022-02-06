@@ -418,7 +418,6 @@ class BulkExportProgramMembersApi
             ['application/json'],
             ['application/json']
         );
-
         // for model (json/xml)
         if (!empty($export_program_member_request)) {
             if ($headers['Content-Type'] === 'application/json') {

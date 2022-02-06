@@ -51,6 +51,15 @@ class ExportCustomObjectFilterTest extends TestCase
     }
 
     /**
+     * Test attribute "updated_at"
+     */
+    public function testPropertyUpdatedAt()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "smart_list_id"
      */
     public function testPropertySmartListId()

@@ -274,17 +274,13 @@ class FileContentsApi
             ['application/json'],
             ['multipart/form-data']
         );
-
-        // for model (json/xml)
-        if (!empty($request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($request));
-            } elseif (!is_array($request)) {
-                $httpBody = (string) $request;
-            }
-            else {
-                $httpBody = '';
-            }
+        if ($headers['Content-Type'] === 'application/json') {
+          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($request));
+        } elseif (!is_array($request)) {
+          $httpBody = (string) $request;
+        }
+        else {
+          $httpBody = '';
         }
 
 

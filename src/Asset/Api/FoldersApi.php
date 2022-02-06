@@ -256,17 +256,13 @@ class FoldersApi
             ['application/json'],
             ['application/x-www-form-urlencoded']
         );
-
-        // for model (json/xml)
-        if (!empty($create_folder_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($create_folder_request));
-            } elseif (!is_array($create_folder_request)) {
-                $httpBody = (string) $create_folder_request;
-            }
-            else {
-                $httpBody = '';
-            }
+        if ($headers['Content-Type'] === 'application/json') {
+          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($create_folder_request));
+        } elseif (!is_array($create_folder_request)) {
+          $httpBody = (string) $create_folder_request;
+        }
+        else {
+          $httpBody = '';
         }
 
 
@@ -451,6 +447,10 @@ class FoldersApi
         $formParams['type'] = ObjectSerializer::toFormValue($type);
         // Remove any null (optional values).
         $formParams = array_filter($formParams, function($v) { return $v !== null; });
+        /**
+         * @psalm-suppress RedundantCondition,TypeDoesNotContainType
+         * @phpstan-ignore-next-line
+         */
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
                 ['application/json']
@@ -462,6 +462,10 @@ class FoldersApi
             );
         }
         if (!empty($formParams)) {
+            /**
+             * @psalm-suppress RedundantCondition,TypeDoesNotContainType
+             * @phpstan-ignore-next-line
+             */
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -1449,17 +1453,13 @@ class FoldersApi
             ['application/json'],
             ['application/x-www-form-urlencoded']
         );
-
-        // for model (json/xml)
-        if (!empty($update_folder_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($update_folder_request));
-            } elseif (!is_array($update_folder_request)) {
-                $httpBody = (string) $update_folder_request;
-            }
-            else {
-                $httpBody = '';
-            }
+        if ($headers['Content-Type'] === 'application/json') {
+          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($update_folder_request));
+        } elseif (!is_array($update_folder_request)) {
+          $httpBody = (string) $update_folder_request;
+        }
+        else {
+          $httpBody = '';
         }
 
 

@@ -256,17 +256,13 @@ class StaticListsApi
             ['application/json'],
             ['application/x-www-form-urlencoded']
         );
-
-        // for model (json/xml)
-        if (!empty($create_static_list_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($create_static_list_request));
-            } elseif (!is_array($create_static_list_request)) {
-                $httpBody = (string) $create_static_list_request;
-            }
-            else {
-                $httpBody = '';
-            }
+        if ($headers['Content-Type'] === 'application/json') {
+          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($create_static_list_request));
+        } elseif (!is_array($create_static_list_request)) {
+          $httpBody = (string) $create_static_list_request;
+        }
+        else {
+          $httpBody = '';
         }
 
 
@@ -1151,17 +1147,13 @@ class StaticListsApi
             ['application/json'],
             ['application/x-www-form-urlencoded']
         );
-
-        // for model (json/xml)
-        if (!empty($update_static_list_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($update_static_list_request));
-            } elseif (!is_array($update_static_list_request)) {
-                $httpBody = (string) $update_static_list_request;
-            }
-            else {
-                $httpBody = '';
-            }
+        if ($headers['Content-Type'] === 'application/json') {
+          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($update_static_list_request));
+        } elseif (!is_array($update_static_list_request)) {
+          $httpBody = (string) $update_static_list_request;
+        }
+        else {
+          $httpBody = '';
         }
 
 

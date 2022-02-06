@@ -9,6 +9,8 @@ Method | HTTP request | Description
 [**describeOpportunityRoleUsingGET**](OpportunitiesApi.md#describeOpportunityRoleUsingGET) | **GET** /rest/v1/opportunities/roles/describe.json | Describe Opportunity Role
 [**describeUsingGET4**](OpportunitiesApi.md#describeUsingGET4) | **GET** /rest/v1/opportunities/describe.json | Describe Opportunity
 [**getOpportunitiesUsingGET**](OpportunitiesApi.md#getOpportunitiesUsingGET) | **GET** /rest/v1/opportunities.json | Get Opportunities
+[**getOpportunityFieldByNameUsingGET**](OpportunitiesApi.md#getOpportunityFieldByNameUsingGET) | **GET** /rest/v1/opportunities/schema/fields/{fieldApiName}.json | Get Opportunity Field by Name
+[**getOpportunityFieldsUsingGET**](OpportunitiesApi.md#getOpportunityFieldsUsingGET) | **GET** /rest/v1/opportunities/schema/fields.json | Get Opportunity Fields
 [**getOpportunityRolesUsingGET**](OpportunitiesApi.md#getOpportunityRolesUsingGET) | **GET** /rest/v1/opportunities/roles.json | Get Opportunity Roles
 [**syncOpportunitiesUsingPOST**](OpportunitiesApi.md#syncOpportunitiesUsingPOST) | **POST** /rest/v1/opportunities.json | Sync Opportunities
 [**syncOpportunityRolesUsingPOST**](OpportunitiesApi.md#syncOpportunityRolesUsingPOST) | **POST** /rest/v1/opportunities/roles.json | Sync Opportunity Roles
@@ -249,6 +251,106 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject**](../Model/ResponseOfCustomObject.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **getOpportunityFieldByNameUsingGET**
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField getOpportunityFieldByNameUsingGET($field_api_name)
+
+Get Opportunity Field by Name
+
+Retrieves metadata for single opportunity field.  Required Permissions: Read-Write Schema Standard Field, Read-Write Schema Custom Field
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\OpportunitiesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$field_api_name = "field_api_name_example"; // string | The API name of opportunity field
+
+try {
+    $result = $apiInstance->getOpportunityFieldByNameUsingGET($field_api_name);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling OpportunitiesApi->getOpportunityFieldByNameUsingGET: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **field_api_name** | **string**| The API name of opportunity field |
+
+### Return type
+
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField**](../Model/ResponseOfLeadField.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **getOpportunityFieldsUsingGET**
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField getOpportunityFieldsUsingGET($batch_size, $next_page_token)
+
+Get Opportunity Fields
+
+Retrieves metadata for all opportunity fields in the target instance.  Required Permissions: Read-Write Schema Standard Field, Read-Write Schema Custom Field
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\OpportunitiesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$batch_size = 56; // int | The batch size to return. The max and default value is 300.
+$next_page_token = "next_page_token_example"; // string | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
+
+try {
+    $result = $apiInstance->getOpportunityFieldsUsingGET($batch_size, $next_page_token);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling OpportunitiesApi->getOpportunityFieldsUsingGET: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **batch_size** | **int**| The batch size to return. The max and default value is 300. | [optional]
+ **next_page_token** | **string**| A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info. | [optional]
+
+### Return type
+
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField**](../Model/ResponseOfLeadField.md)
 
 ### Authorization
 

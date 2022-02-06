@@ -4,12 +4,65 @@ All URIs are relative to *https://localhost:8080*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**createProgramMemberFieldUsingPOST**](ProgramMembersApi.md#createProgramMemberFieldUsingPOST) | **POST** /rest/v1/programs/members/schema/fields.json | Create Program Member Fields
 [**deleteProgramMemberUsingPOST**](ProgramMembersApi.md#deleteProgramMemberUsingPOST) | **POST** /rest/v1/programs/{programId}/members/delete.json | Delete Program Members
 [**describeProgramMemberUsingGET2**](ProgramMembersApi.md#describeProgramMemberUsingGET2) | **GET** /rest/v1/programs/members/describe.json | Describe Program Member
+[**getProgramMemberFieldByNameUsingGET**](ProgramMembersApi.md#getProgramMemberFieldByNameUsingGET) | **GET** /rest/v1/programs/members/schema/fields/{fieldApiName}.json | Get Program Member Field by Name
+[**getProgramMemberFieldsUsingGET**](ProgramMembersApi.md#getProgramMemberFieldsUsingGET) | **GET** /rest/v1/programs/members/schema/fields.json | Get Program Member Fields
 [**getProgramMembersUsingGET**](ProgramMembersApi.md#getProgramMembersUsingGET) | **GET** /rest/v1/programs/{programId}/members.json | Get Program Members
 [**syncProgramMemberDataUsingPOST**](ProgramMembersApi.md#syncProgramMemberDataUsingPOST) | **POST** /rest/v1/programs/{programId}/members.json | Sync Program Member Data
 [**syncProgramMemberStatusUsingPOST**](ProgramMembersApi.md#syncProgramMemberStatusUsingPOST) | **POST** /rest/v1/programs/{programId}/members/status.json | Sync Program Member Status
+[**updateProgramMemberFieldUsingPOST**](ProgramMembersApi.md#updateProgramMemberFieldUsingPOST) | **POST** /rest/v1/programs/members/schema/fields/{fieldApiName}.json | Update Program Member Field
 
+
+# **createProgramMemberFieldUsingPOST**
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfCreateLeadField createProgramMemberFieldUsingPOST($create_lead_field_request)
+
+Create Program Member Fields
+
+Create program member fields in the target instance.  Required Permissions: Read-Write Schema Custom Field
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\ProgramMembersApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$create_lead_field_request = new \NecLimDul\MarketoRest\Lead\Model\CreateLeadFieldRequest(); // \NecLimDul\MarketoRest\Lead\Model\CreateLeadFieldRequest | createLeadFieldRequest
+
+try {
+    $result = $apiInstance->createProgramMemberFieldUsingPOST($create_lead_field_request);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ProgramMembersApi->createProgramMemberFieldUsingPOST: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **create_lead_field_request** | [**\NecLimDul\MarketoRest\Lead\Model\CreateLeadFieldRequest**](../Model/CreateLeadFieldRequest.md)| createLeadFieldRequest |
+
+### Return type
+
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfCreateLeadField**](../Model/ResponseOfCreateLeadField.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **deleteProgramMemberUsingPOST**
 > \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberDelete deleteProgramMemberUsingPOST($program_id, $delete_program_member_request)
@@ -95,6 +148,106 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**\NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberAttributes2**](../Model/ResponseOfProgramMemberAttributes2.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **getProgramMemberFieldByNameUsingGET**
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField getProgramMemberFieldByNameUsingGET($field_api_name)
+
+Get Program Member Field by Name
+
+Retrieves metadata for single program member field.  Required Permissions: Read-Write Schema Standard Field, Read-Write Schema Custom Field
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\ProgramMembersApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$field_api_name = "field_api_name_example"; // string | The API name of program member field
+
+try {
+    $result = $apiInstance->getProgramMemberFieldByNameUsingGET($field_api_name);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ProgramMembersApi->getProgramMemberFieldByNameUsingGET: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **field_api_name** | **string**| The API name of program member field |
+
+### Return type
+
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField**](../Model/ResponseOfLeadField.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **getProgramMemberFieldsUsingGET**
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField getProgramMemberFieldsUsingGET($batch_size, $next_page_token)
+
+Get Program Member Fields
+
+Retrieves metadata for all program member fields in the target instance.  Required Permissions: Read-Write Schema Standard Field, Read-Write Schema Custom Field
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\ProgramMembersApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$batch_size = 56; // int | The batch size to return. The max and default value is 300.
+$next_page_token = "next_page_token_example"; // string | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
+
+try {
+    $result = $apiInstance->getProgramMemberFieldsUsingGET($batch_size, $next_page_token);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ProgramMembersApi->getProgramMemberFieldsUsingGET: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **batch_size** | **int**| The batch size to return. The max and default value is 300. | [optional]
+ **next_page_token** | **string**| A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info. | [optional]
+
+### Return type
+
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField**](../Model/ResponseOfLeadField.md)
 
 ### Authorization
 
@@ -260,6 +413,57 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**\NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberStatus**](../Model/ResponseOfProgramMemberStatus.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **updateProgramMemberFieldUsingPOST**
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfUpdateLeadField updateProgramMemberFieldUsingPOST($field_api_name, $update_lead_field_request)
+
+Update Program Member Field
+
+Update metadata for a program member field in the target instance.  See update rules <a href=\"https://developers.marketo.com/rest-api/lead-database/leads/#update_field\">here</a>.  Required Permissions: Read-Write Schema Standard Field, Read-Write Schema Custom Field
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\ProgramMembersApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$field_api_name = "field_api_name_example"; // string | The API name of program member field
+$update_lead_field_request = new \NecLimDul\MarketoRest\Lead\Model\UpdateLeadFieldRequest(); // \NecLimDul\MarketoRest\Lead\Model\UpdateLeadFieldRequest | updateLeadFieldRequest
+
+try {
+    $result = $apiInstance->updateProgramMemberFieldUsingPOST($field_api_name, $update_lead_field_request);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ProgramMembersApi->updateProgramMemberFieldUsingPOST: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **field_api_name** | **string**| The API name of program member field |
+ **update_lead_field_request** | [**\NecLimDul\MarketoRest\Lead\Model\UpdateLeadFieldRequest**](../Model/UpdateLeadFieldRequest.md)| updateLeadFieldRequest |
+
+### Return type
+
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfUpdateLeadField**](../Model/ResponseOfUpdateLeadField.md)
 
 ### Authorization
 

@@ -281,7 +281,6 @@ class StaticListsApi
             ['application/json'],
             ['application/json']
         );
-
         // for model (json/xml)
         if (!empty($list_operation_request)) {
             if ($headers['Content-Type'] === 'application/json') {
@@ -479,7 +478,6 @@ class StaticListsApi
             ['application/json'],
             ['application/json']
         );
-
         // for model (json/xml)
         if (!empty($list_operation_request)) {
             if ($headers['Content-Type'] === 'application/json') {
@@ -1463,17 +1461,13 @@ class StaticListsApi
             ['application/json'],
             ['application/json']
         );
-
-        // for model (json/xml)
-        if (!empty($list_operation_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($list_operation_request));
-            } elseif (!is_array($list_operation_request)) {
-                $httpBody = (string) $list_operation_request;
-            }
-            else {
-                $httpBody = '';
-            }
+        if ($headers['Content-Type'] === 'application/json') {
+          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($list_operation_request));
+        } elseif (!is_array($list_operation_request)) {
+          $httpBody = (string) $list_operation_request;
+        }
+        else {
+          $httpBody = '';
         }
 
 

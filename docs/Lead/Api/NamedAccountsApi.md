@@ -6,6 +6,8 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**deleteNamedAccountsUsingPOST**](NamedAccountsApi.md#deleteNamedAccountsUsingPOST) | **POST** /rest/v1/namedaccounts/delete.json | Delete NamedAccounts
 [**describeUsingGET3**](NamedAccountsApi.md#describeUsingGET3) | **GET** /rest/v1/namedaccounts/describe.json | Describe NamedAccounts
+[**getNamedAccountFieldByNameUsingGET**](NamedAccountsApi.md#getNamedAccountFieldByNameUsingGET) | **GET** /rest/v1/namedaccounts/schema/fields/{fieldApiName}.json | Get Named Account Field by Name
+[**getNamedAccountFieldsUsingGET**](NamedAccountsApi.md#getNamedAccountFieldsUsingGET) | **GET** /rest/v1/namedaccounts/schema/fields.json | Get Named Account Fields
 [**getNamedAccountsUsingGET**](NamedAccountsApi.md#getNamedAccountsUsingGET) | **GET** /rest/v1/namedaccounts.json | Get NamedAccounts
 [**syncNamedAccountsUsingPOST**](NamedAccountsApi.md#syncNamedAccountsUsingPOST) | **POST** /rest/v1/namedaccounts.json | Sync NamedAccounts
 
@@ -92,6 +94,106 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData**](../Model/ResponseOfObjectMetaData.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **getNamedAccountFieldByNameUsingGET**
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField getNamedAccountFieldByNameUsingGET($field_api_name)
+
+Get Named Account Field by Name
+
+Retrieves metadata for single named account field.  Required Permissions: Read-Write Schema Standard Field, Read-Write Schema Custom Field
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\NamedAccountsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$field_api_name = "field_api_name_example"; // string | The API name of named account field
+
+try {
+    $result = $apiInstance->getNamedAccountFieldByNameUsingGET($field_api_name);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling NamedAccountsApi->getNamedAccountFieldByNameUsingGET: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **field_api_name** | **string**| The API name of named account field |
+
+### Return type
+
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField**](../Model/ResponseOfLeadField.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **getNamedAccountFieldsUsingGET**
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField getNamedAccountFieldsUsingGET($batch_size, $next_page_token)
+
+Get Named Account Fields
+
+Retrieves metadata for all named account fields in the target instance.  Required Permissions: Read-Write Schema Standard Field, Read-Write Schema Custom Field
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\NamedAccountsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$batch_size = 56; // int | The batch size to return. The max and default value is 300.
+$next_page_token = "next_page_token_example"; // string | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
+
+try {
+    $result = $apiInstance->getNamedAccountFieldsUsingGET($batch_size, $next_page_token);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling NamedAccountsApi->getNamedAccountFieldsUsingGET: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **batch_size** | **int**| The batch size to return. The max and default value is 300. | [optional]
+ **next_page_token** | **string**| A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info. | [optional]
+
+### Return type
+
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField**](../Model/ResponseOfLeadField.md)
 
 ### Authorization
 

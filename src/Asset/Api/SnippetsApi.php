@@ -436,7 +436,6 @@ class SnippetsApi
             ['application/json'],
             ['application/x-www-form-urlencoded']
         );
-
         // for model (json/xml)
         if (!empty($clone_snippet_request)) {
             if ($headers['Content-Type'] === 'application/json') {
@@ -609,17 +608,13 @@ class SnippetsApi
             ['application/json'],
             ['application/x-www-form-urlencoded']
         );
-
-        // for model (json/xml)
-        if (!empty($create_snippet_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($create_snippet_request));
-            } elseif (!is_array($create_snippet_request)) {
-                $httpBody = (string) $create_snippet_request;
-            }
-            else {
-                $httpBody = '';
-            }
+        if ($headers['Content-Type'] === 'application/json') {
+          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($create_snippet_request));
+        } elseif (!is_array($create_snippet_request)) {
+          $httpBody = (string) $create_snippet_request;
+        }
+        else {
+          $httpBody = '';
         }
 
 
@@ -2246,17 +2241,13 @@ class SnippetsApi
             ['application/json'],
             ['application/x-www-form-urlencoded']
         );
-
-        // for model (json/xml)
-        if (!empty($request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($request));
-            } elseif (!is_array($request)) {
-                $httpBody = (string) $request;
-            }
-            else {
-                $httpBody = '';
-            }
+        if ($headers['Content-Type'] === 'application/json') {
+          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($request));
+        } elseif (!is_array($request)) {
+          $httpBody = (string) $request;
+        }
+        else {
+          $httpBody = '';
         }
 
 
@@ -2437,17 +2428,13 @@ class SnippetsApi
             ['application/json'],
             ['application/x-www-form-urlencoded']
         );
-
-        // for model (json/xml)
-        if (!empty($update_snippet_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($update_snippet_request));
-            } elseif (!is_array($update_snippet_request)) {
-                $httpBody = (string) $update_snippet_request;
-            }
-            else {
-                $httpBody = '';
-            }
+        if ($headers['Content-Type'] === 'application/json') {
+          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($update_snippet_request));
+        } elseif (!is_array($update_snippet_request)) {
+          $httpBody = (string) $update_snippet_request;
+        }
+        else {
+          $httpBody = '';
         }
 
 

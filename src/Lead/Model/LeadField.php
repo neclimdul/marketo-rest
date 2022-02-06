@@ -67,7 +67,8 @@ class LeadField implements ModelInterface, ArrayAccess, \JsonSerializable
         'is_hidden' => 'bool',
         'is_html_encoding_in_email' => 'bool',
         'is_sensitive' => 'bool',
-        'is_custom' => 'bool'
+        'is_custom' => 'bool',
+        'is_api_created' => 'bool'
     ];
 
     /**
@@ -86,7 +87,8 @@ class LeadField implements ModelInterface, ArrayAccess, \JsonSerializable
         'is_hidden' => null,
         'is_html_encoding_in_email' => null,
         'is_sensitive' => null,
-        'is_custom' => null
+        'is_custom' => null,
+        'is_api_created' => null
     ];
 
     /**
@@ -129,7 +131,8 @@ class LeadField implements ModelInterface, ArrayAccess, \JsonSerializable
         'is_hidden' => 'isHidden',
         'is_html_encoding_in_email' => 'isHtmlEncodingInEmail',
         'is_sensitive' => 'isSensitive',
-        'is_custom' => 'isCustom'
+        'is_custom' => 'isCustom',
+        'is_api_created' => 'isApiCreated'
     ];
 
     /**
@@ -146,7 +149,8 @@ class LeadField implements ModelInterface, ArrayAccess, \JsonSerializable
         'is_hidden' => 'setIsHidden',
         'is_html_encoding_in_email' => 'setIsHtmlEncodingInEmail',
         'is_sensitive' => 'setIsSensitive',
-        'is_custom' => 'setIsCustom'
+        'is_custom' => 'setIsCustom',
+        'is_api_created' => 'setIsApiCreated'
     ];
 
     /**
@@ -163,7 +167,8 @@ class LeadField implements ModelInterface, ArrayAccess, \JsonSerializable
         'is_hidden' => 'getIsHidden',
         'is_html_encoding_in_email' => 'getIsHtmlEncodingInEmail',
         'is_sensitive' => 'getIsSensitive',
-        'is_custom' => 'getIsCustom'
+        'is_custom' => 'getIsCustom',
+        'is_api_created' => 'getIsApiCreated'
     ];
 
     
@@ -192,6 +197,7 @@ class LeadField implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['is_html_encoding_in_email'] = $data['is_html_encoding_in_email'] ?? null;
         $this->container['is_sensitive'] = $data['is_sensitive'] ?? null;
         $this->container['is_custom'] = $data['is_custom'] ?? null;
+        $this->container['is_api_created'] = $data['is_api_created'] ?? null;
     }
 
     /**
@@ -256,6 +262,9 @@ class LeadField implements ModelInterface, ArrayAccess, \JsonSerializable
         }
         if ($this->container['is_custom'] === null) {
             $invalidProperties[] = "'is_custom' can't be null";
+        }
+        if ($this->container['is_api_created'] === null) {
+            $invalidProperties[] = "'is_api_created' can't be null";
         }
         return $invalidProperties;
     }
@@ -486,6 +495,30 @@ class LeadField implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets is_api_created
+     *
+     * @return bool
+     */
+    public function getIsApiCreated()
+    {
+        return $this->container['is_api_created'];
+    }
+
+    /**
+     * Sets is_api_created
+     *
+     * @param bool $is_api_created If set to true, field was created using REST API
+     *
+     * @return self
+     */
+    public function setIsApiCreated($is_api_created)
+    {
+        $this->container['is_api_created'] = $is_api_created;
+
+        return $this;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function setAdditionalProperties(array $fields)
@@ -525,6 +558,7 @@ class LeadField implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * {@inheritdoc}
      */
+    #[\ReturnTypeWillChange]
     public function offsetExists($offset)
     {
         return isset($this->container[$offset]);
@@ -533,6 +567,7 @@ class LeadField implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * {@inheritdoc}
      */
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -541,6 +576,7 @@ class LeadField implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * {@inheritdoc}
      */
+    #[\ReturnTypeWillChange]
     public function offsetSet($offset, $value)
     {
         if (is_null($offset)) {
@@ -553,6 +589,7 @@ class LeadField implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * {@inheritdoc}
      */
+    #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
         unset($this->container[$offset]);
@@ -565,6 +602,7 @@ class LeadField implements ModelInterface, ArrayAccess, \JsonSerializable
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);

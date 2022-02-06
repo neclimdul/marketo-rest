@@ -653,7 +653,6 @@ class CampaignsApi
             ['application/json'],
             ['application/json']
         );
-
         // for model (json/xml)
         if (!empty($schedule_campaign_request)) {
             if ($headers['Content-Type'] === 'application/json') {
@@ -838,7 +837,6 @@ class CampaignsApi
             ['application/json'],
             ['application/json']
         );
-
         // for model (json/xml)
         if (!empty($trigger_campaign_request)) {
             if ($headers['Content-Type'] === 'application/json') {

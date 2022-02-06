@@ -2,6 +2,7 @@
 
 namespace NecLimDul\MarketoRest\Laravel;
 
+use GuzzleHttp\Client;
 use Illuminate\Support\ServiceProvider;
 use NecLimDul\MarketoRest\Asset\Api\ChannelsApi;
 use NecLimDul\MarketoRest\Asset\Api\EmailsApi;
@@ -201,12 +202,13 @@ class MarketoRestProvider extends ServiceProvider
     }
 
     /**
-     * Wraps some logic for quickly creating aliased
-     * @param $className
-     * @param $client
-     * @param $config
+     * Wraps some logic for quickly creating aliased.
+     *
+     * @param class-string $className
+     * @param \GuzzleHttp\Client $client
+     * @param mixed $config
      */
-    private function registerSingleton($className, $client, $config)
+    private function registerSingleton(string $className, Client $client, $config): void
     {
         $this->app->singleton($className, function () use ($className, $client, $config) {
             return new $className(

@@ -274,17 +274,13 @@ class TokensApi
             ['application/json'],
             ['application/x-www-form-urlencoded']
         );
-
-        // for model (json/xml)
-        if (!empty($create_token_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($create_token_request));
-            } elseif (!is_array($create_token_request)) {
-                $httpBody = (string) $create_token_request;
-            }
-            else {
-                $httpBody = '';
-            }
+        if ($headers['Content-Type'] === 'application/json') {
+          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($create_token_request));
+        } elseif (!is_array($create_token_request)) {
+          $httpBody = (string) $create_token_request;
+        }
+        else {
+          $httpBody = '';
         }
 
 
@@ -465,17 +461,13 @@ class TokensApi
             ['application/json'],
             ['application/x-www-form-urlencoded']
         );
-
-        // for model (json/xml)
-        if (!empty($delete_token_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($delete_token_request));
-            } elseif (!is_array($delete_token_request)) {
-                $httpBody = (string) $delete_token_request;
-            }
-            else {
-                $httpBody = '';
-            }
+        if ($headers['Content-Type'] === 'application/json') {
+          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($delete_token_request));
+        } elseif (!is_array($delete_token_request)) {
+          $httpBody = (string) $delete_token_request;
+        }
+        else {
+          $httpBody = '';
         }
 
 
@@ -511,7 +503,7 @@ class TokensApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse
      */
-    public function getTokensByFolderIdUsingGET($id, $folder_type = Folder)
+    public function getTokensByFolderIdUsingGET($id, $folder_type = 'Folder')
     {
         list($response) = $this->getTokensByFolderIdUsingGETWithHttpInfo($id, $folder_type);
         return $response;
@@ -529,7 +521,7 @@ class TokensApi
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getTokensByFolderIdUsingGETWithHttpInfo($id, $folder_type = Folder)
+    public function getTokensByFolderIdUsingGETWithHttpInfo($id, $folder_type = 'Folder')
     {
         $request = $this->getTokensByFolderIdUsingGETRequest($id, $folder_type);
 
@@ -570,7 +562,7 @@ class TokensApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getTokensByFolderIdUsingGETAsync($id, $folder_type = Folder)
+    public function getTokensByFolderIdUsingGETAsync($id, $folder_type = 'Folder')
     {
         return $this->getTokensByFolderIdUsingGETAsyncWithHttpInfo($id, $folder_type)
             ->then(
@@ -591,7 +583,7 @@ class TokensApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getTokensByFolderIdUsingGETAsyncWithHttpInfo($id, $folder_type = Folder)
+    public function getTokensByFolderIdUsingGETAsyncWithHttpInfo($id, $folder_type = 'Folder')
     {
         $request = $this->getTokensByFolderIdUsingGETRequest($id, $folder_type);
 
@@ -626,7 +618,7 @@ class TokensApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getTokensByFolderIdUsingGETRequest($id, $folder_type = Folder)
+    public function getTokensByFolderIdUsingGETRequest($id, $folder_type = 'Folder')
     {
         // Verify the required parameter 'id' is set.
         if ($id === null || (is_array($id) && empty($id))) {

@@ -256,17 +256,13 @@ class SalesPersonsApi
             ['application/json'],
             ['application/json']
         );
-
-        // for model (json/xml)
-        if (!empty($delete_sales_person_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($delete_sales_person_request));
-            } elseif (!is_array($delete_sales_person_request)) {
-                $httpBody = (string) $delete_sales_person_request;
-            }
-            else {
-                $httpBody = '';
-            }
+        if ($headers['Content-Type'] === 'application/json') {
+          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($delete_sales_person_request));
+        } elseif (!is_array($delete_sales_person_request)) {
+          $httpBody = (string) $delete_sales_person_request;
+        }
+        else {
+          $httpBody = '';
         }
 
 
@@ -790,17 +786,13 @@ class SalesPersonsApi
             ['application/json'],
             ['application/json']
         );
-
-        // for model (json/xml)
-        if (!empty($sync_sales_person_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($sync_sales_person_request));
-            } elseif (!is_array($sync_sales_person_request)) {
-                $httpBody = (string) $sync_sales_person_request;
-            }
-            else {
-                $httpBody = '';
-            }
+        if ($headers['Content-Type'] === 'application/json') {
+          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($sync_sales_person_request));
+        } elseif (!is_array($sync_sales_person_request)) {
+          $httpBody = (string) $sync_sales_person_request;
+        }
+        else {
+          $httpBody = '';
         }
 
 

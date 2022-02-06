@@ -8,6 +8,7 @@ use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Middleware;
 use NecLimDul\MarketoRest\Cache\StaticCachePool;
 use NecLimDul\OAuth2\Client\Provider\Marketo;
+use Psr\Cache\CacheItemPoolInterface;
 use Psr\SimpleCache\CacheInterface;
 use Softonic\OAuth2\Guzzle\Middleware\AccessTokenCacheHandler;
 use Softonic\OAuth2\Guzzle\Middleware\AddAuthorizationHeader;
@@ -38,12 +39,12 @@ class ClientFactory
      *
      * @param \NecLimDul\MarketoRest\Configuration $config
      *   Some config.
-     * @param \Psr\SimpleCache\CacheInterface|null $cache
+     * @param \Psr\Cache\CacheItemPoolInterface|null $cache
      *   An optional cache interface.
      * @return \GuzzleHttp\Client
      *   A configured guzzle client.
      */
-    public static function createOauthClient(Configuration $config, CacheInterface $cache = NULL)
+    public static function createOauthClient(Configuration $config, CacheItemPoolInterface $cache = NULL)
     {
         $oauthProvider = new Marketo([
             'clientId' => $config->getClientId(),

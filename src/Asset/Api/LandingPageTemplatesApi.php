@@ -442,17 +442,13 @@ class LandingPageTemplatesApi
             ['application/json'],
             ['application/x-www-form-urlencoded']
         );
-
-        // for model (json/xml)
-        if (!empty($clone_lp_template_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($clone_lp_template_request));
-            } elseif (!is_array($clone_lp_template_request)) {
-                $httpBody = (string) $clone_lp_template_request;
-            }
-            else {
-                $httpBody = '';
-            }
+        if ($headers['Content-Type'] === 'application/json') {
+          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($clone_lp_template_request));
+        } elseif (!is_array($clone_lp_template_request)) {
+          $httpBody = (string) $clone_lp_template_request;
+        }
+        else {
+          $httpBody = '';
         }
 
 
@@ -615,17 +611,13 @@ class LandingPageTemplatesApi
             ['application/json'],
             ['application/x-www-form-urlencoded']
         );
-
-        // for model (json/xml)
-        if (!empty($create_lp_template_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($create_lp_template_request));
-            } elseif (!is_array($create_lp_template_request)) {
-                $httpBody = (string) $create_lp_template_request;
-            }
-            else {
-                $httpBody = '';
-            }
+        if ($headers['Content-Type'] === 'application/json') {
+          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($create_lp_template_request));
+        } elseif (!is_array($create_lp_template_request)) {
+          $httpBody = (string) $create_lp_template_request;
+        }
+        else {
+          $httpBody = '';
         }
 
 
@@ -2035,6 +2027,10 @@ class LandingPageTemplatesApi
         $formParams['content'] = ObjectSerializer::toFormValue($content);
         // Remove any null (optional values).
         $formParams = array_filter($formParams, function($v) { return $v !== null; });
+        /**
+         * @psalm-suppress RedundantCondition,TypeDoesNotContainType
+         * @phpstan-ignore-next-line
+         */
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
                 ['application/json']
@@ -2046,6 +2042,10 @@ class LandingPageTemplatesApi
             );
         }
         if (!empty($formParams)) {
+            /**
+             * @psalm-suppress RedundantCondition,TypeDoesNotContainType
+             * @phpstan-ignore-next-line
+             */
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -2246,17 +2246,13 @@ class LandingPageTemplatesApi
             ['application/json'],
             ['application/x-www-form-urlencoded']
         );
-
-        // for model (json/xml)
-        if (!empty($update_lp_template_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($update_lp_template_request));
-            } elseif (!is_array($update_lp_template_request)) {
-                $httpBody = (string) $update_lp_template_request;
-            }
-            else {
-                $httpBody = '';
-            }
+        if ($headers['Content-Type'] === 'application/json') {
+          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($update_lp_template_request));
+        } elseif (!is_array($update_lp_template_request)) {
+          $httpBody = (string) $update_lp_template_request;
+        }
+        else {
+          $httpBody = '';
         }
 
 

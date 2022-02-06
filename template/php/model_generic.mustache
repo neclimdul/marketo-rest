@@ -101,17 +101,19 @@ class {{classname}} {{#parentSchema}}extends {{{parent}}} {{/parentSchema}}{{^pa
 
     /**
      * Constructor
+     {{#hasVars}}
      *
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
+     {{/hasVars}}
      */
-    public function __construct(array $data = null)
+    public function __construct({{#hasVars}}array $data = null{{/hasVars}})
     {
+        {{#vars}}
         {{#parentSchema}}
         parent::__construct($data);
 
         {{/parentSchema}}
-        {{#vars}}
         $this->container['{{name}}'] = $data['{{name}}'] ?? {{#defaultValue}}{{{defaultValue}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}};
         {{/vars}}
         {{#discriminator}}
@@ -159,12 +161,12 @@ class {{classname}} {{#parentSchema}}extends {{{parent}}} {{/parentSchema}}{{^pa
      */
     public function listInvalidProperties()
     {
-        {{#parent}}
+        {{#parentSchema}}
         $invalidProperties = parent::listInvalidProperties();
-        {{/parent}}
-        {{^parent}}
+        {{/parentSchema}}
+        {{^parentSchema}}
         $invalidProperties = [];
-        {{/parent}}
+        {{/parentSchema}}
 
         {{#vars}}
         {{#required}}
@@ -243,9 +245,9 @@ class {{classname}} {{#parentSchema}}extends {{{parent}}} {{/parentSchema}}{{^pa
     {{#vars}}{{#isEnum}}
 
     /**
-     * Gets allowable values of the enum
+     * Gets allowable values of the enum.
      *
-     * @return string[]
+     * @return scalar[]
      */
     public function {{getter}}AllowableValues()
     {
@@ -381,6 +383,7 @@ class {{classname}} {{#parentSchema}}extends {{{parent}}} {{/parentSchema}}{{^pa
     /**
      * {@inheritdoc}
      */
+    #[\ReturnTypeWillChange]
     public function offsetExists($offset)
     {
         return isset($this->container[$offset]);
@@ -389,6 +392,7 @@ class {{classname}} {{#parentSchema}}extends {{{parent}}} {{/parentSchema}}{{^pa
     /**
      * {@inheritdoc}
      */
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -397,6 +401,7 @@ class {{classname}} {{#parentSchema}}extends {{{parent}}} {{/parentSchema}}{{^pa
     /**
      * {@inheritdoc}
      */
+    #[\ReturnTypeWillChange]
     public function offsetSet($offset, $value)
     {
         if (is_null($offset)) {
@@ -409,6 +414,7 @@ class {{classname}} {{#parentSchema}}extends {{{parent}}} {{/parentSchema}}{{^pa
     /**
      * {@inheritdoc}
      */
+    #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
         unset($this->container[$offset]);
@@ -421,6 +427,7 @@ class {{classname}} {{#parentSchema}}extends {{{parent}}} {{/parentSchema}}{{^pa
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);

@@ -68,6 +68,28 @@ class NamedAccountsApiTest extends TestCase
     }
 
     /**
+     * Get Named Account Field by Name.
+     *
+     * @covers ::getNamedAccountFieldByNameUsingGET
+     */
+    public function testGetNamedAccountFieldByNameUsingGET()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Get Named Account Fields.
+     *
+     * @covers ::getNamedAccountFieldsUsingGET
+     */
+    public function testGetNamedAccountFieldsUsingGET()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Get NamedAccounts.
      *
      * @covers ::getNamedAccountsUsingGET

@@ -221,9 +221,9 @@ class FormFieldVisibilityRequest implements ModelInterface, ArrayAccess, \JsonSe
     
 
     /**
-     * Gets allowable values of the enum
+     * Gets allowable values of the enum.
      *
-     * @return string[]
+     * @return scalar[]
      */
     public function getRuleTypeAllowableValues()
     {
@@ -333,6 +333,7 @@ class FormFieldVisibilityRequest implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * {@inheritdoc}
      */
+    #[\ReturnTypeWillChange]
     public function offsetExists($offset)
     {
         return isset($this->container[$offset]);
@@ -341,6 +342,7 @@ class FormFieldVisibilityRequest implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * {@inheritdoc}
      */
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->container[$offset] ?? null;
@@ -349,6 +351,7 @@ class FormFieldVisibilityRequest implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * {@inheritdoc}
      */
+    #[\ReturnTypeWillChange]
     public function offsetSet($offset, $value)
     {
         if (is_null($offset)) {
@@ -361,6 +364,7 @@ class FormFieldVisibilityRequest implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * {@inheritdoc}
      */
+    #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
         unset($this->container[$offset]);
@@ -373,6 +377,7 @@ class FormFieldVisibilityRequest implements ModelInterface, ArrayAccess, \JsonSe
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
        return ObjectSerializer::sanitizeForSerialization($this);

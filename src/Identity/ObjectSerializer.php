@@ -297,8 +297,44 @@ class ObjectSerializer
             return null;
         }
 
+        if ($class === '\SplFileObject') {
+            /** @var \Psr\Http\Message\StreamInterface $data */
+
+            // determine file name
+            if (isset($httpHeaders['Content-Disposition'][0]) &&
+                preg_match('/inline; filename=[\'"]?([^\'"\s]+)[\'"]?$/i', $httpHeaders['Content-Disposition'][0], $match)) {
+                $filename = Configuration::getDefaultConfiguration()->getTempFolderPath() . DIRECTORY_SEPARATOR . self::sanitizeFilename($match[1]);
+            } else {
+                $filename = tempnam(Configuration::getDefaultConfiguration()->getTempFolderPath(), '');
+            }
+
+            $file = fopen($filename, 'w');
+            while ($chunk = $data->read(200)) {
+                fwrite($file, $chunk);
+            }
+            fclose($file);
+
+            return new \SplFileObject($filename, 'r');
+        }
+
+        // @todo support more content types.
+        $data = is_string($data) ? json_decode($data) : $data;
+        return static::doDeserialize($data, $class);
+    }
+
+
+    /**
+     * Deserialize a JSON string into an object
+     *
+     * @param mixed    $data          object or primitive to be deserialized
+     * @param string   $class         class name is passed as a string
+     *
+     * @return object|array|null a single or an array of $class instances
+     */
+    public static function doDeserialize($data, $class)
+    {
+
         if (strcasecmp(substr($class, -2), '[]') === 0) {
-            $data = is_string($data) ? json_decode($data) : $data;
 
             if (!is_array($data)) {
                 throw new \InvalidArgumentException("Invalid array '$class'");
@@ -307,13 +343,12 @@ class ObjectSerializer
             $subClass = substr($class, 0, -2);
             $values = [];
             foreach ($data as $key => $value) {
-                $values[] = self::deserialize($value, $subClass, null);
+                $values[] = self::doDeserialize($value, $subClass);
             }
             return $values;
         }
 
-        if (substr($class, 0, 4) === 'map[') { // for associative array e.g. map[string,int]
-            $data = is_string($data) ? json_decode($data) : $data;
+        if (preg_match('/^(array<|map\[)/', $class)) { // for associative array e.g. array<string,int>
             settype($data, 'array');
             $inner = substr($class, 4, -1);
             $deserialized = [];
@@ -321,15 +356,10 @@ class ObjectSerializer
                 $subClass_array = explode(',', $inner, 2);
                 $subClass = $subClass_array[1];
                 foreach ($data as $key => $value) {
-                    $deserialized[$key] = self::deserialize($value, $subClass, null);
+                    $deserialized[$key] = self::doDeserialize($value, $subClass);
                 }
             }
             return $deserialized;
-        }
-
-        if ($class === 'object') {
-            settype($data, 'array');
-            return $data;
         }
 
         if ($class === '\DateTime') {
@@ -360,32 +390,16 @@ class ObjectSerializer
             return $data;
         }
 
-        if ($class === '\SplFileObject') {
-            /** @var \Psr\Http\Message\StreamInterface $data */
+        // We couldn't do a scalar cast so we know this is class string.
+        /** @var class-string $class */
 
-            // determine file name
-            if (isset($httpHeaders['Content-Disposition'][0]) &&
-                preg_match('/inline; filename=[\'"]?([^\'"\s]+)[\'"]?$/i', $httpHeaders['Content-Disposition'][0], $match)) {
-                $filename = Configuration::getDefaultConfiguration()->getTempFolderPath() . DIRECTORY_SEPARATOR . self::sanitizeFilename($match[1]);
-            } else {
-                $filename = tempnam(Configuration::getDefaultConfiguration()->getTempFolderPath(), '');
-            }
-
-            $file = fopen($filename, 'w');
-            while ($chunk = $data->read(200)) {
-                fwrite($file, $chunk);
-            }
-            fclose($file);
-
-            return new \SplFileObject($filename, 'r');
-        } elseif (method_exists($class, 'getAllowableEnumValues')) {
+        if (method_exists($class, 'getAllowableEnumValues')) {
             if (!in_array($data, $class::getAllowableEnumValues(), true)) {
                 $imploded = implode("', '", $class::getAllowableEnumValues());
                 throw new \InvalidArgumentException("Invalid value for enum '$class', must be one of: '$imploded'");
             }
             return $data;
         } else {
-            $data = is_string($data) ? json_decode($data) : $data;
             // If a discriminator is defined and points to a valid subclass, use it.
             $discriminator = $class::DISCRIMINATOR;
             if (!empty($discriminator) && isset($data->{$discriminator}) && is_string($data->{$discriminator})) {
@@ -408,7 +422,7 @@ class ObjectSerializer
 
                 if (isset($data->{$instance::attributeMap()[$property]})) {
                     $propertyValue = $data->{$instance::attributeMap()[$property]};
-                    $instance->$propertySetter(self::deserialize($propertyValue, $type, null));
+                    $instance->$propertySetter(self::doDeserialize($propertyValue, $type));
                 }
             }
             // Add any additional properties directly. This doesn't get any

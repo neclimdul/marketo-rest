@@ -274,17 +274,13 @@ class SmartListsApi
             ['application/json'],
             ['application/x-www-form-urlencoded']
         );
-
-        // for model (json/xml)
-        if (!empty($clone_smart_list_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($clone_smart_list_request));
-            } elseif (!is_array($clone_smart_list_request)) {
-                $httpBody = (string) $clone_smart_list_request;
-            }
-            else {
-                $httpBody = '';
-            }
+        if ($headers['Content-Type'] === 'application/json') {
+          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($clone_smart_list_request));
+        } elseif (!is_array($clone_smart_list_request)) {
+          $httpBody = (string) $clone_smart_list_request;
+        }
+        else {
+          $httpBody = '';
         }
 
 
