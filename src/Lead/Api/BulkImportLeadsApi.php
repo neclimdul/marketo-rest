@@ -818,6 +818,10 @@ class BulkImportLeadsApi
         }
         // Remove any null (optional values).
         $formParams = array_filter($formParams, function($v) { return $v !== null; });
+        /**
+         * @psalm-suppress RedundantCondition,TypeDoesNotContainType
+         * @phpstan-ignore-next-line
+         */
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
                 ['application/json']
@@ -829,6 +833,10 @@ class BulkImportLeadsApi
             );
         }
         if (!empty($formParams)) {
+            /**
+             * @psalm-suppress RedundantCondition,TypeDoesNotContainType
+             * @phpstan-ignore-next-line
+             */
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {

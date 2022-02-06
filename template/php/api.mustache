@@ -508,6 +508,10 @@ use {{invokerPackage}}\ObjectSerializer;
         {{#-last}}
         // Remove any null (optional values).
         $formParams = array_filter($formParams, function($v) { return $v !== null; });
+        /**
+         * @psalm-suppress RedundantCondition,TypeDoesNotContainType
+         * @phpstan-ignore-next-line
+         */
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
                 [{{#produces}}'{{{mediaType}}}'{{^-last}}, {{/-last}}{{/produces}}]
@@ -554,6 +558,10 @@ use {{invokerPackage}}\ObjectSerializer;
         {{#formParams}}
         {{#-last}}
         {{#bodyParams}}{{#-last}}else{{/-last}}{{/bodyParams}}if (!empty($formParams)) {
+            /**
+             * @psalm-suppress RedundantCondition,TypeDoesNotContainType
+             * @phpstan-ignore-next-line
+             */
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
