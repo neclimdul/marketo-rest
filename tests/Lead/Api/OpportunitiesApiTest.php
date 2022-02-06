@@ -101,6 +101,28 @@ class OpportunitiesApiTest extends TestCase
     }
 
     /**
+     * Get Opportunity Field by Name.
+     *
+     * @covers ::getOpportunityFieldByNameUsingGET
+     */
+    public function testGetOpportunityFieldByNameUsingGET()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Get Opportunity Fields.
+     *
+     * @covers ::getOpportunityFieldsUsingGET
+     */
+    public function testGetOpportunityFieldsUsingGET()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Get Opportunity Roles.
      *
      * @covers ::getOpportunityRolesUsingGET

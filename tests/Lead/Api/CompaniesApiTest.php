@@ -79,6 +79,28 @@ class CompaniesApiTest extends TestCase
     }
 
     /**
+     * Get Company Field by Name.
+     *
+     * @covers ::getCompanyFieldByNameUsingGET
+     */
+    public function testGetCompanyFieldByNameUsingGET()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Get Company Fields.
+     *
+     * @covers ::getCompanyFieldsUsingGET
+     */
+    public function testGetCompanyFieldsUsingGET()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Sync Companies.
      *
      * @covers ::syncCompaniesUsingPOST

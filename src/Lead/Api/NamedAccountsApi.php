@@ -441,6 +441,346 @@ class NamedAccountsApi
     }
 
     /**
+     * Operation getNamedAccountFieldByNameUsingGET
+     *
+     * Get Named Account Field by Name
+     *
+     * @param  string $field_api_name The API name of named account field (required)
+     *
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField
+     */
+    public function getNamedAccountFieldByNameUsingGET($field_api_name)
+    {
+        list($response) = $this->getNamedAccountFieldByNameUsingGETWithHttpInfo($field_api_name);
+        return $response;
+    }
+
+    /**
+     * Operation getNamedAccountFieldByNameUsingGETWithHttpInfo
+     *
+     * Get Named Account Field by Name
+     *
+     * @param  string $field_api_name The API name of named account field (required)
+     *
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getNamedAccountFieldByNameUsingGETWithHttpInfo($field_api_name)
+    {
+        $request = $this->getNamedAccountFieldByNameUsingGETRequest($field_api_name);
+
+        try {
+            $response = $this->makeRequest($request);
+
+            switch ($response->getStatusCode()) {
+                case 200:
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField');
+            }
+
+            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField');
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $e->setResponseObject(
+                        $this->deserializeResponseBody(
+                            $e->getResponseBody(),
+                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField',
+                            $e->getResponseHeaders()
+                        )
+                    );
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getNamedAccountFieldByNameUsingGETAsync
+     *
+     * Get Named Account Field by Name
+     *
+     * @param  string $field_api_name The API name of named account field (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getNamedAccountFieldByNameUsingGETAsync($field_api_name)
+    {
+        return $this->getNamedAccountFieldByNameUsingGETAsyncWithHttpInfo($field_api_name)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getNamedAccountFieldByNameUsingGETAsyncWithHttpInfo
+     *
+     * Get Named Account Field by Name
+     *
+     * @param  string $field_api_name The API name of named account field (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getNamedAccountFieldByNameUsingGETAsyncWithHttpInfo($field_api_name)
+    {
+        $request = $this->getNamedAccountFieldByNameUsingGETRequest($field_api_name);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) {
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField');
+                },
+                function (RequestException $exception) {
+                    $response = $exception->getResponse();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
+                        ),
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getNamedAccountFieldByNameUsingGET'
+     *
+     * @param  string $field_api_name The API name of named account field (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function getNamedAccountFieldByNameUsingGETRequest($field_api_name)
+    {
+        // Verify the required parameter 'field_api_name' is set.
+        if ($field_api_name === null || (is_array($field_api_name) && empty($field_api_name))) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $field_api_name when calling getNamedAccountFieldByNameUsingGET'
+            );
+        }
+
+        $resourcePath = '/rest/v1/namedaccounts/schema/fields/{fieldApiName}.json';
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+
+        // Path parameters.
+        $resourcePath = str_replace(
+            '{' . 'fieldApiName' . '}',
+            ObjectSerializer::toPathValue($field_api_name),
+            $resourcePath
+        );
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json'],
+            ['application/json']
+        );
+
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = Query::build($queryParams);
+        return new Request(
+            'GET',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation getNamedAccountFieldsUsingGET
+     *
+     * Get Named Account Fields
+     *
+     * @param  int $batch_size The batch size to return. The max and default value is 300. (optional)
+     * @param  string $next_page_token A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info. (optional)
+     *
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField
+     */
+    public function getNamedAccountFieldsUsingGET($batch_size = null, $next_page_token = null)
+    {
+        list($response) = $this->getNamedAccountFieldsUsingGETWithHttpInfo($batch_size, $next_page_token);
+        return $response;
+    }
+
+    /**
+     * Operation getNamedAccountFieldsUsingGETWithHttpInfo
+     *
+     * Get Named Account Fields
+     *
+     * @param  int $batch_size The batch size to return. The max and default value is 300. (optional)
+     * @param  string $next_page_token A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info. (optional)
+     *
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getNamedAccountFieldsUsingGETWithHttpInfo($batch_size = null, $next_page_token = null)
+    {
+        $request = $this->getNamedAccountFieldsUsingGETRequest($batch_size, $next_page_token);
+
+        try {
+            $response = $this->makeRequest($request);
+
+            switch ($response->getStatusCode()) {
+                case 200:
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField');
+            }
+
+            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField');
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $e->setResponseObject(
+                        $this->deserializeResponseBody(
+                            $e->getResponseBody(),
+                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField',
+                            $e->getResponseHeaders()
+                        )
+                    );
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getNamedAccountFieldsUsingGETAsync
+     *
+     * Get Named Account Fields
+     *
+     * @param  int $batch_size The batch size to return. The max and default value is 300. (optional)
+     * @param  string $next_page_token A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getNamedAccountFieldsUsingGETAsync($batch_size = null, $next_page_token = null)
+    {
+        return $this->getNamedAccountFieldsUsingGETAsyncWithHttpInfo($batch_size, $next_page_token)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getNamedAccountFieldsUsingGETAsyncWithHttpInfo
+     *
+     * Get Named Account Fields
+     *
+     * @param  int $batch_size The batch size to return. The max and default value is 300. (optional)
+     * @param  string $next_page_token A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getNamedAccountFieldsUsingGETAsyncWithHttpInfo($batch_size = null, $next_page_token = null)
+    {
+        $request = $this->getNamedAccountFieldsUsingGETRequest($batch_size, $next_page_token);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) {
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField');
+                },
+                function (RequestException $exception) {
+                    $response = $exception->getResponse();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
+                        ),
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getNamedAccountFieldsUsingGET'
+     *
+     * @param  int $batch_size The batch size to return. The max and default value is 300. (optional)
+     * @param  string $next_page_token A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function getNamedAccountFieldsUsingGETRequest($batch_size = null, $next_page_token = null)
+    {
+
+        $resourcePath = '/rest/v1/namedaccounts/schema/fields.json';
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+
+        // Query parameters.
+        if (is_array($batch_size)) {
+            $batch_size = ObjectSerializer::serializeCollection($batch_size, '', true);
+        }
+        $queryParams['batchSize'] = $batch_size;
+        if (is_array($next_page_token)) {
+            $next_page_token = ObjectSerializer::serializeCollection($next_page_token, '', true);
+        }
+        $queryParams['nextPageToken'] = $next_page_token;
+        // Remove any null (optional values).
+        $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json'],
+            ['application/json']
+        );
+
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = Query::build($queryParams);
+        return new Request(
+            'GET',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation getNamedAccountsUsingGET
      *
      * Get NamedAccounts

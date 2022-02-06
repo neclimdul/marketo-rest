@@ -13,5 +13,6 @@ Name | Type | Description | Notes
 **is_html_encoding_in_email** | **bool** | If set to true, field is encoded as HTML in email | 
 **is_sensitive** | **bool** | If set to true, field is marked as sensitive | 
 **is_custom** | **bool** | If set to true, field is custom | 
+**is_api_created** | **bool** | If set to true, field was created using REST API | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

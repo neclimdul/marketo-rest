@@ -118,6 +118,179 @@ class ProgramMembersApi
     }
 
     /**
+     * Operation createProgramMemberFieldUsingPOST
+     *
+     * Create Program Member Fields
+     *
+     * @param  \NecLimDul\MarketoRest\Lead\Model\CreateLeadFieldRequest $create_lead_field_request createLeadFieldRequest (required)
+     *
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfCreateLeadField
+     */
+    public function createProgramMemberFieldUsingPOST($create_lead_field_request)
+    {
+        list($response) = $this->createProgramMemberFieldUsingPOSTWithHttpInfo($create_lead_field_request);
+        return $response;
+    }
+
+    /**
+     * Operation createProgramMemberFieldUsingPOSTWithHttpInfo
+     *
+     * Create Program Member Fields
+     *
+     * @param  \NecLimDul\MarketoRest\Lead\Model\CreateLeadFieldRequest $create_lead_field_request createLeadFieldRequest (required)
+     *
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfCreateLeadField, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function createProgramMemberFieldUsingPOSTWithHttpInfo($create_lead_field_request)
+    {
+        $request = $this->createProgramMemberFieldUsingPOSTRequest($create_lead_field_request);
+
+        try {
+            $response = $this->makeRequest($request);
+
+            switch ($response->getStatusCode()) {
+                case 200:
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCreateLeadField');
+            }
+
+            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCreateLeadField');
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $e->setResponseObject(
+                        $this->deserializeResponseBody(
+                            $e->getResponseBody(),
+                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCreateLeadField',
+                            $e->getResponseHeaders()
+                        )
+                    );
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation createProgramMemberFieldUsingPOSTAsync
+     *
+     * Create Program Member Fields
+     *
+     * @param  \NecLimDul\MarketoRest\Lead\Model\CreateLeadFieldRequest $create_lead_field_request createLeadFieldRequest (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createProgramMemberFieldUsingPOSTAsync($create_lead_field_request)
+    {
+        return $this->createProgramMemberFieldUsingPOSTAsyncWithHttpInfo($create_lead_field_request)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation createProgramMemberFieldUsingPOSTAsyncWithHttpInfo
+     *
+     * Create Program Member Fields
+     *
+     * @param  \NecLimDul\MarketoRest\Lead\Model\CreateLeadFieldRequest $create_lead_field_request createLeadFieldRequest (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createProgramMemberFieldUsingPOSTAsyncWithHttpInfo($create_lead_field_request)
+    {
+        $request = $this->createProgramMemberFieldUsingPOSTRequest($create_lead_field_request);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) {
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCreateLeadField');
+                },
+                function (RequestException $exception) {
+                    $response = $exception->getResponse();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
+                        ),
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'createProgramMemberFieldUsingPOST'
+     *
+     * @param  \NecLimDul\MarketoRest\Lead\Model\CreateLeadFieldRequest $create_lead_field_request createLeadFieldRequest (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function createProgramMemberFieldUsingPOSTRequest($create_lead_field_request)
+    {
+        // Verify the required parameter 'create_lead_field_request' is set.
+        if ($create_lead_field_request === null || (is_array($create_lead_field_request) && empty($create_lead_field_request))) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $create_lead_field_request when calling createProgramMemberFieldUsingPOST'
+            );
+        }
+
+        $resourcePath = '/rest/v1/programs/members/schema/fields.json';
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json'],
+            ['application/json']
+        );
+
+        // for model (json/xml)
+        if (!empty($create_lead_field_request)) {
+            if ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($create_lead_field_request));
+            } elseif (!is_array($create_lead_field_request)) {
+                $httpBody = (string) $create_lead_field_request;
+            }
+            else {
+                $httpBody = '';
+            }
+        }
+
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = Query::build($queryParams);
+        return new Request(
+            'POST',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation deleteProgramMemberUsingPOST
      *
      * Delete Program Members
@@ -432,6 +605,346 @@ class ProgramMembersApi
         $queryParams = [];
         $headerParams = [];
         $httpBody = '';
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json'],
+            ['application/json']
+        );
+
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = Query::build($queryParams);
+        return new Request(
+            'GET',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation getProgramMemberFieldByNameUsingGET
+     *
+     * Get Program Member Field by Name
+     *
+     * @param  string $field_api_name The API name of program member field (required)
+     *
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField
+     */
+    public function getProgramMemberFieldByNameUsingGET($field_api_name)
+    {
+        list($response) = $this->getProgramMemberFieldByNameUsingGETWithHttpInfo($field_api_name);
+        return $response;
+    }
+
+    /**
+     * Operation getProgramMemberFieldByNameUsingGETWithHttpInfo
+     *
+     * Get Program Member Field by Name
+     *
+     * @param  string $field_api_name The API name of program member field (required)
+     *
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getProgramMemberFieldByNameUsingGETWithHttpInfo($field_api_name)
+    {
+        $request = $this->getProgramMemberFieldByNameUsingGETRequest($field_api_name);
+
+        try {
+            $response = $this->makeRequest($request);
+
+            switch ($response->getStatusCode()) {
+                case 200:
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField');
+            }
+
+            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField');
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $e->setResponseObject(
+                        $this->deserializeResponseBody(
+                            $e->getResponseBody(),
+                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField',
+                            $e->getResponseHeaders()
+                        )
+                    );
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getProgramMemberFieldByNameUsingGETAsync
+     *
+     * Get Program Member Field by Name
+     *
+     * @param  string $field_api_name The API name of program member field (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getProgramMemberFieldByNameUsingGETAsync($field_api_name)
+    {
+        return $this->getProgramMemberFieldByNameUsingGETAsyncWithHttpInfo($field_api_name)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getProgramMemberFieldByNameUsingGETAsyncWithHttpInfo
+     *
+     * Get Program Member Field by Name
+     *
+     * @param  string $field_api_name The API name of program member field (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getProgramMemberFieldByNameUsingGETAsyncWithHttpInfo($field_api_name)
+    {
+        $request = $this->getProgramMemberFieldByNameUsingGETRequest($field_api_name);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) {
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField');
+                },
+                function (RequestException $exception) {
+                    $response = $exception->getResponse();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
+                        ),
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getProgramMemberFieldByNameUsingGET'
+     *
+     * @param  string $field_api_name The API name of program member field (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function getProgramMemberFieldByNameUsingGETRequest($field_api_name)
+    {
+        // Verify the required parameter 'field_api_name' is set.
+        if ($field_api_name === null || (is_array($field_api_name) && empty($field_api_name))) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $field_api_name when calling getProgramMemberFieldByNameUsingGET'
+            );
+        }
+
+        $resourcePath = '/rest/v1/programs/members/schema/fields/{fieldApiName}.json';
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+
+        // Path parameters.
+        $resourcePath = str_replace(
+            '{' . 'fieldApiName' . '}',
+            ObjectSerializer::toPathValue($field_api_name),
+            $resourcePath
+        );
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json'],
+            ['application/json']
+        );
+
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = Query::build($queryParams);
+        return new Request(
+            'GET',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation getProgramMemberFieldsUsingGET
+     *
+     * Get Program Member Fields
+     *
+     * @param  int $batch_size The batch size to return. The max and default value is 300. (optional)
+     * @param  string $next_page_token A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info. (optional)
+     *
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField
+     */
+    public function getProgramMemberFieldsUsingGET($batch_size = null, $next_page_token = null)
+    {
+        list($response) = $this->getProgramMemberFieldsUsingGETWithHttpInfo($batch_size, $next_page_token);
+        return $response;
+    }
+
+    /**
+     * Operation getProgramMemberFieldsUsingGETWithHttpInfo
+     *
+     * Get Program Member Fields
+     *
+     * @param  int $batch_size The batch size to return. The max and default value is 300. (optional)
+     * @param  string $next_page_token A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info. (optional)
+     *
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getProgramMemberFieldsUsingGETWithHttpInfo($batch_size = null, $next_page_token = null)
+    {
+        $request = $this->getProgramMemberFieldsUsingGETRequest($batch_size, $next_page_token);
+
+        try {
+            $response = $this->makeRequest($request);
+
+            switch ($response->getStatusCode()) {
+                case 200:
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField');
+            }
+
+            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField');
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $e->setResponseObject(
+                        $this->deserializeResponseBody(
+                            $e->getResponseBody(),
+                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField',
+                            $e->getResponseHeaders()
+                        )
+                    );
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getProgramMemberFieldsUsingGETAsync
+     *
+     * Get Program Member Fields
+     *
+     * @param  int $batch_size The batch size to return. The max and default value is 300. (optional)
+     * @param  string $next_page_token A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getProgramMemberFieldsUsingGETAsync($batch_size = null, $next_page_token = null)
+    {
+        return $this->getProgramMemberFieldsUsingGETAsyncWithHttpInfo($batch_size, $next_page_token)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getProgramMemberFieldsUsingGETAsyncWithHttpInfo
+     *
+     * Get Program Member Fields
+     *
+     * @param  int $batch_size The batch size to return. The max and default value is 300. (optional)
+     * @param  string $next_page_token A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getProgramMemberFieldsUsingGETAsyncWithHttpInfo($batch_size = null, $next_page_token = null)
+    {
+        $request = $this->getProgramMemberFieldsUsingGETRequest($batch_size, $next_page_token);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) {
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField');
+                },
+                function (RequestException $exception) {
+                    $response = $exception->getResponse();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
+                        ),
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getProgramMemberFieldsUsingGET'
+     *
+     * @param  int $batch_size The batch size to return. The max and default value is 300. (optional)
+     * @param  string $next_page_token A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function getProgramMemberFieldsUsingGETRequest($batch_size = null, $next_page_token = null)
+    {
+
+        $resourcePath = '/rest/v1/programs/members/schema/fields.json';
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+
+        // Query parameters.
+        if (is_array($batch_size)) {
+            $batch_size = ObjectSerializer::serializeCollection($batch_size, '', true);
+        }
+        $queryParams['batchSize'] = $batch_size;
+        if (is_array($next_page_token)) {
+            $next_page_token = ObjectSerializer::serializeCollection($next_page_token, '', true);
+        }
+        $queryParams['nextPageToken'] = $next_page_token;
+        // Remove any null (optional values).
+        $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
             ['application/json']
@@ -1060,6 +1573,197 @@ class ProgramMembersApi
                 $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($sync_program_member_status_request));
             } elseif (!is_array($sync_program_member_status_request)) {
                 $httpBody = (string) $sync_program_member_status_request;
+            }
+            else {
+                $httpBody = '';
+            }
+        }
+
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = Query::build($queryParams);
+        return new Request(
+            'POST',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation updateProgramMemberFieldUsingPOST
+     *
+     * Update Program Member Field
+     *
+     * @param  string $field_api_name The API name of program member field (required)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\UpdateLeadFieldRequest $update_lead_field_request updateLeadFieldRequest (required)
+     *
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfUpdateLeadField
+     */
+    public function updateProgramMemberFieldUsingPOST($field_api_name, $update_lead_field_request)
+    {
+        list($response) = $this->updateProgramMemberFieldUsingPOSTWithHttpInfo($field_api_name, $update_lead_field_request);
+        return $response;
+    }
+
+    /**
+     * Operation updateProgramMemberFieldUsingPOSTWithHttpInfo
+     *
+     * Update Program Member Field
+     *
+     * @param  string $field_api_name The API name of program member field (required)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\UpdateLeadFieldRequest $update_lead_field_request updateLeadFieldRequest (required)
+     *
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfUpdateLeadField, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function updateProgramMemberFieldUsingPOSTWithHttpInfo($field_api_name, $update_lead_field_request)
+    {
+        $request = $this->updateProgramMemberFieldUsingPOSTRequest($field_api_name, $update_lead_field_request);
+
+        try {
+            $response = $this->makeRequest($request);
+
+            switch ($response->getStatusCode()) {
+                case 200:
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfUpdateLeadField');
+            }
+
+            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfUpdateLeadField');
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $e->setResponseObject(
+                        $this->deserializeResponseBody(
+                            $e->getResponseBody(),
+                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfUpdateLeadField',
+                            $e->getResponseHeaders()
+                        )
+                    );
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation updateProgramMemberFieldUsingPOSTAsync
+     *
+     * Update Program Member Field
+     *
+     * @param  string $field_api_name The API name of program member field (required)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\UpdateLeadFieldRequest $update_lead_field_request updateLeadFieldRequest (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function updateProgramMemberFieldUsingPOSTAsync($field_api_name, $update_lead_field_request)
+    {
+        return $this->updateProgramMemberFieldUsingPOSTAsyncWithHttpInfo($field_api_name, $update_lead_field_request)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation updateProgramMemberFieldUsingPOSTAsyncWithHttpInfo
+     *
+     * Update Program Member Field
+     *
+     * @param  string $field_api_name The API name of program member field (required)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\UpdateLeadFieldRequest $update_lead_field_request updateLeadFieldRequest (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function updateProgramMemberFieldUsingPOSTAsyncWithHttpInfo($field_api_name, $update_lead_field_request)
+    {
+        $request = $this->updateProgramMemberFieldUsingPOSTRequest($field_api_name, $update_lead_field_request);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) {
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfUpdateLeadField');
+                },
+                function (RequestException $exception) {
+                    $response = $exception->getResponse();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
+                        ),
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'updateProgramMemberFieldUsingPOST'
+     *
+     * @param  string $field_api_name The API name of program member field (required)
+     * @param  \NecLimDul\MarketoRest\Lead\Model\UpdateLeadFieldRequest $update_lead_field_request updateLeadFieldRequest (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function updateProgramMemberFieldUsingPOSTRequest($field_api_name, $update_lead_field_request)
+    {
+        // Verify the required parameter 'field_api_name' is set.
+        if ($field_api_name === null || (is_array($field_api_name) && empty($field_api_name))) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $field_api_name when calling updateProgramMemberFieldUsingPOST'
+            );
+        }
+        // Verify the required parameter 'update_lead_field_request' is set.
+        if ($update_lead_field_request === null || (is_array($update_lead_field_request) && empty($update_lead_field_request))) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $update_lead_field_request when calling updateProgramMemberFieldUsingPOST'
+            );
+        }
+
+        $resourcePath = '/rest/v1/programs/members/schema/fields/{fieldApiName}.json';
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+
+        // Path parameters.
+        $resourcePath = str_replace(
+            '{' . 'fieldApiName' . '}',
+            ObjectSerializer::toPathValue($field_api_name),
+            $resourcePath
+        );
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json'],
+            ['application/json']
+        );
+
+        // for model (json/xml)
+        if (!empty($update_lead_field_request)) {
+            if ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($update_lead_field_request));
+            } elseif (!is_array($update_lead_field_request)) {
+                $httpBody = (string) $update_lead_field_request;
             }
             else {
                 $httpBody = '';

@@ -58,6 +58,7 @@ class ExportCustomObjectFilter implements ModelInterface, ArrayAccess, \JsonSeri
       * @var string[]
       */
     protected static $swaggerTypes = [
+        'updated_at' => '\NecLimDul\MarketoRest\Lead\Model\DateRange',
         'smart_list_id' => 'int',
         'smart_list_name' => 'string',
         'static_list_id' => 'int',
@@ -72,6 +73,7 @@ class ExportCustomObjectFilter implements ModelInterface, ArrayAccess, \JsonSeri
       * @psalm-var array<string, string|null>
       */
     protected static $swaggerFormats = [
+        'updated_at' => null,
         'smart_list_id' => 'int32',
         'smart_list_name' => null,
         'static_list_id' => 'int32',
@@ -110,6 +112,7 @@ class ExportCustomObjectFilter implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $attributeMap = [
+        'updated_at' => 'updatedAt',
         'smart_list_id' => 'smartListId',
         'smart_list_name' => 'smartListName',
         'static_list_id' => 'staticListId',
@@ -122,6 +125,7 @@ class ExportCustomObjectFilter implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $setters = [
+        'updated_at' => 'setUpdatedAt',
         'smart_list_id' => 'setSmartListId',
         'smart_list_name' => 'setSmartListName',
         'static_list_id' => 'setStaticListId',
@@ -134,6 +138,7 @@ class ExportCustomObjectFilter implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $getters = [
+        'updated_at' => 'getUpdatedAt',
         'smart_list_id' => 'getSmartListId',
         'smart_list_name' => 'getSmartListName',
         'static_list_id' => 'getStaticListId',
@@ -157,6 +162,7 @@ class ExportCustomObjectFilter implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function __construct(array $data = null)
     {
+        $this->container['updated_at'] = $data['updated_at'] ?? null;
         $this->container['smart_list_id'] = $data['smart_list_id'] ?? null;
         $this->container['smart_list_name'] = $data['smart_list_name'] ?? null;
         $this->container['static_list_id'] = $data['static_list_id'] ?? null;
@@ -202,6 +208,9 @@ class ExportCustomObjectFilter implements ModelInterface, ArrayAccess, \JsonSeri
     {
         $invalidProperties = [];
 
+        if ($this->container['updated_at'] === null) {
+            $invalidProperties[] = "'updated_at' can't be null";
+        }
         if ($this->container['smart_list_id'] === null) {
             $invalidProperties[] = "'smart_list_id' can't be null";
         }
@@ -225,6 +234,30 @@ class ExportCustomObjectFilter implements ModelInterface, ArrayAccess, \JsonSeri
         return count($this->listInvalidProperties()) === 0;
     }
     
+
+    /**
+     * Gets updated_at
+     *
+     * @return \NecLimDul\MarketoRest\Lead\Model\DateRange
+     */
+    public function getUpdatedAt()
+    {
+        return $this->container['updated_at'];
+    }
+
+    /**
+     * Sets updated_at
+     *
+     * @param \NecLimDul\MarketoRest\Lead\Model\DateRange $updated_at Date range to filter updated custom objects on
+     *
+     * @return self
+     */
+    public function setUpdatedAt($updated_at)
+    {
+        $this->container['updated_at'] = $updated_at;
+
+        return $this;
+    }
 
     /**
      * Gets smart_list_id

@@ -130,4 +130,13 @@ class LeadFieldTest extends TestCase
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "is_api_created"
+     */
+    public function testPropertyIsApiCreated()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
 }

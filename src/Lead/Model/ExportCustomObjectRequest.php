@@ -281,7 +281,7 @@ class ExportCustomObjectRequest implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets filter
      *
-     * @param \NecLimDul\MarketoRest\Lead\Model\ExportCustomObjectFilter $filter Custom object record selection criteria. Can be one of the following: \"staticListName\", \"staticListId\", \"smartListName\", \"smartListId\"
+     * @param \NecLimDul\MarketoRest\Lead\Model\ExportCustomObjectFilter $filter Custom object record selection criteria. Can be one of the following: \"updatedAt\", \"staticListName\", \"staticListId\", \"smartListName\", \"smartListId\"
      *
      * @return self
      */

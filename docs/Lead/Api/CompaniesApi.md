@@ -7,6 +7,8 @@ Method | HTTP request | Description
 [**deleteCompaniesUsingPOST**](CompaniesApi.md#deleteCompaniesUsingPOST) | **POST** /rest/v1/companies/delete.json | Delete Companies
 [**describeUsingGET**](CompaniesApi.md#describeUsingGET) | **GET** /rest/v1/companies/describe.json | Describe Companies
 [**getCompaniesUsingGET**](CompaniesApi.md#getCompaniesUsingGET) | **GET** /rest/v1/companies.json | Get Companies
+[**getCompanyFieldByNameUsingGET**](CompaniesApi.md#getCompanyFieldByNameUsingGET) | **GET** /rest/v1/companies/schema/fields/{fieldApiName}.json | Get Company Field by Name
+[**getCompanyFieldsUsingGET**](CompaniesApi.md#getCompanyFieldsUsingGET) | **GET** /rest/v1/companies/schema/fields.json | Get Company Fields
 [**syncCompaniesUsingPOST**](CompaniesApi.md#syncCompaniesUsingPOST) | **POST** /rest/v1/companies.json | Sync Companies
 
 
@@ -149,6 +151,106 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**\NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany**](../Model/ResponseOfCompany.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **getCompanyFieldByNameUsingGET**
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField getCompanyFieldByNameUsingGET($field_api_name)
+
+Get Company Field by Name
+
+Retrieves metadata for single company field.  Required Permissions: Read-Write Schema Standard Field, Read-Write Schema Custom Field
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\CompaniesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$field_api_name = "field_api_name_example"; // string | The API name of company field
+
+try {
+    $result = $apiInstance->getCompanyFieldByNameUsingGET($field_api_name);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling CompaniesApi->getCompanyFieldByNameUsingGET: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **field_api_name** | **string**| The API name of company field |
+
+### Return type
+
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField**](../Model/ResponseOfLeadField.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **getCompanyFieldsUsingGET**
+> \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField getCompanyFieldsUsingGET($batch_size, $next_page_token)
+
+Get Company Fields
+
+Retrieves metadata for all company fields in the target instance.  Required Permissions: Read-Write Schema Standard Field, Read-Write Schema Custom Field
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$apiInstance = new NecLimDul\MarketoRest\Lead\Api\CompaniesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$batch_size = 56; // int | The batch size to return. The max and default value is 300.
+$next_page_token = "next_page_token_example"; // string | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
+
+try {
+    $result = $apiInstance->getCompanyFieldsUsingGET($batch_size, $next_page_token);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling CompaniesApi->getCompanyFieldsUsingGET: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **batch_size** | **int**| The batch size to return. The max and default value is 300. | [optional]
+ **next_page_token** | **string**| A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info. | [optional]
+
+### Return type
+
+[**\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField**](../Model/ResponseOfLeadField.md)
 
 ### Authorization
 

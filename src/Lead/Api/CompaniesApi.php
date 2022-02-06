@@ -652,6 +652,346 @@ class CompaniesApi
     }
 
     /**
+     * Operation getCompanyFieldByNameUsingGET
+     *
+     * Get Company Field by Name
+     *
+     * @param  string $field_api_name The API name of company field (required)
+     *
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField
+     */
+    public function getCompanyFieldByNameUsingGET($field_api_name)
+    {
+        list($response) = $this->getCompanyFieldByNameUsingGETWithHttpInfo($field_api_name);
+        return $response;
+    }
+
+    /**
+     * Operation getCompanyFieldByNameUsingGETWithHttpInfo
+     *
+     * Get Company Field by Name
+     *
+     * @param  string $field_api_name The API name of company field (required)
+     *
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getCompanyFieldByNameUsingGETWithHttpInfo($field_api_name)
+    {
+        $request = $this->getCompanyFieldByNameUsingGETRequest($field_api_name);
+
+        try {
+            $response = $this->makeRequest($request);
+
+            switch ($response->getStatusCode()) {
+                case 200:
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField');
+            }
+
+            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField');
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $e->setResponseObject(
+                        $this->deserializeResponseBody(
+                            $e->getResponseBody(),
+                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField',
+                            $e->getResponseHeaders()
+                        )
+                    );
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getCompanyFieldByNameUsingGETAsync
+     *
+     * Get Company Field by Name
+     *
+     * @param  string $field_api_name The API name of company field (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getCompanyFieldByNameUsingGETAsync($field_api_name)
+    {
+        return $this->getCompanyFieldByNameUsingGETAsyncWithHttpInfo($field_api_name)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getCompanyFieldByNameUsingGETAsyncWithHttpInfo
+     *
+     * Get Company Field by Name
+     *
+     * @param  string $field_api_name The API name of company field (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getCompanyFieldByNameUsingGETAsyncWithHttpInfo($field_api_name)
+    {
+        $request = $this->getCompanyFieldByNameUsingGETRequest($field_api_name);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) {
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField');
+                },
+                function (RequestException $exception) {
+                    $response = $exception->getResponse();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
+                        ),
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getCompanyFieldByNameUsingGET'
+     *
+     * @param  string $field_api_name The API name of company field (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function getCompanyFieldByNameUsingGETRequest($field_api_name)
+    {
+        // Verify the required parameter 'field_api_name' is set.
+        if ($field_api_name === null || (is_array($field_api_name) && empty($field_api_name))) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $field_api_name when calling getCompanyFieldByNameUsingGET'
+            );
+        }
+
+        $resourcePath = '/rest/v1/companies/schema/fields/{fieldApiName}.json';
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+
+        // Path parameters.
+        $resourcePath = str_replace(
+            '{' . 'fieldApiName' . '}',
+            ObjectSerializer::toPathValue($field_api_name),
+            $resourcePath
+        );
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json'],
+            ['application/json']
+        );
+
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = Query::build($queryParams);
+        return new Request(
+            'GET',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation getCompanyFieldsUsingGET
+     *
+     * Get Company Fields
+     *
+     * @param  int $batch_size The batch size to return. The max and default value is 300. (optional)
+     * @param  string $next_page_token A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info. (optional)
+     *
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField
+     */
+    public function getCompanyFieldsUsingGET($batch_size = null, $next_page_token = null)
+    {
+        list($response) = $this->getCompanyFieldsUsingGETWithHttpInfo($batch_size, $next_page_token);
+        return $response;
+    }
+
+    /**
+     * Operation getCompanyFieldsUsingGETWithHttpInfo
+     *
+     * Get Company Fields
+     *
+     * @param  int $batch_size The batch size to return. The max and default value is 300. (optional)
+     * @param  string $next_page_token A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info. (optional)
+     *
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getCompanyFieldsUsingGETWithHttpInfo($batch_size = null, $next_page_token = null)
+    {
+        $request = $this->getCompanyFieldsUsingGETRequest($batch_size, $next_page_token);
+
+        try {
+            $response = $this->makeRequest($request);
+
+            switch ($response->getStatusCode()) {
+                case 200:
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField');
+            }
+
+            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField');
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $e->setResponseObject(
+                        $this->deserializeResponseBody(
+                            $e->getResponseBody(),
+                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField',
+                            $e->getResponseHeaders()
+                        )
+                    );
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getCompanyFieldsUsingGETAsync
+     *
+     * Get Company Fields
+     *
+     * @param  int $batch_size The batch size to return. The max and default value is 300. (optional)
+     * @param  string $next_page_token A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getCompanyFieldsUsingGETAsync($batch_size = null, $next_page_token = null)
+    {
+        return $this->getCompanyFieldsUsingGETAsyncWithHttpInfo($batch_size, $next_page_token)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getCompanyFieldsUsingGETAsyncWithHttpInfo
+     *
+     * Get Company Fields
+     *
+     * @param  int $batch_size The batch size to return. The max and default value is 300. (optional)
+     * @param  string $next_page_token A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getCompanyFieldsUsingGETAsyncWithHttpInfo($batch_size = null, $next_page_token = null)
+    {
+        $request = $this->getCompanyFieldsUsingGETRequest($batch_size, $next_page_token);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) {
+                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField');
+                },
+                function (RequestException $exception) {
+                    $response = $exception->getResponse();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
+                        ),
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getCompanyFieldsUsingGET'
+     *
+     * @param  int $batch_size The batch size to return. The max and default value is 300. (optional)
+     * @param  string $next_page_token A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function getCompanyFieldsUsingGETRequest($batch_size = null, $next_page_token = null)
+    {
+
+        $resourcePath = '/rest/v1/companies/schema/fields.json';
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+
+        // Query parameters.
+        if (is_array($batch_size)) {
+            $batch_size = ObjectSerializer::serializeCollection($batch_size, '', true);
+        }
+        $queryParams['batchSize'] = $batch_size;
+        if (is_array($next_page_token)) {
+            $next_page_token = ObjectSerializer::serializeCollection($next_page_token, '', true);
+        }
+        $queryParams['nextPageToken'] = $next_page_token;
+        // Remove any null (optional values).
+        $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json'],
+            ['application/json']
+        );
+
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = Query::build($queryParams);
+        return new Request(
+            'GET',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation syncCompaniesUsingPOST
      *
      * Sync Companies
