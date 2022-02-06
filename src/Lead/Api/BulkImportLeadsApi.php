@@ -811,7 +811,7 @@ class BulkImportLeadsApi
         $formParams['file'] = [];
         $paramFiles = is_array($file) ? $file : [$file];
         foreach ($paramFiles as $paramFile) {
-            $formParams['file'][] = \GuzzleHttp\Psr7\try_fopen(
+            $formParams['file'][] = \GuzzleHttp\Psr7\Utils::tryFopen(
                 ObjectSerializer::toFormValue($paramFile),
                 'rb'
             );
