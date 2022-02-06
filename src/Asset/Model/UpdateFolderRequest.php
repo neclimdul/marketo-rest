@@ -229,9 +229,9 @@ class UpdateFolderRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     
 
     /**
-     * Gets allowable values of the enum
+     * Gets allowable values of the enum.
      *
-     * @return string[]
+     * @return scalar[]
      */
     public function getTypeAllowableValues()
     {

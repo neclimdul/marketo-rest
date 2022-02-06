@@ -263,9 +263,9 @@ class VisibilityRuleRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     
 
     /**
-     * Gets allowable values of the enum
+     * Gets allowable values of the enum.
      *
-     * @return string[]
+     * @return scalar[]
      */
     public function getOperatorAllowableValues()
     {

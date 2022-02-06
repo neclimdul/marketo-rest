@@ -243,9 +243,9 @@ class {{classname}} {{#parentSchema}}extends {{{parent}}} {{/parentSchema}}{{^pa
     {{#vars}}{{#isEnum}}
 
     /**
-     * Gets allowable values of the enum
+     * Gets allowable values of the enum.
      *
-     * @return string[]
+     * @return scalar[]
      */
     public function {{getter}}AllowableValues()
     {

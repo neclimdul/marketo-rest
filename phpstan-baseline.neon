@@ -16,16 +16,6 @@ parameters:
 			path: src/Asset/Api/TokensApi.php
 
 		-
-			message: "#^Method NecLimDul\\\\MarketoRest\\\\Asset\\\\Model\\\\EmailResponse\\:\\:getVersionAllowableValues\\(\\) should return array\\<string\\> but returns array\\<int, int\\>\\.$#"
-			count: 1
-			path: src/Asset/Model/EmailResponse.php
-
-		-
-			message: "#^Method NecLimDul\\\\MarketoRest\\\\Asset\\\\Model\\\\EmailTemplateResponse\\:\\:getVersionAllowableValues\\(\\) should return array\\<string\\> but returns array\\<int, int\\>\\.$#"
-			count: 1
-			path: src/Asset/Model/EmailTemplateResponse.php
-
-		-
 			message: "#^Constructor of class NecLimDul\\\\MarketoRest\\\\Asset\\\\Model\\\\ModelResponse has an unused parameter \\$data\\.$#"
 			count: 1
 			path: src/Asset/Model/ModelResponse.php

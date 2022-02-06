@@ -238,9 +238,9 @@ class CreateLpTemplateRequest implements ModelInterface, ArrayAccess, \JsonSeria
     
 
     /**
-     * Gets allowable values of the enum
+     * Gets allowable values of the enum.
      *
-     * @return string[]
+     * @return scalar[]
      */
     public function getTemplateTypeAllowableValues()
     {

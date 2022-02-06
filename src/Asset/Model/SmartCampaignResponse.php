@@ -436,9 +436,9 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     
 
     /**
-     * Gets allowable values of the enum
+     * Gets allowable values of the enum.
      *
-     * @return string[]
+     * @return scalar[]
      */
     public function getTypeAllowableValues()
     {
@@ -451,9 +451,9 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     
 
     /**
-     * Gets allowable values of the enum
+     * Gets allowable values of the enum.
      *
-     * @return string[]
+     * @return scalar[]
      */
     public function getQualificationRuleTypeAllowableValues()
     {
@@ -466,9 +466,9 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     
 
     /**
-     * Gets allowable values of the enum
+     * Gets allowable values of the enum.
      *
-     * @return string[]
+     * @return scalar[]
      */
     public function getQualificationRuleUnitAllowableValues()
     {
@@ -482,9 +482,9 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     
 
     /**
-     * Gets allowable values of the enum
+     * Gets allowable values of the enum.
      *
-     * @return string[]
+     * @return scalar[]
      */
     public function getStatusAllowableValues()
     {

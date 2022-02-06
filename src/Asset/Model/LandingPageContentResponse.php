@@ -272,9 +272,9 @@ class LandingPageContentResponse implements ModelInterface, ArrayAccess, \JsonSe
     
 
     /**
-     * Gets allowable values of the enum
+     * Gets allowable values of the enum.
      *
-     * @return string[]
+     * @return scalar[]
      */
     public function getFollowupTypeAllowableValues()
     {
@@ -287,9 +287,9 @@ class LandingPageContentResponse implements ModelInterface, ArrayAccess, \JsonSe
     
 
     /**
-     * Gets allowable values of the enum
+     * Gets allowable values of the enum.
      *
-     * @return string[]
+     * @return scalar[]
      */
     public function getTypeAllowableValues()
     {

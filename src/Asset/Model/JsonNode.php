@@ -335,9 +335,9 @@ class JsonNode implements ModelInterface, ArrayAccess, \JsonSerializable
     
 
     /**
-     * Gets allowable values of the enum
+     * Gets allowable values of the enum.
      *
-     * @return string[]
+     * @return scalar[]
      */
     public function getNodeTypeAllowableValues()
     {

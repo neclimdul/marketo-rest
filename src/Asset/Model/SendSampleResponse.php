@@ -219,9 +219,9 @@ class SendSampleResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     
 
     /**
-     * Gets allowable values of the enum
+     * Gets allowable values of the enum.
      *
-     * @return string[]
+     * @return scalar[]
      */
     public function getServiceAllowableValues()
     {
