@@ -1,11 +1,6 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Constant Folder not found\\.$#"
-			count: 5
-			path: src/Asset/Api/TokensApi.php
-
-		-
 			message: "#^Constructor of class NecLimDul\\\\MarketoRest\\\\Asset\\\\Model\\\\ModelResponse has an unused parameter \\$data\\.$#"
 			count: 1
 			path: src/Asset/Model/ModelResponse.php
