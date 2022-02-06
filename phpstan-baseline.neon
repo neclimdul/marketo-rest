@@ -1,17 +1,3 @@
 parameters:
-	ignoreErrors:
-		-
-			message: "#^PHPDoc tag @param has invalid value \\(\\$className\\)\\: Unexpected token \"\\$className\", expected type at offset 71$#"
-			count: 1
-			path: src/Laravel/MarketoRestProvider.php
-
-		-
-			message: "#^PHPDoc tag @param has invalid value \\(\\$client\\)\\: Unexpected token \"\\$client\", expected type at offset 96$#"
-			count: 1
-			path: src/Laravel/MarketoRestProvider.php
-
-		-
-			message: "#^PHPDoc tag @param has invalid value \\(\\$config\\)\\: Unexpected token \"\\$config\", expected type at offset 118$#"
-			count: 1
-			path: src/Laravel/MarketoRestProvider.php
+	ignoreErrors: []
 
