@@ -56,6 +56,7 @@ class StaticCachePool implements CacheItemPoolInterface
     {
         $this->deferred = [];
         $this->cache = [];
+        return true;
     }
 
     /**
@@ -65,6 +66,7 @@ class StaticCachePool implements CacheItemPoolInterface
     {
         unset($this->cache[$key]);
         unset($this->deferred[$key]);
+        return true;
     }
 
     /**
@@ -76,6 +78,7 @@ class StaticCachePool implements CacheItemPoolInterface
             unset($this->cache[$key]);
             unset($this->deferred[$key]);
         }
+        return true;
     }
 
     /**

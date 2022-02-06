@@ -36,26 +36,6 @@ parameters:
 			path: src/Asset/Model/MultipartFile.php
 
 		-
-			message: "#^Method NecLimDul\\\\MarketoRest\\\\Cache\\\\CacheItem\\:\\:set\\(\\) should return static\\(NecLimDul\\\\MarketoRest\\\\Cache\\\\CacheItem\\) but return statement is missing\\.$#"
-			count: 1
-			path: src/Cache/CacheItem.php
-
-		-
-			message: "#^Method NecLimDul\\\\MarketoRest\\\\Cache\\\\StaticCachePool\\:\\:clear\\(\\) should return bool but return statement is missing\\.$#"
-			count: 1
-			path: src/Cache/StaticCachePool.php
-
-		-
-			message: "#^Method NecLimDul\\\\MarketoRest\\\\Cache\\\\StaticCachePool\\:\\:deleteItem\\(\\) should return bool but return statement is missing\\.$#"
-			count: 1
-			path: src/Cache/StaticCachePool.php
-
-		-
-			message: "#^Method NecLimDul\\\\MarketoRest\\\\Cache\\\\StaticCachePool\\:\\:deleteItems\\(\\) should return bool but return statement is missing\\.$#"
-			count: 1
-			path: src/Cache/StaticCachePool.php
-
-		-
 			message: "#^PHPDoc tag @param has invalid value \\(\\$className\\)\\: Unexpected token \"\\$className\", expected type at offset 71$#"
 			count: 1
 			path: src/Laravel/MarketoRestProvider.php
