@@ -182,7 +182,7 @@ class LeadAttribute2SearchableFields implements ModelInterface, ArrayAccess, \Js
      */
     public function listInvalidProperties()
     {
-        $invalidProperties = parent::listInvalidProperties();
+        $invalidProperties = [];
 
         return $invalidProperties;
     }
