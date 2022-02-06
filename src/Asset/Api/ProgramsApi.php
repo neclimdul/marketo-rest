@@ -641,17 +641,13 @@ class ProgramsApi
             ['application/json'],
             ['application/x-www-form-urlencoded']
         );
-
-        // for model (json/xml)
-        if (!empty($clone_program_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($clone_program_request));
-            } elseif (!is_array($clone_program_request)) {
-                $httpBody = (string) $clone_program_request;
-            }
-            else {
-                $httpBody = '';
-            }
+        if ($headers['Content-Type'] === 'application/json') {
+          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($clone_program_request));
+        } elseif (!is_array($clone_program_request)) {
+          $httpBody = (string) $clone_program_request;
+        }
+        else {
+          $httpBody = '';
         }
 
 
@@ -814,17 +810,13 @@ class ProgramsApi
             ['application/json'],
             ['application/x-www-form-urlencoded']
         );
-
-        // for model (json/xml)
-        if (!empty($create_program_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($create_program_request));
-            } elseif (!is_array($create_program_request)) {
-                $httpBody = (string) $create_program_request;
-            }
-            else {
-                $httpBody = '';
-            }
+        if ($headers['Content-Type'] === 'application/json') {
+          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($create_program_request));
+        } elseif (!is_array($create_program_request)) {
+          $httpBody = (string) $create_program_request;
+        }
+        else {
+          $httpBody = '';
         }
 
 
@@ -2079,17 +2071,13 @@ class ProgramsApi
             ['application/json'],
             ['application/x-www-form-urlencoded']
         );
-
-        // for model (json/xml)
-        if (!empty($update_program_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($update_program_request));
-            } elseif (!is_array($update_program_request)) {
-                $httpBody = (string) $update_program_request;
-            }
-            else {
-                $httpBody = '';
-            }
+        if ($headers['Content-Type'] === 'application/json') {
+          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($update_program_request));
+        } elseif (!is_array($update_program_request)) {
+          $httpBody = (string) $update_program_request;
+        }
+        else {
+          $httpBody = '';
         }
 
 

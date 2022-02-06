@@ -256,17 +256,13 @@ class ProgramMembersApi
             ['application/json'],
             ['application/json']
         );
-
-        // for model (json/xml)
-        if (!empty($create_lead_field_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($create_lead_field_request));
-            } elseif (!is_array($create_lead_field_request)) {
-                $httpBody = (string) $create_lead_field_request;
-            }
-            else {
-                $httpBody = '';
-            }
+        if ($headers['Content-Type'] === 'application/json') {
+          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($create_lead_field_request));
+        } elseif (!is_array($create_lead_field_request)) {
+          $httpBody = (string) $create_lead_field_request;
+        }
+        else {
+          $httpBody = '';
         }
 
 
@@ -447,17 +443,13 @@ class ProgramMembersApi
             ['application/json'],
             ['application/json']
         );
-
-        // for model (json/xml)
-        if (!empty($delete_program_member_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($delete_program_member_request));
-            } elseif (!is_array($delete_program_member_request)) {
-                $httpBody = (string) $delete_program_member_request;
-            }
-            else {
-                $httpBody = '';
-            }
+        if ($headers['Content-Type'] === 'application/json') {
+          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($delete_program_member_request));
+        } elseif (!is_array($delete_program_member_request)) {
+          $httpBody = (string) $delete_program_member_request;
+        }
+        else {
+          $httpBody = '';
         }
 
 
@@ -1375,17 +1367,13 @@ class ProgramMembersApi
             ['application/json'],
             ['application/json']
         );
-
-        // for model (json/xml)
-        if (!empty($sync_program_member_data_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($sync_program_member_data_request));
-            } elseif (!is_array($sync_program_member_data_request)) {
-                $httpBody = (string) $sync_program_member_data_request;
-            }
-            else {
-                $httpBody = '';
-            }
+        if ($headers['Content-Type'] === 'application/json') {
+          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($sync_program_member_data_request));
+        } elseif (!is_array($sync_program_member_data_request)) {
+          $httpBody = (string) $sync_program_member_data_request;
+        }
+        else {
+          $httpBody = '';
         }
 
 
@@ -1566,17 +1554,13 @@ class ProgramMembersApi
             ['application/json'],
             ['application/json']
         );
-
-        // for model (json/xml)
-        if (!empty($sync_program_member_status_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($sync_program_member_status_request));
-            } elseif (!is_array($sync_program_member_status_request)) {
-                $httpBody = (string) $sync_program_member_status_request;
-            }
-            else {
-                $httpBody = '';
-            }
+        if ($headers['Content-Type'] === 'application/json') {
+          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($sync_program_member_status_request));
+        } elseif (!is_array($sync_program_member_status_request)) {
+          $httpBody = (string) $sync_program_member_status_request;
+        }
+        else {
+          $httpBody = '';
         }
 
 
@@ -1757,17 +1741,13 @@ class ProgramMembersApi
             ['application/json'],
             ['application/json']
         );
-
-        // for model (json/xml)
-        if (!empty($update_lead_field_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($update_lead_field_request));
-            } elseif (!is_array($update_lead_field_request)) {
-                $httpBody = (string) $update_lead_field_request;
-            }
-            else {
-                $httpBody = '';
-            }
+        if ($headers['Content-Type'] === 'application/json') {
+          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($update_lead_field_request));
+        } elseif (!is_array($update_lead_field_request)) {
+          $httpBody = (string) $update_lead_field_request;
+        }
+        else {
+          $httpBody = '';
         }
 
 

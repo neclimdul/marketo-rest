@@ -256,17 +256,13 @@ class NamedAccountsApi
             ['application/json'],
             ['application/json']
         );
-
-        // for model (json/xml)
-        if (!empty($delete_account_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($delete_account_request));
-            } elseif (!is_array($delete_account_request)) {
-                $httpBody = (string) $delete_account_request;
-            }
-            else {
-                $httpBody = '';
-            }
+        if ($headers['Content-Type'] === 'application/json') {
+          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($delete_account_request));
+        } elseif (!is_array($delete_account_request)) {
+          $httpBody = (string) $delete_account_request;
+        }
+        else {
+          $httpBody = '';
         }
 
 
@@ -1130,17 +1126,13 @@ class NamedAccountsApi
             ['application/json'],
             ['application/json']
         );
-
-        // for model (json/xml)
-        if (!empty($sync_account_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($sync_account_request));
-            } elseif (!is_array($sync_account_request)) {
-                $httpBody = (string) $sync_account_request;
-            }
-            else {
-                $httpBody = '';
-            }
+        if ($headers['Content-Type'] === 'application/json') {
+          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($sync_account_request));
+        } elseif (!is_array($sync_account_request)) {
+          $httpBody = (string) $sync_account_request;
+        }
+        else {
+          $httpBody = '';
         }
 
 

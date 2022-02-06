@@ -527,7 +527,17 @@ use {{invokerPackage}}\ObjectSerializer;
         );
         {{/formParams}}
         {{#bodyParams}}
-
+        {{#required}}
+        if ($headers['Content-Type'] === 'application/json') {
+          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization(${{paramName}}));
+        } elseif (!is_array(${{paramName}})) {
+          $httpBody = (string) ${{paramName}};
+        }
+        else {
+          $httpBody = '';
+        }
+        {{/required}}
+        {{^required}}
         // for model (json/xml)
         if (!empty(${{paramName}})) {
             if ($headers['Content-Type'] === 'application/json') {
@@ -539,6 +549,7 @@ use {{invokerPackage}}\ObjectSerializer;
                 $httpBody = '';
             }
         }
+        {{/required}}
         {{/bodyParams}}
         {{#formParams}}
         {{#-last}}

@@ -274,17 +274,13 @@ class NamedAccountListsApi
             ['application/json'],
             ['application/json']
         );
-
-        // for model (json/xml)
-        if (!empty($add_named_account_list_member_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($add_named_account_list_member_request));
-            } elseif (!is_array($add_named_account_list_member_request)) {
-                $httpBody = (string) $add_named_account_list_member_request;
-            }
-            else {
-                $httpBody = '';
-            }
+        if ($headers['Content-Type'] === 'application/json') {
+          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($add_named_account_list_member_request));
+        } elseif (!is_array($add_named_account_list_member_request)) {
+          $httpBody = (string) $add_named_account_list_member_request;
+        }
+        else {
+          $httpBody = '';
         }
 
 
@@ -447,17 +443,13 @@ class NamedAccountListsApi
             ['application/json'],
             ['application/json']
         );
-
-        // for model (json/xml)
-        if (!empty($delete_named_account_list_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($delete_named_account_list_request));
-            } elseif (!is_array($delete_named_account_list_request)) {
-                $httpBody = (string) $delete_named_account_list_request;
-            }
-            else {
-                $httpBody = '';
-            }
+        if ($headers['Content-Type'] === 'application/json') {
+          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($delete_named_account_list_request));
+        } elseif (!is_array($delete_named_account_list_request)) {
+          $httpBody = (string) $delete_named_account_list_request;
+        }
+        else {
+          $httpBody = '';
         }
 
 
@@ -1039,17 +1031,13 @@ class NamedAccountListsApi
             ['application/json'],
             ['application/json']
         );
-
-        // for model (json/xml)
-        if (!empty($remove_named_account_list_member_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($remove_named_account_list_member_request));
-            } elseif (!is_array($remove_named_account_list_member_request)) {
-                $httpBody = (string) $remove_named_account_list_member_request;
-            }
-            else {
-                $httpBody = '';
-            }
+        if ($headers['Content-Type'] === 'application/json') {
+          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($remove_named_account_list_member_request));
+        } elseif (!is_array($remove_named_account_list_member_request)) {
+          $httpBody = (string) $remove_named_account_list_member_request;
+        }
+        else {
+          $httpBody = '';
         }
 
 
@@ -1212,17 +1200,13 @@ class NamedAccountListsApi
             ['application/json'],
             ['application/json']
         );
-
-        // for model (json/xml)
-        if (!empty($sync_named_account_list_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($sync_named_account_list_request));
-            } elseif (!is_array($sync_named_account_list_request)) {
-                $httpBody = (string) $sync_named_account_list_request;
-            }
-            else {
-                $httpBody = '';
-            }
+        if ($headers['Content-Type'] === 'application/json') {
+          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($sync_named_account_list_request));
+        } elseif (!is_array($sync_named_account_list_request)) {
+          $httpBody = (string) $sync_named_account_list_request;
+        }
+        else {
+          $httpBody = '';
         }
 
 

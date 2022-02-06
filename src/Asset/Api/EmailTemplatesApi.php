@@ -442,17 +442,13 @@ class EmailTemplatesApi
             ['application/json'],
             ['application/x-www-form-urlencoded']
         );
-
-        // for model (json/xml)
-        if (!empty($clone_email_template_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($clone_email_template_request));
-            } elseif (!is_array($clone_email_template_request)) {
-                $httpBody = (string) $clone_email_template_request;
-            }
-            else {
-                $httpBody = '';
-            }
+        if ($headers['Content-Type'] === 'application/json') {
+          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($clone_email_template_request));
+        } elseif (!is_array($clone_email_template_request)) {
+          $httpBody = (string) $clone_email_template_request;
+        }
+        else {
+          $httpBody = '';
         }
 
 
@@ -615,17 +611,13 @@ class EmailTemplatesApi
             ['application/json'],
             ['multipart/form-data']
         );
-
-        // for model (json/xml)
-        if (!empty($create_email_template_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($create_email_template_request));
-            } elseif (!is_array($create_email_template_request)) {
-                $httpBody = (string) $create_email_template_request;
-            }
-            else {
-                $httpBody = '';
-            }
+        if ($headers['Content-Type'] === 'application/json') {
+          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($create_email_template_request));
+        } elseif (!is_array($create_email_template_request)) {
+          $httpBody = (string) $create_email_template_request;
+        }
+        else {
+          $httpBody = '';
         }
 
 
@@ -2215,7 +2207,6 @@ class EmailTemplatesApi
             ['application/json'],
             ['multipart/form-data']
         );
-
         // for model (json/xml)
         if (!empty($update_email_template_content_request)) {
             if ($headers['Content-Type'] === 'application/json') {
@@ -2406,17 +2397,13 @@ class EmailTemplatesApi
             ['application/json'],
             ['application/x-www-form-urlencoded']
         );
-
-        // for model (json/xml)
-        if (!empty($update_email_meta_data_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($update_email_meta_data_request));
-            } elseif (!is_array($update_email_meta_data_request)) {
-                $httpBody = (string) $update_email_meta_data_request;
-            }
-            else {
-                $httpBody = '';
-            }
+        if ($headers['Content-Type'] === 'application/json') {
+          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($update_email_meta_data_request));
+        } elseif (!is_array($update_email_meta_data_request)) {
+          $httpBody = (string) $update_email_meta_data_request;
+        }
+        else {
+          $httpBody = '';
         }
 
 

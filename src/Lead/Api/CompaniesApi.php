@@ -256,17 +256,13 @@ class CompaniesApi
             ['application/json'],
             ['application/json']
         );
-
-        // for model (json/xml)
-        if (!empty($delete_company_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($delete_company_request));
-            } elseif (!is_array($delete_company_request)) {
-                $httpBody = (string) $delete_company_request;
-            }
-            else {
-                $httpBody = '';
-            }
+        if ($headers['Content-Type'] === 'application/json') {
+          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($delete_company_request));
+        } elseif (!is_array($delete_company_request)) {
+          $httpBody = (string) $delete_company_request;
+        }
+        else {
+          $httpBody = '';
         }
 
 
@@ -1130,17 +1126,13 @@ class CompaniesApi
             ['application/json'],
             ['application/json']
         );
-
-        // for model (json/xml)
-        if (!empty($sync_company_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($sync_company_request));
-            } elseif (!is_array($sync_company_request)) {
-                $httpBody = (string) $sync_company_request;
-            }
-            else {
-                $httpBody = '';
-            }
+        if ($headers['Content-Type'] === 'application/json') {
+          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($sync_company_request));
+        } elseif (!is_array($sync_company_request)) {
+          $httpBody = (string) $sync_company_request;
+        }
+        else {
+          $httpBody = '';
         }
 
 

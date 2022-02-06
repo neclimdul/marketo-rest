@@ -256,17 +256,13 @@ class FoldersApi
             ['application/json'],
             ['application/x-www-form-urlencoded']
         );
-
-        // for model (json/xml)
-        if (!empty($create_folder_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($create_folder_request));
-            } elseif (!is_array($create_folder_request)) {
-                $httpBody = (string) $create_folder_request;
-            }
-            else {
-                $httpBody = '';
-            }
+        if ($headers['Content-Type'] === 'application/json') {
+          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($create_folder_request));
+        } elseif (!is_array($create_folder_request)) {
+          $httpBody = (string) $create_folder_request;
+        }
+        else {
+          $httpBody = '';
         }
 
 
@@ -1449,17 +1445,13 @@ class FoldersApi
             ['application/json'],
             ['application/x-www-form-urlencoded']
         );
-
-        // for model (json/xml)
-        if (!empty($update_folder_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($update_folder_request));
-            } elseif (!is_array($update_folder_request)) {
-                $httpBody = (string) $update_folder_request;
-            }
-            else {
-                $httpBody = '';
-            }
+        if ($headers['Content-Type'] === 'application/json') {
+          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($update_folder_request));
+        } elseif (!is_array($update_folder_request)) {
+          $httpBody = (string) $update_folder_request;
+        }
+        else {
+          $httpBody = '';
         }
 
 

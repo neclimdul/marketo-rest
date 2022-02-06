@@ -250,7 +250,6 @@ class OpportunitiesApi
             ['application/json'],
             ['application/json']
         );
-
         // for model (json/xml)
         if (!empty($delete_custom_object_request)) {
             if ($headers['Content-Type'] === 'application/json') {
@@ -417,7 +416,6 @@ class OpportunitiesApi
             ['application/json'],
             ['application/json']
         );
-
         // for model (json/xml)
         if (!empty($delete_custom_object_request)) {
             if ($headers['Content-Type'] === 'application/json') {
@@ -945,7 +943,6 @@ class OpportunitiesApi
             ['application/json'],
             ['application/json']
         );
-
         // for model (json/xml)
         if (!empty($custom_object_lookup_request)) {
             if ($headers['Content-Type'] === 'application/json') {
@@ -1513,7 +1510,6 @@ class OpportunitiesApi
             ['application/json'],
             ['application/json']
         );
-
         // for model (json/xml)
         if (!empty($custom_object_lookup_request)) {
             if ($headers['Content-Type'] === 'application/json') {
@@ -1686,17 +1682,13 @@ class OpportunitiesApi
             ['application/json'],
             ['application/json']
         );
-
-        // for model (json/xml)
-        if (!empty($sync_custom_object_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($sync_custom_object_request));
-            } elseif (!is_array($sync_custom_object_request)) {
-                $httpBody = (string) $sync_custom_object_request;
-            }
-            else {
-                $httpBody = '';
-            }
+        if ($headers['Content-Type'] === 'application/json') {
+          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($sync_custom_object_request));
+        } elseif (!is_array($sync_custom_object_request)) {
+          $httpBody = (string) $sync_custom_object_request;
+        }
+        else {
+          $httpBody = '';
         }
 
 
@@ -1859,17 +1851,13 @@ class OpportunitiesApi
             ['application/json'],
             ['application/json']
         );
-
-        // for model (json/xml)
-        if (!empty($sync_custom_object_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($sync_custom_object_request));
-            } elseif (!is_array($sync_custom_object_request)) {
-                $httpBody = (string) $sync_custom_object_request;
-            }
-            else {
-                $httpBody = '';
-            }
+        if ($headers['Content-Type'] === 'application/json') {
+          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($sync_custom_object_request));
+        } elseif (!is_array($sync_custom_object_request)) {
+          $httpBody = (string) $sync_custom_object_request;
+        }
+        else {
+          $httpBody = '';
         }
 
 

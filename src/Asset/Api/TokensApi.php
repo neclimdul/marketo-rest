@@ -274,17 +274,13 @@ class TokensApi
             ['application/json'],
             ['application/x-www-form-urlencoded']
         );
-
-        // for model (json/xml)
-        if (!empty($create_token_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($create_token_request));
-            } elseif (!is_array($create_token_request)) {
-                $httpBody = (string) $create_token_request;
-            }
-            else {
-                $httpBody = '';
-            }
+        if ($headers['Content-Type'] === 'application/json') {
+          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($create_token_request));
+        } elseif (!is_array($create_token_request)) {
+          $httpBody = (string) $create_token_request;
+        }
+        else {
+          $httpBody = '';
         }
 
 
@@ -465,17 +461,13 @@ class TokensApi
             ['application/json'],
             ['application/x-www-form-urlencoded']
         );
-
-        // for model (json/xml)
-        if (!empty($delete_token_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($delete_token_request));
-            } elseif (!is_array($delete_token_request)) {
-                $httpBody = (string) $delete_token_request;
-            }
-            else {
-                $httpBody = '';
-            }
+        if ($headers['Content-Type'] === 'application/json') {
+          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($delete_token_request));
+        } elseif (!is_array($delete_token_request)) {
+          $httpBody = (string) $delete_token_request;
+        }
+        else {
+          $httpBody = '';
         }
 
 

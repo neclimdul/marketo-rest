@@ -418,7 +418,6 @@ class BulkExportActivitiesApi
             ['application/json'],
             ['application/json']
         );
-
         // for model (json/xml)
         if (!empty($export_activity_request)) {
             if ($headers['Content-Type'] === 'application/json') {

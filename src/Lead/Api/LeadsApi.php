@@ -461,17 +461,13 @@ class LeadsApi
             ['application/json'],
             ['application/json']
         );
-
-        // for model (json/xml)
-        if (!empty($change_lead_program_status_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($change_lead_program_status_request));
-            } elseif (!is_array($change_lead_program_status_request)) {
-                $httpBody = (string) $change_lead_program_status_request;
-            }
-            else {
-                $httpBody = '';
-            }
+        if ($headers['Content-Type'] === 'application/json') {
+          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($change_lead_program_status_request));
+        } elseif (!is_array($change_lead_program_status_request)) {
+          $httpBody = (string) $change_lead_program_status_request;
+        }
+        else {
+          $httpBody = '';
         }
 
 
@@ -634,17 +630,13 @@ class LeadsApi
             ['application/json'],
             ['application/json']
         );
-
-        // for model (json/xml)
-        if (!empty($create_lead_field_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($create_lead_field_request));
-            } elseif (!is_array($create_lead_field_request)) {
-                $httpBody = (string) $create_lead_field_request;
-            }
-            else {
-                $httpBody = '';
-            }
+        if ($headers['Content-Type'] === 'application/json') {
+          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($create_lead_field_request));
+        } elseif (!is_array($create_lead_field_request)) {
+          $httpBody = (string) $create_lead_field_request;
+        }
+        else {
+          $httpBody = '';
         }
 
 
@@ -814,7 +806,6 @@ class LeadsApi
             ['application/json'],
             ['application/json']
         );
-
         // for model (json/xml)
         if (!empty($delete_lead_request)) {
             if ($headers['Content-Type'] === 'application/json') {
@@ -3341,17 +3332,13 @@ class LeadsApi
             ['application/json'],
             ['application/json']
         );
-
-        // for model (json/xml)
-        if (!empty($push_lead_to_marketo_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($push_lead_to_marketo_request));
-            } elseif (!is_array($push_lead_to_marketo_request)) {
-                $httpBody = (string) $push_lead_to_marketo_request;
-            }
-            else {
-                $httpBody = '';
-            }
+        if ($headers['Content-Type'] === 'application/json') {
+          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($push_lead_to_marketo_request));
+        } elseif (!is_array($push_lead_to_marketo_request)) {
+          $httpBody = (string) $push_lead_to_marketo_request;
+        }
+        else {
+          $httpBody = '';
         }
 
 
@@ -3514,17 +3501,13 @@ class LeadsApi
             ['application/json'],
             ['application/json']
         );
-
-        // for model (json/xml)
-        if (!empty($submit_form_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($submit_form_request));
-            } elseif (!is_array($submit_form_request)) {
-                $httpBody = (string) $submit_form_request;
-            }
-            else {
-                $httpBody = '';
-            }
+        if ($headers['Content-Type'] === 'application/json') {
+          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($submit_form_request));
+        } elseif (!is_array($submit_form_request)) {
+          $httpBody = (string) $submit_form_request;
+        }
+        else {
+          $httpBody = '';
         }
 
 
@@ -3687,17 +3670,13 @@ class LeadsApi
             ['application/json'],
             ['application/json']
         );
-
-        // for model (json/xml)
-        if (!empty($sync_lead_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($sync_lead_request));
-            } elseif (!is_array($sync_lead_request)) {
-                $httpBody = (string) $sync_lead_request;
-            }
-            else {
-                $httpBody = '';
-            }
+        if ($headers['Content-Type'] === 'application/json') {
+          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($sync_lead_request));
+        } elseif (!is_array($sync_lead_request)) {
+          $httpBody = (string) $sync_lead_request;
+        }
+        else {
+          $httpBody = '';
         }
 
 
@@ -3878,17 +3857,13 @@ class LeadsApi
             ['application/json'],
             ['application/json']
         );
-
-        // for model (json/xml)
-        if (!empty($update_lead_field_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($update_lead_field_request));
-            } elseif (!is_array($update_lead_field_request)) {
-                $httpBody = (string) $update_lead_field_request;
-            }
-            else {
-                $httpBody = '';
-            }
+        if ($headers['Content-Type'] === 'application/json') {
+          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($update_lead_field_request));
+        } elseif (!is_array($update_lead_field_request)) {
+          $httpBody = (string) $update_lead_field_request;
+        }
+        else {
+          $httpBody = '';
         }
 
 
@@ -4051,17 +4026,13 @@ class LeadsApi
             ['application/json'],
             ['application/json']
         );
-
-        // for model (json/xml)
-        if (!empty($update_lead_partition_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($update_lead_partition_request));
-            } elseif (!is_array($update_lead_partition_request)) {
-                $httpBody = (string) $update_lead_partition_request;
-            }
-            else {
-                $httpBody = '';
-            }
+        if ($headers['Content-Type'] === 'application/json') {
+          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($update_lead_partition_request));
+        } elseif (!is_array($update_lead_partition_request)) {
+          $httpBody = (string) $update_lead_partition_request;
+        }
+        else {
+          $httpBody = '';
         }
 
 

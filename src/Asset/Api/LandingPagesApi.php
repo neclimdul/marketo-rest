@@ -632,17 +632,13 @@ class LandingPagesApi
             ['application/json'],
             ['application/x-www-form-urlencoded']
         );
-
-        // for model (json/xml)
-        if (!empty($clone_landing_page_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($clone_landing_page_request));
-            } elseif (!is_array($clone_landing_page_request)) {
-                $httpBody = (string) $clone_landing_page_request;
-            }
-            else {
-                $httpBody = '';
-            }
+        if ($headers['Content-Type'] === 'application/json') {
+          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($clone_landing_page_request));
+        } elseif (!is_array($clone_landing_page_request)) {
+          $httpBody = (string) $clone_landing_page_request;
+        }
+        else {
+          $httpBody = '';
         }
 
 
@@ -805,17 +801,13 @@ class LandingPagesApi
             ['application/json'],
             ['application/x-www-form-urlencoded']
         );
-
-        // for model (json/xml)
-        if (!empty($create_landing_page_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($create_landing_page_request));
-            } elseif (!is_array($create_landing_page_request)) {
-                $httpBody = (string) $create_landing_page_request;
-            }
-            else {
-                $httpBody = '';
-            }
+        if ($headers['Content-Type'] === 'application/json') {
+          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($create_landing_page_request));
+        } elseif (!is_array($create_landing_page_request)) {
+          $httpBody = (string) $create_landing_page_request;
+        }
+        else {
+          $httpBody = '';
         }
 
 
@@ -2248,17 +2240,13 @@ class LandingPagesApi
             ['application/json'],
             ['application/x-www-form-urlencoded']
         );
-
-        // for model (json/xml)
-        if (!empty($update_landing_page_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($update_landing_page_request));
-            } elseif (!is_array($update_landing_page_request)) {
-                $httpBody = (string) $update_landing_page_request;
-            }
-            else {
-                $httpBody = '';
-            }
+        if ($headers['Content-Type'] === 'application/json') {
+          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($update_landing_page_request));
+        } elseif (!is_array($update_landing_page_request)) {
+          $httpBody = (string) $update_landing_page_request;
+        }
+        else {
+          $httpBody = '';
         }
 
 

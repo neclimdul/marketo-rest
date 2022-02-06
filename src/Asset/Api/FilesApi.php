@@ -256,17 +256,13 @@ class FilesApi
             ['application/json'],
             ['multipart/form-data']
         );
-
-        // for model (json/xml)
-        if (!empty($create_file_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($create_file_request));
-            } elseif (!is_array($create_file_request)) {
-                $httpBody = (string) $create_file_request;
-            }
-            else {
-                $httpBody = '';
-            }
+        if ($headers['Content-Type'] === 'application/json') {
+          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($create_file_request));
+        } elseif (!is_array($create_file_request)) {
+          $httpBody = (string) $create_file_request;
+        }
+        else {
+          $httpBody = '';
         }
 
 
@@ -779,17 +775,13 @@ class FilesApi
             ['application/json'],
             ['application/json']
         );
-
-        // for model (json/xml)
-        if (!empty($get_files_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($get_files_request));
-            } elseif (!is_array($get_files_request)) {
-                $httpBody = (string) $get_files_request;
-            }
-            else {
-                $httpBody = '';
-            }
+        if ($headers['Content-Type'] === 'application/json') {
+          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($get_files_request));
+        } elseif (!is_array($get_files_request)) {
+          $httpBody = (string) $get_files_request;
+        }
+        else {
+          $httpBody = '';
         }
 
 

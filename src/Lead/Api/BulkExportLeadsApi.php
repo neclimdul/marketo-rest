@@ -418,7 +418,6 @@ class BulkExportLeadsApi
             ['application/json'],
             ['application/json']
         );
-
         // for model (json/xml)
         if (!empty($export_lead_request)) {
             if ($headers['Content-Type'] === 'application/json') {

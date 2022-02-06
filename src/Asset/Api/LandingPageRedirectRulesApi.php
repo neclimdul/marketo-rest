@@ -256,17 +256,13 @@ class LandingPageRedirectRulesApi
             ['application/json'],
             ['application/x-www-form-urlencoded']
         );
-
-        // for model (json/xml)
-        if (!empty($create_landing_page_redirect_rule_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($create_landing_page_redirect_rule_request));
-            } elseif (!is_array($create_landing_page_redirect_rule_request)) {
-                $httpBody = (string) $create_landing_page_redirect_rule_request;
-            }
-            else {
-                $httpBody = '';
-            }
+        if ($headers['Content-Type'] === 'application/json') {
+          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($create_landing_page_redirect_rule_request));
+        } elseif (!is_array($create_landing_page_redirect_rule_request)) {
+          $httpBody = (string) $create_landing_page_redirect_rule_request;
+        }
+        else {
+          $httpBody = '';
         }
 
 
@@ -1163,17 +1159,13 @@ class LandingPageRedirectRulesApi
             ['application/json'],
             ['application/x-www-form-urlencoded']
         );
-
-        // for model (json/xml)
-        if (!empty($update_landing_page_redirect_rule_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($update_landing_page_redirect_rule_request));
-            } elseif (!is_array($update_landing_page_redirect_rule_request)) {
-                $httpBody = (string) $update_landing_page_redirect_rule_request;
-            }
-            else {
-                $httpBody = '';
-            }
+        if ($headers['Content-Type'] === 'application/json') {
+          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($update_landing_page_redirect_rule_request));
+        } elseif (!is_array($update_landing_page_redirect_rule_request)) {
+          $httpBody = (string) $update_landing_page_redirect_rule_request;
+        }
+        else {
+          $httpBody = '';
         }
 
 

@@ -452,7 +452,6 @@ class BulkExportCustomObjectsApi
             ['application/json'],
             ['application/json']
         );
-
         // for model (json/xml)
         if (!empty($export_custom_object_request)) {
             if ($headers['Content-Type'] === 'application/json') {

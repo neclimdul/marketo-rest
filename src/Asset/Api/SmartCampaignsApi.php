@@ -442,17 +442,13 @@ class SmartCampaignsApi
             ['application/json'],
             ['application/x-www-form-urlencoded']
         );
-
-        // for model (json/xml)
-        if (!empty($clone_smart_campaign_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($clone_smart_campaign_request));
-            } elseif (!is_array($clone_smart_campaign_request)) {
-                $httpBody = (string) $clone_smart_campaign_request;
-            }
-            else {
-                $httpBody = '';
-            }
+        if ($headers['Content-Type'] === 'application/json') {
+          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($clone_smart_campaign_request));
+        } elseif (!is_array($clone_smart_campaign_request)) {
+          $httpBody = (string) $clone_smart_campaign_request;
+        }
+        else {
+          $httpBody = '';
         }
 
 
@@ -615,17 +611,13 @@ class SmartCampaignsApi
             ['application/json'],
             ['application/x-www-form-urlencoded']
         );
-
-        // for model (json/xml)
-        if (!empty($create_smart_campaign_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($create_smart_campaign_request));
-            } elseif (!is_array($create_smart_campaign_request)) {
-                $httpBody = (string) $create_smart_campaign_request;
-            }
-            else {
-                $httpBody = '';
-            }
+        if ($headers['Content-Type'] === 'application/json') {
+          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($create_smart_campaign_request));
+        } elseif (!is_array($create_smart_campaign_request)) {
+          $httpBody = (string) $create_smart_campaign_request;
+        }
+        else {
+          $httpBody = '';
         }
 
 
@@ -1868,17 +1860,13 @@ class SmartCampaignsApi
             ['application/json'],
             ['application/json']
         );
-
-        // for model (json/xml)
-        if (!empty($update_smart_campaign_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($update_smart_campaign_request));
-            } elseif (!is_array($update_smart_campaign_request)) {
-                $httpBody = (string) $update_smart_campaign_request;
-            }
-            else {
-                $httpBody = '';
-            }
+        if ($headers['Content-Type'] === 'application/json') {
+          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($update_smart_campaign_request));
+        } elseif (!is_array($update_smart_campaign_request)) {
+          $httpBody = (string) $update_smart_campaign_request;
+        }
+        else {
+          $httpBody = '';
         }
 
 
