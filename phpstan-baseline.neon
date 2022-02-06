@@ -1,16 +1,6 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Constructor of class NecLimDul\\\\MarketoRest\\\\Asset\\\\Model\\\\ModelResponse has an unused parameter \\$data\\.$#"
-			count: 1
-			path: src/Asset/Model/ModelResponse.php
-
-		-
-			message: "#^Constructor of class NecLimDul\\\\MarketoRest\\\\Asset\\\\Model\\\\MultipartFile has an unused parameter \\$data\\.$#"
-			count: 1
-			path: src/Asset/Model/MultipartFile.php
-
-		-
 			message: "#^PHPDoc tag @param has invalid value \\(\\$className\\)\\: Unexpected token \"\\$className\", expected type at offset 71$#"
 			count: 1
 			path: src/Laravel/MarketoRestProvider.php
@@ -24,29 +14,4 @@ parameters:
 			message: "#^PHPDoc tag @param has invalid value \\(\\$config\\)\\: Unexpected token \"\\$config\", expected type at offset 118$#"
 			count: 1
 			path: src/Laravel/MarketoRestProvider.php
-
-		-
-			message: "#^Constructor of class NecLimDul\\\\MarketoRest\\\\Lead\\\\Model\\\\InputStream has an unused parameter \\$data\\.$#"
-			count: 1
-			path: src/Lead/Model/InputStream.php
-
-		-
-			message: "#^Constructor of class NecLimDul\\\\MarketoRest\\\\Lead\\\\Model\\\\LeadAttribute2SearchableFields has an unused parameter \\$data\\.$#"
-			count: 1
-			path: src/Lead/Model/LeadAttribute2SearchableFields.php
-
-		-
-			message: "#^Constructor of class NecLimDul\\\\MarketoRest\\\\Lead\\\\Model\\\\ModelEmpty has an unused parameter \\$data\\.$#"
-			count: 1
-			path: src/Lead/Model/ModelEmpty.php
-
-		-
-			message: "#^Constructor of class NecLimDul\\\\MarketoRest\\\\Lead\\\\Model\\\\ObservableOfInputStreamContent has an unused parameter \\$data\\.$#"
-			count: 1
-			path: src/Lead/Model/ObservableOfInputStreamContent.php
-
-		-
-			message: "#^Constructor of class NecLimDul\\\\MarketoRest\\\\Lead\\\\Model\\\\ObservableOfInputStreamRangeContent has an unused parameter \\$data\\.$#"
-			count: 1
-			path: src/Lead/Model/ObservableOfInputStreamRangeContent.php
 

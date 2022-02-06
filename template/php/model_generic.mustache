@@ -101,11 +101,13 @@ class {{classname}} {{#parentSchema}}extends {{{parent}}} {{/parentSchema}}{{^pa
 
     /**
      * Constructor
+     {{#hasVars}}
      *
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
+     {{/hasVars}}
      */
-    public function __construct(array $data = null)
+    public function __construct({{#hasVars}}array $data = null{{/hasVars}})
     {
         {{#vars}}
         {{#parentSchema}}
