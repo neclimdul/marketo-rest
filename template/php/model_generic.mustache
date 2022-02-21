@@ -272,9 +272,9 @@ class {{classname}} {{#parentSchema}}extends {{{parent}}} {{/parentSchema}}{{^pa
     /**
      * Sets {{name}}
      *
-     * @param {{datatype}} ${{name}}{{#description}} {{{description}}}{{/description}}{{^description}} {{{name}}}{{/description}}
+     * @param {{datatype}}{{^required}}|null{{/required}} ${{name}}{{#description}} {{{description}}}{{/description}}{{^description}} {{{name}}}{{/description}}
      *
-     * @return self
+     * @return self<TKey, TValue>
      */
     public function {{setter}}(${{name}})
     {

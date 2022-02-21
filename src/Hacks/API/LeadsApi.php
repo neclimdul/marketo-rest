@@ -138,12 +138,12 @@ class LeadsApi extends LeadsLeadsApi
      *   The response body.
      * @param string $returnType
      *   The return type.
-     * @param array|null $headers
+     * @param array<string, string[]>|null $headers
      *   The a list of headers from the response.
      * @return mixed
      *   Either a string or a stream to be passed to a file object.
      */
-    protected function deserializeResponseBody($responseBody, $returnType, $headers = [])
+    protected function deserializeResponseBody($responseBody, string $returnType, ?array $headers = [])
     {
         return ObjectSerializer::deserialize(
             $returnType === '\SplFileObject' ? $responseBody : (string) $responseBody,

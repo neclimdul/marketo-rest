@@ -20,7 +20,10 @@ class Configuration
      */
     protected $clientId;
 
-    public function __construct($defaults = [])
+    /**
+     * @param string[] $defaults
+     */
+    public function __construct(array $defaults = [])
     {
         $this->baseUrl = $defaults['baseUrl'] ?? '';
         $this->clientId = $defaults['clientId'] ?? '';

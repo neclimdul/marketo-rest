@@ -372,7 +372,7 @@ use {{invokerPackage}}\ObjectSerializer;
         {{#allParams}}
         {{#required}}
         // Verify the required parameter '{{paramName}}' is set.
-        if (${{paramName}} === null || (is_array(${{paramName}}) && empty(${{paramName}}))) {
+        if (!isset(${{paramName}}){{#isContainer}} || (is_array(${{paramName}}) && empty(${{paramName}})){{/isContainer}}) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter ${{paramName}} when calling {{operationId}}'
             );
@@ -728,12 +728,12 @@ use {{invokerPackage}}\ObjectSerializer;
      *   The response body.
      * @param string $returnType
      *   The return type.
-     * @param array|null $headers
+     * @param array<string, string[]>|null $headers
      *   The a list of headers from the response.
      * @return mixed
      *   Either a string or a stream to be passed to a file object.
      */
-    private function deserializeResponseBody($responseBody, $returnType, $headers = [])
+    private function deserializeResponseBody($responseBody, string $returnType, ?array $headers = [])
     {
         return ObjectSerializer::deserialize(
             $returnType === '\SplFileObject' ? $responseBody : (string) $responseBody,

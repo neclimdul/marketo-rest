@@ -9,7 +9,6 @@ use GuzzleHttp\Middleware;
 use NecLimDul\MarketoRest\Cache\StaticCachePool;
 use NecLimDul\OAuth2\Client\Provider\Marketo;
 use Psr\Cache\CacheItemPoolInterface;
-use Psr\SimpleCache\CacheInterface;
 use Softonic\OAuth2\Guzzle\Middleware\AccessTokenCacheHandler;
 use Softonic\OAuth2\Guzzle\Middleware\AddAuthorizationHeader;
 use Softonic\OAuth2\Guzzle\Middleware\RetryOnAuthorizationError;
@@ -21,7 +20,7 @@ class ClientFactory
      *
      * @param \NecLimDul\MarketoRest\Configuration $config
      *   Some config.
-     * @param array $guzzleOptions
+     * @param array<string, mixed> $guzzleOptions
      *   Additional options to pass to guzzle.
      * @return \GuzzleHttp\Client
      *   A configured guzzle client.

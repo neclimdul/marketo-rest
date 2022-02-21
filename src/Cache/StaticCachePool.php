@@ -8,7 +8,13 @@ use Psr\Cache\CacheItemPoolInterface;
 class StaticCachePool implements CacheItemPoolInterface
 {
 
+    /**
+     * @var \Psr\Cache\CacheItemInterface[]
+     */
     private $deferred = [];
+    /**
+     * @var \Psr\Cache\CacheItemInterface[]
+     */
     private $cache = [];
 
     /**
@@ -29,6 +35,8 @@ class StaticCachePool implements CacheItemPoolInterface
 
     /**
      * @inheritDoc
+     *
+     * @phpstan-return array<string, \Psr\Cache\CacheItemInterface>
      */
     public function getItems(array $keys = array())
     {
