@@ -749,12 +749,8 @@ class BulkImportCustomObjectsApi
         $multipart = false;
         $multipart = true;
         $formParams['file'] = [];
-        $paramFiles = is_array($file) ? $file : [$file];
-        foreach ($paramFiles as $paramFile) {
-            $formParams['file'][] = \GuzzleHttp\Psr7\Utils::tryFopen(
-                ObjectSerializer::toFormValue($paramFile),
-                'rb'
-            );
+        foreach (ObjectSerializer::fileToFormValue($file) as $paramFile) {
+            $formParams['file'][] = $paramFile;
         }
         // Remove any null (optional values).
         $formParams = array_filter($formParams, function($v) { return $v !== null; });

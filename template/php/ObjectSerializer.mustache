@@ -197,6 +197,25 @@ class ObjectSerializer
     }
 
     /**
+     * Convert file parameter(s) to format expected by guzzle.
+     *
+     * @param string|\SplFileObject|array<string|\SplFileObject> $file the value of the form parameter
+     *
+     * @return resource[] File resources
+     */
+    public static function fileToFormValue($file) {
+        $paramFiles = is_array($file) ? $file : [$file];
+        $return = [];
+        foreach ($paramFiles as $paramFile) {
+            $return[] = \GuzzleHttp\Psr7\Utils::tryFopen(
+              ObjectSerializer::toFormValue($paramFile),
+              'rb'
+            );
+        }
+        return $return;
+    }
+
+    /**
      * Take value and turn it into a string suitable for inclusion in
      * the http body (form parameter). If it's a string, pass through unchanged
      * If it's a datetime object, format it in ISO8601

@@ -456,12 +456,8 @@ use {{invokerPackage}}\ObjectSerializer;
         {{#isFile}}
         $multipart = true;
         $formParams['{{baseName}}'] = [];
-        $paramFiles = is_array(${{paramName}}) ? ${{paramName}} : [${{paramName}}];
-        foreach ($paramFiles as $paramFile) {
-            $formParams['{{baseName}}'][] = \GuzzleHttp\Psr7\Utils::tryFopen(
-                ObjectSerializer::toFormValue($paramFile),
-                'rb'
-            );
+        foreach (ObjectSerializer::fileToFormValue(${{paramName}}) as $paramFile) {
+            $formParams['{{baseName}}'][] = $paramFile;
         }
         {{/isFile}}
         {{^isFile}}
