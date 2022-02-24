@@ -55,7 +55,9 @@ class UpdateEmailComponentContentRequest implements ModelInterface, ArrayAccess,
     /**
       * Array of property to type mappings. Used for (de)serialization
       *
-      * @var string[]
+      * @var array
+      * @phpstan-var array<string, string|class-string>
+      * @psalm-var array<string, string|class-string>
       */
     protected static $swaggerTypes = [
         'alt_text' => 'string',
@@ -75,7 +77,7 @@ class UpdateEmailComponentContentRequest implements ModelInterface, ArrayAccess,
     /**
       * Array of property to format mappings. Used for (de)serialization
       *
-      * @var string[]
+      * @var array
       * @phpstan-var array<string, string|null>
       * @psalm-var array<string, string|null>
       */
@@ -102,19 +104,17 @@ class UpdateEmailComponentContentRequest implements ModelInterface, ArrayAccess,
     protected $additionalProperties = [];
 
     /**
-     * Array of property to type mappings. Used for (de)serialization
-     *
-     * @return array
+     * {@inheritDoc}
      */
-    public static function swaggerTypes()
+    public static function swaggerTypes(): array
     {
         return self::$swaggerTypes;
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
-    public static function swaggerFormats()
+    public static function swaggerFormats(): array
     {
         return self::$swaggerFormats;
     }
@@ -217,7 +217,7 @@ class UpdateEmailComponentContentRequest implements ModelInterface, ArrayAccess,
     /**
      * {@inheritdoc}
      */
-    public static function attributeMap()
+    public static function attributeMap(): array
     {
         return self::$attributeMap;
     }
@@ -225,7 +225,7 @@ class UpdateEmailComponentContentRequest implements ModelInterface, ArrayAccess,
     /**
      * {@inheritdoc}
      */
-    public static function setters()
+    public static function setters(): array
     {
         return self::$setters;
     }
@@ -233,7 +233,7 @@ class UpdateEmailComponentContentRequest implements ModelInterface, ArrayAccess,
     /**
      * {@inheritdoc}
      */
-    public static function getters()
+    public static function getters(): array
     {
         return self::$getters;
     }
@@ -249,7 +249,7 @@ class UpdateEmailComponentContentRequest implements ModelInterface, ArrayAccess,
     /**
      * {@inheritdoc}
      */
-    public function listInvalidProperties()
+    public function listInvalidProperties(): array
     {
         $invalidProperties = [];
 

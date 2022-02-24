@@ -33,6 +33,7 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Query;
 use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\RequestOptions;
 use Psr\Http\Message\ResponseInterface;
 use NecLimDul\MarketoRest\Asset\ApiException;
@@ -131,7 +132,7 @@ class FileContentsApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse',
+                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -150,7 +151,10 @@ class FileContentsApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse
      */
-    public function updateContentUsingPOST($id, $request)
+    public function updateContentUsingPOST(
+        int $id,
+        \NecLimDul\MarketoRest\Asset\Model\UpdateFileContentRequest $request
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse
     {
         list($response) = $this->updateContentUsingPOSTWithHttpInfo($id, $request);
         return $response;
@@ -165,13 +169,20 @@ class FileContentsApi
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse, int, array<array<string>>}
      */
-    public function updateContentUsingPOSTWithHttpInfo($id, $request)
+    public function updateContentUsingPOSTWithHttpInfo(
+        int $id,
+        \NecLimDul\MarketoRest\Asset\Model\UpdateFileContentRequest $request
+    ): array
     {
         $request = $this->updateContentUsingPOSTRequest($id, $request);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse::class
+            );
         } catch (ApiException $e) {
             throw $this->updateContentUsingPOSTHandleException($e);
         }
@@ -186,7 +197,10 @@ class FileContentsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateContentUsingPOSTAsync($id, $request)
+    public function updateContentUsingPOSTAsync(
+        int $id,
+        \NecLimDul\MarketoRest\Asset\Model\UpdateFileContentRequest $request
+    ): PromiseInterface
     {
         return $this->updateContentUsingPOSTAsyncWithHttpInfo($id, $request)
             ->then(
@@ -205,10 +219,17 @@ class FileContentsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateContentUsingPOSTAsyncWithHttpInfo($id, $request)
+    public function updateContentUsingPOSTAsyncWithHttpInfo(
+        int $id,
+        \NecLimDul\MarketoRest\Asset\Model\UpdateFileContentRequest $request
+    ): PromiseInterface
     {
         $request = $this->updateContentUsingPOSTRequest($id, $request);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse', [$this, 'updateContentUsingPOSTHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse::class,
+            [$this, 'updateContentUsingPOSTHandleException']
+        );
     }
 
     /**
@@ -268,7 +289,7 @@ class FileContentsApi
      * Create http client option
      *
      * @throws \RuntimeException on file opening failure
-     * @return array of http client options
+     * @return array<string, mixed> of http client options
      */
     protected function createHttpClientOption()
     {
@@ -325,7 +346,7 @@ class FileContentsApi
      * Make an async request.
      *
      * @param \GuzzleHttp\Psr7\Request $request An initialized request object.
-     * @param string $returnType The return type.
+     * @param class-string $returnType The return type.
      * @param callable $exceptionHandler A callback to process HTTP errors.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
@@ -359,10 +380,13 @@ class FileContentsApi
     /**
      * Convert a response to a return standard return array.
      *
+     * @template T
      * @param \Psr\Http\Message\ResponseInterface $response A response from a request with a serialized body.
      * @param string $returnType The primary return type.
+     * @phpstan-param class-string<T> $returnType
      *
-     * @return array
+     * @return array structured array or response and http info.
+     * @phpstan-return array{T, int, array<array<string>>}
      */
     private function responseToReturn(ResponseInterface $response, string $returnType) {
         return [
@@ -375,14 +399,15 @@ class FileContentsApi
     /**
      * Deserialize a response body.
      *
-     * @param mixed $responseBody
-     *   The response body.
-     * @param string $returnType
-     *   The return type.
-     * @param array<string, string[]>|null $headers
-     *   The a list of headers from the response.
-     * @return mixed
-     *   Either a string or a stream to be passed to a file object.
+     * @template T
+     * @param mixed $responseBody The response body.
+     * @param string $returnType The return type.
+     * @param array<string, string[]>|null $headers A list of headers from the response.
+     * @phpstan-param class-string<T> $returnType
+     *
+     * @return mixed Either a string or a stream to be passed to a file object.
+     * @phpstan-return T
+     * @psalm-return T
      */
     private function deserializeResponseBody($responseBody, string $returnType, ?array $headers = [])
     {

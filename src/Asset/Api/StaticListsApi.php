@@ -33,6 +33,7 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Query;
 use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\RequestOptions;
 use Psr\Http\Message\ResponseInterface;
 use NecLimDul\MarketoRest\Asset\ApiException;
@@ -131,7 +132,7 @@ class StaticListsApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse',
+                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -149,7 +150,9 @@ class StaticListsApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse
      */
-    public function createStaticListUsingPOST($create_static_list_request)
+    public function createStaticListUsingPOST(
+        \NecLimDul\MarketoRest\Asset\Model\CreateStaticListRequest $create_static_list_request
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse
     {
         list($response) = $this->createStaticListUsingPOSTWithHttpInfo($create_static_list_request);
         return $response;
@@ -163,13 +166,19 @@ class StaticListsApi
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse, int, array<array<string>>}
      */
-    public function createStaticListUsingPOSTWithHttpInfo($create_static_list_request)
+    public function createStaticListUsingPOSTWithHttpInfo(
+        \NecLimDul\MarketoRest\Asset\Model\CreateStaticListRequest $create_static_list_request
+    ): array
     {
         $request = $this->createStaticListUsingPOSTRequest($create_static_list_request);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse::class
+            );
         } catch (ApiException $e) {
             throw $this->createStaticListUsingPOSTHandleException($e);
         }
@@ -183,7 +192,9 @@ class StaticListsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createStaticListUsingPOSTAsync($create_static_list_request)
+    public function createStaticListUsingPOSTAsync(
+        \NecLimDul\MarketoRest\Asset\Model\CreateStaticListRequest $create_static_list_request
+    ): PromiseInterface
     {
         return $this->createStaticListUsingPOSTAsyncWithHttpInfo($create_static_list_request)
             ->then(
@@ -201,10 +212,16 @@ class StaticListsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createStaticListUsingPOSTAsyncWithHttpInfo($create_static_list_request)
+    public function createStaticListUsingPOSTAsyncWithHttpInfo(
+        \NecLimDul\MarketoRest\Asset\Model\CreateStaticListRequest $create_static_list_request
+    ): PromiseInterface
     {
         $request = $this->createStaticListUsingPOSTRequest($create_static_list_request);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse', [$this, 'createStaticListUsingPOSTHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse::class,
+            [$this, 'createStaticListUsingPOSTHandleException']
+        );
     }
 
     /**
@@ -265,7 +282,7 @@ class StaticListsApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -283,7 +300,9 @@ class StaticListsApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse
      */
-    public function deleteStaticListByIdUsingPOST($id)
+    public function deleteStaticListByIdUsingPOST(
+        int $id
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse
     {
         list($response) = $this->deleteStaticListByIdUsingPOSTWithHttpInfo($id);
         return $response;
@@ -297,13 +316,19 @@ class StaticListsApi
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse, int, array<array<string>>}
      */
-    public function deleteStaticListByIdUsingPOSTWithHttpInfo($id)
+    public function deleteStaticListByIdUsingPOSTWithHttpInfo(
+        int $id
+    ): array
     {
         $request = $this->deleteStaticListByIdUsingPOSTRequest($id);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
+            );
         } catch (ApiException $e) {
             throw $this->deleteStaticListByIdUsingPOSTHandleException($e);
         }
@@ -317,7 +342,9 @@ class StaticListsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteStaticListByIdUsingPOSTAsync($id)
+    public function deleteStaticListByIdUsingPOSTAsync(
+        int $id
+    ): PromiseInterface
     {
         return $this->deleteStaticListByIdUsingPOSTAsyncWithHttpInfo($id)
             ->then(
@@ -335,10 +362,16 @@ class StaticListsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteStaticListByIdUsingPOSTAsyncWithHttpInfo($id)
+    public function deleteStaticListByIdUsingPOSTAsyncWithHttpInfo(
+        int $id
+    ): PromiseInterface
     {
         $request = $this->deleteStaticListByIdUsingPOSTRequest($id);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse', [$this, 'deleteStaticListByIdUsingPOSTHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class,
+            [$this, 'deleteStaticListByIdUsingPOSTHandleException']
+        );
     }
 
     /**
@@ -405,7 +438,7 @@ class StaticListsApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse',
+                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -423,7 +456,9 @@ class StaticListsApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse
      */
-    public function getStaticListByIdUsingGET($id)
+    public function getStaticListByIdUsingGET(
+        int $id
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse
     {
         list($response) = $this->getStaticListByIdUsingGETWithHttpInfo($id);
         return $response;
@@ -437,13 +472,19 @@ class StaticListsApi
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse, int, array<array<string>>}
      */
-    public function getStaticListByIdUsingGETWithHttpInfo($id)
+    public function getStaticListByIdUsingGETWithHttpInfo(
+        int $id
+    ): array
     {
         $request = $this->getStaticListByIdUsingGETRequest($id);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse::class
+            );
         } catch (ApiException $e) {
             throw $this->getStaticListByIdUsingGETHandleException($e);
         }
@@ -457,7 +498,9 @@ class StaticListsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getStaticListByIdUsingGETAsync($id)
+    public function getStaticListByIdUsingGETAsync(
+        int $id
+    ): PromiseInterface
     {
         return $this->getStaticListByIdUsingGETAsyncWithHttpInfo($id)
             ->then(
@@ -475,10 +518,16 @@ class StaticListsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getStaticListByIdUsingGETAsyncWithHttpInfo($id)
+    public function getStaticListByIdUsingGETAsyncWithHttpInfo(
+        int $id
+    ): PromiseInterface
     {
         $request = $this->getStaticListByIdUsingGETRequest($id);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse', [$this, 'getStaticListByIdUsingGETHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse::class,
+            [$this, 'getStaticListByIdUsingGETHandleException']
+        );
     }
 
     /**
@@ -545,7 +594,7 @@ class StaticListsApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse',
+                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -563,7 +612,9 @@ class StaticListsApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse
      */
-    public function getStaticListByNameUsingGET($name)
+    public function getStaticListByNameUsingGET(
+        string $name
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse
     {
         list($response) = $this->getStaticListByNameUsingGETWithHttpInfo($name);
         return $response;
@@ -577,13 +628,19 @@ class StaticListsApi
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse, int, array<array<string>>}
      */
-    public function getStaticListByNameUsingGETWithHttpInfo($name)
+    public function getStaticListByNameUsingGETWithHttpInfo(
+        string $name
+    ): array
     {
         $request = $this->getStaticListByNameUsingGETRequest($name);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse::class
+            );
         } catch (ApiException $e) {
             throw $this->getStaticListByNameUsingGETHandleException($e);
         }
@@ -597,7 +654,9 @@ class StaticListsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getStaticListByNameUsingGETAsync($name)
+    public function getStaticListByNameUsingGETAsync(
+        string $name
+    ): PromiseInterface
     {
         return $this->getStaticListByNameUsingGETAsyncWithHttpInfo($name)
             ->then(
@@ -615,10 +674,16 @@ class StaticListsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getStaticListByNameUsingGETAsyncWithHttpInfo($name)
+    public function getStaticListByNameUsingGETAsyncWithHttpInfo(
+        string $name
+    ): PromiseInterface
     {
         $request = $this->getStaticListByNameUsingGETRequest($name);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse', [$this, 'getStaticListByNameUsingGETHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse::class,
+            [$this, 'getStaticListByNameUsingGETHandleException']
+        );
     }
 
     /**
@@ -683,7 +748,7 @@ class StaticListsApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse',
+                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -705,7 +770,13 @@ class StaticListsApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse
      */
-    public function getStaticListsUsingGET($folder = null, $offset = null, $max_return = null, $earliest_updated_at = null, $latest_updated_at = null)
+    public function getStaticListsUsingGET(
+        string $folder = null,
+        int $offset = null,
+        int $max_return = null,
+        string $earliest_updated_at = null,
+        string $latest_updated_at = null
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse
     {
         list($response) = $this->getStaticListsUsingGETWithHttpInfo($folder, $offset, $max_return, $earliest_updated_at, $latest_updated_at);
         return $response;
@@ -723,13 +794,23 @@ class StaticListsApi
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse, int, array<array<string>>}
      */
-    public function getStaticListsUsingGETWithHttpInfo($folder = null, $offset = null, $max_return = null, $earliest_updated_at = null, $latest_updated_at = null)
+    public function getStaticListsUsingGETWithHttpInfo(
+        string $folder = null,
+        int $offset = null,
+        int $max_return = null,
+        string $earliest_updated_at = null,
+        string $latest_updated_at = null
+    ): array
     {
         $request = $this->getStaticListsUsingGETRequest($folder, $offset, $max_return, $earliest_updated_at, $latest_updated_at);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse::class
+            );
         } catch (ApiException $e) {
             throw $this->getStaticListsUsingGETHandleException($e);
         }
@@ -747,7 +828,13 @@ class StaticListsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getStaticListsUsingGETAsync($folder = null, $offset = null, $max_return = null, $earliest_updated_at = null, $latest_updated_at = null)
+    public function getStaticListsUsingGETAsync(
+        string $folder = null,
+        int $offset = null,
+        int $max_return = null,
+        string $earliest_updated_at = null,
+        string $latest_updated_at = null
+    ): PromiseInterface
     {
         return $this->getStaticListsUsingGETAsyncWithHttpInfo($folder, $offset, $max_return, $earliest_updated_at, $latest_updated_at)
             ->then(
@@ -769,10 +856,20 @@ class StaticListsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getStaticListsUsingGETAsyncWithHttpInfo($folder = null, $offset = null, $max_return = null, $earliest_updated_at = null, $latest_updated_at = null)
+    public function getStaticListsUsingGETAsyncWithHttpInfo(
+        string $folder = null,
+        int $offset = null,
+        int $max_return = null,
+        string $earliest_updated_at = null,
+        string $latest_updated_at = null
+    ): PromiseInterface
     {
         $request = $this->getStaticListsUsingGETRequest($folder, $offset, $max_return, $earliest_updated_at, $latest_updated_at);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse', [$this, 'getStaticListsUsingGETHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse::class,
+            [$this, 'getStaticListsUsingGETHandleException']
+        );
     }
 
     /**
@@ -849,7 +946,7 @@ class StaticListsApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse',
+                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -868,7 +965,10 @@ class StaticListsApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse
      */
-    public function updateStaticListUsingPOST($id, $update_static_list_request)
+    public function updateStaticListUsingPOST(
+        int $id,
+        \NecLimDul\MarketoRest\Asset\Model\UpdateStaticListRequest $update_static_list_request
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse
     {
         list($response) = $this->updateStaticListUsingPOSTWithHttpInfo($id, $update_static_list_request);
         return $response;
@@ -883,13 +983,20 @@ class StaticListsApi
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse, int, array<array<string>>}
      */
-    public function updateStaticListUsingPOSTWithHttpInfo($id, $update_static_list_request)
+    public function updateStaticListUsingPOSTWithHttpInfo(
+        int $id,
+        \NecLimDul\MarketoRest\Asset\Model\UpdateStaticListRequest $update_static_list_request
+    ): array
     {
         $request = $this->updateStaticListUsingPOSTRequest($id, $update_static_list_request);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse::class
+            );
         } catch (ApiException $e) {
             throw $this->updateStaticListUsingPOSTHandleException($e);
         }
@@ -904,7 +1011,10 @@ class StaticListsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateStaticListUsingPOSTAsync($id, $update_static_list_request)
+    public function updateStaticListUsingPOSTAsync(
+        int $id,
+        \NecLimDul\MarketoRest\Asset\Model\UpdateStaticListRequest $update_static_list_request
+    ): PromiseInterface
     {
         return $this->updateStaticListUsingPOSTAsyncWithHttpInfo($id, $update_static_list_request)
             ->then(
@@ -923,10 +1033,17 @@ class StaticListsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateStaticListUsingPOSTAsyncWithHttpInfo($id, $update_static_list_request)
+    public function updateStaticListUsingPOSTAsyncWithHttpInfo(
+        int $id,
+        \NecLimDul\MarketoRest\Asset\Model\UpdateStaticListRequest $update_static_list_request
+    ): PromiseInterface
     {
         $request = $this->updateStaticListUsingPOSTRequest($id, $update_static_list_request);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse', [$this, 'updateStaticListUsingPOSTHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse::class,
+            [$this, 'updateStaticListUsingPOSTHandleException']
+        );
     }
 
     /**
@@ -986,7 +1103,7 @@ class StaticListsApi
      * Create http client option
      *
      * @throws \RuntimeException on file opening failure
-     * @return array of http client options
+     * @return array<string, mixed> of http client options
      */
     protected function createHttpClientOption()
     {
@@ -1043,7 +1160,7 @@ class StaticListsApi
      * Make an async request.
      *
      * @param \GuzzleHttp\Psr7\Request $request An initialized request object.
-     * @param string $returnType The return type.
+     * @param class-string $returnType The return type.
      * @param callable $exceptionHandler A callback to process HTTP errors.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
@@ -1077,10 +1194,13 @@ class StaticListsApi
     /**
      * Convert a response to a return standard return array.
      *
+     * @template T
      * @param \Psr\Http\Message\ResponseInterface $response A response from a request with a serialized body.
      * @param string $returnType The primary return type.
+     * @phpstan-param class-string<T> $returnType
      *
-     * @return array
+     * @return array structured array or response and http info.
+     * @phpstan-return array{T, int, array<array<string>>}
      */
     private function responseToReturn(ResponseInterface $response, string $returnType) {
         return [
@@ -1093,14 +1213,15 @@ class StaticListsApi
     /**
      * Deserialize a response body.
      *
-     * @param mixed $responseBody
-     *   The response body.
-     * @param string $returnType
-     *   The return type.
-     * @param array<string, string[]>|null $headers
-     *   The a list of headers from the response.
-     * @return mixed
-     *   Either a string or a stream to be passed to a file object.
+     * @template T
+     * @param mixed $responseBody The response body.
+     * @param string $returnType The return type.
+     * @param array<string, string[]>|null $headers A list of headers from the response.
+     * @phpstan-param class-string<T> $returnType
+     *
+     * @return mixed Either a string or a stream to be passed to a file object.
+     * @phpstan-return T
+     * @psalm-return T
      */
     private function deserializeResponseBody($responseBody, string $returnType, ?array $headers = [])
     {

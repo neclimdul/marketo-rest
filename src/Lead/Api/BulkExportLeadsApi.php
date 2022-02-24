@@ -33,6 +33,7 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Query;
 use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\RequestOptions;
 use Psr\Http\Message\ResponseInterface;
 use NecLimDul\MarketoRest\Lead\ApiException;
@@ -131,7 +132,7 @@ class BulkExportLeadsApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse',
+                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -149,7 +150,9 @@ class BulkExportLeadsApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse
      */
-    public function cancelExportLeadsUsingPOST($export_id)
+    public function cancelExportLeadsUsingPOST(
+        string $export_id
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse
     {
         list($response) = $this->cancelExportLeadsUsingPOSTWithHttpInfo($export_id);
         return $response;
@@ -163,13 +166,19 @@ class BulkExportLeadsApi
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse, int, array<array<string>>}
      */
-    public function cancelExportLeadsUsingPOSTWithHttpInfo($export_id)
+    public function cancelExportLeadsUsingPOSTWithHttpInfo(
+        string $export_id
+    ): array
     {
         $request = $this->cancelExportLeadsUsingPOSTRequest($export_id);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse::class
+            );
         } catch (ApiException $e) {
             throw $this->cancelExportLeadsUsingPOSTHandleException($e);
         }
@@ -183,7 +192,9 @@ class BulkExportLeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function cancelExportLeadsUsingPOSTAsync($export_id)
+    public function cancelExportLeadsUsingPOSTAsync(
+        string $export_id
+    ): PromiseInterface
     {
         return $this->cancelExportLeadsUsingPOSTAsyncWithHttpInfo($export_id)
             ->then(
@@ -201,10 +212,16 @@ class BulkExportLeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function cancelExportLeadsUsingPOSTAsyncWithHttpInfo($export_id)
+    public function cancelExportLeadsUsingPOSTAsyncWithHttpInfo(
+        string $export_id
+    ): PromiseInterface
     {
         $request = $this->cancelExportLeadsUsingPOSTRequest($export_id);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse', [$this, 'cancelExportLeadsUsingPOSTHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse::class,
+            [$this, 'cancelExportLeadsUsingPOSTHandleException']
+        );
     }
 
     /**
@@ -271,7 +288,7 @@ class BulkExportLeadsApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse',
+                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -289,7 +306,9 @@ class BulkExportLeadsApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse
      */
-    public function createExportLeadsUsingPOST($export_lead_request = null)
+    public function createExportLeadsUsingPOST(
+        \NecLimDul\MarketoRest\Lead\Model\ExportLeadRequest $export_lead_request = null
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse
     {
         list($response) = $this->createExportLeadsUsingPOSTWithHttpInfo($export_lead_request);
         return $response;
@@ -303,13 +322,19 @@ class BulkExportLeadsApi
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse, int, array<array<string>>}
      */
-    public function createExportLeadsUsingPOSTWithHttpInfo($export_lead_request = null)
+    public function createExportLeadsUsingPOSTWithHttpInfo(
+        \NecLimDul\MarketoRest\Lead\Model\ExportLeadRequest $export_lead_request = null
+    ): array
     {
         $request = $this->createExportLeadsUsingPOSTRequest($export_lead_request);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse::class
+            );
         } catch (ApiException $e) {
             throw $this->createExportLeadsUsingPOSTHandleException($e);
         }
@@ -323,7 +348,9 @@ class BulkExportLeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createExportLeadsUsingPOSTAsync($export_lead_request = null)
+    public function createExportLeadsUsingPOSTAsync(
+        \NecLimDul\MarketoRest\Lead\Model\ExportLeadRequest $export_lead_request = null
+    ): PromiseInterface
     {
         return $this->createExportLeadsUsingPOSTAsyncWithHttpInfo($export_lead_request)
             ->then(
@@ -341,10 +368,16 @@ class BulkExportLeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createExportLeadsUsingPOSTAsyncWithHttpInfo($export_lead_request = null)
+    public function createExportLeadsUsingPOSTAsyncWithHttpInfo(
+        \NecLimDul\MarketoRest\Lead\Model\ExportLeadRequest $export_lead_request = null
+    ): PromiseInterface
     {
         $request = $this->createExportLeadsUsingPOSTRequest($export_lead_request);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse', [$this, 'createExportLeadsUsingPOSTHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse::class,
+            [$this, 'createExportLeadsUsingPOSTHandleException']
+        );
     }
 
     /**
@@ -408,7 +441,7 @@ class BulkExportLeadsApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse',
+                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -426,7 +459,9 @@ class BulkExportLeadsApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse
      */
-    public function enqueueExportLeadsUsingPOST($export_id)
+    public function enqueueExportLeadsUsingPOST(
+        string $export_id
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse
     {
         list($response) = $this->enqueueExportLeadsUsingPOSTWithHttpInfo($export_id);
         return $response;
@@ -440,13 +475,19 @@ class BulkExportLeadsApi
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse, int, array<array<string>>}
      */
-    public function enqueueExportLeadsUsingPOSTWithHttpInfo($export_id)
+    public function enqueueExportLeadsUsingPOSTWithHttpInfo(
+        string $export_id
+    ): array
     {
         $request = $this->enqueueExportLeadsUsingPOSTRequest($export_id);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse::class
+            );
         } catch (ApiException $e) {
             throw $this->enqueueExportLeadsUsingPOSTHandleException($e);
         }
@@ -460,7 +501,9 @@ class BulkExportLeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function enqueueExportLeadsUsingPOSTAsync($export_id)
+    public function enqueueExportLeadsUsingPOSTAsync(
+        string $export_id
+    ): PromiseInterface
     {
         return $this->enqueueExportLeadsUsingPOSTAsyncWithHttpInfo($export_id)
             ->then(
@@ -478,10 +521,16 @@ class BulkExportLeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function enqueueExportLeadsUsingPOSTAsyncWithHttpInfo($export_id)
+    public function enqueueExportLeadsUsingPOSTAsyncWithHttpInfo(
+        string $export_id
+    ): PromiseInterface
     {
         $request = $this->enqueueExportLeadsUsingPOSTRequest($export_id);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse', [$this, 'enqueueExportLeadsUsingPOSTHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse::class,
+            [$this, 'enqueueExportLeadsUsingPOSTHandleException']
+        );
     }
 
     /**
@@ -548,7 +597,7 @@ class BulkExportLeadsApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamRangeContent',
+                        \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamRangeContent::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -567,7 +616,10 @@ class BulkExportLeadsApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamRangeContent
      */
-    public function getExportLeadsFileUsingGET($export_id, $range = null)
+    public function getExportLeadsFileUsingGET(
+        string $export_id,
+        string $range = null
+    ): \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamRangeContent
     {
         list($response) = $this->getExportLeadsFileUsingGETWithHttpInfo($export_id, $range);
         return $response;
@@ -582,13 +634,20 @@ class BulkExportLeadsApi
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamRangeContent, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamRangeContent, int, array<array<string>>}
      */
-    public function getExportLeadsFileUsingGETWithHttpInfo($export_id, $range = null)
+    public function getExportLeadsFileUsingGETWithHttpInfo(
+        string $export_id,
+        string $range = null
+    ): array
     {
         $request = $this->getExportLeadsFileUsingGETRequest($export_id, $range);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamRangeContent');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamRangeContent::class
+            );
         } catch (ApiException $e) {
             throw $this->getExportLeadsFileUsingGETHandleException($e);
         }
@@ -603,7 +662,10 @@ class BulkExportLeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getExportLeadsFileUsingGETAsync($export_id, $range = null)
+    public function getExportLeadsFileUsingGETAsync(
+        string $export_id,
+        string $range = null
+    ): PromiseInterface
     {
         return $this->getExportLeadsFileUsingGETAsyncWithHttpInfo($export_id, $range)
             ->then(
@@ -622,10 +684,17 @@ class BulkExportLeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getExportLeadsFileUsingGETAsyncWithHttpInfo($export_id, $range = null)
+    public function getExportLeadsFileUsingGETAsyncWithHttpInfo(
+        string $export_id,
+        string $range = null
+    ): PromiseInterface
     {
         $request = $this->getExportLeadsFileUsingGETRequest($export_id, $range);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamRangeContent', [$this, 'getExportLeadsFileUsingGETHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamRangeContent::class,
+            [$this, 'getExportLeadsFileUsingGETHandleException']
+        );
     }
 
     /**
@@ -699,7 +768,7 @@ class BulkExportLeadsApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse',
+                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -717,7 +786,9 @@ class BulkExportLeadsApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse
      */
-    public function getExportLeadsStatusUsingGET($export_id)
+    public function getExportLeadsStatusUsingGET(
+        string $export_id
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse
     {
         list($response) = $this->getExportLeadsStatusUsingGETWithHttpInfo($export_id);
         return $response;
@@ -731,13 +802,19 @@ class BulkExportLeadsApi
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse, int, array<array<string>>}
      */
-    public function getExportLeadsStatusUsingGETWithHttpInfo($export_id)
+    public function getExportLeadsStatusUsingGETWithHttpInfo(
+        string $export_id
+    ): array
     {
         $request = $this->getExportLeadsStatusUsingGETRequest($export_id);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse::class
+            );
         } catch (ApiException $e) {
             throw $this->getExportLeadsStatusUsingGETHandleException($e);
         }
@@ -751,7 +828,9 @@ class BulkExportLeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getExportLeadsStatusUsingGETAsync($export_id)
+    public function getExportLeadsStatusUsingGETAsync(
+        string $export_id
+    ): PromiseInterface
     {
         return $this->getExportLeadsStatusUsingGETAsyncWithHttpInfo($export_id)
             ->then(
@@ -769,10 +848,16 @@ class BulkExportLeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getExportLeadsStatusUsingGETAsyncWithHttpInfo($export_id)
+    public function getExportLeadsStatusUsingGETAsyncWithHttpInfo(
+        string $export_id
+    ): PromiseInterface
     {
         $request = $this->getExportLeadsStatusUsingGETRequest($export_id);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse', [$this, 'getExportLeadsStatusUsingGETHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse::class,
+            [$this, 'getExportLeadsStatusUsingGETHandleException']
+        );
     }
 
     /**
@@ -839,7 +924,7 @@ class BulkExportLeadsApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponseWithToken',
+                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponseWithToken::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -859,7 +944,11 @@ class BulkExportLeadsApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponseWithToken
      */
-    public function getExportLeadsUsingGET($status = null, $batch_size = null, $next_page_token = null)
+    public function getExportLeadsUsingGET(
+        array $status = null,
+        int $batch_size = null,
+        string $next_page_token = null
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponseWithToken
     {
         list($response) = $this->getExportLeadsUsingGETWithHttpInfo($status, $batch_size, $next_page_token);
         return $response;
@@ -875,13 +964,21 @@ class BulkExportLeadsApi
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponseWithToken, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponseWithToken, int, array<array<string>>}
      */
-    public function getExportLeadsUsingGETWithHttpInfo($status = null, $batch_size = null, $next_page_token = null)
+    public function getExportLeadsUsingGETWithHttpInfo(
+        array $status = null,
+        int $batch_size = null,
+        string $next_page_token = null
+    ): array
     {
         $request = $this->getExportLeadsUsingGETRequest($status, $batch_size, $next_page_token);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponseWithToken');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponseWithToken::class
+            );
         } catch (ApiException $e) {
             throw $this->getExportLeadsUsingGETHandleException($e);
         }
@@ -897,7 +994,11 @@ class BulkExportLeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getExportLeadsUsingGETAsync($status = null, $batch_size = null, $next_page_token = null)
+    public function getExportLeadsUsingGETAsync(
+        array $status = null,
+        int $batch_size = null,
+        string $next_page_token = null
+    ): PromiseInterface
     {
         return $this->getExportLeadsUsingGETAsyncWithHttpInfo($status, $batch_size, $next_page_token)
             ->then(
@@ -917,10 +1018,18 @@ class BulkExportLeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getExportLeadsUsingGETAsyncWithHttpInfo($status = null, $batch_size = null, $next_page_token = null)
+    public function getExportLeadsUsingGETAsyncWithHttpInfo(
+        array $status = null,
+        int $batch_size = null,
+        string $next_page_token = null
+    ): PromiseInterface
     {
         $request = $this->getExportLeadsUsingGETRequest($status, $batch_size, $next_page_token);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponseWithToken', [$this, 'getExportLeadsUsingGETHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponseWithToken::class,
+            [$this, 'getExportLeadsUsingGETHandleException']
+        );
     }
 
     /**
@@ -981,7 +1090,7 @@ class BulkExportLeadsApi
      * Create http client option
      *
      * @throws \RuntimeException on file opening failure
-     * @return array of http client options
+     * @return array<string, mixed> of http client options
      */
     protected function createHttpClientOption()
     {
@@ -1038,7 +1147,7 @@ class BulkExportLeadsApi
      * Make an async request.
      *
      * @param \GuzzleHttp\Psr7\Request $request An initialized request object.
-     * @param string $returnType The return type.
+     * @param class-string $returnType The return type.
      * @param callable $exceptionHandler A callback to process HTTP errors.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
@@ -1072,10 +1181,13 @@ class BulkExportLeadsApi
     /**
      * Convert a response to a return standard return array.
      *
+     * @template T
      * @param \Psr\Http\Message\ResponseInterface $response A response from a request with a serialized body.
      * @param string $returnType The primary return type.
+     * @phpstan-param class-string<T> $returnType
      *
-     * @return array
+     * @return array structured array or response and http info.
+     * @phpstan-return array{T, int, array<array<string>>}
      */
     private function responseToReturn(ResponseInterface $response, string $returnType) {
         return [
@@ -1088,14 +1200,15 @@ class BulkExportLeadsApi
     /**
      * Deserialize a response body.
      *
-     * @param mixed $responseBody
-     *   The response body.
-     * @param string $returnType
-     *   The return type.
-     * @param array<string, string[]>|null $headers
-     *   The a list of headers from the response.
-     * @return mixed
-     *   Either a string or a stream to be passed to a file object.
+     * @template T
+     * @param mixed $responseBody The response body.
+     * @param string $returnType The return type.
+     * @param array<string, string[]>|null $headers A list of headers from the response.
+     * @phpstan-param class-string<T> $returnType
+     *
+     * @return mixed Either a string or a stream to be passed to a file object.
+     * @phpstan-return T
+     * @psalm-return T
      */
     private function deserializeResponseBody($responseBody, string $returnType, ?array $headers = [])
     {

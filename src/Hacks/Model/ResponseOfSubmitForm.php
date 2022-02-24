@@ -21,7 +21,7 @@ class ResponseOfSubmitForm extends LeadResponseOfSubmitForm
     /**
      * {@inheritDoc}
      */
-    public static function swaggerTypes()
+    public static function swaggerTypes(): array
     {
         // Override works around static binding.
         return self::$swaggerTypes;

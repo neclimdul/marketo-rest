@@ -41,9 +41,9 @@ class HeaderSelector
     /**
      * @param string[] $accept
      * @param string[] $contentTypes
-     * @return array
+     * @return array<string, string>
      */
-    public function selectHeaders($accept, $contentTypes)
+    public function selectHeaders($accept, $contentTypes): array
     {
         $headers = [];
 
@@ -58,9 +58,9 @@ class HeaderSelector
 
     /**
      * @param string[] $accept
-     * @return array
+     * @return array<string, string>
      */
-    public function selectHeadersForMultipart($accept)
+    public function selectHeadersForMultipart($accept): array
     {
         $headers = $this->selectHeaders($accept, []);
 

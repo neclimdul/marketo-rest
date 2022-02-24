@@ -33,6 +33,7 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Query;
 use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\RequestOptions;
 use Psr\Http\Message\ResponseInterface;
 use NecLimDul\MarketoRest\Lead\ApiException;
@@ -131,7 +132,7 @@ class LeadsApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseWithoutResult',
+                        \NecLimDul\MarketoRest\Lead\Model\ResponseWithoutResult::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -150,7 +151,10 @@ class LeadsApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ResponseWithoutResult
      */
-    public function associateLeadUsingPOST($lead_id, $cookie)
+    public function associateLeadUsingPOST(
+        int $lead_id,
+        string $cookie
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseWithoutResult
     {
         list($response) = $this->associateLeadUsingPOSTWithHttpInfo($lead_id, $cookie);
         return $response;
@@ -165,13 +169,20 @@ class LeadsApi
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseWithoutResult, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseWithoutResult, int, array<array<string>>}
      */
-    public function associateLeadUsingPOSTWithHttpInfo($lead_id, $cookie)
+    public function associateLeadUsingPOSTWithHttpInfo(
+        int $lead_id,
+        string $cookie
+    ): array
     {
         $request = $this->associateLeadUsingPOSTRequest($lead_id, $cookie);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseWithoutResult');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Lead\Model\ResponseWithoutResult::class
+            );
         } catch (ApiException $e) {
             throw $this->associateLeadUsingPOSTHandleException($e);
         }
@@ -186,7 +197,10 @@ class LeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function associateLeadUsingPOSTAsync($lead_id, $cookie)
+    public function associateLeadUsingPOSTAsync(
+        int $lead_id,
+        string $cookie
+    ): PromiseInterface
     {
         return $this->associateLeadUsingPOSTAsyncWithHttpInfo($lead_id, $cookie)
             ->then(
@@ -205,10 +219,17 @@ class LeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function associateLeadUsingPOSTAsyncWithHttpInfo($lead_id, $cookie)
+    public function associateLeadUsingPOSTAsyncWithHttpInfo(
+        int $lead_id,
+        string $cookie
+    ): PromiseInterface
     {
         $request = $this->associateLeadUsingPOSTRequest($lead_id, $cookie);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseWithoutResult', [$this, 'associateLeadUsingPOSTHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Lead\Model\ResponseWithoutResult::class,
+            [$this, 'associateLeadUsingPOSTHandleException']
+        );
     }
 
     /**
@@ -282,7 +303,7 @@ class LeadsApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfChangeLeadProgramStatusOutputData',
+                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfChangeLeadProgramStatusOutputData::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -301,7 +322,10 @@ class LeadsApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfChangeLeadProgramStatusOutputData
      */
-    public function changeLeadProgramStatusUsingPOST($program_id, $change_lead_program_status_request)
+    public function changeLeadProgramStatusUsingPOST(
+        int $program_id,
+        \NecLimDul\MarketoRest\Lead\Model\ChangeLeadProgramStatusRequest $change_lead_program_status_request
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfChangeLeadProgramStatusOutputData
     {
         list($response) = $this->changeLeadProgramStatusUsingPOSTWithHttpInfo($program_id, $change_lead_program_status_request);
         return $response;
@@ -316,13 +340,20 @@ class LeadsApi
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfChangeLeadProgramStatusOutputData, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfChangeLeadProgramStatusOutputData, int, array<array<string>>}
      */
-    public function changeLeadProgramStatusUsingPOSTWithHttpInfo($program_id, $change_lead_program_status_request)
+    public function changeLeadProgramStatusUsingPOSTWithHttpInfo(
+        int $program_id,
+        \NecLimDul\MarketoRest\Lead\Model\ChangeLeadProgramStatusRequest $change_lead_program_status_request
+    ): array
     {
         $request = $this->changeLeadProgramStatusUsingPOSTRequest($program_id, $change_lead_program_status_request);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfChangeLeadProgramStatusOutputData');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Lead\Model\ResponseOfChangeLeadProgramStatusOutputData::class
+            );
         } catch (ApiException $e) {
             throw $this->changeLeadProgramStatusUsingPOSTHandleException($e);
         }
@@ -337,7 +368,10 @@ class LeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function changeLeadProgramStatusUsingPOSTAsync($program_id, $change_lead_program_status_request)
+    public function changeLeadProgramStatusUsingPOSTAsync(
+        int $program_id,
+        \NecLimDul\MarketoRest\Lead\Model\ChangeLeadProgramStatusRequest $change_lead_program_status_request
+    ): PromiseInterface
     {
         return $this->changeLeadProgramStatusUsingPOSTAsyncWithHttpInfo($program_id, $change_lead_program_status_request)
             ->then(
@@ -356,10 +390,17 @@ class LeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function changeLeadProgramStatusUsingPOSTAsyncWithHttpInfo($program_id, $change_lead_program_status_request)
+    public function changeLeadProgramStatusUsingPOSTAsyncWithHttpInfo(
+        int $program_id,
+        \NecLimDul\MarketoRest\Lead\Model\ChangeLeadProgramStatusRequest $change_lead_program_status_request
+    ): PromiseInterface
     {
         $request = $this->changeLeadProgramStatusUsingPOSTRequest($program_id, $change_lead_program_status_request);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfChangeLeadProgramStatusOutputData', [$this, 'changeLeadProgramStatusUsingPOSTHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Lead\Model\ResponseOfChangeLeadProgramStatusOutputData::class,
+            [$this, 'changeLeadProgramStatusUsingPOSTHandleException']
+        );
     }
 
     /**
@@ -429,7 +470,7 @@ class LeadsApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCreateLeadField',
+                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfCreateLeadField::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -447,7 +488,9 @@ class LeadsApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfCreateLeadField
      */
-    public function createLeadFieldUsingPOST($create_lead_field_request)
+    public function createLeadFieldUsingPOST(
+        \NecLimDul\MarketoRest\Lead\Model\CreateLeadFieldRequest $create_lead_field_request
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCreateLeadField
     {
         list($response) = $this->createLeadFieldUsingPOSTWithHttpInfo($create_lead_field_request);
         return $response;
@@ -461,13 +504,19 @@ class LeadsApi
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfCreateLeadField, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfCreateLeadField, int, array<array<string>>}
      */
-    public function createLeadFieldUsingPOSTWithHttpInfo($create_lead_field_request)
+    public function createLeadFieldUsingPOSTWithHttpInfo(
+        \NecLimDul\MarketoRest\Lead\Model\CreateLeadFieldRequest $create_lead_field_request
+    ): array
     {
         $request = $this->createLeadFieldUsingPOSTRequest($create_lead_field_request);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCreateLeadField');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Lead\Model\ResponseOfCreateLeadField::class
+            );
         } catch (ApiException $e) {
             throw $this->createLeadFieldUsingPOSTHandleException($e);
         }
@@ -481,7 +530,9 @@ class LeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createLeadFieldUsingPOSTAsync($create_lead_field_request)
+    public function createLeadFieldUsingPOSTAsync(
+        \NecLimDul\MarketoRest\Lead\Model\CreateLeadFieldRequest $create_lead_field_request
+    ): PromiseInterface
     {
         return $this->createLeadFieldUsingPOSTAsyncWithHttpInfo($create_lead_field_request)
             ->then(
@@ -499,10 +550,16 @@ class LeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createLeadFieldUsingPOSTAsyncWithHttpInfo($create_lead_field_request)
+    public function createLeadFieldUsingPOSTAsyncWithHttpInfo(
+        \NecLimDul\MarketoRest\Lead\Model\CreateLeadFieldRequest $create_lead_field_request
+    ): PromiseInterface
     {
         $request = $this->createLeadFieldUsingPOSTRequest($create_lead_field_request);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCreateLeadField', [$this, 'createLeadFieldUsingPOSTHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Lead\Model\ResponseOfCreateLeadField::class,
+            [$this, 'createLeadFieldUsingPOSTHandleException']
+        );
     }
 
     /**
@@ -563,7 +620,7 @@ class LeadsApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead',
+                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfLead::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -582,7 +639,10 @@ class LeadsApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfLead
      */
-    public function deleteLeadsUsingPOST($delete_lead_request = null, $id = null)
+    public function deleteLeadsUsingPOST(
+        \NecLimDul\MarketoRest\Lead\Model\DeleteLeadRequest $delete_lead_request = null,
+        array $id = null
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfLead
     {
         list($response) = $this->deleteLeadsUsingPOSTWithHttpInfo($delete_lead_request, $id);
         return $response;
@@ -597,13 +657,20 @@ class LeadsApi
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfLead, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfLead, int, array<array<string>>}
      */
-    public function deleteLeadsUsingPOSTWithHttpInfo($delete_lead_request = null, $id = null)
+    public function deleteLeadsUsingPOSTWithHttpInfo(
+        \NecLimDul\MarketoRest\Lead\Model\DeleteLeadRequest $delete_lead_request = null,
+        array $id = null
+    ): array
     {
         $request = $this->deleteLeadsUsingPOSTRequest($delete_lead_request, $id);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Lead\Model\ResponseOfLead::class
+            );
         } catch (ApiException $e) {
             throw $this->deleteLeadsUsingPOSTHandleException($e);
         }
@@ -618,7 +685,10 @@ class LeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteLeadsUsingPOSTAsync($delete_lead_request = null, $id = null)
+    public function deleteLeadsUsingPOSTAsync(
+        \NecLimDul\MarketoRest\Lead\Model\DeleteLeadRequest $delete_lead_request = null,
+        array $id = null
+    ): PromiseInterface
     {
         return $this->deleteLeadsUsingPOSTAsyncWithHttpInfo($delete_lead_request, $id)
             ->then(
@@ -637,10 +707,17 @@ class LeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteLeadsUsingPOSTAsyncWithHttpInfo($delete_lead_request = null, $id = null)
+    public function deleteLeadsUsingPOSTAsyncWithHttpInfo(
+        \NecLimDul\MarketoRest\Lead\Model\DeleteLeadRequest $delete_lead_request = null,
+        array $id = null
+    ): PromiseInterface
     {
         $request = $this->deleteLeadsUsingPOSTRequest($delete_lead_request, $id);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead', [$this, 'deleteLeadsUsingPOSTHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Lead\Model\ResponseOfLead::class,
+            [$this, 'deleteLeadsUsingPOSTHandleException']
+        );
     }
 
     /**
@@ -711,7 +788,7 @@ class LeadsApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberAttributes',
+                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberAttributes::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -723,12 +800,12 @@ class LeadsApi
     /**
      * Describe Program Member
      *
-     *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberAttributes
      */
-    public function describeProgramMemberUsingGET()
+    public function describeProgramMemberUsingGET(
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberAttributes
     {
         list($response) = $this->describeProgramMemberUsingGETWithHttpInfo();
         return $response;
@@ -737,17 +814,21 @@ class LeadsApi
     /**
      * Describe Program Member
      *
-     *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberAttributes, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberAttributes, int, array<array<string>>}
      */
-    public function describeProgramMemberUsingGETWithHttpInfo()
+    public function describeProgramMemberUsingGETWithHttpInfo(
+    ): array
     {
         $request = $this->describeProgramMemberUsingGETRequest();
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberAttributes');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberAttributes::class
+            );
         } catch (ApiException $e) {
             throw $this->describeProgramMemberUsingGETHandleException($e);
         }
@@ -756,11 +837,11 @@ class LeadsApi
     /**
      * Describe Program Member
      *
-     *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function describeProgramMemberUsingGETAsync()
+    public function describeProgramMemberUsingGETAsync(
+    ): PromiseInterface
     {
         return $this->describeProgramMemberUsingGETAsyncWithHttpInfo()
             ->then(
@@ -773,19 +854,22 @@ class LeadsApi
     /**
      * Describe Program Member
      *
-     *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function describeProgramMemberUsingGETAsyncWithHttpInfo()
+    public function describeProgramMemberUsingGETAsyncWithHttpInfo(
+    ): PromiseInterface
     {
         $request = $this->describeProgramMemberUsingGETRequest();
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberAttributes', [$this, 'describeProgramMemberUsingGETHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberAttributes::class,
+            [$this, 'describeProgramMemberUsingGETHandleException']
+        );
     }
 
     /**
      * Create request for operation 'describeProgramMemberUsingGET'
-     *
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -838,7 +922,7 @@ class LeadsApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadAttribute',
+                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadAttribute::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -850,12 +934,12 @@ class LeadsApi
     /**
      * Describe Lead
      *
-     *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadAttribute
      */
-    public function describeUsingGET2()
+    public function describeUsingGET2(
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadAttribute
     {
         list($response) = $this->describeUsingGET2WithHttpInfo();
         return $response;
@@ -864,17 +948,21 @@ class LeadsApi
     /**
      * Describe Lead
      *
-     *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadAttribute, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadAttribute, int, array<array<string>>}
      */
-    public function describeUsingGET2WithHttpInfo()
+    public function describeUsingGET2WithHttpInfo(
+    ): array
     {
         $request = $this->describeUsingGET2Request();
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadAttribute');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadAttribute::class
+            );
         } catch (ApiException $e) {
             throw $this->describeUsingGET2HandleException($e);
         }
@@ -883,11 +971,11 @@ class LeadsApi
     /**
      * Describe Lead
      *
-     *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function describeUsingGET2Async()
+    public function describeUsingGET2Async(
+    ): PromiseInterface
     {
         return $this->describeUsingGET2AsyncWithHttpInfo()
             ->then(
@@ -900,19 +988,22 @@ class LeadsApi
     /**
      * Describe Lead
      *
-     *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function describeUsingGET2AsyncWithHttpInfo()
+    public function describeUsingGET2AsyncWithHttpInfo(
+    ): PromiseInterface
     {
         $request = $this->describeUsingGET2Request();
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadAttribute', [$this, 'describeUsingGET2HandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadAttribute::class,
+            [$this, 'describeUsingGET2HandleException']
+        );
     }
 
     /**
      * Create request for operation 'describeUsingGET2'
-     *
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -965,7 +1056,7 @@ class LeadsApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadAttribute2',
+                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadAttribute2::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -977,12 +1068,12 @@ class LeadsApi
     /**
      * Describe Lead2
      *
-     *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadAttribute2
      */
-    public function describeUsingGET6()
+    public function describeUsingGET6(
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadAttribute2
     {
         list($response) = $this->describeUsingGET6WithHttpInfo();
         return $response;
@@ -991,17 +1082,21 @@ class LeadsApi
     /**
      * Describe Lead2
      *
-     *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadAttribute2, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadAttribute2, int, array<array<string>>}
      */
-    public function describeUsingGET6WithHttpInfo()
+    public function describeUsingGET6WithHttpInfo(
+    ): array
     {
         $request = $this->describeUsingGET6Request();
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadAttribute2');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadAttribute2::class
+            );
         } catch (ApiException $e) {
             throw $this->describeUsingGET6HandleException($e);
         }
@@ -1010,11 +1105,11 @@ class LeadsApi
     /**
      * Describe Lead2
      *
-     *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function describeUsingGET6Async()
+    public function describeUsingGET6Async(
+    ): PromiseInterface
     {
         return $this->describeUsingGET6AsyncWithHttpInfo()
             ->then(
@@ -1027,19 +1122,22 @@ class LeadsApi
     /**
      * Describe Lead2
      *
-     *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function describeUsingGET6AsyncWithHttpInfo()
+    public function describeUsingGET6AsyncWithHttpInfo(
+    ): PromiseInterface
     {
         $request = $this->describeUsingGET6Request();
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadAttribute2', [$this, 'describeUsingGET6HandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadAttribute2::class,
+            [$this, 'describeUsingGET6HandleException']
+        );
     }
 
     /**
      * Create request for operation 'describeUsingGET6'
-     *
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -1092,7 +1190,7 @@ class LeadsApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead',
+                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfLead::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -1111,7 +1209,10 @@ class LeadsApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfLead
      */
-    public function getLeadByIdUsingGET($lead_id, $fields = null)
+    public function getLeadByIdUsingGET(
+        int $lead_id,
+        array $fields = null
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfLead
     {
         list($response) = $this->getLeadByIdUsingGETWithHttpInfo($lead_id, $fields);
         return $response;
@@ -1126,13 +1227,20 @@ class LeadsApi
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfLead, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfLead, int, array<array<string>>}
      */
-    public function getLeadByIdUsingGETWithHttpInfo($lead_id, $fields = null)
+    public function getLeadByIdUsingGETWithHttpInfo(
+        int $lead_id,
+        array $fields = null
+    ): array
     {
         $request = $this->getLeadByIdUsingGETRequest($lead_id, $fields);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Lead\Model\ResponseOfLead::class
+            );
         } catch (ApiException $e) {
             throw $this->getLeadByIdUsingGETHandleException($e);
         }
@@ -1147,7 +1255,10 @@ class LeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getLeadByIdUsingGETAsync($lead_id, $fields = null)
+    public function getLeadByIdUsingGETAsync(
+        int $lead_id,
+        array $fields = null
+    ): PromiseInterface
     {
         return $this->getLeadByIdUsingGETAsyncWithHttpInfo($lead_id, $fields)
             ->then(
@@ -1166,10 +1277,17 @@ class LeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getLeadByIdUsingGETAsyncWithHttpInfo($lead_id, $fields = null)
+    public function getLeadByIdUsingGETAsyncWithHttpInfo(
+        int $lead_id,
+        array $fields = null
+    ): PromiseInterface
     {
         $request = $this->getLeadByIdUsingGETRequest($lead_id, $fields);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead', [$this, 'getLeadByIdUsingGETHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Lead\Model\ResponseOfLead::class,
+            [$this, 'getLeadByIdUsingGETHandleException']
+        );
     }
 
     /**
@@ -1243,7 +1361,7 @@ class LeadsApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField',
+                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -1261,7 +1379,9 @@ class LeadsApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField
      */
-    public function getLeadFieldByNameUsingGET($field_api_name)
+    public function getLeadFieldByNameUsingGET(
+        string $field_api_name
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField
     {
         list($response) = $this->getLeadFieldByNameUsingGETWithHttpInfo($field_api_name);
         return $response;
@@ -1275,13 +1395,19 @@ class LeadsApi
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField, int, array<array<string>>}
      */
-    public function getLeadFieldByNameUsingGETWithHttpInfo($field_api_name)
+    public function getLeadFieldByNameUsingGETWithHttpInfo(
+        string $field_api_name
+    ): array
     {
         $request = $this->getLeadFieldByNameUsingGETRequest($field_api_name);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField::class
+            );
         } catch (ApiException $e) {
             throw $this->getLeadFieldByNameUsingGETHandleException($e);
         }
@@ -1295,7 +1421,9 @@ class LeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getLeadFieldByNameUsingGETAsync($field_api_name)
+    public function getLeadFieldByNameUsingGETAsync(
+        string $field_api_name
+    ): PromiseInterface
     {
         return $this->getLeadFieldByNameUsingGETAsyncWithHttpInfo($field_api_name)
             ->then(
@@ -1313,10 +1441,16 @@ class LeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getLeadFieldByNameUsingGETAsyncWithHttpInfo($field_api_name)
+    public function getLeadFieldByNameUsingGETAsyncWithHttpInfo(
+        string $field_api_name
+    ): PromiseInterface
     {
         $request = $this->getLeadFieldByNameUsingGETRequest($field_api_name);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField', [$this, 'getLeadFieldByNameUsingGETHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField::class,
+            [$this, 'getLeadFieldByNameUsingGETHandleException']
+        );
     }
 
     /**
@@ -1383,7 +1517,7 @@ class LeadsApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField',
+                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -1402,7 +1536,10 @@ class LeadsApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField
      */
-    public function getLeadFieldsUsingGET($batch_size = null, $next_page_token = null)
+    public function getLeadFieldsUsingGET(
+        int $batch_size = null,
+        string $next_page_token = null
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField
     {
         list($response) = $this->getLeadFieldsUsingGETWithHttpInfo($batch_size, $next_page_token);
         return $response;
@@ -1417,13 +1554,20 @@ class LeadsApi
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField, int, array<array<string>>}
      */
-    public function getLeadFieldsUsingGETWithHttpInfo($batch_size = null, $next_page_token = null)
+    public function getLeadFieldsUsingGETWithHttpInfo(
+        int $batch_size = null,
+        string $next_page_token = null
+    ): array
     {
         $request = $this->getLeadFieldsUsingGETRequest($batch_size, $next_page_token);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField::class
+            );
         } catch (ApiException $e) {
             throw $this->getLeadFieldsUsingGETHandleException($e);
         }
@@ -1438,7 +1582,10 @@ class LeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getLeadFieldsUsingGETAsync($batch_size = null, $next_page_token = null)
+    public function getLeadFieldsUsingGETAsync(
+        int $batch_size = null,
+        string $next_page_token = null
+    ): PromiseInterface
     {
         return $this->getLeadFieldsUsingGETAsyncWithHttpInfo($batch_size, $next_page_token)
             ->then(
@@ -1457,10 +1604,17 @@ class LeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getLeadFieldsUsingGETAsyncWithHttpInfo($batch_size = null, $next_page_token = null)
+    public function getLeadFieldsUsingGETAsyncWithHttpInfo(
+        int $batch_size = null,
+        string $next_page_token = null
+    ): PromiseInterface
     {
         $request = $this->getLeadFieldsUsingGETRequest($batch_size, $next_page_token);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField', [$this, 'getLeadFieldsUsingGETHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField::class,
+            [$this, 'getLeadFieldsUsingGETHandleException']
+        );
     }
 
     /**
@@ -1528,7 +1682,7 @@ class LeadsApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadPartition',
+                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadPartition::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -1540,12 +1694,12 @@ class LeadsApi
     /**
      * Get Lead Partitions
      *
-     *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadPartition
      */
-    public function getLeadPartitionsUsingGET()
+    public function getLeadPartitionsUsingGET(
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadPartition
     {
         list($response) = $this->getLeadPartitionsUsingGETWithHttpInfo();
         return $response;
@@ -1554,17 +1708,21 @@ class LeadsApi
     /**
      * Get Lead Partitions
      *
-     *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadPartition, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadPartition, int, array<array<string>>}
      */
-    public function getLeadPartitionsUsingGETWithHttpInfo()
+    public function getLeadPartitionsUsingGETWithHttpInfo(
+    ): array
     {
         $request = $this->getLeadPartitionsUsingGETRequest();
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadPartition');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadPartition::class
+            );
         } catch (ApiException $e) {
             throw $this->getLeadPartitionsUsingGETHandleException($e);
         }
@@ -1573,11 +1731,11 @@ class LeadsApi
     /**
      * Get Lead Partitions
      *
-     *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getLeadPartitionsUsingGETAsync()
+    public function getLeadPartitionsUsingGETAsync(
+    ): PromiseInterface
     {
         return $this->getLeadPartitionsUsingGETAsyncWithHttpInfo()
             ->then(
@@ -1590,19 +1748,22 @@ class LeadsApi
     /**
      * Get Lead Partitions
      *
-     *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getLeadPartitionsUsingGETAsyncWithHttpInfo()
+    public function getLeadPartitionsUsingGETAsyncWithHttpInfo(
+    ): PromiseInterface
     {
         $request = $this->getLeadPartitionsUsingGETRequest();
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadPartition', [$this, 'getLeadPartitionsUsingGETHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadPartition::class,
+            [$this, 'getLeadPartitionsUsingGETHandleException']
+        );
     }
 
     /**
      * Create request for operation 'getLeadPartitionsUsingGET'
-     *
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -1655,7 +1816,7 @@ class LeadsApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead',
+                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfLead::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -1677,7 +1838,13 @@ class LeadsApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfLead
      */
-    public function getLeadsByFilterUsingGET($filter_type, $filter_values, $fields = null, $batch_size = null, $next_page_token = null)
+    public function getLeadsByFilterUsingGET(
+        string $filter_type,
+        array $filter_values,
+        array $fields = null,
+        int $batch_size = null,
+        string $next_page_token = null
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfLead
     {
         list($response) = $this->getLeadsByFilterUsingGETWithHttpInfo($filter_type, $filter_values, $fields, $batch_size, $next_page_token);
         return $response;
@@ -1695,13 +1862,23 @@ class LeadsApi
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfLead, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfLead, int, array<array<string>>}
      */
-    public function getLeadsByFilterUsingGETWithHttpInfo($filter_type, $filter_values, $fields = null, $batch_size = null, $next_page_token = null)
+    public function getLeadsByFilterUsingGETWithHttpInfo(
+        string $filter_type,
+        array $filter_values,
+        array $fields = null,
+        int $batch_size = null,
+        string $next_page_token = null
+    ): array
     {
         $request = $this->getLeadsByFilterUsingGETRequest($filter_type, $filter_values, $fields, $batch_size, $next_page_token);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Lead\Model\ResponseOfLead::class
+            );
         } catch (ApiException $e) {
             throw $this->getLeadsByFilterUsingGETHandleException($e);
         }
@@ -1719,7 +1896,13 @@ class LeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getLeadsByFilterUsingGETAsync($filter_type, $filter_values, $fields = null, $batch_size = null, $next_page_token = null)
+    public function getLeadsByFilterUsingGETAsync(
+        string $filter_type,
+        array $filter_values,
+        array $fields = null,
+        int $batch_size = null,
+        string $next_page_token = null
+    ): PromiseInterface
     {
         return $this->getLeadsByFilterUsingGETAsyncWithHttpInfo($filter_type, $filter_values, $fields, $batch_size, $next_page_token)
             ->then(
@@ -1741,10 +1924,20 @@ class LeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getLeadsByFilterUsingGETAsyncWithHttpInfo($filter_type, $filter_values, $fields = null, $batch_size = null, $next_page_token = null)
+    public function getLeadsByFilterUsingGETAsyncWithHttpInfo(
+        string $filter_type,
+        array $filter_values,
+        array $fields = null,
+        int $batch_size = null,
+        string $next_page_token = null
+    ): PromiseInterface
     {
         $request = $this->getLeadsByFilterUsingGETRequest($filter_type, $filter_values, $fields, $batch_size, $next_page_token);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead', [$this, 'getLeadsByFilterUsingGETHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Lead\Model\ResponseOfLead::class,
+            [$this, 'getLeadsByFilterUsingGETHandleException']
+        );
     }
 
     /**
@@ -1827,7 +2020,7 @@ class LeadsApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead',
+                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfLead::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -1848,7 +2041,12 @@ class LeadsApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfLead
      */
-    public function getLeadsByProgramIdUsingGET($program_id, $fields = null, $batch_size = null, $next_page_token = null)
+    public function getLeadsByProgramIdUsingGET(
+        int $program_id,
+        array $fields = null,
+        int $batch_size = null,
+        string $next_page_token = null
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfLead
     {
         list($response) = $this->getLeadsByProgramIdUsingGETWithHttpInfo($program_id, $fields, $batch_size, $next_page_token);
         return $response;
@@ -1865,13 +2063,22 @@ class LeadsApi
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfLead, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfLead, int, array<array<string>>}
      */
-    public function getLeadsByProgramIdUsingGETWithHttpInfo($program_id, $fields = null, $batch_size = null, $next_page_token = null)
+    public function getLeadsByProgramIdUsingGETWithHttpInfo(
+        int $program_id,
+        array $fields = null,
+        int $batch_size = null,
+        string $next_page_token = null
+    ): array
     {
         $request = $this->getLeadsByProgramIdUsingGETRequest($program_id, $fields, $batch_size, $next_page_token);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Lead\Model\ResponseOfLead::class
+            );
         } catch (ApiException $e) {
             throw $this->getLeadsByProgramIdUsingGETHandleException($e);
         }
@@ -1888,7 +2095,12 @@ class LeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getLeadsByProgramIdUsingGETAsync($program_id, $fields = null, $batch_size = null, $next_page_token = null)
+    public function getLeadsByProgramIdUsingGETAsync(
+        int $program_id,
+        array $fields = null,
+        int $batch_size = null,
+        string $next_page_token = null
+    ): PromiseInterface
     {
         return $this->getLeadsByProgramIdUsingGETAsyncWithHttpInfo($program_id, $fields, $batch_size, $next_page_token)
             ->then(
@@ -1909,10 +2121,19 @@ class LeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getLeadsByProgramIdUsingGETAsyncWithHttpInfo($program_id, $fields = null, $batch_size = null, $next_page_token = null)
+    public function getLeadsByProgramIdUsingGETAsyncWithHttpInfo(
+        int $program_id,
+        array $fields = null,
+        int $batch_size = null,
+        string $next_page_token = null
+    ): PromiseInterface
     {
         $request = $this->getLeadsByProgramIdUsingGETRequest($program_id, $fields, $batch_size, $next_page_token);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead', [$this, 'getLeadsByProgramIdUsingGETHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Lead\Model\ResponseOfLead::class,
+            [$this, 'getLeadsByProgramIdUsingGETHandleException']
+        );
     }
 
     /**
@@ -1992,7 +2213,7 @@ class LeadsApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLists',
+                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfLists::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -2012,7 +2233,11 @@ class LeadsApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfLists
      */
-    public function getListMembershipUsingGET($lead_id, $next_page_token = null, $batch_size = null)
+    public function getListMembershipUsingGET(
+        int $lead_id,
+        string $next_page_token = null,
+        int $batch_size = null
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfLists
     {
         list($response) = $this->getListMembershipUsingGETWithHttpInfo($lead_id, $next_page_token, $batch_size);
         return $response;
@@ -2028,13 +2253,21 @@ class LeadsApi
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfLists, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfLists, int, array<array<string>>}
      */
-    public function getListMembershipUsingGETWithHttpInfo($lead_id, $next_page_token = null, $batch_size = null)
+    public function getListMembershipUsingGETWithHttpInfo(
+        int $lead_id,
+        string $next_page_token = null,
+        int $batch_size = null
+    ): array
     {
         $request = $this->getListMembershipUsingGETRequest($lead_id, $next_page_token, $batch_size);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLists');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Lead\Model\ResponseOfLists::class
+            );
         } catch (ApiException $e) {
             throw $this->getListMembershipUsingGETHandleException($e);
         }
@@ -2050,7 +2283,11 @@ class LeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getListMembershipUsingGETAsync($lead_id, $next_page_token = null, $batch_size = null)
+    public function getListMembershipUsingGETAsync(
+        int $lead_id,
+        string $next_page_token = null,
+        int $batch_size = null
+    ): PromiseInterface
     {
         return $this->getListMembershipUsingGETAsyncWithHttpInfo($lead_id, $next_page_token, $batch_size)
             ->then(
@@ -2070,10 +2307,18 @@ class LeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getListMembershipUsingGETAsyncWithHttpInfo($lead_id, $next_page_token = null, $batch_size = null)
+    public function getListMembershipUsingGETAsyncWithHttpInfo(
+        int $lead_id,
+        string $next_page_token = null,
+        int $batch_size = null
+    ): PromiseInterface
     {
         $request = $this->getListMembershipUsingGETRequest($lead_id, $next_page_token, $batch_size);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLists', [$this, 'getListMembershipUsingGETHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Lead\Model\ResponseOfLists::class,
+            [$this, 'getListMembershipUsingGETHandleException']
+        );
     }
 
     /**
@@ -2150,7 +2395,7 @@ class LeadsApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfPrograms',
+                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfPrograms::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -2174,7 +2419,15 @@ class LeadsApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfPrograms
      */
-    public function getProgramMembershipUsingGET($lead_id, $next_page_token = null, $batch_size = null, $earliest_updated_at = null, $latest_updated_at = null, $filter_type = null, $filter_values = null)
+    public function getProgramMembershipUsingGET(
+        int $lead_id,
+        string $next_page_token = null,
+        int $batch_size = null,
+        string $earliest_updated_at = null,
+        string $latest_updated_at = null,
+        string $filter_type = null,
+        array $filter_values = null
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfPrograms
     {
         list($response) = $this->getProgramMembershipUsingGETWithHttpInfo($lead_id, $next_page_token, $batch_size, $earliest_updated_at, $latest_updated_at, $filter_type, $filter_values);
         return $response;
@@ -2194,13 +2447,25 @@ class LeadsApi
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfPrograms, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfPrograms, int, array<array<string>>}
      */
-    public function getProgramMembershipUsingGETWithHttpInfo($lead_id, $next_page_token = null, $batch_size = null, $earliest_updated_at = null, $latest_updated_at = null, $filter_type = null, $filter_values = null)
+    public function getProgramMembershipUsingGETWithHttpInfo(
+        int $lead_id,
+        string $next_page_token = null,
+        int $batch_size = null,
+        string $earliest_updated_at = null,
+        string $latest_updated_at = null,
+        string $filter_type = null,
+        array $filter_values = null
+    ): array
     {
         $request = $this->getProgramMembershipUsingGETRequest($lead_id, $next_page_token, $batch_size, $earliest_updated_at, $latest_updated_at, $filter_type, $filter_values);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfPrograms');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Lead\Model\ResponseOfPrograms::class
+            );
         } catch (ApiException $e) {
             throw $this->getProgramMembershipUsingGETHandleException($e);
         }
@@ -2220,7 +2485,15 @@ class LeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getProgramMembershipUsingGETAsync($lead_id, $next_page_token = null, $batch_size = null, $earliest_updated_at = null, $latest_updated_at = null, $filter_type = null, $filter_values = null)
+    public function getProgramMembershipUsingGETAsync(
+        int $lead_id,
+        string $next_page_token = null,
+        int $batch_size = null,
+        string $earliest_updated_at = null,
+        string $latest_updated_at = null,
+        string $filter_type = null,
+        array $filter_values = null
+    ): PromiseInterface
     {
         return $this->getProgramMembershipUsingGETAsyncWithHttpInfo($lead_id, $next_page_token, $batch_size, $earliest_updated_at, $latest_updated_at, $filter_type, $filter_values)
             ->then(
@@ -2244,10 +2517,22 @@ class LeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getProgramMembershipUsingGETAsyncWithHttpInfo($lead_id, $next_page_token = null, $batch_size = null, $earliest_updated_at = null, $latest_updated_at = null, $filter_type = null, $filter_values = null)
+    public function getProgramMembershipUsingGETAsyncWithHttpInfo(
+        int $lead_id,
+        string $next_page_token = null,
+        int $batch_size = null,
+        string $earliest_updated_at = null,
+        string $latest_updated_at = null,
+        string $filter_type = null,
+        array $filter_values = null
+    ): PromiseInterface
     {
         $request = $this->getProgramMembershipUsingGETRequest($lead_id, $next_page_token, $batch_size, $earliest_updated_at, $latest_updated_at, $filter_type, $filter_values);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfPrograms', [$this, 'getProgramMembershipUsingGETHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Lead\Model\ResponseOfPrograms::class,
+            [$this, 'getProgramMembershipUsingGETHandleException']
+        );
     }
 
     /**
@@ -2336,7 +2621,7 @@ class LeadsApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfSmartCampaigns',
+                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfSmartCampaigns::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -2358,7 +2643,13 @@ class LeadsApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfSmartCampaigns
      */
-    public function getSmartCampaignMembershipUsingGET($lead_id, $next_page_token = null, $batch_size = null, $earliest_updated_at = null, $latest_updated_at = null)
+    public function getSmartCampaignMembershipUsingGET(
+        int $lead_id,
+        string $next_page_token = null,
+        int $batch_size = null,
+        string $earliest_updated_at = null,
+        string $latest_updated_at = null
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfSmartCampaigns
     {
         list($response) = $this->getSmartCampaignMembershipUsingGETWithHttpInfo($lead_id, $next_page_token, $batch_size, $earliest_updated_at, $latest_updated_at);
         return $response;
@@ -2376,13 +2667,23 @@ class LeadsApi
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfSmartCampaigns, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfSmartCampaigns, int, array<array<string>>}
      */
-    public function getSmartCampaignMembershipUsingGETWithHttpInfo($lead_id, $next_page_token = null, $batch_size = null, $earliest_updated_at = null, $latest_updated_at = null)
+    public function getSmartCampaignMembershipUsingGETWithHttpInfo(
+        int $lead_id,
+        string $next_page_token = null,
+        int $batch_size = null,
+        string $earliest_updated_at = null,
+        string $latest_updated_at = null
+    ): array
     {
         $request = $this->getSmartCampaignMembershipUsingGETRequest($lead_id, $next_page_token, $batch_size, $earliest_updated_at, $latest_updated_at);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfSmartCampaigns');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Lead\Model\ResponseOfSmartCampaigns::class
+            );
         } catch (ApiException $e) {
             throw $this->getSmartCampaignMembershipUsingGETHandleException($e);
         }
@@ -2400,7 +2701,13 @@ class LeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getSmartCampaignMembershipUsingGETAsync($lead_id, $next_page_token = null, $batch_size = null, $earliest_updated_at = null, $latest_updated_at = null)
+    public function getSmartCampaignMembershipUsingGETAsync(
+        int $lead_id,
+        string $next_page_token = null,
+        int $batch_size = null,
+        string $earliest_updated_at = null,
+        string $latest_updated_at = null
+    ): PromiseInterface
     {
         return $this->getSmartCampaignMembershipUsingGETAsyncWithHttpInfo($lead_id, $next_page_token, $batch_size, $earliest_updated_at, $latest_updated_at)
             ->then(
@@ -2422,10 +2729,20 @@ class LeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getSmartCampaignMembershipUsingGETAsyncWithHttpInfo($lead_id, $next_page_token = null, $batch_size = null, $earliest_updated_at = null, $latest_updated_at = null)
+    public function getSmartCampaignMembershipUsingGETAsyncWithHttpInfo(
+        int $lead_id,
+        string $next_page_token = null,
+        int $batch_size = null,
+        string $earliest_updated_at = null,
+        string $latest_updated_at = null
+    ): PromiseInterface
     {
         $request = $this->getSmartCampaignMembershipUsingGETRequest($lead_id, $next_page_token, $batch_size, $earliest_updated_at, $latest_updated_at);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfSmartCampaigns', [$this, 'getSmartCampaignMembershipUsingGETHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Lead\Model\ResponseOfSmartCampaigns::class,
+            [$this, 'getSmartCampaignMembershipUsingGETHandleException']
+        );
     }
 
     /**
@@ -2508,7 +2825,7 @@ class LeadsApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseWithoutResult',
+                        \NecLimDul\MarketoRest\Lead\Model\ResponseWithoutResult::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -2529,7 +2846,12 @@ class LeadsApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ResponseWithoutResult
      */
-    public function mergeLeadsUsingPOST($lead_id, $lead_id2 = null, $lead_ids = null, $merge_in_crm = null)
+    public function mergeLeadsUsingPOST(
+        int $lead_id,
+        int $lead_id2 = null,
+        array $lead_ids = null,
+        bool $merge_in_crm = null
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseWithoutResult
     {
         list($response) = $this->mergeLeadsUsingPOSTWithHttpInfo($lead_id, $lead_id2, $lead_ids, $merge_in_crm);
         return $response;
@@ -2546,13 +2868,22 @@ class LeadsApi
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseWithoutResult, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseWithoutResult, int, array<array<string>>}
      */
-    public function mergeLeadsUsingPOSTWithHttpInfo($lead_id, $lead_id2 = null, $lead_ids = null, $merge_in_crm = null)
+    public function mergeLeadsUsingPOSTWithHttpInfo(
+        int $lead_id,
+        int $lead_id2 = null,
+        array $lead_ids = null,
+        bool $merge_in_crm = null
+    ): array
     {
         $request = $this->mergeLeadsUsingPOSTRequest($lead_id, $lead_id2, $lead_ids, $merge_in_crm);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseWithoutResult');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Lead\Model\ResponseWithoutResult::class
+            );
         } catch (ApiException $e) {
             throw $this->mergeLeadsUsingPOSTHandleException($e);
         }
@@ -2569,7 +2900,12 @@ class LeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function mergeLeadsUsingPOSTAsync($lead_id, $lead_id2 = null, $lead_ids = null, $merge_in_crm = null)
+    public function mergeLeadsUsingPOSTAsync(
+        int $lead_id,
+        int $lead_id2 = null,
+        array $lead_ids = null,
+        bool $merge_in_crm = null
+    ): PromiseInterface
     {
         return $this->mergeLeadsUsingPOSTAsyncWithHttpInfo($lead_id, $lead_id2, $lead_ids, $merge_in_crm)
             ->then(
@@ -2590,10 +2926,19 @@ class LeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function mergeLeadsUsingPOSTAsyncWithHttpInfo($lead_id, $lead_id2 = null, $lead_ids = null, $merge_in_crm = null)
+    public function mergeLeadsUsingPOSTAsyncWithHttpInfo(
+        int $lead_id,
+        int $lead_id2 = null,
+        array $lead_ids = null,
+        bool $merge_in_crm = null
+    ): PromiseInterface
     {
         $request = $this->mergeLeadsUsingPOSTRequest($lead_id, $lead_id2, $lead_ids, $merge_in_crm);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseWithoutResult', [$this, 'mergeLeadsUsingPOSTHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Lead\Model\ResponseWithoutResult::class,
+            [$this, 'mergeLeadsUsingPOSTHandleException']
+        );
     }
 
     /**
@@ -2673,7 +3018,7 @@ class LeadsApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfPushLeadToMarketo',
+                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfPushLeadToMarketo::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -2691,7 +3036,9 @@ class LeadsApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfPushLeadToMarketo
      */
-    public function pushToMarketoUsingPOST($push_lead_to_marketo_request)
+    public function pushToMarketoUsingPOST(
+        \NecLimDul\MarketoRest\Lead\Model\PushLeadToMarketoRequest $push_lead_to_marketo_request
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfPushLeadToMarketo
     {
         list($response) = $this->pushToMarketoUsingPOSTWithHttpInfo($push_lead_to_marketo_request);
         return $response;
@@ -2705,13 +3052,19 @@ class LeadsApi
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfPushLeadToMarketo, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfPushLeadToMarketo, int, array<array<string>>}
      */
-    public function pushToMarketoUsingPOSTWithHttpInfo($push_lead_to_marketo_request)
+    public function pushToMarketoUsingPOSTWithHttpInfo(
+        \NecLimDul\MarketoRest\Lead\Model\PushLeadToMarketoRequest $push_lead_to_marketo_request
+    ): array
     {
         $request = $this->pushToMarketoUsingPOSTRequest($push_lead_to_marketo_request);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfPushLeadToMarketo');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Lead\Model\ResponseOfPushLeadToMarketo::class
+            );
         } catch (ApiException $e) {
             throw $this->pushToMarketoUsingPOSTHandleException($e);
         }
@@ -2725,7 +3078,9 @@ class LeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function pushToMarketoUsingPOSTAsync($push_lead_to_marketo_request)
+    public function pushToMarketoUsingPOSTAsync(
+        \NecLimDul\MarketoRest\Lead\Model\PushLeadToMarketoRequest $push_lead_to_marketo_request
+    ): PromiseInterface
     {
         return $this->pushToMarketoUsingPOSTAsyncWithHttpInfo($push_lead_to_marketo_request)
             ->then(
@@ -2743,10 +3098,16 @@ class LeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function pushToMarketoUsingPOSTAsyncWithHttpInfo($push_lead_to_marketo_request)
+    public function pushToMarketoUsingPOSTAsyncWithHttpInfo(
+        \NecLimDul\MarketoRest\Lead\Model\PushLeadToMarketoRequest $push_lead_to_marketo_request
+    ): PromiseInterface
     {
         $request = $this->pushToMarketoUsingPOSTRequest($push_lead_to_marketo_request);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfPushLeadToMarketo', [$this, 'pushToMarketoUsingPOSTHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Lead\Model\ResponseOfPushLeadToMarketo::class,
+            [$this, 'pushToMarketoUsingPOSTHandleException']
+        );
     }
 
     /**
@@ -2807,7 +3168,7 @@ class LeadsApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfSubmitForm',
+                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfSubmitForm::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -2825,7 +3186,9 @@ class LeadsApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfSubmitForm
      */
-    public function submitFormUsingPOST($submit_form_request)
+    public function submitFormUsingPOST(
+        \NecLimDul\MarketoRest\Lead\Model\SubmitFormRequest $submit_form_request
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfSubmitForm
     {
         list($response) = $this->submitFormUsingPOSTWithHttpInfo($submit_form_request);
         return $response;
@@ -2839,13 +3202,19 @@ class LeadsApi
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfSubmitForm, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfSubmitForm, int, array<array<string>>}
      */
-    public function submitFormUsingPOSTWithHttpInfo($submit_form_request)
+    public function submitFormUsingPOSTWithHttpInfo(
+        \NecLimDul\MarketoRest\Lead\Model\SubmitFormRequest $submit_form_request
+    ): array
     {
         $request = $this->submitFormUsingPOSTRequest($submit_form_request);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfSubmitForm');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Lead\Model\ResponseOfSubmitForm::class
+            );
         } catch (ApiException $e) {
             throw $this->submitFormUsingPOSTHandleException($e);
         }
@@ -2859,7 +3228,9 @@ class LeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function submitFormUsingPOSTAsync($submit_form_request)
+    public function submitFormUsingPOSTAsync(
+        \NecLimDul\MarketoRest\Lead\Model\SubmitFormRequest $submit_form_request
+    ): PromiseInterface
     {
         return $this->submitFormUsingPOSTAsyncWithHttpInfo($submit_form_request)
             ->then(
@@ -2877,10 +3248,16 @@ class LeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function submitFormUsingPOSTAsyncWithHttpInfo($submit_form_request)
+    public function submitFormUsingPOSTAsyncWithHttpInfo(
+        \NecLimDul\MarketoRest\Lead\Model\SubmitFormRequest $submit_form_request
+    ): PromiseInterface
     {
         $request = $this->submitFormUsingPOSTRequest($submit_form_request);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfSubmitForm', [$this, 'submitFormUsingPOSTHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Lead\Model\ResponseOfSubmitForm::class,
+            [$this, 'submitFormUsingPOSTHandleException']
+        );
     }
 
     /**
@@ -2941,7 +3318,7 @@ class LeadsApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead',
+                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfLead::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -2959,7 +3336,9 @@ class LeadsApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfLead
      */
-    public function syncLeadUsingPOST($sync_lead_request)
+    public function syncLeadUsingPOST(
+        \NecLimDul\MarketoRest\Lead\Model\SyncLeadRequest $sync_lead_request
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfLead
     {
         list($response) = $this->syncLeadUsingPOSTWithHttpInfo($sync_lead_request);
         return $response;
@@ -2973,13 +3352,19 @@ class LeadsApi
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfLead, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfLead, int, array<array<string>>}
      */
-    public function syncLeadUsingPOSTWithHttpInfo($sync_lead_request)
+    public function syncLeadUsingPOSTWithHttpInfo(
+        \NecLimDul\MarketoRest\Lead\Model\SyncLeadRequest $sync_lead_request
+    ): array
     {
         $request = $this->syncLeadUsingPOSTRequest($sync_lead_request);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Lead\Model\ResponseOfLead::class
+            );
         } catch (ApiException $e) {
             throw $this->syncLeadUsingPOSTHandleException($e);
         }
@@ -2993,7 +3378,9 @@ class LeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function syncLeadUsingPOSTAsync($sync_lead_request)
+    public function syncLeadUsingPOSTAsync(
+        \NecLimDul\MarketoRest\Lead\Model\SyncLeadRequest $sync_lead_request
+    ): PromiseInterface
     {
         return $this->syncLeadUsingPOSTAsyncWithHttpInfo($sync_lead_request)
             ->then(
@@ -3011,10 +3398,16 @@ class LeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function syncLeadUsingPOSTAsyncWithHttpInfo($sync_lead_request)
+    public function syncLeadUsingPOSTAsyncWithHttpInfo(
+        \NecLimDul\MarketoRest\Lead\Model\SyncLeadRequest $sync_lead_request
+    ): PromiseInterface
     {
         $request = $this->syncLeadUsingPOSTRequest($sync_lead_request);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead', [$this, 'syncLeadUsingPOSTHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Lead\Model\ResponseOfLead::class,
+            [$this, 'syncLeadUsingPOSTHandleException']
+        );
     }
 
     /**
@@ -3075,7 +3468,7 @@ class LeadsApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfUpdateLeadField',
+                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfUpdateLeadField::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -3094,7 +3487,10 @@ class LeadsApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfUpdateLeadField
      */
-    public function updateLeadFieldUsingPOST($field_api_name, $update_lead_field_request)
+    public function updateLeadFieldUsingPOST(
+        string $field_api_name,
+        \NecLimDul\MarketoRest\Lead\Model\UpdateLeadFieldRequest $update_lead_field_request
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfUpdateLeadField
     {
         list($response) = $this->updateLeadFieldUsingPOSTWithHttpInfo($field_api_name, $update_lead_field_request);
         return $response;
@@ -3109,13 +3505,20 @@ class LeadsApi
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfUpdateLeadField, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfUpdateLeadField, int, array<array<string>>}
      */
-    public function updateLeadFieldUsingPOSTWithHttpInfo($field_api_name, $update_lead_field_request)
+    public function updateLeadFieldUsingPOSTWithHttpInfo(
+        string $field_api_name,
+        \NecLimDul\MarketoRest\Lead\Model\UpdateLeadFieldRequest $update_lead_field_request
+    ): array
     {
         $request = $this->updateLeadFieldUsingPOSTRequest($field_api_name, $update_lead_field_request);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfUpdateLeadField');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Lead\Model\ResponseOfUpdateLeadField::class
+            );
         } catch (ApiException $e) {
             throw $this->updateLeadFieldUsingPOSTHandleException($e);
         }
@@ -3130,7 +3533,10 @@ class LeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateLeadFieldUsingPOSTAsync($field_api_name, $update_lead_field_request)
+    public function updateLeadFieldUsingPOSTAsync(
+        string $field_api_name,
+        \NecLimDul\MarketoRest\Lead\Model\UpdateLeadFieldRequest $update_lead_field_request
+    ): PromiseInterface
     {
         return $this->updateLeadFieldUsingPOSTAsyncWithHttpInfo($field_api_name, $update_lead_field_request)
             ->then(
@@ -3149,10 +3555,17 @@ class LeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateLeadFieldUsingPOSTAsyncWithHttpInfo($field_api_name, $update_lead_field_request)
+    public function updateLeadFieldUsingPOSTAsyncWithHttpInfo(
+        string $field_api_name,
+        \NecLimDul\MarketoRest\Lead\Model\UpdateLeadFieldRequest $update_lead_field_request
+    ): PromiseInterface
     {
         $request = $this->updateLeadFieldUsingPOSTRequest($field_api_name, $update_lead_field_request);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfUpdateLeadField', [$this, 'updateLeadFieldUsingPOSTHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Lead\Model\ResponseOfUpdateLeadField::class,
+            [$this, 'updateLeadFieldUsingPOSTHandleException']
+        );
     }
 
     /**
@@ -3222,7 +3635,7 @@ class LeadsApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead',
+                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfLead::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -3240,7 +3653,9 @@ class LeadsApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfLead
      */
-    public function updatePartitionsUsingPOST($update_lead_partition_request)
+    public function updatePartitionsUsingPOST(
+        \NecLimDul\MarketoRest\Lead\Model\UpdateLeadPartitionRequest $update_lead_partition_request
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfLead
     {
         list($response) = $this->updatePartitionsUsingPOSTWithHttpInfo($update_lead_partition_request);
         return $response;
@@ -3254,13 +3669,19 @@ class LeadsApi
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfLead, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfLead, int, array<array<string>>}
      */
-    public function updatePartitionsUsingPOSTWithHttpInfo($update_lead_partition_request)
+    public function updatePartitionsUsingPOSTWithHttpInfo(
+        \NecLimDul\MarketoRest\Lead\Model\UpdateLeadPartitionRequest $update_lead_partition_request
+    ): array
     {
         $request = $this->updatePartitionsUsingPOSTRequest($update_lead_partition_request);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Lead\Model\ResponseOfLead::class
+            );
         } catch (ApiException $e) {
             throw $this->updatePartitionsUsingPOSTHandleException($e);
         }
@@ -3274,7 +3695,9 @@ class LeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updatePartitionsUsingPOSTAsync($update_lead_partition_request)
+    public function updatePartitionsUsingPOSTAsync(
+        \NecLimDul\MarketoRest\Lead\Model\UpdateLeadPartitionRequest $update_lead_partition_request
+    ): PromiseInterface
     {
         return $this->updatePartitionsUsingPOSTAsyncWithHttpInfo($update_lead_partition_request)
             ->then(
@@ -3292,10 +3715,16 @@ class LeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updatePartitionsUsingPOSTAsyncWithHttpInfo($update_lead_partition_request)
+    public function updatePartitionsUsingPOSTAsyncWithHttpInfo(
+        \NecLimDul\MarketoRest\Lead\Model\UpdateLeadPartitionRequest $update_lead_partition_request
+    ): PromiseInterface
     {
         $request = $this->updatePartitionsUsingPOSTRequest($update_lead_partition_request);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead', [$this, 'updatePartitionsUsingPOSTHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Lead\Model\ResponseOfLead::class,
+            [$this, 'updatePartitionsUsingPOSTHandleException']
+        );
     }
 
     /**
@@ -3346,7 +3775,7 @@ class LeadsApi
      * Create http client option
      *
      * @throws \RuntimeException on file opening failure
-     * @return array of http client options
+     * @return array<string, mixed> of http client options
      */
     protected function createHttpClientOption()
     {
@@ -3403,7 +3832,7 @@ class LeadsApi
      * Make an async request.
      *
      * @param \GuzzleHttp\Psr7\Request $request An initialized request object.
-     * @param string $returnType The return type.
+     * @param class-string $returnType The return type.
      * @param callable $exceptionHandler A callback to process HTTP errors.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
@@ -3437,10 +3866,13 @@ class LeadsApi
     /**
      * Convert a response to a return standard return array.
      *
+     * @template T
      * @param \Psr\Http\Message\ResponseInterface $response A response from a request with a serialized body.
      * @param string $returnType The primary return type.
+     * @phpstan-param class-string<T> $returnType
      *
-     * @return array
+     * @return array structured array or response and http info.
+     * @phpstan-return array{T, int, array<array<string>>}
      */
     private function responseToReturn(ResponseInterface $response, string $returnType) {
         return [
@@ -3453,14 +3885,15 @@ class LeadsApi
     /**
      * Deserialize a response body.
      *
-     * @param mixed $responseBody
-     *   The response body.
-     * @param string $returnType
-     *   The return type.
-     * @param array<string, string[]>|null $headers
-     *   The a list of headers from the response.
-     * @return mixed
-     *   Either a string or a stream to be passed to a file object.
+     * @template T
+     * @param mixed $responseBody The response body.
+     * @param string $returnType The return type.
+     * @param array<string, string[]>|null $headers A list of headers from the response.
+     * @phpstan-param class-string<T> $returnType
+     *
+     * @return mixed Either a string or a stream to be passed to a file object.
+     * @phpstan-return T
+     * @psalm-return T
      */
     private function deserializeResponseBody($responseBody, string $returnType, ?array $headers = [])
     {

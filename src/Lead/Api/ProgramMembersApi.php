@@ -33,6 +33,7 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Query;
 use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\RequestOptions;
 use Psr\Http\Message\ResponseInterface;
 use NecLimDul\MarketoRest\Lead\ApiException;
@@ -131,7 +132,7 @@ class ProgramMembersApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCreateLeadField',
+                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfCreateLeadField::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -149,7 +150,9 @@ class ProgramMembersApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfCreateLeadField
      */
-    public function createProgramMemberFieldUsingPOST($create_lead_field_request)
+    public function createProgramMemberFieldUsingPOST(
+        \NecLimDul\MarketoRest\Lead\Model\CreateLeadFieldRequest $create_lead_field_request
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCreateLeadField
     {
         list($response) = $this->createProgramMemberFieldUsingPOSTWithHttpInfo($create_lead_field_request);
         return $response;
@@ -163,13 +166,19 @@ class ProgramMembersApi
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfCreateLeadField, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfCreateLeadField, int, array<array<string>>}
      */
-    public function createProgramMemberFieldUsingPOSTWithHttpInfo($create_lead_field_request)
+    public function createProgramMemberFieldUsingPOSTWithHttpInfo(
+        \NecLimDul\MarketoRest\Lead\Model\CreateLeadFieldRequest $create_lead_field_request
+    ): array
     {
         $request = $this->createProgramMemberFieldUsingPOSTRequest($create_lead_field_request);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCreateLeadField');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Lead\Model\ResponseOfCreateLeadField::class
+            );
         } catch (ApiException $e) {
             throw $this->createProgramMemberFieldUsingPOSTHandleException($e);
         }
@@ -183,7 +192,9 @@ class ProgramMembersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createProgramMemberFieldUsingPOSTAsync($create_lead_field_request)
+    public function createProgramMemberFieldUsingPOSTAsync(
+        \NecLimDul\MarketoRest\Lead\Model\CreateLeadFieldRequest $create_lead_field_request
+    ): PromiseInterface
     {
         return $this->createProgramMemberFieldUsingPOSTAsyncWithHttpInfo($create_lead_field_request)
             ->then(
@@ -201,10 +212,16 @@ class ProgramMembersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createProgramMemberFieldUsingPOSTAsyncWithHttpInfo($create_lead_field_request)
+    public function createProgramMemberFieldUsingPOSTAsyncWithHttpInfo(
+        \NecLimDul\MarketoRest\Lead\Model\CreateLeadFieldRequest $create_lead_field_request
+    ): PromiseInterface
     {
         $request = $this->createProgramMemberFieldUsingPOSTRequest($create_lead_field_request);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCreateLeadField', [$this, 'createProgramMemberFieldUsingPOSTHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Lead\Model\ResponseOfCreateLeadField::class,
+            [$this, 'createProgramMemberFieldUsingPOSTHandleException']
+        );
     }
 
     /**
@@ -265,7 +282,7 @@ class ProgramMembersApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberDelete',
+                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberDelete::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -284,7 +301,10 @@ class ProgramMembersApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberDelete
      */
-    public function deleteProgramMemberUsingPOST($program_id, $delete_program_member_request)
+    public function deleteProgramMemberUsingPOST(
+        int $program_id,
+        \NecLimDul\MarketoRest\Lead\Model\DeleteProgramMemberRequest $delete_program_member_request
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberDelete
     {
         list($response) = $this->deleteProgramMemberUsingPOSTWithHttpInfo($program_id, $delete_program_member_request);
         return $response;
@@ -299,13 +319,20 @@ class ProgramMembersApi
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberDelete, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberDelete, int, array<array<string>>}
      */
-    public function deleteProgramMemberUsingPOSTWithHttpInfo($program_id, $delete_program_member_request)
+    public function deleteProgramMemberUsingPOSTWithHttpInfo(
+        int $program_id,
+        \NecLimDul\MarketoRest\Lead\Model\DeleteProgramMemberRequest $delete_program_member_request
+    ): array
     {
         $request = $this->deleteProgramMemberUsingPOSTRequest($program_id, $delete_program_member_request);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberDelete');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberDelete::class
+            );
         } catch (ApiException $e) {
             throw $this->deleteProgramMemberUsingPOSTHandleException($e);
         }
@@ -320,7 +347,10 @@ class ProgramMembersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteProgramMemberUsingPOSTAsync($program_id, $delete_program_member_request)
+    public function deleteProgramMemberUsingPOSTAsync(
+        int $program_id,
+        \NecLimDul\MarketoRest\Lead\Model\DeleteProgramMemberRequest $delete_program_member_request
+    ): PromiseInterface
     {
         return $this->deleteProgramMemberUsingPOSTAsyncWithHttpInfo($program_id, $delete_program_member_request)
             ->then(
@@ -339,10 +369,17 @@ class ProgramMembersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteProgramMemberUsingPOSTAsyncWithHttpInfo($program_id, $delete_program_member_request)
+    public function deleteProgramMemberUsingPOSTAsyncWithHttpInfo(
+        int $program_id,
+        \NecLimDul\MarketoRest\Lead\Model\DeleteProgramMemberRequest $delete_program_member_request
+    ): PromiseInterface
     {
         $request = $this->deleteProgramMemberUsingPOSTRequest($program_id, $delete_program_member_request);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberDelete', [$this, 'deleteProgramMemberUsingPOSTHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberDelete::class,
+            [$this, 'deleteProgramMemberUsingPOSTHandleException']
+        );
     }
 
     /**
@@ -412,7 +449,7 @@ class ProgramMembersApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberAttributes2',
+                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberAttributes2::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -424,12 +461,12 @@ class ProgramMembersApi
     /**
      * Describe Program Member
      *
-     *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberAttributes2
      */
-    public function describeProgramMemberUsingGET2()
+    public function describeProgramMemberUsingGET2(
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberAttributes2
     {
         list($response) = $this->describeProgramMemberUsingGET2WithHttpInfo();
         return $response;
@@ -438,17 +475,21 @@ class ProgramMembersApi
     /**
      * Describe Program Member
      *
-     *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberAttributes2, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberAttributes2, int, array<array<string>>}
      */
-    public function describeProgramMemberUsingGET2WithHttpInfo()
+    public function describeProgramMemberUsingGET2WithHttpInfo(
+    ): array
     {
         $request = $this->describeProgramMemberUsingGET2Request();
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberAttributes2');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberAttributes2::class
+            );
         } catch (ApiException $e) {
             throw $this->describeProgramMemberUsingGET2HandleException($e);
         }
@@ -457,11 +498,11 @@ class ProgramMembersApi
     /**
      * Describe Program Member
      *
-     *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function describeProgramMemberUsingGET2Async()
+    public function describeProgramMemberUsingGET2Async(
+    ): PromiseInterface
     {
         return $this->describeProgramMemberUsingGET2AsyncWithHttpInfo()
             ->then(
@@ -474,19 +515,22 @@ class ProgramMembersApi
     /**
      * Describe Program Member
      *
-     *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function describeProgramMemberUsingGET2AsyncWithHttpInfo()
+    public function describeProgramMemberUsingGET2AsyncWithHttpInfo(
+    ): PromiseInterface
     {
         $request = $this->describeProgramMemberUsingGET2Request();
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberAttributes2', [$this, 'describeProgramMemberUsingGET2HandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberAttributes2::class,
+            [$this, 'describeProgramMemberUsingGET2HandleException']
+        );
     }
 
     /**
      * Create request for operation 'describeProgramMemberUsingGET2'
-     *
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -539,7 +583,7 @@ class ProgramMembersApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField',
+                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -557,7 +601,9 @@ class ProgramMembersApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField
      */
-    public function getProgramMemberFieldByNameUsingGET($field_api_name)
+    public function getProgramMemberFieldByNameUsingGET(
+        string $field_api_name
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField
     {
         list($response) = $this->getProgramMemberFieldByNameUsingGETWithHttpInfo($field_api_name);
         return $response;
@@ -571,13 +617,19 @@ class ProgramMembersApi
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField, int, array<array<string>>}
      */
-    public function getProgramMemberFieldByNameUsingGETWithHttpInfo($field_api_name)
+    public function getProgramMemberFieldByNameUsingGETWithHttpInfo(
+        string $field_api_name
+    ): array
     {
         $request = $this->getProgramMemberFieldByNameUsingGETRequest($field_api_name);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField::class
+            );
         } catch (ApiException $e) {
             throw $this->getProgramMemberFieldByNameUsingGETHandleException($e);
         }
@@ -591,7 +643,9 @@ class ProgramMembersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getProgramMemberFieldByNameUsingGETAsync($field_api_name)
+    public function getProgramMemberFieldByNameUsingGETAsync(
+        string $field_api_name
+    ): PromiseInterface
     {
         return $this->getProgramMemberFieldByNameUsingGETAsyncWithHttpInfo($field_api_name)
             ->then(
@@ -609,10 +663,16 @@ class ProgramMembersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getProgramMemberFieldByNameUsingGETAsyncWithHttpInfo($field_api_name)
+    public function getProgramMemberFieldByNameUsingGETAsyncWithHttpInfo(
+        string $field_api_name
+    ): PromiseInterface
     {
         $request = $this->getProgramMemberFieldByNameUsingGETRequest($field_api_name);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField', [$this, 'getProgramMemberFieldByNameUsingGETHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField::class,
+            [$this, 'getProgramMemberFieldByNameUsingGETHandleException']
+        );
     }
 
     /**
@@ -679,7 +739,7 @@ class ProgramMembersApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField',
+                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -698,7 +758,10 @@ class ProgramMembersApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField
      */
-    public function getProgramMemberFieldsUsingGET($batch_size = null, $next_page_token = null)
+    public function getProgramMemberFieldsUsingGET(
+        int $batch_size = null,
+        string $next_page_token = null
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField
     {
         list($response) = $this->getProgramMemberFieldsUsingGETWithHttpInfo($batch_size, $next_page_token);
         return $response;
@@ -713,13 +776,20 @@ class ProgramMembersApi
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField, int, array<array<string>>}
      */
-    public function getProgramMemberFieldsUsingGETWithHttpInfo($batch_size = null, $next_page_token = null)
+    public function getProgramMemberFieldsUsingGETWithHttpInfo(
+        int $batch_size = null,
+        string $next_page_token = null
+    ): array
     {
         $request = $this->getProgramMemberFieldsUsingGETRequest($batch_size, $next_page_token);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField::class
+            );
         } catch (ApiException $e) {
             throw $this->getProgramMemberFieldsUsingGETHandleException($e);
         }
@@ -734,7 +804,10 @@ class ProgramMembersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getProgramMemberFieldsUsingGETAsync($batch_size = null, $next_page_token = null)
+    public function getProgramMemberFieldsUsingGETAsync(
+        int $batch_size = null,
+        string $next_page_token = null
+    ): PromiseInterface
     {
         return $this->getProgramMemberFieldsUsingGETAsyncWithHttpInfo($batch_size, $next_page_token)
             ->then(
@@ -753,10 +826,17 @@ class ProgramMembersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getProgramMemberFieldsUsingGETAsyncWithHttpInfo($batch_size = null, $next_page_token = null)
+    public function getProgramMemberFieldsUsingGETAsyncWithHttpInfo(
+        int $batch_size = null,
+        string $next_page_token = null
+    ): PromiseInterface
     {
         $request = $this->getProgramMemberFieldsUsingGETRequest($batch_size, $next_page_token);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField', [$this, 'getProgramMemberFieldsUsingGETHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField::class,
+            [$this, 'getProgramMemberFieldsUsingGETHandleException']
+        );
     }
 
     /**
@@ -824,7 +904,7 @@ class ProgramMembersApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMember',
+                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMember::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -849,7 +929,16 @@ class ProgramMembersApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMember
      */
-    public function getProgramMembersUsingGET($program_id, $filter_type, $filter_values, $start_at = null, $end_at = null, $fields = null, $batch_size = null, $next_page_token = null)
+    public function getProgramMembersUsingGET(
+        int $program_id,
+        string $filter_type,
+        array $filter_values,
+        string $start_at = null,
+        string $end_at = null,
+        array $fields = null,
+        int $batch_size = null,
+        string $next_page_token = null
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMember
     {
         list($response) = $this->getProgramMembersUsingGETWithHttpInfo($program_id, $filter_type, $filter_values, $start_at, $end_at, $fields, $batch_size, $next_page_token);
         return $response;
@@ -870,13 +959,26 @@ class ProgramMembersApi
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMember, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMember, int, array<array<string>>}
      */
-    public function getProgramMembersUsingGETWithHttpInfo($program_id, $filter_type, $filter_values, $start_at = null, $end_at = null, $fields = null, $batch_size = null, $next_page_token = null)
+    public function getProgramMembersUsingGETWithHttpInfo(
+        int $program_id,
+        string $filter_type,
+        array $filter_values,
+        string $start_at = null,
+        string $end_at = null,
+        array $fields = null,
+        int $batch_size = null,
+        string $next_page_token = null
+    ): array
     {
         $request = $this->getProgramMembersUsingGETRequest($program_id, $filter_type, $filter_values, $start_at, $end_at, $fields, $batch_size, $next_page_token);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMember');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMember::class
+            );
         } catch (ApiException $e) {
             throw $this->getProgramMembersUsingGETHandleException($e);
         }
@@ -897,7 +999,16 @@ class ProgramMembersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getProgramMembersUsingGETAsync($program_id, $filter_type, $filter_values, $start_at = null, $end_at = null, $fields = null, $batch_size = null, $next_page_token = null)
+    public function getProgramMembersUsingGETAsync(
+        int $program_id,
+        string $filter_type,
+        array $filter_values,
+        string $start_at = null,
+        string $end_at = null,
+        array $fields = null,
+        int $batch_size = null,
+        string $next_page_token = null
+    ): PromiseInterface
     {
         return $this->getProgramMembersUsingGETAsyncWithHttpInfo($program_id, $filter_type, $filter_values, $start_at, $end_at, $fields, $batch_size, $next_page_token)
             ->then(
@@ -922,10 +1033,23 @@ class ProgramMembersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getProgramMembersUsingGETAsyncWithHttpInfo($program_id, $filter_type, $filter_values, $start_at = null, $end_at = null, $fields = null, $batch_size = null, $next_page_token = null)
+    public function getProgramMembersUsingGETAsyncWithHttpInfo(
+        int $program_id,
+        string $filter_type,
+        array $filter_values,
+        string $start_at = null,
+        string $end_at = null,
+        array $fields = null,
+        int $batch_size = null,
+        string $next_page_token = null
+    ): PromiseInterface
     {
         $request = $this->getProgramMembersUsingGETRequest($program_id, $filter_type, $filter_values, $start_at, $end_at, $fields, $batch_size, $next_page_token);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMember', [$this, 'getProgramMembersUsingGETHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMember::class,
+            [$this, 'getProgramMembersUsingGETHandleException']
+        );
     }
 
     /**
@@ -1023,7 +1147,7 @@ class ProgramMembersApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberData',
+                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberData::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -1042,7 +1166,10 @@ class ProgramMembersApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberData
      */
-    public function syncProgramMemberDataUsingPOST($program_id, $sync_program_member_data_request)
+    public function syncProgramMemberDataUsingPOST(
+        int $program_id,
+        \NecLimDul\MarketoRest\Lead\Model\SyncProgramMemberDataRequest $sync_program_member_data_request
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberData
     {
         list($response) = $this->syncProgramMemberDataUsingPOSTWithHttpInfo($program_id, $sync_program_member_data_request);
         return $response;
@@ -1057,13 +1184,20 @@ class ProgramMembersApi
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberData, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberData, int, array<array<string>>}
      */
-    public function syncProgramMemberDataUsingPOSTWithHttpInfo($program_id, $sync_program_member_data_request)
+    public function syncProgramMemberDataUsingPOSTWithHttpInfo(
+        int $program_id,
+        \NecLimDul\MarketoRest\Lead\Model\SyncProgramMemberDataRequest $sync_program_member_data_request
+    ): array
     {
         $request = $this->syncProgramMemberDataUsingPOSTRequest($program_id, $sync_program_member_data_request);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberData');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberData::class
+            );
         } catch (ApiException $e) {
             throw $this->syncProgramMemberDataUsingPOSTHandleException($e);
         }
@@ -1078,7 +1212,10 @@ class ProgramMembersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function syncProgramMemberDataUsingPOSTAsync($program_id, $sync_program_member_data_request)
+    public function syncProgramMemberDataUsingPOSTAsync(
+        int $program_id,
+        \NecLimDul\MarketoRest\Lead\Model\SyncProgramMemberDataRequest $sync_program_member_data_request
+    ): PromiseInterface
     {
         return $this->syncProgramMemberDataUsingPOSTAsyncWithHttpInfo($program_id, $sync_program_member_data_request)
             ->then(
@@ -1097,10 +1234,17 @@ class ProgramMembersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function syncProgramMemberDataUsingPOSTAsyncWithHttpInfo($program_id, $sync_program_member_data_request)
+    public function syncProgramMemberDataUsingPOSTAsyncWithHttpInfo(
+        int $program_id,
+        \NecLimDul\MarketoRest\Lead\Model\SyncProgramMemberDataRequest $sync_program_member_data_request
+    ): PromiseInterface
     {
         $request = $this->syncProgramMemberDataUsingPOSTRequest($program_id, $sync_program_member_data_request);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberData', [$this, 'syncProgramMemberDataUsingPOSTHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberData::class,
+            [$this, 'syncProgramMemberDataUsingPOSTHandleException']
+        );
     }
 
     /**
@@ -1170,7 +1314,7 @@ class ProgramMembersApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberStatus',
+                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberStatus::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -1189,7 +1333,10 @@ class ProgramMembersApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberStatus
      */
-    public function syncProgramMemberStatusUsingPOST($program_id, $sync_program_member_status_request)
+    public function syncProgramMemberStatusUsingPOST(
+        int $program_id,
+        \NecLimDul\MarketoRest\Lead\Model\SyncProgramMemberStatusRequest $sync_program_member_status_request
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberStatus
     {
         list($response) = $this->syncProgramMemberStatusUsingPOSTWithHttpInfo($program_id, $sync_program_member_status_request);
         return $response;
@@ -1204,13 +1351,20 @@ class ProgramMembersApi
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberStatus, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberStatus, int, array<array<string>>}
      */
-    public function syncProgramMemberStatusUsingPOSTWithHttpInfo($program_id, $sync_program_member_status_request)
+    public function syncProgramMemberStatusUsingPOSTWithHttpInfo(
+        int $program_id,
+        \NecLimDul\MarketoRest\Lead\Model\SyncProgramMemberStatusRequest $sync_program_member_status_request
+    ): array
     {
         $request = $this->syncProgramMemberStatusUsingPOSTRequest($program_id, $sync_program_member_status_request);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberStatus');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberStatus::class
+            );
         } catch (ApiException $e) {
             throw $this->syncProgramMemberStatusUsingPOSTHandleException($e);
         }
@@ -1225,7 +1379,10 @@ class ProgramMembersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function syncProgramMemberStatusUsingPOSTAsync($program_id, $sync_program_member_status_request)
+    public function syncProgramMemberStatusUsingPOSTAsync(
+        int $program_id,
+        \NecLimDul\MarketoRest\Lead\Model\SyncProgramMemberStatusRequest $sync_program_member_status_request
+    ): PromiseInterface
     {
         return $this->syncProgramMemberStatusUsingPOSTAsyncWithHttpInfo($program_id, $sync_program_member_status_request)
             ->then(
@@ -1244,10 +1401,17 @@ class ProgramMembersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function syncProgramMemberStatusUsingPOSTAsyncWithHttpInfo($program_id, $sync_program_member_status_request)
+    public function syncProgramMemberStatusUsingPOSTAsyncWithHttpInfo(
+        int $program_id,
+        \NecLimDul\MarketoRest\Lead\Model\SyncProgramMemberStatusRequest $sync_program_member_status_request
+    ): PromiseInterface
     {
         $request = $this->syncProgramMemberStatusUsingPOSTRequest($program_id, $sync_program_member_status_request);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberStatus', [$this, 'syncProgramMemberStatusUsingPOSTHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberStatus::class,
+            [$this, 'syncProgramMemberStatusUsingPOSTHandleException']
+        );
     }
 
     /**
@@ -1317,7 +1481,7 @@ class ProgramMembersApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfUpdateLeadField',
+                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfUpdateLeadField::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -1336,7 +1500,10 @@ class ProgramMembersApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfUpdateLeadField
      */
-    public function updateProgramMemberFieldUsingPOST($field_api_name, $update_lead_field_request)
+    public function updateProgramMemberFieldUsingPOST(
+        string $field_api_name,
+        \NecLimDul\MarketoRest\Lead\Model\UpdateLeadFieldRequest $update_lead_field_request
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfUpdateLeadField
     {
         list($response) = $this->updateProgramMemberFieldUsingPOSTWithHttpInfo($field_api_name, $update_lead_field_request);
         return $response;
@@ -1351,13 +1518,20 @@ class ProgramMembersApi
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfUpdateLeadField, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfUpdateLeadField, int, array<array<string>>}
      */
-    public function updateProgramMemberFieldUsingPOSTWithHttpInfo($field_api_name, $update_lead_field_request)
+    public function updateProgramMemberFieldUsingPOSTWithHttpInfo(
+        string $field_api_name,
+        \NecLimDul\MarketoRest\Lead\Model\UpdateLeadFieldRequest $update_lead_field_request
+    ): array
     {
         $request = $this->updateProgramMemberFieldUsingPOSTRequest($field_api_name, $update_lead_field_request);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfUpdateLeadField');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Lead\Model\ResponseOfUpdateLeadField::class
+            );
         } catch (ApiException $e) {
             throw $this->updateProgramMemberFieldUsingPOSTHandleException($e);
         }
@@ -1372,7 +1546,10 @@ class ProgramMembersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateProgramMemberFieldUsingPOSTAsync($field_api_name, $update_lead_field_request)
+    public function updateProgramMemberFieldUsingPOSTAsync(
+        string $field_api_name,
+        \NecLimDul\MarketoRest\Lead\Model\UpdateLeadFieldRequest $update_lead_field_request
+    ): PromiseInterface
     {
         return $this->updateProgramMemberFieldUsingPOSTAsyncWithHttpInfo($field_api_name, $update_lead_field_request)
             ->then(
@@ -1391,10 +1568,17 @@ class ProgramMembersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateProgramMemberFieldUsingPOSTAsyncWithHttpInfo($field_api_name, $update_lead_field_request)
+    public function updateProgramMemberFieldUsingPOSTAsyncWithHttpInfo(
+        string $field_api_name,
+        \NecLimDul\MarketoRest\Lead\Model\UpdateLeadFieldRequest $update_lead_field_request
+    ): PromiseInterface
     {
         $request = $this->updateProgramMemberFieldUsingPOSTRequest($field_api_name, $update_lead_field_request);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfUpdateLeadField', [$this, 'updateProgramMemberFieldUsingPOSTHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Lead\Model\ResponseOfUpdateLeadField::class,
+            [$this, 'updateProgramMemberFieldUsingPOSTHandleException']
+        );
     }
 
     /**
@@ -1454,7 +1638,7 @@ class ProgramMembersApi
      * Create http client option
      *
      * @throws \RuntimeException on file opening failure
-     * @return array of http client options
+     * @return array<string, mixed> of http client options
      */
     protected function createHttpClientOption()
     {
@@ -1511,7 +1695,7 @@ class ProgramMembersApi
      * Make an async request.
      *
      * @param \GuzzleHttp\Psr7\Request $request An initialized request object.
-     * @param string $returnType The return type.
+     * @param class-string $returnType The return type.
      * @param callable $exceptionHandler A callback to process HTTP errors.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
@@ -1545,10 +1729,13 @@ class ProgramMembersApi
     /**
      * Convert a response to a return standard return array.
      *
+     * @template T
      * @param \Psr\Http\Message\ResponseInterface $response A response from a request with a serialized body.
      * @param string $returnType The primary return type.
+     * @phpstan-param class-string<T> $returnType
      *
-     * @return array
+     * @return array structured array or response and http info.
+     * @phpstan-return array{T, int, array<array<string>>}
      */
     private function responseToReturn(ResponseInterface $response, string $returnType) {
         return [
@@ -1561,14 +1748,15 @@ class ProgramMembersApi
     /**
      * Deserialize a response body.
      *
-     * @param mixed $responseBody
-     *   The response body.
-     * @param string $returnType
-     *   The return type.
-     * @param array<string, string[]>|null $headers
-     *   The a list of headers from the response.
-     * @return mixed
-     *   Either a string or a stream to be passed to a file object.
+     * @template T
+     * @param mixed $responseBody The response body.
+     * @param string $returnType The return type.
+     * @param array<string, string[]>|null $headers A list of headers from the response.
+     * @phpstan-param class-string<T> $returnType
+     *
+     * @return mixed Either a string or a stream to be passed to a file object.
+     * @phpstan-return T
+     * @psalm-return T
      */
     private function deserializeResponseBody($responseBody, string $returnType, ?array $headers = [])
     {

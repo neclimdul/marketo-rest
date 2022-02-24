@@ -33,6 +33,7 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Query;
 use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\RequestOptions;
 use Psr\Http\Message\ResponseInterface;
 use NecLimDul\MarketoRest\Lead\ApiException;
@@ -131,7 +132,7 @@ class BulkImportCustomObjectsApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent',
+                        \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -150,7 +151,10 @@ class BulkImportCustomObjectsApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent
      */
-    public function getImportCustomObjectFailuresUsingGET($api_name, $batch_id)
+    public function getImportCustomObjectFailuresUsingGET(
+        string $api_name,
+        int $batch_id
+    ): \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent
     {
         list($response) = $this->getImportCustomObjectFailuresUsingGETWithHttpInfo($api_name, $batch_id);
         return $response;
@@ -165,13 +169,20 @@ class BulkImportCustomObjectsApi
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent, int, array<array<string>>}
      */
-    public function getImportCustomObjectFailuresUsingGETWithHttpInfo($api_name, $batch_id)
+    public function getImportCustomObjectFailuresUsingGETWithHttpInfo(
+        string $api_name,
+        int $batch_id
+    ): array
     {
         $request = $this->getImportCustomObjectFailuresUsingGETRequest($api_name, $batch_id);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent::class
+            );
         } catch (ApiException $e) {
             throw $this->getImportCustomObjectFailuresUsingGETHandleException($e);
         }
@@ -186,7 +197,10 @@ class BulkImportCustomObjectsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getImportCustomObjectFailuresUsingGETAsync($api_name, $batch_id)
+    public function getImportCustomObjectFailuresUsingGETAsync(
+        string $api_name,
+        int $batch_id
+    ): PromiseInterface
     {
         return $this->getImportCustomObjectFailuresUsingGETAsyncWithHttpInfo($api_name, $batch_id)
             ->then(
@@ -205,10 +219,17 @@ class BulkImportCustomObjectsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getImportCustomObjectFailuresUsingGETAsyncWithHttpInfo($api_name, $batch_id)
+    public function getImportCustomObjectFailuresUsingGETAsyncWithHttpInfo(
+        string $api_name,
+        int $batch_id
+    ): PromiseInterface
     {
         $request = $this->getImportCustomObjectFailuresUsingGETRequest($api_name, $batch_id);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent', [$this, 'getImportCustomObjectFailuresUsingGETHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent::class,
+            [$this, 'getImportCustomObjectFailuresUsingGETHandleException']
+        );
     }
 
     /**
@@ -282,7 +303,7 @@ class BulkImportCustomObjectsApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfImportCustomObjectResponse',
+                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportCustomObjectResponse::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -301,7 +322,10 @@ class BulkImportCustomObjectsApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportCustomObjectResponse
      */
-    public function getImportCustomObjectStatusUsingGET($api_name, $batch_id)
+    public function getImportCustomObjectStatusUsingGET(
+        string $api_name,
+        int $batch_id
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportCustomObjectResponse
     {
         list($response) = $this->getImportCustomObjectStatusUsingGETWithHttpInfo($api_name, $batch_id);
         return $response;
@@ -316,13 +340,20 @@ class BulkImportCustomObjectsApi
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportCustomObjectResponse, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportCustomObjectResponse, int, array<array<string>>}
      */
-    public function getImportCustomObjectStatusUsingGETWithHttpInfo($api_name, $batch_id)
+    public function getImportCustomObjectStatusUsingGETWithHttpInfo(
+        string $api_name,
+        int $batch_id
+    ): array
     {
         $request = $this->getImportCustomObjectStatusUsingGETRequest($api_name, $batch_id);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfImportCustomObjectResponse');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportCustomObjectResponse::class
+            );
         } catch (ApiException $e) {
             throw $this->getImportCustomObjectStatusUsingGETHandleException($e);
         }
@@ -337,7 +368,10 @@ class BulkImportCustomObjectsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getImportCustomObjectStatusUsingGETAsync($api_name, $batch_id)
+    public function getImportCustomObjectStatusUsingGETAsync(
+        string $api_name,
+        int $batch_id
+    ): PromiseInterface
     {
         return $this->getImportCustomObjectStatusUsingGETAsyncWithHttpInfo($api_name, $batch_id)
             ->then(
@@ -356,10 +390,17 @@ class BulkImportCustomObjectsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getImportCustomObjectStatusUsingGETAsyncWithHttpInfo($api_name, $batch_id)
+    public function getImportCustomObjectStatusUsingGETAsyncWithHttpInfo(
+        string $api_name,
+        int $batch_id
+    ): PromiseInterface
     {
         $request = $this->getImportCustomObjectStatusUsingGETRequest($api_name, $batch_id);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfImportCustomObjectResponse', [$this, 'getImportCustomObjectStatusUsingGETHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportCustomObjectResponse::class,
+            [$this, 'getImportCustomObjectStatusUsingGETHandleException']
+        );
     }
 
     /**
@@ -433,7 +474,7 @@ class BulkImportCustomObjectsApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent',
+                        \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -452,7 +493,10 @@ class BulkImportCustomObjectsApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent
      */
-    public function getImportCustomObjectWarningsUsingGET($api_name, $batch_id)
+    public function getImportCustomObjectWarningsUsingGET(
+        string $api_name,
+        int $batch_id
+    ): \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent
     {
         list($response) = $this->getImportCustomObjectWarningsUsingGETWithHttpInfo($api_name, $batch_id);
         return $response;
@@ -467,13 +511,20 @@ class BulkImportCustomObjectsApi
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent, int, array<array<string>>}
      */
-    public function getImportCustomObjectWarningsUsingGETWithHttpInfo($api_name, $batch_id)
+    public function getImportCustomObjectWarningsUsingGETWithHttpInfo(
+        string $api_name,
+        int $batch_id
+    ): array
     {
         $request = $this->getImportCustomObjectWarningsUsingGETRequest($api_name, $batch_id);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent::class
+            );
         } catch (ApiException $e) {
             throw $this->getImportCustomObjectWarningsUsingGETHandleException($e);
         }
@@ -488,7 +539,10 @@ class BulkImportCustomObjectsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getImportCustomObjectWarningsUsingGETAsync($api_name, $batch_id)
+    public function getImportCustomObjectWarningsUsingGETAsync(
+        string $api_name,
+        int $batch_id
+    ): PromiseInterface
     {
         return $this->getImportCustomObjectWarningsUsingGETAsyncWithHttpInfo($api_name, $batch_id)
             ->then(
@@ -507,10 +561,17 @@ class BulkImportCustomObjectsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getImportCustomObjectWarningsUsingGETAsyncWithHttpInfo($api_name, $batch_id)
+    public function getImportCustomObjectWarningsUsingGETAsyncWithHttpInfo(
+        string $api_name,
+        int $batch_id
+    ): PromiseInterface
     {
         $request = $this->getImportCustomObjectWarningsUsingGETRequest($api_name, $batch_id);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent', [$this, 'getImportCustomObjectWarningsUsingGETHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent::class,
+            [$this, 'getImportCustomObjectWarningsUsingGETHandleException']
+        );
     }
 
     /**
@@ -584,7 +645,7 @@ class BulkImportCustomObjectsApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfImportCustomObjectResponse',
+                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportCustomObjectResponse::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -604,7 +665,11 @@ class BulkImportCustomObjectsApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportCustomObjectResponse
      */
-    public function importCustomObjectUsingPOST($api_name, $format, $file)
+    public function importCustomObjectUsingPOST(
+        string $api_name,
+        string $format,
+        \SplFileObject $file
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportCustomObjectResponse
     {
         list($response) = $this->importCustomObjectUsingPOSTWithHttpInfo($api_name, $format, $file);
         return $response;
@@ -620,13 +685,21 @@ class BulkImportCustomObjectsApi
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportCustomObjectResponse, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportCustomObjectResponse, int, array<array<string>>}
      */
-    public function importCustomObjectUsingPOSTWithHttpInfo($api_name, $format, $file)
+    public function importCustomObjectUsingPOSTWithHttpInfo(
+        string $api_name,
+        string $format,
+        \SplFileObject $file
+    ): array
     {
         $request = $this->importCustomObjectUsingPOSTRequest($api_name, $format, $file);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfImportCustomObjectResponse');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportCustomObjectResponse::class
+            );
         } catch (ApiException $e) {
             throw $this->importCustomObjectUsingPOSTHandleException($e);
         }
@@ -642,7 +715,11 @@ class BulkImportCustomObjectsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function importCustomObjectUsingPOSTAsync($api_name, $format, $file)
+    public function importCustomObjectUsingPOSTAsync(
+        string $api_name,
+        string $format,
+        \SplFileObject $file
+    ): PromiseInterface
     {
         return $this->importCustomObjectUsingPOSTAsyncWithHttpInfo($api_name, $format, $file)
             ->then(
@@ -662,10 +739,18 @@ class BulkImportCustomObjectsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function importCustomObjectUsingPOSTAsyncWithHttpInfo($api_name, $format, $file)
+    public function importCustomObjectUsingPOSTAsyncWithHttpInfo(
+        string $api_name,
+        string $format,
+        \SplFileObject $file
+    ): PromiseInterface
     {
         $request = $this->importCustomObjectUsingPOSTRequest($api_name, $format, $file);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfImportCustomObjectResponse', [$this, 'importCustomObjectUsingPOSTHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportCustomObjectResponse::class,
+            [$this, 'importCustomObjectUsingPOSTHandleException']
+        );
     }
 
     /**
@@ -779,7 +864,7 @@ class BulkImportCustomObjectsApi
      * Create http client option
      *
      * @throws \RuntimeException on file opening failure
-     * @return array of http client options
+     * @return array<string, mixed> of http client options
      */
     protected function createHttpClientOption()
     {
@@ -836,7 +921,7 @@ class BulkImportCustomObjectsApi
      * Make an async request.
      *
      * @param \GuzzleHttp\Psr7\Request $request An initialized request object.
-     * @param string $returnType The return type.
+     * @param class-string $returnType The return type.
      * @param callable $exceptionHandler A callback to process HTTP errors.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
@@ -870,10 +955,13 @@ class BulkImportCustomObjectsApi
     /**
      * Convert a response to a return standard return array.
      *
+     * @template T
      * @param \Psr\Http\Message\ResponseInterface $response A response from a request with a serialized body.
      * @param string $returnType The primary return type.
+     * @phpstan-param class-string<T> $returnType
      *
-     * @return array
+     * @return array structured array or response and http info.
+     * @phpstan-return array{T, int, array<array<string>>}
      */
     private function responseToReturn(ResponseInterface $response, string $returnType) {
         return [
@@ -886,14 +974,15 @@ class BulkImportCustomObjectsApi
     /**
      * Deserialize a response body.
      *
-     * @param mixed $responseBody
-     *   The response body.
-     * @param string $returnType
-     *   The return type.
-     * @param array<string, string[]>|null $headers
-     *   The a list of headers from the response.
-     * @return mixed
-     *   Either a string or a stream to be passed to a file object.
+     * @template T
+     * @param mixed $responseBody The response body.
+     * @param string $returnType The return type.
+     * @param array<string, string[]>|null $headers A list of headers from the response.
+     * @phpstan-param class-string<T> $returnType
+     *
+     * @return mixed Either a string or a stream to be passed to a file object.
+     * @phpstan-return T
+     * @psalm-return T
      */
     private function deserializeResponseBody($responseBody, string $returnType, ?array $headers = [])
     {

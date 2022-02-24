@@ -178,8 +178,8 @@ class ObjectSerializer
      * @param string $style
      *   Query parameter style.
      *
-     * @return array
-     *   An hash of values keyed by the query parameter name(s).
+     * @return array<string, string>
+     *   A hash of values keyed by the query parameter name(s).
      */
     public static function processQuery(string $name, $value, string $style): array
     {
@@ -321,19 +321,19 @@ class ObjectSerializer
     /**
      * Deserialize a JSON string into an object
      *
-     * @param mixed    $data          object or primitive to be deserialized
-     * @param string   $class         class name is passed as a string
-     * @param string[][] $httpHeaders   HTTP headers
+     * @param mixed      $data       object or primitive to be deserialized
+     * @param string     $type       Some php type that be returned.
+     * @param string[][] $httpHeaders HTTP headers
      *
-     * @return object|array|null a single or an array of $class instances
+     * @return mixed a single or an array of $type instances
      */
-    public static function deserialize($data, $class, $httpHeaders = null)
+    public static function deserialize($data, string $type, array $httpHeaders = null)
     {
         if (null === $data) {
             return null;
         }
 
-        if ($class === '\SplFileObject') {
+        if ($type === '\SplFileObject') {
             /** @var \Psr\Http\Message\StreamInterface $data */
 
             // determine file name
@@ -355,50 +355,51 @@ class ObjectSerializer
 
         // @todo support more content types.
         $data = is_string($data) ? json_decode($data) : $data;
-        return static::doDeserialize($data, $class);
+        return static::doDeserialize($data, $type);
     }
-
 
     /**
      * Deserialize a JSON string into an object
      *
-     * @param mixed    $data          object or primitive to be deserialized
-     * @param string   $class         class name is passed as a string
+     * @param mixed  $data object or primitive to be deserialized
+     * @param string $type class name is passed as a string
      *
-     * @return object|array|null a single or an array of $class instances
+     * @return mixed a single or an array of $type instances
      */
-    public static function doDeserialize($data, $class)
+    public static function doDeserialize($data, $type)
     {
 
-        if (strcasecmp(substr($class, -2), '[]') === 0) {
+        if (strcasecmp(substr($type, -2), '[]') === 0) {
 
             if (!is_array($data)) {
-                throw new \InvalidArgumentException("Invalid array '$class'");
+                throw new \InvalidArgumentException("Invalid array '$type'");
             }
 
-            $subClass = substr($class, 0, -2);
+            /** @var class-string $subType */
+            $subType = substr($type, 0, -2);
             $values = [];
             foreach ($data as $key => $value) {
-                $values[] = self::doDeserialize($value, $subClass);
+                $values[] = self::doDeserialize($value, $subType);
             }
             return $values;
         }
 
-        if (preg_match('/^(array<|map\[)/', $class)) { // for associative array e.g. array<string,int>
+        if (preg_match('/^(array<|map\[)/', $type)) { // for associative array e.g. array<string,int>
             settype($data, 'array');
-            $inner = substr($class, 4, -1);
+            $inner = substr($type, 4, -1);
             $deserialized = [];
             if (strrpos($inner, ",") !== false) {
-                $subClass_array = explode(',', $inner, 2);
-                $subClass = $subClass_array[1];
+                $subType_array = explode(',', $inner, 2);
+                /** @var class-string $subType */
+                $subType = $subType_array[1];
                 foreach ($data as $key => $value) {
-                    $deserialized[$key] = self::doDeserialize($value, $subClass);
+                    $deserialized[$key] = self::doDeserialize($value, $subType);
                 }
             }
             return $deserialized;
         }
 
-        if ($class === '\DateTime') {
+        if ($type === '\DateTime') {
             // Some API's return an invalid, empty string as a
             // date-time property. DateTime::__construct() will return
             // the current time for empty input which is probably not
@@ -421,45 +422,37 @@ class ObjectSerializer
         }
 
         /** @psalm-suppress ParadoxicalCondition */
-        if (in_array($class, ['DateTime', 'bool', 'boolean', 'byte', 'double', 'float', 'int', 'integer', 'mixed', 'number', 'object', 'string', 'void'], true)) {
-            settype($data, $class);
+        if (in_array($type, ['DateTime', 'bool', 'boolean', 'byte', 'double', 'float', 'int', 'integer', 'mixed', 'number', 'object', 'string', 'void'], true)) {
+            settype($data, $type);
             return $data;
         }
 
         // We couldn't do a scalar cast so we know this is class string.
-        /** @var class-string $class */
-
-        if (method_exists($class, 'getAllowableEnumValues')) {
-            if (!in_array($data, $class::getAllowableEnumValues(), true)) {
-                $imploded = implode("', '", $class::getAllowableEnumValues());
-                throw new \InvalidArgumentException("Invalid value for enum '$class', must be one of: '$imploded'");
+        /** @var class-string $type */
+        if (method_exists($type, 'getAllowableEnumValues')) {
+            if (!in_array($data, $type::getAllowableEnumValues(), true)) {
+                $imploded = implode("', '", $type::getAllowableEnumValues());
+                throw new \InvalidArgumentException("Invalid value for enum '$type', must be one of: '$imploded'");
             }
             return $data;
-        } else {
-            // If a discriminator is defined and points to a valid subclass, use it.
-            $discriminator = $class::DISCRIMINATOR;
-            if (!empty($discriminator) && isset($data->{$discriminator}) && is_string($data->{$discriminator})) {
-                $subclass = '\NecLimDul\MarketoRest\Asset\Model\\' . $data->{$discriminator};
-                if (is_subclass_of($subclass, $class)) {
-                    $class = $subclass;
-                }
-            }
+        }
 
-            /** @var ModelInterface $instance */
-            $instance = new $class();
+        $instance = new $type();
+        if ($instance instanceof ModelInterface) {
             $additional_properties = get_object_vars($data);
-            foreach ($instance::swaggerTypes() as $property => $type) {
+            foreach ($instance::swaggerTypes() as $property => $model_types) {
                 $propertySetter = $instance::setters()[$property];
                 unset($additional_properties[$property]);
 
-                if (!isset($propertySetter) || !isset($data->{$instance::attributeMap()[$property]})) {
+                if (!isset($data->{$instance::attributeMap()[$property]})) {
                     continue;
                 }
 
-                if (isset($data->{$instance::attributeMap()[$property]})) {
-                    $propertyValue = $data->{$instance::attributeMap()[$property]};
-                    $instance->$propertySetter(self::doDeserialize($propertyValue, $type));
-                }
+                $propertyValue = $data->{$instance::attributeMap()[$property]};
+                $instance->$propertySetter(self::doDeserialize(
+                  $propertyValue,
+                  $model_types
+                ));
             }
             // Add any additional properties directly. This doesn't get any
             // fancy serialization which is unfortunate but it gives us basic
@@ -467,8 +460,8 @@ class ObjectSerializer
             foreach ($additional_properties as $property => $value) {
                 $instance->setAdditionalProperty($property, $value);
             }
-            return $instance;
         }
+        return $instance;
     }
 
 }

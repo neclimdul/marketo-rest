@@ -148,6 +148,8 @@ class MarketoRestProvider extends ServiceProvider
 
     /**
      * {@inheritDoc}
+     *
+     * @phpstan-return class-string[]
      */
     public function provides()
     {

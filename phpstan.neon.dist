@@ -8,4 +8,4 @@ parameters:
 		- src
 		- tests
 	ignoreErrors:
-		- '#return type has no value type specified in iterable type array\.$#'
+		- '#Method .*\\ObjectSerializer::sanitizeForSerialization\(\) return type has no value type specified in iterable type array\.$#'

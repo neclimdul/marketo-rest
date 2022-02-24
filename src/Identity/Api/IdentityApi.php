@@ -33,6 +33,7 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Query;
 use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\RequestOptions;
 use Psr\Http\Message\ResponseInterface;
 use NecLimDul\MarketoRest\Identity\ApiException;
@@ -131,7 +132,7 @@ class IdentityApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Identity\Model\ResponseOfIdentity',
+                        \NecLimDul\MarketoRest\Identity\Model\ResponseOfIdentity::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -152,7 +153,12 @@ class IdentityApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Identity\Model\ResponseOfIdentity
      */
-    public function identityUsingGET($client_id, $client_secret, $grant_type, $partner_id = null)
+    public function identityUsingGET(
+        string $client_id,
+        string $client_secret,
+        string $grant_type,
+        string $partner_id = null
+    ): \NecLimDul\MarketoRest\Identity\Model\ResponseOfIdentity
     {
         list($response) = $this->identityUsingGETWithHttpInfo($client_id, $client_secret, $grant_type, $partner_id);
         return $response;
@@ -169,13 +175,22 @@ class IdentityApi
      * @throws \NecLimDul\MarketoRest\Identity\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Identity\Model\ResponseOfIdentity, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Identity\Model\ResponseOfIdentity, int, array<array<string>>}
      */
-    public function identityUsingGETWithHttpInfo($client_id, $client_secret, $grant_type, $partner_id = null)
+    public function identityUsingGETWithHttpInfo(
+        string $client_id,
+        string $client_secret,
+        string $grant_type,
+        string $partner_id = null
+    ): array
     {
         $request = $this->identityUsingGETRequest($client_id, $client_secret, $grant_type, $partner_id);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Identity\Model\ResponseOfIdentity');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Identity\Model\ResponseOfIdentity::class
+            );
         } catch (ApiException $e) {
             throw $this->identityUsingGETHandleException($e);
         }
@@ -192,7 +207,12 @@ class IdentityApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function identityUsingGETAsync($client_id, $client_secret, $grant_type, $partner_id = null)
+    public function identityUsingGETAsync(
+        string $client_id,
+        string $client_secret,
+        string $grant_type,
+        string $partner_id = null
+    ): PromiseInterface
     {
         return $this->identityUsingGETAsyncWithHttpInfo($client_id, $client_secret, $grant_type, $partner_id)
             ->then(
@@ -213,10 +233,19 @@ class IdentityApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function identityUsingGETAsyncWithHttpInfo($client_id, $client_secret, $grant_type, $partner_id = null)
+    public function identityUsingGETAsyncWithHttpInfo(
+        string $client_id,
+        string $client_secret,
+        string $grant_type,
+        string $partner_id = null
+    ): PromiseInterface
     {
         $request = $this->identityUsingGETRequest($client_id, $client_secret, $grant_type, $partner_id);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Identity\Model\ResponseOfIdentity', [$this, 'identityUsingGETHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Identity\Model\ResponseOfIdentity::class,
+            [$this, 'identityUsingGETHandleException']
+        );
     }
 
     /**
@@ -280,7 +309,7 @@ class IdentityApi
      * Create http client option
      *
      * @throws \RuntimeException on file opening failure
-     * @return array of http client options
+     * @return array<string, mixed> of http client options
      */
     protected function createHttpClientOption()
     {
@@ -337,7 +366,7 @@ class IdentityApi
      * Make an async request.
      *
      * @param \GuzzleHttp\Psr7\Request $request An initialized request object.
-     * @param string $returnType The return type.
+     * @param class-string $returnType The return type.
      * @param callable $exceptionHandler A callback to process HTTP errors.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
@@ -371,10 +400,13 @@ class IdentityApi
     /**
      * Convert a response to a return standard return array.
      *
+     * @template T
      * @param \Psr\Http\Message\ResponseInterface $response A response from a request with a serialized body.
      * @param string $returnType The primary return type.
+     * @phpstan-param class-string<T> $returnType
      *
-     * @return array
+     * @return array structured array or response and http info.
+     * @phpstan-return array{T, int, array<array<string>>}
      */
     private function responseToReturn(ResponseInterface $response, string $returnType) {
         return [
@@ -387,14 +419,15 @@ class IdentityApi
     /**
      * Deserialize a response body.
      *
-     * @param mixed $responseBody
-     *   The response body.
-     * @param string $returnType
-     *   The return type.
-     * @param array<string, string[]>|null $headers
-     *   The a list of headers from the response.
-     * @return mixed
-     *   Either a string or a stream to be passed to a file object.
+     * @template T
+     * @param mixed $responseBody The response body.
+     * @param string $returnType The return type.
+     * @param array<string, string[]>|null $headers A list of headers from the response.
+     * @phpstan-param class-string<T> $returnType
+     *
+     * @return mixed Either a string or a stream to be passed to a file object.
+     * @phpstan-return T
+     * @psalm-return T
      */
     private function deserializeResponseBody($responseBody, string $returnType, ?array $headers = [])
     {

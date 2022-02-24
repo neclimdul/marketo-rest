@@ -55,7 +55,9 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
       * Array of property to type mappings. Used for (de)serialization
       *
-      * @var string[]
+      * @var array
+      * @phpstan-var array<string, string|class-string>
+      * @psalm-var array<string, string|class-string>
       */
     protected static $swaggerTypes = [
         'blank_fields' => 'int',
@@ -84,7 +86,7 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
       * Array of property to format mappings. Used for (de)serialization
       *
-      * @var string[]
+      * @var array
       * @phpstan-var array<string, string|null>
       * @psalm-var array<string, string|null>
       */
@@ -120,19 +122,17 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     protected $additionalProperties = [];
 
     /**
-     * Array of property to type mappings. Used for (de)serialization
-     *
-     * @return array
+     * {@inheritDoc}
      */
-    public static function swaggerTypes()
+    public static function swaggerTypes(): array
     {
         return self::$swaggerTypes;
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
-    public static function swaggerFormats()
+    public static function swaggerFormats(): array
     {
         return self::$swaggerFormats;
     }
@@ -268,7 +268,7 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * {@inheritdoc}
      */
-    public static function attributeMap()
+    public static function attributeMap(): array
     {
         return self::$attributeMap;
     }
@@ -276,7 +276,7 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * {@inheritdoc}
      */
-    public static function setters()
+    public static function setters(): array
     {
         return self::$setters;
     }
@@ -284,7 +284,7 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * {@inheritdoc}
      */
-    public static function getters()
+    public static function getters(): array
     {
         return self::$getters;
     }
@@ -300,7 +300,7 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * {@inheritdoc}
      */
-    public function listInvalidProperties()
+    public function listInvalidProperties(): array
     {
         $invalidProperties = [];
 

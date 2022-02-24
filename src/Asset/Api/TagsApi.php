@@ -33,6 +33,7 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Query;
 use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\RequestOptions;
 use Psr\Http\Message\ResponseInterface;
 use NecLimDul\MarketoRest\Asset\ApiException;
@@ -131,7 +132,7 @@ class TagsApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfTagResponse',
+                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfTagResponse::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -149,7 +150,9 @@ class TagsApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfTagResponse
      */
-    public function getTagByNameUsingGET($name)
+    public function getTagByNameUsingGET(
+        string $name
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfTagResponse
     {
         list($response) = $this->getTagByNameUsingGETWithHttpInfo($name);
         return $response;
@@ -163,13 +166,19 @@ class TagsApi
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfTagResponse, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfTagResponse, int, array<array<string>>}
      */
-    public function getTagByNameUsingGETWithHttpInfo($name)
+    public function getTagByNameUsingGETWithHttpInfo(
+        string $name
+    ): array
     {
         $request = $this->getTagByNameUsingGETRequest($name);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfTagResponse');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Asset\Model\ResponseOfTagResponse::class
+            );
         } catch (ApiException $e) {
             throw $this->getTagByNameUsingGETHandleException($e);
         }
@@ -183,7 +192,9 @@ class TagsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getTagByNameUsingGETAsync($name)
+    public function getTagByNameUsingGETAsync(
+        string $name
+    ): PromiseInterface
     {
         return $this->getTagByNameUsingGETAsyncWithHttpInfo($name)
             ->then(
@@ -201,10 +212,16 @@ class TagsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getTagByNameUsingGETAsyncWithHttpInfo($name)
+    public function getTagByNameUsingGETAsyncWithHttpInfo(
+        string $name
+    ): PromiseInterface
     {
         $request = $this->getTagByNameUsingGETRequest($name);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfTagResponse', [$this, 'getTagByNameUsingGETHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Asset\Model\ResponseOfTagResponse::class,
+            [$this, 'getTagByNameUsingGETHandleException']
+        );
     }
 
     /**
@@ -269,7 +286,7 @@ class TagsApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfTagResponseGetAll',
+                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfTagResponseGetAll::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -288,7 +305,10 @@ class TagsApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfTagResponseGetAll
      */
-    public function getTagTypesUsingGET($max_return = null, $offset = null)
+    public function getTagTypesUsingGET(
+        int $max_return = null,
+        int $offset = null
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfTagResponseGetAll
     {
         list($response) = $this->getTagTypesUsingGETWithHttpInfo($max_return, $offset);
         return $response;
@@ -303,13 +323,20 @@ class TagsApi
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfTagResponseGetAll, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfTagResponseGetAll, int, array<array<string>>}
      */
-    public function getTagTypesUsingGETWithHttpInfo($max_return = null, $offset = null)
+    public function getTagTypesUsingGETWithHttpInfo(
+        int $max_return = null,
+        int $offset = null
+    ): array
     {
         $request = $this->getTagTypesUsingGETRequest($max_return, $offset);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfTagResponseGetAll');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Asset\Model\ResponseOfTagResponseGetAll::class
+            );
         } catch (ApiException $e) {
             throw $this->getTagTypesUsingGETHandleException($e);
         }
@@ -324,7 +351,10 @@ class TagsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getTagTypesUsingGETAsync($max_return = null, $offset = null)
+    public function getTagTypesUsingGETAsync(
+        int $max_return = null,
+        int $offset = null
+    ): PromiseInterface
     {
         return $this->getTagTypesUsingGETAsyncWithHttpInfo($max_return, $offset)
             ->then(
@@ -343,10 +373,17 @@ class TagsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getTagTypesUsingGETAsyncWithHttpInfo($max_return = null, $offset = null)
+    public function getTagTypesUsingGETAsyncWithHttpInfo(
+        int $max_return = null,
+        int $offset = null
+    ): PromiseInterface
     {
         $request = $this->getTagTypesUsingGETRequest($max_return, $offset);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfTagResponseGetAll', [$this, 'getTagTypesUsingGETHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Asset\Model\ResponseOfTagResponseGetAll::class,
+            [$this, 'getTagTypesUsingGETHandleException']
+        );
     }
 
     /**
@@ -404,7 +441,7 @@ class TagsApi
      * Create http client option
      *
      * @throws \RuntimeException on file opening failure
-     * @return array of http client options
+     * @return array<string, mixed> of http client options
      */
     protected function createHttpClientOption()
     {
@@ -461,7 +498,7 @@ class TagsApi
      * Make an async request.
      *
      * @param \GuzzleHttp\Psr7\Request $request An initialized request object.
-     * @param string $returnType The return type.
+     * @param class-string $returnType The return type.
      * @param callable $exceptionHandler A callback to process HTTP errors.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
@@ -495,10 +532,13 @@ class TagsApi
     /**
      * Convert a response to a return standard return array.
      *
+     * @template T
      * @param \Psr\Http\Message\ResponseInterface $response A response from a request with a serialized body.
      * @param string $returnType The primary return type.
+     * @phpstan-param class-string<T> $returnType
      *
-     * @return array
+     * @return array structured array or response and http info.
+     * @phpstan-return array{T, int, array<array<string>>}
      */
     private function responseToReturn(ResponseInterface $response, string $returnType) {
         return [
@@ -511,14 +551,15 @@ class TagsApi
     /**
      * Deserialize a response body.
      *
-     * @param mixed $responseBody
-     *   The response body.
-     * @param string $returnType
-     *   The return type.
-     * @param array<string, string[]>|null $headers
-     *   The a list of headers from the response.
-     * @return mixed
-     *   Either a string or a stream to be passed to a file object.
+     * @template T
+     * @param mixed $responseBody The response body.
+     * @param string $returnType The return type.
+     * @param array<string, string[]>|null $headers A list of headers from the response.
+     * @phpstan-param class-string<T> $returnType
+     *
+     * @return mixed Either a string or a stream to be passed to a file object.
+     * @phpstan-return T
+     * @psalm-return T
      */
     private function deserializeResponseBody($responseBody, string $returnType, ?array $headers = [])
     {

@@ -33,6 +33,7 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Query;
 use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\RequestOptions;
 use Psr\Http\Message\ResponseInterface;
 use NecLimDul\MarketoRest\Asset\ApiException;
@@ -131,7 +132,7 @@ class FilesApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse',
+                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -149,7 +150,9 @@ class FilesApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse
      */
-    public function createFileUsingPOST($create_file_request)
+    public function createFileUsingPOST(
+        \NecLimDul\MarketoRest\Asset\Model\CreateFileRequest $create_file_request
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse
     {
         list($response) = $this->createFileUsingPOSTWithHttpInfo($create_file_request);
         return $response;
@@ -163,13 +166,19 @@ class FilesApi
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse, int, array<array<string>>}
      */
-    public function createFileUsingPOSTWithHttpInfo($create_file_request)
+    public function createFileUsingPOSTWithHttpInfo(
+        \NecLimDul\MarketoRest\Asset\Model\CreateFileRequest $create_file_request
+    ): array
     {
         $request = $this->createFileUsingPOSTRequest($create_file_request);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse::class
+            );
         } catch (ApiException $e) {
             throw $this->createFileUsingPOSTHandleException($e);
         }
@@ -183,7 +192,9 @@ class FilesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createFileUsingPOSTAsync($create_file_request)
+    public function createFileUsingPOSTAsync(
+        \NecLimDul\MarketoRest\Asset\Model\CreateFileRequest $create_file_request
+    ): PromiseInterface
     {
         return $this->createFileUsingPOSTAsyncWithHttpInfo($create_file_request)
             ->then(
@@ -201,10 +212,16 @@ class FilesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createFileUsingPOSTAsyncWithHttpInfo($create_file_request)
+    public function createFileUsingPOSTAsyncWithHttpInfo(
+        \NecLimDul\MarketoRest\Asset\Model\CreateFileRequest $create_file_request
+    ): PromiseInterface
     {
         $request = $this->createFileUsingPOSTRequest($create_file_request);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse', [$this, 'createFileUsingPOSTHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse::class,
+            [$this, 'createFileUsingPOSTHandleException']
+        );
     }
 
     /**
@@ -265,7 +282,7 @@ class FilesApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse',
+                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -283,7 +300,9 @@ class FilesApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse
      */
-    public function getFileByIdUsingGET($id)
+    public function getFileByIdUsingGET(
+        int $id
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse
     {
         list($response) = $this->getFileByIdUsingGETWithHttpInfo($id);
         return $response;
@@ -297,13 +316,19 @@ class FilesApi
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse, int, array<array<string>>}
      */
-    public function getFileByIdUsingGETWithHttpInfo($id)
+    public function getFileByIdUsingGETWithHttpInfo(
+        int $id
+    ): array
     {
         $request = $this->getFileByIdUsingGETRequest($id);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse::class
+            );
         } catch (ApiException $e) {
             throw $this->getFileByIdUsingGETHandleException($e);
         }
@@ -317,7 +342,9 @@ class FilesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getFileByIdUsingGETAsync($id)
+    public function getFileByIdUsingGETAsync(
+        int $id
+    ): PromiseInterface
     {
         return $this->getFileByIdUsingGETAsyncWithHttpInfo($id)
             ->then(
@@ -335,10 +362,16 @@ class FilesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getFileByIdUsingGETAsyncWithHttpInfo($id)
+    public function getFileByIdUsingGETAsyncWithHttpInfo(
+        int $id
+    ): PromiseInterface
     {
         $request = $this->getFileByIdUsingGETRequest($id);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse', [$this, 'getFileByIdUsingGETHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse::class,
+            [$this, 'getFileByIdUsingGETHandleException']
+        );
     }
 
     /**
@@ -405,7 +438,7 @@ class FilesApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse',
+                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -423,7 +456,9 @@ class FilesApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse
      */
-    public function getFileByNameUsingGET($name)
+    public function getFileByNameUsingGET(
+        string $name
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse
     {
         list($response) = $this->getFileByNameUsingGETWithHttpInfo($name);
         return $response;
@@ -437,13 +472,19 @@ class FilesApi
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse, int, array<array<string>>}
      */
-    public function getFileByNameUsingGETWithHttpInfo($name)
+    public function getFileByNameUsingGETWithHttpInfo(
+        string $name
+    ): array
     {
         $request = $this->getFileByNameUsingGETRequest($name);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse::class
+            );
         } catch (ApiException $e) {
             throw $this->getFileByNameUsingGETHandleException($e);
         }
@@ -457,7 +498,9 @@ class FilesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getFileByNameUsingGETAsync($name)
+    public function getFileByNameUsingGETAsync(
+        string $name
+    ): PromiseInterface
     {
         return $this->getFileByNameUsingGETAsyncWithHttpInfo($name)
             ->then(
@@ -475,10 +518,16 @@ class FilesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getFileByNameUsingGETAsyncWithHttpInfo($name)
+    public function getFileByNameUsingGETAsyncWithHttpInfo(
+        string $name
+    ): PromiseInterface
     {
         $request = $this->getFileByNameUsingGETRequest($name);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse', [$this, 'getFileByNameUsingGETHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse::class,
+            [$this, 'getFileByNameUsingGETHandleException']
+        );
     }
 
     /**
@@ -543,7 +592,7 @@ class FilesApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse',
+                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -562,7 +611,10 @@ class FilesApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse
      */
-    public function getFilesUsingGET($get_files_request, $folder = null)
+    public function getFilesUsingGET(
+        \NecLimDul\MarketoRest\Asset\Model\GetFilesRequest $get_files_request,
+        string $folder = null
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse
     {
         list($response) = $this->getFilesUsingGETWithHttpInfo($get_files_request, $folder);
         return $response;
@@ -577,13 +629,20 @@ class FilesApi
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse, int, array<array<string>>}
      */
-    public function getFilesUsingGETWithHttpInfo($get_files_request, $folder = null)
+    public function getFilesUsingGETWithHttpInfo(
+        \NecLimDul\MarketoRest\Asset\Model\GetFilesRequest $get_files_request,
+        string $folder = null
+    ): array
     {
         $request = $this->getFilesUsingGETRequest($get_files_request, $folder);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse::class
+            );
         } catch (ApiException $e) {
             throw $this->getFilesUsingGETHandleException($e);
         }
@@ -598,7 +657,10 @@ class FilesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getFilesUsingGETAsync($get_files_request, $folder = null)
+    public function getFilesUsingGETAsync(
+        \NecLimDul\MarketoRest\Asset\Model\GetFilesRequest $get_files_request,
+        string $folder = null
+    ): PromiseInterface
     {
         return $this->getFilesUsingGETAsyncWithHttpInfo($get_files_request, $folder)
             ->then(
@@ -617,10 +679,17 @@ class FilesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getFilesUsingGETAsyncWithHttpInfo($get_files_request, $folder = null)
+    public function getFilesUsingGETAsyncWithHttpInfo(
+        \NecLimDul\MarketoRest\Asset\Model\GetFilesRequest $get_files_request,
+        string $folder = null
+    ): PromiseInterface
     {
         $request = $this->getFilesUsingGETRequest($get_files_request, $folder);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse', [$this, 'getFilesUsingGETHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse::class,
+            [$this, 'getFilesUsingGETHandleException']
+        );
     }
 
     /**
@@ -678,7 +747,7 @@ class FilesApi
      * Create http client option
      *
      * @throws \RuntimeException on file opening failure
-     * @return array of http client options
+     * @return array<string, mixed> of http client options
      */
     protected function createHttpClientOption()
     {
@@ -735,7 +804,7 @@ class FilesApi
      * Make an async request.
      *
      * @param \GuzzleHttp\Psr7\Request $request An initialized request object.
-     * @param string $returnType The return type.
+     * @param class-string $returnType The return type.
      * @param callable $exceptionHandler A callback to process HTTP errors.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
@@ -769,10 +838,13 @@ class FilesApi
     /**
      * Convert a response to a return standard return array.
      *
+     * @template T
      * @param \Psr\Http\Message\ResponseInterface $response A response from a request with a serialized body.
      * @param string $returnType The primary return type.
+     * @phpstan-param class-string<T> $returnType
      *
-     * @return array
+     * @return array structured array or response and http info.
+     * @phpstan-return array{T, int, array<array<string>>}
      */
     private function responseToReturn(ResponseInterface $response, string $returnType) {
         return [
@@ -785,14 +857,15 @@ class FilesApi
     /**
      * Deserialize a response body.
      *
-     * @param mixed $responseBody
-     *   The response body.
-     * @param string $returnType
-     *   The return type.
-     * @param array<string, string[]>|null $headers
-     *   The a list of headers from the response.
-     * @return mixed
-     *   Either a string or a stream to be passed to a file object.
+     * @template T
+     * @param mixed $responseBody The response body.
+     * @param string $returnType The return type.
+     * @param array<string, string[]>|null $headers A list of headers from the response.
+     * @phpstan-param class-string<T> $returnType
+     *
+     * @return mixed Either a string or a stream to be passed to a file object.
+     * @phpstan-return T
+     * @psalm-return T
      */
     private function deserializeResponseBody($responseBody, string $returnType, ?array $headers = [])
     {

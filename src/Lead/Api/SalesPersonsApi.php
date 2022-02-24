@@ -33,6 +33,7 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Query;
 use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\RequestOptions;
 use Psr\Http\Message\ResponseInterface;
 use NecLimDul\MarketoRest\Lead\ApiException;
@@ -131,7 +132,7 @@ class SalesPersonsApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson',
+                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -149,7 +150,9 @@ class SalesPersonsApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson
      */
-    public function deleteSalesPersonUsingPOST($delete_sales_person_request)
+    public function deleteSalesPersonUsingPOST(
+        \NecLimDul\MarketoRest\Lead\Model\DeleteSalesPersonRequest $delete_sales_person_request
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson
     {
         list($response) = $this->deleteSalesPersonUsingPOSTWithHttpInfo($delete_sales_person_request);
         return $response;
@@ -163,13 +166,19 @@ class SalesPersonsApi
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson, int, array<array<string>>}
      */
-    public function deleteSalesPersonUsingPOSTWithHttpInfo($delete_sales_person_request)
+    public function deleteSalesPersonUsingPOSTWithHttpInfo(
+        \NecLimDul\MarketoRest\Lead\Model\DeleteSalesPersonRequest $delete_sales_person_request
+    ): array
     {
         $request = $this->deleteSalesPersonUsingPOSTRequest($delete_sales_person_request);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson::class
+            );
         } catch (ApiException $e) {
             throw $this->deleteSalesPersonUsingPOSTHandleException($e);
         }
@@ -183,7 +192,9 @@ class SalesPersonsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteSalesPersonUsingPOSTAsync($delete_sales_person_request)
+    public function deleteSalesPersonUsingPOSTAsync(
+        \NecLimDul\MarketoRest\Lead\Model\DeleteSalesPersonRequest $delete_sales_person_request
+    ): PromiseInterface
     {
         return $this->deleteSalesPersonUsingPOSTAsyncWithHttpInfo($delete_sales_person_request)
             ->then(
@@ -201,10 +212,16 @@ class SalesPersonsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteSalesPersonUsingPOSTAsyncWithHttpInfo($delete_sales_person_request)
+    public function deleteSalesPersonUsingPOSTAsyncWithHttpInfo(
+        \NecLimDul\MarketoRest\Lead\Model\DeleteSalesPersonRequest $delete_sales_person_request
+    ): PromiseInterface
     {
         $request = $this->deleteSalesPersonUsingPOSTRequest($delete_sales_person_request);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson', [$this, 'deleteSalesPersonUsingPOSTHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson::class,
+            [$this, 'deleteSalesPersonUsingPOSTHandleException']
+        );
     }
 
     /**
@@ -265,7 +282,7 @@ class SalesPersonsApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData',
+                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -277,12 +294,12 @@ class SalesPersonsApi
     /**
      * Describe SalesPersons
      *
-     *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData
      */
-    public function describeUsingGET5()
+    public function describeUsingGET5(
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData
     {
         list($response) = $this->describeUsingGET5WithHttpInfo();
         return $response;
@@ -291,17 +308,21 @@ class SalesPersonsApi
     /**
      * Describe SalesPersons
      *
-     *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData, int, array<array<string>>}
      */
-    public function describeUsingGET5WithHttpInfo()
+    public function describeUsingGET5WithHttpInfo(
+    ): array
     {
         $request = $this->describeUsingGET5Request();
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData::class
+            );
         } catch (ApiException $e) {
             throw $this->describeUsingGET5HandleException($e);
         }
@@ -310,11 +331,11 @@ class SalesPersonsApi
     /**
      * Describe SalesPersons
      *
-     *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function describeUsingGET5Async()
+    public function describeUsingGET5Async(
+    ): PromiseInterface
     {
         return $this->describeUsingGET5AsyncWithHttpInfo()
             ->then(
@@ -327,19 +348,22 @@ class SalesPersonsApi
     /**
      * Describe SalesPersons
      *
-     *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function describeUsingGET5AsyncWithHttpInfo()
+    public function describeUsingGET5AsyncWithHttpInfo(
+    ): PromiseInterface
     {
         $request = $this->describeUsingGET5Request();
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData', [$this, 'describeUsingGET5HandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData::class,
+            [$this, 'describeUsingGET5HandleException']
+        );
     }
 
     /**
      * Create request for operation 'describeUsingGET5'
-     *
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -392,7 +416,7 @@ class SalesPersonsApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson',
+                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -414,7 +438,13 @@ class SalesPersonsApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson
      */
-    public function getSalesPersonUsingGET($filter_type, $filter_values, $fields = null, $batch_size = null, $next_page_token = null)
+    public function getSalesPersonUsingGET(
+        string $filter_type,
+        array $filter_values,
+        array $fields = null,
+        int $batch_size = null,
+        string $next_page_token = null
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson
     {
         list($response) = $this->getSalesPersonUsingGETWithHttpInfo($filter_type, $filter_values, $fields, $batch_size, $next_page_token);
         return $response;
@@ -432,13 +462,23 @@ class SalesPersonsApi
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson, int, array<array<string>>}
      */
-    public function getSalesPersonUsingGETWithHttpInfo($filter_type, $filter_values, $fields = null, $batch_size = null, $next_page_token = null)
+    public function getSalesPersonUsingGETWithHttpInfo(
+        string $filter_type,
+        array $filter_values,
+        array $fields = null,
+        int $batch_size = null,
+        string $next_page_token = null
+    ): array
     {
         $request = $this->getSalesPersonUsingGETRequest($filter_type, $filter_values, $fields, $batch_size, $next_page_token);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson::class
+            );
         } catch (ApiException $e) {
             throw $this->getSalesPersonUsingGETHandleException($e);
         }
@@ -456,7 +496,13 @@ class SalesPersonsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getSalesPersonUsingGETAsync($filter_type, $filter_values, $fields = null, $batch_size = null, $next_page_token = null)
+    public function getSalesPersonUsingGETAsync(
+        string $filter_type,
+        array $filter_values,
+        array $fields = null,
+        int $batch_size = null,
+        string $next_page_token = null
+    ): PromiseInterface
     {
         return $this->getSalesPersonUsingGETAsyncWithHttpInfo($filter_type, $filter_values, $fields, $batch_size, $next_page_token)
             ->then(
@@ -478,10 +524,20 @@ class SalesPersonsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getSalesPersonUsingGETAsyncWithHttpInfo($filter_type, $filter_values, $fields = null, $batch_size = null, $next_page_token = null)
+    public function getSalesPersonUsingGETAsyncWithHttpInfo(
+        string $filter_type,
+        array $filter_values,
+        array $fields = null,
+        int $batch_size = null,
+        string $next_page_token = null
+    ): PromiseInterface
     {
         $request = $this->getSalesPersonUsingGETRequest($filter_type, $filter_values, $fields, $batch_size, $next_page_token);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson', [$this, 'getSalesPersonUsingGETHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson::class,
+            [$this, 'getSalesPersonUsingGETHandleException']
+        );
     }
 
     /**
@@ -564,7 +620,7 @@ class SalesPersonsApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson',
+                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -582,7 +638,9 @@ class SalesPersonsApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson
      */
-    public function syncSalesPersonsUsingPOST($sync_sales_person_request)
+    public function syncSalesPersonsUsingPOST(
+        \NecLimDul\MarketoRest\Lead\Model\SyncSalesPersonRequest $sync_sales_person_request
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson
     {
         list($response) = $this->syncSalesPersonsUsingPOSTWithHttpInfo($sync_sales_person_request);
         return $response;
@@ -596,13 +654,19 @@ class SalesPersonsApi
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson, int, array<array<string>>}
      */
-    public function syncSalesPersonsUsingPOSTWithHttpInfo($sync_sales_person_request)
+    public function syncSalesPersonsUsingPOSTWithHttpInfo(
+        \NecLimDul\MarketoRest\Lead\Model\SyncSalesPersonRequest $sync_sales_person_request
+    ): array
     {
         $request = $this->syncSalesPersonsUsingPOSTRequest($sync_sales_person_request);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson::class
+            );
         } catch (ApiException $e) {
             throw $this->syncSalesPersonsUsingPOSTHandleException($e);
         }
@@ -616,7 +680,9 @@ class SalesPersonsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function syncSalesPersonsUsingPOSTAsync($sync_sales_person_request)
+    public function syncSalesPersonsUsingPOSTAsync(
+        \NecLimDul\MarketoRest\Lead\Model\SyncSalesPersonRequest $sync_sales_person_request
+    ): PromiseInterface
     {
         return $this->syncSalesPersonsUsingPOSTAsyncWithHttpInfo($sync_sales_person_request)
             ->then(
@@ -634,10 +700,16 @@ class SalesPersonsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function syncSalesPersonsUsingPOSTAsyncWithHttpInfo($sync_sales_person_request)
+    public function syncSalesPersonsUsingPOSTAsyncWithHttpInfo(
+        \NecLimDul\MarketoRest\Lead\Model\SyncSalesPersonRequest $sync_sales_person_request
+    ): PromiseInterface
     {
         $request = $this->syncSalesPersonsUsingPOSTRequest($sync_sales_person_request);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson', [$this, 'syncSalesPersonsUsingPOSTHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson::class,
+            [$this, 'syncSalesPersonsUsingPOSTHandleException']
+        );
     }
 
     /**
@@ -688,7 +760,7 @@ class SalesPersonsApi
      * Create http client option
      *
      * @throws \RuntimeException on file opening failure
-     * @return array of http client options
+     * @return array<string, mixed> of http client options
      */
     protected function createHttpClientOption()
     {
@@ -745,7 +817,7 @@ class SalesPersonsApi
      * Make an async request.
      *
      * @param \GuzzleHttp\Psr7\Request $request An initialized request object.
-     * @param string $returnType The return type.
+     * @param class-string $returnType The return type.
      * @param callable $exceptionHandler A callback to process HTTP errors.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
@@ -779,10 +851,13 @@ class SalesPersonsApi
     /**
      * Convert a response to a return standard return array.
      *
+     * @template T
      * @param \Psr\Http\Message\ResponseInterface $response A response from a request with a serialized body.
      * @param string $returnType The primary return type.
+     * @phpstan-param class-string<T> $returnType
      *
-     * @return array
+     * @return array structured array or response and http info.
+     * @phpstan-return array{T, int, array<array<string>>}
      */
     private function responseToReturn(ResponseInterface $response, string $returnType) {
         return [
@@ -795,14 +870,15 @@ class SalesPersonsApi
     /**
      * Deserialize a response body.
      *
-     * @param mixed $responseBody
-     *   The response body.
-     * @param string $returnType
-     *   The return type.
-     * @param array<string, string[]>|null $headers
-     *   The a list of headers from the response.
-     * @return mixed
-     *   Either a string or a stream to be passed to a file object.
+     * @template T
+     * @param mixed $responseBody The response body.
+     * @param string $returnType The return type.
+     * @param array<string, string[]>|null $headers A list of headers from the response.
+     * @phpstan-param class-string<T> $returnType
+     *
+     * @return mixed Either a string or a stream to be passed to a file object.
+     * @phpstan-return T
+     * @psalm-return T
      */
     private function deserializeResponseBody($responseBody, string $returnType, ?array $headers = [])
     {

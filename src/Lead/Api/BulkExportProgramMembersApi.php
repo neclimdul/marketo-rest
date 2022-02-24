@@ -33,6 +33,7 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Query;
 use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\RequestOptions;
 use Psr\Http\Message\ResponseInterface;
 use NecLimDul\MarketoRest\Lead\ApiException;
@@ -131,7 +132,7 @@ class BulkExportProgramMembersApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse',
+                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -149,7 +150,9 @@ class BulkExportProgramMembersApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse
      */
-    public function cancelExportProgramMembersUsingPOST($export_id)
+    public function cancelExportProgramMembersUsingPOST(
+        string $export_id
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse
     {
         list($response) = $this->cancelExportProgramMembersUsingPOSTWithHttpInfo($export_id);
         return $response;
@@ -163,13 +166,19 @@ class BulkExportProgramMembersApi
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse, int, array<array<string>>}
      */
-    public function cancelExportProgramMembersUsingPOSTWithHttpInfo($export_id)
+    public function cancelExportProgramMembersUsingPOSTWithHttpInfo(
+        string $export_id
+    ): array
     {
         $request = $this->cancelExportProgramMembersUsingPOSTRequest($export_id);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse::class
+            );
         } catch (ApiException $e) {
             throw $this->cancelExportProgramMembersUsingPOSTHandleException($e);
         }
@@ -183,7 +192,9 @@ class BulkExportProgramMembersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function cancelExportProgramMembersUsingPOSTAsync($export_id)
+    public function cancelExportProgramMembersUsingPOSTAsync(
+        string $export_id
+    ): PromiseInterface
     {
         return $this->cancelExportProgramMembersUsingPOSTAsyncWithHttpInfo($export_id)
             ->then(
@@ -201,10 +212,16 @@ class BulkExportProgramMembersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function cancelExportProgramMembersUsingPOSTAsyncWithHttpInfo($export_id)
+    public function cancelExportProgramMembersUsingPOSTAsyncWithHttpInfo(
+        string $export_id
+    ): PromiseInterface
     {
         $request = $this->cancelExportProgramMembersUsingPOSTRequest($export_id);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse', [$this, 'cancelExportProgramMembersUsingPOSTHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse::class,
+            [$this, 'cancelExportProgramMembersUsingPOSTHandleException']
+        );
     }
 
     /**
@@ -271,7 +288,7 @@ class BulkExportProgramMembersApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse',
+                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -289,7 +306,9 @@ class BulkExportProgramMembersApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse
      */
-    public function createExportProgramMembersUsingPOST($export_program_member_request = null)
+    public function createExportProgramMembersUsingPOST(
+        \NecLimDul\MarketoRest\Lead\Model\ExportProgramMemberRequest $export_program_member_request = null
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse
     {
         list($response) = $this->createExportProgramMembersUsingPOSTWithHttpInfo($export_program_member_request);
         return $response;
@@ -303,13 +322,19 @@ class BulkExportProgramMembersApi
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse, int, array<array<string>>}
      */
-    public function createExportProgramMembersUsingPOSTWithHttpInfo($export_program_member_request = null)
+    public function createExportProgramMembersUsingPOSTWithHttpInfo(
+        \NecLimDul\MarketoRest\Lead\Model\ExportProgramMemberRequest $export_program_member_request = null
+    ): array
     {
         $request = $this->createExportProgramMembersUsingPOSTRequest($export_program_member_request);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse::class
+            );
         } catch (ApiException $e) {
             throw $this->createExportProgramMembersUsingPOSTHandleException($e);
         }
@@ -323,7 +348,9 @@ class BulkExportProgramMembersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createExportProgramMembersUsingPOSTAsync($export_program_member_request = null)
+    public function createExportProgramMembersUsingPOSTAsync(
+        \NecLimDul\MarketoRest\Lead\Model\ExportProgramMemberRequest $export_program_member_request = null
+    ): PromiseInterface
     {
         return $this->createExportProgramMembersUsingPOSTAsyncWithHttpInfo($export_program_member_request)
             ->then(
@@ -341,10 +368,16 @@ class BulkExportProgramMembersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createExportProgramMembersUsingPOSTAsyncWithHttpInfo($export_program_member_request = null)
+    public function createExportProgramMembersUsingPOSTAsyncWithHttpInfo(
+        \NecLimDul\MarketoRest\Lead\Model\ExportProgramMemberRequest $export_program_member_request = null
+    ): PromiseInterface
     {
         $request = $this->createExportProgramMembersUsingPOSTRequest($export_program_member_request);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse', [$this, 'createExportProgramMembersUsingPOSTHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse::class,
+            [$this, 'createExportProgramMembersUsingPOSTHandleException']
+        );
     }
 
     /**
@@ -408,7 +441,7 @@ class BulkExportProgramMembersApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse',
+                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -426,7 +459,9 @@ class BulkExportProgramMembersApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse
      */
-    public function enqueueExportProgramMembersUsingPOST($export_id)
+    public function enqueueExportProgramMembersUsingPOST(
+        string $export_id
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse
     {
         list($response) = $this->enqueueExportProgramMembersUsingPOSTWithHttpInfo($export_id);
         return $response;
@@ -440,13 +475,19 @@ class BulkExportProgramMembersApi
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse, int, array<array<string>>}
      */
-    public function enqueueExportProgramMembersUsingPOSTWithHttpInfo($export_id)
+    public function enqueueExportProgramMembersUsingPOSTWithHttpInfo(
+        string $export_id
+    ): array
     {
         $request = $this->enqueueExportProgramMembersUsingPOSTRequest($export_id);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse::class
+            );
         } catch (ApiException $e) {
             throw $this->enqueueExportProgramMembersUsingPOSTHandleException($e);
         }
@@ -460,7 +501,9 @@ class BulkExportProgramMembersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function enqueueExportProgramMembersUsingPOSTAsync($export_id)
+    public function enqueueExportProgramMembersUsingPOSTAsync(
+        string $export_id
+    ): PromiseInterface
     {
         return $this->enqueueExportProgramMembersUsingPOSTAsyncWithHttpInfo($export_id)
             ->then(
@@ -478,10 +521,16 @@ class BulkExportProgramMembersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function enqueueExportProgramMembersUsingPOSTAsyncWithHttpInfo($export_id)
+    public function enqueueExportProgramMembersUsingPOSTAsyncWithHttpInfo(
+        string $export_id
+    ): PromiseInterface
     {
         $request = $this->enqueueExportProgramMembersUsingPOSTRequest($export_id);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse', [$this, 'enqueueExportProgramMembersUsingPOSTHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse::class,
+            [$this, 'enqueueExportProgramMembersUsingPOSTHandleException']
+        );
     }
 
     /**
@@ -548,7 +597,7 @@ class BulkExportProgramMembersApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamRangeContent',
+                        \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamRangeContent::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -567,7 +616,10 @@ class BulkExportProgramMembersApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamRangeContent
      */
-    public function getExportProgramMembersFileUsingGET($export_id, $range = null)
+    public function getExportProgramMembersFileUsingGET(
+        string $export_id,
+        string $range = null
+    ): \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamRangeContent
     {
         list($response) = $this->getExportProgramMembersFileUsingGETWithHttpInfo($export_id, $range);
         return $response;
@@ -582,13 +634,20 @@ class BulkExportProgramMembersApi
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamRangeContent, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamRangeContent, int, array<array<string>>}
      */
-    public function getExportProgramMembersFileUsingGETWithHttpInfo($export_id, $range = null)
+    public function getExportProgramMembersFileUsingGETWithHttpInfo(
+        string $export_id,
+        string $range = null
+    ): array
     {
         $request = $this->getExportProgramMembersFileUsingGETRequest($export_id, $range);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamRangeContent');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamRangeContent::class
+            );
         } catch (ApiException $e) {
             throw $this->getExportProgramMembersFileUsingGETHandleException($e);
         }
@@ -603,7 +662,10 @@ class BulkExportProgramMembersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getExportProgramMembersFileUsingGETAsync($export_id, $range = null)
+    public function getExportProgramMembersFileUsingGETAsync(
+        string $export_id,
+        string $range = null
+    ): PromiseInterface
     {
         return $this->getExportProgramMembersFileUsingGETAsyncWithHttpInfo($export_id, $range)
             ->then(
@@ -622,10 +684,17 @@ class BulkExportProgramMembersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getExportProgramMembersFileUsingGETAsyncWithHttpInfo($export_id, $range = null)
+    public function getExportProgramMembersFileUsingGETAsyncWithHttpInfo(
+        string $export_id,
+        string $range = null
+    ): PromiseInterface
     {
         $request = $this->getExportProgramMembersFileUsingGETRequest($export_id, $range);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamRangeContent', [$this, 'getExportProgramMembersFileUsingGETHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamRangeContent::class,
+            [$this, 'getExportProgramMembersFileUsingGETHandleException']
+        );
     }
 
     /**
@@ -699,7 +768,7 @@ class BulkExportProgramMembersApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse',
+                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -717,7 +786,9 @@ class BulkExportProgramMembersApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse
      */
-    public function getExportProgramMembersStatusUsingGET($export_id)
+    public function getExportProgramMembersStatusUsingGET(
+        string $export_id
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse
     {
         list($response) = $this->getExportProgramMembersStatusUsingGETWithHttpInfo($export_id);
         return $response;
@@ -731,13 +802,19 @@ class BulkExportProgramMembersApi
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse, int, array<array<string>>}
      */
-    public function getExportProgramMembersStatusUsingGETWithHttpInfo($export_id)
+    public function getExportProgramMembersStatusUsingGETWithHttpInfo(
+        string $export_id
+    ): array
     {
         $request = $this->getExportProgramMembersStatusUsingGETRequest($export_id);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse::class
+            );
         } catch (ApiException $e) {
             throw $this->getExportProgramMembersStatusUsingGETHandleException($e);
         }
@@ -751,7 +828,9 @@ class BulkExportProgramMembersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getExportProgramMembersStatusUsingGETAsync($export_id)
+    public function getExportProgramMembersStatusUsingGETAsync(
+        string $export_id
+    ): PromiseInterface
     {
         return $this->getExportProgramMembersStatusUsingGETAsyncWithHttpInfo($export_id)
             ->then(
@@ -769,10 +848,16 @@ class BulkExportProgramMembersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getExportProgramMembersStatusUsingGETAsyncWithHttpInfo($export_id)
+    public function getExportProgramMembersStatusUsingGETAsyncWithHttpInfo(
+        string $export_id
+    ): PromiseInterface
     {
         $request = $this->getExportProgramMembersStatusUsingGETRequest($export_id);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse', [$this, 'getExportProgramMembersStatusUsingGETHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse::class,
+            [$this, 'getExportProgramMembersStatusUsingGETHandleException']
+        );
     }
 
     /**
@@ -839,7 +924,7 @@ class BulkExportProgramMembersApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponseWithToken',
+                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponseWithToken::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -859,7 +944,11 @@ class BulkExportProgramMembersApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponseWithToken
      */
-    public function getExportProgramMembersUsingGET($status = null, $batch_size = null, $next_page_token = null)
+    public function getExportProgramMembersUsingGET(
+        array $status = null,
+        int $batch_size = null,
+        string $next_page_token = null
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponseWithToken
     {
         list($response) = $this->getExportProgramMembersUsingGETWithHttpInfo($status, $batch_size, $next_page_token);
         return $response;
@@ -875,13 +964,21 @@ class BulkExportProgramMembersApi
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponseWithToken, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponseWithToken, int, array<array<string>>}
      */
-    public function getExportProgramMembersUsingGETWithHttpInfo($status = null, $batch_size = null, $next_page_token = null)
+    public function getExportProgramMembersUsingGETWithHttpInfo(
+        array $status = null,
+        int $batch_size = null,
+        string $next_page_token = null
+    ): array
     {
         $request = $this->getExportProgramMembersUsingGETRequest($status, $batch_size, $next_page_token);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponseWithToken');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponseWithToken::class
+            );
         } catch (ApiException $e) {
             throw $this->getExportProgramMembersUsingGETHandleException($e);
         }
@@ -897,7 +994,11 @@ class BulkExportProgramMembersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getExportProgramMembersUsingGETAsync($status = null, $batch_size = null, $next_page_token = null)
+    public function getExportProgramMembersUsingGETAsync(
+        array $status = null,
+        int $batch_size = null,
+        string $next_page_token = null
+    ): PromiseInterface
     {
         return $this->getExportProgramMembersUsingGETAsyncWithHttpInfo($status, $batch_size, $next_page_token)
             ->then(
@@ -917,10 +1018,18 @@ class BulkExportProgramMembersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getExportProgramMembersUsingGETAsyncWithHttpInfo($status = null, $batch_size = null, $next_page_token = null)
+    public function getExportProgramMembersUsingGETAsyncWithHttpInfo(
+        array $status = null,
+        int $batch_size = null,
+        string $next_page_token = null
+    ): PromiseInterface
     {
         $request = $this->getExportProgramMembersUsingGETRequest($status, $batch_size, $next_page_token);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponseWithToken', [$this, 'getExportProgramMembersUsingGETHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponseWithToken::class,
+            [$this, 'getExportProgramMembersUsingGETHandleException']
+        );
     }
 
     /**
@@ -981,7 +1090,7 @@ class BulkExportProgramMembersApi
      * Create http client option
      *
      * @throws \RuntimeException on file opening failure
-     * @return array of http client options
+     * @return array<string, mixed> of http client options
      */
     protected function createHttpClientOption()
     {
@@ -1038,7 +1147,7 @@ class BulkExportProgramMembersApi
      * Make an async request.
      *
      * @param \GuzzleHttp\Psr7\Request $request An initialized request object.
-     * @param string $returnType The return type.
+     * @param class-string $returnType The return type.
      * @param callable $exceptionHandler A callback to process HTTP errors.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
@@ -1072,10 +1181,13 @@ class BulkExportProgramMembersApi
     /**
      * Convert a response to a return standard return array.
      *
+     * @template T
      * @param \Psr\Http\Message\ResponseInterface $response A response from a request with a serialized body.
      * @param string $returnType The primary return type.
+     * @phpstan-param class-string<T> $returnType
      *
-     * @return array
+     * @return array structured array or response and http info.
+     * @phpstan-return array{T, int, array<array<string>>}
      */
     private function responseToReturn(ResponseInterface $response, string $returnType) {
         return [
@@ -1088,14 +1200,15 @@ class BulkExportProgramMembersApi
     /**
      * Deserialize a response body.
      *
-     * @param mixed $responseBody
-     *   The response body.
-     * @param string $returnType
-     *   The return type.
-     * @param array<string, string[]>|null $headers
-     *   The a list of headers from the response.
-     * @return mixed
-     *   Either a string or a stream to be passed to a file object.
+     * @template T
+     * @param mixed $responseBody The response body.
+     * @param string $returnType The return type.
+     * @param array<string, string[]>|null $headers A list of headers from the response.
+     * @phpstan-param class-string<T> $returnType
+     *
+     * @return mixed Either a string or a stream to be passed to a file object.
+     * @phpstan-return T
+     * @psalm-return T
      */
     private function deserializeResponseBody($responseBody, string $returnType, ?array $headers = [])
     {

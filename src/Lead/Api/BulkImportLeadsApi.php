@@ -33,6 +33,7 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Query;
 use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\RequestOptions;
 use Psr\Http\Message\ResponseInterface;
 use NecLimDul\MarketoRest\Lead\ApiException;
@@ -131,7 +132,7 @@ class BulkImportLeadsApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent',
+                        \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -149,7 +150,9 @@ class BulkImportLeadsApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent
      */
-    public function getImportLeadFailuresUsingGET($batch_id)
+    public function getImportLeadFailuresUsingGET(
+        int $batch_id
+    ): \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent
     {
         list($response) = $this->getImportLeadFailuresUsingGETWithHttpInfo($batch_id);
         return $response;
@@ -163,13 +166,19 @@ class BulkImportLeadsApi
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent, int, array<array<string>>}
      */
-    public function getImportLeadFailuresUsingGETWithHttpInfo($batch_id)
+    public function getImportLeadFailuresUsingGETWithHttpInfo(
+        int $batch_id
+    ): array
     {
         $request = $this->getImportLeadFailuresUsingGETRequest($batch_id);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent::class
+            );
         } catch (ApiException $e) {
             throw $this->getImportLeadFailuresUsingGETHandleException($e);
         }
@@ -183,7 +192,9 @@ class BulkImportLeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getImportLeadFailuresUsingGETAsync($batch_id)
+    public function getImportLeadFailuresUsingGETAsync(
+        int $batch_id
+    ): PromiseInterface
     {
         return $this->getImportLeadFailuresUsingGETAsyncWithHttpInfo($batch_id)
             ->then(
@@ -201,10 +212,16 @@ class BulkImportLeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getImportLeadFailuresUsingGETAsyncWithHttpInfo($batch_id)
+    public function getImportLeadFailuresUsingGETAsyncWithHttpInfo(
+        int $batch_id
+    ): PromiseInterface
     {
         $request = $this->getImportLeadFailuresUsingGETRequest($batch_id);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent', [$this, 'getImportLeadFailuresUsingGETHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent::class,
+            [$this, 'getImportLeadFailuresUsingGETHandleException']
+        );
     }
 
     /**
@@ -271,7 +288,7 @@ class BulkImportLeadsApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfImportLeadResponse',
+                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportLeadResponse::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -289,7 +306,9 @@ class BulkImportLeadsApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportLeadResponse
      */
-    public function getImportLeadStatusUsingGET($batch_id)
+    public function getImportLeadStatusUsingGET(
+        int $batch_id
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportLeadResponse
     {
         list($response) = $this->getImportLeadStatusUsingGETWithHttpInfo($batch_id);
         return $response;
@@ -303,13 +322,19 @@ class BulkImportLeadsApi
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportLeadResponse, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportLeadResponse, int, array<array<string>>}
      */
-    public function getImportLeadStatusUsingGETWithHttpInfo($batch_id)
+    public function getImportLeadStatusUsingGETWithHttpInfo(
+        int $batch_id
+    ): array
     {
         $request = $this->getImportLeadStatusUsingGETRequest($batch_id);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfImportLeadResponse');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportLeadResponse::class
+            );
         } catch (ApiException $e) {
             throw $this->getImportLeadStatusUsingGETHandleException($e);
         }
@@ -323,7 +348,9 @@ class BulkImportLeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getImportLeadStatusUsingGETAsync($batch_id)
+    public function getImportLeadStatusUsingGETAsync(
+        int $batch_id
+    ): PromiseInterface
     {
         return $this->getImportLeadStatusUsingGETAsyncWithHttpInfo($batch_id)
             ->then(
@@ -341,10 +368,16 @@ class BulkImportLeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getImportLeadStatusUsingGETAsyncWithHttpInfo($batch_id)
+    public function getImportLeadStatusUsingGETAsyncWithHttpInfo(
+        int $batch_id
+    ): PromiseInterface
     {
         $request = $this->getImportLeadStatusUsingGETRequest($batch_id);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfImportLeadResponse', [$this, 'getImportLeadStatusUsingGETHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportLeadResponse::class,
+            [$this, 'getImportLeadStatusUsingGETHandleException']
+        );
     }
 
     /**
@@ -411,7 +444,7 @@ class BulkImportLeadsApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent',
+                        \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -429,7 +462,9 @@ class BulkImportLeadsApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent
      */
-    public function getImportLeadWarningsUsingGET($batch_id)
+    public function getImportLeadWarningsUsingGET(
+        int $batch_id
+    ): \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent
     {
         list($response) = $this->getImportLeadWarningsUsingGETWithHttpInfo($batch_id);
         return $response;
@@ -443,13 +478,19 @@ class BulkImportLeadsApi
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent, int, array<array<string>>}
      */
-    public function getImportLeadWarningsUsingGETWithHttpInfo($batch_id)
+    public function getImportLeadWarningsUsingGETWithHttpInfo(
+        int $batch_id
+    ): array
     {
         $request = $this->getImportLeadWarningsUsingGETRequest($batch_id);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent::class
+            );
         } catch (ApiException $e) {
             throw $this->getImportLeadWarningsUsingGETHandleException($e);
         }
@@ -463,7 +504,9 @@ class BulkImportLeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getImportLeadWarningsUsingGETAsync($batch_id)
+    public function getImportLeadWarningsUsingGETAsync(
+        int $batch_id
+    ): PromiseInterface
     {
         return $this->getImportLeadWarningsUsingGETAsyncWithHttpInfo($batch_id)
             ->then(
@@ -481,10 +524,16 @@ class BulkImportLeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getImportLeadWarningsUsingGETAsyncWithHttpInfo($batch_id)
+    public function getImportLeadWarningsUsingGETAsyncWithHttpInfo(
+        int $batch_id
+    ): PromiseInterface
     {
         $request = $this->getImportLeadWarningsUsingGETRequest($batch_id);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent', [$this, 'getImportLeadWarningsUsingGETHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent::class,
+            [$this, 'getImportLeadWarningsUsingGETHandleException']
+        );
     }
 
     /**
@@ -551,7 +600,7 @@ class BulkImportLeadsApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfImportLeadResponse',
+                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportLeadResponse::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -573,7 +622,13 @@ class BulkImportLeadsApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportLeadResponse
      */
-    public function importLeadUsingPOST($format, $file, $lookup_field = null, $partition_name = null, $list_id = null)
+    public function importLeadUsingPOST(
+        string $format,
+        \SplFileObject $file,
+        string $lookup_field = null,
+        string $partition_name = null,
+        int $list_id = null
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportLeadResponse
     {
         list($response) = $this->importLeadUsingPOSTWithHttpInfo($format, $file, $lookup_field, $partition_name, $list_id);
         return $response;
@@ -591,13 +646,23 @@ class BulkImportLeadsApi
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportLeadResponse, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportLeadResponse, int, array<array<string>>}
      */
-    public function importLeadUsingPOSTWithHttpInfo($format, $file, $lookup_field = null, $partition_name = null, $list_id = null)
+    public function importLeadUsingPOSTWithHttpInfo(
+        string $format,
+        \SplFileObject $file,
+        string $lookup_field = null,
+        string $partition_name = null,
+        int $list_id = null
+    ): array
     {
         $request = $this->importLeadUsingPOSTRequest($format, $file, $lookup_field, $partition_name, $list_id);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfImportLeadResponse');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportLeadResponse::class
+            );
         } catch (ApiException $e) {
             throw $this->importLeadUsingPOSTHandleException($e);
         }
@@ -615,7 +680,13 @@ class BulkImportLeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function importLeadUsingPOSTAsync($format, $file, $lookup_field = null, $partition_name = null, $list_id = null)
+    public function importLeadUsingPOSTAsync(
+        string $format,
+        \SplFileObject $file,
+        string $lookup_field = null,
+        string $partition_name = null,
+        int $list_id = null
+    ): PromiseInterface
     {
         return $this->importLeadUsingPOSTAsyncWithHttpInfo($format, $file, $lookup_field, $partition_name, $list_id)
             ->then(
@@ -637,10 +708,20 @@ class BulkImportLeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function importLeadUsingPOSTAsyncWithHttpInfo($format, $file, $lookup_field = null, $partition_name = null, $list_id = null)
+    public function importLeadUsingPOSTAsyncWithHttpInfo(
+        string $format,
+        \SplFileObject $file,
+        string $lookup_field = null,
+        string $partition_name = null,
+        int $list_id = null
+    ): PromiseInterface
     {
         $request = $this->importLeadUsingPOSTRequest($format, $file, $lookup_field, $partition_name, $list_id);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfImportLeadResponse', [$this, 'importLeadUsingPOSTHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportLeadResponse::class,
+            [$this, 'importLeadUsingPOSTHandleException']
+        );
     }
 
     /**
@@ -754,7 +835,7 @@ class BulkImportLeadsApi
      * Create http client option
      *
      * @throws \RuntimeException on file opening failure
-     * @return array of http client options
+     * @return array<string, mixed> of http client options
      */
     protected function createHttpClientOption()
     {
@@ -811,7 +892,7 @@ class BulkImportLeadsApi
      * Make an async request.
      *
      * @param \GuzzleHttp\Psr7\Request $request An initialized request object.
-     * @param string $returnType The return type.
+     * @param class-string $returnType The return type.
      * @param callable $exceptionHandler A callback to process HTTP errors.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
@@ -845,10 +926,13 @@ class BulkImportLeadsApi
     /**
      * Convert a response to a return standard return array.
      *
+     * @template T
      * @param \Psr\Http\Message\ResponseInterface $response A response from a request with a serialized body.
      * @param string $returnType The primary return type.
+     * @phpstan-param class-string<T> $returnType
      *
-     * @return array
+     * @return array structured array or response and http info.
+     * @phpstan-return array{T, int, array<array<string>>}
      */
     private function responseToReturn(ResponseInterface $response, string $returnType) {
         return [
@@ -861,14 +945,15 @@ class BulkImportLeadsApi
     /**
      * Deserialize a response body.
      *
-     * @param mixed $responseBody
-     *   The response body.
-     * @param string $returnType
-     *   The return type.
-     * @param array<string, string[]>|null $headers
-     *   The a list of headers from the response.
-     * @return mixed
-     *   Either a string or a stream to be passed to a file object.
+     * @template T
+     * @param mixed $responseBody The response body.
+     * @param string $returnType The return type.
+     * @param array<string, string[]>|null $headers A list of headers from the response.
+     * @phpstan-param class-string<T> $returnType
+     *
+     * @return mixed Either a string or a stream to be passed to a file object.
+     * @phpstan-return T
+     * @psalm-return T
      */
     private function deserializeResponseBody($responseBody, string $returnType, ?array $headers = [])
     {

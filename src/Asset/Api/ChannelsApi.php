@@ -33,6 +33,7 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Query;
 use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\RequestOptions;
 use Psr\Http\Message\ResponseInterface;
 use NecLimDul\MarketoRest\Asset\ApiException;
@@ -131,7 +132,7 @@ class ChannelsApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfChannelResponse',
+                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfChannelResponse::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -150,7 +151,10 @@ class ChannelsApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfChannelResponse
      */
-    public function getAllChannelsUsingGET($max_return = null, $offset = null)
+    public function getAllChannelsUsingGET(
+        int $max_return = null,
+        int $offset = null
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfChannelResponse
     {
         list($response) = $this->getAllChannelsUsingGETWithHttpInfo($max_return, $offset);
         return $response;
@@ -165,13 +169,20 @@ class ChannelsApi
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfChannelResponse, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfChannelResponse, int, array<array<string>>}
      */
-    public function getAllChannelsUsingGETWithHttpInfo($max_return = null, $offset = null)
+    public function getAllChannelsUsingGETWithHttpInfo(
+        int $max_return = null,
+        int $offset = null
+    ): array
     {
         $request = $this->getAllChannelsUsingGETRequest($max_return, $offset);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfChannelResponse');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Asset\Model\ResponseOfChannelResponse::class
+            );
         } catch (ApiException $e) {
             throw $this->getAllChannelsUsingGETHandleException($e);
         }
@@ -186,7 +197,10 @@ class ChannelsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getAllChannelsUsingGETAsync($max_return = null, $offset = null)
+    public function getAllChannelsUsingGETAsync(
+        int $max_return = null,
+        int $offset = null
+    ): PromiseInterface
     {
         return $this->getAllChannelsUsingGETAsyncWithHttpInfo($max_return, $offset)
             ->then(
@@ -205,10 +219,17 @@ class ChannelsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getAllChannelsUsingGETAsyncWithHttpInfo($max_return = null, $offset = null)
+    public function getAllChannelsUsingGETAsyncWithHttpInfo(
+        int $max_return = null,
+        int $offset = null
+    ): PromiseInterface
     {
         $request = $this->getAllChannelsUsingGETRequest($max_return, $offset);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfChannelResponse', [$this, 'getAllChannelsUsingGETHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Asset\Model\ResponseOfChannelResponse::class,
+            [$this, 'getAllChannelsUsingGETHandleException']
+        );
     }
 
     /**
@@ -276,7 +297,7 @@ class ChannelsApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfChannelResponse',
+                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfChannelResponse::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -294,7 +315,9 @@ class ChannelsApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfChannelResponse
      */
-    public function getChannelByNameUsingGET($name)
+    public function getChannelByNameUsingGET(
+        string $name
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfChannelResponse
     {
         list($response) = $this->getChannelByNameUsingGETWithHttpInfo($name);
         return $response;
@@ -308,13 +331,19 @@ class ChannelsApi
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfChannelResponse, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfChannelResponse, int, array<array<string>>}
      */
-    public function getChannelByNameUsingGETWithHttpInfo($name)
+    public function getChannelByNameUsingGETWithHttpInfo(
+        string $name
+    ): array
     {
         $request = $this->getChannelByNameUsingGETRequest($name);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfChannelResponse');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Asset\Model\ResponseOfChannelResponse::class
+            );
         } catch (ApiException $e) {
             throw $this->getChannelByNameUsingGETHandleException($e);
         }
@@ -328,7 +357,9 @@ class ChannelsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getChannelByNameUsingGETAsync($name)
+    public function getChannelByNameUsingGETAsync(
+        string $name
+    ): PromiseInterface
     {
         return $this->getChannelByNameUsingGETAsyncWithHttpInfo($name)
             ->then(
@@ -346,10 +377,16 @@ class ChannelsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getChannelByNameUsingGETAsyncWithHttpInfo($name)
+    public function getChannelByNameUsingGETAsyncWithHttpInfo(
+        string $name
+    ): PromiseInterface
     {
         $request = $this->getChannelByNameUsingGETRequest($name);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfChannelResponse', [$this, 'getChannelByNameUsingGETHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Asset\Model\ResponseOfChannelResponse::class,
+            [$this, 'getChannelByNameUsingGETHandleException']
+        );
     }
 
     /**
@@ -404,7 +441,7 @@ class ChannelsApi
      * Create http client option
      *
      * @throws \RuntimeException on file opening failure
-     * @return array of http client options
+     * @return array<string, mixed> of http client options
      */
     protected function createHttpClientOption()
     {
@@ -461,7 +498,7 @@ class ChannelsApi
      * Make an async request.
      *
      * @param \GuzzleHttp\Psr7\Request $request An initialized request object.
-     * @param string $returnType The return type.
+     * @param class-string $returnType The return type.
      * @param callable $exceptionHandler A callback to process HTTP errors.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
@@ -495,10 +532,13 @@ class ChannelsApi
     /**
      * Convert a response to a return standard return array.
      *
+     * @template T
      * @param \Psr\Http\Message\ResponseInterface $response A response from a request with a serialized body.
      * @param string $returnType The primary return type.
+     * @phpstan-param class-string<T> $returnType
      *
-     * @return array
+     * @return array structured array or response and http info.
+     * @phpstan-return array{T, int, array<array<string>>}
      */
     private function responseToReturn(ResponseInterface $response, string $returnType) {
         return [
@@ -511,14 +551,15 @@ class ChannelsApi
     /**
      * Deserialize a response body.
      *
-     * @param mixed $responseBody
-     *   The response body.
-     * @param string $returnType
-     *   The return type.
-     * @param array<string, string[]>|null $headers
-     *   The a list of headers from the response.
-     * @return mixed
-     *   Either a string or a stream to be passed to a file object.
+     * @template T
+     * @param mixed $responseBody The response body.
+     * @param string $returnType The return type.
+     * @param array<string, string[]>|null $headers A list of headers from the response.
+     * @phpstan-param class-string<T> $returnType
+     *
+     * @return mixed Either a string or a stream to be passed to a file object.
+     * @phpstan-return T
+     * @psalm-return T
      */
     private function deserializeResponseBody($responseBody, string $returnType, ?array $headers = [])
     {

@@ -44,6 +44,9 @@ class MarketoRestProviderTest extends TestCase
         $this->provider->boot();
     }
 
+    /**
+     * @return string[]
+     */
     private function getServiceClasses(): array
     {
         $classes = new \GlobIterator(__DIR__ . '/../../src/*/Api/*');

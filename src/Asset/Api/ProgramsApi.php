@@ -33,6 +33,7 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Query;
 use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\RequestOptions;
 use Psr\Http\Message\ResponseInterface;
 use NecLimDul\MarketoRest\Asset\ApiException;
@@ -131,7 +132,7 @@ class ProgramsApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -149,7 +150,9 @@ class ProgramsApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse
      */
-    public function approveProgramUsingPOST($id)
+    public function approveProgramUsingPOST(
+        int $id
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse
     {
         list($response) = $this->approveProgramUsingPOSTWithHttpInfo($id);
         return $response;
@@ -163,13 +166,19 @@ class ProgramsApi
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse, int, array<array<string>>}
      */
-    public function approveProgramUsingPOSTWithHttpInfo($id)
+    public function approveProgramUsingPOSTWithHttpInfo(
+        int $id
+    ): array
     {
         $request = $this->approveProgramUsingPOSTRequest($id);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
+            );
         } catch (ApiException $e) {
             throw $this->approveProgramUsingPOSTHandleException($e);
         }
@@ -183,7 +192,9 @@ class ProgramsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function approveProgramUsingPOSTAsync($id)
+    public function approveProgramUsingPOSTAsync(
+        int $id
+    ): PromiseInterface
     {
         return $this->approveProgramUsingPOSTAsyncWithHttpInfo($id)
             ->then(
@@ -201,10 +212,16 @@ class ProgramsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function approveProgramUsingPOSTAsyncWithHttpInfo($id)
+    public function approveProgramUsingPOSTAsyncWithHttpInfo(
+        int $id
+    ): PromiseInterface
     {
         $request = $this->approveProgramUsingPOSTRequest($id);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse', [$this, 'approveProgramUsingPOSTHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class,
+            [$this, 'approveProgramUsingPOSTHandleException']
+        );
     }
 
     /**
@@ -271,7 +288,7 @@ class ProgramsApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfBrowseAllPrograms',
+                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfBrowseAllPrograms::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -293,7 +310,13 @@ class ProgramsApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfBrowseAllPrograms
      */
-    public function browseProgramsUsingGET($max_return = null, $offset = null, $filter_type = null, $earliest_updated_at = null, $latest_updated_at = null)
+    public function browseProgramsUsingGET(
+        int $max_return = null,
+        int $offset = null,
+        string $filter_type = null,
+        string $earliest_updated_at = null,
+        string $latest_updated_at = null
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfBrowseAllPrograms
     {
         list($response) = $this->browseProgramsUsingGETWithHttpInfo($max_return, $offset, $filter_type, $earliest_updated_at, $latest_updated_at);
         return $response;
@@ -311,13 +334,23 @@ class ProgramsApi
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfBrowseAllPrograms, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfBrowseAllPrograms, int, array<array<string>>}
      */
-    public function browseProgramsUsingGETWithHttpInfo($max_return = null, $offset = null, $filter_type = null, $earliest_updated_at = null, $latest_updated_at = null)
+    public function browseProgramsUsingGETWithHttpInfo(
+        int $max_return = null,
+        int $offset = null,
+        string $filter_type = null,
+        string $earliest_updated_at = null,
+        string $latest_updated_at = null
+    ): array
     {
         $request = $this->browseProgramsUsingGETRequest($max_return, $offset, $filter_type, $earliest_updated_at, $latest_updated_at);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfBrowseAllPrograms');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Asset\Model\ResponseOfBrowseAllPrograms::class
+            );
         } catch (ApiException $e) {
             throw $this->browseProgramsUsingGETHandleException($e);
         }
@@ -335,7 +368,13 @@ class ProgramsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function browseProgramsUsingGETAsync($max_return = null, $offset = null, $filter_type = null, $earliest_updated_at = null, $latest_updated_at = null)
+    public function browseProgramsUsingGETAsync(
+        int $max_return = null,
+        int $offset = null,
+        string $filter_type = null,
+        string $earliest_updated_at = null,
+        string $latest_updated_at = null
+    ): PromiseInterface
     {
         return $this->browseProgramsUsingGETAsyncWithHttpInfo($max_return, $offset, $filter_type, $earliest_updated_at, $latest_updated_at)
             ->then(
@@ -357,10 +396,20 @@ class ProgramsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function browseProgramsUsingGETAsyncWithHttpInfo($max_return = null, $offset = null, $filter_type = null, $earliest_updated_at = null, $latest_updated_at = null)
+    public function browseProgramsUsingGETAsyncWithHttpInfo(
+        int $max_return = null,
+        int $offset = null,
+        string $filter_type = null,
+        string $earliest_updated_at = null,
+        string $latest_updated_at = null
+    ): PromiseInterface
     {
         $request = $this->browseProgramsUsingGETRequest($max_return, $offset, $filter_type, $earliest_updated_at, $latest_updated_at);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfBrowseAllPrograms', [$this, 'browseProgramsUsingGETHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Asset\Model\ResponseOfBrowseAllPrograms::class,
+            [$this, 'browseProgramsUsingGETHandleException']
+        );
     }
 
     /**
@@ -437,7 +486,7 @@ class ProgramsApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse',
+                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -456,7 +505,10 @@ class ProgramsApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse
      */
-    public function cloneProgramUsingPOST($id, $clone_program_request)
+    public function cloneProgramUsingPOST(
+        int $id,
+        \NecLimDul\MarketoRest\Asset\Model\CloneProgramRequest $clone_program_request
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse
     {
         list($response) = $this->cloneProgramUsingPOSTWithHttpInfo($id, $clone_program_request);
         return $response;
@@ -471,13 +523,20 @@ class ProgramsApi
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse, int, array<array<string>>}
      */
-    public function cloneProgramUsingPOSTWithHttpInfo($id, $clone_program_request)
+    public function cloneProgramUsingPOSTWithHttpInfo(
+        int $id,
+        \NecLimDul\MarketoRest\Asset\Model\CloneProgramRequest $clone_program_request
+    ): array
     {
         $request = $this->cloneProgramUsingPOSTRequest($id, $clone_program_request);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse::class
+            );
         } catch (ApiException $e) {
             throw $this->cloneProgramUsingPOSTHandleException($e);
         }
@@ -492,7 +551,10 @@ class ProgramsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function cloneProgramUsingPOSTAsync($id, $clone_program_request)
+    public function cloneProgramUsingPOSTAsync(
+        int $id,
+        \NecLimDul\MarketoRest\Asset\Model\CloneProgramRequest $clone_program_request
+    ): PromiseInterface
     {
         return $this->cloneProgramUsingPOSTAsyncWithHttpInfo($id, $clone_program_request)
             ->then(
@@ -511,10 +573,17 @@ class ProgramsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function cloneProgramUsingPOSTAsyncWithHttpInfo($id, $clone_program_request)
+    public function cloneProgramUsingPOSTAsyncWithHttpInfo(
+        int $id,
+        \NecLimDul\MarketoRest\Asset\Model\CloneProgramRequest $clone_program_request
+    ): PromiseInterface
     {
         $request = $this->cloneProgramUsingPOSTRequest($id, $clone_program_request);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse', [$this, 'cloneProgramUsingPOSTHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse::class,
+            [$this, 'cloneProgramUsingPOSTHandleException']
+        );
     }
 
     /**
@@ -584,7 +653,7 @@ class ProgramsApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse',
+                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -602,7 +671,9 @@ class ProgramsApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse
      */
-    public function createProgramUsingPOST($create_program_request)
+    public function createProgramUsingPOST(
+        \NecLimDul\MarketoRest\Asset\Model\CreateProgramRequest $create_program_request
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse
     {
         list($response) = $this->createProgramUsingPOSTWithHttpInfo($create_program_request);
         return $response;
@@ -616,13 +687,19 @@ class ProgramsApi
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse, int, array<array<string>>}
      */
-    public function createProgramUsingPOSTWithHttpInfo($create_program_request)
+    public function createProgramUsingPOSTWithHttpInfo(
+        \NecLimDul\MarketoRest\Asset\Model\CreateProgramRequest $create_program_request
+    ): array
     {
         $request = $this->createProgramUsingPOSTRequest($create_program_request);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse::class
+            );
         } catch (ApiException $e) {
             throw $this->createProgramUsingPOSTHandleException($e);
         }
@@ -636,7 +713,9 @@ class ProgramsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createProgramUsingPOSTAsync($create_program_request)
+    public function createProgramUsingPOSTAsync(
+        \NecLimDul\MarketoRest\Asset\Model\CreateProgramRequest $create_program_request
+    ): PromiseInterface
     {
         return $this->createProgramUsingPOSTAsyncWithHttpInfo($create_program_request)
             ->then(
@@ -654,10 +733,16 @@ class ProgramsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createProgramUsingPOSTAsyncWithHttpInfo($create_program_request)
+    public function createProgramUsingPOSTAsyncWithHttpInfo(
+        \NecLimDul\MarketoRest\Asset\Model\CreateProgramRequest $create_program_request
+    ): PromiseInterface
     {
         $request = $this->createProgramUsingPOSTRequest($create_program_request);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse', [$this, 'createProgramUsingPOSTHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse::class,
+            [$this, 'createProgramUsingPOSTHandleException']
+        );
     }
 
     /**
@@ -718,7 +803,7 @@ class ProgramsApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -736,7 +821,9 @@ class ProgramsApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse
      */
-    public function deleteProgramUsingPOST($id)
+    public function deleteProgramUsingPOST(
+        int $id
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse
     {
         list($response) = $this->deleteProgramUsingPOSTWithHttpInfo($id);
         return $response;
@@ -750,13 +837,19 @@ class ProgramsApi
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse, int, array<array<string>>}
      */
-    public function deleteProgramUsingPOSTWithHttpInfo($id)
+    public function deleteProgramUsingPOSTWithHttpInfo(
+        int $id
+    ): array
     {
         $request = $this->deleteProgramUsingPOSTRequest($id);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
+            );
         } catch (ApiException $e) {
             throw $this->deleteProgramUsingPOSTHandleException($e);
         }
@@ -770,7 +863,9 @@ class ProgramsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteProgramUsingPOSTAsync($id)
+    public function deleteProgramUsingPOSTAsync(
+        int $id
+    ): PromiseInterface
     {
         return $this->deleteProgramUsingPOSTAsyncWithHttpInfo($id)
             ->then(
@@ -788,10 +883,16 @@ class ProgramsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteProgramUsingPOSTAsyncWithHttpInfo($id)
+    public function deleteProgramUsingPOSTAsyncWithHttpInfo(
+        int $id
+    ): PromiseInterface
     {
         $request = $this->deleteProgramUsingPOSTRequest($id);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse', [$this, 'deleteProgramUsingPOSTHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class,
+            [$this, 'deleteProgramUsingPOSTHandleException']
+        );
     }
 
     /**
@@ -858,7 +959,7 @@ class ProgramsApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse',
+                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -876,7 +977,9 @@ class ProgramsApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse
      */
-    public function getProgramByIdUsingGET($id)
+    public function getProgramByIdUsingGET(
+        int $id
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse
     {
         list($response) = $this->getProgramByIdUsingGETWithHttpInfo($id);
         return $response;
@@ -890,13 +993,19 @@ class ProgramsApi
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse, int, array<array<string>>}
      */
-    public function getProgramByIdUsingGETWithHttpInfo($id)
+    public function getProgramByIdUsingGETWithHttpInfo(
+        int $id
+    ): array
     {
         $request = $this->getProgramByIdUsingGETRequest($id);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse::class
+            );
         } catch (ApiException $e) {
             throw $this->getProgramByIdUsingGETHandleException($e);
         }
@@ -910,7 +1019,9 @@ class ProgramsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getProgramByIdUsingGETAsync($id)
+    public function getProgramByIdUsingGETAsync(
+        int $id
+    ): PromiseInterface
     {
         return $this->getProgramByIdUsingGETAsyncWithHttpInfo($id)
             ->then(
@@ -928,10 +1039,16 @@ class ProgramsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getProgramByIdUsingGETAsyncWithHttpInfo($id)
+    public function getProgramByIdUsingGETAsyncWithHttpInfo(
+        int $id
+    ): PromiseInterface
     {
         $request = $this->getProgramByIdUsingGETRequest($id);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse', [$this, 'getProgramByIdUsingGETHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse::class,
+            [$this, 'getProgramByIdUsingGETHandleException']
+        );
     }
 
     /**
@@ -998,7 +1115,7 @@ class ProgramsApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse',
+                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -1018,7 +1135,11 @@ class ProgramsApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse
      */
-    public function getProgramByNameUsingGET($name, $include_tags = null, $include_costs = null)
+    public function getProgramByNameUsingGET(
+        string $name,
+        bool $include_tags = null,
+        bool $include_costs = null
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse
     {
         list($response) = $this->getProgramByNameUsingGETWithHttpInfo($name, $include_tags, $include_costs);
         return $response;
@@ -1034,13 +1155,21 @@ class ProgramsApi
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse, int, array<array<string>>}
      */
-    public function getProgramByNameUsingGETWithHttpInfo($name, $include_tags = null, $include_costs = null)
+    public function getProgramByNameUsingGETWithHttpInfo(
+        string $name,
+        bool $include_tags = null,
+        bool $include_costs = null
+    ): array
     {
         $request = $this->getProgramByNameUsingGETRequest($name, $include_tags, $include_costs);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse::class
+            );
         } catch (ApiException $e) {
             throw $this->getProgramByNameUsingGETHandleException($e);
         }
@@ -1056,7 +1185,11 @@ class ProgramsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getProgramByNameUsingGETAsync($name, $include_tags = null, $include_costs = null)
+    public function getProgramByNameUsingGETAsync(
+        string $name,
+        bool $include_tags = null,
+        bool $include_costs = null
+    ): PromiseInterface
     {
         return $this->getProgramByNameUsingGETAsyncWithHttpInfo($name, $include_tags, $include_costs)
             ->then(
@@ -1076,10 +1209,18 @@ class ProgramsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getProgramByNameUsingGETAsyncWithHttpInfo($name, $include_tags = null, $include_costs = null)
+    public function getProgramByNameUsingGETAsyncWithHttpInfo(
+        string $name,
+        bool $include_tags = null,
+        bool $include_costs = null
+    ): PromiseInterface
     {
         $request = $this->getProgramByNameUsingGETRequest($name, $include_tags, $include_costs);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse', [$this, 'getProgramByNameUsingGETHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse::class,
+            [$this, 'getProgramByNameUsingGETHandleException']
+        );
     }
 
     /**
@@ -1150,7 +1291,7 @@ class ProgramsApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse',
+                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -1171,7 +1312,12 @@ class ProgramsApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse
      */
-    public function getProgramListByTagUsingGET($tag_type, $tag_value, $max_return = null, $offset = null)
+    public function getProgramListByTagUsingGET(
+        string $tag_type,
+        string $tag_value,
+        int $max_return = null,
+        int $offset = null
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse
     {
         list($response) = $this->getProgramListByTagUsingGETWithHttpInfo($tag_type, $tag_value, $max_return, $offset);
         return $response;
@@ -1188,13 +1334,22 @@ class ProgramsApi
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse, int, array<array<string>>}
      */
-    public function getProgramListByTagUsingGETWithHttpInfo($tag_type, $tag_value, $max_return = null, $offset = null)
+    public function getProgramListByTagUsingGETWithHttpInfo(
+        string $tag_type,
+        string $tag_value,
+        int $max_return = null,
+        int $offset = null
+    ): array
     {
         $request = $this->getProgramListByTagUsingGETRequest($tag_type, $tag_value, $max_return, $offset);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse::class
+            );
         } catch (ApiException $e) {
             throw $this->getProgramListByTagUsingGETHandleException($e);
         }
@@ -1211,7 +1366,12 @@ class ProgramsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getProgramListByTagUsingGETAsync($tag_type, $tag_value, $max_return = null, $offset = null)
+    public function getProgramListByTagUsingGETAsync(
+        string $tag_type,
+        string $tag_value,
+        int $max_return = null,
+        int $offset = null
+    ): PromiseInterface
     {
         return $this->getProgramListByTagUsingGETAsyncWithHttpInfo($tag_type, $tag_value, $max_return, $offset)
             ->then(
@@ -1232,10 +1392,19 @@ class ProgramsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getProgramListByTagUsingGETAsyncWithHttpInfo($tag_type, $tag_value, $max_return = null, $offset = null)
+    public function getProgramListByTagUsingGETAsyncWithHttpInfo(
+        string $tag_type,
+        string $tag_value,
+        int $max_return = null,
+        int $offset = null
+    ): PromiseInterface
     {
         $request = $this->getProgramListByTagUsingGETRequest($tag_type, $tag_value, $max_return, $offset);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse', [$this, 'getProgramListByTagUsingGETHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse::class,
+            [$this, 'getProgramListByTagUsingGETHandleException']
+        );
     }
 
     /**
@@ -1309,7 +1478,7 @@ class ProgramsApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponseWithRules',
+                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponseWithRules::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -1328,7 +1497,10 @@ class ProgramsApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponseWithRules
      */
-    public function getSmartListByProgramIdUsingGET($program_id, $include_rules = null)
+    public function getSmartListByProgramIdUsingGET(
+        int $program_id,
+        bool $include_rules = null
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponseWithRules
     {
         list($response) = $this->getSmartListByProgramIdUsingGETWithHttpInfo($program_id, $include_rules);
         return $response;
@@ -1343,13 +1515,20 @@ class ProgramsApi
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponseWithRules, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponseWithRules, int, array<array<string>>}
      */
-    public function getSmartListByProgramIdUsingGETWithHttpInfo($program_id, $include_rules = null)
+    public function getSmartListByProgramIdUsingGETWithHttpInfo(
+        int $program_id,
+        bool $include_rules = null
+    ): array
     {
         $request = $this->getSmartListByProgramIdUsingGETRequest($program_id, $include_rules);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponseWithRules');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponseWithRules::class
+            );
         } catch (ApiException $e) {
             throw $this->getSmartListByProgramIdUsingGETHandleException($e);
         }
@@ -1364,7 +1543,10 @@ class ProgramsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getSmartListByProgramIdUsingGETAsync($program_id, $include_rules = null)
+    public function getSmartListByProgramIdUsingGETAsync(
+        int $program_id,
+        bool $include_rules = null
+    ): PromiseInterface
     {
         return $this->getSmartListByProgramIdUsingGETAsyncWithHttpInfo($program_id, $include_rules)
             ->then(
@@ -1383,10 +1565,17 @@ class ProgramsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getSmartListByProgramIdUsingGETAsyncWithHttpInfo($program_id, $include_rules = null)
+    public function getSmartListByProgramIdUsingGETAsyncWithHttpInfo(
+        int $program_id,
+        bool $include_rules = null
+    ): PromiseInterface
     {
         $request = $this->getSmartListByProgramIdUsingGETRequest($program_id, $include_rules);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponseWithRules', [$this, 'getSmartListByProgramIdUsingGETHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponseWithRules::class,
+            [$this, 'getSmartListByProgramIdUsingGETHandleException']
+        );
     }
 
     /**
@@ -1460,7 +1649,7 @@ class ProgramsApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -1478,7 +1667,9 @@ class ProgramsApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse
      */
-    public function unapproveProgramUsingPOST($id)
+    public function unapproveProgramUsingPOST(
+        int $id
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse
     {
         list($response) = $this->unapproveProgramUsingPOSTWithHttpInfo($id);
         return $response;
@@ -1492,13 +1683,19 @@ class ProgramsApi
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse, int, array<array<string>>}
      */
-    public function unapproveProgramUsingPOSTWithHttpInfo($id)
+    public function unapproveProgramUsingPOSTWithHttpInfo(
+        int $id
+    ): array
     {
         $request = $this->unapproveProgramUsingPOSTRequest($id);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
+            );
         } catch (ApiException $e) {
             throw $this->unapproveProgramUsingPOSTHandleException($e);
         }
@@ -1512,7 +1709,9 @@ class ProgramsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function unapproveProgramUsingPOSTAsync($id)
+    public function unapproveProgramUsingPOSTAsync(
+        int $id
+    ): PromiseInterface
     {
         return $this->unapproveProgramUsingPOSTAsyncWithHttpInfo($id)
             ->then(
@@ -1530,10 +1729,16 @@ class ProgramsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function unapproveProgramUsingPOSTAsyncWithHttpInfo($id)
+    public function unapproveProgramUsingPOSTAsyncWithHttpInfo(
+        int $id
+    ): PromiseInterface
     {
         $request = $this->unapproveProgramUsingPOSTRequest($id);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse', [$this, 'unapproveProgramUsingPOSTHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class,
+            [$this, 'unapproveProgramUsingPOSTHandleException']
+        );
     }
 
     /**
@@ -1600,7 +1805,7 @@ class ProgramsApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse',
+                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -1619,7 +1824,10 @@ class ProgramsApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse
      */
-    public function updateProgramUsingPOST($id, $update_program_request)
+    public function updateProgramUsingPOST(
+        int $id,
+        \NecLimDul\MarketoRest\Asset\Model\UpdateProgramRequest $update_program_request
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse
     {
         list($response) = $this->updateProgramUsingPOSTWithHttpInfo($id, $update_program_request);
         return $response;
@@ -1634,13 +1842,20 @@ class ProgramsApi
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse, int, array<array<string>>}
      */
-    public function updateProgramUsingPOSTWithHttpInfo($id, $update_program_request)
+    public function updateProgramUsingPOSTWithHttpInfo(
+        int $id,
+        \NecLimDul\MarketoRest\Asset\Model\UpdateProgramRequest $update_program_request
+    ): array
     {
         $request = $this->updateProgramUsingPOSTRequest($id, $update_program_request);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse::class
+            );
         } catch (ApiException $e) {
             throw $this->updateProgramUsingPOSTHandleException($e);
         }
@@ -1655,7 +1870,10 @@ class ProgramsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateProgramUsingPOSTAsync($id, $update_program_request)
+    public function updateProgramUsingPOSTAsync(
+        int $id,
+        \NecLimDul\MarketoRest\Asset\Model\UpdateProgramRequest $update_program_request
+    ): PromiseInterface
     {
         return $this->updateProgramUsingPOSTAsyncWithHttpInfo($id, $update_program_request)
             ->then(
@@ -1674,10 +1892,17 @@ class ProgramsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateProgramUsingPOSTAsyncWithHttpInfo($id, $update_program_request)
+    public function updateProgramUsingPOSTAsyncWithHttpInfo(
+        int $id,
+        \NecLimDul\MarketoRest\Asset\Model\UpdateProgramRequest $update_program_request
+    ): PromiseInterface
     {
         $request = $this->updateProgramUsingPOSTRequest($id, $update_program_request);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse', [$this, 'updateProgramUsingPOSTHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse::class,
+            [$this, 'updateProgramUsingPOSTHandleException']
+        );
     }
 
     /**
@@ -1737,7 +1962,7 @@ class ProgramsApi
      * Create http client option
      *
      * @throws \RuntimeException on file opening failure
-     * @return array of http client options
+     * @return array<string, mixed> of http client options
      */
     protected function createHttpClientOption()
     {
@@ -1794,7 +2019,7 @@ class ProgramsApi
      * Make an async request.
      *
      * @param \GuzzleHttp\Psr7\Request $request An initialized request object.
-     * @param string $returnType The return type.
+     * @param class-string $returnType The return type.
      * @param callable $exceptionHandler A callback to process HTTP errors.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
@@ -1828,10 +2053,13 @@ class ProgramsApi
     /**
      * Convert a response to a return standard return array.
      *
+     * @template T
      * @param \Psr\Http\Message\ResponseInterface $response A response from a request with a serialized body.
      * @param string $returnType The primary return type.
+     * @phpstan-param class-string<T> $returnType
      *
-     * @return array
+     * @return array structured array or response and http info.
+     * @phpstan-return array{T, int, array<array<string>>}
      */
     private function responseToReturn(ResponseInterface $response, string $returnType) {
         return [
@@ -1844,14 +2072,15 @@ class ProgramsApi
     /**
      * Deserialize a response body.
      *
-     * @param mixed $responseBody
-     *   The response body.
-     * @param string $returnType
-     *   The return type.
-     * @param array<string, string[]>|null $headers
-     *   The a list of headers from the response.
-     * @return mixed
-     *   Either a string or a stream to be passed to a file object.
+     * @template T
+     * @param mixed $responseBody The response body.
+     * @param string $returnType The return type.
+     * @param array<string, string[]>|null $headers A list of headers from the response.
+     * @phpstan-param class-string<T> $returnType
+     *
+     * @return mixed Either a string or a stream to be passed to a file object.
+     * @phpstan-return T
+     * @psalm-return T
      */
     private function deserializeResponseBody($responseBody, string $returnType, ?array $headers = [])
     {

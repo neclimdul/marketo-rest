@@ -33,6 +33,7 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Query;
 use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\RequestOptions;
 use Psr\Http\Message\ResponseInterface;
 use NecLimDul\MarketoRest\Lead\ApiException;
@@ -131,7 +132,7 @@ class CompaniesApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany',
+                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -149,7 +150,9 @@ class CompaniesApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany
      */
-    public function deleteCompaniesUsingPOST($delete_company_request)
+    public function deleteCompaniesUsingPOST(
+        \NecLimDul\MarketoRest\Lead\Model\DeleteCompanyRequest $delete_company_request
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany
     {
         list($response) = $this->deleteCompaniesUsingPOSTWithHttpInfo($delete_company_request);
         return $response;
@@ -163,13 +166,19 @@ class CompaniesApi
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany, int, array<array<string>>}
      */
-    public function deleteCompaniesUsingPOSTWithHttpInfo($delete_company_request)
+    public function deleteCompaniesUsingPOSTWithHttpInfo(
+        \NecLimDul\MarketoRest\Lead\Model\DeleteCompanyRequest $delete_company_request
+    ): array
     {
         $request = $this->deleteCompaniesUsingPOSTRequest($delete_company_request);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany::class
+            );
         } catch (ApiException $e) {
             throw $this->deleteCompaniesUsingPOSTHandleException($e);
         }
@@ -183,7 +192,9 @@ class CompaniesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteCompaniesUsingPOSTAsync($delete_company_request)
+    public function deleteCompaniesUsingPOSTAsync(
+        \NecLimDul\MarketoRest\Lead\Model\DeleteCompanyRequest $delete_company_request
+    ): PromiseInterface
     {
         return $this->deleteCompaniesUsingPOSTAsyncWithHttpInfo($delete_company_request)
             ->then(
@@ -201,10 +212,16 @@ class CompaniesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteCompaniesUsingPOSTAsyncWithHttpInfo($delete_company_request)
+    public function deleteCompaniesUsingPOSTAsyncWithHttpInfo(
+        \NecLimDul\MarketoRest\Lead\Model\DeleteCompanyRequest $delete_company_request
+    ): PromiseInterface
     {
         $request = $this->deleteCompaniesUsingPOSTRequest($delete_company_request);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany', [$this, 'deleteCompaniesUsingPOSTHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany::class,
+            [$this, 'deleteCompaniesUsingPOSTHandleException']
+        );
     }
 
     /**
@@ -265,7 +282,7 @@ class CompaniesApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData',
+                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -277,12 +294,12 @@ class CompaniesApi
     /**
      * Describe Companies
      *
-     *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData
      */
-    public function describeUsingGET()
+    public function describeUsingGET(
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData
     {
         list($response) = $this->describeUsingGETWithHttpInfo();
         return $response;
@@ -291,17 +308,21 @@ class CompaniesApi
     /**
      * Describe Companies
      *
-     *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData, int, array<array<string>>}
      */
-    public function describeUsingGETWithHttpInfo()
+    public function describeUsingGETWithHttpInfo(
+    ): array
     {
         $request = $this->describeUsingGETRequest();
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData::class
+            );
         } catch (ApiException $e) {
             throw $this->describeUsingGETHandleException($e);
         }
@@ -310,11 +331,11 @@ class CompaniesApi
     /**
      * Describe Companies
      *
-     *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function describeUsingGETAsync()
+    public function describeUsingGETAsync(
+    ): PromiseInterface
     {
         return $this->describeUsingGETAsyncWithHttpInfo()
             ->then(
@@ -327,19 +348,22 @@ class CompaniesApi
     /**
      * Describe Companies
      *
-     *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function describeUsingGETAsyncWithHttpInfo()
+    public function describeUsingGETAsyncWithHttpInfo(
+    ): PromiseInterface
     {
         $request = $this->describeUsingGETRequest();
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData', [$this, 'describeUsingGETHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData::class,
+            [$this, 'describeUsingGETHandleException']
+        );
     }
 
     /**
      * Create request for operation 'describeUsingGET'
-     *
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -392,7 +416,7 @@ class CompaniesApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany',
+                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -414,7 +438,13 @@ class CompaniesApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany
      */
-    public function getCompaniesUsingGET($filter_type, $filter_values, $fields = null, $batch_size = null, $next_page_token = null)
+    public function getCompaniesUsingGET(
+        string $filter_type,
+        array $filter_values,
+        array $fields = null,
+        int $batch_size = null,
+        string $next_page_token = null
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany
     {
         list($response) = $this->getCompaniesUsingGETWithHttpInfo($filter_type, $filter_values, $fields, $batch_size, $next_page_token);
         return $response;
@@ -432,13 +462,23 @@ class CompaniesApi
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany, int, array<array<string>>}
      */
-    public function getCompaniesUsingGETWithHttpInfo($filter_type, $filter_values, $fields = null, $batch_size = null, $next_page_token = null)
+    public function getCompaniesUsingGETWithHttpInfo(
+        string $filter_type,
+        array $filter_values,
+        array $fields = null,
+        int $batch_size = null,
+        string $next_page_token = null
+    ): array
     {
         $request = $this->getCompaniesUsingGETRequest($filter_type, $filter_values, $fields, $batch_size, $next_page_token);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany::class
+            );
         } catch (ApiException $e) {
             throw $this->getCompaniesUsingGETHandleException($e);
         }
@@ -456,7 +496,13 @@ class CompaniesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getCompaniesUsingGETAsync($filter_type, $filter_values, $fields = null, $batch_size = null, $next_page_token = null)
+    public function getCompaniesUsingGETAsync(
+        string $filter_type,
+        array $filter_values,
+        array $fields = null,
+        int $batch_size = null,
+        string $next_page_token = null
+    ): PromiseInterface
     {
         return $this->getCompaniesUsingGETAsyncWithHttpInfo($filter_type, $filter_values, $fields, $batch_size, $next_page_token)
             ->then(
@@ -478,10 +524,20 @@ class CompaniesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getCompaniesUsingGETAsyncWithHttpInfo($filter_type, $filter_values, $fields = null, $batch_size = null, $next_page_token = null)
+    public function getCompaniesUsingGETAsyncWithHttpInfo(
+        string $filter_type,
+        array $filter_values,
+        array $fields = null,
+        int $batch_size = null,
+        string $next_page_token = null
+    ): PromiseInterface
     {
         $request = $this->getCompaniesUsingGETRequest($filter_type, $filter_values, $fields, $batch_size, $next_page_token);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany', [$this, 'getCompaniesUsingGETHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany::class,
+            [$this, 'getCompaniesUsingGETHandleException']
+        );
     }
 
     /**
@@ -564,7 +620,7 @@ class CompaniesApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField',
+                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -582,7 +638,9 @@ class CompaniesApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField
      */
-    public function getCompanyFieldByNameUsingGET($field_api_name)
+    public function getCompanyFieldByNameUsingGET(
+        string $field_api_name
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField
     {
         list($response) = $this->getCompanyFieldByNameUsingGETWithHttpInfo($field_api_name);
         return $response;
@@ -596,13 +654,19 @@ class CompaniesApi
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField, int, array<array<string>>}
      */
-    public function getCompanyFieldByNameUsingGETWithHttpInfo($field_api_name)
+    public function getCompanyFieldByNameUsingGETWithHttpInfo(
+        string $field_api_name
+    ): array
     {
         $request = $this->getCompanyFieldByNameUsingGETRequest($field_api_name);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField::class
+            );
         } catch (ApiException $e) {
             throw $this->getCompanyFieldByNameUsingGETHandleException($e);
         }
@@ -616,7 +680,9 @@ class CompaniesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getCompanyFieldByNameUsingGETAsync($field_api_name)
+    public function getCompanyFieldByNameUsingGETAsync(
+        string $field_api_name
+    ): PromiseInterface
     {
         return $this->getCompanyFieldByNameUsingGETAsyncWithHttpInfo($field_api_name)
             ->then(
@@ -634,10 +700,16 @@ class CompaniesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getCompanyFieldByNameUsingGETAsyncWithHttpInfo($field_api_name)
+    public function getCompanyFieldByNameUsingGETAsyncWithHttpInfo(
+        string $field_api_name
+    ): PromiseInterface
     {
         $request = $this->getCompanyFieldByNameUsingGETRequest($field_api_name);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField', [$this, 'getCompanyFieldByNameUsingGETHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField::class,
+            [$this, 'getCompanyFieldByNameUsingGETHandleException']
+        );
     }
 
     /**
@@ -704,7 +776,7 @@ class CompaniesApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField',
+                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -723,7 +795,10 @@ class CompaniesApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField
      */
-    public function getCompanyFieldsUsingGET($batch_size = null, $next_page_token = null)
+    public function getCompanyFieldsUsingGET(
+        int $batch_size = null,
+        string $next_page_token = null
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField
     {
         list($response) = $this->getCompanyFieldsUsingGETWithHttpInfo($batch_size, $next_page_token);
         return $response;
@@ -738,13 +813,20 @@ class CompaniesApi
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField, int, array<array<string>>}
      */
-    public function getCompanyFieldsUsingGETWithHttpInfo($batch_size = null, $next_page_token = null)
+    public function getCompanyFieldsUsingGETWithHttpInfo(
+        int $batch_size = null,
+        string $next_page_token = null
+    ): array
     {
         $request = $this->getCompanyFieldsUsingGETRequest($batch_size, $next_page_token);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField::class
+            );
         } catch (ApiException $e) {
             throw $this->getCompanyFieldsUsingGETHandleException($e);
         }
@@ -759,7 +841,10 @@ class CompaniesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getCompanyFieldsUsingGETAsync($batch_size = null, $next_page_token = null)
+    public function getCompanyFieldsUsingGETAsync(
+        int $batch_size = null,
+        string $next_page_token = null
+    ): PromiseInterface
     {
         return $this->getCompanyFieldsUsingGETAsyncWithHttpInfo($batch_size, $next_page_token)
             ->then(
@@ -778,10 +863,17 @@ class CompaniesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getCompanyFieldsUsingGETAsyncWithHttpInfo($batch_size = null, $next_page_token = null)
+    public function getCompanyFieldsUsingGETAsyncWithHttpInfo(
+        int $batch_size = null,
+        string $next_page_token = null
+    ): PromiseInterface
     {
         $request = $this->getCompanyFieldsUsingGETRequest($batch_size, $next_page_token);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField', [$this, 'getCompanyFieldsUsingGETHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField::class,
+            [$this, 'getCompanyFieldsUsingGETHandleException']
+        );
     }
 
     /**
@@ -849,7 +941,7 @@ class CompaniesApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany',
+                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -867,7 +959,9 @@ class CompaniesApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany
      */
-    public function syncCompaniesUsingPOST($sync_company_request)
+    public function syncCompaniesUsingPOST(
+        \NecLimDul\MarketoRest\Lead\Model\SyncCompanyRequest $sync_company_request
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany
     {
         list($response) = $this->syncCompaniesUsingPOSTWithHttpInfo($sync_company_request);
         return $response;
@@ -881,13 +975,19 @@ class CompaniesApi
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany, int, array<array<string>>}
      */
-    public function syncCompaniesUsingPOSTWithHttpInfo($sync_company_request)
+    public function syncCompaniesUsingPOSTWithHttpInfo(
+        \NecLimDul\MarketoRest\Lead\Model\SyncCompanyRequest $sync_company_request
+    ): array
     {
         $request = $this->syncCompaniesUsingPOSTRequest($sync_company_request);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany::class
+            );
         } catch (ApiException $e) {
             throw $this->syncCompaniesUsingPOSTHandleException($e);
         }
@@ -901,7 +1001,9 @@ class CompaniesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function syncCompaniesUsingPOSTAsync($sync_company_request)
+    public function syncCompaniesUsingPOSTAsync(
+        \NecLimDul\MarketoRest\Lead\Model\SyncCompanyRequest $sync_company_request
+    ): PromiseInterface
     {
         return $this->syncCompaniesUsingPOSTAsyncWithHttpInfo($sync_company_request)
             ->then(
@@ -919,10 +1021,16 @@ class CompaniesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function syncCompaniesUsingPOSTAsyncWithHttpInfo($sync_company_request)
+    public function syncCompaniesUsingPOSTAsyncWithHttpInfo(
+        \NecLimDul\MarketoRest\Lead\Model\SyncCompanyRequest $sync_company_request
+    ): PromiseInterface
     {
         $request = $this->syncCompaniesUsingPOSTRequest($sync_company_request);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany', [$this, 'syncCompaniesUsingPOSTHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany::class,
+            [$this, 'syncCompaniesUsingPOSTHandleException']
+        );
     }
 
     /**
@@ -973,7 +1081,7 @@ class CompaniesApi
      * Create http client option
      *
      * @throws \RuntimeException on file opening failure
-     * @return array of http client options
+     * @return array<string, mixed> of http client options
      */
     protected function createHttpClientOption()
     {
@@ -1030,7 +1138,7 @@ class CompaniesApi
      * Make an async request.
      *
      * @param \GuzzleHttp\Psr7\Request $request An initialized request object.
-     * @param string $returnType The return type.
+     * @param class-string $returnType The return type.
      * @param callable $exceptionHandler A callback to process HTTP errors.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
@@ -1064,10 +1172,13 @@ class CompaniesApi
     /**
      * Convert a response to a return standard return array.
      *
+     * @template T
      * @param \Psr\Http\Message\ResponseInterface $response A response from a request with a serialized body.
      * @param string $returnType The primary return type.
+     * @phpstan-param class-string<T> $returnType
      *
-     * @return array
+     * @return array structured array or response and http info.
+     * @phpstan-return array{T, int, array<array<string>>}
      */
     private function responseToReturn(ResponseInterface $response, string $returnType) {
         return [
@@ -1080,14 +1191,15 @@ class CompaniesApi
     /**
      * Deserialize a response body.
      *
-     * @param mixed $responseBody
-     *   The response body.
-     * @param string $returnType
-     *   The return type.
-     * @param array<string, string[]>|null $headers
-     *   The a list of headers from the response.
-     * @return mixed
-     *   Either a string or a stream to be passed to a file object.
+     * @template T
+     * @param mixed $responseBody The response body.
+     * @param string $returnType The return type.
+     * @param array<string, string[]>|null $headers A list of headers from the response.
+     * @phpstan-param class-string<T> $returnType
+     *
+     * @return mixed Either a string or a stream to be passed to a file object.
+     * @phpstan-return T
+     * @psalm-return T
      */
     private function deserializeResponseBody($responseBody, string $returnType, ?array $headers = [])
     {

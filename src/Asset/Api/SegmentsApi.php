@@ -33,6 +33,7 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Query;
 use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\RequestOptions;
 use Psr\Http\Message\ResponseInterface;
 use NecLimDul\MarketoRest\Asset\ApiException;
@@ -131,7 +132,7 @@ class SegmentsApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSegmentationResponse',
+                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfSegmentationResponse::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -149,7 +150,9 @@ class SegmentsApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfSegmentationResponse
      */
-    public function getSegmentationUsingGET($status = null)
+    public function getSegmentationUsingGET(
+        string $status = null
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfSegmentationResponse
     {
         list($response) = $this->getSegmentationUsingGETWithHttpInfo($status);
         return $response;
@@ -163,13 +166,19 @@ class SegmentsApi
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfSegmentationResponse, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfSegmentationResponse, int, array<array<string>>}
      */
-    public function getSegmentationUsingGETWithHttpInfo($status = null)
+    public function getSegmentationUsingGETWithHttpInfo(
+        string $status = null
+    ): array
     {
         $request = $this->getSegmentationUsingGETRequest($status);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSegmentationResponse');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Asset\Model\ResponseOfSegmentationResponse::class
+            );
         } catch (ApiException $e) {
             throw $this->getSegmentationUsingGETHandleException($e);
         }
@@ -183,7 +192,9 @@ class SegmentsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getSegmentationUsingGETAsync($status = null)
+    public function getSegmentationUsingGETAsync(
+        string $status = null
+    ): PromiseInterface
     {
         return $this->getSegmentationUsingGETAsyncWithHttpInfo($status)
             ->then(
@@ -201,10 +212,16 @@ class SegmentsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getSegmentationUsingGETAsyncWithHttpInfo($status = null)
+    public function getSegmentationUsingGETAsyncWithHttpInfo(
+        string $status = null
+    ): PromiseInterface
     {
         $request = $this->getSegmentationUsingGETRequest($status);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSegmentationResponse', [$this, 'getSegmentationUsingGETHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Asset\Model\ResponseOfSegmentationResponse::class,
+            [$this, 'getSegmentationUsingGETHandleException']
+        );
     }
 
     /**
@@ -269,7 +286,7 @@ class SegmentsApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSegmentsResponse',
+                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfSegmentsResponse::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -290,7 +307,12 @@ class SegmentsApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfSegmentsResponse
      */
-    public function getSegmentsForSegmentationUsingGET($id, $status = null, $offset = null, $max_return = null)
+    public function getSegmentsForSegmentationUsingGET(
+        int $id,
+        string $status = null,
+        int $offset = null,
+        int $max_return = null
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfSegmentsResponse
     {
         list($response) = $this->getSegmentsForSegmentationUsingGETWithHttpInfo($id, $status, $offset, $max_return);
         return $response;
@@ -307,13 +329,22 @@ class SegmentsApi
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfSegmentsResponse, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfSegmentsResponse, int, array<array<string>>}
      */
-    public function getSegmentsForSegmentationUsingGETWithHttpInfo($id, $status = null, $offset = null, $max_return = null)
+    public function getSegmentsForSegmentationUsingGETWithHttpInfo(
+        int $id,
+        string $status = null,
+        int $offset = null,
+        int $max_return = null
+    ): array
     {
         $request = $this->getSegmentsForSegmentationUsingGETRequest($id, $status, $offset, $max_return);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSegmentsResponse');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Asset\Model\ResponseOfSegmentsResponse::class
+            );
         } catch (ApiException $e) {
             throw $this->getSegmentsForSegmentationUsingGETHandleException($e);
         }
@@ -330,7 +361,12 @@ class SegmentsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getSegmentsForSegmentationUsingGETAsync($id, $status = null, $offset = null, $max_return = null)
+    public function getSegmentsForSegmentationUsingGETAsync(
+        int $id,
+        string $status = null,
+        int $offset = null,
+        int $max_return = null
+    ): PromiseInterface
     {
         return $this->getSegmentsForSegmentationUsingGETAsyncWithHttpInfo($id, $status, $offset, $max_return)
             ->then(
@@ -351,10 +387,19 @@ class SegmentsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getSegmentsForSegmentationUsingGETAsyncWithHttpInfo($id, $status = null, $offset = null, $max_return = null)
+    public function getSegmentsForSegmentationUsingGETAsyncWithHttpInfo(
+        int $id,
+        string $status = null,
+        int $offset = null,
+        int $max_return = null
+    ): PromiseInterface
     {
         $request = $this->getSegmentsForSegmentationUsingGETRequest($id, $status, $offset, $max_return);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSegmentsResponse', [$this, 'getSegmentsForSegmentationUsingGETHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Asset\Model\ResponseOfSegmentsResponse::class,
+            [$this, 'getSegmentsForSegmentationUsingGETHandleException']
+        );
     }
 
     /**
@@ -424,7 +469,7 @@ class SegmentsApi
      * Create http client option
      *
      * @throws \RuntimeException on file opening failure
-     * @return array of http client options
+     * @return array<string, mixed> of http client options
      */
     protected function createHttpClientOption()
     {
@@ -481,7 +526,7 @@ class SegmentsApi
      * Make an async request.
      *
      * @param \GuzzleHttp\Psr7\Request $request An initialized request object.
-     * @param string $returnType The return type.
+     * @param class-string $returnType The return type.
      * @param callable $exceptionHandler A callback to process HTTP errors.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
@@ -515,10 +560,13 @@ class SegmentsApi
     /**
      * Convert a response to a return standard return array.
      *
+     * @template T
      * @param \Psr\Http\Message\ResponseInterface $response A response from a request with a serialized body.
      * @param string $returnType The primary return type.
+     * @phpstan-param class-string<T> $returnType
      *
-     * @return array
+     * @return array structured array or response and http info.
+     * @phpstan-return array{T, int, array<array<string>>}
      */
     private function responseToReturn(ResponseInterface $response, string $returnType) {
         return [
@@ -531,14 +579,15 @@ class SegmentsApi
     /**
      * Deserialize a response body.
      *
-     * @param mixed $responseBody
-     *   The response body.
-     * @param string $returnType
-     *   The return type.
-     * @param array<string, string[]>|null $headers
-     *   The a list of headers from the response.
-     * @return mixed
-     *   Either a string or a stream to be passed to a file object.
+     * @template T
+     * @param mixed $responseBody The response body.
+     * @param string $returnType The return type.
+     * @param array<string, string[]>|null $headers A list of headers from the response.
+     * @phpstan-param class-string<T> $returnType
+     *
+     * @return mixed Either a string or a stream to be passed to a file object.
+     * @phpstan-return T
+     * @psalm-return T
      */
     private function deserializeResponseBody($responseBody, string $returnType, ?array $headers = [])
     {

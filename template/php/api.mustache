@@ -23,6 +23,7 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Query;
 use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\RequestOptions;
 use Psr\Http\Message\ResponseInterface;
 use {{invokerPackage}}\ApiException;
@@ -127,7 +128,7 @@ use {{invokerPackage}}\ObjectSerializer;
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '{{dataType}}',
+                        {{^isContainer}}{{dataType}}::class{{/isContainer}}{{#isContainer}}'{{dataType}}'{{/isContainer}},
                         $e->getResponseHeaders()
                     )
                 );
@@ -156,25 +157,27 @@ use {{invokerPackage}}\ObjectSerializer;
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
 {{/vendorExtensions.x-group-parameters}}
-     *
 {{#servers}}
 {{#-first}}
+     *
      * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
 {{/-first}}
      * URL: {{{url}}}
-{{#-last}}
-     *
-{{/-last}}
 {{/servers}}
 {{#allParams}}
+{{#-first}}
+     *
+{{/-first}}
      * @param  {{dataType}} ${{paramName}}{{#description}} {{description}}{{/description}}{{^description}} {{paramName}}{{/description}} {{#required}}(required){{/required}}{{^required}}(optional{{#defaultValue}}, default to {{{.}}}{{/defaultValue}}){{/required}}
 {{/allParams}}
      *
      * @throws \{{invokerPackage}}\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return {{#returnType}}{{returnType}}{{/returnType}}{{^returnType}}void{{/returnType}}
+     * @return {{#returnType}}{{.}}{{/returnType}}{{^returnType}}void{{/returnType}}
      */
-    public function {{operationId}}({{^vendorExtensions.x-group-parameters}}{{#allParams}}${{paramName}}{{^required}} = {{#defaultValue}}'{{{.}}}'{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}{{^-last}}, {{/-last}}{{/allParams}}{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}})
+    public function {{operationId}}({{^vendorExtensions.x-group-parameters}}{{#allParams}}
+        {{^isContainer}}{{dataType}}{{/isContainer}}{{#isContainer}}array{{/isContainer}} ${{paramName}}{{^required}} = {{#defaultValue}}'{{{.}}}'{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}{{^-last}},{{/-last}}{{/allParams}}{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}}
+    ): {{returnType}}
     {
         {{#returnType}}list($response) = {{/returnType}}$this->{{operationId}}WithHttpInfo({{^vendorExtensions.x-group-parameters}}{{#allParams}}${{paramName}}{{^-last}}, {{/-last}}{{/allParams}}{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}});
         {{#returnType}}
@@ -197,31 +200,37 @@ use {{invokerPackage}}\ObjectSerializer;
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
 {{/vendorExtensions.x-group-parameters}}
-     *
 {{#servers}}
 {{#-first}}
+     *
      * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
 {{/-first}}
      * URL: {{{url}}}
-{{#-last}}
-     *
-{{/-last}}
 {{/servers}}
 {{#allParams}}
+{{#-first}}
+     *
+{{/-first}}
      * @param  {{dataType}} ${{paramName}}{{#description}} {{description}}{{/description}} {{#required}}(required){{/required}}{{^required}}(optional{{#defaultValue}}, default to {{{.}}}{{/defaultValue}}){{/required}}
 {{/allParams}}
      *
      * @throws \{{invokerPackage}}\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of {{#returnType}}{{returnType}}{{/returnType}}{{^returnType}}null{{/returnType}}, HTTP status code, HTTP response headers (array of strings)
+     * @return array of {{#returnType}}{{.}}{{/returnType}}{{^returnType}}null{{/returnType}}, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ {{#returnType}}{{.}}{{/returnType}}{{^returnType}}null{{/returnType}}, int, array<array<string>>}
      */
-    public function {{operationId}}WithHttpInfo({{^vendorExtensions.x-group-parameters}}{{#allParams}}${{paramName}}{{^required}} = {{#defaultValue}}'{{{.}}}'{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}{{^-last}}, {{/-last}}{{/allParams}}{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}})
+    public function {{operationId}}WithHttpInfo({{^vendorExtensions.x-group-parameters}}{{#allParams}}
+        {{^isContainer}}{{dataType}}{{/isContainer}}{{#isContainer}}array{{/isContainer}} ${{paramName}}{{^required}} = {{#defaultValue}}'{{{.}}}'{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}{{^-last}},{{/-last}}{{/allParams}}{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}}
+    ): array
     {
         $request = $this->{{operationId}}Request({{^vendorExtensions.x-group-parameters}}{{#allParams}}${{paramName}}{{^-last}}, {{/-last}}{{/allParams}}{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}});
         try {
             $response = $this->makeRequest($request);
             {{#returnType}}
-            return $this->responseToReturn($response, '{{returnType}}');
+            return $this->responseToReturn(
+                $response,
+                {{^isContainer}}{{returnType}}::class{{/isContainer}}{{#isContainer}}'{{returnType}}'{{/isContainer}}
+            );
             {{/returnType}}
             {{^returnType}}
             return [null, $response->getStatusCode(), $response->getHeaders()];
@@ -246,24 +255,26 @@ use {{invokerPackage}}\ObjectSerializer;
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
 {{/vendorExtensions.x-group-parameters}}
-     *
 {{#servers}}
 {{#-first}}
+     *
      * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
 {{/-first}}
      * URL: {{{url}}}
-{{#-last}}
-     *
-{{/-last}}
 {{/servers}}
 {{#allParams}}
+{{#-first}}
+     *
+{{/-first}}
      * @param  {{dataType}} ${{paramName}}{{#description}} {{description}}{{/description}} {{#required}}(required){{/required}}{{^required}}(optional{{#defaultValue}}, default to {{{.}}}{{/defaultValue}}){{/required}}
 {{/allParams}}
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function {{operationId}}Async({{^vendorExtensions.x-group-parameters}}{{#allParams}}${{paramName}}{{^required}} = {{#defaultValue}}'{{{.}}}'{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}{{^-last}}, {{/-last}}{{/allParams}}{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}})
+    public function {{operationId}}Async({{^vendorExtensions.x-group-parameters}}{{#allParams}}
+        {{^isContainer}}{{dataType}}{{/isContainer}}{{#isContainer}}array{{/isContainer}} ${{paramName}}{{^required}} = {{#defaultValue}}'{{{.}}}'{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}{{^-last}},{{/-last}}{{/allParams}}{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}}
+    ): PromiseInterface
     {
         return $this->{{operationId}}AsyncWithHttpInfo({{^vendorExtensions.x-group-parameters}}{{#allParams}}${{paramName}}{{^-last}}, {{/-last}}{{/allParams}}{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}})
             ->then(
@@ -288,46 +299,52 @@ use {{invokerPackage}}\ObjectSerializer;
      *
      * Note: the input parameter is an associative array with the keys listed as the parameter name below
 {{/vendorExtensions.x-group-parameters}}
-     *
 {{#servers}}
 {{#-first}}
+     *
      * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
 {{/-first}}
      * URL: {{{url}}}
-{{#-last}}
-     *
-{{/-last}}
 {{/servers}}
 {{#allParams}}
+{{#-first}}
+     *
+{{/-first}}
      * @param  {{dataType}} ${{paramName}}{{#description}} {{description}}{{/description}} {{#required}}(required){{/required}}{{^required}}(optional{{#defaultValue}}, default to {{{.}}}{{/defaultValue}}){{/required}}
 {{/allParams}}
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function {{operationId}}AsyncWithHttpInfo({{^vendorExtensions.x-group-parameters}}{{#allParams}}${{paramName}}{{^required}} = {{#defaultValue}}'{{{.}}}'{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}{{^-last}}, {{/-last}}{{/allParams}}{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}})
+    public function {{operationId}}AsyncWithHttpInfo({{^vendorExtensions.x-group-parameters}}{{#allParams}}
+        {{^isContainer}}{{dataType}}{{/isContainer}}{{#isContainer}}array{{/isContainer}} ${{paramName}}{{^required}} = {{#defaultValue}}'{{{.}}}'{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}{{^-last}},{{/-last}}{{/allParams}}{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}}
+    ): PromiseInterface
     {
         $request = $this->{{operationId}}Request({{^vendorExtensions.x-group-parameters}}{{#allParams}}${{paramName}}{{^-last}}, {{/-last}}{{/allParams}}{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}});
-        return $this->makeAsyncRequest($request, '{{returnType}}', [$this, '{{operationId}}HandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            {{^isContainer}}{{returnType}}::class{{/isContainer}}{{#isContainer}}'{{returnType}}'{{/isContainer}},
+            [$this, '{{operationId}}HandleException']
+        );
     }
 
     /**
      * Create request for operation '{{{operationId}}}'
-     *
 {{#vendorExtensions.x-group-parameters}}
-     * Note: the input parameter is an associative array with the keys listed as the parameter name below
      *
+     * Note: the input parameter is an associative array with the keys listed as the parameter name below
 {{/vendorExtensions.x-group-parameters}}
 {{#servers}}
 {{#-first}}
+     *
      * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
 {{/-first}}
      * URL: {{{url}}}
-{{#-last}}
-     *
-{{/-last}}
 {{/servers}}
 {{#allParams}}
+{{#-first}}
+     *
+{{/-first}}
      * @param  {{dataType}} ${{paramName}}{{#description}} {{description}}{{/description}} {{#required}}(required){{/required}}{{^required}}(optional{{#defaultValue}}, default to {{{.}}}{{/defaultValue}}){{/required}}
 {{/allParams}}
      *
@@ -597,7 +614,7 @@ use {{invokerPackage}}\ObjectSerializer;
      * Create http client option
      *
      * @throws \RuntimeException on file opening failure
-     * @return array of http client options
+     * @return array<string, mixed> of http client options
      */
     protected function createHttpClientOption()
     {
@@ -654,7 +671,7 @@ use {{invokerPackage}}\ObjectSerializer;
      * Make an async request.
      *
      * @param \GuzzleHttp\Psr7\Request $request An initialized request object.
-     * @param string $returnType The return type.
+     * @param class-string $returnType The return type.
      * @param callable $exceptionHandler A callback to process HTTP errors.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
@@ -688,10 +705,13 @@ use {{invokerPackage}}\ObjectSerializer;
     /**
      * Convert a response to a return standard return array.
      *
+     * @template T
      * @param \Psr\Http\Message\ResponseInterface $response A response from a request with a serialized body.
      * @param string $returnType The primary return type.
+     * @phpstan-param class-string<T> $returnType
      *
-     * @return array
+     * @return array structured array or response and http info.
+     * @phpstan-return array{T, int, array<array<string>>}
      */
     private function responseToReturn(ResponseInterface $response, string $returnType) {
         return [
@@ -704,14 +724,15 @@ use {{invokerPackage}}\ObjectSerializer;
     /**
      * Deserialize a response body.
      *
-     * @param mixed $responseBody
-     *   The response body.
-     * @param string $returnType
-     *   The return type.
-     * @param array<string, string[]>|null $headers
-     *   The a list of headers from the response.
-     * @return mixed
-     *   Either a string or a stream to be passed to a file object.
+     * @template T
+     * @param mixed $responseBody The response body.
+     * @param string $returnType The return type.
+     * @param array<string, string[]>|null $headers A list of headers from the response.
+     * @phpstan-param class-string<T> $returnType
+     *
+     * @return mixed Either a string or a stream to be passed to a file object.
+     * @phpstan-return T
+     * @psalm-return T
      */
     private function deserializeResponseBody($responseBody, string $returnType, ?array $headers = [])
     {

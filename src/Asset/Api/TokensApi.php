@@ -33,6 +33,7 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Query;
 use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\RequestOptions;
 use Psr\Http\Message\ResponseInterface;
 use NecLimDul\MarketoRest\Asset\ApiException;
@@ -131,7 +132,7 @@ class TokensApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse',
+                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -150,7 +151,10 @@ class TokensApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse
      */
-    public function addTokenTOFolderUsingPOST($id, $create_token_request)
+    public function addTokenTOFolderUsingPOST(
+        int $id,
+        \NecLimDul\MarketoRest\Asset\Model\CreateTokenRequest $create_token_request
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse
     {
         list($response) = $this->addTokenTOFolderUsingPOSTWithHttpInfo($id, $create_token_request);
         return $response;
@@ -165,13 +169,20 @@ class TokensApi
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse, int, array<array<string>>}
      */
-    public function addTokenTOFolderUsingPOSTWithHttpInfo($id, $create_token_request)
+    public function addTokenTOFolderUsingPOSTWithHttpInfo(
+        int $id,
+        \NecLimDul\MarketoRest\Asset\Model\CreateTokenRequest $create_token_request
+    ): array
     {
         $request = $this->addTokenTOFolderUsingPOSTRequest($id, $create_token_request);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse::class
+            );
         } catch (ApiException $e) {
             throw $this->addTokenTOFolderUsingPOSTHandleException($e);
         }
@@ -186,7 +197,10 @@ class TokensApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function addTokenTOFolderUsingPOSTAsync($id, $create_token_request)
+    public function addTokenTOFolderUsingPOSTAsync(
+        int $id,
+        \NecLimDul\MarketoRest\Asset\Model\CreateTokenRequest $create_token_request
+    ): PromiseInterface
     {
         return $this->addTokenTOFolderUsingPOSTAsyncWithHttpInfo($id, $create_token_request)
             ->then(
@@ -205,10 +219,17 @@ class TokensApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function addTokenTOFolderUsingPOSTAsyncWithHttpInfo($id, $create_token_request)
+    public function addTokenTOFolderUsingPOSTAsyncWithHttpInfo(
+        int $id,
+        \NecLimDul\MarketoRest\Asset\Model\CreateTokenRequest $create_token_request
+    ): PromiseInterface
     {
         $request = $this->addTokenTOFolderUsingPOSTRequest($id, $create_token_request);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse', [$this, 'addTokenTOFolderUsingPOSTHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse::class,
+            [$this, 'addTokenTOFolderUsingPOSTHandleException']
+        );
     }
 
     /**
@@ -278,7 +299,7 @@ class TokensApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -297,7 +318,10 @@ class TokensApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse
      */
-    public function deleteTokenByNameUsingPOST($id, $delete_token_request)
+    public function deleteTokenByNameUsingPOST(
+        int $id,
+        \NecLimDul\MarketoRest\Asset\Model\DeleteTokenRequest $delete_token_request
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse
     {
         list($response) = $this->deleteTokenByNameUsingPOSTWithHttpInfo($id, $delete_token_request);
         return $response;
@@ -312,13 +336,20 @@ class TokensApi
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse, int, array<array<string>>}
      */
-    public function deleteTokenByNameUsingPOSTWithHttpInfo($id, $delete_token_request)
+    public function deleteTokenByNameUsingPOSTWithHttpInfo(
+        int $id,
+        \NecLimDul\MarketoRest\Asset\Model\DeleteTokenRequest $delete_token_request
+    ): array
     {
         $request = $this->deleteTokenByNameUsingPOSTRequest($id, $delete_token_request);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
+            );
         } catch (ApiException $e) {
             throw $this->deleteTokenByNameUsingPOSTHandleException($e);
         }
@@ -333,7 +364,10 @@ class TokensApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteTokenByNameUsingPOSTAsync($id, $delete_token_request)
+    public function deleteTokenByNameUsingPOSTAsync(
+        int $id,
+        \NecLimDul\MarketoRest\Asset\Model\DeleteTokenRequest $delete_token_request
+    ): PromiseInterface
     {
         return $this->deleteTokenByNameUsingPOSTAsyncWithHttpInfo($id, $delete_token_request)
             ->then(
@@ -352,10 +386,17 @@ class TokensApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteTokenByNameUsingPOSTAsyncWithHttpInfo($id, $delete_token_request)
+    public function deleteTokenByNameUsingPOSTAsyncWithHttpInfo(
+        int $id,
+        \NecLimDul\MarketoRest\Asset\Model\DeleteTokenRequest $delete_token_request
+    ): PromiseInterface
     {
         $request = $this->deleteTokenByNameUsingPOSTRequest($id, $delete_token_request);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse', [$this, 'deleteTokenByNameUsingPOSTHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class,
+            [$this, 'deleteTokenByNameUsingPOSTHandleException']
+        );
     }
 
     /**
@@ -425,7 +466,7 @@ class TokensApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse',
+                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -444,7 +485,10 @@ class TokensApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse
      */
-    public function getTokensByFolderIdUsingGET($id, $folder_type = 'Folder')
+    public function getTokensByFolderIdUsingGET(
+        int $id,
+        string $folder_type = 'Folder'
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse
     {
         list($response) = $this->getTokensByFolderIdUsingGETWithHttpInfo($id, $folder_type);
         return $response;
@@ -459,13 +503,20 @@ class TokensApi
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse, int, array<array<string>>}
      */
-    public function getTokensByFolderIdUsingGETWithHttpInfo($id, $folder_type = 'Folder')
+    public function getTokensByFolderIdUsingGETWithHttpInfo(
+        int $id,
+        string $folder_type = 'Folder'
+    ): array
     {
         $request = $this->getTokensByFolderIdUsingGETRequest($id, $folder_type);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse::class
+            );
         } catch (ApiException $e) {
             throw $this->getTokensByFolderIdUsingGETHandleException($e);
         }
@@ -480,7 +531,10 @@ class TokensApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getTokensByFolderIdUsingGETAsync($id, $folder_type = 'Folder')
+    public function getTokensByFolderIdUsingGETAsync(
+        int $id,
+        string $folder_type = 'Folder'
+    ): PromiseInterface
     {
         return $this->getTokensByFolderIdUsingGETAsyncWithHttpInfo($id, $folder_type)
             ->then(
@@ -499,10 +553,17 @@ class TokensApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getTokensByFolderIdUsingGETAsyncWithHttpInfo($id, $folder_type = 'Folder')
+    public function getTokensByFolderIdUsingGETAsyncWithHttpInfo(
+        int $id,
+        string $folder_type = 'Folder'
+    ): PromiseInterface
     {
         $request = $this->getTokensByFolderIdUsingGETRequest($id, $folder_type);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse', [$this, 'getTokensByFolderIdUsingGETHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse::class,
+            [$this, 'getTokensByFolderIdUsingGETHandleException']
+        );
     }
 
     /**
@@ -566,7 +627,7 @@ class TokensApi
      * Create http client option
      *
      * @throws \RuntimeException on file opening failure
-     * @return array of http client options
+     * @return array<string, mixed> of http client options
      */
     protected function createHttpClientOption()
     {
@@ -623,7 +684,7 @@ class TokensApi
      * Make an async request.
      *
      * @param \GuzzleHttp\Psr7\Request $request An initialized request object.
-     * @param string $returnType The return type.
+     * @param class-string $returnType The return type.
      * @param callable $exceptionHandler A callback to process HTTP errors.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
@@ -657,10 +718,13 @@ class TokensApi
     /**
      * Convert a response to a return standard return array.
      *
+     * @template T
      * @param \Psr\Http\Message\ResponseInterface $response A response from a request with a serialized body.
      * @param string $returnType The primary return type.
+     * @phpstan-param class-string<T> $returnType
      *
-     * @return array
+     * @return array structured array or response and http info.
+     * @phpstan-return array{T, int, array<array<string>>}
      */
     private function responseToReturn(ResponseInterface $response, string $returnType) {
         return [
@@ -673,14 +737,15 @@ class TokensApi
     /**
      * Deserialize a response body.
      *
-     * @param mixed $responseBody
-     *   The response body.
-     * @param string $returnType
-     *   The return type.
-     * @param array<string, string[]>|null $headers
-     *   The a list of headers from the response.
-     * @return mixed
-     *   Either a string or a stream to be passed to a file object.
+     * @template T
+     * @param mixed $responseBody The response body.
+     * @param string $returnType The return type.
+     * @param array<string, string[]>|null $headers A list of headers from the response.
+     * @phpstan-param class-string<T> $returnType
+     *
+     * @return mixed Either a string or a stream to be passed to a file object.
+     * @phpstan-return T
+     * @psalm-return T
      */
     private function deserializeResponseBody($responseBody, string $returnType, ?array $headers = [])
     {

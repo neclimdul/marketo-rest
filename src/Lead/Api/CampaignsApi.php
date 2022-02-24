@@ -33,6 +33,7 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Query;
 use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\RequestOptions;
 use Psr\Http\Message\ResponseInterface;
 use NecLimDul\MarketoRest\Lead\ApiException;
@@ -131,7 +132,7 @@ class CampaignsApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign',
+                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -149,7 +150,9 @@ class CampaignsApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign
      */
-    public function getCampaignByIdUsingGET($campaign_id)
+    public function getCampaignByIdUsingGET(
+        int $campaign_id
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign
     {
         list($response) = $this->getCampaignByIdUsingGETWithHttpInfo($campaign_id);
         return $response;
@@ -163,13 +166,19 @@ class CampaignsApi
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign, int, array<array<string>>}
      */
-    public function getCampaignByIdUsingGETWithHttpInfo($campaign_id)
+    public function getCampaignByIdUsingGETWithHttpInfo(
+        int $campaign_id
+    ): array
     {
         $request = $this->getCampaignByIdUsingGETRequest($campaign_id);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign::class
+            );
         } catch (ApiException $e) {
             throw $this->getCampaignByIdUsingGETHandleException($e);
         }
@@ -183,7 +192,9 @@ class CampaignsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getCampaignByIdUsingGETAsync($campaign_id)
+    public function getCampaignByIdUsingGETAsync(
+        int $campaign_id
+    ): PromiseInterface
     {
         return $this->getCampaignByIdUsingGETAsyncWithHttpInfo($campaign_id)
             ->then(
@@ -201,10 +212,16 @@ class CampaignsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getCampaignByIdUsingGETAsyncWithHttpInfo($campaign_id)
+    public function getCampaignByIdUsingGETAsyncWithHttpInfo(
+        int $campaign_id
+    ): PromiseInterface
     {
         $request = $this->getCampaignByIdUsingGETRequest($campaign_id);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign', [$this, 'getCampaignByIdUsingGETHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign::class,
+            [$this, 'getCampaignByIdUsingGETHandleException']
+        );
     }
 
     /**
@@ -271,7 +288,7 @@ class CampaignsApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign',
+                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -295,7 +312,15 @@ class CampaignsApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign
      */
-    public function getCampaignsUsingGET($id = null, $name = null, $program_name = null, $workspace_name = null, $batch_size = null, $next_page_token = null, $is_triggerable = null)
+    public function getCampaignsUsingGET(
+        array $id = null,
+        array $name = null,
+        array $program_name = null,
+        array $workspace_name = null,
+        int $batch_size = null,
+        string $next_page_token = null,
+        bool $is_triggerable = null
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign
     {
         list($response) = $this->getCampaignsUsingGETWithHttpInfo($id, $name, $program_name, $workspace_name, $batch_size, $next_page_token, $is_triggerable);
         return $response;
@@ -315,13 +340,25 @@ class CampaignsApi
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign, int, array<array<string>>}
      */
-    public function getCampaignsUsingGETWithHttpInfo($id = null, $name = null, $program_name = null, $workspace_name = null, $batch_size = null, $next_page_token = null, $is_triggerable = null)
+    public function getCampaignsUsingGETWithHttpInfo(
+        array $id = null,
+        array $name = null,
+        array $program_name = null,
+        array $workspace_name = null,
+        int $batch_size = null,
+        string $next_page_token = null,
+        bool $is_triggerable = null
+    ): array
     {
         $request = $this->getCampaignsUsingGETRequest($id, $name, $program_name, $workspace_name, $batch_size, $next_page_token, $is_triggerable);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign::class
+            );
         } catch (ApiException $e) {
             throw $this->getCampaignsUsingGETHandleException($e);
         }
@@ -341,7 +378,15 @@ class CampaignsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getCampaignsUsingGETAsync($id = null, $name = null, $program_name = null, $workspace_name = null, $batch_size = null, $next_page_token = null, $is_triggerable = null)
+    public function getCampaignsUsingGETAsync(
+        array $id = null,
+        array $name = null,
+        array $program_name = null,
+        array $workspace_name = null,
+        int $batch_size = null,
+        string $next_page_token = null,
+        bool $is_triggerable = null
+    ): PromiseInterface
     {
         return $this->getCampaignsUsingGETAsyncWithHttpInfo($id, $name, $program_name, $workspace_name, $batch_size, $next_page_token, $is_triggerable)
             ->then(
@@ -365,10 +410,22 @@ class CampaignsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getCampaignsUsingGETAsyncWithHttpInfo($id = null, $name = null, $program_name = null, $workspace_name = null, $batch_size = null, $next_page_token = null, $is_triggerable = null)
+    public function getCampaignsUsingGETAsyncWithHttpInfo(
+        array $id = null,
+        array $name = null,
+        array $program_name = null,
+        array $workspace_name = null,
+        int $batch_size = null,
+        string $next_page_token = null,
+        bool $is_triggerable = null
+    ): PromiseInterface
     {
         $request = $this->getCampaignsUsingGETRequest($id, $name, $program_name, $workspace_name, $batch_size, $next_page_token, $is_triggerable);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign', [$this, 'getCampaignsUsingGETHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign::class,
+            [$this, 'getCampaignsUsingGETHandleException']
+        );
     }
 
     /**
@@ -451,7 +508,7 @@ class CampaignsApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign',
+                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -470,7 +527,10 @@ class CampaignsApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign
      */
-    public function scheduleCampaignUsingPOST($campaign_id, $schedule_campaign_request = null)
+    public function scheduleCampaignUsingPOST(
+        int $campaign_id,
+        \NecLimDul\MarketoRest\Lead\Model\ScheduleCampaignRequest $schedule_campaign_request = null
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign
     {
         list($response) = $this->scheduleCampaignUsingPOSTWithHttpInfo($campaign_id, $schedule_campaign_request);
         return $response;
@@ -485,13 +545,20 @@ class CampaignsApi
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign, int, array<array<string>>}
      */
-    public function scheduleCampaignUsingPOSTWithHttpInfo($campaign_id, $schedule_campaign_request = null)
+    public function scheduleCampaignUsingPOSTWithHttpInfo(
+        int $campaign_id,
+        \NecLimDul\MarketoRest\Lead\Model\ScheduleCampaignRequest $schedule_campaign_request = null
+    ): array
     {
         $request = $this->scheduleCampaignUsingPOSTRequest($campaign_id, $schedule_campaign_request);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign::class
+            );
         } catch (ApiException $e) {
             throw $this->scheduleCampaignUsingPOSTHandleException($e);
         }
@@ -506,7 +573,10 @@ class CampaignsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function scheduleCampaignUsingPOSTAsync($campaign_id, $schedule_campaign_request = null)
+    public function scheduleCampaignUsingPOSTAsync(
+        int $campaign_id,
+        \NecLimDul\MarketoRest\Lead\Model\ScheduleCampaignRequest $schedule_campaign_request = null
+    ): PromiseInterface
     {
         return $this->scheduleCampaignUsingPOSTAsyncWithHttpInfo($campaign_id, $schedule_campaign_request)
             ->then(
@@ -525,10 +595,17 @@ class CampaignsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function scheduleCampaignUsingPOSTAsyncWithHttpInfo($campaign_id, $schedule_campaign_request = null)
+    public function scheduleCampaignUsingPOSTAsyncWithHttpInfo(
+        int $campaign_id,
+        \NecLimDul\MarketoRest\Lead\Model\ScheduleCampaignRequest $schedule_campaign_request = null
+    ): PromiseInterface
     {
         $request = $this->scheduleCampaignUsingPOSTRequest($campaign_id, $schedule_campaign_request);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign', [$this, 'scheduleCampaignUsingPOSTHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign::class,
+            [$this, 'scheduleCampaignUsingPOSTHandleException']
+        );
     }
 
     /**
@@ -601,7 +678,7 @@ class CampaignsApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign',
+                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -620,7 +697,10 @@ class CampaignsApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign
      */
-    public function triggerCampaignUsingPOST($campaign_id, $trigger_campaign_request = null)
+    public function triggerCampaignUsingPOST(
+        int $campaign_id,
+        \NecLimDul\MarketoRest\Lead\Model\TriggerCampaignRequest $trigger_campaign_request = null
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign
     {
         list($response) = $this->triggerCampaignUsingPOSTWithHttpInfo($campaign_id, $trigger_campaign_request);
         return $response;
@@ -635,13 +715,20 @@ class CampaignsApi
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign, int, array<array<string>>}
      */
-    public function triggerCampaignUsingPOSTWithHttpInfo($campaign_id, $trigger_campaign_request = null)
+    public function triggerCampaignUsingPOSTWithHttpInfo(
+        int $campaign_id,
+        \NecLimDul\MarketoRest\Lead\Model\TriggerCampaignRequest $trigger_campaign_request = null
+    ): array
     {
         $request = $this->triggerCampaignUsingPOSTRequest($campaign_id, $trigger_campaign_request);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign::class
+            );
         } catch (ApiException $e) {
             throw $this->triggerCampaignUsingPOSTHandleException($e);
         }
@@ -656,7 +743,10 @@ class CampaignsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function triggerCampaignUsingPOSTAsync($campaign_id, $trigger_campaign_request = null)
+    public function triggerCampaignUsingPOSTAsync(
+        int $campaign_id,
+        \NecLimDul\MarketoRest\Lead\Model\TriggerCampaignRequest $trigger_campaign_request = null
+    ): PromiseInterface
     {
         return $this->triggerCampaignUsingPOSTAsyncWithHttpInfo($campaign_id, $trigger_campaign_request)
             ->then(
@@ -675,10 +765,17 @@ class CampaignsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function triggerCampaignUsingPOSTAsyncWithHttpInfo($campaign_id, $trigger_campaign_request = null)
+    public function triggerCampaignUsingPOSTAsyncWithHttpInfo(
+        int $campaign_id,
+        \NecLimDul\MarketoRest\Lead\Model\TriggerCampaignRequest $trigger_campaign_request = null
+    ): PromiseInterface
     {
         $request = $this->triggerCampaignUsingPOSTRequest($campaign_id, $trigger_campaign_request);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign', [$this, 'triggerCampaignUsingPOSTHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign::class,
+            [$this, 'triggerCampaignUsingPOSTHandleException']
+        );
     }
 
     /**
@@ -741,7 +838,7 @@ class CampaignsApi
      * Create http client option
      *
      * @throws \RuntimeException on file opening failure
-     * @return array of http client options
+     * @return array<string, mixed> of http client options
      */
     protected function createHttpClientOption()
     {
@@ -798,7 +895,7 @@ class CampaignsApi
      * Make an async request.
      *
      * @param \GuzzleHttp\Psr7\Request $request An initialized request object.
-     * @param string $returnType The return type.
+     * @param class-string $returnType The return type.
      * @param callable $exceptionHandler A callback to process HTTP errors.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
@@ -832,10 +929,13 @@ class CampaignsApi
     /**
      * Convert a response to a return standard return array.
      *
+     * @template T
      * @param \Psr\Http\Message\ResponseInterface $response A response from a request with a serialized body.
      * @param string $returnType The primary return type.
+     * @phpstan-param class-string<T> $returnType
      *
-     * @return array
+     * @return array structured array or response and http info.
+     * @phpstan-return array{T, int, array<array<string>>}
      */
     private function responseToReturn(ResponseInterface $response, string $returnType) {
         return [
@@ -848,14 +948,15 @@ class CampaignsApi
     /**
      * Deserialize a response body.
      *
-     * @param mixed $responseBody
-     *   The response body.
-     * @param string $returnType
-     *   The return type.
-     * @param array<string, string[]>|null $headers
-     *   The a list of headers from the response.
-     * @return mixed
-     *   Either a string or a stream to be passed to a file object.
+     * @template T
+     * @param mixed $responseBody The response body.
+     * @param string $returnType The return type.
+     * @param array<string, string[]>|null $headers A list of headers from the response.
+     * @phpstan-param class-string<T> $returnType
+     *
+     * @return mixed Either a string or a stream to be passed to a file object.
+     * @phpstan-return T
+     * @psalm-return T
      */
     private function deserializeResponseBody($responseBody, string $returnType, ?array $headers = [])
     {

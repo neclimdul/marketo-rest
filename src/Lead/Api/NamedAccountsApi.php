@@ -33,6 +33,7 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Query;
 use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\RequestOptions;
 use Psr\Http\Message\ResponseInterface;
 use NecLimDul\MarketoRest\Lead\ApiException;
@@ -131,7 +132,7 @@ class NamedAccountsApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount',
+                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -149,7 +150,9 @@ class NamedAccountsApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount
      */
-    public function deleteNamedAccountsUsingPOST($delete_account_request)
+    public function deleteNamedAccountsUsingPOST(
+        \NecLimDul\MarketoRest\Lead\Model\DeleteNamedAccountRequest $delete_account_request
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount
     {
         list($response) = $this->deleteNamedAccountsUsingPOSTWithHttpInfo($delete_account_request);
         return $response;
@@ -163,13 +166,19 @@ class NamedAccountsApi
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount, int, array<array<string>>}
      */
-    public function deleteNamedAccountsUsingPOSTWithHttpInfo($delete_account_request)
+    public function deleteNamedAccountsUsingPOSTWithHttpInfo(
+        \NecLimDul\MarketoRest\Lead\Model\DeleteNamedAccountRequest $delete_account_request
+    ): array
     {
         $request = $this->deleteNamedAccountsUsingPOSTRequest($delete_account_request);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount::class
+            );
         } catch (ApiException $e) {
             throw $this->deleteNamedAccountsUsingPOSTHandleException($e);
         }
@@ -183,7 +192,9 @@ class NamedAccountsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteNamedAccountsUsingPOSTAsync($delete_account_request)
+    public function deleteNamedAccountsUsingPOSTAsync(
+        \NecLimDul\MarketoRest\Lead\Model\DeleteNamedAccountRequest $delete_account_request
+    ): PromiseInterface
     {
         return $this->deleteNamedAccountsUsingPOSTAsyncWithHttpInfo($delete_account_request)
             ->then(
@@ -201,10 +212,16 @@ class NamedAccountsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteNamedAccountsUsingPOSTAsyncWithHttpInfo($delete_account_request)
+    public function deleteNamedAccountsUsingPOSTAsyncWithHttpInfo(
+        \NecLimDul\MarketoRest\Lead\Model\DeleteNamedAccountRequest $delete_account_request
+    ): PromiseInterface
     {
         $request = $this->deleteNamedAccountsUsingPOSTRequest($delete_account_request);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount', [$this, 'deleteNamedAccountsUsingPOSTHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount::class,
+            [$this, 'deleteNamedAccountsUsingPOSTHandleException']
+        );
     }
 
     /**
@@ -265,7 +282,7 @@ class NamedAccountsApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData',
+                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -277,12 +294,12 @@ class NamedAccountsApi
     /**
      * Describe NamedAccounts
      *
-     *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData
      */
-    public function describeUsingGET3()
+    public function describeUsingGET3(
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData
     {
         list($response) = $this->describeUsingGET3WithHttpInfo();
         return $response;
@@ -291,17 +308,21 @@ class NamedAccountsApi
     /**
      * Describe NamedAccounts
      *
-     *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData, int, array<array<string>>}
      */
-    public function describeUsingGET3WithHttpInfo()
+    public function describeUsingGET3WithHttpInfo(
+    ): array
     {
         $request = $this->describeUsingGET3Request();
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData::class
+            );
         } catch (ApiException $e) {
             throw $this->describeUsingGET3HandleException($e);
         }
@@ -310,11 +331,11 @@ class NamedAccountsApi
     /**
      * Describe NamedAccounts
      *
-     *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function describeUsingGET3Async()
+    public function describeUsingGET3Async(
+    ): PromiseInterface
     {
         return $this->describeUsingGET3AsyncWithHttpInfo()
             ->then(
@@ -327,19 +348,22 @@ class NamedAccountsApi
     /**
      * Describe NamedAccounts
      *
-     *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function describeUsingGET3AsyncWithHttpInfo()
+    public function describeUsingGET3AsyncWithHttpInfo(
+    ): PromiseInterface
     {
         $request = $this->describeUsingGET3Request();
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData', [$this, 'describeUsingGET3HandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData::class,
+            [$this, 'describeUsingGET3HandleException']
+        );
     }
 
     /**
      * Create request for operation 'describeUsingGET3'
-     *
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -392,7 +416,7 @@ class NamedAccountsApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField',
+                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -410,7 +434,9 @@ class NamedAccountsApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField
      */
-    public function getNamedAccountFieldByNameUsingGET($field_api_name)
+    public function getNamedAccountFieldByNameUsingGET(
+        string $field_api_name
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField
     {
         list($response) = $this->getNamedAccountFieldByNameUsingGETWithHttpInfo($field_api_name);
         return $response;
@@ -424,13 +450,19 @@ class NamedAccountsApi
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField, int, array<array<string>>}
      */
-    public function getNamedAccountFieldByNameUsingGETWithHttpInfo($field_api_name)
+    public function getNamedAccountFieldByNameUsingGETWithHttpInfo(
+        string $field_api_name
+    ): array
     {
         $request = $this->getNamedAccountFieldByNameUsingGETRequest($field_api_name);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField::class
+            );
         } catch (ApiException $e) {
             throw $this->getNamedAccountFieldByNameUsingGETHandleException($e);
         }
@@ -444,7 +476,9 @@ class NamedAccountsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getNamedAccountFieldByNameUsingGETAsync($field_api_name)
+    public function getNamedAccountFieldByNameUsingGETAsync(
+        string $field_api_name
+    ): PromiseInterface
     {
         return $this->getNamedAccountFieldByNameUsingGETAsyncWithHttpInfo($field_api_name)
             ->then(
@@ -462,10 +496,16 @@ class NamedAccountsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getNamedAccountFieldByNameUsingGETAsyncWithHttpInfo($field_api_name)
+    public function getNamedAccountFieldByNameUsingGETAsyncWithHttpInfo(
+        string $field_api_name
+    ): PromiseInterface
     {
         $request = $this->getNamedAccountFieldByNameUsingGETRequest($field_api_name);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField', [$this, 'getNamedAccountFieldByNameUsingGETHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField::class,
+            [$this, 'getNamedAccountFieldByNameUsingGETHandleException']
+        );
     }
 
     /**
@@ -532,7 +572,7 @@ class NamedAccountsApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField',
+                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -551,7 +591,10 @@ class NamedAccountsApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField
      */
-    public function getNamedAccountFieldsUsingGET($batch_size = null, $next_page_token = null)
+    public function getNamedAccountFieldsUsingGET(
+        int $batch_size = null,
+        string $next_page_token = null
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField
     {
         list($response) = $this->getNamedAccountFieldsUsingGETWithHttpInfo($batch_size, $next_page_token);
         return $response;
@@ -566,13 +609,20 @@ class NamedAccountsApi
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField, int, array<array<string>>}
      */
-    public function getNamedAccountFieldsUsingGETWithHttpInfo($batch_size = null, $next_page_token = null)
+    public function getNamedAccountFieldsUsingGETWithHttpInfo(
+        int $batch_size = null,
+        string $next_page_token = null
+    ): array
     {
         $request = $this->getNamedAccountFieldsUsingGETRequest($batch_size, $next_page_token);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField::class
+            );
         } catch (ApiException $e) {
             throw $this->getNamedAccountFieldsUsingGETHandleException($e);
         }
@@ -587,7 +637,10 @@ class NamedAccountsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getNamedAccountFieldsUsingGETAsync($batch_size = null, $next_page_token = null)
+    public function getNamedAccountFieldsUsingGETAsync(
+        int $batch_size = null,
+        string $next_page_token = null
+    ): PromiseInterface
     {
         return $this->getNamedAccountFieldsUsingGETAsyncWithHttpInfo($batch_size, $next_page_token)
             ->then(
@@ -606,10 +659,17 @@ class NamedAccountsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getNamedAccountFieldsUsingGETAsyncWithHttpInfo($batch_size = null, $next_page_token = null)
+    public function getNamedAccountFieldsUsingGETAsyncWithHttpInfo(
+        int $batch_size = null,
+        string $next_page_token = null
+    ): PromiseInterface
     {
         $request = $this->getNamedAccountFieldsUsingGETRequest($batch_size, $next_page_token);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField', [$this, 'getNamedAccountFieldsUsingGETHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField::class,
+            [$this, 'getNamedAccountFieldsUsingGETHandleException']
+        );
     }
 
     /**
@@ -677,7 +737,7 @@ class NamedAccountsApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount',
+                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -699,7 +759,13 @@ class NamedAccountsApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount
      */
-    public function getNamedAccountsUsingGET($filter_type, $filter_values, $fields = null, $batch_size = null, $next_page_token = null)
+    public function getNamedAccountsUsingGET(
+        string $filter_type,
+        array $filter_values,
+        array $fields = null,
+        int $batch_size = null,
+        string $next_page_token = null
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount
     {
         list($response) = $this->getNamedAccountsUsingGETWithHttpInfo($filter_type, $filter_values, $fields, $batch_size, $next_page_token);
         return $response;
@@ -717,13 +783,23 @@ class NamedAccountsApi
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount, int, array<array<string>>}
      */
-    public function getNamedAccountsUsingGETWithHttpInfo($filter_type, $filter_values, $fields = null, $batch_size = null, $next_page_token = null)
+    public function getNamedAccountsUsingGETWithHttpInfo(
+        string $filter_type,
+        array $filter_values,
+        array $fields = null,
+        int $batch_size = null,
+        string $next_page_token = null
+    ): array
     {
         $request = $this->getNamedAccountsUsingGETRequest($filter_type, $filter_values, $fields, $batch_size, $next_page_token);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount::class
+            );
         } catch (ApiException $e) {
             throw $this->getNamedAccountsUsingGETHandleException($e);
         }
@@ -741,7 +817,13 @@ class NamedAccountsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getNamedAccountsUsingGETAsync($filter_type, $filter_values, $fields = null, $batch_size = null, $next_page_token = null)
+    public function getNamedAccountsUsingGETAsync(
+        string $filter_type,
+        array $filter_values,
+        array $fields = null,
+        int $batch_size = null,
+        string $next_page_token = null
+    ): PromiseInterface
     {
         return $this->getNamedAccountsUsingGETAsyncWithHttpInfo($filter_type, $filter_values, $fields, $batch_size, $next_page_token)
             ->then(
@@ -763,10 +845,20 @@ class NamedAccountsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getNamedAccountsUsingGETAsyncWithHttpInfo($filter_type, $filter_values, $fields = null, $batch_size = null, $next_page_token = null)
+    public function getNamedAccountsUsingGETAsyncWithHttpInfo(
+        string $filter_type,
+        array $filter_values,
+        array $fields = null,
+        int $batch_size = null,
+        string $next_page_token = null
+    ): PromiseInterface
     {
         $request = $this->getNamedAccountsUsingGETRequest($filter_type, $filter_values, $fields, $batch_size, $next_page_token);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount', [$this, 'getNamedAccountsUsingGETHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount::class,
+            [$this, 'getNamedAccountsUsingGETHandleException']
+        );
     }
 
     /**
@@ -849,7 +941,7 @@ class NamedAccountsApi
                 $e->setResponseObject(
                     $this->deserializeResponseBody(
                         $e->getResponseBody(),
-                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount',
+                        \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount::class,
                         $e->getResponseHeaders()
                     )
                 );
@@ -867,7 +959,9 @@ class NamedAccountsApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount
      */
-    public function syncNamedAccountsUsingPOST($sync_account_request)
+    public function syncNamedAccountsUsingPOST(
+        \NecLimDul\MarketoRest\Lead\Model\SyncNamedAccountRequest $sync_account_request
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount
     {
         list($response) = $this->syncNamedAccountsUsingPOSTWithHttpInfo($sync_account_request);
         return $response;
@@ -881,13 +975,19 @@ class NamedAccountsApi
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount, HTTP status code, HTTP response headers (array of strings)
+     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount, int, array<array<string>>}
      */
-    public function syncNamedAccountsUsingPOSTWithHttpInfo($sync_account_request)
+    public function syncNamedAccountsUsingPOSTWithHttpInfo(
+        \NecLimDul\MarketoRest\Lead\Model\SyncNamedAccountRequest $sync_account_request
+    ): array
     {
         $request = $this->syncNamedAccountsUsingPOSTRequest($sync_account_request);
         try {
             $response = $this->makeRequest($request);
-            return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount');
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount::class
+            );
         } catch (ApiException $e) {
             throw $this->syncNamedAccountsUsingPOSTHandleException($e);
         }
@@ -901,7 +1001,9 @@ class NamedAccountsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function syncNamedAccountsUsingPOSTAsync($sync_account_request)
+    public function syncNamedAccountsUsingPOSTAsync(
+        \NecLimDul\MarketoRest\Lead\Model\SyncNamedAccountRequest $sync_account_request
+    ): PromiseInterface
     {
         return $this->syncNamedAccountsUsingPOSTAsyncWithHttpInfo($sync_account_request)
             ->then(
@@ -919,10 +1021,16 @@ class NamedAccountsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function syncNamedAccountsUsingPOSTAsyncWithHttpInfo($sync_account_request)
+    public function syncNamedAccountsUsingPOSTAsyncWithHttpInfo(
+        \NecLimDul\MarketoRest\Lead\Model\SyncNamedAccountRequest $sync_account_request
+    ): PromiseInterface
     {
         $request = $this->syncNamedAccountsUsingPOSTRequest($sync_account_request);
-        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount', [$this, 'syncNamedAccountsUsingPOSTHandleException']);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount::class,
+            [$this, 'syncNamedAccountsUsingPOSTHandleException']
+        );
     }
 
     /**
@@ -973,7 +1081,7 @@ class NamedAccountsApi
      * Create http client option
      *
      * @throws \RuntimeException on file opening failure
-     * @return array of http client options
+     * @return array<string, mixed> of http client options
      */
     protected function createHttpClientOption()
     {
@@ -1030,7 +1138,7 @@ class NamedAccountsApi
      * Make an async request.
      *
      * @param \GuzzleHttp\Psr7\Request $request An initialized request object.
-     * @param string $returnType The return type.
+     * @param class-string $returnType The return type.
      * @param callable $exceptionHandler A callback to process HTTP errors.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
@@ -1064,10 +1172,13 @@ class NamedAccountsApi
     /**
      * Convert a response to a return standard return array.
      *
+     * @template T
      * @param \Psr\Http\Message\ResponseInterface $response A response from a request with a serialized body.
      * @param string $returnType The primary return type.
+     * @phpstan-param class-string<T> $returnType
      *
-     * @return array
+     * @return array structured array or response and http info.
+     * @phpstan-return array{T, int, array<array<string>>}
      */
     private function responseToReturn(ResponseInterface $response, string $returnType) {
         return [
@@ -1080,14 +1191,15 @@ class NamedAccountsApi
     /**
      * Deserialize a response body.
      *
-     * @param mixed $responseBody
-     *   The response body.
-     * @param string $returnType
-     *   The return type.
-     * @param array<string, string[]>|null $headers
-     *   The a list of headers from the response.
-     * @return mixed
-     *   Either a string or a stream to be passed to a file object.
+     * @template T
+     * @param mixed $responseBody The response body.
+     * @param string $returnType The return type.
+     * @param array<string, string[]>|null $headers A list of headers from the response.
+     * @phpstan-param class-string<T> $returnType
+     *
+     * @return mixed Either a string or a stream to be passed to a file object.
+     * @phpstan-return T
+     * @psalm-return T
      */
     private function deserializeResponseBody($responseBody, string $returnType, ?array $headers = [])
     {
