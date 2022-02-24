@@ -143,14 +143,16 @@ class ObjectSerializer
      * If it's a string, pass through unchanged. It will be url-encoded
      * later.
      *
-     * @param scalar[]|scalar|\DateTime $object an object to be serialized to a string
+     * @param scalar[]|scalar|null|\DateTime $object an object to be serialized to a string
      *
-     * @return string the serialized object
+     * @return string|null A serialized query parameter. Null to skip.
      */
     public static function toQueryValue($object)
     {
         if (is_array($object)) {
             return implode(',', $object);
+        } elseif ($object === NULL) {
+            return NULL;
         } else {
             return self::toString($object);
         }
