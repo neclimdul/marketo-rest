@@ -695,14 +695,8 @@ class BulkImportProgramMembersApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($program_member_status)) {
-            $program_member_status = ObjectSerializer::serializeCollection($program_member_status, '', true);
-        }
-        $queryParams['programMemberStatus'] = $program_member_status;
-        if (is_array($format)) {
-            $format = ObjectSerializer::serializeCollection($format, '', true);
-        }
-        $queryParams['format'] = $format;
+        $queryParams['programMemberStatus'] = ObjectSerializer::toQueryValue($program_member_status);
+        $queryParams['format'] = ObjectSerializer::toQueryValue($format);
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
 

@@ -972,10 +972,7 @@ class SnippetsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($status)) {
-            $status = ObjectSerializer::serializeCollection($status, '', true);
-        }
-        $queryParams['status'] = $status;
+        $queryParams['status'] = ObjectSerializer::toQueryValue($status);
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
 
@@ -1129,10 +1126,7 @@ class SnippetsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($status)) {
-            $status = ObjectSerializer::serializeCollection($status, '', true);
-        }
-        $queryParams['status'] = $status;
+        $queryParams['status'] = ObjectSerializer::toQueryValue($status);
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
 
@@ -1286,10 +1280,7 @@ class SnippetsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($status)) {
-            $status = ObjectSerializer::serializeCollection($status, '', true);
-        }
-        $queryParams['status'] = $status;
+        $queryParams['status'] = ObjectSerializer::toQueryValue($status);
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
 
@@ -1442,18 +1433,9 @@ class SnippetsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($status)) {
-            $status = ObjectSerializer::serializeCollection($status, '', true);
-        }
-        $queryParams['status'] = $status;
-        if (is_array($max_return)) {
-            $max_return = ObjectSerializer::serializeCollection($max_return, '', true);
-        }
-        $queryParams['maxReturn'] = $max_return;
-        if (is_array($offset)) {
-            $offset = ObjectSerializer::serializeCollection($offset, '', true);
-        }
-        $queryParams['offset'] = $offset;
+        $queryParams['status'] = ObjectSerializer::toQueryValue($status);
+        $queryParams['maxReturn'] = ObjectSerializer::toQueryValue($max_return);
+        $queryParams['offset'] = ObjectSerializer::toQueryValue($offset);
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
         $headers = $this->headerSelector->selectHeaders(
@@ -1761,14 +1743,8 @@ class SnippetsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($content)) {
-            $content = ObjectSerializer::serializeCollection($content, '', true);
-        }
-        $queryParams['content'] = $content;
-        if (is_array($type)) {
-            $type = ObjectSerializer::serializeCollection($type, '', true);
-        }
-        $queryParams['type'] = $type;
+        $queryParams['content'] = ObjectSerializer::toQueryValue($content);
+        $queryParams['type'] = ObjectSerializer::toQueryValue($type);
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
 

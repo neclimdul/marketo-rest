@@ -518,14 +518,8 @@ class LandingPageRedirectRulesApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($max_return)) {
-            $max_return = ObjectSerializer::serializeCollection($max_return, '', true);
-        }
-        $queryParams['maxReturn'] = $max_return;
-        if (is_array($offset)) {
-            $offset = ObjectSerializer::serializeCollection($offset, '', true);
-        }
-        $queryParams['offset'] = $offset;
+        $queryParams['maxReturn'] = ObjectSerializer::toQueryValue($max_return);
+        $queryParams['offset'] = ObjectSerializer::toQueryValue($offset);
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
         $headers = $this->headerSelector->selectHeaders(
@@ -830,30 +824,12 @@ class LandingPageRedirectRulesApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($max_return)) {
-            $max_return = ObjectSerializer::serializeCollection($max_return, '', true);
-        }
-        $queryParams['maxReturn'] = $max_return;
-        if (is_array($offset)) {
-            $offset = ObjectSerializer::serializeCollection($offset, '', true);
-        }
-        $queryParams['offset'] = $offset;
-        if (is_array($redirect_tolanding_page_id)) {
-            $redirect_tolanding_page_id = ObjectSerializer::serializeCollection($redirect_tolanding_page_id, '', true);
-        }
-        $queryParams['redirectTolandingPageId'] = $redirect_tolanding_page_id;
-        if (is_array($redirect_to_path)) {
-            $redirect_to_path = ObjectSerializer::serializeCollection($redirect_to_path, '', true);
-        }
-        $queryParams['redirectToPath'] = $redirect_to_path;
-        if (is_array($earliest_updated_at)) {
-            $earliest_updated_at = ObjectSerializer::serializeCollection($earliest_updated_at, '', true);
-        }
-        $queryParams['earliestUpdatedAt'] = $earliest_updated_at;
-        if (is_array($latest_updated_at)) {
-            $latest_updated_at = ObjectSerializer::serializeCollection($latest_updated_at, '', true);
-        }
-        $queryParams['latestUpdatedAt'] = $latest_updated_at;
+        $queryParams['maxReturn'] = ObjectSerializer::toQueryValue($max_return);
+        $queryParams['offset'] = ObjectSerializer::toQueryValue($offset);
+        $queryParams['redirectTolandingPageId'] = ObjectSerializer::toQueryValue($redirect_tolanding_page_id);
+        $queryParams['redirectToPath'] = ObjectSerializer::toQueryValue($redirect_to_path);
+        $queryParams['earliestUpdatedAt'] = ObjectSerializer::toQueryValue($earliest_updated_at);
+        $queryParams['latestUpdatedAt'] = ObjectSerializer::toQueryValue($latest_updated_at);
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
         $headers = $this->headerSelector->selectHeaders(

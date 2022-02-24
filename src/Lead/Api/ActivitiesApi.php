@@ -1139,10 +1139,7 @@ class ActivitiesApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($draft)) {
-            $draft = ObjectSerializer::serializeCollection($draft, '', true);
-        }
-        $queryParams['draft'] = $draft;
+        $queryParams['draft'] = ObjectSerializer::toQueryValue($draft);
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
 
@@ -1435,10 +1432,7 @@ class ActivitiesApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($since_datetime)) {
-            $since_datetime = ObjectSerializer::serializeCollection($since_datetime, '', true);
-        }
-        $queryParams['sinceDatetime'] = $since_datetime;
+        $queryParams['sinceDatetime'] = ObjectSerializer::toQueryValue($since_datetime);
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
         $headers = $this->headerSelector->selectHeaders(
@@ -1837,14 +1831,8 @@ class ActivitiesApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($next_page_token)) {
-            $next_page_token = ObjectSerializer::serializeCollection($next_page_token, '', true);
-        }
-        $queryParams['nextPageToken'] = $next_page_token;
-        if (is_array($batch_size)) {
-            $batch_size = ObjectSerializer::serializeCollection($batch_size, '', true);
-        }
-        $queryParams['batchSize'] = $batch_size;
+        $queryParams['nextPageToken'] = ObjectSerializer::toQueryValue($next_page_token);
+        $queryParams['batchSize'] = ObjectSerializer::toQueryValue($batch_size);
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
         $headers = $this->headerSelector->selectHeaders(
@@ -2017,30 +2005,12 @@ class ActivitiesApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($next_page_token)) {
-            $next_page_token = ObjectSerializer::serializeCollection($next_page_token, '', true);
-        }
-        $queryParams['nextPageToken'] = $next_page_token;
-        if (is_array($activity_type_ids)) {
-            $activity_type_ids = ObjectSerializer::serializeCollection($activity_type_ids, 'multi', true);
-        }
-        $queryParams['activityTypeIds'] = $activity_type_ids;
-        if (is_array($asset_ids)) {
-            $asset_ids = ObjectSerializer::serializeCollection($asset_ids, 'multi', true);
-        }
-        $queryParams['assetIds'] = $asset_ids;
-        if (is_array($list_id)) {
-            $list_id = ObjectSerializer::serializeCollection($list_id, '', true);
-        }
-        $queryParams['listId'] = $list_id;
-        if (is_array($lead_ids)) {
-            $lead_ids = ObjectSerializer::serializeCollection($lead_ids, 'multi', true);
-        }
-        $queryParams['leadIds'] = $lead_ids;
-        if (is_array($batch_size)) {
-            $batch_size = ObjectSerializer::serializeCollection($batch_size, '', true);
-        }
-        $queryParams['batchSize'] = $batch_size;
+        $queryParams['nextPageToken'] = ObjectSerializer::toQueryValue($next_page_token);
+        $queryParams['activityTypeIds'] = ObjectSerializer::toQueryValue($activity_type_ids);
+        $queryParams['assetIds'] = ObjectSerializer::toQueryValue($asset_ids);
+        $queryParams['listId'] = ObjectSerializer::toQueryValue($list_id);
+        $queryParams['leadIds'] = ObjectSerializer::toQueryValue($lead_ids);
+        $queryParams['batchSize'] = ObjectSerializer::toQueryValue($batch_size);
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
         $headers = $this->headerSelector->selectHeaders(
@@ -2208,26 +2178,11 @@ class ActivitiesApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($next_page_token)) {
-            $next_page_token = ObjectSerializer::serializeCollection($next_page_token, '', true);
-        }
-        $queryParams['nextPageToken'] = $next_page_token;
-        if (is_array($fields)) {
-            $fields = ObjectSerializer::serializeCollection($fields, 'multi', true);
-        }
-        $queryParams['fields'] = $fields;
-        if (is_array($list_id)) {
-            $list_id = ObjectSerializer::serializeCollection($list_id, '', true);
-        }
-        $queryParams['listId'] = $list_id;
-        if (is_array($lead_ids)) {
-            $lead_ids = ObjectSerializer::serializeCollection($lead_ids, 'multi', true);
-        }
-        $queryParams['leadIds'] = $lead_ids;
-        if (is_array($batch_size)) {
-            $batch_size = ObjectSerializer::serializeCollection($batch_size, '', true);
-        }
-        $queryParams['batchSize'] = $batch_size;
+        $queryParams['nextPageToken'] = ObjectSerializer::toQueryValue($next_page_token);
+        $queryParams['fields'] = ObjectSerializer::toQueryValue($fields);
+        $queryParams['listId'] = ObjectSerializer::toQueryValue($list_id);
+        $queryParams['leadIds'] = ObjectSerializer::toQueryValue($lead_ids);
+        $queryParams['batchSize'] = ObjectSerializer::toQueryValue($batch_size);
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
         $headers = $this->headerSelector->selectHeaders(

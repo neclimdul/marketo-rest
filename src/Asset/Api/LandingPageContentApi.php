@@ -398,10 +398,7 @@ class LandingPageContentApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($status)) {
-            $status = ObjectSerializer::serializeCollection($status, '', true);
-        }
-        $queryParams['status'] = $status;
+        $queryParams['status'] = ObjectSerializer::toQueryValue($status);
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
 

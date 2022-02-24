@@ -519,10 +519,7 @@ class FilesApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($name)) {
-            $name = ObjectSerializer::serializeCollection($name, '', true);
-        }
-        $queryParams['name'] = $name;
+        $queryParams['name'] = ObjectSerializer::toQueryValue($name);
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
         $headers = $this->headerSelector->selectHeaders(
@@ -669,10 +666,7 @@ class FilesApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($folder)) {
-            $folder = ObjectSerializer::serializeCollection($folder, '', true);
-        }
-        $queryParams['folder'] = $folder;
+        $queryParams['folder'] = ObjectSerializer::toQueryValue($folder);
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
         $headers = $this->headerSelector->selectHeaders(

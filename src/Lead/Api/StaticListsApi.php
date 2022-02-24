@@ -240,10 +240,7 @@ class StaticListsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($id)) {
-            $id = ObjectSerializer::serializeCollection($id, 'multi', true);
-        }
-        $queryParams['id'] = $id;
+        $queryParams['id'] = ObjectSerializer::toQueryValue($id);
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
 
@@ -413,10 +410,7 @@ class StaticListsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($id)) {
-            $id = ObjectSerializer::serializeCollection($id, 'multi', true);
-        }
-        $queryParams['id'] = $id;
+        $queryParams['id'] = ObjectSerializer::toQueryValue($id);
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
 
@@ -591,18 +585,9 @@ class StaticListsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($fields)) {
-            $fields = ObjectSerializer::serializeCollection($fields, 'multi', true);
-        }
-        $queryParams['fields'] = $fields;
-        if (is_array($batch_size)) {
-            $batch_size = ObjectSerializer::serializeCollection($batch_size, '', true);
-        }
-        $queryParams['batchSize'] = $batch_size;
-        if (is_array($next_page_token)) {
-            $next_page_token = ObjectSerializer::serializeCollection($next_page_token, '', true);
-        }
-        $queryParams['nextPageToken'] = $next_page_token;
+        $queryParams['fields'] = ObjectSerializer::toQueryValue($fields);
+        $queryParams['batchSize'] = ObjectSerializer::toQueryValue($batch_size);
+        $queryParams['nextPageToken'] = ObjectSerializer::toQueryValue($next_page_token);
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
 
@@ -766,18 +751,9 @@ class StaticListsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($fields)) {
-            $fields = ObjectSerializer::serializeCollection($fields, 'multi', true);
-        }
-        $queryParams['fields'] = $fields;
-        if (is_array($batch_size)) {
-            $batch_size = ObjectSerializer::serializeCollection($batch_size, '', true);
-        }
-        $queryParams['batchSize'] = $batch_size;
-        if (is_array($next_page_token)) {
-            $next_page_token = ObjectSerializer::serializeCollection($next_page_token, '', true);
-        }
-        $queryParams['nextPageToken'] = $next_page_token;
+        $queryParams['fields'] = ObjectSerializer::toQueryValue($fields);
+        $queryParams['batchSize'] = ObjectSerializer::toQueryValue($batch_size);
+        $queryParams['nextPageToken'] = ObjectSerializer::toQueryValue($next_page_token);
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
 
@@ -1089,30 +1065,12 @@ class StaticListsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($id)) {
-            $id = ObjectSerializer::serializeCollection($id, 'multi', true);
-        }
-        $queryParams['id'] = $id;
-        if (is_array($name)) {
-            $name = ObjectSerializer::serializeCollection($name, 'multi', true);
-        }
-        $queryParams['name'] = $name;
-        if (is_array($program_name)) {
-            $program_name = ObjectSerializer::serializeCollection($program_name, 'multi', true);
-        }
-        $queryParams['programName'] = $program_name;
-        if (is_array($workspace_name)) {
-            $workspace_name = ObjectSerializer::serializeCollection($workspace_name, 'multi', true);
-        }
-        $queryParams['workspaceName'] = $workspace_name;
-        if (is_array($batch_size)) {
-            $batch_size = ObjectSerializer::serializeCollection($batch_size, '', true);
-        }
-        $queryParams['batchSize'] = $batch_size;
-        if (is_array($next_page_token)) {
-            $next_page_token = ObjectSerializer::serializeCollection($next_page_token, '', true);
-        }
-        $queryParams['nextPageToken'] = $next_page_token;
+        $queryParams['id'] = ObjectSerializer::toQueryValue($id);
+        $queryParams['name'] = ObjectSerializer::toQueryValue($name);
+        $queryParams['programName'] = ObjectSerializer::toQueryValue($program_name);
+        $queryParams['workspaceName'] = ObjectSerializer::toQueryValue($workspace_name);
+        $queryParams['batchSize'] = ObjectSerializer::toQueryValue($batch_size);
+        $queryParams['nextPageToken'] = ObjectSerializer::toQueryValue($next_page_token);
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
         $headers = $this->headerSelector->selectHeaders(
@@ -1276,10 +1234,7 @@ class StaticListsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($id)) {
-            $id = ObjectSerializer::serializeCollection($id, 'multi', true);
-        }
-        $queryParams['id'] = $id;
+        $queryParams['id'] = ObjectSerializer::toQueryValue($id);
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
 

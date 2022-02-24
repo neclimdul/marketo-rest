@@ -230,10 +230,7 @@ class TagsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($name)) {
-            $name = ObjectSerializer::serializeCollection($name, '', true);
-        }
-        $queryParams['name'] = $name;
+        $queryParams['name'] = ObjectSerializer::toQueryValue($name);
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
         $headers = $this->headerSelector->selectHeaders(
@@ -374,14 +371,8 @@ class TagsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($max_return)) {
-            $max_return = ObjectSerializer::serializeCollection($max_return, '', true);
-        }
-        $queryParams['maxReturn'] = $max_return;
-        if (is_array($offset)) {
-            $offset = ObjectSerializer::serializeCollection($offset, '', true);
-        }
-        $queryParams['offset'] = $offset;
+        $queryParams['maxReturn'] = ObjectSerializer::toQueryValue($max_return);
+        $queryParams['offset'] = ObjectSerializer::toQueryValue($offset);
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
         $headers = $this->headerSelector->selectHeaders(

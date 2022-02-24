@@ -688,22 +688,10 @@ class BulkImportLeadsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($format)) {
-            $format = ObjectSerializer::serializeCollection($format, '', true);
-        }
-        $queryParams['format'] = $format;
-        if (is_array($lookup_field)) {
-            $lookup_field = ObjectSerializer::serializeCollection($lookup_field, '', true);
-        }
-        $queryParams['lookupField'] = $lookup_field;
-        if (is_array($partition_name)) {
-            $partition_name = ObjectSerializer::serializeCollection($partition_name, '', true);
-        }
-        $queryParams['partitionName'] = $partition_name;
-        if (is_array($list_id)) {
-            $list_id = ObjectSerializer::serializeCollection($list_id, '', true);
-        }
-        $queryParams['listId'] = $list_id;
+        $queryParams['format'] = ObjectSerializer::toQueryValue($format);
+        $queryParams['lookupField'] = ObjectSerializer::toQueryValue($lookup_field);
+        $queryParams['partitionName'] = ObjectSerializer::toQueryValue($partition_name);
+        $queryParams['listId'] = ObjectSerializer::toQueryValue($list_id);
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
 

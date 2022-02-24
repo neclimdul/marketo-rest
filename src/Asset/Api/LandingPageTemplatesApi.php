@@ -975,10 +975,7 @@ class LandingPageTemplatesApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($status)) {
-            $status = ObjectSerializer::serializeCollection($status, '', true);
-        }
-        $queryParams['status'] = $status;
+        $queryParams['status'] = ObjectSerializer::toQueryValue($status);
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
 
@@ -1127,10 +1124,7 @@ class LandingPageTemplatesApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($name)) {
-            $name = ObjectSerializer::serializeCollection($name, '', true);
-        }
-        $queryParams['name'] = $name;
+        $queryParams['name'] = ObjectSerializer::toQueryValue($name);
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
         $headers = $this->headerSelector->selectHeaders(
@@ -1277,10 +1271,7 @@ class LandingPageTemplatesApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($status)) {
-            $status = ObjectSerializer::serializeCollection($status, '', true);
-        }
-        $queryParams['status'] = $status;
+        $queryParams['status'] = ObjectSerializer::toQueryValue($status);
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
 
@@ -1438,22 +1429,10 @@ class LandingPageTemplatesApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($max_return)) {
-            $max_return = ObjectSerializer::serializeCollection($max_return, '', true);
-        }
-        $queryParams['maxReturn'] = $max_return;
-        if (is_array($offset)) {
-            $offset = ObjectSerializer::serializeCollection($offset, '', true);
-        }
-        $queryParams['offset'] = $offset;
-        if (is_array($status)) {
-            $status = ObjectSerializer::serializeCollection($status, '', true);
-        }
-        $queryParams['status'] = $status;
-        if (is_array($folder)) {
-            $folder = ObjectSerializer::serializeCollection($folder, '', true);
-        }
-        $queryParams['folder'] = $folder;
+        $queryParams['maxReturn'] = ObjectSerializer::toQueryValue($max_return);
+        $queryParams['offset'] = ObjectSerializer::toQueryValue($offset);
+        $queryParams['status'] = ObjectSerializer::toQueryValue($status);
+        $queryParams['folder'] = ObjectSerializer::toQueryValue($folder);
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
         $headers = $this->headerSelector->selectHeaders(

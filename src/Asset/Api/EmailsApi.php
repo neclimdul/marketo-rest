@@ -263,14 +263,8 @@ class EmailsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($name)) {
-            $name = ObjectSerializer::serializeCollection($name, '', true);
-        }
-        $queryParams['name'] = $name;
-        if (is_array($index)) {
-            $index = ObjectSerializer::serializeCollection($index, '', true);
-        }
-        $queryParams['index'] = $index;
+        $queryParams['name'] = ObjectSerializer::toQueryValue($name);
+        $queryParams['index'] = ObjectSerializer::toQueryValue($index);
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
 
@@ -1509,10 +1503,7 @@ class EmailsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($name)) {
-            $name = ObjectSerializer::serializeCollection($name, '', true);
-        }
-        $queryParams['name'] = $name;
+        $queryParams['name'] = ObjectSerializer::toQueryValue($name);
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
 
@@ -1671,10 +1662,7 @@ class EmailsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($status)) {
-            $status = ObjectSerializer::serializeCollection($status, '', true);
-        }
-        $queryParams['status'] = $status;
+        $queryParams['status'] = ObjectSerializer::toQueryValue($status);
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
 
@@ -1833,18 +1821,9 @@ class EmailsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($name)) {
-            $name = ObjectSerializer::serializeCollection($name, '', true);
-        }
-        $queryParams['name'] = $name;
-        if (is_array($status)) {
-            $status = ObjectSerializer::serializeCollection($status, '', true);
-        }
-        $queryParams['status'] = $status;
-        if (is_array($folder)) {
-            $folder = ObjectSerializer::serializeCollection($folder, '', true);
-        }
-        $queryParams['folder'] = $folder;
+        $queryParams['name'] = ObjectSerializer::toQueryValue($name);
+        $queryParams['status'] = ObjectSerializer::toQueryValue($status);
+        $queryParams['folder'] = ObjectSerializer::toQueryValue($folder);
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
         $headers = $this->headerSelector->selectHeaders(
@@ -2117,10 +2096,7 @@ class EmailsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($status)) {
-            $status = ObjectSerializer::serializeCollection($status, '', true);
-        }
-        $queryParams['status'] = $status;
+        $queryParams['status'] = ObjectSerializer::toQueryValue($status);
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
 
@@ -2285,10 +2261,7 @@ class EmailsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($status)) {
-            $status = ObjectSerializer::serializeCollection($status, '', true);
-        }
-        $queryParams['status'] = $status;
+        $queryParams['status'] = ObjectSerializer::toQueryValue($status);
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
 
@@ -2457,18 +2430,9 @@ class EmailsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($status)) {
-            $status = ObjectSerializer::serializeCollection($status, '', true);
-        }
-        $queryParams['status'] = $status;
-        if (is_array($lead_id)) {
-            $lead_id = ObjectSerializer::serializeCollection($lead_id, '', true);
-        }
-        $queryParams['leadId'] = $lead_id;
-        if (is_array($type)) {
-            $type = ObjectSerializer::serializeCollection($type, '', true);
-        }
-        $queryParams['type'] = $type;
+        $queryParams['status'] = ObjectSerializer::toQueryValue($status);
+        $queryParams['leadId'] = ObjectSerializer::toQueryValue($lead_id);
+        $queryParams['type'] = ObjectSerializer::toQueryValue($type);
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
 
@@ -2636,30 +2600,12 @@ class EmailsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($status)) {
-            $status = ObjectSerializer::serializeCollection($status, '', true);
-        }
-        $queryParams['status'] = $status;
-        if (is_array($folder)) {
-            $folder = ObjectSerializer::serializeCollection($folder, '', true);
-        }
-        $queryParams['folder'] = $folder;
-        if (is_array($offset)) {
-            $offset = ObjectSerializer::serializeCollection($offset, '', true);
-        }
-        $queryParams['offset'] = $offset;
-        if (is_array($max_return)) {
-            $max_return = ObjectSerializer::serializeCollection($max_return, '', true);
-        }
-        $queryParams['maxReturn'] = $max_return;
-        if (is_array($earliest_updated_at)) {
-            $earliest_updated_at = ObjectSerializer::serializeCollection($earliest_updated_at, '', true);
-        }
-        $queryParams['earliestUpdatedAt'] = $earliest_updated_at;
-        if (is_array($latest_updated_at)) {
-            $latest_updated_at = ObjectSerializer::serializeCollection($latest_updated_at, '', true);
-        }
-        $queryParams['latestUpdatedAt'] = $latest_updated_at;
+        $queryParams['status'] = ObjectSerializer::toQueryValue($status);
+        $queryParams['folder'] = ObjectSerializer::toQueryValue($folder);
+        $queryParams['offset'] = ObjectSerializer::toQueryValue($offset);
+        $queryParams['maxReturn'] = ObjectSerializer::toQueryValue($max_return);
+        $queryParams['earliestUpdatedAt'] = ObjectSerializer::toQueryValue($earliest_updated_at);
+        $queryParams['latestUpdatedAt'] = ObjectSerializer::toQueryValue($latest_updated_at);
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
         $headers = $this->headerSelector->selectHeaders(
@@ -3127,10 +3073,7 @@ class EmailsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($name)) {
-            $name = ObjectSerializer::serializeCollection($name, '', true);
-        }
-        $queryParams['name'] = $name;
+        $queryParams['name'] = ObjectSerializer::toQueryValue($name);
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
 

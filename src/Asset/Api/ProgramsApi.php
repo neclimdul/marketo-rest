@@ -388,26 +388,11 @@ class ProgramsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($max_return)) {
-            $max_return = ObjectSerializer::serializeCollection($max_return, '', true);
-        }
-        $queryParams['maxReturn'] = $max_return;
-        if (is_array($offset)) {
-            $offset = ObjectSerializer::serializeCollection($offset, '', true);
-        }
-        $queryParams['offset'] = $offset;
-        if (is_array($filter_type)) {
-            $filter_type = ObjectSerializer::serializeCollection($filter_type, '', true);
-        }
-        $queryParams['filterType'] = $filter_type;
-        if (is_array($earliest_updated_at)) {
-            $earliest_updated_at = ObjectSerializer::serializeCollection($earliest_updated_at, '', true);
-        }
-        $queryParams['earliestUpdatedAt'] = $earliest_updated_at;
-        if (is_array($latest_updated_at)) {
-            $latest_updated_at = ObjectSerializer::serializeCollection($latest_updated_at, '', true);
-        }
-        $queryParams['latestUpdatedAt'] = $latest_updated_at;
+        $queryParams['maxReturn'] = ObjectSerializer::toQueryValue($max_return);
+        $queryParams['offset'] = ObjectSerializer::toQueryValue($offset);
+        $queryParams['filterType'] = ObjectSerializer::toQueryValue($filter_type);
+        $queryParams['earliestUpdatedAt'] = ObjectSerializer::toQueryValue($earliest_updated_at);
+        $queryParams['latestUpdatedAt'] = ObjectSerializer::toQueryValue($latest_updated_at);
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
         $headers = $this->headerSelector->selectHeaders(
@@ -1155,18 +1140,9 @@ class ProgramsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($name)) {
-            $name = ObjectSerializer::serializeCollection($name, '', true);
-        }
-        $queryParams['name'] = $name;
-        if (is_array($include_tags)) {
-            $include_tags = ObjectSerializer::serializeCollection($include_tags, '', true);
-        }
-        $queryParams['includeTags'] = $include_tags;
-        if (is_array($include_costs)) {
-            $include_costs = ObjectSerializer::serializeCollection($include_costs, '', true);
-        }
-        $queryParams['includeCosts'] = $include_costs;
+        $queryParams['name'] = ObjectSerializer::toQueryValue($name);
+        $queryParams['includeTags'] = ObjectSerializer::toQueryValue($include_tags);
+        $queryParams['includeCosts'] = ObjectSerializer::toQueryValue($include_costs);
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
         $headers = $this->headerSelector->selectHeaders(
@@ -1329,22 +1305,10 @@ class ProgramsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($tag_type)) {
-            $tag_type = ObjectSerializer::serializeCollection($tag_type, '', true);
-        }
-        $queryParams['tagType'] = $tag_type;
-        if (is_array($tag_value)) {
-            $tag_value = ObjectSerializer::serializeCollection($tag_value, '', true);
-        }
-        $queryParams['tagValue'] = $tag_value;
-        if (is_array($max_return)) {
-            $max_return = ObjectSerializer::serializeCollection($max_return, '', true);
-        }
-        $queryParams['maxReturn'] = $max_return;
-        if (is_array($offset)) {
-            $offset = ObjectSerializer::serializeCollection($offset, '', true);
-        }
-        $queryParams['offset'] = $offset;
+        $queryParams['tagType'] = ObjectSerializer::toQueryValue($tag_type);
+        $queryParams['tagValue'] = ObjectSerializer::toQueryValue($tag_value);
+        $queryParams['maxReturn'] = ObjectSerializer::toQueryValue($max_return);
+        $queryParams['offset'] = ObjectSerializer::toQueryValue($offset);
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
         $headers = $this->headerSelector->selectHeaders(
@@ -1491,10 +1455,7 @@ class ProgramsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($include_rules)) {
-            $include_rules = ObjectSerializer::serializeCollection($include_rules, '', true);
-        }
-        $queryParams['includeRules'] = $include_rules;
+        $queryParams['includeRules'] = ObjectSerializer::toQueryValue($include_rules);
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
 

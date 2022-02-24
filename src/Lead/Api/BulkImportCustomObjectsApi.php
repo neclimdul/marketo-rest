@@ -732,10 +732,7 @@ class BulkImportCustomObjectsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($format)) {
-            $format = ObjectSerializer::serializeCollection($format, '', true);
-        }
-        $queryParams['format'] = $format;
+        $queryParams['format'] = ObjectSerializer::toQueryValue($format);
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
 

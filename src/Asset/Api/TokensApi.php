@@ -561,10 +561,7 @@ class TokensApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($folder_type)) {
-            $folder_type = ObjectSerializer::serializeCollection($folder_type, '', true);
-        }
-        $queryParams['folderType'] = $folder_type;
+        $queryParams['folderType'] = ObjectSerializer::toQueryValue($folder_type);
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
 

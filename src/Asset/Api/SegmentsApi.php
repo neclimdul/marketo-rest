@@ -224,10 +224,7 @@ class SegmentsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($status)) {
-            $status = ObjectSerializer::serializeCollection($status, '', true);
-        }
-        $queryParams['status'] = $status;
+        $queryParams['status'] = ObjectSerializer::toQueryValue($status);
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
         $headers = $this->headerSelector->selectHeaders(
@@ -384,18 +381,9 @@ class SegmentsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($status)) {
-            $status = ObjectSerializer::serializeCollection($status, '', true);
-        }
-        $queryParams['status'] = $status;
-        if (is_array($offset)) {
-            $offset = ObjectSerializer::serializeCollection($offset, '', true);
-        }
-        $queryParams['offset'] = $offset;
-        if (is_array($max_return)) {
-            $max_return = ObjectSerializer::serializeCollection($max_return, '', true);
-        }
-        $queryParams['maxReturn'] = $max_return;
+        $queryParams['status'] = ObjectSerializer::toQueryValue($status);
+        $queryParams['offset'] = ObjectSerializer::toQueryValue($offset);
+        $queryParams['maxReturn'] = ObjectSerializer::toQueryValue($max_return);
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
 
