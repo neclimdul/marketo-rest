@@ -372,14 +372,7 @@ class BulkExportProgramMembersApi
         );
         // for model (json/xml)
         if (!empty($export_program_member_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($export_program_member_request));
-            } elseif (!is_array($export_program_member_request)) {
-                $httpBody = (string) $export_program_member_request;
-            }
-            else {
-                $httpBody = '';
-            }
+            $httpBody = ObjectSerializer::handleBody($export_program_member_request, $headers['Content-Type'] === 'application/json');
         }
 
 

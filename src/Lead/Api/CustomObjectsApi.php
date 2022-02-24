@@ -250,14 +250,7 @@ class CustomObjectsApi
             ['application/json'],
             ['application/json']
         );
-        if ($headers['Content-Type'] === 'application/json') {
-          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($add_custom_object_type_fields_request));
-        } elseif (!is_array($add_custom_object_type_fields_request)) {
-          $httpBody = (string) $add_custom_object_type_fields_request;
-        }
-        else {
-          $httpBody = '';
-        }
+        $httpBody = ObjectSerializer::handleBody($add_custom_object_type_fields_request, $headers['Content-Type'] === 'application/json');
 
 
         $defaultHeaders = [];
@@ -557,14 +550,7 @@ class CustomObjectsApi
             ['application/json'],
             ['application/json']
         );
-        if ($headers['Content-Type'] === 'application/json') {
-          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($delete_custom_object_type_fields_request));
-        } elseif (!is_array($delete_custom_object_type_fields_request)) {
-          $httpBody = (string) $delete_custom_object_type_fields_request;
-        }
-        else {
-          $httpBody = '';
-        }
+        $httpBody = ObjectSerializer::handleBody($delete_custom_object_type_fields_request, $headers['Content-Type'] === 'application/json');
 
 
         $defaultHeaders = [];
@@ -860,14 +846,7 @@ class CustomObjectsApi
         );
         // for model (json/xml)
         if (!empty($delete_custom_object_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($delete_custom_object_request));
-            } elseif (!is_array($delete_custom_object_request)) {
-                $httpBody = (string) $delete_custom_object_request;
-            }
-            else {
-                $httpBody = '';
-            }
+            $httpBody = ObjectSerializer::handleBody($delete_custom_object_request, $headers['Content-Type'] === 'application/json');
         }
 
 
@@ -1904,14 +1883,7 @@ class CustomObjectsApi
         );
         // for model (json/xml)
         if (!empty($custom_object_lookup_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($custom_object_lookup_request));
-            } elseif (!is_array($custom_object_lookup_request)) {
-                $httpBody = (string) $custom_object_lookup_request;
-            }
-            else {
-                $httpBody = '';
-            }
+            $httpBody = ObjectSerializer::handleBody($custom_object_lookup_request, $headers['Content-Type'] === 'application/json');
         }
 
 
@@ -2328,14 +2300,7 @@ class CustomObjectsApi
             ['application/json'],
             ['application/json']
         );
-        if ($headers['Content-Type'] === 'application/json') {
-          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($sync_custom_object_type_request));
-        } elseif (!is_array($sync_custom_object_type_request)) {
-          $httpBody = (string) $sync_custom_object_type_request;
-        }
-        else {
-          $httpBody = '';
-        }
+        $httpBody = ObjectSerializer::handleBody($sync_custom_object_type_request, $headers['Content-Type'] === 'application/json');
 
 
         $defaultHeaders = [];
@@ -2491,14 +2456,7 @@ class CustomObjectsApi
             ['application/json'],
             ['application/json']
         );
-        if ($headers['Content-Type'] === 'application/json') {
-          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($sync_custom_object_request));
-        } elseif (!is_array($sync_custom_object_request)) {
-          $httpBody = (string) $sync_custom_object_request;
-        }
-        else {
-          $httpBody = '';
-        }
+        $httpBody = ObjectSerializer::handleBody($sync_custom_object_request, $headers['Content-Type'] === 'application/json');
 
 
         $defaultHeaders = [];
@@ -2670,14 +2628,7 @@ class CustomObjectsApi
             ['application/json'],
             ['application/json']
         );
-        if ($headers['Content-Type'] === 'application/json') {
-          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($update_custom_object_type_field_request));
-        } elseif (!is_array($update_custom_object_type_field_request)) {
-          $httpBody = (string) $update_custom_object_type_field_request;
-        }
-        else {
-          $httpBody = '';
-        }
+        $httpBody = ObjectSerializer::handleBody($update_custom_object_type_field_request, $headers['Content-Type'] === 'application/json');
 
 
         $defaultHeaders = [];

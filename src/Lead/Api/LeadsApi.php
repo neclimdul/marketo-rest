@@ -410,14 +410,7 @@ class LeadsApi
             ['application/json'],
             ['application/json']
         );
-        if ($headers['Content-Type'] === 'application/json') {
-          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($change_lead_program_status_request));
-        } elseif (!is_array($change_lead_program_status_request)) {
-          $httpBody = (string) $change_lead_program_status_request;
-        }
-        else {
-          $httpBody = '';
-        }
+        $httpBody = ObjectSerializer::handleBody($change_lead_program_status_request, $headers['Content-Type'] === 'application/json');
 
 
         $defaultHeaders = [];
@@ -555,14 +548,7 @@ class LeadsApi
             ['application/json'],
             ['application/json']
         );
-        if ($headers['Content-Type'] === 'application/json') {
-          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($create_lead_field_request));
-        } elseif (!is_array($create_lead_field_request)) {
-          $httpBody = (string) $create_lead_field_request;
-        }
-        else {
-          $httpBody = '';
-        }
+        $httpBody = ObjectSerializer::handleBody($create_lead_field_request, $headers['Content-Type'] === 'application/json');
 
 
         $defaultHeaders = [];
@@ -706,14 +692,7 @@ class LeadsApi
         );
         // for model (json/xml)
         if (!empty($delete_lead_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($delete_lead_request));
-            } elseif (!is_array($delete_lead_request)) {
-                $httpBody = (string) $delete_lead_request;
-            }
-            else {
-                $httpBody = '';
-            }
+            $httpBody = ObjectSerializer::handleBody($delete_lead_request, $headers['Content-Type'] === 'application/json');
         }
 
 
@@ -2816,14 +2795,7 @@ class LeadsApi
             ['application/json'],
             ['application/json']
         );
-        if ($headers['Content-Type'] === 'application/json') {
-          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($push_lead_to_marketo_request));
-        } elseif (!is_array($push_lead_to_marketo_request)) {
-          $httpBody = (string) $push_lead_to_marketo_request;
-        }
-        else {
-          $httpBody = '';
-        }
+        $httpBody = ObjectSerializer::handleBody($push_lead_to_marketo_request, $headers['Content-Type'] === 'application/json');
 
 
         $defaultHeaders = [];
@@ -2961,14 +2933,7 @@ class LeadsApi
             ['application/json'],
             ['application/json']
         );
-        if ($headers['Content-Type'] === 'application/json') {
-          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($submit_form_request));
-        } elseif (!is_array($submit_form_request)) {
-          $httpBody = (string) $submit_form_request;
-        }
-        else {
-          $httpBody = '';
-        }
+        $httpBody = ObjectSerializer::handleBody($submit_form_request, $headers['Content-Type'] === 'application/json');
 
 
         $defaultHeaders = [];
@@ -3106,14 +3071,7 @@ class LeadsApi
             ['application/json'],
             ['application/json']
         );
-        if ($headers['Content-Type'] === 'application/json') {
-          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($sync_lead_request));
-        } elseif (!is_array($sync_lead_request)) {
-          $httpBody = (string) $sync_lead_request;
-        }
-        else {
-          $httpBody = '';
-        }
+        $httpBody = ObjectSerializer::handleBody($sync_lead_request, $headers['Content-Type'] === 'application/json');
 
 
         $defaultHeaders = [];
@@ -3269,14 +3227,7 @@ class LeadsApi
             ['application/json'],
             ['application/json']
         );
-        if ($headers['Content-Type'] === 'application/json') {
-          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($update_lead_field_request));
-        } elseif (!is_array($update_lead_field_request)) {
-          $httpBody = (string) $update_lead_field_request;
-        }
-        else {
-          $httpBody = '';
-        }
+        $httpBody = ObjectSerializer::handleBody($update_lead_field_request, $headers['Content-Type'] === 'application/json');
 
 
         $defaultHeaders = [];
@@ -3414,14 +3365,7 @@ class LeadsApi
             ['application/json'],
             ['application/json']
         );
-        if ($headers['Content-Type'] === 'application/json') {
-          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($update_lead_partition_request));
-        } elseif (!is_array($update_lead_partition_request)) {
-          $httpBody = (string) $update_lead_partition_request;
-        }
-        else {
-          $httpBody = '';
-        }
+        $httpBody = ObjectSerializer::handleBody($update_lead_partition_request, $headers['Content-Type'] === 'application/json');
 
 
         $defaultHeaders = [];

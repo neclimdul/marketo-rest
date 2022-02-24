@@ -250,14 +250,7 @@ class TokensApi
             ['application/json'],
             ['application/x-www-form-urlencoded']
         );
-        if ($headers['Content-Type'] === 'application/json') {
-          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($create_token_request));
-        } elseif (!is_array($create_token_request)) {
-          $httpBody = (string) $create_token_request;
-        }
-        else {
-          $httpBody = '';
-        }
+        $httpBody = ObjectSerializer::handleBody($create_token_request, $headers['Content-Type'] === 'application/json');
 
 
         $defaultHeaders = [];
@@ -413,14 +406,7 @@ class TokensApi
             ['application/json'],
             ['application/x-www-form-urlencoded']
         );
-        if ($headers['Content-Type'] === 'application/json') {
-          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($delete_token_request));
-        } elseif (!is_array($delete_token_request)) {
-          $httpBody = (string) $delete_token_request;
-        }
-        else {
-          $httpBody = '';
-        }
+        $httpBody = ObjectSerializer::handleBody($delete_token_request, $headers['Content-Type'] === 'application/json');
 
 
         $defaultHeaders = [];

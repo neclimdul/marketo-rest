@@ -582,14 +582,7 @@ class EmailsApi
             ['application/json'],
             ['application/x-www-form-urlencoded']
         );
-        if ($headers['Content-Type'] === 'application/json') {
-          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($clone_email_request));
-        } elseif (!is_array($clone_email_request)) {
-          $httpBody = (string) $clone_email_request;
-        }
-        else {
-          $httpBody = '';
-        }
+        $httpBody = ObjectSerializer::handleBody($clone_email_request, $headers['Content-Type'] === 'application/json');
 
 
         $defaultHeaders = [];
@@ -745,14 +738,7 @@ class EmailsApi
             ['application/json'],
             ['multipart/form-data']
         );
-        if ($headers['Content-Type'] === 'application/json') {
-          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($update_email_full_content_request));
-        } elseif (!is_array($update_email_full_content_request)) {
-          $httpBody = (string) $update_email_full_content_request;
-        }
-        else {
-          $httpBody = '';
-        }
+        $httpBody = ObjectSerializer::handleBody($update_email_full_content_request, $headers['Content-Type'] === 'application/json');
 
 
         $defaultHeaders = [];
@@ -890,14 +876,7 @@ class EmailsApi
             ['application/json'],
             ['application/x-www-form-urlencoded']
         );
-        if ($headers['Content-Type'] === 'application/json') {
-          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($create_email_request));
-        } elseif (!is_array($create_email_request)) {
-          $httpBody = (string) $create_email_request;
-        }
-        else {
-          $httpBody = '';
-        }
+        $httpBody = ObjectSerializer::handleBody($create_email_request, $headers['Content-Type'] === 'application/json');
 
 
         $defaultHeaders = [];
@@ -2907,14 +2886,7 @@ class EmailsApi
         );
         // for model (json/xml)
         if (!empty($positions)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($positions));
-            } elseif (!is_array($positions)) {
-                $httpBody = (string) $positions;
-            }
-            else {
-                $httpBody = '';
-            }
+            $httpBody = ObjectSerializer::handleBody($positions, $headers['Content-Type'] === 'application/json');
         }
 
 
@@ -3247,14 +3219,7 @@ class EmailsApi
             ['application/json'],
             ['application/x-www-form-urlencoded']
         );
-        if ($headers['Content-Type'] === 'application/json') {
-          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($send_sample_email_request));
-        } elseif (!is_array($send_sample_email_request)) {
-          $httpBody = (string) $send_sample_email_request;
-        }
-        else {
-          $httpBody = '';
-        }
+        $httpBody = ObjectSerializer::handleBody($send_sample_email_request, $headers['Content-Type'] === 'application/json');
 
 
         $defaultHeaders = [];
@@ -3570,14 +3535,7 @@ class EmailsApi
             ['application/json'],
             ['application/x-www-form-urlencoded']
         );
-        if ($headers['Content-Type'] === 'application/json') {
-          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($request));
-        } elseif (!is_array($request)) {
-          $httpBody = (string) $request;
-        }
-        else {
-          $httpBody = '';
-        }
+        $httpBody = ObjectSerializer::handleBody($request, $headers['Content-Type'] === 'application/json');
 
 
         $defaultHeaders = [];
@@ -3733,14 +3691,7 @@ class EmailsApi
             ['application/json'],
             ['application/x-www-form-urlencoded']
         );
-        if ($headers['Content-Type'] === 'application/json') {
-          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($update_email_request));
-        } elseif (!is_array($update_email_request)) {
-          $httpBody = (string) $update_email_request;
-        }
-        else {
-          $httpBody = '';
-        }
+        $httpBody = ObjectSerializer::handleBody($update_email_request, $headers['Content-Type'] === 'application/json');
 
 
         $defaultHeaders = [];
@@ -3912,14 +3863,7 @@ class EmailsApi
             ['application/json'],
             ['application/x-www-form-urlencoded']
         );
-        if ($headers['Content-Type'] === 'application/json') {
-          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($request));
-        } elseif (!is_array($request)) {
-          $httpBody = (string) $request;
-        }
-        else {
-          $httpBody = '';
-        }
+        $httpBody = ObjectSerializer::handleBody($request, $headers['Content-Type'] === 'application/json');
 
 
         $defaultHeaders = [];
@@ -4075,14 +4019,7 @@ class EmailsApi
             ['application/json'],
             ['application/x-www-form-urlencoded']
         );
-        if ($headers['Content-Type'] === 'application/json') {
-          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($update_email_request));
-        } elseif (!is_array($update_email_request)) {
-          $httpBody = (string) $update_email_request;
-        }
-        else {
-          $httpBody = '';
-        }
+        $httpBody = ObjectSerializer::handleBody($update_email_request, $headers['Content-Type'] === 'application/json');
 
 
         $defaultHeaders = [];
@@ -4250,14 +4187,7 @@ class EmailsApi
         );
         // for model (json/xml)
         if (!empty($update_variable_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($update_variable_request));
-            } elseif (!is_array($update_variable_request)) {
-                $httpBody = (string) $update_variable_request;
-            }
-            else {
-                $httpBody = '';
-            }
+            $httpBody = ObjectSerializer::handleBody($update_variable_request, $headers['Content-Type'] === 'application/json');
         }
 
 

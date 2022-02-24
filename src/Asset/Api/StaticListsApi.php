@@ -232,14 +232,7 @@ class StaticListsApi
             ['application/json'],
             ['application/x-www-form-urlencoded']
         );
-        if ($headers['Content-Type'] === 'application/json') {
-          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($create_static_list_request));
-        } elseif (!is_array($create_static_list_request)) {
-          $httpBody = (string) $create_static_list_request;
-        }
-        else {
-          $httpBody = '';
-        }
+        $httpBody = ObjectSerializer::handleBody($create_static_list_request, $headers['Content-Type'] === 'application/json');
 
 
         $defaultHeaders = [];
@@ -985,14 +978,7 @@ class StaticListsApi
             ['application/json'],
             ['application/x-www-form-urlencoded']
         );
-        if ($headers['Content-Type'] === 'application/json') {
-          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($update_static_list_request));
-        } elseif (!is_array($update_static_list_request)) {
-          $httpBody = (string) $update_static_list_request;
-        }
-        else {
-          $httpBody = '';
-        }
+        $httpBody = ObjectSerializer::handleBody($update_static_list_request, $headers['Content-Type'] === 'application/json');
 
 
         $defaultHeaders = [];

@@ -394,14 +394,7 @@ class EmailTemplatesApi
             ['application/json'],
             ['application/x-www-form-urlencoded']
         );
-        if ($headers['Content-Type'] === 'application/json') {
-          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($clone_email_template_request));
-        } elseif (!is_array($clone_email_template_request)) {
-          $httpBody = (string) $clone_email_template_request;
-        }
-        else {
-          $httpBody = '';
-        }
+        $httpBody = ObjectSerializer::handleBody($clone_email_template_request, $headers['Content-Type'] === 'application/json');
 
 
         $defaultHeaders = [];
@@ -539,14 +532,7 @@ class EmailTemplatesApi
             ['application/json'],
             ['multipart/form-data']
         );
-        if ($headers['Content-Type'] === 'application/json') {
-          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($create_email_template_request));
-        } elseif (!is_array($create_email_template_request)) {
-          $httpBody = (string) $create_email_template_request;
-        }
-        else {
-          $httpBody = '';
-        }
+        $httpBody = ObjectSerializer::handleBody($create_email_template_request, $headers['Content-Type'] === 'application/json');
 
 
         $defaultHeaders = [];
@@ -1894,14 +1880,7 @@ class EmailTemplatesApi
         );
         // for model (json/xml)
         if (!empty($update_email_template_content_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($update_email_template_content_request));
-            } elseif (!is_array($update_email_template_content_request)) {
-                $httpBody = (string) $update_email_template_content_request;
-            }
-            else {
-                $httpBody = '';
-            }
+            $httpBody = ObjectSerializer::handleBody($update_email_template_content_request, $headers['Content-Type'] === 'application/json');
         }
 
 
@@ -2058,14 +2037,7 @@ class EmailTemplatesApi
             ['application/json'],
             ['application/x-www-form-urlencoded']
         );
-        if ($headers['Content-Type'] === 'application/json') {
-          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($update_email_meta_data_request));
-        } elseif (!is_array($update_email_meta_data_request)) {
-          $httpBody = (string) $update_email_meta_data_request;
-        }
-        else {
-          $httpBody = '';
-        }
+        $httpBody = ObjectSerializer::handleBody($update_email_meta_data_request, $headers['Content-Type'] === 'application/json');
 
 
         $defaultHeaders = [];

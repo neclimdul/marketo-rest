@@ -394,14 +394,7 @@ class LandingPageTemplatesApi
             ['application/json'],
             ['application/x-www-form-urlencoded']
         );
-        if ($headers['Content-Type'] === 'application/json') {
-          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($clone_lp_template_request));
-        } elseif (!is_array($clone_lp_template_request)) {
-          $httpBody = (string) $clone_lp_template_request;
-        }
-        else {
-          $httpBody = '';
-        }
+        $httpBody = ObjectSerializer::handleBody($clone_lp_template_request, $headers['Content-Type'] === 'application/json');
 
 
         $defaultHeaders = [];
@@ -539,14 +532,7 @@ class LandingPageTemplatesApi
             ['application/json'],
             ['application/x-www-form-urlencoded']
         );
-        if ($headers['Content-Type'] === 'application/json') {
-          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($create_lp_template_request));
-        } elseif (!is_array($create_lp_template_request)) {
-          $httpBody = (string) $create_lp_template_request;
-        }
-        else {
-          $httpBody = '';
-        }
+        $httpBody = ObjectSerializer::handleBody($create_lp_template_request, $headers['Content-Type'] === 'application/json');
 
 
         $defaultHeaders = [];
@@ -1937,14 +1923,7 @@ class LandingPageTemplatesApi
             ['application/json'],
             ['application/x-www-form-urlencoded']
         );
-        if ($headers['Content-Type'] === 'application/json') {
-          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($update_lp_template_request));
-        } elseif (!is_array($update_lp_template_request)) {
-          $httpBody = (string) $update_lp_template_request;
-        }
-        else {
-          $httpBody = '';
-        }
+        $httpBody = ObjectSerializer::handleBody($update_lp_template_request, $headers['Content-Type'] === 'application/json');
 
 
         $defaultHeaders = [];

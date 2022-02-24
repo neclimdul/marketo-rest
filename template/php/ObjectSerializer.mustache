@@ -424,4 +424,23 @@ class ObjectSerializer
         }
     }
 
+    /**
+     * Convert string body to postable value.
+     *
+     * @todo better name
+     * @todo handle form encoding?
+     *
+     * @param mixed $object
+     * @param bool $json
+     * @return string
+     */
+    public static function handleBody($object, bool $json): string {
+        if ($json) {
+            return \GuzzleHttp\json_encode(static::sanitizeForSerialization($object));
+        } elseif (!is_array($object)) {
+            return (string) $object;
+        }
+        return '';
+    }
+
 }
