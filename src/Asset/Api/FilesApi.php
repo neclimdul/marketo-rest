@@ -232,14 +232,7 @@ class FilesApi
             ['application/json'],
             ['multipart/form-data']
         );
-        if ($headers['Content-Type'] === 'application/json') {
-          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($create_file_request));
-        } elseif (!is_array($create_file_request)) {
-          $httpBody = (string) $create_file_request;
-        }
-        else {
-          $httpBody = '';
-        }
+        $httpBody = ObjectSerializer::toBodyValue($create_file_request, $headers['Content-Type'] === 'application/json');
 
 
         $defaultHeaders = [];
@@ -673,14 +666,7 @@ class FilesApi
             ['application/json'],
             ['application/json']
         );
-        if ($headers['Content-Type'] === 'application/json') {
-          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($get_files_request));
-        } elseif (!is_array($get_files_request)) {
-          $httpBody = (string) $get_files_request;
-        }
-        else {
-          $httpBody = '';
-        }
+        $httpBody = ObjectSerializer::toBodyValue($get_files_request, $headers['Content-Type'] === 'application/json');
 
 
         $defaultHeaders = [];

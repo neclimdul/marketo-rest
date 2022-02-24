@@ -406,14 +406,7 @@ class BulkExportCustomObjectsApi
         );
         // for model (json/xml)
         if (!empty($export_custom_object_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($export_custom_object_request));
-            } elseif (!is_array($export_custom_object_request)) {
-                $httpBody = (string) $export_custom_object_request;
-            }
-            else {
-                $httpBody = '';
-            }
+            $httpBody = ObjectSerializer::toBodyValue($export_custom_object_request, $headers['Content-Type'] === 'application/json');
         }
 
 

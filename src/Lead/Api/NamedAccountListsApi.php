@@ -250,14 +250,7 @@ class NamedAccountListsApi
             ['application/json'],
             ['application/json']
         );
-        if ($headers['Content-Type'] === 'application/json') {
-          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($add_named_account_list_member_request));
-        } elseif (!is_array($add_named_account_list_member_request)) {
-          $httpBody = (string) $add_named_account_list_member_request;
-        }
-        else {
-          $httpBody = '';
-        }
+        $httpBody = ObjectSerializer::toBodyValue($add_named_account_list_member_request, $headers['Content-Type'] === 'application/json');
 
 
         $defaultHeaders = [];
@@ -395,14 +388,7 @@ class NamedAccountListsApi
             ['application/json'],
             ['application/json']
         );
-        if ($headers['Content-Type'] === 'application/json') {
-          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($delete_named_account_list_request));
-        } elseif (!is_array($delete_named_account_list_request)) {
-          $httpBody = (string) $delete_named_account_list_request;
-        }
-        else {
-          $httpBody = '';
-        }
+        $httpBody = ObjectSerializer::toBodyValue($delete_named_account_list_request, $headers['Content-Type'] === 'application/json');
 
 
         $defaultHeaders = [];
@@ -890,14 +876,7 @@ class NamedAccountListsApi
             ['application/json'],
             ['application/json']
         );
-        if ($headers['Content-Type'] === 'application/json') {
-          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($remove_named_account_list_member_request));
-        } elseif (!is_array($remove_named_account_list_member_request)) {
-          $httpBody = (string) $remove_named_account_list_member_request;
-        }
-        else {
-          $httpBody = '';
-        }
+        $httpBody = ObjectSerializer::toBodyValue($remove_named_account_list_member_request, $headers['Content-Type'] === 'application/json');
 
 
         $defaultHeaders = [];
@@ -1035,14 +1014,7 @@ class NamedAccountListsApi
             ['application/json'],
             ['application/json']
         );
-        if ($headers['Content-Type'] === 'application/json') {
-          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($sync_named_account_list_request));
-        } elseif (!is_array($sync_named_account_list_request)) {
-          $httpBody = (string) $sync_named_account_list_request;
-        }
-        else {
-          $httpBody = '';
-        }
+        $httpBody = ObjectSerializer::toBodyValue($sync_named_account_list_request, $headers['Content-Type'] === 'application/json');
 
 
         $defaultHeaders = [];

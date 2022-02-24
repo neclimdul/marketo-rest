@@ -562,14 +562,7 @@ class CampaignsApi
         );
         // for model (json/xml)
         if (!empty($schedule_campaign_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($schedule_campaign_request));
-            } elseif (!is_array($schedule_campaign_request)) {
-                $httpBody = (string) $schedule_campaign_request;
-            }
-            else {
-                $httpBody = '';
-            }
+            $httpBody = ObjectSerializer::toBodyValue($schedule_campaign_request, $headers['Content-Type'] === 'application/json');
         }
 
 
@@ -722,14 +715,7 @@ class CampaignsApi
         );
         // for model (json/xml)
         if (!empty($trigger_campaign_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($trigger_campaign_request));
-            } elseif (!is_array($trigger_campaign_request)) {
-                $httpBody = (string) $trigger_campaign_request;
-            }
-            else {
-                $httpBody = '';
-            }
+            $httpBody = ObjectSerializer::toBodyValue($trigger_campaign_request, $headers['Content-Type'] === 'application/json');
         }
 
 

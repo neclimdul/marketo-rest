@@ -228,14 +228,7 @@ class OpportunitiesApi
         );
         // for model (json/xml)
         if (!empty($delete_custom_object_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($delete_custom_object_request));
-            } elseif (!is_array($delete_custom_object_request)) {
-                $httpBody = (string) $delete_custom_object_request;
-            }
-            else {
-                $httpBody = '';
-            }
+            $httpBody = ObjectSerializer::toBodyValue($delete_custom_object_request, $headers['Content-Type'] === 'application/json');
         }
 
 
@@ -370,14 +363,7 @@ class OpportunitiesApi
         );
         // for model (json/xml)
         if (!empty($delete_custom_object_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($delete_custom_object_request));
-            } elseif (!is_array($delete_custom_object_request)) {
-                $httpBody = (string) $delete_custom_object_request;
-            }
-            else {
-                $httpBody = '';
-            }
+            $httpBody = ObjectSerializer::toBodyValue($delete_custom_object_request, $headers['Content-Type'] === 'application/json');
         }
 
 
@@ -810,14 +796,7 @@ class OpportunitiesApi
         );
         // for model (json/xml)
         if (!empty($custom_object_lookup_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($custom_object_lookup_request));
-            } elseif (!is_array($custom_object_lookup_request)) {
-                $httpBody = (string) $custom_object_lookup_request;
-            }
-            else {
-                $httpBody = '';
-            }
+            $httpBody = ObjectSerializer::toBodyValue($custom_object_lookup_request, $headers['Content-Type'] === 'application/json');
         }
 
 
@@ -1284,14 +1263,7 @@ class OpportunitiesApi
         );
         // for model (json/xml)
         if (!empty($custom_object_lookup_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($custom_object_lookup_request));
-            } elseif (!is_array($custom_object_lookup_request)) {
-                $httpBody = (string) $custom_object_lookup_request;
-            }
-            else {
-                $httpBody = '';
-            }
+            $httpBody = ObjectSerializer::toBodyValue($custom_object_lookup_request, $headers['Content-Type'] === 'application/json');
         }
 
 
@@ -1430,14 +1402,7 @@ class OpportunitiesApi
             ['application/json'],
             ['application/json']
         );
-        if ($headers['Content-Type'] === 'application/json') {
-          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($sync_custom_object_request));
-        } elseif (!is_array($sync_custom_object_request)) {
-          $httpBody = (string) $sync_custom_object_request;
-        }
-        else {
-          $httpBody = '';
-        }
+        $httpBody = ObjectSerializer::toBodyValue($sync_custom_object_request, $headers['Content-Type'] === 'application/json');
 
 
         $defaultHeaders = [];
@@ -1575,14 +1540,7 @@ class OpportunitiesApi
             ['application/json'],
             ['application/json']
         );
-        if ($headers['Content-Type'] === 'application/json') {
-          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($sync_custom_object_request));
-        } elseif (!is_array($sync_custom_object_request)) {
-          $httpBody = (string) $sync_custom_object_request;
-        }
-        else {
-          $httpBody = '';
-        }
+        $httpBody = ObjectSerializer::toBodyValue($sync_custom_object_request, $headers['Content-Type'] === 'application/json');
 
 
         $defaultHeaders = [];

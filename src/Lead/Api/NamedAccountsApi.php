@@ -232,14 +232,7 @@ class NamedAccountsApi
             ['application/json'],
             ['application/json']
         );
-        if ($headers['Content-Type'] === 'application/json') {
-          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($delete_account_request));
-        } elseif (!is_array($delete_account_request)) {
-          $httpBody = (string) $delete_account_request;
-        }
-        else {
-          $httpBody = '';
-        }
+        $httpBody = ObjectSerializer::toBodyValue($delete_account_request, $headers['Content-Type'] === 'application/json');
 
 
         $defaultHeaders = [];
@@ -961,14 +954,7 @@ class NamedAccountsApi
             ['application/json'],
             ['application/json']
         );
-        if ($headers['Content-Type'] === 'application/json') {
-          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($sync_account_request));
-        } elseif (!is_array($sync_account_request)) {
-          $httpBody = (string) $sync_account_request;
-        }
-        else {
-          $httpBody = '';
-        }
+        $httpBody = ObjectSerializer::toBodyValue($sync_account_request, $headers['Content-Type'] === 'application/json');
 
 
         $defaultHeaders = [];

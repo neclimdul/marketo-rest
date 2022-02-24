@@ -554,14 +554,7 @@ class ProgramsApi
             ['application/json'],
             ['application/x-www-form-urlencoded']
         );
-        if ($headers['Content-Type'] === 'application/json') {
-          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($clone_program_request));
-        } elseif (!is_array($clone_program_request)) {
-          $httpBody = (string) $clone_program_request;
-        }
-        else {
-          $httpBody = '';
-        }
+        $httpBody = ObjectSerializer::toBodyValue($clone_program_request, $headers['Content-Type'] === 'application/json');
 
 
         $defaultHeaders = [];
@@ -699,14 +692,7 @@ class ProgramsApi
             ['application/json'],
             ['application/x-www-form-urlencoded']
         );
-        if ($headers['Content-Type'] === 'application/json') {
-          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($create_program_request));
-        } elseif (!is_array($create_program_request)) {
-          $httpBody = (string) $create_program_request;
-        }
-        else {
-          $httpBody = '';
-        }
+        $httpBody = ObjectSerializer::toBodyValue($create_program_request, $headers['Content-Type'] === 'application/json');
 
 
         $defaultHeaders = [];
@@ -1768,14 +1754,7 @@ class ProgramsApi
             ['application/json'],
             ['application/x-www-form-urlencoded']
         );
-        if ($headers['Content-Type'] === 'application/json') {
-          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($update_program_request));
-        } elseif (!is_array($update_program_request)) {
-          $httpBody = (string) $update_program_request;
-        }
-        else {
-          $httpBody = '';
-        }
+        $httpBody = ObjectSerializer::toBodyValue($update_program_request, $headers['Content-Type'] === 'application/json');
 
 
         $defaultHeaders = [];

@@ -232,14 +232,7 @@ class FoldersApi
             ['application/json'],
             ['application/x-www-form-urlencoded']
         );
-        if ($headers['Content-Type'] === 'application/json') {
-          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($create_folder_request));
-        } elseif (!is_array($create_folder_request)) {
-          $httpBody = (string) $create_folder_request;
-        }
-        else {
-          $httpBody = '';
-        }
+        $httpBody = ObjectSerializer::toBodyValue($create_folder_request, $headers['Content-Type'] === 'application/json');
 
 
         $defaultHeaders = [];
@@ -1246,14 +1239,7 @@ class FoldersApi
             ['application/json'],
             ['application/x-www-form-urlencoded']
         );
-        if ($headers['Content-Type'] === 'application/json') {
-          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($update_folder_request));
-        } elseif (!is_array($update_folder_request)) {
-          $httpBody = (string) $update_folder_request;
-        }
-        else {
-          $httpBody = '';
-        }
+        $httpBody = ObjectSerializer::toBodyValue($update_folder_request, $headers['Content-Type'] === 'application/json');
 
 
         $defaultHeaders = [];

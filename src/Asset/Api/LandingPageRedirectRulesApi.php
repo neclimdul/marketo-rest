@@ -232,14 +232,7 @@ class LandingPageRedirectRulesApi
             ['application/json'],
             ['application/x-www-form-urlencoded']
         );
-        if ($headers['Content-Type'] === 'application/json') {
-          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($create_landing_page_redirect_rule_request));
-        } elseif (!is_array($create_landing_page_redirect_rule_request)) {
-          $httpBody = (string) $create_landing_page_redirect_rule_request;
-        }
-        else {
-          $httpBody = '';
-        }
+        $httpBody = ObjectSerializer::toBodyValue($create_landing_page_redirect_rule_request, $headers['Content-Type'] === 'application/json');
 
 
         $defaultHeaders = [];
@@ -991,14 +984,7 @@ class LandingPageRedirectRulesApi
             ['application/json'],
             ['application/x-www-form-urlencoded']
         );
-        if ($headers['Content-Type'] === 'application/json') {
-          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($update_landing_page_redirect_rule_request));
-        } elseif (!is_array($update_landing_page_redirect_rule_request)) {
-          $httpBody = (string) $update_landing_page_redirect_rule_request;
-        }
-        else {
-          $httpBody = '';
-        }
+        $httpBody = ObjectSerializer::toBodyValue($update_landing_page_redirect_rule_request, $headers['Content-Type'] === 'application/json');
 
 
         $defaultHeaders = [];

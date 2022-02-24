@@ -372,14 +372,7 @@ class BulkExportActivitiesApi
         );
         // for model (json/xml)
         if (!empty($export_activity_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($export_activity_request));
-            } elseif (!is_array($export_activity_request)) {
-                $httpBody = (string) $export_activity_request;
-            }
-            else {
-                $httpBody = '';
-            }
+            $httpBody = ObjectSerializer::toBodyValue($export_activity_request, $headers['Content-Type'] === 'application/json');
         }
 
 

@@ -390,14 +390,7 @@ class SnippetsApi
         );
         // for model (json/xml)
         if (!empty($clone_snippet_request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($clone_snippet_request));
-            } elseif (!is_array($clone_snippet_request)) {
-                $httpBody = (string) $clone_snippet_request;
-            }
-            else {
-                $httpBody = '';
-            }
+            $httpBody = ObjectSerializer::toBodyValue($clone_snippet_request, $headers['Content-Type'] === 'application/json');
         }
 
 
@@ -536,14 +529,7 @@ class SnippetsApi
             ['application/json'],
             ['application/x-www-form-urlencoded']
         );
-        if ($headers['Content-Type'] === 'application/json') {
-          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($create_snippet_request));
-        } elseif (!is_array($create_snippet_request)) {
-          $httpBody = (string) $create_snippet_request;
-        }
-        else {
-          $httpBody = '';
-        }
+        $httpBody = ObjectSerializer::toBodyValue($create_snippet_request, $headers['Content-Type'] === 'application/json');
 
 
         $defaultHeaders = [];
@@ -1929,14 +1915,7 @@ class SnippetsApi
             ['application/json'],
             ['application/x-www-form-urlencoded']
         );
-        if ($headers['Content-Type'] === 'application/json') {
-          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($request));
-        } elseif (!is_array($request)) {
-          $httpBody = (string) $request;
-        }
-        else {
-          $httpBody = '';
-        }
+        $httpBody = ObjectSerializer::toBodyValue($request, $headers['Content-Type'] === 'application/json');
 
 
         $defaultHeaders = [];
@@ -2092,14 +2071,7 @@ class SnippetsApi
             ['application/json'],
             ['application/x-www-form-urlencoded']
         );
-        if ($headers['Content-Type'] === 'application/json') {
-          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($update_snippet_request));
-        } elseif (!is_array($update_snippet_request)) {
-          $httpBody = (string) $update_snippet_request;
-        }
-        else {
-          $httpBody = '';
-        }
+        $httpBody = ObjectSerializer::toBodyValue($update_snippet_request, $headers['Content-Type'] === 'application/json');
 
 
         $defaultHeaders = [];

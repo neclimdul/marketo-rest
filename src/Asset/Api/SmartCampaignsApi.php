@@ -394,14 +394,7 @@ class SmartCampaignsApi
             ['application/json'],
             ['application/x-www-form-urlencoded']
         );
-        if ($headers['Content-Type'] === 'application/json') {
-          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($clone_smart_campaign_request));
-        } elseif (!is_array($clone_smart_campaign_request)) {
-          $httpBody = (string) $clone_smart_campaign_request;
-        }
-        else {
-          $httpBody = '';
-        }
+        $httpBody = ObjectSerializer::toBodyValue($clone_smart_campaign_request, $headers['Content-Type'] === 'application/json');
 
 
         $defaultHeaders = [];
@@ -539,14 +532,7 @@ class SmartCampaignsApi
             ['application/json'],
             ['application/x-www-form-urlencoded']
         );
-        if ($headers['Content-Type'] === 'application/json') {
-          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($create_smart_campaign_request));
-        } elseif (!is_array($create_smart_campaign_request)) {
-          $httpBody = (string) $create_smart_campaign_request;
-        }
-        else {
-          $httpBody = '';
-        }
+        $httpBody = ObjectSerializer::toBodyValue($create_smart_campaign_request, $headers['Content-Type'] === 'application/json');
 
 
         $defaultHeaders = [];
@@ -1596,14 +1582,7 @@ class SmartCampaignsApi
             ['application/json'],
             ['application/json']
         );
-        if ($headers['Content-Type'] === 'application/json') {
-          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($update_smart_campaign_request));
-        } elseif (!is_array($update_smart_campaign_request)) {
-          $httpBody = (string) $update_smart_campaign_request;
-        }
-        else {
-          $httpBody = '';
-        }
+        $httpBody = ObjectSerializer::toBodyValue($update_smart_campaign_request, $headers['Content-Type'] === 'application/json');
 
 
         $defaultHeaders = [];

@@ -250,14 +250,7 @@ class SmartListsApi
             ['application/json'],
             ['application/x-www-form-urlencoded']
         );
-        if ($headers['Content-Type'] === 'application/json') {
-          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($clone_smart_list_request));
-        } elseif (!is_array($clone_smart_list_request)) {
-          $httpBody = (string) $clone_smart_list_request;
-        }
-        else {
-          $httpBody = '';
-        }
+        $httpBody = ObjectSerializer::toBodyValue($clone_smart_list_request, $headers['Content-Type'] === 'application/json');
 
 
         $defaultHeaders = [];

@@ -232,14 +232,7 @@ class ActivitiesApi
             ['application/json'],
             ['application/json']
         );
-        if ($headers['Content-Type'] === 'application/json') {
-          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($custom_activity_request));
-        } elseif (!is_array($custom_activity_request)) {
-          $httpBody = (string) $custom_activity_request;
-        }
-        else {
-          $httpBody = '';
-        }
+        $httpBody = ObjectSerializer::toBodyValue($custom_activity_request, $headers['Content-Type'] === 'application/json');
 
 
         $defaultHeaders = [];
@@ -539,14 +532,7 @@ class ActivitiesApi
             ['application/json'],
             ['application/json']
         );
-        if ($headers['Content-Type'] === 'application/json') {
-          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($custom_activity_type_attribute_request));
-        } elseif (!is_array($custom_activity_type_attribute_request)) {
-          $httpBody = (string) $custom_activity_type_attribute_request;
-        }
-        else {
-          $httpBody = '';
-        }
+        $httpBody = ObjectSerializer::toBodyValue($custom_activity_type_attribute_request, $headers['Content-Type'] === 'application/json');
 
 
         $defaultHeaders = [];
@@ -684,14 +670,7 @@ class ActivitiesApi
             ['application/json'],
             ['application/json']
         );
-        if ($headers['Content-Type'] === 'application/json') {
-          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($custom_activity_type_request));
-        } elseif (!is_array($custom_activity_type_request)) {
-          $httpBody = (string) $custom_activity_type_request;
-        }
-        else {
-          $httpBody = '';
-        }
+        $httpBody = ObjectSerializer::toBodyValue($custom_activity_type_request, $headers['Content-Type'] === 'application/json');
 
 
         $defaultHeaders = [];
@@ -847,14 +826,7 @@ class ActivitiesApi
             ['application/json'],
             ['application/json']
         );
-        if ($headers['Content-Type'] === 'application/json') {
-          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($custom_activity_type_attribute_request));
-        } elseif (!is_array($custom_activity_type_attribute_request)) {
-          $httpBody = (string) $custom_activity_type_attribute_request;
-        }
-        else {
-          $httpBody = '';
-        }
+        $httpBody = ObjectSerializer::toBodyValue($custom_activity_type_attribute_request, $headers['Content-Type'] === 'application/json');
 
 
         $defaultHeaders = [];
@@ -2344,14 +2316,7 @@ class ActivitiesApi
             ['application/json'],
             ['application/json']
         );
-        if ($headers['Content-Type'] === 'application/json') {
-          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($custom_activity_type_attribute_request));
-        } elseif (!is_array($custom_activity_type_attribute_request)) {
-          $httpBody = (string) $custom_activity_type_attribute_request;
-        }
-        else {
-          $httpBody = '';
-        }
+        $httpBody = ObjectSerializer::toBodyValue($custom_activity_type_attribute_request, $headers['Content-Type'] === 'application/json');
 
 
         $defaultHeaders = [];
@@ -2507,14 +2472,7 @@ class ActivitiesApi
             ['application/json'],
             ['application/json']
         );
-        if ($headers['Content-Type'] === 'application/json') {
-          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($custom_activity_type_request));
-        } elseif (!is_array($custom_activity_type_request)) {
-          $httpBody = (string) $custom_activity_type_request;
-        }
-        else {
-          $httpBody = '';
-        }
+        $httpBody = ObjectSerializer::toBodyValue($custom_activity_type_request, $headers['Content-Type'] === 'application/json');
 
 
         $defaultHeaders = [];

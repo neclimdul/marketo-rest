@@ -250,14 +250,7 @@ class LandingPageContentApi
             ['application/json'],
             ['application/x-www-form-urlencoded']
         );
-        if ($headers['Content-Type'] === 'application/json') {
-          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($request));
-        } elseif (!is_array($request)) {
-          $httpBody = (string) $request;
-        }
-        else {
-          $httpBody = '';
-        }
+        $httpBody = ObjectSerializer::toBodyValue($request, $headers['Content-Type'] === 'application/json');
 
 
         $defaultHeaders = [];
@@ -903,14 +896,7 @@ class LandingPageContentApi
             ['application/json'],
             ['application/x-www-form-urlencoded']
         );
-        if ($headers['Content-Type'] === 'application/json') {
-          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($request));
-        } elseif (!is_array($request)) {
-          $httpBody = (string) $request;
-        }
-        else {
-          $httpBody = '';
-        }
+        $httpBody = ObjectSerializer::toBodyValue($request, $headers['Content-Type'] === 'application/json');
 
 
         $defaultHeaders = [];
@@ -1078,14 +1064,7 @@ class LandingPageContentApi
         );
         // for model (json/xml)
         if (!empty($request)) {
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($request));
-            } elseif (!is_array($request)) {
-                $httpBody = (string) $request;
-            }
-            else {
-                $httpBody = '';
-            }
+            $httpBody = ObjectSerializer::toBodyValue($request, $headers['Content-Type'] === 'application/json');
         }
 
 

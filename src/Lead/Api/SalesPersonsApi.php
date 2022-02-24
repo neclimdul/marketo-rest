@@ -232,14 +232,7 @@ class SalesPersonsApi
             ['application/json'],
             ['application/json']
         );
-        if ($headers['Content-Type'] === 'application/json') {
-          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($delete_sales_person_request));
-        } elseif (!is_array($delete_sales_person_request)) {
-          $httpBody = (string) $delete_sales_person_request;
-        }
-        else {
-          $httpBody = '';
-        }
+        $httpBody = ObjectSerializer::toBodyValue($delete_sales_person_request, $headers['Content-Type'] === 'application/json');
 
 
         $defaultHeaders = [];
@@ -675,14 +668,7 @@ class SalesPersonsApi
             ['application/json'],
             ['application/json']
         );
-        if ($headers['Content-Type'] === 'application/json') {
-          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($sync_sales_person_request));
-        } elseif (!is_array($sync_sales_person_request)) {
-          $httpBody = (string) $sync_sales_person_request;
-        }
-        else {
-          $httpBody = '';
-        }
+        $httpBody = ObjectSerializer::toBodyValue($sync_sales_person_request, $headers['Content-Type'] === 'application/json');
 
 
         $defaultHeaders = [];

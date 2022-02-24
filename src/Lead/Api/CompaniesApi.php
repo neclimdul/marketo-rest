@@ -232,14 +232,7 @@ class CompaniesApi
             ['application/json'],
             ['application/json']
         );
-        if ($headers['Content-Type'] === 'application/json') {
-          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($delete_company_request));
-        } elseif (!is_array($delete_company_request)) {
-          $httpBody = (string) $delete_company_request;
-        }
-        else {
-          $httpBody = '';
-        }
+        $httpBody = ObjectSerializer::toBodyValue($delete_company_request, $headers['Content-Type'] === 'application/json');
 
 
         $defaultHeaders = [];
@@ -961,14 +954,7 @@ class CompaniesApi
             ['application/json'],
             ['application/json']
         );
-        if ($headers['Content-Type'] === 'application/json') {
-          $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($sync_company_request));
-        } elseif (!is_array($sync_company_request)) {
-          $httpBody = (string) $sync_company_request;
-        }
-        else {
-          $httpBody = '';
-        }
+        $httpBody = ObjectSerializer::toBodyValue($sync_company_request, $headers['Content-Type'] === 'application/json');
 
 
         $defaultHeaders = [];

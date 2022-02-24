@@ -236,6 +236,22 @@ class ObjectSerializer
     }
 
     /**
+     * Convert body object into transferable string.
+     *
+     * @param mixed $object Body object
+     * @param bool $json Toggle encoding as javascript.
+     * @return string Encoded body value.
+     */
+    public static function toBodyValue($object, bool $json): string {
+        if ($json) {
+            return \GuzzleHttp\json_encode(static::sanitizeForSerialization($object));
+        } elseif (!is_array($object)) {
+            return (string) $object;
+        }
+        return '';
+    }
+
+    /**
      * Serialize an array to a string.
      *
      * @param scalar[] $collection Collection to serialize to a string.
