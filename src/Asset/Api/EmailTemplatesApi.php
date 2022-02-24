@@ -118,8 +118,29 @@ class EmailTemplatesApi
     }
 
     /**
-     * Operation approveDraftUsingPOST1
+     * Exception handler for approveDraftUsingPOST1.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function approveDraftUsingPOST1HandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Approve Email Template Draft
      *
      * @param  int $id id (required)
@@ -135,8 +156,6 @@ class EmailTemplatesApi
     }
 
     /**
-     * Operation approveDraftUsingPOST1WithHttpInfo
-     *
      * Approve Email Template Draft
      *
      * @param  int $id id (required)
@@ -148,36 +167,15 @@ class EmailTemplatesApi
     public function approveDraftUsingPOST1WithHttpInfo($id)
     {
         $request = $this->approveDraftUsingPOST1Request($id);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->approveDraftUsingPOST1HandleException($e);
         }
     }
 
     /**
-     * Operation approveDraftUsingPOST1Async
-     *
      * Approve Email Template Draft
      *
      * @param  int $id id (required)
@@ -196,8 +194,6 @@ class EmailTemplatesApi
     }
 
     /**
-     * Operation approveDraftUsingPOST1AsyncWithHttpInfo
-     *
      * Approve Email Template Draft
      *
      * @param  int $id id (required)
@@ -208,27 +204,7 @@ class EmailTemplatesApi
     public function approveDraftUsingPOST1AsyncWithHttpInfo($id)
     {
         $request = $this->approveDraftUsingPOST1Request($id);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse', [$this, 'approveDraftUsingPOST1HandleException']);
     }
 
     /**
@@ -286,8 +262,29 @@ class EmailTemplatesApi
     }
 
     /**
-     * Operation cloneTemplateUsingPOST
+     * Exception handler for cloneTemplateUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function cloneTemplateUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Clone Email Template
      *
      * @param  int $id id (required)
@@ -304,8 +301,6 @@ class EmailTemplatesApi
     }
 
     /**
-     * Operation cloneTemplateUsingPOSTWithHttpInfo
-     *
      * Clone Email Template
      *
      * @param  int $id id (required)
@@ -318,36 +313,15 @@ class EmailTemplatesApi
     public function cloneTemplateUsingPOSTWithHttpInfo($id, $clone_email_template_request)
     {
         $request = $this->cloneTemplateUsingPOSTRequest($id, $clone_email_template_request);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->cloneTemplateUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation cloneTemplateUsingPOSTAsync
-     *
      * Clone Email Template
      *
      * @param  int $id id (required)
@@ -367,8 +341,6 @@ class EmailTemplatesApi
     }
 
     /**
-     * Operation cloneTemplateUsingPOSTAsyncWithHttpInfo
-     *
      * Clone Email Template
      *
      * @param  int $id id (required)
@@ -380,27 +352,7 @@ class EmailTemplatesApi
     public function cloneTemplateUsingPOSTAsyncWithHttpInfo($id, $clone_email_template_request)
     {
         $request = $this->cloneTemplateUsingPOSTRequest($id, $clone_email_template_request);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse', [$this, 'cloneTemplateUsingPOSTHandleException']);
     }
 
     /**
@@ -473,8 +425,29 @@ class EmailTemplatesApi
     }
 
     /**
-     * Operation createEmailTemplateUsingPOST
+     * Exception handler for createEmailTemplateUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function createEmailTemplateUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Create Email Template
      *
      * @param  \NecLimDul\MarketoRest\Asset\Model\CreateEmailTemplateRequest $create_email_template_request createEmailTemplateRequest (required)
@@ -490,8 +463,6 @@ class EmailTemplatesApi
     }
 
     /**
-     * Operation createEmailTemplateUsingPOSTWithHttpInfo
-     *
      * Create Email Template
      *
      * @param  \NecLimDul\MarketoRest\Asset\Model\CreateEmailTemplateRequest $create_email_template_request createEmailTemplateRequest (required)
@@ -503,36 +474,15 @@ class EmailTemplatesApi
     public function createEmailTemplateUsingPOSTWithHttpInfo($create_email_template_request)
     {
         $request = $this->createEmailTemplateUsingPOSTRequest($create_email_template_request);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->createEmailTemplateUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation createEmailTemplateUsingPOSTAsync
-     *
      * Create Email Template
      *
      * @param  \NecLimDul\MarketoRest\Asset\Model\CreateEmailTemplateRequest $create_email_template_request createEmailTemplateRequest (required)
@@ -551,8 +501,6 @@ class EmailTemplatesApi
     }
 
     /**
-     * Operation createEmailTemplateUsingPOSTAsyncWithHttpInfo
-     *
      * Create Email Template
      *
      * @param  \NecLimDul\MarketoRest\Asset\Model\CreateEmailTemplateRequest $create_email_template_request createEmailTemplateRequest (required)
@@ -563,27 +511,7 @@ class EmailTemplatesApi
     public function createEmailTemplateUsingPOSTAsyncWithHttpInfo($create_email_template_request)
     {
         $request = $this->createEmailTemplateUsingPOSTRequest($create_email_template_request);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse', [$this, 'createEmailTemplateUsingPOSTHandleException']);
     }
 
     /**
@@ -642,8 +570,29 @@ class EmailTemplatesApi
     }
 
     /**
-     * Operation deleteTemplateUsingPOST
+     * Exception handler for deleteTemplateUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function deleteTemplateUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Delete Email Template
      *
      * @param  int $id id (required)
@@ -659,8 +608,6 @@ class EmailTemplatesApi
     }
 
     /**
-     * Operation deleteTemplateUsingPOSTWithHttpInfo
-     *
      * Delete Email Template
      *
      * @param  int $id id (required)
@@ -672,36 +619,15 @@ class EmailTemplatesApi
     public function deleteTemplateUsingPOSTWithHttpInfo($id)
     {
         $request = $this->deleteTemplateUsingPOSTRequest($id);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->deleteTemplateUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation deleteTemplateUsingPOSTAsync
-     *
      * Delete Email Template
      *
      * @param  int $id id (required)
@@ -720,8 +646,6 @@ class EmailTemplatesApi
     }
 
     /**
-     * Operation deleteTemplateUsingPOSTAsyncWithHttpInfo
-     *
      * Delete Email Template
      *
      * @param  int $id id (required)
@@ -732,27 +656,7 @@ class EmailTemplatesApi
     public function deleteTemplateUsingPOSTAsyncWithHttpInfo($id)
     {
         $request = $this->deleteTemplateUsingPOSTRequest($id);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse', [$this, 'deleteTemplateUsingPOSTHandleException']);
     }
 
     /**
@@ -810,8 +714,29 @@ class EmailTemplatesApi
     }
 
     /**
-     * Operation discardDraftUsingPOST1
+     * Exception handler for discardDraftUsingPOST1.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function discardDraftUsingPOST1HandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Discard Email Template Draft
      *
      * @param  int $id id (required)
@@ -827,8 +752,6 @@ class EmailTemplatesApi
     }
 
     /**
-     * Operation discardDraftUsingPOST1WithHttpInfo
-     *
      * Discard Email Template Draft
      *
      * @param  int $id id (required)
@@ -840,36 +763,15 @@ class EmailTemplatesApi
     public function discardDraftUsingPOST1WithHttpInfo($id)
     {
         $request = $this->discardDraftUsingPOST1Request($id);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->discardDraftUsingPOST1HandleException($e);
         }
     }
 
     /**
-     * Operation discardDraftUsingPOST1Async
-     *
      * Discard Email Template Draft
      *
      * @param  int $id id (required)
@@ -888,8 +790,6 @@ class EmailTemplatesApi
     }
 
     /**
-     * Operation discardDraftUsingPOST1AsyncWithHttpInfo
-     *
      * Discard Email Template Draft
      *
      * @param  int $id id (required)
@@ -900,27 +800,7 @@ class EmailTemplatesApi
     public function discardDraftUsingPOST1AsyncWithHttpInfo($id)
     {
         $request = $this->discardDraftUsingPOST1Request($id);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse', [$this, 'discardDraftUsingPOST1HandleException']);
     }
 
     /**
@@ -978,8 +858,29 @@ class EmailTemplatesApi
     }
 
     /**
-     * Operation getEmailTemplateUsedByUsingGET
+     * Exception handler for getEmailTemplateUsedByUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function getEmailTemplateUsedByUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateUsedByResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Email Template Used By
      *
      * @param  int $id Id of the email template (required)
@@ -997,8 +898,6 @@ class EmailTemplatesApi
     }
 
     /**
-     * Operation getEmailTemplateUsedByUsingGETWithHttpInfo
-     *
      * Get Email Template Used By
      *
      * @param  int $id Id of the email template (required)
@@ -1012,36 +911,15 @@ class EmailTemplatesApi
     public function getEmailTemplateUsedByUsingGETWithHttpInfo($id, $offset = null, $max_return = null)
     {
         $request = $this->getEmailTemplateUsedByUsingGETRequest($id, $offset, $max_return);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateUsedByResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateUsedByResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateUsedByResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getEmailTemplateUsedByUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getEmailTemplateUsedByUsingGETAsync
-     *
      * Get Email Template Used By
      *
      * @param  int $id Id of the email template (required)
@@ -1062,8 +940,6 @@ class EmailTemplatesApi
     }
 
     /**
-     * Operation getEmailTemplateUsedByUsingGETAsyncWithHttpInfo
-     *
      * Get Email Template Used By
      *
      * @param  int $id Id of the email template (required)
@@ -1076,27 +952,7 @@ class EmailTemplatesApi
     public function getEmailTemplateUsedByUsingGETAsyncWithHttpInfo($id, $offset = null, $max_return = null)
     {
         $request = $this->getEmailTemplateUsedByUsingGETRequest($id, $offset, $max_return);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateUsedByResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateUsedByResponse', [$this, 'getEmailTemplateUsedByUsingGETHandleException']);
     }
 
     /**
@@ -1168,8 +1024,29 @@ class EmailTemplatesApi
     }
 
     /**
-     * Operation getEmailTemplatesUsingGET
+     * Exception handler for getEmailTemplatesUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function getEmailTemplatesUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Email Templates
      *
      * @param  int $offset Integer offset for paging (optional)
@@ -1187,8 +1064,6 @@ class EmailTemplatesApi
     }
 
     /**
-     * Operation getEmailTemplatesUsingGETWithHttpInfo
-     *
      * Get Email Templates
      *
      * @param  int $offset Integer offset for paging (optional)
@@ -1202,36 +1077,15 @@ class EmailTemplatesApi
     public function getEmailTemplatesUsingGETWithHttpInfo($offset = null, $max_return = null, $status = null)
     {
         $request = $this->getEmailTemplatesUsingGETRequest($offset, $max_return, $status);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getEmailTemplatesUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getEmailTemplatesUsingGETAsync
-     *
      * Get Email Templates
      *
      * @param  int $offset Integer offset for paging (optional)
@@ -1252,8 +1106,6 @@ class EmailTemplatesApi
     }
 
     /**
-     * Operation getEmailTemplatesUsingGETAsyncWithHttpInfo
-     *
      * Get Email Templates
      *
      * @param  int $offset Integer offset for paging (optional)
@@ -1266,27 +1118,7 @@ class EmailTemplatesApi
     public function getEmailTemplatesUsingGETAsyncWithHttpInfo($offset = null, $max_return = null, $status = null)
     {
         $request = $this->getEmailTemplatesUsingGETRequest($offset, $max_return, $status);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse', [$this, 'getEmailTemplatesUsingGETHandleException']);
     }
 
     /**
@@ -1349,8 +1181,29 @@ class EmailTemplatesApi
     }
 
     /**
-     * Operation getTemplateByIdUsingGET
+     * Exception handler for getTemplateByIdUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function getTemplateByIdUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Email Template by Id
      *
      * @param  int $id id (required)
@@ -1367,8 +1220,6 @@ class EmailTemplatesApi
     }
 
     /**
-     * Operation getTemplateByIdUsingGETWithHttpInfo
-     *
      * Get Email Template by Id
      *
      * @param  int $id id (required)
@@ -1381,36 +1232,15 @@ class EmailTemplatesApi
     public function getTemplateByIdUsingGETWithHttpInfo($id, $status = null)
     {
         $request = $this->getTemplateByIdUsingGETRequest($id, $status);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getTemplateByIdUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getTemplateByIdUsingGETAsync
-     *
      * Get Email Template by Id
      *
      * @param  int $id id (required)
@@ -1430,8 +1260,6 @@ class EmailTemplatesApi
     }
 
     /**
-     * Operation getTemplateByIdUsingGETAsyncWithHttpInfo
-     *
      * Get Email Template by Id
      *
      * @param  int $id id (required)
@@ -1443,27 +1271,7 @@ class EmailTemplatesApi
     public function getTemplateByIdUsingGETAsyncWithHttpInfo($id, $status = null)
     {
         $request = $this->getTemplateByIdUsingGETRequest($id, $status);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse', [$this, 'getTemplateByIdUsingGETHandleException']);
     }
 
     /**
@@ -1530,8 +1338,29 @@ class EmailTemplatesApi
     }
 
     /**
-     * Operation getTemplateByNameUsingGET
+     * Exception handler for getTemplateByNameUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function getTemplateByNameUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Email Template by Name
      *
      * @param  string $name name (required)
@@ -1548,8 +1377,6 @@ class EmailTemplatesApi
     }
 
     /**
-     * Operation getTemplateByNameUsingGETWithHttpInfo
-     *
      * Get Email Template by Name
      *
      * @param  string $name name (required)
@@ -1562,36 +1389,15 @@ class EmailTemplatesApi
     public function getTemplateByNameUsingGETWithHttpInfo($name, $status = null)
     {
         $request = $this->getTemplateByNameUsingGETRequest($name, $status);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getTemplateByNameUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getTemplateByNameUsingGETAsync
-     *
      * Get Email Template by Name
      *
      * @param  string $name name (required)
@@ -1611,8 +1417,6 @@ class EmailTemplatesApi
     }
 
     /**
-     * Operation getTemplateByNameUsingGETAsyncWithHttpInfo
-     *
      * Get Email Template by Name
      *
      * @param  string $name name (required)
@@ -1624,27 +1428,7 @@ class EmailTemplatesApi
     public function getTemplateByNameUsingGETAsyncWithHttpInfo($name, $status = null)
     {
         $request = $this->getTemplateByNameUsingGETRequest($name, $status);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse', [$this, 'getTemplateByNameUsingGETHandleException']);
     }
 
     /**
@@ -1708,8 +1492,29 @@ class EmailTemplatesApi
     }
 
     /**
-     * Operation getTemplateContentByIdUsingGET
+     * Exception handler for getTemplateContentByIdUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function getTemplateContentByIdUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateContentResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Email Template Content by Id
      *
      * @param  int $id id (required)
@@ -1726,8 +1531,6 @@ class EmailTemplatesApi
     }
 
     /**
-     * Operation getTemplateContentByIdUsingGETWithHttpInfo
-     *
      * Get Email Template Content by Id
      *
      * @param  int $id id (required)
@@ -1740,36 +1543,15 @@ class EmailTemplatesApi
     public function getTemplateContentByIdUsingGETWithHttpInfo($id, $status = null)
     {
         $request = $this->getTemplateContentByIdUsingGETRequest($id, $status);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateContentResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateContentResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateContentResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getTemplateContentByIdUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getTemplateContentByIdUsingGETAsync
-     *
      * Get Email Template Content by Id
      *
      * @param  int $id id (required)
@@ -1789,8 +1571,6 @@ class EmailTemplatesApi
     }
 
     /**
-     * Operation getTemplateContentByIdUsingGETAsyncWithHttpInfo
-     *
      * Get Email Template Content by Id
      *
      * @param  int $id id (required)
@@ -1802,27 +1582,7 @@ class EmailTemplatesApi
     public function getTemplateContentByIdUsingGETAsyncWithHttpInfo($id, $status = null)
     {
         $request = $this->getTemplateContentByIdUsingGETRequest($id, $status);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateContentResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateContentResponse', [$this, 'getTemplateContentByIdUsingGETHandleException']);
     }
 
     /**
@@ -1889,8 +1649,29 @@ class EmailTemplatesApi
     }
 
     /**
-     * Operation unapproveDraftUsingPOST1
+     * Exception handler for unapproveDraftUsingPOST1.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function unapproveDraftUsingPOST1HandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Unapprove Email Template Draft
      *
      * @param  int $id id (required)
@@ -1906,8 +1687,6 @@ class EmailTemplatesApi
     }
 
     /**
-     * Operation unapproveDraftUsingPOST1WithHttpInfo
-     *
      * Unapprove Email Template Draft
      *
      * @param  int $id id (required)
@@ -1919,36 +1698,15 @@ class EmailTemplatesApi
     public function unapproveDraftUsingPOST1WithHttpInfo($id)
     {
         $request = $this->unapproveDraftUsingPOST1Request($id);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->unapproveDraftUsingPOST1HandleException($e);
         }
     }
 
     /**
-     * Operation unapproveDraftUsingPOST1Async
-     *
      * Unapprove Email Template Draft
      *
      * @param  int $id id (required)
@@ -1967,8 +1725,6 @@ class EmailTemplatesApi
     }
 
     /**
-     * Operation unapproveDraftUsingPOST1AsyncWithHttpInfo
-     *
      * Unapprove Email Template Draft
      *
      * @param  int $id id (required)
@@ -1979,27 +1735,7 @@ class EmailTemplatesApi
     public function unapproveDraftUsingPOST1AsyncWithHttpInfo($id)
     {
         $request = $this->unapproveDraftUsingPOST1Request($id);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse', [$this, 'unapproveDraftUsingPOST1HandleException']);
     }
 
     /**
@@ -2057,8 +1793,29 @@ class EmailTemplatesApi
     }
 
     /**
-     * Operation updateEmailTemplateContentUsingPOST
+     * Exception handler for updateEmailTemplateContentUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function updateEmailTemplateContentUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Update Email Template Content
      *
      * @param  int $id id (required)
@@ -2075,8 +1832,6 @@ class EmailTemplatesApi
     }
 
     /**
-     * Operation updateEmailTemplateContentUsingPOSTWithHttpInfo
-     *
      * Update Email Template Content
      *
      * @param  int $id id (required)
@@ -2089,36 +1844,15 @@ class EmailTemplatesApi
     public function updateEmailTemplateContentUsingPOSTWithHttpInfo($id, $update_email_template_content_request = null)
     {
         $request = $this->updateEmailTemplateContentUsingPOSTRequest($id, $update_email_template_content_request);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->updateEmailTemplateContentUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation updateEmailTemplateContentUsingPOSTAsync
-     *
      * Update Email Template Content
      *
      * @param  int $id id (required)
@@ -2138,8 +1872,6 @@ class EmailTemplatesApi
     }
 
     /**
-     * Operation updateEmailTemplateContentUsingPOSTAsyncWithHttpInfo
-     *
      * Update Email Template Content
      *
      * @param  int $id id (required)
@@ -2151,27 +1883,7 @@ class EmailTemplatesApi
     public function updateEmailTemplateContentUsingPOSTAsyncWithHttpInfo($id, $update_email_template_content_request = null)
     {
         $request = $this->updateEmailTemplateContentUsingPOSTRequest($id, $update_email_template_content_request);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse', [$this, 'updateEmailTemplateContentUsingPOSTHandleException']);
     }
 
     /**
@@ -2241,8 +1953,29 @@ class EmailTemplatesApi
     }
 
     /**
-     * Operation updateEmailTemplateUsingPOST
+     * Exception handler for updateEmailTemplateUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function updateEmailTemplateUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Update Email Template Metadata
      *
      * @param  int $id id (required)
@@ -2259,8 +1992,6 @@ class EmailTemplatesApi
     }
 
     /**
-     * Operation updateEmailTemplateUsingPOSTWithHttpInfo
-     *
      * Update Email Template Metadata
      *
      * @param  int $id id (required)
@@ -2273,36 +2004,15 @@ class EmailTemplatesApi
     public function updateEmailTemplateUsingPOSTWithHttpInfo($id, $update_email_meta_data_request)
     {
         $request = $this->updateEmailTemplateUsingPOSTRequest($id, $update_email_meta_data_request);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->updateEmailTemplateUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation updateEmailTemplateUsingPOSTAsync
-     *
      * Update Email Template Metadata
      *
      * @param  int $id id (required)
@@ -2322,8 +2032,6 @@ class EmailTemplatesApi
     }
 
     /**
-     * Operation updateEmailTemplateUsingPOSTAsyncWithHttpInfo
-     *
      * Update Email Template Metadata
      *
      * @param  int $id id (required)
@@ -2335,27 +2043,7 @@ class EmailTemplatesApi
     public function updateEmailTemplateUsingPOSTAsyncWithHttpInfo($id, $update_email_meta_data_request)
     {
         $request = $this->updateEmailTemplateUsingPOSTRequest($id, $update_email_meta_data_request);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailTemplateResponse', [$this, 'updateEmailTemplateUsingPOSTHandleException']);
     }
 
     /**
@@ -2449,8 +2137,7 @@ class EmailTemplatesApi
     /**
      * Make a request.
      *
-     * @param \GuzzleHttp\Psr7\Request $request
-     *   An initialized request object.
+     * @param \GuzzleHttp\Psr7\Request $request An initialized request object.
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @return \Psr\Http\Message\ResponseInterface
@@ -2486,12 +2173,45 @@ class EmailTemplatesApi
     }
 
     /**
+     * Make an async request.
+     *
+     * @param \GuzzleHttp\Psr7\Request $request An initialized request object.
+     * @param string $returnType The return type.
+     * @param callable $exceptionHandler A callback to process HTTP errors.
+     *
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
+     * @return \GuzzleHttp\Promise\PromiseInterface A promise that will return a processed response.
+     */
+    private function makeAsyncRequest(Request $request, string $returnType, callable $exceptionHandler)
+    {
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return $this->responseToReturn($response, $returnType);
+                },
+                function (RequestException $exception) use ($exceptionHandler) {
+                    $response = $exception->getResponse();
+                    $e = new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
+                        ),
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
+                    );
+                    throw $exceptionHandler($e);
+                }
+            );
+    }
+
+    /**
      * Convert a response to a return standard return array.
      *
-     * @param \Psr\Http\Message\ResponseInterface $response
-     *   A response from a request with a serialized body.
-     * @param string $returnType
-     *   The return type.
+     * @param \Psr\Http\Message\ResponseInterface $response A response from a request with a serialized body.
+     * @param string $returnType The primary return type.
      *
      * @return array
      */

@@ -118,8 +118,29 @@ class CompaniesApi
     }
 
     /**
-     * Operation deleteCompaniesUsingPOST
+     * Exception handler for deleteCompaniesUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function deleteCompaniesUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Delete Companies
      *
      * @param  \NecLimDul\MarketoRest\Lead\Model\DeleteCompanyRequest $delete_company_request deleteCompanyRequest (required)
@@ -135,8 +156,6 @@ class CompaniesApi
     }
 
     /**
-     * Operation deleteCompaniesUsingPOSTWithHttpInfo
-     *
      * Delete Companies
      *
      * @param  \NecLimDul\MarketoRest\Lead\Model\DeleteCompanyRequest $delete_company_request deleteCompanyRequest (required)
@@ -148,36 +167,15 @@ class CompaniesApi
     public function deleteCompaniesUsingPOSTWithHttpInfo($delete_company_request)
     {
         $request = $this->deleteCompaniesUsingPOSTRequest($delete_company_request);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->deleteCompaniesUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation deleteCompaniesUsingPOSTAsync
-     *
      * Delete Companies
      *
      * @param  \NecLimDul\MarketoRest\Lead\Model\DeleteCompanyRequest $delete_company_request deleteCompanyRequest (required)
@@ -196,8 +194,6 @@ class CompaniesApi
     }
 
     /**
-     * Operation deleteCompaniesUsingPOSTAsyncWithHttpInfo
-     *
      * Delete Companies
      *
      * @param  \NecLimDul\MarketoRest\Lead\Model\DeleteCompanyRequest $delete_company_request deleteCompanyRequest (required)
@@ -208,27 +204,7 @@ class CompaniesApi
     public function deleteCompaniesUsingPOSTAsyncWithHttpInfo($delete_company_request)
     {
         $request = $this->deleteCompaniesUsingPOSTRequest($delete_company_request);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany', [$this, 'deleteCompaniesUsingPOSTHandleException']);
     }
 
     /**
@@ -287,8 +263,29 @@ class CompaniesApi
     }
 
     /**
-     * Operation describeUsingGET
+     * Exception handler for describeUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function describeUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Describe Companies
      *
      *
@@ -303,8 +300,6 @@ class CompaniesApi
     }
 
     /**
-     * Operation describeUsingGETWithHttpInfo
-     *
      * Describe Companies
      *
      *
@@ -315,36 +310,15 @@ class CompaniesApi
     public function describeUsingGETWithHttpInfo()
     {
         $request = $this->describeUsingGETRequest();
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->describeUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation describeUsingGETAsync
-     *
      * Describe Companies
      *
      *
@@ -362,8 +336,6 @@ class CompaniesApi
     }
 
     /**
-     * Operation describeUsingGETAsyncWithHttpInfo
-     *
      * Describe Companies
      *
      *
@@ -373,27 +345,7 @@ class CompaniesApi
     public function describeUsingGETAsyncWithHttpInfo()
     {
         $request = $this->describeUsingGETRequest();
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData', [$this, 'describeUsingGETHandleException']);
     }
 
     /**
@@ -437,8 +389,29 @@ class CompaniesApi
     }
 
     /**
-     * Operation getCompaniesUsingGET
+     * Exception handler for getCompaniesUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function getCompaniesUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Companies
      *
      * @param  string $filter_type The company field to filter on.  Searchable fields can be retrieved with the Describe Company call. (required)
@@ -458,8 +431,6 @@ class CompaniesApi
     }
 
     /**
-     * Operation getCompaniesUsingGETWithHttpInfo
-     *
      * Get Companies
      *
      * @param  string $filter_type The company field to filter on.  Searchable fields can be retrieved with the Describe Company call. (required)
@@ -475,36 +446,15 @@ class CompaniesApi
     public function getCompaniesUsingGETWithHttpInfo($filter_type, $filter_values, $fields = null, $batch_size = null, $next_page_token = null)
     {
         $request = $this->getCompaniesUsingGETRequest($filter_type, $filter_values, $fields, $batch_size, $next_page_token);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getCompaniesUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getCompaniesUsingGETAsync
-     *
      * Get Companies
      *
      * @param  string $filter_type The company field to filter on.  Searchable fields can be retrieved with the Describe Company call. (required)
@@ -527,8 +477,6 @@ class CompaniesApi
     }
 
     /**
-     * Operation getCompaniesUsingGETAsyncWithHttpInfo
-     *
      * Get Companies
      *
      * @param  string $filter_type The company field to filter on.  Searchable fields can be retrieved with the Describe Company call. (required)
@@ -543,27 +491,7 @@ class CompaniesApi
     public function getCompaniesUsingGETAsyncWithHttpInfo($filter_type, $filter_values, $fields = null, $batch_size = null, $next_page_token = null)
     {
         $request = $this->getCompaniesUsingGETRequest($filter_type, $filter_values, $fields, $batch_size, $next_page_token);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany', [$this, 'getCompaniesUsingGETHandleException']);
     }
 
     /**
@@ -648,8 +576,29 @@ class CompaniesApi
     }
 
     /**
-     * Operation getCompanyFieldByNameUsingGET
+     * Exception handler for getCompanyFieldByNameUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function getCompanyFieldByNameUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Company Field by Name
      *
      * @param  string $field_api_name The API name of company field (required)
@@ -665,8 +614,6 @@ class CompaniesApi
     }
 
     /**
-     * Operation getCompanyFieldByNameUsingGETWithHttpInfo
-     *
      * Get Company Field by Name
      *
      * @param  string $field_api_name The API name of company field (required)
@@ -678,36 +625,15 @@ class CompaniesApi
     public function getCompanyFieldByNameUsingGETWithHttpInfo($field_api_name)
     {
         $request = $this->getCompanyFieldByNameUsingGETRequest($field_api_name);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getCompanyFieldByNameUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getCompanyFieldByNameUsingGETAsync
-     *
      * Get Company Field by Name
      *
      * @param  string $field_api_name The API name of company field (required)
@@ -726,8 +652,6 @@ class CompaniesApi
     }
 
     /**
-     * Operation getCompanyFieldByNameUsingGETAsyncWithHttpInfo
-     *
      * Get Company Field by Name
      *
      * @param  string $field_api_name The API name of company field (required)
@@ -738,27 +662,7 @@ class CompaniesApi
     public function getCompanyFieldByNameUsingGETAsyncWithHttpInfo($field_api_name)
     {
         $request = $this->getCompanyFieldByNameUsingGETRequest($field_api_name);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField', [$this, 'getCompanyFieldByNameUsingGETHandleException']);
     }
 
     /**
@@ -816,8 +720,29 @@ class CompaniesApi
     }
 
     /**
-     * Operation getCompanyFieldsUsingGET
+     * Exception handler for getCompanyFieldsUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function getCompanyFieldsUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Company Fields
      *
      * @param  int $batch_size The batch size to return. The max and default value is 300. (optional)
@@ -834,8 +759,6 @@ class CompaniesApi
     }
 
     /**
-     * Operation getCompanyFieldsUsingGETWithHttpInfo
-     *
      * Get Company Fields
      *
      * @param  int $batch_size The batch size to return. The max and default value is 300. (optional)
@@ -848,36 +771,15 @@ class CompaniesApi
     public function getCompanyFieldsUsingGETWithHttpInfo($batch_size = null, $next_page_token = null)
     {
         $request = $this->getCompanyFieldsUsingGETRequest($batch_size, $next_page_token);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getCompanyFieldsUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getCompanyFieldsUsingGETAsync
-     *
      * Get Company Fields
      *
      * @param  int $batch_size The batch size to return. The max and default value is 300. (optional)
@@ -897,8 +799,6 @@ class CompaniesApi
     }
 
     /**
-     * Operation getCompanyFieldsUsingGETAsyncWithHttpInfo
-     *
      * Get Company Fields
      *
      * @param  int $batch_size The batch size to return. The max and default value is 300. (optional)
@@ -910,27 +810,7 @@ class CompaniesApi
     public function getCompanyFieldsUsingGETAsyncWithHttpInfo($batch_size = null, $next_page_token = null)
     {
         $request = $this->getCompanyFieldsUsingGETRequest($batch_size, $next_page_token);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField', [$this, 'getCompanyFieldsUsingGETHandleException']);
     }
 
     /**
@@ -988,8 +868,29 @@ class CompaniesApi
     }
 
     /**
-     * Operation syncCompaniesUsingPOST
+     * Exception handler for syncCompaniesUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function syncCompaniesUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Sync Companies
      *
      * @param  \NecLimDul\MarketoRest\Lead\Model\SyncCompanyRequest $sync_company_request syncCompanyRequest (required)
@@ -1005,8 +906,6 @@ class CompaniesApi
     }
 
     /**
-     * Operation syncCompaniesUsingPOSTWithHttpInfo
-     *
      * Sync Companies
      *
      * @param  \NecLimDul\MarketoRest\Lead\Model\SyncCompanyRequest $sync_company_request syncCompanyRequest (required)
@@ -1018,36 +917,15 @@ class CompaniesApi
     public function syncCompaniesUsingPOSTWithHttpInfo($sync_company_request)
     {
         $request = $this->syncCompaniesUsingPOSTRequest($sync_company_request);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->syncCompaniesUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation syncCompaniesUsingPOSTAsync
-     *
      * Sync Companies
      *
      * @param  \NecLimDul\MarketoRest\Lead\Model\SyncCompanyRequest $sync_company_request syncCompanyRequest (required)
@@ -1066,8 +944,6 @@ class CompaniesApi
     }
 
     /**
-     * Operation syncCompaniesUsingPOSTAsyncWithHttpInfo
-     *
      * Sync Companies
      *
      * @param  \NecLimDul\MarketoRest\Lead\Model\SyncCompanyRequest $sync_company_request syncCompanyRequest (required)
@@ -1078,27 +954,7 @@ class CompaniesApi
     public function syncCompaniesUsingPOSTAsyncWithHttpInfo($sync_company_request)
     {
         $request = $this->syncCompaniesUsingPOSTRequest($sync_company_request);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany', [$this, 'syncCompaniesUsingPOSTHandleException']);
     }
 
     /**
@@ -1178,8 +1034,7 @@ class CompaniesApi
     /**
      * Make a request.
      *
-     * @param \GuzzleHttp\Psr7\Request $request
-     *   An initialized request object.
+     * @param \GuzzleHttp\Psr7\Request $request An initialized request object.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @return \Psr\Http\Message\ResponseInterface
@@ -1215,12 +1070,45 @@ class CompaniesApi
     }
 
     /**
+     * Make an async request.
+     *
+     * @param \GuzzleHttp\Psr7\Request $request An initialized request object.
+     * @param string $returnType The return type.
+     * @param callable $exceptionHandler A callback to process HTTP errors.
+     *
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
+     * @return \GuzzleHttp\Promise\PromiseInterface A promise that will return a processed response.
+     */
+    private function makeAsyncRequest(Request $request, string $returnType, callable $exceptionHandler)
+    {
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return $this->responseToReturn($response, $returnType);
+                },
+                function (RequestException $exception) use ($exceptionHandler) {
+                    $response = $exception->getResponse();
+                    $e = new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
+                        ),
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
+                    );
+                    throw $exceptionHandler($e);
+                }
+            );
+    }
+
+    /**
      * Convert a response to a return standard return array.
      *
-     * @param \Psr\Http\Message\ResponseInterface $response
-     *   A response from a request with a serialized body.
-     * @param string $returnType
-     *   The return type.
+     * @param \Psr\Http\Message\ResponseInterface $response A response from a request with a serialized body.
+     * @param string $returnType The primary return type.
      *
      * @return array
      */

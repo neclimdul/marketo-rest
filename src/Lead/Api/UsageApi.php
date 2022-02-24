@@ -118,8 +118,29 @@ class UsageApi
     }
 
     /**
-     * Operation getDailyErrorsUsingGET
+     * Exception handler for getDailyErrorsUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function getDailyErrorsUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfErrorsData',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Daily Errors
      *
      *
@@ -134,8 +155,6 @@ class UsageApi
     }
 
     /**
-     * Operation getDailyErrorsUsingGETWithHttpInfo
-     *
      * Get Daily Errors
      *
      *
@@ -146,36 +165,15 @@ class UsageApi
     public function getDailyErrorsUsingGETWithHttpInfo()
     {
         $request = $this->getDailyErrorsUsingGETRequest();
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfErrorsData');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfErrorsData');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfErrorsData',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getDailyErrorsUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getDailyErrorsUsingGETAsync
-     *
      * Get Daily Errors
      *
      *
@@ -193,8 +191,6 @@ class UsageApi
     }
 
     /**
-     * Operation getDailyErrorsUsingGETAsyncWithHttpInfo
-     *
      * Get Daily Errors
      *
      *
@@ -204,27 +200,7 @@ class UsageApi
     public function getDailyErrorsUsingGETAsyncWithHttpInfo()
     {
         $request = $this->getDailyErrorsUsingGETRequest();
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfErrorsData');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfErrorsData', [$this, 'getDailyErrorsUsingGETHandleException']);
     }
 
     /**
@@ -268,8 +244,29 @@ class UsageApi
     }
 
     /**
-     * Operation getDailyUsageUsingGET
+     * Exception handler for getDailyUsageUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function getDailyUsageUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfUsageData',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Daily Usage
      *
      *
@@ -284,8 +281,6 @@ class UsageApi
     }
 
     /**
-     * Operation getDailyUsageUsingGETWithHttpInfo
-     *
      * Get Daily Usage
      *
      *
@@ -296,36 +291,15 @@ class UsageApi
     public function getDailyUsageUsingGETWithHttpInfo()
     {
         $request = $this->getDailyUsageUsingGETRequest();
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfUsageData');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfUsageData');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfUsageData',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getDailyUsageUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getDailyUsageUsingGETAsync
-     *
      * Get Daily Usage
      *
      *
@@ -343,8 +317,6 @@ class UsageApi
     }
 
     /**
-     * Operation getDailyUsageUsingGETAsyncWithHttpInfo
-     *
      * Get Daily Usage
      *
      *
@@ -354,27 +326,7 @@ class UsageApi
     public function getDailyUsageUsingGETAsyncWithHttpInfo()
     {
         $request = $this->getDailyUsageUsingGETRequest();
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfUsageData');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfUsageData', [$this, 'getDailyUsageUsingGETHandleException']);
     }
 
     /**
@@ -418,8 +370,29 @@ class UsageApi
     }
 
     /**
-     * Operation getLast7DaysErrorsUsingGET
+     * Exception handler for getLast7DaysErrorsUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function getLast7DaysErrorsUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfErrorsData',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Weekly Errors
      *
      *
@@ -434,8 +407,6 @@ class UsageApi
     }
 
     /**
-     * Operation getLast7DaysErrorsUsingGETWithHttpInfo
-     *
      * Get Weekly Errors
      *
      *
@@ -446,36 +417,15 @@ class UsageApi
     public function getLast7DaysErrorsUsingGETWithHttpInfo()
     {
         $request = $this->getLast7DaysErrorsUsingGETRequest();
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfErrorsData');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfErrorsData');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfErrorsData',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getLast7DaysErrorsUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getLast7DaysErrorsUsingGETAsync
-     *
      * Get Weekly Errors
      *
      *
@@ -493,8 +443,6 @@ class UsageApi
     }
 
     /**
-     * Operation getLast7DaysErrorsUsingGETAsyncWithHttpInfo
-     *
      * Get Weekly Errors
      *
      *
@@ -504,27 +452,7 @@ class UsageApi
     public function getLast7DaysErrorsUsingGETAsyncWithHttpInfo()
     {
         $request = $this->getLast7DaysErrorsUsingGETRequest();
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfErrorsData');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfErrorsData', [$this, 'getLast7DaysErrorsUsingGETHandleException']);
     }
 
     /**
@@ -568,8 +496,29 @@ class UsageApi
     }
 
     /**
-     * Operation getLast7DaysUsageUsingGET
+     * Exception handler for getLast7DaysUsageUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function getLast7DaysUsageUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfUsageData',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Weekly Usage
      *
      *
@@ -584,8 +533,6 @@ class UsageApi
     }
 
     /**
-     * Operation getLast7DaysUsageUsingGETWithHttpInfo
-     *
      * Get Weekly Usage
      *
      *
@@ -596,36 +543,15 @@ class UsageApi
     public function getLast7DaysUsageUsingGETWithHttpInfo()
     {
         $request = $this->getLast7DaysUsageUsingGETRequest();
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfUsageData');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfUsageData');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfUsageData',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getLast7DaysUsageUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getLast7DaysUsageUsingGETAsync
-     *
      * Get Weekly Usage
      *
      *
@@ -643,8 +569,6 @@ class UsageApi
     }
 
     /**
-     * Operation getLast7DaysUsageUsingGETAsyncWithHttpInfo
-     *
      * Get Weekly Usage
      *
      *
@@ -654,27 +578,7 @@ class UsageApi
     public function getLast7DaysUsageUsingGETAsyncWithHttpInfo()
     {
         $request = $this->getLast7DaysUsageUsingGETRequest();
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfUsageData');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfUsageData', [$this, 'getLast7DaysUsageUsingGETHandleException']);
     }
 
     /**
@@ -739,8 +643,7 @@ class UsageApi
     /**
      * Make a request.
      *
-     * @param \GuzzleHttp\Psr7\Request $request
-     *   An initialized request object.
+     * @param \GuzzleHttp\Psr7\Request $request An initialized request object.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @return \Psr\Http\Message\ResponseInterface
@@ -776,12 +679,45 @@ class UsageApi
     }
 
     /**
+     * Make an async request.
+     *
+     * @param \GuzzleHttp\Psr7\Request $request An initialized request object.
+     * @param string $returnType The return type.
+     * @param callable $exceptionHandler A callback to process HTTP errors.
+     *
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
+     * @return \GuzzleHttp\Promise\PromiseInterface A promise that will return a processed response.
+     */
+    private function makeAsyncRequest(Request $request, string $returnType, callable $exceptionHandler)
+    {
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return $this->responseToReturn($response, $returnType);
+                },
+                function (RequestException $exception) use ($exceptionHandler) {
+                    $response = $exception->getResponse();
+                    $e = new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
+                        ),
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
+                    );
+                    throw $exceptionHandler($e);
+                }
+            );
+    }
+
+    /**
      * Convert a response to a return standard return array.
      *
-     * @param \Psr\Http\Message\ResponseInterface $response
-     *   A response from a request with a serialized body.
-     * @param string $returnType
-     *   The return type.
+     * @param \Psr\Http\Message\ResponseInterface $response A response from a request with a serialized body.
+     * @param string $returnType The primary return type.
      *
      * @return array
      */

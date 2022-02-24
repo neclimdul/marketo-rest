@@ -109,10 +109,44 @@ use {{invokerPackage}}\ObjectSerializer;
 
 {{#operation}}
     /**
-     * Operation {{{operationId}}}
-{{#summary}}
+     * Exception handler for {{{operationId}}}.
      *
+     * @param \{{invokerPackage}}\ApiException $e Unprocessed exception.
+     *
+     * @return \{{invokerPackage}}\ApiException Processed exception.
+     */
+    protected function {{operationId}}HandleException(ApiException $e)
+    {
+        {{#returnType}}
+        {{#responses}}
+        {{#-first}}
+        switch ($e->getCode()) {
+        {{/-first}}
+        {{#dataType}}
+            {{^isWildcard}}case {{code}}:{{/isWildcard}}{{#isWildcard}}default:{{/isWildcard}}
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '{{dataType}}',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        {{/dataType}}
+        {{#-last}}
+        }
+        {{/-last}}
+        {{/responses}}
+        {{/returnType}}
+        return $e;
+    }
+
+    /**
+{{#summary}}
      * {{{summary}}}
+{{/summary}}
+{{^summary}}
+     * Operation {{{operationId}}}
 {{/summary}}
 {{#description}}
      *
@@ -149,10 +183,11 @@ use {{invokerPackage}}\ObjectSerializer;
     }
 
     /**
-     * Operation {{{operationId}}}WithHttpInfo
 {{#summary}}
-     *
      * {{{summary}}}
+{{/summary}}
+{{^summary}}
+     * Operation {{{operationId}}}WithHttpInfo
 {{/summary}}
 {{#description}}
      *
@@ -183,62 +218,25 @@ use {{invokerPackage}}\ObjectSerializer;
     public function {{operationId}}WithHttpInfo({{^vendorExtensions.x-group-parameters}}{{#allParams}}${{paramName}}{{^required}} = {{#defaultValue}}'{{{.}}}'{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}{{^-last}}, {{/-last}}{{/allParams}}{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}})
     {
         $request = $this->{{operationId}}Request({{^vendorExtensions.x-group-parameters}}{{#allParams}}${{paramName}}{{^-last}}, {{/-last}}{{/allParams}}{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}});
-
         try {
             $response = $this->makeRequest($request);
             {{#returnType}}
-            {{#responses}}
-            {{#-first}}
-
-            switch ($response->getStatusCode()) {
-            {{/-first}}
-            {{#dataType}}
-                {{^isWildcard}}case {{code}}:{{/isWildcard}}{{#isWildcard}}default:{{/isWildcard}}
-                    return $this->responseToReturn($response, '{{dataType}}');
-            {{/dataType}}
-            {{#-last}}
-            }
-            {{/-last}}
-            {{/responses}}
-
             return $this->responseToReturn($response, '{{returnType}}');
             {{/returnType}}
             {{^returnType}}
-
             return [null, $response->getStatusCode(), $response->getHeaders()];
             {{/returnType}}
-
         } catch (ApiException $e) {
-            {{#returnType}}
-            {{#responses}}
-            {{#-first}}
-            switch ($e->getCode()) {
-            {{/-first}}
-            {{#dataType}}
-                {{^isWildcard}}case {{code}}:{{/isWildcard}}{{#isWildcard}}default:{{/isWildcard}}
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '{{dataType}}',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            {{/dataType}}
-            {{#-last}}
-            }
-            {{/-last}}
-            {{/responses}}
-            {{/returnType}}
-            throw $e;
+            throw $this->{{operationId}}HandleException($e);
         }
     }
 
     /**
-     * Operation {{{operationId}}}Async
 {{#summary}}
-     *
      * {{{summary}}}
+{{/summary}}
+{{^summary}}
+     * Operation {{{operationId}}}Async
 {{/summary}}
 {{#description}}
      *
@@ -276,10 +274,11 @@ use {{invokerPackage}}\ObjectSerializer;
     }
 
     /**
-     * Operation {{{operationId}}}AsyncWithHttpInfo
 {{#summary}}
-     *
      * {{{summary}}}
+{{/summary}}
+{{^summary}}
+     * Operation {{{operationId}}}AsyncWithHttpInfo
 {{/summary}}
 {{#description}}
      *
@@ -309,32 +308,7 @@ use {{invokerPackage}}\ObjectSerializer;
     public function {{operationId}}AsyncWithHttpInfo({{^vendorExtensions.x-group-parameters}}{{#allParams}}${{paramName}}{{^required}} = {{#defaultValue}}'{{{.}}}'{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}{{^-last}}, {{/-last}}{{/allParams}}{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}})
     {
         $request = $this->{{operationId}}Request({{^vendorExtensions.x-group-parameters}}{{#allParams}}${{paramName}}{{^-last}}, {{/-last}}{{/allParams}}{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}});
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                {{#returnType}}
-                    return $this->responseToReturn($response, '{{returnType}}');
-                {{/returnType}}
-                {{^returnType}}
-                    return [null, $response->getStatusCode(), $response->getHeaders()];
-                {{/returnType}}
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '{{returnType}}', [$this, '{{operationId}}HandleException']);
     }
 
     /**
@@ -667,8 +641,7 @@ use {{invokerPackage}}\ObjectSerializer;
     /**
      * Make a request.
      *
-     * @param \GuzzleHttp\Psr7\Request $request
-     *   An initialized request object.
+     * @param \GuzzleHttp\Psr7\Request $request An initialized request object.
      *
      * @throws \{{invokerPackage}}\ApiException on non-2xx response
      * @return \Psr\Http\Message\ResponseInterface
@@ -704,12 +677,45 @@ use {{invokerPackage}}\ObjectSerializer;
     }
 
     /**
+     * Make an async request.
+     *
+     * @param \GuzzleHttp\Psr7\Request $request An initialized request object.
+     * @param string $returnType The return type.
+     * @param callable $exceptionHandler A callback to process HTTP errors.
+     *
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
+     * @return \GuzzleHttp\Promise\PromiseInterface A promise that will return a processed response.
+     */
+    private function makeAsyncRequest(Request $request, string $returnType, callable $exceptionHandler)
+    {
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return $this->responseToReturn($response, $returnType);
+                },
+                function (RequestException $exception) use ($exceptionHandler) {
+                    $response = $exception->getResponse();
+                    $e = new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
+                        ),
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
+                    );
+                    throw $exceptionHandler($e);
+                }
+            );
+    }
+
+    /**
      * Convert a response to a return standard return array.
      *
-     * @param \Psr\Http\Message\ResponseInterface $response
-     *   A response from a request with a serialized body.
-     * @param string $returnType
-     *   The return type.
+     * @param \Psr\Http\Message\ResponseInterface $response A response from a request with a serialized body.
+     * @param string $returnType The primary return type.
      *
      * @return array
      */

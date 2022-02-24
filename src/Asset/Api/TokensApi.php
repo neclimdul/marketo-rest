@@ -118,8 +118,29 @@ class TokensApi
     }
 
     /**
-     * Operation addTokenTOFolderUsingPOST
+     * Exception handler for addTokenTOFolderUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function addTokenTOFolderUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Create Token
      *
      * @param  int $id Id of the folder to which the token will be associated with (required)
@@ -136,8 +157,6 @@ class TokensApi
     }
 
     /**
-     * Operation addTokenTOFolderUsingPOSTWithHttpInfo
-     *
      * Create Token
      *
      * @param  int $id Id of the folder to which the token will be associated with (required)
@@ -150,36 +169,15 @@ class TokensApi
     public function addTokenTOFolderUsingPOSTWithHttpInfo($id, $create_token_request)
     {
         $request = $this->addTokenTOFolderUsingPOSTRequest($id, $create_token_request);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->addTokenTOFolderUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation addTokenTOFolderUsingPOSTAsync
-     *
      * Create Token
      *
      * @param  int $id Id of the folder to which the token will be associated with (required)
@@ -199,8 +197,6 @@ class TokensApi
     }
 
     /**
-     * Operation addTokenTOFolderUsingPOSTAsyncWithHttpInfo
-     *
      * Create Token
      *
      * @param  int $id Id of the folder to which the token will be associated with (required)
@@ -212,27 +208,7 @@ class TokensApi
     public function addTokenTOFolderUsingPOSTAsyncWithHttpInfo($id, $create_token_request)
     {
         $request = $this->addTokenTOFolderUsingPOSTRequest($id, $create_token_request);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse', [$this, 'addTokenTOFolderUsingPOSTHandleException']);
     }
 
     /**
@@ -305,8 +281,29 @@ class TokensApi
     }
 
     /**
-     * Operation deleteTokenByNameUsingPOST
+     * Exception handler for deleteTokenByNameUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function deleteTokenByNameUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Delete Token by Name
      *
      * @param  int $id id (required)
@@ -323,8 +320,6 @@ class TokensApi
     }
 
     /**
-     * Operation deleteTokenByNameUsingPOSTWithHttpInfo
-     *
      * Delete Token by Name
      *
      * @param  int $id id (required)
@@ -337,36 +332,15 @@ class TokensApi
     public function deleteTokenByNameUsingPOSTWithHttpInfo($id, $delete_token_request)
     {
         $request = $this->deleteTokenByNameUsingPOSTRequest($id, $delete_token_request);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->deleteTokenByNameUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation deleteTokenByNameUsingPOSTAsync
-     *
      * Delete Token by Name
      *
      * @param  int $id id (required)
@@ -386,8 +360,6 @@ class TokensApi
     }
 
     /**
-     * Operation deleteTokenByNameUsingPOSTAsyncWithHttpInfo
-     *
      * Delete Token by Name
      *
      * @param  int $id id (required)
@@ -399,27 +371,7 @@ class TokensApi
     public function deleteTokenByNameUsingPOSTAsyncWithHttpInfo($id, $delete_token_request)
     {
         $request = $this->deleteTokenByNameUsingPOSTRequest($id, $delete_token_request);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse', [$this, 'deleteTokenByNameUsingPOSTHandleException']);
     }
 
     /**
@@ -492,8 +444,29 @@ class TokensApi
     }
 
     /**
-     * Operation getTokensByFolderIdUsingGET
+     * Exception handler for getTokensByFolderIdUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function getTokensByFolderIdUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Tokens by Folder Id
      *
      * @param  int $id id (required)
@@ -510,8 +483,6 @@ class TokensApi
     }
 
     /**
-     * Operation getTokensByFolderIdUsingGETWithHttpInfo
-     *
      * Get Tokens by Folder Id
      *
      * @param  int $id id (required)
@@ -524,36 +495,15 @@ class TokensApi
     public function getTokensByFolderIdUsingGETWithHttpInfo($id, $folder_type = 'Folder')
     {
         $request = $this->getTokensByFolderIdUsingGETRequest($id, $folder_type);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getTokensByFolderIdUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getTokensByFolderIdUsingGETAsync
-     *
      * Get Tokens by Folder Id
      *
      * @param  int $id id (required)
@@ -573,8 +523,6 @@ class TokensApi
     }
 
     /**
-     * Operation getTokensByFolderIdUsingGETAsyncWithHttpInfo
-     *
      * Get Tokens by Folder Id
      *
      * @param  int $id id (required)
@@ -586,27 +534,7 @@ class TokensApi
     public function getTokensByFolderIdUsingGETAsyncWithHttpInfo($id, $folder_type = 'Folder')
     {
         $request = $this->getTokensByFolderIdUsingGETRequest($id, $folder_type);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse', [$this, 'getTokensByFolderIdUsingGETHandleException']);
     }
 
     /**
@@ -694,8 +622,7 @@ class TokensApi
     /**
      * Make a request.
      *
-     * @param \GuzzleHttp\Psr7\Request $request
-     *   An initialized request object.
+     * @param \GuzzleHttp\Psr7\Request $request An initialized request object.
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @return \Psr\Http\Message\ResponseInterface
@@ -731,12 +658,45 @@ class TokensApi
     }
 
     /**
+     * Make an async request.
+     *
+     * @param \GuzzleHttp\Psr7\Request $request An initialized request object.
+     * @param string $returnType The return type.
+     * @param callable $exceptionHandler A callback to process HTTP errors.
+     *
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
+     * @return \GuzzleHttp\Promise\PromiseInterface A promise that will return a processed response.
+     */
+    private function makeAsyncRequest(Request $request, string $returnType, callable $exceptionHandler)
+    {
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return $this->responseToReturn($response, $returnType);
+                },
+                function (RequestException $exception) use ($exceptionHandler) {
+                    $response = $exception->getResponse();
+                    $e = new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
+                        ),
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
+                    );
+                    throw $exceptionHandler($e);
+                }
+            );
+    }
+
+    /**
      * Convert a response to a return standard return array.
      *
-     * @param \Psr\Http\Message\ResponseInterface $response
-     *   A response from a request with a serialized body.
-     * @param string $returnType
-     *   The return type.
+     * @param \Psr\Http\Message\ResponseInterface $response A response from a request with a serialized body.
+     * @param string $returnType The primary return type.
      *
      * @return array
      */

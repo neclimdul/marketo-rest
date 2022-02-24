@@ -118,8 +118,29 @@ class SmartListsApi
     }
 
     /**
-     * Operation cloneSmartListUsingPOST
+     * Exception handler for cloneSmartListUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function cloneSmartListUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Clone Smart List
      *
      * @param  int $id Id of smart list to clone (required)
@@ -136,8 +157,6 @@ class SmartListsApi
     }
 
     /**
-     * Operation cloneSmartListUsingPOSTWithHttpInfo
-     *
      * Clone Smart List
      *
      * @param  int $id Id of smart list to clone (required)
@@ -150,36 +169,15 @@ class SmartListsApi
     public function cloneSmartListUsingPOSTWithHttpInfo($id, $clone_smart_list_request)
     {
         $request = $this->cloneSmartListUsingPOSTRequest($id, $clone_smart_list_request);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->cloneSmartListUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation cloneSmartListUsingPOSTAsync
-     *
      * Clone Smart List
      *
      * @param  int $id Id of smart list to clone (required)
@@ -199,8 +197,6 @@ class SmartListsApi
     }
 
     /**
-     * Operation cloneSmartListUsingPOSTAsyncWithHttpInfo
-     *
      * Clone Smart List
      *
      * @param  int $id Id of smart list to clone (required)
@@ -212,27 +208,7 @@ class SmartListsApi
     public function cloneSmartListUsingPOSTAsyncWithHttpInfo($id, $clone_smart_list_request)
     {
         $request = $this->cloneSmartListUsingPOSTRequest($id, $clone_smart_list_request);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponse', [$this, 'cloneSmartListUsingPOSTHandleException']);
     }
 
     /**
@@ -305,8 +281,29 @@ class SmartListsApi
     }
 
     /**
-     * Operation deleteSmartListByIdUsingPOST
+     * Exception handler for deleteSmartListByIdUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function deleteSmartListByIdUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Delete Smart List
      *
      * @param  int $id Id of the smart list to delete (required)
@@ -322,8 +319,6 @@ class SmartListsApi
     }
 
     /**
-     * Operation deleteSmartListByIdUsingPOSTWithHttpInfo
-     *
      * Delete Smart List
      *
      * @param  int $id Id of the smart list to delete (required)
@@ -335,36 +330,15 @@ class SmartListsApi
     public function deleteSmartListByIdUsingPOSTWithHttpInfo($id)
     {
         $request = $this->deleteSmartListByIdUsingPOSTRequest($id);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->deleteSmartListByIdUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation deleteSmartListByIdUsingPOSTAsync
-     *
      * Delete Smart List
      *
      * @param  int $id Id of the smart list to delete (required)
@@ -383,8 +357,6 @@ class SmartListsApi
     }
 
     /**
-     * Operation deleteSmartListByIdUsingPOSTAsyncWithHttpInfo
-     *
      * Delete Smart List
      *
      * @param  int $id Id of the smart list to delete (required)
@@ -395,27 +367,7 @@ class SmartListsApi
     public function deleteSmartListByIdUsingPOSTAsyncWithHttpInfo($id)
     {
         $request = $this->deleteSmartListByIdUsingPOSTRequest($id);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse', [$this, 'deleteSmartListByIdUsingPOSTHandleException']);
     }
 
     /**
@@ -473,8 +425,29 @@ class SmartListsApi
     }
 
     /**
-     * Operation getSmartListByIdUsingGET
+     * Exception handler for getSmartListByIdUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function getSmartListByIdUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponseWithRules',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Smart List by Id
      *
      * @param  int $id Id of the smart list to retrieve (required)
@@ -491,8 +464,6 @@ class SmartListsApi
     }
 
     /**
-     * Operation getSmartListByIdUsingGETWithHttpInfo
-     *
      * Get Smart List by Id
      *
      * @param  int $id Id of the smart list to retrieve (required)
@@ -505,36 +476,15 @@ class SmartListsApi
     public function getSmartListByIdUsingGETWithHttpInfo($id, $include_rules = null)
     {
         $request = $this->getSmartListByIdUsingGETRequest($id, $include_rules);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponseWithRules');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponseWithRules');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponseWithRules',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getSmartListByIdUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getSmartListByIdUsingGETAsync
-     *
      * Get Smart List by Id
      *
      * @param  int $id Id of the smart list to retrieve (required)
@@ -554,8 +504,6 @@ class SmartListsApi
     }
 
     /**
-     * Operation getSmartListByIdUsingGETAsyncWithHttpInfo
-     *
      * Get Smart List by Id
      *
      * @param  int $id Id of the smart list to retrieve (required)
@@ -567,27 +515,7 @@ class SmartListsApi
     public function getSmartListByIdUsingGETAsyncWithHttpInfo($id, $include_rules = null)
     {
         $request = $this->getSmartListByIdUsingGETRequest($id, $include_rules);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponseWithRules');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponseWithRules', [$this, 'getSmartListByIdUsingGETHandleException']);
     }
 
     /**
@@ -654,8 +582,29 @@ class SmartListsApi
     }
 
     /**
-     * Operation getSmartListByNameUsingGET
+     * Exception handler for getSmartListByNameUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function getSmartListByNameUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Smart List by Name
      *
      * @param  string $name Name of smart list to retrieve (required)
@@ -671,8 +620,6 @@ class SmartListsApi
     }
 
     /**
-     * Operation getSmartListByNameUsingGETWithHttpInfo
-     *
      * Get Smart List by Name
      *
      * @param  string $name Name of smart list to retrieve (required)
@@ -684,36 +631,15 @@ class SmartListsApi
     public function getSmartListByNameUsingGETWithHttpInfo($name)
     {
         $request = $this->getSmartListByNameUsingGETRequest($name);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getSmartListByNameUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getSmartListByNameUsingGETAsync
-     *
      * Get Smart List by Name
      *
      * @param  string $name Name of smart list to retrieve (required)
@@ -732,8 +658,6 @@ class SmartListsApi
     }
 
     /**
-     * Operation getSmartListByNameUsingGETAsyncWithHttpInfo
-     *
      * Get Smart List by Name
      *
      * @param  string $name Name of smart list to retrieve (required)
@@ -744,27 +668,7 @@ class SmartListsApi
     public function getSmartListByNameUsingGETAsyncWithHttpInfo($name)
     {
         $request = $this->getSmartListByNameUsingGETRequest($name);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponse', [$this, 'getSmartListByNameUsingGETHandleException']);
     }
 
     /**
@@ -823,8 +727,29 @@ class SmartListsApi
     }
 
     /**
-     * Operation getSmartListsUsingGET
+     * Exception handler for getSmartListsUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function getSmartListsUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Smart Lists
      *
      * @param  string $folder JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39; (optional)
@@ -844,8 +769,6 @@ class SmartListsApi
     }
 
     /**
-     * Operation getSmartListsUsingGETWithHttpInfo
-     *
      * Get Smart Lists
      *
      * @param  string $folder JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39; (optional)
@@ -861,36 +784,15 @@ class SmartListsApi
     public function getSmartListsUsingGETWithHttpInfo($folder = null, $offset = null, $max_return = null, $earliest_updated_at = null, $latest_updated_at = null)
     {
         $request = $this->getSmartListsUsingGETRequest($folder, $offset, $max_return, $earliest_updated_at, $latest_updated_at);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getSmartListsUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getSmartListsUsingGETAsync
-     *
      * Get Smart Lists
      *
      * @param  string $folder JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39; (optional)
@@ -913,8 +815,6 @@ class SmartListsApi
     }
 
     /**
-     * Operation getSmartListsUsingGETAsyncWithHttpInfo
-     *
      * Get Smart Lists
      *
      * @param  string $folder JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39; (optional)
@@ -929,27 +829,7 @@ class SmartListsApi
     public function getSmartListsUsingGETAsyncWithHttpInfo($folder = null, $offset = null, $max_return = null, $earliest_updated_at = null, $latest_updated_at = null)
     {
         $request = $this->getSmartListsUsingGETRequest($folder, $offset, $max_return, $earliest_updated_at, $latest_updated_at);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponse', [$this, 'getSmartListsUsingGETHandleException']);
     }
 
     /**
@@ -1043,8 +923,7 @@ class SmartListsApi
     /**
      * Make a request.
      *
-     * @param \GuzzleHttp\Psr7\Request $request
-     *   An initialized request object.
+     * @param \GuzzleHttp\Psr7\Request $request An initialized request object.
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @return \Psr\Http\Message\ResponseInterface
@@ -1080,12 +959,45 @@ class SmartListsApi
     }
 
     /**
+     * Make an async request.
+     *
+     * @param \GuzzleHttp\Psr7\Request $request An initialized request object.
+     * @param string $returnType The return type.
+     * @param callable $exceptionHandler A callback to process HTTP errors.
+     *
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
+     * @return \GuzzleHttp\Promise\PromiseInterface A promise that will return a processed response.
+     */
+    private function makeAsyncRequest(Request $request, string $returnType, callable $exceptionHandler)
+    {
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return $this->responseToReturn($response, $returnType);
+                },
+                function (RequestException $exception) use ($exceptionHandler) {
+                    $response = $exception->getResponse();
+                    $e = new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
+                        ),
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
+                    );
+                    throw $exceptionHandler($e);
+                }
+            );
+    }
+
+    /**
      * Convert a response to a return standard return array.
      *
-     * @param \Psr\Http\Message\ResponseInterface $response
-     *   A response from a request with a serialized body.
-     * @param string $returnType
-     *   The return type.
+     * @param \Psr\Http\Message\ResponseInterface $response A response from a request with a serialized body.
+     * @param string $returnType The primary return type.
      *
      * @return array
      */

@@ -118,8 +118,29 @@ class CustomObjectsApi
     }
 
     /**
-     * Operation addCustomObjectTypeFieldsUsingPOST
+     * Exception handler for addCustomObjectTypeFieldsUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function addCustomObjectTypeFieldsUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Add Custom Object Type Fields
      *
      * @param  string $api_name API name of custom object type (required)
@@ -136,8 +157,6 @@ class CustomObjectsApi
     }
 
     /**
-     * Operation addCustomObjectTypeFieldsUsingPOSTWithHttpInfo
-     *
      * Add Custom Object Type Fields
      *
      * @param  string $api_name API name of custom object type (required)
@@ -150,36 +169,15 @@ class CustomObjectsApi
     public function addCustomObjectTypeFieldsUsingPOSTWithHttpInfo($api_name, $add_custom_object_type_fields_request)
     {
         $request = $this->addCustomObjectTypeFieldsUsingPOSTRequest($api_name, $add_custom_object_type_fields_request);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->addCustomObjectTypeFieldsUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation addCustomObjectTypeFieldsUsingPOSTAsync
-     *
      * Add Custom Object Type Fields
      *
      * @param  string $api_name API name of custom object type (required)
@@ -199,8 +197,6 @@ class CustomObjectsApi
     }
 
     /**
-     * Operation addCustomObjectTypeFieldsUsingPOSTAsyncWithHttpInfo
-     *
      * Add Custom Object Type Fields
      *
      * @param  string $api_name API name of custom object type (required)
@@ -212,27 +208,7 @@ class CustomObjectsApi
     public function addCustomObjectTypeFieldsUsingPOSTAsyncWithHttpInfo($api_name, $add_custom_object_type_fields_request)
     {
         $request = $this->addCustomObjectTypeFieldsUsingPOSTRequest($api_name, $add_custom_object_type_fields_request);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType', [$this, 'addCustomObjectTypeFieldsUsingPOSTHandleException']);
     }
 
     /**
@@ -305,8 +281,29 @@ class CustomObjectsApi
     }
 
     /**
-     * Operation approveCustomObjectTypeUsingPOST
+     * Exception handler for approveCustomObjectTypeUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function approveCustomObjectTypeUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Approve Custom Object Type
      *
      * @param  string $api_name API Name of the custom object type to approve (required)
@@ -322,8 +319,6 @@ class CustomObjectsApi
     }
 
     /**
-     * Operation approveCustomObjectTypeUsingPOSTWithHttpInfo
-     *
      * Approve Custom Object Type
      *
      * @param  string $api_name API Name of the custom object type to approve (required)
@@ -335,36 +330,15 @@ class CustomObjectsApi
     public function approveCustomObjectTypeUsingPOSTWithHttpInfo($api_name)
     {
         $request = $this->approveCustomObjectTypeUsingPOSTRequest($api_name);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->approveCustomObjectTypeUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation approveCustomObjectTypeUsingPOSTAsync
-     *
      * Approve Custom Object Type
      *
      * @param  string $api_name API Name of the custom object type to approve (required)
@@ -383,8 +357,6 @@ class CustomObjectsApi
     }
 
     /**
-     * Operation approveCustomObjectTypeUsingPOSTAsyncWithHttpInfo
-     *
      * Approve Custom Object Type
      *
      * @param  string $api_name API Name of the custom object type to approve (required)
@@ -395,27 +367,7 @@ class CustomObjectsApi
     public function approveCustomObjectTypeUsingPOSTAsyncWithHttpInfo($api_name)
     {
         $request = $this->approveCustomObjectTypeUsingPOSTRequest($api_name);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType', [$this, 'approveCustomObjectTypeUsingPOSTHandleException']);
     }
 
     /**
@@ -473,8 +425,29 @@ class CustomObjectsApi
     }
 
     /**
-     * Operation deleteCustomObjectTypeFieldsUsingPOST
+     * Exception handler for deleteCustomObjectTypeFieldsUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function deleteCustomObjectTypeFieldsUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Delete Custom Object Type Fields
      *
      * @param  string $api_name API name of custom object type (required)
@@ -491,8 +464,6 @@ class CustomObjectsApi
     }
 
     /**
-     * Operation deleteCustomObjectTypeFieldsUsingPOSTWithHttpInfo
-     *
      * Delete Custom Object Type Fields
      *
      * @param  string $api_name API name of custom object type (required)
@@ -505,36 +476,15 @@ class CustomObjectsApi
     public function deleteCustomObjectTypeFieldsUsingPOSTWithHttpInfo($api_name, $delete_custom_object_type_fields_request)
     {
         $request = $this->deleteCustomObjectTypeFieldsUsingPOSTRequest($api_name, $delete_custom_object_type_fields_request);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->deleteCustomObjectTypeFieldsUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation deleteCustomObjectTypeFieldsUsingPOSTAsync
-     *
      * Delete Custom Object Type Fields
      *
      * @param  string $api_name API name of custom object type (required)
@@ -554,8 +504,6 @@ class CustomObjectsApi
     }
 
     /**
-     * Operation deleteCustomObjectTypeFieldsUsingPOSTAsyncWithHttpInfo
-     *
      * Delete Custom Object Type Fields
      *
      * @param  string $api_name API name of custom object type (required)
@@ -567,27 +515,7 @@ class CustomObjectsApi
     public function deleteCustomObjectTypeFieldsUsingPOSTAsyncWithHttpInfo($api_name, $delete_custom_object_type_fields_request)
     {
         $request = $this->deleteCustomObjectTypeFieldsUsingPOSTRequest($api_name, $delete_custom_object_type_fields_request);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType', [$this, 'deleteCustomObjectTypeFieldsUsingPOSTHandleException']);
     }
 
     /**
@@ -660,8 +588,29 @@ class CustomObjectsApi
     }
 
     /**
-     * Operation deleteCustomObjectTypeUsingPOST
+     * Exception handler for deleteCustomObjectTypeUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function deleteCustomObjectTypeUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Delete Custom Object Type
      *
      * @param  string $api_name API Name of the custom object type to delete (required)
@@ -677,8 +626,6 @@ class CustomObjectsApi
     }
 
     /**
-     * Operation deleteCustomObjectTypeUsingPOSTWithHttpInfo
-     *
      * Delete Custom Object Type
      *
      * @param  string $api_name API Name of the custom object type to delete (required)
@@ -690,36 +637,15 @@ class CustomObjectsApi
     public function deleteCustomObjectTypeUsingPOSTWithHttpInfo($api_name)
     {
         $request = $this->deleteCustomObjectTypeUsingPOSTRequest($api_name);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->deleteCustomObjectTypeUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation deleteCustomObjectTypeUsingPOSTAsync
-     *
      * Delete Custom Object Type
      *
      * @param  string $api_name API Name of the custom object type to delete (required)
@@ -738,8 +664,6 @@ class CustomObjectsApi
     }
 
     /**
-     * Operation deleteCustomObjectTypeUsingPOSTAsyncWithHttpInfo
-     *
      * Delete Custom Object Type
      *
      * @param  string $api_name API Name of the custom object type to delete (required)
@@ -750,27 +674,7 @@ class CustomObjectsApi
     public function deleteCustomObjectTypeUsingPOSTAsyncWithHttpInfo($api_name)
     {
         $request = $this->deleteCustomObjectTypeUsingPOSTRequest($api_name);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType', [$this, 'deleteCustomObjectTypeUsingPOSTHandleException']);
     }
 
     /**
@@ -828,8 +732,29 @@ class CustomObjectsApi
     }
 
     /**
-     * Operation deleteCustomObjectsUsingPOST
+     * Exception handler for deleteCustomObjectsUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function deleteCustomObjectsUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Delete Custom Objects
      *
      * @param  string $custom_object_name customObjectName (required)
@@ -846,8 +771,6 @@ class CustomObjectsApi
     }
 
     /**
-     * Operation deleteCustomObjectsUsingPOSTWithHttpInfo
-     *
      * Delete Custom Objects
      *
      * @param  string $custom_object_name customObjectName (required)
@@ -860,36 +783,15 @@ class CustomObjectsApi
     public function deleteCustomObjectsUsingPOSTWithHttpInfo($custom_object_name, $delete_custom_object_request = null)
     {
         $request = $this->deleteCustomObjectsUsingPOSTRequest($custom_object_name, $delete_custom_object_request);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->deleteCustomObjectsUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation deleteCustomObjectsUsingPOSTAsync
-     *
      * Delete Custom Objects
      *
      * @param  string $custom_object_name customObjectName (required)
@@ -909,8 +811,6 @@ class CustomObjectsApi
     }
 
     /**
-     * Operation deleteCustomObjectsUsingPOSTAsyncWithHttpInfo
-     *
      * Delete Custom Objects
      *
      * @param  string $custom_object_name customObjectName (required)
@@ -922,27 +822,7 @@ class CustomObjectsApi
     public function deleteCustomObjectsUsingPOSTAsyncWithHttpInfo($custom_object_name, $delete_custom_object_request = null)
     {
         $request = $this->deleteCustomObjectsUsingPOSTRequest($custom_object_name, $delete_custom_object_request);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject', [$this, 'deleteCustomObjectsUsingPOSTHandleException']);
     }
 
     /**
@@ -1012,8 +892,29 @@ class CustomObjectsApi
     }
 
     /**
-     * Operation describeCustomObjectTypeUsingGET
+     * Exception handler for describeCustomObjectTypeUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function describeCustomObjectTypeUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Describe Custom Object Type
      *
      * @param  string $api_name API name of custom object type to describe (required)
@@ -1030,8 +931,6 @@ class CustomObjectsApi
     }
 
     /**
-     * Operation describeCustomObjectTypeUsingGETWithHttpInfo
-     *
      * Describe Custom Object Type
      *
      * @param  string $api_name API name of custom object type to describe (required)
@@ -1044,36 +943,15 @@ class CustomObjectsApi
     public function describeCustomObjectTypeUsingGETWithHttpInfo($api_name, $state = null)
     {
         $request = $this->describeCustomObjectTypeUsingGETRequest($api_name, $state);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->describeCustomObjectTypeUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation describeCustomObjectTypeUsingGETAsync
-     *
      * Describe Custom Object Type
      *
      * @param  string $api_name API name of custom object type to describe (required)
@@ -1093,8 +971,6 @@ class CustomObjectsApi
     }
 
     /**
-     * Operation describeCustomObjectTypeUsingGETAsyncWithHttpInfo
-     *
      * Describe Custom Object Type
      *
      * @param  string $api_name API name of custom object type to describe (required)
@@ -1106,27 +982,7 @@ class CustomObjectsApi
     public function describeCustomObjectTypeUsingGETAsyncWithHttpInfo($api_name, $state = null)
     {
         $request = $this->describeCustomObjectTypeUsingGETRequest($api_name, $state);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData', [$this, 'describeCustomObjectTypeUsingGETHandleException']);
     }
 
     /**
@@ -1193,8 +1049,29 @@ class CustomObjectsApi
     }
 
     /**
-     * Operation describeUsingGET1
+     * Exception handler for describeUsingGET1.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function describeUsingGET1HandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Describe Custom Objects
      *
      * @param  string $custom_object_name customObjectName (required)
@@ -1210,8 +1087,6 @@ class CustomObjectsApi
     }
 
     /**
-     * Operation describeUsingGET1WithHttpInfo
-     *
      * Describe Custom Objects
      *
      * @param  string $custom_object_name customObjectName (required)
@@ -1223,36 +1098,15 @@ class CustomObjectsApi
     public function describeUsingGET1WithHttpInfo($custom_object_name)
     {
         $request = $this->describeUsingGET1Request($custom_object_name);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->describeUsingGET1HandleException($e);
         }
     }
 
     /**
-     * Operation describeUsingGET1Async
-     *
      * Describe Custom Objects
      *
      * @param  string $custom_object_name customObjectName (required)
@@ -1271,8 +1125,6 @@ class CustomObjectsApi
     }
 
     /**
-     * Operation describeUsingGET1AsyncWithHttpInfo
-     *
      * Describe Custom Objects
      *
      * @param  string $custom_object_name customObjectName (required)
@@ -1283,27 +1135,7 @@ class CustomObjectsApi
     public function describeUsingGET1AsyncWithHttpInfo($custom_object_name)
     {
         $request = $this->describeUsingGET1Request($custom_object_name);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData', [$this, 'describeUsingGET1HandleException']);
     }
 
     /**
@@ -1361,8 +1193,29 @@ class CustomObjectsApi
     }
 
     /**
-     * Operation discardCustomObjectTypeUsingPOST
+     * Exception handler for discardCustomObjectTypeUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function discardCustomObjectTypeUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Discard Custom Object Type Draft
      *
      * @param  string $api_name API Name of the custom object type draft to discard (required)
@@ -1378,8 +1231,6 @@ class CustomObjectsApi
     }
 
     /**
-     * Operation discardCustomObjectTypeUsingPOSTWithHttpInfo
-     *
      * Discard Custom Object Type Draft
      *
      * @param  string $api_name API Name of the custom object type draft to discard (required)
@@ -1391,36 +1242,15 @@ class CustomObjectsApi
     public function discardCustomObjectTypeUsingPOSTWithHttpInfo($api_name)
     {
         $request = $this->discardCustomObjectTypeUsingPOSTRequest($api_name);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->discardCustomObjectTypeUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation discardCustomObjectTypeUsingPOSTAsync
-     *
      * Discard Custom Object Type Draft
      *
      * @param  string $api_name API Name of the custom object type draft to discard (required)
@@ -1439,8 +1269,6 @@ class CustomObjectsApi
     }
 
     /**
-     * Operation discardCustomObjectTypeUsingPOSTAsyncWithHttpInfo
-     *
      * Discard Custom Object Type Draft
      *
      * @param  string $api_name API Name of the custom object type draft to discard (required)
@@ -1451,27 +1279,7 @@ class CustomObjectsApi
     public function discardCustomObjectTypeUsingPOSTAsyncWithHttpInfo($api_name)
     {
         $request = $this->discardCustomObjectTypeUsingPOSTRequest($api_name);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType', [$this, 'discardCustomObjectTypeUsingPOSTHandleException']);
     }
 
     /**
@@ -1529,8 +1337,29 @@ class CustomObjectsApi
     }
 
     /**
-     * Operation getCustomObjectTypeDependentAssetsUsingGET
+     * Exception handler for getCustomObjectTypeDependentAssetsUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function getCustomObjectTypeDependentAssetsUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectDependentAssets',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Custom Object Dependent Assets
      *
      * @param  string $api_name REST API name for custom object (required)
@@ -1546,8 +1375,6 @@ class CustomObjectsApi
     }
 
     /**
-     * Operation getCustomObjectTypeDependentAssetsUsingGETWithHttpInfo
-     *
      * Get Custom Object Dependent Assets
      *
      * @param  string $api_name REST API name for custom object (required)
@@ -1559,36 +1386,15 @@ class CustomObjectsApi
     public function getCustomObjectTypeDependentAssetsUsingGETWithHttpInfo($api_name)
     {
         $request = $this->getCustomObjectTypeDependentAssetsUsingGETRequest($api_name);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectDependentAssets');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectDependentAssets');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectDependentAssets',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getCustomObjectTypeDependentAssetsUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getCustomObjectTypeDependentAssetsUsingGETAsync
-     *
      * Get Custom Object Dependent Assets
      *
      * @param  string $api_name REST API name for custom object (required)
@@ -1607,8 +1413,6 @@ class CustomObjectsApi
     }
 
     /**
-     * Operation getCustomObjectTypeDependentAssetsUsingGETAsyncWithHttpInfo
-     *
      * Get Custom Object Dependent Assets
      *
      * @param  string $api_name REST API name for custom object (required)
@@ -1619,27 +1423,7 @@ class CustomObjectsApi
     public function getCustomObjectTypeDependentAssetsUsingGETAsyncWithHttpInfo($api_name)
     {
         $request = $this->getCustomObjectTypeDependentAssetsUsingGETRequest($api_name);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectDependentAssets');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectDependentAssets', [$this, 'getCustomObjectTypeDependentAssetsUsingGETHandleException']);
     }
 
     /**
@@ -1697,8 +1481,29 @@ class CustomObjectsApi
     }
 
     /**
-     * Operation getCustomObjectTypeFieldDataTypesUsingGET
+     * Exception handler for getCustomObjectTypeFieldDataTypesUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function getCustomObjectTypeFieldDataTypesUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectTypeFieldDataTypes',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Custom Object Type Field Data Types
      *
      *
@@ -1713,8 +1518,6 @@ class CustomObjectsApi
     }
 
     /**
-     * Operation getCustomObjectTypeFieldDataTypesUsingGETWithHttpInfo
-     *
      * Get Custom Object Type Field Data Types
      *
      *
@@ -1725,36 +1528,15 @@ class CustomObjectsApi
     public function getCustomObjectTypeFieldDataTypesUsingGETWithHttpInfo()
     {
         $request = $this->getCustomObjectTypeFieldDataTypesUsingGETRequest();
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectTypeFieldDataTypes');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectTypeFieldDataTypes');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectTypeFieldDataTypes',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getCustomObjectTypeFieldDataTypesUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getCustomObjectTypeFieldDataTypesUsingGETAsync
-     *
      * Get Custom Object Type Field Data Types
      *
      *
@@ -1772,8 +1554,6 @@ class CustomObjectsApi
     }
 
     /**
-     * Operation getCustomObjectTypeFieldDataTypesUsingGETAsyncWithHttpInfo
-     *
      * Get Custom Object Type Field Data Types
      *
      *
@@ -1783,27 +1563,7 @@ class CustomObjectsApi
     public function getCustomObjectTypeFieldDataTypesUsingGETAsyncWithHttpInfo()
     {
         $request = $this->getCustomObjectTypeFieldDataTypesUsingGETRequest();
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectTypeFieldDataTypes');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectTypeFieldDataTypes', [$this, 'getCustomObjectTypeFieldDataTypesUsingGETHandleException']);
     }
 
     /**
@@ -1847,8 +1607,29 @@ class CustomObjectsApi
     }
 
     /**
-     * Operation getCustomObjectTypeLinkableObjectsUsingGET
+     * Exception handler for getCustomObjectTypeLinkableObjectsUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function getCustomObjectTypeLinkableObjectsUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectLinkableObject',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Custom Object Linkable Objects
      *
      *
@@ -1863,8 +1644,6 @@ class CustomObjectsApi
     }
 
     /**
-     * Operation getCustomObjectTypeLinkableObjectsUsingGETWithHttpInfo
-     *
      * Get Custom Object Linkable Objects
      *
      *
@@ -1875,36 +1654,15 @@ class CustomObjectsApi
     public function getCustomObjectTypeLinkableObjectsUsingGETWithHttpInfo()
     {
         $request = $this->getCustomObjectTypeLinkableObjectsUsingGETRequest();
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectLinkableObject');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectLinkableObject');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectLinkableObject',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getCustomObjectTypeLinkableObjectsUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getCustomObjectTypeLinkableObjectsUsingGETAsync
-     *
      * Get Custom Object Linkable Objects
      *
      *
@@ -1922,8 +1680,6 @@ class CustomObjectsApi
     }
 
     /**
-     * Operation getCustomObjectTypeLinkableObjectsUsingGETAsyncWithHttpInfo
-     *
      * Get Custom Object Linkable Objects
      *
      *
@@ -1933,27 +1689,7 @@ class CustomObjectsApi
     public function getCustomObjectTypeLinkableObjectsUsingGETAsyncWithHttpInfo()
     {
         $request = $this->getCustomObjectTypeLinkableObjectsUsingGETRequest();
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectLinkableObject');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectLinkableObject', [$this, 'getCustomObjectTypeLinkableObjectsUsingGETHandleException']);
     }
 
     /**
@@ -1997,8 +1733,29 @@ class CustomObjectsApi
     }
 
     /**
-     * Operation getCustomObjectsUsingGET
+     * Exception handler for getCustomObjectsUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function getCustomObjectsUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Custom Objects
      *
      * @param  string $custom_object_name Name of custom object type to retrieve records for (required)
@@ -2020,8 +1777,6 @@ class CustomObjectsApi
     }
 
     /**
-     * Operation getCustomObjectsUsingGETWithHttpInfo
-     *
      * Get Custom Objects
      *
      * @param  string $custom_object_name Name of custom object type to retrieve records for (required)
@@ -2039,36 +1794,15 @@ class CustomObjectsApi
     public function getCustomObjectsUsingGETWithHttpInfo($custom_object_name, $filter_type, $filter_values, $custom_object_lookup_request = null, $fields = null, $batch_size = null, $next_page_token = null)
     {
         $request = $this->getCustomObjectsUsingGETRequest($custom_object_name, $filter_type, $filter_values, $custom_object_lookup_request, $fields, $batch_size, $next_page_token);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getCustomObjectsUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getCustomObjectsUsingGETAsync
-     *
      * Get Custom Objects
      *
      * @param  string $custom_object_name Name of custom object type to retrieve records for (required)
@@ -2093,8 +1827,6 @@ class CustomObjectsApi
     }
 
     /**
-     * Operation getCustomObjectsUsingGETAsyncWithHttpInfo
-     *
      * Get Custom Objects
      *
      * @param  string $custom_object_name Name of custom object type to retrieve records for (required)
@@ -2111,27 +1843,7 @@ class CustomObjectsApi
     public function getCustomObjectsUsingGETAsyncWithHttpInfo($custom_object_name, $filter_type, $filter_values, $custom_object_lookup_request = null, $fields = null, $batch_size = null, $next_page_token = null)
     {
         $request = $this->getCustomObjectsUsingGETRequest($custom_object_name, $filter_type, $filter_values, $custom_object_lookup_request, $fields, $batch_size, $next_page_token);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject', [$this, 'getCustomObjectsUsingGETHandleException']);
     }
 
     /**
@@ -2242,8 +1954,29 @@ class CustomObjectsApi
     }
 
     /**
-     * Operation listCustomObjectTypesUsingGET
+     * Exception handler for listCustomObjectTypesUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function listCustomObjectTypesUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * List Custom Object Types
      *
      * @param  string[] $names Comma-separated list of API names of custom object types to filter on (optional)
@@ -2260,8 +1993,6 @@ class CustomObjectsApi
     }
 
     /**
-     * Operation listCustomObjectTypesUsingGETWithHttpInfo
-     *
      * List Custom Object Types
      *
      * @param  string[] $names Comma-separated list of API names of custom object types to filter on (optional)
@@ -2274,36 +2005,15 @@ class CustomObjectsApi
     public function listCustomObjectTypesUsingGETWithHttpInfo($names = null, $state = null)
     {
         $request = $this->listCustomObjectTypesUsingGETRequest($names, $state);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->listCustomObjectTypesUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation listCustomObjectTypesUsingGETAsync
-     *
      * List Custom Object Types
      *
      * @param  string[] $names Comma-separated list of API names of custom object types to filter on (optional)
@@ -2323,8 +2033,6 @@ class CustomObjectsApi
     }
 
     /**
-     * Operation listCustomObjectTypesUsingGETAsyncWithHttpInfo
-     *
      * List Custom Object Types
      *
      * @param  string[] $names Comma-separated list of API names of custom object types to filter on (optional)
@@ -2336,27 +2044,7 @@ class CustomObjectsApi
     public function listCustomObjectTypesUsingGETAsyncWithHttpInfo($names = null, $state = null)
     {
         $request = $this->listCustomObjectTypesUsingGETRequest($names, $state);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData', [$this, 'listCustomObjectTypesUsingGETHandleException']);
     }
 
     /**
@@ -2414,8 +2102,29 @@ class CustomObjectsApi
     }
 
     /**
-     * Operation listCustomObjectsUsingGET
+     * Exception handler for listCustomObjectsUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function listCustomObjectsUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * List Custom Objects
      *
      * @param  string[] $names Comma-separated list of names to filter types on (optional)
@@ -2431,8 +2140,6 @@ class CustomObjectsApi
     }
 
     /**
-     * Operation listCustomObjectsUsingGETWithHttpInfo
-     *
      * List Custom Objects
      *
      * @param  string[] $names Comma-separated list of names to filter types on (optional)
@@ -2444,36 +2151,15 @@ class CustomObjectsApi
     public function listCustomObjectsUsingGETWithHttpInfo($names = null)
     {
         $request = $this->listCustomObjectsUsingGETRequest($names);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->listCustomObjectsUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation listCustomObjectsUsingGETAsync
-     *
      * List Custom Objects
      *
      * @param  string[] $names Comma-separated list of names to filter types on (optional)
@@ -2492,8 +2178,6 @@ class CustomObjectsApi
     }
 
     /**
-     * Operation listCustomObjectsUsingGETAsyncWithHttpInfo
-     *
      * List Custom Objects
      *
      * @param  string[] $names Comma-separated list of names to filter types on (optional)
@@ -2504,27 +2188,7 @@ class CustomObjectsApi
     public function listCustomObjectsUsingGETAsyncWithHttpInfo($names = null)
     {
         $request = $this->listCustomObjectsUsingGETRequest($names);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData', [$this, 'listCustomObjectsUsingGETHandleException']);
     }
 
     /**
@@ -2577,8 +2241,29 @@ class CustomObjectsApi
     }
 
     /**
-     * Operation syncCustomObjectTypeUsingPOST
+     * Exception handler for syncCustomObjectTypeUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function syncCustomObjectTypeUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Sync Custom Object Type
      *
      * @param  \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectTypeRequest $sync_custom_object_type_request JSON object containing custom object type attributes (required)
@@ -2594,8 +2279,6 @@ class CustomObjectsApi
     }
 
     /**
-     * Operation syncCustomObjectTypeUsingPOSTWithHttpInfo
-     *
      * Sync Custom Object Type
      *
      * @param  \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectTypeRequest $sync_custom_object_type_request JSON object containing custom object type attributes (required)
@@ -2607,36 +2290,15 @@ class CustomObjectsApi
     public function syncCustomObjectTypeUsingPOSTWithHttpInfo($sync_custom_object_type_request)
     {
         $request = $this->syncCustomObjectTypeUsingPOSTRequest($sync_custom_object_type_request);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->syncCustomObjectTypeUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation syncCustomObjectTypeUsingPOSTAsync
-     *
      * Sync Custom Object Type
      *
      * @param  \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectTypeRequest $sync_custom_object_type_request JSON object containing custom object type attributes (required)
@@ -2655,8 +2317,6 @@ class CustomObjectsApi
     }
 
     /**
-     * Operation syncCustomObjectTypeUsingPOSTAsyncWithHttpInfo
-     *
      * Sync Custom Object Type
      *
      * @param  \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectTypeRequest $sync_custom_object_type_request JSON object containing custom object type attributes (required)
@@ -2667,27 +2327,7 @@ class CustomObjectsApi
     public function syncCustomObjectTypeUsingPOSTAsyncWithHttpInfo($sync_custom_object_type_request)
     {
         $request = $this->syncCustomObjectTypeUsingPOSTRequest($sync_custom_object_type_request);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType', [$this, 'syncCustomObjectTypeUsingPOSTHandleException']);
     }
 
     /**
@@ -2746,8 +2386,29 @@ class CustomObjectsApi
     }
 
     /**
-     * Operation syncCustomObjectsUsingPOST
+     * Exception handler for syncCustomObjectsUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function syncCustomObjectsUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Sync Custom Objects
      *
      * @param  string $custom_object_name customObjectName (required)
@@ -2764,8 +2425,6 @@ class CustomObjectsApi
     }
 
     /**
-     * Operation syncCustomObjectsUsingPOSTWithHttpInfo
-     *
      * Sync Custom Objects
      *
      * @param  string $custom_object_name customObjectName (required)
@@ -2778,36 +2437,15 @@ class CustomObjectsApi
     public function syncCustomObjectsUsingPOSTWithHttpInfo($custom_object_name, $sync_custom_object_request)
     {
         $request = $this->syncCustomObjectsUsingPOSTRequest($custom_object_name, $sync_custom_object_request);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->syncCustomObjectsUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation syncCustomObjectsUsingPOSTAsync
-     *
      * Sync Custom Objects
      *
      * @param  string $custom_object_name customObjectName (required)
@@ -2827,8 +2465,6 @@ class CustomObjectsApi
     }
 
     /**
-     * Operation syncCustomObjectsUsingPOSTAsyncWithHttpInfo
-     *
      * Sync Custom Objects
      *
      * @param  string $custom_object_name customObjectName (required)
@@ -2840,27 +2476,7 @@ class CustomObjectsApi
     public function syncCustomObjectsUsingPOSTAsyncWithHttpInfo($custom_object_name, $sync_custom_object_request)
     {
         $request = $this->syncCustomObjectsUsingPOSTRequest($custom_object_name, $sync_custom_object_request);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject', [$this, 'syncCustomObjectsUsingPOSTHandleException']);
     }
 
     /**
@@ -2933,8 +2549,29 @@ class CustomObjectsApi
     }
 
     /**
-     * Operation updateCustomObjectTypeFieldUsingPOST
+     * Exception handler for updateCustomObjectTypeFieldUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function updateCustomObjectTypeFieldUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Update Custom Object Type Field
      *
      * @param  string $api_name API name of custom object type (required)
@@ -2952,8 +2589,6 @@ class CustomObjectsApi
     }
 
     /**
-     * Operation updateCustomObjectTypeFieldUsingPOSTWithHttpInfo
-     *
      * Update Custom Object Type Field
      *
      * @param  string $api_name API name of custom object type (required)
@@ -2967,36 +2602,15 @@ class CustomObjectsApi
     public function updateCustomObjectTypeFieldUsingPOSTWithHttpInfo($api_name, $field_api_name, $update_custom_object_type_field_request)
     {
         $request = $this->updateCustomObjectTypeFieldUsingPOSTRequest($api_name, $field_api_name, $update_custom_object_type_field_request);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->updateCustomObjectTypeFieldUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation updateCustomObjectTypeFieldUsingPOSTAsync
-     *
      * Update Custom Object Type Field
      *
      * @param  string $api_name API name of custom object type (required)
@@ -3017,8 +2631,6 @@ class CustomObjectsApi
     }
 
     /**
-     * Operation updateCustomObjectTypeFieldUsingPOSTAsyncWithHttpInfo
-     *
      * Update Custom Object Type Field
      *
      * @param  string $api_name API name of custom object type (required)
@@ -3031,27 +2643,7 @@ class CustomObjectsApi
     public function updateCustomObjectTypeFieldUsingPOSTAsyncWithHttpInfo($api_name, $field_api_name, $update_custom_object_type_field_request)
     {
         $request = $this->updateCustomObjectTypeFieldUsingPOSTRequest($api_name, $field_api_name, $update_custom_object_type_field_request);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType', [$this, 'updateCustomObjectTypeFieldUsingPOSTHandleException']);
     }
 
     /**
@@ -3157,8 +2749,7 @@ class CustomObjectsApi
     /**
      * Make a request.
      *
-     * @param \GuzzleHttp\Psr7\Request $request
-     *   An initialized request object.
+     * @param \GuzzleHttp\Psr7\Request $request An initialized request object.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @return \Psr\Http\Message\ResponseInterface
@@ -3194,12 +2785,45 @@ class CustomObjectsApi
     }
 
     /**
+     * Make an async request.
+     *
+     * @param \GuzzleHttp\Psr7\Request $request An initialized request object.
+     * @param string $returnType The return type.
+     * @param callable $exceptionHandler A callback to process HTTP errors.
+     *
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
+     * @return \GuzzleHttp\Promise\PromiseInterface A promise that will return a processed response.
+     */
+    private function makeAsyncRequest(Request $request, string $returnType, callable $exceptionHandler)
+    {
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return $this->responseToReturn($response, $returnType);
+                },
+                function (RequestException $exception) use ($exceptionHandler) {
+                    $response = $exception->getResponse();
+                    $e = new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
+                        ),
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
+                    );
+                    throw $exceptionHandler($e);
+                }
+            );
+    }
+
+    /**
      * Convert a response to a return standard return array.
      *
-     * @param \Psr\Http\Message\ResponseInterface $response
-     *   A response from a request with a serialized body.
-     * @param string $returnType
-     *   The return type.
+     * @param \Psr\Http\Message\ResponseInterface $response A response from a request with a serialized body.
+     * @param string $returnType The primary return type.
      *
      * @return array
      */

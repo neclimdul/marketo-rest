@@ -118,8 +118,29 @@ class OpportunitiesApi
     }
 
     /**
-     * Operation deleteOpportunitiesUsingPOST
+     * Exception handler for deleteOpportunitiesUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function deleteOpportunitiesUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Delete Opportunities
      *
      * @param  \NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectRequest $delete_custom_object_request deleteCustomObjectRequest (optional)
@@ -135,8 +156,6 @@ class OpportunitiesApi
     }
 
     /**
-     * Operation deleteOpportunitiesUsingPOSTWithHttpInfo
-     *
      * Delete Opportunities
      *
      * @param  \NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectRequest $delete_custom_object_request deleteCustomObjectRequest (optional)
@@ -148,36 +167,15 @@ class OpportunitiesApi
     public function deleteOpportunitiesUsingPOSTWithHttpInfo($delete_custom_object_request = null)
     {
         $request = $this->deleteOpportunitiesUsingPOSTRequest($delete_custom_object_request);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->deleteOpportunitiesUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation deleteOpportunitiesUsingPOSTAsync
-     *
      * Delete Opportunities
      *
      * @param  \NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectRequest $delete_custom_object_request deleteCustomObjectRequest (optional)
@@ -196,8 +194,6 @@ class OpportunitiesApi
     }
 
     /**
-     * Operation deleteOpportunitiesUsingPOSTAsyncWithHttpInfo
-     *
      * Delete Opportunities
      *
      * @param  \NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectRequest $delete_custom_object_request deleteCustomObjectRequest (optional)
@@ -208,27 +204,7 @@ class OpportunitiesApi
     public function deleteOpportunitiesUsingPOSTAsyncWithHttpInfo($delete_custom_object_request = null)
     {
         $request = $this->deleteOpportunitiesUsingPOSTRequest($delete_custom_object_request);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject', [$this, 'deleteOpportunitiesUsingPOSTHandleException']);
     }
 
     /**
@@ -284,8 +260,29 @@ class OpportunitiesApi
     }
 
     /**
-     * Operation deleteOpportunityRolesUsingPOST
+     * Exception handler for deleteOpportunityRolesUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function deleteOpportunityRolesUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Delete Opportunity Roles
      *
      * @param  \NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectRequest $delete_custom_object_request deleteCustomObjectRequest (optional)
@@ -301,8 +298,6 @@ class OpportunitiesApi
     }
 
     /**
-     * Operation deleteOpportunityRolesUsingPOSTWithHttpInfo
-     *
      * Delete Opportunity Roles
      *
      * @param  \NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectRequest $delete_custom_object_request deleteCustomObjectRequest (optional)
@@ -314,36 +309,15 @@ class OpportunitiesApi
     public function deleteOpportunityRolesUsingPOSTWithHttpInfo($delete_custom_object_request = null)
     {
         $request = $this->deleteOpportunityRolesUsingPOSTRequest($delete_custom_object_request);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->deleteOpportunityRolesUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation deleteOpportunityRolesUsingPOSTAsync
-     *
      * Delete Opportunity Roles
      *
      * @param  \NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectRequest $delete_custom_object_request deleteCustomObjectRequest (optional)
@@ -362,8 +336,6 @@ class OpportunitiesApi
     }
 
     /**
-     * Operation deleteOpportunityRolesUsingPOSTAsyncWithHttpInfo
-     *
      * Delete Opportunity Roles
      *
      * @param  \NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectRequest $delete_custom_object_request deleteCustomObjectRequest (optional)
@@ -374,27 +346,7 @@ class OpportunitiesApi
     public function deleteOpportunityRolesUsingPOSTAsyncWithHttpInfo($delete_custom_object_request = null)
     {
         $request = $this->deleteOpportunityRolesUsingPOSTRequest($delete_custom_object_request);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject', [$this, 'deleteOpportunityRolesUsingPOSTHandleException']);
     }
 
     /**
@@ -450,8 +402,29 @@ class OpportunitiesApi
     }
 
     /**
-     * Operation describeOpportunityRoleUsingGET
+     * Exception handler for describeOpportunityRoleUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function describeOpportunityRoleUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Describe Opportunity Role
      *
      *
@@ -466,8 +439,6 @@ class OpportunitiesApi
     }
 
     /**
-     * Operation describeOpportunityRoleUsingGETWithHttpInfo
-     *
      * Describe Opportunity Role
      *
      *
@@ -478,36 +449,15 @@ class OpportunitiesApi
     public function describeOpportunityRoleUsingGETWithHttpInfo()
     {
         $request = $this->describeOpportunityRoleUsingGETRequest();
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->describeOpportunityRoleUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation describeOpportunityRoleUsingGETAsync
-     *
      * Describe Opportunity Role
      *
      *
@@ -525,8 +475,6 @@ class OpportunitiesApi
     }
 
     /**
-     * Operation describeOpportunityRoleUsingGETAsyncWithHttpInfo
-     *
      * Describe Opportunity Role
      *
      *
@@ -536,27 +484,7 @@ class OpportunitiesApi
     public function describeOpportunityRoleUsingGETAsyncWithHttpInfo()
     {
         $request = $this->describeOpportunityRoleUsingGETRequest();
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData', [$this, 'describeOpportunityRoleUsingGETHandleException']);
     }
 
     /**
@@ -600,8 +528,29 @@ class OpportunitiesApi
     }
 
     /**
-     * Operation describeUsingGET4
+     * Exception handler for describeUsingGET4.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function describeUsingGET4HandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Describe Opportunity
      *
      *
@@ -616,8 +565,6 @@ class OpportunitiesApi
     }
 
     /**
-     * Operation describeUsingGET4WithHttpInfo
-     *
      * Describe Opportunity
      *
      *
@@ -628,36 +575,15 @@ class OpportunitiesApi
     public function describeUsingGET4WithHttpInfo()
     {
         $request = $this->describeUsingGET4Request();
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->describeUsingGET4HandleException($e);
         }
     }
 
     /**
-     * Operation describeUsingGET4Async
-     *
      * Describe Opportunity
      *
      *
@@ -675,8 +601,6 @@ class OpportunitiesApi
     }
 
     /**
-     * Operation describeUsingGET4AsyncWithHttpInfo
-     *
      * Describe Opportunity
      *
      *
@@ -686,27 +610,7 @@ class OpportunitiesApi
     public function describeUsingGET4AsyncWithHttpInfo()
     {
         $request = $this->describeUsingGET4Request();
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData', [$this, 'describeUsingGET4HandleException']);
     }
 
     /**
@@ -750,8 +654,29 @@ class OpportunitiesApi
     }
 
     /**
-     * Operation getOpportunitiesUsingGET
+     * Exception handler for getOpportunitiesUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function getOpportunitiesUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Opportunities
      *
      * @param  string $filter_type Opportunities field to filter on (required)
@@ -772,8 +697,6 @@ class OpportunitiesApi
     }
 
     /**
-     * Operation getOpportunitiesUsingGETWithHttpInfo
-     *
      * Get Opportunities
      *
      * @param  string $filter_type Opportunities field to filter on (required)
@@ -790,36 +713,15 @@ class OpportunitiesApi
     public function getOpportunitiesUsingGETWithHttpInfo($filter_type, $filter_values, $custom_object_lookup_request = null, $fields = null, $batch_size = null, $next_page_token = null)
     {
         $request = $this->getOpportunitiesUsingGETRequest($filter_type, $filter_values, $custom_object_lookup_request, $fields, $batch_size, $next_page_token);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getOpportunitiesUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getOpportunitiesUsingGETAsync
-     *
      * Get Opportunities
      *
      * @param  string $filter_type Opportunities field to filter on (required)
@@ -843,8 +745,6 @@ class OpportunitiesApi
     }
 
     /**
-     * Operation getOpportunitiesUsingGETAsyncWithHttpInfo
-     *
      * Get Opportunities
      *
      * @param  string $filter_type Opportunities field to filter on (required)
@@ -860,27 +760,7 @@ class OpportunitiesApi
     public function getOpportunitiesUsingGETAsyncWithHttpInfo($filter_type, $filter_values, $custom_object_lookup_request = null, $fields = null, $batch_size = null, $next_page_token = null)
     {
         $request = $this->getOpportunitiesUsingGETRequest($filter_type, $filter_values, $custom_object_lookup_request, $fields, $batch_size, $next_page_token);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject', [$this, 'getOpportunitiesUsingGETHandleException']);
     }
 
     /**
@@ -977,8 +857,29 @@ class OpportunitiesApi
     }
 
     /**
-     * Operation getOpportunityFieldByNameUsingGET
+     * Exception handler for getOpportunityFieldByNameUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function getOpportunityFieldByNameUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Opportunity Field by Name
      *
      * @param  string $field_api_name The API name of opportunity field (required)
@@ -994,8 +895,6 @@ class OpportunitiesApi
     }
 
     /**
-     * Operation getOpportunityFieldByNameUsingGETWithHttpInfo
-     *
      * Get Opportunity Field by Name
      *
      * @param  string $field_api_name The API name of opportunity field (required)
@@ -1007,36 +906,15 @@ class OpportunitiesApi
     public function getOpportunityFieldByNameUsingGETWithHttpInfo($field_api_name)
     {
         $request = $this->getOpportunityFieldByNameUsingGETRequest($field_api_name);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getOpportunityFieldByNameUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getOpportunityFieldByNameUsingGETAsync
-     *
      * Get Opportunity Field by Name
      *
      * @param  string $field_api_name The API name of opportunity field (required)
@@ -1055,8 +933,6 @@ class OpportunitiesApi
     }
 
     /**
-     * Operation getOpportunityFieldByNameUsingGETAsyncWithHttpInfo
-     *
      * Get Opportunity Field by Name
      *
      * @param  string $field_api_name The API name of opportunity field (required)
@@ -1067,27 +943,7 @@ class OpportunitiesApi
     public function getOpportunityFieldByNameUsingGETAsyncWithHttpInfo($field_api_name)
     {
         $request = $this->getOpportunityFieldByNameUsingGETRequest($field_api_name);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField', [$this, 'getOpportunityFieldByNameUsingGETHandleException']);
     }
 
     /**
@@ -1145,8 +1001,29 @@ class OpportunitiesApi
     }
 
     /**
-     * Operation getOpportunityFieldsUsingGET
+     * Exception handler for getOpportunityFieldsUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function getOpportunityFieldsUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Opportunity Fields
      *
      * @param  int $batch_size The batch size to return. The max and default value is 300. (optional)
@@ -1163,8 +1040,6 @@ class OpportunitiesApi
     }
 
     /**
-     * Operation getOpportunityFieldsUsingGETWithHttpInfo
-     *
      * Get Opportunity Fields
      *
      * @param  int $batch_size The batch size to return. The max and default value is 300. (optional)
@@ -1177,36 +1052,15 @@ class OpportunitiesApi
     public function getOpportunityFieldsUsingGETWithHttpInfo($batch_size = null, $next_page_token = null)
     {
         $request = $this->getOpportunityFieldsUsingGETRequest($batch_size, $next_page_token);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getOpportunityFieldsUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getOpportunityFieldsUsingGETAsync
-     *
      * Get Opportunity Fields
      *
      * @param  int $batch_size The batch size to return. The max and default value is 300. (optional)
@@ -1226,8 +1080,6 @@ class OpportunitiesApi
     }
 
     /**
-     * Operation getOpportunityFieldsUsingGETAsyncWithHttpInfo
-     *
      * Get Opportunity Fields
      *
      * @param  int $batch_size The batch size to return. The max and default value is 300. (optional)
@@ -1239,27 +1091,7 @@ class OpportunitiesApi
     public function getOpportunityFieldsUsingGETAsyncWithHttpInfo($batch_size = null, $next_page_token = null)
     {
         $request = $this->getOpportunityFieldsUsingGETRequest($batch_size, $next_page_token);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField', [$this, 'getOpportunityFieldsUsingGETHandleException']);
     }
 
     /**
@@ -1317,8 +1149,29 @@ class OpportunitiesApi
     }
 
     /**
-     * Operation getOpportunityRolesUsingGET
+     * Exception handler for getOpportunityRolesUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function getOpportunityRolesUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Opportunity Roles
      *
      * @param  string $filter_type The role field to filter on.  Searchable fields can be retrieved with the Describe Opportunity call. (required)
@@ -1339,8 +1192,6 @@ class OpportunitiesApi
     }
 
     /**
-     * Operation getOpportunityRolesUsingGETWithHttpInfo
-     *
      * Get Opportunity Roles
      *
      * @param  string $filter_type The role field to filter on.  Searchable fields can be retrieved with the Describe Opportunity call. (required)
@@ -1357,36 +1208,15 @@ class OpportunitiesApi
     public function getOpportunityRolesUsingGETWithHttpInfo($filter_type, $filter_values, $custom_object_lookup_request = null, $fields = null, $batch_size = null, $next_page_token = null)
     {
         $request = $this->getOpportunityRolesUsingGETRequest($filter_type, $filter_values, $custom_object_lookup_request, $fields, $batch_size, $next_page_token);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getOpportunityRolesUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getOpportunityRolesUsingGETAsync
-     *
      * Get Opportunity Roles
      *
      * @param  string $filter_type The role field to filter on.  Searchable fields can be retrieved with the Describe Opportunity call. (required)
@@ -1410,8 +1240,6 @@ class OpportunitiesApi
     }
 
     /**
-     * Operation getOpportunityRolesUsingGETAsyncWithHttpInfo
-     *
      * Get Opportunity Roles
      *
      * @param  string $filter_type The role field to filter on.  Searchable fields can be retrieved with the Describe Opportunity call. (required)
@@ -1427,27 +1255,7 @@ class OpportunitiesApi
     public function getOpportunityRolesUsingGETAsyncWithHttpInfo($filter_type, $filter_values, $custom_object_lookup_request = null, $fields = null, $batch_size = null, $next_page_token = null)
     {
         $request = $this->getOpportunityRolesUsingGETRequest($filter_type, $filter_values, $custom_object_lookup_request, $fields, $batch_size, $next_page_token);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject', [$this, 'getOpportunityRolesUsingGETHandleException']);
     }
 
     /**
@@ -1544,8 +1352,29 @@ class OpportunitiesApi
     }
 
     /**
-     * Operation syncOpportunitiesUsingPOST
+     * Exception handler for syncOpportunitiesUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function syncOpportunitiesUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Sync Opportunities
      *
      * @param  \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectRequest $sync_custom_object_request syncCustomObjectRequest (required)
@@ -1561,8 +1390,6 @@ class OpportunitiesApi
     }
 
     /**
-     * Operation syncOpportunitiesUsingPOSTWithHttpInfo
-     *
      * Sync Opportunities
      *
      * @param  \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectRequest $sync_custom_object_request syncCustomObjectRequest (required)
@@ -1574,36 +1401,15 @@ class OpportunitiesApi
     public function syncOpportunitiesUsingPOSTWithHttpInfo($sync_custom_object_request)
     {
         $request = $this->syncOpportunitiesUsingPOSTRequest($sync_custom_object_request);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->syncOpportunitiesUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation syncOpportunitiesUsingPOSTAsync
-     *
      * Sync Opportunities
      *
      * @param  \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectRequest $sync_custom_object_request syncCustomObjectRequest (required)
@@ -1622,8 +1428,6 @@ class OpportunitiesApi
     }
 
     /**
-     * Operation syncOpportunitiesUsingPOSTAsyncWithHttpInfo
-     *
      * Sync Opportunities
      *
      * @param  \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectRequest $sync_custom_object_request syncCustomObjectRequest (required)
@@ -1634,27 +1438,7 @@ class OpportunitiesApi
     public function syncOpportunitiesUsingPOSTAsyncWithHttpInfo($sync_custom_object_request)
     {
         $request = $this->syncOpportunitiesUsingPOSTRequest($sync_custom_object_request);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject', [$this, 'syncOpportunitiesUsingPOSTHandleException']);
     }
 
     /**
@@ -1713,8 +1497,29 @@ class OpportunitiesApi
     }
 
     /**
-     * Operation syncOpportunityRolesUsingPOST
+     * Exception handler for syncOpportunityRolesUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function syncOpportunityRolesUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Sync Opportunity Roles
      *
      * @param  \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectRequest $sync_custom_object_request syncCustomObjectRequest (required)
@@ -1730,8 +1535,6 @@ class OpportunitiesApi
     }
 
     /**
-     * Operation syncOpportunityRolesUsingPOSTWithHttpInfo
-     *
      * Sync Opportunity Roles
      *
      * @param  \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectRequest $sync_custom_object_request syncCustomObjectRequest (required)
@@ -1743,36 +1546,15 @@ class OpportunitiesApi
     public function syncOpportunityRolesUsingPOSTWithHttpInfo($sync_custom_object_request)
     {
         $request = $this->syncOpportunityRolesUsingPOSTRequest($sync_custom_object_request);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->syncOpportunityRolesUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation syncOpportunityRolesUsingPOSTAsync
-     *
      * Sync Opportunity Roles
      *
      * @param  \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectRequest $sync_custom_object_request syncCustomObjectRequest (required)
@@ -1791,8 +1573,6 @@ class OpportunitiesApi
     }
 
     /**
-     * Operation syncOpportunityRolesUsingPOSTAsyncWithHttpInfo
-     *
      * Sync Opportunity Roles
      *
      * @param  \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectRequest $sync_custom_object_request syncCustomObjectRequest (required)
@@ -1803,27 +1583,7 @@ class OpportunitiesApi
     public function syncOpportunityRolesUsingPOSTAsyncWithHttpInfo($sync_custom_object_request)
     {
         $request = $this->syncOpportunityRolesUsingPOSTRequest($sync_custom_object_request);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject', [$this, 'syncOpportunityRolesUsingPOSTHandleException']);
     }
 
     /**
@@ -1903,8 +1663,7 @@ class OpportunitiesApi
     /**
      * Make a request.
      *
-     * @param \GuzzleHttp\Psr7\Request $request
-     *   An initialized request object.
+     * @param \GuzzleHttp\Psr7\Request $request An initialized request object.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @return \Psr\Http\Message\ResponseInterface
@@ -1940,12 +1699,45 @@ class OpportunitiesApi
     }
 
     /**
+     * Make an async request.
+     *
+     * @param \GuzzleHttp\Psr7\Request $request An initialized request object.
+     * @param string $returnType The return type.
+     * @param callable $exceptionHandler A callback to process HTTP errors.
+     *
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
+     * @return \GuzzleHttp\Promise\PromiseInterface A promise that will return a processed response.
+     */
+    private function makeAsyncRequest(Request $request, string $returnType, callable $exceptionHandler)
+    {
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return $this->responseToReturn($response, $returnType);
+                },
+                function (RequestException $exception) use ($exceptionHandler) {
+                    $response = $exception->getResponse();
+                    $e = new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
+                        ),
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
+                    );
+                    throw $exceptionHandler($e);
+                }
+            );
+    }
+
+    /**
      * Convert a response to a return standard return array.
      *
-     * @param \Psr\Http\Message\ResponseInterface $response
-     *   A response from a request with a serialized body.
-     * @param string $returnType
-     *   The return type.
+     * @param \Psr\Http\Message\ResponseInterface $response A response from a request with a serialized body.
+     * @param string $returnType The primary return type.
      *
      * @return array
      */

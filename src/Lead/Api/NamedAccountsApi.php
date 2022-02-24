@@ -118,8 +118,29 @@ class NamedAccountsApi
     }
 
     /**
-     * Operation deleteNamedAccountsUsingPOST
+     * Exception handler for deleteNamedAccountsUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function deleteNamedAccountsUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Delete NamedAccounts
      *
      * @param  \NecLimDul\MarketoRest\Lead\Model\DeleteNamedAccountRequest $delete_account_request deleteAccountRequest (required)
@@ -135,8 +156,6 @@ class NamedAccountsApi
     }
 
     /**
-     * Operation deleteNamedAccountsUsingPOSTWithHttpInfo
-     *
      * Delete NamedAccounts
      *
      * @param  \NecLimDul\MarketoRest\Lead\Model\DeleteNamedAccountRequest $delete_account_request deleteAccountRequest (required)
@@ -148,36 +167,15 @@ class NamedAccountsApi
     public function deleteNamedAccountsUsingPOSTWithHttpInfo($delete_account_request)
     {
         $request = $this->deleteNamedAccountsUsingPOSTRequest($delete_account_request);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->deleteNamedAccountsUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation deleteNamedAccountsUsingPOSTAsync
-     *
      * Delete NamedAccounts
      *
      * @param  \NecLimDul\MarketoRest\Lead\Model\DeleteNamedAccountRequest $delete_account_request deleteAccountRequest (required)
@@ -196,8 +194,6 @@ class NamedAccountsApi
     }
 
     /**
-     * Operation deleteNamedAccountsUsingPOSTAsyncWithHttpInfo
-     *
      * Delete NamedAccounts
      *
      * @param  \NecLimDul\MarketoRest\Lead\Model\DeleteNamedAccountRequest $delete_account_request deleteAccountRequest (required)
@@ -208,27 +204,7 @@ class NamedAccountsApi
     public function deleteNamedAccountsUsingPOSTAsyncWithHttpInfo($delete_account_request)
     {
         $request = $this->deleteNamedAccountsUsingPOSTRequest($delete_account_request);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount', [$this, 'deleteNamedAccountsUsingPOSTHandleException']);
     }
 
     /**
@@ -287,8 +263,29 @@ class NamedAccountsApi
     }
 
     /**
-     * Operation describeUsingGET3
+     * Exception handler for describeUsingGET3.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function describeUsingGET3HandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Describe NamedAccounts
      *
      *
@@ -303,8 +300,6 @@ class NamedAccountsApi
     }
 
     /**
-     * Operation describeUsingGET3WithHttpInfo
-     *
      * Describe NamedAccounts
      *
      *
@@ -315,36 +310,15 @@ class NamedAccountsApi
     public function describeUsingGET3WithHttpInfo()
     {
         $request = $this->describeUsingGET3Request();
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->describeUsingGET3HandleException($e);
         }
     }
 
     /**
-     * Operation describeUsingGET3Async
-     *
      * Describe NamedAccounts
      *
      *
@@ -362,8 +336,6 @@ class NamedAccountsApi
     }
 
     /**
-     * Operation describeUsingGET3AsyncWithHttpInfo
-     *
      * Describe NamedAccounts
      *
      *
@@ -373,27 +345,7 @@ class NamedAccountsApi
     public function describeUsingGET3AsyncWithHttpInfo()
     {
         $request = $this->describeUsingGET3Request();
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData', [$this, 'describeUsingGET3HandleException']);
     }
 
     /**
@@ -437,8 +389,29 @@ class NamedAccountsApi
     }
 
     /**
-     * Operation getNamedAccountFieldByNameUsingGET
+     * Exception handler for getNamedAccountFieldByNameUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function getNamedAccountFieldByNameUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Named Account Field by Name
      *
      * @param  string $field_api_name The API name of named account field (required)
@@ -454,8 +427,6 @@ class NamedAccountsApi
     }
 
     /**
-     * Operation getNamedAccountFieldByNameUsingGETWithHttpInfo
-     *
      * Get Named Account Field by Name
      *
      * @param  string $field_api_name The API name of named account field (required)
@@ -467,36 +438,15 @@ class NamedAccountsApi
     public function getNamedAccountFieldByNameUsingGETWithHttpInfo($field_api_name)
     {
         $request = $this->getNamedAccountFieldByNameUsingGETRequest($field_api_name);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getNamedAccountFieldByNameUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getNamedAccountFieldByNameUsingGETAsync
-     *
      * Get Named Account Field by Name
      *
      * @param  string $field_api_name The API name of named account field (required)
@@ -515,8 +465,6 @@ class NamedAccountsApi
     }
 
     /**
-     * Operation getNamedAccountFieldByNameUsingGETAsyncWithHttpInfo
-     *
      * Get Named Account Field by Name
      *
      * @param  string $field_api_name The API name of named account field (required)
@@ -527,27 +475,7 @@ class NamedAccountsApi
     public function getNamedAccountFieldByNameUsingGETAsyncWithHttpInfo($field_api_name)
     {
         $request = $this->getNamedAccountFieldByNameUsingGETRequest($field_api_name);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField', [$this, 'getNamedAccountFieldByNameUsingGETHandleException']);
     }
 
     /**
@@ -605,8 +533,29 @@ class NamedAccountsApi
     }
 
     /**
-     * Operation getNamedAccountFieldsUsingGET
+     * Exception handler for getNamedAccountFieldsUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function getNamedAccountFieldsUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Named Account Fields
      *
      * @param  int $batch_size The batch size to return. The max and default value is 300. (optional)
@@ -623,8 +572,6 @@ class NamedAccountsApi
     }
 
     /**
-     * Operation getNamedAccountFieldsUsingGETWithHttpInfo
-     *
      * Get Named Account Fields
      *
      * @param  int $batch_size The batch size to return. The max and default value is 300. (optional)
@@ -637,36 +584,15 @@ class NamedAccountsApi
     public function getNamedAccountFieldsUsingGETWithHttpInfo($batch_size = null, $next_page_token = null)
     {
         $request = $this->getNamedAccountFieldsUsingGETRequest($batch_size, $next_page_token);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getNamedAccountFieldsUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getNamedAccountFieldsUsingGETAsync
-     *
      * Get Named Account Fields
      *
      * @param  int $batch_size The batch size to return. The max and default value is 300. (optional)
@@ -686,8 +612,6 @@ class NamedAccountsApi
     }
 
     /**
-     * Operation getNamedAccountFieldsUsingGETAsyncWithHttpInfo
-     *
      * Get Named Account Fields
      *
      * @param  int $batch_size The batch size to return. The max and default value is 300. (optional)
@@ -699,27 +623,7 @@ class NamedAccountsApi
     public function getNamedAccountFieldsUsingGETAsyncWithHttpInfo($batch_size = null, $next_page_token = null)
     {
         $request = $this->getNamedAccountFieldsUsingGETRequest($batch_size, $next_page_token);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField', [$this, 'getNamedAccountFieldsUsingGETHandleException']);
     }
 
     /**
@@ -777,8 +681,29 @@ class NamedAccountsApi
     }
 
     /**
-     * Operation getNamedAccountsUsingGET
+     * Exception handler for getNamedAccountsUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function getNamedAccountsUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get NamedAccounts
      *
      * @param  string $filter_type NamedAccounts field to filter on.  Can be any searchable fields (required)
@@ -798,8 +723,6 @@ class NamedAccountsApi
     }
 
     /**
-     * Operation getNamedAccountsUsingGETWithHttpInfo
-     *
      * Get NamedAccounts
      *
      * @param  string $filter_type NamedAccounts field to filter on.  Can be any searchable fields (required)
@@ -815,36 +738,15 @@ class NamedAccountsApi
     public function getNamedAccountsUsingGETWithHttpInfo($filter_type, $filter_values, $fields = null, $batch_size = null, $next_page_token = null)
     {
         $request = $this->getNamedAccountsUsingGETRequest($filter_type, $filter_values, $fields, $batch_size, $next_page_token);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getNamedAccountsUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getNamedAccountsUsingGETAsync
-     *
      * Get NamedAccounts
      *
      * @param  string $filter_type NamedAccounts field to filter on.  Can be any searchable fields (required)
@@ -867,8 +769,6 @@ class NamedAccountsApi
     }
 
     /**
-     * Operation getNamedAccountsUsingGETAsyncWithHttpInfo
-     *
      * Get NamedAccounts
      *
      * @param  string $filter_type NamedAccounts field to filter on.  Can be any searchable fields (required)
@@ -883,27 +783,7 @@ class NamedAccountsApi
     public function getNamedAccountsUsingGETAsyncWithHttpInfo($filter_type, $filter_values, $fields = null, $batch_size = null, $next_page_token = null)
     {
         $request = $this->getNamedAccountsUsingGETRequest($filter_type, $filter_values, $fields, $batch_size, $next_page_token);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount', [$this, 'getNamedAccountsUsingGETHandleException']);
     }
 
     /**
@@ -988,8 +868,29 @@ class NamedAccountsApi
     }
 
     /**
-     * Operation syncNamedAccountsUsingPOST
+     * Exception handler for syncNamedAccountsUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function syncNamedAccountsUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Sync NamedAccounts
      *
      * @param  \NecLimDul\MarketoRest\Lead\Model\SyncNamedAccountRequest $sync_account_request syncAccountRequest (required)
@@ -1005,8 +906,6 @@ class NamedAccountsApi
     }
 
     /**
-     * Operation syncNamedAccountsUsingPOSTWithHttpInfo
-     *
      * Sync NamedAccounts
      *
      * @param  \NecLimDul\MarketoRest\Lead\Model\SyncNamedAccountRequest $sync_account_request syncAccountRequest (required)
@@ -1018,36 +917,15 @@ class NamedAccountsApi
     public function syncNamedAccountsUsingPOSTWithHttpInfo($sync_account_request)
     {
         $request = $this->syncNamedAccountsUsingPOSTRequest($sync_account_request);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->syncNamedAccountsUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation syncNamedAccountsUsingPOSTAsync
-     *
      * Sync NamedAccounts
      *
      * @param  \NecLimDul\MarketoRest\Lead\Model\SyncNamedAccountRequest $sync_account_request syncAccountRequest (required)
@@ -1066,8 +944,6 @@ class NamedAccountsApi
     }
 
     /**
-     * Operation syncNamedAccountsUsingPOSTAsyncWithHttpInfo
-     *
      * Sync NamedAccounts
      *
      * @param  \NecLimDul\MarketoRest\Lead\Model\SyncNamedAccountRequest $sync_account_request syncAccountRequest (required)
@@ -1078,27 +954,7 @@ class NamedAccountsApi
     public function syncNamedAccountsUsingPOSTAsyncWithHttpInfo($sync_account_request)
     {
         $request = $this->syncNamedAccountsUsingPOSTRequest($sync_account_request);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount', [$this, 'syncNamedAccountsUsingPOSTHandleException']);
     }
 
     /**
@@ -1178,8 +1034,7 @@ class NamedAccountsApi
     /**
      * Make a request.
      *
-     * @param \GuzzleHttp\Psr7\Request $request
-     *   An initialized request object.
+     * @param \GuzzleHttp\Psr7\Request $request An initialized request object.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @return \Psr\Http\Message\ResponseInterface
@@ -1215,12 +1070,45 @@ class NamedAccountsApi
     }
 
     /**
+     * Make an async request.
+     *
+     * @param \GuzzleHttp\Psr7\Request $request An initialized request object.
+     * @param string $returnType The return type.
+     * @param callable $exceptionHandler A callback to process HTTP errors.
+     *
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
+     * @return \GuzzleHttp\Promise\PromiseInterface A promise that will return a processed response.
+     */
+    private function makeAsyncRequest(Request $request, string $returnType, callable $exceptionHandler)
+    {
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return $this->responseToReturn($response, $returnType);
+                },
+                function (RequestException $exception) use ($exceptionHandler) {
+                    $response = $exception->getResponse();
+                    $e = new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
+                        ),
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
+                    );
+                    throw $exceptionHandler($e);
+                }
+            );
+    }
+
+    /**
      * Convert a response to a return standard return array.
      *
-     * @param \Psr\Http\Message\ResponseInterface $response
-     *   A response from a request with a serialized body.
-     * @param string $returnType
-     *   The return type.
+     * @param \Psr\Http\Message\ResponseInterface $response A response from a request with a serialized body.
+     * @param string $returnType The primary return type.
      *
      * @return array
      */

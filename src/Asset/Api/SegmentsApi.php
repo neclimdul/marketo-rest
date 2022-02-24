@@ -118,8 +118,29 @@ class SegmentsApi
     }
 
     /**
-     * Operation getSegmentationUsingGET
+     * Exception handler for getSegmentationUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function getSegmentationUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSegmentationResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Segmentations
      *
      * @param  string $status Status filter for draft or approved versions (optional)
@@ -135,8 +156,6 @@ class SegmentsApi
     }
 
     /**
-     * Operation getSegmentationUsingGETWithHttpInfo
-     *
      * Get Segmentations
      *
      * @param  string $status Status filter for draft or approved versions (optional)
@@ -148,36 +167,15 @@ class SegmentsApi
     public function getSegmentationUsingGETWithHttpInfo($status = null)
     {
         $request = $this->getSegmentationUsingGETRequest($status);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSegmentationResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSegmentationResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSegmentationResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getSegmentationUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getSegmentationUsingGETAsync
-     *
      * Get Segmentations
      *
      * @param  string $status Status filter for draft or approved versions (optional)
@@ -196,8 +194,6 @@ class SegmentsApi
     }
 
     /**
-     * Operation getSegmentationUsingGETAsyncWithHttpInfo
-     *
      * Get Segmentations
      *
      * @param  string $status Status filter for draft or approved versions (optional)
@@ -208,27 +204,7 @@ class SegmentsApi
     public function getSegmentationUsingGETAsyncWithHttpInfo($status = null)
     {
         $request = $this->getSegmentationUsingGETRequest($status);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSegmentationResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSegmentationResponse', [$this, 'getSegmentationUsingGETHandleException']);
     }
 
     /**
@@ -281,8 +257,29 @@ class SegmentsApi
     }
 
     /**
-     * Operation getSegmentsForSegmentationUsingGET
+     * Exception handler for getSegmentsForSegmentationUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function getSegmentsForSegmentationUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSegmentsResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Segments For Segmentation
      *
      * @param  int $id id (required)
@@ -301,8 +298,6 @@ class SegmentsApi
     }
 
     /**
-     * Operation getSegmentsForSegmentationUsingGETWithHttpInfo
-     *
      * Get Segments For Segmentation
      *
      * @param  int $id id (required)
@@ -317,36 +312,15 @@ class SegmentsApi
     public function getSegmentsForSegmentationUsingGETWithHttpInfo($id, $status = null, $offset = null, $max_return = null)
     {
         $request = $this->getSegmentsForSegmentationUsingGETRequest($id, $status, $offset, $max_return);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSegmentsResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSegmentsResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSegmentsResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getSegmentsForSegmentationUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getSegmentsForSegmentationUsingGETAsync
-     *
      * Get Segments For Segmentation
      *
      * @param  int $id id (required)
@@ -368,8 +342,6 @@ class SegmentsApi
     }
 
     /**
-     * Operation getSegmentsForSegmentationUsingGETAsyncWithHttpInfo
-     *
      * Get Segments For Segmentation
      *
      * @param  int $id id (required)
@@ -383,27 +355,7 @@ class SegmentsApi
     public function getSegmentsForSegmentationUsingGETAsyncWithHttpInfo($id, $status = null, $offset = null, $max_return = null)
     {
         $request = $this->getSegmentsForSegmentationUsingGETRequest($id, $status, $offset, $max_return);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSegmentsResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSegmentsResponse', [$this, 'getSegmentsForSegmentationUsingGETHandleException']);
     }
 
     /**
@@ -501,8 +453,7 @@ class SegmentsApi
     /**
      * Make a request.
      *
-     * @param \GuzzleHttp\Psr7\Request $request
-     *   An initialized request object.
+     * @param \GuzzleHttp\Psr7\Request $request An initialized request object.
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @return \Psr\Http\Message\ResponseInterface
@@ -538,12 +489,45 @@ class SegmentsApi
     }
 
     /**
+     * Make an async request.
+     *
+     * @param \GuzzleHttp\Psr7\Request $request An initialized request object.
+     * @param string $returnType The return type.
+     * @param callable $exceptionHandler A callback to process HTTP errors.
+     *
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
+     * @return \GuzzleHttp\Promise\PromiseInterface A promise that will return a processed response.
+     */
+    private function makeAsyncRequest(Request $request, string $returnType, callable $exceptionHandler)
+    {
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return $this->responseToReturn($response, $returnType);
+                },
+                function (RequestException $exception) use ($exceptionHandler) {
+                    $response = $exception->getResponse();
+                    $e = new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
+                        ),
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
+                    );
+                    throw $exceptionHandler($e);
+                }
+            );
+    }
+
+    /**
      * Convert a response to a return standard return array.
      *
-     * @param \Psr\Http\Message\ResponseInterface $response
-     *   A response from a request with a serialized body.
-     * @param string $returnType
-     *   The return type.
+     * @param \Psr\Http\Message\ResponseInterface $response A response from a request with a serialized body.
+     * @param string $returnType The primary return type.
      *
      * @return array
      */

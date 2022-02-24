@@ -118,8 +118,29 @@ class EmailsApi
     }
 
     /**
-     * Operation addModuleUsingPOST
+     * Exception handler for addModuleUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function addModuleUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Add Email Module
      *
      * @param  int $id id (required)
@@ -138,8 +159,6 @@ class EmailsApi
     }
 
     /**
-     * Operation addModuleUsingPOSTWithHttpInfo
-     *
      * Add Email Module
      *
      * @param  int $id id (required)
@@ -154,36 +173,15 @@ class EmailsApi
     public function addModuleUsingPOSTWithHttpInfo($id, $module_id, $name, $index)
     {
         $request = $this->addModuleUsingPOSTRequest($id, $module_id, $name, $index);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->addModuleUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation addModuleUsingPOSTAsync
-     *
      * Add Email Module
      *
      * @param  int $id id (required)
@@ -205,8 +203,6 @@ class EmailsApi
     }
 
     /**
-     * Operation addModuleUsingPOSTAsyncWithHttpInfo
-     *
      * Add Email Module
      *
      * @param  int $id id (required)
@@ -220,27 +216,7 @@ class EmailsApi
     public function addModuleUsingPOSTAsyncWithHttpInfo($id, $module_id, $name, $index)
     {
         $request = $this->addModuleUsingPOSTRequest($id, $module_id, $name, $index);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse', [$this, 'addModuleUsingPOSTHandleException']);
     }
 
     /**
@@ -336,8 +312,29 @@ class EmailsApi
     }
 
     /**
-     * Operation approveDraftUsingPOST
+     * Exception handler for approveDraftUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function approveDraftUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Approve Email Draft
      *
      * @param  int $id id (required)
@@ -353,8 +350,6 @@ class EmailsApi
     }
 
     /**
-     * Operation approveDraftUsingPOSTWithHttpInfo
-     *
      * Approve Email Draft
      *
      * @param  int $id id (required)
@@ -366,36 +361,15 @@ class EmailsApi
     public function approveDraftUsingPOSTWithHttpInfo($id)
     {
         $request = $this->approveDraftUsingPOSTRequest($id);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->approveDraftUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation approveDraftUsingPOSTAsync
-     *
      * Approve Email Draft
      *
      * @param  int $id id (required)
@@ -414,8 +388,6 @@ class EmailsApi
     }
 
     /**
-     * Operation approveDraftUsingPOSTAsyncWithHttpInfo
-     *
      * Approve Email Draft
      *
      * @param  int $id id (required)
@@ -426,27 +398,7 @@ class EmailsApi
     public function approveDraftUsingPOSTAsyncWithHttpInfo($id)
     {
         $request = $this->approveDraftUsingPOSTRequest($id);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse', [$this, 'approveDraftUsingPOSTHandleException']);
     }
 
     /**
@@ -504,8 +456,29 @@ class EmailsApi
     }
 
     /**
-     * Operation cloneEmailUsingPOST
+     * Exception handler for cloneEmailUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function cloneEmailUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Clone Email
      *
      * @param  int $id id (required)
@@ -522,8 +495,6 @@ class EmailsApi
     }
 
     /**
-     * Operation cloneEmailUsingPOSTWithHttpInfo
-     *
      * Clone Email
      *
      * @param  int $id id (required)
@@ -536,36 +507,15 @@ class EmailsApi
     public function cloneEmailUsingPOSTWithHttpInfo($id, $clone_email_request)
     {
         $request = $this->cloneEmailUsingPOSTRequest($id, $clone_email_request);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->cloneEmailUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation cloneEmailUsingPOSTAsync
-     *
      * Clone Email
      *
      * @param  int $id id (required)
@@ -585,8 +535,6 @@ class EmailsApi
     }
 
     /**
-     * Operation cloneEmailUsingPOSTAsyncWithHttpInfo
-     *
      * Clone Email
      *
      * @param  int $id id (required)
@@ -598,27 +546,7 @@ class EmailsApi
     public function cloneEmailUsingPOSTAsyncWithHttpInfo($id, $clone_email_request)
     {
         $request = $this->cloneEmailUsingPOSTRequest($id, $clone_email_request);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse', [$this, 'cloneEmailUsingPOSTHandleException']);
     }
 
     /**
@@ -691,8 +619,29 @@ class EmailsApi
     }
 
     /**
-     * Operation createEmailFullContentUsingPOST
+     * Exception handler for createEmailFullContentUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function createEmailFullContentUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfUpdateEmailFullContentResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Update Email Full Content
      *
      * @param  int $id Id of the email (required)
@@ -709,8 +658,6 @@ class EmailsApi
     }
 
     /**
-     * Operation createEmailFullContentUsingPOSTWithHttpInfo
-     *
      * Update Email Full Content
      *
      * @param  int $id Id of the email (required)
@@ -723,36 +670,15 @@ class EmailsApi
     public function createEmailFullContentUsingPOSTWithHttpInfo($id, $update_email_full_content_request)
     {
         $request = $this->createEmailFullContentUsingPOSTRequest($id, $update_email_full_content_request);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfUpdateEmailFullContentResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfUpdateEmailFullContentResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfUpdateEmailFullContentResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->createEmailFullContentUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation createEmailFullContentUsingPOSTAsync
-     *
      * Update Email Full Content
      *
      * @param  int $id Id of the email (required)
@@ -772,8 +698,6 @@ class EmailsApi
     }
 
     /**
-     * Operation createEmailFullContentUsingPOSTAsyncWithHttpInfo
-     *
      * Update Email Full Content
      *
      * @param  int $id Id of the email (required)
@@ -785,27 +709,7 @@ class EmailsApi
     public function createEmailFullContentUsingPOSTAsyncWithHttpInfo($id, $update_email_full_content_request)
     {
         $request = $this->createEmailFullContentUsingPOSTRequest($id, $update_email_full_content_request);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfUpdateEmailFullContentResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfUpdateEmailFullContentResponse', [$this, 'createEmailFullContentUsingPOSTHandleException']);
     }
 
     /**
@@ -878,8 +782,29 @@ class EmailsApi
     }
 
     /**
-     * Operation createEmailUsingPOST
+     * Exception handler for createEmailUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function createEmailUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Create Email
      *
      * @param  \NecLimDul\MarketoRest\Asset\Model\CreateEmailRequest $create_email_request createEmailRequest (required)
@@ -895,8 +820,6 @@ class EmailsApi
     }
 
     /**
-     * Operation createEmailUsingPOSTWithHttpInfo
-     *
      * Create Email
      *
      * @param  \NecLimDul\MarketoRest\Asset\Model\CreateEmailRequest $create_email_request createEmailRequest (required)
@@ -908,36 +831,15 @@ class EmailsApi
     public function createEmailUsingPOSTWithHttpInfo($create_email_request)
     {
         $request = $this->createEmailUsingPOSTRequest($create_email_request);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->createEmailUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation createEmailUsingPOSTAsync
-     *
      * Create Email
      *
      * @param  \NecLimDul\MarketoRest\Asset\Model\CreateEmailRequest $create_email_request createEmailRequest (required)
@@ -956,8 +858,6 @@ class EmailsApi
     }
 
     /**
-     * Operation createEmailUsingPOSTAsyncWithHttpInfo
-     *
      * Create Email
      *
      * @param  \NecLimDul\MarketoRest\Asset\Model\CreateEmailRequest $create_email_request createEmailRequest (required)
@@ -968,27 +868,7 @@ class EmailsApi
     public function createEmailUsingPOSTAsyncWithHttpInfo($create_email_request)
     {
         $request = $this->createEmailUsingPOSTRequest($create_email_request);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse', [$this, 'createEmailUsingPOSTHandleException']);
     }
 
     /**
@@ -1047,8 +927,29 @@ class EmailsApi
     }
 
     /**
-     * Operation deleteEmailUsingPOST
+     * Exception handler for deleteEmailUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function deleteEmailUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Delete Email
      *
      * @param  int $id id (required)
@@ -1064,8 +965,6 @@ class EmailsApi
     }
 
     /**
-     * Operation deleteEmailUsingPOSTWithHttpInfo
-     *
      * Delete Email
      *
      * @param  int $id id (required)
@@ -1077,36 +976,15 @@ class EmailsApi
     public function deleteEmailUsingPOSTWithHttpInfo($id)
     {
         $request = $this->deleteEmailUsingPOSTRequest($id);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->deleteEmailUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation deleteEmailUsingPOSTAsync
-     *
      * Delete Email
      *
      * @param  int $id id (required)
@@ -1125,8 +1003,6 @@ class EmailsApi
     }
 
     /**
-     * Operation deleteEmailUsingPOSTAsyncWithHttpInfo
-     *
      * Delete Email
      *
      * @param  int $id id (required)
@@ -1137,27 +1013,7 @@ class EmailsApi
     public function deleteEmailUsingPOSTAsyncWithHttpInfo($id)
     {
         $request = $this->deleteEmailUsingPOSTRequest($id);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse', [$this, 'deleteEmailUsingPOSTHandleException']);
     }
 
     /**
@@ -1215,8 +1071,29 @@ class EmailsApi
     }
 
     /**
-     * Operation deleteModuleUsingPOST
+     * Exception handler for deleteModuleUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function deleteModuleUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Delete Module
      *
      * @param  int $id id (required)
@@ -1233,8 +1110,6 @@ class EmailsApi
     }
 
     /**
-     * Operation deleteModuleUsingPOSTWithHttpInfo
-     *
      * Delete Module
      *
      * @param  int $id id (required)
@@ -1247,36 +1122,15 @@ class EmailsApi
     public function deleteModuleUsingPOSTWithHttpInfo($id, $module_id)
     {
         $request = $this->deleteModuleUsingPOSTRequest($id, $module_id);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->deleteModuleUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation deleteModuleUsingPOSTAsync
-     *
      * Delete Module
      *
      * @param  int $id id (required)
@@ -1296,8 +1150,6 @@ class EmailsApi
     }
 
     /**
-     * Operation deleteModuleUsingPOSTAsyncWithHttpInfo
-     *
      * Delete Module
      *
      * @param  int $id id (required)
@@ -1309,27 +1161,7 @@ class EmailsApi
     public function deleteModuleUsingPOSTAsyncWithHttpInfo($id, $module_id)
     {
         $request = $this->deleteModuleUsingPOSTRequest($id, $module_id);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse', [$this, 'deleteModuleUsingPOSTHandleException']);
     }
 
     /**
@@ -1399,8 +1231,29 @@ class EmailsApi
     }
 
     /**
-     * Operation discardDraftUsingPOST
+     * Exception handler for discardDraftUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function discardDraftUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Discard Email Draft
      *
      * @param  int $id id (required)
@@ -1416,8 +1269,6 @@ class EmailsApi
     }
 
     /**
-     * Operation discardDraftUsingPOSTWithHttpInfo
-     *
      * Discard Email Draft
      *
      * @param  int $id id (required)
@@ -1429,36 +1280,15 @@ class EmailsApi
     public function discardDraftUsingPOSTWithHttpInfo($id)
     {
         $request = $this->discardDraftUsingPOSTRequest($id);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->discardDraftUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation discardDraftUsingPOSTAsync
-     *
      * Discard Email Draft
      *
      * @param  int $id id (required)
@@ -1477,8 +1307,6 @@ class EmailsApi
     }
 
     /**
-     * Operation discardDraftUsingPOSTAsyncWithHttpInfo
-     *
      * Discard Email Draft
      *
      * @param  int $id id (required)
@@ -1489,27 +1317,7 @@ class EmailsApi
     public function discardDraftUsingPOSTAsyncWithHttpInfo($id)
     {
         $request = $this->discardDraftUsingPOSTRequest($id);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse', [$this, 'discardDraftUsingPOSTHandleException']);
     }
 
     /**
@@ -1567,8 +1375,29 @@ class EmailsApi
     }
 
     /**
-     * Operation duplicateModuleUsingPOST
+     * Exception handler for duplicateModuleUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function duplicateModuleUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Duplicate Email Module
      *
      * @param  int $id id (required)
@@ -1586,8 +1415,6 @@ class EmailsApi
     }
 
     /**
-     * Operation duplicateModuleUsingPOSTWithHttpInfo
-     *
      * Duplicate Email Module
      *
      * @param  int $id id (required)
@@ -1601,36 +1428,15 @@ class EmailsApi
     public function duplicateModuleUsingPOSTWithHttpInfo($id, $module_id, $name)
     {
         $request = $this->duplicateModuleUsingPOSTRequest($id, $module_id, $name);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->duplicateModuleUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation duplicateModuleUsingPOSTAsync
-     *
      * Duplicate Email Module
      *
      * @param  int $id id (required)
@@ -1651,8 +1457,6 @@ class EmailsApi
     }
 
     /**
-     * Operation duplicateModuleUsingPOSTAsyncWithHttpInfo
-     *
      * Duplicate Email Module
      *
      * @param  int $id id (required)
@@ -1665,27 +1469,7 @@ class EmailsApi
     public function duplicateModuleUsingPOSTAsyncWithHttpInfo($id, $module_id, $name)
     {
         $request = $this->duplicateModuleUsingPOSTRequest($id, $module_id, $name);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse', [$this, 'duplicateModuleUsingPOSTHandleException']);
     }
 
     /**
@@ -1770,8 +1554,29 @@ class EmailsApi
     }
 
     /**
-     * Operation getEmailByIdUsingGET
+     * Exception handler for getEmailByIdUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function getEmailByIdUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Email By Id
      *
      * @param  int $id id (required)
@@ -1788,8 +1593,6 @@ class EmailsApi
     }
 
     /**
-     * Operation getEmailByIdUsingGETWithHttpInfo
-     *
      * Get Email By Id
      *
      * @param  int $id id (required)
@@ -1802,36 +1605,15 @@ class EmailsApi
     public function getEmailByIdUsingGETWithHttpInfo($id, $status = null)
     {
         $request = $this->getEmailByIdUsingGETRequest($id, $status);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getEmailByIdUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getEmailByIdUsingGETAsync
-     *
      * Get Email By Id
      *
      * @param  int $id id (required)
@@ -1851,8 +1633,6 @@ class EmailsApi
     }
 
     /**
-     * Operation getEmailByIdUsingGETAsyncWithHttpInfo
-     *
      * Get Email By Id
      *
      * @param  int $id id (required)
@@ -1864,27 +1644,7 @@ class EmailsApi
     public function getEmailByIdUsingGETAsyncWithHttpInfo($id, $status = null)
     {
         $request = $this->getEmailByIdUsingGETRequest($id, $status);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse', [$this, 'getEmailByIdUsingGETHandleException']);
     }
 
     /**
@@ -1951,8 +1711,29 @@ class EmailsApi
     }
 
     /**
-     * Operation getEmailByNameUsingGET
+     * Exception handler for getEmailByNameUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function getEmailByNameUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Email by Name
      *
      * @param  string $name Name of the email (required)
@@ -1970,8 +1751,6 @@ class EmailsApi
     }
 
     /**
-     * Operation getEmailByNameUsingGETWithHttpInfo
-     *
      * Get Email by Name
      *
      * @param  string $name Name of the email (required)
@@ -1985,36 +1764,15 @@ class EmailsApi
     public function getEmailByNameUsingGETWithHttpInfo($name, $status = null, $folder = null)
     {
         $request = $this->getEmailByNameUsingGETRequest($name, $status, $folder);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getEmailByNameUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getEmailByNameUsingGETAsync
-     *
      * Get Email by Name
      *
      * @param  string $name Name of the email (required)
@@ -2035,8 +1793,6 @@ class EmailsApi
     }
 
     /**
-     * Operation getEmailByNameUsingGETAsyncWithHttpInfo
-     *
      * Get Email by Name
      *
      * @param  string $name Name of the email (required)
@@ -2049,27 +1805,7 @@ class EmailsApi
     public function getEmailByNameUsingGETAsyncWithHttpInfo($name, $status = null, $folder = null)
     {
         $request = $this->getEmailByNameUsingGETRequest($name, $status, $folder);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse', [$this, 'getEmailByNameUsingGETHandleException']);
     }
 
     /**
@@ -2138,8 +1874,29 @@ class EmailsApi
     }
 
     /**
-     * Operation getEmailCCFieldsUsingGET
+     * Exception handler for getEmailCCFieldsUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function getEmailCCFieldsUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailCCFieldsResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Email CC Fields
      *
      *
@@ -2154,8 +1911,6 @@ class EmailsApi
     }
 
     /**
-     * Operation getEmailCCFieldsUsingGETWithHttpInfo
-     *
      * Get Email CC Fields
      *
      *
@@ -2166,36 +1921,15 @@ class EmailsApi
     public function getEmailCCFieldsUsingGETWithHttpInfo()
     {
         $request = $this->getEmailCCFieldsUsingGETRequest();
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailCCFieldsResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailCCFieldsResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailCCFieldsResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getEmailCCFieldsUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getEmailCCFieldsUsingGETAsync
-     *
      * Get Email CC Fields
      *
      *
@@ -2213,8 +1947,6 @@ class EmailsApi
     }
 
     /**
-     * Operation getEmailCCFieldsUsingGETAsyncWithHttpInfo
-     *
      * Get Email CC Fields
      *
      *
@@ -2224,27 +1956,7 @@ class EmailsApi
     public function getEmailCCFieldsUsingGETAsyncWithHttpInfo()
     {
         $request = $this->getEmailCCFieldsUsingGETRequest();
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailCCFieldsResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailCCFieldsResponse', [$this, 'getEmailCCFieldsUsingGETHandleException']);
     }
 
     /**
@@ -2288,8 +2000,29 @@ class EmailsApi
     }
 
     /**
-     * Operation getEmailContentByIdUsingGET
+     * Exception handler for getEmailContentByIdUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function getEmailContentByIdUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailContentResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Email Content
      *
      * @param  int $id id (required)
@@ -2306,8 +2039,6 @@ class EmailsApi
     }
 
     /**
-     * Operation getEmailContentByIdUsingGETWithHttpInfo
-     *
      * Get Email Content
      *
      * @param  int $id id (required)
@@ -2320,36 +2051,15 @@ class EmailsApi
     public function getEmailContentByIdUsingGETWithHttpInfo($id, $status = null)
     {
         $request = $this->getEmailContentByIdUsingGETRequest($id, $status);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailContentResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailContentResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailContentResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getEmailContentByIdUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getEmailContentByIdUsingGETAsync
-     *
      * Get Email Content
      *
      * @param  int $id id (required)
@@ -2369,8 +2079,6 @@ class EmailsApi
     }
 
     /**
-     * Operation getEmailContentByIdUsingGETAsyncWithHttpInfo
-     *
      * Get Email Content
      *
      * @param  int $id id (required)
@@ -2382,27 +2090,7 @@ class EmailsApi
     public function getEmailContentByIdUsingGETAsyncWithHttpInfo($id, $status = null)
     {
         $request = $this->getEmailContentByIdUsingGETRequest($id, $status);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailContentResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailContentResponse', [$this, 'getEmailContentByIdUsingGETHandleException']);
     }
 
     /**
@@ -2469,8 +2157,29 @@ class EmailsApi
     }
 
     /**
-     * Operation getEmailDynamicContentUsingGET
+     * Exception handler for getEmailDynamicContentUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function getEmailDynamicContentUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailDynamicContentResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Email Dynamic Content
      *
      * @param  int $id Id of email (required)
@@ -2488,8 +2197,6 @@ class EmailsApi
     }
 
     /**
-     * Operation getEmailDynamicContentUsingGETWithHttpInfo
-     *
      * Get Email Dynamic Content
      *
      * @param  int $id Id of email (required)
@@ -2503,36 +2210,15 @@ class EmailsApi
     public function getEmailDynamicContentUsingGETWithHttpInfo($id, $content_id, $status = null)
     {
         $request = $this->getEmailDynamicContentUsingGETRequest($id, $content_id, $status);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailDynamicContentResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailDynamicContentResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailDynamicContentResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getEmailDynamicContentUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getEmailDynamicContentUsingGETAsync
-     *
      * Get Email Dynamic Content
      *
      * @param  int $id Id of email (required)
@@ -2553,8 +2239,6 @@ class EmailsApi
     }
 
     /**
-     * Operation getEmailDynamicContentUsingGETAsyncWithHttpInfo
-     *
      * Get Email Dynamic Content
      *
      * @param  int $id Id of email (required)
@@ -2567,27 +2251,7 @@ class EmailsApi
     public function getEmailDynamicContentUsingGETAsyncWithHttpInfo($id, $content_id, $status = null)
     {
         $request = $this->getEmailDynamicContentUsingGETRequest($id, $content_id, $status);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailDynamicContentResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailDynamicContentResponse', [$this, 'getEmailDynamicContentUsingGETHandleException']);
     }
 
     /**
@@ -2666,8 +2330,29 @@ class EmailsApi
     }
 
     /**
-     * Operation getEmailFullContentUsingGET
+     * Exception handler for getEmailFullContentUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function getEmailFullContentUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfGetEmailFullContentResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Email Full Content
      *
      * @param  int $id Id of the email (required)
@@ -2686,8 +2371,6 @@ class EmailsApi
     }
 
     /**
-     * Operation getEmailFullContentUsingGETWithHttpInfo
-     *
      * Get Email Full Content
      *
      * @param  int $id Id of the email (required)
@@ -2702,36 +2385,15 @@ class EmailsApi
     public function getEmailFullContentUsingGETWithHttpInfo($id, $status = null, $lead_id = null, $type = null)
     {
         $request = $this->getEmailFullContentUsingGETRequest($id, $status, $lead_id, $type);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfGetEmailFullContentResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfGetEmailFullContentResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfGetEmailFullContentResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getEmailFullContentUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getEmailFullContentUsingGETAsync
-     *
      * Get Email Full Content
      *
      * @param  int $id Id of the email (required)
@@ -2753,8 +2415,6 @@ class EmailsApi
     }
 
     /**
-     * Operation getEmailFullContentUsingGETAsyncWithHttpInfo
-     *
      * Get Email Full Content
      *
      * @param  int $id Id of the email (required)
@@ -2768,27 +2428,7 @@ class EmailsApi
     public function getEmailFullContentUsingGETAsyncWithHttpInfo($id, $status = null, $lead_id = null, $type = null)
     {
         $request = $this->getEmailFullContentUsingGETRequest($id, $status, $lead_id, $type);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfGetEmailFullContentResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfGetEmailFullContentResponse', [$this, 'getEmailFullContentUsingGETHandleException']);
     }
 
     /**
@@ -2865,8 +2505,29 @@ class EmailsApi
     }
 
     /**
-     * Operation getEmailUsingGET
+     * Exception handler for getEmailUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function getEmailUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Emails
      *
      * @param  string $status Status filter for draft or approved versions (optional)
@@ -2887,8 +2548,6 @@ class EmailsApi
     }
 
     /**
-     * Operation getEmailUsingGETWithHttpInfo
-     *
      * Get Emails
      *
      * @param  string $status Status filter for draft or approved versions (optional)
@@ -2905,36 +2564,15 @@ class EmailsApi
     public function getEmailUsingGETWithHttpInfo($status = null, $folder = null, $offset = null, $max_return = null, $earliest_updated_at = null, $latest_updated_at = null)
     {
         $request = $this->getEmailUsingGETRequest($status, $folder, $offset, $max_return, $earliest_updated_at, $latest_updated_at);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getEmailUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getEmailUsingGETAsync
-     *
      * Get Emails
      *
      * @param  string $status Status filter for draft or approved versions (optional)
@@ -2958,8 +2596,6 @@ class EmailsApi
     }
 
     /**
-     * Operation getEmailUsingGETAsyncWithHttpInfo
-     *
      * Get Emails
      *
      * @param  string $status Status filter for draft or approved versions (optional)
@@ -2975,27 +2611,7 @@ class EmailsApi
     public function getEmailUsingGETAsyncWithHttpInfo($status = null, $folder = null, $offset = null, $max_return = null, $earliest_updated_at = null, $latest_updated_at = null)
     {
         $request = $this->getEmailUsingGETRequest($status, $folder, $offset, $max_return, $earliest_updated_at, $latest_updated_at);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse', [$this, 'getEmailUsingGETHandleException']);
     }
 
     /**
@@ -3073,8 +2689,29 @@ class EmailsApi
     }
 
     /**
-     * Operation getEmailVariablesUsingGET
+     * Exception handler for getEmailVariablesUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function getEmailVariablesUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailVariableResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Email Variables
      *
      * @param  int $id id (required)
@@ -3090,8 +2727,6 @@ class EmailsApi
     }
 
     /**
-     * Operation getEmailVariablesUsingGETWithHttpInfo
-     *
      * Get Email Variables
      *
      * @param  int $id id (required)
@@ -3103,36 +2738,15 @@ class EmailsApi
     public function getEmailVariablesUsingGETWithHttpInfo($id)
     {
         $request = $this->getEmailVariablesUsingGETRequest($id);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailVariableResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailVariableResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailVariableResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getEmailVariablesUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getEmailVariablesUsingGETAsync
-     *
      * Get Email Variables
      *
      * @param  int $id id (required)
@@ -3151,8 +2765,6 @@ class EmailsApi
     }
 
     /**
-     * Operation getEmailVariablesUsingGETAsyncWithHttpInfo
-     *
      * Get Email Variables
      *
      * @param  int $id id (required)
@@ -3163,27 +2775,7 @@ class EmailsApi
     public function getEmailVariablesUsingGETAsyncWithHttpInfo($id)
     {
         $request = $this->getEmailVariablesUsingGETRequest($id);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailVariableResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailVariableResponse', [$this, 'getEmailVariablesUsingGETHandleException']);
     }
 
     /**
@@ -3241,8 +2833,29 @@ class EmailsApi
     }
 
     /**
-     * Operation rearrangeModulesUsingPOST
+     * Exception handler for rearrangeModulesUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function rearrangeModulesUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Rearrange Email Modules
      *
      * @param  int $id id (required)
@@ -3259,8 +2872,6 @@ class EmailsApi
     }
 
     /**
-     * Operation rearrangeModulesUsingPOSTWithHttpInfo
-     *
      * Rearrange Email Modules
      *
      * @param  int $id id (required)
@@ -3273,36 +2884,15 @@ class EmailsApi
     public function rearrangeModulesUsingPOSTWithHttpInfo($id, $positions = null)
     {
         $request = $this->rearrangeModulesUsingPOSTRequest($id, $positions);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->rearrangeModulesUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation rearrangeModulesUsingPOSTAsync
-     *
      * Rearrange Email Modules
      *
      * @param  int $id id (required)
@@ -3322,8 +2912,6 @@ class EmailsApi
     }
 
     /**
-     * Operation rearrangeModulesUsingPOSTAsyncWithHttpInfo
-     *
      * Rearrange Email Modules
      *
      * @param  int $id id (required)
@@ -3335,27 +2923,7 @@ class EmailsApi
     public function rearrangeModulesUsingPOSTAsyncWithHttpInfo($id, $positions = null)
     {
         $request = $this->rearrangeModulesUsingPOSTRequest($id, $positions);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse', [$this, 'rearrangeModulesUsingPOSTHandleException']);
     }
 
     /**
@@ -3425,8 +2993,29 @@ class EmailsApi
     }
 
     /**
-     * Operation renameUsingPOST
+     * Exception handler for renameUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function renameUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Rename Email Module
      *
      * @param  int $id id (required)
@@ -3444,8 +3033,6 @@ class EmailsApi
     }
 
     /**
-     * Operation renameUsingPOSTWithHttpInfo
-     *
      * Rename Email Module
      *
      * @param  int $id id (required)
@@ -3459,36 +3046,15 @@ class EmailsApi
     public function renameUsingPOSTWithHttpInfo($id, $module_id, $name)
     {
         $request = $this->renameUsingPOSTRequest($id, $module_id, $name);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->renameUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation renameUsingPOSTAsync
-     *
      * Rename Email Module
      *
      * @param  int $id id (required)
@@ -3509,8 +3075,6 @@ class EmailsApi
     }
 
     /**
-     * Operation renameUsingPOSTAsyncWithHttpInfo
-     *
      * Rename Email Module
      *
      * @param  int $id id (required)
@@ -3523,27 +3087,7 @@ class EmailsApi
     public function renameUsingPOSTAsyncWithHttpInfo($id, $module_id, $name)
     {
         $request = $this->renameUsingPOSTRequest($id, $module_id, $name);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailModuleResponse', [$this, 'renameUsingPOSTHandleException']);
     }
 
     /**
@@ -3628,8 +3172,29 @@ class EmailsApi
     }
 
     /**
-     * Operation sendSampleEmailUsingPOST
+     * Exception handler for sendSampleEmailUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function sendSampleEmailUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSendSampleResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Send Sample Email
      *
      * @param  int $id Id of the email (required)
@@ -3646,8 +3211,6 @@ class EmailsApi
     }
 
     /**
-     * Operation sendSampleEmailUsingPOSTWithHttpInfo
-     *
      * Send Sample Email
      *
      * @param  int $id Id of the email (required)
@@ -3660,36 +3223,15 @@ class EmailsApi
     public function sendSampleEmailUsingPOSTWithHttpInfo($id, $send_sample_email_request)
     {
         $request = $this->sendSampleEmailUsingPOSTRequest($id, $send_sample_email_request);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSendSampleResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSendSampleResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSendSampleResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->sendSampleEmailUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation sendSampleEmailUsingPOSTAsync
-     *
      * Send Sample Email
      *
      * @param  int $id Id of the email (required)
@@ -3709,8 +3251,6 @@ class EmailsApi
     }
 
     /**
-     * Operation sendSampleEmailUsingPOSTAsyncWithHttpInfo
-     *
      * Send Sample Email
      *
      * @param  int $id Id of the email (required)
@@ -3722,27 +3262,7 @@ class EmailsApi
     public function sendSampleEmailUsingPOSTAsyncWithHttpInfo($id, $send_sample_email_request)
     {
         $request = $this->sendSampleEmailUsingPOSTRequest($id, $send_sample_email_request);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSendSampleResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSendSampleResponse', [$this, 'sendSampleEmailUsingPOSTHandleException']);
     }
 
     /**
@@ -3815,8 +3335,29 @@ class EmailsApi
     }
 
     /**
-     * Operation unapproveDraftUsingPOST
+     * Exception handler for unapproveDraftUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function unapproveDraftUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Unapprove Email
      *
      * @param  int $id id (required)
@@ -3832,8 +3373,6 @@ class EmailsApi
     }
 
     /**
-     * Operation unapproveDraftUsingPOSTWithHttpInfo
-     *
      * Unapprove Email
      *
      * @param  int $id id (required)
@@ -3845,36 +3384,15 @@ class EmailsApi
     public function unapproveDraftUsingPOSTWithHttpInfo($id)
     {
         $request = $this->unapproveDraftUsingPOSTRequest($id);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->unapproveDraftUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation unapproveDraftUsingPOSTAsync
-     *
      * Unapprove Email
      *
      * @param  int $id id (required)
@@ -3893,8 +3411,6 @@ class EmailsApi
     }
 
     /**
-     * Operation unapproveDraftUsingPOSTAsyncWithHttpInfo
-     *
      * Unapprove Email
      *
      * @param  int $id id (required)
@@ -3905,27 +3421,7 @@ class EmailsApi
     public function unapproveDraftUsingPOSTAsyncWithHttpInfo($id)
     {
         $request = $this->unapproveDraftUsingPOSTRequest($id);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse', [$this, 'unapproveDraftUsingPOSTHandleException']);
     }
 
     /**
@@ -3983,8 +3479,29 @@ class EmailsApi
     }
 
     /**
-     * Operation updateEmailComponentContentUsingPOST
+     * Exception handler for updateEmailComponentContentUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function updateEmailComponentContentUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Update Email Content Section
      *
      * @param  int $id id (required)
@@ -4002,8 +3519,6 @@ class EmailsApi
     }
 
     /**
-     * Operation updateEmailComponentContentUsingPOSTWithHttpInfo
-     *
      * Update Email Content Section
      *
      * @param  int $id id (required)
@@ -4017,36 +3532,15 @@ class EmailsApi
     public function updateEmailComponentContentUsingPOSTWithHttpInfo($id, $html_id, $request)
     {
         $request = $this->updateEmailComponentContentUsingPOSTRequest($id, $html_id, $request);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->updateEmailComponentContentUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation updateEmailComponentContentUsingPOSTAsync
-     *
      * Update Email Content Section
      *
      * @param  int $id id (required)
@@ -4067,8 +3561,6 @@ class EmailsApi
     }
 
     /**
-     * Operation updateEmailComponentContentUsingPOSTAsyncWithHttpInfo
-     *
      * Update Email Content Section
      *
      * @param  int $id id (required)
@@ -4081,27 +3573,7 @@ class EmailsApi
     public function updateEmailComponentContentUsingPOSTAsyncWithHttpInfo($id, $html_id, $request)
     {
         $request = $this->updateEmailComponentContentUsingPOSTRequest($id, $html_id, $request);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse', [$this, 'updateEmailComponentContentUsingPOSTHandleException']);
     }
 
     /**
@@ -4186,8 +3658,29 @@ class EmailsApi
     }
 
     /**
-     * Operation updateEmailContentUsingPOST
+     * Exception handler for updateEmailContentUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function updateEmailContentUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Update Email Content
      *
      * @param  int $id id (required)
@@ -4204,8 +3697,6 @@ class EmailsApi
     }
 
     /**
-     * Operation updateEmailContentUsingPOSTWithHttpInfo
-     *
      * Update Email Content
      *
      * @param  int $id id (required)
@@ -4218,36 +3709,15 @@ class EmailsApi
     public function updateEmailContentUsingPOSTWithHttpInfo($id, $update_email_request)
     {
         $request = $this->updateEmailContentUsingPOSTRequest($id, $update_email_request);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->updateEmailContentUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation updateEmailContentUsingPOSTAsync
-     *
      * Update Email Content
      *
      * @param  int $id id (required)
@@ -4267,8 +3737,6 @@ class EmailsApi
     }
 
     /**
-     * Operation updateEmailContentUsingPOSTAsyncWithHttpInfo
-     *
      * Update Email Content
      *
      * @param  int $id id (required)
@@ -4280,27 +3748,7 @@ class EmailsApi
     public function updateEmailContentUsingPOSTAsyncWithHttpInfo($id, $update_email_request)
     {
         $request = $this->updateEmailContentUsingPOSTRequest($id, $update_email_request);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse', [$this, 'updateEmailContentUsingPOSTHandleException']);
     }
 
     /**
@@ -4373,8 +3821,29 @@ class EmailsApi
     }
 
     /**
-     * Operation updateEmailDynamicContentUsingPOST
+     * Exception handler for updateEmailDynamicContentUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function updateEmailDynamicContentUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Update Email Dynamic Content Section
      *
      * @param  int $id Id of email (required)
@@ -4392,8 +3861,6 @@ class EmailsApi
     }
 
     /**
-     * Operation updateEmailDynamicContentUsingPOSTWithHttpInfo
-     *
      * Update Email Dynamic Content Section
      *
      * @param  int $id Id of email (required)
@@ -4407,36 +3874,15 @@ class EmailsApi
     public function updateEmailDynamicContentUsingPOSTWithHttpInfo($id, $content_id, $request)
     {
         $request = $this->updateEmailDynamicContentUsingPOSTRequest($id, $content_id, $request);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->updateEmailDynamicContentUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation updateEmailDynamicContentUsingPOSTAsync
-     *
      * Update Email Dynamic Content Section
      *
      * @param  int $id Id of email (required)
@@ -4457,8 +3903,6 @@ class EmailsApi
     }
 
     /**
-     * Operation updateEmailDynamicContentUsingPOSTAsyncWithHttpInfo
-     *
      * Update Email Dynamic Content Section
      *
      * @param  int $id Id of email (required)
@@ -4471,27 +3915,7 @@ class EmailsApi
     public function updateEmailDynamicContentUsingPOSTAsyncWithHttpInfo($id, $content_id, $request)
     {
         $request = $this->updateEmailDynamicContentUsingPOSTRequest($id, $content_id, $request);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse', [$this, 'updateEmailDynamicContentUsingPOSTHandleException']);
     }
 
     /**
@@ -4576,8 +4000,29 @@ class EmailsApi
     }
 
     /**
-     * Operation updateEmailUsingPOST
+     * Exception handler for updateEmailUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function updateEmailUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Update Email Metadata
      *
      * @param  int $id id (required)
@@ -4594,8 +4039,6 @@ class EmailsApi
     }
 
     /**
-     * Operation updateEmailUsingPOSTWithHttpInfo
-     *
      * Update Email Metadata
      *
      * @param  int $id id (required)
@@ -4608,36 +4051,15 @@ class EmailsApi
     public function updateEmailUsingPOSTWithHttpInfo($id, $update_email_request)
     {
         $request = $this->updateEmailUsingPOSTRequest($id, $update_email_request);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->updateEmailUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation updateEmailUsingPOSTAsync
-     *
      * Update Email Metadata
      *
      * @param  int $id id (required)
@@ -4657,8 +4079,6 @@ class EmailsApi
     }
 
     /**
-     * Operation updateEmailUsingPOSTAsyncWithHttpInfo
-     *
      * Update Email Metadata
      *
      * @param  int $id id (required)
@@ -4670,27 +4090,7 @@ class EmailsApi
     public function updateEmailUsingPOSTAsyncWithHttpInfo($id, $update_email_request)
     {
         $request = $this->updateEmailUsingPOSTRequest($id, $update_email_request);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailResponse', [$this, 'updateEmailUsingPOSTHandleException']);
     }
 
     /**
@@ -4763,8 +4163,29 @@ class EmailsApi
     }
 
     /**
-     * Operation updateVariableUsingPOST
+     * Exception handler for updateVariableUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function updateVariableUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailVariableResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Update Email Variable
      *
      * @param  int $id id (required)
@@ -4782,8 +4203,6 @@ class EmailsApi
     }
 
     /**
-     * Operation updateVariableUsingPOSTWithHttpInfo
-     *
      * Update Email Variable
      *
      * @param  int $id id (required)
@@ -4797,36 +4216,15 @@ class EmailsApi
     public function updateVariableUsingPOSTWithHttpInfo($id, $name, $update_variable_request = null)
     {
         $request = $this->updateVariableUsingPOSTRequest($id, $name, $update_variable_request);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailVariableResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailVariableResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailVariableResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->updateVariableUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation updateVariableUsingPOSTAsync
-     *
      * Update Email Variable
      *
      * @param  int $id id (required)
@@ -4847,8 +4245,6 @@ class EmailsApi
     }
 
     /**
-     * Operation updateVariableUsingPOSTAsyncWithHttpInfo
-     *
      * Update Email Variable
      *
      * @param  int $id id (required)
@@ -4861,27 +4257,7 @@ class EmailsApi
     public function updateVariableUsingPOSTAsyncWithHttpInfo($id, $name, $update_variable_request = null)
     {
         $request = $this->updateVariableUsingPOSTRequest($id, $name, $update_variable_request);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailVariableResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfEmailVariableResponse', [$this, 'updateVariableUsingPOSTHandleException']);
     }
 
     /**
@@ -4984,8 +4360,7 @@ class EmailsApi
     /**
      * Make a request.
      *
-     * @param \GuzzleHttp\Psr7\Request $request
-     *   An initialized request object.
+     * @param \GuzzleHttp\Psr7\Request $request An initialized request object.
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @return \Psr\Http\Message\ResponseInterface
@@ -5021,12 +4396,45 @@ class EmailsApi
     }
 
     /**
+     * Make an async request.
+     *
+     * @param \GuzzleHttp\Psr7\Request $request An initialized request object.
+     * @param string $returnType The return type.
+     * @param callable $exceptionHandler A callback to process HTTP errors.
+     *
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
+     * @return \GuzzleHttp\Promise\PromiseInterface A promise that will return a processed response.
+     */
+    private function makeAsyncRequest(Request $request, string $returnType, callable $exceptionHandler)
+    {
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return $this->responseToReturn($response, $returnType);
+                },
+                function (RequestException $exception) use ($exceptionHandler) {
+                    $response = $exception->getResponse();
+                    $e = new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
+                        ),
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
+                    );
+                    throw $exceptionHandler($e);
+                }
+            );
+    }
+
+    /**
      * Convert a response to a return standard return array.
      *
-     * @param \Psr\Http\Message\ResponseInterface $response
-     *   A response from a request with a serialized body.
-     * @param string $returnType
-     *   The return type.
+     * @param \Psr\Http\Message\ResponseInterface $response A response from a request with a serialized body.
+     * @param string $returnType The primary return type.
      *
      * @return array
      */

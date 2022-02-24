@@ -118,8 +118,29 @@ class FilesApi
     }
 
     /**
-     * Operation createFileUsingPOST
+     * Exception handler for createFileUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function createFileUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Create File
      *
      * @param  \NecLimDul\MarketoRest\Asset\Model\CreateFileRequest $create_file_request createFileRequest (required)
@@ -135,8 +156,6 @@ class FilesApi
     }
 
     /**
-     * Operation createFileUsingPOSTWithHttpInfo
-     *
      * Create File
      *
      * @param  \NecLimDul\MarketoRest\Asset\Model\CreateFileRequest $create_file_request createFileRequest (required)
@@ -148,36 +167,15 @@ class FilesApi
     public function createFileUsingPOSTWithHttpInfo($create_file_request)
     {
         $request = $this->createFileUsingPOSTRequest($create_file_request);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->createFileUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation createFileUsingPOSTAsync
-     *
      * Create File
      *
      * @param  \NecLimDul\MarketoRest\Asset\Model\CreateFileRequest $create_file_request createFileRequest (required)
@@ -196,8 +194,6 @@ class FilesApi
     }
 
     /**
-     * Operation createFileUsingPOSTAsyncWithHttpInfo
-     *
      * Create File
      *
      * @param  \NecLimDul\MarketoRest\Asset\Model\CreateFileRequest $create_file_request createFileRequest (required)
@@ -208,27 +204,7 @@ class FilesApi
     public function createFileUsingPOSTAsyncWithHttpInfo($create_file_request)
     {
         $request = $this->createFileUsingPOSTRequest($create_file_request);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse', [$this, 'createFileUsingPOSTHandleException']);
     }
 
     /**
@@ -287,8 +263,29 @@ class FilesApi
     }
 
     /**
-     * Operation getFileByIdUsingGET
+     * Exception handler for getFileByIdUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function getFileByIdUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get File by Id
      *
      * @param  int $id Id for file in database (required)
@@ -304,8 +301,6 @@ class FilesApi
     }
 
     /**
-     * Operation getFileByIdUsingGETWithHttpInfo
-     *
      * Get File by Id
      *
      * @param  int $id Id for file in database (required)
@@ -317,36 +312,15 @@ class FilesApi
     public function getFileByIdUsingGETWithHttpInfo($id)
     {
         $request = $this->getFileByIdUsingGETRequest($id);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getFileByIdUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getFileByIdUsingGETAsync
-     *
      * Get File by Id
      *
      * @param  int $id Id for file in database (required)
@@ -365,8 +339,6 @@ class FilesApi
     }
 
     /**
-     * Operation getFileByIdUsingGETAsyncWithHttpInfo
-     *
      * Get File by Id
      *
      * @param  int $id Id for file in database (required)
@@ -377,27 +349,7 @@ class FilesApi
     public function getFileByIdUsingGETAsyncWithHttpInfo($id)
     {
         $request = $this->getFileByIdUsingGETRequest($id);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse', [$this, 'getFileByIdUsingGETHandleException']);
     }
 
     /**
@@ -455,8 +407,29 @@ class FilesApi
     }
 
     /**
-     * Operation getFileByNameUsingGET
+     * Exception handler for getFileByNameUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function getFileByNameUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get File by Name
      *
      * @param  string $name Name of the file (required)
@@ -472,8 +445,6 @@ class FilesApi
     }
 
     /**
-     * Operation getFileByNameUsingGETWithHttpInfo
-     *
      * Get File by Name
      *
      * @param  string $name Name of the file (required)
@@ -485,36 +456,15 @@ class FilesApi
     public function getFileByNameUsingGETWithHttpInfo($name)
     {
         $request = $this->getFileByNameUsingGETRequest($name);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getFileByNameUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getFileByNameUsingGETAsync
-     *
      * Get File by Name
      *
      * @param  string $name Name of the file (required)
@@ -533,8 +483,6 @@ class FilesApi
     }
 
     /**
-     * Operation getFileByNameUsingGETAsyncWithHttpInfo
-     *
      * Get File by Name
      *
      * @param  string $name Name of the file (required)
@@ -545,27 +493,7 @@ class FilesApi
     public function getFileByNameUsingGETAsyncWithHttpInfo($name)
     {
         $request = $this->getFileByNameUsingGETRequest($name);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse', [$this, 'getFileByNameUsingGETHandleException']);
     }
 
     /**
@@ -624,8 +552,29 @@ class FilesApi
     }
 
     /**
-     * Operation getFilesUsingGET
+     * Exception handler for getFilesUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function getFilesUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Files
      *
      * @param  \NecLimDul\MarketoRest\Asset\Model\GetFilesRequest $get_files_request getFilesRequest (required)
@@ -642,8 +591,6 @@ class FilesApi
     }
 
     /**
-     * Operation getFilesUsingGETWithHttpInfo
-     *
      * Get Files
      *
      * @param  \NecLimDul\MarketoRest\Asset\Model\GetFilesRequest $get_files_request getFilesRequest (required)
@@ -656,36 +603,15 @@ class FilesApi
     public function getFilesUsingGETWithHttpInfo($get_files_request, $folder = null)
     {
         $request = $this->getFilesUsingGETRequest($get_files_request, $folder);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getFilesUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getFilesUsingGETAsync
-     *
      * Get Files
      *
      * @param  \NecLimDul\MarketoRest\Asset\Model\GetFilesRequest $get_files_request getFilesRequest (required)
@@ -705,8 +631,6 @@ class FilesApi
     }
 
     /**
-     * Operation getFilesUsingGETAsyncWithHttpInfo
-     *
      * Get Files
      *
      * @param  \NecLimDul\MarketoRest\Asset\Model\GetFilesRequest $get_files_request getFilesRequest (required)
@@ -718,27 +642,7 @@ class FilesApi
     public function getFilesUsingGETAsyncWithHttpInfo($get_files_request, $folder = null)
     {
         $request = $this->getFilesUsingGETRequest($get_files_request, $folder);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse', [$this, 'getFilesUsingGETHandleException']);
     }
 
     /**
@@ -827,8 +731,7 @@ class FilesApi
     /**
      * Make a request.
      *
-     * @param \GuzzleHttp\Psr7\Request $request
-     *   An initialized request object.
+     * @param \GuzzleHttp\Psr7\Request $request An initialized request object.
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @return \Psr\Http\Message\ResponseInterface
@@ -864,12 +767,45 @@ class FilesApi
     }
 
     /**
+     * Make an async request.
+     *
+     * @param \GuzzleHttp\Psr7\Request $request An initialized request object.
+     * @param string $returnType The return type.
+     * @param callable $exceptionHandler A callback to process HTTP errors.
+     *
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
+     * @return \GuzzleHttp\Promise\PromiseInterface A promise that will return a processed response.
+     */
+    private function makeAsyncRequest(Request $request, string $returnType, callable $exceptionHandler)
+    {
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return $this->responseToReturn($response, $returnType);
+                },
+                function (RequestException $exception) use ($exceptionHandler) {
+                    $response = $exception->getResponse();
+                    $e = new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
+                        ),
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
+                    );
+                    throw $exceptionHandler($e);
+                }
+            );
+    }
+
+    /**
      * Convert a response to a return standard return array.
      *
-     * @param \Psr\Http\Message\ResponseInterface $response
-     *   A response from a request with a serialized body.
-     * @param string $returnType
-     *   The return type.
+     * @param \Psr\Http\Message\ResponseInterface $response A response from a request with a serialized body.
+     * @param string $returnType The primary return type.
      *
      * @return array
      */

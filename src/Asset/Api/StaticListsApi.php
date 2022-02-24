@@ -118,8 +118,29 @@ class StaticListsApi
     }
 
     /**
-     * Operation createStaticListUsingPOST
+     * Exception handler for createStaticListUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function createStaticListUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Create Static List
      *
      * @param  \NecLimDul\MarketoRest\Asset\Model\CreateStaticListRequest $create_static_list_request createStaticListRequest (required)
@@ -135,8 +156,6 @@ class StaticListsApi
     }
 
     /**
-     * Operation createStaticListUsingPOSTWithHttpInfo
-     *
      * Create Static List
      *
      * @param  \NecLimDul\MarketoRest\Asset\Model\CreateStaticListRequest $create_static_list_request createStaticListRequest (required)
@@ -148,36 +167,15 @@ class StaticListsApi
     public function createStaticListUsingPOSTWithHttpInfo($create_static_list_request)
     {
         $request = $this->createStaticListUsingPOSTRequest($create_static_list_request);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->createStaticListUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation createStaticListUsingPOSTAsync
-     *
      * Create Static List
      *
      * @param  \NecLimDul\MarketoRest\Asset\Model\CreateStaticListRequest $create_static_list_request createStaticListRequest (required)
@@ -196,8 +194,6 @@ class StaticListsApi
     }
 
     /**
-     * Operation createStaticListUsingPOSTAsyncWithHttpInfo
-     *
      * Create Static List
      *
      * @param  \NecLimDul\MarketoRest\Asset\Model\CreateStaticListRequest $create_static_list_request createStaticListRequest (required)
@@ -208,27 +204,7 @@ class StaticListsApi
     public function createStaticListUsingPOSTAsyncWithHttpInfo($create_static_list_request)
     {
         $request = $this->createStaticListUsingPOSTRequest($create_static_list_request);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse', [$this, 'createStaticListUsingPOSTHandleException']);
     }
 
     /**
@@ -287,8 +263,29 @@ class StaticListsApi
     }
 
     /**
-     * Operation deleteStaticListByIdUsingPOST
+     * Exception handler for deleteStaticListByIdUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function deleteStaticListByIdUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Delete Static List
      *
      * @param  int $id Id of the static list to delete (required)
@@ -304,8 +301,6 @@ class StaticListsApi
     }
 
     /**
-     * Operation deleteStaticListByIdUsingPOSTWithHttpInfo
-     *
      * Delete Static List
      *
      * @param  int $id Id of the static list to delete (required)
@@ -317,36 +312,15 @@ class StaticListsApi
     public function deleteStaticListByIdUsingPOSTWithHttpInfo($id)
     {
         $request = $this->deleteStaticListByIdUsingPOSTRequest($id);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->deleteStaticListByIdUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation deleteStaticListByIdUsingPOSTAsync
-     *
      * Delete Static List
      *
      * @param  int $id Id of the static list to delete (required)
@@ -365,8 +339,6 @@ class StaticListsApi
     }
 
     /**
-     * Operation deleteStaticListByIdUsingPOSTAsyncWithHttpInfo
-     *
      * Delete Static List
      *
      * @param  int $id Id of the static list to delete (required)
@@ -377,27 +349,7 @@ class StaticListsApi
     public function deleteStaticListByIdUsingPOSTAsyncWithHttpInfo($id)
     {
         $request = $this->deleteStaticListByIdUsingPOSTRequest($id);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse', [$this, 'deleteStaticListByIdUsingPOSTHandleException']);
     }
 
     /**
@@ -455,8 +407,29 @@ class StaticListsApi
     }
 
     /**
-     * Operation getStaticListByIdUsingGET
+     * Exception handler for getStaticListByIdUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function getStaticListByIdUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Static List by Id
      *
      * @param  int $id Id of the static list to retrieve (required)
@@ -472,8 +445,6 @@ class StaticListsApi
     }
 
     /**
-     * Operation getStaticListByIdUsingGETWithHttpInfo
-     *
      * Get Static List by Id
      *
      * @param  int $id Id of the static list to retrieve (required)
@@ -485,36 +456,15 @@ class StaticListsApi
     public function getStaticListByIdUsingGETWithHttpInfo($id)
     {
         $request = $this->getStaticListByIdUsingGETRequest($id);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getStaticListByIdUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getStaticListByIdUsingGETAsync
-     *
      * Get Static List by Id
      *
      * @param  int $id Id of the static list to retrieve (required)
@@ -533,8 +483,6 @@ class StaticListsApi
     }
 
     /**
-     * Operation getStaticListByIdUsingGETAsyncWithHttpInfo
-     *
      * Get Static List by Id
      *
      * @param  int $id Id of the static list to retrieve (required)
@@ -545,27 +493,7 @@ class StaticListsApi
     public function getStaticListByIdUsingGETAsyncWithHttpInfo($id)
     {
         $request = $this->getStaticListByIdUsingGETRequest($id);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse', [$this, 'getStaticListByIdUsingGETHandleException']);
     }
 
     /**
@@ -623,8 +551,29 @@ class StaticListsApi
     }
 
     /**
-     * Operation getStaticListByNameUsingGET
+     * Exception handler for getStaticListByNameUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function getStaticListByNameUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Static List by Name
      *
      * @param  string $name Name of static list to retrieve (required)
@@ -640,8 +589,6 @@ class StaticListsApi
     }
 
     /**
-     * Operation getStaticListByNameUsingGETWithHttpInfo
-     *
      * Get Static List by Name
      *
      * @param  string $name Name of static list to retrieve (required)
@@ -653,36 +600,15 @@ class StaticListsApi
     public function getStaticListByNameUsingGETWithHttpInfo($name)
     {
         $request = $this->getStaticListByNameUsingGETRequest($name);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getStaticListByNameUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getStaticListByNameUsingGETAsync
-     *
      * Get Static List by Name
      *
      * @param  string $name Name of static list to retrieve (required)
@@ -701,8 +627,6 @@ class StaticListsApi
     }
 
     /**
-     * Operation getStaticListByNameUsingGETAsyncWithHttpInfo
-     *
      * Get Static List by Name
      *
      * @param  string $name Name of static list to retrieve (required)
@@ -713,27 +637,7 @@ class StaticListsApi
     public function getStaticListByNameUsingGETAsyncWithHttpInfo($name)
     {
         $request = $this->getStaticListByNameUsingGETRequest($name);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse', [$this, 'getStaticListByNameUsingGETHandleException']);
     }
 
     /**
@@ -792,8 +696,29 @@ class StaticListsApi
     }
 
     /**
-     * Operation getStaticListsUsingGET
+     * Exception handler for getStaticListsUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function getStaticListsUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Static Lists
      *
      * @param  string $folder JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39; (optional)
@@ -813,8 +738,6 @@ class StaticListsApi
     }
 
     /**
-     * Operation getStaticListsUsingGETWithHttpInfo
-     *
      * Get Static Lists
      *
      * @param  string $folder JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39; (optional)
@@ -830,36 +753,15 @@ class StaticListsApi
     public function getStaticListsUsingGETWithHttpInfo($folder = null, $offset = null, $max_return = null, $earliest_updated_at = null, $latest_updated_at = null)
     {
         $request = $this->getStaticListsUsingGETRequest($folder, $offset, $max_return, $earliest_updated_at, $latest_updated_at);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getStaticListsUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getStaticListsUsingGETAsync
-     *
      * Get Static Lists
      *
      * @param  string $folder JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39; (optional)
@@ -882,8 +784,6 @@ class StaticListsApi
     }
 
     /**
-     * Operation getStaticListsUsingGETAsyncWithHttpInfo
-     *
      * Get Static Lists
      *
      * @param  string $folder JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39; (optional)
@@ -898,27 +798,7 @@ class StaticListsApi
     public function getStaticListsUsingGETAsyncWithHttpInfo($folder = null, $offset = null, $max_return = null, $earliest_updated_at = null, $latest_updated_at = null)
     {
         $request = $this->getStaticListsUsingGETRequest($folder, $offset, $max_return, $earliest_updated_at, $latest_updated_at);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse', [$this, 'getStaticListsUsingGETHandleException']);
     }
 
     /**
@@ -991,8 +871,29 @@ class StaticListsApi
     }
 
     /**
-     * Operation updateStaticListUsingPOST
+     * Exception handler for updateStaticListUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function updateStaticListUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Update Static List Metadata
      *
      * @param  int $id Id of static list to update (required)
@@ -1009,8 +910,6 @@ class StaticListsApi
     }
 
     /**
-     * Operation updateStaticListUsingPOSTWithHttpInfo
-     *
      * Update Static List Metadata
      *
      * @param  int $id Id of static list to update (required)
@@ -1023,36 +922,15 @@ class StaticListsApi
     public function updateStaticListUsingPOSTWithHttpInfo($id, $update_static_list_request)
     {
         $request = $this->updateStaticListUsingPOSTRequest($id, $update_static_list_request);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->updateStaticListUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation updateStaticListUsingPOSTAsync
-     *
      * Update Static List Metadata
      *
      * @param  int $id Id of static list to update (required)
@@ -1072,8 +950,6 @@ class StaticListsApi
     }
 
     /**
-     * Operation updateStaticListUsingPOSTAsyncWithHttpInfo
-     *
      * Update Static List Metadata
      *
      * @param  int $id Id of static list to update (required)
@@ -1085,27 +961,7 @@ class StaticListsApi
     public function updateStaticListUsingPOSTAsyncWithHttpInfo($id, $update_static_list_request)
     {
         $request = $this->updateStaticListUsingPOSTRequest($id, $update_static_list_request);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfStaticListResponse', [$this, 'updateStaticListUsingPOSTHandleException']);
     }
 
     /**
@@ -1199,8 +1055,7 @@ class StaticListsApi
     /**
      * Make a request.
      *
-     * @param \GuzzleHttp\Psr7\Request $request
-     *   An initialized request object.
+     * @param \GuzzleHttp\Psr7\Request $request An initialized request object.
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @return \Psr\Http\Message\ResponseInterface
@@ -1236,12 +1091,45 @@ class StaticListsApi
     }
 
     /**
+     * Make an async request.
+     *
+     * @param \GuzzleHttp\Psr7\Request $request An initialized request object.
+     * @param string $returnType The return type.
+     * @param callable $exceptionHandler A callback to process HTTP errors.
+     *
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
+     * @return \GuzzleHttp\Promise\PromiseInterface A promise that will return a processed response.
+     */
+    private function makeAsyncRequest(Request $request, string $returnType, callable $exceptionHandler)
+    {
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return $this->responseToReturn($response, $returnType);
+                },
+                function (RequestException $exception) use ($exceptionHandler) {
+                    $response = $exception->getResponse();
+                    $e = new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
+                        ),
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
+                    );
+                    throw $exceptionHandler($e);
+                }
+            );
+    }
+
+    /**
      * Convert a response to a return standard return array.
      *
-     * @param \Psr\Http\Message\ResponseInterface $response
-     *   A response from a request with a serialized body.
-     * @param string $returnType
-     *   The return type.
+     * @param \Psr\Http\Message\ResponseInterface $response A response from a request with a serialized body.
+     * @param string $returnType The primary return type.
      *
      * @return array
      */

@@ -118,8 +118,29 @@ class BulkExportProgramMembersApi
     }
 
     /**
-     * Operation cancelExportProgramMembersUsingPOST
+     * Exception handler for cancelExportProgramMembersUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function cancelExportProgramMembersUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Cancel Export Program Member Job
      *
      * @param  string $export_id Id of export batch job. (required)
@@ -135,8 +156,6 @@ class BulkExportProgramMembersApi
     }
 
     /**
-     * Operation cancelExportProgramMembersUsingPOSTWithHttpInfo
-     *
      * Cancel Export Program Member Job
      *
      * @param  string $export_id Id of export batch job. (required)
@@ -148,36 +167,15 @@ class BulkExportProgramMembersApi
     public function cancelExportProgramMembersUsingPOSTWithHttpInfo($export_id)
     {
         $request = $this->cancelExportProgramMembersUsingPOSTRequest($export_id);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->cancelExportProgramMembersUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation cancelExportProgramMembersUsingPOSTAsync
-     *
      * Cancel Export Program Member Job
      *
      * @param  string $export_id Id of export batch job. (required)
@@ -196,8 +194,6 @@ class BulkExportProgramMembersApi
     }
 
     /**
-     * Operation cancelExportProgramMembersUsingPOSTAsyncWithHttpInfo
-     *
      * Cancel Export Program Member Job
      *
      * @param  string $export_id Id of export batch job. (required)
@@ -208,27 +204,7 @@ class BulkExportProgramMembersApi
     public function cancelExportProgramMembersUsingPOSTAsyncWithHttpInfo($export_id)
     {
         $request = $this->cancelExportProgramMembersUsingPOSTRequest($export_id);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse', [$this, 'cancelExportProgramMembersUsingPOSTHandleException']);
     }
 
     /**
@@ -286,8 +262,29 @@ class BulkExportProgramMembersApi
     }
 
     /**
-     * Operation createExportProgramMembersUsingPOST
+     * Exception handler for createExportProgramMembersUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function createExportProgramMembersUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Create Export Program Member Job
      *
      * @param  \NecLimDul\MarketoRest\Lead\Model\ExportProgramMemberRequest $export_program_member_request exportProgramMemberRequest&lt;br&gt;&lt;br&gt;ColumnHeaderNames: A JSON object containing key-value pairs of field and column header names.&lt;br&gt;&lt;br&gt;Example:&lt;br&gt;&lt;code&gt;\&quot;columnHeaderNames\&quot;:{&lt;br&gt;  \&quot;firstName\&quot;:\&quot;First Name\&quot;,&lt;br&gt;  \&quot;lastName\&quot;:\&quot;Last Name\&quot;,&lt;br&gt;  \&quot;email\&quot;:\&quot;Email Address\&quot;&lt;br&gt;}&lt;/code&gt;&lt;br&gt; (optional)
@@ -303,8 +300,6 @@ class BulkExportProgramMembersApi
     }
 
     /**
-     * Operation createExportProgramMembersUsingPOSTWithHttpInfo
-     *
      * Create Export Program Member Job
      *
      * @param  \NecLimDul\MarketoRest\Lead\Model\ExportProgramMemberRequest $export_program_member_request exportProgramMemberRequest&lt;br&gt;&lt;br&gt;ColumnHeaderNames: A JSON object containing key-value pairs of field and column header names.&lt;br&gt;&lt;br&gt;Example:&lt;br&gt;&lt;code&gt;\&quot;columnHeaderNames\&quot;:{&lt;br&gt;  \&quot;firstName\&quot;:\&quot;First Name\&quot;,&lt;br&gt;  \&quot;lastName\&quot;:\&quot;Last Name\&quot;,&lt;br&gt;  \&quot;email\&quot;:\&quot;Email Address\&quot;&lt;br&gt;}&lt;/code&gt;&lt;br&gt; (optional)
@@ -316,36 +311,15 @@ class BulkExportProgramMembersApi
     public function createExportProgramMembersUsingPOSTWithHttpInfo($export_program_member_request = null)
     {
         $request = $this->createExportProgramMembersUsingPOSTRequest($export_program_member_request);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->createExportProgramMembersUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation createExportProgramMembersUsingPOSTAsync
-     *
      * Create Export Program Member Job
      *
      * @param  \NecLimDul\MarketoRest\Lead\Model\ExportProgramMemberRequest $export_program_member_request exportProgramMemberRequest&lt;br&gt;&lt;br&gt;ColumnHeaderNames: A JSON object containing key-value pairs of field and column header names.&lt;br&gt;&lt;br&gt;Example:&lt;br&gt;&lt;code&gt;\&quot;columnHeaderNames\&quot;:{&lt;br&gt;  \&quot;firstName\&quot;:\&quot;First Name\&quot;,&lt;br&gt;  \&quot;lastName\&quot;:\&quot;Last Name\&quot;,&lt;br&gt;  \&quot;email\&quot;:\&quot;Email Address\&quot;&lt;br&gt;}&lt;/code&gt;&lt;br&gt; (optional)
@@ -364,8 +338,6 @@ class BulkExportProgramMembersApi
     }
 
     /**
-     * Operation createExportProgramMembersUsingPOSTAsyncWithHttpInfo
-     *
      * Create Export Program Member Job
      *
      * @param  \NecLimDul\MarketoRest\Lead\Model\ExportProgramMemberRequest $export_program_member_request exportProgramMemberRequest&lt;br&gt;&lt;br&gt;ColumnHeaderNames: A JSON object containing key-value pairs of field and column header names.&lt;br&gt;&lt;br&gt;Example:&lt;br&gt;&lt;code&gt;\&quot;columnHeaderNames\&quot;:{&lt;br&gt;  \&quot;firstName\&quot;:\&quot;First Name\&quot;,&lt;br&gt;  \&quot;lastName\&quot;:\&quot;Last Name\&quot;,&lt;br&gt;  \&quot;email\&quot;:\&quot;Email Address\&quot;&lt;br&gt;}&lt;/code&gt;&lt;br&gt; (optional)
@@ -376,27 +348,7 @@ class BulkExportProgramMembersApi
     public function createExportProgramMembersUsingPOSTAsyncWithHttpInfo($export_program_member_request = null)
     {
         $request = $this->createExportProgramMembersUsingPOSTRequest($export_program_member_request);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse', [$this, 'createExportProgramMembersUsingPOSTHandleException']);
     }
 
     /**
@@ -452,8 +404,29 @@ class BulkExportProgramMembersApi
     }
 
     /**
-     * Operation enqueueExportProgramMembersUsingPOST
+     * Exception handler for enqueueExportProgramMembersUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function enqueueExportProgramMembersUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Enqueue Export Program Member Job
      *
      * @param  string $export_id Id of export batch job. (required)
@@ -469,8 +442,6 @@ class BulkExportProgramMembersApi
     }
 
     /**
-     * Operation enqueueExportProgramMembersUsingPOSTWithHttpInfo
-     *
      * Enqueue Export Program Member Job
      *
      * @param  string $export_id Id of export batch job. (required)
@@ -482,36 +453,15 @@ class BulkExportProgramMembersApi
     public function enqueueExportProgramMembersUsingPOSTWithHttpInfo($export_id)
     {
         $request = $this->enqueueExportProgramMembersUsingPOSTRequest($export_id);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->enqueueExportProgramMembersUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation enqueueExportProgramMembersUsingPOSTAsync
-     *
      * Enqueue Export Program Member Job
      *
      * @param  string $export_id Id of export batch job. (required)
@@ -530,8 +480,6 @@ class BulkExportProgramMembersApi
     }
 
     /**
-     * Operation enqueueExportProgramMembersUsingPOSTAsyncWithHttpInfo
-     *
      * Enqueue Export Program Member Job
      *
      * @param  string $export_id Id of export batch job. (required)
@@ -542,27 +490,7 @@ class BulkExportProgramMembersApi
     public function enqueueExportProgramMembersUsingPOSTAsyncWithHttpInfo($export_id)
     {
         $request = $this->enqueueExportProgramMembersUsingPOSTRequest($export_id);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse', [$this, 'enqueueExportProgramMembersUsingPOSTHandleException']);
     }
 
     /**
@@ -620,8 +548,29 @@ class BulkExportProgramMembersApi
     }
 
     /**
-     * Operation getExportProgramMembersFileUsingGET
+     * Exception handler for getExportProgramMembersFileUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function getExportProgramMembersFileUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamRangeContent',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Export Program Member File
      *
      * @param  string $export_id Id of export batch job. (required)
@@ -638,8 +587,6 @@ class BulkExportProgramMembersApi
     }
 
     /**
-     * Operation getExportProgramMembersFileUsingGETWithHttpInfo
-     *
      * Get Export Program Member File
      *
      * @param  string $export_id Id of export batch job. (required)
@@ -652,36 +599,15 @@ class BulkExportProgramMembersApi
     public function getExportProgramMembersFileUsingGETWithHttpInfo($export_id, $range = null)
     {
         $request = $this->getExportProgramMembersFileUsingGETRequest($export_id, $range);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamRangeContent');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamRangeContent');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamRangeContent',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getExportProgramMembersFileUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getExportProgramMembersFileUsingGETAsync
-     *
      * Get Export Program Member File
      *
      * @param  string $export_id Id of export batch job. (required)
@@ -701,8 +627,6 @@ class BulkExportProgramMembersApi
     }
 
     /**
-     * Operation getExportProgramMembersFileUsingGETAsyncWithHttpInfo
-     *
      * Get Export Program Member File
      *
      * @param  string $export_id Id of export batch job. (required)
@@ -714,27 +638,7 @@ class BulkExportProgramMembersApi
     public function getExportProgramMembersFileUsingGETAsyncWithHttpInfo($export_id, $range = null)
     {
         $request = $this->getExportProgramMembersFileUsingGETRequest($export_id, $range);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamRangeContent');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamRangeContent', [$this, 'getExportProgramMembersFileUsingGETHandleException']);
     }
 
     /**
@@ -798,8 +702,29 @@ class BulkExportProgramMembersApi
     }
 
     /**
-     * Operation getExportProgramMembersStatusUsingGET
+     * Exception handler for getExportProgramMembersStatusUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function getExportProgramMembersStatusUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Export Program Member Job Status
      *
      * @param  string $export_id Id of export batch job. (required)
@@ -815,8 +740,6 @@ class BulkExportProgramMembersApi
     }
 
     /**
-     * Operation getExportProgramMembersStatusUsingGETWithHttpInfo
-     *
      * Get Export Program Member Job Status
      *
      * @param  string $export_id Id of export batch job. (required)
@@ -828,36 +751,15 @@ class BulkExportProgramMembersApi
     public function getExportProgramMembersStatusUsingGETWithHttpInfo($export_id)
     {
         $request = $this->getExportProgramMembersStatusUsingGETRequest($export_id);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getExportProgramMembersStatusUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getExportProgramMembersStatusUsingGETAsync
-     *
      * Get Export Program Member Job Status
      *
      * @param  string $export_id Id of export batch job. (required)
@@ -876,8 +778,6 @@ class BulkExportProgramMembersApi
     }
 
     /**
-     * Operation getExportProgramMembersStatusUsingGETAsyncWithHttpInfo
-     *
      * Get Export Program Member Job Status
      *
      * @param  string $export_id Id of export batch job. (required)
@@ -888,27 +788,7 @@ class BulkExportProgramMembersApi
     public function getExportProgramMembersStatusUsingGETAsyncWithHttpInfo($export_id)
     {
         $request = $this->getExportProgramMembersStatusUsingGETRequest($export_id);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse', [$this, 'getExportProgramMembersStatusUsingGETHandleException']);
     }
 
     /**
@@ -966,8 +846,29 @@ class BulkExportProgramMembersApi
     }
 
     /**
-     * Operation getExportProgramMembersUsingGET
+     * Exception handler for getExportProgramMembersUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function getExportProgramMembersUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponseWithToken',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Export Program Member Jobs
      *
      * @param  string[] $status Comma separated list of statuses to filter on. (optional)
@@ -985,8 +886,6 @@ class BulkExportProgramMembersApi
     }
 
     /**
-     * Operation getExportProgramMembersUsingGETWithHttpInfo
-     *
      * Get Export Program Member Jobs
      *
      * @param  string[] $status Comma separated list of statuses to filter on. (optional)
@@ -1000,36 +899,15 @@ class BulkExportProgramMembersApi
     public function getExportProgramMembersUsingGETWithHttpInfo($status = null, $batch_size = null, $next_page_token = null)
     {
         $request = $this->getExportProgramMembersUsingGETRequest($status, $batch_size, $next_page_token);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponseWithToken');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponseWithToken');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponseWithToken',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getExportProgramMembersUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getExportProgramMembersUsingGETAsync
-     *
      * Get Export Program Member Jobs
      *
      * @param  string[] $status Comma separated list of statuses to filter on. (optional)
@@ -1050,8 +928,6 @@ class BulkExportProgramMembersApi
     }
 
     /**
-     * Operation getExportProgramMembersUsingGETAsyncWithHttpInfo
-     *
      * Get Export Program Member Jobs
      *
      * @param  string[] $status Comma separated list of statuses to filter on. (optional)
@@ -1064,27 +940,7 @@ class BulkExportProgramMembersApi
     public function getExportProgramMembersUsingGETAsyncWithHttpInfo($status = null, $batch_size = null, $next_page_token = null)
     {
         $request = $this->getExportProgramMembersUsingGETRequest($status, $batch_size, $next_page_token);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponseWithToken');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponseWithToken', [$this, 'getExportProgramMembersUsingGETHandleException']);
     }
 
     /**
@@ -1168,8 +1024,7 @@ class BulkExportProgramMembersApi
     /**
      * Make a request.
      *
-     * @param \GuzzleHttp\Psr7\Request $request
-     *   An initialized request object.
+     * @param \GuzzleHttp\Psr7\Request $request An initialized request object.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @return \Psr\Http\Message\ResponseInterface
@@ -1205,12 +1060,45 @@ class BulkExportProgramMembersApi
     }
 
     /**
+     * Make an async request.
+     *
+     * @param \GuzzleHttp\Psr7\Request $request An initialized request object.
+     * @param string $returnType The return type.
+     * @param callable $exceptionHandler A callback to process HTTP errors.
+     *
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
+     * @return \GuzzleHttp\Promise\PromiseInterface A promise that will return a processed response.
+     */
+    private function makeAsyncRequest(Request $request, string $returnType, callable $exceptionHandler)
+    {
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return $this->responseToReturn($response, $returnType);
+                },
+                function (RequestException $exception) use ($exceptionHandler) {
+                    $response = $exception->getResponse();
+                    $e = new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
+                        ),
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
+                    );
+                    throw $exceptionHandler($e);
+                }
+            );
+    }
+
+    /**
      * Convert a response to a return standard return array.
      *
-     * @param \Psr\Http\Message\ResponseInterface $response
-     *   A response from a request with a serialized body.
-     * @param string $returnType
-     *   The return type.
+     * @param \Psr\Http\Message\ResponseInterface $response A response from a request with a serialized body.
+     * @param string $returnType The primary return type.
      *
      * @return array
      */

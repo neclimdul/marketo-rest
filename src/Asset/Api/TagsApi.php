@@ -118,8 +118,29 @@ class TagsApi
     }
 
     /**
-     * Operation getTagByNameUsingGET
+     * Exception handler for getTagByNameUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function getTagByNameUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfTagResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Tag By Name
      *
      * @param  string $name Name of the tag (required)
@@ -135,8 +156,6 @@ class TagsApi
     }
 
     /**
-     * Operation getTagByNameUsingGETWithHttpInfo
-     *
      * Get Tag By Name
      *
      * @param  string $name Name of the tag (required)
@@ -148,36 +167,15 @@ class TagsApi
     public function getTagByNameUsingGETWithHttpInfo($name)
     {
         $request = $this->getTagByNameUsingGETRequest($name);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfTagResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfTagResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfTagResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getTagByNameUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getTagByNameUsingGETAsync
-     *
      * Get Tag By Name
      *
      * @param  string $name Name of the tag (required)
@@ -196,8 +194,6 @@ class TagsApi
     }
 
     /**
-     * Operation getTagByNameUsingGETAsyncWithHttpInfo
-     *
      * Get Tag By Name
      *
      * @param  string $name Name of the tag (required)
@@ -208,27 +204,7 @@ class TagsApi
     public function getTagByNameUsingGETAsyncWithHttpInfo($name)
     {
         $request = $this->getTagByNameUsingGETRequest($name);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfTagResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfTagResponse', [$this, 'getTagByNameUsingGETHandleException']);
     }
 
     /**
@@ -287,8 +263,29 @@ class TagsApi
     }
 
     /**
-     * Operation getTagTypesUsingGET
+     * Exception handler for getTagTypesUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function getTagTypesUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfTagResponseGetAll',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Tag Types
      *
      * @param  int $max_return Maximum number of channels to return.  Max 200, default 20 (optional)
@@ -305,8 +302,6 @@ class TagsApi
     }
 
     /**
-     * Operation getTagTypesUsingGETWithHttpInfo
-     *
      * Get Tag Types
      *
      * @param  int $max_return Maximum number of channels to return.  Max 200, default 20 (optional)
@@ -319,36 +314,15 @@ class TagsApi
     public function getTagTypesUsingGETWithHttpInfo($max_return = null, $offset = null)
     {
         $request = $this->getTagTypesUsingGETRequest($max_return, $offset);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfTagResponseGetAll');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfTagResponseGetAll');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfTagResponseGetAll',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getTagTypesUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getTagTypesUsingGETAsync
-     *
      * Get Tag Types
      *
      * @param  int $max_return Maximum number of channels to return.  Max 200, default 20 (optional)
@@ -368,8 +342,6 @@ class TagsApi
     }
 
     /**
-     * Operation getTagTypesUsingGETAsyncWithHttpInfo
-     *
      * Get Tag Types
      *
      * @param  int $max_return Maximum number of channels to return.  Max 200, default 20 (optional)
@@ -381,27 +353,7 @@ class TagsApi
     public function getTagTypesUsingGETAsyncWithHttpInfo($max_return = null, $offset = null)
     {
         $request = $this->getTagTypesUsingGETRequest($max_return, $offset);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfTagResponseGetAll');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfTagResponseGetAll', [$this, 'getTagTypesUsingGETHandleException']);
     }
 
     /**
@@ -480,8 +432,7 @@ class TagsApi
     /**
      * Make a request.
      *
-     * @param \GuzzleHttp\Psr7\Request $request
-     *   An initialized request object.
+     * @param \GuzzleHttp\Psr7\Request $request An initialized request object.
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @return \Psr\Http\Message\ResponseInterface
@@ -517,12 +468,45 @@ class TagsApi
     }
 
     /**
+     * Make an async request.
+     *
+     * @param \GuzzleHttp\Psr7\Request $request An initialized request object.
+     * @param string $returnType The return type.
+     * @param callable $exceptionHandler A callback to process HTTP errors.
+     *
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
+     * @return \GuzzleHttp\Promise\PromiseInterface A promise that will return a processed response.
+     */
+    private function makeAsyncRequest(Request $request, string $returnType, callable $exceptionHandler)
+    {
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return $this->responseToReturn($response, $returnType);
+                },
+                function (RequestException $exception) use ($exceptionHandler) {
+                    $response = $exception->getResponse();
+                    $e = new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
+                        ),
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
+                    );
+                    throw $exceptionHandler($e);
+                }
+            );
+    }
+
+    /**
      * Convert a response to a return standard return array.
      *
-     * @param \Psr\Http\Message\ResponseInterface $response
-     *   A response from a request with a serialized body.
-     * @param string $returnType
-     *   The return type.
+     * @param \Psr\Http\Message\ResponseInterface $response A response from a request with a serialized body.
+     * @param string $returnType The primary return type.
      *
      * @return array
      */

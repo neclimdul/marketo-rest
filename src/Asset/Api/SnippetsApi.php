@@ -118,8 +118,29 @@ class SnippetsApi
     }
 
     /**
-     * Operation approveSnippetUsingPOST
+     * Exception handler for approveSnippetUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function approveSnippetUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Approve Snippet Draft
      *
      * @param  int $id id (required)
@@ -135,8 +156,6 @@ class SnippetsApi
     }
 
     /**
-     * Operation approveSnippetUsingPOSTWithHttpInfo
-     *
      * Approve Snippet Draft
      *
      * @param  int $id id (required)
@@ -148,36 +167,15 @@ class SnippetsApi
     public function approveSnippetUsingPOSTWithHttpInfo($id)
     {
         $request = $this->approveSnippetUsingPOSTRequest($id);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->approveSnippetUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation approveSnippetUsingPOSTAsync
-     *
      * Approve Snippet Draft
      *
      * @param  int $id id (required)
@@ -196,8 +194,6 @@ class SnippetsApi
     }
 
     /**
-     * Operation approveSnippetUsingPOSTAsyncWithHttpInfo
-     *
      * Approve Snippet Draft
      *
      * @param  int $id id (required)
@@ -208,27 +204,7 @@ class SnippetsApi
     public function approveSnippetUsingPOSTAsyncWithHttpInfo($id)
     {
         $request = $this->approveSnippetUsingPOSTRequest($id);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse', [$this, 'approveSnippetUsingPOSTHandleException']);
     }
 
     /**
@@ -286,8 +262,29 @@ class SnippetsApi
     }
 
     /**
-     * Operation cloneSnippetUsingPOST
+     * Exception handler for cloneSnippetUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function cloneSnippetUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Clone Snippet
      *
      * @param  int $id id (required)
@@ -304,8 +301,6 @@ class SnippetsApi
     }
 
     /**
-     * Operation cloneSnippetUsingPOSTWithHttpInfo
-     *
      * Clone Snippet
      *
      * @param  int $id id (required)
@@ -318,36 +313,15 @@ class SnippetsApi
     public function cloneSnippetUsingPOSTWithHttpInfo($id, $clone_snippet_request = null)
     {
         $request = $this->cloneSnippetUsingPOSTRequest($id, $clone_snippet_request);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->cloneSnippetUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation cloneSnippetUsingPOSTAsync
-     *
      * Clone Snippet
      *
      * @param  int $id id (required)
@@ -367,8 +341,6 @@ class SnippetsApi
     }
 
     /**
-     * Operation cloneSnippetUsingPOSTAsyncWithHttpInfo
-     *
      * Clone Snippet
      *
      * @param  int $id id (required)
@@ -380,27 +352,7 @@ class SnippetsApi
     public function cloneSnippetUsingPOSTAsyncWithHttpInfo($id, $clone_snippet_request = null)
     {
         $request = $this->cloneSnippetUsingPOSTRequest($id, $clone_snippet_request);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse', [$this, 'cloneSnippetUsingPOSTHandleException']);
     }
 
     /**
@@ -470,8 +422,29 @@ class SnippetsApi
     }
 
     /**
-     * Operation createSnippetUsingPOST
+     * Exception handler for createSnippetUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function createSnippetUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Create Snippet
      *
      * @param  \NecLimDul\MarketoRest\Asset\Model\CreateSnippetRequest $create_snippet_request createSnippetRequest (required)
@@ -487,8 +460,6 @@ class SnippetsApi
     }
 
     /**
-     * Operation createSnippetUsingPOSTWithHttpInfo
-     *
      * Create Snippet
      *
      * @param  \NecLimDul\MarketoRest\Asset\Model\CreateSnippetRequest $create_snippet_request createSnippetRequest (required)
@@ -500,36 +471,15 @@ class SnippetsApi
     public function createSnippetUsingPOSTWithHttpInfo($create_snippet_request)
     {
         $request = $this->createSnippetUsingPOSTRequest($create_snippet_request);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->createSnippetUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation createSnippetUsingPOSTAsync
-     *
      * Create Snippet
      *
      * @param  \NecLimDul\MarketoRest\Asset\Model\CreateSnippetRequest $create_snippet_request createSnippetRequest (required)
@@ -548,8 +498,6 @@ class SnippetsApi
     }
 
     /**
-     * Operation createSnippetUsingPOSTAsyncWithHttpInfo
-     *
      * Create Snippet
      *
      * @param  \NecLimDul\MarketoRest\Asset\Model\CreateSnippetRequest $create_snippet_request createSnippetRequest (required)
@@ -560,27 +508,7 @@ class SnippetsApi
     public function createSnippetUsingPOSTAsyncWithHttpInfo($create_snippet_request)
     {
         $request = $this->createSnippetUsingPOSTRequest($create_snippet_request);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse', [$this, 'createSnippetUsingPOSTHandleException']);
     }
 
     /**
@@ -639,8 +567,29 @@ class SnippetsApi
     }
 
     /**
-     * Operation deleteSnippetUsingPOST
+     * Exception handler for deleteSnippetUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function deleteSnippetUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Delete Snippet
      *
      * @param  int $id id (required)
@@ -656,8 +605,6 @@ class SnippetsApi
     }
 
     /**
-     * Operation deleteSnippetUsingPOSTWithHttpInfo
-     *
      * Delete Snippet
      *
      * @param  int $id id (required)
@@ -669,36 +616,15 @@ class SnippetsApi
     public function deleteSnippetUsingPOSTWithHttpInfo($id)
     {
         $request = $this->deleteSnippetUsingPOSTRequest($id);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->deleteSnippetUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation deleteSnippetUsingPOSTAsync
-     *
      * Delete Snippet
      *
      * @param  int $id id (required)
@@ -717,8 +643,6 @@ class SnippetsApi
     }
 
     /**
-     * Operation deleteSnippetUsingPOSTAsyncWithHttpInfo
-     *
      * Delete Snippet
      *
      * @param  int $id id (required)
@@ -729,27 +653,7 @@ class SnippetsApi
     public function deleteSnippetUsingPOSTAsyncWithHttpInfo($id)
     {
         $request = $this->deleteSnippetUsingPOSTRequest($id);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse', [$this, 'deleteSnippetUsingPOSTHandleException']);
     }
 
     /**
@@ -807,8 +711,29 @@ class SnippetsApi
     }
 
     /**
-     * Operation discardSnippetUsingPOST
+     * Exception handler for discardSnippetUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function discardSnippetUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Discard Snippet Draft
      *
      * @param  int $id id (required)
@@ -824,8 +749,6 @@ class SnippetsApi
     }
 
     /**
-     * Operation discardSnippetUsingPOSTWithHttpInfo
-     *
      * Discard Snippet Draft
      *
      * @param  int $id id (required)
@@ -837,36 +760,15 @@ class SnippetsApi
     public function discardSnippetUsingPOSTWithHttpInfo($id)
     {
         $request = $this->discardSnippetUsingPOSTRequest($id);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->discardSnippetUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation discardSnippetUsingPOSTAsync
-     *
      * Discard Snippet Draft
      *
      * @param  int $id id (required)
@@ -885,8 +787,6 @@ class SnippetsApi
     }
 
     /**
-     * Operation discardSnippetUsingPOSTAsyncWithHttpInfo
-     *
      * Discard Snippet Draft
      *
      * @param  int $id id (required)
@@ -897,27 +797,7 @@ class SnippetsApi
     public function discardSnippetUsingPOSTAsyncWithHttpInfo($id)
     {
         $request = $this->discardSnippetUsingPOSTRequest($id);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse', [$this, 'discardSnippetUsingPOSTHandleException']);
     }
 
     /**
@@ -975,8 +855,29 @@ class SnippetsApi
     }
 
     /**
-     * Operation getDynamicContentUsingGET
+     * Exception handler for getDynamicContentUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function getDynamicContentUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ModelResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Dynamic Content
      *
      * @param  int $id id (required)
@@ -993,8 +894,6 @@ class SnippetsApi
     }
 
     /**
-     * Operation getDynamicContentUsingGETWithHttpInfo
-     *
      * Get Dynamic Content
      *
      * @param  int $id id (required)
@@ -1007,36 +906,15 @@ class SnippetsApi
     public function getDynamicContentUsingGETWithHttpInfo($id, $status = null)
     {
         $request = $this->getDynamicContentUsingGETRequest($id, $status);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ModelResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ModelResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ModelResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getDynamicContentUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getDynamicContentUsingGETAsync
-     *
      * Get Dynamic Content
      *
      * @param  int $id id (required)
@@ -1056,8 +934,6 @@ class SnippetsApi
     }
 
     /**
-     * Operation getDynamicContentUsingGETAsyncWithHttpInfo
-     *
      * Get Dynamic Content
      *
      * @param  int $id id (required)
@@ -1069,27 +945,7 @@ class SnippetsApi
     public function getDynamicContentUsingGETAsyncWithHttpInfo($id, $status = null)
     {
         $request = $this->getDynamicContentUsingGETRequest($id, $status);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ModelResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ModelResponse', [$this, 'getDynamicContentUsingGETHandleException']);
     }
 
     /**
@@ -1156,8 +1012,29 @@ class SnippetsApi
     }
 
     /**
-     * Operation getSnippetByIdUsingGET
+     * Exception handler for getSnippetByIdUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function getSnippetByIdUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Snippet by Id
      *
      * @param  int $id id (required)
@@ -1174,8 +1051,6 @@ class SnippetsApi
     }
 
     /**
-     * Operation getSnippetByIdUsingGETWithHttpInfo
-     *
      * Get Snippet by Id
      *
      * @param  int $id id (required)
@@ -1188,36 +1063,15 @@ class SnippetsApi
     public function getSnippetByIdUsingGETWithHttpInfo($id, $status = null)
     {
         $request = $this->getSnippetByIdUsingGETRequest($id, $status);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getSnippetByIdUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getSnippetByIdUsingGETAsync
-     *
      * Get Snippet by Id
      *
      * @param  int $id id (required)
@@ -1237,8 +1091,6 @@ class SnippetsApi
     }
 
     /**
-     * Operation getSnippetByIdUsingGETAsyncWithHttpInfo
-     *
      * Get Snippet by Id
      *
      * @param  int $id id (required)
@@ -1250,27 +1102,7 @@ class SnippetsApi
     public function getSnippetByIdUsingGETAsyncWithHttpInfo($id, $status = null)
     {
         $request = $this->getSnippetByIdUsingGETRequest($id, $status);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse', [$this, 'getSnippetByIdUsingGETHandleException']);
     }
 
     /**
@@ -1337,8 +1169,29 @@ class SnippetsApi
     }
 
     /**
-     * Operation getSnippetContentByIdUsingGET
+     * Exception handler for getSnippetContentByIdUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function getSnippetContentByIdUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetContentResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Snippet Content
      *
      * @param  int $id id (required)
@@ -1355,8 +1208,6 @@ class SnippetsApi
     }
 
     /**
-     * Operation getSnippetContentByIdUsingGETWithHttpInfo
-     *
      * Get Snippet Content
      *
      * @param  int $id id (required)
@@ -1369,36 +1220,15 @@ class SnippetsApi
     public function getSnippetContentByIdUsingGETWithHttpInfo($id, $status = null)
     {
         $request = $this->getSnippetContentByIdUsingGETRequest($id, $status);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetContentResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetContentResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetContentResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getSnippetContentByIdUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getSnippetContentByIdUsingGETAsync
-     *
      * Get Snippet Content
      *
      * @param  int $id id (required)
@@ -1418,8 +1248,6 @@ class SnippetsApi
     }
 
     /**
-     * Operation getSnippetContentByIdUsingGETAsyncWithHttpInfo
-     *
      * Get Snippet Content
      *
      * @param  int $id id (required)
@@ -1431,27 +1259,7 @@ class SnippetsApi
     public function getSnippetContentByIdUsingGETAsyncWithHttpInfo($id, $status = null)
     {
         $request = $this->getSnippetContentByIdUsingGETRequest($id, $status);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetContentResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetContentResponse', [$this, 'getSnippetContentByIdUsingGETHandleException']);
     }
 
     /**
@@ -1518,8 +1326,29 @@ class SnippetsApi
     }
 
     /**
-     * Operation getSnippetUsingGET
+     * Exception handler for getSnippetUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function getSnippetUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Snippets
      *
      * @param  string $status Status filter for draft or approved versions (optional)
@@ -1537,8 +1366,6 @@ class SnippetsApi
     }
 
     /**
-     * Operation getSnippetUsingGETWithHttpInfo
-     *
      * Get Snippets
      *
      * @param  string $status Status filter for draft or approved versions (optional)
@@ -1552,36 +1379,15 @@ class SnippetsApi
     public function getSnippetUsingGETWithHttpInfo($status = null, $max_return = null, $offset = null)
     {
         $request = $this->getSnippetUsingGETRequest($status, $max_return, $offset);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getSnippetUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getSnippetUsingGETAsync
-     *
      * Get Snippets
      *
      * @param  string $status Status filter for draft or approved versions (optional)
@@ -1602,8 +1408,6 @@ class SnippetsApi
     }
 
     /**
-     * Operation getSnippetUsingGETAsyncWithHttpInfo
-     *
      * Get Snippets
      *
      * @param  string $status Status filter for draft or approved versions (optional)
@@ -1616,27 +1420,7 @@ class SnippetsApi
     public function getSnippetUsingGETAsyncWithHttpInfo($status = null, $max_return = null, $offset = null)
     {
         $request = $this->getSnippetUsingGETRequest($status, $max_return, $offset);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse', [$this, 'getSnippetUsingGETHandleException']);
     }
 
     /**
@@ -1699,8 +1483,29 @@ class SnippetsApi
     }
 
     /**
-     * Operation unapproveSnippetUsingPOST
+     * Exception handler for unapproveSnippetUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function unapproveSnippetUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Unapprove Snippet
      *
      * @param  int $id id (required)
@@ -1716,8 +1521,6 @@ class SnippetsApi
     }
 
     /**
-     * Operation unapproveSnippetUsingPOSTWithHttpInfo
-     *
      * Unapprove Snippet
      *
      * @param  int $id id (required)
@@ -1729,36 +1532,15 @@ class SnippetsApi
     public function unapproveSnippetUsingPOSTWithHttpInfo($id)
     {
         $request = $this->unapproveSnippetUsingPOSTRequest($id);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->unapproveSnippetUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation unapproveSnippetUsingPOSTAsync
-     *
      * Unapprove Snippet
      *
      * @param  int $id id (required)
@@ -1777,8 +1559,6 @@ class SnippetsApi
     }
 
     /**
-     * Operation unapproveSnippetUsingPOSTAsyncWithHttpInfo
-     *
      * Unapprove Snippet
      *
      * @param  int $id id (required)
@@ -1789,27 +1569,7 @@ class SnippetsApi
     public function unapproveSnippetUsingPOSTAsyncWithHttpInfo($id)
     {
         $request = $this->unapproveSnippetUsingPOSTRequest($id);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse', [$this, 'unapproveSnippetUsingPOSTHandleException']);
     }
 
     /**
@@ -1867,8 +1627,29 @@ class SnippetsApi
     }
 
     /**
-     * Operation updateContentUsingPOST1
+     * Exception handler for updateContentUsingPOST1.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function updateContentUsingPOST1HandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Update Snippet Content
      *
      * @param  int $id id (required)
@@ -1886,8 +1667,6 @@ class SnippetsApi
     }
 
     /**
-     * Operation updateContentUsingPOST1WithHttpInfo
-     *
      * Update Snippet Content
      *
      * @param  int $id id (required)
@@ -1901,36 +1680,15 @@ class SnippetsApi
     public function updateContentUsingPOST1WithHttpInfo($id, $content, $type)
     {
         $request = $this->updateContentUsingPOST1Request($id, $content, $type);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->updateContentUsingPOST1HandleException($e);
         }
     }
 
     /**
-     * Operation updateContentUsingPOST1Async
-     *
      * Update Snippet Content
      *
      * @param  int $id id (required)
@@ -1951,8 +1709,6 @@ class SnippetsApi
     }
 
     /**
-     * Operation updateContentUsingPOST1AsyncWithHttpInfo
-     *
      * Update Snippet Content
      *
      * @param  int $id id (required)
@@ -1965,27 +1721,7 @@ class SnippetsApi
     public function updateContentUsingPOST1AsyncWithHttpInfo($id, $content, $type)
     {
         $request = $this->updateContentUsingPOST1Request($id, $content, $type);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse', [$this, 'updateContentUsingPOST1HandleException']);
     }
 
     /**
@@ -2069,8 +1805,29 @@ class SnippetsApi
     }
 
     /**
-     * Operation updateDynamicContentUsingPOST
+     * Exception handler for updateDynamicContentUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function updateDynamicContentUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Update Snippet Dynamic Content
      *
      * @param  int $id id (required)
@@ -2088,8 +1845,6 @@ class SnippetsApi
     }
 
     /**
-     * Operation updateDynamicContentUsingPOSTWithHttpInfo
-     *
      * Update Snippet Dynamic Content
      *
      * @param  int $id id (required)
@@ -2103,36 +1858,15 @@ class SnippetsApi
     public function updateDynamicContentUsingPOSTWithHttpInfo($id, $segment_id, $request)
     {
         $request = $this->updateDynamicContentUsingPOSTRequest($id, $segment_id, $request);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->updateDynamicContentUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation updateDynamicContentUsingPOSTAsync
-     *
      * Update Snippet Dynamic Content
      *
      * @param  int $id id (required)
@@ -2153,8 +1887,6 @@ class SnippetsApi
     }
 
     /**
-     * Operation updateDynamicContentUsingPOSTAsyncWithHttpInfo
-     *
      * Update Snippet Dynamic Content
      *
      * @param  int $id id (required)
@@ -2167,27 +1899,7 @@ class SnippetsApi
     public function updateDynamicContentUsingPOSTAsyncWithHttpInfo($id, $segment_id, $request)
     {
         $request = $this->updateDynamicContentUsingPOSTRequest($id, $segment_id, $request);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse', [$this, 'updateDynamicContentUsingPOSTHandleException']);
     }
 
     /**
@@ -2272,8 +1984,29 @@ class SnippetsApi
     }
 
     /**
-     * Operation updateSnippetUsingPOST
+     * Exception handler for updateSnippetUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function updateSnippetUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Update Snippet Metadata
      *
      * @param  int $id id (required)
@@ -2290,8 +2023,6 @@ class SnippetsApi
     }
 
     /**
-     * Operation updateSnippetUsingPOSTWithHttpInfo
-     *
      * Update Snippet Metadata
      *
      * @param  int $id id (required)
@@ -2304,36 +2035,15 @@ class SnippetsApi
     public function updateSnippetUsingPOSTWithHttpInfo($id, $update_snippet_request)
     {
         $request = $this->updateSnippetUsingPOSTRequest($id, $update_snippet_request);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->updateSnippetUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation updateSnippetUsingPOSTAsync
-     *
      * Update Snippet Metadata
      *
      * @param  int $id id (required)
@@ -2353,8 +2063,6 @@ class SnippetsApi
     }
 
     /**
-     * Operation updateSnippetUsingPOSTAsyncWithHttpInfo
-     *
      * Update Snippet Metadata
      *
      * @param  int $id id (required)
@@ -2366,27 +2074,7 @@ class SnippetsApi
     public function updateSnippetUsingPOSTAsyncWithHttpInfo($id, $update_snippet_request)
     {
         $request = $this->updateSnippetUsingPOSTRequest($id, $update_snippet_request);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSnippetResponse', [$this, 'updateSnippetUsingPOSTHandleException']);
     }
 
     /**
@@ -2480,8 +2168,7 @@ class SnippetsApi
     /**
      * Make a request.
      *
-     * @param \GuzzleHttp\Psr7\Request $request
-     *   An initialized request object.
+     * @param \GuzzleHttp\Psr7\Request $request An initialized request object.
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @return \Psr\Http\Message\ResponseInterface
@@ -2517,12 +2204,45 @@ class SnippetsApi
     }
 
     /**
+     * Make an async request.
+     *
+     * @param \GuzzleHttp\Psr7\Request $request An initialized request object.
+     * @param string $returnType The return type.
+     * @param callable $exceptionHandler A callback to process HTTP errors.
+     *
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
+     * @return \GuzzleHttp\Promise\PromiseInterface A promise that will return a processed response.
+     */
+    private function makeAsyncRequest(Request $request, string $returnType, callable $exceptionHandler)
+    {
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return $this->responseToReturn($response, $returnType);
+                },
+                function (RequestException $exception) use ($exceptionHandler) {
+                    $response = $exception->getResponse();
+                    $e = new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
+                        ),
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
+                    );
+                    throw $exceptionHandler($e);
+                }
+            );
+    }
+
+    /**
      * Convert a response to a return standard return array.
      *
-     * @param \Psr\Http\Message\ResponseInterface $response
-     *   A response from a request with a serialized body.
-     * @param string $returnType
-     *   The return type.
+     * @param \Psr\Http\Message\ResponseInterface $response A response from a request with a serialized body.
+     * @param string $returnType The primary return type.
      *
      * @return array
      */

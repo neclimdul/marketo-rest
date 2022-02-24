@@ -118,8 +118,29 @@ class FormFieldsApi
     }
 
     /**
-     * Operation addFieldSetUsingPOST
+     * Exception handler for addFieldSetUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function addFieldSetUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Add Fieldset to Form
      *
      * @param  int $id id (required)
@@ -136,8 +157,6 @@ class FormFieldsApi
     }
 
     /**
-     * Operation addFieldSetUsingPOSTWithHttpInfo
-     *
      * Add Fieldset to Form
      *
      * @param  int $id id (required)
@@ -150,36 +169,15 @@ class FormFieldsApi
     public function addFieldSetUsingPOSTWithHttpInfo($id, $add_form_field_set_request)
     {
         $request = $this->addFieldSetUsingPOSTRequest($id, $add_form_field_set_request);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->addFieldSetUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation addFieldSetUsingPOSTAsync
-     *
      * Add Fieldset to Form
      *
      * @param  int $id id (required)
@@ -199,8 +197,6 @@ class FormFieldsApi
     }
 
     /**
-     * Operation addFieldSetUsingPOSTAsyncWithHttpInfo
-     *
      * Add Fieldset to Form
      *
      * @param  int $id id (required)
@@ -212,27 +208,7 @@ class FormFieldsApi
     public function addFieldSetUsingPOSTAsyncWithHttpInfo($id, $add_form_field_set_request)
     {
         $request = $this->addFieldSetUsingPOSTRequest($id, $add_form_field_set_request);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse', [$this, 'addFieldSetUsingPOSTHandleException']);
     }
 
     /**
@@ -305,8 +281,29 @@ class FormFieldsApi
     }
 
     /**
-     * Operation addFieldToAFormUsingPOST
+     * Exception handler for addFieldToAFormUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function addFieldToAFormUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Add Field to Form
      *
      * @param  int $id id (required)
@@ -323,8 +320,6 @@ class FormFieldsApi
     }
 
     /**
-     * Operation addFieldToAFormUsingPOSTWithHttpInfo
-     *
      * Add Field to Form
      *
      * @param  int $id id (required)
@@ -337,36 +332,15 @@ class FormFieldsApi
     public function addFieldToAFormUsingPOSTWithHttpInfo($id, $add_form_field_set_request)
     {
         $request = $this->addFieldToAFormUsingPOSTRequest($id, $add_form_field_set_request);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->addFieldToAFormUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation addFieldToAFormUsingPOSTAsync
-     *
      * Add Field to Form
      *
      * @param  int $id id (required)
@@ -386,8 +360,6 @@ class FormFieldsApi
     }
 
     /**
-     * Operation addFieldToAFormUsingPOSTAsyncWithHttpInfo
-     *
      * Add Field to Form
      *
      * @param  int $id id (required)
@@ -399,27 +371,7 @@ class FormFieldsApi
     public function addFieldToAFormUsingPOSTAsyncWithHttpInfo($id, $add_form_field_set_request)
     {
         $request = $this->addFieldToAFormUsingPOSTRequest($id, $add_form_field_set_request);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse', [$this, 'addFieldToAFormUsingPOSTHandleException']);
     }
 
     /**
@@ -492,8 +444,29 @@ class FormFieldsApi
     }
 
     /**
-     * Operation addFormFieldVisibilityRuleUsingPOST
+     * Exception handler for addFormFieldVisibilityRuleUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function addFormFieldVisibilityRuleUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFormVisibilityRuleResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Add Form Field Visibility Rules
      *
      * @param  int $form_id formId (required)
@@ -511,8 +484,6 @@ class FormFieldsApi
     }
 
     /**
-     * Operation addFormFieldVisibilityRuleUsingPOSTWithHttpInfo
-     *
      * Add Form Field Visibility Rules
      *
      * @param  int $form_id formId (required)
@@ -526,36 +497,15 @@ class FormFieldsApi
     public function addFormFieldVisibilityRuleUsingPOSTWithHttpInfo($form_id, $field_id, $add_form_field_visibility_request)
     {
         $request = $this->addFormFieldVisibilityRuleUsingPOSTRequest($form_id, $field_id, $add_form_field_visibility_request);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFormVisibilityRuleResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFormVisibilityRuleResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFormVisibilityRuleResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->addFormFieldVisibilityRuleUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation addFormFieldVisibilityRuleUsingPOSTAsync
-     *
      * Add Form Field Visibility Rules
      *
      * @param  int $form_id formId (required)
@@ -576,8 +526,6 @@ class FormFieldsApi
     }
 
     /**
-     * Operation addFormFieldVisibilityRuleUsingPOSTAsyncWithHttpInfo
-     *
      * Add Form Field Visibility Rules
      *
      * @param  int $form_id formId (required)
@@ -590,27 +538,7 @@ class FormFieldsApi
     public function addFormFieldVisibilityRuleUsingPOSTAsyncWithHttpInfo($form_id, $field_id, $add_form_field_visibility_request)
     {
         $request = $this->addFormFieldVisibilityRuleUsingPOSTRequest($form_id, $field_id, $add_form_field_visibility_request);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFormVisibilityRuleResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFormVisibilityRuleResponse', [$this, 'addFormFieldVisibilityRuleUsingPOSTHandleException']);
     }
 
     /**
@@ -695,8 +623,29 @@ class FormFieldsApi
     }
 
     /**
-     * Operation addRichTextFieldUsingPOST
+     * Exception handler for addRichTextFieldUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function addRichTextFieldUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Add Rich Text Field
      *
      * @param  int $id id (required)
@@ -713,8 +662,6 @@ class FormFieldsApi
     }
 
     /**
-     * Operation addRichTextFieldUsingPOSTWithHttpInfo
-     *
      * Add Rich Text Field
      *
      * @param  int $id id (required)
@@ -727,36 +674,15 @@ class FormFieldsApi
     public function addRichTextFieldUsingPOSTWithHttpInfo($id, $add_rich_text_request)
     {
         $request = $this->addRichTextFieldUsingPOSTRequest($id, $add_rich_text_request);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->addRichTextFieldUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation addRichTextFieldUsingPOSTAsync
-     *
      * Add Rich Text Field
      *
      * @param  int $id id (required)
@@ -776,8 +702,6 @@ class FormFieldsApi
     }
 
     /**
-     * Operation addRichTextFieldUsingPOSTAsyncWithHttpInfo
-     *
      * Add Rich Text Field
      *
      * @param  int $id id (required)
@@ -789,27 +713,7 @@ class FormFieldsApi
     public function addRichTextFieldUsingPOSTAsyncWithHttpInfo($id, $add_rich_text_request)
     {
         $request = $this->addRichTextFieldUsingPOSTRequest($id, $add_rich_text_request);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse', [$this, 'addRichTextFieldUsingPOSTHandleException']);
     }
 
     /**
@@ -882,8 +786,29 @@ class FormFieldsApi
     }
 
     /**
-     * Operation deleteFormFieldFromFieldSetUsingPOST
+     * Exception handler for deleteFormFieldFromFieldSetUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function deleteFormFieldFromFieldSetUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Delete Field from Fieldset
      *
      * @param  int $id id (required)
@@ -901,8 +826,6 @@ class FormFieldsApi
     }
 
     /**
-     * Operation deleteFormFieldFromFieldSetUsingPOSTWithHttpInfo
-     *
      * Delete Field from Fieldset
      *
      * @param  int $id id (required)
@@ -916,36 +839,15 @@ class FormFieldsApi
     public function deleteFormFieldFromFieldSetUsingPOSTWithHttpInfo($id, $field_set_id, $field_id)
     {
         $request = $this->deleteFormFieldFromFieldSetUsingPOSTRequest($id, $field_set_id, $field_id);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->deleteFormFieldFromFieldSetUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation deleteFormFieldFromFieldSetUsingPOSTAsync
-     *
      * Delete Field from Fieldset
      *
      * @param  int $id id (required)
@@ -966,8 +868,6 @@ class FormFieldsApi
     }
 
     /**
-     * Operation deleteFormFieldFromFieldSetUsingPOSTAsyncWithHttpInfo
-     *
      * Delete Field from Fieldset
      *
      * @param  int $id id (required)
@@ -980,27 +880,7 @@ class FormFieldsApi
     public function deleteFormFieldFromFieldSetUsingPOSTAsyncWithHttpInfo($id, $field_set_id, $field_id)
     {
         $request = $this->deleteFormFieldFromFieldSetUsingPOSTRequest($id, $field_set_id, $field_id);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse', [$this, 'deleteFormFieldFromFieldSetUsingPOSTHandleException']);
     }
 
     /**
@@ -1082,8 +962,29 @@ class FormFieldsApi
     }
 
     /**
-     * Operation deleteFormFieldUsingPOST
+     * Exception handler for deleteFormFieldUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function deleteFormFieldUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Delete Form Field
      *
      * @param  int $id id (required)
@@ -1100,8 +1001,6 @@ class FormFieldsApi
     }
 
     /**
-     * Operation deleteFormFieldUsingPOSTWithHttpInfo
-     *
      * Delete Form Field
      *
      * @param  int $id id (required)
@@ -1114,36 +1013,15 @@ class FormFieldsApi
     public function deleteFormFieldUsingPOSTWithHttpInfo($id, $field_id)
     {
         $request = $this->deleteFormFieldUsingPOSTRequest($id, $field_id);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->deleteFormFieldUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation deleteFormFieldUsingPOSTAsync
-     *
      * Delete Form Field
      *
      * @param  int $id id (required)
@@ -1163,8 +1041,6 @@ class FormFieldsApi
     }
 
     /**
-     * Operation deleteFormFieldUsingPOSTAsyncWithHttpInfo
-     *
      * Delete Form Field
      *
      * @param  int $id id (required)
@@ -1176,27 +1052,7 @@ class FormFieldsApi
     public function deleteFormFieldUsingPOSTAsyncWithHttpInfo($id, $field_id)
     {
         $request = $this->deleteFormFieldUsingPOSTRequest($id, $field_id);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse', [$this, 'deleteFormFieldUsingPOSTHandleException']);
     }
 
     /**
@@ -1266,8 +1122,29 @@ class FormFieldsApi
     }
 
     /**
-     * Operation getAllFieldsUsingGET
+     * Exception handler for getAllFieldsUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function getAllFieldsUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFieldsMetaDataResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Available Form Fields
      *
      * @param  int $max_return Maximum number of fields to return.  Max 200, default 20 (optional)
@@ -1284,8 +1161,6 @@ class FormFieldsApi
     }
 
     /**
-     * Operation getAllFieldsUsingGETWithHttpInfo
-     *
      * Get Available Form Fields
      *
      * @param  int $max_return Maximum number of fields to return.  Max 200, default 20 (optional)
@@ -1298,36 +1173,15 @@ class FormFieldsApi
     public function getAllFieldsUsingGETWithHttpInfo($max_return = null, $offset = null)
     {
         $request = $this->getAllFieldsUsingGETRequest($max_return, $offset);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFieldsMetaDataResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFieldsMetaDataResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFieldsMetaDataResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getAllFieldsUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getAllFieldsUsingGETAsync
-     *
      * Get Available Form Fields
      *
      * @param  int $max_return Maximum number of fields to return.  Max 200, default 20 (optional)
@@ -1347,8 +1201,6 @@ class FormFieldsApi
     }
 
     /**
-     * Operation getAllFieldsUsingGETAsyncWithHttpInfo
-     *
      * Get Available Form Fields
      *
      * @param  int $max_return Maximum number of fields to return.  Max 200, default 20 (optional)
@@ -1360,27 +1212,7 @@ class FormFieldsApi
     public function getAllFieldsUsingGETAsyncWithHttpInfo($max_return = null, $offset = null)
     {
         $request = $this->getAllFieldsUsingGETRequest($max_return, $offset);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFieldsMetaDataResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFieldsMetaDataResponse', [$this, 'getAllFieldsUsingGETHandleException']);
     }
 
     /**
@@ -1438,8 +1270,29 @@ class FormFieldsApi
     }
 
     /**
-     * Operation getAllProgramMemberFieldsUsingGET
+     * Exception handler for getAllProgramMemberFieldsUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function getAllProgramMemberFieldsUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFieldsMetaDataResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Available Form Program Member Fields
      *
      * @param  int $max_return Maximum number of fields to return.  Max 200, default 20 (optional)
@@ -1456,8 +1309,6 @@ class FormFieldsApi
     }
 
     /**
-     * Operation getAllProgramMemberFieldsUsingGETWithHttpInfo
-     *
      * Get Available Form Program Member Fields
      *
      * @param  int $max_return Maximum number of fields to return.  Max 200, default 20 (optional)
@@ -1470,36 +1321,15 @@ class FormFieldsApi
     public function getAllProgramMemberFieldsUsingGETWithHttpInfo($max_return = null, $offset = null)
     {
         $request = $this->getAllProgramMemberFieldsUsingGETRequest($max_return, $offset);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFieldsMetaDataResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFieldsMetaDataResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFieldsMetaDataResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getAllProgramMemberFieldsUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getAllProgramMemberFieldsUsingGETAsync
-     *
      * Get Available Form Program Member Fields
      *
      * @param  int $max_return Maximum number of fields to return.  Max 200, default 20 (optional)
@@ -1519,8 +1349,6 @@ class FormFieldsApi
     }
 
     /**
-     * Operation getAllProgramMemberFieldsUsingGETAsyncWithHttpInfo
-     *
      * Get Available Form Program Member Fields
      *
      * @param  int $max_return Maximum number of fields to return.  Max 200, default 20 (optional)
@@ -1532,27 +1360,7 @@ class FormFieldsApi
     public function getAllProgramMemberFieldsUsingGETAsyncWithHttpInfo($max_return = null, $offset = null)
     {
         $request = $this->getAllProgramMemberFieldsUsingGETRequest($max_return, $offset);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFieldsMetaDataResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFieldsMetaDataResponse', [$this, 'getAllProgramMemberFieldsUsingGETHandleException']);
     }
 
     /**
@@ -1610,8 +1418,29 @@ class FormFieldsApi
     }
 
     /**
-     * Operation getFormFieldByFormVidUsingGET
+     * Exception handler for getFormFieldByFormVidUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function getFormFieldByFormVidUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Fields for Form
      *
      * @param  int $id id (required)
@@ -1628,8 +1457,6 @@ class FormFieldsApi
     }
 
     /**
-     * Operation getFormFieldByFormVidUsingGETWithHttpInfo
-     *
      * Get Fields for Form
      *
      * @param  int $id id (required)
@@ -1642,36 +1469,15 @@ class FormFieldsApi
     public function getFormFieldByFormVidUsingGETWithHttpInfo($id, $status = null)
     {
         $request = $this->getFormFieldByFormVidUsingGETRequest($id, $status);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getFormFieldByFormVidUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getFormFieldByFormVidUsingGETAsync
-     *
      * Get Fields for Form
      *
      * @param  int $id id (required)
@@ -1691,8 +1497,6 @@ class FormFieldsApi
     }
 
     /**
-     * Operation getFormFieldByFormVidUsingGETAsyncWithHttpInfo
-     *
      * Get Fields for Form
      *
      * @param  int $id id (required)
@@ -1704,27 +1508,7 @@ class FormFieldsApi
     public function getFormFieldByFormVidUsingGETAsyncWithHttpInfo($id, $status = null)
     {
         $request = $this->getFormFieldByFormVidUsingGETRequest($id, $status);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse', [$this, 'getFormFieldByFormVidUsingGETHandleException']);
     }
 
     /**
@@ -1791,8 +1575,29 @@ class FormFieldsApi
     }
 
     /**
-     * Operation updateFieldPositionsUsingPOST
+     * Exception handler for updateFieldPositionsUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function updateFieldPositionsUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Update Field Positions
      *
      * @param  int $id id (required)
@@ -1809,8 +1614,6 @@ class FormFieldsApi
     }
 
     /**
-     * Operation updateFieldPositionsUsingPOSTWithHttpInfo
-     *
      * Update Field Positions
      *
      * @param  int $id id (required)
@@ -1823,36 +1626,15 @@ class FormFieldsApi
     public function updateFieldPositionsUsingPOSTWithHttpInfo($id, $re_arrange_request = null)
     {
         $request = $this->updateFieldPositionsUsingPOSTRequest($id, $re_arrange_request);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->updateFieldPositionsUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation updateFieldPositionsUsingPOSTAsync
-     *
      * Update Field Positions
      *
      * @param  int $id id (required)
@@ -1872,8 +1654,6 @@ class FormFieldsApi
     }
 
     /**
-     * Operation updateFieldPositionsUsingPOSTAsyncWithHttpInfo
-     *
      * Update Field Positions
      *
      * @param  int $id id (required)
@@ -1885,27 +1665,7 @@ class FormFieldsApi
     public function updateFieldPositionsUsingPOSTAsyncWithHttpInfo($id, $re_arrange_request = null)
     {
         $request = $this->updateFieldPositionsUsingPOSTRequest($id, $re_arrange_request);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse', [$this, 'updateFieldPositionsUsingPOSTHandleException']);
     }
 
     /**
@@ -1975,8 +1735,29 @@ class FormFieldsApi
     }
 
     /**
-     * Operation updateFormFieldUsingPOST
+     * Exception handler for updateFormFieldUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function updateFormFieldUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Update Form Field
      *
      * @param  int $id id (required)
@@ -1994,8 +1775,6 @@ class FormFieldsApi
     }
 
     /**
-     * Operation updateFormFieldUsingPOSTWithHttpInfo
-     *
      * Update Form Field
      *
      * @param  int $id id (required)
@@ -2009,36 +1788,15 @@ class FormFieldsApi
     public function updateFormFieldUsingPOSTWithHttpInfo($id, $field_id, $update_form_field_request)
     {
         $request = $this->updateFormFieldUsingPOSTRequest($id, $field_id, $update_form_field_request);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->updateFormFieldUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation updateFormFieldUsingPOSTAsync
-     *
      * Update Form Field
      *
      * @param  int $id id (required)
@@ -2059,8 +1817,6 @@ class FormFieldsApi
     }
 
     /**
-     * Operation updateFormFieldUsingPOSTAsyncWithHttpInfo
-     *
      * Update Form Field
      *
      * @param  int $id id (required)
@@ -2073,27 +1829,7 @@ class FormFieldsApi
     public function updateFormFieldUsingPOSTAsyncWithHttpInfo($id, $field_id, $update_form_field_request)
     {
         $request = $this->updateFormFieldUsingPOSTRequest($id, $field_id, $update_form_field_request);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormFieldResponse', [$this, 'updateFormFieldUsingPOSTHandleException']);
     }
 
     /**
@@ -2199,8 +1935,7 @@ class FormFieldsApi
     /**
      * Make a request.
      *
-     * @param \GuzzleHttp\Psr7\Request $request
-     *   An initialized request object.
+     * @param \GuzzleHttp\Psr7\Request $request An initialized request object.
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @return \Psr\Http\Message\ResponseInterface
@@ -2236,12 +1971,45 @@ class FormFieldsApi
     }
 
     /**
+     * Make an async request.
+     *
+     * @param \GuzzleHttp\Psr7\Request $request An initialized request object.
+     * @param string $returnType The return type.
+     * @param callable $exceptionHandler A callback to process HTTP errors.
+     *
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
+     * @return \GuzzleHttp\Promise\PromiseInterface A promise that will return a processed response.
+     */
+    private function makeAsyncRequest(Request $request, string $returnType, callable $exceptionHandler)
+    {
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return $this->responseToReturn($response, $returnType);
+                },
+                function (RequestException $exception) use ($exceptionHandler) {
+                    $response = $exception->getResponse();
+                    $e = new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
+                        ),
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
+                    );
+                    throw $exceptionHandler($e);
+                }
+            );
+    }
+
+    /**
      * Convert a response to a return standard return array.
      *
-     * @param \Psr\Http\Message\ResponseInterface $response
-     *   A response from a request with a serialized body.
-     * @param string $returnType
-     *   The return type.
+     * @param \Psr\Http\Message\ResponseInterface $response A response from a request with a serialized body.
+     * @param string $returnType The primary return type.
      *
      * @return array
      */

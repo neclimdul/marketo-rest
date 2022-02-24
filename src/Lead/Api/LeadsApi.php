@@ -118,8 +118,29 @@ class LeadsApi
     }
 
     /**
-     * Operation associateLeadUsingPOST
+     * Exception handler for associateLeadUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function associateLeadUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseWithoutResult',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Associate Lead
      *
      * @param  int $lead_id The id of the lead to associate (required)
@@ -136,8 +157,6 @@ class LeadsApi
     }
 
     /**
-     * Operation associateLeadUsingPOSTWithHttpInfo
-     *
      * Associate Lead
      *
      * @param  int $lead_id The id of the lead to associate (required)
@@ -150,36 +169,15 @@ class LeadsApi
     public function associateLeadUsingPOSTWithHttpInfo($lead_id, $cookie)
     {
         $request = $this->associateLeadUsingPOSTRequest($lead_id, $cookie);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseWithoutResult');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseWithoutResult');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseWithoutResult',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->associateLeadUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation associateLeadUsingPOSTAsync
-     *
      * Associate Lead
      *
      * @param  int $lead_id The id of the lead to associate (required)
@@ -199,8 +197,6 @@ class LeadsApi
     }
 
     /**
-     * Operation associateLeadUsingPOSTAsyncWithHttpInfo
-     *
      * Associate Lead
      *
      * @param  int $lead_id The id of the lead to associate (required)
@@ -212,27 +208,7 @@ class LeadsApi
     public function associateLeadUsingPOSTAsyncWithHttpInfo($lead_id, $cookie)
     {
         $request = $this->associateLeadUsingPOSTRequest($lead_id, $cookie);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseWithoutResult');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseWithoutResult', [$this, 'associateLeadUsingPOSTHandleException']);
     }
 
     /**
@@ -305,8 +281,29 @@ class LeadsApi
     }
 
     /**
-     * Operation changeLeadProgramStatusUsingPOST
+     * Exception handler for changeLeadProgramStatusUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function changeLeadProgramStatusUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfChangeLeadProgramStatusOutputData',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Change Lead Program Status
      *
      * @param  int $program_id The id of target program (required)
@@ -323,8 +320,6 @@ class LeadsApi
     }
 
     /**
-     * Operation changeLeadProgramStatusUsingPOSTWithHttpInfo
-     *
      * Change Lead Program Status
      *
      * @param  int $program_id The id of target program (required)
@@ -337,36 +332,15 @@ class LeadsApi
     public function changeLeadProgramStatusUsingPOSTWithHttpInfo($program_id, $change_lead_program_status_request)
     {
         $request = $this->changeLeadProgramStatusUsingPOSTRequest($program_id, $change_lead_program_status_request);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfChangeLeadProgramStatusOutputData');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfChangeLeadProgramStatusOutputData');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfChangeLeadProgramStatusOutputData',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->changeLeadProgramStatusUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation changeLeadProgramStatusUsingPOSTAsync
-     *
      * Change Lead Program Status
      *
      * @param  int $program_id The id of target program (required)
@@ -386,8 +360,6 @@ class LeadsApi
     }
 
     /**
-     * Operation changeLeadProgramStatusUsingPOSTAsyncWithHttpInfo
-     *
      * Change Lead Program Status
      *
      * @param  int $program_id The id of target program (required)
@@ -399,27 +371,7 @@ class LeadsApi
     public function changeLeadProgramStatusUsingPOSTAsyncWithHttpInfo($program_id, $change_lead_program_status_request)
     {
         $request = $this->changeLeadProgramStatusUsingPOSTRequest($program_id, $change_lead_program_status_request);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfChangeLeadProgramStatusOutputData');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfChangeLeadProgramStatusOutputData', [$this, 'changeLeadProgramStatusUsingPOSTHandleException']);
     }
 
     /**
@@ -492,8 +444,29 @@ class LeadsApi
     }
 
     /**
-     * Operation createLeadFieldUsingPOST
+     * Exception handler for createLeadFieldUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function createLeadFieldUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCreateLeadField',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Create Lead Fields
      *
      * @param  \NecLimDul\MarketoRest\Lead\Model\CreateLeadFieldRequest $create_lead_field_request createLeadFieldRequest (required)
@@ -509,8 +482,6 @@ class LeadsApi
     }
 
     /**
-     * Operation createLeadFieldUsingPOSTWithHttpInfo
-     *
      * Create Lead Fields
      *
      * @param  \NecLimDul\MarketoRest\Lead\Model\CreateLeadFieldRequest $create_lead_field_request createLeadFieldRequest (required)
@@ -522,36 +493,15 @@ class LeadsApi
     public function createLeadFieldUsingPOSTWithHttpInfo($create_lead_field_request)
     {
         $request = $this->createLeadFieldUsingPOSTRequest($create_lead_field_request);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCreateLeadField');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCreateLeadField');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCreateLeadField',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->createLeadFieldUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation createLeadFieldUsingPOSTAsync
-     *
      * Create Lead Fields
      *
      * @param  \NecLimDul\MarketoRest\Lead\Model\CreateLeadFieldRequest $create_lead_field_request createLeadFieldRequest (required)
@@ -570,8 +520,6 @@ class LeadsApi
     }
 
     /**
-     * Operation createLeadFieldUsingPOSTAsyncWithHttpInfo
-     *
      * Create Lead Fields
      *
      * @param  \NecLimDul\MarketoRest\Lead\Model\CreateLeadFieldRequest $create_lead_field_request createLeadFieldRequest (required)
@@ -582,27 +530,7 @@ class LeadsApi
     public function createLeadFieldUsingPOSTAsyncWithHttpInfo($create_lead_field_request)
     {
         $request = $this->createLeadFieldUsingPOSTRequest($create_lead_field_request);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCreateLeadField');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCreateLeadField', [$this, 'createLeadFieldUsingPOSTHandleException']);
     }
 
     /**
@@ -661,8 +589,29 @@ class LeadsApi
     }
 
     /**
-     * Operation deleteLeadsUsingPOST
+     * Exception handler for deleteLeadsUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function deleteLeadsUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Delete Leads
      *
      * @param  \NecLimDul\MarketoRest\Lead\Model\DeleteLeadRequest $delete_lead_request deleteLeadRequest (optional)
@@ -679,8 +628,6 @@ class LeadsApi
     }
 
     /**
-     * Operation deleteLeadsUsingPOSTWithHttpInfo
-     *
      * Delete Leads
      *
      * @param  \NecLimDul\MarketoRest\Lead\Model\DeleteLeadRequest $delete_lead_request deleteLeadRequest (optional)
@@ -693,36 +640,15 @@ class LeadsApi
     public function deleteLeadsUsingPOSTWithHttpInfo($delete_lead_request = null, $id = null)
     {
         $request = $this->deleteLeadsUsingPOSTRequest($delete_lead_request, $id);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->deleteLeadsUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation deleteLeadsUsingPOSTAsync
-     *
      * Delete Leads
      *
      * @param  \NecLimDul\MarketoRest\Lead\Model\DeleteLeadRequest $delete_lead_request deleteLeadRequest (optional)
@@ -742,8 +668,6 @@ class LeadsApi
     }
 
     /**
-     * Operation deleteLeadsUsingPOSTAsyncWithHttpInfo
-     *
      * Delete Leads
      *
      * @param  \NecLimDul\MarketoRest\Lead\Model\DeleteLeadRequest $delete_lead_request deleteLeadRequest (optional)
@@ -755,27 +679,7 @@ class LeadsApi
     public function deleteLeadsUsingPOSTAsyncWithHttpInfo($delete_lead_request = null, $id = null)
     {
         $request = $this->deleteLeadsUsingPOSTRequest($delete_lead_request, $id);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead', [$this, 'deleteLeadsUsingPOSTHandleException']);
     }
 
     /**
@@ -840,8 +744,29 @@ class LeadsApi
     }
 
     /**
-     * Operation describeProgramMemberUsingGET
+     * Exception handler for describeProgramMemberUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function describeProgramMemberUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberAttributes',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Describe Program Member
      *
      *
@@ -856,8 +781,6 @@ class LeadsApi
     }
 
     /**
-     * Operation describeProgramMemberUsingGETWithHttpInfo
-     *
      * Describe Program Member
      *
      *
@@ -868,36 +791,15 @@ class LeadsApi
     public function describeProgramMemberUsingGETWithHttpInfo()
     {
         $request = $this->describeProgramMemberUsingGETRequest();
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberAttributes');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberAttributes');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberAttributes',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->describeProgramMemberUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation describeProgramMemberUsingGETAsync
-     *
      * Describe Program Member
      *
      *
@@ -915,8 +817,6 @@ class LeadsApi
     }
 
     /**
-     * Operation describeProgramMemberUsingGETAsyncWithHttpInfo
-     *
      * Describe Program Member
      *
      *
@@ -926,27 +826,7 @@ class LeadsApi
     public function describeProgramMemberUsingGETAsyncWithHttpInfo()
     {
         $request = $this->describeProgramMemberUsingGETRequest();
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberAttributes');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfProgramMemberAttributes', [$this, 'describeProgramMemberUsingGETHandleException']);
     }
 
     /**
@@ -990,8 +870,29 @@ class LeadsApi
     }
 
     /**
-     * Operation describeUsingGET2
+     * Exception handler for describeUsingGET2.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function describeUsingGET2HandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadAttribute',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Describe Lead
      *
      *
@@ -1006,8 +907,6 @@ class LeadsApi
     }
 
     /**
-     * Operation describeUsingGET2WithHttpInfo
-     *
      * Describe Lead
      *
      *
@@ -1018,36 +917,15 @@ class LeadsApi
     public function describeUsingGET2WithHttpInfo()
     {
         $request = $this->describeUsingGET2Request();
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadAttribute');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadAttribute');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadAttribute',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->describeUsingGET2HandleException($e);
         }
     }
 
     /**
-     * Operation describeUsingGET2Async
-     *
      * Describe Lead
      *
      *
@@ -1065,8 +943,6 @@ class LeadsApi
     }
 
     /**
-     * Operation describeUsingGET2AsyncWithHttpInfo
-     *
      * Describe Lead
      *
      *
@@ -1076,27 +952,7 @@ class LeadsApi
     public function describeUsingGET2AsyncWithHttpInfo()
     {
         $request = $this->describeUsingGET2Request();
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadAttribute');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadAttribute', [$this, 'describeUsingGET2HandleException']);
     }
 
     /**
@@ -1140,8 +996,29 @@ class LeadsApi
     }
 
     /**
-     * Operation describeUsingGET6
+     * Exception handler for describeUsingGET6.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function describeUsingGET6HandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadAttribute2',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Describe Lead2
      *
      *
@@ -1156,8 +1033,6 @@ class LeadsApi
     }
 
     /**
-     * Operation describeUsingGET6WithHttpInfo
-     *
      * Describe Lead2
      *
      *
@@ -1168,36 +1043,15 @@ class LeadsApi
     public function describeUsingGET6WithHttpInfo()
     {
         $request = $this->describeUsingGET6Request();
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadAttribute2');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadAttribute2');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadAttribute2',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->describeUsingGET6HandleException($e);
         }
     }
 
     /**
-     * Operation describeUsingGET6Async
-     *
      * Describe Lead2
      *
      *
@@ -1215,8 +1069,6 @@ class LeadsApi
     }
 
     /**
-     * Operation describeUsingGET6AsyncWithHttpInfo
-     *
      * Describe Lead2
      *
      *
@@ -1226,27 +1078,7 @@ class LeadsApi
     public function describeUsingGET6AsyncWithHttpInfo()
     {
         $request = $this->describeUsingGET6Request();
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadAttribute2');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadAttribute2', [$this, 'describeUsingGET6HandleException']);
     }
 
     /**
@@ -1290,8 +1122,29 @@ class LeadsApi
     }
 
     /**
-     * Operation getLeadByIdUsingGET
+     * Exception handler for getLeadByIdUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function getLeadByIdUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Lead by Id
      *
      * @param  int $lead_id The Marketo lead id (required)
@@ -1308,8 +1161,6 @@ class LeadsApi
     }
 
     /**
-     * Operation getLeadByIdUsingGETWithHttpInfo
-     *
      * Get Lead by Id
      *
      * @param  int $lead_id The Marketo lead id (required)
@@ -1322,36 +1173,15 @@ class LeadsApi
     public function getLeadByIdUsingGETWithHttpInfo($lead_id, $fields = null)
     {
         $request = $this->getLeadByIdUsingGETRequest($lead_id, $fields);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getLeadByIdUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getLeadByIdUsingGETAsync
-     *
      * Get Lead by Id
      *
      * @param  int $lead_id The Marketo lead id (required)
@@ -1371,8 +1201,6 @@ class LeadsApi
     }
 
     /**
-     * Operation getLeadByIdUsingGETAsyncWithHttpInfo
-     *
      * Get Lead by Id
      *
      * @param  int $lead_id The Marketo lead id (required)
@@ -1384,27 +1212,7 @@ class LeadsApi
     public function getLeadByIdUsingGETAsyncWithHttpInfo($lead_id, $fields = null)
     {
         $request = $this->getLeadByIdUsingGETRequest($lead_id, $fields);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead', [$this, 'getLeadByIdUsingGETHandleException']);
     }
 
     /**
@@ -1471,8 +1279,29 @@ class LeadsApi
     }
 
     /**
-     * Operation getLeadFieldByNameUsingGET
+     * Exception handler for getLeadFieldByNameUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function getLeadFieldByNameUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Lead Field by Name
      *
      * @param  string $field_api_name The API name of lead field (required)
@@ -1488,8 +1317,6 @@ class LeadsApi
     }
 
     /**
-     * Operation getLeadFieldByNameUsingGETWithHttpInfo
-     *
      * Get Lead Field by Name
      *
      * @param  string $field_api_name The API name of lead field (required)
@@ -1501,36 +1328,15 @@ class LeadsApi
     public function getLeadFieldByNameUsingGETWithHttpInfo($field_api_name)
     {
         $request = $this->getLeadFieldByNameUsingGETRequest($field_api_name);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getLeadFieldByNameUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getLeadFieldByNameUsingGETAsync
-     *
      * Get Lead Field by Name
      *
      * @param  string $field_api_name The API name of lead field (required)
@@ -1549,8 +1355,6 @@ class LeadsApi
     }
 
     /**
-     * Operation getLeadFieldByNameUsingGETAsyncWithHttpInfo
-     *
      * Get Lead Field by Name
      *
      * @param  string $field_api_name The API name of lead field (required)
@@ -1561,27 +1365,7 @@ class LeadsApi
     public function getLeadFieldByNameUsingGETAsyncWithHttpInfo($field_api_name)
     {
         $request = $this->getLeadFieldByNameUsingGETRequest($field_api_name);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField', [$this, 'getLeadFieldByNameUsingGETHandleException']);
     }
 
     /**
@@ -1639,8 +1423,29 @@ class LeadsApi
     }
 
     /**
-     * Operation getLeadFieldsUsingGET
+     * Exception handler for getLeadFieldsUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function getLeadFieldsUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Lead Fields
      *
      * @param  int $batch_size The batch size to return. The max and default value is 300. (optional)
@@ -1657,8 +1462,6 @@ class LeadsApi
     }
 
     /**
-     * Operation getLeadFieldsUsingGETWithHttpInfo
-     *
      * Get Lead Fields
      *
      * @param  int $batch_size The batch size to return. The max and default value is 300. (optional)
@@ -1671,36 +1474,15 @@ class LeadsApi
     public function getLeadFieldsUsingGETWithHttpInfo($batch_size = null, $next_page_token = null)
     {
         $request = $this->getLeadFieldsUsingGETRequest($batch_size, $next_page_token);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getLeadFieldsUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getLeadFieldsUsingGETAsync
-     *
      * Get Lead Fields
      *
      * @param  int $batch_size The batch size to return. The max and default value is 300. (optional)
@@ -1720,8 +1502,6 @@ class LeadsApi
     }
 
     /**
-     * Operation getLeadFieldsUsingGETAsyncWithHttpInfo
-     *
      * Get Lead Fields
      *
      * @param  int $batch_size The batch size to return. The max and default value is 300. (optional)
@@ -1733,27 +1513,7 @@ class LeadsApi
     public function getLeadFieldsUsingGETAsyncWithHttpInfo($batch_size = null, $next_page_token = null)
     {
         $request = $this->getLeadFieldsUsingGETRequest($batch_size, $next_page_token);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField', [$this, 'getLeadFieldsUsingGETHandleException']);
     }
 
     /**
@@ -1811,8 +1571,29 @@ class LeadsApi
     }
 
     /**
-     * Operation getLeadPartitionsUsingGET
+     * Exception handler for getLeadPartitionsUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function getLeadPartitionsUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadPartition',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Lead Partitions
      *
      *
@@ -1827,8 +1608,6 @@ class LeadsApi
     }
 
     /**
-     * Operation getLeadPartitionsUsingGETWithHttpInfo
-     *
      * Get Lead Partitions
      *
      *
@@ -1839,36 +1618,15 @@ class LeadsApi
     public function getLeadPartitionsUsingGETWithHttpInfo()
     {
         $request = $this->getLeadPartitionsUsingGETRequest();
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadPartition');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadPartition');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadPartition',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getLeadPartitionsUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getLeadPartitionsUsingGETAsync
-     *
      * Get Lead Partitions
      *
      *
@@ -1886,8 +1644,6 @@ class LeadsApi
     }
 
     /**
-     * Operation getLeadPartitionsUsingGETAsyncWithHttpInfo
-     *
      * Get Lead Partitions
      *
      *
@@ -1897,27 +1653,7 @@ class LeadsApi
     public function getLeadPartitionsUsingGETAsyncWithHttpInfo()
     {
         $request = $this->getLeadPartitionsUsingGETRequest();
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadPartition');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadPartition', [$this, 'getLeadPartitionsUsingGETHandleException']);
     }
 
     /**
@@ -1961,8 +1697,29 @@ class LeadsApi
     }
 
     /**
-     * Operation getLeadsByFilterUsingGET
+     * Exception handler for getLeadsByFilterUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function getLeadsByFilterUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Leads by Filter Type
      *
      * @param  string $filter_type The lead field to filter on.  Any custom field (string, email, or integer types only), and any of the following fields are supported: cookies, email, facebookId, id, leadPartitionId, linkedInId, sfdcAccountId, sfdcContactId, sfdcLeadId, sfdcLeadOwnerId, sfdcOpptyId, twitterId.&lt;br&gt;&lt;br&gt;A comprehensive list of fields can be obtained via the &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/endpoint-reference/lead-database-endpoint-reference/#/Leads/describeUsingGET_6\&quot;&gt;Describe Lead2&lt;/a&gt; endpoint. (required)
@@ -1982,8 +1739,6 @@ class LeadsApi
     }
 
     /**
-     * Operation getLeadsByFilterUsingGETWithHttpInfo
-     *
      * Get Leads by Filter Type
      *
      * @param  string $filter_type The lead field to filter on.  Any custom field (string, email, or integer types only), and any of the following fields are supported: cookies, email, facebookId, id, leadPartitionId, linkedInId, sfdcAccountId, sfdcContactId, sfdcLeadId, sfdcLeadOwnerId, sfdcOpptyId, twitterId.&lt;br&gt;&lt;br&gt;A comprehensive list of fields can be obtained via the &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/endpoint-reference/lead-database-endpoint-reference/#/Leads/describeUsingGET_6\&quot;&gt;Describe Lead2&lt;/a&gt; endpoint. (required)
@@ -1999,36 +1754,15 @@ class LeadsApi
     public function getLeadsByFilterUsingGETWithHttpInfo($filter_type, $filter_values, $fields = null, $batch_size = null, $next_page_token = null)
     {
         $request = $this->getLeadsByFilterUsingGETRequest($filter_type, $filter_values, $fields, $batch_size, $next_page_token);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getLeadsByFilterUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getLeadsByFilterUsingGETAsync
-     *
      * Get Leads by Filter Type
      *
      * @param  string $filter_type The lead field to filter on.  Any custom field (string, email, or integer types only), and any of the following fields are supported: cookies, email, facebookId, id, leadPartitionId, linkedInId, sfdcAccountId, sfdcContactId, sfdcLeadId, sfdcLeadOwnerId, sfdcOpptyId, twitterId.&lt;br&gt;&lt;br&gt;A comprehensive list of fields can be obtained via the &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/endpoint-reference/lead-database-endpoint-reference/#/Leads/describeUsingGET_6\&quot;&gt;Describe Lead2&lt;/a&gt; endpoint. (required)
@@ -2051,8 +1785,6 @@ class LeadsApi
     }
 
     /**
-     * Operation getLeadsByFilterUsingGETAsyncWithHttpInfo
-     *
      * Get Leads by Filter Type
      *
      * @param  string $filter_type The lead field to filter on.  Any custom field (string, email, or integer types only), and any of the following fields are supported: cookies, email, facebookId, id, leadPartitionId, linkedInId, sfdcAccountId, sfdcContactId, sfdcLeadId, sfdcLeadOwnerId, sfdcOpptyId, twitterId.&lt;br&gt;&lt;br&gt;A comprehensive list of fields can be obtained via the &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/endpoint-reference/lead-database-endpoint-reference/#/Leads/describeUsingGET_6\&quot;&gt;Describe Lead2&lt;/a&gt; endpoint. (required)
@@ -2067,27 +1799,7 @@ class LeadsApi
     public function getLeadsByFilterUsingGETAsyncWithHttpInfo($filter_type, $filter_values, $fields = null, $batch_size = null, $next_page_token = null)
     {
         $request = $this->getLeadsByFilterUsingGETRequest($filter_type, $filter_values, $fields, $batch_size, $next_page_token);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead', [$this, 'getLeadsByFilterUsingGETHandleException']);
     }
 
     /**
@@ -2172,8 +1884,29 @@ class LeadsApi
     }
 
     /**
-     * Operation getLeadsByProgramIdUsingGET
+     * Exception handler for getLeadsByProgramIdUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function getLeadsByProgramIdUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Leads by Program Id
      *
      * @param  int $program_id The id of the program to retrieve from (required)
@@ -2192,8 +1925,6 @@ class LeadsApi
     }
 
     /**
-     * Operation getLeadsByProgramIdUsingGETWithHttpInfo
-     *
      * Get Leads by Program Id
      *
      * @param  int $program_id The id of the program to retrieve from (required)
@@ -2208,36 +1939,15 @@ class LeadsApi
     public function getLeadsByProgramIdUsingGETWithHttpInfo($program_id, $fields = null, $batch_size = null, $next_page_token = null)
     {
         $request = $this->getLeadsByProgramIdUsingGETRequest($program_id, $fields, $batch_size, $next_page_token);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getLeadsByProgramIdUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getLeadsByProgramIdUsingGETAsync
-     *
      * Get Leads by Program Id
      *
      * @param  int $program_id The id of the program to retrieve from (required)
@@ -2259,8 +1969,6 @@ class LeadsApi
     }
 
     /**
-     * Operation getLeadsByProgramIdUsingGETAsyncWithHttpInfo
-     *
      * Get Leads by Program Id
      *
      * @param  int $program_id The id of the program to retrieve from (required)
@@ -2274,27 +1982,7 @@ class LeadsApi
     public function getLeadsByProgramIdUsingGETAsyncWithHttpInfo($program_id, $fields = null, $batch_size = null, $next_page_token = null)
     {
         $request = $this->getLeadsByProgramIdUsingGETRequest($program_id, $fields, $batch_size, $next_page_token);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead', [$this, 'getLeadsByProgramIdUsingGETHandleException']);
     }
 
     /**
@@ -2371,8 +2059,29 @@ class LeadsApi
     }
 
     /**
-     * Operation getListMembershipUsingGET
+     * Exception handler for getListMembershipUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function getListMembershipUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLists',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Lists by Lead Id
      *
      * @param  int $lead_id The Marketo lead id (required)
@@ -2390,8 +2099,6 @@ class LeadsApi
     }
 
     /**
-     * Operation getListMembershipUsingGETWithHttpInfo
-     *
      * Get Lists by Lead Id
      *
      * @param  int $lead_id The Marketo lead id (required)
@@ -2405,36 +2112,15 @@ class LeadsApi
     public function getListMembershipUsingGETWithHttpInfo($lead_id, $next_page_token = null, $batch_size = null)
     {
         $request = $this->getListMembershipUsingGETRequest($lead_id, $next_page_token, $batch_size);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLists');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLists');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLists',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getListMembershipUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getListMembershipUsingGETAsync
-     *
      * Get Lists by Lead Id
      *
      * @param  int $lead_id The Marketo lead id (required)
@@ -2455,8 +2141,6 @@ class LeadsApi
     }
 
     /**
-     * Operation getListMembershipUsingGETAsyncWithHttpInfo
-     *
      * Get Lists by Lead Id
      *
      * @param  int $lead_id The Marketo lead id (required)
@@ -2469,27 +2153,7 @@ class LeadsApi
     public function getListMembershipUsingGETAsyncWithHttpInfo($lead_id, $next_page_token = null, $batch_size = null)
     {
         $request = $this->getListMembershipUsingGETRequest($lead_id, $next_page_token, $batch_size);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLists');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLists', [$this, 'getListMembershipUsingGETHandleException']);
     }
 
     /**
@@ -2561,8 +2225,29 @@ class LeadsApi
     }
 
     /**
-     * Operation getProgramMembershipUsingGET
+     * Exception handler for getProgramMembershipUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function getProgramMembershipUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfPrograms',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Programs by Lead Id
      *
      * @param  int $lead_id The Marketo lead id (required)
@@ -2584,8 +2269,6 @@ class LeadsApi
     }
 
     /**
-     * Operation getProgramMembershipUsingGETWithHttpInfo
-     *
      * Get Programs by Lead Id
      *
      * @param  int $lead_id The Marketo lead id (required)
@@ -2603,36 +2286,15 @@ class LeadsApi
     public function getProgramMembershipUsingGETWithHttpInfo($lead_id, $next_page_token = null, $batch_size = null, $earliest_updated_at = null, $latest_updated_at = null, $filter_type = null, $filter_values = null)
     {
         $request = $this->getProgramMembershipUsingGETRequest($lead_id, $next_page_token, $batch_size, $earliest_updated_at, $latest_updated_at, $filter_type, $filter_values);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfPrograms');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfPrograms');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfPrograms',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getProgramMembershipUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getProgramMembershipUsingGETAsync
-     *
      * Get Programs by Lead Id
      *
      * @param  int $lead_id The Marketo lead id (required)
@@ -2657,8 +2319,6 @@ class LeadsApi
     }
 
     /**
-     * Operation getProgramMembershipUsingGETAsyncWithHttpInfo
-     *
      * Get Programs by Lead Id
      *
      * @param  int $lead_id The Marketo lead id (required)
@@ -2675,27 +2335,7 @@ class LeadsApi
     public function getProgramMembershipUsingGETAsyncWithHttpInfo($lead_id, $next_page_token = null, $batch_size = null, $earliest_updated_at = null, $latest_updated_at = null, $filter_type = null, $filter_values = null)
     {
         $request = $this->getProgramMembershipUsingGETRequest($lead_id, $next_page_token, $batch_size, $earliest_updated_at, $latest_updated_at, $filter_type, $filter_values);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfPrograms');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfPrograms', [$this, 'getProgramMembershipUsingGETHandleException']);
     }
 
     /**
@@ -2787,8 +2427,29 @@ class LeadsApi
     }
 
     /**
-     * Operation getSmartCampaignMembershipUsingGET
+     * Exception handler for getSmartCampaignMembershipUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function getSmartCampaignMembershipUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfSmartCampaigns',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Smart Campaigns by Lead Id
      *
      * @param  int $lead_id The Marketo lead id (required)
@@ -2808,8 +2469,6 @@ class LeadsApi
     }
 
     /**
-     * Operation getSmartCampaignMembershipUsingGETWithHttpInfo
-     *
      * Get Smart Campaigns by Lead Id
      *
      * @param  int $lead_id The Marketo lead id (required)
@@ -2825,36 +2484,15 @@ class LeadsApi
     public function getSmartCampaignMembershipUsingGETWithHttpInfo($lead_id, $next_page_token = null, $batch_size = null, $earliest_updated_at = null, $latest_updated_at = null)
     {
         $request = $this->getSmartCampaignMembershipUsingGETRequest($lead_id, $next_page_token, $batch_size, $earliest_updated_at, $latest_updated_at);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfSmartCampaigns');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfSmartCampaigns');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfSmartCampaigns',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getSmartCampaignMembershipUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getSmartCampaignMembershipUsingGETAsync
-     *
      * Get Smart Campaigns by Lead Id
      *
      * @param  int $lead_id The Marketo lead id (required)
@@ -2877,8 +2515,6 @@ class LeadsApi
     }
 
     /**
-     * Operation getSmartCampaignMembershipUsingGETAsyncWithHttpInfo
-     *
      * Get Smart Campaigns by Lead Id
      *
      * @param  int $lead_id The Marketo lead id (required)
@@ -2893,27 +2529,7 @@ class LeadsApi
     public function getSmartCampaignMembershipUsingGETAsyncWithHttpInfo($lead_id, $next_page_token = null, $batch_size = null, $earliest_updated_at = null, $latest_updated_at = null)
     {
         $request = $this->getSmartCampaignMembershipUsingGETRequest($lead_id, $next_page_token, $batch_size, $earliest_updated_at, $latest_updated_at);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfSmartCampaigns');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfSmartCampaigns', [$this, 'getSmartCampaignMembershipUsingGETHandleException']);
     }
 
     /**
@@ -2995,8 +2611,29 @@ class LeadsApi
     }
 
     /**
-     * Operation mergeLeadsUsingPOST
+     * Exception handler for mergeLeadsUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function mergeLeadsUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseWithoutResult',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Merge Leads
      *
      * @param  int $lead_id The id of the winning lead record (required)
@@ -3015,8 +2652,6 @@ class LeadsApi
     }
 
     /**
-     * Operation mergeLeadsUsingPOSTWithHttpInfo
-     *
      * Merge Leads
      *
      * @param  int $lead_id The id of the winning lead record (required)
@@ -3031,36 +2666,15 @@ class LeadsApi
     public function mergeLeadsUsingPOSTWithHttpInfo($lead_id, $lead_id2 = null, $lead_ids = null, $merge_in_crm = null)
     {
         $request = $this->mergeLeadsUsingPOSTRequest($lead_id, $lead_id2, $lead_ids, $merge_in_crm);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseWithoutResult');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseWithoutResult');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseWithoutResult',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->mergeLeadsUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation mergeLeadsUsingPOSTAsync
-     *
      * Merge Leads
      *
      * @param  int $lead_id The id of the winning lead record (required)
@@ -3082,8 +2696,6 @@ class LeadsApi
     }
 
     /**
-     * Operation mergeLeadsUsingPOSTAsyncWithHttpInfo
-     *
      * Merge Leads
      *
      * @param  int $lead_id The id of the winning lead record (required)
@@ -3097,27 +2709,7 @@ class LeadsApi
     public function mergeLeadsUsingPOSTAsyncWithHttpInfo($lead_id, $lead_id2 = null, $lead_ids = null, $merge_in_crm = null)
     {
         $request = $this->mergeLeadsUsingPOSTRequest($lead_id, $lead_id2, $lead_ids, $merge_in_crm);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseWithoutResult');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseWithoutResult', [$this, 'mergeLeadsUsingPOSTHandleException']);
     }
 
     /**
@@ -3194,8 +2786,29 @@ class LeadsApi
     }
 
     /**
-     * Operation pushToMarketoUsingPOST
+     * Exception handler for pushToMarketoUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function pushToMarketoUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfPushLeadToMarketo',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Push Lead to Marketo
      *
      * @param  \NecLimDul\MarketoRest\Lead\Model\PushLeadToMarketoRequest $push_lead_to_marketo_request pushLeadToMarketoRequest (required)
@@ -3211,8 +2824,6 @@ class LeadsApi
     }
 
     /**
-     * Operation pushToMarketoUsingPOSTWithHttpInfo
-     *
      * Push Lead to Marketo
      *
      * @param  \NecLimDul\MarketoRest\Lead\Model\PushLeadToMarketoRequest $push_lead_to_marketo_request pushLeadToMarketoRequest (required)
@@ -3224,36 +2835,15 @@ class LeadsApi
     public function pushToMarketoUsingPOSTWithHttpInfo($push_lead_to_marketo_request)
     {
         $request = $this->pushToMarketoUsingPOSTRequest($push_lead_to_marketo_request);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfPushLeadToMarketo');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfPushLeadToMarketo');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfPushLeadToMarketo',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->pushToMarketoUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation pushToMarketoUsingPOSTAsync
-     *
      * Push Lead to Marketo
      *
      * @param  \NecLimDul\MarketoRest\Lead\Model\PushLeadToMarketoRequest $push_lead_to_marketo_request pushLeadToMarketoRequest (required)
@@ -3272,8 +2862,6 @@ class LeadsApi
     }
 
     /**
-     * Operation pushToMarketoUsingPOSTAsyncWithHttpInfo
-     *
      * Push Lead to Marketo
      *
      * @param  \NecLimDul\MarketoRest\Lead\Model\PushLeadToMarketoRequest $push_lead_to_marketo_request pushLeadToMarketoRequest (required)
@@ -3284,27 +2872,7 @@ class LeadsApi
     public function pushToMarketoUsingPOSTAsyncWithHttpInfo($push_lead_to_marketo_request)
     {
         $request = $this->pushToMarketoUsingPOSTRequest($push_lead_to_marketo_request);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfPushLeadToMarketo');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfPushLeadToMarketo', [$this, 'pushToMarketoUsingPOSTHandleException']);
     }
 
     /**
@@ -3363,8 +2931,29 @@ class LeadsApi
     }
 
     /**
-     * Operation submitFormUsingPOST
+     * Exception handler for submitFormUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function submitFormUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfSubmitForm',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Submit Form
      *
      * @param  \NecLimDul\MarketoRest\Lead\Model\SubmitFormRequest $submit_form_request submitFormRequest (required)
@@ -3380,8 +2969,6 @@ class LeadsApi
     }
 
     /**
-     * Operation submitFormUsingPOSTWithHttpInfo
-     *
      * Submit Form
      *
      * @param  \NecLimDul\MarketoRest\Lead\Model\SubmitFormRequest $submit_form_request submitFormRequest (required)
@@ -3393,36 +2980,15 @@ class LeadsApi
     public function submitFormUsingPOSTWithHttpInfo($submit_form_request)
     {
         $request = $this->submitFormUsingPOSTRequest($submit_form_request);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfSubmitForm');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfSubmitForm');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfSubmitForm',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->submitFormUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation submitFormUsingPOSTAsync
-     *
      * Submit Form
      *
      * @param  \NecLimDul\MarketoRest\Lead\Model\SubmitFormRequest $submit_form_request submitFormRequest (required)
@@ -3441,8 +3007,6 @@ class LeadsApi
     }
 
     /**
-     * Operation submitFormUsingPOSTAsyncWithHttpInfo
-     *
      * Submit Form
      *
      * @param  \NecLimDul\MarketoRest\Lead\Model\SubmitFormRequest $submit_form_request submitFormRequest (required)
@@ -3453,27 +3017,7 @@ class LeadsApi
     public function submitFormUsingPOSTAsyncWithHttpInfo($submit_form_request)
     {
         $request = $this->submitFormUsingPOSTRequest($submit_form_request);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfSubmitForm');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfSubmitForm', [$this, 'submitFormUsingPOSTHandleException']);
     }
 
     /**
@@ -3532,8 +3076,29 @@ class LeadsApi
     }
 
     /**
-     * Operation syncLeadUsingPOST
+     * Exception handler for syncLeadUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function syncLeadUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Sync Leads
      *
      * @param  \NecLimDul\MarketoRest\Lead\Model\SyncLeadRequest $sync_lead_request syncLeadRequest (required)
@@ -3549,8 +3114,6 @@ class LeadsApi
     }
 
     /**
-     * Operation syncLeadUsingPOSTWithHttpInfo
-     *
      * Sync Leads
      *
      * @param  \NecLimDul\MarketoRest\Lead\Model\SyncLeadRequest $sync_lead_request syncLeadRequest (required)
@@ -3562,36 +3125,15 @@ class LeadsApi
     public function syncLeadUsingPOSTWithHttpInfo($sync_lead_request)
     {
         $request = $this->syncLeadUsingPOSTRequest($sync_lead_request);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->syncLeadUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation syncLeadUsingPOSTAsync
-     *
      * Sync Leads
      *
      * @param  \NecLimDul\MarketoRest\Lead\Model\SyncLeadRequest $sync_lead_request syncLeadRequest (required)
@@ -3610,8 +3152,6 @@ class LeadsApi
     }
 
     /**
-     * Operation syncLeadUsingPOSTAsyncWithHttpInfo
-     *
      * Sync Leads
      *
      * @param  \NecLimDul\MarketoRest\Lead\Model\SyncLeadRequest $sync_lead_request syncLeadRequest (required)
@@ -3622,27 +3162,7 @@ class LeadsApi
     public function syncLeadUsingPOSTAsyncWithHttpInfo($sync_lead_request)
     {
         $request = $this->syncLeadUsingPOSTRequest($sync_lead_request);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead', [$this, 'syncLeadUsingPOSTHandleException']);
     }
 
     /**
@@ -3701,8 +3221,29 @@ class LeadsApi
     }
 
     /**
-     * Operation updateLeadFieldUsingPOST
+     * Exception handler for updateLeadFieldUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function updateLeadFieldUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfUpdateLeadField',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Update Lead Field
      *
      * @param  string $field_api_name The API name of lead field (required)
@@ -3719,8 +3260,6 @@ class LeadsApi
     }
 
     /**
-     * Operation updateLeadFieldUsingPOSTWithHttpInfo
-     *
      * Update Lead Field
      *
      * @param  string $field_api_name The API name of lead field (required)
@@ -3733,36 +3272,15 @@ class LeadsApi
     public function updateLeadFieldUsingPOSTWithHttpInfo($field_api_name, $update_lead_field_request)
     {
         $request = $this->updateLeadFieldUsingPOSTRequest($field_api_name, $update_lead_field_request);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfUpdateLeadField');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfUpdateLeadField');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfUpdateLeadField',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->updateLeadFieldUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation updateLeadFieldUsingPOSTAsync
-     *
      * Update Lead Field
      *
      * @param  string $field_api_name The API name of lead field (required)
@@ -3782,8 +3300,6 @@ class LeadsApi
     }
 
     /**
-     * Operation updateLeadFieldUsingPOSTAsyncWithHttpInfo
-     *
      * Update Lead Field
      *
      * @param  string $field_api_name The API name of lead field (required)
@@ -3795,27 +3311,7 @@ class LeadsApi
     public function updateLeadFieldUsingPOSTAsyncWithHttpInfo($field_api_name, $update_lead_field_request)
     {
         $request = $this->updateLeadFieldUsingPOSTRequest($field_api_name, $update_lead_field_request);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfUpdateLeadField');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfUpdateLeadField', [$this, 'updateLeadFieldUsingPOSTHandleException']);
     }
 
     /**
@@ -3888,8 +3384,29 @@ class LeadsApi
     }
 
     /**
-     * Operation updatePartitionsUsingPOST
+     * Exception handler for updatePartitionsUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function updatePartitionsUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Update Lead Partition
      *
      * @param  \NecLimDul\MarketoRest\Lead\Model\UpdateLeadPartitionRequest $update_lead_partition_request updateLeadPartitionRequest (required)
@@ -3905,8 +3422,6 @@ class LeadsApi
     }
 
     /**
-     * Operation updatePartitionsUsingPOSTWithHttpInfo
-     *
      * Update Lead Partition
      *
      * @param  \NecLimDul\MarketoRest\Lead\Model\UpdateLeadPartitionRequest $update_lead_partition_request updateLeadPartitionRequest (required)
@@ -3918,36 +3433,15 @@ class LeadsApi
     public function updatePartitionsUsingPOSTWithHttpInfo($update_lead_partition_request)
     {
         $request = $this->updatePartitionsUsingPOSTRequest($update_lead_partition_request);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->updatePartitionsUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation updatePartitionsUsingPOSTAsync
-     *
      * Update Lead Partition
      *
      * @param  \NecLimDul\MarketoRest\Lead\Model\UpdateLeadPartitionRequest $update_lead_partition_request updateLeadPartitionRequest (required)
@@ -3966,8 +3460,6 @@ class LeadsApi
     }
 
     /**
-     * Operation updatePartitionsUsingPOSTAsyncWithHttpInfo
-     *
      * Update Lead Partition
      *
      * @param  \NecLimDul\MarketoRest\Lead\Model\UpdateLeadPartitionRequest $update_lead_partition_request updateLeadPartitionRequest (required)
@@ -3978,27 +3470,7 @@ class LeadsApi
     public function updatePartitionsUsingPOSTAsyncWithHttpInfo($update_lead_partition_request)
     {
         $request = $this->updatePartitionsUsingPOSTRequest($update_lead_partition_request);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead', [$this, 'updatePartitionsUsingPOSTHandleException']);
     }
 
     /**
@@ -4078,8 +3550,7 @@ class LeadsApi
     /**
      * Make a request.
      *
-     * @param \GuzzleHttp\Psr7\Request $request
-     *   An initialized request object.
+     * @param \GuzzleHttp\Psr7\Request $request An initialized request object.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @return \Psr\Http\Message\ResponseInterface
@@ -4115,12 +3586,45 @@ class LeadsApi
     }
 
     /**
+     * Make an async request.
+     *
+     * @param \GuzzleHttp\Psr7\Request $request An initialized request object.
+     * @param string $returnType The return type.
+     * @param callable $exceptionHandler A callback to process HTTP errors.
+     *
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
+     * @return \GuzzleHttp\Promise\PromiseInterface A promise that will return a processed response.
+     */
+    private function makeAsyncRequest(Request $request, string $returnType, callable $exceptionHandler)
+    {
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return $this->responseToReturn($response, $returnType);
+                },
+                function (RequestException $exception) use ($exceptionHandler) {
+                    $response = $exception->getResponse();
+                    $e = new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
+                        ),
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
+                    );
+                    throw $exceptionHandler($e);
+                }
+            );
+    }
+
+    /**
      * Convert a response to a return standard return array.
      *
-     * @param \Psr\Http\Message\ResponseInterface $response
-     *   A response from a request with a serialized body.
-     * @param string $returnType
-     *   The return type.
+     * @param \Psr\Http\Message\ResponseInterface $response A response from a request with a serialized body.
+     * @param string $returnType The primary return type.
      *
      * @return array
      */

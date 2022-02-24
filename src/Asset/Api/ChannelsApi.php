@@ -118,8 +118,29 @@ class ChannelsApi
     }
 
     /**
-     * Operation getAllChannelsUsingGET
+     * Exception handler for getAllChannelsUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function getAllChannelsUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfChannelResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Channels
      *
      * @param  int $max_return Maximum number of channels to return.  Max 200, default 20 (optional)
@@ -136,8 +157,6 @@ class ChannelsApi
     }
 
     /**
-     * Operation getAllChannelsUsingGETWithHttpInfo
-     *
      * Get Channels
      *
      * @param  int $max_return Maximum number of channels to return.  Max 200, default 20 (optional)
@@ -150,36 +169,15 @@ class ChannelsApi
     public function getAllChannelsUsingGETWithHttpInfo($max_return = null, $offset = null)
     {
         $request = $this->getAllChannelsUsingGETRequest($max_return, $offset);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfChannelResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfChannelResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfChannelResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getAllChannelsUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getAllChannelsUsingGETAsync
-     *
      * Get Channels
      *
      * @param  int $max_return Maximum number of channels to return.  Max 200, default 20 (optional)
@@ -199,8 +197,6 @@ class ChannelsApi
     }
 
     /**
-     * Operation getAllChannelsUsingGETAsyncWithHttpInfo
-     *
      * Get Channels
      *
      * @param  int $max_return Maximum number of channels to return.  Max 200, default 20 (optional)
@@ -212,27 +208,7 @@ class ChannelsApi
     public function getAllChannelsUsingGETAsyncWithHttpInfo($max_return = null, $offset = null)
     {
         $request = $this->getAllChannelsUsingGETRequest($max_return, $offset);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfChannelResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfChannelResponse', [$this, 'getAllChannelsUsingGETHandleException']);
     }
 
     /**
@@ -290,8 +266,29 @@ class ChannelsApi
     }
 
     /**
-     * Operation getChannelByNameUsingGET
+     * Exception handler for getChannelByNameUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function getChannelByNameUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfChannelResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Channel by Name
      *
      * @param  string $name Name of channel to retrieve (required)
@@ -307,8 +304,6 @@ class ChannelsApi
     }
 
     /**
-     * Operation getChannelByNameUsingGETWithHttpInfo
-     *
      * Get Channel by Name
      *
      * @param  string $name Name of channel to retrieve (required)
@@ -320,36 +315,15 @@ class ChannelsApi
     public function getChannelByNameUsingGETWithHttpInfo($name)
     {
         $request = $this->getChannelByNameUsingGETRequest($name);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfChannelResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfChannelResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfChannelResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getChannelByNameUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getChannelByNameUsingGETAsync
-     *
      * Get Channel by Name
      *
      * @param  string $name Name of channel to retrieve (required)
@@ -368,8 +342,6 @@ class ChannelsApi
     }
 
     /**
-     * Operation getChannelByNameUsingGETAsyncWithHttpInfo
-     *
      * Get Channel by Name
      *
      * @param  string $name Name of channel to retrieve (required)
@@ -380,27 +352,7 @@ class ChannelsApi
     public function getChannelByNameUsingGETAsyncWithHttpInfo($name)
     {
         $request = $this->getChannelByNameUsingGETRequest($name);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfChannelResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfChannelResponse', [$this, 'getChannelByNameUsingGETHandleException']);
     }
 
     /**
@@ -480,8 +432,7 @@ class ChannelsApi
     /**
      * Make a request.
      *
-     * @param \GuzzleHttp\Psr7\Request $request
-     *   An initialized request object.
+     * @param \GuzzleHttp\Psr7\Request $request An initialized request object.
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @return \Psr\Http\Message\ResponseInterface
@@ -517,12 +468,45 @@ class ChannelsApi
     }
 
     /**
+     * Make an async request.
+     *
+     * @param \GuzzleHttp\Psr7\Request $request An initialized request object.
+     * @param string $returnType The return type.
+     * @param callable $exceptionHandler A callback to process HTTP errors.
+     *
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
+     * @return \GuzzleHttp\Promise\PromiseInterface A promise that will return a processed response.
+     */
+    private function makeAsyncRequest(Request $request, string $returnType, callable $exceptionHandler)
+    {
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return $this->responseToReturn($response, $returnType);
+                },
+                function (RequestException $exception) use ($exceptionHandler) {
+                    $response = $exception->getResponse();
+                    $e = new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
+                        ),
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
+                    );
+                    throw $exceptionHandler($e);
+                }
+            );
+    }
+
+    /**
      * Convert a response to a return standard return array.
      *
-     * @param \Psr\Http\Message\ResponseInterface $response
-     *   A response from a request with a serialized body.
-     * @param string $returnType
-     *   The return type.
+     * @param \Psr\Http\Message\ResponseInterface $response A response from a request with a serialized body.
+     * @param string $returnType The primary return type.
      *
      * @return array
      */

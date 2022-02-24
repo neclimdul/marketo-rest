@@ -118,8 +118,29 @@ class BulkImportProgramMembersApi
     }
 
     /**
-     * Operation getImportProgramMemberFailuresUsingGET
+     * Exception handler for getImportProgramMemberFailuresUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function getImportProgramMemberFailuresUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Import Program Member Failures
      *
      * @param  int $batch_id Id of the import batch job. (required)
@@ -135,8 +156,6 @@ class BulkImportProgramMembersApi
     }
 
     /**
-     * Operation getImportProgramMemberFailuresUsingGETWithHttpInfo
-     *
      * Get Import Program Member Failures
      *
      * @param  int $batch_id Id of the import batch job. (required)
@@ -148,36 +167,15 @@ class BulkImportProgramMembersApi
     public function getImportProgramMemberFailuresUsingGETWithHttpInfo($batch_id)
     {
         $request = $this->getImportProgramMemberFailuresUsingGETRequest($batch_id);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getImportProgramMemberFailuresUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getImportProgramMemberFailuresUsingGETAsync
-     *
      * Get Import Program Member Failures
      *
      * @param  int $batch_id Id of the import batch job. (required)
@@ -196,8 +194,6 @@ class BulkImportProgramMembersApi
     }
 
     /**
-     * Operation getImportProgramMemberFailuresUsingGETAsyncWithHttpInfo
-     *
      * Get Import Program Member Failures
      *
      * @param  int $batch_id Id of the import batch job. (required)
@@ -208,27 +204,7 @@ class BulkImportProgramMembersApi
     public function getImportProgramMemberFailuresUsingGETAsyncWithHttpInfo($batch_id)
     {
         $request = $this->getImportProgramMemberFailuresUsingGETRequest($batch_id);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent', [$this, 'getImportProgramMemberFailuresUsingGETHandleException']);
     }
 
     /**
@@ -286,8 +262,29 @@ class BulkImportProgramMembersApi
     }
 
     /**
-     * Operation getImportProgramMemberStatusUsingGET
+     * Exception handler for getImportProgramMemberStatusUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function getImportProgramMemberStatusUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfImportProgramMemberResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Import Program Member Status
      *
      * @param  int $batch_id Id of the import batch job. (required)
@@ -303,8 +300,6 @@ class BulkImportProgramMembersApi
     }
 
     /**
-     * Operation getImportProgramMemberStatusUsingGETWithHttpInfo
-     *
      * Get Import Program Member Status
      *
      * @param  int $batch_id Id of the import batch job. (required)
@@ -316,36 +311,15 @@ class BulkImportProgramMembersApi
     public function getImportProgramMemberStatusUsingGETWithHttpInfo($batch_id)
     {
         $request = $this->getImportProgramMemberStatusUsingGETRequest($batch_id);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfImportProgramMemberResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfImportProgramMemberResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfImportProgramMemberResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getImportProgramMemberStatusUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getImportProgramMemberStatusUsingGETAsync
-     *
      * Get Import Program Member Status
      *
      * @param  int $batch_id Id of the import batch job. (required)
@@ -364,8 +338,6 @@ class BulkImportProgramMembersApi
     }
 
     /**
-     * Operation getImportProgramMemberStatusUsingGETAsyncWithHttpInfo
-     *
      * Get Import Program Member Status
      *
      * @param  int $batch_id Id of the import batch job. (required)
@@ -376,27 +348,7 @@ class BulkImportProgramMembersApi
     public function getImportProgramMemberStatusUsingGETAsyncWithHttpInfo($batch_id)
     {
         $request = $this->getImportProgramMemberStatusUsingGETRequest($batch_id);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfImportProgramMemberResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfImportProgramMemberResponse', [$this, 'getImportProgramMemberStatusUsingGETHandleException']);
     }
 
     /**
@@ -454,8 +406,29 @@ class BulkImportProgramMembersApi
     }
 
     /**
-     * Operation getImportProgramMemberWarningsUsingGET
+     * Exception handler for getImportProgramMemberWarningsUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function getImportProgramMemberWarningsUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Import Program Member Warnings
      *
      * @param  int $batch_id Id of the import batch job. (required)
@@ -471,8 +444,6 @@ class BulkImportProgramMembersApi
     }
 
     /**
-     * Operation getImportProgramMemberWarningsUsingGETWithHttpInfo
-     *
      * Get Import Program Member Warnings
      *
      * @param  int $batch_id Id of the import batch job. (required)
@@ -484,36 +455,15 @@ class BulkImportProgramMembersApi
     public function getImportProgramMemberWarningsUsingGETWithHttpInfo($batch_id)
     {
         $request = $this->getImportProgramMemberWarningsUsingGETRequest($batch_id);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getImportProgramMemberWarningsUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getImportProgramMemberWarningsUsingGETAsync
-     *
      * Get Import Program Member Warnings
      *
      * @param  int $batch_id Id of the import batch job. (required)
@@ -532,8 +482,6 @@ class BulkImportProgramMembersApi
     }
 
     /**
-     * Operation getImportProgramMemberWarningsUsingGETAsyncWithHttpInfo
-     *
      * Get Import Program Member Warnings
      *
      * @param  int $batch_id Id of the import batch job. (required)
@@ -544,27 +492,7 @@ class BulkImportProgramMembersApi
     public function getImportProgramMemberWarningsUsingGETAsyncWithHttpInfo($batch_id)
     {
         $request = $this->getImportProgramMemberWarningsUsingGETRequest($batch_id);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent', [$this, 'getImportProgramMemberWarningsUsingGETHandleException']);
     }
 
     /**
@@ -622,8 +550,29 @@ class BulkImportProgramMembersApi
     }
 
     /**
-     * Operation importProgramMemberUsingPOST
+     * Exception handler for importProgramMemberUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function importProgramMemberUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfImportProgramMemberResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Import Program Members
      *
      * @param  string $program_id Id of the program to add members to. (required)
@@ -642,8 +591,6 @@ class BulkImportProgramMembersApi
     }
 
     /**
-     * Operation importProgramMemberUsingPOSTWithHttpInfo
-     *
      * Import Program Members
      *
      * @param  string $program_id Id of the program to add members to. (required)
@@ -658,36 +605,15 @@ class BulkImportProgramMembersApi
     public function importProgramMemberUsingPOSTWithHttpInfo($program_id, $program_member_status, $format, $file)
     {
         $request = $this->importProgramMemberUsingPOSTRequest($program_id, $program_member_status, $format, $file);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfImportProgramMemberResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfImportProgramMemberResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfImportProgramMemberResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->importProgramMemberUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation importProgramMemberUsingPOSTAsync
-     *
      * Import Program Members
      *
      * @param  string $program_id Id of the program to add members to. (required)
@@ -709,8 +635,6 @@ class BulkImportProgramMembersApi
     }
 
     /**
-     * Operation importProgramMemberUsingPOSTAsyncWithHttpInfo
-     *
      * Import Program Members
      *
      * @param  string $program_id Id of the program to add members to. (required)
@@ -724,27 +648,7 @@ class BulkImportProgramMembersApi
     public function importProgramMemberUsingPOSTAsyncWithHttpInfo($program_id, $program_member_status, $format, $file)
     {
         $request = $this->importProgramMemberUsingPOSTRequest($program_id, $program_member_status, $format, $file);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfImportProgramMemberResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfImportProgramMemberResponse', [$this, 'importProgramMemberUsingPOSTHandleException']);
     }
 
     /**
@@ -908,8 +812,7 @@ class BulkImportProgramMembersApi
     /**
      * Make a request.
      *
-     * @param \GuzzleHttp\Psr7\Request $request
-     *   An initialized request object.
+     * @param \GuzzleHttp\Psr7\Request $request An initialized request object.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @return \Psr\Http\Message\ResponseInterface
@@ -945,12 +848,45 @@ class BulkImportProgramMembersApi
     }
 
     /**
+     * Make an async request.
+     *
+     * @param \GuzzleHttp\Psr7\Request $request An initialized request object.
+     * @param string $returnType The return type.
+     * @param callable $exceptionHandler A callback to process HTTP errors.
+     *
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
+     * @return \GuzzleHttp\Promise\PromiseInterface A promise that will return a processed response.
+     */
+    private function makeAsyncRequest(Request $request, string $returnType, callable $exceptionHandler)
+    {
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return $this->responseToReturn($response, $returnType);
+                },
+                function (RequestException $exception) use ($exceptionHandler) {
+                    $response = $exception->getResponse();
+                    $e = new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
+                        ),
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
+                    );
+                    throw $exceptionHandler($e);
+                }
+            );
+    }
+
+    /**
      * Convert a response to a return standard return array.
      *
-     * @param \Psr\Http\Message\ResponseInterface $response
-     *   A response from a request with a serialized body.
-     * @param string $returnType
-     *   The return type.
+     * @param \Psr\Http\Message\ResponseInterface $response A response from a request with a serialized body.
+     * @param string $returnType The primary return type.
      *
      * @return array
      */

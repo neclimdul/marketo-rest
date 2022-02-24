@@ -118,8 +118,29 @@ class FoldersApi
     }
 
     /**
-     * Operation createFolderUsingPOST
+     * Exception handler for createFolderUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function createFolderUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Create Folder
      *
      * @param  \NecLimDul\MarketoRest\Asset\Model\CreateFolderRequest $create_folder_request createFolderRequest (required)
@@ -135,8 +156,6 @@ class FoldersApi
     }
 
     /**
-     * Operation createFolderUsingPOSTWithHttpInfo
-     *
      * Create Folder
      *
      * @param  \NecLimDul\MarketoRest\Asset\Model\CreateFolderRequest $create_folder_request createFolderRequest (required)
@@ -148,36 +167,15 @@ class FoldersApi
     public function createFolderUsingPOSTWithHttpInfo($create_folder_request)
     {
         $request = $this->createFolderUsingPOSTRequest($create_folder_request);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->createFolderUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation createFolderUsingPOSTAsync
-     *
      * Create Folder
      *
      * @param  \NecLimDul\MarketoRest\Asset\Model\CreateFolderRequest $create_folder_request createFolderRequest (required)
@@ -196,8 +194,6 @@ class FoldersApi
     }
 
     /**
-     * Operation createFolderUsingPOSTAsyncWithHttpInfo
-     *
      * Create Folder
      *
      * @param  \NecLimDul\MarketoRest\Asset\Model\CreateFolderRequest $create_folder_request createFolderRequest (required)
@@ -208,27 +204,7 @@ class FoldersApi
     public function createFolderUsingPOSTAsyncWithHttpInfo($create_folder_request)
     {
         $request = $this->createFolderUsingPOSTRequest($create_folder_request);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse', [$this, 'createFolderUsingPOSTHandleException']);
     }
 
     /**
@@ -287,8 +263,29 @@ class FoldersApi
     }
 
     /**
-     * Operation deleteFolderUsingPOST
+     * Exception handler for deleteFolderUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function deleteFolderUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Delete Folder
      *
      * @param  int $id Id of the folder to delete (required)
@@ -305,8 +302,6 @@ class FoldersApi
     }
 
     /**
-     * Operation deleteFolderUsingPOSTWithHttpInfo
-     *
      * Delete Folder
      *
      * @param  int $id Id of the folder to delete (required)
@@ -319,36 +314,15 @@ class FoldersApi
     public function deleteFolderUsingPOSTWithHttpInfo($id, $type)
     {
         $request = $this->deleteFolderUsingPOSTRequest($id, $type);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->deleteFolderUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation deleteFolderUsingPOSTAsync
-     *
      * Delete Folder
      *
      * @param  int $id Id of the folder to delete (required)
@@ -368,8 +342,6 @@ class FoldersApi
     }
 
     /**
-     * Operation deleteFolderUsingPOSTAsyncWithHttpInfo
-     *
      * Delete Folder
      *
      * @param  int $id Id of the folder to delete (required)
@@ -381,27 +353,7 @@ class FoldersApi
     public function deleteFolderUsingPOSTAsyncWithHttpInfo($id, $type)
     {
         $request = $this->deleteFolderUsingPOSTRequest($id, $type);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse', [$this, 'deleteFolderUsingPOSTHandleException']);
     }
 
     /**
@@ -510,8 +462,29 @@ class FoldersApi
     }
 
     /**
-     * Operation getFolderByIdUsingGET
+     * Exception handler for getFolderByIdUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function getFolderByIdUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Folder by Id
      *
      * @param  int $id Id of the folder to retrieve (required)
@@ -528,8 +501,6 @@ class FoldersApi
     }
 
     /**
-     * Operation getFolderByIdUsingGETWithHttpInfo
-     *
      * Get Folder by Id
      *
      * @param  int $id Id of the folder to retrieve (required)
@@ -542,36 +513,15 @@ class FoldersApi
     public function getFolderByIdUsingGETWithHttpInfo($id, $type)
     {
         $request = $this->getFolderByIdUsingGETRequest($id, $type);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getFolderByIdUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getFolderByIdUsingGETAsync
-     *
      * Get Folder by Id
      *
      * @param  int $id Id of the folder to retrieve (required)
@@ -591,8 +541,6 @@ class FoldersApi
     }
 
     /**
-     * Operation getFolderByIdUsingGETAsyncWithHttpInfo
-     *
      * Get Folder by Id
      *
      * @param  int $id Id of the folder to retrieve (required)
@@ -604,27 +552,7 @@ class FoldersApi
     public function getFolderByIdUsingGETAsyncWithHttpInfo($id, $type)
     {
         $request = $this->getFolderByIdUsingGETRequest($id, $type);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse', [$this, 'getFolderByIdUsingGETHandleException']);
     }
 
     /**
@@ -697,8 +625,29 @@ class FoldersApi
     }
 
     /**
-     * Operation getFolderByNameUsingGET
+     * Exception handler for getFolderByNameUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function getFolderByNameUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Folder by Name
      *
      * @param  string $name Name of the folder.  Not applicable for Programs (required)
@@ -717,8 +666,6 @@ class FoldersApi
     }
 
     /**
-     * Operation getFolderByNameUsingGETWithHttpInfo
-     *
      * Get Folder by Name
      *
      * @param  string $name Name of the folder.  Not applicable for Programs (required)
@@ -733,36 +680,15 @@ class FoldersApi
     public function getFolderByNameUsingGETWithHttpInfo($name, $type = null, $root = null, $work_space = null)
     {
         $request = $this->getFolderByNameUsingGETRequest($name, $type, $root, $work_space);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getFolderByNameUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getFolderByNameUsingGETAsync
-     *
      * Get Folder by Name
      *
      * @param  string $name Name of the folder.  Not applicable for Programs (required)
@@ -784,8 +710,6 @@ class FoldersApi
     }
 
     /**
-     * Operation getFolderByNameUsingGETAsyncWithHttpInfo
-     *
      * Get Folder by Name
      *
      * @param  string $name Name of the folder.  Not applicable for Programs (required)
@@ -799,27 +723,7 @@ class FoldersApi
     public function getFolderByNameUsingGETAsyncWithHttpInfo($name, $type = null, $root = null, $work_space = null)
     {
         $request = $this->getFolderByNameUsingGETRequest($name, $type, $root, $work_space);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse', [$this, 'getFolderByNameUsingGETHandleException']);
     }
 
     /**
@@ -893,8 +797,29 @@ class FoldersApi
     }
 
     /**
-     * Operation getFolderContentUsingGET
+     * Exception handler for getFolderContentUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function getFolderContentUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderContentResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Folder Contents
      *
      * @param  int $id Id of the folder to retrieve (required)
@@ -913,8 +838,6 @@ class FoldersApi
     }
 
     /**
-     * Operation getFolderContentUsingGETWithHttpInfo
-     *
      * Get Folder Contents
      *
      * @param  int $id Id of the folder to retrieve (required)
@@ -929,36 +852,15 @@ class FoldersApi
     public function getFolderContentUsingGETWithHttpInfo($id, $type, $max_return = null, $offset = null)
     {
         $request = $this->getFolderContentUsingGETRequest($id, $type, $max_return, $offset);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderContentResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderContentResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderContentResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getFolderContentUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getFolderContentUsingGETAsync
-     *
      * Get Folder Contents
      *
      * @param  int $id Id of the folder to retrieve (required)
@@ -980,8 +882,6 @@ class FoldersApi
     }
 
     /**
-     * Operation getFolderContentUsingGETAsyncWithHttpInfo
-     *
      * Get Folder Contents
      *
      * @param  int $id Id of the folder to retrieve (required)
@@ -995,27 +895,7 @@ class FoldersApi
     public function getFolderContentUsingGETAsyncWithHttpInfo($id, $type, $max_return = null, $offset = null)
     {
         $request = $this->getFolderContentUsingGETRequest($id, $type, $max_return, $offset);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderContentResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderContentResponse', [$this, 'getFolderContentUsingGETHandleException']);
     }
 
     /**
@@ -1098,8 +978,29 @@ class FoldersApi
     }
 
     /**
-     * Operation getFolderUsingGET
+     * Exception handler for getFolderUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function getFolderUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Folders
      *
      * @param  string $root Parent folder reference (optional)
@@ -1119,8 +1020,6 @@ class FoldersApi
     }
 
     /**
-     * Operation getFolderUsingGETWithHttpInfo
-     *
      * Get Folders
      *
      * @param  string $root Parent folder reference (optional)
@@ -1136,36 +1035,15 @@ class FoldersApi
     public function getFolderUsingGETWithHttpInfo($root = null, $max_depth = null, $max_return = null, $offset = null, $work_space = null)
     {
         $request = $this->getFolderUsingGETRequest($root, $max_depth, $max_return, $offset, $work_space);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getFolderUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getFolderUsingGETAsync
-     *
      * Get Folders
      *
      * @param  string $root Parent folder reference (optional)
@@ -1188,8 +1066,6 @@ class FoldersApi
     }
 
     /**
-     * Operation getFolderUsingGETAsyncWithHttpInfo
-     *
      * Get Folders
      *
      * @param  string $root Parent folder reference (optional)
@@ -1204,27 +1080,7 @@ class FoldersApi
     public function getFolderUsingGETAsyncWithHttpInfo($root = null, $max_depth = null, $max_return = null, $offset = null, $work_space = null)
     {
         $request = $this->getFolderUsingGETRequest($root, $max_depth, $max_return, $offset, $work_space);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse', [$this, 'getFolderUsingGETHandleException']);
     }
 
     /**
@@ -1297,8 +1153,29 @@ class FoldersApi
     }
 
     /**
-     * Operation updateFolderUsingPOST
+     * Exception handler for updateFolderUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function updateFolderUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Update Folder Metadata
      *
      * @param  int $id Id of the folder to update (required)
@@ -1315,8 +1192,6 @@ class FoldersApi
     }
 
     /**
-     * Operation updateFolderUsingPOSTWithHttpInfo
-     *
      * Update Folder Metadata
      *
      * @param  int $id Id of the folder to update (required)
@@ -1329,36 +1204,15 @@ class FoldersApi
     public function updateFolderUsingPOSTWithHttpInfo($id, $update_folder_request)
     {
         $request = $this->updateFolderUsingPOSTRequest($id, $update_folder_request);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->updateFolderUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation updateFolderUsingPOSTAsync
-     *
      * Update Folder Metadata
      *
      * @param  int $id Id of the folder to update (required)
@@ -1378,8 +1232,6 @@ class FoldersApi
     }
 
     /**
-     * Operation updateFolderUsingPOSTAsyncWithHttpInfo
-     *
      * Update Folder Metadata
      *
      * @param  int $id Id of the folder to update (required)
@@ -1391,27 +1243,7 @@ class FoldersApi
     public function updateFolderUsingPOSTAsyncWithHttpInfo($id, $update_folder_request)
     {
         $request = $this->updateFolderUsingPOSTRequest($id, $update_folder_request);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFolderResponse', [$this, 'updateFolderUsingPOSTHandleException']);
     }
 
     /**
@@ -1505,8 +1337,7 @@ class FoldersApi
     /**
      * Make a request.
      *
-     * @param \GuzzleHttp\Psr7\Request $request
-     *   An initialized request object.
+     * @param \GuzzleHttp\Psr7\Request $request An initialized request object.
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @return \Psr\Http\Message\ResponseInterface
@@ -1542,12 +1373,45 @@ class FoldersApi
     }
 
     /**
+     * Make an async request.
+     *
+     * @param \GuzzleHttp\Psr7\Request $request An initialized request object.
+     * @param string $returnType The return type.
+     * @param callable $exceptionHandler A callback to process HTTP errors.
+     *
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
+     * @return \GuzzleHttp\Promise\PromiseInterface A promise that will return a processed response.
+     */
+    private function makeAsyncRequest(Request $request, string $returnType, callable $exceptionHandler)
+    {
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return $this->responseToReturn($response, $returnType);
+                },
+                function (RequestException $exception) use ($exceptionHandler) {
+                    $response = $exception->getResponse();
+                    $e = new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
+                        ),
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
+                    );
+                    throw $exceptionHandler($e);
+                }
+            );
+    }
+
+    /**
      * Convert a response to a return standard return array.
      *
-     * @param \Psr\Http\Message\ResponseInterface $response
-     *   A response from a request with a serialized body.
-     * @param string $returnType
-     *   The return type.
+     * @param \Psr\Http\Message\ResponseInterface $response A response from a request with a serialized body.
+     * @param string $returnType The primary return type.
      *
      * @return array
      */

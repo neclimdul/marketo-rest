@@ -118,8 +118,29 @@ class FormsApi
     }
 
     /**
-     * Operation approveFromUsingPOST
+     * Exception handler for approveFromUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function approveFromUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Approve Form Draft
      *
      * @param  int $id id (required)
@@ -135,8 +156,6 @@ class FormsApi
     }
 
     /**
-     * Operation approveFromUsingPOSTWithHttpInfo
-     *
      * Approve Form Draft
      *
      * @param  int $id id (required)
@@ -148,36 +167,15 @@ class FormsApi
     public function approveFromUsingPOSTWithHttpInfo($id)
     {
         $request = $this->approveFromUsingPOSTRequest($id);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->approveFromUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation approveFromUsingPOSTAsync
-     *
      * Approve Form Draft
      *
      * @param  int $id id (required)
@@ -196,8 +194,6 @@ class FormsApi
     }
 
     /**
-     * Operation approveFromUsingPOSTAsyncWithHttpInfo
-     *
      * Approve Form Draft
      *
      * @param  int $id id (required)
@@ -208,27 +204,7 @@ class FormsApi
     public function approveFromUsingPOSTAsyncWithHttpInfo($id)
     {
         $request = $this->approveFromUsingPOSTRequest($id);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse', [$this, 'approveFromUsingPOSTHandleException']);
     }
 
     /**
@@ -286,8 +262,29 @@ class FormsApi
     }
 
     /**
-     * Operation browseForms2UsingGET
+     * Exception handler for browseForms2UsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function browseForms2UsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Forms
      *
      * @param  string $folder JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39; (required)
@@ -306,8 +303,6 @@ class FormsApi
     }
 
     /**
-     * Operation browseForms2UsingGETWithHttpInfo
-     *
      * Get Forms
      *
      * @param  string $folder JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39; (required)
@@ -322,36 +317,15 @@ class FormsApi
     public function browseForms2UsingGETWithHttpInfo($folder, $status = null, $max_return = null, $offset = null)
     {
         $request = $this->browseForms2UsingGETRequest($folder, $status, $max_return, $offset);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->browseForms2UsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation browseForms2UsingGETAsync
-     *
      * Get Forms
      *
      * @param  string $folder JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39; (required)
@@ -373,8 +347,6 @@ class FormsApi
     }
 
     /**
-     * Operation browseForms2UsingGETAsyncWithHttpInfo
-     *
      * Get Forms
      *
      * @param  string $folder JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39; (required)
@@ -388,27 +360,7 @@ class FormsApi
     public function browseForms2UsingGETAsyncWithHttpInfo($folder, $status = null, $max_return = null, $offset = null)
     {
         $request = $this->browseForms2UsingGETRequest($folder, $status, $max_return, $offset);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse', [$this, 'browseForms2UsingGETHandleException']);
     }
 
     /**
@@ -482,8 +434,29 @@ class FormsApi
     }
 
     /**
-     * Operation cloneLpFormsUsingPOST
+     * Exception handler for cloneLpFormsUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function cloneLpFormsUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Clone Form
      *
      * @param  int $id id (required)
@@ -500,8 +473,6 @@ class FormsApi
     }
 
     /**
-     * Operation cloneLpFormsUsingPOSTWithHttpInfo
-     *
      * Clone Form
      *
      * @param  int $id id (required)
@@ -514,36 +485,15 @@ class FormsApi
     public function cloneLpFormsUsingPOSTWithHttpInfo($id, $clone_form_request = null)
     {
         $request = $this->cloneLpFormsUsingPOSTRequest($id, $clone_form_request);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->cloneLpFormsUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation cloneLpFormsUsingPOSTAsync
-     *
      * Clone Form
      *
      * @param  int $id id (required)
@@ -563,8 +513,6 @@ class FormsApi
     }
 
     /**
-     * Operation cloneLpFormsUsingPOSTAsyncWithHttpInfo
-     *
      * Clone Form
      *
      * @param  int $id id (required)
@@ -576,27 +524,7 @@ class FormsApi
     public function cloneLpFormsUsingPOSTAsyncWithHttpInfo($id, $clone_form_request = null)
     {
         $request = $this->cloneLpFormsUsingPOSTRequest($id, $clone_form_request);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse', [$this, 'cloneLpFormsUsingPOSTHandleException']);
     }
 
     /**
@@ -666,8 +594,29 @@ class FormsApi
     }
 
     /**
-     * Operation createLpFormsUsingPOST
+     * Exception handler for createLpFormsUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function createLpFormsUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Create Form
      *
      * @param  \NecLimDul\MarketoRest\Asset\Model\CreateLpFormRequest $create_form_request createFormRequest (required)
@@ -683,8 +632,6 @@ class FormsApi
     }
 
     /**
-     * Operation createLpFormsUsingPOSTWithHttpInfo
-     *
      * Create Form
      *
      * @param  \NecLimDul\MarketoRest\Asset\Model\CreateLpFormRequest $create_form_request createFormRequest (required)
@@ -696,36 +643,15 @@ class FormsApi
     public function createLpFormsUsingPOSTWithHttpInfo($create_form_request)
     {
         $request = $this->createLpFormsUsingPOSTRequest($create_form_request);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->createLpFormsUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation createLpFormsUsingPOSTAsync
-     *
      * Create Form
      *
      * @param  \NecLimDul\MarketoRest\Asset\Model\CreateLpFormRequest $create_form_request createFormRequest (required)
@@ -744,8 +670,6 @@ class FormsApi
     }
 
     /**
-     * Operation createLpFormsUsingPOSTAsyncWithHttpInfo
-     *
      * Create Form
      *
      * @param  \NecLimDul\MarketoRest\Asset\Model\CreateLpFormRequest $create_form_request createFormRequest (required)
@@ -756,27 +680,7 @@ class FormsApi
     public function createLpFormsUsingPOSTAsyncWithHttpInfo($create_form_request)
     {
         $request = $this->createLpFormsUsingPOSTRequest($create_form_request);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse', [$this, 'createLpFormsUsingPOSTHandleException']);
     }
 
     /**
@@ -835,8 +739,29 @@ class FormsApi
     }
 
     /**
-     * Operation deleteFormByIdUsingPOST
+     * Exception handler for deleteFormByIdUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function deleteFormByIdUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Delete Form
      *
      * @param  int $id id (required)
@@ -852,8 +777,6 @@ class FormsApi
     }
 
     /**
-     * Operation deleteFormByIdUsingPOSTWithHttpInfo
-     *
      * Delete Form
      *
      * @param  int $id id (required)
@@ -865,36 +788,15 @@ class FormsApi
     public function deleteFormByIdUsingPOSTWithHttpInfo($id)
     {
         $request = $this->deleteFormByIdUsingPOSTRequest($id);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->deleteFormByIdUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation deleteFormByIdUsingPOSTAsync
-     *
      * Delete Form
      *
      * @param  int $id id (required)
@@ -913,8 +815,6 @@ class FormsApi
     }
 
     /**
-     * Operation deleteFormByIdUsingPOSTAsyncWithHttpInfo
-     *
      * Delete Form
      *
      * @param  int $id id (required)
@@ -925,27 +825,7 @@ class FormsApi
     public function deleteFormByIdUsingPOSTAsyncWithHttpInfo($id)
     {
         $request = $this->deleteFormByIdUsingPOSTRequest($id);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse', [$this, 'deleteFormByIdUsingPOSTHandleException']);
     }
 
     /**
@@ -1003,8 +883,29 @@ class FormsApi
     }
 
     /**
-     * Operation discardFormByIdUsingPOST
+     * Exception handler for discardFormByIdUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function discardFormByIdUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Discard Form Draft
      *
      * @param  int $id id (required)
@@ -1020,8 +921,6 @@ class FormsApi
     }
 
     /**
-     * Operation discardFormByIdUsingPOSTWithHttpInfo
-     *
      * Discard Form Draft
      *
      * @param  int $id id (required)
@@ -1033,36 +932,15 @@ class FormsApi
     public function discardFormByIdUsingPOSTWithHttpInfo($id)
     {
         $request = $this->discardFormByIdUsingPOSTRequest($id);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->discardFormByIdUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation discardFormByIdUsingPOSTAsync
-     *
      * Discard Form Draft
      *
      * @param  int $id id (required)
@@ -1081,8 +959,6 @@ class FormsApi
     }
 
     /**
-     * Operation discardFormByIdUsingPOSTAsyncWithHttpInfo
-     *
      * Discard Form Draft
      *
      * @param  int $id id (required)
@@ -1093,27 +969,7 @@ class FormsApi
     public function discardFormByIdUsingPOSTAsyncWithHttpInfo($id)
     {
         $request = $this->discardFormByIdUsingPOSTRequest($id);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse', [$this, 'discardFormByIdUsingPOSTHandleException']);
     }
 
     /**
@@ -1171,8 +1027,29 @@ class FormsApi
     }
 
     /**
-     * Operation getFormUsedByUsingGET
+     * Exception handler for getFormUsedByUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function getFormUsedByUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFormUsedByResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Form Used By
      *
      * @param  int $id Id of the form (required)
@@ -1190,8 +1067,6 @@ class FormsApi
     }
 
     /**
-     * Operation getFormUsedByUsingGETWithHttpInfo
-     *
      * Get Form Used By
      *
      * @param  int $id Id of the form (required)
@@ -1205,36 +1080,15 @@ class FormsApi
     public function getFormUsedByUsingGETWithHttpInfo($id, $offset = null, $max_return = null)
     {
         $request = $this->getFormUsedByUsingGETRequest($id, $offset, $max_return);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFormUsedByResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFormUsedByResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFormUsedByResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getFormUsedByUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getFormUsedByUsingGETAsync
-     *
      * Get Form Used By
      *
      * @param  int $id Id of the form (required)
@@ -1255,8 +1109,6 @@ class FormsApi
     }
 
     /**
-     * Operation getFormUsedByUsingGETAsyncWithHttpInfo
-     *
      * Get Form Used By
      *
      * @param  int $id Id of the form (required)
@@ -1269,27 +1121,7 @@ class FormsApi
     public function getFormUsedByUsingGETAsyncWithHttpInfo($id, $offset = null, $max_return = null)
     {
         $request = $this->getFormUsedByUsingGETRequest($id, $offset, $max_return);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFormUsedByResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfFormUsedByResponse', [$this, 'getFormUsedByUsingGETHandleException']);
     }
 
     /**
@@ -1361,8 +1193,29 @@ class FormsApi
     }
 
     /**
-     * Operation getLpFormByIdUsingGET
+     * Exception handler for getLpFormByIdUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function getLpFormByIdUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Form By Id
      *
      * @param  int $id id (required)
@@ -1379,8 +1232,6 @@ class FormsApi
     }
 
     /**
-     * Operation getLpFormByIdUsingGETWithHttpInfo
-     *
      * Get Form By Id
      *
      * @param  int $id id (required)
@@ -1393,36 +1244,15 @@ class FormsApi
     public function getLpFormByIdUsingGETWithHttpInfo($id, $status = null)
     {
         $request = $this->getLpFormByIdUsingGETRequest($id, $status);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getLpFormByIdUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getLpFormByIdUsingGETAsync
-     *
      * Get Form By Id
      *
      * @param  int $id id (required)
@@ -1442,8 +1272,6 @@ class FormsApi
     }
 
     /**
-     * Operation getLpFormByIdUsingGETAsyncWithHttpInfo
-     *
      * Get Form By Id
      *
      * @param  int $id id (required)
@@ -1455,27 +1283,7 @@ class FormsApi
     public function getLpFormByIdUsingGETAsyncWithHttpInfo($id, $status = null)
     {
         $request = $this->getLpFormByIdUsingGETRequest($id, $status);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse', [$this, 'getLpFormByIdUsingGETHandleException']);
     }
 
     /**
@@ -1542,8 +1350,29 @@ class FormsApi
     }
 
     /**
-     * Operation getLpFormByNameUsingGET
+     * Exception handler for getLpFormByNameUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function getLpFormByNameUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Form by Name
      *
      * @param  string $name Name of the form (required)
@@ -1561,8 +1390,6 @@ class FormsApi
     }
 
     /**
-     * Operation getLpFormByNameUsingGETWithHttpInfo
-     *
      * Get Form by Name
      *
      * @param  string $name Name of the form (required)
@@ -1576,36 +1403,15 @@ class FormsApi
     public function getLpFormByNameUsingGETWithHttpInfo($name, $status = null, $folder = null)
     {
         $request = $this->getLpFormByNameUsingGETRequest($name, $status, $folder);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getLpFormByNameUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getLpFormByNameUsingGETAsync
-     *
      * Get Form by Name
      *
      * @param  string $name Name of the form (required)
@@ -1626,8 +1432,6 @@ class FormsApi
     }
 
     /**
-     * Operation getLpFormByNameUsingGETAsyncWithHttpInfo
-     *
      * Get Form by Name
      *
      * @param  string $name Name of the form (required)
@@ -1640,27 +1444,7 @@ class FormsApi
     public function getLpFormByNameUsingGETAsyncWithHttpInfo($name, $status = null, $folder = null)
     {
         $request = $this->getLpFormByNameUsingGETRequest($name, $status, $folder);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse', [$this, 'getLpFormByNameUsingGETHandleException']);
     }
 
     /**
@@ -1729,8 +1513,29 @@ class FormsApi
     }
 
     /**
-     * Operation getThankYouPageByIdUsingGET
+     * Exception handler for getThankYouPageByIdUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function getThankYouPageByIdUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfThankYouPageResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Thank You Page by Form Id
      *
      * @param  int $id id (required)
@@ -1747,8 +1552,6 @@ class FormsApi
     }
 
     /**
-     * Operation getThankYouPageByIdUsingGETWithHttpInfo
-     *
      * Get Thank You Page by Form Id
      *
      * @param  int $id id (required)
@@ -1761,36 +1564,15 @@ class FormsApi
     public function getThankYouPageByIdUsingGETWithHttpInfo($id, $status = null)
     {
         $request = $this->getThankYouPageByIdUsingGETRequest($id, $status);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfThankYouPageResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfThankYouPageResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfThankYouPageResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getThankYouPageByIdUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getThankYouPageByIdUsingGETAsync
-     *
      * Get Thank You Page by Form Id
      *
      * @param  int $id id (required)
@@ -1810,8 +1592,6 @@ class FormsApi
     }
 
     /**
-     * Operation getThankYouPageByIdUsingGETAsyncWithHttpInfo
-     *
      * Get Thank You Page by Form Id
      *
      * @param  int $id id (required)
@@ -1823,27 +1603,7 @@ class FormsApi
     public function getThankYouPageByIdUsingGETAsyncWithHttpInfo($id, $status = null)
     {
         $request = $this->getThankYouPageByIdUsingGETRequest($id, $status);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfThankYouPageResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfThankYouPageResponse', [$this, 'getThankYouPageByIdUsingGETHandleException']);
     }
 
     /**
@@ -1910,8 +1670,29 @@ class FormsApi
     }
 
     /**
-     * Operation updateFormSubmitButtonUsingPOST
+     * Exception handler for updateFormSubmitButtonUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function updateFormSubmitButtonUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Update Submit Button
      *
      * @param  int $id id (required)
@@ -1928,8 +1709,6 @@ class FormsApi
     }
 
     /**
-     * Operation updateFormSubmitButtonUsingPOSTWithHttpInfo
-     *
      * Update Submit Button
      *
      * @param  int $id id (required)
@@ -1942,36 +1721,15 @@ class FormsApi
     public function updateFormSubmitButtonUsingPOSTWithHttpInfo($id, $submit_button_request)
     {
         $request = $this->updateFormSubmitButtonUsingPOSTRequest($id, $submit_button_request);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->updateFormSubmitButtonUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation updateFormSubmitButtonUsingPOSTAsync
-     *
      * Update Submit Button
      *
      * @param  int $id id (required)
@@ -1991,8 +1749,6 @@ class FormsApi
     }
 
     /**
-     * Operation updateFormSubmitButtonUsingPOSTAsyncWithHttpInfo
-     *
      * Update Submit Button
      *
      * @param  int $id id (required)
@@ -2004,27 +1760,7 @@ class FormsApi
     public function updateFormSubmitButtonUsingPOSTAsyncWithHttpInfo($id, $submit_button_request)
     {
         $request = $this->updateFormSubmitButtonUsingPOSTRequest($id, $submit_button_request);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse', [$this, 'updateFormSubmitButtonUsingPOSTHandleException']);
     }
 
     /**
@@ -2097,8 +1833,29 @@ class FormsApi
     }
 
     /**
-     * Operation updateFormsUsingPOST
+     * Exception handler for updateFormsUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function updateFormsUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Update Form Metadata
      *
      * @param  int $id id (required)
@@ -2115,8 +1872,6 @@ class FormsApi
     }
 
     /**
-     * Operation updateFormsUsingPOSTWithHttpInfo
-     *
      * Update Form Metadata
      *
      * @param  int $id id (required)
@@ -2129,36 +1884,15 @@ class FormsApi
     public function updateFormsUsingPOSTWithHttpInfo($id, $update_form_meta_data_request)
     {
         $request = $this->updateFormsUsingPOSTRequest($id, $update_form_meta_data_request);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->updateFormsUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation updateFormsUsingPOSTAsync
-     *
      * Update Form Metadata
      *
      * @param  int $id id (required)
@@ -2178,8 +1912,6 @@ class FormsApi
     }
 
     /**
-     * Operation updateFormsUsingPOSTAsyncWithHttpInfo
-     *
      * Update Form Metadata
      *
      * @param  int $id id (required)
@@ -2191,27 +1923,7 @@ class FormsApi
     public function updateFormsUsingPOSTAsyncWithHttpInfo($id, $update_form_meta_data_request)
     {
         $request = $this->updateFormsUsingPOSTRequest($id, $update_form_meta_data_request);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse', [$this, 'updateFormsUsingPOSTHandleException']);
     }
 
     /**
@@ -2284,8 +1996,29 @@ class FormsApi
     }
 
     /**
-     * Operation updateThankYouPageByIdUsingPOST
+     * Exception handler for updateThankYouPageByIdUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function updateThankYouPageByIdUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfThankYouPageResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Update Thank You Page
      *
      * @param  int $id id (required)
@@ -2302,8 +2035,6 @@ class FormsApi
     }
 
     /**
-     * Operation updateThankYouPageByIdUsingPOSTWithHttpInfo
-     *
      * Update Thank You Page
      *
      * @param  int $id id (required)
@@ -2316,36 +2047,15 @@ class FormsApi
     public function updateThankYouPageByIdUsingPOSTWithHttpInfo($id, $thank_you_page_request)
     {
         $request = $this->updateThankYouPageByIdUsingPOSTRequest($id, $thank_you_page_request);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfThankYouPageResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfThankYouPageResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfThankYouPageResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->updateThankYouPageByIdUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation updateThankYouPageByIdUsingPOSTAsync
-     *
      * Update Thank You Page
      *
      * @param  int $id id (required)
@@ -2365,8 +2075,6 @@ class FormsApi
     }
 
     /**
-     * Operation updateThankYouPageByIdUsingPOSTAsyncWithHttpInfo
-     *
      * Update Thank You Page
      *
      * @param  int $id id (required)
@@ -2378,27 +2086,7 @@ class FormsApi
     public function updateThankYouPageByIdUsingPOSTAsyncWithHttpInfo($id, $thank_you_page_request)
     {
         $request = $this->updateThankYouPageByIdUsingPOSTRequest($id, $thank_you_page_request);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfThankYouPageResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfThankYouPageResponse', [$this, 'updateThankYouPageByIdUsingPOSTHandleException']);
     }
 
     /**
@@ -2492,8 +2180,7 @@ class FormsApi
     /**
      * Make a request.
      *
-     * @param \GuzzleHttp\Psr7\Request $request
-     *   An initialized request object.
+     * @param \GuzzleHttp\Psr7\Request $request An initialized request object.
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @return \Psr\Http\Message\ResponseInterface
@@ -2529,12 +2216,45 @@ class FormsApi
     }
 
     /**
+     * Make an async request.
+     *
+     * @param \GuzzleHttp\Psr7\Request $request An initialized request object.
+     * @param string $returnType The return type.
+     * @param callable $exceptionHandler A callback to process HTTP errors.
+     *
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
+     * @return \GuzzleHttp\Promise\PromiseInterface A promise that will return a processed response.
+     */
+    private function makeAsyncRequest(Request $request, string $returnType, callable $exceptionHandler)
+    {
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return $this->responseToReturn($response, $returnType);
+                },
+                function (RequestException $exception) use ($exceptionHandler) {
+                    $response = $exception->getResponse();
+                    $e = new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
+                        ),
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
+                    );
+                    throw $exceptionHandler($e);
+                }
+            );
+    }
+
+    /**
      * Convert a response to a return standard return array.
      *
-     * @param \Psr\Http\Message\ResponseInterface $response
-     *   A response from a request with a serialized body.
-     * @param string $returnType
-     *   The return type.
+     * @param \Psr\Http\Message\ResponseInterface $response A response from a request with a serialized body.
+     * @param string $returnType The primary return type.
      *
      * @return array
      */

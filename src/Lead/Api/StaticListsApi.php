@@ -118,8 +118,29 @@ class StaticListsApi
     }
 
     /**
-     * Operation addLeadsToListUsingPOST
+     * Exception handler for addLeadsToListUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function addLeadsToListUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Add to List
      *
      * @param  int $list_id Id of target list (required)
@@ -137,8 +158,6 @@ class StaticListsApi
     }
 
     /**
-     * Operation addLeadsToListUsingPOSTWithHttpInfo
-     *
      * Add to List
      *
      * @param  int $list_id Id of target list (required)
@@ -152,36 +171,15 @@ class StaticListsApi
     public function addLeadsToListUsingPOSTWithHttpInfo($list_id, $list_operation_request = null, $id = null)
     {
         $request = $this->addLeadsToListUsingPOSTRequest($list_id, $list_operation_request, $id);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->addLeadsToListUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation addLeadsToListUsingPOSTAsync
-     *
      * Add to List
      *
      * @param  int $list_id Id of target list (required)
@@ -202,8 +200,6 @@ class StaticListsApi
     }
 
     /**
-     * Operation addLeadsToListUsingPOSTAsyncWithHttpInfo
-     *
      * Add to List
      *
      * @param  int $list_id Id of target list (required)
@@ -216,27 +212,7 @@ class StaticListsApi
     public function addLeadsToListUsingPOSTAsyncWithHttpInfo($list_id, $list_operation_request = null, $id = null)
     {
         $request = $this->addLeadsToListUsingPOSTRequest($list_id, $list_operation_request, $id);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData', [$this, 'addLeadsToListUsingPOSTHandleException']);
     }
 
     /**
@@ -315,8 +291,29 @@ class StaticListsApi
     }
 
     /**
-     * Operation areLeadsMemberOfListUsingGET
+     * Exception handler for areLeadsMemberOfListUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function areLeadsMemberOfListUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Member of List
      *
      * @param  int $list_id Id of the static list to check against (required)
@@ -334,8 +331,6 @@ class StaticListsApi
     }
 
     /**
-     * Operation areLeadsMemberOfListUsingGETWithHttpInfo
-     *
      * Member of List
      *
      * @param  int $list_id Id of the static list to check against (required)
@@ -349,36 +344,15 @@ class StaticListsApi
     public function areLeadsMemberOfListUsingGETWithHttpInfo($list_id, $list_operation_request = null, $id = null)
     {
         $request = $this->areLeadsMemberOfListUsingGETRequest($list_id, $list_operation_request, $id);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->areLeadsMemberOfListUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation areLeadsMemberOfListUsingGETAsync
-     *
      * Member of List
      *
      * @param  int $list_id Id of the static list to check against (required)
@@ -399,8 +373,6 @@ class StaticListsApi
     }
 
     /**
-     * Operation areLeadsMemberOfListUsingGETAsyncWithHttpInfo
-     *
      * Member of List
      *
      * @param  int $list_id Id of the static list to check against (required)
@@ -413,27 +385,7 @@ class StaticListsApi
     public function areLeadsMemberOfListUsingGETAsyncWithHttpInfo($list_id, $list_operation_request = null, $id = null)
     {
         $request = $this->areLeadsMemberOfListUsingGETRequest($list_id, $list_operation_request, $id);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData', [$this, 'areLeadsMemberOfListUsingGETHandleException']);
     }
 
     /**
@@ -512,8 +464,29 @@ class StaticListsApi
     }
 
     /**
-     * Operation getLeadsByListIdUsingGET
+     * Exception handler for getLeadsByListIdUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function getLeadsByListIdUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadByListId',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Leads By List Id
      *
      * @param  int $list_id Id of the static list to retrieve records from (required)
@@ -532,8 +505,6 @@ class StaticListsApi
     }
 
     /**
-     * Operation getLeadsByListIdUsingGETWithHttpInfo
-     *
      * Get Leads By List Id
      *
      * @param  int $list_id Id of the static list to retrieve records from (required)
@@ -548,36 +519,15 @@ class StaticListsApi
     public function getLeadsByListIdUsingGETWithHttpInfo($list_id, $fields = null, $batch_size = null, $next_page_token = null)
     {
         $request = $this->getLeadsByListIdUsingGETRequest($list_id, $fields, $batch_size, $next_page_token);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadByListId');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadByListId');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadByListId',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getLeadsByListIdUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getLeadsByListIdUsingGETAsync
-     *
      * Get Leads By List Id
      *
      * @param  int $list_id Id of the static list to retrieve records from (required)
@@ -599,8 +549,6 @@ class StaticListsApi
     }
 
     /**
-     * Operation getLeadsByListIdUsingGETAsyncWithHttpInfo
-     *
      * Get Leads By List Id
      *
      * @param  int $list_id Id of the static list to retrieve records from (required)
@@ -614,27 +562,7 @@ class StaticListsApi
     public function getLeadsByListIdUsingGETAsyncWithHttpInfo($list_id, $fields = null, $batch_size = null, $next_page_token = null)
     {
         $request = $this->getLeadsByListIdUsingGETRequest($list_id, $fields, $batch_size, $next_page_token);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadByListId');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadByListId', [$this, 'getLeadsByListIdUsingGETHandleException']);
     }
 
     /**
@@ -711,8 +639,29 @@ class StaticListsApi
     }
 
     /**
-     * Operation getLeadsByListIdUsingGET1
+     * Exception handler for getLeadsByListIdUsingGET1.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function getLeadsByListIdUsingGET1HandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Leads By List Id
      *
      * @param  int $list_id Id of the static list to retrieve records from (required)
@@ -731,8 +680,6 @@ class StaticListsApi
     }
 
     /**
-     * Operation getLeadsByListIdUsingGET1WithHttpInfo
-     *
      * Get Leads By List Id
      *
      * @param  int $list_id Id of the static list to retrieve records from (required)
@@ -747,36 +694,15 @@ class StaticListsApi
     public function getLeadsByListIdUsingGET1WithHttpInfo($list_id, $fields = null, $batch_size = null, $next_page_token = null)
     {
         $request = $this->getLeadsByListIdUsingGET1Request($list_id, $fields, $batch_size, $next_page_token);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getLeadsByListIdUsingGET1HandleException($e);
         }
     }
 
     /**
-     * Operation getLeadsByListIdUsingGET1Async
-     *
      * Get Leads By List Id
      *
      * @param  int $list_id Id of the static list to retrieve records from (required)
@@ -798,8 +724,6 @@ class StaticListsApi
     }
 
     /**
-     * Operation getLeadsByListIdUsingGET1AsyncWithHttpInfo
-     *
      * Get Leads By List Id
      *
      * @param  int $list_id Id of the static list to retrieve records from (required)
@@ -813,27 +737,7 @@ class StaticListsApi
     public function getLeadsByListIdUsingGET1AsyncWithHttpInfo($list_id, $fields = null, $batch_size = null, $next_page_token = null)
     {
         $request = $this->getLeadsByListIdUsingGET1Request($list_id, $fields, $batch_size, $next_page_token);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLead', [$this, 'getLeadsByListIdUsingGET1HandleException']);
     }
 
     /**
@@ -910,8 +814,29 @@ class StaticListsApi
     }
 
     /**
-     * Operation getListByIdUsingGET
+     * Exception handler for getListByIdUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function getListByIdUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfStaticList',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get List by Id
      *
      * @param  int $list_id Id of the static list to retrieve records from (required)
@@ -927,8 +852,6 @@ class StaticListsApi
     }
 
     /**
-     * Operation getListByIdUsingGETWithHttpInfo
-     *
      * Get List by Id
      *
      * @param  int $list_id Id of the static list to retrieve records from (required)
@@ -940,36 +863,15 @@ class StaticListsApi
     public function getListByIdUsingGETWithHttpInfo($list_id)
     {
         $request = $this->getListByIdUsingGETRequest($list_id);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfStaticList');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfStaticList');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfStaticList',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getListByIdUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getListByIdUsingGETAsync
-     *
      * Get List by Id
      *
      * @param  int $list_id Id of the static list to retrieve records from (required)
@@ -988,8 +890,6 @@ class StaticListsApi
     }
 
     /**
-     * Operation getListByIdUsingGETAsyncWithHttpInfo
-     *
      * Get List by Id
      *
      * @param  int $list_id Id of the static list to retrieve records from (required)
@@ -1000,27 +900,7 @@ class StaticListsApi
     public function getListByIdUsingGETAsyncWithHttpInfo($list_id)
     {
         $request = $this->getListByIdUsingGETRequest($list_id);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfStaticList');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfStaticList', [$this, 'getListByIdUsingGETHandleException']);
     }
 
     /**
@@ -1078,8 +958,29 @@ class StaticListsApi
     }
 
     /**
-     * Operation getListsUsingGET
+     * Exception handler for getListsUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function getListsUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfStaticList',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Lists
      *
      * @param  int[] $id Comma-separated list of static list ids to return (optional)
@@ -1100,8 +1001,6 @@ class StaticListsApi
     }
 
     /**
-     * Operation getListsUsingGETWithHttpInfo
-     *
      * Get Lists
      *
      * @param  int[] $id Comma-separated list of static list ids to return (optional)
@@ -1118,36 +1017,15 @@ class StaticListsApi
     public function getListsUsingGETWithHttpInfo($id = null, $name = null, $program_name = null, $workspace_name = null, $batch_size = null, $next_page_token = null)
     {
         $request = $this->getListsUsingGETRequest($id, $name, $program_name, $workspace_name, $batch_size, $next_page_token);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfStaticList');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfStaticList');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfStaticList',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getListsUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getListsUsingGETAsync
-     *
      * Get Lists
      *
      * @param  int[] $id Comma-separated list of static list ids to return (optional)
@@ -1171,8 +1049,6 @@ class StaticListsApi
     }
 
     /**
-     * Operation getListsUsingGETAsyncWithHttpInfo
-     *
      * Get Lists
      *
      * @param  int[] $id Comma-separated list of static list ids to return (optional)
@@ -1188,27 +1064,7 @@ class StaticListsApi
     public function getListsUsingGETAsyncWithHttpInfo($id = null, $name = null, $program_name = null, $workspace_name = null, $batch_size = null, $next_page_token = null)
     {
         $request = $this->getListsUsingGETRequest($id, $name, $program_name, $workspace_name, $batch_size, $next_page_token);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfStaticList');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfStaticList', [$this, 'getListsUsingGETHandleException']);
     }
 
     /**
@@ -1286,8 +1142,29 @@ class StaticListsApi
     }
 
     /**
-     * Operation removeLeadsFromListUsingDELETE
+     * Exception handler for removeLeadsFromListUsingDELETE.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function removeLeadsFromListUsingDELETEHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Remove from List
      *
      * @param  int $list_id Id of static list to remove leads from (required)
@@ -1305,8 +1182,6 @@ class StaticListsApi
     }
 
     /**
-     * Operation removeLeadsFromListUsingDELETEWithHttpInfo
-     *
      * Remove from List
      *
      * @param  int $list_id Id of static list to remove leads from (required)
@@ -1320,36 +1195,15 @@ class StaticListsApi
     public function removeLeadsFromListUsingDELETEWithHttpInfo($list_id, $list_operation_request, $id)
     {
         $request = $this->removeLeadsFromListUsingDELETERequest($list_id, $list_operation_request, $id);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->removeLeadsFromListUsingDELETEHandleException($e);
         }
     }
 
     /**
-     * Operation removeLeadsFromListUsingDELETEAsync
-     *
      * Remove from List
      *
      * @param  int $list_id Id of static list to remove leads from (required)
@@ -1370,8 +1224,6 @@ class StaticListsApi
     }
 
     /**
-     * Operation removeLeadsFromListUsingDELETEAsyncWithHttpInfo
-     *
      * Remove from List
      *
      * @param  int $list_id Id of static list to remove leads from (required)
@@ -1384,27 +1236,7 @@ class StaticListsApi
     public function removeLeadsFromListUsingDELETEAsyncWithHttpInfo($list_id, $list_operation_request, $id)
     {
         $request = $this->removeLeadsFromListUsingDELETERequest($list_id, $list_operation_request, $id);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfListOperationOutputData', [$this, 'removeLeadsFromListUsingDELETEHandleException']);
     }
 
     /**
@@ -1513,8 +1345,7 @@ class StaticListsApi
     /**
      * Make a request.
      *
-     * @param \GuzzleHttp\Psr7\Request $request
-     *   An initialized request object.
+     * @param \GuzzleHttp\Psr7\Request $request An initialized request object.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @return \Psr\Http\Message\ResponseInterface
@@ -1550,12 +1381,45 @@ class StaticListsApi
     }
 
     /**
+     * Make an async request.
+     *
+     * @param \GuzzleHttp\Psr7\Request $request An initialized request object.
+     * @param string $returnType The return type.
+     * @param callable $exceptionHandler A callback to process HTTP errors.
+     *
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
+     * @return \GuzzleHttp\Promise\PromiseInterface A promise that will return a processed response.
+     */
+    private function makeAsyncRequest(Request $request, string $returnType, callable $exceptionHandler)
+    {
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return $this->responseToReturn($response, $returnType);
+                },
+                function (RequestException $exception) use ($exceptionHandler) {
+                    $response = $exception->getResponse();
+                    $e = new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
+                        ),
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
+                    );
+                    throw $exceptionHandler($e);
+                }
+            );
+    }
+
+    /**
      * Convert a response to a return standard return array.
      *
-     * @param \Psr\Http\Message\ResponseInterface $response
-     *   A response from a request with a serialized body.
-     * @param string $returnType
-     *   The return type.
+     * @param \Psr\Http\Message\ResponseInterface $response A response from a request with a serialized body.
+     * @param string $returnType The primary return type.
      *
      * @return array
      */

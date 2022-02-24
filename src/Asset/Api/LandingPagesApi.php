@@ -118,8 +118,29 @@ class LandingPagesApi
     }
 
     /**
-     * Operation approveLandingPageUsingPOST
+     * Exception handler for approveLandingPageUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function approveLandingPageUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Approve Landing Page Draft
      *
      * @param  int $id id (required)
@@ -135,8 +156,6 @@ class LandingPagesApi
     }
 
     /**
-     * Operation approveLandingPageUsingPOSTWithHttpInfo
-     *
      * Approve Landing Page Draft
      *
      * @param  int $id id (required)
@@ -148,36 +167,15 @@ class LandingPagesApi
     public function approveLandingPageUsingPOSTWithHttpInfo($id)
     {
         $request = $this->approveLandingPageUsingPOSTRequest($id);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->approveLandingPageUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation approveLandingPageUsingPOSTAsync
-     *
      * Approve Landing Page Draft
      *
      * @param  int $id id (required)
@@ -196,8 +194,6 @@ class LandingPagesApi
     }
 
     /**
-     * Operation approveLandingPageUsingPOSTAsyncWithHttpInfo
-     *
      * Approve Landing Page Draft
      *
      * @param  int $id id (required)
@@ -208,27 +204,7 @@ class LandingPagesApi
     public function approveLandingPageUsingPOSTAsyncWithHttpInfo($id)
     {
         $request = $this->approveLandingPageUsingPOSTRequest($id);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse', [$this, 'approveLandingPageUsingPOSTHandleException']);
     }
 
     /**
@@ -286,8 +262,29 @@ class LandingPagesApi
     }
 
     /**
-     * Operation browseLandingPagesUsingGET
+     * Exception handler for browseLandingPagesUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function browseLandingPagesUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Landing Pages
      *
      * @param  string $status Status filter for draft or approved versions (optional)
@@ -306,8 +303,6 @@ class LandingPagesApi
     }
 
     /**
-     * Operation browseLandingPagesUsingGETWithHttpInfo
-     *
      * Get Landing Pages
      *
      * @param  string $status Status filter for draft or approved versions (optional)
@@ -322,36 +317,15 @@ class LandingPagesApi
     public function browseLandingPagesUsingGETWithHttpInfo($status = null, $max_return = null, $offset = null, $folder = null)
     {
         $request = $this->browseLandingPagesUsingGETRequest($status, $max_return, $offset, $folder);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->browseLandingPagesUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation browseLandingPagesUsingGETAsync
-     *
      * Get Landing Pages
      *
      * @param  string $status Status filter for draft or approved versions (optional)
@@ -373,8 +347,6 @@ class LandingPagesApi
     }
 
     /**
-     * Operation browseLandingPagesUsingGETAsyncWithHttpInfo
-     *
      * Get Landing Pages
      *
      * @param  string $status Status filter for draft or approved versions (optional)
@@ -388,27 +360,7 @@ class LandingPagesApi
     public function browseLandingPagesUsingGETAsyncWithHttpInfo($status = null, $max_return = null, $offset = null, $folder = null)
     {
         $request = $this->browseLandingPagesUsingGETRequest($status, $max_return, $offset, $folder);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse', [$this, 'browseLandingPagesUsingGETHandleException']);
     }
 
     /**
@@ -476,8 +428,29 @@ class LandingPagesApi
     }
 
     /**
-     * Operation cloneLandingPageUsingPOST
+     * Exception handler for cloneLandingPageUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function cloneLandingPageUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Clone Landing Page
      *
      * @param  int $id id (required)
@@ -494,8 +467,6 @@ class LandingPagesApi
     }
 
     /**
-     * Operation cloneLandingPageUsingPOSTWithHttpInfo
-     *
      * Clone Landing Page
      *
      * @param  int $id id (required)
@@ -508,36 +479,15 @@ class LandingPagesApi
     public function cloneLandingPageUsingPOSTWithHttpInfo($id, $clone_landing_page_request)
     {
         $request = $this->cloneLandingPageUsingPOSTRequest($id, $clone_landing_page_request);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->cloneLandingPageUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation cloneLandingPageUsingPOSTAsync
-     *
      * Clone Landing Page
      *
      * @param  int $id id (required)
@@ -557,8 +507,6 @@ class LandingPagesApi
     }
 
     /**
-     * Operation cloneLandingPageUsingPOSTAsyncWithHttpInfo
-     *
      * Clone Landing Page
      *
      * @param  int $id id (required)
@@ -570,27 +518,7 @@ class LandingPagesApi
     public function cloneLandingPageUsingPOSTAsyncWithHttpInfo($id, $clone_landing_page_request)
     {
         $request = $this->cloneLandingPageUsingPOSTRequest($id, $clone_landing_page_request);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse', [$this, 'cloneLandingPageUsingPOSTHandleException']);
     }
 
     /**
@@ -663,8 +591,29 @@ class LandingPagesApi
     }
 
     /**
-     * Operation createLandingPageUsingPOST
+     * Exception handler for createLandingPageUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function createLandingPageUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Create Landing Page
      *
      * @param  \NecLimDul\MarketoRest\Asset\Model\CreateLandingPageRequest $create_landing_page_request createLandingPageRequest (required)
@@ -680,8 +629,6 @@ class LandingPagesApi
     }
 
     /**
-     * Operation createLandingPageUsingPOSTWithHttpInfo
-     *
      * Create Landing Page
      *
      * @param  \NecLimDul\MarketoRest\Asset\Model\CreateLandingPageRequest $create_landing_page_request createLandingPageRequest (required)
@@ -693,36 +640,15 @@ class LandingPagesApi
     public function createLandingPageUsingPOSTWithHttpInfo($create_landing_page_request)
     {
         $request = $this->createLandingPageUsingPOSTRequest($create_landing_page_request);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->createLandingPageUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation createLandingPageUsingPOSTAsync
-     *
      * Create Landing Page
      *
      * @param  \NecLimDul\MarketoRest\Asset\Model\CreateLandingPageRequest $create_landing_page_request createLandingPageRequest (required)
@@ -741,8 +667,6 @@ class LandingPagesApi
     }
 
     /**
-     * Operation createLandingPageUsingPOSTAsyncWithHttpInfo
-     *
      * Create Landing Page
      *
      * @param  \NecLimDul\MarketoRest\Asset\Model\CreateLandingPageRequest $create_landing_page_request createLandingPageRequest (required)
@@ -753,27 +677,7 @@ class LandingPagesApi
     public function createLandingPageUsingPOSTAsyncWithHttpInfo($create_landing_page_request)
     {
         $request = $this->createLandingPageUsingPOSTRequest($create_landing_page_request);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse', [$this, 'createLandingPageUsingPOSTHandleException']);
     }
 
     /**
@@ -832,8 +736,29 @@ class LandingPagesApi
     }
 
     /**
-     * Operation deleteLandingPageByIdUsingPOST
+     * Exception handler for deleteLandingPageByIdUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function deleteLandingPageByIdUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Delete Landing Page
      *
      * @param  int $id id (required)
@@ -849,8 +774,6 @@ class LandingPagesApi
     }
 
     /**
-     * Operation deleteLandingPageByIdUsingPOSTWithHttpInfo
-     *
      * Delete Landing Page
      *
      * @param  int $id id (required)
@@ -862,36 +785,15 @@ class LandingPagesApi
     public function deleteLandingPageByIdUsingPOSTWithHttpInfo($id)
     {
         $request = $this->deleteLandingPageByIdUsingPOSTRequest($id);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->deleteLandingPageByIdUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation deleteLandingPageByIdUsingPOSTAsync
-     *
      * Delete Landing Page
      *
      * @param  int $id id (required)
@@ -910,8 +812,6 @@ class LandingPagesApi
     }
 
     /**
-     * Operation deleteLandingPageByIdUsingPOSTAsyncWithHttpInfo
-     *
      * Delete Landing Page
      *
      * @param  int $id id (required)
@@ -922,27 +822,7 @@ class LandingPagesApi
     public function deleteLandingPageByIdUsingPOSTAsyncWithHttpInfo($id)
     {
         $request = $this->deleteLandingPageByIdUsingPOSTRequest($id);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse', [$this, 'deleteLandingPageByIdUsingPOSTHandleException']);
     }
 
     /**
@@ -1000,8 +880,29 @@ class LandingPagesApi
     }
 
     /**
-     * Operation discardLandingPageByIdUsingPOST
+     * Exception handler for discardLandingPageByIdUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function discardLandingPageByIdUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Discard Landing Page Draft
      *
      * @param  int $id id (required)
@@ -1017,8 +918,6 @@ class LandingPagesApi
     }
 
     /**
-     * Operation discardLandingPageByIdUsingPOSTWithHttpInfo
-     *
      * Discard Landing Page Draft
      *
      * @param  int $id id (required)
@@ -1030,36 +929,15 @@ class LandingPagesApi
     public function discardLandingPageByIdUsingPOSTWithHttpInfo($id)
     {
         $request = $this->discardLandingPageByIdUsingPOSTRequest($id);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->discardLandingPageByIdUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation discardLandingPageByIdUsingPOSTAsync
-     *
      * Discard Landing Page Draft
      *
      * @param  int $id id (required)
@@ -1078,8 +956,6 @@ class LandingPagesApi
     }
 
     /**
-     * Operation discardLandingPageByIdUsingPOSTAsyncWithHttpInfo
-     *
      * Discard Landing Page Draft
      *
      * @param  int $id id (required)
@@ -1090,27 +966,7 @@ class LandingPagesApi
     public function discardLandingPageByIdUsingPOSTAsyncWithHttpInfo($id)
     {
         $request = $this->discardLandingPageByIdUsingPOSTRequest($id);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse', [$this, 'discardLandingPageByIdUsingPOSTHandleException']);
     }
 
     /**
@@ -1168,8 +1024,29 @@ class LandingPagesApi
     }
 
     /**
-     * Operation getLandingPageByIdUsingGET
+     * Exception handler for getLandingPageByIdUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function getLandingPageByIdUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Landing Page by Id
      *
      * @param  int $id id (required)
@@ -1186,8 +1063,6 @@ class LandingPagesApi
     }
 
     /**
-     * Operation getLandingPageByIdUsingGETWithHttpInfo
-     *
      * Get Landing Page by Id
      *
      * @param  int $id id (required)
@@ -1200,36 +1075,15 @@ class LandingPagesApi
     public function getLandingPageByIdUsingGETWithHttpInfo($id, $status = null)
     {
         $request = $this->getLandingPageByIdUsingGETRequest($id, $status);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getLandingPageByIdUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getLandingPageByIdUsingGETAsync
-     *
      * Get Landing Page by Id
      *
      * @param  int $id id (required)
@@ -1249,8 +1103,6 @@ class LandingPagesApi
     }
 
     /**
-     * Operation getLandingPageByIdUsingGETAsyncWithHttpInfo
-     *
      * Get Landing Page by Id
      *
      * @param  int $id id (required)
@@ -1262,27 +1114,7 @@ class LandingPagesApi
     public function getLandingPageByIdUsingGETAsyncWithHttpInfo($id, $status = null)
     {
         $request = $this->getLandingPageByIdUsingGETRequest($id, $status);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse', [$this, 'getLandingPageByIdUsingGETHandleException']);
     }
 
     /**
@@ -1349,8 +1181,29 @@ class LandingPagesApi
     }
 
     /**
-     * Operation getLandingPageByNameUsingGET
+     * Exception handler for getLandingPageByNameUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function getLandingPageByNameUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Landing Page by Name
      *
      * @param  string $name Name of the landing page (required)
@@ -1369,8 +1222,6 @@ class LandingPagesApi
     }
 
     /**
-     * Operation getLandingPageByNameUsingGETWithHttpInfo
-     *
      * Get Landing Page by Name
      *
      * @param  string $name Name of the landing page (required)
@@ -1385,36 +1236,15 @@ class LandingPagesApi
     public function getLandingPageByNameUsingGETWithHttpInfo($name, $status = null, $max_return = null, $offset = null)
     {
         $request = $this->getLandingPageByNameUsingGETRequest($name, $status, $max_return, $offset);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getLandingPageByNameUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getLandingPageByNameUsingGETAsync
-     *
      * Get Landing Page by Name
      *
      * @param  string $name Name of the landing page (required)
@@ -1436,8 +1266,6 @@ class LandingPagesApi
     }
 
     /**
-     * Operation getLandingPageByNameUsingGETAsyncWithHttpInfo
-     *
      * Get Landing Page by Name
      *
      * @param  string $name Name of the landing page (required)
@@ -1451,27 +1279,7 @@ class LandingPagesApi
     public function getLandingPageByNameUsingGETAsyncWithHttpInfo($name, $status = null, $max_return = null, $offset = null)
     {
         $request = $this->getLandingPageByNameUsingGETRequest($name, $status, $max_return, $offset);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse', [$this, 'getLandingPageByNameUsingGETHandleException']);
     }
 
     /**
@@ -1545,8 +1353,29 @@ class LandingPagesApi
     }
 
     /**
-     * Operation getLandingPageFullContentUsingGET
+     * Exception handler for getLandingPageFullContentUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function getLandingPageFullContentUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfGetLandingPageFullContentResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Landing Page Full Content
      *
      * @param  int $id Id of the landing page. (required)
@@ -1564,8 +1393,6 @@ class LandingPagesApi
     }
 
     /**
-     * Operation getLandingPageFullContentUsingGETWithHttpInfo
-     *
      * Get Landing Page Full Content
      *
      * @param  int $id Id of the landing page. (required)
@@ -1579,36 +1406,15 @@ class LandingPagesApi
     public function getLandingPageFullContentUsingGETWithHttpInfo($id, $lead_id = null, $segmentation = null)
     {
         $request = $this->getLandingPageFullContentUsingGETRequest($id, $lead_id, $segmentation);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfGetLandingPageFullContentResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfGetLandingPageFullContentResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfGetLandingPageFullContentResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getLandingPageFullContentUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getLandingPageFullContentUsingGETAsync
-     *
      * Get Landing Page Full Content
      *
      * @param  int $id Id of the landing page. (required)
@@ -1629,8 +1435,6 @@ class LandingPagesApi
     }
 
     /**
-     * Operation getLandingPageFullContentUsingGETAsyncWithHttpInfo
-     *
      * Get Landing Page Full Content
      *
      * @param  int $id Id of the landing page. (required)
@@ -1643,27 +1447,7 @@ class LandingPagesApi
     public function getLandingPageFullContentUsingGETAsyncWithHttpInfo($id, $lead_id = null, $segmentation = null)
     {
         $request = $this->getLandingPageFullContentUsingGETRequest($id, $lead_id, $segmentation);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfGetLandingPageFullContentResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfGetLandingPageFullContentResponse', [$this, 'getLandingPageFullContentUsingGETHandleException']);
     }
 
     /**
@@ -1735,8 +1519,29 @@ class LandingPagesApi
     }
 
     /**
-     * Operation getVariablesUsingGET
+     * Exception handler for getVariablesUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function getVariablesUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageVariableResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Landing Page Variables
      *
      * @param  int $id Id of the landing page (required)
@@ -1753,8 +1558,6 @@ class LandingPagesApi
     }
 
     /**
-     * Operation getVariablesUsingGETWithHttpInfo
-     *
      * Get Landing Page Variables
      *
      * @param  int $id Id of the landing page (required)
@@ -1767,36 +1570,15 @@ class LandingPagesApi
     public function getVariablesUsingGETWithHttpInfo($id, $status = null)
     {
         $request = $this->getVariablesUsingGETRequest($id, $status);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageVariableResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageVariableResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageVariableResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getVariablesUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getVariablesUsingGETAsync
-     *
      * Get Landing Page Variables
      *
      * @param  int $id Id of the landing page (required)
@@ -1816,8 +1598,6 @@ class LandingPagesApi
     }
 
     /**
-     * Operation getVariablesUsingGETAsyncWithHttpInfo
-     *
      * Get Landing Page Variables
      *
      * @param  int $id Id of the landing page (required)
@@ -1829,27 +1609,7 @@ class LandingPagesApi
     public function getVariablesUsingGETAsyncWithHttpInfo($id, $status = null)
     {
         $request = $this->getVariablesUsingGETRequest($id, $status);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageVariableResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageVariableResponse', [$this, 'getVariablesUsingGETHandleException']);
     }
 
     /**
@@ -1916,8 +1676,29 @@ class LandingPagesApi
     }
 
     /**
-     * Operation unapproveLandingPageByIdUsingPOST
+     * Exception handler for unapproveLandingPageByIdUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function unapproveLandingPageByIdUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Unapprove Landing Page
      *
      * @param  int $id id (required)
@@ -1933,8 +1714,6 @@ class LandingPagesApi
     }
 
     /**
-     * Operation unapproveLandingPageByIdUsingPOSTWithHttpInfo
-     *
      * Unapprove Landing Page
      *
      * @param  int $id id (required)
@@ -1946,36 +1725,15 @@ class LandingPagesApi
     public function unapproveLandingPageByIdUsingPOSTWithHttpInfo($id)
     {
         $request = $this->unapproveLandingPageByIdUsingPOSTRequest($id);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->unapproveLandingPageByIdUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation unapproveLandingPageByIdUsingPOSTAsync
-     *
      * Unapprove Landing Page
      *
      * @param  int $id id (required)
@@ -1994,8 +1752,6 @@ class LandingPagesApi
     }
 
     /**
-     * Operation unapproveLandingPageByIdUsingPOSTAsyncWithHttpInfo
-     *
      * Unapprove Landing Page
      *
      * @param  int $id id (required)
@@ -2006,27 +1762,7 @@ class LandingPagesApi
     public function unapproveLandingPageByIdUsingPOSTAsyncWithHttpInfo($id)
     {
         $request = $this->unapproveLandingPageByIdUsingPOSTRequest($id);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse', [$this, 'unapproveLandingPageByIdUsingPOSTHandleException']);
     }
 
     /**
@@ -2084,8 +1820,29 @@ class LandingPagesApi
     }
 
     /**
-     * Operation updateLandingPageUsingPOST
+     * Exception handler for updateLandingPageUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function updateLandingPageUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Update Landing Page Metadata
      *
      * @param  int $id id (required)
@@ -2102,8 +1859,6 @@ class LandingPagesApi
     }
 
     /**
-     * Operation updateLandingPageUsingPOSTWithHttpInfo
-     *
      * Update Landing Page Metadata
      *
      * @param  int $id id (required)
@@ -2116,36 +1871,15 @@ class LandingPagesApi
     public function updateLandingPageUsingPOSTWithHttpInfo($id, $update_landing_page_request)
     {
         $request = $this->updateLandingPageUsingPOSTRequest($id, $update_landing_page_request);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->updateLandingPageUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation updateLandingPageUsingPOSTAsync
-     *
      * Update Landing Page Metadata
      *
      * @param  int $id id (required)
@@ -2165,8 +1899,6 @@ class LandingPagesApi
     }
 
     /**
-     * Operation updateLandingPageUsingPOSTAsyncWithHttpInfo
-     *
      * Update Landing Page Metadata
      *
      * @param  int $id id (required)
@@ -2178,27 +1910,7 @@ class LandingPagesApi
     public function updateLandingPageUsingPOSTAsyncWithHttpInfo($id, $update_landing_page_request)
     {
         $request = $this->updateLandingPageUsingPOSTRequest($id, $update_landing_page_request);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageResponse', [$this, 'updateLandingPageUsingPOSTHandleException']);
     }
 
     /**
@@ -2271,8 +1983,29 @@ class LandingPagesApi
     }
 
     /**
-     * Operation updateLandingPageVariableUsingPOST
+     * Exception handler for updateLandingPageVariableUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function updateLandingPageVariableUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageVariableResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Update Landing Page Variable
      *
      * @param  int $id id (required)
@@ -2290,8 +2023,6 @@ class LandingPagesApi
     }
 
     /**
-     * Operation updateLandingPageVariableUsingPOSTWithHttpInfo
-     *
      * Update Landing Page Variable
      *
      * @param  int $id id (required)
@@ -2305,36 +2036,15 @@ class LandingPagesApi
     public function updateLandingPageVariableUsingPOSTWithHttpInfo($id, $variable_id, $value)
     {
         $request = $this->updateLandingPageVariableUsingPOSTRequest($id, $variable_id, $value);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageVariableResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageVariableResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageVariableResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->updateLandingPageVariableUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation updateLandingPageVariableUsingPOSTAsync
-     *
      * Update Landing Page Variable
      *
      * @param  int $id id (required)
@@ -2355,8 +2065,6 @@ class LandingPagesApi
     }
 
     /**
-     * Operation updateLandingPageVariableUsingPOSTAsyncWithHttpInfo
-     *
      * Update Landing Page Variable
      *
      * @param  int $id id (required)
@@ -2369,27 +2077,7 @@ class LandingPagesApi
     public function updateLandingPageVariableUsingPOSTAsyncWithHttpInfo($id, $variable_id, $value)
     {
         $request = $this->updateLandingPageVariableUsingPOSTRequest($id, $variable_id, $value);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageVariableResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageVariableResponse', [$this, 'updateLandingPageVariableUsingPOSTHandleException']);
     }
 
     /**
@@ -2495,8 +2183,7 @@ class LandingPagesApi
     /**
      * Make a request.
      *
-     * @param \GuzzleHttp\Psr7\Request $request
-     *   An initialized request object.
+     * @param \GuzzleHttp\Psr7\Request $request An initialized request object.
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @return \Psr\Http\Message\ResponseInterface
@@ -2532,12 +2219,45 @@ class LandingPagesApi
     }
 
     /**
+     * Make an async request.
+     *
+     * @param \GuzzleHttp\Psr7\Request $request An initialized request object.
+     * @param string $returnType The return type.
+     * @param callable $exceptionHandler A callback to process HTTP errors.
+     *
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
+     * @return \GuzzleHttp\Promise\PromiseInterface A promise that will return a processed response.
+     */
+    private function makeAsyncRequest(Request $request, string $returnType, callable $exceptionHandler)
+    {
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return $this->responseToReturn($response, $returnType);
+                },
+                function (RequestException $exception) use ($exceptionHandler) {
+                    $response = $exception->getResponse();
+                    $e = new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
+                        ),
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
+                    );
+                    throw $exceptionHandler($e);
+                }
+            );
+    }
+
+    /**
      * Convert a response to a return standard return array.
      *
-     * @param \Psr\Http\Message\ResponseInterface $response
-     *   A response from a request with a serialized body.
-     * @param string $returnType
-     *   The return type.
+     * @param \Psr\Http\Message\ResponseInterface $response A response from a request with a serialized body.
+     * @param string $returnType The primary return type.
      *
      * @return array
      */

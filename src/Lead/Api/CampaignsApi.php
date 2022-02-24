@@ -118,8 +118,29 @@ class CampaignsApi
     }
 
     /**
-     * Operation getCampaignByIdUsingGET
+     * Exception handler for getCampaignByIdUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function getCampaignByIdUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Campaign By Id
      *
      * @param  int $campaign_id campaignId (required)
@@ -135,8 +156,6 @@ class CampaignsApi
     }
 
     /**
-     * Operation getCampaignByIdUsingGETWithHttpInfo
-     *
      * Get Campaign By Id
      *
      * @param  int $campaign_id campaignId (required)
@@ -148,36 +167,15 @@ class CampaignsApi
     public function getCampaignByIdUsingGETWithHttpInfo($campaign_id)
     {
         $request = $this->getCampaignByIdUsingGETRequest($campaign_id);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getCampaignByIdUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getCampaignByIdUsingGETAsync
-     *
      * Get Campaign By Id
      *
      * @param  int $campaign_id campaignId (required)
@@ -196,8 +194,6 @@ class CampaignsApi
     }
 
     /**
-     * Operation getCampaignByIdUsingGETAsyncWithHttpInfo
-     *
      * Get Campaign By Id
      *
      * @param  int $campaign_id campaignId (required)
@@ -208,27 +204,7 @@ class CampaignsApi
     public function getCampaignByIdUsingGETAsyncWithHttpInfo($campaign_id)
     {
         $request = $this->getCampaignByIdUsingGETRequest($campaign_id);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign', [$this, 'getCampaignByIdUsingGETHandleException']);
     }
 
     /**
@@ -286,8 +262,29 @@ class CampaignsApi
     }
 
     /**
-     * Operation getCampaignsUsingGET
+     * Exception handler for getCampaignsUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function getCampaignsUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Campaigns
      *
      * @param  int[] $id Comma-separated list of campaign ids to return records for (optional)
@@ -309,8 +306,6 @@ class CampaignsApi
     }
 
     /**
-     * Operation getCampaignsUsingGETWithHttpInfo
-     *
      * Get Campaigns
      *
      * @param  int[] $id Comma-separated list of campaign ids to return records for (optional)
@@ -328,36 +323,15 @@ class CampaignsApi
     public function getCampaignsUsingGETWithHttpInfo($id = null, $name = null, $program_name = null, $workspace_name = null, $batch_size = null, $next_page_token = null, $is_triggerable = null)
     {
         $request = $this->getCampaignsUsingGETRequest($id, $name, $program_name, $workspace_name, $batch_size, $next_page_token, $is_triggerable);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getCampaignsUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getCampaignsUsingGETAsync
-     *
      * Get Campaigns
      *
      * @param  int[] $id Comma-separated list of campaign ids to return records for (optional)
@@ -382,8 +356,6 @@ class CampaignsApi
     }
 
     /**
-     * Operation getCampaignsUsingGETAsyncWithHttpInfo
-     *
      * Get Campaigns
      *
      * @param  int[] $id Comma-separated list of campaign ids to return records for (optional)
@@ -400,27 +372,7 @@ class CampaignsApi
     public function getCampaignsUsingGETAsyncWithHttpInfo($id = null, $name = null, $program_name = null, $workspace_name = null, $batch_size = null, $next_page_token = null, $is_triggerable = null)
     {
         $request = $this->getCampaignsUsingGETRequest($id, $name, $program_name, $workspace_name, $batch_size, $next_page_token, $is_triggerable);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign', [$this, 'getCampaignsUsingGETHandleException']);
     }
 
     /**
@@ -503,8 +455,29 @@ class CampaignsApi
     }
 
     /**
-     * Operation scheduleCampaignUsingPOST
+     * Exception handler for scheduleCampaignUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function scheduleCampaignUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Schedule Campaign
      *
      * @param  int $campaign_id Id of the batch campaign to schedule. (required)
@@ -521,8 +494,6 @@ class CampaignsApi
     }
 
     /**
-     * Operation scheduleCampaignUsingPOSTWithHttpInfo
-     *
      * Schedule Campaign
      *
      * @param  int $campaign_id Id of the batch campaign to schedule. (required)
@@ -535,36 +506,15 @@ class CampaignsApi
     public function scheduleCampaignUsingPOSTWithHttpInfo($campaign_id, $schedule_campaign_request = null)
     {
         $request = $this->scheduleCampaignUsingPOSTRequest($campaign_id, $schedule_campaign_request);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->scheduleCampaignUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation scheduleCampaignUsingPOSTAsync
-     *
      * Schedule Campaign
      *
      * @param  int $campaign_id Id of the batch campaign to schedule. (required)
@@ -584,8 +534,6 @@ class CampaignsApi
     }
 
     /**
-     * Operation scheduleCampaignUsingPOSTAsyncWithHttpInfo
-     *
      * Schedule Campaign
      *
      * @param  int $campaign_id Id of the batch campaign to schedule. (required)
@@ -597,27 +545,7 @@ class CampaignsApi
     public function scheduleCampaignUsingPOSTAsyncWithHttpInfo($campaign_id, $schedule_campaign_request = null)
     {
         $request = $this->scheduleCampaignUsingPOSTRequest($campaign_id, $schedule_campaign_request);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign', [$this, 'scheduleCampaignUsingPOSTHandleException']);
     }
 
     /**
@@ -687,8 +615,29 @@ class CampaignsApi
     }
 
     /**
-     * Operation triggerCampaignUsingPOST
+     * Exception handler for triggerCampaignUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function triggerCampaignUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Request Campaign
      *
      * @param  int $campaign_id The id of the campaign to trigger (required)
@@ -705,8 +654,6 @@ class CampaignsApi
     }
 
     /**
-     * Operation triggerCampaignUsingPOSTWithHttpInfo
-     *
      * Request Campaign
      *
      * @param  int $campaign_id The id of the campaign to trigger (required)
@@ -719,36 +666,15 @@ class CampaignsApi
     public function triggerCampaignUsingPOSTWithHttpInfo($campaign_id, $trigger_campaign_request = null)
     {
         $request = $this->triggerCampaignUsingPOSTRequest($campaign_id, $trigger_campaign_request);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->triggerCampaignUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation triggerCampaignUsingPOSTAsync
-     *
      * Request Campaign
      *
      * @param  int $campaign_id The id of the campaign to trigger (required)
@@ -768,8 +694,6 @@ class CampaignsApi
     }
 
     /**
-     * Operation triggerCampaignUsingPOSTAsyncWithHttpInfo
-     *
      * Request Campaign
      *
      * @param  int $campaign_id The id of the campaign to trigger (required)
@@ -781,27 +705,7 @@ class CampaignsApi
     public function triggerCampaignUsingPOSTAsyncWithHttpInfo($campaign_id, $trigger_campaign_request = null)
     {
         $request = $this->triggerCampaignUsingPOSTRequest($campaign_id, $trigger_campaign_request);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign', [$this, 'triggerCampaignUsingPOSTHandleException']);
     }
 
     /**
@@ -892,8 +796,7 @@ class CampaignsApi
     /**
      * Make a request.
      *
-     * @param \GuzzleHttp\Psr7\Request $request
-     *   An initialized request object.
+     * @param \GuzzleHttp\Psr7\Request $request An initialized request object.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @return \Psr\Http\Message\ResponseInterface
@@ -929,12 +832,45 @@ class CampaignsApi
     }
 
     /**
+     * Make an async request.
+     *
+     * @param \GuzzleHttp\Psr7\Request $request An initialized request object.
+     * @param string $returnType The return type.
+     * @param callable $exceptionHandler A callback to process HTTP errors.
+     *
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
+     * @return \GuzzleHttp\Promise\PromiseInterface A promise that will return a processed response.
+     */
+    private function makeAsyncRequest(Request $request, string $returnType, callable $exceptionHandler)
+    {
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return $this->responseToReturn($response, $returnType);
+                },
+                function (RequestException $exception) use ($exceptionHandler) {
+                    $response = $exception->getResponse();
+                    $e = new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
+                        ),
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
+                    );
+                    throw $exceptionHandler($e);
+                }
+            );
+    }
+
+    /**
      * Convert a response to a return standard return array.
      *
-     * @param \Psr\Http\Message\ResponseInterface $response
-     *   A response from a request with a serialized body.
-     * @param string $returnType
-     *   The return type.
+     * @param \Psr\Http\Message\ResponseInterface $response A response from a request with a serialized body.
+     * @param string $returnType The primary return type.
      *
      * @return array
      */

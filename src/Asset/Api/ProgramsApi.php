@@ -118,8 +118,29 @@ class ProgramsApi
     }
 
     /**
-     * Operation approveProgramUsingPOST
+     * Exception handler for approveProgramUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function approveProgramUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Approve Program
      *
      * @param  int $id id (required)
@@ -135,8 +156,6 @@ class ProgramsApi
     }
 
     /**
-     * Operation approveProgramUsingPOSTWithHttpInfo
-     *
      * Approve Program
      *
      * @param  int $id id (required)
@@ -148,36 +167,15 @@ class ProgramsApi
     public function approveProgramUsingPOSTWithHttpInfo($id)
     {
         $request = $this->approveProgramUsingPOSTRequest($id);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->approveProgramUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation approveProgramUsingPOSTAsync
-     *
      * Approve Program
      *
      * @param  int $id id (required)
@@ -196,8 +194,6 @@ class ProgramsApi
     }
 
     /**
-     * Operation approveProgramUsingPOSTAsyncWithHttpInfo
-     *
      * Approve Program
      *
      * @param  int $id id (required)
@@ -208,27 +204,7 @@ class ProgramsApi
     public function approveProgramUsingPOSTAsyncWithHttpInfo($id)
     {
         $request = $this->approveProgramUsingPOSTRequest($id);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse', [$this, 'approveProgramUsingPOSTHandleException']);
     }
 
     /**
@@ -286,8 +262,29 @@ class ProgramsApi
     }
 
     /**
-     * Operation browseProgramsUsingGET
+     * Exception handler for browseProgramsUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function browseProgramsUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfBrowseAllPrograms',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Programs
      *
      * @param  int $max_return Maximum number of channels to return.  Max 200, default 20 (optional)
@@ -307,8 +304,6 @@ class ProgramsApi
     }
 
     /**
-     * Operation browseProgramsUsingGETWithHttpInfo
-     *
      * Get Programs
      *
      * @param  int $max_return Maximum number of channels to return.  Max 200, default 20 (optional)
@@ -324,36 +319,15 @@ class ProgramsApi
     public function browseProgramsUsingGETWithHttpInfo($max_return = null, $offset = null, $filter_type = null, $earliest_updated_at = null, $latest_updated_at = null)
     {
         $request = $this->browseProgramsUsingGETRequest($max_return, $offset, $filter_type, $earliest_updated_at, $latest_updated_at);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfBrowseAllPrograms');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfBrowseAllPrograms');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfBrowseAllPrograms',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->browseProgramsUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation browseProgramsUsingGETAsync
-     *
      * Get Programs
      *
      * @param  int $max_return Maximum number of channels to return.  Max 200, default 20 (optional)
@@ -376,8 +350,6 @@ class ProgramsApi
     }
 
     /**
-     * Operation browseProgramsUsingGETAsyncWithHttpInfo
-     *
      * Get Programs
      *
      * @param  int $max_return Maximum number of channels to return.  Max 200, default 20 (optional)
@@ -392,27 +364,7 @@ class ProgramsApi
     public function browseProgramsUsingGETAsyncWithHttpInfo($max_return = null, $offset = null, $filter_type = null, $earliest_updated_at = null, $latest_updated_at = null)
     {
         $request = $this->browseProgramsUsingGETRequest($max_return, $offset, $filter_type, $earliest_updated_at, $latest_updated_at);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfBrowseAllPrograms');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfBrowseAllPrograms', [$this, 'browseProgramsUsingGETHandleException']);
     }
 
     /**
@@ -485,8 +437,29 @@ class ProgramsApi
     }
 
     /**
-     * Operation cloneProgramUsingPOST
+     * Exception handler for cloneProgramUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function cloneProgramUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Clone Program
      *
      * @param  int $id id (required)
@@ -503,8 +476,6 @@ class ProgramsApi
     }
 
     /**
-     * Operation cloneProgramUsingPOSTWithHttpInfo
-     *
      * Clone Program
      *
      * @param  int $id id (required)
@@ -517,36 +488,15 @@ class ProgramsApi
     public function cloneProgramUsingPOSTWithHttpInfo($id, $clone_program_request)
     {
         $request = $this->cloneProgramUsingPOSTRequest($id, $clone_program_request);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->cloneProgramUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation cloneProgramUsingPOSTAsync
-     *
      * Clone Program
      *
      * @param  int $id id (required)
@@ -566,8 +516,6 @@ class ProgramsApi
     }
 
     /**
-     * Operation cloneProgramUsingPOSTAsyncWithHttpInfo
-     *
      * Clone Program
      *
      * @param  int $id id (required)
@@ -579,27 +527,7 @@ class ProgramsApi
     public function cloneProgramUsingPOSTAsyncWithHttpInfo($id, $clone_program_request)
     {
         $request = $this->cloneProgramUsingPOSTRequest($id, $clone_program_request);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse', [$this, 'cloneProgramUsingPOSTHandleException']);
     }
 
     /**
@@ -672,8 +600,29 @@ class ProgramsApi
     }
 
     /**
-     * Operation createProgramUsingPOST
+     * Exception handler for createProgramUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function createProgramUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Create Program
      *
      * @param  \NecLimDul\MarketoRest\Asset\Model\CreateProgramRequest $create_program_request createProgramRequest (required)
@@ -689,8 +638,6 @@ class ProgramsApi
     }
 
     /**
-     * Operation createProgramUsingPOSTWithHttpInfo
-     *
      * Create Program
      *
      * @param  \NecLimDul\MarketoRest\Asset\Model\CreateProgramRequest $create_program_request createProgramRequest (required)
@@ -702,36 +649,15 @@ class ProgramsApi
     public function createProgramUsingPOSTWithHttpInfo($create_program_request)
     {
         $request = $this->createProgramUsingPOSTRequest($create_program_request);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->createProgramUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation createProgramUsingPOSTAsync
-     *
      * Create Program
      *
      * @param  \NecLimDul\MarketoRest\Asset\Model\CreateProgramRequest $create_program_request createProgramRequest (required)
@@ -750,8 +676,6 @@ class ProgramsApi
     }
 
     /**
-     * Operation createProgramUsingPOSTAsyncWithHttpInfo
-     *
      * Create Program
      *
      * @param  \NecLimDul\MarketoRest\Asset\Model\CreateProgramRequest $create_program_request createProgramRequest (required)
@@ -762,27 +686,7 @@ class ProgramsApi
     public function createProgramUsingPOSTAsyncWithHttpInfo($create_program_request)
     {
         $request = $this->createProgramUsingPOSTRequest($create_program_request);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse', [$this, 'createProgramUsingPOSTHandleException']);
     }
 
     /**
@@ -841,8 +745,29 @@ class ProgramsApi
     }
 
     /**
-     * Operation deleteProgramUsingPOST
+     * Exception handler for deleteProgramUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function deleteProgramUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Delete Program
      *
      * @param  int $id id (required)
@@ -858,8 +783,6 @@ class ProgramsApi
     }
 
     /**
-     * Operation deleteProgramUsingPOSTWithHttpInfo
-     *
      * Delete Program
      *
      * @param  int $id id (required)
@@ -871,36 +794,15 @@ class ProgramsApi
     public function deleteProgramUsingPOSTWithHttpInfo($id)
     {
         $request = $this->deleteProgramUsingPOSTRequest($id);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->deleteProgramUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation deleteProgramUsingPOSTAsync
-     *
      * Delete Program
      *
      * @param  int $id id (required)
@@ -919,8 +821,6 @@ class ProgramsApi
     }
 
     /**
-     * Operation deleteProgramUsingPOSTAsyncWithHttpInfo
-     *
      * Delete Program
      *
      * @param  int $id id (required)
@@ -931,27 +831,7 @@ class ProgramsApi
     public function deleteProgramUsingPOSTAsyncWithHttpInfo($id)
     {
         $request = $this->deleteProgramUsingPOSTRequest($id);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse', [$this, 'deleteProgramUsingPOSTHandleException']);
     }
 
     /**
@@ -1009,8 +889,29 @@ class ProgramsApi
     }
 
     /**
-     * Operation getProgramByIdUsingGET
+     * Exception handler for getProgramByIdUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function getProgramByIdUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Program by Id
      *
      * @param  int $id id (required)
@@ -1026,8 +927,6 @@ class ProgramsApi
     }
 
     /**
-     * Operation getProgramByIdUsingGETWithHttpInfo
-     *
      * Get Program by Id
      *
      * @param  int $id id (required)
@@ -1039,36 +938,15 @@ class ProgramsApi
     public function getProgramByIdUsingGETWithHttpInfo($id)
     {
         $request = $this->getProgramByIdUsingGETRequest($id);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getProgramByIdUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getProgramByIdUsingGETAsync
-     *
      * Get Program by Id
      *
      * @param  int $id id (required)
@@ -1087,8 +965,6 @@ class ProgramsApi
     }
 
     /**
-     * Operation getProgramByIdUsingGETAsyncWithHttpInfo
-     *
      * Get Program by Id
      *
      * @param  int $id id (required)
@@ -1099,27 +975,7 @@ class ProgramsApi
     public function getProgramByIdUsingGETAsyncWithHttpInfo($id)
     {
         $request = $this->getProgramByIdUsingGETRequest($id);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse', [$this, 'getProgramByIdUsingGETHandleException']);
     }
 
     /**
@@ -1177,8 +1033,29 @@ class ProgramsApi
     }
 
     /**
-     * Operation getProgramByNameUsingGET
+     * Exception handler for getProgramByNameUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function getProgramByNameUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Program by Name
      *
      * @param  string $name Name of the program (required)
@@ -1196,8 +1073,6 @@ class ProgramsApi
     }
 
     /**
-     * Operation getProgramByNameUsingGETWithHttpInfo
-     *
      * Get Program by Name
      *
      * @param  string $name Name of the program (required)
@@ -1211,36 +1086,15 @@ class ProgramsApi
     public function getProgramByNameUsingGETWithHttpInfo($name, $include_tags = null, $include_costs = null)
     {
         $request = $this->getProgramByNameUsingGETRequest($name, $include_tags, $include_costs);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getProgramByNameUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getProgramByNameUsingGETAsync
-     *
      * Get Program by Name
      *
      * @param  string $name Name of the program (required)
@@ -1261,8 +1115,6 @@ class ProgramsApi
     }
 
     /**
-     * Operation getProgramByNameUsingGETAsyncWithHttpInfo
-     *
      * Get Program by Name
      *
      * @param  string $name Name of the program (required)
@@ -1275,27 +1127,7 @@ class ProgramsApi
     public function getProgramByNameUsingGETAsyncWithHttpInfo($name, $include_tags = null, $include_costs = null)
     {
         $request = $this->getProgramByNameUsingGETRequest($name, $include_tags, $include_costs);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse', [$this, 'getProgramByNameUsingGETHandleException']);
     }
 
     /**
@@ -1364,8 +1196,29 @@ class ProgramsApi
     }
 
     /**
-     * Operation getProgramListByTagUsingGET
+     * Exception handler for getProgramListByTagUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function getProgramListByTagUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Programs by Tag
      *
      * @param  string $tag_type Type of program tag (required)
@@ -1384,8 +1237,6 @@ class ProgramsApi
     }
 
     /**
-     * Operation getProgramListByTagUsingGETWithHttpInfo
-     *
      * Get Programs by Tag
      *
      * @param  string $tag_type Type of program tag (required)
@@ -1400,36 +1251,15 @@ class ProgramsApi
     public function getProgramListByTagUsingGETWithHttpInfo($tag_type, $tag_value, $max_return = null, $offset = null)
     {
         $request = $this->getProgramListByTagUsingGETRequest($tag_type, $tag_value, $max_return, $offset);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getProgramListByTagUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getProgramListByTagUsingGETAsync
-     *
      * Get Programs by Tag
      *
      * @param  string $tag_type Type of program tag (required)
@@ -1451,8 +1281,6 @@ class ProgramsApi
     }
 
     /**
-     * Operation getProgramListByTagUsingGETAsyncWithHttpInfo
-     *
      * Get Programs by Tag
      *
      * @param  string $tag_type Type of program tag (required)
@@ -1466,27 +1294,7 @@ class ProgramsApi
     public function getProgramListByTagUsingGETAsyncWithHttpInfo($tag_type, $tag_value, $max_return = null, $offset = null)
     {
         $request = $this->getProgramListByTagUsingGETRequest($tag_type, $tag_value, $max_return, $offset);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse', [$this, 'getProgramListByTagUsingGETHandleException']);
     }
 
     /**
@@ -1566,8 +1374,29 @@ class ProgramsApi
     }
 
     /**
-     * Operation getSmartListByProgramIdUsingGET
+     * Exception handler for getSmartListByProgramIdUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function getSmartListByProgramIdUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponseWithRules',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Smart List by Program Id
      *
      * @param  int $program_id Id for the email program containing smart list to retrieve (required)
@@ -1584,8 +1413,6 @@ class ProgramsApi
     }
 
     /**
-     * Operation getSmartListByProgramIdUsingGETWithHttpInfo
-     *
      * Get Smart List by Program Id
      *
      * @param  int $program_id Id for the email program containing smart list to retrieve (required)
@@ -1598,36 +1425,15 @@ class ProgramsApi
     public function getSmartListByProgramIdUsingGETWithHttpInfo($program_id, $include_rules = null)
     {
         $request = $this->getSmartListByProgramIdUsingGETRequest($program_id, $include_rules);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponseWithRules');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponseWithRules');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponseWithRules',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getSmartListByProgramIdUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getSmartListByProgramIdUsingGETAsync
-     *
      * Get Smart List by Program Id
      *
      * @param  int $program_id Id for the email program containing smart list to retrieve (required)
@@ -1647,8 +1453,6 @@ class ProgramsApi
     }
 
     /**
-     * Operation getSmartListByProgramIdUsingGETAsyncWithHttpInfo
-     *
      * Get Smart List by Program Id
      *
      * @param  int $program_id Id for the email program containing smart list to retrieve (required)
@@ -1660,27 +1464,7 @@ class ProgramsApi
     public function getSmartListByProgramIdUsingGETAsyncWithHttpInfo($program_id, $include_rules = null)
     {
         $request = $this->getSmartListByProgramIdUsingGETRequest($program_id, $include_rules);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponseWithRules');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponseWithRules', [$this, 'getSmartListByProgramIdUsingGETHandleException']);
     }
 
     /**
@@ -1747,8 +1531,29 @@ class ProgramsApi
     }
 
     /**
-     * Operation unapproveProgramUsingPOST
+     * Exception handler for unapproveProgramUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function unapproveProgramUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Unapprove Program
      *
      * @param  int $id id (required)
@@ -1764,8 +1569,6 @@ class ProgramsApi
     }
 
     /**
-     * Operation unapproveProgramUsingPOSTWithHttpInfo
-     *
      * Unapprove Program
      *
      * @param  int $id id (required)
@@ -1777,36 +1580,15 @@ class ProgramsApi
     public function unapproveProgramUsingPOSTWithHttpInfo($id)
     {
         $request = $this->unapproveProgramUsingPOSTRequest($id);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->unapproveProgramUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation unapproveProgramUsingPOSTAsync
-     *
      * Unapprove Program
      *
      * @param  int $id id (required)
@@ -1825,8 +1607,6 @@ class ProgramsApi
     }
 
     /**
-     * Operation unapproveProgramUsingPOSTAsyncWithHttpInfo
-     *
      * Unapprove Program
      *
      * @param  int $id id (required)
@@ -1837,27 +1617,7 @@ class ProgramsApi
     public function unapproveProgramUsingPOSTAsyncWithHttpInfo($id)
     {
         $request = $this->unapproveProgramUsingPOSTRequest($id);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse', [$this, 'unapproveProgramUsingPOSTHandleException']);
     }
 
     /**
@@ -1915,8 +1675,29 @@ class ProgramsApi
     }
 
     /**
-     * Operation updateProgramUsingPOST
+     * Exception handler for updateProgramUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function updateProgramUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Update Program Metadata
      *
      * @param  int $id id (required)
@@ -1933,8 +1714,6 @@ class ProgramsApi
     }
 
     /**
-     * Operation updateProgramUsingPOSTWithHttpInfo
-     *
      * Update Program Metadata
      *
      * @param  int $id id (required)
@@ -1947,36 +1726,15 @@ class ProgramsApi
     public function updateProgramUsingPOSTWithHttpInfo($id, $update_program_request)
     {
         $request = $this->updateProgramUsingPOSTRequest($id, $update_program_request);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->updateProgramUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation updateProgramUsingPOSTAsync
-     *
      * Update Program Metadata
      *
      * @param  int $id id (required)
@@ -1996,8 +1754,6 @@ class ProgramsApi
     }
 
     /**
-     * Operation updateProgramUsingPOSTAsyncWithHttpInfo
-     *
      * Update Program Metadata
      *
      * @param  int $id id (required)
@@ -2009,27 +1765,7 @@ class ProgramsApi
     public function updateProgramUsingPOSTAsyncWithHttpInfo($id, $update_program_request)
     {
         $request = $this->updateProgramUsingPOSTRequest($id, $update_program_request);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse', [$this, 'updateProgramUsingPOSTHandleException']);
     }
 
     /**
@@ -2123,8 +1859,7 @@ class ProgramsApi
     /**
      * Make a request.
      *
-     * @param \GuzzleHttp\Psr7\Request $request
-     *   An initialized request object.
+     * @param \GuzzleHttp\Psr7\Request $request An initialized request object.
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @return \Psr\Http\Message\ResponseInterface
@@ -2160,12 +1895,45 @@ class ProgramsApi
     }
 
     /**
+     * Make an async request.
+     *
+     * @param \GuzzleHttp\Psr7\Request $request An initialized request object.
+     * @param string $returnType The return type.
+     * @param callable $exceptionHandler A callback to process HTTP errors.
+     *
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
+     * @return \GuzzleHttp\Promise\PromiseInterface A promise that will return a processed response.
+     */
+    private function makeAsyncRequest(Request $request, string $returnType, callable $exceptionHandler)
+    {
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return $this->responseToReturn($response, $returnType);
+                },
+                function (RequestException $exception) use ($exceptionHandler) {
+                    $response = $exception->getResponse();
+                    $e = new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
+                        ),
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
+                    );
+                    throw $exceptionHandler($e);
+                }
+            );
+    }
+
+    /**
      * Convert a response to a return standard return array.
      *
-     * @param \Psr\Http\Message\ResponseInterface $response
-     *   A response from a request with a serialized body.
-     * @param string $returnType
-     *   The return type.
+     * @param \Psr\Http\Message\ResponseInterface $response A response from a request with a serialized body.
+     * @param string $returnType The primary return type.
      *
      * @return array
      */

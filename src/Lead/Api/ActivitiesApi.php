@@ -118,8 +118,29 @@ class ActivitiesApi
     }
 
     /**
-     * Operation addCustomActivityUsingPOST
+     * Exception handler for addCustomActivityUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function addCustomActivityUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivity',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Add Custom Activities
      *
      * @param  \NecLimDul\MarketoRest\Lead\Model\CustomActivityRequest $custom_activity_request customActivityRequest (required)
@@ -135,8 +156,6 @@ class ActivitiesApi
     }
 
     /**
-     * Operation addCustomActivityUsingPOSTWithHttpInfo
-     *
      * Add Custom Activities
      *
      * @param  \NecLimDul\MarketoRest\Lead\Model\CustomActivityRequest $custom_activity_request customActivityRequest (required)
@@ -148,36 +167,15 @@ class ActivitiesApi
     public function addCustomActivityUsingPOSTWithHttpInfo($custom_activity_request)
     {
         $request = $this->addCustomActivityUsingPOSTRequest($custom_activity_request);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivity');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivity');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivity',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->addCustomActivityUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation addCustomActivityUsingPOSTAsync
-     *
      * Add Custom Activities
      *
      * @param  \NecLimDul\MarketoRest\Lead\Model\CustomActivityRequest $custom_activity_request customActivityRequest (required)
@@ -196,8 +194,6 @@ class ActivitiesApi
     }
 
     /**
-     * Operation addCustomActivityUsingPOSTAsyncWithHttpInfo
-     *
      * Add Custom Activities
      *
      * @param  \NecLimDul\MarketoRest\Lead\Model\CustomActivityRequest $custom_activity_request customActivityRequest (required)
@@ -208,27 +204,7 @@ class ActivitiesApi
     public function addCustomActivityUsingPOSTAsyncWithHttpInfo($custom_activity_request)
     {
         $request = $this->addCustomActivityUsingPOSTRequest($custom_activity_request);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivity');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivity', [$this, 'addCustomActivityUsingPOSTHandleException']);
     }
 
     /**
@@ -287,8 +263,29 @@ class ActivitiesApi
     }
 
     /**
-     * Operation approveCustomActivityTypeUsingPOST
+     * Exception handler for approveCustomActivityTypeUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function approveCustomActivityTypeUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Approve Custom Activity Type
      *
      * @param  string $api_name API Name of the activity type (required)
@@ -304,8 +301,6 @@ class ActivitiesApi
     }
 
     /**
-     * Operation approveCustomActivityTypeUsingPOSTWithHttpInfo
-     *
      * Approve Custom Activity Type
      *
      * @param  string $api_name API Name of the activity type (required)
@@ -317,36 +312,15 @@ class ActivitiesApi
     public function approveCustomActivityTypeUsingPOSTWithHttpInfo($api_name)
     {
         $request = $this->approveCustomActivityTypeUsingPOSTRequest($api_name);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->approveCustomActivityTypeUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation approveCustomActivityTypeUsingPOSTAsync
-     *
      * Approve Custom Activity Type
      *
      * @param  string $api_name API Name of the activity type (required)
@@ -365,8 +339,6 @@ class ActivitiesApi
     }
 
     /**
-     * Operation approveCustomActivityTypeUsingPOSTAsyncWithHttpInfo
-     *
      * Approve Custom Activity Type
      *
      * @param  string $api_name API Name of the activity type (required)
@@ -377,27 +349,7 @@ class ActivitiesApi
     public function approveCustomActivityTypeUsingPOSTAsyncWithHttpInfo($api_name)
     {
         $request = $this->approveCustomActivityTypeUsingPOSTRequest($api_name);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType', [$this, 'approveCustomActivityTypeUsingPOSTHandleException']);
     }
 
     /**
@@ -455,8 +407,29 @@ class ActivitiesApi
     }
 
     /**
-     * Operation createCustomActivityTypeAttributesUsingPOST
+     * Exception handler for createCustomActivityTypeAttributesUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function createCustomActivityTypeAttributesUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Create Custom Activity Type Attributes
      *
      * @param  string $api_name API Name of the activity type (required)
@@ -473,8 +446,6 @@ class ActivitiesApi
     }
 
     /**
-     * Operation createCustomActivityTypeAttributesUsingPOSTWithHttpInfo
-     *
      * Create Custom Activity Type Attributes
      *
      * @param  string $api_name API Name of the activity type (required)
@@ -487,36 +458,15 @@ class ActivitiesApi
     public function createCustomActivityTypeAttributesUsingPOSTWithHttpInfo($api_name, $custom_activity_type_attribute_request)
     {
         $request = $this->createCustomActivityTypeAttributesUsingPOSTRequest($api_name, $custom_activity_type_attribute_request);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->createCustomActivityTypeAttributesUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation createCustomActivityTypeAttributesUsingPOSTAsync
-     *
      * Create Custom Activity Type Attributes
      *
      * @param  string $api_name API Name of the activity type (required)
@@ -536,8 +486,6 @@ class ActivitiesApi
     }
 
     /**
-     * Operation createCustomActivityTypeAttributesUsingPOSTAsyncWithHttpInfo
-     *
      * Create Custom Activity Type Attributes
      *
      * @param  string $api_name API Name of the activity type (required)
@@ -549,27 +497,7 @@ class ActivitiesApi
     public function createCustomActivityTypeAttributesUsingPOSTAsyncWithHttpInfo($api_name, $custom_activity_type_attribute_request)
     {
         $request = $this->createCustomActivityTypeAttributesUsingPOSTRequest($api_name, $custom_activity_type_attribute_request);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType', [$this, 'createCustomActivityTypeAttributesUsingPOSTHandleException']);
     }
 
     /**
@@ -642,8 +570,29 @@ class ActivitiesApi
     }
 
     /**
-     * Operation createCustomActivityTypeUsingPOST
+     * Exception handler for createCustomActivityTypeUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function createCustomActivityTypeUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Create Custom Activity Type
      *
      * @param  \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeRequest $custom_activity_type_request customActivityTypeRequest (required)
@@ -659,8 +608,6 @@ class ActivitiesApi
     }
 
     /**
-     * Operation createCustomActivityTypeUsingPOSTWithHttpInfo
-     *
      * Create Custom Activity Type
      *
      * @param  \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeRequest $custom_activity_type_request customActivityTypeRequest (required)
@@ -672,36 +619,15 @@ class ActivitiesApi
     public function createCustomActivityTypeUsingPOSTWithHttpInfo($custom_activity_type_request)
     {
         $request = $this->createCustomActivityTypeUsingPOSTRequest($custom_activity_type_request);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->createCustomActivityTypeUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation createCustomActivityTypeUsingPOSTAsync
-     *
      * Create Custom Activity Type
      *
      * @param  \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeRequest $custom_activity_type_request customActivityTypeRequest (required)
@@ -720,8 +646,6 @@ class ActivitiesApi
     }
 
     /**
-     * Operation createCustomActivityTypeUsingPOSTAsyncWithHttpInfo
-     *
      * Create Custom Activity Type
      *
      * @param  \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeRequest $custom_activity_type_request customActivityTypeRequest (required)
@@ -732,27 +656,7 @@ class ActivitiesApi
     public function createCustomActivityTypeUsingPOSTAsyncWithHttpInfo($custom_activity_type_request)
     {
         $request = $this->createCustomActivityTypeUsingPOSTRequest($custom_activity_type_request);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType', [$this, 'createCustomActivityTypeUsingPOSTHandleException']);
     }
 
     /**
@@ -811,8 +715,29 @@ class ActivitiesApi
     }
 
     /**
-     * Operation deleteCustomActivityTypeAttributesUsingPOST
+     * Exception handler for deleteCustomActivityTypeAttributesUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function deleteCustomActivityTypeAttributesUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Delete Custom Activity Type Attributes
      *
      * @param  string $api_name API Name of the activity type (required)
@@ -829,8 +754,6 @@ class ActivitiesApi
     }
 
     /**
-     * Operation deleteCustomActivityTypeAttributesUsingPOSTWithHttpInfo
-     *
      * Delete Custom Activity Type Attributes
      *
      * @param  string $api_name API Name of the activity type (required)
@@ -843,36 +766,15 @@ class ActivitiesApi
     public function deleteCustomActivityTypeAttributesUsingPOSTWithHttpInfo($api_name, $custom_activity_type_attribute_request)
     {
         $request = $this->deleteCustomActivityTypeAttributesUsingPOSTRequest($api_name, $custom_activity_type_attribute_request);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->deleteCustomActivityTypeAttributesUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation deleteCustomActivityTypeAttributesUsingPOSTAsync
-     *
      * Delete Custom Activity Type Attributes
      *
      * @param  string $api_name API Name of the activity type (required)
@@ -892,8 +794,6 @@ class ActivitiesApi
     }
 
     /**
-     * Operation deleteCustomActivityTypeAttributesUsingPOSTAsyncWithHttpInfo
-     *
      * Delete Custom Activity Type Attributes
      *
      * @param  string $api_name API Name of the activity type (required)
@@ -905,27 +805,7 @@ class ActivitiesApi
     public function deleteCustomActivityTypeAttributesUsingPOSTAsyncWithHttpInfo($api_name, $custom_activity_type_attribute_request)
     {
         $request = $this->deleteCustomActivityTypeAttributesUsingPOSTRequest($api_name, $custom_activity_type_attribute_request);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType', [$this, 'deleteCustomActivityTypeAttributesUsingPOSTHandleException']);
     }
 
     /**
@@ -998,8 +878,29 @@ class ActivitiesApi
     }
 
     /**
-     * Operation deleteCustomActivityTypeUsingPOST
+     * Exception handler for deleteCustomActivityTypeUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function deleteCustomActivityTypeUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Delete Custom Activity Type
      *
      * @param  string $api_name API Name of the activity type (required)
@@ -1015,8 +916,6 @@ class ActivitiesApi
     }
 
     /**
-     * Operation deleteCustomActivityTypeUsingPOSTWithHttpInfo
-     *
      * Delete Custom Activity Type
      *
      * @param  string $api_name API Name of the activity type (required)
@@ -1028,36 +927,15 @@ class ActivitiesApi
     public function deleteCustomActivityTypeUsingPOSTWithHttpInfo($api_name)
     {
         $request = $this->deleteCustomActivityTypeUsingPOSTRequest($api_name);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->deleteCustomActivityTypeUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation deleteCustomActivityTypeUsingPOSTAsync
-     *
      * Delete Custom Activity Type
      *
      * @param  string $api_name API Name of the activity type (required)
@@ -1076,8 +954,6 @@ class ActivitiesApi
     }
 
     /**
-     * Operation deleteCustomActivityTypeUsingPOSTAsyncWithHttpInfo
-     *
      * Delete Custom Activity Type
      *
      * @param  string $api_name API Name of the activity type (required)
@@ -1088,27 +964,7 @@ class ActivitiesApi
     public function deleteCustomActivityTypeUsingPOSTAsyncWithHttpInfo($api_name)
     {
         $request = $this->deleteCustomActivityTypeUsingPOSTRequest($api_name);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType', [$this, 'deleteCustomActivityTypeUsingPOSTHandleException']);
     }
 
     /**
@@ -1166,8 +1022,29 @@ class ActivitiesApi
     }
 
     /**
-     * Operation describeCustomActivityTypeUsingGET
+     * Exception handler for describeCustomActivityTypeUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function describeCustomActivityTypeUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Describe Custom Activity Type
      *
      * @param  string $api_name API Name of the activity type (required)
@@ -1184,8 +1061,6 @@ class ActivitiesApi
     }
 
     /**
-     * Operation describeCustomActivityTypeUsingGETWithHttpInfo
-     *
      * Describe Custom Activity Type
      *
      * @param  string $api_name API Name of the activity type (required)
@@ -1198,36 +1073,15 @@ class ActivitiesApi
     public function describeCustomActivityTypeUsingGETWithHttpInfo($api_name, $draft = null)
     {
         $request = $this->describeCustomActivityTypeUsingGETRequest($api_name, $draft);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->describeCustomActivityTypeUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation describeCustomActivityTypeUsingGETAsync
-     *
      * Describe Custom Activity Type
      *
      * @param  string $api_name API Name of the activity type (required)
@@ -1247,8 +1101,6 @@ class ActivitiesApi
     }
 
     /**
-     * Operation describeCustomActivityTypeUsingGETAsyncWithHttpInfo
-     *
      * Describe Custom Activity Type
      *
      * @param  string $api_name API Name of the activity type (required)
@@ -1260,27 +1112,7 @@ class ActivitiesApi
     public function describeCustomActivityTypeUsingGETAsyncWithHttpInfo($api_name, $draft = null)
     {
         $request = $this->describeCustomActivityTypeUsingGETRequest($api_name, $draft);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType', [$this, 'describeCustomActivityTypeUsingGETHandleException']);
     }
 
     /**
@@ -1347,8 +1179,29 @@ class ActivitiesApi
     }
 
     /**
-     * Operation discardDraftofCustomActivityTypeUsingPOST
+     * Exception handler for discardDraftofCustomActivityTypeUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function discardDraftofCustomActivityTypeUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Discard Custom Activity Type Draft
      *
      * @param  string $api_name API Name of the activity type (required)
@@ -1364,8 +1217,6 @@ class ActivitiesApi
     }
 
     /**
-     * Operation discardDraftofCustomActivityTypeUsingPOSTWithHttpInfo
-     *
      * Discard Custom Activity Type Draft
      *
      * @param  string $api_name API Name of the activity type (required)
@@ -1377,36 +1228,15 @@ class ActivitiesApi
     public function discardDraftofCustomActivityTypeUsingPOSTWithHttpInfo($api_name)
     {
         $request = $this->discardDraftofCustomActivityTypeUsingPOSTRequest($api_name);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->discardDraftofCustomActivityTypeUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation discardDraftofCustomActivityTypeUsingPOSTAsync
-     *
      * Discard Custom Activity Type Draft
      *
      * @param  string $api_name API Name of the activity type (required)
@@ -1425,8 +1255,6 @@ class ActivitiesApi
     }
 
     /**
-     * Operation discardDraftofCustomActivityTypeUsingPOSTAsyncWithHttpInfo
-     *
      * Discard Custom Activity Type Draft
      *
      * @param  string $api_name API Name of the activity type (required)
@@ -1437,27 +1265,7 @@ class ActivitiesApi
     public function discardDraftofCustomActivityTypeUsingPOSTAsyncWithHttpInfo($api_name)
     {
         $request = $this->discardDraftofCustomActivityTypeUsingPOSTRequest($api_name);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType', [$this, 'discardDraftofCustomActivityTypeUsingPOSTHandleException']);
     }
 
     /**
@@ -1515,8 +1323,29 @@ class ActivitiesApi
     }
 
     /**
-     * Operation getActivitiesPagingTokenUsingGET
+     * Exception handler for getActivitiesPagingTokenUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function getActivitiesPagingTokenUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfVoid',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Paging Token
      *
      * @param  \DateTime $since_datetime Earliest datetime to retrieve activities from (required)
@@ -1532,8 +1361,6 @@ class ActivitiesApi
     }
 
     /**
-     * Operation getActivitiesPagingTokenUsingGETWithHttpInfo
-     *
      * Get Paging Token
      *
      * @param  \DateTime $since_datetime Earliest datetime to retrieve activities from (required)
@@ -1545,36 +1372,15 @@ class ActivitiesApi
     public function getActivitiesPagingTokenUsingGETWithHttpInfo($since_datetime)
     {
         $request = $this->getActivitiesPagingTokenUsingGETRequest($since_datetime);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfVoid');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfVoid');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfVoid',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getActivitiesPagingTokenUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getActivitiesPagingTokenUsingGETAsync
-     *
      * Get Paging Token
      *
      * @param  \DateTime $since_datetime Earliest datetime to retrieve activities from (required)
@@ -1593,8 +1399,6 @@ class ActivitiesApi
     }
 
     /**
-     * Operation getActivitiesPagingTokenUsingGETAsyncWithHttpInfo
-     *
      * Get Paging Token
      *
      * @param  \DateTime $since_datetime Earliest datetime to retrieve activities from (required)
@@ -1605,27 +1409,7 @@ class ActivitiesApi
     public function getActivitiesPagingTokenUsingGETAsyncWithHttpInfo($since_datetime)
     {
         $request = $this->getActivitiesPagingTokenUsingGETRequest($since_datetime);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfVoid');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfVoid', [$this, 'getActivitiesPagingTokenUsingGETHandleException']);
     }
 
     /**
@@ -1684,8 +1468,29 @@ class ActivitiesApi
     }
 
     /**
-     * Operation getAllActivityTypesUsingGET
+     * Exception handler for getAllActivityTypesUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function getAllActivityTypesUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfActivityType',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Activity Types
      *
      *
@@ -1700,8 +1505,6 @@ class ActivitiesApi
     }
 
     /**
-     * Operation getAllActivityTypesUsingGETWithHttpInfo
-     *
      * Get Activity Types
      *
      *
@@ -1712,36 +1515,15 @@ class ActivitiesApi
     public function getAllActivityTypesUsingGETWithHttpInfo()
     {
         $request = $this->getAllActivityTypesUsingGETRequest();
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfActivityType');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfActivityType');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfActivityType',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getAllActivityTypesUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getAllActivityTypesUsingGETAsync
-     *
      * Get Activity Types
      *
      *
@@ -1759,8 +1541,6 @@ class ActivitiesApi
     }
 
     /**
-     * Operation getAllActivityTypesUsingGETAsyncWithHttpInfo
-     *
      * Get Activity Types
      *
      *
@@ -1770,27 +1550,7 @@ class ActivitiesApi
     public function getAllActivityTypesUsingGETAsyncWithHttpInfo()
     {
         $request = $this->getAllActivityTypesUsingGETRequest();
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfActivityType');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfActivityType', [$this, 'getAllActivityTypesUsingGETHandleException']);
     }
 
     /**
@@ -1834,8 +1594,29 @@ class ActivitiesApi
     }
 
     /**
-     * Operation getCustomActivityTypeUsingGET
+     * Exception handler for getCustomActivityTypeUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function getCustomActivityTypeUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Custom Activity Types
      *
      *
@@ -1850,8 +1631,6 @@ class ActivitiesApi
     }
 
     /**
-     * Operation getCustomActivityTypeUsingGETWithHttpInfo
-     *
      * Get Custom Activity Types
      *
      *
@@ -1862,36 +1641,15 @@ class ActivitiesApi
     public function getCustomActivityTypeUsingGETWithHttpInfo()
     {
         $request = $this->getCustomActivityTypeUsingGETRequest();
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getCustomActivityTypeUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getCustomActivityTypeUsingGETAsync
-     *
      * Get Custom Activity Types
      *
      *
@@ -1909,8 +1667,6 @@ class ActivitiesApi
     }
 
     /**
-     * Operation getCustomActivityTypeUsingGETAsyncWithHttpInfo
-     *
      * Get Custom Activity Types
      *
      *
@@ -1920,27 +1676,7 @@ class ActivitiesApi
     public function getCustomActivityTypeUsingGETAsyncWithHttpInfo()
     {
         $request = $this->getCustomActivityTypeUsingGETRequest();
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType', [$this, 'getCustomActivityTypeUsingGETHandleException']);
     }
 
     /**
@@ -1984,8 +1720,29 @@ class ActivitiesApi
     }
 
     /**
-     * Operation getDeletedLeadsUsingGET
+     * Exception handler for getDeletedLeadsUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function getDeletedLeadsUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfActivity',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Deleted Leads
      *
      * @param  string $next_page_token Token representation of a datetime returned by the Get Paging Token endpoint.  This endpoint will return activities after this datetime (required)
@@ -2002,8 +1759,6 @@ class ActivitiesApi
     }
 
     /**
-     * Operation getDeletedLeadsUsingGETWithHttpInfo
-     *
      * Get Deleted Leads
      *
      * @param  string $next_page_token Token representation of a datetime returned by the Get Paging Token endpoint.  This endpoint will return activities after this datetime (required)
@@ -2016,36 +1771,15 @@ class ActivitiesApi
     public function getDeletedLeadsUsingGETWithHttpInfo($next_page_token, $batch_size = null)
     {
         $request = $this->getDeletedLeadsUsingGETRequest($next_page_token, $batch_size);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfActivity');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfActivity');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfActivity',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getDeletedLeadsUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getDeletedLeadsUsingGETAsync
-     *
      * Get Deleted Leads
      *
      * @param  string $next_page_token Token representation of a datetime returned by the Get Paging Token endpoint.  This endpoint will return activities after this datetime (required)
@@ -2065,8 +1799,6 @@ class ActivitiesApi
     }
 
     /**
-     * Operation getDeletedLeadsUsingGETAsyncWithHttpInfo
-     *
      * Get Deleted Leads
      *
      * @param  string $next_page_token Token representation of a datetime returned by the Get Paging Token endpoint.  This endpoint will return activities after this datetime (required)
@@ -2078,27 +1810,7 @@ class ActivitiesApi
     public function getDeletedLeadsUsingGETAsyncWithHttpInfo($next_page_token, $batch_size = null)
     {
         $request = $this->getDeletedLeadsUsingGETRequest($next_page_token, $batch_size);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfActivity');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfActivity', [$this, 'getDeletedLeadsUsingGETHandleException']);
     }
 
     /**
@@ -2162,8 +1874,29 @@ class ActivitiesApi
     }
 
     /**
-     * Operation getLeadActivitiesUsingGET
+     * Exception handler for getLeadActivitiesUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function getLeadActivitiesUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfActivity',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Lead Activities
      *
      * @param  string $next_page_token Token representation of a datetime returned by the Get Paging Token endpoint.  This endpoint will return activities after this datetime (required)
@@ -2184,8 +1917,6 @@ class ActivitiesApi
     }
 
     /**
-     * Operation getLeadActivitiesUsingGETWithHttpInfo
-     *
      * Get Lead Activities
      *
      * @param  string $next_page_token Token representation of a datetime returned by the Get Paging Token endpoint.  This endpoint will return activities after this datetime (required)
@@ -2202,36 +1933,15 @@ class ActivitiesApi
     public function getLeadActivitiesUsingGETWithHttpInfo($next_page_token, $activity_type_ids, $asset_ids = null, $list_id = null, $lead_ids = null, $batch_size = null)
     {
         $request = $this->getLeadActivitiesUsingGETRequest($next_page_token, $activity_type_ids, $asset_ids, $list_id, $lead_ids, $batch_size);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfActivity');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfActivity');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfActivity',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getLeadActivitiesUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getLeadActivitiesUsingGETAsync
-     *
      * Get Lead Activities
      *
      * @param  string $next_page_token Token representation of a datetime returned by the Get Paging Token endpoint.  This endpoint will return activities after this datetime (required)
@@ -2255,8 +1965,6 @@ class ActivitiesApi
     }
 
     /**
-     * Operation getLeadActivitiesUsingGETAsyncWithHttpInfo
-     *
      * Get Lead Activities
      *
      * @param  string $next_page_token Token representation of a datetime returned by the Get Paging Token endpoint.  This endpoint will return activities after this datetime (required)
@@ -2272,27 +1980,7 @@ class ActivitiesApi
     public function getLeadActivitiesUsingGETAsyncWithHttpInfo($next_page_token, $activity_type_ids, $asset_ids = null, $list_id = null, $lead_ids = null, $batch_size = null)
     {
         $request = $this->getLeadActivitiesUsingGETRequest($next_page_token, $activity_type_ids, $asset_ids, $list_id, $lead_ids, $batch_size);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfActivity');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfActivity', [$this, 'getLeadActivitiesUsingGETHandleException']);
     }
 
     /**
@@ -2382,8 +2070,29 @@ class ActivitiesApi
     }
 
     /**
-     * Operation getLeadChangesUsingGET
+     * Exception handler for getLeadChangesUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function getLeadChangesUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadChange',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Get Lead Changes
      *
      * @param  string $next_page_token Token representation of a datetime returned by the Get Paging Token endpoint.  This endpoint will return activities after this datetime (required)
@@ -2403,8 +2112,6 @@ class ActivitiesApi
     }
 
     /**
-     * Operation getLeadChangesUsingGETWithHttpInfo
-     *
      * Get Lead Changes
      *
      * @param  string $next_page_token Token representation of a datetime returned by the Get Paging Token endpoint.  This endpoint will return activities after this datetime (required)
@@ -2420,36 +2127,15 @@ class ActivitiesApi
     public function getLeadChangesUsingGETWithHttpInfo($next_page_token, $fields, $list_id = null, $lead_ids = null, $batch_size = null)
     {
         $request = $this->getLeadChangesUsingGETRequest($next_page_token, $fields, $list_id, $lead_ids, $batch_size);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadChange');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadChange');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadChange',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->getLeadChangesUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation getLeadChangesUsingGETAsync
-     *
      * Get Lead Changes
      *
      * @param  string $next_page_token Token representation of a datetime returned by the Get Paging Token endpoint.  This endpoint will return activities after this datetime (required)
@@ -2472,8 +2158,6 @@ class ActivitiesApi
     }
 
     /**
-     * Operation getLeadChangesUsingGETAsyncWithHttpInfo
-     *
      * Get Lead Changes
      *
      * @param  string $next_page_token Token representation of a datetime returned by the Get Paging Token endpoint.  This endpoint will return activities after this datetime (required)
@@ -2488,27 +2172,7 @@ class ActivitiesApi
     public function getLeadChangesUsingGETAsyncWithHttpInfo($next_page_token, $fields, $list_id = null, $lead_ids = null, $batch_size = null)
     {
         $request = $this->getLeadChangesUsingGETRequest($next_page_token, $fields, $list_id, $lead_ids, $batch_size);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadChange');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadChange', [$this, 'getLeadChangesUsingGETHandleException']);
     }
 
     /**
@@ -2593,8 +2257,29 @@ class ActivitiesApi
     }
 
     /**
-     * Operation updateCustomActivityTypeAttributesUsingPOST
+     * Exception handler for updateCustomActivityTypeAttributesUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function updateCustomActivityTypeAttributesUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Update Custom Activity Type Attributes
      *
      * @param  string $api_name API Name of the activity type (required)
@@ -2611,8 +2296,6 @@ class ActivitiesApi
     }
 
     /**
-     * Operation updateCustomActivityTypeAttributesUsingPOSTWithHttpInfo
-     *
      * Update Custom Activity Type Attributes
      *
      * @param  string $api_name API Name of the activity type (required)
@@ -2625,36 +2308,15 @@ class ActivitiesApi
     public function updateCustomActivityTypeAttributesUsingPOSTWithHttpInfo($api_name, $custom_activity_type_attribute_request)
     {
         $request = $this->updateCustomActivityTypeAttributesUsingPOSTRequest($api_name, $custom_activity_type_attribute_request);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->updateCustomActivityTypeAttributesUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation updateCustomActivityTypeAttributesUsingPOSTAsync
-     *
      * Update Custom Activity Type Attributes
      *
      * @param  string $api_name API Name of the activity type (required)
@@ -2674,8 +2336,6 @@ class ActivitiesApi
     }
 
     /**
-     * Operation updateCustomActivityTypeAttributesUsingPOSTAsyncWithHttpInfo
-     *
      * Update Custom Activity Type Attributes
      *
      * @param  string $api_name API Name of the activity type (required)
@@ -2687,27 +2347,7 @@ class ActivitiesApi
     public function updateCustomActivityTypeAttributesUsingPOSTAsyncWithHttpInfo($api_name, $custom_activity_type_attribute_request)
     {
         $request = $this->updateCustomActivityTypeAttributesUsingPOSTRequest($api_name, $custom_activity_type_attribute_request);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType', [$this, 'updateCustomActivityTypeAttributesUsingPOSTHandleException']);
     }
 
     /**
@@ -2780,8 +2420,29 @@ class ActivitiesApi
     }
 
     /**
-     * Operation updateCustomActivityTypeUsingPOST
+     * Exception handler for updateCustomActivityTypeUsingPOST.
      *
+     * @param \NecLimDul\MarketoRest\Lead\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
+     */
+    protected function updateCustomActivityTypeUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Update Custom Activity Type
      *
      * @param  string $api_name API Name of the activity type (required)
@@ -2798,8 +2459,6 @@ class ActivitiesApi
     }
 
     /**
-     * Operation updateCustomActivityTypeUsingPOSTWithHttpInfo
-     *
      * Update Custom Activity Type
      *
      * @param  string $api_name API Name of the activity type (required)
@@ -2812,36 +2471,15 @@ class ActivitiesApi
     public function updateCustomActivityTypeUsingPOSTWithHttpInfo($api_name, $custom_activity_type_request)
     {
         $request = $this->updateCustomActivityTypeUsingPOSTRequest($api_name, $custom_activity_type_request);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->updateCustomActivityTypeUsingPOSTHandleException($e);
         }
     }
 
     /**
-     * Operation updateCustomActivityTypeUsingPOSTAsync
-     *
      * Update Custom Activity Type
      *
      * @param  string $api_name API Name of the activity type (required)
@@ -2861,8 +2499,6 @@ class ActivitiesApi
     }
 
     /**
-     * Operation updateCustomActivityTypeUsingPOSTAsyncWithHttpInfo
-     *
      * Update Custom Activity Type
      *
      * @param  string $api_name API Name of the activity type (required)
@@ -2874,27 +2510,7 @@ class ActivitiesApi
     public function updateCustomActivityTypeUsingPOSTAsyncWithHttpInfo($api_name, $custom_activity_type_request)
     {
         $request = $this->updateCustomActivityTypeUsingPOSTRequest($api_name, $custom_activity_type_request);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType', [$this, 'updateCustomActivityTypeUsingPOSTHandleException']);
     }
 
     /**
@@ -2988,8 +2604,7 @@ class ActivitiesApi
     /**
      * Make a request.
      *
-     * @param \GuzzleHttp\Psr7\Request $request
-     *   An initialized request object.
+     * @param \GuzzleHttp\Psr7\Request $request An initialized request object.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @return \Psr\Http\Message\ResponseInterface
@@ -3025,12 +2640,45 @@ class ActivitiesApi
     }
 
     /**
+     * Make an async request.
+     *
+     * @param \GuzzleHttp\Psr7\Request $request An initialized request object.
+     * @param string $returnType The return type.
+     * @param callable $exceptionHandler A callback to process HTTP errors.
+     *
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
+     * @return \GuzzleHttp\Promise\PromiseInterface A promise that will return a processed response.
+     */
+    private function makeAsyncRequest(Request $request, string $returnType, callable $exceptionHandler)
+    {
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return $this->responseToReturn($response, $returnType);
+                },
+                function (RequestException $exception) use ($exceptionHandler) {
+                    $response = $exception->getResponse();
+                    $e = new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
+                        ),
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
+                    );
+                    throw $exceptionHandler($e);
+                }
+            );
+    }
+
+    /**
      * Convert a response to a return standard return array.
      *
-     * @param \Psr\Http\Message\ResponseInterface $response
-     *   A response from a request with a serialized body.
-     * @param string $returnType
-     *   The return type.
+     * @param \Psr\Http\Message\ResponseInterface $response A response from a request with a serialized body.
+     * @param string $returnType The primary return type.
      *
      * @return array
      */

@@ -118,8 +118,29 @@ class IdentityApi
     }
 
     /**
-     * Operation identityUsingGET
+     * Exception handler for identityUsingGET.
      *
+     * @param \NecLimDul\MarketoRest\Identity\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Identity\ApiException Processed exception.
+     */
+    protected function identityUsingGETHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        '\NecLimDul\MarketoRest\Identity\Model\ResponseOfIdentity',
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
      * Identity
      *
      * @param  string $client_id Client ID from Admin &gt; Integration &gt; Launchpoint menu. (required)
@@ -138,8 +159,6 @@ class IdentityApi
     }
 
     /**
-     * Operation identityUsingGETWithHttpInfo
-     *
      * Identity
      *
      * @param  string $client_id Client ID from Admin &gt; Integration &gt; Launchpoint menu. (required)
@@ -154,36 +173,15 @@ class IdentityApi
     public function identityUsingGETWithHttpInfo($client_id, $client_secret, $grant_type, $partner_id = null)
     {
         $request = $this->identityUsingGETRequest($client_id, $client_secret, $grant_type, $partner_id);
-
         try {
             $response = $this->makeRequest($request);
-
-            switch ($response->getStatusCode()) {
-                case 200:
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Identity\Model\ResponseOfIdentity');
-            }
-
             return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Identity\Model\ResponseOfIdentity');
-
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $e->setResponseObject(
-                        $this->deserializeResponseBody(
-                            $e->getResponseBody(),
-                            '\NecLimDul\MarketoRest\Identity\Model\ResponseOfIdentity',
-                            $e->getResponseHeaders()
-                        )
-                    );
-                    break;
-            }
-            throw $e;
+            throw $this->identityUsingGETHandleException($e);
         }
     }
 
     /**
-     * Operation identityUsingGETAsync
-     *
      * Identity
      *
      * @param  string $client_id Client ID from Admin &gt; Integration &gt; Launchpoint menu. (required)
@@ -205,8 +203,6 @@ class IdentityApi
     }
 
     /**
-     * Operation identityUsingGETAsyncWithHttpInfo
-     *
      * Identity
      *
      * @param  string $client_id Client ID from Admin &gt; Integration &gt; Launchpoint menu. (required)
@@ -220,27 +216,7 @@ class IdentityApi
     public function identityUsingGETAsyncWithHttpInfo($client_id, $client_secret, $grant_type, $partner_id = null)
     {
         $request = $this->identityUsingGETRequest($client_id, $client_secret, $grant_type, $partner_id);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) {
-                    return $this->responseToReturn($response, '\NecLimDul\MarketoRest\Identity\Model\ResponseOfIdentity');
-                },
-                function (RequestException $exception) {
-                    $response = $exception->getResponse();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $response ? $response->getStatusCode() : 0,
-                            (string) $exception->getRequest()->getUri()
-                        ),
-                        (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
-                        $response ? (string) $response->getBody() : null
-                    );
-                }
-            );
+        return $this->makeAsyncRequest($request, '\NecLimDul\MarketoRest\Identity\Model\ResponseOfIdentity', [$this, 'identityUsingGETHandleException']);
     }
 
     /**
@@ -347,8 +323,7 @@ class IdentityApi
     /**
      * Make a request.
      *
-     * @param \GuzzleHttp\Psr7\Request $request
-     *   An initialized request object.
+     * @param \GuzzleHttp\Psr7\Request $request An initialized request object.
      *
      * @throws \NecLimDul\MarketoRest\Identity\ApiException on non-2xx response
      * @return \Psr\Http\Message\ResponseInterface
@@ -384,12 +359,45 @@ class IdentityApi
     }
 
     /**
+     * Make an async request.
+     *
+     * @param \GuzzleHttp\Psr7\Request $request An initialized request object.
+     * @param string $returnType The return type.
+     * @param callable $exceptionHandler A callback to process HTTP errors.
+     *
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
+     * @return \GuzzleHttp\Promise\PromiseInterface A promise that will return a processed response.
+     */
+    private function makeAsyncRequest(Request $request, string $returnType, callable $exceptionHandler)
+    {
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return $this->responseToReturn($response, $returnType);
+                },
+                function (RequestException $exception) use ($exceptionHandler) {
+                    $response = $exception->getResponse();
+                    $e = new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $response ? $response->getStatusCode() : 0,
+                            (string) $exception->getRequest()->getUri()
+                        ),
+                        (int) $exception->getCode(),
+                        $response ? $response->getHeaders() : null,
+                        $response ? (string) $response->getBody() : null
+                    );
+                    throw $exceptionHandler($e);
+                }
+            );
+    }
+
+    /**
      * Convert a response to a return standard return array.
      *
-     * @param \Psr\Http\Message\ResponseInterface $response
-     *   A response from a request with a serialized body.
-     * @param string $returnType
-     *   The return type.
+     * @param \Psr\Http\Message\ResponseInterface $response A response from a request with a serialized body.
+     * @param string $returnType The primary return type.
      *
      * @return array
      */
