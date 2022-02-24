@@ -215,14 +215,10 @@ class SmartCampaignsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function activateSmartCampaignUsingPOSTRequest($id)
+    public function activateSmartCampaignUsingPOSTRequest(
+        int $id
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling activateSmartCampaignUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/smartCampaign/{id}/activate.json';
         $queryParams = [];
@@ -364,20 +360,11 @@ class SmartCampaignsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function cloneSmartCampaignUsingPOSTRequest($id, $clone_smart_campaign_request)
+    public function cloneSmartCampaignUsingPOSTRequest(
+        int $id,
+        \NecLimDul\MarketoRest\Asset\Model\CloneSmartCampaignRequest $clone_smart_campaign_request
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling cloneSmartCampaignUsingPOST'
-            );
-        }
-        // Verify the required parameter 'clone_smart_campaign_request' is set.
-        if (!isset($clone_smart_campaign_request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $clone_smart_campaign_request when calling cloneSmartCampaignUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/smartCampaign/{id}/clone.json';
         $queryParams = [];
@@ -515,14 +502,10 @@ class SmartCampaignsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createSmartCampaignUsingPOSTRequest($create_smart_campaign_request)
+    public function createSmartCampaignUsingPOSTRequest(
+        \NecLimDul\MarketoRest\Asset\Model\CreateSmartCampaignRequest $create_smart_campaign_request
+    )
     {
-        // Verify the required parameter 'create_smart_campaign_request' is set.
-        if (!isset($create_smart_campaign_request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $create_smart_campaign_request when calling createSmartCampaignUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/smartCampaigns.json';
         $queryParams = [];
@@ -653,14 +636,10 @@ class SmartCampaignsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deactivateSmartCampaignUsingPOSTRequest($id)
+    public function deactivateSmartCampaignUsingPOSTRequest(
+        int $id
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling deactivateSmartCampaignUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/smartCampaign/{id}/deactivate.json';
         $queryParams = [];
@@ -797,14 +776,10 @@ class SmartCampaignsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteSmartCampaignUsingPOSTRequest($id)
+    public function deleteSmartCampaignUsingPOSTRequest(
+        int $id
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling deleteSmartCampaignUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/smartCampaign/{id}/delete.json';
         $queryParams = [];
@@ -966,7 +941,14 @@ class SmartCampaignsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getAllSmartCampaignsGETRequest($max_return = null, $offset = null, $folder = null, $earliest_updated_at = null, $latest_updated_at = null, $is_active = null)
+    public function getAllSmartCampaignsGETRequest(
+        int $max_return = null,
+        int $offset = null,
+        string $folder = null,
+        string $earliest_updated_at = null,
+        string $latest_updated_at = null,
+        bool $is_active = null
+    )
     {
 
         $resourcePath = '/rest/asset/v1/smartCampaigns.json';
@@ -1107,14 +1089,10 @@ class SmartCampaignsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getSmartCampaignByIdUsingGETRequest($id)
+    public function getSmartCampaignByIdUsingGETRequest(
+        int $id
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling getSmartCampaignByIdUsingGET'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/smartCampaign/{id}.json';
         $queryParams = [];
@@ -1251,14 +1229,10 @@ class SmartCampaignsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getSmartCampaignByNameUsingGETRequest($name)
+    public function getSmartCampaignByNameUsingGETRequest(
+        string $name
+    )
     {
-        // Verify the required parameter 'name' is set.
-        if (!isset($name)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $name when calling getSmartCampaignByNameUsingGET'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/smartCampaign/byName.json';
         $queryParams = [];
@@ -1398,14 +1372,11 @@ class SmartCampaignsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getSmartListBySmartCampaignIdUsingGETRequest($id, $include_rules = null)
+    public function getSmartListBySmartCampaignIdUsingGETRequest(
+        int $id,
+        bool $include_rules = null
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling getSmartListBySmartCampaignIdUsingGET'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/smartCampaign/{id}/smartList.json';
         $queryParams = [];
@@ -1552,20 +1523,11 @@ class SmartCampaignsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updateSmartCampaignUsingPOSTRequest($id, $update_smart_campaign_request)
+    public function updateSmartCampaignUsingPOSTRequest(
+        int $id,
+        \NecLimDul\MarketoRest\Asset\Model\UpdateSmartCampaignRequest $update_smart_campaign_request
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling updateSmartCampaignUsingPOST'
-            );
-        }
-        // Verify the required parameter 'update_smart_campaign_request' is set.
-        if (!isset($update_smart_campaign_request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $update_smart_campaign_request when calling updateSmartCampaignUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/smartCampaign/{id}.json';
         $queryParams = [];

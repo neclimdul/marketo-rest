@@ -215,14 +215,10 @@ class ProgramMembersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createProgramMemberFieldUsingPOSTRequest($create_lead_field_request)
+    public function createProgramMemberFieldUsingPOSTRequest(
+        \NecLimDul\MarketoRest\Lead\Model\CreateLeadFieldRequest $create_lead_field_request
+    )
     {
-        // Verify the required parameter 'create_lead_field_request' is set.
-        if (!isset($create_lead_field_request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $create_lead_field_request when calling createProgramMemberFieldUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/v1/programs/members/schema/fields.json';
         $queryParams = [];
@@ -358,20 +354,11 @@ class ProgramMembersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteProgramMemberUsingPOSTRequest($program_id, $delete_program_member_request)
+    public function deleteProgramMemberUsingPOSTRequest(
+        int $program_id,
+        \NecLimDul\MarketoRest\Lead\Model\DeleteProgramMemberRequest $delete_program_member_request
+    )
     {
-        // Verify the required parameter 'program_id' is set.
-        if (!isset($program_id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $program_id when calling deleteProgramMemberUsingPOST'
-            );
-        }
-        // Verify the required parameter 'delete_program_member_request' is set.
-        if (!isset($delete_program_member_request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $delete_program_member_request when calling deleteProgramMemberUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/v1/programs/{programId}/members/delete.json';
         $queryParams = [];
@@ -504,7 +491,8 @@ class ProgramMembersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function describeProgramMemberUsingGET2Request()
+    public function describeProgramMemberUsingGET2Request(
+    )
     {
 
         $resourcePath = '/rest/v1/programs/members/describe.json';
@@ -635,14 +623,10 @@ class ProgramMembersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getProgramMemberFieldByNameUsingGETRequest($field_api_name)
+    public function getProgramMemberFieldByNameUsingGETRequest(
+        string $field_api_name
+    )
     {
-        // Verify the required parameter 'field_api_name' is set.
-        if (!isset($field_api_name)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $field_api_name when calling getProgramMemberFieldByNameUsingGET'
-            );
-        }
 
         $resourcePath = '/rest/v1/programs/members/schema/fields/{fieldApiName}.json';
         $queryParams = [];
@@ -784,7 +768,10 @@ class ProgramMembersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getProgramMemberFieldsUsingGETRequest($batch_size = null, $next_page_token = null)
+    public function getProgramMemberFieldsUsingGETRequest(
+        int $batch_size = null,
+        string $next_page_token = null
+    )
     {
 
         $resourcePath = '/rest/v1/programs/members/schema/fields.json';
@@ -956,22 +943,19 @@ class ProgramMembersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getProgramMembersUsingGETRequest($program_id, $filter_type, $filter_values, $start_at = null, $end_at = null, $fields = null, $batch_size = null, $next_page_token = null)
+    public function getProgramMembersUsingGETRequest(
+        int $program_id,
+        string $filter_type,
+        array $filter_values,
+        string $start_at = null,
+        string $end_at = null,
+        array $fields = null,
+        int $batch_size = null,
+        string $next_page_token = null
+    )
     {
-        // Verify the required parameter 'program_id' is set.
-        if (!isset($program_id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $program_id when calling getProgramMembersUsingGET'
-            );
-        }
-        // Verify the required parameter 'filter_type' is set.
-        if (!isset($filter_type)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $filter_type when calling getProgramMembersUsingGET'
-            );
-        }
         // Verify the required parameter 'filter_values' is set.
-        if (!isset($filter_values) || (is_array($filter_values) && empty($filter_values))) {
+        if (empty($filter_values)) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $filter_values when calling getProgramMembersUsingGET'
             );
@@ -1128,20 +1112,11 @@ class ProgramMembersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function syncProgramMemberDataUsingPOSTRequest($program_id, $sync_program_member_data_request)
+    public function syncProgramMemberDataUsingPOSTRequest(
+        int $program_id,
+        \NecLimDul\MarketoRest\Lead\Model\SyncProgramMemberDataRequest $sync_program_member_data_request
+    )
     {
-        // Verify the required parameter 'program_id' is set.
-        if (!isset($program_id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $program_id when calling syncProgramMemberDataUsingPOST'
-            );
-        }
-        // Verify the required parameter 'sync_program_member_data_request' is set.
-        if (!isset($sync_program_member_data_request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $sync_program_member_data_request when calling syncProgramMemberDataUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/v1/programs/{programId}/members.json';
         $queryParams = [];
@@ -1284,20 +1259,11 @@ class ProgramMembersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function syncProgramMemberStatusUsingPOSTRequest($program_id, $sync_program_member_status_request)
+    public function syncProgramMemberStatusUsingPOSTRequest(
+        int $program_id,
+        \NecLimDul\MarketoRest\Lead\Model\SyncProgramMemberStatusRequest $sync_program_member_status_request
+    )
     {
-        // Verify the required parameter 'program_id' is set.
-        if (!isset($program_id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $program_id when calling syncProgramMemberStatusUsingPOST'
-            );
-        }
-        // Verify the required parameter 'sync_program_member_status_request' is set.
-        if (!isset($sync_program_member_status_request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $sync_program_member_status_request when calling syncProgramMemberStatusUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/v1/programs/{programId}/members/status.json';
         $queryParams = [];
@@ -1440,20 +1406,11 @@ class ProgramMembersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updateProgramMemberFieldUsingPOSTRequest($field_api_name, $update_lead_field_request)
+    public function updateProgramMemberFieldUsingPOSTRequest(
+        string $field_api_name,
+        \NecLimDul\MarketoRest\Lead\Model\UpdateLeadFieldRequest $update_lead_field_request
+    )
     {
-        // Verify the required parameter 'field_api_name' is set.
-        if (!isset($field_api_name)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $field_api_name when calling updateProgramMemberFieldUsingPOST'
-            );
-        }
-        // Verify the required parameter 'update_lead_field_request' is set.
-        if (!isset($update_lead_field_request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $update_lead_field_request when calling updateProgramMemberFieldUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/v1/programs/members/schema/fields/{fieldApiName}.json';
         $queryParams = [];

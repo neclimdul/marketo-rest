@@ -215,14 +215,10 @@ class SalesPersonsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteSalesPersonUsingPOSTRequest($delete_sales_person_request)
+    public function deleteSalesPersonUsingPOSTRequest(
+        \NecLimDul\MarketoRest\Lead\Model\DeleteSalesPersonRequest $delete_sales_person_request
+    )
     {
-        // Verify the required parameter 'delete_sales_person_request' is set.
-        if (!isset($delete_sales_person_request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $delete_sales_person_request when calling deleteSalesPersonUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/v1/salespersons/delete.json';
         $queryParams = [];
@@ -348,7 +344,8 @@ class SalesPersonsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function describeUsingGET5Request()
+    public function describeUsingGET5Request(
+    )
     {
 
         $resourcePath = '/rest/v1/salespersons/describe.json';
@@ -499,16 +496,16 @@ class SalesPersonsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getSalesPersonUsingGETRequest($filter_type, $filter_values, $fields = null, $batch_size = null, $next_page_token = null)
+    public function getSalesPersonUsingGETRequest(
+        string $filter_type,
+        array $filter_values,
+        array $fields = null,
+        int $batch_size = null,
+        string $next_page_token = null
+    )
     {
-        // Verify the required parameter 'filter_type' is set.
-        if (!isset($filter_type)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $filter_type when calling getSalesPersonUsingGET'
-            );
-        }
         // Verify the required parameter 'filter_values' is set.
-        if (!isset($filter_values) || (is_array($filter_values) && empty($filter_values))) {
+        if (empty($filter_values)) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $filter_values when calling getSalesPersonUsingGET'
             );
@@ -651,14 +648,10 @@ class SalesPersonsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function syncSalesPersonsUsingPOSTRequest($sync_sales_person_request)
+    public function syncSalesPersonsUsingPOSTRequest(
+        \NecLimDul\MarketoRest\Lead\Model\SyncSalesPersonRequest $sync_sales_person_request
+    )
     {
-        // Verify the required parameter 'sync_sales_person_request' is set.
-        if (!isset($sync_sales_person_request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $sync_sales_person_request when calling syncSalesPersonsUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/v1/salespersons.json';
         $queryParams = [];

@@ -215,14 +215,10 @@ class BulkImportProgramMembersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getImportProgramMemberFailuresUsingGETRequest($batch_id)
+    public function getImportProgramMemberFailuresUsingGETRequest(
+        int $batch_id
+    )
     {
-        // Verify the required parameter 'batch_id' is set.
-        if (!isset($batch_id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $batch_id when calling getImportProgramMemberFailuresUsingGET'
-            );
-        }
 
         $resourcePath = '/bulk/v1/program/members/import/{batchId}/failures.json';
         $queryParams = [];
@@ -359,14 +355,10 @@ class BulkImportProgramMembersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getImportProgramMemberStatusUsingGETRequest($batch_id)
+    public function getImportProgramMemberStatusUsingGETRequest(
+        int $batch_id
+    )
     {
-        // Verify the required parameter 'batch_id' is set.
-        if (!isset($batch_id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $batch_id when calling getImportProgramMemberStatusUsingGET'
-            );
-        }
 
         $resourcePath = '/bulk/v1/program/members/import/{batchId}/status.json';
         $queryParams = [];
@@ -503,14 +495,10 @@ class BulkImportProgramMembersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getImportProgramMemberWarningsUsingGETRequest($batch_id)
+    public function getImportProgramMemberWarningsUsingGETRequest(
+        int $batch_id
+    )
     {
-        // Verify the required parameter 'batch_id' is set.
-        if (!isset($batch_id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $batch_id when calling getImportProgramMemberWarningsUsingGET'
-            );
-        }
 
         $resourcePath = '/bulk/v1/program/members/import/{batchId}/warnings.json';
         $queryParams = [];
@@ -662,32 +650,13 @@ class BulkImportProgramMembersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function importProgramMemberUsingPOSTRequest($program_id, $program_member_status, $format, $file)
+    public function importProgramMemberUsingPOSTRequest(
+        string $program_id,
+        string $program_member_status,
+        string $format,
+        \SplFileObject $file
+    )
     {
-        // Verify the required parameter 'program_id' is set.
-        if (!isset($program_id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $program_id when calling importProgramMemberUsingPOST'
-            );
-        }
-        // Verify the required parameter 'program_member_status' is set.
-        if (!isset($program_member_status)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $program_member_status when calling importProgramMemberUsingPOST'
-            );
-        }
-        // Verify the required parameter 'format' is set.
-        if (!isset($format)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $format when calling importProgramMemberUsingPOST'
-            );
-        }
-        // Verify the required parameter 'file' is set.
-        if (!isset($file)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $file when calling importProgramMemberUsingPOST'
-            );
-        }
 
         $resourcePath = '/bulk/v1/program/{programId}/members/import.json';
         $queryParams = [];

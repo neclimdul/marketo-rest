@@ -220,20 +220,11 @@ class LeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function associateLeadUsingPOSTRequest($lead_id, $cookie)
+    public function associateLeadUsingPOSTRequest(
+        int $lead_id,
+        string $cookie
+    )
     {
-        // Verify the required parameter 'lead_id' is set.
-        if (!isset($lead_id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $lead_id when calling associateLeadUsingPOST'
-            );
-        }
-        // Verify the required parameter 'cookie' is set.
-        if (!isset($cookie)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $cookie when calling associateLeadUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/v1/leads/{leadId}/associate.json';
         $queryParams = [];
@@ -380,20 +371,11 @@ class LeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function changeLeadProgramStatusUsingPOSTRequest($program_id, $change_lead_program_status_request)
+    public function changeLeadProgramStatusUsingPOSTRequest(
+        int $program_id,
+        \NecLimDul\MarketoRest\Lead\Model\ChangeLeadProgramStatusRequest $change_lead_program_status_request
+    )
     {
-        // Verify the required parameter 'program_id' is set.
-        if (!isset($program_id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $program_id when calling changeLeadProgramStatusUsingPOST'
-            );
-        }
-        // Verify the required parameter 'change_lead_program_status_request' is set.
-        if (!isset($change_lead_program_status_request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $change_lead_program_status_request when calling changeLeadProgramStatusUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/v1/leads/programs/{programId}/status.json';
         $queryParams = [];
@@ -531,14 +513,10 @@ class LeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createLeadFieldUsingPOSTRequest($create_lead_field_request)
+    public function createLeadFieldUsingPOSTRequest(
+        \NecLimDul\MarketoRest\Lead\Model\CreateLeadFieldRequest $create_lead_field_request
+    )
     {
-        // Verify the required parameter 'create_lead_field_request' is set.
-        if (!isset($create_lead_field_request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $create_lead_field_request when calling createLeadFieldUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/v1/leads/schema/fields.json';
         $queryParams = [];
@@ -674,7 +652,10 @@ class LeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteLeadsUsingPOSTRequest($delete_lead_request = null, $id = null)
+    public function deleteLeadsUsingPOSTRequest(
+        \NecLimDul\MarketoRest\Lead\Model\DeleteLeadRequest $delete_lead_request = null,
+        array $id = null
+    )
     {
 
         $resourcePath = '/rest/v1/leads/delete.json';
@@ -809,7 +790,8 @@ class LeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function describeProgramMemberUsingGETRequest()
+    public function describeProgramMemberUsingGETRequest(
+    )
     {
 
         $resourcePath = '/rest/v1/program/members/describe.json';
@@ -935,7 +917,8 @@ class LeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function describeUsingGET2Request()
+    public function describeUsingGET2Request(
+    )
     {
 
         $resourcePath = '/rest/v1/leads/describe.json';
@@ -1061,7 +1044,8 @@ class LeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function describeUsingGET6Request()
+    public function describeUsingGET6Request(
+    )
     {
 
         $resourcePath = '/rest/v1/leads/describe2.json';
@@ -1197,14 +1181,11 @@ class LeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getLeadByIdUsingGETRequest($lead_id, $fields = null)
+    public function getLeadByIdUsingGETRequest(
+        int $lead_id,
+        array $fields = null
+    )
     {
-        // Verify the required parameter 'lead_id' is set.
-        if (!isset($lead_id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $lead_id when calling getLeadByIdUsingGET'
-            );
-        }
 
         $resourcePath = '/rest/v1/lead/{leadId}.json';
         $queryParams = [];
@@ -1346,14 +1327,10 @@ class LeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getLeadFieldByNameUsingGETRequest($field_api_name)
+    public function getLeadFieldByNameUsingGETRequest(
+        string $field_api_name
+    )
     {
-        // Verify the required parameter 'field_api_name' is set.
-        if (!isset($field_api_name)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $field_api_name when calling getLeadFieldByNameUsingGET'
-            );
-        }
 
         $resourcePath = '/rest/v1/leads/schema/fields/{fieldApiName}.json';
         $queryParams = [];
@@ -1495,7 +1472,10 @@ class LeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getLeadFieldsUsingGETRequest($batch_size = null, $next_page_token = null)
+    public function getLeadFieldsUsingGETRequest(
+        int $batch_size = null,
+        string $next_page_token = null
+    )
     {
 
         $resourcePath = '/rest/v1/leads/schema/fields.json';
@@ -1627,7 +1607,8 @@ class LeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getLeadPartitionsUsingGETRequest()
+    public function getLeadPartitionsUsingGETRequest(
+    )
     {
 
         $resourcePath = '/rest/v1/leads/partitions.json';
@@ -1778,16 +1759,16 @@ class LeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getLeadsByFilterUsingGETRequest($filter_type, $filter_values, $fields = null, $batch_size = null, $next_page_token = null)
+    public function getLeadsByFilterUsingGETRequest(
+        string $filter_type,
+        array $filter_values,
+        array $fields = null,
+        int $batch_size = null,
+        string $next_page_token = null
+    )
     {
-        // Verify the required parameter 'filter_type' is set.
-        if (!isset($filter_type)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $filter_type when calling getLeadsByFilterUsingGET'
-            );
-        }
         // Verify the required parameter 'filter_values' is set.
-        if (!isset($filter_values) || (is_array($filter_values) && empty($filter_values))) {
+        if (empty($filter_values)) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $filter_values when calling getLeadsByFilterUsingGET'
             );
@@ -1945,14 +1926,13 @@ class LeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getLeadsByProgramIdUsingGETRequest($program_id, $fields = null, $batch_size = null, $next_page_token = null)
+    public function getLeadsByProgramIdUsingGETRequest(
+        int $program_id,
+        array $fields = null,
+        int $batch_size = null,
+        string $next_page_token = null
+    )
     {
-        // Verify the required parameter 'program_id' is set.
-        if (!isset($program_id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $program_id when calling getLeadsByProgramIdUsingGET'
-            );
-        }
 
         $resourcePath = '/rest/v1/leads/programs/{programId}.json';
         $queryParams = [];
@@ -2106,14 +2086,12 @@ class LeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getListMembershipUsingGETRequest($lead_id, $next_page_token = null, $batch_size = null)
+    public function getListMembershipUsingGETRequest(
+        int $lead_id,
+        string $next_page_token = null,
+        int $batch_size = null
+    )
     {
-        // Verify the required parameter 'lead_id' is set.
-        if (!isset($lead_id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $lead_id when calling getListMembershipUsingGET'
-            );
-        }
 
         $resourcePath = '/rest/v1/leads/{leadId}/listMembership.json';
         $queryParams = [];
@@ -2286,14 +2264,16 @@ class LeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getProgramMembershipUsingGETRequest($lead_id, $next_page_token = null, $batch_size = null, $earliest_updated_at = null, $latest_updated_at = null, $filter_type = null, $filter_values = null)
+    public function getProgramMembershipUsingGETRequest(
+        int $lead_id,
+        string $next_page_token = null,
+        int $batch_size = null,
+        string $earliest_updated_at = null,
+        string $latest_updated_at = null,
+        string $filter_type = null,
+        array $filter_values = null
+    )
     {
-        // Verify the required parameter 'lead_id' is set.
-        if (!isset($lead_id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $lead_id when calling getProgramMembershipUsingGET'
-            );
-        }
 
         $resourcePath = '/rest/v1/leads/{leadId}/programMembership.json';
         $queryParams = [];
@@ -2460,14 +2440,14 @@ class LeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getSmartCampaignMembershipUsingGETRequest($lead_id, $next_page_token = null, $batch_size = null, $earliest_updated_at = null, $latest_updated_at = null)
+    public function getSmartCampaignMembershipUsingGETRequest(
+        int $lead_id,
+        string $next_page_token = null,
+        int $batch_size = null,
+        string $earliest_updated_at = null,
+        string $latest_updated_at = null
+    )
     {
-        // Verify the required parameter 'lead_id' is set.
-        if (!isset($lead_id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $lead_id when calling getSmartCampaignMembershipUsingGET'
-            );
-        }
 
         $resourcePath = '/rest/v1/leads/{leadId}/smartCampaignMembership.json';
         $queryParams = [];
@@ -2627,14 +2607,13 @@ class LeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function mergeLeadsUsingPOSTRequest($lead_id, $lead_id2 = null, $lead_ids = null, $merge_in_crm = null)
+    public function mergeLeadsUsingPOSTRequest(
+        int $lead_id,
+        int $lead_id2 = null,
+        array $lead_ids = null,
+        bool $merge_in_crm = null
+    )
     {
-        // Verify the required parameter 'lead_id' is set.
-        if (!isset($lead_id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $lead_id when calling mergeLeadsUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/v1/leads/{leadId}/merge.json';
         $queryParams = [];
@@ -2778,14 +2757,10 @@ class LeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function pushToMarketoUsingPOSTRequest($push_lead_to_marketo_request)
+    public function pushToMarketoUsingPOSTRequest(
+        \NecLimDul\MarketoRest\Lead\Model\PushLeadToMarketoRequest $push_lead_to_marketo_request
+    )
     {
-        // Verify the required parameter 'push_lead_to_marketo_request' is set.
-        if (!isset($push_lead_to_marketo_request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $push_lead_to_marketo_request when calling pushToMarketoUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/v1/leads/push.json';
         $queryParams = [];
@@ -2916,14 +2891,10 @@ class LeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function submitFormUsingPOSTRequest($submit_form_request)
+    public function submitFormUsingPOSTRequest(
+        \NecLimDul\MarketoRest\Lead\Model\SubmitFormRequest $submit_form_request
+    )
     {
-        // Verify the required parameter 'submit_form_request' is set.
-        if (!isset($submit_form_request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $submit_form_request when calling submitFormUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/v1/leads/submitForm.json';
         $queryParams = [];
@@ -3054,14 +3025,10 @@ class LeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function syncLeadUsingPOSTRequest($sync_lead_request)
+    public function syncLeadUsingPOSTRequest(
+        \NecLimDul\MarketoRest\Lead\Model\SyncLeadRequest $sync_lead_request
+    )
     {
-        // Verify the required parameter 'sync_lead_request' is set.
-        if (!isset($sync_lead_request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $sync_lead_request when calling syncLeadUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/v1/leads.json';
         $queryParams = [];
@@ -3197,20 +3164,11 @@ class LeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updateLeadFieldUsingPOSTRequest($field_api_name, $update_lead_field_request)
+    public function updateLeadFieldUsingPOSTRequest(
+        string $field_api_name,
+        \NecLimDul\MarketoRest\Lead\Model\UpdateLeadFieldRequest $update_lead_field_request
+    )
     {
-        // Verify the required parameter 'field_api_name' is set.
-        if (!isset($field_api_name)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $field_api_name when calling updateLeadFieldUsingPOST'
-            );
-        }
-        // Verify the required parameter 'update_lead_field_request' is set.
-        if (!isset($update_lead_field_request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $update_lead_field_request when calling updateLeadFieldUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/v1/leads/schema/fields/{fieldApiName}.json';
         $queryParams = [];
@@ -3348,14 +3306,10 @@ class LeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updatePartitionsUsingPOSTRequest($update_lead_partition_request)
+    public function updatePartitionsUsingPOSTRequest(
+        \NecLimDul\MarketoRest\Lead\Model\UpdateLeadPartitionRequest $update_lead_partition_request
+    )
     {
-        // Verify the required parameter 'update_lead_partition_request' is set.
-        if (!isset($update_lead_partition_request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $update_lead_partition_request when calling updatePartitionsUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/v1/leads/partitions.json';
         $queryParams = [];

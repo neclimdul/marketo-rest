@@ -220,20 +220,11 @@ class LandingPageContentApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function addLandingPageContentUsingPOSTRequest($id, $request)
+    public function addLandingPageContentUsingPOSTRequest(
+        int $id,
+        \NecLimDul\MarketoRest\Asset\Model\CreateLandingPageContentRequest $request
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling addLandingPageContentUsingPOST'
-            );
-        }
-        // Verify the required parameter 'request' is set.
-        if (!isset($request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $request when calling addLandingPageContentUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/landingPage/{id}/content.json';
         $queryParams = [];
@@ -376,14 +367,11 @@ class LandingPageContentApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getLandingPageContentUsingGETRequest($id, $status = null)
+    public function getLandingPageContentUsingGETRequest(
+        int $id,
+        string $status = null
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling getLandingPageContentUsingGET'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/landingPage/{id}/content.json';
         $queryParams = [];
@@ -530,20 +518,11 @@ class LandingPageContentApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getLandingPageDynamicContentsUsingGETRequest($id, $content_id)
+    public function getLandingPageDynamicContentsUsingGETRequest(
+        int $id,
+        string $content_id
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling getLandingPageDynamicContentsUsingGET'
-            );
-        }
-        // Verify the required parameter 'content_id' is set.
-        if (!isset($content_id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $content_id when calling getLandingPageDynamicContentsUsingGET'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/landingPage/{id}/dynamicContent/{contentId}.json';
         $queryParams = [];
@@ -690,20 +669,11 @@ class LandingPageContentApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function removeLandingPageContentUsingPOSTRequest($id, $content_id)
+    public function removeLandingPageContentUsingPOSTRequest(
+        int $id,
+        string $content_id
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling removeLandingPageContentUsingPOST'
-            );
-        }
-        // Verify the required parameter 'content_id' is set.
-        if (!isset($content_id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $content_id when calling removeLandingPageContentUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/landingPage/{id}/content/{contentId}/delete.json';
         $queryParams = [];
@@ -855,26 +825,12 @@ class LandingPageContentApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updateLandingPageContentUsingPOSTRequest($id, $content_id, $request)
+    public function updateLandingPageContentUsingPOSTRequest(
+        int $id,
+        string $content_id,
+        \NecLimDul\MarketoRest\Asset\Model\UpdateLandingPageContentRequest $request
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling updateLandingPageContentUsingPOST'
-            );
-        }
-        // Verify the required parameter 'content_id' is set.
-        if (!isset($content_id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $content_id when calling updateLandingPageContentUsingPOST'
-            );
-        }
-        // Verify the required parameter 'request' is set.
-        if (!isset($request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $request when calling updateLandingPageContentUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/landingPage/{id}/content/{contentId}.json';
         $queryParams = [];
@@ -1027,20 +983,12 @@ class LandingPageContentApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updateLandingPageDynamicContentUsingPOSTRequest($id, $content_id, $request = null)
+    public function updateLandingPageDynamicContentUsingPOSTRequest(
+        int $id,
+        string $content_id,
+        \NecLimDul\MarketoRest\Asset\Model\UpdateLandingPageDynamicContentRequest $request = null
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling updateLandingPageDynamicContentUsingPOST'
-            );
-        }
-        // Verify the required parameter 'content_id' is set.
-        if (!isset($content_id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $content_id when calling updateLandingPageDynamicContentUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/landingPage/{id}/dynamicContent/{contentId}.json';
         $queryParams = [];

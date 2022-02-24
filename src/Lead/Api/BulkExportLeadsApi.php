@@ -215,14 +215,10 @@ class BulkExportLeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function cancelExportLeadsUsingPOSTRequest($export_id)
+    public function cancelExportLeadsUsingPOSTRequest(
+        string $export_id
+    )
     {
-        // Verify the required parameter 'export_id' is set.
-        if (!isset($export_id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $export_id when calling cancelExportLeadsUsingPOST'
-            );
-        }
 
         $resourcePath = '/bulk/v1/leads/export/{exportId}/cancel.json';
         $queryParams = [];
@@ -359,7 +355,9 @@ class BulkExportLeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createExportLeadsUsingPOSTRequest($export_lead_request = null)
+    public function createExportLeadsUsingPOSTRequest(
+        \NecLimDul\MarketoRest\Lead\Model\ExportLeadRequest $export_lead_request = null
+    )
     {
 
         $resourcePath = '/bulk/v1/leads/export/create.json';
@@ -494,14 +492,10 @@ class BulkExportLeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function enqueueExportLeadsUsingPOSTRequest($export_id)
+    public function enqueueExportLeadsUsingPOSTRequest(
+        string $export_id
+    )
     {
-        // Verify the required parameter 'export_id' is set.
-        if (!isset($export_id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $export_id when calling enqueueExportLeadsUsingPOST'
-            );
-        }
 
         $resourcePath = '/bulk/v1/leads/export/{exportId}/enqueue.json';
         $queryParams = [];
@@ -643,14 +637,11 @@ class BulkExportLeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getExportLeadsFileUsingGETRequest($export_id, $range = null)
+    public function getExportLeadsFileUsingGETRequest(
+        string $export_id,
+        string $range = null
+    )
     {
-        // Verify the required parameter 'export_id' is set.
-        if (!isset($export_id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $export_id when calling getExportLeadsFileUsingGET'
-            );
-        }
 
         $resourcePath = '/bulk/v1/leads/export/{exportId}/file.json';
         $queryParams = [];
@@ -792,14 +783,10 @@ class BulkExportLeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getExportLeadsStatusUsingGETRequest($export_id)
+    public function getExportLeadsStatusUsingGETRequest(
+        string $export_id
+    )
     {
-        // Verify the required parameter 'export_id' is set.
-        if (!isset($export_id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $export_id when calling getExportLeadsStatusUsingGET'
-            );
-        }
 
         $resourcePath = '/bulk/v1/leads/export/{exportId}/status.json';
         $queryParams = [];
@@ -946,7 +933,11 @@ class BulkExportLeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getExportLeadsUsingGETRequest($status = null, $batch_size = null, $next_page_token = null)
+    public function getExportLeadsUsingGETRequest(
+        array $status = null,
+        int $batch_size = null,
+        string $next_page_token = null
+    )
     {
 
         $resourcePath = '/bulk/v1/leads/export.json';

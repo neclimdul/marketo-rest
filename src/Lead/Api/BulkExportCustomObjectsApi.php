@@ -220,20 +220,11 @@ class BulkExportCustomObjectsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function cancelExportCustomObjectsUsingPOSTRequest($api_name, $export_id)
+    public function cancelExportCustomObjectsUsingPOSTRequest(
+        string $api_name,
+        string $export_id
+    )
     {
-        // Verify the required parameter 'api_name' is set.
-        if (!isset($api_name)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $api_name when calling cancelExportCustomObjectsUsingPOST'
-            );
-        }
-        // Verify the required parameter 'export_id' is set.
-        if (!isset($export_id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $export_id when calling cancelExportCustomObjectsUsingPOST'
-            );
-        }
 
         $resourcePath = '/bulk/v1/customobjects/{apiName}/export/{exportId}/cancel.json';
         $queryParams = [];
@@ -380,14 +371,11 @@ class BulkExportCustomObjectsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createExportCustomObjectsUsingPOSTRequest($api_name, $export_custom_object_request = null)
+    public function createExportCustomObjectsUsingPOSTRequest(
+        string $api_name,
+        \NecLimDul\MarketoRest\Lead\Model\ExportCustomObjectRequest $export_custom_object_request = null
+    )
     {
-        // Verify the required parameter 'api_name' is set.
-        if (!isset($api_name)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $api_name when calling createExportCustomObjectsUsingPOST'
-            );
-        }
 
         $resourcePath = '/bulk/v1/customobjects/{apiName}/export/create.json';
         $queryParams = [];
@@ -533,20 +521,11 @@ class BulkExportCustomObjectsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function enqueueExportCustomObjectsUsingPOSTRequest($api_name, $export_id)
+    public function enqueueExportCustomObjectsUsingPOSTRequest(
+        string $api_name,
+        string $export_id
+    )
     {
-        // Verify the required parameter 'api_name' is set.
-        if (!isset($api_name)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $api_name when calling enqueueExportCustomObjectsUsingPOST'
-            );
-        }
-        // Verify the required parameter 'export_id' is set.
-        if (!isset($export_id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $export_id when calling enqueueExportCustomObjectsUsingPOST'
-            );
-        }
 
         $resourcePath = '/bulk/v1/customobjects/{apiName}/export/{exportId}/enqueue.json';
         $queryParams = [];
@@ -698,20 +677,12 @@ class BulkExportCustomObjectsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getExportCustomObjectsFileUsingGETRequest($api_name, $export_id, $range = null)
+    public function getExportCustomObjectsFileUsingGETRequest(
+        string $api_name,
+        string $export_id,
+        string $range = null
+    )
     {
-        // Verify the required parameter 'api_name' is set.
-        if (!isset($api_name)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $api_name when calling getExportCustomObjectsFileUsingGET'
-            );
-        }
-        // Verify the required parameter 'export_id' is set.
-        if (!isset($export_id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $export_id when calling getExportCustomObjectsFileUsingGET'
-            );
-        }
 
         $resourcePath = '/bulk/v1/customobjects/{apiName}/export/{exportId}/file.json';
         $queryParams = [];
@@ -863,20 +834,11 @@ class BulkExportCustomObjectsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getExportCustomObjectsStatusUsingGETRequest($api_name, $export_id)
+    public function getExportCustomObjectsStatusUsingGETRequest(
+        string $api_name,
+        string $export_id
+    )
     {
-        // Verify the required parameter 'api_name' is set.
-        if (!isset($api_name)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $api_name when calling getExportCustomObjectsStatusUsingGET'
-            );
-        }
-        // Verify the required parameter 'export_id' is set.
-        if (!isset($export_id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $export_id when calling getExportCustomObjectsStatusUsingGET'
-            );
-        }
 
         $resourcePath = '/bulk/v1/customobjects/{apiName}/export/{exportId}/status.json';
         $queryParams = [];
@@ -1033,14 +995,13 @@ class BulkExportCustomObjectsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getExportCustomObjectsUsingGETRequest($api_name, $status = null, $batch_size = null, $next_page_token = null)
+    public function getExportCustomObjectsUsingGETRequest(
+        string $api_name,
+        array $status = null,
+        int $batch_size = null,
+        string $next_page_token = null
+    )
     {
-        // Verify the required parameter 'api_name' is set.
-        if (!isset($api_name)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $api_name when calling getExportCustomObjectsUsingGET'
-            );
-        }
 
         $resourcePath = '/bulk/v1/customobjects/{apiName}/export.json';
         $queryParams = [];

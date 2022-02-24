@@ -220,20 +220,11 @@ class CustomObjectsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function addCustomObjectTypeFieldsUsingPOSTRequest($api_name, $add_custom_object_type_fields_request)
+    public function addCustomObjectTypeFieldsUsingPOSTRequest(
+        string $api_name,
+        \NecLimDul\MarketoRest\Lead\Model\AddCustomObjectTypeFieldsRequest $add_custom_object_type_fields_request
+    )
     {
-        // Verify the required parameter 'api_name' is set.
-        if (!isset($api_name)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $api_name when calling addCustomObjectTypeFieldsUsingPOST'
-            );
-        }
-        // Verify the required parameter 'add_custom_object_type_fields_request' is set.
-        if (!isset($add_custom_object_type_fields_request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $add_custom_object_type_fields_request when calling addCustomObjectTypeFieldsUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/v1/customobjects/schema/{apiName}/addField.json';
         $queryParams = [];
@@ -371,14 +362,10 @@ class CustomObjectsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function approveCustomObjectTypeUsingPOSTRequest($api_name)
+    public function approveCustomObjectTypeUsingPOSTRequest(
+        string $api_name
+    )
     {
-        // Verify the required parameter 'api_name' is set.
-        if (!isset($api_name)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $api_name when calling approveCustomObjectTypeUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/v1/customobjects/schema/{apiName}/approve.json';
         $queryParams = [];
@@ -520,20 +507,11 @@ class CustomObjectsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteCustomObjectTypeFieldsUsingPOSTRequest($api_name, $delete_custom_object_type_fields_request)
+    public function deleteCustomObjectTypeFieldsUsingPOSTRequest(
+        string $api_name,
+        \NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectTypeFieldsRequest $delete_custom_object_type_fields_request
+    )
     {
-        // Verify the required parameter 'api_name' is set.
-        if (!isset($api_name)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $api_name when calling deleteCustomObjectTypeFieldsUsingPOST'
-            );
-        }
-        // Verify the required parameter 'delete_custom_object_type_fields_request' is set.
-        if (!isset($delete_custom_object_type_fields_request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $delete_custom_object_type_fields_request when calling deleteCustomObjectTypeFieldsUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/v1/customobjects/schema/{apiName}/deleteField.json';
         $queryParams = [];
@@ -671,14 +649,10 @@ class CustomObjectsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteCustomObjectTypeUsingPOSTRequest($api_name)
+    public function deleteCustomObjectTypeUsingPOSTRequest(
+        string $api_name
+    )
     {
-        // Verify the required parameter 'api_name' is set.
-        if (!isset($api_name)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $api_name when calling deleteCustomObjectTypeUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/v1/customobjects/schema/{apiName}/delete.json';
         $queryParams = [];
@@ -820,14 +794,11 @@ class CustomObjectsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteCustomObjectsUsingPOSTRequest($custom_object_name, $delete_custom_object_request = null)
+    public function deleteCustomObjectsUsingPOSTRequest(
+        string $custom_object_name,
+        \NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectRequest $delete_custom_object_request = null
+    )
     {
-        // Verify the required parameter 'custom_object_name' is set.
-        if (!isset($custom_object_name)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $custom_object_name when calling deleteCustomObjectsUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/v1/customobjects/{customObjectName}/delete.json';
         $queryParams = [];
@@ -973,14 +944,11 @@ class CustomObjectsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function describeCustomObjectTypeUsingGETRequest($api_name, $state = null)
+    public function describeCustomObjectTypeUsingGETRequest(
+        string $api_name,
+        string $state = null
+    )
     {
-        // Verify the required parameter 'api_name' is set.
-        if (!isset($api_name)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $api_name when calling describeCustomObjectTypeUsingGET'
-            );
-        }
 
         $resourcePath = '/rest/v1/customobjects/schema/{apiName}/describe.json';
         $queryParams = [];
@@ -1122,14 +1090,10 @@ class CustomObjectsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function describeUsingGET1Request($custom_object_name)
+    public function describeUsingGET1Request(
+        string $custom_object_name
+    )
     {
-        // Verify the required parameter 'custom_object_name' is set.
-        if (!isset($custom_object_name)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $custom_object_name when calling describeUsingGET1'
-            );
-        }
 
         $resourcePath = '/rest/v1/customobjects/{customObjectName}/describe.json';
         $queryParams = [];
@@ -1266,14 +1230,10 @@ class CustomObjectsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function discardCustomObjectTypeUsingPOSTRequest($api_name)
+    public function discardCustomObjectTypeUsingPOSTRequest(
+        string $api_name
+    )
     {
-        // Verify the required parameter 'api_name' is set.
-        if (!isset($api_name)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $api_name when calling discardCustomObjectTypeUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/v1/customobjects/schema/{apiName}/discardDraft.json';
         $queryParams = [];
@@ -1410,14 +1370,10 @@ class CustomObjectsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getCustomObjectTypeDependentAssetsUsingGETRequest($api_name)
+    public function getCustomObjectTypeDependentAssetsUsingGETRequest(
+        string $api_name
+    )
     {
-        // Verify the required parameter 'api_name' is set.
-        if (!isset($api_name)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $api_name when calling getCustomObjectTypeDependentAssetsUsingGET'
-            );
-        }
 
         $resourcePath = '/rest/v1/customobjects/schema/{apiName}/dependentAssets.json';
         $queryParams = [];
@@ -1549,7 +1505,8 @@ class CustomObjectsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getCustomObjectTypeFieldDataTypesUsingGETRequest()
+    public function getCustomObjectTypeFieldDataTypesUsingGETRequest(
+    )
     {
 
         $resourcePath = '/rest/v1/customobjects/schema/fieldDataTypes.json';
@@ -1675,7 +1632,8 @@ class CustomObjectsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getCustomObjectTypeLinkableObjectsUsingGETRequest()
+    public function getCustomObjectTypeLinkableObjectsUsingGETRequest(
+    )
     {
 
         $resourcePath = '/rest/v1/customobjects/schema/linkableObjects.json';
@@ -1836,22 +1794,18 @@ class CustomObjectsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getCustomObjectsUsingGETRequest($custom_object_name, $filter_type, $filter_values, $custom_object_lookup_request = null, $fields = null, $batch_size = null, $next_page_token = null)
+    public function getCustomObjectsUsingGETRequest(
+        string $custom_object_name,
+        string $filter_type,
+        array $filter_values,
+        \NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest $custom_object_lookup_request = null,
+        array $fields = null,
+        int $batch_size = null,
+        string $next_page_token = null
+    )
     {
-        // Verify the required parameter 'custom_object_name' is set.
-        if (!isset($custom_object_name)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $custom_object_name when calling getCustomObjectsUsingGET'
-            );
-        }
-        // Verify the required parameter 'filter_type' is set.
-        if (!isset($filter_type)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $filter_type when calling getCustomObjectsUsingGET'
-            );
-        }
         // Verify the required parameter 'filter_values' is set.
-        if (!isset($filter_values) || (is_array($filter_values) && empty($filter_values))) {
+        if (empty($filter_values)) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $filter_values when calling getCustomObjectsUsingGET'
             );
@@ -2010,7 +1964,10 @@ class CustomObjectsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listCustomObjectTypesUsingGETRequest($names = null, $state = null)
+    public function listCustomObjectTypesUsingGETRequest(
+        array $names = null,
+        string $state = null
+    )
     {
 
         $resourcePath = '/rest/v1/customobjects/schema.json';
@@ -2147,7 +2104,9 @@ class CustomObjectsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listCustomObjectsUsingGETRequest($names = null)
+    public function listCustomObjectsUsingGETRequest(
+        array $names = null
+    )
     {
 
         $resourcePath = '/rest/v1/customobjects.json';
@@ -2283,14 +2242,10 @@ class CustomObjectsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function syncCustomObjectTypeUsingPOSTRequest($sync_custom_object_type_request)
+    public function syncCustomObjectTypeUsingPOSTRequest(
+        \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectTypeRequest $sync_custom_object_type_request
+    )
     {
-        // Verify the required parameter 'sync_custom_object_type_request' is set.
-        if (!isset($sync_custom_object_type_request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $sync_custom_object_type_request when calling syncCustomObjectTypeUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/v1/customobjects/schema.json';
         $queryParams = [];
@@ -2426,20 +2381,11 @@ class CustomObjectsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function syncCustomObjectsUsingPOSTRequest($custom_object_name, $sync_custom_object_request)
+    public function syncCustomObjectsUsingPOSTRequest(
+        string $custom_object_name,
+        \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectRequest $sync_custom_object_request
+    )
     {
-        // Verify the required parameter 'custom_object_name' is set.
-        if (!isset($custom_object_name)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $custom_object_name when calling syncCustomObjectsUsingPOST'
-            );
-        }
-        // Verify the required parameter 'sync_custom_object_request' is set.
-        if (!isset($sync_custom_object_request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $sync_custom_object_request when calling syncCustomObjectsUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/v1/customobjects/{customObjectName}.json';
         $queryParams = [];
@@ -2587,26 +2533,12 @@ class CustomObjectsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updateCustomObjectTypeFieldUsingPOSTRequest($api_name, $field_api_name, $update_custom_object_type_field_request)
+    public function updateCustomObjectTypeFieldUsingPOSTRequest(
+        string $api_name,
+        string $field_api_name,
+        \NecLimDul\MarketoRest\Lead\Model\UpdateCustomObjectTypeFieldRequest $update_custom_object_type_field_request
+    )
     {
-        // Verify the required parameter 'api_name' is set.
-        if (!isset($api_name)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $api_name when calling updateCustomObjectTypeFieldUsingPOST'
-            );
-        }
-        // Verify the required parameter 'field_api_name' is set.
-        if (!isset($field_api_name)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $field_api_name when calling updateCustomObjectTypeFieldUsingPOST'
-            );
-        }
-        // Verify the required parameter 'update_custom_object_type_field_request' is set.
-        if (!isset($update_custom_object_type_field_request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $update_custom_object_type_field_request when calling updateCustomObjectTypeFieldUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/v1/customobjects/schema/{apiName}/{fieldApiName}/updateField.json';
         $queryParams = [];

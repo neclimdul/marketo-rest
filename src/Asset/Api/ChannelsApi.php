@@ -220,7 +220,10 @@ class ChannelsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getAllChannelsUsingGETRequest($max_return = null, $offset = null)
+    public function getAllChannelsUsingGETRequest(
+        int $max_return = null,
+        int $offset = null
+    )
     {
 
         $resourcePath = '/rest/asset/v1/channels.json';
@@ -357,14 +360,10 @@ class ChannelsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getChannelByNameUsingGETRequest($name)
+    public function getChannelByNameUsingGETRequest(
+        string $name
+    )
     {
-        // Verify the required parameter 'name' is set.
-        if (!isset($name)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $name when calling getChannelByNameUsingGET'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/channel/byName.json';
         $queryParams = [];

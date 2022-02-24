@@ -220,20 +220,11 @@ class BulkImportCustomObjectsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getImportCustomObjectFailuresUsingGETRequest($api_name, $batch_id)
+    public function getImportCustomObjectFailuresUsingGETRequest(
+        string $api_name,
+        int $batch_id
+    )
     {
-        // Verify the required parameter 'api_name' is set.
-        if (!isset($api_name)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $api_name when calling getImportCustomObjectFailuresUsingGET'
-            );
-        }
-        // Verify the required parameter 'batch_id' is set.
-        if (!isset($batch_id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $batch_id when calling getImportCustomObjectFailuresUsingGET'
-            );
-        }
 
         $resourcePath = '/bulk/v1/customobjects/{apiName}/import/{batchId}/failures.json';
         $queryParams = [];
@@ -380,20 +371,11 @@ class BulkImportCustomObjectsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getImportCustomObjectStatusUsingGETRequest($api_name, $batch_id)
+    public function getImportCustomObjectStatusUsingGETRequest(
+        string $api_name,
+        int $batch_id
+    )
     {
-        // Verify the required parameter 'api_name' is set.
-        if (!isset($api_name)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $api_name when calling getImportCustomObjectStatusUsingGET'
-            );
-        }
-        // Verify the required parameter 'batch_id' is set.
-        if (!isset($batch_id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $batch_id when calling getImportCustomObjectStatusUsingGET'
-            );
-        }
 
         $resourcePath = '/bulk/v1/customobjects/{apiName}/import/{batchId}/status.json';
         $queryParams = [];
@@ -540,20 +522,11 @@ class BulkImportCustomObjectsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getImportCustomObjectWarningsUsingGETRequest($api_name, $batch_id)
+    public function getImportCustomObjectWarningsUsingGETRequest(
+        string $api_name,
+        int $batch_id
+    )
     {
-        // Verify the required parameter 'api_name' is set.
-        if (!isset($api_name)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $api_name when calling getImportCustomObjectWarningsUsingGET'
-            );
-        }
-        // Verify the required parameter 'batch_id' is set.
-        if (!isset($batch_id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $batch_id when calling getImportCustomObjectWarningsUsingGET'
-            );
-        }
 
         $resourcePath = '/bulk/v1/customobjects/{apiName}/import/{batchId}/warnings.json';
         $queryParams = [];
@@ -705,26 +678,12 @@ class BulkImportCustomObjectsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function importCustomObjectUsingPOSTRequest($api_name, $format, $file)
+    public function importCustomObjectUsingPOSTRequest(
+        string $api_name,
+        string $format,
+        \SplFileObject $file
+    )
     {
-        // Verify the required parameter 'api_name' is set.
-        if (!isset($api_name)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $api_name when calling importCustomObjectUsingPOST'
-            );
-        }
-        // Verify the required parameter 'format' is set.
-        if (!isset($format)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $format when calling importCustomObjectUsingPOST'
-            );
-        }
-        // Verify the required parameter 'file' is set.
-        if (!isset($file)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $file when calling importCustomObjectUsingPOST'
-            );
-        }
 
         $resourcePath = '/bulk/v1/customobjects/{apiName}/import.json';
         $queryParams = [];

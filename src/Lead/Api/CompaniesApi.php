@@ -215,14 +215,10 @@ class CompaniesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteCompaniesUsingPOSTRequest($delete_company_request)
+    public function deleteCompaniesUsingPOSTRequest(
+        \NecLimDul\MarketoRest\Lead\Model\DeleteCompanyRequest $delete_company_request
+    )
     {
-        // Verify the required parameter 'delete_company_request' is set.
-        if (!isset($delete_company_request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $delete_company_request when calling deleteCompaniesUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/v1/companies/delete.json';
         $queryParams = [];
@@ -348,7 +344,8 @@ class CompaniesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function describeUsingGETRequest()
+    public function describeUsingGETRequest(
+    )
     {
 
         $resourcePath = '/rest/v1/companies/describe.json';
@@ -499,16 +496,16 @@ class CompaniesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getCompaniesUsingGETRequest($filter_type, $filter_values, $fields = null, $batch_size = null, $next_page_token = null)
+    public function getCompaniesUsingGETRequest(
+        string $filter_type,
+        array $filter_values,
+        array $fields = null,
+        int $batch_size = null,
+        string $next_page_token = null
+    )
     {
-        // Verify the required parameter 'filter_type' is set.
-        if (!isset($filter_type)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $filter_type when calling getCompaniesUsingGET'
-            );
-        }
         // Verify the required parameter 'filter_values' is set.
-        if (!isset($filter_values) || (is_array($filter_values) && empty($filter_values))) {
+        if (empty($filter_values)) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $filter_values when calling getCompaniesUsingGET'
             );
@@ -651,14 +648,10 @@ class CompaniesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getCompanyFieldByNameUsingGETRequest($field_api_name)
+    public function getCompanyFieldByNameUsingGETRequest(
+        string $field_api_name
+    )
     {
-        // Verify the required parameter 'field_api_name' is set.
-        if (!isset($field_api_name)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $field_api_name when calling getCompanyFieldByNameUsingGET'
-            );
-        }
 
         $resourcePath = '/rest/v1/companies/schema/fields/{fieldApiName}.json';
         $queryParams = [];
@@ -800,7 +793,10 @@ class CompaniesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getCompanyFieldsUsingGETRequest($batch_size = null, $next_page_token = null)
+    public function getCompanyFieldsUsingGETRequest(
+        int $batch_size = null,
+        string $next_page_token = null
+    )
     {
 
         $resourcePath = '/rest/v1/companies/schema/fields.json';
@@ -937,14 +933,10 @@ class CompaniesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function syncCompaniesUsingPOSTRequest($sync_company_request)
+    public function syncCompaniesUsingPOSTRequest(
+        \NecLimDul\MarketoRest\Lead\Model\SyncCompanyRequest $sync_company_request
+    )
     {
-        // Verify the required parameter 'sync_company_request' is set.
-        if (!isset($sync_company_request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $sync_company_request when calling syncCompaniesUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/v1/companies.json';
         $queryParams = [];

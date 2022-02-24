@@ -215,14 +215,10 @@ class CampaignsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getCampaignByIdUsingGETRequest($campaign_id)
+    public function getCampaignByIdUsingGETRequest(
+        int $campaign_id
+    )
     {
-        // Verify the required parameter 'campaign_id' is set.
-        if (!isset($campaign_id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $campaign_id when calling getCampaignByIdUsingGET'
-            );
-        }
 
         $resourcePath = '/rest/v1/campaigns/{campaignId}.json';
         $queryParams = [];
@@ -389,7 +385,15 @@ class CampaignsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getCampaignsUsingGETRequest($id = null, $name = null, $program_name = null, $workspace_name = null, $batch_size = null, $next_page_token = null, $is_triggerable = null)
+    public function getCampaignsUsingGETRequest(
+        array $id = null,
+        array $name = null,
+        array $program_name = null,
+        array $workspace_name = null,
+        int $batch_size = null,
+        string $next_page_token = null,
+        bool $is_triggerable = null
+    )
     {
 
         $resourcePath = '/rest/v1/campaigns.json';
@@ -536,14 +540,11 @@ class CampaignsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function scheduleCampaignUsingPOSTRequest($campaign_id, $schedule_campaign_request = null)
+    public function scheduleCampaignUsingPOSTRequest(
+        int $campaign_id,
+        \NecLimDul\MarketoRest\Lead\Model\ScheduleCampaignRequest $schedule_campaign_request = null
+    )
     {
-        // Verify the required parameter 'campaign_id' is set.
-        if (!isset($campaign_id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $campaign_id when calling scheduleCampaignUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/v1/campaigns/{campaignId}/schedule.json';
         $queryParams = [];
@@ -689,14 +690,11 @@ class CampaignsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function triggerCampaignUsingPOSTRequest($campaign_id, $trigger_campaign_request = null)
+    public function triggerCampaignUsingPOSTRequest(
+        int $campaign_id,
+        \NecLimDul\MarketoRest\Lead\Model\TriggerCampaignRequest $trigger_campaign_request = null
+    )
     {
-        // Verify the required parameter 'campaign_id' is set.
-        if (!isset($campaign_id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $campaign_id when calling triggerCampaignUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/v1/campaigns/{campaignId}/trigger.json';
         $queryParams = [];

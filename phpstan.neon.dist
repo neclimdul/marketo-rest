@@ -10,4 +10,3 @@ parameters:
 	ignoreErrors:
 		- '#has no return type specified\.$#'
 		- '#return type has no value type specified in iterable type array\.$#'
-		- '#^Variable \$.* in isset\(\) always exists and is not nullable\.$#'

@@ -215,14 +215,10 @@ class BulkExportProgramMembersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function cancelExportProgramMembersUsingPOSTRequest($export_id)
+    public function cancelExportProgramMembersUsingPOSTRequest(
+        string $export_id
+    )
     {
-        // Verify the required parameter 'export_id' is set.
-        if (!isset($export_id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $export_id when calling cancelExportProgramMembersUsingPOST'
-            );
-        }
 
         $resourcePath = '/bulk/v1/program/members/export/{exportId}/cancel.json';
         $queryParams = [];
@@ -359,7 +355,9 @@ class BulkExportProgramMembersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createExportProgramMembersUsingPOSTRequest($export_program_member_request = null)
+    public function createExportProgramMembersUsingPOSTRequest(
+        \NecLimDul\MarketoRest\Lead\Model\ExportProgramMemberRequest $export_program_member_request = null
+    )
     {
 
         $resourcePath = '/bulk/v1/program/members/export/create.json';
@@ -494,14 +492,10 @@ class BulkExportProgramMembersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function enqueueExportProgramMembersUsingPOSTRequest($export_id)
+    public function enqueueExportProgramMembersUsingPOSTRequest(
+        string $export_id
+    )
     {
-        // Verify the required parameter 'export_id' is set.
-        if (!isset($export_id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $export_id when calling enqueueExportProgramMembersUsingPOST'
-            );
-        }
 
         $resourcePath = '/bulk/v1/program/members/export/{exportId}/enqueue.json';
         $queryParams = [];
@@ -643,14 +637,11 @@ class BulkExportProgramMembersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getExportProgramMembersFileUsingGETRequest($export_id, $range = null)
+    public function getExportProgramMembersFileUsingGETRequest(
+        string $export_id,
+        string $range = null
+    )
     {
-        // Verify the required parameter 'export_id' is set.
-        if (!isset($export_id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $export_id when calling getExportProgramMembersFileUsingGET'
-            );
-        }
 
         $resourcePath = '/bulk/v1/program/members/export/{exportId}/file.json';
         $queryParams = [];
@@ -792,14 +783,10 @@ class BulkExportProgramMembersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getExportProgramMembersStatusUsingGETRequest($export_id)
+    public function getExportProgramMembersStatusUsingGETRequest(
+        string $export_id
+    )
     {
-        // Verify the required parameter 'export_id' is set.
-        if (!isset($export_id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $export_id when calling getExportProgramMembersStatusUsingGET'
-            );
-        }
 
         $resourcePath = '/bulk/v1/program/members/export/{exportId}/status.json';
         $queryParams = [];
@@ -946,7 +933,11 @@ class BulkExportProgramMembersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getExportProgramMembersUsingGETRequest($status = null, $batch_size = null, $next_page_token = null)
+    public function getExportProgramMembersUsingGETRequest(
+        array $status = null,
+        int $batch_size = null,
+        string $next_page_token = null
+    )
     {
 
         $resourcePath = '/bulk/v1/program/members/export.json';

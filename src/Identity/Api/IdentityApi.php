@@ -230,26 +230,13 @@ class IdentityApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function identityUsingGETRequest($client_id, $client_secret, $grant_type, $partner_id = null)
+    public function identityUsingGETRequest(
+        string $client_id,
+        string $client_secret,
+        string $grant_type,
+        string $partner_id = null
+    )
     {
-        // Verify the required parameter 'client_id' is set.
-        if (!isset($client_id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $client_id when calling identityUsingGET'
-            );
-        }
-        // Verify the required parameter 'client_secret' is set.
-        if (!isset($client_secret)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $client_secret when calling identityUsingGET'
-            );
-        }
-        // Verify the required parameter 'grant_type' is set.
-        if (!isset($grant_type)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $grant_type when calling identityUsingGET'
-            );
-        }
 
         $resourcePath = '/identity/oauth/token';
         $queryParams = [];

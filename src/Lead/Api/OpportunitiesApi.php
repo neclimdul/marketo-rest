@@ -215,7 +215,9 @@ class OpportunitiesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteOpportunitiesUsingPOSTRequest($delete_custom_object_request = null)
+    public function deleteOpportunitiesUsingPOSTRequest(
+        \NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectRequest $delete_custom_object_request = null
+    )
     {
 
         $resourcePath = '/rest/v1/opportunities/delete.json';
@@ -350,7 +352,9 @@ class OpportunitiesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteOpportunityRolesUsingPOSTRequest($delete_custom_object_request = null)
+    public function deleteOpportunityRolesUsingPOSTRequest(
+        \NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectRequest $delete_custom_object_request = null
+    )
     {
 
         $resourcePath = '/rest/v1/opportunities/roles/delete.json';
@@ -480,7 +484,8 @@ class OpportunitiesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function describeOpportunityRoleUsingGETRequest()
+    public function describeOpportunityRoleUsingGETRequest(
+    )
     {
 
         $resourcePath = '/rest/v1/opportunities/roles/describe.json';
@@ -606,7 +611,8 @@ class OpportunitiesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function describeUsingGET4Request()
+    public function describeUsingGET4Request(
+    )
     {
 
         $resourcePath = '/rest/v1/opportunities/describe.json';
@@ -762,16 +768,17 @@ class OpportunitiesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getOpportunitiesUsingGETRequest($filter_type, $filter_values, $custom_object_lookup_request = null, $fields = null, $batch_size = null, $next_page_token = null)
+    public function getOpportunitiesUsingGETRequest(
+        string $filter_type,
+        array $filter_values,
+        \NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest $custom_object_lookup_request = null,
+        array $fields = null,
+        int $batch_size = null,
+        string $next_page_token = null
+    )
     {
-        // Verify the required parameter 'filter_type' is set.
-        if (!isset($filter_type)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $filter_type when calling getOpportunitiesUsingGET'
-            );
-        }
         // Verify the required parameter 'filter_values' is set.
-        if (!isset($filter_values) || (is_array($filter_values) && empty($filter_values))) {
+        if (empty($filter_values)) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $filter_values when calling getOpportunitiesUsingGET'
             );
@@ -918,14 +925,10 @@ class OpportunitiesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getOpportunityFieldByNameUsingGETRequest($field_api_name)
+    public function getOpportunityFieldByNameUsingGETRequest(
+        string $field_api_name
+    )
     {
-        // Verify the required parameter 'field_api_name' is set.
-        if (!isset($field_api_name)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $field_api_name when calling getOpportunityFieldByNameUsingGET'
-            );
-        }
 
         $resourcePath = '/rest/v1/opportunities/schema/fields/{fieldApiName}.json';
         $queryParams = [];
@@ -1067,7 +1070,10 @@ class OpportunitiesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getOpportunityFieldsUsingGETRequest($batch_size = null, $next_page_token = null)
+    public function getOpportunityFieldsUsingGETRequest(
+        int $batch_size = null,
+        string $next_page_token = null
+    )
     {
 
         $resourcePath = '/rest/v1/opportunities/schema/fields.json';
@@ -1229,16 +1235,17 @@ class OpportunitiesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getOpportunityRolesUsingGETRequest($filter_type, $filter_values, $custom_object_lookup_request = null, $fields = null, $batch_size = null, $next_page_token = null)
+    public function getOpportunityRolesUsingGETRequest(
+        string $filter_type,
+        array $filter_values,
+        \NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest $custom_object_lookup_request = null,
+        array $fields = null,
+        int $batch_size = null,
+        string $next_page_token = null
+    )
     {
-        // Verify the required parameter 'filter_type' is set.
-        if (!isset($filter_type)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $filter_type when calling getOpportunityRolesUsingGET'
-            );
-        }
         // Verify the required parameter 'filter_values' is set.
-        if (!isset($filter_values) || (is_array($filter_values) && empty($filter_values))) {
+        if (empty($filter_values)) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $filter_values when calling getOpportunityRolesUsingGET'
             );
@@ -1385,14 +1392,10 @@ class OpportunitiesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function syncOpportunitiesUsingPOSTRequest($sync_custom_object_request)
+    public function syncOpportunitiesUsingPOSTRequest(
+        \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectRequest $sync_custom_object_request
+    )
     {
-        // Verify the required parameter 'sync_custom_object_request' is set.
-        if (!isset($sync_custom_object_request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $sync_custom_object_request when calling syncOpportunitiesUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/v1/opportunities.json';
         $queryParams = [];
@@ -1523,14 +1526,10 @@ class OpportunitiesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function syncOpportunityRolesUsingPOSTRequest($sync_custom_object_request)
+    public function syncOpportunityRolesUsingPOSTRequest(
+        \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectRequest $sync_custom_object_request
+    )
     {
-        // Verify the required parameter 'sync_custom_object_request' is set.
-        if (!isset($sync_custom_object_request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $sync_custom_object_request when calling syncOpportunityRolesUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/v1/opportunities/roles.json';
         $queryParams = [];

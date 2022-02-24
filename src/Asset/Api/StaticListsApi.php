@@ -215,14 +215,10 @@ class StaticListsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createStaticListUsingPOSTRequest($create_static_list_request)
+    public function createStaticListUsingPOSTRequest(
+        \NecLimDul\MarketoRest\Asset\Model\CreateStaticListRequest $create_static_list_request
+    )
     {
-        // Verify the required parameter 'create_static_list_request' is set.
-        if (!isset($create_static_list_request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $create_static_list_request when calling createStaticListUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/staticLists.json';
         $queryParams = [];
@@ -353,14 +349,10 @@ class StaticListsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteStaticListByIdUsingPOSTRequest($id)
+    public function deleteStaticListByIdUsingPOSTRequest(
+        int $id
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling deleteStaticListByIdUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/staticList/{id}/delete.json';
         $queryParams = [];
@@ -497,14 +489,10 @@ class StaticListsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getStaticListByIdUsingGETRequest($id)
+    public function getStaticListByIdUsingGETRequest(
+        int $id
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling getStaticListByIdUsingGET'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/staticList/{id}.json';
         $queryParams = [];
@@ -641,14 +629,10 @@ class StaticListsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getStaticListByNameUsingGETRequest($name)
+    public function getStaticListByNameUsingGETRequest(
+        string $name
+    )
     {
-        // Verify the required parameter 'name' is set.
-        if (!isset($name)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $name when calling getStaticListByNameUsingGET'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/staticList/byName.json';
         $queryParams = [];
@@ -803,7 +787,13 @@ class StaticListsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getStaticListsUsingGETRequest($folder = null, $offset = null, $max_return = null, $earliest_updated_at = null, $latest_updated_at = null)
+    public function getStaticListsUsingGETRequest(
+        string $folder = null,
+        int $offset = null,
+        int $max_return = null,
+        string $earliest_updated_at = null,
+        string $latest_updated_at = null
+    )
     {
 
         $resourcePath = '/rest/asset/v1/staticLists.json';
@@ -948,20 +938,11 @@ class StaticListsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updateStaticListUsingPOSTRequest($id, $update_static_list_request)
+    public function updateStaticListUsingPOSTRequest(
+        int $id,
+        \NecLimDul\MarketoRest\Asset\Model\UpdateStaticListRequest $update_static_list_request
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling updateStaticListUsingPOST'
-            );
-        }
-        // Verify the required parameter 'update_static_list_request' is set.
-        if (!isset($update_static_list_request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $update_static_list_request when calling updateStaticListUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/staticList/{id}.json';
         $queryParams = [];

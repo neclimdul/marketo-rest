@@ -215,14 +215,10 @@ class ProgramsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function approveProgramUsingPOSTRequest($id)
+    public function approveProgramUsingPOSTRequest(
+        int $id
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling approveProgramUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/program/{id}/approve.json';
         $queryParams = [];
@@ -379,7 +375,13 @@ class ProgramsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function browseProgramsUsingGETRequest($max_return = null, $offset = null, $filter_type = null, $earliest_updated_at = null, $latest_updated_at = null)
+    public function browseProgramsUsingGETRequest(
+        int $max_return = null,
+        int $offset = null,
+        string $filter_type = null,
+        string $earliest_updated_at = null,
+        string $latest_updated_at = null
+    )
     {
 
         $resourcePath = '/rest/asset/v1/programs.json';
@@ -524,20 +526,11 @@ class ProgramsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function cloneProgramUsingPOSTRequest($id, $clone_program_request)
+    public function cloneProgramUsingPOSTRequest(
+        int $id,
+        \NecLimDul\MarketoRest\Asset\Model\CloneProgramRequest $clone_program_request
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling cloneProgramUsingPOST'
-            );
-        }
-        // Verify the required parameter 'clone_program_request' is set.
-        if (!isset($clone_program_request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $clone_program_request when calling cloneProgramUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/program/{id}/clone.json';
         $queryParams = [];
@@ -675,14 +668,10 @@ class ProgramsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createProgramUsingPOSTRequest($create_program_request)
+    public function createProgramUsingPOSTRequest(
+        \NecLimDul\MarketoRest\Asset\Model\CreateProgramRequest $create_program_request
+    )
     {
-        // Verify the required parameter 'create_program_request' is set.
-        if (!isset($create_program_request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $create_program_request when calling createProgramUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/programs.json';
         $queryParams = [];
@@ -813,14 +802,10 @@ class ProgramsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteProgramUsingPOSTRequest($id)
+    public function deleteProgramUsingPOSTRequest(
+        int $id
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling deleteProgramUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/program/{id}/delete.json';
         $queryParams = [];
@@ -957,14 +942,10 @@ class ProgramsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getProgramByIdUsingGETRequest($id)
+    public function getProgramByIdUsingGETRequest(
+        int $id
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling getProgramByIdUsingGET'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/program/{id}.json';
         $queryParams = [];
@@ -1111,14 +1092,12 @@ class ProgramsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getProgramByNameUsingGETRequest($name, $include_tags = null, $include_costs = null)
+    public function getProgramByNameUsingGETRequest(
+        string $name,
+        bool $include_tags = null,
+        bool $include_costs = null
+    )
     {
-        // Verify the required parameter 'name' is set.
-        if (!isset($name)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $name when calling getProgramByNameUsingGET'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/program/byName.json';
         $queryParams = [];
@@ -1270,20 +1249,13 @@ class ProgramsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getProgramListByTagUsingGETRequest($tag_type, $tag_value, $max_return = null, $offset = null)
+    public function getProgramListByTagUsingGETRequest(
+        string $tag_type,
+        string $tag_value,
+        int $max_return = null,
+        int $offset = null
+    )
     {
-        // Verify the required parameter 'tag_type' is set.
-        if (!isset($tag_type)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $tag_type when calling getProgramListByTagUsingGET'
-            );
-        }
-        // Verify the required parameter 'tag_value' is set.
-        if (!isset($tag_value)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $tag_value when calling getProgramListByTagUsingGET'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/program/byTag.json';
         $queryParams = [];
@@ -1426,14 +1398,11 @@ class ProgramsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getSmartListByProgramIdUsingGETRequest($program_id, $include_rules = null)
+    public function getSmartListByProgramIdUsingGETRequest(
+        int $program_id,
+        bool $include_rules = null
+    )
     {
-        // Verify the required parameter 'program_id' is set.
-        if (!isset($program_id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $program_id when calling getSmartListByProgramIdUsingGET'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/program/{programId}/smartList.json';
         $queryParams = [];
@@ -1575,14 +1544,10 @@ class ProgramsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function unapproveProgramUsingPOSTRequest($id)
+    public function unapproveProgramUsingPOSTRequest(
+        int $id
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling unapproveProgramUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/program/{id}/unapprove.json';
         $queryParams = [];
@@ -1724,20 +1689,11 @@ class ProgramsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updateProgramUsingPOSTRequest($id, $update_program_request)
+    public function updateProgramUsingPOSTRequest(
+        int $id,
+        \NecLimDul\MarketoRest\Asset\Model\UpdateProgramRequest $update_program_request
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling updateProgramUsingPOST'
-            );
-        }
-        // Verify the required parameter 'update_program_request' is set.
-        if (!isset($update_program_request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $update_program_request when calling updateProgramUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/program/{id}.json';
         $queryParams = [];

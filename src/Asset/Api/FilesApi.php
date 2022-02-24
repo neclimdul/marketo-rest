@@ -215,14 +215,10 @@ class FilesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createFileUsingPOSTRequest($create_file_request)
+    public function createFileUsingPOSTRequest(
+        \NecLimDul\MarketoRest\Asset\Model\CreateFileRequest $create_file_request
+    )
     {
-        // Verify the required parameter 'create_file_request' is set.
-        if (!isset($create_file_request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $create_file_request when calling createFileUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/files.json';
         $queryParams = [];
@@ -353,14 +349,10 @@ class FilesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getFileByIdUsingGETRequest($id)
+    public function getFileByIdUsingGETRequest(
+        int $id
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling getFileByIdUsingGET'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/file/{id}.json';
         $queryParams = [];
@@ -497,14 +489,10 @@ class FilesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getFileByNameUsingGETRequest($name)
+    public function getFileByNameUsingGETRequest(
+        string $name
+    )
     {
-        // Verify the required parameter 'name' is set.
-        if (!isset($name)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $name when calling getFileByNameUsingGET'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/file/byName.json';
         $queryParams = [];
@@ -644,14 +632,11 @@ class FilesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getFilesUsingGETRequest($get_files_request, $folder = null)
+    public function getFilesUsingGETRequest(
+        \NecLimDul\MarketoRest\Asset\Model\GetFilesRequest $get_files_request,
+        string $folder = null
+    )
     {
-        // Verify the required parameter 'get_files_request' is set.
-        if (!isset($get_files_request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $get_files_request when calling getFilesUsingGET'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/files.json';
         $queryParams = [];

@@ -215,14 +215,10 @@ class BulkExportActivitiesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function cancelExportActivitiesUsingPOSTRequest($export_id)
+    public function cancelExportActivitiesUsingPOSTRequest(
+        string $export_id
+    )
     {
-        // Verify the required parameter 'export_id' is set.
-        if (!isset($export_id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $export_id when calling cancelExportActivitiesUsingPOST'
-            );
-        }
 
         $resourcePath = '/bulk/v1/activities/export/{exportId}/cancel.json';
         $queryParams = [];
@@ -359,7 +355,9 @@ class BulkExportActivitiesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createExportActivitiesUsingPOSTRequest($export_activity_request = null)
+    public function createExportActivitiesUsingPOSTRequest(
+        \NecLimDul\MarketoRest\Lead\Model\ExportActivityRequest $export_activity_request = null
+    )
     {
 
         $resourcePath = '/bulk/v1/activities/export/create.json';
@@ -494,14 +492,10 @@ class BulkExportActivitiesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function enqueueExportActivitiesUsingPOSTRequest($export_id)
+    public function enqueueExportActivitiesUsingPOSTRequest(
+        string $export_id
+    )
     {
-        // Verify the required parameter 'export_id' is set.
-        if (!isset($export_id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $export_id when calling enqueueExportActivitiesUsingPOST'
-            );
-        }
 
         $resourcePath = '/bulk/v1/activities/export/{exportId}/enqueue.json';
         $queryParams = [];
@@ -643,14 +637,11 @@ class BulkExportActivitiesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getExportActivitiesFileUsingGETRequest($export_id, $range = null)
+    public function getExportActivitiesFileUsingGETRequest(
+        string $export_id,
+        string $range = null
+    )
     {
-        // Verify the required parameter 'export_id' is set.
-        if (!isset($export_id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $export_id when calling getExportActivitiesFileUsingGET'
-            );
-        }
 
         $resourcePath = '/bulk/v1/activities/export/{exportId}/file.json';
         $queryParams = [];
@@ -792,14 +783,10 @@ class BulkExportActivitiesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getExportActivitiesStatusUsingGETRequest($export_id)
+    public function getExportActivitiesStatusUsingGETRequest(
+        string $export_id
+    )
     {
-        // Verify the required parameter 'export_id' is set.
-        if (!isset($export_id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $export_id when calling getExportActivitiesStatusUsingGET'
-            );
-        }
 
         $resourcePath = '/bulk/v1/activities/export/{exportId}/status.json';
         $queryParams = [];
@@ -946,7 +933,11 @@ class BulkExportActivitiesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getExportActivitiesUsingGETRequest($status = null, $batch_size = null, $next_page_token = null)
+    public function getExportActivitiesUsingGETRequest(
+        array $status = null,
+        int $batch_size = null,
+        string $next_page_token = null
+    )
     {
 
         $resourcePath = '/bulk/v1/activities/export.json';

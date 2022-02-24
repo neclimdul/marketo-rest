@@ -220,20 +220,11 @@ class SmartListsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function cloneSmartListUsingPOSTRequest($id, $clone_smart_list_request)
+    public function cloneSmartListUsingPOSTRequest(
+        int $id,
+        \NecLimDul\MarketoRest\Asset\Model\CloneSmartListRequest $clone_smart_list_request
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling cloneSmartListUsingPOST'
-            );
-        }
-        // Verify the required parameter 'clone_smart_list_request' is set.
-        if (!isset($clone_smart_list_request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $clone_smart_list_request when calling cloneSmartListUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/smartList/{id}/clone.json';
         $queryParams = [];
@@ -371,14 +362,10 @@ class SmartListsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteSmartListByIdUsingPOSTRequest($id)
+    public function deleteSmartListByIdUsingPOSTRequest(
+        int $id
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling deleteSmartListByIdUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/smartList/{id}/delete.json';
         $queryParams = [];
@@ -520,14 +507,11 @@ class SmartListsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getSmartListByIdUsingGETRequest($id, $include_rules = null)
+    public function getSmartListByIdUsingGETRequest(
+        int $id,
+        bool $include_rules = null
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling getSmartListByIdUsingGET'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/smartList/{id}.json';
         $queryParams = [];
@@ -669,14 +653,10 @@ class SmartListsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getSmartListByNameUsingGETRequest($name)
+    public function getSmartListByNameUsingGETRequest(
+        string $name
+    )
     {
-        // Verify the required parameter 'name' is set.
-        if (!isset($name)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $name when calling getSmartListByNameUsingGET'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/smartList/byName.json';
         $queryParams = [];
@@ -831,7 +811,13 @@ class SmartListsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getSmartListsUsingGETRequest($folder = null, $offset = null, $max_return = null, $earliest_updated_at = null, $latest_updated_at = null)
+    public function getSmartListsUsingGETRequest(
+        string $folder = null,
+        int $offset = null,
+        int $max_return = null,
+        string $earliest_updated_at = null,
+        string $latest_updated_at = null
+    )
     {
 
         $resourcePath = '/rest/asset/v1/smartLists.json';

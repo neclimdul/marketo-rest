@@ -220,20 +220,11 @@ class NamedAccountListsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function addNamedAccountListMembersUsingPOSTRequest($id, $add_named_account_list_member_request)
+    public function addNamedAccountListMembersUsingPOSTRequest(
+        string $id,
+        \NecLimDul\MarketoRest\Lead\Model\AddNamedAccountListMemberRequest $add_named_account_list_member_request
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling addNamedAccountListMembersUsingPOST'
-            );
-        }
-        // Verify the required parameter 'add_named_account_list_member_request' is set.
-        if (!isset($add_named_account_list_member_request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $add_named_account_list_member_request when calling addNamedAccountListMembersUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/v1/namedAccountList/{id}/namedAccounts.json';
         $queryParams = [];
@@ -371,14 +362,10 @@ class NamedAccountListsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteNamedAccountListsUsingPOSTRequest($delete_named_account_list_request)
+    public function deleteNamedAccountListsUsingPOSTRequest(
+        \NecLimDul\MarketoRest\Lead\Model\DeleteNamedAccountListRequest $delete_named_account_list_request
+    )
     {
-        // Verify the required parameter 'delete_named_account_list_request' is set.
-        if (!isset($delete_named_account_list_request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $delete_named_account_list_request when calling deleteNamedAccountListsUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/v1/namedAccountLists/delete.json';
         $queryParams = [];
@@ -524,14 +511,13 @@ class NamedAccountListsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getNamedAccountListMembersUsingGETRequest($id, $fields = null, $batch_size = null, $next_page_token = null)
+    public function getNamedAccountListMembersUsingGETRequest(
+        string $id,
+        array $fields = null,
+        int $batch_size = null,
+        string $next_page_token = null
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling getNamedAccountListMembersUsingGET'
-            );
-        }
 
         $resourcePath = '/rest/v1/namedAccountList/{id}/namedAccounts.json';
         $queryParams = [];
@@ -690,16 +676,15 @@ class NamedAccountListsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getNamedAccountListsUsingGETRequest($filter_type, $filter_values, $batch_size = null, $next_page_token = null)
+    public function getNamedAccountListsUsingGETRequest(
+        string $filter_type,
+        array $filter_values,
+        int $batch_size = null,
+        string $next_page_token = null
+    )
     {
-        // Verify the required parameter 'filter_type' is set.
-        if (!isset($filter_type)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $filter_type when calling getNamedAccountListsUsingGET'
-            );
-        }
         // Verify the required parameter 'filter_values' is set.
-        if (!isset($filter_values) || (is_array($filter_values) && empty($filter_values))) {
+        if (empty($filter_values)) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $filter_values when calling getNamedAccountListsUsingGET'
             );
@@ -846,20 +831,11 @@ class NamedAccountListsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function removeNamedAccountListMembersUsingPOSTRequest($id, $remove_named_account_list_member_request)
+    public function removeNamedAccountListMembersUsingPOSTRequest(
+        string $id,
+        \NecLimDul\MarketoRest\Lead\Model\RemoveNamedAccountListMemberRequest $remove_named_account_list_member_request
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling removeNamedAccountListMembersUsingPOST'
-            );
-        }
-        // Verify the required parameter 'remove_named_account_list_member_request' is set.
-        if (!isset($remove_named_account_list_member_request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $remove_named_account_list_member_request when calling removeNamedAccountListMembersUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/v1/namedAccountList/{id}/namedAccounts/remove.json';
         $queryParams = [];
@@ -997,14 +973,10 @@ class NamedAccountListsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function syncNamedAccountListsUsingPOSTRequest($sync_named_account_list_request)
+    public function syncNamedAccountListsUsingPOSTRequest(
+        \NecLimDul\MarketoRest\Lead\Model\SyncNamedAccountListRequest $sync_named_account_list_request
+    )
     {
-        // Verify the required parameter 'sync_named_account_list_request' is set.
-        if (!isset($sync_named_account_list_request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $sync_named_account_list_request when calling syncNamedAccountListsUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/v1/namedAccountLists.json';
         $queryParams = [];

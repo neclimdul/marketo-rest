@@ -220,20 +220,11 @@ class FileContentsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updateContentUsingPOSTRequest($id, $request)
+    public function updateContentUsingPOSTRequest(
+        int $id,
+        \NecLimDul\MarketoRest\Asset\Model\UpdateFileContentRequest $request
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling updateContentUsingPOST'
-            );
-        }
-        // Verify the required parameter 'request' is set.
-        if (!isset($request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $request when calling updateContentUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/file/{id}/content.json';
         $queryParams = [];

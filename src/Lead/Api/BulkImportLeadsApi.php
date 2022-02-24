@@ -215,14 +215,10 @@ class BulkImportLeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getImportLeadFailuresUsingGETRequest($batch_id)
+    public function getImportLeadFailuresUsingGETRequest(
+        int $batch_id
+    )
     {
-        // Verify the required parameter 'batch_id' is set.
-        if (!isset($batch_id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $batch_id when calling getImportLeadFailuresUsingGET'
-            );
-        }
 
         $resourcePath = '/bulk/v1/leads/batch/{batchId}/failures.json';
         $queryParams = [];
@@ -359,14 +355,10 @@ class BulkImportLeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getImportLeadStatusUsingGETRequest($batch_id)
+    public function getImportLeadStatusUsingGETRequest(
+        int $batch_id
+    )
     {
-        // Verify the required parameter 'batch_id' is set.
-        if (!isset($batch_id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $batch_id when calling getImportLeadStatusUsingGET'
-            );
-        }
 
         $resourcePath = '/bulk/v1/leads/batch/{batchId}.json';
         $queryParams = [];
@@ -503,14 +495,10 @@ class BulkImportLeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getImportLeadWarningsUsingGETRequest($batch_id)
+    public function getImportLeadWarningsUsingGETRequest(
+        int $batch_id
+    )
     {
-        // Verify the required parameter 'batch_id' is set.
-        if (!isset($batch_id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $batch_id when calling getImportLeadWarningsUsingGET'
-            );
-        }
 
         $resourcePath = '/bulk/v1/leads/batch/{batchId}/warnings.json';
         $queryParams = [];
@@ -667,20 +655,14 @@ class BulkImportLeadsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function importLeadUsingPOSTRequest($format, $file, $lookup_field = null, $partition_name = null, $list_id = null)
+    public function importLeadUsingPOSTRequest(
+        string $format,
+        \SplFileObject $file,
+        string $lookup_field = null,
+        string $partition_name = null,
+        int $list_id = null
+    )
     {
-        // Verify the required parameter 'format' is set.
-        if (!isset($format)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $format when calling importLeadUsingPOST'
-            );
-        }
-        // Verify the required parameter 'file' is set.
-        if (!isset($file)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $file when calling importLeadUsingPOST'
-            );
-        }
 
         $resourcePath = '/bulk/v1/leads.json';
         $queryParams = [];

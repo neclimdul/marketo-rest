@@ -215,14 +215,10 @@ class LandingPagesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function approveLandingPageUsingPOSTRequest($id)
+    public function approveLandingPageUsingPOSTRequest(
+        int $id
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling approveLandingPageUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/landingPage/{id}/approveDraft.json';
         $queryParams = [];
@@ -374,7 +370,12 @@ class LandingPagesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function browseLandingPagesUsingGETRequest($status = null, $max_return = null, $offset = null, $folder = null)
+    public function browseLandingPagesUsingGETRequest(
+        string $status = null,
+        int $max_return = null,
+        int $offset = null,
+        string $folder = null
+    )
     {
 
         $resourcePath = '/rest/asset/v1/landingPages.json';
@@ -518,20 +519,11 @@ class LandingPagesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function cloneLandingPageUsingPOSTRequest($id, $clone_landing_page_request)
+    public function cloneLandingPageUsingPOSTRequest(
+        int $id,
+        \NecLimDul\MarketoRest\Asset\Model\CloneLandingPageRequest $clone_landing_page_request
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling cloneLandingPageUsingPOST'
-            );
-        }
-        // Verify the required parameter 'clone_landing_page_request' is set.
-        if (!isset($clone_landing_page_request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $clone_landing_page_request when calling cloneLandingPageUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/landingPage/{id}/clone.json';
         $queryParams = [];
@@ -669,14 +661,10 @@ class LandingPagesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createLandingPageUsingPOSTRequest($create_landing_page_request)
+    public function createLandingPageUsingPOSTRequest(
+        \NecLimDul\MarketoRest\Asset\Model\CreateLandingPageRequest $create_landing_page_request
+    )
     {
-        // Verify the required parameter 'create_landing_page_request' is set.
-        if (!isset($create_landing_page_request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $create_landing_page_request when calling createLandingPageUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/landingPages.json';
         $queryParams = [];
@@ -807,14 +795,10 @@ class LandingPagesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteLandingPageByIdUsingPOSTRequest($id)
+    public function deleteLandingPageByIdUsingPOSTRequest(
+        int $id
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling deleteLandingPageByIdUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/landingPage/{id}/delete.json';
         $queryParams = [];
@@ -951,14 +935,10 @@ class LandingPagesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function discardLandingPageByIdUsingPOSTRequest($id)
+    public function discardLandingPageByIdUsingPOSTRequest(
+        int $id
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling discardLandingPageByIdUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/landingPage/{id}/discardDraft.json';
         $queryParams = [];
@@ -1100,14 +1080,11 @@ class LandingPagesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getLandingPageByIdUsingGETRequest($id, $status = null)
+    public function getLandingPageByIdUsingGETRequest(
+        int $id,
+        string $status = null
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling getLandingPageByIdUsingGET'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/landingPage/{id}.json';
         $queryParams = [];
@@ -1264,14 +1241,13 @@ class LandingPagesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getLandingPageByNameUsingGETRequest($name, $status = null, $max_return = null, $offset = null)
+    public function getLandingPageByNameUsingGETRequest(
+        string $name,
+        string $status = null,
+        int $max_return = null,
+        int $offset = null
+    )
     {
-        // Verify the required parameter 'name' is set.
-        if (!isset($name)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $name when calling getLandingPageByNameUsingGET'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/landingPage/byName.json';
         $queryParams = [];
@@ -1419,14 +1395,12 @@ class LandingPagesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getLandingPageFullContentUsingGETRequest($id, $lead_id = null, $segmentation = null)
+    public function getLandingPageFullContentUsingGETRequest(
+        int $id,
+        int $lead_id = null,
+        string $segmentation = null
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling getLandingPageFullContentUsingGET'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/landingPage/{id}/fullContent.json';
         $queryParams = [];
@@ -1574,14 +1548,11 @@ class LandingPagesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getVariablesUsingGETRequest($id, $status = null)
+    public function getVariablesUsingGETRequest(
+        int $id,
+        string $status = null
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling getVariablesUsingGET'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/landingPage/{id}/variables.json';
         $queryParams = [];
@@ -1723,14 +1694,10 @@ class LandingPagesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function unapproveLandingPageByIdUsingPOSTRequest($id)
+    public function unapproveLandingPageByIdUsingPOSTRequest(
+        int $id
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling unapproveLandingPageByIdUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/landingPage/{id}/unapprove.json';
         $queryParams = [];
@@ -1872,20 +1839,11 @@ class LandingPagesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updateLandingPageUsingPOSTRequest($id, $update_landing_page_request)
+    public function updateLandingPageUsingPOSTRequest(
+        int $id,
+        \NecLimDul\MarketoRest\Asset\Model\UpdateLandingPageRequest $update_landing_page_request
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling updateLandingPageUsingPOST'
-            );
-        }
-        // Verify the required parameter 'update_landing_page_request' is set.
-        if (!isset($update_landing_page_request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $update_landing_page_request when calling updateLandingPageUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/landingPage/{id}.json';
         $queryParams = [];
@@ -2033,26 +1991,12 @@ class LandingPagesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updateLandingPageVariableUsingPOSTRequest($id, $variable_id, $value)
+    public function updateLandingPageVariableUsingPOSTRequest(
+        int $id,
+        string $variable_id,
+        int $value
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling updateLandingPageVariableUsingPOST'
-            );
-        }
-        // Verify the required parameter 'variable_id' is set.
-        if (!isset($variable_id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $variable_id when calling updateLandingPageVariableUsingPOST'
-            );
-        }
-        // Verify the required parameter 'value' is set.
-        if (!isset($value)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $value when calling updateLandingPageVariableUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/landingPage/{id}/variable/{variableId}.json';
         $queryParams = [];

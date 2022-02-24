@@ -215,14 +215,10 @@ class FoldersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createFolderUsingPOSTRequest($create_folder_request)
+    public function createFolderUsingPOSTRequest(
+        \NecLimDul\MarketoRest\Asset\Model\CreateFolderRequest $create_folder_request
+    )
     {
-        // Verify the required parameter 'create_folder_request' is set.
-        if (!isset($create_folder_request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $create_folder_request when calling createFolderUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/folders.json';
         $queryParams = [];
@@ -358,20 +354,11 @@ class FoldersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteFolderUsingPOSTRequest($id, $type)
+    public function deleteFolderUsingPOSTRequest(
+        int $id,
+        string $type
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling deleteFolderUsingPOST'
-            );
-        }
-        // Verify the required parameter 'type' is set.
-        if (!isset($type)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $type when calling deleteFolderUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/folder/{id}/delete.json';
         $queryParams = [];
@@ -557,20 +544,11 @@ class FoldersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getFolderByIdUsingGETRequest($id, $type)
+    public function getFolderByIdUsingGETRequest(
+        int $id,
+        string $type
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling getFolderByIdUsingGET'
-            );
-        }
-        // Verify the required parameter 'type' is set.
-        if (!isset($type)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $type when calling getFolderByIdUsingGET'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/folder/{id}.json';
         $queryParams = [];
@@ -727,14 +705,13 @@ class FoldersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getFolderByNameUsingGETRequest($name, $type = null, $root = null, $work_space = null)
+    public function getFolderByNameUsingGETRequest(
+        string $name,
+        string $type = null,
+        string $root = null,
+        string $work_space = null
+    )
     {
-        // Verify the required parameter 'name' is set.
-        if (!isset($name)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $name when calling getFolderByNameUsingGET'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/folder/byName.json';
         $queryParams = [];
@@ -887,20 +864,13 @@ class FoldersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getFolderContentUsingGETRequest($id, $type, $max_return = null, $offset = null)
+    public function getFolderContentUsingGETRequest(
+        int $id,
+        string $type,
+        int $max_return = null,
+        int $offset = null
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling getFolderContentUsingGET'
-            );
-        }
-        // Verify the required parameter 'type' is set.
-        if (!isset($type)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $type when calling getFolderContentUsingGET'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/folder/{id}/content.json';
         $queryParams = [];
@@ -1064,7 +1034,13 @@ class FoldersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getFolderUsingGETRequest($root = null, $max_depth = null, $max_return = null, $offset = null, $work_space = null)
+    public function getFolderUsingGETRequest(
+        string $root = null,
+        int $max_depth = null,
+        int $max_return = null,
+        int $offset = null,
+        string $work_space = null
+    )
     {
 
         $resourcePath = '/rest/asset/v1/folders.json';
@@ -1209,20 +1185,11 @@ class FoldersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updateFolderUsingPOSTRequest($id, $update_folder_request)
+    public function updateFolderUsingPOSTRequest(
+        int $id,
+        \NecLimDul\MarketoRest\Asset\Model\UpdateFolderRequest $update_folder_request
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling updateFolderUsingPOST'
-            );
-        }
-        // Verify the required parameter 'update_folder_request' is set.
-        if (!isset($update_folder_request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $update_folder_request when calling updateFolderUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/folder/{id}.json';
         $queryParams = [];

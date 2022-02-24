@@ -220,20 +220,11 @@ class FormFieldsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function addFieldSetUsingPOSTRequest($id, $add_form_field_set_request)
+    public function addFieldSetUsingPOSTRequest(
+        int $id,
+        \NecLimDul\MarketoRest\Asset\Model\AddFormFieldSetRequest $add_form_field_set_request
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling addFieldSetUsingPOST'
-            );
-        }
-        // Verify the required parameter 'add_form_field_set_request' is set.
-        if (!isset($add_form_field_set_request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $add_form_field_set_request when calling addFieldSetUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/form/{id}/fieldSet.json';
         $queryParams = [];
@@ -376,20 +367,11 @@ class FormFieldsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function addFieldToAFormUsingPOSTRequest($id, $add_form_field_set_request)
+    public function addFieldToAFormUsingPOSTRequest(
+        int $id,
+        \NecLimDul\MarketoRest\Asset\Model\AddFormFieldRequest $add_form_field_set_request
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling addFieldToAFormUsingPOST'
-            );
-        }
-        // Verify the required parameter 'add_form_field_set_request' is set.
-        if (!isset($add_form_field_set_request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $add_form_field_set_request when calling addFieldToAFormUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/form/{id}/fields.json';
         $queryParams = [];
@@ -537,26 +519,12 @@ class FormFieldsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function addFormFieldVisibilityRuleUsingPOSTRequest($form_id, $field_id, $add_form_field_visibility_request)
+    public function addFormFieldVisibilityRuleUsingPOSTRequest(
+        int $form_id,
+        string $field_id,
+        \NecLimDul\MarketoRest\Asset\Model\AddFormFieldVisibilityRequest $add_form_field_visibility_request
+    )
     {
-        // Verify the required parameter 'form_id' is set.
-        if (!isset($form_id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $form_id when calling addFormFieldVisibilityRuleUsingPOST'
-            );
-        }
-        // Verify the required parameter 'field_id' is set.
-        if (!isset($field_id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $field_id when calling addFormFieldVisibilityRuleUsingPOST'
-            );
-        }
-        // Verify the required parameter 'add_form_field_visibility_request' is set.
-        if (!isset($add_form_field_visibility_request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $add_form_field_visibility_request when calling addFormFieldVisibilityRuleUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/form/{formId}/field/{fieldId}/visibility.json';
         $queryParams = [];
@@ -704,20 +672,11 @@ class FormFieldsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function addRichTextFieldUsingPOSTRequest($id, $add_rich_text_request)
+    public function addRichTextFieldUsingPOSTRequest(
+        int $id,
+        \NecLimDul\MarketoRest\Asset\Model\AddRichTextRequest $add_rich_text_request
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling addRichTextFieldUsingPOST'
-            );
-        }
-        // Verify the required parameter 'add_rich_text_request' is set.
-        if (!isset($add_rich_text_request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $add_rich_text_request when calling addRichTextFieldUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/form/{id}/richText.json';
         $queryParams = [];
@@ -865,26 +824,12 @@ class FormFieldsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteFormFieldFromFieldSetUsingPOSTRequest($id, $field_set_id, $field_id)
+    public function deleteFormFieldFromFieldSetUsingPOSTRequest(
+        int $id,
+        string $field_set_id,
+        string $field_id
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling deleteFormFieldFromFieldSetUsingPOST'
-            );
-        }
-        // Verify the required parameter 'field_set_id' is set.
-        if (!isset($field_set_id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $field_set_id when calling deleteFormFieldFromFieldSetUsingPOST'
-            );
-        }
-        // Verify the required parameter 'field_id' is set.
-        if (!isset($field_id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $field_id when calling deleteFormFieldFromFieldSetUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/form/{id}/fieldSet/{fieldSetId}/field/{fieldId}/delete.json';
         $queryParams = [];
@@ -1036,20 +981,11 @@ class FormFieldsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteFormFieldUsingPOSTRequest($id, $field_id)
+    public function deleteFormFieldUsingPOSTRequest(
+        int $id,
+        string $field_id
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling deleteFormFieldUsingPOST'
-            );
-        }
-        // Verify the required parameter 'field_id' is set.
-        if (!isset($field_id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $field_id when calling deleteFormFieldUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/form/{id}/field/{fieldId}/delete.json';
         $queryParams = [];
@@ -1196,7 +1132,10 @@ class FormFieldsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getAllFieldsUsingGETRequest($max_return = null, $offset = null)
+    public function getAllFieldsUsingGETRequest(
+        int $max_return = null,
+        int $offset = null
+    )
     {
 
         $resourcePath = '/rest/asset/v1/form/fields.json';
@@ -1338,7 +1277,10 @@ class FormFieldsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getAllProgramMemberFieldsUsingGETRequest($max_return = null, $offset = null)
+    public function getAllProgramMemberFieldsUsingGETRequest(
+        int $max_return = null,
+        int $offset = null
+    )
     {
 
         $resourcePath = '/rest/asset/v1/form/programMemberFields.json';
@@ -1480,14 +1422,11 @@ class FormFieldsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getFormFieldByFormVidUsingGETRequest($id, $status = null)
+    public function getFormFieldByFormVidUsingGETRequest(
+        int $id,
+        string $status = null
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling getFormFieldByFormVidUsingGET'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/form/{id}/fields.json';
         $queryParams = [];
@@ -1634,14 +1573,11 @@ class FormFieldsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updateFieldPositionsUsingPOSTRequest($id, $re_arrange_request = null)
+    public function updateFieldPositionsUsingPOSTRequest(
+        int $id,
+        \NecLimDul\MarketoRest\Asset\Model\ReArrangeRequest $re_arrange_request = null
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling updateFieldPositionsUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/form/{id}/reArrange.json';
         $queryParams = [];
@@ -1792,26 +1728,12 @@ class FormFieldsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updateFormFieldUsingPOSTRequest($id, $field_id, $update_form_field_request)
+    public function updateFormFieldUsingPOSTRequest(
+        int $id,
+        string $field_id,
+        \NecLimDul\MarketoRest\Asset\Model\UpdateFormFieldRequest $update_form_field_request
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling updateFormFieldUsingPOST'
-            );
-        }
-        // Verify the required parameter 'field_id' is set.
-        if (!isset($field_id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $field_id when calling updateFormFieldUsingPOST'
-            );
-        }
-        // Verify the required parameter 'update_form_field_request' is set.
-        if (!isset($update_form_field_request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $update_form_field_request when calling updateFormFieldUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/form/{id}/field/{fieldId}.json';
         $queryParams = [];

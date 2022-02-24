@@ -215,14 +215,10 @@ class ActivitiesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function addCustomActivityUsingPOSTRequest($custom_activity_request)
+    public function addCustomActivityUsingPOSTRequest(
+        \NecLimDul\MarketoRest\Lead\Model\CustomActivityRequest $custom_activity_request
+    )
     {
-        // Verify the required parameter 'custom_activity_request' is set.
-        if (!isset($custom_activity_request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $custom_activity_request when calling addCustomActivityUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/v1/activities/external.json';
         $queryParams = [];
@@ -353,14 +349,10 @@ class ActivitiesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function approveCustomActivityTypeUsingPOSTRequest($api_name)
+    public function approveCustomActivityTypeUsingPOSTRequest(
+        string $api_name
+    )
     {
-        // Verify the required parameter 'api_name' is set.
-        if (!isset($api_name)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $api_name when calling approveCustomActivityTypeUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/v1/activities/external/type/{apiName}/approve.json';
         $queryParams = [];
@@ -502,20 +494,11 @@ class ActivitiesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createCustomActivityTypeAttributesUsingPOSTRequest($api_name, $custom_activity_type_attribute_request)
+    public function createCustomActivityTypeAttributesUsingPOSTRequest(
+        string $api_name,
+        \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request
+    )
     {
-        // Verify the required parameter 'api_name' is set.
-        if (!isset($api_name)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $api_name when calling createCustomActivityTypeAttributesUsingPOST'
-            );
-        }
-        // Verify the required parameter 'custom_activity_type_attribute_request' is set.
-        if (!isset($custom_activity_type_attribute_request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $custom_activity_type_attribute_request when calling createCustomActivityTypeAttributesUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/v1/activities/external/type/{apiName}/attributes/create.json';
         $queryParams = [];
@@ -653,14 +636,10 @@ class ActivitiesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createCustomActivityTypeUsingPOSTRequest($custom_activity_type_request)
+    public function createCustomActivityTypeUsingPOSTRequest(
+        \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeRequest $custom_activity_type_request
+    )
     {
-        // Verify the required parameter 'custom_activity_type_request' is set.
-        if (!isset($custom_activity_type_request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $custom_activity_type_request when calling createCustomActivityTypeUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/v1/activities/external/type.json';
         $queryParams = [];
@@ -796,20 +775,11 @@ class ActivitiesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteCustomActivityTypeAttributesUsingPOSTRequest($api_name, $custom_activity_type_attribute_request)
+    public function deleteCustomActivityTypeAttributesUsingPOSTRequest(
+        string $api_name,
+        \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request
+    )
     {
-        // Verify the required parameter 'api_name' is set.
-        if (!isset($api_name)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $api_name when calling deleteCustomActivityTypeAttributesUsingPOST'
-            );
-        }
-        // Verify the required parameter 'custom_activity_type_attribute_request' is set.
-        if (!isset($custom_activity_type_attribute_request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $custom_activity_type_attribute_request when calling deleteCustomActivityTypeAttributesUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/v1/activities/external/type/{apiName}/attributes/delete.json';
         $queryParams = [];
@@ -947,14 +917,10 @@ class ActivitiesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteCustomActivityTypeUsingPOSTRequest($api_name)
+    public function deleteCustomActivityTypeUsingPOSTRequest(
+        string $api_name
+    )
     {
-        // Verify the required parameter 'api_name' is set.
-        if (!isset($api_name)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $api_name when calling deleteCustomActivityTypeUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/v1/activities/external/type/{apiName}/delete.json';
         $queryParams = [];
@@ -1096,14 +1062,11 @@ class ActivitiesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function describeCustomActivityTypeUsingGETRequest($api_name, $draft = null)
+    public function describeCustomActivityTypeUsingGETRequest(
+        string $api_name,
+        bool $draft = null
+    )
     {
-        // Verify the required parameter 'api_name' is set.
-        if (!isset($api_name)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $api_name when calling describeCustomActivityTypeUsingGET'
-            );
-        }
 
         $resourcePath = '/rest/v1/activities/external/type/{apiName}/describe.json';
         $queryParams = [];
@@ -1245,14 +1208,10 @@ class ActivitiesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function discardDraftofCustomActivityTypeUsingPOSTRequest($api_name)
+    public function discardDraftofCustomActivityTypeUsingPOSTRequest(
+        string $api_name
+    )
     {
-        // Verify the required parameter 'api_name' is set.
-        if (!isset($api_name)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $api_name when calling discardDraftofCustomActivityTypeUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/v1/activities/external/type/{apiName}/discardDraft.json';
         $queryParams = [];
@@ -1389,14 +1348,10 @@ class ActivitiesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getActivitiesPagingTokenUsingGETRequest($since_datetime)
+    public function getActivitiesPagingTokenUsingGETRequest(
+        \DateTime $since_datetime
+    )
     {
-        // Verify the required parameter 'since_datetime' is set.
-        if (!isset($since_datetime)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $since_datetime when calling getActivitiesPagingTokenUsingGET'
-            );
-        }
 
         $resourcePath = '/rest/v1/activities/pagingtoken.json';
         $queryParams = [];
@@ -1526,7 +1481,8 @@ class ActivitiesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getAllActivityTypesUsingGETRequest()
+    public function getAllActivityTypesUsingGETRequest(
+    )
     {
 
         $resourcePath = '/rest/v1/activities/types.json';
@@ -1652,7 +1608,8 @@ class ActivitiesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getCustomActivityTypeUsingGETRequest()
+    public function getCustomActivityTypeUsingGETRequest(
+    )
     {
 
         $resourcePath = '/rest/v1/activities/external/types.json';
@@ -1788,14 +1745,11 @@ class ActivitiesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getDeletedLeadsUsingGETRequest($next_page_token, $batch_size = null)
+    public function getDeletedLeadsUsingGETRequest(
+        string $next_page_token,
+        int $batch_size = null
+    )
     {
-        // Verify the required parameter 'next_page_token' is set.
-        if (!isset($next_page_token)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $next_page_token when calling getDeletedLeadsUsingGET'
-            );
-        }
 
         $resourcePath = '/rest/v1/activities/deletedleads.json';
         $queryParams = [];
@@ -1956,16 +1910,17 @@ class ActivitiesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getLeadActivitiesUsingGETRequest($next_page_token, $activity_type_ids, $asset_ids = null, $list_id = null, $lead_ids = null, $batch_size = null)
+    public function getLeadActivitiesUsingGETRequest(
+        string $next_page_token,
+        array $activity_type_ids,
+        array $asset_ids = null,
+        int $list_id = null,
+        array $lead_ids = null,
+        int $batch_size = null
+    )
     {
-        // Verify the required parameter 'next_page_token' is set.
-        if (!isset($next_page_token)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $next_page_token when calling getLeadActivitiesUsingGET'
-            );
-        }
         // Verify the required parameter 'activity_type_ids' is set.
-        if (!isset($activity_type_ids) || (is_array($activity_type_ids) && empty($activity_type_ids))) {
+        if (empty($activity_type_ids)) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $activity_type_ids when calling getLeadActivitiesUsingGET'
             );
@@ -2129,16 +2084,16 @@ class ActivitiesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getLeadChangesUsingGETRequest($next_page_token, $fields, $list_id = null, $lead_ids = null, $batch_size = null)
+    public function getLeadChangesUsingGETRequest(
+        string $next_page_token,
+        array $fields,
+        int $list_id = null,
+        array $lead_ids = null,
+        int $batch_size = null
+    )
     {
-        // Verify the required parameter 'next_page_token' is set.
-        if (!isset($next_page_token)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $next_page_token when calling getLeadChangesUsingGET'
-            );
-        }
         // Verify the required parameter 'fields' is set.
-        if (!isset($fields) || (is_array($fields) && empty($fields))) {
+        if (empty($fields)) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $fields when calling getLeadChangesUsingGET'
             );
@@ -2286,20 +2241,11 @@ class ActivitiesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updateCustomActivityTypeAttributesUsingPOSTRequest($api_name, $custom_activity_type_attribute_request)
+    public function updateCustomActivityTypeAttributesUsingPOSTRequest(
+        string $api_name,
+        \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request
+    )
     {
-        // Verify the required parameter 'api_name' is set.
-        if (!isset($api_name)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $api_name when calling updateCustomActivityTypeAttributesUsingPOST'
-            );
-        }
-        // Verify the required parameter 'custom_activity_type_attribute_request' is set.
-        if (!isset($custom_activity_type_attribute_request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $custom_activity_type_attribute_request when calling updateCustomActivityTypeAttributesUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/v1/activities/external/type/{apiName}/attributes/update.json';
         $queryParams = [];
@@ -2442,20 +2388,11 @@ class ActivitiesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updateCustomActivityTypeUsingPOSTRequest($api_name, $custom_activity_type_request)
+    public function updateCustomActivityTypeUsingPOSTRequest(
+        string $api_name,
+        \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeRequest $custom_activity_type_request
+    )
     {
-        // Verify the required parameter 'api_name' is set.
-        if (!isset($api_name)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $api_name when calling updateCustomActivityTypeUsingPOST'
-            );
-        }
-        // Verify the required parameter 'custom_activity_type_request' is set.
-        if (!isset($custom_activity_type_request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $custom_activity_type_request when calling updateCustomActivityTypeUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/v1/activities/external/type/{apiName}.json';
         $queryParams = [];

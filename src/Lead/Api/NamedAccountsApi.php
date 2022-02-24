@@ -215,14 +215,10 @@ class NamedAccountsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteNamedAccountsUsingPOSTRequest($delete_account_request)
+    public function deleteNamedAccountsUsingPOSTRequest(
+        \NecLimDul\MarketoRest\Lead\Model\DeleteNamedAccountRequest $delete_account_request
+    )
     {
-        // Verify the required parameter 'delete_account_request' is set.
-        if (!isset($delete_account_request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $delete_account_request when calling deleteNamedAccountsUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/v1/namedaccounts/delete.json';
         $queryParams = [];
@@ -348,7 +344,8 @@ class NamedAccountsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function describeUsingGET3Request()
+    public function describeUsingGET3Request(
+    )
     {
 
         $resourcePath = '/rest/v1/namedaccounts/describe.json';
@@ -479,14 +476,10 @@ class NamedAccountsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getNamedAccountFieldByNameUsingGETRequest($field_api_name)
+    public function getNamedAccountFieldByNameUsingGETRequest(
+        string $field_api_name
+    )
     {
-        // Verify the required parameter 'field_api_name' is set.
-        if (!isset($field_api_name)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $field_api_name when calling getNamedAccountFieldByNameUsingGET'
-            );
-        }
 
         $resourcePath = '/rest/v1/namedaccounts/schema/fields/{fieldApiName}.json';
         $queryParams = [];
@@ -628,7 +621,10 @@ class NamedAccountsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getNamedAccountFieldsUsingGETRequest($batch_size = null, $next_page_token = null)
+    public function getNamedAccountFieldsUsingGETRequest(
+        int $batch_size = null,
+        string $next_page_token = null
+    )
     {
 
         $resourcePath = '/rest/v1/namedaccounts/schema/fields.json';
@@ -785,16 +781,16 @@ class NamedAccountsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getNamedAccountsUsingGETRequest($filter_type, $filter_values, $fields = null, $batch_size = null, $next_page_token = null)
+    public function getNamedAccountsUsingGETRequest(
+        string $filter_type,
+        array $filter_values,
+        array $fields = null,
+        int $batch_size = null,
+        string $next_page_token = null
+    )
     {
-        // Verify the required parameter 'filter_type' is set.
-        if (!isset($filter_type)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $filter_type when calling getNamedAccountsUsingGET'
-            );
-        }
         // Verify the required parameter 'filter_values' is set.
-        if (!isset($filter_values) || (is_array($filter_values) && empty($filter_values))) {
+        if (empty($filter_values)) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $filter_values when calling getNamedAccountsUsingGET'
             );
@@ -937,14 +933,10 @@ class NamedAccountsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function syncNamedAccountsUsingPOSTRequest($sync_account_request)
+    public function syncNamedAccountsUsingPOSTRequest(
+        \NecLimDul\MarketoRest\Lead\Model\SyncNamedAccountRequest $sync_account_request
+    )
     {
-        // Verify the required parameter 'sync_account_request' is set.
-        if (!isset($sync_account_request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $sync_account_request when calling syncNamedAccountsUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/v1/namedaccounts.json';
         $queryParams = [];

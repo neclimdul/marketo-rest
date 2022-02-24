@@ -210,7 +210,8 @@ class UsageApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getDailyErrorsUsingGETRequest()
+    public function getDailyErrorsUsingGETRequest(
+    )
     {
 
         $resourcePath = '/rest/v1/stats/errors.json';
@@ -336,7 +337,8 @@ class UsageApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getDailyUsageUsingGETRequest()
+    public function getDailyUsageUsingGETRequest(
+    )
     {
 
         $resourcePath = '/rest/v1/stats/usage.json';
@@ -462,7 +464,8 @@ class UsageApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getLast7DaysErrorsUsingGETRequest()
+    public function getLast7DaysErrorsUsingGETRequest(
+    )
     {
 
         $resourcePath = '/rest/v1/stats/errors/last7days.json';
@@ -588,7 +591,8 @@ class UsageApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getLast7DaysUsageUsingGETRequest()
+    public function getLast7DaysUsageUsingGETRequest(
+    )
     {
 
         $resourcePath = '/rest/v1/stats/usage/last7days.json';

@@ -215,14 +215,10 @@ class SnippetsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function approveSnippetUsingPOSTRequest($id)
+    public function approveSnippetUsingPOSTRequest(
+        int $id
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling approveSnippetUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/snippet/{id}/approveDraft.json';
         $queryParams = [];
@@ -364,14 +360,11 @@ class SnippetsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function cloneSnippetUsingPOSTRequest($id, $clone_snippet_request = null)
+    public function cloneSnippetUsingPOSTRequest(
+        int $id,
+        \NecLimDul\MarketoRest\Asset\Model\CloneSnippetRequest $clone_snippet_request = null
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling cloneSnippetUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/snippet/{id}/clone.json';
         $queryParams = [];
@@ -512,14 +505,10 @@ class SnippetsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createSnippetUsingPOSTRequest($create_snippet_request)
+    public function createSnippetUsingPOSTRequest(
+        \NecLimDul\MarketoRest\Asset\Model\CreateSnippetRequest $create_snippet_request
+    )
     {
-        // Verify the required parameter 'create_snippet_request' is set.
-        if (!isset($create_snippet_request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $create_snippet_request when calling createSnippetUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/snippets.json';
         $queryParams = [];
@@ -650,14 +639,10 @@ class SnippetsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteSnippetUsingPOSTRequest($id)
+    public function deleteSnippetUsingPOSTRequest(
+        int $id
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling deleteSnippetUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/snippet/{id}/delete.json';
         $queryParams = [];
@@ -794,14 +779,10 @@ class SnippetsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function discardSnippetUsingPOSTRequest($id)
+    public function discardSnippetUsingPOSTRequest(
+        int $id
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling discardSnippetUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/snippet/{id}/discardDraft.json';
         $queryParams = [];
@@ -943,14 +924,11 @@ class SnippetsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getDynamicContentUsingGETRequest($id, $status = null)
+    public function getDynamicContentUsingGETRequest(
+        int $id,
+        string $status = null
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling getDynamicContentUsingGET'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/snippet/{id}/dynamicContent.json';
         $queryParams = [];
@@ -1097,14 +1075,11 @@ class SnippetsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getSnippetByIdUsingGETRequest($id, $status = null)
+    public function getSnippetByIdUsingGETRequest(
+        int $id,
+        string $status = null
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling getSnippetByIdUsingGET'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/snippet/{id}.json';
         $queryParams = [];
@@ -1251,14 +1226,11 @@ class SnippetsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getSnippetContentByIdUsingGETRequest($id, $status = null)
+    public function getSnippetContentByIdUsingGETRequest(
+        int $id,
+        string $status = null
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling getSnippetContentByIdUsingGET'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/snippet/{id}/content.json';
         $queryParams = [];
@@ -1410,7 +1382,11 @@ class SnippetsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getSnippetUsingGETRequest($status = null, $max_return = null, $offset = null)
+    public function getSnippetUsingGETRequest(
+        string $status = null,
+        int $max_return = null,
+        int $offset = null
+    )
     {
 
         $resourcePath = '/rest/asset/v1/snippets.json';
@@ -1548,14 +1524,10 @@ class SnippetsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function unapproveSnippetUsingPOSTRequest($id)
+    public function unapproveSnippetUsingPOSTRequest(
+        int $id
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling unapproveSnippetUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/snippet/{id}/unapprove.json';
         $queryParams = [];
@@ -1702,26 +1674,12 @@ class SnippetsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updateContentUsingPOST1Request($id, $content, $type)
+    public function updateContentUsingPOST1Request(
+        int $id,
+        string $content,
+        string $type
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling updateContentUsingPOST1'
-            );
-        }
-        // Verify the required parameter 'content' is set.
-        if (!isset($content)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $content when calling updateContentUsingPOST1'
-            );
-        }
-        // Verify the required parameter 'type' is set.
-        if (!isset($type)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $type when calling updateContentUsingPOST1'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/snippet/{id}/content.json';
         $queryParams = [];
@@ -1874,26 +1832,12 @@ class SnippetsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updateDynamicContentUsingPOSTRequest($id, $segment_id, $request)
+    public function updateDynamicContentUsingPOSTRequest(
+        int $id,
+        int $segment_id,
+        \NecLimDul\MarketoRest\Asset\Model\UpdateSnippetDynamicContentRequest $request
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling updateDynamicContentUsingPOST'
-            );
-        }
-        // Verify the required parameter 'segment_id' is set.
-        if (!isset($segment_id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $segment_id when calling updateDynamicContentUsingPOST'
-            );
-        }
-        // Verify the required parameter 'request' is set.
-        if (!isset($request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $request when calling updateDynamicContentUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/snippet/{id}/dynamicContent/{segmentId}.json';
         $queryParams = [];
@@ -2041,20 +1985,11 @@ class SnippetsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updateSnippetUsingPOSTRequest($id, $update_snippet_request)
+    public function updateSnippetUsingPOSTRequest(
+        int $id,
+        \NecLimDul\MarketoRest\Asset\Model\UpdateSnippetRequest $update_snippet_request
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling updateSnippetUsingPOST'
-            );
-        }
-        // Verify the required parameter 'update_snippet_request' is set.
-        if (!isset($update_snippet_request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $update_snippet_request when calling updateSnippetUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/snippet/{id}.json';
         $queryParams = [];

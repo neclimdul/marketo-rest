@@ -215,14 +215,10 @@ class LandingPageRedirectRulesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createLandingPageRedirectRuleUsingPOSTRequest($create_landing_page_redirect_rule_request)
+    public function createLandingPageRedirectRuleUsingPOSTRequest(
+        \NecLimDul\MarketoRest\Asset\Model\CreateLandingPageRedirectRuleRequest $create_landing_page_redirect_rule_request
+    )
     {
-        // Verify the required parameter 'create_landing_page_redirect_rule_request' is set.
-        if (!isset($create_landing_page_redirect_rule_request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $create_landing_page_redirect_rule_request when calling createLandingPageRedirectRuleUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/redirectRules.json';
         $queryParams = [];
@@ -353,14 +349,10 @@ class LandingPageRedirectRulesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteLandingPageRedirectRuleUsingPOSTRequest($id)
+    public function deleteLandingPageRedirectRuleUsingPOSTRequest(
+        int $id
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling deleteLandingPageRedirectRuleUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/redirectRule/{id}/delete.json';
         $queryParams = [];
@@ -502,7 +494,10 @@ class LandingPageRedirectRulesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getLandingPageDomainsUsingGETRequest($max_return = null, $offset = null)
+    public function getLandingPageDomainsUsingGETRequest(
+        int $max_return = null,
+        int $offset = null
+    )
     {
 
         $resourcePath = '/rest/asset/v1/landingPageDomains.json';
@@ -639,14 +634,10 @@ class LandingPageRedirectRulesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getLandingPageRedirectRuleByIdUsingGETRequest($id)
+    public function getLandingPageRedirectRuleByIdUsingGETRequest(
+        int $id
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling getLandingPageRedirectRuleByIdUsingGET'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/redirectRule/{id}.json';
         $queryParams = [];
@@ -808,7 +799,14 @@ class LandingPageRedirectRulesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getLandingPageRedirectRulesUsingGETRequest($max_return = null, $offset = null, $redirect_tolanding_page_id = null, $redirect_to_path = null, $earliest_updated_at = null, $latest_updated_at = null)
+    public function getLandingPageRedirectRulesUsingGETRequest(
+        int $max_return = null,
+        int $offset = null,
+        string $redirect_tolanding_page_id = null,
+        string $redirect_to_path = null,
+        string $earliest_updated_at = null,
+        string $latest_updated_at = null
+    )
     {
 
         $resourcePath = '/rest/asset/v1/redirectRules.json';
@@ -954,20 +952,11 @@ class LandingPageRedirectRulesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updateLandingPageRedirectRuleUsingPOSTRequest($id, $update_landing_page_redirect_rule_request)
+    public function updateLandingPageRedirectRuleUsingPOSTRequest(
+        int $id,
+        \NecLimDul\MarketoRest\Asset\Model\UpdateLandingPageRedirectRuleRequest $update_landing_page_redirect_rule_request
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling updateLandingPageRedirectRuleUsingPOST'
-            );
-        }
-        // Verify the required parameter 'update_landing_page_redirect_rule_request' is set.
-        if (!isset($update_landing_page_redirect_rule_request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $update_landing_page_redirect_rule_request when calling updateLandingPageRedirectRuleUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/redirectRule/{id}.json';
         $queryParams = [];

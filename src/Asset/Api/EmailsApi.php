@@ -230,32 +230,13 @@ class EmailsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function addModuleUsingPOSTRequest($id, $module_id, $name, $index)
+    public function addModuleUsingPOSTRequest(
+        int $id,
+        string $module_id,
+        string $name,
+        int $index
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling addModuleUsingPOST'
-            );
-        }
-        // Verify the required parameter 'module_id' is set.
-        if (!isset($module_id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $module_id when calling addModuleUsingPOST'
-            );
-        }
-        // Verify the required parameter 'name' is set.
-        if (!isset($name)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $name when calling addModuleUsingPOST'
-            );
-        }
-        // Verify the required parameter 'index' is set.
-        if (!isset($index)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $index when calling addModuleUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/email/{id}/content/{moduleId}/add.json';
         $queryParams = [];
@@ -403,14 +384,10 @@ class EmailsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function approveDraftUsingPOSTRequest($id)
+    public function approveDraftUsingPOSTRequest(
+        int $id
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling approveDraftUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/email/{id}/approveDraft.json';
         $queryParams = [];
@@ -552,20 +529,11 @@ class EmailsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function cloneEmailUsingPOSTRequest($id, $clone_email_request)
+    public function cloneEmailUsingPOSTRequest(
+        int $id,
+        \NecLimDul\MarketoRest\Asset\Model\CloneEmailRequest $clone_email_request
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling cloneEmailUsingPOST'
-            );
-        }
-        // Verify the required parameter 'clone_email_request' is set.
-        if (!isset($clone_email_request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $clone_email_request when calling cloneEmailUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/email/{id}/clone.json';
         $queryParams = [];
@@ -708,20 +676,11 @@ class EmailsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createEmailFullContentUsingPOSTRequest($id, $update_email_full_content_request)
+    public function createEmailFullContentUsingPOSTRequest(
+        int $id,
+        \NecLimDul\MarketoRest\Asset\Model\UpdateEmailFullContentRequest $update_email_full_content_request
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling createEmailFullContentUsingPOST'
-            );
-        }
-        // Verify the required parameter 'update_email_full_content_request' is set.
-        if (!isset($update_email_full_content_request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $update_email_full_content_request when calling createEmailFullContentUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/email/{id}/fullContent.json';
         $queryParams = [];
@@ -859,14 +818,10 @@ class EmailsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createEmailUsingPOSTRequest($create_email_request)
+    public function createEmailUsingPOSTRequest(
+        \NecLimDul\MarketoRest\Asset\Model\CreateEmailRequest $create_email_request
+    )
     {
-        // Verify the required parameter 'create_email_request' is set.
-        if (!isset($create_email_request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $create_email_request when calling createEmailUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/emails.json';
         $queryParams = [];
@@ -997,14 +952,10 @@ class EmailsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteEmailUsingPOSTRequest($id)
+    public function deleteEmailUsingPOSTRequest(
+        int $id
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling deleteEmailUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/email/{id}/delete.json';
         $queryParams = [];
@@ -1146,20 +1097,11 @@ class EmailsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteModuleUsingPOSTRequest($id, $module_id)
+    public function deleteModuleUsingPOSTRequest(
+        int $id,
+        string $module_id
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling deleteModuleUsingPOST'
-            );
-        }
-        // Verify the required parameter 'module_id' is set.
-        if (!isset($module_id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $module_id when calling deleteModuleUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/email/{id}/content/{moduleId}/delete.json';
         $queryParams = [];
@@ -1301,14 +1243,10 @@ class EmailsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function discardDraftUsingPOSTRequest($id)
+    public function discardDraftUsingPOSTRequest(
+        int $id
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling discardDraftUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/email/{id}/discardDraft.json';
         $queryParams = [];
@@ -1455,26 +1393,12 @@ class EmailsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function duplicateModuleUsingPOSTRequest($id, $module_id, $name)
+    public function duplicateModuleUsingPOSTRequest(
+        int $id,
+        string $module_id,
+        string $name
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling duplicateModuleUsingPOST'
-            );
-        }
-        // Verify the required parameter 'module_id' is set.
-        if (!isset($module_id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $module_id when calling duplicateModuleUsingPOST'
-            );
-        }
-        // Verify the required parameter 'name' is set.
-        if (!isset($name)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $name when calling duplicateModuleUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/email/{id}/content/{moduleId}/duplicate.json';
         $queryParams = [];
@@ -1626,14 +1550,11 @@ class EmailsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getEmailByIdUsingGETRequest($id, $status = null)
+    public function getEmailByIdUsingGETRequest(
+        int $id,
+        string $status = null
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling getEmailByIdUsingGET'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/email/{id}.json';
         $queryParams = [];
@@ -1785,14 +1706,12 @@ class EmailsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getEmailByNameUsingGETRequest($name, $status = null, $folder = null)
+    public function getEmailByNameUsingGETRequest(
+        string $name,
+        string $status = null,
+        string $folder = null
+    )
     {
-        // Verify the required parameter 'name' is set.
-        if (!isset($name)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $name when calling getEmailByNameUsingGET'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/email/byName.json';
         $queryParams = [];
@@ -1924,7 +1843,8 @@ class EmailsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getEmailCCFieldsUsingGETRequest()
+    public function getEmailCCFieldsUsingGETRequest(
+    )
     {
 
         $resourcePath = '/rest/asset/v1/email/ccFields.json';
@@ -2060,14 +1980,11 @@ class EmailsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getEmailContentByIdUsingGETRequest($id, $status = null)
+    public function getEmailContentByIdUsingGETRequest(
+        int $id,
+        string $status = null
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling getEmailContentByIdUsingGET'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/email/{id}/content.json';
         $queryParams = [];
@@ -2219,20 +2136,12 @@ class EmailsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getEmailDynamicContentUsingGETRequest($id, $content_id, $status = null)
+    public function getEmailDynamicContentUsingGETRequest(
+        int $id,
+        string $content_id,
+        string $status = null
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling getEmailDynamicContentUsingGET'
-            );
-        }
-        // Verify the required parameter 'content_id' is set.
-        if (!isset($content_id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $content_id when calling getEmailDynamicContentUsingGET'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/email/{id}/dynamicContent/{contentId}.json';
         $queryParams = [];
@@ -2394,14 +2303,13 @@ class EmailsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getEmailFullContentUsingGETRequest($id, $status = null, $lead_id = null, $type = null)
+    public function getEmailFullContentUsingGETRequest(
+        int $id,
+        string $status = null,
+        int $lead_id = null,
+        string $type = null
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling getEmailFullContentUsingGET'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/email/{id}/fullContent.json';
         $queryParams = [];
@@ -2570,7 +2478,14 @@ class EmailsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getEmailUsingGETRequest($status = null, $folder = null, $offset = null, $max_return = null, $earliest_updated_at = null, $latest_updated_at = null)
+    public function getEmailUsingGETRequest(
+        string $status = null,
+        string $folder = null,
+        int $offset = null,
+        int $max_return = null,
+        string $earliest_updated_at = null,
+        string $latest_updated_at = null
+    )
     {
 
         $resourcePath = '/rest/asset/v1/emails.json';
@@ -2711,14 +2626,10 @@ class EmailsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getEmailVariablesUsingGETRequest($id)
+    public function getEmailVariablesUsingGETRequest(
+        int $id
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling getEmailVariablesUsingGET'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/email/{id}/variables.json';
         $queryParams = [];
@@ -2860,14 +2771,11 @@ class EmailsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function rearrangeModulesUsingPOSTRequest($id, $positions = null)
+    public function rearrangeModulesUsingPOSTRequest(
+        int $id,
+        string $positions = null
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling rearrangeModulesUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/email/{id}/content/rearrange.json';
         $queryParams = [];
@@ -3018,26 +2926,12 @@ class EmailsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function renameUsingPOSTRequest($id, $module_id, $name)
+    public function renameUsingPOSTRequest(
+        int $id,
+        string $module_id,
+        string $name
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling renameUsingPOST'
-            );
-        }
-        // Verify the required parameter 'module_id' is set.
-        if (!isset($module_id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $module_id when calling renameUsingPOST'
-            );
-        }
-        // Verify the required parameter 'name' is set.
-        if (!isset($name)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $name when calling renameUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/email/{id}/content/{moduleId}/rename.json';
         $queryParams = [];
@@ -3189,20 +3083,11 @@ class EmailsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function sendSampleEmailUsingPOSTRequest($id, $send_sample_email_request)
+    public function sendSampleEmailUsingPOSTRequest(
+        int $id,
+        \NecLimDul\MarketoRest\Asset\Model\SendSampleEmailRequest $send_sample_email_request
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling sendSampleEmailUsingPOST'
-            );
-        }
-        // Verify the required parameter 'send_sample_email_request' is set.
-        if (!isset($send_sample_email_request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $send_sample_email_request when calling sendSampleEmailUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/email/{id}/sendSample.json';
         $queryParams = [];
@@ -3340,14 +3225,10 @@ class EmailsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function unapproveDraftUsingPOSTRequest($id)
+    public function unapproveDraftUsingPOSTRequest(
+        int $id
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling unapproveDraftUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/email/{id}/unapprove.json';
         $queryParams = [];
@@ -3494,26 +3375,12 @@ class EmailsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updateEmailComponentContentUsingPOSTRequest($id, $html_id, $request)
+    public function updateEmailComponentContentUsingPOSTRequest(
+        int $id,
+        string $html_id,
+        \NecLimDul\MarketoRest\Asset\Model\UpdateEmailComponentContentRequest $request
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling updateEmailComponentContentUsingPOST'
-            );
-        }
-        // Verify the required parameter 'html_id' is set.
-        if (!isset($html_id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $html_id when calling updateEmailComponentContentUsingPOST'
-            );
-        }
-        // Verify the required parameter 'request' is set.
-        if (!isset($request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $request when calling updateEmailComponentContentUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/email/{id}/content/{htmlId}.json';
         $queryParams = [];
@@ -3661,20 +3528,11 @@ class EmailsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updateEmailContentUsingPOSTRequest($id, $update_email_request)
+    public function updateEmailContentUsingPOSTRequest(
+        int $id,
+        \NecLimDul\MarketoRest\Asset\Model\UpdateEmailComponentDataRequest $update_email_request
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling updateEmailContentUsingPOST'
-            );
-        }
-        // Verify the required parameter 'update_email_request' is set.
-        if (!isset($update_email_request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $update_email_request when calling updateEmailContentUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/email/{id}/content.json';
         $queryParams = [];
@@ -3822,26 +3680,12 @@ class EmailsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updateEmailDynamicContentUsingPOSTRequest($id, $content_id, $request)
+    public function updateEmailDynamicContentUsingPOSTRequest(
+        int $id,
+        string $content_id,
+        \NecLimDul\MarketoRest\Asset\Model\UpdateEmailDynamicContentRequest $request
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling updateEmailDynamicContentUsingPOST'
-            );
-        }
-        // Verify the required parameter 'content_id' is set.
-        if (!isset($content_id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $content_id when calling updateEmailDynamicContentUsingPOST'
-            );
-        }
-        // Verify the required parameter 'request' is set.
-        if (!isset($request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $request when calling updateEmailDynamicContentUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/email/{id}/dynamicContent/{contentId}.json';
         $queryParams = [];
@@ -3989,20 +3833,11 @@ class EmailsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updateEmailUsingPOSTRequest($id, $update_email_request)
+    public function updateEmailUsingPOSTRequest(
+        int $id,
+        \NecLimDul\MarketoRest\Asset\Model\UpdateEmailMetaDataRequest $update_email_request
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling updateEmailUsingPOST'
-            );
-        }
-        // Verify the required parameter 'update_email_request' is set.
-        if (!isset($update_email_request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $update_email_request when calling updateEmailUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/email/{id}.json';
         $queryParams = [];
@@ -4150,20 +3985,12 @@ class EmailsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updateVariableUsingPOSTRequest($id, $name, $update_variable_request = null)
+    public function updateVariableUsingPOSTRequest(
+        int $id,
+        string $name,
+        \NecLimDul\MarketoRest\Asset\Model\UpdateVariableRequest $update_variable_request = null
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling updateVariableUsingPOST'
-            );
-        }
-        // Verify the required parameter 'name' is set.
-        if (!isset($name)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $name when calling updateVariableUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/email/{id}/variable/{name}.json';
         $queryParams = [];

@@ -225,14 +225,12 @@ class StaticListsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function addLeadsToListUsingPOSTRequest($list_id, $list_operation_request = null, $id = null)
+    public function addLeadsToListUsingPOSTRequest(
+        int $list_id,
+        \NecLimDul\MarketoRest\Lead\Model\ListOperationRequest $list_operation_request = null,
+        array $id = null
+    )
     {
-        // Verify the required parameter 'list_id' is set.
-        if (!isset($list_id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $list_id when calling addLeadsToListUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/v1/lists/{listId}/leads.json';
         $queryParams = [];
@@ -388,14 +386,12 @@ class StaticListsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function areLeadsMemberOfListUsingGETRequest($list_id, $list_operation_request = null, $id = null)
+    public function areLeadsMemberOfListUsingGETRequest(
+        int $list_id,
+        \NecLimDul\MarketoRest\Lead\Model\ListOperationRequest $list_operation_request = null,
+        array $id = null
+    )
     {
-        // Verify the required parameter 'list_id' is set.
-        if (!isset($list_id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $list_id when calling areLeadsMemberOfListUsingGET'
-            );
-        }
 
         $resourcePath = '/rest/v1/lists/{listId}/leads/ismember.json';
         $queryParams = [];
@@ -556,14 +552,13 @@ class StaticListsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getLeadsByListIdUsingGETRequest($list_id, $fields = null, $batch_size = null, $next_page_token = null)
+    public function getLeadsByListIdUsingGETRequest(
+        int $list_id,
+        array $fields = null,
+        int $batch_size = null,
+        string $next_page_token = null
+    )
     {
-        // Verify the required parameter 'list_id' is set.
-        if (!isset($list_id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $list_id when calling getLeadsByListIdUsingGET'
-            );
-        }
 
         $resourcePath = '/rest/v1/list/{listId}/leads.json';
         $queryParams = [];
@@ -722,14 +717,13 @@ class StaticListsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getLeadsByListIdUsingGET1Request($list_id, $fields = null, $batch_size = null, $next_page_token = null)
+    public function getLeadsByListIdUsingGET1Request(
+        int $list_id,
+        array $fields = null,
+        int $batch_size = null,
+        string $next_page_token = null
+    )
     {
-        // Verify the required parameter 'list_id' is set.
-        if (!isset($list_id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $list_id when calling getLeadsByListIdUsingGET1'
-            );
-        }
 
         $resourcePath = '/rest/v1/lists/{listId}/leads.json';
         $queryParams = [];
@@ -873,14 +867,10 @@ class StaticListsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getListByIdUsingGETRequest($list_id)
+    public function getListByIdUsingGETRequest(
+        int $list_id
+    )
     {
-        // Verify the required parameter 'list_id' is set.
-        if (!isset($list_id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $list_id when calling getListByIdUsingGET'
-            );
-        }
 
         $resourcePath = '/rest/v1/lists/{listId}.json';
         $queryParams = [];
@@ -1042,7 +1032,14 @@ class StaticListsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getListsUsingGETRequest($id = null, $name = null, $program_name = null, $workspace_name = null, $batch_size = null, $next_page_token = null)
+    public function getListsUsingGETRequest(
+        array $id = null,
+        array $name = null,
+        array $program_name = null,
+        array $workspace_name = null,
+        int $batch_size = null,
+        string $next_page_token = null
+    )
     {
 
         $resourcePath = '/rest/v1/lists.json';
@@ -1193,22 +1190,14 @@ class StaticListsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function removeLeadsFromListUsingDELETERequest($list_id, $list_operation_request, $id)
+    public function removeLeadsFromListUsingDELETERequest(
+        int $list_id,
+        \NecLimDul\MarketoRest\Lead\Model\ListOperationRequest $list_operation_request,
+        array $id
+    )
     {
-        // Verify the required parameter 'list_id' is set.
-        if (!isset($list_id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $list_id when calling removeLeadsFromListUsingDELETE'
-            );
-        }
-        // Verify the required parameter 'list_operation_request' is set.
-        if (!isset($list_operation_request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $list_operation_request when calling removeLeadsFromListUsingDELETE'
-            );
-        }
         // Verify the required parameter 'id' is set.
-        if (!isset($id) || (is_array($id) && empty($id))) {
+        if (empty($id)) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $id when calling removeLeadsFromListUsingDELETE'
             );

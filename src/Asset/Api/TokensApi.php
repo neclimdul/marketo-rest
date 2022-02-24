@@ -220,20 +220,11 @@ class TokensApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function addTokenTOFolderUsingPOSTRequest($id, $create_token_request)
+    public function addTokenTOFolderUsingPOSTRequest(
+        int $id,
+        \NecLimDul\MarketoRest\Asset\Model\CreateTokenRequest $create_token_request
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling addTokenTOFolderUsingPOST'
-            );
-        }
-        // Verify the required parameter 'create_token_request' is set.
-        if (!isset($create_token_request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $create_token_request when calling addTokenTOFolderUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/folder/{id}/tokens.json';
         $queryParams = [];
@@ -376,20 +367,11 @@ class TokensApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteTokenByNameUsingPOSTRequest($id, $delete_token_request)
+    public function deleteTokenByNameUsingPOSTRequest(
+        int $id,
+        \NecLimDul\MarketoRest\Asset\Model\DeleteTokenRequest $delete_token_request
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling deleteTokenByNameUsingPOST'
-            );
-        }
-        // Verify the required parameter 'delete_token_request' is set.
-        if (!isset($delete_token_request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $delete_token_request when calling deleteTokenByNameUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/folder/{id}/tokens/delete.json';
         $queryParams = [];
@@ -532,14 +514,11 @@ class TokensApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getTokensByFolderIdUsingGETRequest($id, $folder_type = 'Folder')
+    public function getTokensByFolderIdUsingGETRequest(
+        int $id,
+        string $folder_type = 'Folder'
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling getTokensByFolderIdUsingGET'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/folder/{id}/tokens.json';
         $queryParams = [];

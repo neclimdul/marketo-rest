@@ -215,7 +215,9 @@ class SegmentsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getSegmentationUsingGETRequest($status = null)
+    public function getSegmentationUsingGETRequest(
+        string $status = null
+    )
     {
 
         $resourcePath = '/rest/asset/v1/segmentation.json';
@@ -366,14 +368,13 @@ class SegmentsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getSegmentsForSegmentationUsingGETRequest($id, $status = null, $offset = null, $max_return = null)
+    public function getSegmentsForSegmentationUsingGETRequest(
+        int $id,
+        string $status = null,
+        int $offset = null,
+        int $max_return = null
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling getSegmentsForSegmentationUsingGET'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/segmentation/{id}/segments.json';
         $queryParams = [];

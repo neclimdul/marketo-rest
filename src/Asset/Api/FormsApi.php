@@ -215,14 +215,10 @@ class FormsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function approveFromUsingPOSTRequest($id)
+    public function approveFromUsingPOSTRequest(
+        int $id
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling approveFromUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/form/{id}/approveDraft.json';
         $queryParams = [];
@@ -374,14 +370,13 @@ class FormsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function browseForms2UsingGETRequest($folder, $status = null, $max_return = null, $offset = null)
+    public function browseForms2UsingGETRequest(
+        string $folder,
+        string $status = null,
+        string $max_return = null,
+        string $offset = null
+    )
     {
-        // Verify the required parameter 'folder' is set.
-        if (!isset($folder)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $folder when calling browseForms2UsingGET'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/forms.json';
         $queryParams = [];
@@ -524,14 +519,11 @@ class FormsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function cloneLpFormsUsingPOSTRequest($id, $clone_form_request = null)
+    public function cloneLpFormsUsingPOSTRequest(
+        int $id,
+        \NecLimDul\MarketoRest\Asset\Model\CloneFormRequest $clone_form_request = null
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling cloneLpFormsUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/form/{id}/clone.json';
         $queryParams = [];
@@ -672,14 +664,10 @@ class FormsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createLpFormsUsingPOSTRequest($create_form_request)
+    public function createLpFormsUsingPOSTRequest(
+        \NecLimDul\MarketoRest\Asset\Model\CreateLpFormRequest $create_form_request
+    )
     {
-        // Verify the required parameter 'create_form_request' is set.
-        if (!isset($create_form_request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $create_form_request when calling createLpFormsUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/forms.json';
         $queryParams = [];
@@ -810,14 +798,10 @@ class FormsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteFormByIdUsingPOSTRequest($id)
+    public function deleteFormByIdUsingPOSTRequest(
+        int $id
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling deleteFormByIdUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/form/{id}/delete.json';
         $queryParams = [];
@@ -954,14 +938,10 @@ class FormsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function discardFormByIdUsingPOSTRequest($id)
+    public function discardFormByIdUsingPOSTRequest(
+        int $id
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling discardFormByIdUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/form/{id}/discardDraft.json';
         $queryParams = [];
@@ -1108,14 +1088,12 @@ class FormsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getFormUsedByUsingGETRequest($id, $offset = null, $max_return = null)
+    public function getFormUsedByUsingGETRequest(
+        int $id,
+        int $offset = null,
+        int $max_return = null
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling getFormUsedByUsingGET'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/form/{id}/usedBy.json';
         $queryParams = [];
@@ -1263,14 +1241,11 @@ class FormsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getLpFormByIdUsingGETRequest($id, $status = null)
+    public function getLpFormByIdUsingGETRequest(
+        int $id,
+        string $status = null
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling getLpFormByIdUsingGET'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/form/{id}.json';
         $queryParams = [];
@@ -1422,14 +1397,12 @@ class FormsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getLpFormByNameUsingGETRequest($name, $status = null, $folder = null)
+    public function getLpFormByNameUsingGETRequest(
+        string $name,
+        string $status = null,
+        string $folder = null
+    )
     {
-        // Verify the required parameter 'name' is set.
-        if (!isset($name)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $name when calling getLpFormByNameUsingGET'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/form/byName.json';
         $queryParams = [];
@@ -1571,14 +1544,11 @@ class FormsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getThankYouPageByIdUsingGETRequest($id, $status = null)
+    public function getThankYouPageByIdUsingGETRequest(
+        int $id,
+        string $status = null
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling getThankYouPageByIdUsingGET'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/form/{id}/thankYouPage.json';
         $queryParams = [];
@@ -1725,20 +1695,11 @@ class FormsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updateFormSubmitButtonUsingPOSTRequest($id, $submit_button_request)
+    public function updateFormSubmitButtonUsingPOSTRequest(
+        int $id,
+        \NecLimDul\MarketoRest\Asset\Model\SubmitButtonRequest $submit_button_request
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling updateFormSubmitButtonUsingPOST'
-            );
-        }
-        // Verify the required parameter 'submit_button_request' is set.
-        if (!isset($submit_button_request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $submit_button_request when calling updateFormSubmitButtonUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/form/{id}/submitButton.json';
         $queryParams = [];
@@ -1881,20 +1842,11 @@ class FormsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updateFormsUsingPOSTRequest($id, $update_form_meta_data_request)
+    public function updateFormsUsingPOSTRequest(
+        int $id,
+        \NecLimDul\MarketoRest\Asset\Model\UpdateFormMetaDataRequest $update_form_meta_data_request
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling updateFormsUsingPOST'
-            );
-        }
-        // Verify the required parameter 'update_form_meta_data_request' is set.
-        if (!isset($update_form_meta_data_request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $update_form_meta_data_request when calling updateFormsUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/form/{id}.json';
         $queryParams = [];
@@ -2037,20 +1989,11 @@ class FormsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updateThankYouPageByIdUsingPOSTRequest($id, $thank_you_page_request)
+    public function updateThankYouPageByIdUsingPOSTRequest(
+        int $id,
+        \NecLimDul\MarketoRest\Asset\Model\UpdateThankYouPageRequest $thank_you_page_request
+    )
     {
-        // Verify the required parameter 'id' is set.
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling updateThankYouPageByIdUsingPOST'
-            );
-        }
-        // Verify the required parameter 'thank_you_page_request' is set.
-        if (!isset($thank_you_page_request)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $thank_you_page_request when calling updateThankYouPageByIdUsingPOST'
-            );
-        }
 
         $resourcePath = '/rest/asset/v1/form/{id}/thankYouPage.json';
         $queryParams = [];
