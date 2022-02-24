@@ -44,7 +44,7 @@ class ColumnHeaderNamesTest extends TestCase
     /**
      * Test "ColumnHeaderNames"
      */
-    public function testColumnHeaderNames()
+    public function testColumnHeaderNames(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class ColumnHeaderNamesTest extends TestCase
     /**
      * Test attribute "name"
      */
-    public function testPropertyName()
+    public function testPropertyName(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class ColumnHeaderNamesTest extends TestCase
     /**
      * Test attribute "value"
      */
-    public function testPropertyValue()
+    public function testPropertyValue(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

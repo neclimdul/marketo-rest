@@ -44,7 +44,7 @@ class EmailResponseTest extends TestCase
     /**
      * Test "EmailResponse"
      */
-    public function testEmailResponse()
+    public function testEmailResponse(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class EmailResponseTest extends TestCase
     /**
      * Test attribute "created_at"
      */
-    public function testPropertyCreatedAt()
+    public function testPropertyCreatedAt(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class EmailResponseTest extends TestCase
     /**
      * Test attribute "description"
      */
-    public function testPropertyDescription()
+    public function testPropertyDescription(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class EmailResponseTest extends TestCase
     /**
      * Test attribute "folder"
      */
-    public function testPropertyFolder()
+    public function testPropertyFolder(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -80,7 +80,7 @@ class EmailResponseTest extends TestCase
     /**
      * Test attribute "from_email"
      */
-    public function testPropertyFromEmail()
+    public function testPropertyFromEmail(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -89,7 +89,7 @@ class EmailResponseTest extends TestCase
     /**
      * Test attribute "from_name"
      */
-    public function testPropertyFromName()
+    public function testPropertyFromName(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -98,7 +98,7 @@ class EmailResponseTest extends TestCase
     /**
      * Test attribute "id"
      */
-    public function testPropertyId()
+    public function testPropertyId(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -107,7 +107,7 @@ class EmailResponseTest extends TestCase
     /**
      * Test attribute "name"
      */
-    public function testPropertyName()
+    public function testPropertyName(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -116,7 +116,7 @@ class EmailResponseTest extends TestCase
     /**
      * Test attribute "operational"
      */
-    public function testPropertyOperational()
+    public function testPropertyOperational(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -125,7 +125,7 @@ class EmailResponseTest extends TestCase
     /**
      * Test attribute "publish_to_msi"
      */
-    public function testPropertyPublishToMsi()
+    public function testPropertyPublishToMsi(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -134,7 +134,7 @@ class EmailResponseTest extends TestCase
     /**
      * Test attribute "reply_email"
      */
-    public function testPropertyReplyEmail()
+    public function testPropertyReplyEmail(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -143,7 +143,7 @@ class EmailResponseTest extends TestCase
     /**
      * Test attribute "status"
      */
-    public function testPropertyStatus()
+    public function testPropertyStatus(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -152,7 +152,7 @@ class EmailResponseTest extends TestCase
     /**
      * Test attribute "subject"
      */
-    public function testPropertySubject()
+    public function testPropertySubject(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -161,7 +161,7 @@ class EmailResponseTest extends TestCase
     /**
      * Test attribute "template"
      */
-    public function testPropertyTemplate()
+    public function testPropertyTemplate(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -170,7 +170,7 @@ class EmailResponseTest extends TestCase
     /**
      * Test attribute "text_only"
      */
-    public function testPropertyTextOnly()
+    public function testPropertyTextOnly(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -179,7 +179,7 @@ class EmailResponseTest extends TestCase
     /**
      * Test attribute "updated_at"
      */
-    public function testPropertyUpdatedAt()
+    public function testPropertyUpdatedAt(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -188,7 +188,7 @@ class EmailResponseTest extends TestCase
     /**
      * Test attribute "url"
      */
-    public function testPropertyUrl()
+    public function testPropertyUrl(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -197,7 +197,7 @@ class EmailResponseTest extends TestCase
     /**
      * Test attribute "version"
      */
-    public function testPropertyVersion()
+    public function testPropertyVersion(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -206,7 +206,7 @@ class EmailResponseTest extends TestCase
     /**
      * Test attribute "web_view"
      */
-    public function testPropertyWebView()
+    public function testPropertyWebView(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -215,7 +215,7 @@ class EmailResponseTest extends TestCase
     /**
      * Test attribute "workspace"
      */
-    public function testPropertyWorkspace()
+    public function testPropertyWorkspace(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -224,7 +224,7 @@ class EmailResponseTest extends TestCase
     /**
      * Test attribute "auto_copy_to_text"
      */
-    public function testPropertyAutoCopyToText()
+    public function testPropertyAutoCopyToText(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -233,7 +233,7 @@ class EmailResponseTest extends TestCase
     /**
      * Test attribute "pre_header"
      */
-    public function testPropertyPreHeader()
+    public function testPropertyPreHeader(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -242,7 +242,7 @@ class EmailResponseTest extends TestCase
     /**
      * Test attribute "cc_fields"
      */
-    public function testPropertyCcFields()
+    public function testPropertyCcFields(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

@@ -44,7 +44,7 @@ class TagResponseGetAllTest extends TestCase
     /**
      * Test "TagResponseGetAll"
      */
-    public function testTagResponseGetAll()
+    public function testTagResponseGetAll(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class TagResponseGetAllTest extends TestCase
     /**
      * Test attribute "applicable_program_types"
      */
-    public function testPropertyApplicableProgramTypes()
+    public function testPropertyApplicableProgramTypes(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class TagResponseGetAllTest extends TestCase
     /**
      * Test attribute "required"
      */
-    public function testPropertyRequired()
+    public function testPropertyRequired(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class TagResponseGetAllTest extends TestCase
     /**
      * Test attribute "tag_type"
      */
-    public function testPropertyTagType()
+    public function testPropertyTagType(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

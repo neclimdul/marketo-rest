@@ -44,7 +44,7 @@ class TagsTest extends TestCase
     /**
      * Test "Tags"
      */
-    public function testTags()
+    public function testTags(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class TagsTest extends TestCase
     /**
      * Test attribute "tag_type"
      */
-    public function testPropertyTagType()
+    public function testPropertyTagType(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class TagsTest extends TestCase
     /**
      * Test attribute "tag_value"
      */
-    public function testPropertyTagValue()
+    public function testPropertyTagValue(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

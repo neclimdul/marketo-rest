@@ -44,7 +44,7 @@ class LeadFieldStatusTest extends TestCase
     /**
      * Test "LeadFieldStatus"
      */
-    public function testLeadFieldStatus()
+    public function testLeadFieldStatus(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class LeadFieldStatusTest extends TestCase
     /**
      * Test attribute "name"
      */
-    public function testPropertyName()
+    public function testPropertyName(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class LeadFieldStatusTest extends TestCase
     /**
      * Test attribute "status"
      */
-    public function testPropertyStatus()
+    public function testPropertyStatus(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

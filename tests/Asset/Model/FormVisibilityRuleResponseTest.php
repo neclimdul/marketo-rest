@@ -44,7 +44,7 @@ class FormVisibilityRuleResponseTest extends TestCase
     /**
      * Test "FormVisibilityRuleResponse"
      */
-    public function testFormVisibilityRuleResponse()
+    public function testFormVisibilityRuleResponse(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class FormVisibilityRuleResponseTest extends TestCase
     /**
      * Test attribute "form_field_id"
      */
-    public function testPropertyFormFieldId()
+    public function testPropertyFormFieldId(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class FormVisibilityRuleResponseTest extends TestCase
     /**
      * Test attribute "rule_type"
      */
-    public function testPropertyRuleType()
+    public function testPropertyRuleType(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class FormVisibilityRuleResponseTest extends TestCase
     /**
      * Test attribute "rules"
      */
-    public function testPropertyRules()
+    public function testPropertyRules(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

@@ -44,7 +44,7 @@ class AddCustomObjectTypeFieldsRequestTest extends TestCase
     /**
      * Test "AddCustomObjectTypeFieldsRequest"
      */
-    public function testAddCustomObjectTypeFieldsRequest()
+    public function testAddCustomObjectTypeFieldsRequest(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class AddCustomObjectTypeFieldsRequestTest extends TestCase
     /**
      * Test attribute "input"
      */
-    public function testPropertyInput()
+    public function testPropertyInput(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

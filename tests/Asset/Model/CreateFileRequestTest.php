@@ -44,7 +44,7 @@ class CreateFileRequestTest extends TestCase
     /**
      * Test "CreateFileRequest"
      */
-    public function testCreateFileRequest()
+    public function testCreateFileRequest(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class CreateFileRequestTest extends TestCase
     /**
      * Test attribute "description"
      */
-    public function testPropertyDescription()
+    public function testPropertyDescription(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class CreateFileRequestTest extends TestCase
     /**
      * Test attribute "file"
      */
-    public function testPropertyFile()
+    public function testPropertyFile(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class CreateFileRequestTest extends TestCase
     /**
      * Test attribute "folder"
      */
-    public function testPropertyFolder()
+    public function testPropertyFolder(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -80,7 +80,7 @@ class CreateFileRequestTest extends TestCase
     /**
      * Test attribute "insert_only"
      */
-    public function testPropertyInsertOnly()
+    public function testPropertyInsertOnly(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -89,7 +89,7 @@ class CreateFileRequestTest extends TestCase
     /**
      * Test attribute "name"
      */
-    public function testPropertyName()
+    public function testPropertyName(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

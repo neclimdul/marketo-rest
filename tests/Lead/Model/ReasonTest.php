@@ -44,7 +44,7 @@ class ReasonTest extends TestCase
     /**
      * Test "Reason"
      */
-    public function testReason()
+    public function testReason(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class ReasonTest extends TestCase
     /**
      * Test attribute "code"
      */
-    public function testPropertyCode()
+    public function testPropertyCode(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class ReasonTest extends TestCase
     /**
      * Test attribute "message"
      */
-    public function testPropertyMessage()
+    public function testPropertyMessage(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

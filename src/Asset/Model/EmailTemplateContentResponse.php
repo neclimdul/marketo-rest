@@ -327,7 +327,7 @@ class EmailTemplateContentResponse implements ModelInterface, ArrayAccess, \Json
     /**
      * {@inheritdoc}
      */
-    public function setAdditionalProperties(array $fields)
+    public function setAdditionalProperties(array $fields): void
     {
         $fields = array_diff_key($fields, static::$attributeMap);
         foreach ($this->additionalProperties as $additional_properties) {
@@ -341,7 +341,7 @@ class EmailTemplateContentResponse implements ModelInterface, ArrayAccess, \Json
     /**
      * {@inheritdoc}
      */
-    public function setAdditionalProperty($property, $value)
+    public function setAdditionalProperty($property, $value): void
     {
         if (isset(static::$attributeMap[$property])) {
             throw new \InvalidArgumentException();

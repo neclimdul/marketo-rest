@@ -44,7 +44,7 @@ class ObjectLinkableObjectFieldTest extends TestCase
     /**
      * Test "ObjectLinkableObjectField"
      */
-    public function testObjectLinkableObjectField()
+    public function testObjectLinkableObjectField(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class ObjectLinkableObjectFieldTest extends TestCase
     /**
      * Test attribute "name"
      */
-    public function testPropertyName()
+    public function testPropertyName(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class ObjectLinkableObjectFieldTest extends TestCase
     /**
      * Test attribute "display_name"
      */
-    public function testPropertyDisplayName()
+    public function testPropertyDisplayName(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class ObjectLinkableObjectFieldTest extends TestCase
     /**
      * Test attribute "data_type"
      */
-    public function testPropertyDataType()
+    public function testPropertyDataType(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

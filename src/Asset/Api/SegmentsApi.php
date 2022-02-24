@@ -94,7 +94,7 @@ class SegmentsApi
      *
      * @param int $hostIndex Host index (required)
      */
-    public function setHostIndex($hostIndex)
+    public function setHostIndex($hostIndex): void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -217,7 +217,7 @@ class SegmentsApi
      */
     public function getSegmentationUsingGETRequest(
         string $status = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/segmentation.json';
@@ -373,7 +373,7 @@ class SegmentsApi
         string $status = null,
         int $offset = null,
         int $max_return = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/segmentation/{id}/segments.json';

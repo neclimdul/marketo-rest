@@ -44,7 +44,7 @@ class InputStreamRangeContentTest extends TestCase
     /**
      * Test "InputStreamRangeContent"
      */
-    public function testInputStreamRangeContent()
+    public function testInputStreamRangeContent(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class InputStreamRangeContentTest extends TestCase
     /**
      * Test attribute "content_type"
      */
-    public function testPropertyContentType()
+    public function testPropertyContentType(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class InputStreamRangeContentTest extends TestCase
     /**
      * Test attribute "file_range"
      */
-    public function testPropertyFileRange()
+    public function testPropertyFileRange(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class InputStreamRangeContentTest extends TestCase
     /**
      * Test attribute "input_stream"
      */
-    public function testPropertyInputStream()
+    public function testPropertyInputStream(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -80,7 +80,7 @@ class InputStreamRangeContentTest extends TestCase
     /**
      * Test attribute "length"
      */
-    public function testPropertyLength()
+    public function testPropertyLength(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

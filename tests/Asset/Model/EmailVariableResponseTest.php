@@ -44,7 +44,7 @@ class EmailVariableResponseTest extends TestCase
     /**
      * Test "EmailVariableResponse"
      */
-    public function testEmailVariableResponse()
+    public function testEmailVariableResponse(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class EmailVariableResponseTest extends TestCase
     /**
      * Test attribute "name"
      */
-    public function testPropertyName()
+    public function testPropertyName(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class EmailVariableResponseTest extends TestCase
     /**
      * Test attribute "value"
      */
-    public function testPropertyValue()
+    public function testPropertyValue(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class EmailVariableResponseTest extends TestCase
     /**
      * Test attribute "module_scope"
      */
-    public function testPropertyModuleScope()
+    public function testPropertyModuleScope(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -80,7 +80,7 @@ class EmailVariableResponseTest extends TestCase
     /**
      * Test attribute "module_id"
      */
-    public function testPropertyModuleId()
+    public function testPropertyModuleId(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

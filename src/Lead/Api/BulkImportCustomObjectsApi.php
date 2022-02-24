@@ -94,7 +94,7 @@ class BulkImportCustomObjectsApi
      *
      * @param int $hostIndex Host index (required)
      */
-    public function setHostIndex($hostIndex)
+    public function setHostIndex($hostIndex): void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -223,7 +223,7 @@ class BulkImportCustomObjectsApi
     public function getImportCustomObjectFailuresUsingGETRequest(
         string $api_name,
         int $batch_id
-    )
+    ): Request
     {
 
         $resourcePath = '/bulk/v1/customobjects/{apiName}/import/{batchId}/failures.json';
@@ -374,7 +374,7 @@ class BulkImportCustomObjectsApi
     public function getImportCustomObjectStatusUsingGETRequest(
         string $api_name,
         int $batch_id
-    )
+    ): Request
     {
 
         $resourcePath = '/bulk/v1/customobjects/{apiName}/import/{batchId}/status.json';
@@ -525,7 +525,7 @@ class BulkImportCustomObjectsApi
     public function getImportCustomObjectWarningsUsingGETRequest(
         string $api_name,
         int $batch_id
-    )
+    ): Request
     {
 
         $resourcePath = '/bulk/v1/customobjects/{apiName}/import/{batchId}/warnings.json';
@@ -682,7 +682,7 @@ class BulkImportCustomObjectsApi
         string $api_name,
         string $format,
         \SplFileObject $file
-    )
+    ): Request
     {
 
         $resourcePath = '/bulk/v1/customobjects/{apiName}/import.json';

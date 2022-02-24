@@ -44,7 +44,7 @@ class UpdateSmartCampaignRequestTest extends TestCase
     /**
      * Test "UpdateSmartCampaignRequest"
      */
-    public function testUpdateSmartCampaignRequest()
+    public function testUpdateSmartCampaignRequest(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class UpdateSmartCampaignRequestTest extends TestCase
     /**
      * Test attribute "description"
      */
-    public function testPropertyDescription()
+    public function testPropertyDescription(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class UpdateSmartCampaignRequestTest extends TestCase
     /**
      * Test attribute "name"
      */
-    public function testPropertyName()
+    public function testPropertyName(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

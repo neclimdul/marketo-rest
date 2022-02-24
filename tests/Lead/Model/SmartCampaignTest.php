@@ -44,7 +44,7 @@ class SmartCampaignTest extends TestCase
     /**
      * Test "SmartCampaign"
      */
-    public function testSmartCampaign()
+    public function testSmartCampaign(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class SmartCampaignTest extends TestCase
     /**
      * Test attribute "created_at"
      */
-    public function testPropertyCreatedAt()
+    public function testPropertyCreatedAt(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class SmartCampaignTest extends TestCase
     /**
      * Test attribute "smart_campaign_id"
      */
-    public function testPropertySmartCampaignId()
+    public function testPropertySmartCampaignId(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class SmartCampaignTest extends TestCase
     /**
      * Test attribute "updated_at"
      */
-    public function testPropertyUpdatedAt()
+    public function testPropertyUpdatedAt(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

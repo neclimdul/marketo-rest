@@ -50,7 +50,7 @@ class OpportunitiesApiTest extends TestCase
      *
      * @covers ::deleteOpportunitiesUsingPOST
      */
-    public function testDeleteOpportunitiesUsingPOST()
+    public function testDeleteOpportunitiesUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -61,7 +61,7 @@ class OpportunitiesApiTest extends TestCase
      *
      * @covers ::deleteOpportunityRolesUsingPOST
      */
-    public function testDeleteOpportunityRolesUsingPOST()
+    public function testDeleteOpportunityRolesUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -72,7 +72,7 @@ class OpportunitiesApiTest extends TestCase
      *
      * @covers ::describeOpportunityRoleUsingGET
      */
-    public function testDescribeOpportunityRoleUsingGET()
+    public function testDescribeOpportunityRoleUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -83,7 +83,7 @@ class OpportunitiesApiTest extends TestCase
      *
      * @covers ::describeUsingGET4
      */
-    public function testDescribeUsingGET4()
+    public function testDescribeUsingGET4(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -94,7 +94,7 @@ class OpportunitiesApiTest extends TestCase
      *
      * @covers ::getOpportunitiesUsingGET
      */
-    public function testGetOpportunitiesUsingGET()
+    public function testGetOpportunitiesUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -105,7 +105,7 @@ class OpportunitiesApiTest extends TestCase
      *
      * @covers ::getOpportunityFieldByNameUsingGET
      */
-    public function testGetOpportunityFieldByNameUsingGET()
+    public function testGetOpportunityFieldByNameUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -116,7 +116,7 @@ class OpportunitiesApiTest extends TestCase
      *
      * @covers ::getOpportunityFieldsUsingGET
      */
-    public function testGetOpportunityFieldsUsingGET()
+    public function testGetOpportunityFieldsUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -127,7 +127,7 @@ class OpportunitiesApiTest extends TestCase
      *
      * @covers ::getOpportunityRolesUsingGET
      */
-    public function testGetOpportunityRolesUsingGET()
+    public function testGetOpportunityRolesUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -138,7 +138,7 @@ class OpportunitiesApiTest extends TestCase
      *
      * @covers ::syncOpportunitiesUsingPOST
      */
-    public function testSyncOpportunitiesUsingPOST()
+    public function testSyncOpportunitiesUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -149,7 +149,7 @@ class OpportunitiesApiTest extends TestCase
      *
      * @covers ::syncOpportunityRolesUsingPOST
      */
-    public function testSyncOpportunityRolesUsingPOST()
+    public function testSyncOpportunityRolesUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

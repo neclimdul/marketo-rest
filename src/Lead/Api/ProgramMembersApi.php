@@ -94,7 +94,7 @@ class ProgramMembersApi
      *
      * @param int $hostIndex Host index (required)
      */
-    public function setHostIndex($hostIndex)
+    public function setHostIndex($hostIndex): void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -217,7 +217,7 @@ class ProgramMembersApi
      */
     public function createProgramMemberFieldUsingPOSTRequest(
         \NecLimDul\MarketoRest\Lead\Model\CreateLeadFieldRequest $create_lead_field_request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/programs/members/schema/fields.json';
@@ -357,7 +357,7 @@ class ProgramMembersApi
     public function deleteProgramMemberUsingPOSTRequest(
         int $program_id,
         \NecLimDul\MarketoRest\Lead\Model\DeleteProgramMemberRequest $delete_program_member_request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/programs/{programId}/members/delete.json';
@@ -492,7 +492,7 @@ class ProgramMembersApi
      * @return \GuzzleHttp\Psr7\Request
      */
     public function describeProgramMemberUsingGET2Request(
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/programs/members/describe.json';
@@ -625,7 +625,7 @@ class ProgramMembersApi
      */
     public function getProgramMemberFieldByNameUsingGETRequest(
         string $field_api_name
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/programs/members/schema/fields/{fieldApiName}.json';
@@ -771,7 +771,7 @@ class ProgramMembersApi
     public function getProgramMemberFieldsUsingGETRequest(
         int $batch_size = null,
         string $next_page_token = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/programs/members/schema/fields.json';
@@ -952,7 +952,7 @@ class ProgramMembersApi
         array $fields = null,
         int $batch_size = null,
         string $next_page_token = null
-    )
+    ): Request
     {
         // Verify the required parameter 'filter_values' is set.
         if (empty($filter_values)) {
@@ -1115,7 +1115,7 @@ class ProgramMembersApi
     public function syncProgramMemberDataUsingPOSTRequest(
         int $program_id,
         \NecLimDul\MarketoRest\Lead\Model\SyncProgramMemberDataRequest $sync_program_member_data_request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/programs/{programId}/members.json';
@@ -1262,7 +1262,7 @@ class ProgramMembersApi
     public function syncProgramMemberStatusUsingPOSTRequest(
         int $program_id,
         \NecLimDul\MarketoRest\Lead\Model\SyncProgramMemberStatusRequest $sync_program_member_status_request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/programs/{programId}/members/status.json';
@@ -1409,7 +1409,7 @@ class ProgramMembersApi
     public function updateProgramMemberFieldUsingPOSTRequest(
         string $field_api_name,
         \NecLimDul\MarketoRest\Lead\Model\UpdateLeadFieldRequest $update_lead_field_request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/programs/members/schema/fields/{fieldApiName}.json';

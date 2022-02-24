@@ -44,7 +44,7 @@ class CreateTokenRequestTest extends TestCase
     /**
      * Test "CreateTokenRequest"
      */
-    public function testCreateTokenRequest()
+    public function testCreateTokenRequest(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class CreateTokenRequestTest extends TestCase
     /**
      * Test attribute "folder_type"
      */
-    public function testPropertyFolderType()
+    public function testPropertyFolderType(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class CreateTokenRequestTest extends TestCase
     /**
      * Test attribute "name"
      */
-    public function testPropertyName()
+    public function testPropertyName(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class CreateTokenRequestTest extends TestCase
     /**
      * Test attribute "type"
      */
-    public function testPropertyType()
+    public function testPropertyType(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -80,7 +80,7 @@ class CreateTokenRequestTest extends TestCase
     /**
      * Test attribute "value"
      */
-    public function testPropertyValue()
+    public function testPropertyValue(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

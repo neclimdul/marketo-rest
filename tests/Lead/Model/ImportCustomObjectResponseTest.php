@@ -44,7 +44,7 @@ class ImportCustomObjectResponseTest extends TestCase
     /**
      * Test "ImportCustomObjectResponse"
      */
-    public function testImportCustomObjectResponse()
+    public function testImportCustomObjectResponse(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class ImportCustomObjectResponseTest extends TestCase
     /**
      * Test attribute "batch_id"
      */
-    public function testPropertyBatchId()
+    public function testPropertyBatchId(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class ImportCustomObjectResponseTest extends TestCase
     /**
      * Test attribute "import_time"
      */
-    public function testPropertyImportTime()
+    public function testPropertyImportTime(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class ImportCustomObjectResponseTest extends TestCase
     /**
      * Test attribute "message"
      */
-    public function testPropertyMessage()
+    public function testPropertyMessage(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -80,7 +80,7 @@ class ImportCustomObjectResponseTest extends TestCase
     /**
      * Test attribute "num_of_objects_processed"
      */
-    public function testPropertyNumOfObjectsProcessed()
+    public function testPropertyNumOfObjectsProcessed(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -89,7 +89,7 @@ class ImportCustomObjectResponseTest extends TestCase
     /**
      * Test attribute "num_of_rows_failed"
      */
-    public function testPropertyNumOfRowsFailed()
+    public function testPropertyNumOfRowsFailed(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -98,7 +98,7 @@ class ImportCustomObjectResponseTest extends TestCase
     /**
      * Test attribute "num_of_rows_with_warning"
      */
-    public function testPropertyNumOfRowsWithWarning()
+    public function testPropertyNumOfRowsWithWarning(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -107,7 +107,7 @@ class ImportCustomObjectResponseTest extends TestCase
     /**
      * Test attribute "object_api_name"
      */
-    public function testPropertyObjectApiName()
+    public function testPropertyObjectApiName(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -116,7 +116,7 @@ class ImportCustomObjectResponseTest extends TestCase
     /**
      * Test attribute "operation"
      */
-    public function testPropertyOperation()
+    public function testPropertyOperation(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -125,7 +125,7 @@ class ImportCustomObjectResponseTest extends TestCase
     /**
      * Test attribute "status"
      */
-    public function testPropertyStatus()
+    public function testPropertyStatus(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

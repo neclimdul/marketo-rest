@@ -94,7 +94,7 @@ class BulkExportCustomObjectsApi
      *
      * @param int $hostIndex Host index (required)
      */
-    public function setHostIndex($hostIndex)
+    public function setHostIndex($hostIndex): void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -223,7 +223,7 @@ class BulkExportCustomObjectsApi
     public function cancelExportCustomObjectsUsingPOSTRequest(
         string $api_name,
         string $export_id
-    )
+    ): Request
     {
 
         $resourcePath = '/bulk/v1/customobjects/{apiName}/export/{exportId}/cancel.json';
@@ -374,7 +374,7 @@ class BulkExportCustomObjectsApi
     public function createExportCustomObjectsUsingPOSTRequest(
         string $api_name,
         \NecLimDul\MarketoRest\Lead\Model\ExportCustomObjectRequest $export_custom_object_request = null
-    )
+    ): Request
     {
 
         $resourcePath = '/bulk/v1/customobjects/{apiName}/export/create.json';
@@ -524,7 +524,7 @@ class BulkExportCustomObjectsApi
     public function enqueueExportCustomObjectsUsingPOSTRequest(
         string $api_name,
         string $export_id
-    )
+    ): Request
     {
 
         $resourcePath = '/bulk/v1/customobjects/{apiName}/export/{exportId}/enqueue.json';
@@ -681,7 +681,7 @@ class BulkExportCustomObjectsApi
         string $api_name,
         string $export_id,
         string $range = null
-    )
+    ): Request
     {
 
         $resourcePath = '/bulk/v1/customobjects/{apiName}/export/{exportId}/file.json';
@@ -837,7 +837,7 @@ class BulkExportCustomObjectsApi
     public function getExportCustomObjectsStatusUsingGETRequest(
         string $api_name,
         string $export_id
-    )
+    ): Request
     {
 
         $resourcePath = '/bulk/v1/customobjects/{apiName}/export/{exportId}/status.json';
@@ -1000,7 +1000,7 @@ class BulkExportCustomObjectsApi
         array $status = null,
         int $batch_size = null,
         string $next_page_token = null
-    )
+    ): Request
     {
 
         $resourcePath = '/bulk/v1/customobjects/{apiName}/export.json';

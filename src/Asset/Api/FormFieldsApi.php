@@ -94,7 +94,7 @@ class FormFieldsApi
      *
      * @param int $hostIndex Host index (required)
      */
-    public function setHostIndex($hostIndex)
+    public function setHostIndex($hostIndex): void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -223,7 +223,7 @@ class FormFieldsApi
     public function addFieldSetUsingPOSTRequest(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\AddFormFieldSetRequest $add_form_field_set_request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/form/{id}/fieldSet.json';
@@ -370,7 +370,7 @@ class FormFieldsApi
     public function addFieldToAFormUsingPOSTRequest(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\AddFormFieldRequest $add_form_field_set_request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/form/{id}/fields.json';
@@ -523,7 +523,7 @@ class FormFieldsApi
         int $form_id,
         string $field_id,
         \NecLimDul\MarketoRest\Asset\Model\AddFormFieldVisibilityRequest $add_form_field_visibility_request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/form/{formId}/field/{fieldId}/visibility.json';
@@ -675,7 +675,7 @@ class FormFieldsApi
     public function addRichTextFieldUsingPOSTRequest(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\AddRichTextRequest $add_rich_text_request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/form/{id}/richText.json';
@@ -828,7 +828,7 @@ class FormFieldsApi
         int $id,
         string $field_set_id,
         string $field_id
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/form/{id}/fieldSet/{fieldSetId}/field/{fieldId}/delete.json';
@@ -984,7 +984,7 @@ class FormFieldsApi
     public function deleteFormFieldUsingPOSTRequest(
         int $id,
         string $field_id
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/form/{id}/field/{fieldId}/delete.json';
@@ -1135,7 +1135,7 @@ class FormFieldsApi
     public function getAllFieldsUsingGETRequest(
         int $max_return = null,
         int $offset = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/form/fields.json';
@@ -1280,7 +1280,7 @@ class FormFieldsApi
     public function getAllProgramMemberFieldsUsingGETRequest(
         int $max_return = null,
         int $offset = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/form/programMemberFields.json';
@@ -1425,7 +1425,7 @@ class FormFieldsApi
     public function getFormFieldByFormVidUsingGETRequest(
         int $id,
         string $status = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/form/{id}/fields.json';
@@ -1576,7 +1576,7 @@ class FormFieldsApi
     public function updateFieldPositionsUsingPOSTRequest(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\ReArrangeRequest $re_arrange_request = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/form/{id}/reArrange.json';
@@ -1732,7 +1732,7 @@ class FormFieldsApi
         int $id,
         string $field_id,
         \NecLimDul\MarketoRest\Asset\Model\UpdateFormFieldRequest $update_form_field_request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/form/{id}/field/{fieldId}.json';

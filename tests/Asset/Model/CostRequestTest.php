@@ -44,7 +44,7 @@ class CostRequestTest extends TestCase
     /**
      * Test "CostRequest"
      */
-    public function testCostRequest()
+    public function testCostRequest(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class CostRequestTest extends TestCase
     /**
      * Test attribute "cost"
      */
-    public function testPropertyCost()
+    public function testPropertyCost(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class CostRequestTest extends TestCase
     /**
      * Test attribute "note"
      */
-    public function testPropertyNote()
+    public function testPropertyNote(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class CostRequestTest extends TestCase
     /**
      * Test attribute "start_date"
      */
-    public function testPropertyStartDate()
+    public function testPropertyStartDate(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

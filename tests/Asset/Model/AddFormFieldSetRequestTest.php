@@ -44,7 +44,7 @@ class AddFormFieldSetRequestTest extends TestCase
     /**
      * Test "AddFormFieldSetRequest"
      */
-    public function testAddFormFieldSetRequest()
+    public function testAddFormFieldSetRequest(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class AddFormFieldSetRequestTest extends TestCase
     /**
      * Test attribute "label"
      */
-    public function testPropertyLabel()
+    public function testPropertyLabel(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

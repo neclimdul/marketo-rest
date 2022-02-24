@@ -50,7 +50,7 @@ class BulkExportLeadsApiTest extends TestCase
      *
      * @covers ::cancelExportLeadsUsingPOST
      */
-    public function testCancelExportLeadsUsingPOST()
+    public function testCancelExportLeadsUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -61,7 +61,7 @@ class BulkExportLeadsApiTest extends TestCase
      *
      * @covers ::createExportLeadsUsingPOST
      */
-    public function testCreateExportLeadsUsingPOST()
+    public function testCreateExportLeadsUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -72,7 +72,7 @@ class BulkExportLeadsApiTest extends TestCase
      *
      * @covers ::enqueueExportLeadsUsingPOST
      */
-    public function testEnqueueExportLeadsUsingPOST()
+    public function testEnqueueExportLeadsUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -83,7 +83,7 @@ class BulkExportLeadsApiTest extends TestCase
      *
      * @covers ::getExportLeadsFileUsingGET
      */
-    public function testGetExportLeadsFileUsingGET()
+    public function testGetExportLeadsFileUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -94,7 +94,7 @@ class BulkExportLeadsApiTest extends TestCase
      *
      * @covers ::getExportLeadsStatusUsingGET
      */
-    public function testGetExportLeadsStatusUsingGET()
+    public function testGetExportLeadsStatusUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -105,7 +105,7 @@ class BulkExportLeadsApiTest extends TestCase
      *
      * @covers ::getExportLeadsUsingGET
      */
-    public function testGetExportLeadsUsingGET()
+    public function testGetExportLeadsUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

@@ -44,7 +44,7 @@ class VisitorDataTest extends TestCase
     /**
      * Test "VisitorData"
      */
-    public function testVisitorData()
+    public function testVisitorData(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class VisitorDataTest extends TestCase
     /**
      * Test attribute "page_url"
      */
-    public function testPropertyPageUrl()
+    public function testPropertyPageUrl(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class VisitorDataTest extends TestCase
     /**
      * Test attribute "query_string"
      */
-    public function testPropertyQueryString()
+    public function testPropertyQueryString(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class VisitorDataTest extends TestCase
     /**
      * Test attribute "lead_client_ip_address"
      */
-    public function testPropertyLeadClientIpAddress()
+    public function testPropertyLeadClientIpAddress(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -80,7 +80,7 @@ class VisitorDataTest extends TestCase
     /**
      * Test attribute "user_agent_string"
      */
-    public function testPropertyUserAgentString()
+    public function testPropertyUserAgentString(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

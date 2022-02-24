@@ -44,7 +44,7 @@ class CreateLpTemplateRequestTest extends TestCase
     /**
      * Test "CreateLpTemplateRequest"
      */
-    public function testCreateLpTemplateRequest()
+    public function testCreateLpTemplateRequest(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class CreateLpTemplateRequestTest extends TestCase
     /**
      * Test attribute "description"
      */
-    public function testPropertyDescription()
+    public function testPropertyDescription(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class CreateLpTemplateRequestTest extends TestCase
     /**
      * Test attribute "enable_munchkin"
      */
-    public function testPropertyEnableMunchkin()
+    public function testPropertyEnableMunchkin(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class CreateLpTemplateRequestTest extends TestCase
     /**
      * Test attribute "folder"
      */
-    public function testPropertyFolder()
+    public function testPropertyFolder(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -80,7 +80,7 @@ class CreateLpTemplateRequestTest extends TestCase
     /**
      * Test attribute "name"
      */
-    public function testPropertyName()
+    public function testPropertyName(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -89,7 +89,7 @@ class CreateLpTemplateRequestTest extends TestCase
     /**
      * Test attribute "template_type"
      */
-    public function testPropertyTemplateType()
+    public function testPropertyTemplateType(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

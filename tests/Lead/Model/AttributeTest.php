@@ -44,7 +44,7 @@ class AttributeTest extends TestCase
     /**
      * Test "Attribute"
      */
-    public function testAttribute()
+    public function testAttribute(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class AttributeTest extends TestCase
     /**
      * Test attribute "api_name"
      */
-    public function testPropertyApiName()
+    public function testPropertyApiName(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class AttributeTest extends TestCase
     /**
      * Test attribute "name"
      */
-    public function testPropertyName()
+    public function testPropertyName(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class AttributeTest extends TestCase
     /**
      * Test attribute "value"
      */
-    public function testPropertyValue()
+    public function testPropertyValue(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

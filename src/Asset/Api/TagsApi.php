@@ -94,7 +94,7 @@ class TagsApi
      *
      * @param int $hostIndex Host index (required)
      */
-    public function setHostIndex($hostIndex)
+    public function setHostIndex($hostIndex): void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -217,7 +217,7 @@ class TagsApi
      */
     public function getTagByNameUsingGETRequest(
         string $name
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/tagType/byName.json';
@@ -361,7 +361,7 @@ class TagsApi
     public function getTagTypesUsingGETRequest(
         int $max_return = null,
         int $offset = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/tagTypes.json';

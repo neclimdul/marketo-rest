@@ -50,7 +50,7 @@ class TagsApiTest extends TestCase
      *
      * @covers ::getTagByNameUsingGET
      */
-    public function testGetTagByNameUsingGET()
+    public function testGetTagByNameUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -61,7 +61,7 @@ class TagsApiTest extends TestCase
      *
      * @covers ::getTagTypesUsingGET
      */
-    public function testGetTagTypesUsingGET()
+    public function testGetTagTypesUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

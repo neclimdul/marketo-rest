@@ -94,7 +94,7 @@ class LandingPagesApi
      *
      * @param int $hostIndex Host index (required)
      */
-    public function setHostIndex($hostIndex)
+    public function setHostIndex($hostIndex): void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -217,7 +217,7 @@ class LandingPagesApi
      */
     public function approveLandingPageUsingPOSTRequest(
         int $id
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/landingPage/{id}/approveDraft.json';
@@ -375,7 +375,7 @@ class LandingPagesApi
         int $max_return = null,
         int $offset = null,
         string $folder = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/landingPages.json';
@@ -522,7 +522,7 @@ class LandingPagesApi
     public function cloneLandingPageUsingPOSTRequest(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\CloneLandingPageRequest $clone_landing_page_request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/landingPage/{id}/clone.json';
@@ -663,7 +663,7 @@ class LandingPagesApi
      */
     public function createLandingPageUsingPOSTRequest(
         \NecLimDul\MarketoRest\Asset\Model\CreateLandingPageRequest $create_landing_page_request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/landingPages.json';
@@ -797,7 +797,7 @@ class LandingPagesApi
      */
     public function deleteLandingPageByIdUsingPOSTRequest(
         int $id
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/landingPage/{id}/delete.json';
@@ -937,7 +937,7 @@ class LandingPagesApi
      */
     public function discardLandingPageByIdUsingPOSTRequest(
         int $id
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/landingPage/{id}/discardDraft.json';
@@ -1083,7 +1083,7 @@ class LandingPagesApi
     public function getLandingPageByIdUsingGETRequest(
         int $id,
         string $status = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/landingPage/{id}.json';
@@ -1246,7 +1246,7 @@ class LandingPagesApi
         string $status = null,
         int $max_return = null,
         int $offset = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/landingPage/byName.json';
@@ -1399,7 +1399,7 @@ class LandingPagesApi
         int $id,
         int $lead_id = null,
         string $segmentation = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/landingPage/{id}/fullContent.json';
@@ -1551,7 +1551,7 @@ class LandingPagesApi
     public function getVariablesUsingGETRequest(
         int $id,
         string $status = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/landingPage/{id}/variables.json';
@@ -1696,7 +1696,7 @@ class LandingPagesApi
      */
     public function unapproveLandingPageByIdUsingPOSTRequest(
         int $id
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/landingPage/{id}/unapprove.json';
@@ -1842,7 +1842,7 @@ class LandingPagesApi
     public function updateLandingPageUsingPOSTRequest(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\UpdateLandingPageRequest $update_landing_page_request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/landingPage/{id}.json';
@@ -1995,7 +1995,7 @@ class LandingPagesApi
         int $id,
         string $variable_id,
         int $value
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/landingPage/{id}/variable/{variableId}.json';

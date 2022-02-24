@@ -94,7 +94,7 @@ class FoldersApi
      *
      * @param int $hostIndex Host index (required)
      */
-    public function setHostIndex($hostIndex)
+    public function setHostIndex($hostIndex): void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -217,7 +217,7 @@ class FoldersApi
      */
     public function createFolderUsingPOSTRequest(
         \NecLimDul\MarketoRest\Asset\Model\CreateFolderRequest $create_folder_request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/folders.json';
@@ -357,7 +357,7 @@ class FoldersApi
     public function deleteFolderUsingPOSTRequest(
         int $id,
         string $type
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/folder/{id}/delete.json';
@@ -547,7 +547,7 @@ class FoldersApi
     public function getFolderByIdUsingGETRequest(
         int $id,
         string $type
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/folder/{id}.json';
@@ -710,7 +710,7 @@ class FoldersApi
         string $type = null,
         string $root = null,
         string $work_space = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/folder/byName.json';
@@ -869,7 +869,7 @@ class FoldersApi
         string $type,
         int $max_return = null,
         int $offset = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/folder/{id}/content.json';
@@ -1040,7 +1040,7 @@ class FoldersApi
         int $max_return = null,
         int $offset = null,
         string $work_space = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/folders.json';
@@ -1188,7 +1188,7 @@ class FoldersApi
     public function updateFolderUsingPOSTRequest(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\UpdateFolderRequest $update_folder_request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/folder/{id}.json';

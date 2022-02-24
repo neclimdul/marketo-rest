@@ -44,7 +44,7 @@ class UpdateVariableRequestTest extends TestCase
     /**
      * Test "UpdateVariableRequest"
      */
-    public function testUpdateVariableRequest()
+    public function testUpdateVariableRequest(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class UpdateVariableRequestTest extends TestCase
     /**
      * Test attribute "value"
      */
-    public function testPropertyValue()
+    public function testPropertyValue(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class UpdateVariableRequestTest extends TestCase
     /**
      * Test attribute "module_id"
      */
-    public function testPropertyModuleId()
+    public function testPropertyModuleId(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

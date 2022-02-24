@@ -44,7 +44,7 @@ class ExportCustomObjectFilterTest extends TestCase
     /**
      * Test "ExportCustomObjectFilter"
      */
-    public function testExportCustomObjectFilter()
+    public function testExportCustomObjectFilter(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class ExportCustomObjectFilterTest extends TestCase
     /**
      * Test attribute "updated_at"
      */
-    public function testPropertyUpdatedAt()
+    public function testPropertyUpdatedAt(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class ExportCustomObjectFilterTest extends TestCase
     /**
      * Test attribute "smart_list_id"
      */
-    public function testPropertySmartListId()
+    public function testPropertySmartListId(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class ExportCustomObjectFilterTest extends TestCase
     /**
      * Test attribute "smart_list_name"
      */
-    public function testPropertySmartListName()
+    public function testPropertySmartListName(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -80,7 +80,7 @@ class ExportCustomObjectFilterTest extends TestCase
     /**
      * Test attribute "static_list_id"
      */
-    public function testPropertyStaticListId()
+    public function testPropertyStaticListId(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -89,7 +89,7 @@ class ExportCustomObjectFilterTest extends TestCase
     /**
      * Test attribute "static_list_name"
      */
-    public function testPropertyStaticListName()
+    public function testPropertyStaticListName(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

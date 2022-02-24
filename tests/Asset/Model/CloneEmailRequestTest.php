@@ -44,7 +44,7 @@ class CloneEmailRequestTest extends TestCase
     /**
      * Test "CloneEmailRequest"
      */
-    public function testCloneEmailRequest()
+    public function testCloneEmailRequest(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class CloneEmailRequestTest extends TestCase
     /**
      * Test attribute "description"
      */
-    public function testPropertyDescription()
+    public function testPropertyDescription(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class CloneEmailRequestTest extends TestCase
     /**
      * Test attribute "folder"
      */
-    public function testPropertyFolder()
+    public function testPropertyFolder(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class CloneEmailRequestTest extends TestCase
     /**
      * Test attribute "name"
      */
-    public function testPropertyName()
+    public function testPropertyName(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -80,7 +80,7 @@ class CloneEmailRequestTest extends TestCase
     /**
      * Test attribute "operational"
      */
-    public function testPropertyOperational()
+    public function testPropertyOperational(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

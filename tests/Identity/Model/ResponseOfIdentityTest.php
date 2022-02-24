@@ -44,7 +44,7 @@ class ResponseOfIdentityTest extends TestCase
     /**
      * Test "ResponseOfIdentity"
      */
-    public function testResponseOfIdentity()
+    public function testResponseOfIdentity(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class ResponseOfIdentityTest extends TestCase
     /**
      * Test attribute "access_token"
      */
-    public function testPropertyAccessToken()
+    public function testPropertyAccessToken(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class ResponseOfIdentityTest extends TestCase
     /**
      * Test attribute "scope"
      */
-    public function testPropertyScope()
+    public function testPropertyScope(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class ResponseOfIdentityTest extends TestCase
     /**
      * Test attribute "expires_in"
      */
-    public function testPropertyExpiresIn()
+    public function testPropertyExpiresIn(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -80,7 +80,7 @@ class ResponseOfIdentityTest extends TestCase
     /**
      * Test attribute "token_type"
      */
-    public function testPropertyTokenType()
+    public function testPropertyTokenType(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

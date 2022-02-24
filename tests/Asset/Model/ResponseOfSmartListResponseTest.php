@@ -44,7 +44,7 @@ class ResponseOfSmartListResponseTest extends TestCase
     /**
      * Test "ResponseOfSmartListResponse"
      */
-    public function testResponseOfSmartListResponse()
+    public function testResponseOfSmartListResponse(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class ResponseOfSmartListResponseTest extends TestCase
     /**
      * Test attribute "errors"
      */
-    public function testPropertyErrors()
+    public function testPropertyErrors(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class ResponseOfSmartListResponseTest extends TestCase
     /**
      * Test attribute "request_id"
      */
-    public function testPropertyRequestId()
+    public function testPropertyRequestId(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class ResponseOfSmartListResponseTest extends TestCase
     /**
      * Test attribute "result"
      */
-    public function testPropertyResult()
+    public function testPropertyResult(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -80,7 +80,7 @@ class ResponseOfSmartListResponseTest extends TestCase
     /**
      * Test attribute "success"
      */
-    public function testPropertySuccess()
+    public function testPropertySuccess(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -89,7 +89,7 @@ class ResponseOfSmartListResponseTest extends TestCase
     /**
      * Test attribute "warnings"
      */
-    public function testPropertyWarnings()
+    public function testPropertyWarnings(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

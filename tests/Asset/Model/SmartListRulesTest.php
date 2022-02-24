@@ -44,7 +44,7 @@ class SmartListRulesTest extends TestCase
     /**
      * Test "SmartListRules"
      */
-    public function testSmartListRules()
+    public function testSmartListRules(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class SmartListRulesTest extends TestCase
     /**
      * Test attribute "filter_match_type"
      */
-    public function testPropertyFilterMatchType()
+    public function testPropertyFilterMatchType(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class SmartListRulesTest extends TestCase
     /**
      * Test attribute "triggers"
      */
-    public function testPropertyTriggers()
+    public function testPropertyTriggers(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class SmartListRulesTest extends TestCase
     /**
      * Test attribute "filters"
      */
-    public function testPropertyFilters()
+    public function testPropertyFilters(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

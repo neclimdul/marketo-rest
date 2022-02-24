@@ -44,7 +44,7 @@ class UpdateFieldPositionTest extends TestCase
     /**
      * Test "UpdateFieldPosition"
      */
-    public function testUpdateFieldPosition()
+    public function testUpdateFieldPosition(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class UpdateFieldPositionTest extends TestCase
     /**
      * Test attribute "column_number"
      */
-    public function testPropertyColumnNumber()
+    public function testPropertyColumnNumber(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class UpdateFieldPositionTest extends TestCase
     /**
      * Test attribute "field_list"
      */
-    public function testPropertyFieldList()
+    public function testPropertyFieldList(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class UpdateFieldPositionTest extends TestCase
     /**
      * Test attribute "field_name"
      */
-    public function testPropertyFieldName()
+    public function testPropertyFieldName(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -80,7 +80,7 @@ class UpdateFieldPositionTest extends TestCase
     /**
      * Test attribute "row_number"
      */
-    public function testPropertyRowNumber()
+    public function testPropertyRowNumber(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

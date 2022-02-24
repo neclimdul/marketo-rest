@@ -50,7 +50,7 @@ class FilesApiTest extends TestCase
      *
      * @covers ::createFileUsingPOST
      */
-    public function testCreateFileUsingPOST()
+    public function testCreateFileUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -61,7 +61,7 @@ class FilesApiTest extends TestCase
      *
      * @covers ::getFileByIdUsingGET
      */
-    public function testGetFileByIdUsingGET()
+    public function testGetFileByIdUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -72,7 +72,7 @@ class FilesApiTest extends TestCase
      *
      * @covers ::getFileByNameUsingGET
      */
-    public function testGetFileByNameUsingGET()
+    public function testGetFileByNameUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -83,7 +83,7 @@ class FilesApiTest extends TestCase
      *
      * @covers ::getFilesUsingGET
      */
-    public function testGetFilesUsingGET()
+    public function testGetFilesUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

@@ -94,7 +94,7 @@ class LandingPageContentApi
      *
      * @param int $hostIndex Host index (required)
      */
-    public function setHostIndex($hostIndex)
+    public function setHostIndex($hostIndex): void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -223,7 +223,7 @@ class LandingPageContentApi
     public function addLandingPageContentUsingPOSTRequest(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\CreateLandingPageContentRequest $request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/landingPage/{id}/content.json';
@@ -370,7 +370,7 @@ class LandingPageContentApi
     public function getLandingPageContentUsingGETRequest(
         int $id,
         string $status = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/landingPage/{id}/content.json';
@@ -521,7 +521,7 @@ class LandingPageContentApi
     public function getLandingPageDynamicContentsUsingGETRequest(
         int $id,
         string $content_id
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/landingPage/{id}/dynamicContent/{contentId}.json';
@@ -672,7 +672,7 @@ class LandingPageContentApi
     public function removeLandingPageContentUsingPOSTRequest(
         int $id,
         string $content_id
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/landingPage/{id}/content/{contentId}/delete.json';
@@ -829,7 +829,7 @@ class LandingPageContentApi
         int $id,
         string $content_id,
         \NecLimDul\MarketoRest\Asset\Model\UpdateLandingPageContentRequest $request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/landingPage/{id}/content/{contentId}.json';
@@ -987,7 +987,7 @@ class LandingPageContentApi
         int $id,
         string $content_id,
         \NecLimDul\MarketoRest\Asset\Model\UpdateLandingPageDynamicContentRequest $request = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/landingPage/{id}/dynamicContent/{contentId}.json';

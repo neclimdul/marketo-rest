@@ -50,7 +50,7 @@ class LandingPageTemplatesApiTest extends TestCase
      *
      * @covers ::approveLandingPageTemplateUsingPOST
      */
-    public function testApproveLandingPageTemplateUsingPOST()
+    public function testApproveLandingPageTemplateUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -61,7 +61,7 @@ class LandingPageTemplatesApiTest extends TestCase
      *
      * @covers ::cloneLpTemplateUsingPOST
      */
-    public function testCloneLpTemplateUsingPOST()
+    public function testCloneLpTemplateUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -72,7 +72,7 @@ class LandingPageTemplatesApiTest extends TestCase
      *
      * @covers ::createLpTemplateUsingPOST
      */
-    public function testCreateLpTemplateUsingPOST()
+    public function testCreateLpTemplateUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -83,7 +83,7 @@ class LandingPageTemplatesApiTest extends TestCase
      *
      * @covers ::deleteLpTemplateUsingPOST
      */
-    public function testDeleteLpTemplateUsingPOST()
+    public function testDeleteLpTemplateUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -94,7 +94,7 @@ class LandingPageTemplatesApiTest extends TestCase
      *
      * @covers ::discardDraftUsingPOST2
      */
-    public function testDiscardDraftUsingPOST2()
+    public function testDiscardDraftUsingPOST2(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -105,7 +105,7 @@ class LandingPageTemplatesApiTest extends TestCase
      *
      * @covers ::getLandingPageTemplateByIdUsingGET
      */
-    public function testGetLandingPageTemplateByIdUsingGET()
+    public function testGetLandingPageTemplateByIdUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -116,7 +116,7 @@ class LandingPageTemplatesApiTest extends TestCase
      *
      * @covers ::getLandingPageTemplateByNameUsingGET
      */
-    public function testGetLandingPageTemplateByNameUsingGET()
+    public function testGetLandingPageTemplateByNameUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -127,7 +127,7 @@ class LandingPageTemplatesApiTest extends TestCase
      *
      * @covers ::getLandingPageTemplateContentUsingGET
      */
-    public function testGetLandingPageTemplateContentUsingGET()
+    public function testGetLandingPageTemplateContentUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -138,7 +138,7 @@ class LandingPageTemplatesApiTest extends TestCase
      *
      * @covers ::getLandingPageTemplatesUsingGET
      */
-    public function testGetLandingPageTemplatesUsingGET()
+    public function testGetLandingPageTemplatesUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -149,7 +149,7 @@ class LandingPageTemplatesApiTest extends TestCase
      *
      * @covers ::unapproveLandingPageTemplateUsingPOST
      */
-    public function testUnapproveLandingPageTemplateUsingPOST()
+    public function testUnapproveLandingPageTemplateUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -160,7 +160,7 @@ class LandingPageTemplatesApiTest extends TestCase
      *
      * @covers ::updateLandingPageTemplateContentUsingPOST
      */
-    public function testUpdateLandingPageTemplateContentUsingPOST()
+    public function testUpdateLandingPageTemplateContentUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -171,7 +171,7 @@ class LandingPageTemplatesApiTest extends TestCase
      *
      * @covers ::updateLpTemplateUsingPOST
      */
-    public function testUpdateLpTemplateUsingPOST()
+    public function testUpdateLpTemplateUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

@@ -44,7 +44,7 @@ class ProgramMemberDataTest extends TestCase
     /**
      * Test "ProgramMemberData"
      */
-    public function testProgramMemberData()
+    public function testProgramMemberData(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class ProgramMemberDataTest extends TestCase
     /**
      * Test attribute "lead_id"
      */
-    public function testPropertyLeadId()
+    public function testPropertyLeadId(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class ProgramMemberDataTest extends TestCase
     /**
      * Test attribute "field_api_name"
      */
-    public function testPropertyFieldApiName()
+    public function testPropertyFieldApiName(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class ProgramMemberDataTest extends TestCase
     /**
      * Test attribute "field_api_name2"
      */
-    public function testPropertyFieldApiName2()
+    public function testPropertyFieldApiName2(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

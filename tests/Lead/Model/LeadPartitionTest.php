@@ -44,7 +44,7 @@ class LeadPartitionTest extends TestCase
     /**
      * Test "LeadPartition"
      */
-    public function testLeadPartition()
+    public function testLeadPartition(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class LeadPartitionTest extends TestCase
     /**
      * Test attribute "description"
      */
-    public function testPropertyDescription()
+    public function testPropertyDescription(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class LeadPartitionTest extends TestCase
     /**
      * Test attribute "id"
      */
-    public function testPropertyId()
+    public function testPropertyId(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class LeadPartitionTest extends TestCase
     /**
      * Test attribute "name"
      */
-    public function testPropertyName()
+    public function testPropertyName(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

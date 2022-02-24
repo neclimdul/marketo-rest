@@ -44,7 +44,7 @@ class JsonNodeTest extends TestCase
     /**
      * Test "JsonNode"
      */
-    public function testJsonNode()
+    public function testJsonNode(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class JsonNodeTest extends TestCase
     /**
      * Test attribute "array"
      */
-    public function testPropertyArray()
+    public function testPropertyArray(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class JsonNodeTest extends TestCase
     /**
      * Test attribute "big_decimal"
      */
-    public function testPropertyBigDecimal()
+    public function testPropertyBigDecimal(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class JsonNodeTest extends TestCase
     /**
      * Test attribute "big_integer"
      */
-    public function testPropertyBigInteger()
+    public function testPropertyBigInteger(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -80,7 +80,7 @@ class JsonNodeTest extends TestCase
     /**
      * Test attribute "binary"
      */
-    public function testPropertyBinary()
+    public function testPropertyBinary(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -89,7 +89,7 @@ class JsonNodeTest extends TestCase
     /**
      * Test attribute "boolean"
      */
-    public function testPropertyBoolean()
+    public function testPropertyBoolean(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -98,7 +98,7 @@ class JsonNodeTest extends TestCase
     /**
      * Test attribute "container_node"
      */
-    public function testPropertyContainerNode()
+    public function testPropertyContainerNode(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -107,7 +107,7 @@ class JsonNodeTest extends TestCase
     /**
      * Test attribute "double"
      */
-    public function testPropertyDouble()
+    public function testPropertyDouble(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -116,7 +116,7 @@ class JsonNodeTest extends TestCase
     /**
      * Test attribute "float"
      */
-    public function testPropertyFloat()
+    public function testPropertyFloat(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -125,7 +125,7 @@ class JsonNodeTest extends TestCase
     /**
      * Test attribute "floating_point_number"
      */
-    public function testPropertyFloatingPointNumber()
+    public function testPropertyFloatingPointNumber(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -134,7 +134,7 @@ class JsonNodeTest extends TestCase
     /**
      * Test attribute "int"
      */
-    public function testPropertyInt()
+    public function testPropertyInt(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -143,7 +143,7 @@ class JsonNodeTest extends TestCase
     /**
      * Test attribute "integral_number"
      */
-    public function testPropertyIntegralNumber()
+    public function testPropertyIntegralNumber(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -152,7 +152,7 @@ class JsonNodeTest extends TestCase
     /**
      * Test attribute "long"
      */
-    public function testPropertyLong()
+    public function testPropertyLong(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -161,7 +161,7 @@ class JsonNodeTest extends TestCase
     /**
      * Test attribute "missing_node"
      */
-    public function testPropertyMissingNode()
+    public function testPropertyMissingNode(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -170,7 +170,7 @@ class JsonNodeTest extends TestCase
     /**
      * Test attribute "node_type"
      */
-    public function testPropertyNodeType()
+    public function testPropertyNodeType(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -179,7 +179,7 @@ class JsonNodeTest extends TestCase
     /**
      * Test attribute "null"
      */
-    public function testPropertyNull()
+    public function testPropertyNull(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -188,7 +188,7 @@ class JsonNodeTest extends TestCase
     /**
      * Test attribute "number"
      */
-    public function testPropertyNumber()
+    public function testPropertyNumber(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -197,7 +197,7 @@ class JsonNodeTest extends TestCase
     /**
      * Test attribute "object"
      */
-    public function testPropertyObject()
+    public function testPropertyObject(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -206,7 +206,7 @@ class JsonNodeTest extends TestCase
     /**
      * Test attribute "pojo"
      */
-    public function testPropertyPojo()
+    public function testPropertyPojo(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -215,7 +215,7 @@ class JsonNodeTest extends TestCase
     /**
      * Test attribute "short"
      */
-    public function testPropertyShort()
+    public function testPropertyShort(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -224,7 +224,7 @@ class JsonNodeTest extends TestCase
     /**
      * Test attribute "textual"
      */
-    public function testPropertyTextual()
+    public function testPropertyTextual(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -233,7 +233,7 @@ class JsonNodeTest extends TestCase
     /**
      * Test attribute "value_node"
      */
-    public function testPropertyValueNode()
+    public function testPropertyValueNode(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

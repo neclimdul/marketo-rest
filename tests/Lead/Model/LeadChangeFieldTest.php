@@ -44,7 +44,7 @@ class LeadChangeFieldTest extends TestCase
     /**
      * Test "LeadChangeField"
      */
-    public function testLeadChangeField()
+    public function testLeadChangeField(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class LeadChangeFieldTest extends TestCase
     /**
      * Test attribute "id"
      */
-    public function testPropertyId()
+    public function testPropertyId(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class LeadChangeFieldTest extends TestCase
     /**
      * Test attribute "name"
      */
-    public function testPropertyName()
+    public function testPropertyName(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class LeadChangeFieldTest extends TestCase
     /**
      * Test attribute "new_value"
      */
-    public function testPropertyNewValue()
+    public function testPropertyNewValue(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -80,7 +80,7 @@ class LeadChangeFieldTest extends TestCase
     /**
      * Test attribute "old_value"
      */
-    public function testPropertyOldValue()
+    public function testPropertyOldValue(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

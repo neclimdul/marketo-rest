@@ -94,7 +94,7 @@ class BulkExportProgramMembersApi
      *
      * @param int $hostIndex Host index (required)
      */
-    public function setHostIndex($hostIndex)
+    public function setHostIndex($hostIndex): void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -217,7 +217,7 @@ class BulkExportProgramMembersApi
      */
     public function cancelExportProgramMembersUsingPOSTRequest(
         string $export_id
-    )
+    ): Request
     {
 
         $resourcePath = '/bulk/v1/program/members/export/{exportId}/cancel.json';
@@ -357,7 +357,7 @@ class BulkExportProgramMembersApi
      */
     public function createExportProgramMembersUsingPOSTRequest(
         \NecLimDul\MarketoRest\Lead\Model\ExportProgramMemberRequest $export_program_member_request = null
-    )
+    ): Request
     {
 
         $resourcePath = '/bulk/v1/program/members/export/create.json';
@@ -494,7 +494,7 @@ class BulkExportProgramMembersApi
      */
     public function enqueueExportProgramMembersUsingPOSTRequest(
         string $export_id
-    )
+    ): Request
     {
 
         $resourcePath = '/bulk/v1/program/members/export/{exportId}/enqueue.json';
@@ -640,7 +640,7 @@ class BulkExportProgramMembersApi
     public function getExportProgramMembersFileUsingGETRequest(
         string $export_id,
         string $range = null
-    )
+    ): Request
     {
 
         $resourcePath = '/bulk/v1/program/members/export/{exportId}/file.json';
@@ -785,7 +785,7 @@ class BulkExportProgramMembersApi
      */
     public function getExportProgramMembersStatusUsingGETRequest(
         string $export_id
-    )
+    ): Request
     {
 
         $resourcePath = '/bulk/v1/program/members/export/{exportId}/status.json';
@@ -937,7 +937,7 @@ class BulkExportProgramMembersApi
         array $status = null,
         int $batch_size = null,
         string $next_page_token = null
-    )
+    ): Request
     {
 
         $resourcePath = '/bulk/v1/program/members/export.json';

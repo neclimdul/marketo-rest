@@ -94,7 +94,7 @@ class StaticListsApi
      *
      * @param int $hostIndex Host index (required)
      */
-    public function setHostIndex($hostIndex)
+    public function setHostIndex($hostIndex): void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -229,7 +229,7 @@ class StaticListsApi
         int $list_id,
         \NecLimDul\MarketoRest\Lead\Model\ListOperationRequest $list_operation_request = null,
         array $id = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/lists/{listId}/leads.json';
@@ -390,7 +390,7 @@ class StaticListsApi
         int $list_id,
         \NecLimDul\MarketoRest\Lead\Model\ListOperationRequest $list_operation_request = null,
         array $id = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/lists/{listId}/leads/ismember.json';
@@ -557,7 +557,7 @@ class StaticListsApi
         array $fields = null,
         int $batch_size = null,
         string $next_page_token = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/list/{listId}/leads.json';
@@ -722,7 +722,7 @@ class StaticListsApi
         array $fields = null,
         int $batch_size = null,
         string $next_page_token = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/lists/{listId}/leads.json';
@@ -869,7 +869,7 @@ class StaticListsApi
      */
     public function getListByIdUsingGETRequest(
         int $list_id
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/lists/{listId}.json';
@@ -1039,7 +1039,7 @@ class StaticListsApi
         array $workspace_name = null,
         int $batch_size = null,
         string $next_page_token = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/lists.json';
@@ -1194,7 +1194,7 @@ class StaticListsApi
         int $list_id,
         \NecLimDul\MarketoRest\Lead\Model\ListOperationRequest $list_operation_request,
         array $id
-    )
+    ): Request
     {
         // Verify the required parameter 'id' is set.
         if (empty($id)) {

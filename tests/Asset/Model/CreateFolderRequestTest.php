@@ -44,7 +44,7 @@ class CreateFolderRequestTest extends TestCase
     /**
      * Test "CreateFolderRequest"
      */
-    public function testCreateFolderRequest()
+    public function testCreateFolderRequest(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class CreateFolderRequestTest extends TestCase
     /**
      * Test attribute "description"
      */
-    public function testPropertyDescription()
+    public function testPropertyDescription(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class CreateFolderRequestTest extends TestCase
     /**
      * Test attribute "name"
      */
-    public function testPropertyName()
+    public function testPropertyName(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class CreateFolderRequestTest extends TestCase
     /**
      * Test attribute "parent"
      */
-    public function testPropertyParent()
+    public function testPropertyParent(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

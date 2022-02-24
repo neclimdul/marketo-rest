@@ -44,7 +44,7 @@ class GetLandingPageFullContentResponseTest extends TestCase
     /**
      * Test "GetLandingPageFullContentResponse"
      */
-    public function testGetLandingPageFullContentResponse()
+    public function testGetLandingPageFullContentResponse(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class GetLandingPageFullContentResponseTest extends TestCase
     /**
      * Test attribute "content"
      */
-    public function testPropertyContent()
+    public function testPropertyContent(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class GetLandingPageFullContentResponseTest extends TestCase
     /**
      * Test attribute "id"
      */
-    public function testPropertyId()
+    public function testPropertyId(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

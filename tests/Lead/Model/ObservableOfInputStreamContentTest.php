@@ -44,7 +44,7 @@ class ObservableOfInputStreamContentTest extends TestCase
     /**
      * Test "ObservableOfInputStreamContent"
      */
-    public function testObservableOfInputStreamContent()
+    public function testObservableOfInputStreamContent(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

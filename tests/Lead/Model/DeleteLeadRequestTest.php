@@ -44,7 +44,7 @@ class DeleteLeadRequestTest extends TestCase
     /**
      * Test "DeleteLeadRequest"
      */
-    public function testDeleteLeadRequest()
+    public function testDeleteLeadRequest(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class DeleteLeadRequestTest extends TestCase
     /**
      * Test attribute "input"
      */
-    public function testPropertyInput()
+    public function testPropertyInput(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

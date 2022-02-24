@@ -44,7 +44,7 @@ class RecurrenceTest extends TestCase
     /**
      * Test "Recurrence"
      */
-    public function testRecurrence()
+    public function testRecurrence(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class RecurrenceTest extends TestCase
     /**
      * Test attribute "start_at"
      */
-    public function testPropertyStartAt()
+    public function testPropertyStartAt(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class RecurrenceTest extends TestCase
     /**
      * Test attribute "end_at"
      */
-    public function testPropertyEndAt()
+    public function testPropertyEndAt(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class RecurrenceTest extends TestCase
     /**
      * Test attribute "interval_type"
      */
-    public function testPropertyIntervalType()
+    public function testPropertyIntervalType(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -80,7 +80,7 @@ class RecurrenceTest extends TestCase
     /**
      * Test attribute "interval"
      */
-    public function testPropertyInterval()
+    public function testPropertyInterval(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -89,7 +89,7 @@ class RecurrenceTest extends TestCase
     /**
      * Test attribute "weekday_only"
      */
-    public function testPropertyWeekdayOnly()
+    public function testPropertyWeekdayOnly(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -98,7 +98,7 @@ class RecurrenceTest extends TestCase
     /**
      * Test attribute "weekday_mask"
      */
-    public function testPropertyWeekdayMask()
+    public function testPropertyWeekdayMask(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -107,7 +107,7 @@ class RecurrenceTest extends TestCase
     /**
      * Test attribute "day_of_month"
      */
-    public function testPropertyDayOfMonth()
+    public function testPropertyDayOfMonth(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -116,7 +116,7 @@ class RecurrenceTest extends TestCase
     /**
      * Test attribute "day_of_week"
      */
-    public function testPropertyDayOfWeek()
+    public function testPropertyDayOfWeek(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -125,7 +125,7 @@ class RecurrenceTest extends TestCase
     /**
      * Test attribute "week_of_month"
      */
-    public function testPropertyWeekOfMonth()
+    public function testPropertyWeekOfMonth(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

@@ -44,7 +44,7 @@ class CloneLandingPageRequestTest extends TestCase
     /**
      * Test "CloneLandingPageRequest"
      */
-    public function testCloneLandingPageRequest()
+    public function testCloneLandingPageRequest(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class CloneLandingPageRequestTest extends TestCase
     /**
      * Test attribute "description"
      */
-    public function testPropertyDescription()
+    public function testPropertyDescription(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class CloneLandingPageRequestTest extends TestCase
     /**
      * Test attribute "folder"
      */
-    public function testPropertyFolder()
+    public function testPropertyFolder(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class CloneLandingPageRequestTest extends TestCase
     /**
      * Test attribute "name"
      */
-    public function testPropertyName()
+    public function testPropertyName(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -80,7 +80,7 @@ class CloneLandingPageRequestTest extends TestCase
     /**
      * Test attribute "template"
      */
-    public function testPropertyTemplate()
+    public function testPropertyTemplate(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

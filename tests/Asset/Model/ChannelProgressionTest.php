@@ -44,7 +44,7 @@ class ChannelProgressionTest extends TestCase
     /**
      * Test "ChannelProgression"
      */
-    public function testChannelProgression()
+    public function testChannelProgression(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class ChannelProgressionTest extends TestCase
     /**
      * Test attribute "description"
      */
-    public function testPropertyDescription()
+    public function testPropertyDescription(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class ChannelProgressionTest extends TestCase
     /**
      * Test attribute "hidden"
      */
-    public function testPropertyHidden()
+    public function testPropertyHidden(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class ChannelProgressionTest extends TestCase
     /**
      * Test attribute "name"
      */
-    public function testPropertyName()
+    public function testPropertyName(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -80,7 +80,7 @@ class ChannelProgressionTest extends TestCase
     /**
      * Test attribute "type"
      */
-    public function testPropertyType()
+    public function testPropertyType(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -89,7 +89,7 @@ class ChannelProgressionTest extends TestCase
     /**
      * Test attribute "step"
      */
-    public function testPropertyStep()
+    public function testPropertyStep(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -98,7 +98,7 @@ class ChannelProgressionTest extends TestCase
     /**
      * Test attribute "success"
      */
-    public function testPropertySuccess()
+    public function testPropertySuccess(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

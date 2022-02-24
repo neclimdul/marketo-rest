@@ -44,7 +44,7 @@ class ThankYouPageRequestTest extends TestCase
     /**
      * Test "ThankYouPageRequest"
      */
-    public function testThankYouPageRequest()
+    public function testThankYouPageRequest(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class ThankYouPageRequestTest extends TestCase
     /**
      * Test attribute "default"
      */
-    public function testPropertyDefault()
+    public function testPropertyDefault(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class ThankYouPageRequestTest extends TestCase
     /**
      * Test attribute "followup_type"
      */
-    public function testPropertyFollowupType()
+    public function testPropertyFollowupType(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class ThankYouPageRequestTest extends TestCase
     /**
      * Test attribute "followup_value"
      */
-    public function testPropertyFollowupValue()
+    public function testPropertyFollowupValue(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -80,7 +80,7 @@ class ThankYouPageRequestTest extends TestCase
     /**
      * Test attribute "operator"
      */
-    public function testPropertyOperator()
+    public function testPropertyOperator(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -89,7 +89,7 @@ class ThankYouPageRequestTest extends TestCase
     /**
      * Test attribute "subject_field"
      */
-    public function testPropertySubjectField()
+    public function testPropertySubjectField(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -98,7 +98,7 @@ class ThankYouPageRequestTest extends TestCase
     /**
      * Test attribute "values"
      */
-    public function testPropertyValues()
+    public function testPropertyValues(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

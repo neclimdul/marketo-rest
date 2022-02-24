@@ -44,7 +44,7 @@ class LeadMapAttributeTest extends TestCase
     /**
      * Test "LeadMapAttribute"
      */
-    public function testLeadMapAttribute()
+    public function testLeadMapAttribute(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class LeadMapAttributeTest extends TestCase
     /**
      * Test attribute "name"
      */
-    public function testPropertyName()
+    public function testPropertyName(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class LeadMapAttributeTest extends TestCase
     /**
      * Test attribute "read_only"
      */
-    public function testPropertyReadOnly()
+    public function testPropertyReadOnly(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

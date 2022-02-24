@@ -44,7 +44,7 @@ class AddFormFieldRequestTest extends TestCase
     /**
      * Test "AddFormFieldRequest"
      */
-    public function testAddFormFieldRequest()
+    public function testAddFormFieldRequest(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class AddFormFieldRequestTest extends TestCase
     /**
      * Test attribute "blank_fields"
      */
-    public function testPropertyBlankFields()
+    public function testPropertyBlankFields(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class AddFormFieldRequestTest extends TestCase
     /**
      * Test attribute "default_value"
      */
-    public function testPropertyDefaultValue()
+    public function testPropertyDefaultValue(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class AddFormFieldRequestTest extends TestCase
     /**
      * Test attribute "field_id"
      */
-    public function testPropertyFieldId()
+    public function testPropertyFieldId(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -80,7 +80,7 @@ class AddFormFieldRequestTest extends TestCase
     /**
      * Test attribute "field_width"
      */
-    public function testPropertyFieldWidth()
+    public function testPropertyFieldWidth(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -89,7 +89,7 @@ class AddFormFieldRequestTest extends TestCase
     /**
      * Test attribute "form_prefill"
      */
-    public function testPropertyFormPrefill()
+    public function testPropertyFormPrefill(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -98,7 +98,7 @@ class AddFormFieldRequestTest extends TestCase
     /**
      * Test attribute "is_sensitive"
      */
-    public function testPropertyIsSensitive()
+    public function testPropertyIsSensitive(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -107,7 +107,7 @@ class AddFormFieldRequestTest extends TestCase
     /**
      * Test attribute "hint_text"
      */
-    public function testPropertyHintText()
+    public function testPropertyHintText(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -116,7 +116,7 @@ class AddFormFieldRequestTest extends TestCase
     /**
      * Test attribute "initially_checked"
      */
-    public function testPropertyInitiallyChecked()
+    public function testPropertyInitiallyChecked(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -125,7 +125,7 @@ class AddFormFieldRequestTest extends TestCase
     /**
      * Test attribute "instructions"
      */
-    public function testPropertyInstructions()
+    public function testPropertyInstructions(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -134,7 +134,7 @@ class AddFormFieldRequestTest extends TestCase
     /**
      * Test attribute "label"
      */
-    public function testPropertyLabel()
+    public function testPropertyLabel(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -143,7 +143,7 @@ class AddFormFieldRequestTest extends TestCase
     /**
      * Test attribute "label_to_right"
      */
-    public function testPropertyLabelToRight()
+    public function testPropertyLabelToRight(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -152,7 +152,7 @@ class AddFormFieldRequestTest extends TestCase
     /**
      * Test attribute "label_width"
      */
-    public function testPropertyLabelWidth()
+    public function testPropertyLabelWidth(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -161,7 +161,7 @@ class AddFormFieldRequestTest extends TestCase
     /**
      * Test attribute "mask_input"
      */
-    public function testPropertyMaskInput()
+    public function testPropertyMaskInput(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -170,7 +170,7 @@ class AddFormFieldRequestTest extends TestCase
     /**
      * Test attribute "max_length"
      */
-    public function testPropertyMaxLength()
+    public function testPropertyMaxLength(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -179,7 +179,7 @@ class AddFormFieldRequestTest extends TestCase
     /**
      * Test attribute "max_value"
      */
-    public function testPropertyMaxValue()
+    public function testPropertyMaxValue(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -188,7 +188,7 @@ class AddFormFieldRequestTest extends TestCase
     /**
      * Test attribute "min_value"
      */
-    public function testPropertyMinValue()
+    public function testPropertyMinValue(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -197,7 +197,7 @@ class AddFormFieldRequestTest extends TestCase
     /**
      * Test attribute "multi_select"
      */
-    public function testPropertyMultiSelect()
+    public function testPropertyMultiSelect(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -206,7 +206,7 @@ class AddFormFieldRequestTest extends TestCase
     /**
      * Test attribute "required"
      */
-    public function testPropertyRequired()
+    public function testPropertyRequired(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -215,7 +215,7 @@ class AddFormFieldRequestTest extends TestCase
     /**
      * Test attribute "validation_message"
      */
-    public function testPropertyValidationMessage()
+    public function testPropertyValidationMessage(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -224,7 +224,7 @@ class AddFormFieldRequestTest extends TestCase
     /**
      * Test attribute "values"
      */
-    public function testPropertyValues()
+    public function testPropertyValues(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -233,7 +233,7 @@ class AddFormFieldRequestTest extends TestCase
     /**
      * Test attribute "visible_lines"
      */
-    public function testPropertyVisibleLines()
+    public function testPropertyVisibleLines(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

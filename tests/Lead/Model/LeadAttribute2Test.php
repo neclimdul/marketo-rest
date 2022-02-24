@@ -44,7 +44,7 @@ class LeadAttribute2Test extends TestCase
     /**
      * Test "LeadAttribute2"
      */
-    public function testLeadAttribute2()
+    public function testLeadAttribute2(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class LeadAttribute2Test extends TestCase
     /**
      * Test attribute "name"
      */
-    public function testPropertyName()
+    public function testPropertyName(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class LeadAttribute2Test extends TestCase
     /**
      * Test attribute "searchable_fields"
      */
-    public function testPropertySearchableFields()
+    public function testPropertySearchableFields(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class LeadAttribute2Test extends TestCase
     /**
      * Test attribute "fields"
      */
-    public function testPropertyFields()
+    public function testPropertyFields(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

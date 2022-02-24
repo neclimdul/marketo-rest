@@ -50,7 +50,7 @@ class FormsApiTest extends TestCase
      *
      * @covers ::approveFromUsingPOST
      */
-    public function testApproveFromUsingPOST()
+    public function testApproveFromUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -61,7 +61,7 @@ class FormsApiTest extends TestCase
      *
      * @covers ::browseForms2UsingGET
      */
-    public function testBrowseForms2UsingGET()
+    public function testBrowseForms2UsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -72,7 +72,7 @@ class FormsApiTest extends TestCase
      *
      * @covers ::cloneLpFormsUsingPOST
      */
-    public function testCloneLpFormsUsingPOST()
+    public function testCloneLpFormsUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -83,7 +83,7 @@ class FormsApiTest extends TestCase
      *
      * @covers ::createLpFormsUsingPOST
      */
-    public function testCreateLpFormsUsingPOST()
+    public function testCreateLpFormsUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -94,7 +94,7 @@ class FormsApiTest extends TestCase
      *
      * @covers ::deleteFormByIdUsingPOST
      */
-    public function testDeleteFormByIdUsingPOST()
+    public function testDeleteFormByIdUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -105,7 +105,7 @@ class FormsApiTest extends TestCase
      *
      * @covers ::discardFormByIdUsingPOST
      */
-    public function testDiscardFormByIdUsingPOST()
+    public function testDiscardFormByIdUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -116,7 +116,7 @@ class FormsApiTest extends TestCase
      *
      * @covers ::getFormUsedByUsingGET
      */
-    public function testGetFormUsedByUsingGET()
+    public function testGetFormUsedByUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -127,7 +127,7 @@ class FormsApiTest extends TestCase
      *
      * @covers ::getLpFormByIdUsingGET
      */
-    public function testGetLpFormByIdUsingGET()
+    public function testGetLpFormByIdUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -138,7 +138,7 @@ class FormsApiTest extends TestCase
      *
      * @covers ::getLpFormByNameUsingGET
      */
-    public function testGetLpFormByNameUsingGET()
+    public function testGetLpFormByNameUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -149,7 +149,7 @@ class FormsApiTest extends TestCase
      *
      * @covers ::getThankYouPageByIdUsingGET
      */
-    public function testGetThankYouPageByIdUsingGET()
+    public function testGetThankYouPageByIdUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -160,7 +160,7 @@ class FormsApiTest extends TestCase
      *
      * @covers ::updateFormSubmitButtonUsingPOST
      */
-    public function testUpdateFormSubmitButtonUsingPOST()
+    public function testUpdateFormSubmitButtonUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -171,7 +171,7 @@ class FormsApiTest extends TestCase
      *
      * @covers ::updateFormsUsingPOST
      */
-    public function testUpdateFormsUsingPOST()
+    public function testUpdateFormsUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -182,7 +182,7 @@ class FormsApiTest extends TestCase
      *
      * @covers ::updateThankYouPageByIdUsingPOST
      */
-    public function testUpdateThankYouPageByIdUsingPOST()
+    public function testUpdateThankYouPageByIdUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

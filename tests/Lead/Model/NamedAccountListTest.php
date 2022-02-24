@@ -44,7 +44,7 @@ class NamedAccountListTest extends TestCase
     /**
      * Test "NamedAccountList"
      */
-    public function testNamedAccountList()
+    public function testNamedAccountList(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class NamedAccountListTest extends TestCase
     /**
      * Test attribute "created_at"
      */
-    public function testPropertyCreatedAt()
+    public function testPropertyCreatedAt(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class NamedAccountListTest extends TestCase
     /**
      * Test attribute "marketo_guid"
      */
-    public function testPropertyMarketoGuid()
+    public function testPropertyMarketoGuid(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class NamedAccountListTest extends TestCase
     /**
      * Test attribute "name"
      */
-    public function testPropertyName()
+    public function testPropertyName(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -80,7 +80,7 @@ class NamedAccountListTest extends TestCase
     /**
      * Test attribute "reasons"
      */
-    public function testPropertyReasons()
+    public function testPropertyReasons(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -89,7 +89,7 @@ class NamedAccountListTest extends TestCase
     /**
      * Test attribute "seq"
      */
-    public function testPropertySeq()
+    public function testPropertySeq(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -98,7 +98,7 @@ class NamedAccountListTest extends TestCase
     /**
      * Test attribute "status"
      */
-    public function testPropertyStatus()
+    public function testPropertyStatus(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -107,7 +107,7 @@ class NamedAccountListTest extends TestCase
     /**
      * Test attribute "type"
      */
-    public function testPropertyType()
+    public function testPropertyType(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -116,7 +116,7 @@ class NamedAccountListTest extends TestCase
     /**
      * Test attribute "updateable"
      */
-    public function testPropertyUpdateable()
+    public function testPropertyUpdateable(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -125,7 +125,7 @@ class NamedAccountListTest extends TestCase
     /**
      * Test attribute "updated_at"
      */
-    public function testPropertyUpdatedAt()
+    public function testPropertyUpdatedAt(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

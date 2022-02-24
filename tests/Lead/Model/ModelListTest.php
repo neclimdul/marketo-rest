@@ -44,7 +44,7 @@ class ModelListTest extends TestCase
     /**
      * Test "ModelList"
      */
-    public function testModelList()
+    public function testModelList(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class ModelListTest extends TestCase
     /**
      * Test attribute "created_at"
      */
-    public function testPropertyCreatedAt()
+    public function testPropertyCreatedAt(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class ModelListTest extends TestCase
     /**
      * Test attribute "list_id"
      */
-    public function testPropertyListId()
+    public function testPropertyListId(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class ModelListTest extends TestCase
     /**
      * Test attribute "updated_at"
      */
-    public function testPropertyUpdatedAt()
+    public function testPropertyUpdatedAt(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

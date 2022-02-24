@@ -44,7 +44,7 @@ class ErrorsDataTest extends TestCase
     /**
      * Test "ErrorsData"
      */
-    public function testErrorsData()
+    public function testErrorsData(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class ErrorsDataTest extends TestCase
     /**
      * Test attribute "date"
      */
-    public function testPropertyDate()
+    public function testPropertyDate(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class ErrorsDataTest extends TestCase
     /**
      * Test attribute "errors"
      */
-    public function testPropertyErrors()
+    public function testPropertyErrors(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class ErrorsDataTest extends TestCase
     /**
      * Test attribute "total"
      */
-    public function testPropertyTotal()
+    public function testPropertyTotal(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

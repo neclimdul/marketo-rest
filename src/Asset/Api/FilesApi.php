@@ -94,7 +94,7 @@ class FilesApi
      *
      * @param int $hostIndex Host index (required)
      */
-    public function setHostIndex($hostIndex)
+    public function setHostIndex($hostIndex): void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -217,7 +217,7 @@ class FilesApi
      */
     public function createFileUsingPOSTRequest(
         \NecLimDul\MarketoRest\Asset\Model\CreateFileRequest $create_file_request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/files.json';
@@ -351,7 +351,7 @@ class FilesApi
      */
     public function getFileByIdUsingGETRequest(
         int $id
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/file/{id}.json';
@@ -491,7 +491,7 @@ class FilesApi
      */
     public function getFileByNameUsingGETRequest(
         string $name
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/file/byName.json';
@@ -635,7 +635,7 @@ class FilesApi
     public function getFilesUsingGETRequest(
         \NecLimDul\MarketoRest\Asset\Model\GetFilesRequest $get_files_request,
         string $folder = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/files.json';

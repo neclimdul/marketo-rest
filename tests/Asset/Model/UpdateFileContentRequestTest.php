@@ -44,7 +44,7 @@ class UpdateFileContentRequestTest extends TestCase
     /**
      * Test "UpdateFileContentRequest"
      */
-    public function testUpdateFileContentRequest()
+    public function testUpdateFileContentRequest(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class UpdateFileContentRequestTest extends TestCase
     /**
      * Test attribute "file"
      */
-    public function testPropertyFile()
+    public function testPropertyFile(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class UpdateFileContentRequestTest extends TestCase
     /**
      * Test attribute "id"
      */
-    public function testPropertyId()
+    public function testPropertyId(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

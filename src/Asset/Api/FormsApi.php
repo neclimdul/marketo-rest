@@ -94,7 +94,7 @@ class FormsApi
      *
      * @param int $hostIndex Host index (required)
      */
-    public function setHostIndex($hostIndex)
+    public function setHostIndex($hostIndex): void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -217,7 +217,7 @@ class FormsApi
      */
     public function approveFromUsingPOSTRequest(
         int $id
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/form/{id}/approveDraft.json';
@@ -375,7 +375,7 @@ class FormsApi
         string $status = null,
         string $max_return = null,
         string $offset = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/forms.json';
@@ -522,7 +522,7 @@ class FormsApi
     public function cloneLpFormsUsingPOSTRequest(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\CloneFormRequest $clone_form_request = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/form/{id}/clone.json';
@@ -666,7 +666,7 @@ class FormsApi
      */
     public function createLpFormsUsingPOSTRequest(
         \NecLimDul\MarketoRest\Asset\Model\CreateLpFormRequest $create_form_request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/forms.json';
@@ -800,7 +800,7 @@ class FormsApi
      */
     public function deleteFormByIdUsingPOSTRequest(
         int $id
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/form/{id}/delete.json';
@@ -940,7 +940,7 @@ class FormsApi
      */
     public function discardFormByIdUsingPOSTRequest(
         int $id
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/form/{id}/discardDraft.json';
@@ -1092,7 +1092,7 @@ class FormsApi
         int $id,
         int $offset = null,
         int $max_return = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/form/{id}/usedBy.json';
@@ -1244,7 +1244,7 @@ class FormsApi
     public function getLpFormByIdUsingGETRequest(
         int $id,
         string $status = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/form/{id}.json';
@@ -1401,7 +1401,7 @@ class FormsApi
         string $name,
         string $status = null,
         string $folder = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/form/byName.json';
@@ -1547,7 +1547,7 @@ class FormsApi
     public function getThankYouPageByIdUsingGETRequest(
         int $id,
         string $status = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/form/{id}/thankYouPage.json';
@@ -1698,7 +1698,7 @@ class FormsApi
     public function updateFormSubmitButtonUsingPOSTRequest(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\SubmitButtonRequest $submit_button_request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/form/{id}/submitButton.json';
@@ -1845,7 +1845,7 @@ class FormsApi
     public function updateFormsUsingPOSTRequest(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\UpdateFormMetaDataRequest $update_form_meta_data_request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/form/{id}.json';
@@ -1992,7 +1992,7 @@ class FormsApi
     public function updateThankYouPageByIdUsingPOSTRequest(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\UpdateThankYouPageRequest $thank_you_page_request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/form/{id}/thankYouPage.json';

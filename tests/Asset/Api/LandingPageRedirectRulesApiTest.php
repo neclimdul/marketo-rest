@@ -50,7 +50,7 @@ class LandingPageRedirectRulesApiTest extends TestCase
      *
      * @covers ::createLandingPageRedirectRuleUsingPOST
      */
-    public function testCreateLandingPageRedirectRuleUsingPOST()
+    public function testCreateLandingPageRedirectRuleUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -61,7 +61,7 @@ class LandingPageRedirectRulesApiTest extends TestCase
      *
      * @covers ::deleteLandingPageRedirectRuleUsingPOST
      */
-    public function testDeleteLandingPageRedirectRuleUsingPOST()
+    public function testDeleteLandingPageRedirectRuleUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -72,7 +72,7 @@ class LandingPageRedirectRulesApiTest extends TestCase
      *
      * @covers ::getLandingPageDomainsUsingGET
      */
-    public function testGetLandingPageDomainsUsingGET()
+    public function testGetLandingPageDomainsUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -83,7 +83,7 @@ class LandingPageRedirectRulesApiTest extends TestCase
      *
      * @covers ::getLandingPageRedirectRuleByIdUsingGET
      */
-    public function testGetLandingPageRedirectRuleByIdUsingGET()
+    public function testGetLandingPageRedirectRuleByIdUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -94,7 +94,7 @@ class LandingPageRedirectRulesApiTest extends TestCase
      *
      * @covers ::getLandingPageRedirectRulesUsingGET
      */
-    public function testGetLandingPageRedirectRulesUsingGET()
+    public function testGetLandingPageRedirectRulesUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -105,7 +105,7 @@ class LandingPageRedirectRulesApiTest extends TestCase
      *
      * @covers ::updateLandingPageRedirectRuleUsingPOST
      */
-    public function testUpdateLandingPageRedirectRuleUsingPOST()
+    public function testUpdateLandingPageRedirectRuleUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

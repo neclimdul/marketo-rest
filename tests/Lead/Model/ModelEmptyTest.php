@@ -44,7 +44,7 @@ class ModelEmptyTest extends TestCase
     /**
      * Test "ModelEmpty"
      */
-    public function testModelEmpty()
+    public function testModelEmpty(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

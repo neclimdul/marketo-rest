@@ -44,7 +44,7 @@ class ObjectDependentAssetTest extends TestCase
     /**
      * Test "ObjectDependentAsset"
      */
-    public function testObjectDependentAsset()
+    public function testObjectDependentAsset(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class ObjectDependentAssetTest extends TestCase
     /**
      * Test attribute "asset_type"
      */
-    public function testPropertyAssetType()
+    public function testPropertyAssetType(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class ObjectDependentAssetTest extends TestCase
     /**
      * Test attribute "asset_id"
      */
-    public function testPropertyAssetId()
+    public function testPropertyAssetId(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class ObjectDependentAssetTest extends TestCase
     /**
      * Test attribute "asset_name"
      */
-    public function testPropertyAssetName()
+    public function testPropertyAssetName(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -80,7 +80,7 @@ class ObjectDependentAssetTest extends TestCase
     /**
      * Test attribute "used_fields"
      */
-    public function testPropertyUsedFields()
+    public function testPropertyUsedFields(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

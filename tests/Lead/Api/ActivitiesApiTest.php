@@ -50,7 +50,7 @@ class ActivitiesApiTest extends TestCase
      *
      * @covers ::addCustomActivityUsingPOST
      */
-    public function testAddCustomActivityUsingPOST()
+    public function testAddCustomActivityUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -61,7 +61,7 @@ class ActivitiesApiTest extends TestCase
      *
      * @covers ::approveCustomActivityTypeUsingPOST
      */
-    public function testApproveCustomActivityTypeUsingPOST()
+    public function testApproveCustomActivityTypeUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -72,7 +72,7 @@ class ActivitiesApiTest extends TestCase
      *
      * @covers ::createCustomActivityTypeAttributesUsingPOST
      */
-    public function testCreateCustomActivityTypeAttributesUsingPOST()
+    public function testCreateCustomActivityTypeAttributesUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -83,7 +83,7 @@ class ActivitiesApiTest extends TestCase
      *
      * @covers ::createCustomActivityTypeUsingPOST
      */
-    public function testCreateCustomActivityTypeUsingPOST()
+    public function testCreateCustomActivityTypeUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -94,7 +94,7 @@ class ActivitiesApiTest extends TestCase
      *
      * @covers ::deleteCustomActivityTypeAttributesUsingPOST
      */
-    public function testDeleteCustomActivityTypeAttributesUsingPOST()
+    public function testDeleteCustomActivityTypeAttributesUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -105,7 +105,7 @@ class ActivitiesApiTest extends TestCase
      *
      * @covers ::deleteCustomActivityTypeUsingPOST
      */
-    public function testDeleteCustomActivityTypeUsingPOST()
+    public function testDeleteCustomActivityTypeUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -116,7 +116,7 @@ class ActivitiesApiTest extends TestCase
      *
      * @covers ::describeCustomActivityTypeUsingGET
      */
-    public function testDescribeCustomActivityTypeUsingGET()
+    public function testDescribeCustomActivityTypeUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -127,7 +127,7 @@ class ActivitiesApiTest extends TestCase
      *
      * @covers ::discardDraftofCustomActivityTypeUsingPOST
      */
-    public function testDiscardDraftofCustomActivityTypeUsingPOST()
+    public function testDiscardDraftofCustomActivityTypeUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -138,7 +138,7 @@ class ActivitiesApiTest extends TestCase
      *
      * @covers ::getActivitiesPagingTokenUsingGET
      */
-    public function testGetActivitiesPagingTokenUsingGET()
+    public function testGetActivitiesPagingTokenUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -149,7 +149,7 @@ class ActivitiesApiTest extends TestCase
      *
      * @covers ::getAllActivityTypesUsingGET
      */
-    public function testGetAllActivityTypesUsingGET()
+    public function testGetAllActivityTypesUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -160,7 +160,7 @@ class ActivitiesApiTest extends TestCase
      *
      * @covers ::getCustomActivityTypeUsingGET
      */
-    public function testGetCustomActivityTypeUsingGET()
+    public function testGetCustomActivityTypeUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -171,7 +171,7 @@ class ActivitiesApiTest extends TestCase
      *
      * @covers ::getDeletedLeadsUsingGET
      */
-    public function testGetDeletedLeadsUsingGET()
+    public function testGetDeletedLeadsUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -182,7 +182,7 @@ class ActivitiesApiTest extends TestCase
      *
      * @covers ::getLeadActivitiesUsingGET
      */
-    public function testGetLeadActivitiesUsingGET()
+    public function testGetLeadActivitiesUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -193,7 +193,7 @@ class ActivitiesApiTest extends TestCase
      *
      * @covers ::getLeadChangesUsingGET
      */
-    public function testGetLeadChangesUsingGET()
+    public function testGetLeadChangesUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -204,7 +204,7 @@ class ActivitiesApiTest extends TestCase
      *
      * @covers ::updateCustomActivityTypeAttributesUsingPOST
      */
-    public function testUpdateCustomActivityTypeAttributesUsingPOST()
+    public function testUpdateCustomActivityTypeAttributesUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -215,7 +215,7 @@ class ActivitiesApiTest extends TestCase
      *
      * @covers ::updateCustomActivityTypeUsingPOST
      */
-    public function testUpdateCustomActivityTypeUsingPOST()
+    public function testUpdateCustomActivityTypeUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

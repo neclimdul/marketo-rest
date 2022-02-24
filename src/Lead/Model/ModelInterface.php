@@ -98,7 +98,7 @@ interface ModelInterface
      * @param mixed[] $fields
      *   List of additional properties
      */
-    public function setAdditionalProperties(array $fields);
+    public function setAdditionalProperties(array $fields): void;
 
     /**
      * Set an additional property for the model.
@@ -108,7 +108,7 @@ interface ModelInterface
      * @param mixed $value
      *   Value of the property.
      */
-    public function setAdditionalProperty($property, $value);
+    public function setAdditionalProperty($property, $value): void;
 
     /**
      * Get list of additional properties for the model.

@@ -50,7 +50,7 @@ class LeadsApiTest extends TestCase
      *
      * @covers ::associateLeadUsingPOST
      */
-    public function testAssociateLeadUsingPOST()
+    public function testAssociateLeadUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -61,7 +61,7 @@ class LeadsApiTest extends TestCase
      *
      * @covers ::changeLeadProgramStatusUsingPOST
      */
-    public function testChangeLeadProgramStatusUsingPOST()
+    public function testChangeLeadProgramStatusUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -72,7 +72,7 @@ class LeadsApiTest extends TestCase
      *
      * @covers ::createLeadFieldUsingPOST
      */
-    public function testCreateLeadFieldUsingPOST()
+    public function testCreateLeadFieldUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -83,7 +83,7 @@ class LeadsApiTest extends TestCase
      *
      * @covers ::deleteLeadsUsingPOST
      */
-    public function testDeleteLeadsUsingPOST()
+    public function testDeleteLeadsUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -94,7 +94,7 @@ class LeadsApiTest extends TestCase
      *
      * @covers ::describeProgramMemberUsingGET
      */
-    public function testDescribeProgramMemberUsingGET()
+    public function testDescribeProgramMemberUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -105,7 +105,7 @@ class LeadsApiTest extends TestCase
      *
      * @covers ::describeUsingGET2
      */
-    public function testDescribeUsingGET2()
+    public function testDescribeUsingGET2(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -116,7 +116,7 @@ class LeadsApiTest extends TestCase
      *
      * @covers ::describeUsingGET6
      */
-    public function testDescribeUsingGET6()
+    public function testDescribeUsingGET6(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -127,7 +127,7 @@ class LeadsApiTest extends TestCase
      *
      * @covers ::getLeadByIdUsingGET
      */
-    public function testGetLeadByIdUsingGET()
+    public function testGetLeadByIdUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -138,7 +138,7 @@ class LeadsApiTest extends TestCase
      *
      * @covers ::getLeadFieldByNameUsingGET
      */
-    public function testGetLeadFieldByNameUsingGET()
+    public function testGetLeadFieldByNameUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -149,7 +149,7 @@ class LeadsApiTest extends TestCase
      *
      * @covers ::getLeadFieldsUsingGET
      */
-    public function testGetLeadFieldsUsingGET()
+    public function testGetLeadFieldsUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -160,7 +160,7 @@ class LeadsApiTest extends TestCase
      *
      * @covers ::getLeadPartitionsUsingGET
      */
-    public function testGetLeadPartitionsUsingGET()
+    public function testGetLeadPartitionsUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -171,7 +171,7 @@ class LeadsApiTest extends TestCase
      *
      * @covers ::getLeadsByFilterUsingGET
      */
-    public function testGetLeadsByFilterUsingGET()
+    public function testGetLeadsByFilterUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -182,7 +182,7 @@ class LeadsApiTest extends TestCase
      *
      * @covers ::getLeadsByProgramIdUsingGET
      */
-    public function testGetLeadsByProgramIdUsingGET()
+    public function testGetLeadsByProgramIdUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -193,7 +193,7 @@ class LeadsApiTest extends TestCase
      *
      * @covers ::getListMembershipUsingGET
      */
-    public function testGetListMembershipUsingGET()
+    public function testGetListMembershipUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -204,7 +204,7 @@ class LeadsApiTest extends TestCase
      *
      * @covers ::getProgramMembershipUsingGET
      */
-    public function testGetProgramMembershipUsingGET()
+    public function testGetProgramMembershipUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -215,7 +215,7 @@ class LeadsApiTest extends TestCase
      *
      * @covers ::getSmartCampaignMembershipUsingGET
      */
-    public function testGetSmartCampaignMembershipUsingGET()
+    public function testGetSmartCampaignMembershipUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -226,7 +226,7 @@ class LeadsApiTest extends TestCase
      *
      * @covers ::mergeLeadsUsingPOST
      */
-    public function testMergeLeadsUsingPOST()
+    public function testMergeLeadsUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -237,7 +237,7 @@ class LeadsApiTest extends TestCase
      *
      * @covers ::pushToMarketoUsingPOST
      */
-    public function testPushToMarketoUsingPOST()
+    public function testPushToMarketoUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -248,7 +248,7 @@ class LeadsApiTest extends TestCase
      *
      * @covers ::submitFormUsingPOST
      */
-    public function testSubmitFormUsingPOST()
+    public function testSubmitFormUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -259,7 +259,7 @@ class LeadsApiTest extends TestCase
      *
      * @covers ::syncLeadUsingPOST
      */
-    public function testSyncLeadUsingPOST()
+    public function testSyncLeadUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -270,7 +270,7 @@ class LeadsApiTest extends TestCase
      *
      * @covers ::updateLeadFieldUsingPOST
      */
-    public function testUpdateLeadFieldUsingPOST()
+    public function testUpdateLeadFieldUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -281,7 +281,7 @@ class LeadsApiTest extends TestCase
      *
      * @covers ::updatePartitionsUsingPOST
      */
-    public function testUpdatePartitionsUsingPOST()
+    public function testUpdatePartitionsUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

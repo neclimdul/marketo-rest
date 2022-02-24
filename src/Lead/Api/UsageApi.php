@@ -94,7 +94,7 @@ class UsageApi
      *
      * @param int $hostIndex Host index (required)
      */
-    public function setHostIndex($hostIndex)
+    public function setHostIndex($hostIndex): void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -211,7 +211,7 @@ class UsageApi
      * @return \GuzzleHttp\Psr7\Request
      */
     public function getDailyErrorsUsingGETRequest(
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/stats/errors.json';
@@ -338,7 +338,7 @@ class UsageApi
      * @return \GuzzleHttp\Psr7\Request
      */
     public function getDailyUsageUsingGETRequest(
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/stats/usage.json';
@@ -465,7 +465,7 @@ class UsageApi
      * @return \GuzzleHttp\Psr7\Request
      */
     public function getLast7DaysErrorsUsingGETRequest(
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/stats/errors/last7days.json';
@@ -592,7 +592,7 @@ class UsageApi
      * @return \GuzzleHttp\Psr7\Request
      */
     public function getLast7DaysUsageUsingGETRequest(
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/stats/usage/last7days.json';

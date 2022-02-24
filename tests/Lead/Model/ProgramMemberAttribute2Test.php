@@ -44,7 +44,7 @@ class ProgramMemberAttribute2Test extends TestCase
     /**
      * Test "ProgramMemberAttribute2"
      */
-    public function testProgramMemberAttribute2()
+    public function testProgramMemberAttribute2(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class ProgramMemberAttribute2Test extends TestCase
     /**
      * Test attribute "name"
      */
-    public function testPropertyName()
+    public function testPropertyName(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class ProgramMemberAttribute2Test extends TestCase
     /**
      * Test attribute "description"
      */
-    public function testPropertyDescription()
+    public function testPropertyDescription(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class ProgramMemberAttribute2Test extends TestCase
     /**
      * Test attribute "created_at"
      */
-    public function testPropertyCreatedAt()
+    public function testPropertyCreatedAt(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -80,7 +80,7 @@ class ProgramMemberAttribute2Test extends TestCase
     /**
      * Test attribute "updated_at"
      */
-    public function testPropertyUpdatedAt()
+    public function testPropertyUpdatedAt(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -89,7 +89,7 @@ class ProgramMemberAttribute2Test extends TestCase
     /**
      * Test attribute "dedupe_fields"
      */
-    public function testPropertyDedupeFields()
+    public function testPropertyDedupeFields(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -98,7 +98,7 @@ class ProgramMemberAttribute2Test extends TestCase
     /**
      * Test attribute "searchable_fields"
      */
-    public function testPropertySearchableFields()
+    public function testPropertySearchableFields(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -107,7 +107,7 @@ class ProgramMemberAttribute2Test extends TestCase
     /**
      * Test attribute "fields"
      */
-    public function testPropertyFields()
+    public function testPropertyFields(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

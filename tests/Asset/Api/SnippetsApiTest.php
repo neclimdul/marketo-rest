@@ -50,7 +50,7 @@ class SnippetsApiTest extends TestCase
      *
      * @covers ::approveSnippetUsingPOST
      */
-    public function testApproveSnippetUsingPOST()
+    public function testApproveSnippetUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -61,7 +61,7 @@ class SnippetsApiTest extends TestCase
      *
      * @covers ::cloneSnippetUsingPOST
      */
-    public function testCloneSnippetUsingPOST()
+    public function testCloneSnippetUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -72,7 +72,7 @@ class SnippetsApiTest extends TestCase
      *
      * @covers ::createSnippetUsingPOST
      */
-    public function testCreateSnippetUsingPOST()
+    public function testCreateSnippetUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -83,7 +83,7 @@ class SnippetsApiTest extends TestCase
      *
      * @covers ::deleteSnippetUsingPOST
      */
-    public function testDeleteSnippetUsingPOST()
+    public function testDeleteSnippetUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -94,7 +94,7 @@ class SnippetsApiTest extends TestCase
      *
      * @covers ::discardSnippetUsingPOST
      */
-    public function testDiscardSnippetUsingPOST()
+    public function testDiscardSnippetUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -105,7 +105,7 @@ class SnippetsApiTest extends TestCase
      *
      * @covers ::getDynamicContentUsingGET
      */
-    public function testGetDynamicContentUsingGET()
+    public function testGetDynamicContentUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -116,7 +116,7 @@ class SnippetsApiTest extends TestCase
      *
      * @covers ::getSnippetByIdUsingGET
      */
-    public function testGetSnippetByIdUsingGET()
+    public function testGetSnippetByIdUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -127,7 +127,7 @@ class SnippetsApiTest extends TestCase
      *
      * @covers ::getSnippetContentByIdUsingGET
      */
-    public function testGetSnippetContentByIdUsingGET()
+    public function testGetSnippetContentByIdUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -138,7 +138,7 @@ class SnippetsApiTest extends TestCase
      *
      * @covers ::getSnippetUsingGET
      */
-    public function testGetSnippetUsingGET()
+    public function testGetSnippetUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -149,7 +149,7 @@ class SnippetsApiTest extends TestCase
      *
      * @covers ::unapproveSnippetUsingPOST
      */
-    public function testUnapproveSnippetUsingPOST()
+    public function testUnapproveSnippetUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -160,7 +160,7 @@ class SnippetsApiTest extends TestCase
      *
      * @covers ::updateContentUsingPOST1
      */
-    public function testUpdateContentUsingPOST1()
+    public function testUpdateContentUsingPOST1(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -171,7 +171,7 @@ class SnippetsApiTest extends TestCase
      *
      * @covers ::updateDynamicContentUsingPOST
      */
-    public function testUpdateDynamicContentUsingPOST()
+    public function testUpdateDynamicContentUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -182,7 +182,7 @@ class SnippetsApiTest extends TestCase
      *
      * @covers ::updateSnippetUsingPOST
      */
-    public function testUpdateSnippetUsingPOST()
+    public function testUpdateSnippetUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

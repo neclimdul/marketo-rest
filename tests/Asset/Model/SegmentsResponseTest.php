@@ -44,7 +44,7 @@ class SegmentsResponseTest extends TestCase
     /**
      * Test "SegmentsResponse"
      */
-    public function testSegmentsResponse()
+    public function testSegmentsResponse(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class SegmentsResponseTest extends TestCase
     /**
      * Test attribute "created_at"
      */
-    public function testPropertyCreatedAt()
+    public function testPropertyCreatedAt(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class SegmentsResponseTest extends TestCase
     /**
      * Test attribute "description"
      */
-    public function testPropertyDescription()
+    public function testPropertyDescription(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class SegmentsResponseTest extends TestCase
     /**
      * Test attribute "id"
      */
-    public function testPropertyId()
+    public function testPropertyId(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -80,7 +80,7 @@ class SegmentsResponseTest extends TestCase
     /**
      * Test attribute "name"
      */
-    public function testPropertyName()
+    public function testPropertyName(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -89,7 +89,7 @@ class SegmentsResponseTest extends TestCase
     /**
      * Test attribute "segmentation_id"
      */
-    public function testPropertySegmentationId()
+    public function testPropertySegmentationId(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -98,7 +98,7 @@ class SegmentsResponseTest extends TestCase
     /**
      * Test attribute "updated_at"
      */
-    public function testPropertyUpdatedAt()
+    public function testPropertyUpdatedAt(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -107,7 +107,7 @@ class SegmentsResponseTest extends TestCase
     /**
      * Test attribute "url"
      */
-    public function testPropertyUrl()
+    public function testPropertyUrl(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

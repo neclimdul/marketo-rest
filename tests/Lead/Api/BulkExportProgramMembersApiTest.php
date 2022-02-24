@@ -50,7 +50,7 @@ class BulkExportProgramMembersApiTest extends TestCase
      *
      * @covers ::cancelExportProgramMembersUsingPOST
      */
-    public function testCancelExportProgramMembersUsingPOST()
+    public function testCancelExportProgramMembersUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -61,7 +61,7 @@ class BulkExportProgramMembersApiTest extends TestCase
      *
      * @covers ::createExportProgramMembersUsingPOST
      */
-    public function testCreateExportProgramMembersUsingPOST()
+    public function testCreateExportProgramMembersUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -72,7 +72,7 @@ class BulkExportProgramMembersApiTest extends TestCase
      *
      * @covers ::enqueueExportProgramMembersUsingPOST
      */
-    public function testEnqueueExportProgramMembersUsingPOST()
+    public function testEnqueueExportProgramMembersUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -83,7 +83,7 @@ class BulkExportProgramMembersApiTest extends TestCase
      *
      * @covers ::getExportProgramMembersFileUsingGET
      */
-    public function testGetExportProgramMembersFileUsingGET()
+    public function testGetExportProgramMembersFileUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -94,7 +94,7 @@ class BulkExportProgramMembersApiTest extends TestCase
      *
      * @covers ::getExportProgramMembersStatusUsingGET
      */
-    public function testGetExportProgramMembersStatusUsingGET()
+    public function testGetExportProgramMembersStatusUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -105,7 +105,7 @@ class BulkExportProgramMembersApiTest extends TestCase
      *
      * @covers ::getExportProgramMembersUsingGET
      */
-    public function testGetExportProgramMembersUsingGET()
+    public function testGetExportProgramMembersUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

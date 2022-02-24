@@ -50,7 +50,7 @@ class SmartListsApiTest extends TestCase
      *
      * @covers ::cloneSmartListUsingPOST
      */
-    public function testCloneSmartListUsingPOST()
+    public function testCloneSmartListUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -61,7 +61,7 @@ class SmartListsApiTest extends TestCase
      *
      * @covers ::deleteSmartListByIdUsingPOST
      */
-    public function testDeleteSmartListByIdUsingPOST()
+    public function testDeleteSmartListByIdUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -72,7 +72,7 @@ class SmartListsApiTest extends TestCase
      *
      * @covers ::getSmartListByIdUsingGET
      */
-    public function testGetSmartListByIdUsingGET()
+    public function testGetSmartListByIdUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -83,7 +83,7 @@ class SmartListsApiTest extends TestCase
      *
      * @covers ::getSmartListByNameUsingGET
      */
-    public function testGetSmartListByNameUsingGET()
+    public function testGetSmartListByNameUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -94,7 +94,7 @@ class SmartListsApiTest extends TestCase
      *
      * @covers ::getSmartListsUsingGET
      */
-    public function testGetSmartListsUsingGET()
+    public function testGetSmartListsUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

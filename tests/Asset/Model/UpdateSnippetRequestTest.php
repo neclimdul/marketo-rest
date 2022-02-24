@@ -44,7 +44,7 @@ class UpdateSnippetRequestTest extends TestCase
     /**
      * Test "UpdateSnippetRequest"
      */
-    public function testUpdateSnippetRequest()
+    public function testUpdateSnippetRequest(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class UpdateSnippetRequestTest extends TestCase
     /**
      * Test attribute "description"
      */
-    public function testPropertyDescription()
+    public function testPropertyDescription(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class UpdateSnippetRequestTest extends TestCase
     /**
      * Test attribute "is_archive"
      */
-    public function testPropertyIsArchive()
+    public function testPropertyIsArchive(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class UpdateSnippetRequestTest extends TestCase
     /**
      * Test attribute "name"
      */
-    public function testPropertyName()
+    public function testPropertyName(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

@@ -94,7 +94,7 @@ class CompaniesApi
      *
      * @param int $hostIndex Host index (required)
      */
-    public function setHostIndex($hostIndex)
+    public function setHostIndex($hostIndex): void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -217,7 +217,7 @@ class CompaniesApi
      */
     public function deleteCompaniesUsingPOSTRequest(
         \NecLimDul\MarketoRest\Lead\Model\DeleteCompanyRequest $delete_company_request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/companies/delete.json';
@@ -345,7 +345,7 @@ class CompaniesApi
      * @return \GuzzleHttp\Psr7\Request
      */
     public function describeUsingGETRequest(
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/companies/describe.json';
@@ -502,7 +502,7 @@ class CompaniesApi
         array $fields = null,
         int $batch_size = null,
         string $next_page_token = null
-    )
+    ): Request
     {
         // Verify the required parameter 'filter_values' is set.
         if (empty($filter_values)) {
@@ -650,7 +650,7 @@ class CompaniesApi
      */
     public function getCompanyFieldByNameUsingGETRequest(
         string $field_api_name
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/companies/schema/fields/{fieldApiName}.json';
@@ -796,7 +796,7 @@ class CompaniesApi
     public function getCompanyFieldsUsingGETRequest(
         int $batch_size = null,
         string $next_page_token = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/companies/schema/fields.json';
@@ -935,7 +935,7 @@ class CompaniesApi
      */
     public function syncCompaniesUsingPOSTRequest(
         \NecLimDul\MarketoRest\Lead\Model\SyncCompanyRequest $sync_company_request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/companies.json';

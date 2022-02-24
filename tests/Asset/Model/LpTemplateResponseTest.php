@@ -44,7 +44,7 @@ class LpTemplateResponseTest extends TestCase
     /**
      * Test "LpTemplateResponse"
      */
-    public function testLpTemplateResponse()
+    public function testLpTemplateResponse(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class LpTemplateResponseTest extends TestCase
     /**
      * Test attribute "created_at"
      */
-    public function testPropertyCreatedAt()
+    public function testPropertyCreatedAt(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class LpTemplateResponseTest extends TestCase
     /**
      * Test attribute "description"
      */
-    public function testPropertyDescription()
+    public function testPropertyDescription(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class LpTemplateResponseTest extends TestCase
     /**
      * Test attribute "enable_munchkin"
      */
-    public function testPropertyEnableMunchkin()
+    public function testPropertyEnableMunchkin(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -80,7 +80,7 @@ class LpTemplateResponseTest extends TestCase
     /**
      * Test attribute "folder"
      */
-    public function testPropertyFolder()
+    public function testPropertyFolder(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -89,7 +89,7 @@ class LpTemplateResponseTest extends TestCase
     /**
      * Test attribute "id"
      */
-    public function testPropertyId()
+    public function testPropertyId(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -98,7 +98,7 @@ class LpTemplateResponseTest extends TestCase
     /**
      * Test attribute "name"
      */
-    public function testPropertyName()
+    public function testPropertyName(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -107,7 +107,7 @@ class LpTemplateResponseTest extends TestCase
     /**
      * Test attribute "status"
      */
-    public function testPropertyStatus()
+    public function testPropertyStatus(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -116,7 +116,7 @@ class LpTemplateResponseTest extends TestCase
     /**
      * Test attribute "template_type"
      */
-    public function testPropertyTemplateType()
+    public function testPropertyTemplateType(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -125,7 +125,7 @@ class LpTemplateResponseTest extends TestCase
     /**
      * Test attribute "updated_at"
      */
-    public function testPropertyUpdatedAt()
+    public function testPropertyUpdatedAt(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -134,7 +134,7 @@ class LpTemplateResponseTest extends TestCase
     /**
      * Test attribute "url"
      */
-    public function testPropertyUrl()
+    public function testPropertyUrl(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -143,7 +143,7 @@ class LpTemplateResponseTest extends TestCase
     /**
      * Test attribute "workspace"
      */
-    public function testPropertyWorkspace()
+    public function testPropertyWorkspace(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

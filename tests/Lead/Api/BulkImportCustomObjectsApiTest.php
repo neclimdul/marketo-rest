@@ -50,7 +50,7 @@ class BulkImportCustomObjectsApiTest extends TestCase
      *
      * @covers ::getImportCustomObjectFailuresUsingGET
      */
-    public function testGetImportCustomObjectFailuresUsingGET()
+    public function testGetImportCustomObjectFailuresUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -61,7 +61,7 @@ class BulkImportCustomObjectsApiTest extends TestCase
      *
      * @covers ::getImportCustomObjectStatusUsingGET
      */
-    public function testGetImportCustomObjectStatusUsingGET()
+    public function testGetImportCustomObjectStatusUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -72,7 +72,7 @@ class BulkImportCustomObjectsApiTest extends TestCase
      *
      * @covers ::getImportCustomObjectWarningsUsingGET
      */
-    public function testGetImportCustomObjectWarningsUsingGET()
+    public function testGetImportCustomObjectWarningsUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -83,7 +83,7 @@ class BulkImportCustomObjectsApiTest extends TestCase
      *
      * @covers ::importCustomObjectUsingPOST
      */
-    public function testImportCustomObjectUsingPOST()
+    public function testImportCustomObjectUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

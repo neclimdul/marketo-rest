@@ -44,7 +44,7 @@ class ScheduleCampaignDataTest extends TestCase
     /**
      * Test "ScheduleCampaignData"
      */
-    public function testScheduleCampaignData()
+    public function testScheduleCampaignData(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class ScheduleCampaignDataTest extends TestCase
     /**
      * Test attribute "clone_to_program_name"
      */
-    public function testPropertyCloneToProgramName()
+    public function testPropertyCloneToProgramName(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class ScheduleCampaignDataTest extends TestCase
     /**
      * Test attribute "run_at"
      */
-    public function testPropertyRunAt()
+    public function testPropertyRunAt(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class ScheduleCampaignDataTest extends TestCase
     /**
      * Test attribute "tokens"
      */
-    public function testPropertyTokens()
+    public function testPropertyTokens(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

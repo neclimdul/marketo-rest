@@ -94,7 +94,7 @@ class IdentityApi
      *
      * @param int $hostIndex Host index (required)
      */
-    public function setHostIndex($hostIndex)
+    public function setHostIndex($hostIndex): void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -235,7 +235,7 @@ class IdentityApi
         string $client_secret,
         string $grant_type,
         string $partner_id = null
-    )
+    ): Request
     {
 
         $resourcePath = '/identity/oauth/token';

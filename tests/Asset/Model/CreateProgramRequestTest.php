@@ -44,7 +44,7 @@ class CreateProgramRequestTest extends TestCase
     /**
      * Test "CreateProgramRequest"
      */
-    public function testCreateProgramRequest()
+    public function testCreateProgramRequest(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class CreateProgramRequestTest extends TestCase
     /**
      * Test attribute "channel"
      */
-    public function testPropertyChannel()
+    public function testPropertyChannel(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class CreateProgramRequestTest extends TestCase
     /**
      * Test attribute "costs"
      */
-    public function testPropertyCosts()
+    public function testPropertyCosts(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class CreateProgramRequestTest extends TestCase
     /**
      * Test attribute "description"
      */
-    public function testPropertyDescription()
+    public function testPropertyDescription(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -80,7 +80,7 @@ class CreateProgramRequestTest extends TestCase
     /**
      * Test attribute "folder"
      */
-    public function testPropertyFolder()
+    public function testPropertyFolder(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -89,7 +89,7 @@ class CreateProgramRequestTest extends TestCase
     /**
      * Test attribute "name"
      */
-    public function testPropertyName()
+    public function testPropertyName(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -98,7 +98,7 @@ class CreateProgramRequestTest extends TestCase
     /**
      * Test attribute "tags"
      */
-    public function testPropertyTags()
+    public function testPropertyTags(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -107,7 +107,7 @@ class CreateProgramRequestTest extends TestCase
     /**
      * Test attribute "type"
      */
-    public function testPropertyType()
+    public function testPropertyType(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

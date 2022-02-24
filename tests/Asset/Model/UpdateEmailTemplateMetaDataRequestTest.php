@@ -44,7 +44,7 @@ class UpdateEmailTemplateMetaDataRequestTest extends TestCase
     /**
      * Test "UpdateEmailTemplateMetaDataRequest"
      */
-    public function testUpdateEmailTemplateMetaDataRequest()
+    public function testUpdateEmailTemplateMetaDataRequest(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class UpdateEmailTemplateMetaDataRequestTest extends TestCase
     /**
      * Test attribute "description"
      */
-    public function testPropertyDescription()
+    public function testPropertyDescription(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class UpdateEmailTemplateMetaDataRequestTest extends TestCase
     /**
      * Test attribute "name"
      */
-    public function testPropertyName()
+    public function testPropertyName(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

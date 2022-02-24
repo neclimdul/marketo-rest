@@ -44,7 +44,7 @@ class UpdateProgramRequestTest extends TestCase
     /**
      * Test "UpdateProgramRequest"
      */
-    public function testUpdateProgramRequest()
+    public function testUpdateProgramRequest(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class UpdateProgramRequestTest extends TestCase
     /**
      * Test attribute "costs"
      */
-    public function testPropertyCosts()
+    public function testPropertyCosts(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class UpdateProgramRequestTest extends TestCase
     /**
      * Test attribute "costs_destructive_update"
      */
-    public function testPropertyCostsDestructiveUpdate()
+    public function testPropertyCostsDestructiveUpdate(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class UpdateProgramRequestTest extends TestCase
     /**
      * Test attribute "description"
      */
-    public function testPropertyDescription()
+    public function testPropertyDescription(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -80,7 +80,7 @@ class UpdateProgramRequestTest extends TestCase
     /**
      * Test attribute "end_date"
      */
-    public function testPropertyEndDate()
+    public function testPropertyEndDate(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -89,7 +89,7 @@ class UpdateProgramRequestTest extends TestCase
     /**
      * Test attribute "name"
      */
-    public function testPropertyName()
+    public function testPropertyName(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -98,7 +98,7 @@ class UpdateProgramRequestTest extends TestCase
     /**
      * Test attribute "start_date"
      */
-    public function testPropertyStartDate()
+    public function testPropertyStartDate(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -107,7 +107,7 @@ class UpdateProgramRequestTest extends TestCase
     /**
      * Test attribute "tags"
      */
-    public function testPropertyTags()
+    public function testPropertyTags(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

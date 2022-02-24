@@ -44,7 +44,7 @@ class TokenDTOTest extends TestCase
     /**
      * Test "TokenDTO"
      */
-    public function testTokenDTO()
+    public function testTokenDTO(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class TokenDTOTest extends TestCase
     /**
      * Test attribute "computed_url"
      */
-    public function testPropertyComputedUrl()
+    public function testPropertyComputedUrl(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class TokenDTOTest extends TestCase
     /**
      * Test attribute "name"
      */
-    public function testPropertyName()
+    public function testPropertyName(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class TokenDTOTest extends TestCase
     /**
      * Test attribute "type"
      */
-    public function testPropertyType()
+    public function testPropertyType(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -80,7 +80,7 @@ class TokenDTOTest extends TestCase
     /**
      * Test attribute "value"
      */
-    public function testPropertyValue()
+    public function testPropertyValue(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

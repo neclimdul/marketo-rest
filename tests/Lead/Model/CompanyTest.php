@@ -44,7 +44,7 @@ class CompanyTest extends TestCase
     /**
      * Test "Company"
      */
-    public function testCompany()
+    public function testCompany(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class CompanyTest extends TestCase
     /**
      * Test attribute "external_company_id"
      */
-    public function testPropertyExternalCompanyId()
+    public function testPropertyExternalCompanyId(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class CompanyTest extends TestCase
     /**
      * Test attribute "id"
      */
-    public function testPropertyId()
+    public function testPropertyId(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class CompanyTest extends TestCase
     /**
      * Test attribute "company"
      */
-    public function testPropertyCompany()
+    public function testPropertyCompany(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

@@ -50,7 +50,7 @@ class SegmentsApiTest extends TestCase
      *
      * @covers ::getSegmentationUsingGET
      */
-    public function testGetSegmentationUsingGET()
+    public function testGetSegmentationUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -61,7 +61,7 @@ class SegmentsApiTest extends TestCase
      *
      * @covers ::getSegmentsForSegmentationUsingGET
      */
-    public function testGetSegmentsForSegmentationUsingGET()
+    public function testGetSegmentsForSegmentationUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

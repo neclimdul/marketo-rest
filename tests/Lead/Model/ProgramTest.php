@@ -44,7 +44,7 @@ class ProgramTest extends TestCase
     /**
      * Test "Program"
      */
-    public function testProgram()
+    public function testProgram(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class ProgramTest extends TestCase
     /**
      * Test attribute "id"
      */
-    public function testPropertyId()
+    public function testPropertyId(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class ProgramTest extends TestCase
     /**
      * Test attribute "acquired_by"
      */
-    public function testPropertyAcquiredBy()
+    public function testPropertyAcquiredBy(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class ProgramTest extends TestCase
     /**
      * Test attribute "is_exhausted"
      */
-    public function testPropertyIsExhausted()
+    public function testPropertyIsExhausted(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -80,7 +80,7 @@ class ProgramTest extends TestCase
     /**
      * Test attribute "membership_date"
      */
-    public function testPropertyMembershipDate()
+    public function testPropertyMembershipDate(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -89,7 +89,7 @@ class ProgramTest extends TestCase
     /**
      * Test attribute "nurture_cadence"
      */
-    public function testPropertyNurtureCadence()
+    public function testPropertyNurtureCadence(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -98,7 +98,7 @@ class ProgramTest extends TestCase
     /**
      * Test attribute "progression_status"
      */
-    public function testPropertyProgressionStatus()
+    public function testPropertyProgressionStatus(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -107,7 +107,7 @@ class ProgramTest extends TestCase
     /**
      * Test attribute "reached_success"
      */
-    public function testPropertyReachedSuccess()
+    public function testPropertyReachedSuccess(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -116,7 +116,7 @@ class ProgramTest extends TestCase
     /**
      * Test attribute "stream"
      */
-    public function testPropertyStream()
+    public function testPropertyStream(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -125,7 +125,7 @@ class ProgramTest extends TestCase
     /**
      * Test attribute "updated_at"
      */
-    public function testPropertyUpdatedAt()
+    public function testPropertyUpdatedAt(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

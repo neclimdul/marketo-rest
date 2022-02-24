@@ -44,7 +44,7 @@ class LandingPageResponseTest extends TestCase
     /**
      * Test "LandingPageResponse"
      */
-    public function testLandingPageResponse()
+    public function testLandingPageResponse(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class LandingPageResponseTest extends TestCase
     /**
      * Test attribute "url"
      */
-    public function testPropertyUrl()
+    public function testPropertyUrl(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class LandingPageResponseTest extends TestCase
     /**
      * Test attribute "computed_url"
      */
-    public function testPropertyComputedUrl()
+    public function testPropertyComputedUrl(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class LandingPageResponseTest extends TestCase
     /**
      * Test attribute "created_at"
      */
-    public function testPropertyCreatedAt()
+    public function testPropertyCreatedAt(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -80,7 +80,7 @@ class LandingPageResponseTest extends TestCase
     /**
      * Test attribute "custom_head_html"
      */
-    public function testPropertyCustomHeadHtml()
+    public function testPropertyCustomHeadHtml(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -89,7 +89,7 @@ class LandingPageResponseTest extends TestCase
     /**
      * Test attribute "description"
      */
-    public function testPropertyDescription()
+    public function testPropertyDescription(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -98,7 +98,7 @@ class LandingPageResponseTest extends TestCase
     /**
      * Test attribute "facebook_og_tags"
      */
-    public function testPropertyFacebookOgTags()
+    public function testPropertyFacebookOgTags(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -107,7 +107,7 @@ class LandingPageResponseTest extends TestCase
     /**
      * Test attribute "folder"
      */
-    public function testPropertyFolder()
+    public function testPropertyFolder(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -116,7 +116,7 @@ class LandingPageResponseTest extends TestCase
     /**
      * Test attribute "form_prefill"
      */
-    public function testPropertyFormPrefill()
+    public function testPropertyFormPrefill(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -125,7 +125,7 @@ class LandingPageResponseTest extends TestCase
     /**
      * Test attribute "id"
      */
-    public function testPropertyId()
+    public function testPropertyId(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -134,7 +134,7 @@ class LandingPageResponseTest extends TestCase
     /**
      * Test attribute "keywords"
      */
-    public function testPropertyKeywords()
+    public function testPropertyKeywords(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -143,7 +143,7 @@ class LandingPageResponseTest extends TestCase
     /**
      * Test attribute "mobile_enabled"
      */
-    public function testPropertyMobileEnabled()
+    public function testPropertyMobileEnabled(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -152,7 +152,7 @@ class LandingPageResponseTest extends TestCase
     /**
      * Test attribute "name"
      */
-    public function testPropertyName()
+    public function testPropertyName(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -161,7 +161,7 @@ class LandingPageResponseTest extends TestCase
     /**
      * Test attribute "robots"
      */
-    public function testPropertyRobots()
+    public function testPropertyRobots(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -170,7 +170,7 @@ class LandingPageResponseTest extends TestCase
     /**
      * Test attribute "status"
      */
-    public function testPropertyStatus()
+    public function testPropertyStatus(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -179,7 +179,7 @@ class LandingPageResponseTest extends TestCase
     /**
      * Test attribute "template"
      */
-    public function testPropertyTemplate()
+    public function testPropertyTemplate(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -188,7 +188,7 @@ class LandingPageResponseTest extends TestCase
     /**
      * Test attribute "title"
      */
-    public function testPropertyTitle()
+    public function testPropertyTitle(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -197,7 +197,7 @@ class LandingPageResponseTest extends TestCase
     /**
      * Test attribute "updated_at"
      */
-    public function testPropertyUpdatedAt()
+    public function testPropertyUpdatedAt(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -206,7 +206,7 @@ class LandingPageResponseTest extends TestCase
     /**
      * Test attribute "workspace"
      */
-    public function testPropertyWorkspace()
+    public function testPropertyWorkspace(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

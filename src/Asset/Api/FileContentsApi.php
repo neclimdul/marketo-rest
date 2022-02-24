@@ -94,7 +94,7 @@ class FileContentsApi
      *
      * @param int $hostIndex Host index (required)
      */
-    public function setHostIndex($hostIndex)
+    public function setHostIndex($hostIndex): void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -223,7 +223,7 @@ class FileContentsApi
     public function updateContentUsingPOSTRequest(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\UpdateFileContentRequest $request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/file/{id}/content.json';

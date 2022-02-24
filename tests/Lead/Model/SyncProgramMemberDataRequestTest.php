@@ -44,7 +44,7 @@ class SyncProgramMemberDataRequestTest extends TestCase
     /**
      * Test "SyncProgramMemberDataRequest"
      */
-    public function testSyncProgramMemberDataRequest()
+    public function testSyncProgramMemberDataRequest(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class SyncProgramMemberDataRequestTest extends TestCase
     /**
      * Test attribute "input"
      */
-    public function testPropertyInput()
+    public function testPropertyInput(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

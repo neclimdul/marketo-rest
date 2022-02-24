@@ -44,7 +44,7 @@ class EmailCCFieldsTest extends TestCase
     /**
      * Test "EmailCCFields"
      */
-    public function testEmailCCFields()
+    public function testEmailCCFields(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class EmailCCFieldsTest extends TestCase
     /**
      * Test attribute "attribute_id"
      */
-    public function testPropertyAttributeId()
+    public function testPropertyAttributeId(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class EmailCCFieldsTest extends TestCase
     /**
      * Test attribute "object_name"
      */
-    public function testPropertyObjectName()
+    public function testPropertyObjectName(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class EmailCCFieldsTest extends TestCase
     /**
      * Test attribute "display_name"
      */
-    public function testPropertyDisplayName()
+    public function testPropertyDisplayName(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -80,7 +80,7 @@ class EmailCCFieldsTest extends TestCase
     /**
      * Test attribute "api_name"
      */
-    public function testPropertyApiName()
+    public function testPropertyApiName(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

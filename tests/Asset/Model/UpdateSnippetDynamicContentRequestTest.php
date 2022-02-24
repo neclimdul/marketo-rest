@@ -44,7 +44,7 @@ class UpdateSnippetDynamicContentRequestTest extends TestCase
     /**
      * Test "UpdateSnippetDynamicContentRequest"
      */
-    public function testUpdateSnippetDynamicContentRequest()
+    public function testUpdateSnippetDynamicContentRequest(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class UpdateSnippetDynamicContentRequestTest extends TestCase
     /**
      * Test attribute "type"
      */
-    public function testPropertyType()
+    public function testPropertyType(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class UpdateSnippetDynamicContentRequestTest extends TestCase
     /**
      * Test attribute "value"
      */
-    public function testPropertyValue()
+    public function testPropertyValue(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

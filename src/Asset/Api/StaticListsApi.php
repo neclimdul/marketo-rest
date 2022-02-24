@@ -94,7 +94,7 @@ class StaticListsApi
      *
      * @param int $hostIndex Host index (required)
      */
-    public function setHostIndex($hostIndex)
+    public function setHostIndex($hostIndex): void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -217,7 +217,7 @@ class StaticListsApi
      */
     public function createStaticListUsingPOSTRequest(
         \NecLimDul\MarketoRest\Asset\Model\CreateStaticListRequest $create_static_list_request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/staticLists.json';
@@ -351,7 +351,7 @@ class StaticListsApi
      */
     public function deleteStaticListByIdUsingPOSTRequest(
         int $id
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/staticList/{id}/delete.json';
@@ -491,7 +491,7 @@ class StaticListsApi
      */
     public function getStaticListByIdUsingGETRequest(
         int $id
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/staticList/{id}.json';
@@ -631,7 +631,7 @@ class StaticListsApi
      */
     public function getStaticListByNameUsingGETRequest(
         string $name
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/staticList/byName.json';
@@ -793,7 +793,7 @@ class StaticListsApi
         int $max_return = null,
         string $earliest_updated_at = null,
         string $latest_updated_at = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/staticLists.json';
@@ -941,7 +941,7 @@ class StaticListsApi
     public function updateStaticListUsingPOSTRequest(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\UpdateStaticListRequest $update_static_list_request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/staticList/{id}.json';

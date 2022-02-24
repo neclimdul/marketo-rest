@@ -94,7 +94,7 @@ class NamedAccountListsApi
      *
      * @param int $hostIndex Host index (required)
      */
-    public function setHostIndex($hostIndex)
+    public function setHostIndex($hostIndex): void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -223,7 +223,7 @@ class NamedAccountListsApi
     public function addNamedAccountListMembersUsingPOSTRequest(
         string $id,
         \NecLimDul\MarketoRest\Lead\Model\AddNamedAccountListMemberRequest $add_named_account_list_member_request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/namedAccountList/{id}/namedAccounts.json';
@@ -364,7 +364,7 @@ class NamedAccountListsApi
      */
     public function deleteNamedAccountListsUsingPOSTRequest(
         \NecLimDul\MarketoRest\Lead\Model\DeleteNamedAccountListRequest $delete_named_account_list_request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/namedAccountLists/delete.json';
@@ -516,7 +516,7 @@ class NamedAccountListsApi
         array $fields = null,
         int $batch_size = null,
         string $next_page_token = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/namedAccountList/{id}/namedAccounts.json';
@@ -681,7 +681,7 @@ class NamedAccountListsApi
         array $filter_values,
         int $batch_size = null,
         string $next_page_token = null
-    )
+    ): Request
     {
         // Verify the required parameter 'filter_values' is set.
         if (empty($filter_values)) {
@@ -834,7 +834,7 @@ class NamedAccountListsApi
     public function removeNamedAccountListMembersUsingPOSTRequest(
         string $id,
         \NecLimDul\MarketoRest\Lead\Model\RemoveNamedAccountListMemberRequest $remove_named_account_list_member_request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/namedAccountList/{id}/namedAccounts/remove.json';
@@ -975,7 +975,7 @@ class NamedAccountListsApi
      */
     public function syncNamedAccountListsUsingPOSTRequest(
         \NecLimDul\MarketoRest\Lead\Model\SyncNamedAccountListRequest $sync_named_account_list_request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/namedAccountLists.json';

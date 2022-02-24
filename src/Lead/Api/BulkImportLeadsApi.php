@@ -94,7 +94,7 @@ class BulkImportLeadsApi
      *
      * @param int $hostIndex Host index (required)
      */
-    public function setHostIndex($hostIndex)
+    public function setHostIndex($hostIndex): void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -217,7 +217,7 @@ class BulkImportLeadsApi
      */
     public function getImportLeadFailuresUsingGETRequest(
         int $batch_id
-    )
+    ): Request
     {
 
         $resourcePath = '/bulk/v1/leads/batch/{batchId}/failures.json';
@@ -357,7 +357,7 @@ class BulkImportLeadsApi
      */
     public function getImportLeadStatusUsingGETRequest(
         int $batch_id
-    )
+    ): Request
     {
 
         $resourcePath = '/bulk/v1/leads/batch/{batchId}.json';
@@ -497,7 +497,7 @@ class BulkImportLeadsApi
      */
     public function getImportLeadWarningsUsingGETRequest(
         int $batch_id
-    )
+    ): Request
     {
 
         $resourcePath = '/bulk/v1/leads/batch/{batchId}/warnings.json';
@@ -661,7 +661,7 @@ class BulkImportLeadsApi
         string $lookup_field = null,
         string $partition_name = null,
         int $list_id = null
-    )
+    ): Request
     {
 
         $resourcePath = '/bulk/v1/leads.json';

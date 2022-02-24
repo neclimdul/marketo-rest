@@ -50,7 +50,7 @@ class UsageApiTest extends TestCase
      *
      * @covers ::getDailyErrorsUsingGET
      */
-    public function testGetDailyErrorsUsingGET()
+    public function testGetDailyErrorsUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -61,7 +61,7 @@ class UsageApiTest extends TestCase
      *
      * @covers ::getDailyUsageUsingGET
      */
-    public function testGetDailyUsageUsingGET()
+    public function testGetDailyUsageUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -72,7 +72,7 @@ class UsageApiTest extends TestCase
      *
      * @covers ::getLast7DaysErrorsUsingGET
      */
-    public function testGetLast7DaysErrorsUsingGET()
+    public function testGetLast7DaysErrorsUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -83,7 +83,7 @@ class UsageApiTest extends TestCase
      *
      * @covers ::getLast7DaysUsageUsingGET
      */
-    public function testGetLast7DaysUsageUsingGET()
+    public function testGetLast7DaysUsageUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

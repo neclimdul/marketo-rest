@@ -44,7 +44,7 @@ class ProgramMemberStatusTest extends TestCase
     /**
      * Test "ProgramMemberStatus"
      */
-    public function testProgramMemberStatus()
+    public function testProgramMemberStatus(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class ProgramMemberStatusTest extends TestCase
     /**
      * Test attribute "lead_id"
      */
-    public function testPropertyLeadId()
+    public function testPropertyLeadId(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

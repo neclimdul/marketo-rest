@@ -44,7 +44,7 @@ class ModelResponseTest extends TestCase
     /**
      * Test "ModelResponse"
      */
-    public function testModelResponse()
+    public function testModelResponse(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

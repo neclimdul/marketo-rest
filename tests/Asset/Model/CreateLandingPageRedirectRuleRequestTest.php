@@ -44,7 +44,7 @@ class CreateLandingPageRedirectRuleRequestTest extends TestCase
     /**
      * Test "CreateLandingPageRedirectRuleRequest"
      */
-    public function testCreateLandingPageRedirectRuleRequest()
+    public function testCreateLandingPageRedirectRuleRequest(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class CreateLandingPageRedirectRuleRequestTest extends TestCase
     /**
      * Test attribute "hostname"
      */
-    public function testPropertyHostname()
+    public function testPropertyHostname(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class CreateLandingPageRedirectRuleRequestTest extends TestCase
     /**
      * Test attribute "redirect_from"
      */
-    public function testPropertyRedirectFrom()
+    public function testPropertyRedirectFrom(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class CreateLandingPageRedirectRuleRequestTest extends TestCase
     /**
      * Test attribute "redirect_to"
      */
-    public function testPropertyRedirectTo()
+    public function testPropertyRedirectTo(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

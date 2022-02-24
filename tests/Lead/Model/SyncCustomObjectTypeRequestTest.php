@@ -44,7 +44,7 @@ class SyncCustomObjectTypeRequestTest extends TestCase
     /**
      * Test "SyncCustomObjectTypeRequest"
      */
-    public function testSyncCustomObjectTypeRequest()
+    public function testSyncCustomObjectTypeRequest(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class SyncCustomObjectTypeRequestTest extends TestCase
     /**
      * Test attribute "action"
      */
-    public function testPropertyAction()
+    public function testPropertyAction(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class SyncCustomObjectTypeRequestTest extends TestCase
     /**
      * Test attribute "display_name"
      */
-    public function testPropertyDisplayName()
+    public function testPropertyDisplayName(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class SyncCustomObjectTypeRequestTest extends TestCase
     /**
      * Test attribute "api_name"
      */
-    public function testPropertyApiName()
+    public function testPropertyApiName(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -80,7 +80,7 @@ class SyncCustomObjectTypeRequestTest extends TestCase
     /**
      * Test attribute "plural_name"
      */
-    public function testPropertyPluralName()
+    public function testPropertyPluralName(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -89,7 +89,7 @@ class SyncCustomObjectTypeRequestTest extends TestCase
     /**
      * Test attribute "description"
      */
-    public function testPropertyDescription()
+    public function testPropertyDescription(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -98,7 +98,7 @@ class SyncCustomObjectTypeRequestTest extends TestCase
     /**
      * Test attribute "show_in_lead_detail"
      */
-    public function testPropertyShowInLeadDetail()
+    public function testPropertyShowInLeadDetail(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

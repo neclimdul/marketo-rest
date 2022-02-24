@@ -44,7 +44,7 @@ class FormKnownVisitorDTOTest extends TestCase
     /**
      * Test "FormKnownVisitorDTO"
      */
-    public function testFormKnownVisitorDTO()
+    public function testFormKnownVisitorDTO(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class FormKnownVisitorDTOTest extends TestCase
     /**
      * Test attribute "template"
      */
-    public function testPropertyTemplate()
+    public function testPropertyTemplate(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class FormKnownVisitorDTOTest extends TestCase
     /**
      * Test attribute "type"
      */
-    public function testPropertyType()
+    public function testPropertyType(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

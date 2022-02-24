@@ -94,7 +94,7 @@ class BulkExportLeadsApi
      *
      * @param int $hostIndex Host index (required)
      */
-    public function setHostIndex($hostIndex)
+    public function setHostIndex($hostIndex): void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -217,7 +217,7 @@ class BulkExportLeadsApi
      */
     public function cancelExportLeadsUsingPOSTRequest(
         string $export_id
-    )
+    ): Request
     {
 
         $resourcePath = '/bulk/v1/leads/export/{exportId}/cancel.json';
@@ -357,7 +357,7 @@ class BulkExportLeadsApi
      */
     public function createExportLeadsUsingPOSTRequest(
         \NecLimDul\MarketoRest\Lead\Model\ExportLeadRequest $export_lead_request = null
-    )
+    ): Request
     {
 
         $resourcePath = '/bulk/v1/leads/export/create.json';
@@ -494,7 +494,7 @@ class BulkExportLeadsApi
      */
     public function enqueueExportLeadsUsingPOSTRequest(
         string $export_id
-    )
+    ): Request
     {
 
         $resourcePath = '/bulk/v1/leads/export/{exportId}/enqueue.json';
@@ -640,7 +640,7 @@ class BulkExportLeadsApi
     public function getExportLeadsFileUsingGETRequest(
         string $export_id,
         string $range = null
-    )
+    ): Request
     {
 
         $resourcePath = '/bulk/v1/leads/export/{exportId}/file.json';
@@ -785,7 +785,7 @@ class BulkExportLeadsApi
      */
     public function getExportLeadsStatusUsingGETRequest(
         string $export_id
-    )
+    ): Request
     {
 
         $resourcePath = '/bulk/v1/leads/export/{exportId}/status.json';
@@ -937,7 +937,7 @@ class BulkExportLeadsApi
         array $status = null,
         int $batch_size = null,
         string $next_page_token = null
-    )
+    ): Request
     {
 
         $resourcePath = '/bulk/v1/leads/export.json';

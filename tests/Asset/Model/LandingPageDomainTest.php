@@ -44,7 +44,7 @@ class LandingPageDomainTest extends TestCase
     /**
      * Test "LandingPageDomain"
      */
-    public function testLandingPageDomain()
+    public function testLandingPageDomain(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class LandingPageDomainTest extends TestCase
     /**
      * Test attribute "hostname"
      */
-    public function testPropertyHostname()
+    public function testPropertyHostname(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class LandingPageDomainTest extends TestCase
     /**
      * Test attribute "type"
      */
-    public function testPropertyType()
+    public function testPropertyType(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

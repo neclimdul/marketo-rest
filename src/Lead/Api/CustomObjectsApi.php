@@ -94,7 +94,7 @@ class CustomObjectsApi
      *
      * @param int $hostIndex Host index (required)
      */
-    public function setHostIndex($hostIndex)
+    public function setHostIndex($hostIndex): void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -223,7 +223,7 @@ class CustomObjectsApi
     public function addCustomObjectTypeFieldsUsingPOSTRequest(
         string $api_name,
         \NecLimDul\MarketoRest\Lead\Model\AddCustomObjectTypeFieldsRequest $add_custom_object_type_fields_request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/customobjects/schema/{apiName}/addField.json';
@@ -364,7 +364,7 @@ class CustomObjectsApi
      */
     public function approveCustomObjectTypeUsingPOSTRequest(
         string $api_name
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/customobjects/schema/{apiName}/approve.json';
@@ -510,7 +510,7 @@ class CustomObjectsApi
     public function deleteCustomObjectTypeFieldsUsingPOSTRequest(
         string $api_name,
         \NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectTypeFieldsRequest $delete_custom_object_type_fields_request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/customobjects/schema/{apiName}/deleteField.json';
@@ -651,7 +651,7 @@ class CustomObjectsApi
      */
     public function deleteCustomObjectTypeUsingPOSTRequest(
         string $api_name
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/customobjects/schema/{apiName}/delete.json';
@@ -797,7 +797,7 @@ class CustomObjectsApi
     public function deleteCustomObjectsUsingPOSTRequest(
         string $custom_object_name,
         \NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectRequest $delete_custom_object_request = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/customobjects/{customObjectName}/delete.json';
@@ -947,7 +947,7 @@ class CustomObjectsApi
     public function describeCustomObjectTypeUsingGETRequest(
         string $api_name,
         string $state = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/customobjects/schema/{apiName}/describe.json';
@@ -1092,7 +1092,7 @@ class CustomObjectsApi
      */
     public function describeUsingGET1Request(
         string $custom_object_name
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/customobjects/{customObjectName}/describe.json';
@@ -1232,7 +1232,7 @@ class CustomObjectsApi
      */
     public function discardCustomObjectTypeUsingPOSTRequest(
         string $api_name
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/customobjects/schema/{apiName}/discardDraft.json';
@@ -1372,7 +1372,7 @@ class CustomObjectsApi
      */
     public function getCustomObjectTypeDependentAssetsUsingGETRequest(
         string $api_name
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/customobjects/schema/{apiName}/dependentAssets.json';
@@ -1506,7 +1506,7 @@ class CustomObjectsApi
      * @return \GuzzleHttp\Psr7\Request
      */
     public function getCustomObjectTypeFieldDataTypesUsingGETRequest(
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/customobjects/schema/fieldDataTypes.json';
@@ -1633,7 +1633,7 @@ class CustomObjectsApi
      * @return \GuzzleHttp\Psr7\Request
      */
     public function getCustomObjectTypeLinkableObjectsUsingGETRequest(
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/customobjects/schema/linkableObjects.json';
@@ -1802,7 +1802,7 @@ class CustomObjectsApi
         array $fields = null,
         int $batch_size = null,
         string $next_page_token = null
-    )
+    ): Request
     {
         // Verify the required parameter 'filter_values' is set.
         if (empty($filter_values)) {
@@ -1967,7 +1967,7 @@ class CustomObjectsApi
     public function listCustomObjectTypesUsingGETRequest(
         array $names = null,
         string $state = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/customobjects/schema.json';
@@ -2106,7 +2106,7 @@ class CustomObjectsApi
      */
     public function listCustomObjectsUsingGETRequest(
         array $names = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/customobjects.json';
@@ -2244,7 +2244,7 @@ class CustomObjectsApi
      */
     public function syncCustomObjectTypeUsingPOSTRequest(
         \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectTypeRequest $sync_custom_object_type_request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/customobjects/schema.json';
@@ -2384,7 +2384,7 @@ class CustomObjectsApi
     public function syncCustomObjectsUsingPOSTRequest(
         string $custom_object_name,
         \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectRequest $sync_custom_object_request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/customobjects/{customObjectName}.json';
@@ -2537,7 +2537,7 @@ class CustomObjectsApi
         string $api_name,
         string $field_api_name,
         \NecLimDul\MarketoRest\Lead\Model\UpdateCustomObjectTypeFieldRequest $update_custom_object_type_field_request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/customobjects/schema/{apiName}/{fieldApiName}/updateField.json';

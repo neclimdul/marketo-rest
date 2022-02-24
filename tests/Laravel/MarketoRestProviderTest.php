@@ -36,7 +36,7 @@ class MarketoRestProviderTest extends TestCase
         $this->provider = new MarketoRestProvider($this->app->reveal());
     }
 
-    public function testBoot()
+    public function testBoot(): void
     {
         $this->app->basePath()
             ->shouldBeCalledOnce()
@@ -44,7 +44,7 @@ class MarketoRestProviderTest extends TestCase
         $this->provider->boot();
     }
 
-    private function getServiceClasses()
+    private function getServiceClasses(): array
     {
         $classes = new \GlobIterator(__DIR__ . '/../../src/*/Api/*');
         $x = [];
@@ -56,7 +56,7 @@ class MarketoRestProviderTest extends TestCase
         return $x;
     }
 
-    public function testProvides()
+    public function testProvides(): void
     {
         $classes = $this->getServiceClasses();
         $this->assertEquals($classes, $this->provider->provides());
@@ -65,7 +65,7 @@ class MarketoRestProviderTest extends TestCase
     /**
      * @covers ::register
      */
-    public function testRegister()
+    public function testRegister(): void
     {
         $this->app->get('config')
             ->willReturn([

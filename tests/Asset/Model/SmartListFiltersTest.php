@@ -44,7 +44,7 @@ class SmartListFiltersTest extends TestCase
     /**
      * Test "SmartListFilters"
      */
-    public function testSmartListFilters()
+    public function testSmartListFilters(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class SmartListFiltersTest extends TestCase
     /**
      * Test attribute "id"
      */
-    public function testPropertyId()
+    public function testPropertyId(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class SmartListFiltersTest extends TestCase
     /**
      * Test attribute "name"
      */
-    public function testPropertyName()
+    public function testPropertyName(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class SmartListFiltersTest extends TestCase
     /**
      * Test attribute "rule_type_id"
      */
-    public function testPropertyRuleTypeId()
+    public function testPropertyRuleTypeId(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -80,7 +80,7 @@ class SmartListFiltersTest extends TestCase
     /**
      * Test attribute "rule_type"
      */
-    public function testPropertyRuleType()
+    public function testPropertyRuleType(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -89,7 +89,7 @@ class SmartListFiltersTest extends TestCase
     /**
      * Test attribute "operator"
      */
-    public function testPropertyOperator()
+    public function testPropertyOperator(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -98,7 +98,7 @@ class SmartListFiltersTest extends TestCase
     /**
      * Test attribute "conditions"
      */
-    public function testPropertyConditions()
+    public function testPropertyConditions(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

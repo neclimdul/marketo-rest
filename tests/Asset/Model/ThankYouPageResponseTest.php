@@ -44,7 +44,7 @@ class ThankYouPageResponseTest extends TestCase
     /**
      * Test "ThankYouPageResponse"
      */
-    public function testThankYouPageResponse()
+    public function testThankYouPageResponse(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class ThankYouPageResponseTest extends TestCase
     /**
      * Test attribute "id"
      */
-    public function testPropertyId()
+    public function testPropertyId(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class ThankYouPageResponseTest extends TestCase
     /**
      * Test attribute "thank_you_list"
      */
-    public function testPropertyThankYouList()
+    public function testPropertyThankYouList(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

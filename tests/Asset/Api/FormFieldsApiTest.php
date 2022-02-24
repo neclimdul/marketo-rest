@@ -50,7 +50,7 @@ class FormFieldsApiTest extends TestCase
      *
      * @covers ::addFieldSetUsingPOST
      */
-    public function testAddFieldSetUsingPOST()
+    public function testAddFieldSetUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -61,7 +61,7 @@ class FormFieldsApiTest extends TestCase
      *
      * @covers ::addFieldToAFormUsingPOST
      */
-    public function testAddFieldToAFormUsingPOST()
+    public function testAddFieldToAFormUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -72,7 +72,7 @@ class FormFieldsApiTest extends TestCase
      *
      * @covers ::addFormFieldVisibilityRuleUsingPOST
      */
-    public function testAddFormFieldVisibilityRuleUsingPOST()
+    public function testAddFormFieldVisibilityRuleUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -83,7 +83,7 @@ class FormFieldsApiTest extends TestCase
      *
      * @covers ::addRichTextFieldUsingPOST
      */
-    public function testAddRichTextFieldUsingPOST()
+    public function testAddRichTextFieldUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -94,7 +94,7 @@ class FormFieldsApiTest extends TestCase
      *
      * @covers ::deleteFormFieldFromFieldSetUsingPOST
      */
-    public function testDeleteFormFieldFromFieldSetUsingPOST()
+    public function testDeleteFormFieldFromFieldSetUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -105,7 +105,7 @@ class FormFieldsApiTest extends TestCase
      *
      * @covers ::deleteFormFieldUsingPOST
      */
-    public function testDeleteFormFieldUsingPOST()
+    public function testDeleteFormFieldUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -116,7 +116,7 @@ class FormFieldsApiTest extends TestCase
      *
      * @covers ::getAllFieldsUsingGET
      */
-    public function testGetAllFieldsUsingGET()
+    public function testGetAllFieldsUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -127,7 +127,7 @@ class FormFieldsApiTest extends TestCase
      *
      * @covers ::getAllProgramMemberFieldsUsingGET
      */
-    public function testGetAllProgramMemberFieldsUsingGET()
+    public function testGetAllProgramMemberFieldsUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -138,7 +138,7 @@ class FormFieldsApiTest extends TestCase
      *
      * @covers ::getFormFieldByFormVidUsingGET
      */
-    public function testGetFormFieldByFormVidUsingGET()
+    public function testGetFormFieldByFormVidUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -149,7 +149,7 @@ class FormFieldsApiTest extends TestCase
      *
      * @covers ::updateFieldPositionsUsingPOST
      */
-    public function testUpdateFieldPositionsUsingPOST()
+    public function testUpdateFieldPositionsUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -160,7 +160,7 @@ class FormFieldsApiTest extends TestCase
      *
      * @covers ::updateFormFieldUsingPOST
      */
-    public function testUpdateFormFieldUsingPOST()
+    public function testUpdateFormFieldUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

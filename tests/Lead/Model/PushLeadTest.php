@@ -44,7 +44,7 @@ class PushLeadTest extends TestCase
     /**
      * Test "PushLead"
      */
-    public function testPushLead()
+    public function testPushLead(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class PushLeadTest extends TestCase
     /**
      * Test attribute "id"
      */
-    public function testPropertyId()
+    public function testPropertyId(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class PushLeadTest extends TestCase
     /**
      * Test attribute "reason"
      */
-    public function testPropertyReason()
+    public function testPropertyReason(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class PushLeadTest extends TestCase
     /**
      * Test attribute "status"
      */
-    public function testPropertyStatus()
+    public function testPropertyStatus(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

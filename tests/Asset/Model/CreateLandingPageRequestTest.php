@@ -44,7 +44,7 @@ class CreateLandingPageRequestTest extends TestCase
     /**
      * Test "CreateLandingPageRequest"
      */
-    public function testCreateLandingPageRequest()
+    public function testCreateLandingPageRequest(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class CreateLandingPageRequestTest extends TestCase
     /**
      * Test attribute "custom_head_html"
      */
-    public function testPropertyCustomHeadHtml()
+    public function testPropertyCustomHeadHtml(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class CreateLandingPageRequestTest extends TestCase
     /**
      * Test attribute "description"
      */
-    public function testPropertyDescription()
+    public function testPropertyDescription(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class CreateLandingPageRequestTest extends TestCase
     /**
      * Test attribute "facebook_og_tags"
      */
-    public function testPropertyFacebookOgTags()
+    public function testPropertyFacebookOgTags(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -80,7 +80,7 @@ class CreateLandingPageRequestTest extends TestCase
     /**
      * Test attribute "folder"
      */
-    public function testPropertyFolder()
+    public function testPropertyFolder(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -89,7 +89,7 @@ class CreateLandingPageRequestTest extends TestCase
     /**
      * Test attribute "keywords"
      */
-    public function testPropertyKeywords()
+    public function testPropertyKeywords(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -98,7 +98,7 @@ class CreateLandingPageRequestTest extends TestCase
     /**
      * Test attribute "mobile_enabled"
      */
-    public function testPropertyMobileEnabled()
+    public function testPropertyMobileEnabled(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -107,7 +107,7 @@ class CreateLandingPageRequestTest extends TestCase
     /**
      * Test attribute "name"
      */
-    public function testPropertyName()
+    public function testPropertyName(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -116,7 +116,7 @@ class CreateLandingPageRequestTest extends TestCase
     /**
      * Test attribute "prefill_form"
      */
-    public function testPropertyPrefillForm()
+    public function testPropertyPrefillForm(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -125,7 +125,7 @@ class CreateLandingPageRequestTest extends TestCase
     /**
      * Test attribute "robots"
      */
-    public function testPropertyRobots()
+    public function testPropertyRobots(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -134,7 +134,7 @@ class CreateLandingPageRequestTest extends TestCase
     /**
      * Test attribute "template"
      */
-    public function testPropertyTemplate()
+    public function testPropertyTemplate(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -143,7 +143,7 @@ class CreateLandingPageRequestTest extends TestCase
     /**
      * Test attribute "title"
      */
-    public function testPropertyTitle()
+    public function testPropertyTitle(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -152,7 +152,7 @@ class CreateLandingPageRequestTest extends TestCase
     /**
      * Test attribute "url_page_name"
      */
-    public function testPropertyUrlPageName()
+    public function testPropertyUrlPageName(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -161,7 +161,7 @@ class CreateLandingPageRequestTest extends TestCase
     /**
      * Test attribute "workspace"
      */
-    public function testPropertyWorkspace()
+    public function testPropertyWorkspace(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

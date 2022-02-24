@@ -44,7 +44,7 @@ class EmailContentResponseTest extends TestCase
     /**
      * Test "EmailContentResponse"
      */
-    public function testEmailContentResponse()
+    public function testEmailContentResponse(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class EmailContentResponseTest extends TestCase
     /**
      * Test attribute "content_type"
      */
-    public function testPropertyContentType()
+    public function testPropertyContentType(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class EmailContentResponseTest extends TestCase
     /**
      * Test attribute "html_id"
      */
-    public function testPropertyHtmlId()
+    public function testPropertyHtmlId(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class EmailContentResponseTest extends TestCase
     /**
      * Test attribute "index"
      */
-    public function testPropertyIndex()
+    public function testPropertyIndex(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -80,7 +80,7 @@ class EmailContentResponseTest extends TestCase
     /**
      * Test attribute "is_locked"
      */
-    public function testPropertyIsLocked()
+    public function testPropertyIsLocked(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -89,7 +89,7 @@ class EmailContentResponseTest extends TestCase
     /**
      * Test attribute "parent_html_id"
      */
-    public function testPropertyParentHtmlId()
+    public function testPropertyParentHtmlId(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -98,7 +98,7 @@ class EmailContentResponseTest extends TestCase
     /**
      * Test attribute "value"
      */
-    public function testPropertyValue()
+    public function testPropertyValue(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

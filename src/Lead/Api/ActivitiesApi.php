@@ -94,7 +94,7 @@ class ActivitiesApi
      *
      * @param int $hostIndex Host index (required)
      */
-    public function setHostIndex($hostIndex)
+    public function setHostIndex($hostIndex): void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -217,7 +217,7 @@ class ActivitiesApi
      */
     public function addCustomActivityUsingPOSTRequest(
         \NecLimDul\MarketoRest\Lead\Model\CustomActivityRequest $custom_activity_request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/activities/external.json';
@@ -351,7 +351,7 @@ class ActivitiesApi
      */
     public function approveCustomActivityTypeUsingPOSTRequest(
         string $api_name
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/activities/external/type/{apiName}/approve.json';
@@ -497,7 +497,7 @@ class ActivitiesApi
     public function createCustomActivityTypeAttributesUsingPOSTRequest(
         string $api_name,
         \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/activities/external/type/{apiName}/attributes/create.json';
@@ -638,7 +638,7 @@ class ActivitiesApi
      */
     public function createCustomActivityTypeUsingPOSTRequest(
         \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeRequest $custom_activity_type_request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/activities/external/type.json';
@@ -778,7 +778,7 @@ class ActivitiesApi
     public function deleteCustomActivityTypeAttributesUsingPOSTRequest(
         string $api_name,
         \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/activities/external/type/{apiName}/attributes/delete.json';
@@ -919,7 +919,7 @@ class ActivitiesApi
      */
     public function deleteCustomActivityTypeUsingPOSTRequest(
         string $api_name
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/activities/external/type/{apiName}/delete.json';
@@ -1065,7 +1065,7 @@ class ActivitiesApi
     public function describeCustomActivityTypeUsingGETRequest(
         string $api_name,
         bool $draft = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/activities/external/type/{apiName}/describe.json';
@@ -1210,7 +1210,7 @@ class ActivitiesApi
      */
     public function discardDraftofCustomActivityTypeUsingPOSTRequest(
         string $api_name
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/activities/external/type/{apiName}/discardDraft.json';
@@ -1350,7 +1350,7 @@ class ActivitiesApi
      */
     public function getActivitiesPagingTokenUsingGETRequest(
         \DateTime $since_datetime
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/activities/pagingtoken.json';
@@ -1482,7 +1482,7 @@ class ActivitiesApi
      * @return \GuzzleHttp\Psr7\Request
      */
     public function getAllActivityTypesUsingGETRequest(
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/activities/types.json';
@@ -1609,7 +1609,7 @@ class ActivitiesApi
      * @return \GuzzleHttp\Psr7\Request
      */
     public function getCustomActivityTypeUsingGETRequest(
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/activities/external/types.json';
@@ -1748,7 +1748,7 @@ class ActivitiesApi
     public function getDeletedLeadsUsingGETRequest(
         string $next_page_token,
         int $batch_size = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/activities/deletedleads.json';
@@ -1917,7 +1917,7 @@ class ActivitiesApi
         int $list_id = null,
         array $lead_ids = null,
         int $batch_size = null
-    )
+    ): Request
     {
         // Verify the required parameter 'activity_type_ids' is set.
         if (empty($activity_type_ids)) {
@@ -2090,7 +2090,7 @@ class ActivitiesApi
         int $list_id = null,
         array $lead_ids = null,
         int $batch_size = null
-    )
+    ): Request
     {
         // Verify the required parameter 'fields' is set.
         if (empty($fields)) {
@@ -2244,7 +2244,7 @@ class ActivitiesApi
     public function updateCustomActivityTypeAttributesUsingPOSTRequest(
         string $api_name,
         \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/activities/external/type/{apiName}/attributes/update.json';
@@ -2391,7 +2391,7 @@ class ActivitiesApi
     public function updateCustomActivityTypeUsingPOSTRequest(
         string $api_name,
         \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeRequest $custom_activity_type_request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/activities/external/type/{apiName}.json';

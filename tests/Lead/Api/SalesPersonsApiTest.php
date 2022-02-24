@@ -50,7 +50,7 @@ class SalesPersonsApiTest extends TestCase
      *
      * @covers ::deleteSalesPersonUsingPOST
      */
-    public function testDeleteSalesPersonUsingPOST()
+    public function testDeleteSalesPersonUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -61,7 +61,7 @@ class SalesPersonsApiTest extends TestCase
      *
      * @covers ::describeUsingGET5
      */
-    public function testDescribeUsingGET5()
+    public function testDescribeUsingGET5(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -72,7 +72,7 @@ class SalesPersonsApiTest extends TestCase
      *
      * @covers ::getSalesPersonUsingGET
      */
-    public function testGetSalesPersonUsingGET()
+    public function testGetSalesPersonUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -83,7 +83,7 @@ class SalesPersonsApiTest extends TestCase
      *
      * @covers ::syncSalesPersonsUsingPOST
      */
-    public function testSyncSalesPersonsUsingPOST()
+    public function testSyncSalesPersonsUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

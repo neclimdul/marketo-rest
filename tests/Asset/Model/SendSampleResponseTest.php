@@ -44,7 +44,7 @@ class SendSampleResponseTest extends TestCase
     /**
      * Test "SendSampleResponse"
      */
-    public function testSendSampleResponse()
+    public function testSendSampleResponse(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class SendSampleResponseTest extends TestCase
     /**
      * Test attribute "service"
      */
-    public function testPropertyService()
+    public function testPropertyService(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class SendSampleResponseTest extends TestCase
     /**
      * Test attribute "result"
      */
-    public function testPropertyResult()
+    public function testPropertyResult(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

@@ -44,7 +44,7 @@ class TriggerCampaignDataTest extends TestCase
     /**
      * Test "TriggerCampaignData"
      */
-    public function testTriggerCampaignData()
+    public function testTriggerCampaignData(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class TriggerCampaignDataTest extends TestCase
     /**
      * Test attribute "leads"
      */
-    public function testPropertyLeads()
+    public function testPropertyLeads(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class TriggerCampaignDataTest extends TestCase
     /**
      * Test attribute "tokens"
      */
-    public function testPropertyTokens()
+    public function testPropertyTokens(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

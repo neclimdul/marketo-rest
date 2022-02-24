@@ -94,7 +94,7 @@ class BulkImportProgramMembersApi
      *
      * @param int $hostIndex Host index (required)
      */
-    public function setHostIndex($hostIndex)
+    public function setHostIndex($hostIndex): void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -217,7 +217,7 @@ class BulkImportProgramMembersApi
      */
     public function getImportProgramMemberFailuresUsingGETRequest(
         int $batch_id
-    )
+    ): Request
     {
 
         $resourcePath = '/bulk/v1/program/members/import/{batchId}/failures.json';
@@ -357,7 +357,7 @@ class BulkImportProgramMembersApi
      */
     public function getImportProgramMemberStatusUsingGETRequest(
         int $batch_id
-    )
+    ): Request
     {
 
         $resourcePath = '/bulk/v1/program/members/import/{batchId}/status.json';
@@ -497,7 +497,7 @@ class BulkImportProgramMembersApi
      */
     public function getImportProgramMemberWarningsUsingGETRequest(
         int $batch_id
-    )
+    ): Request
     {
 
         $resourcePath = '/bulk/v1/program/members/import/{batchId}/warnings.json';
@@ -655,7 +655,7 @@ class BulkImportProgramMembersApi
         string $program_member_status,
         string $format,
         \SplFileObject $file
-    )
+    ): Request
     {
 
         $resourcePath = '/bulk/v1/program/{programId}/members/import.json';

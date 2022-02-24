@@ -44,7 +44,7 @@ class SnippetContentResponseTest extends TestCase
     /**
      * Test "SnippetContentResponse"
      */
-    public function testSnippetContentResponse()
+    public function testSnippetContentResponse(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class SnippetContentResponseTest extends TestCase
     /**
      * Test attribute "content"
      */
-    public function testPropertyContent()
+    public function testPropertyContent(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class SnippetContentResponseTest extends TestCase
     /**
      * Test attribute "type"
      */
-    public function testPropertyType()
+    public function testPropertyType(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

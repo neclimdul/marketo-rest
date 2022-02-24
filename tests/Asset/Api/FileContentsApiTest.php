@@ -50,7 +50,7 @@ class FileContentsApiTest extends TestCase
      *
      * @covers ::updateContentUsingPOST
      */
-    public function testUpdateContentUsingPOST()
+    public function testUpdateContentUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

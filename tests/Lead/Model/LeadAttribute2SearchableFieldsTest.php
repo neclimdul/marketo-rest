@@ -44,7 +44,7 @@ class LeadAttribute2SearchableFieldsTest extends TestCase
     /**
      * Test "LeadAttribute2SearchableFields"
      */
-    public function testLeadAttribute2SearchableFields()
+    public function testLeadAttribute2SearchableFields(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

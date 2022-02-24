@@ -44,7 +44,7 @@ class SnippetFolderTest extends TestCase
     /**
      * Test "SnippetFolder"
      */
-    public function testSnippetFolder()
+    public function testSnippetFolder(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class SnippetFolderTest extends TestCase
     /**
      * Test attribute "value"
      */
-    public function testPropertyValue()
+    public function testPropertyValue(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class SnippetFolderTest extends TestCase
     /**
      * Test attribute "type"
      */
-    public function testPropertyType()
+    public function testPropertyType(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class SnippetFolderTest extends TestCase
     /**
      * Test attribute "folder_name"
      */
-    public function testPropertyFolderName()
+    public function testPropertyFolderName(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

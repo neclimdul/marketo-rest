@@ -44,7 +44,7 @@ class ErrorCountTest extends TestCase
     /**
      * Test "ErrorCount"
      */
-    public function testErrorCount()
+    public function testErrorCount(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class ErrorCountTest extends TestCase
     /**
      * Test attribute "count"
      */
-    public function testPropertyCount()
+    public function testPropertyCount(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class ErrorCountTest extends TestCase
     /**
      * Test attribute "error_code"
      */
-    public function testPropertyErrorCode()
+    public function testPropertyErrorCode(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

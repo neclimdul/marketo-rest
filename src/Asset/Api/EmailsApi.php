@@ -94,7 +94,7 @@ class EmailsApi
      *
      * @param int $hostIndex Host index (required)
      */
-    public function setHostIndex($hostIndex)
+    public function setHostIndex($hostIndex): void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -235,7 +235,7 @@ class EmailsApi
         string $module_id,
         string $name,
         int $index
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/email/{id}/content/{moduleId}/add.json';
@@ -386,7 +386,7 @@ class EmailsApi
      */
     public function approveDraftUsingPOSTRequest(
         int $id
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/email/{id}/approveDraft.json';
@@ -532,7 +532,7 @@ class EmailsApi
     public function cloneEmailUsingPOSTRequest(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\CloneEmailRequest $clone_email_request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/email/{id}/clone.json';
@@ -679,7 +679,7 @@ class EmailsApi
     public function createEmailFullContentUsingPOSTRequest(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\UpdateEmailFullContentRequest $update_email_full_content_request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/email/{id}/fullContent.json';
@@ -820,7 +820,7 @@ class EmailsApi
      */
     public function createEmailUsingPOSTRequest(
         \NecLimDul\MarketoRest\Asset\Model\CreateEmailRequest $create_email_request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/emails.json';
@@ -954,7 +954,7 @@ class EmailsApi
      */
     public function deleteEmailUsingPOSTRequest(
         int $id
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/email/{id}/delete.json';
@@ -1100,7 +1100,7 @@ class EmailsApi
     public function deleteModuleUsingPOSTRequest(
         int $id,
         string $module_id
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/email/{id}/content/{moduleId}/delete.json';
@@ -1245,7 +1245,7 @@ class EmailsApi
      */
     public function discardDraftUsingPOSTRequest(
         int $id
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/email/{id}/discardDraft.json';
@@ -1397,7 +1397,7 @@ class EmailsApi
         int $id,
         string $module_id,
         string $name
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/email/{id}/content/{moduleId}/duplicate.json';
@@ -1553,7 +1553,7 @@ class EmailsApi
     public function getEmailByIdUsingGETRequest(
         int $id,
         string $status = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/email/{id}.json';
@@ -1710,7 +1710,7 @@ class EmailsApi
         string $name,
         string $status = null,
         string $folder = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/email/byName.json';
@@ -1844,7 +1844,7 @@ class EmailsApi
      * @return \GuzzleHttp\Psr7\Request
      */
     public function getEmailCCFieldsUsingGETRequest(
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/email/ccFields.json';
@@ -1983,7 +1983,7 @@ class EmailsApi
     public function getEmailContentByIdUsingGETRequest(
         int $id,
         string $status = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/email/{id}/content.json';
@@ -2140,7 +2140,7 @@ class EmailsApi
         int $id,
         string $content_id,
         string $status = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/email/{id}/dynamicContent/{contentId}.json';
@@ -2308,7 +2308,7 @@ class EmailsApi
         string $status = null,
         int $lead_id = null,
         string $type = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/email/{id}/fullContent.json';
@@ -2485,7 +2485,7 @@ class EmailsApi
         int $max_return = null,
         string $earliest_updated_at = null,
         string $latest_updated_at = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/emails.json';
@@ -2628,7 +2628,7 @@ class EmailsApi
      */
     public function getEmailVariablesUsingGETRequest(
         int $id
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/email/{id}/variables.json';
@@ -2774,7 +2774,7 @@ class EmailsApi
     public function rearrangeModulesUsingPOSTRequest(
         int $id,
         string $positions = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/email/{id}/content/rearrange.json';
@@ -2930,7 +2930,7 @@ class EmailsApi
         int $id,
         string $module_id,
         string $name
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/email/{id}/content/{moduleId}/rename.json';
@@ -3086,7 +3086,7 @@ class EmailsApi
     public function sendSampleEmailUsingPOSTRequest(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\SendSampleEmailRequest $send_sample_email_request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/email/{id}/sendSample.json';
@@ -3227,7 +3227,7 @@ class EmailsApi
      */
     public function unapproveDraftUsingPOSTRequest(
         int $id
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/email/{id}/unapprove.json';
@@ -3379,7 +3379,7 @@ class EmailsApi
         int $id,
         string $html_id,
         \NecLimDul\MarketoRest\Asset\Model\UpdateEmailComponentContentRequest $request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/email/{id}/content/{htmlId}.json';
@@ -3531,7 +3531,7 @@ class EmailsApi
     public function updateEmailContentUsingPOSTRequest(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\UpdateEmailComponentDataRequest $update_email_request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/email/{id}/content.json';
@@ -3684,7 +3684,7 @@ class EmailsApi
         int $id,
         string $content_id,
         \NecLimDul\MarketoRest\Asset\Model\UpdateEmailDynamicContentRequest $request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/email/{id}/dynamicContent/{contentId}.json';
@@ -3836,7 +3836,7 @@ class EmailsApi
     public function updateEmailUsingPOSTRequest(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\UpdateEmailMetaDataRequest $update_email_request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/email/{id}.json';
@@ -3989,7 +3989,7 @@ class EmailsApi
         int $id,
         string $name,
         \NecLimDul\MarketoRest\Asset\Model\UpdateVariableRequest $update_variable_request = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/email/{id}/variable/{name}.json';

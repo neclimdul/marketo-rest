@@ -50,7 +50,7 @@ class NamedAccountListsApiTest extends TestCase
      *
      * @covers ::addNamedAccountListMembersUsingPOST
      */
-    public function testAddNamedAccountListMembersUsingPOST()
+    public function testAddNamedAccountListMembersUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -61,7 +61,7 @@ class NamedAccountListsApiTest extends TestCase
      *
      * @covers ::deleteNamedAccountListsUsingPOST
      */
-    public function testDeleteNamedAccountListsUsingPOST()
+    public function testDeleteNamedAccountListsUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -72,7 +72,7 @@ class NamedAccountListsApiTest extends TestCase
      *
      * @covers ::getNamedAccountListMembersUsingGET
      */
-    public function testGetNamedAccountListMembersUsingGET()
+    public function testGetNamedAccountListMembersUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -83,7 +83,7 @@ class NamedAccountListsApiTest extends TestCase
      *
      * @covers ::getNamedAccountListsUsingGET
      */
-    public function testGetNamedAccountListsUsingGET()
+    public function testGetNamedAccountListsUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -94,7 +94,7 @@ class NamedAccountListsApiTest extends TestCase
      *
      * @covers ::removeNamedAccountListMembersUsingPOST
      */
-    public function testRemoveNamedAccountListMembersUsingPOST()
+    public function testRemoveNamedAccountListMembersUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -105,7 +105,7 @@ class NamedAccountListsApiTest extends TestCase
      *
      * @covers ::syncNamedAccountListsUsingPOST
      */
-    public function testSyncNamedAccountListsUsingPOST()
+    public function testSyncNamedAccountListsUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

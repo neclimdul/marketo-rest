@@ -44,7 +44,7 @@ class DeleteCustomObjectTypeFieldsRequestTest extends TestCase
     /**
      * Test "DeleteCustomObjectTypeFieldsRequest"
      */
-    public function testDeleteCustomObjectTypeFieldsRequest()
+    public function testDeleteCustomObjectTypeFieldsRequest(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class DeleteCustomObjectTypeFieldsRequestTest extends TestCase
     /**
      * Test attribute "input"
      */
-    public function testPropertyInput()
+    public function testPropertyInput(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

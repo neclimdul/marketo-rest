@@ -44,7 +44,7 @@ class CustomActivityTypeAttributeTest extends TestCase
     /**
      * Test "CustomActivityTypeAttribute"
      */
-    public function testCustomActivityTypeAttribute()
+    public function testCustomActivityTypeAttribute(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class CustomActivityTypeAttributeTest extends TestCase
     /**
      * Test attribute "api_name"
      */
-    public function testPropertyApiName()
+    public function testPropertyApiName(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class CustomActivityTypeAttributeTest extends TestCase
     /**
      * Test attribute "data_type"
      */
-    public function testPropertyDataType()
+    public function testPropertyDataType(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class CustomActivityTypeAttributeTest extends TestCase
     /**
      * Test attribute "description"
      */
-    public function testPropertyDescription()
+    public function testPropertyDescription(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -80,7 +80,7 @@ class CustomActivityTypeAttributeTest extends TestCase
     /**
      * Test attribute "is_primary"
      */
-    public function testPropertyIsPrimary()
+    public function testPropertyIsPrimary(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -89,7 +89,7 @@ class CustomActivityTypeAttributeTest extends TestCase
     /**
      * Test attribute "name"
      */
-    public function testPropertyName()
+    public function testPropertyName(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

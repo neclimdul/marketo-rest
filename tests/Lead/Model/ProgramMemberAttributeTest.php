@@ -44,7 +44,7 @@ class ProgramMemberAttributeTest extends TestCase
     /**
      * Test "ProgramMemberAttribute"
      */
-    public function testProgramMemberAttribute()
+    public function testProgramMemberAttribute(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class ProgramMemberAttributeTest extends TestCase
     /**
      * Test attribute "name"
      */
-    public function testPropertyName()
+    public function testPropertyName(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class ProgramMemberAttributeTest extends TestCase
     /**
      * Test attribute "fields"
      */
-    public function testPropertyFields()
+    public function testPropertyFields(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

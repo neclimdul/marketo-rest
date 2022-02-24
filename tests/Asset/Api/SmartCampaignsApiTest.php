@@ -50,7 +50,7 @@ class SmartCampaignsApiTest extends TestCase
      *
      * @covers ::activateSmartCampaignUsingPOST
      */
-    public function testActivateSmartCampaignUsingPOST()
+    public function testActivateSmartCampaignUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -61,7 +61,7 @@ class SmartCampaignsApiTest extends TestCase
      *
      * @covers ::cloneSmartCampaignUsingPOST
      */
-    public function testCloneSmartCampaignUsingPOST()
+    public function testCloneSmartCampaignUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -72,7 +72,7 @@ class SmartCampaignsApiTest extends TestCase
      *
      * @covers ::createSmartCampaignUsingPOST
      */
-    public function testCreateSmartCampaignUsingPOST()
+    public function testCreateSmartCampaignUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -83,7 +83,7 @@ class SmartCampaignsApiTest extends TestCase
      *
      * @covers ::deactivateSmartCampaignUsingPOST
      */
-    public function testDeactivateSmartCampaignUsingPOST()
+    public function testDeactivateSmartCampaignUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -94,7 +94,7 @@ class SmartCampaignsApiTest extends TestCase
      *
      * @covers ::deleteSmartCampaignUsingPOST
      */
-    public function testDeleteSmartCampaignUsingPOST()
+    public function testDeleteSmartCampaignUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -105,7 +105,7 @@ class SmartCampaignsApiTest extends TestCase
      *
      * @covers ::getAllSmartCampaignsGET
      */
-    public function testGetAllSmartCampaignsGET()
+    public function testGetAllSmartCampaignsGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -116,7 +116,7 @@ class SmartCampaignsApiTest extends TestCase
      *
      * @covers ::getSmartCampaignByIdUsingGET
      */
-    public function testGetSmartCampaignByIdUsingGET()
+    public function testGetSmartCampaignByIdUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -127,7 +127,7 @@ class SmartCampaignsApiTest extends TestCase
      *
      * @covers ::getSmartCampaignByNameUsingGET
      */
-    public function testGetSmartCampaignByNameUsingGET()
+    public function testGetSmartCampaignByNameUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -138,7 +138,7 @@ class SmartCampaignsApiTest extends TestCase
      *
      * @covers ::getSmartListBySmartCampaignIdUsingGET
      */
-    public function testGetSmartListBySmartCampaignIdUsingGET()
+    public function testGetSmartListBySmartCampaignIdUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -149,7 +149,7 @@ class SmartCampaignsApiTest extends TestCase
      *
      * @covers ::updateSmartCampaignUsingPOST
      */
-    public function testUpdateSmartCampaignUsingPOST()
+    public function testUpdateSmartCampaignUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

@@ -44,7 +44,7 @@ class AddRichTextRequestTest extends TestCase
     /**
      * Test "AddRichTextRequest"
      */
-    public function testAddRichTextRequest()
+    public function testAddRichTextRequest(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class AddRichTextRequestTest extends TestCase
     /**
      * Test attribute "text"
      */
-    public function testPropertyText()
+    public function testPropertyText(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

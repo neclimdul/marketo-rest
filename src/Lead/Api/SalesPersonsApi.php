@@ -94,7 +94,7 @@ class SalesPersonsApi
      *
      * @param int $hostIndex Host index (required)
      */
-    public function setHostIndex($hostIndex)
+    public function setHostIndex($hostIndex): void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -217,7 +217,7 @@ class SalesPersonsApi
      */
     public function deleteSalesPersonUsingPOSTRequest(
         \NecLimDul\MarketoRest\Lead\Model\DeleteSalesPersonRequest $delete_sales_person_request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/salespersons/delete.json';
@@ -345,7 +345,7 @@ class SalesPersonsApi
      * @return \GuzzleHttp\Psr7\Request
      */
     public function describeUsingGET5Request(
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/salespersons/describe.json';
@@ -502,7 +502,7 @@ class SalesPersonsApi
         array $fields = null,
         int $batch_size = null,
         string $next_page_token = null
-    )
+    ): Request
     {
         // Verify the required parameter 'filter_values' is set.
         if (empty($filter_values)) {
@@ -650,7 +650,7 @@ class SalesPersonsApi
      */
     public function syncSalesPersonsUsingPOSTRequest(
         \NecLimDul\MarketoRest\Lead\Model\SyncSalesPersonRequest $sync_sales_person_request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/salespersons.json';

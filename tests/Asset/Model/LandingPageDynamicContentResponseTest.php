@@ -44,7 +44,7 @@ class LandingPageDynamicContentResponseTest extends TestCase
     /**
      * Test "LandingPageDynamicContentResponse"
      */
-    public function testLandingPageDynamicContentResponse()
+    public function testLandingPageDynamicContentResponse(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class LandingPageDynamicContentResponseTest extends TestCase
     /**
      * Test attribute "content"
      */
-    public function testPropertyContent()
+    public function testPropertyContent(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class LandingPageDynamicContentResponseTest extends TestCase
     /**
      * Test attribute "created_at"
      */
-    public function testPropertyCreatedAt()
+    public function testPropertyCreatedAt(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class LandingPageDynamicContentResponseTest extends TestCase
     /**
      * Test attribute "id"
      */
-    public function testPropertyId()
+    public function testPropertyId(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -80,7 +80,7 @@ class LandingPageDynamicContentResponseTest extends TestCase
     /**
      * Test attribute "segmentation"
      */
-    public function testPropertySegmentation()
+    public function testPropertySegmentation(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -89,7 +89,7 @@ class LandingPageDynamicContentResponseTest extends TestCase
     /**
      * Test attribute "updated_at"
      */
-    public function testPropertyUpdatedAt()
+    public function testPropertyUpdatedAt(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

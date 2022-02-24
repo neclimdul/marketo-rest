@@ -44,7 +44,7 @@ class ResponseOfVoidTest extends TestCase
     /**
      * Test "ResponseOfVoid"
      */
-    public function testResponseOfVoid()
+    public function testResponseOfVoid(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class ResponseOfVoidTest extends TestCase
     /**
      * Test attribute "errors"
      */
-    public function testPropertyErrors()
+    public function testPropertyErrors(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class ResponseOfVoidTest extends TestCase
     /**
      * Test attribute "more_result"
      */
-    public function testPropertyMoreResult()
+    public function testPropertyMoreResult(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class ResponseOfVoidTest extends TestCase
     /**
      * Test attribute "next_page_token"
      */
-    public function testPropertyNextPageToken()
+    public function testPropertyNextPageToken(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -80,7 +80,7 @@ class ResponseOfVoidTest extends TestCase
     /**
      * Test attribute "request_id"
      */
-    public function testPropertyRequestId()
+    public function testPropertyRequestId(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -89,7 +89,7 @@ class ResponseOfVoidTest extends TestCase
     /**
      * Test attribute "success"
      */
-    public function testPropertySuccess()
+    public function testPropertySuccess(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -98,7 +98,7 @@ class ResponseOfVoidTest extends TestCase
     /**
      * Test attribute "warnings"
      */
-    public function testPropertyWarnings()
+    public function testPropertyWarnings(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

@@ -44,7 +44,7 @@ class ReArrangeRequestTest extends TestCase
     /**
      * Test "ReArrangeRequest"
      */
-    public function testReArrangeRequest()
+    public function testReArrangeRequest(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class ReArrangeRequestTest extends TestCase
     /**
      * Test attribute "positions"
      */
-    public function testPropertyPositions()
+    public function testPropertyPositions(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

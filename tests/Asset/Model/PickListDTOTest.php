@@ -44,7 +44,7 @@ class PickListDTOTest extends TestCase
     /**
      * Test "PickListDTO"
      */
-    public function testPickListDTO()
+    public function testPickListDTO(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class PickListDTOTest extends TestCase
     /**
      * Test attribute "is_default"
      */
-    public function testPropertyIsDefault()
+    public function testPropertyIsDefault(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class PickListDTOTest extends TestCase
     /**
      * Test attribute "label"
      */
-    public function testPropertyLabel()
+    public function testPropertyLabel(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class PickListDTOTest extends TestCase
     /**
      * Test attribute "selected"
      */
-    public function testPropertySelected()
+    public function testPropertySelected(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -80,7 +80,7 @@ class PickListDTOTest extends TestCase
     /**
      * Test attribute "value"
      */
-    public function testPropertyValue()
+    public function testPropertyValue(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

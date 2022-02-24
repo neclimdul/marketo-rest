@@ -44,7 +44,7 @@ class DeleteNamedAccountListRequestTest extends TestCase
     /**
      * Test "DeleteNamedAccountListRequest"
      */
-    public function testDeleteNamedAccountListRequest()
+    public function testDeleteNamedAccountListRequest(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class DeleteNamedAccountListRequestTest extends TestCase
     /**
      * Test attribute "delete_by"
      */
-    public function testPropertyDeleteBy()
+    public function testPropertyDeleteBy(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class DeleteNamedAccountListRequestTest extends TestCase
     /**
      * Test attribute "input"
      */
-    public function testPropertyInput()
+    public function testPropertyInput(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

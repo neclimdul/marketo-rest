@@ -44,7 +44,7 @@ class LpFormResponseTest extends TestCase
     /**
      * Test "LpFormResponse"
      */
-    public function testLpFormResponse()
+    public function testLpFormResponse(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class LpFormResponseTest extends TestCase
     /**
      * Test attribute "button_label"
      */
-    public function testPropertyButtonLabel()
+    public function testPropertyButtonLabel(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class LpFormResponseTest extends TestCase
     /**
      * Test attribute "button_location"
      */
-    public function testPropertyButtonLocation()
+    public function testPropertyButtonLocation(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class LpFormResponseTest extends TestCase
     /**
      * Test attribute "created_at"
      */
-    public function testPropertyCreatedAt()
+    public function testPropertyCreatedAt(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -80,7 +80,7 @@ class LpFormResponseTest extends TestCase
     /**
      * Test attribute "description"
      */
-    public function testPropertyDescription()
+    public function testPropertyDescription(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -89,7 +89,7 @@ class LpFormResponseTest extends TestCase
     /**
      * Test attribute "folder"
      */
-    public function testPropertyFolder()
+    public function testPropertyFolder(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -98,7 +98,7 @@ class LpFormResponseTest extends TestCase
     /**
      * Test attribute "font_family"
      */
-    public function testPropertyFontFamily()
+    public function testPropertyFontFamily(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -107,7 +107,7 @@ class LpFormResponseTest extends TestCase
     /**
      * Test attribute "font_size"
      */
-    public function testPropertyFontSize()
+    public function testPropertyFontSize(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -116,7 +116,7 @@ class LpFormResponseTest extends TestCase
     /**
      * Test attribute "id"
      */
-    public function testPropertyId()
+    public function testPropertyId(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -125,7 +125,7 @@ class LpFormResponseTest extends TestCase
     /**
      * Test attribute "known_visitor"
      */
-    public function testPropertyKnownVisitor()
+    public function testPropertyKnownVisitor(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -134,7 +134,7 @@ class LpFormResponseTest extends TestCase
     /**
      * Test attribute "label_position"
      */
-    public function testPropertyLabelPosition()
+    public function testPropertyLabelPosition(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -143,7 +143,7 @@ class LpFormResponseTest extends TestCase
     /**
      * Test attribute "language"
      */
-    public function testPropertyLanguage()
+    public function testPropertyLanguage(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -152,7 +152,7 @@ class LpFormResponseTest extends TestCase
     /**
      * Test attribute "locale"
      */
-    public function testPropertyLocale()
+    public function testPropertyLocale(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -161,7 +161,7 @@ class LpFormResponseTest extends TestCase
     /**
      * Test attribute "name"
      */
-    public function testPropertyName()
+    public function testPropertyName(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -170,7 +170,7 @@ class LpFormResponseTest extends TestCase
     /**
      * Test attribute "progressive_profiling"
      */
-    public function testPropertyProgressiveProfiling()
+    public function testPropertyProgressiveProfiling(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -179,7 +179,7 @@ class LpFormResponseTest extends TestCase
     /**
      * Test attribute "status"
      */
-    public function testPropertyStatus()
+    public function testPropertyStatus(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -188,7 +188,7 @@ class LpFormResponseTest extends TestCase
     /**
      * Test attribute "thank_you_list"
      */
-    public function testPropertyThankYouList()
+    public function testPropertyThankYouList(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -197,7 +197,7 @@ class LpFormResponseTest extends TestCase
     /**
      * Test attribute "theme"
      */
-    public function testPropertyTheme()
+    public function testPropertyTheme(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -206,7 +206,7 @@ class LpFormResponseTest extends TestCase
     /**
      * Test attribute "updated_at"
      */
-    public function testPropertyUpdatedAt()
+    public function testPropertyUpdatedAt(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -215,7 +215,7 @@ class LpFormResponseTest extends TestCase
     /**
      * Test attribute "url"
      */
-    public function testPropertyUrl()
+    public function testPropertyUrl(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -224,7 +224,7 @@ class LpFormResponseTest extends TestCase
     /**
      * Test attribute "waiting_label"
      */
-    public function testPropertyWaitingLabel()
+    public function testPropertyWaitingLabel(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

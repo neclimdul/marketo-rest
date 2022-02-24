@@ -50,7 +50,7 @@ class LandingPageContentApiTest extends TestCase
      *
      * @covers ::addLandingPageContentUsingPOST
      */
-    public function testAddLandingPageContentUsingPOST()
+    public function testAddLandingPageContentUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -61,7 +61,7 @@ class LandingPageContentApiTest extends TestCase
      *
      * @covers ::getLandingPageContentUsingGET
      */
-    public function testGetLandingPageContentUsingGET()
+    public function testGetLandingPageContentUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -72,7 +72,7 @@ class LandingPageContentApiTest extends TestCase
      *
      * @covers ::getLandingPageDynamicContentsUsingGET
      */
-    public function testGetLandingPageDynamicContentsUsingGET()
+    public function testGetLandingPageDynamicContentsUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -83,7 +83,7 @@ class LandingPageContentApiTest extends TestCase
      *
      * @covers ::removeLandingPageContentUsingPOST
      */
-    public function testRemoveLandingPageContentUsingPOST()
+    public function testRemoveLandingPageContentUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -94,7 +94,7 @@ class LandingPageContentApiTest extends TestCase
      *
      * @covers ::updateLandingPageContentUsingPOST
      */
-    public function testUpdateLandingPageContentUsingPOST()
+    public function testUpdateLandingPageContentUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -105,7 +105,7 @@ class LandingPageContentApiTest extends TestCase
      *
      * @covers ::updateLandingPageDynamicContentUsingPOST
      */
-    public function testUpdateLandingPageDynamicContentUsingPOST()
+    public function testUpdateLandingPageDynamicContentUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

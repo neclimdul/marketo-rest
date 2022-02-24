@@ -94,7 +94,7 @@ class LandingPageRedirectRulesApi
      *
      * @param int $hostIndex Host index (required)
      */
-    public function setHostIndex($hostIndex)
+    public function setHostIndex($hostIndex): void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -217,7 +217,7 @@ class LandingPageRedirectRulesApi
      */
     public function createLandingPageRedirectRuleUsingPOSTRequest(
         \NecLimDul\MarketoRest\Asset\Model\CreateLandingPageRedirectRuleRequest $create_landing_page_redirect_rule_request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/redirectRules.json';
@@ -351,7 +351,7 @@ class LandingPageRedirectRulesApi
      */
     public function deleteLandingPageRedirectRuleUsingPOSTRequest(
         int $id
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/redirectRule/{id}/delete.json';
@@ -497,7 +497,7 @@ class LandingPageRedirectRulesApi
     public function getLandingPageDomainsUsingGETRequest(
         int $max_return = null,
         int $offset = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/landingPageDomains.json';
@@ -636,7 +636,7 @@ class LandingPageRedirectRulesApi
      */
     public function getLandingPageRedirectRuleByIdUsingGETRequest(
         int $id
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/redirectRule/{id}.json';
@@ -806,7 +806,7 @@ class LandingPageRedirectRulesApi
         string $redirect_to_path = null,
         string $earliest_updated_at = null,
         string $latest_updated_at = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/redirectRules.json';
@@ -955,7 +955,7 @@ class LandingPageRedirectRulesApi
     public function updateLandingPageRedirectRuleUsingPOSTRequest(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\UpdateLandingPageRedirectRuleRequest $update_landing_page_redirect_rule_request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/redirectRule/{id}.json';

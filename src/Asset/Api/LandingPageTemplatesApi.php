@@ -94,7 +94,7 @@ class LandingPageTemplatesApi
      *
      * @param int $hostIndex Host index (required)
      */
-    public function setHostIndex($hostIndex)
+    public function setHostIndex($hostIndex): void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -217,7 +217,7 @@ class LandingPageTemplatesApi
      */
     public function approveLandingPageTemplateUsingPOSTRequest(
         int $id
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/landingPageTemplate/{id}/approveDraft.json';
@@ -363,7 +363,7 @@ class LandingPageTemplatesApi
     public function cloneLpTemplateUsingPOSTRequest(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\CloneLpTemplateRequest $clone_lp_template_request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/landingPageTemplate/{id}/clone.json';
@@ -504,7 +504,7 @@ class LandingPageTemplatesApi
      */
     public function createLpTemplateUsingPOSTRequest(
         \NecLimDul\MarketoRest\Asset\Model\CreateLpTemplateRequest $create_lp_template_request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/landingPageTemplates.json';
@@ -638,7 +638,7 @@ class LandingPageTemplatesApi
      */
     public function deleteLpTemplateUsingPOSTRequest(
         int $id
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/landingPageTemplate/{id}/delete.json';
@@ -778,7 +778,7 @@ class LandingPageTemplatesApi
      */
     public function discardDraftUsingPOST2Request(
         int $id
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/landingPageTemplate/{id}/discardDraft.json';
@@ -924,7 +924,7 @@ class LandingPageTemplatesApi
     public function getLandingPageTemplateByIdUsingGETRequest(
         int $id,
         string $status = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/landingPageTemplate/{id}.json';
@@ -1069,7 +1069,7 @@ class LandingPageTemplatesApi
      */
     public function getLandingPageTemplateByNameUsingGETRequest(
         string $name
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/landingPageTemplate/byName.json';
@@ -1213,7 +1213,7 @@ class LandingPageTemplatesApi
     public function getLandingPageTemplateContentUsingGETRequest(
         int $id,
         string $status = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/landingPageTemplate/{id}/content.json';
@@ -1376,7 +1376,7 @@ class LandingPageTemplatesApi
         int $offset = null,
         string $status = null,
         string $folder = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/landingPageTemplates.json';
@@ -1517,7 +1517,7 @@ class LandingPageTemplatesApi
      */
     public function unapproveLandingPageTemplateUsingPOSTRequest(
         int $id
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/landingPageTemplate/{id}/unapprove.json';
@@ -1663,7 +1663,7 @@ class LandingPageTemplatesApi
     public function updateLandingPageTemplateContentUsingPOSTRequest(
         int $id,
         string $content
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/landingPageTemplate/{id}/content.json';
@@ -1853,7 +1853,7 @@ class LandingPageTemplatesApi
     public function updateLpTemplateUsingPOSTRequest(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\UpdateLpTemplateRequest $update_lp_template_request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/landingPageTemplate/{id}.json';

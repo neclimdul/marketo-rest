@@ -44,7 +44,7 @@ class ExportProgramMemberFilterTest extends TestCase
     /**
      * Test "ExportProgramMemberFilter"
      */
-    public function testExportProgramMemberFilter()
+    public function testExportProgramMemberFilter(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class ExportProgramMemberFilterTest extends TestCase
     /**
      * Test attribute "program_id"
      */
-    public function testPropertyProgramId()
+    public function testPropertyProgramId(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

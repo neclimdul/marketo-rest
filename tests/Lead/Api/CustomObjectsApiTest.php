@@ -50,7 +50,7 @@ class CustomObjectsApiTest extends TestCase
      *
      * @covers ::addCustomObjectTypeFieldsUsingPOST
      */
-    public function testAddCustomObjectTypeFieldsUsingPOST()
+    public function testAddCustomObjectTypeFieldsUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -61,7 +61,7 @@ class CustomObjectsApiTest extends TestCase
      *
      * @covers ::approveCustomObjectTypeUsingPOST
      */
-    public function testApproveCustomObjectTypeUsingPOST()
+    public function testApproveCustomObjectTypeUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -72,7 +72,7 @@ class CustomObjectsApiTest extends TestCase
      *
      * @covers ::deleteCustomObjectTypeFieldsUsingPOST
      */
-    public function testDeleteCustomObjectTypeFieldsUsingPOST()
+    public function testDeleteCustomObjectTypeFieldsUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -83,7 +83,7 @@ class CustomObjectsApiTest extends TestCase
      *
      * @covers ::deleteCustomObjectTypeUsingPOST
      */
-    public function testDeleteCustomObjectTypeUsingPOST()
+    public function testDeleteCustomObjectTypeUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -94,7 +94,7 @@ class CustomObjectsApiTest extends TestCase
      *
      * @covers ::deleteCustomObjectsUsingPOST
      */
-    public function testDeleteCustomObjectsUsingPOST()
+    public function testDeleteCustomObjectsUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -105,7 +105,7 @@ class CustomObjectsApiTest extends TestCase
      *
      * @covers ::describeCustomObjectTypeUsingGET
      */
-    public function testDescribeCustomObjectTypeUsingGET()
+    public function testDescribeCustomObjectTypeUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -116,7 +116,7 @@ class CustomObjectsApiTest extends TestCase
      *
      * @covers ::describeUsingGET1
      */
-    public function testDescribeUsingGET1()
+    public function testDescribeUsingGET1(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -127,7 +127,7 @@ class CustomObjectsApiTest extends TestCase
      *
      * @covers ::discardCustomObjectTypeUsingPOST
      */
-    public function testDiscardCustomObjectTypeUsingPOST()
+    public function testDiscardCustomObjectTypeUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -138,7 +138,7 @@ class CustomObjectsApiTest extends TestCase
      *
      * @covers ::getCustomObjectTypeDependentAssetsUsingGET
      */
-    public function testGetCustomObjectTypeDependentAssetsUsingGET()
+    public function testGetCustomObjectTypeDependentAssetsUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -149,7 +149,7 @@ class CustomObjectsApiTest extends TestCase
      *
      * @covers ::getCustomObjectTypeFieldDataTypesUsingGET
      */
-    public function testGetCustomObjectTypeFieldDataTypesUsingGET()
+    public function testGetCustomObjectTypeFieldDataTypesUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -160,7 +160,7 @@ class CustomObjectsApiTest extends TestCase
      *
      * @covers ::getCustomObjectTypeLinkableObjectsUsingGET
      */
-    public function testGetCustomObjectTypeLinkableObjectsUsingGET()
+    public function testGetCustomObjectTypeLinkableObjectsUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -171,7 +171,7 @@ class CustomObjectsApiTest extends TestCase
      *
      * @covers ::getCustomObjectsUsingGET
      */
-    public function testGetCustomObjectsUsingGET()
+    public function testGetCustomObjectsUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -182,7 +182,7 @@ class CustomObjectsApiTest extends TestCase
      *
      * @covers ::listCustomObjectTypesUsingGET
      */
-    public function testListCustomObjectTypesUsingGET()
+    public function testListCustomObjectTypesUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -193,7 +193,7 @@ class CustomObjectsApiTest extends TestCase
      *
      * @covers ::listCustomObjectsUsingGET
      */
-    public function testListCustomObjectsUsingGET()
+    public function testListCustomObjectsUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -204,7 +204,7 @@ class CustomObjectsApiTest extends TestCase
      *
      * @covers ::syncCustomObjectTypeUsingPOST
      */
-    public function testSyncCustomObjectTypeUsingPOST()
+    public function testSyncCustomObjectTypeUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -215,7 +215,7 @@ class CustomObjectsApiTest extends TestCase
      *
      * @covers ::syncCustomObjectsUsingPOST
      */
-    public function testSyncCustomObjectsUsingPOST()
+    public function testSyncCustomObjectsUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -226,7 +226,7 @@ class CustomObjectsApiTest extends TestCase
      *
      * @covers ::updateCustomObjectTypeFieldUsingPOST
      */
-    public function testUpdateCustomObjectTypeFieldUsingPOST()
+    public function testUpdateCustomObjectTypeFieldUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

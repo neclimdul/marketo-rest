@@ -44,7 +44,7 @@ class GetFilesRequestTest extends TestCase
     /**
      * Test "GetFilesRequest"
      */
-    public function testGetFilesRequest()
+    public function testGetFilesRequest(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class GetFilesRequestTest extends TestCase
     /**
      * Test attribute "folder"
      */
-    public function testPropertyFolder()
+    public function testPropertyFolder(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class GetFilesRequestTest extends TestCase
     /**
      * Test attribute "max_return"
      */
-    public function testPropertyMaxReturn()
+    public function testPropertyMaxReturn(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class GetFilesRequestTest extends TestCase
     /**
      * Test attribute "offset"
      */
-    public function testPropertyOffset()
+    public function testPropertyOffset(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

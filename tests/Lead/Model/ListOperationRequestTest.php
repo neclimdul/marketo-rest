@@ -44,7 +44,7 @@ class ListOperationRequestTest extends TestCase
     /**
      * Test "ListOperationRequest"
      */
-    public function testListOperationRequest()
+    public function testListOperationRequest(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class ListOperationRequestTest extends TestCase
     /**
      * Test attribute "input"
      */
-    public function testPropertyInput()
+    public function testPropertyInput(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

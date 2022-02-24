@@ -50,7 +50,7 @@ class IdentityApiTest extends TestCase
      *
      * @covers ::identityUsingGET
      */
-    public function testIdentityUsingGET()
+    public function testIdentityUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

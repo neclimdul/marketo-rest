@@ -44,7 +44,7 @@ class UpdateLandingPageContentRequestTest extends TestCase
     /**
      * Test "UpdateLandingPageContentRequest"
      */
-    public function testUpdateLandingPageContentRequest()
+    public function testUpdateLandingPageContentRequest(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class UpdateLandingPageContentRequestTest extends TestCase
     /**
      * Test attribute "background_color"
      */
-    public function testPropertyBackgroundColor()
+    public function testPropertyBackgroundColor(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class UpdateLandingPageContentRequestTest extends TestCase
     /**
      * Test attribute "border_color"
      */
-    public function testPropertyBorderColor()
+    public function testPropertyBorderColor(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class UpdateLandingPageContentRequestTest extends TestCase
     /**
      * Test attribute "border_style"
      */
-    public function testPropertyBorderStyle()
+    public function testPropertyBorderStyle(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -80,7 +80,7 @@ class UpdateLandingPageContentRequestTest extends TestCase
     /**
      * Test attribute "border_width"
      */
-    public function testPropertyBorderWidth()
+    public function testPropertyBorderWidth(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -89,7 +89,7 @@ class UpdateLandingPageContentRequestTest extends TestCase
     /**
      * Test attribute "height"
      */
-    public function testPropertyHeight()
+    public function testPropertyHeight(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -98,7 +98,7 @@ class UpdateLandingPageContentRequestTest extends TestCase
     /**
      * Test attribute "hide_desktop"
      */
-    public function testPropertyHideDesktop()
+    public function testPropertyHideDesktop(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -107,7 +107,7 @@ class UpdateLandingPageContentRequestTest extends TestCase
     /**
      * Test attribute "hide_mobile"
      */
-    public function testPropertyHideMobile()
+    public function testPropertyHideMobile(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -116,7 +116,7 @@ class UpdateLandingPageContentRequestTest extends TestCase
     /**
      * Test attribute "image_open_new_window"
      */
-    public function testPropertyImageOpenNewWindow()
+    public function testPropertyImageOpenNewWindow(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -125,7 +125,7 @@ class UpdateLandingPageContentRequestTest extends TestCase
     /**
      * Test attribute "index"
      */
-    public function testPropertyIndex()
+    public function testPropertyIndex(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -134,7 +134,7 @@ class UpdateLandingPageContentRequestTest extends TestCase
     /**
      * Test attribute "left"
      */
-    public function testPropertyLeft()
+    public function testPropertyLeft(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -143,7 +143,7 @@ class UpdateLandingPageContentRequestTest extends TestCase
     /**
      * Test attribute "link_url"
      */
-    public function testPropertyLinkUrl()
+    public function testPropertyLinkUrl(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -152,7 +152,7 @@ class UpdateLandingPageContentRequestTest extends TestCase
     /**
      * Test attribute "opacity"
      */
-    public function testPropertyOpacity()
+    public function testPropertyOpacity(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -161,7 +161,7 @@ class UpdateLandingPageContentRequestTest extends TestCase
     /**
      * Test attribute "top"
      */
-    public function testPropertyTop()
+    public function testPropertyTop(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -170,7 +170,7 @@ class UpdateLandingPageContentRequestTest extends TestCase
     /**
      * Test attribute "type"
      */
-    public function testPropertyType()
+    public function testPropertyType(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -179,7 +179,7 @@ class UpdateLandingPageContentRequestTest extends TestCase
     /**
      * Test attribute "value"
      */
-    public function testPropertyValue()
+    public function testPropertyValue(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -188,7 +188,7 @@ class UpdateLandingPageContentRequestTest extends TestCase
     /**
      * Test attribute "width"
      */
-    public function testPropertyWidth()
+    public function testPropertyWidth(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -197,7 +197,7 @@ class UpdateLandingPageContentRequestTest extends TestCase
     /**
      * Test attribute "z_index"
      */
-    public function testPropertyZIndex()
+    public function testPropertyZIndex(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

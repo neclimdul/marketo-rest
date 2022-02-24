@@ -94,7 +94,7 @@ class ProgramsApi
      *
      * @param int $hostIndex Host index (required)
      */
-    public function setHostIndex($hostIndex)
+    public function setHostIndex($hostIndex): void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -217,7 +217,7 @@ class ProgramsApi
      */
     public function approveProgramUsingPOSTRequest(
         int $id
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/program/{id}/approve.json';
@@ -381,7 +381,7 @@ class ProgramsApi
         string $filter_type = null,
         string $earliest_updated_at = null,
         string $latest_updated_at = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/programs.json';
@@ -529,7 +529,7 @@ class ProgramsApi
     public function cloneProgramUsingPOSTRequest(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\CloneProgramRequest $clone_program_request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/program/{id}/clone.json';
@@ -670,7 +670,7 @@ class ProgramsApi
      */
     public function createProgramUsingPOSTRequest(
         \NecLimDul\MarketoRest\Asset\Model\CreateProgramRequest $create_program_request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/programs.json';
@@ -804,7 +804,7 @@ class ProgramsApi
      */
     public function deleteProgramUsingPOSTRequest(
         int $id
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/program/{id}/delete.json';
@@ -944,7 +944,7 @@ class ProgramsApi
      */
     public function getProgramByIdUsingGETRequest(
         int $id
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/program/{id}.json';
@@ -1096,7 +1096,7 @@ class ProgramsApi
         string $name,
         bool $include_tags = null,
         bool $include_costs = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/program/byName.json';
@@ -1254,7 +1254,7 @@ class ProgramsApi
         string $tag_value,
         int $max_return = null,
         int $offset = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/program/byTag.json';
@@ -1401,7 +1401,7 @@ class ProgramsApi
     public function getSmartListByProgramIdUsingGETRequest(
         int $program_id,
         bool $include_rules = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/program/{programId}/smartList.json';
@@ -1546,7 +1546,7 @@ class ProgramsApi
      */
     public function unapproveProgramUsingPOSTRequest(
         int $id
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/program/{id}/unapprove.json';
@@ -1692,7 +1692,7 @@ class ProgramsApi
     public function updateProgramUsingPOSTRequest(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\UpdateProgramRequest $update_program_request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/program/{id}.json';

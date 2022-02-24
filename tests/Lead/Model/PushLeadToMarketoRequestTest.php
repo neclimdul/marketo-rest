@@ -44,7 +44,7 @@ class PushLeadToMarketoRequestTest extends TestCase
     /**
      * Test "PushLeadToMarketoRequest"
      */
-    public function testPushLeadToMarketoRequest()
+    public function testPushLeadToMarketoRequest(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class PushLeadToMarketoRequestTest extends TestCase
     /**
      * Test attribute "input"
      */
-    public function testPropertyInput()
+    public function testPropertyInput(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class PushLeadToMarketoRequestTest extends TestCase
     /**
      * Test attribute "lookup_field"
      */
-    public function testPropertyLookupField()
+    public function testPropertyLookupField(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class PushLeadToMarketoRequestTest extends TestCase
     /**
      * Test attribute "partition_name"
      */
-    public function testPropertyPartitionName()
+    public function testPropertyPartitionName(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -80,7 +80,7 @@ class PushLeadToMarketoRequestTest extends TestCase
     /**
      * Test attribute "program_name"
      */
-    public function testPropertyProgramName()
+    public function testPropertyProgramName(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -89,7 +89,7 @@ class PushLeadToMarketoRequestTest extends TestCase
     /**
      * Test attribute "program_status"
      */
-    public function testPropertyProgramStatus()
+    public function testPropertyProgramStatus(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -98,7 +98,7 @@ class PushLeadToMarketoRequestTest extends TestCase
     /**
      * Test attribute "reason"
      */
-    public function testPropertyReason()
+    public function testPropertyReason(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -107,7 +107,7 @@ class PushLeadToMarketoRequestTest extends TestCase
     /**
      * Test attribute "source"
      */
-    public function testPropertySource()
+    public function testPropertySource(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

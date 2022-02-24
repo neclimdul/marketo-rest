@@ -44,7 +44,7 @@ class SyncLeadRequestTest extends TestCase
     /**
      * Test "SyncLeadRequest"
      */
-    public function testSyncLeadRequest()
+    public function testSyncLeadRequest(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class SyncLeadRequestTest extends TestCase
     /**
      * Test attribute "action"
      */
-    public function testPropertyAction()
+    public function testPropertyAction(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class SyncLeadRequestTest extends TestCase
     /**
      * Test attribute "async_processing"
      */
-    public function testPropertyAsyncProcessing()
+    public function testPropertyAsyncProcessing(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class SyncLeadRequestTest extends TestCase
     /**
      * Test attribute "input"
      */
-    public function testPropertyInput()
+    public function testPropertyInput(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -80,7 +80,7 @@ class SyncLeadRequestTest extends TestCase
     /**
      * Test attribute "lookup_field"
      */
-    public function testPropertyLookupField()
+    public function testPropertyLookupField(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -89,7 +89,7 @@ class SyncLeadRequestTest extends TestCase
     /**
      * Test attribute "partition_name"
      */
-    public function testPropertyPartitionName()
+    public function testPropertyPartitionName(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

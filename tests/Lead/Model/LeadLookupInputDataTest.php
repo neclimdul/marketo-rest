@@ -44,7 +44,7 @@ class LeadLookupInputDataTest extends TestCase
     /**
      * Test "LeadLookupInputData"
      */
-    public function testLeadLookupInputData()
+    public function testLeadLookupInputData(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class LeadLookupInputDataTest extends TestCase
     /**
      * Test attribute "id"
      */
-    public function testPropertyId()
+    public function testPropertyId(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

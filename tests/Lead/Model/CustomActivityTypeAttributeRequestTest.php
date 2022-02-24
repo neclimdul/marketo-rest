@@ -44,7 +44,7 @@ class CustomActivityTypeAttributeRequestTest extends TestCase
     /**
      * Test "CustomActivityTypeAttributeRequest"
      */
-    public function testCustomActivityTypeAttributeRequest()
+    public function testCustomActivityTypeAttributeRequest(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class CustomActivityTypeAttributeRequestTest extends TestCase
     /**
      * Test attribute "attributes"
      */
-    public function testPropertyAttributes()
+    public function testPropertyAttributes(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

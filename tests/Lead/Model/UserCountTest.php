@@ -44,7 +44,7 @@ class UserCountTest extends TestCase
     /**
      * Test "UserCount"
      */
-    public function testUserCount()
+    public function testUserCount(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class UserCountTest extends TestCase
     /**
      * Test attribute "count"
      */
-    public function testPropertyCount()
+    public function testPropertyCount(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class UserCountTest extends TestCase
     /**
      * Test attribute "user_id"
      */
-    public function testPropertyUserId()
+    public function testPropertyUserId(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

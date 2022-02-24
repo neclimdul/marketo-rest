@@ -44,7 +44,7 @@ class FormVisibilityRuleDTOTest extends TestCase
     /**
      * Test "FormVisibilityRuleDTO"
      */
-    public function testFormVisibilityRuleDTO()
+    public function testFormVisibilityRuleDTO(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class FormVisibilityRuleDTOTest extends TestCase
     /**
      * Test attribute "alt_label"
      */
-    public function testPropertyAltLabel()
+    public function testPropertyAltLabel(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class FormVisibilityRuleDTOTest extends TestCase
     /**
      * Test attribute "operator"
      */
-    public function testPropertyOperator()
+    public function testPropertyOperator(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class FormVisibilityRuleDTOTest extends TestCase
     /**
      * Test attribute "picklist_filter_values"
      */
-    public function testPropertyPicklistFilterValues()
+    public function testPropertyPicklistFilterValues(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -80,7 +80,7 @@ class FormVisibilityRuleDTOTest extends TestCase
     /**
      * Test attribute "subject_field"
      */
-    public function testPropertySubjectField()
+    public function testPropertySubjectField(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -89,7 +89,7 @@ class FormVisibilityRuleDTOTest extends TestCase
     /**
      * Test attribute "values"
      */
-    public function testPropertyValues()
+    public function testPropertyValues(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

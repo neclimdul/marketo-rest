@@ -44,7 +44,7 @@ class UpdateEmailTemplateContentRequestTest extends TestCase
     /**
      * Test "UpdateEmailTemplateContentRequest"
      */
-    public function testUpdateEmailTemplateContentRequest()
+    public function testUpdateEmailTemplateContentRequest(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class UpdateEmailTemplateContentRequestTest extends TestCase
     /**
      * Test attribute "content"
      */
-    public function testPropertyContent()
+    public function testPropertyContent(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

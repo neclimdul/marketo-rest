@@ -44,7 +44,7 @@ class MultipartFileTest extends TestCase
     /**
      * Test "MultipartFile"
      */
-    public function testMultipartFile()
+    public function testMultipartFile(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

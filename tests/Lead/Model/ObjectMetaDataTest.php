@@ -44,7 +44,7 @@ class ObjectMetaDataTest extends TestCase
     /**
      * Test "ObjectMetaData"
      */
-    public function testObjectMetaData()
+    public function testObjectMetaData(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class ObjectMetaDataTest extends TestCase
     /**
      * Test attribute "created_at"
      */
-    public function testPropertyCreatedAt()
+    public function testPropertyCreatedAt(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class ObjectMetaDataTest extends TestCase
     /**
      * Test attribute "dedupe_fields"
      */
-    public function testPropertyDedupeFields()
+    public function testPropertyDedupeFields(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class ObjectMetaDataTest extends TestCase
     /**
      * Test attribute "description"
      */
-    public function testPropertyDescription()
+    public function testPropertyDescription(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -80,7 +80,7 @@ class ObjectMetaDataTest extends TestCase
     /**
      * Test attribute "display_name"
      */
-    public function testPropertyDisplayName()
+    public function testPropertyDisplayName(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -89,7 +89,7 @@ class ObjectMetaDataTest extends TestCase
     /**
      * Test attribute "plural_name"
      */
-    public function testPropertyPluralName()
+    public function testPropertyPluralName(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -98,7 +98,7 @@ class ObjectMetaDataTest extends TestCase
     /**
      * Test attribute "fields"
      */
-    public function testPropertyFields()
+    public function testPropertyFields(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -107,7 +107,7 @@ class ObjectMetaDataTest extends TestCase
     /**
      * Test attribute "id_field"
      */
-    public function testPropertyIdField()
+    public function testPropertyIdField(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -116,7 +116,7 @@ class ObjectMetaDataTest extends TestCase
     /**
      * Test attribute "api_name"
      */
-    public function testPropertyApiName()
+    public function testPropertyApiName(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -125,7 +125,7 @@ class ObjectMetaDataTest extends TestCase
     /**
      * Test attribute "relationships"
      */
-    public function testPropertyRelationships()
+    public function testPropertyRelationships(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -134,7 +134,7 @@ class ObjectMetaDataTest extends TestCase
     /**
      * Test attribute "searchable_fields"
      */
-    public function testPropertySearchableFields()
+    public function testPropertySearchableFields(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -143,7 +143,7 @@ class ObjectMetaDataTest extends TestCase
     /**
      * Test attribute "updated_at"
      */
-    public function testPropertyUpdatedAt()
+    public function testPropertyUpdatedAt(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -152,7 +152,7 @@ class ObjectMetaDataTest extends TestCase
     /**
      * Test attribute "state"
      */
-    public function testPropertyState()
+    public function testPropertyState(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -161,7 +161,7 @@ class ObjectMetaDataTest extends TestCase
     /**
      * Test attribute "version"
      */
-    public function testPropertyVersion()
+    public function testPropertyVersion(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

@@ -44,7 +44,7 @@ class FormTest extends TestCase
     /**
      * Test "Form"
      */
-    public function testForm()
+    public function testForm(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class FormTest extends TestCase
     /**
      * Test attribute "lead_form_fields"
      */
-    public function testPropertyLeadFormFields()
+    public function testPropertyLeadFormFields(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class FormTest extends TestCase
     /**
      * Test attribute "visitor_data"
      */
-    public function testPropertyVisitorData()
+    public function testPropertyVisitorData(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class FormTest extends TestCase
     /**
      * Test attribute "cookie"
      */
-    public function testPropertyCookie()
+    public function testPropertyCookie(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

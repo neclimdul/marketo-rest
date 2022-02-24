@@ -44,7 +44,7 @@ class ProgramMemberDeleteResponseTest extends TestCase
     /**
      * Test "ProgramMemberDeleteResponse"
      */
-    public function testProgramMemberDeleteResponse()
+    public function testProgramMemberDeleteResponse(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class ProgramMemberDeleteResponseTest extends TestCase
     /**
      * Test attribute "status"
      */
-    public function testPropertyStatus()
+    public function testPropertyStatus(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class ProgramMemberDeleteResponseTest extends TestCase
     /**
      * Test attribute "reasons"
      */
-    public function testPropertyReasons()
+    public function testPropertyReasons(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class ProgramMemberDeleteResponseTest extends TestCase
     /**
      * Test attribute "lead_id"
      */
-    public function testPropertyLeadId()
+    public function testPropertyLeadId(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -80,7 +80,7 @@ class ProgramMemberDeleteResponseTest extends TestCase
     /**
      * Test attribute "seq"
      */
-    public function testPropertySeq()
+    public function testPropertySeq(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

@@ -44,7 +44,7 @@ class ObjectRelationTest extends TestCase
     /**
      * Test "ObjectRelation"
      */
-    public function testObjectRelation()
+    public function testObjectRelation(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class ObjectRelationTest extends TestCase
     /**
      * Test attribute "field"
      */
-    public function testPropertyField()
+    public function testPropertyField(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class ObjectRelationTest extends TestCase
     /**
      * Test attribute "related_to"
      */
-    public function testPropertyRelatedTo()
+    public function testPropertyRelatedTo(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class ObjectRelationTest extends TestCase
     /**
      * Test attribute "type"
      */
-    public function testPropertyType()
+    public function testPropertyType(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

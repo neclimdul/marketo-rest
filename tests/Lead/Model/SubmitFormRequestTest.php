@@ -44,7 +44,7 @@ class SubmitFormRequestTest extends TestCase
     /**
      * Test "SubmitFormRequest"
      */
-    public function testSubmitFormRequest()
+    public function testSubmitFormRequest(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class SubmitFormRequestTest extends TestCase
     /**
      * Test attribute "input"
      */
-    public function testPropertyInput()
+    public function testPropertyInput(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class SubmitFormRequestTest extends TestCase
     /**
      * Test attribute "form_id"
      */
-    public function testPropertyFormId()
+    public function testPropertyFormId(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class SubmitFormRequestTest extends TestCase
     /**
      * Test attribute "program_id"
      */
-    public function testPropertyProgramId()
+    public function testPropertyProgramId(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

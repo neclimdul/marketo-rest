@@ -44,7 +44,7 @@ class LandingPageRedirectRuleTest extends TestCase
     /**
      * Test "LandingPageRedirectRule"
      */
-    public function testLandingPageRedirectRule()
+    public function testLandingPageRedirectRule(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class LandingPageRedirectRuleTest extends TestCase
     /**
      * Test attribute "id"
      */
-    public function testPropertyId()
+    public function testPropertyId(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class LandingPageRedirectRuleTest extends TestCase
     /**
      * Test attribute "redirect_from_url"
      */
-    public function testPropertyRedirectFromUrl()
+    public function testPropertyRedirectFromUrl(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class LandingPageRedirectRuleTest extends TestCase
     /**
      * Test attribute "redirect_to_url"
      */
-    public function testPropertyRedirectToUrl()
+    public function testPropertyRedirectToUrl(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -80,7 +80,7 @@ class LandingPageRedirectRuleTest extends TestCase
     /**
      * Test attribute "hostname"
      */
-    public function testPropertyHostname()
+    public function testPropertyHostname(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -89,7 +89,7 @@ class LandingPageRedirectRuleTest extends TestCase
     /**
      * Test attribute "redirect_from"
      */
-    public function testPropertyRedirectFrom()
+    public function testPropertyRedirectFrom(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -98,7 +98,7 @@ class LandingPageRedirectRuleTest extends TestCase
     /**
      * Test attribute "redirect_to"
      */
-    public function testPropertyRedirectTo()
+    public function testPropertyRedirectTo(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -107,7 +107,7 @@ class LandingPageRedirectRuleTest extends TestCase
     /**
      * Test attribute "created_at"
      */
-    public function testPropertyCreatedAt()
+    public function testPropertyCreatedAt(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -116,7 +116,7 @@ class LandingPageRedirectRuleTest extends TestCase
     /**
      * Test attribute "updated_at"
      */
-    public function testPropertyUpdatedAt()
+    public function testPropertyUpdatedAt(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

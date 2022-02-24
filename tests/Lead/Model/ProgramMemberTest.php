@@ -44,7 +44,7 @@ class ProgramMemberTest extends TestCase
     /**
      * Test "ProgramMember"
      */
-    public function testProgramMember()
+    public function testProgramMember(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class ProgramMemberTest extends TestCase
     /**
      * Test attribute "seq"
      */
-    public function testPropertySeq()
+    public function testPropertySeq(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class ProgramMemberTest extends TestCase
     /**
      * Test attribute "lead_id"
      */
-    public function testPropertyLeadId()
+    public function testPropertyLeadId(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class ProgramMemberTest extends TestCase
     /**
      * Test attribute "reached_success"
      */
-    public function testPropertyReachedSuccess()
+    public function testPropertyReachedSuccess(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -80,7 +80,7 @@ class ProgramMemberTest extends TestCase
     /**
      * Test attribute "program_id"
      */
-    public function testPropertyProgramId()
+    public function testPropertyProgramId(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -89,7 +89,7 @@ class ProgramMemberTest extends TestCase
     /**
      * Test attribute "acquired_by"
      */
-    public function testPropertyAcquiredBy()
+    public function testPropertyAcquiredBy(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -98,7 +98,7 @@ class ProgramMemberTest extends TestCase
     /**
      * Test attribute "membership_date"
      */
-    public function testPropertyMembershipDate()
+    public function testPropertyMembershipDate(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

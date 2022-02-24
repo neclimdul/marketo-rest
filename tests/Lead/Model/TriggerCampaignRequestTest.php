@@ -44,7 +44,7 @@ class TriggerCampaignRequestTest extends TestCase
     /**
      * Test "TriggerCampaignRequest"
      */
-    public function testTriggerCampaignRequest()
+    public function testTriggerCampaignRequest(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class TriggerCampaignRequestTest extends TestCase
     /**
      * Test attribute "input"
      */
-    public function testPropertyInput()
+    public function testPropertyInput(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

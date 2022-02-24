@@ -44,7 +44,7 @@ class ObjectFieldTest extends TestCase
     /**
      * Test "ObjectField"
      */
-    public function testObjectField()
+    public function testObjectField(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class ObjectFieldTest extends TestCase
     /**
      * Test attribute "data_type"
      */
-    public function testPropertyDataType()
+    public function testPropertyDataType(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class ObjectFieldTest extends TestCase
     /**
      * Test attribute "display_name"
      */
-    public function testPropertyDisplayName()
+    public function testPropertyDisplayName(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class ObjectFieldTest extends TestCase
     /**
      * Test attribute "length"
      */
-    public function testPropertyLength()
+    public function testPropertyLength(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -80,7 +80,7 @@ class ObjectFieldTest extends TestCase
     /**
      * Test attribute "name"
      */
-    public function testPropertyName()
+    public function testPropertyName(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -89,7 +89,7 @@ class ObjectFieldTest extends TestCase
     /**
      * Test attribute "updateable"
      */
-    public function testPropertyUpdateable()
+    public function testPropertyUpdateable(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -98,7 +98,7 @@ class ObjectFieldTest extends TestCase
     /**
      * Test attribute "crm_managed"
      */
-    public function testPropertyCrmManaged()
+    public function testPropertyCrmManaged(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

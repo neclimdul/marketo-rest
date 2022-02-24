@@ -44,7 +44,7 @@ class ImportProgramMemberResponseTest extends TestCase
     /**
      * Test "ImportProgramMemberResponse"
      */
-    public function testImportProgramMemberResponse()
+    public function testImportProgramMemberResponse(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class ImportProgramMemberResponseTest extends TestCase
     /**
      * Test attribute "batch_id"
      */
-    public function testPropertyBatchId()
+    public function testPropertyBatchId(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class ImportProgramMemberResponseTest extends TestCase
     /**
      * Test attribute "import_id"
      */
-    public function testPropertyImportId()
+    public function testPropertyImportId(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class ImportProgramMemberResponseTest extends TestCase
     /**
      * Test attribute "status"
      */
-    public function testPropertyStatus()
+    public function testPropertyStatus(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

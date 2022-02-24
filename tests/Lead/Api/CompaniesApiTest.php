@@ -50,7 +50,7 @@ class CompaniesApiTest extends TestCase
      *
      * @covers ::deleteCompaniesUsingPOST
      */
-    public function testDeleteCompaniesUsingPOST()
+    public function testDeleteCompaniesUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -61,7 +61,7 @@ class CompaniesApiTest extends TestCase
      *
      * @covers ::describeUsingGET
      */
-    public function testDescribeUsingGET()
+    public function testDescribeUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -72,7 +72,7 @@ class CompaniesApiTest extends TestCase
      *
      * @covers ::getCompaniesUsingGET
      */
-    public function testGetCompaniesUsingGET()
+    public function testGetCompaniesUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -83,7 +83,7 @@ class CompaniesApiTest extends TestCase
      *
      * @covers ::getCompanyFieldByNameUsingGET
      */
-    public function testGetCompanyFieldByNameUsingGET()
+    public function testGetCompanyFieldByNameUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -94,7 +94,7 @@ class CompaniesApiTest extends TestCase
      *
      * @covers ::getCompanyFieldsUsingGET
      */
-    public function testGetCompanyFieldsUsingGET()
+    public function testGetCompanyFieldsUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -105,7 +105,7 @@ class CompaniesApiTest extends TestCase
      *
      * @covers ::syncCompaniesUsingPOST
      */
-    public function testSyncCompaniesUsingPOST()
+    public function testSyncCompaniesUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

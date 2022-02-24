@@ -44,7 +44,7 @@ class InputStreamTest extends TestCase
     /**
      * Test "InputStream"
      */
-    public function testInputStream()
+    public function testInputStream(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

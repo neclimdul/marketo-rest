@@ -50,7 +50,7 @@ class StaticListsApiTest extends TestCase
      *
      * @covers ::addLeadsToListUsingPOST
      */
-    public function testAddLeadsToListUsingPOST()
+    public function testAddLeadsToListUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -61,7 +61,7 @@ class StaticListsApiTest extends TestCase
      *
      * @covers ::areLeadsMemberOfListUsingGET
      */
-    public function testAreLeadsMemberOfListUsingGET()
+    public function testAreLeadsMemberOfListUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -72,7 +72,7 @@ class StaticListsApiTest extends TestCase
      *
      * @covers ::getLeadsByListIdUsingGET
      */
-    public function testGetLeadsByListIdUsingGET()
+    public function testGetLeadsByListIdUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -83,7 +83,7 @@ class StaticListsApiTest extends TestCase
      *
      * @covers ::getLeadsByListIdUsingGET1
      */
-    public function testGetLeadsByListIdUsingGET1()
+    public function testGetLeadsByListIdUsingGET1(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -94,7 +94,7 @@ class StaticListsApiTest extends TestCase
      *
      * @covers ::getListByIdUsingGET
      */
-    public function testGetListByIdUsingGET()
+    public function testGetListByIdUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -105,7 +105,7 @@ class StaticListsApiTest extends TestCase
      *
      * @covers ::getListsUsingGET
      */
-    public function testGetListsUsingGET()
+    public function testGetListsUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -116,7 +116,7 @@ class StaticListsApiTest extends TestCase
      *
      * @covers ::removeLeadsFromListUsingDELETE
      */
-    public function testRemoveLeadsFromListUsingDELETE()
+    public function testRemoveLeadsFromListUsingDELETE(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

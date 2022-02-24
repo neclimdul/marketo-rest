@@ -44,7 +44,7 @@ class SmartListConditionsTest extends TestCase
     /**
      * Test "SmartListConditions"
      */
-    public function testSmartListConditions()
+    public function testSmartListConditions(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class SmartListConditionsTest extends TestCase
     /**
      * Test attribute "activity_attribute_id"
      */
-    public function testPropertyActivityAttributeId()
+    public function testPropertyActivityAttributeId(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class SmartListConditionsTest extends TestCase
     /**
      * Test attribute "activity_attribute_name"
      */
-    public function testPropertyActivityAttributeName()
+    public function testPropertyActivityAttributeName(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class SmartListConditionsTest extends TestCase
     /**
      * Test attribute "operator"
      */
-    public function testPropertyOperator()
+    public function testPropertyOperator(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -80,7 +80,7 @@ class SmartListConditionsTest extends TestCase
     /**
      * Test attribute "values"
      */
-    public function testPropertyValues()
+    public function testPropertyValues(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -89,7 +89,7 @@ class SmartListConditionsTest extends TestCase
     /**
      * Test attribute "is_primary"
      */
-    public function testPropertyIsPrimary()
+    public function testPropertyIsPrimary(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

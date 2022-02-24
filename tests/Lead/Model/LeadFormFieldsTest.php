@@ -44,7 +44,7 @@ class LeadFormFieldsTest extends TestCase
     /**
      * Test "LeadFormFields"
      */
-    public function testLeadFormFields()
+    public function testLeadFormFields(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class LeadFormFieldsTest extends TestCase
     /**
      * Test attribute "email"
      */
-    public function testPropertyEmail()
+    public function testPropertyEmail(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

@@ -44,7 +44,7 @@ class ActivityTest extends TestCase
     /**
      * Test "Activity"
      */
-    public function testActivity()
+    public function testActivity(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class ActivityTest extends TestCase
     /**
      * Test attribute "activity_date"
      */
-    public function testPropertyActivityDate()
+    public function testPropertyActivityDate(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class ActivityTest extends TestCase
     /**
      * Test attribute "activity_type_id"
      */
-    public function testPropertyActivityTypeId()
+    public function testPropertyActivityTypeId(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class ActivityTest extends TestCase
     /**
      * Test attribute "attributes"
      */
-    public function testPropertyAttributes()
+    public function testPropertyAttributes(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -80,7 +80,7 @@ class ActivityTest extends TestCase
     /**
      * Test attribute "campaign_id"
      */
-    public function testPropertyCampaignId()
+    public function testPropertyCampaignId(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -89,7 +89,7 @@ class ActivityTest extends TestCase
     /**
      * Test attribute "id"
      */
-    public function testPropertyId()
+    public function testPropertyId(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -98,7 +98,7 @@ class ActivityTest extends TestCase
     /**
      * Test attribute "lead_id"
      */
-    public function testPropertyLeadId()
+    public function testPropertyLeadId(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -107,7 +107,7 @@ class ActivityTest extends TestCase
     /**
      * Test attribute "marketo_guid"
      */
-    public function testPropertyMarketoGuid()
+    public function testPropertyMarketoGuid(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -116,7 +116,7 @@ class ActivityTest extends TestCase
     /**
      * Test attribute "primary_attribute_value"
      */
-    public function testPropertyPrimaryAttributeValue()
+    public function testPropertyPrimaryAttributeValue(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -125,7 +125,7 @@ class ActivityTest extends TestCase
     /**
      * Test attribute "primary_attribute_value_id"
      */
-    public function testPropertyPrimaryAttributeValueId()
+    public function testPropertyPrimaryAttributeValueId(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

@@ -50,7 +50,7 @@ class BulkImportProgramMembersApiTest extends TestCase
      *
      * @covers ::getImportProgramMemberFailuresUsingGET
      */
-    public function testGetImportProgramMemberFailuresUsingGET()
+    public function testGetImportProgramMemberFailuresUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -61,7 +61,7 @@ class BulkImportProgramMembersApiTest extends TestCase
      *
      * @covers ::getImportProgramMemberStatusUsingGET
      */
-    public function testGetImportProgramMemberStatusUsingGET()
+    public function testGetImportProgramMemberStatusUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -72,7 +72,7 @@ class BulkImportProgramMembersApiTest extends TestCase
      *
      * @covers ::getImportProgramMemberWarningsUsingGET
      */
-    public function testGetImportProgramMemberWarningsUsingGET()
+    public function testGetImportProgramMemberWarningsUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -83,7 +83,7 @@ class BulkImportProgramMembersApiTest extends TestCase
      *
      * @covers ::importProgramMemberUsingPOST
      */
-    public function testImportProgramMemberUsingPOST()
+    public function testImportProgramMemberUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

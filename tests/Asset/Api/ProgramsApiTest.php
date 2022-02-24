@@ -50,7 +50,7 @@ class ProgramsApiTest extends TestCase
      *
      * @covers ::approveProgramUsingPOST
      */
-    public function testApproveProgramUsingPOST()
+    public function testApproveProgramUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -61,7 +61,7 @@ class ProgramsApiTest extends TestCase
      *
      * @covers ::browseProgramsUsingGET
      */
-    public function testBrowseProgramsUsingGET()
+    public function testBrowseProgramsUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -72,7 +72,7 @@ class ProgramsApiTest extends TestCase
      *
      * @covers ::cloneProgramUsingPOST
      */
-    public function testCloneProgramUsingPOST()
+    public function testCloneProgramUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -83,7 +83,7 @@ class ProgramsApiTest extends TestCase
      *
      * @covers ::createProgramUsingPOST
      */
-    public function testCreateProgramUsingPOST()
+    public function testCreateProgramUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -94,7 +94,7 @@ class ProgramsApiTest extends TestCase
      *
      * @covers ::deleteProgramUsingPOST
      */
-    public function testDeleteProgramUsingPOST()
+    public function testDeleteProgramUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -105,7 +105,7 @@ class ProgramsApiTest extends TestCase
      *
      * @covers ::getProgramByIdUsingGET
      */
-    public function testGetProgramByIdUsingGET()
+    public function testGetProgramByIdUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -116,7 +116,7 @@ class ProgramsApiTest extends TestCase
      *
      * @covers ::getProgramByNameUsingGET
      */
-    public function testGetProgramByNameUsingGET()
+    public function testGetProgramByNameUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -127,7 +127,7 @@ class ProgramsApiTest extends TestCase
      *
      * @covers ::getProgramListByTagUsingGET
      */
-    public function testGetProgramListByTagUsingGET()
+    public function testGetProgramListByTagUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -138,7 +138,7 @@ class ProgramsApiTest extends TestCase
      *
      * @covers ::getSmartListByProgramIdUsingGET
      */
-    public function testGetSmartListByProgramIdUsingGET()
+    public function testGetSmartListByProgramIdUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -149,7 +149,7 @@ class ProgramsApiTest extends TestCase
      *
      * @covers ::unapproveProgramUsingPOST
      */
-    public function testUnapproveProgramUsingPOST()
+    public function testUnapproveProgramUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -160,7 +160,7 @@ class ProgramsApiTest extends TestCase
      *
      * @covers ::updateProgramUsingPOST
      */
-    public function testUpdateProgramUsingPOST()
+    public function testUpdateProgramUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

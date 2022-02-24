@@ -44,7 +44,7 @@ class SyncProgramMemberStatusRequestTest extends TestCase
     /**
      * Test "SyncProgramMemberStatusRequest"
      */
-    public function testSyncProgramMemberStatusRequest()
+    public function testSyncProgramMemberStatusRequest(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class SyncProgramMemberStatusRequestTest extends TestCase
     /**
      * Test attribute "status_name"
      */
-    public function testPropertyStatusName()
+    public function testPropertyStatusName(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class SyncProgramMemberStatusRequestTest extends TestCase
     /**
      * Test attribute "input"
      */
-    public function testPropertyInput()
+    public function testPropertyInput(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

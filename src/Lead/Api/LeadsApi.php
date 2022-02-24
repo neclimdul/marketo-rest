@@ -94,7 +94,7 @@ class LeadsApi
      *
      * @param int $hostIndex Host index (required)
      */
-    public function setHostIndex($hostIndex)
+    public function setHostIndex($hostIndex): void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -223,7 +223,7 @@ class LeadsApi
     public function associateLeadUsingPOSTRequest(
         int $lead_id,
         string $cookie
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/leads/{leadId}/associate.json';
@@ -374,7 +374,7 @@ class LeadsApi
     public function changeLeadProgramStatusUsingPOSTRequest(
         int $program_id,
         \NecLimDul\MarketoRest\Lead\Model\ChangeLeadProgramStatusRequest $change_lead_program_status_request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/leads/programs/{programId}/status.json';
@@ -515,7 +515,7 @@ class LeadsApi
      */
     public function createLeadFieldUsingPOSTRequest(
         \NecLimDul\MarketoRest\Lead\Model\CreateLeadFieldRequest $create_lead_field_request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/leads/schema/fields.json';
@@ -655,7 +655,7 @@ class LeadsApi
     public function deleteLeadsUsingPOSTRequest(
         \NecLimDul\MarketoRest\Lead\Model\DeleteLeadRequest $delete_lead_request = null,
         array $id = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/leads/delete.json';
@@ -791,7 +791,7 @@ class LeadsApi
      * @return \GuzzleHttp\Psr7\Request
      */
     public function describeProgramMemberUsingGETRequest(
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/program/members/describe.json';
@@ -918,7 +918,7 @@ class LeadsApi
      * @return \GuzzleHttp\Psr7\Request
      */
     public function describeUsingGET2Request(
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/leads/describe.json';
@@ -1045,7 +1045,7 @@ class LeadsApi
      * @return \GuzzleHttp\Psr7\Request
      */
     public function describeUsingGET6Request(
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/leads/describe2.json';
@@ -1184,7 +1184,7 @@ class LeadsApi
     public function getLeadByIdUsingGETRequest(
         int $lead_id,
         array $fields = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/lead/{leadId}.json';
@@ -1329,7 +1329,7 @@ class LeadsApi
      */
     public function getLeadFieldByNameUsingGETRequest(
         string $field_api_name
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/leads/schema/fields/{fieldApiName}.json';
@@ -1475,7 +1475,7 @@ class LeadsApi
     public function getLeadFieldsUsingGETRequest(
         int $batch_size = null,
         string $next_page_token = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/leads/schema/fields.json';
@@ -1608,7 +1608,7 @@ class LeadsApi
      * @return \GuzzleHttp\Psr7\Request
      */
     public function getLeadPartitionsUsingGETRequest(
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/leads/partitions.json';
@@ -1765,7 +1765,7 @@ class LeadsApi
         array $fields = null,
         int $batch_size = null,
         string $next_page_token = null
-    )
+    ): Request
     {
         // Verify the required parameter 'filter_values' is set.
         if (empty($filter_values)) {
@@ -1931,7 +1931,7 @@ class LeadsApi
         array $fields = null,
         int $batch_size = null,
         string $next_page_token = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/leads/programs/{programId}.json';
@@ -2090,7 +2090,7 @@ class LeadsApi
         int $lead_id,
         string $next_page_token = null,
         int $batch_size = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/leads/{leadId}/listMembership.json';
@@ -2272,7 +2272,7 @@ class LeadsApi
         string $latest_updated_at = null,
         string $filter_type = null,
         array $filter_values = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/leads/{leadId}/programMembership.json';
@@ -2446,7 +2446,7 @@ class LeadsApi
         int $batch_size = null,
         string $earliest_updated_at = null,
         string $latest_updated_at = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/leads/{leadId}/smartCampaignMembership.json';
@@ -2612,7 +2612,7 @@ class LeadsApi
         int $lead_id2 = null,
         array $lead_ids = null,
         bool $merge_in_crm = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/leads/{leadId}/merge.json';
@@ -2759,7 +2759,7 @@ class LeadsApi
      */
     public function pushToMarketoUsingPOSTRequest(
         \NecLimDul\MarketoRest\Lead\Model\PushLeadToMarketoRequest $push_lead_to_marketo_request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/leads/push.json';
@@ -2893,7 +2893,7 @@ class LeadsApi
      */
     public function submitFormUsingPOSTRequest(
         \NecLimDul\MarketoRest\Lead\Model\SubmitFormRequest $submit_form_request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/leads/submitForm.json';
@@ -3027,7 +3027,7 @@ class LeadsApi
      */
     public function syncLeadUsingPOSTRequest(
         \NecLimDul\MarketoRest\Lead\Model\SyncLeadRequest $sync_lead_request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/leads.json';
@@ -3167,7 +3167,7 @@ class LeadsApi
     public function updateLeadFieldUsingPOSTRequest(
         string $field_api_name,
         \NecLimDul\MarketoRest\Lead\Model\UpdateLeadFieldRequest $update_lead_field_request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/leads/schema/fields/{fieldApiName}.json';
@@ -3308,7 +3308,7 @@ class LeadsApi
      */
     public function updatePartitionsUsingPOSTRequest(
         \NecLimDul\MarketoRest\Lead\Model\UpdateLeadPartitionRequest $update_lead_partition_request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/leads/partitions.json';

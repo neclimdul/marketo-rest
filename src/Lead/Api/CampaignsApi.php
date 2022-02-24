@@ -94,7 +94,7 @@ class CampaignsApi
      *
      * @param int $hostIndex Host index (required)
      */
-    public function setHostIndex($hostIndex)
+    public function setHostIndex($hostIndex): void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -217,7 +217,7 @@ class CampaignsApi
      */
     public function getCampaignByIdUsingGETRequest(
         int $campaign_id
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/campaigns/{campaignId}.json';
@@ -393,7 +393,7 @@ class CampaignsApi
         int $batch_size = null,
         string $next_page_token = null,
         bool $is_triggerable = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/campaigns.json';
@@ -543,7 +543,7 @@ class CampaignsApi
     public function scheduleCampaignUsingPOSTRequest(
         int $campaign_id,
         \NecLimDul\MarketoRest\Lead\Model\ScheduleCampaignRequest $schedule_campaign_request = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/campaigns/{campaignId}/schedule.json';
@@ -693,7 +693,7 @@ class CampaignsApi
     public function triggerCampaignUsingPOSTRequest(
         int $campaign_id,
         \NecLimDul\MarketoRest\Lead\Model\TriggerCampaignRequest $trigger_campaign_request = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/campaigns/{campaignId}/trigger.json';

@@ -44,7 +44,7 @@ class UpdateEmailMetaDataRequestTest extends TestCase
     /**
      * Test "UpdateEmailMetaDataRequest"
      */
-    public function testUpdateEmailMetaDataRequest()
+    public function testUpdateEmailMetaDataRequest(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class UpdateEmailMetaDataRequestTest extends TestCase
     /**
      * Test attribute "description"
      */
-    public function testPropertyDescription()
+    public function testPropertyDescription(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class UpdateEmailMetaDataRequestTest extends TestCase
     /**
      * Test attribute "name"
      */
-    public function testPropertyName()
+    public function testPropertyName(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class UpdateEmailMetaDataRequestTest extends TestCase
     /**
      * Test attribute "pre_header"
      */
-    public function testPropertyPreHeader()
+    public function testPropertyPreHeader(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -80,7 +80,7 @@ class UpdateEmailMetaDataRequestTest extends TestCase
     /**
      * Test attribute "operational"
      */
-    public function testPropertyOperational()
+    public function testPropertyOperational(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -89,7 +89,7 @@ class UpdateEmailMetaDataRequestTest extends TestCase
     /**
      * Test attribute "published"
      */
-    public function testPropertyPublished()
+    public function testPropertyPublished(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -98,7 +98,7 @@ class UpdateEmailMetaDataRequestTest extends TestCase
     /**
      * Test attribute "text_only"
      */
-    public function testPropertyTextOnly()
+    public function testPropertyTextOnly(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -107,7 +107,7 @@ class UpdateEmailMetaDataRequestTest extends TestCase
     /**
      * Test attribute "web_view"
      */
-    public function testPropertyWebView()
+    public function testPropertyWebView(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

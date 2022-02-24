@@ -44,7 +44,7 @@ class UpdateThankYouPageRequestTest extends TestCase
     /**
      * Test "UpdateThankYouPageRequest"
      */
-    public function testUpdateThankYouPageRequest()
+    public function testUpdateThankYouPageRequest(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class UpdateThankYouPageRequestTest extends TestCase
     /**
      * Test attribute "thankyou"
      */
-    public function testPropertyThankyou()
+    public function testPropertyThankyou(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

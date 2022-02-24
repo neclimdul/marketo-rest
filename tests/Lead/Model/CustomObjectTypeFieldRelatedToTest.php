@@ -44,7 +44,7 @@ class CustomObjectTypeFieldRelatedToTest extends TestCase
     /**
      * Test "CustomObjectTypeFieldRelatedTo"
      */
-    public function testCustomObjectTypeFieldRelatedTo()
+    public function testCustomObjectTypeFieldRelatedTo(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class CustomObjectTypeFieldRelatedToTest extends TestCase
     /**
      * Test attribute "name"
      */
-    public function testPropertyName()
+    public function testPropertyName(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class CustomObjectTypeFieldRelatedToTest extends TestCase
     /**
      * Test attribute "field"
      */
-    public function testPropertyField()
+    public function testPropertyField(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

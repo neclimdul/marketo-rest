@@ -44,7 +44,7 @@ class SmartCampaignResponseTest extends TestCase
     /**
      * Test "SmartCampaignResponse"
      */
-    public function testSmartCampaignResponse()
+    public function testSmartCampaignResponse(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class SmartCampaignResponseTest extends TestCase
     /**
      * Test attribute "id"
      */
-    public function testPropertyId()
+    public function testPropertyId(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class SmartCampaignResponseTest extends TestCase
     /**
      * Test attribute "name"
      */
-    public function testPropertyName()
+    public function testPropertyName(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class SmartCampaignResponseTest extends TestCase
     /**
      * Test attribute "description"
      */
-    public function testPropertyDescription()
+    public function testPropertyDescription(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -80,7 +80,7 @@ class SmartCampaignResponseTest extends TestCase
     /**
      * Test attribute "type"
      */
-    public function testPropertyType()
+    public function testPropertyType(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -89,7 +89,7 @@ class SmartCampaignResponseTest extends TestCase
     /**
      * Test attribute "is_system"
      */
-    public function testPropertyIsSystem()
+    public function testPropertyIsSystem(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -98,7 +98,7 @@ class SmartCampaignResponseTest extends TestCase
     /**
      * Test attribute "is_active"
      */
-    public function testPropertyIsActive()
+    public function testPropertyIsActive(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -107,7 +107,7 @@ class SmartCampaignResponseTest extends TestCase
     /**
      * Test attribute "is_requestable"
      */
-    public function testPropertyIsRequestable()
+    public function testPropertyIsRequestable(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -116,7 +116,7 @@ class SmartCampaignResponseTest extends TestCase
     /**
      * Test attribute "recurrence"
      */
-    public function testPropertyRecurrence()
+    public function testPropertyRecurrence(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -125,7 +125,7 @@ class SmartCampaignResponseTest extends TestCase
     /**
      * Test attribute "qualification_rule_type"
      */
-    public function testPropertyQualificationRuleType()
+    public function testPropertyQualificationRuleType(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -134,7 +134,7 @@ class SmartCampaignResponseTest extends TestCase
     /**
      * Test attribute "qualification_rule_interval"
      */
-    public function testPropertyQualificationRuleInterval()
+    public function testPropertyQualificationRuleInterval(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -143,7 +143,7 @@ class SmartCampaignResponseTest extends TestCase
     /**
      * Test attribute "qualification_rule_unit"
      */
-    public function testPropertyQualificationRuleUnit()
+    public function testPropertyQualificationRuleUnit(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -152,7 +152,7 @@ class SmartCampaignResponseTest extends TestCase
     /**
      * Test attribute "max_members"
      */
-    public function testPropertyMaxMembers()
+    public function testPropertyMaxMembers(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -161,7 +161,7 @@ class SmartCampaignResponseTest extends TestCase
     /**
      * Test attribute "is_communication_limit_enabled"
      */
-    public function testPropertyIsCommunicationLimitEnabled()
+    public function testPropertyIsCommunicationLimitEnabled(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -170,7 +170,7 @@ class SmartCampaignResponseTest extends TestCase
     /**
      * Test attribute "smart_list_id"
      */
-    public function testPropertySmartListId()
+    public function testPropertySmartListId(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -179,7 +179,7 @@ class SmartCampaignResponseTest extends TestCase
     /**
      * Test attribute "flow_id"
      */
-    public function testPropertyFlowId()
+    public function testPropertyFlowId(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -188,7 +188,7 @@ class SmartCampaignResponseTest extends TestCase
     /**
      * Test attribute "parent_program_id"
      */
-    public function testPropertyParentProgramId()
+    public function testPropertyParentProgramId(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -197,7 +197,7 @@ class SmartCampaignResponseTest extends TestCase
     /**
      * Test attribute "folder"
      */
-    public function testPropertyFolder()
+    public function testPropertyFolder(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -206,7 +206,7 @@ class SmartCampaignResponseTest extends TestCase
     /**
      * Test attribute "created_at"
      */
-    public function testPropertyCreatedAt()
+    public function testPropertyCreatedAt(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -215,7 +215,7 @@ class SmartCampaignResponseTest extends TestCase
     /**
      * Test attribute "updated_at"
      */
-    public function testPropertyUpdatedAt()
+    public function testPropertyUpdatedAt(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -224,7 +224,7 @@ class SmartCampaignResponseTest extends TestCase
     /**
      * Test attribute "workspace"
      */
-    public function testPropertyWorkspace()
+    public function testPropertyWorkspace(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -233,7 +233,7 @@ class SmartCampaignResponseTest extends TestCase
     /**
      * Test attribute "computed_url"
      */
-    public function testPropertyComputedUrl()
+    public function testPropertyComputedUrl(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -242,7 +242,7 @@ class SmartCampaignResponseTest extends TestCase
     /**
      * Test attribute "status"
      */
-    public function testPropertyStatus()
+    public function testPropertyStatus(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

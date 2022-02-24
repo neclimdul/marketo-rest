@@ -50,7 +50,7 @@ class ChannelsApiTest extends TestCase
      *
      * @covers ::getAllChannelsUsingGET
      */
-    public function testGetAllChannelsUsingGET()
+    public function testGetAllChannelsUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -61,7 +61,7 @@ class ChannelsApiTest extends TestCase
      *
      * @covers ::getChannelByNameUsingGET
      */
-    public function testGetChannelByNameUsingGET()
+    public function testGetChannelByNameUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

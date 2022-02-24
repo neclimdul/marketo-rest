@@ -94,7 +94,7 @@ class SnippetsApi
      *
      * @param int $hostIndex Host index (required)
      */
-    public function setHostIndex($hostIndex)
+    public function setHostIndex($hostIndex): void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -217,7 +217,7 @@ class SnippetsApi
      */
     public function approveSnippetUsingPOSTRequest(
         int $id
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/snippet/{id}/approveDraft.json';
@@ -363,7 +363,7 @@ class SnippetsApi
     public function cloneSnippetUsingPOSTRequest(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\CloneSnippetRequest $clone_snippet_request = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/snippet/{id}/clone.json';
@@ -507,7 +507,7 @@ class SnippetsApi
      */
     public function createSnippetUsingPOSTRequest(
         \NecLimDul\MarketoRest\Asset\Model\CreateSnippetRequest $create_snippet_request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/snippets.json';
@@ -641,7 +641,7 @@ class SnippetsApi
      */
     public function deleteSnippetUsingPOSTRequest(
         int $id
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/snippet/{id}/delete.json';
@@ -781,7 +781,7 @@ class SnippetsApi
      */
     public function discardSnippetUsingPOSTRequest(
         int $id
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/snippet/{id}/discardDraft.json';
@@ -927,7 +927,7 @@ class SnippetsApi
     public function getDynamicContentUsingGETRequest(
         int $id,
         string $status = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/snippet/{id}/dynamicContent.json';
@@ -1078,7 +1078,7 @@ class SnippetsApi
     public function getSnippetByIdUsingGETRequest(
         int $id,
         string $status = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/snippet/{id}.json';
@@ -1229,7 +1229,7 @@ class SnippetsApi
     public function getSnippetContentByIdUsingGETRequest(
         int $id,
         string $status = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/snippet/{id}/content.json';
@@ -1386,7 +1386,7 @@ class SnippetsApi
         string $status = null,
         int $max_return = null,
         int $offset = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/snippets.json';
@@ -1526,7 +1526,7 @@ class SnippetsApi
      */
     public function unapproveSnippetUsingPOSTRequest(
         int $id
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/snippet/{id}/unapprove.json';
@@ -1678,7 +1678,7 @@ class SnippetsApi
         int $id,
         string $content,
         string $type
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/snippet/{id}/content.json';
@@ -1836,7 +1836,7 @@ class SnippetsApi
         int $id,
         int $segment_id,
         \NecLimDul\MarketoRest\Asset\Model\UpdateSnippetDynamicContentRequest $request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/snippet/{id}/dynamicContent/{segmentId}.json';
@@ -1988,7 +1988,7 @@ class SnippetsApi
     public function updateSnippetUsingPOSTRequest(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\UpdateSnippetRequest $update_snippet_request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/snippet/{id}.json';

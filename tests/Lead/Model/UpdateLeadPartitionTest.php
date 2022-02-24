@@ -44,7 +44,7 @@ class UpdateLeadPartitionTest extends TestCase
     /**
      * Test "UpdateLeadPartition"
      */
-    public function testUpdateLeadPartition()
+    public function testUpdateLeadPartition(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class UpdateLeadPartitionTest extends TestCase
     /**
      * Test attribute "id"
      */
-    public function testPropertyId()
+    public function testPropertyId(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class UpdateLeadPartitionTest extends TestCase
     /**
      * Test attribute "partition_name"
      */
-    public function testPropertyPartitionName()
+    public function testPropertyPartitionName(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

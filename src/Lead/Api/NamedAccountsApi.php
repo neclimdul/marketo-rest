@@ -94,7 +94,7 @@ class NamedAccountsApi
      *
      * @param int $hostIndex Host index (required)
      */
-    public function setHostIndex($hostIndex)
+    public function setHostIndex($hostIndex): void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -217,7 +217,7 @@ class NamedAccountsApi
      */
     public function deleteNamedAccountsUsingPOSTRequest(
         \NecLimDul\MarketoRest\Lead\Model\DeleteNamedAccountRequest $delete_account_request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/namedaccounts/delete.json';
@@ -345,7 +345,7 @@ class NamedAccountsApi
      * @return \GuzzleHttp\Psr7\Request
      */
     public function describeUsingGET3Request(
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/namedaccounts/describe.json';
@@ -478,7 +478,7 @@ class NamedAccountsApi
      */
     public function getNamedAccountFieldByNameUsingGETRequest(
         string $field_api_name
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/namedaccounts/schema/fields/{fieldApiName}.json';
@@ -624,7 +624,7 @@ class NamedAccountsApi
     public function getNamedAccountFieldsUsingGETRequest(
         int $batch_size = null,
         string $next_page_token = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/namedaccounts/schema/fields.json';
@@ -787,7 +787,7 @@ class NamedAccountsApi
         array $fields = null,
         int $batch_size = null,
         string $next_page_token = null
-    )
+    ): Request
     {
         // Verify the required parameter 'filter_values' is set.
         if (empty($filter_values)) {
@@ -935,7 +935,7 @@ class NamedAccountsApi
      */
     public function syncNamedAccountsUsingPOSTRequest(
         \NecLimDul\MarketoRest\Lead\Model\SyncNamedAccountRequest $sync_account_request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/namedaccounts.json';

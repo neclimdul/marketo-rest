@@ -44,7 +44,7 @@ class IdResponseTest extends TestCase
     /**
      * Test "IdResponse"
      */
-    public function testIdResponse()
+    public function testIdResponse(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class IdResponseTest extends TestCase
     /**
      * Test attribute "id"
      */
-    public function testPropertyId()
+    public function testPropertyId(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

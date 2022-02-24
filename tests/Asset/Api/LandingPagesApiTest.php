@@ -50,7 +50,7 @@ class LandingPagesApiTest extends TestCase
      *
      * @covers ::approveLandingPageUsingPOST
      */
-    public function testApproveLandingPageUsingPOST()
+    public function testApproveLandingPageUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -61,7 +61,7 @@ class LandingPagesApiTest extends TestCase
      *
      * @covers ::browseLandingPagesUsingGET
      */
-    public function testBrowseLandingPagesUsingGET()
+    public function testBrowseLandingPagesUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -72,7 +72,7 @@ class LandingPagesApiTest extends TestCase
      *
      * @covers ::cloneLandingPageUsingPOST
      */
-    public function testCloneLandingPageUsingPOST()
+    public function testCloneLandingPageUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -83,7 +83,7 @@ class LandingPagesApiTest extends TestCase
      *
      * @covers ::createLandingPageUsingPOST
      */
-    public function testCreateLandingPageUsingPOST()
+    public function testCreateLandingPageUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -94,7 +94,7 @@ class LandingPagesApiTest extends TestCase
      *
      * @covers ::deleteLandingPageByIdUsingPOST
      */
-    public function testDeleteLandingPageByIdUsingPOST()
+    public function testDeleteLandingPageByIdUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -105,7 +105,7 @@ class LandingPagesApiTest extends TestCase
      *
      * @covers ::discardLandingPageByIdUsingPOST
      */
-    public function testDiscardLandingPageByIdUsingPOST()
+    public function testDiscardLandingPageByIdUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -116,7 +116,7 @@ class LandingPagesApiTest extends TestCase
      *
      * @covers ::getLandingPageByIdUsingGET
      */
-    public function testGetLandingPageByIdUsingGET()
+    public function testGetLandingPageByIdUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -127,7 +127,7 @@ class LandingPagesApiTest extends TestCase
      *
      * @covers ::getLandingPageByNameUsingGET
      */
-    public function testGetLandingPageByNameUsingGET()
+    public function testGetLandingPageByNameUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -138,7 +138,7 @@ class LandingPagesApiTest extends TestCase
      *
      * @covers ::getLandingPageFullContentUsingGET
      */
-    public function testGetLandingPageFullContentUsingGET()
+    public function testGetLandingPageFullContentUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -149,7 +149,7 @@ class LandingPagesApiTest extends TestCase
      *
      * @covers ::getVariablesUsingGET
      */
-    public function testGetVariablesUsingGET()
+    public function testGetVariablesUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -160,7 +160,7 @@ class LandingPagesApiTest extends TestCase
      *
      * @covers ::unapproveLandingPageByIdUsingPOST
      */
-    public function testUnapproveLandingPageByIdUsingPOST()
+    public function testUnapproveLandingPageByIdUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -171,7 +171,7 @@ class LandingPagesApiTest extends TestCase
      *
      * @covers ::updateLandingPageUsingPOST
      */
-    public function testUpdateLandingPageUsingPOST()
+    public function testUpdateLandingPageUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -182,7 +182,7 @@ class LandingPagesApiTest extends TestCase
      *
      * @covers ::updateLandingPageVariableUsingPOST
      */
-    public function testUpdateLandingPageVariableUsingPOST()
+    public function testUpdateLandingPageVariableUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

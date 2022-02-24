@@ -44,7 +44,7 @@ class InputStreamContentTest extends TestCase
     /**
      * Test "InputStreamContent"
      */
-    public function testInputStreamContent()
+    public function testInputStreamContent(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class InputStreamContentTest extends TestCase
     /**
      * Test attribute "content_type"
      */
-    public function testPropertyContentType()
+    public function testPropertyContentType(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class InputStreamContentTest extends TestCase
     /**
      * Test attribute "input_stream"
      */
-    public function testPropertyInputStream()
+    public function testPropertyInputStream(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

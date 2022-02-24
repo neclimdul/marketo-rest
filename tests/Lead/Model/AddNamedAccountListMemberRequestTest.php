@@ -44,7 +44,7 @@ class AddNamedAccountListMemberRequestTest extends TestCase
     /**
      * Test "AddNamedAccountListMemberRequest"
      */
-    public function testAddNamedAccountListMemberRequest()
+    public function testAddNamedAccountListMemberRequest(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class AddNamedAccountListMemberRequestTest extends TestCase
     /**
      * Test attribute "input"
      */
-    public function testPropertyInput()
+    public function testPropertyInput(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

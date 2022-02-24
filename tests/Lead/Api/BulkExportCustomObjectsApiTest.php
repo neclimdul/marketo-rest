@@ -50,7 +50,7 @@ class BulkExportCustomObjectsApiTest extends TestCase
      *
      * @covers ::cancelExportCustomObjectsUsingPOST
      */
-    public function testCancelExportCustomObjectsUsingPOST()
+    public function testCancelExportCustomObjectsUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -61,7 +61,7 @@ class BulkExportCustomObjectsApiTest extends TestCase
      *
      * @covers ::createExportCustomObjectsUsingPOST
      */
-    public function testCreateExportCustomObjectsUsingPOST()
+    public function testCreateExportCustomObjectsUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -72,7 +72,7 @@ class BulkExportCustomObjectsApiTest extends TestCase
      *
      * @covers ::enqueueExportCustomObjectsUsingPOST
      */
-    public function testEnqueueExportCustomObjectsUsingPOST()
+    public function testEnqueueExportCustomObjectsUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -83,7 +83,7 @@ class BulkExportCustomObjectsApiTest extends TestCase
      *
      * @covers ::getExportCustomObjectsFileUsingGET
      */
-    public function testGetExportCustomObjectsFileUsingGET()
+    public function testGetExportCustomObjectsFileUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -94,7 +94,7 @@ class BulkExportCustomObjectsApiTest extends TestCase
      *
      * @covers ::getExportCustomObjectsStatusUsingGET
      */
-    public function testGetExportCustomObjectsStatusUsingGET()
+    public function testGetExportCustomObjectsStatusUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -105,7 +105,7 @@ class BulkExportCustomObjectsApiTest extends TestCase
      *
      * @covers ::getExportCustomObjectsUsingGET
      */
-    public function testGetExportCustomObjectsUsingGET()
+    public function testGetExportCustomObjectsUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

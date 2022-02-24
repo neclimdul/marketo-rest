@@ -94,7 +94,7 @@ class OpportunitiesApi
      *
      * @param int $hostIndex Host index (required)
      */
-    public function setHostIndex($hostIndex)
+    public function setHostIndex($hostIndex): void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -217,7 +217,7 @@ class OpportunitiesApi
      */
     public function deleteOpportunitiesUsingPOSTRequest(
         \NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectRequest $delete_custom_object_request = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/opportunities/delete.json';
@@ -354,7 +354,7 @@ class OpportunitiesApi
      */
     public function deleteOpportunityRolesUsingPOSTRequest(
         \NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectRequest $delete_custom_object_request = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/opportunities/roles/delete.json';
@@ -485,7 +485,7 @@ class OpportunitiesApi
      * @return \GuzzleHttp\Psr7\Request
      */
     public function describeOpportunityRoleUsingGETRequest(
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/opportunities/roles/describe.json';
@@ -612,7 +612,7 @@ class OpportunitiesApi
      * @return \GuzzleHttp\Psr7\Request
      */
     public function describeUsingGET4Request(
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/opportunities/describe.json';
@@ -775,7 +775,7 @@ class OpportunitiesApi
         array $fields = null,
         int $batch_size = null,
         string $next_page_token = null
-    )
+    ): Request
     {
         // Verify the required parameter 'filter_values' is set.
         if (empty($filter_values)) {
@@ -927,7 +927,7 @@ class OpportunitiesApi
      */
     public function getOpportunityFieldByNameUsingGETRequest(
         string $field_api_name
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/opportunities/schema/fields/{fieldApiName}.json';
@@ -1073,7 +1073,7 @@ class OpportunitiesApi
     public function getOpportunityFieldsUsingGETRequest(
         int $batch_size = null,
         string $next_page_token = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/opportunities/schema/fields.json';
@@ -1242,7 +1242,7 @@ class OpportunitiesApi
         array $fields = null,
         int $batch_size = null,
         string $next_page_token = null
-    )
+    ): Request
     {
         // Verify the required parameter 'filter_values' is set.
         if (empty($filter_values)) {
@@ -1394,7 +1394,7 @@ class OpportunitiesApi
      */
     public function syncOpportunitiesUsingPOSTRequest(
         \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectRequest $sync_custom_object_request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/opportunities.json';
@@ -1528,7 +1528,7 @@ class OpportunitiesApi
      */
     public function syncOpportunityRolesUsingPOSTRequest(
         \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectRequest $sync_custom_object_request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/v1/opportunities/roles.json';

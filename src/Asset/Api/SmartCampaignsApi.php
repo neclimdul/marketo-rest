@@ -94,7 +94,7 @@ class SmartCampaignsApi
      *
      * @param int $hostIndex Host index (required)
      */
-    public function setHostIndex($hostIndex)
+    public function setHostIndex($hostIndex): void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -217,7 +217,7 @@ class SmartCampaignsApi
      */
     public function activateSmartCampaignUsingPOSTRequest(
         int $id
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/smartCampaign/{id}/activate.json';
@@ -363,7 +363,7 @@ class SmartCampaignsApi
     public function cloneSmartCampaignUsingPOSTRequest(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\CloneSmartCampaignRequest $clone_smart_campaign_request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/smartCampaign/{id}/clone.json';
@@ -504,7 +504,7 @@ class SmartCampaignsApi
      */
     public function createSmartCampaignUsingPOSTRequest(
         \NecLimDul\MarketoRest\Asset\Model\CreateSmartCampaignRequest $create_smart_campaign_request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/smartCampaigns.json';
@@ -638,7 +638,7 @@ class SmartCampaignsApi
      */
     public function deactivateSmartCampaignUsingPOSTRequest(
         int $id
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/smartCampaign/{id}/deactivate.json';
@@ -778,7 +778,7 @@ class SmartCampaignsApi
      */
     public function deleteSmartCampaignUsingPOSTRequest(
         int $id
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/smartCampaign/{id}/delete.json';
@@ -948,7 +948,7 @@ class SmartCampaignsApi
         string $earliest_updated_at = null,
         string $latest_updated_at = null,
         bool $is_active = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/smartCampaigns.json';
@@ -1091,7 +1091,7 @@ class SmartCampaignsApi
      */
     public function getSmartCampaignByIdUsingGETRequest(
         int $id
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/smartCampaign/{id}.json';
@@ -1231,7 +1231,7 @@ class SmartCampaignsApi
      */
     public function getSmartCampaignByNameUsingGETRequest(
         string $name
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/smartCampaign/byName.json';
@@ -1375,7 +1375,7 @@ class SmartCampaignsApi
     public function getSmartListBySmartCampaignIdUsingGETRequest(
         int $id,
         bool $include_rules = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/smartCampaign/{id}/smartList.json';
@@ -1526,7 +1526,7 @@ class SmartCampaignsApi
     public function updateSmartCampaignUsingPOSTRequest(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\UpdateSmartCampaignRequest $update_smart_campaign_request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/smartCampaign/{id}.json';

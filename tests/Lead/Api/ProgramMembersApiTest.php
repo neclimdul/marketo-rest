@@ -50,7 +50,7 @@ class ProgramMembersApiTest extends TestCase
      *
      * @covers ::createProgramMemberFieldUsingPOST
      */
-    public function testCreateProgramMemberFieldUsingPOST()
+    public function testCreateProgramMemberFieldUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -61,7 +61,7 @@ class ProgramMembersApiTest extends TestCase
      *
      * @covers ::deleteProgramMemberUsingPOST
      */
-    public function testDeleteProgramMemberUsingPOST()
+    public function testDeleteProgramMemberUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -72,7 +72,7 @@ class ProgramMembersApiTest extends TestCase
      *
      * @covers ::describeProgramMemberUsingGET2
      */
-    public function testDescribeProgramMemberUsingGET2()
+    public function testDescribeProgramMemberUsingGET2(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -83,7 +83,7 @@ class ProgramMembersApiTest extends TestCase
      *
      * @covers ::getProgramMemberFieldByNameUsingGET
      */
-    public function testGetProgramMemberFieldByNameUsingGET()
+    public function testGetProgramMemberFieldByNameUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -94,7 +94,7 @@ class ProgramMembersApiTest extends TestCase
      *
      * @covers ::getProgramMemberFieldsUsingGET
      */
-    public function testGetProgramMemberFieldsUsingGET()
+    public function testGetProgramMemberFieldsUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -105,7 +105,7 @@ class ProgramMembersApiTest extends TestCase
      *
      * @covers ::getProgramMembersUsingGET
      */
-    public function testGetProgramMembersUsingGET()
+    public function testGetProgramMembersUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -116,7 +116,7 @@ class ProgramMembersApiTest extends TestCase
      *
      * @covers ::syncProgramMemberDataUsingPOST
      */
-    public function testSyncProgramMemberDataUsingPOST()
+    public function testSyncProgramMemberDataUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -127,7 +127,7 @@ class ProgramMembersApiTest extends TestCase
      *
      * @covers ::syncProgramMemberStatusUsingPOST
      */
-    public function testSyncProgramMemberStatusUsingPOST()
+    public function testSyncProgramMemberStatusUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -138,7 +138,7 @@ class ProgramMembersApiTest extends TestCase
      *
      * @covers ::updateProgramMemberFieldUsingPOST
      */
-    public function testUpdateProgramMemberFieldUsingPOST()
+    public function testUpdateProgramMemberFieldUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

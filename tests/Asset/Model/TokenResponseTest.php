@@ -44,7 +44,7 @@ class TokenResponseTest extends TestCase
     /**
      * Test "TokenResponse"
      */
-    public function testTokenResponse()
+    public function testTokenResponse(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class TokenResponseTest extends TestCase
     /**
      * Test attribute "folder"
      */
-    public function testPropertyFolder()
+    public function testPropertyFolder(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class TokenResponseTest extends TestCase
     /**
      * Test attribute "tokens"
      */
-    public function testPropertyTokens()
+    public function testPropertyTokens(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

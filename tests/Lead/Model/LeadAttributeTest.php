@@ -44,7 +44,7 @@ class LeadAttributeTest extends TestCase
     /**
      * Test "LeadAttribute"
      */
-    public function testLeadAttribute()
+    public function testLeadAttribute(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class LeadAttributeTest extends TestCase
     /**
      * Test attribute "data_type"
      */
-    public function testPropertyDataType()
+    public function testPropertyDataType(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class LeadAttributeTest extends TestCase
     /**
      * Test attribute "display_name"
      */
-    public function testPropertyDisplayName()
+    public function testPropertyDisplayName(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class LeadAttributeTest extends TestCase
     /**
      * Test attribute "id"
      */
-    public function testPropertyId()
+    public function testPropertyId(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -80,7 +80,7 @@ class LeadAttributeTest extends TestCase
     /**
      * Test attribute "length"
      */
-    public function testPropertyLength()
+    public function testPropertyLength(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -89,7 +89,7 @@ class LeadAttributeTest extends TestCase
     /**
      * Test attribute "rest"
      */
-    public function testPropertyRest()
+    public function testPropertyRest(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -98,7 +98,7 @@ class LeadAttributeTest extends TestCase
     /**
      * Test attribute "soap"
      */
-    public function testPropertySoap()
+    public function testPropertySoap(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

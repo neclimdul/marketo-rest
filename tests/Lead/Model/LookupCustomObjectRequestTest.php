@@ -44,7 +44,7 @@ class LookupCustomObjectRequestTest extends TestCase
     /**
      * Test "LookupCustomObjectRequest"
      */
-    public function testLookupCustomObjectRequest()
+    public function testLookupCustomObjectRequest(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class LookupCustomObjectRequestTest extends TestCase
     /**
      * Test attribute "batch_size"
      */
-    public function testPropertyBatchSize()
+    public function testPropertyBatchSize(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class LookupCustomObjectRequestTest extends TestCase
     /**
      * Test attribute "fields"
      */
-    public function testPropertyFields()
+    public function testPropertyFields(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class LookupCustomObjectRequestTest extends TestCase
     /**
      * Test attribute "filter_type"
      */
-    public function testPropertyFilterType()
+    public function testPropertyFilterType(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -80,7 +80,7 @@ class LookupCustomObjectRequestTest extends TestCase
     /**
      * Test attribute "input"
      */
-    public function testPropertyInput()
+    public function testPropertyInput(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -89,7 +89,7 @@ class LookupCustomObjectRequestTest extends TestCase
     /**
      * Test attribute "next_page_token"
      */
-    public function testPropertyNextPageToken()
+    public function testPropertyNextPageToken(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

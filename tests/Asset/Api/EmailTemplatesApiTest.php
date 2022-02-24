@@ -50,7 +50,7 @@ class EmailTemplatesApiTest extends TestCase
      *
      * @covers ::approveDraftUsingPOST1
      */
-    public function testApproveDraftUsingPOST1()
+    public function testApproveDraftUsingPOST1(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -61,7 +61,7 @@ class EmailTemplatesApiTest extends TestCase
      *
      * @covers ::cloneTemplateUsingPOST
      */
-    public function testCloneTemplateUsingPOST()
+    public function testCloneTemplateUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -72,7 +72,7 @@ class EmailTemplatesApiTest extends TestCase
      *
      * @covers ::createEmailTemplateUsingPOST
      */
-    public function testCreateEmailTemplateUsingPOST()
+    public function testCreateEmailTemplateUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -83,7 +83,7 @@ class EmailTemplatesApiTest extends TestCase
      *
      * @covers ::deleteTemplateUsingPOST
      */
-    public function testDeleteTemplateUsingPOST()
+    public function testDeleteTemplateUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -94,7 +94,7 @@ class EmailTemplatesApiTest extends TestCase
      *
      * @covers ::discardDraftUsingPOST1
      */
-    public function testDiscardDraftUsingPOST1()
+    public function testDiscardDraftUsingPOST1(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -105,7 +105,7 @@ class EmailTemplatesApiTest extends TestCase
      *
      * @covers ::getEmailTemplateUsedByUsingGET
      */
-    public function testGetEmailTemplateUsedByUsingGET()
+    public function testGetEmailTemplateUsedByUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -116,7 +116,7 @@ class EmailTemplatesApiTest extends TestCase
      *
      * @covers ::getEmailTemplatesUsingGET
      */
-    public function testGetEmailTemplatesUsingGET()
+    public function testGetEmailTemplatesUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -127,7 +127,7 @@ class EmailTemplatesApiTest extends TestCase
      *
      * @covers ::getTemplateByIdUsingGET
      */
-    public function testGetTemplateByIdUsingGET()
+    public function testGetTemplateByIdUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -138,7 +138,7 @@ class EmailTemplatesApiTest extends TestCase
      *
      * @covers ::getTemplateByNameUsingGET
      */
-    public function testGetTemplateByNameUsingGET()
+    public function testGetTemplateByNameUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -149,7 +149,7 @@ class EmailTemplatesApiTest extends TestCase
      *
      * @covers ::getTemplateContentByIdUsingGET
      */
-    public function testGetTemplateContentByIdUsingGET()
+    public function testGetTemplateContentByIdUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -160,7 +160,7 @@ class EmailTemplatesApiTest extends TestCase
      *
      * @covers ::unapproveDraftUsingPOST1
      */
-    public function testUnapproveDraftUsingPOST1()
+    public function testUnapproveDraftUsingPOST1(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -171,7 +171,7 @@ class EmailTemplatesApiTest extends TestCase
      *
      * @covers ::updateEmailTemplateContentUsingPOST
      */
-    public function testUpdateEmailTemplateContentUsingPOST()
+    public function testUpdateEmailTemplateContentUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -182,7 +182,7 @@ class EmailTemplatesApiTest extends TestCase
      *
      * @covers ::updateEmailTemplateUsingPOST
      */
-    public function testUpdateEmailTemplateUsingPOST()
+    public function testUpdateEmailTemplateUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

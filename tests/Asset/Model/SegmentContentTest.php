@@ -44,7 +44,7 @@ class SegmentContentTest extends TestCase
     /**
      * Test "SegmentContent"
      */
-    public function testSegmentContent()
+    public function testSegmentContent(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class SegmentContentTest extends TestCase
     /**
      * Test attribute "content"
      */
-    public function testPropertyContent()
+    public function testPropertyContent(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class SegmentContentTest extends TestCase
     /**
      * Test attribute "followup_type"
      */
-    public function testPropertyFollowupType()
+    public function testPropertyFollowupType(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class SegmentContentTest extends TestCase
     /**
      * Test attribute "followup_value"
      */
-    public function testPropertyFollowupValue()
+    public function testPropertyFollowupValue(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -80,7 +80,7 @@ class SegmentContentTest extends TestCase
     /**
      * Test attribute "segment_id"
      */
-    public function testPropertySegmentId()
+    public function testPropertySegmentId(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -89,7 +89,7 @@ class SegmentContentTest extends TestCase
     /**
      * Test attribute "segment_name"
      */
-    public function testPropertySegmentName()
+    public function testPropertySegmentName(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -98,7 +98,7 @@ class SegmentContentTest extends TestCase
     /**
      * Test attribute "type"
      */
-    public function testPropertyType()
+    public function testPropertyType(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

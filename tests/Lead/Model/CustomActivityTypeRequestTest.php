@@ -44,7 +44,7 @@ class CustomActivityTypeRequestTest extends TestCase
     /**
      * Test "CustomActivityTypeRequest"
      */
-    public function testCustomActivityTypeRequest()
+    public function testCustomActivityTypeRequest(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class CustomActivityTypeRequestTest extends TestCase
     /**
      * Test attribute "api_name"
      */
-    public function testPropertyApiName()
+    public function testPropertyApiName(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class CustomActivityTypeRequestTest extends TestCase
     /**
      * Test attribute "description"
      */
-    public function testPropertyDescription()
+    public function testPropertyDescription(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class CustomActivityTypeRequestTest extends TestCase
     /**
      * Test attribute "filter_name"
      */
-    public function testPropertyFilterName()
+    public function testPropertyFilterName(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -80,7 +80,7 @@ class CustomActivityTypeRequestTest extends TestCase
     /**
      * Test attribute "name"
      */
-    public function testPropertyName()
+    public function testPropertyName(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -89,7 +89,7 @@ class CustomActivityTypeRequestTest extends TestCase
     /**
      * Test attribute "primary_attribute"
      */
-    public function testPropertyPrimaryAttribute()
+    public function testPropertyPrimaryAttribute(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -98,7 +98,7 @@ class CustomActivityTypeRequestTest extends TestCase
     /**
      * Test attribute "trigger_name"
      */
-    public function testPropertyTriggerName()
+    public function testPropertyTriggerName(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

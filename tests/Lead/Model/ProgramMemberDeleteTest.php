@@ -44,7 +44,7 @@ class ProgramMemberDeleteTest extends TestCase
     /**
      * Test "ProgramMemberDelete"
      */
-    public function testProgramMemberDelete()
+    public function testProgramMemberDelete(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class ProgramMemberDeleteTest extends TestCase
     /**
      * Test attribute "lead_id"
      */
-    public function testPropertyLeadId()
+    public function testPropertyLeadId(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

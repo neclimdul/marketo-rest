@@ -44,7 +44,7 @@ class FileRangeTest extends TestCase
     /**
      * Test "FileRange"
      */
-    public function testFileRange()
+    public function testFileRange(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class FileRangeTest extends TestCase
     /**
      * Test attribute "end"
      */
-    public function testPropertyEnd()
+    public function testPropertyEnd(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class FileRangeTest extends TestCase
     /**
      * Test attribute "start"
      */
-    public function testPropertyStart()
+    public function testPropertyStart(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

@@ -16,7 +16,7 @@ class ConfigurationTest extends TestCase
      * @covers ::setBaseUrl
      * @covers ::getBaseUrl
      */
-    public function testGetBaseUrl()
+    public function testGetBaseUrl(): void
     {
         $config = new Configuration([
             'baseUrl' => 'http://example.com',
@@ -31,7 +31,7 @@ class ConfigurationTest extends TestCase
      * @covers ::setClientId
      * @covers ::getClientId
      */
-    public function testGetClientId()
+    public function testGetClientId(): void
     {
         $config = new Configuration([
             'clientId' => 'foobar',
@@ -46,7 +46,7 @@ class ConfigurationTest extends TestCase
      * @covers ::setClientId
      * @covers ::setClientSecret
      */
-    public function testGetClientSecret()
+    public function testGetClientSecret(): void
     {
         $config = new Configuration([
             'clientSecret' => 'foobar',

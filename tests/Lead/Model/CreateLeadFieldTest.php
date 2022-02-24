@@ -44,7 +44,7 @@ class CreateLeadFieldTest extends TestCase
     /**
      * Test "CreateLeadField"
      */
-    public function testCreateLeadField()
+    public function testCreateLeadField(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class CreateLeadFieldTest extends TestCase
     /**
      * Test attribute "display_name"
      */
-    public function testPropertyDisplayName()
+    public function testPropertyDisplayName(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class CreateLeadFieldTest extends TestCase
     /**
      * Test attribute "name"
      */
-    public function testPropertyName()
+    public function testPropertyName(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class CreateLeadFieldTest extends TestCase
     /**
      * Test attribute "description"
      */
-    public function testPropertyDescription()
+    public function testPropertyDescription(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -80,7 +80,7 @@ class CreateLeadFieldTest extends TestCase
     /**
      * Test attribute "data_type"
      */
-    public function testPropertyDataType()
+    public function testPropertyDataType(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -89,7 +89,7 @@ class CreateLeadFieldTest extends TestCase
     /**
      * Test attribute "is_hidden"
      */
-    public function testPropertyIsHidden()
+    public function testPropertyIsHidden(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -98,7 +98,7 @@ class CreateLeadFieldTest extends TestCase
     /**
      * Test attribute "is_html_encoding_in_email"
      */
-    public function testPropertyIsHtmlEncodingInEmail()
+    public function testPropertyIsHtmlEncodingInEmail(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -107,7 +107,7 @@ class CreateLeadFieldTest extends TestCase
     /**
      * Test attribute "is_sensitive"
      */
-    public function testPropertyIsSensitive()
+    public function testPropertyIsSensitive(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

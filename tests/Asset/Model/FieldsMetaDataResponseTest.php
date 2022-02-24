@@ -44,7 +44,7 @@ class FieldsMetaDataResponseTest extends TestCase
     /**
      * Test "FieldsMetaDataResponse"
      */
-    public function testFieldsMetaDataResponse()
+    public function testFieldsMetaDataResponse(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class FieldsMetaDataResponseTest extends TestCase
     /**
      * Test attribute "data_type"
      */
-    public function testPropertyDataType()
+    public function testPropertyDataType(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class FieldsMetaDataResponseTest extends TestCase
     /**
      * Test attribute "default_value"
      */
-    public function testPropertyDefaultValue()
+    public function testPropertyDefaultValue(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class FieldsMetaDataResponseTest extends TestCase
     /**
      * Test attribute "description"
      */
-    public function testPropertyDescription()
+    public function testPropertyDescription(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -80,7 +80,7 @@ class FieldsMetaDataResponseTest extends TestCase
     /**
      * Test attribute "field_mask_values"
      */
-    public function testPropertyFieldMaskValues()
+    public function testPropertyFieldMaskValues(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -89,7 +89,7 @@ class FieldsMetaDataResponseTest extends TestCase
     /**
      * Test attribute "field_width"
      */
-    public function testPropertyFieldWidth()
+    public function testPropertyFieldWidth(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -98,7 +98,7 @@ class FieldsMetaDataResponseTest extends TestCase
     /**
      * Test attribute "id"
      */
-    public function testPropertyId()
+    public function testPropertyId(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -107,7 +107,7 @@ class FieldsMetaDataResponseTest extends TestCase
     /**
      * Test attribute "initially_checked"
      */
-    public function testPropertyInitiallyChecked()
+    public function testPropertyInitiallyChecked(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -116,7 +116,7 @@ class FieldsMetaDataResponseTest extends TestCase
     /**
      * Test attribute "is_label_to_right"
      */
-    public function testPropertyIsLabelToRight()
+    public function testPropertyIsLabelToRight(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -125,7 +125,7 @@ class FieldsMetaDataResponseTest extends TestCase
     /**
      * Test attribute "is_multiselect"
      */
-    public function testPropertyIsMultiselect()
+    public function testPropertyIsMultiselect(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -134,7 +134,7 @@ class FieldsMetaDataResponseTest extends TestCase
     /**
      * Test attribute "is_required"
      */
-    public function testPropertyIsRequired()
+    public function testPropertyIsRequired(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -143,7 +143,7 @@ class FieldsMetaDataResponseTest extends TestCase
     /**
      * Test attribute "is_sensitive"
      */
-    public function testPropertyIsSensitive()
+    public function testPropertyIsSensitive(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -152,7 +152,7 @@ class FieldsMetaDataResponseTest extends TestCase
     /**
      * Test attribute "label_width"
      */
-    public function testPropertyLabelWidth()
+    public function testPropertyLabelWidth(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -161,7 +161,7 @@ class FieldsMetaDataResponseTest extends TestCase
     /**
      * Test attribute "max_length"
      */
-    public function testPropertyMaxLength()
+    public function testPropertyMaxLength(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -170,7 +170,7 @@ class FieldsMetaDataResponseTest extends TestCase
     /**
      * Test attribute "maximum_number"
      */
-    public function testPropertyMaximumNumber()
+    public function testPropertyMaximumNumber(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -179,7 +179,7 @@ class FieldsMetaDataResponseTest extends TestCase
     /**
      * Test attribute "minimum_number"
      */
-    public function testPropertyMinimumNumber()
+    public function testPropertyMinimumNumber(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -188,7 +188,7 @@ class FieldsMetaDataResponseTest extends TestCase
     /**
      * Test attribute "picklist_values"
      */
-    public function testPropertyPicklistValues()
+    public function testPropertyPicklistValues(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -197,7 +197,7 @@ class FieldsMetaDataResponseTest extends TestCase
     /**
      * Test attribute "placeholder_text"
      */
-    public function testPropertyPlaceholderText()
+    public function testPropertyPlaceholderText(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -206,7 +206,7 @@ class FieldsMetaDataResponseTest extends TestCase
     /**
      * Test attribute "validation_message"
      */
-    public function testPropertyValidationMessage()
+    public function testPropertyValidationMessage(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -215,7 +215,7 @@ class FieldsMetaDataResponseTest extends TestCase
     /**
      * Test attribute "visible_rows"
      */
-    public function testPropertyVisibleRows()
+    public function testPropertyVisibleRows(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

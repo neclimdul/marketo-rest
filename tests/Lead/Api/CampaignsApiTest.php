@@ -50,7 +50,7 @@ class CampaignsApiTest extends TestCase
      *
      * @covers ::getCampaignByIdUsingGET
      */
-    public function testGetCampaignByIdUsingGET()
+    public function testGetCampaignByIdUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -61,7 +61,7 @@ class CampaignsApiTest extends TestCase
      *
      * @covers ::getCampaignsUsingGET
      */
-    public function testGetCampaignsUsingGET()
+    public function testGetCampaignsUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -72,7 +72,7 @@ class CampaignsApiTest extends TestCase
      *
      * @covers ::scheduleCampaignUsingPOST
      */
-    public function testScheduleCampaignUsingPOST()
+    public function testScheduleCampaignUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -83,7 +83,7 @@ class CampaignsApiTest extends TestCase
      *
      * @covers ::triggerCampaignUsingPOST
      */
-    public function testTriggerCampaignUsingPOST()
+    public function testTriggerCampaignUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

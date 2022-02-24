@@ -94,7 +94,7 @@ class EmailTemplatesApi
      *
      * @param int $hostIndex Host index (required)
      */
-    public function setHostIndex($hostIndex)
+    public function setHostIndex($hostIndex): void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -217,7 +217,7 @@ class EmailTemplatesApi
      */
     public function approveDraftUsingPOST1Request(
         int $id
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/emailTemplate/{id}/approveDraft.json';
@@ -363,7 +363,7 @@ class EmailTemplatesApi
     public function cloneTemplateUsingPOSTRequest(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\CloneEmailTemplateRequest $clone_email_template_request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/emailTemplate/{id}/clone.json';
@@ -504,7 +504,7 @@ class EmailTemplatesApi
      */
     public function createEmailTemplateUsingPOSTRequest(
         \NecLimDul\MarketoRest\Asset\Model\CreateEmailTemplateRequest $create_email_template_request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/emailTemplates.json';
@@ -638,7 +638,7 @@ class EmailTemplatesApi
      */
     public function deleteTemplateUsingPOSTRequest(
         int $id
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/emailTemplate/{id}/delete.json';
@@ -778,7 +778,7 @@ class EmailTemplatesApi
      */
     public function discardDraftUsingPOST1Request(
         int $id
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/emailTemplate/{id}/discardDraft.json';
@@ -930,7 +930,7 @@ class EmailTemplatesApi
         int $id,
         int $offset = null,
         int $max_return = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/emailTemplates/{id}/usedBy.json';
@@ -1088,7 +1088,7 @@ class EmailTemplatesApi
         int $offset = null,
         int $max_return = null,
         string $status = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/emailTemplates.json';
@@ -1234,7 +1234,7 @@ class EmailTemplatesApi
     public function getTemplateByIdUsingGETRequest(
         int $id,
         string $status = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/emailTemplate/{id}.json';
@@ -1385,7 +1385,7 @@ class EmailTemplatesApi
     public function getTemplateByNameUsingGETRequest(
         string $name,
         string $status = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/emailTemplate/byName.json';
@@ -1530,7 +1530,7 @@ class EmailTemplatesApi
     public function getTemplateContentByIdUsingGETRequest(
         int $id,
         string $status = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/emailTemplate/{id}/content';
@@ -1675,7 +1675,7 @@ class EmailTemplatesApi
      */
     public function unapproveDraftUsingPOST1Request(
         int $id
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/emailTemplate/{id}/unapprove.json';
@@ -1821,7 +1821,7 @@ class EmailTemplatesApi
     public function updateEmailTemplateContentUsingPOSTRequest(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\UpdateEmailTemplateContentRequest $update_email_template_content_request = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/emailTemplate/{id}/content.json';
@@ -1971,7 +1971,7 @@ class EmailTemplatesApi
     public function updateEmailTemplateUsingPOSTRequest(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\UpdateEmailTemplateMetaDataRequest $update_email_meta_data_request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/emailTemplate/{id}.json';

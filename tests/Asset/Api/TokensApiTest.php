@@ -50,7 +50,7 @@ class TokensApiTest extends TestCase
      *
      * @covers ::addTokenTOFolderUsingPOST
      */
-    public function testAddTokenTOFolderUsingPOST()
+    public function testAddTokenTOFolderUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -61,7 +61,7 @@ class TokensApiTest extends TestCase
      *
      * @covers ::deleteTokenByNameUsingPOST
      */
-    public function testDeleteTokenByNameUsingPOST()
+    public function testDeleteTokenByNameUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -72,7 +72,7 @@ class TokensApiTest extends TestCase
      *
      * @covers ::getTokensByFolderIdUsingGET
      */
-    public function testGetTokensByFolderIdUsingGET()
+    public function testGetTokensByFolderIdUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

@@ -44,7 +44,7 @@ class UpdateEmailDynamicContentRequestTest extends TestCase
     /**
      * Test "UpdateEmailDynamicContentRequest"
      */
-    public function testUpdateEmailDynamicContentRequest()
+    public function testUpdateEmailDynamicContentRequest(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class UpdateEmailDynamicContentRequestTest extends TestCase
     /**
      * Test attribute "alt_text"
      */
-    public function testPropertyAltText()
+    public function testPropertyAltText(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class UpdateEmailDynamicContentRequestTest extends TestCase
     /**
      * Test attribute "external_url"
      */
-    public function testPropertyExternalUrl()
+    public function testPropertyExternalUrl(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class UpdateEmailDynamicContentRequestTest extends TestCase
     /**
      * Test attribute "height"
      */
-    public function testPropertyHeight()
+    public function testPropertyHeight(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -80,7 +80,7 @@ class UpdateEmailDynamicContentRequestTest extends TestCase
     /**
      * Test attribute "image"
      */
-    public function testPropertyImage()
+    public function testPropertyImage(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -89,7 +89,7 @@ class UpdateEmailDynamicContentRequestTest extends TestCase
     /**
      * Test attribute "link_url"
      */
-    public function testPropertyLinkUrl()
+    public function testPropertyLinkUrl(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -98,7 +98,7 @@ class UpdateEmailDynamicContentRequestTest extends TestCase
     /**
      * Test attribute "over_write"
      */
-    public function testPropertyOverWrite()
+    public function testPropertyOverWrite(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -107,7 +107,7 @@ class UpdateEmailDynamicContentRequestTest extends TestCase
     /**
      * Test attribute "style"
      */
-    public function testPropertyStyle()
+    public function testPropertyStyle(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -116,7 +116,7 @@ class UpdateEmailDynamicContentRequestTest extends TestCase
     /**
      * Test attribute "type"
      */
-    public function testPropertyType()
+    public function testPropertyType(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -125,7 +125,7 @@ class UpdateEmailDynamicContentRequestTest extends TestCase
     /**
      * Test attribute "value"
      */
-    public function testPropertyValue()
+    public function testPropertyValue(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -134,7 +134,7 @@ class UpdateEmailDynamicContentRequestTest extends TestCase
     /**
      * Test attribute "video_url"
      */
-    public function testPropertyVideoUrl()
+    public function testPropertyVideoUrl(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -143,7 +143,7 @@ class UpdateEmailDynamicContentRequestTest extends TestCase
     /**
      * Test attribute "width"
      */
-    public function testPropertyWidth()
+    public function testPropertyWidth(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

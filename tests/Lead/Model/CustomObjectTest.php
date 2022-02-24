@@ -44,7 +44,7 @@ class CustomObjectTest extends TestCase
     /**
      * Test "CustomObject"
      */
-    public function testCustomObject()
+    public function testCustomObject(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class CustomObjectTest extends TestCase
     /**
      * Test attribute "marketo_guid"
      */
-    public function testPropertyMarketoGuid()
+    public function testPropertyMarketoGuid(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class CustomObjectTest extends TestCase
     /**
      * Test attribute "reasons"
      */
-    public function testPropertyReasons()
+    public function testPropertyReasons(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class CustomObjectTest extends TestCase
     /**
      * Test attribute "seq"
      */
-    public function testPropertySeq()
+    public function testPropertySeq(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

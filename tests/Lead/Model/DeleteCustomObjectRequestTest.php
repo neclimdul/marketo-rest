@@ -44,7 +44,7 @@ class DeleteCustomObjectRequestTest extends TestCase
     /**
      * Test "DeleteCustomObjectRequest"
      */
-    public function testDeleteCustomObjectRequest()
+    public function testDeleteCustomObjectRequest(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class DeleteCustomObjectRequestTest extends TestCase
     /**
      * Test attribute "delete_by"
      */
-    public function testPropertyDeleteBy()
+    public function testPropertyDeleteBy(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class DeleteCustomObjectRequestTest extends TestCase
     /**
      * Test attribute "input"
      */
-    public function testPropertyInput()
+    public function testPropertyInput(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

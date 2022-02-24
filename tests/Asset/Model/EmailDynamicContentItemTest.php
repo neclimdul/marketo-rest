@@ -44,7 +44,7 @@ class EmailDynamicContentItemTest extends TestCase
     /**
      * Test "EmailDynamicContentItem"
      */
-    public function testEmailDynamicContentItem()
+    public function testEmailDynamicContentItem(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class EmailDynamicContentItemTest extends TestCase
     /**
      * Test attribute "content"
      */
-    public function testPropertyContent()
+    public function testPropertyContent(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class EmailDynamicContentItemTest extends TestCase
     /**
      * Test attribute "id"
      */
-    public function testPropertyId()
+    public function testPropertyId(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class EmailDynamicContentItemTest extends TestCase
     /**
      * Test attribute "segment_id"
      */
-    public function testPropertySegmentId()
+    public function testPropertySegmentId(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -80,7 +80,7 @@ class EmailDynamicContentItemTest extends TestCase
     /**
      * Test attribute "segment_name"
      */
-    public function testPropertySegmentName()
+    public function testPropertySegmentName(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -89,7 +89,7 @@ class EmailDynamicContentItemTest extends TestCase
     /**
      * Test attribute "type"
      */
-    public function testPropertyType()
+    public function testPropertyType(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

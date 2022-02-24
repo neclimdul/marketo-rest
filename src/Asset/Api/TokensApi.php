@@ -94,7 +94,7 @@ class TokensApi
      *
      * @param int $hostIndex Host index (required)
      */
-    public function setHostIndex($hostIndex)
+    public function setHostIndex($hostIndex): void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -223,7 +223,7 @@ class TokensApi
     public function addTokenTOFolderUsingPOSTRequest(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\CreateTokenRequest $create_token_request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/folder/{id}/tokens.json';
@@ -370,7 +370,7 @@ class TokensApi
     public function deleteTokenByNameUsingPOSTRequest(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\DeleteTokenRequest $delete_token_request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/folder/{id}/tokens/delete.json';
@@ -517,7 +517,7 @@ class TokensApi
     public function getTokensByFolderIdUsingGETRequest(
         int $id,
         string $folder_type = 'Folder'
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/folder/{id}/tokens.json';

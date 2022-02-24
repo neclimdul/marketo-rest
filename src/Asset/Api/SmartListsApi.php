@@ -94,7 +94,7 @@ class SmartListsApi
      *
      * @param int $hostIndex Host index (required)
      */
-    public function setHostIndex($hostIndex)
+    public function setHostIndex($hostIndex): void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -223,7 +223,7 @@ class SmartListsApi
     public function cloneSmartListUsingPOSTRequest(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\CloneSmartListRequest $clone_smart_list_request
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/smartList/{id}/clone.json';
@@ -364,7 +364,7 @@ class SmartListsApi
      */
     public function deleteSmartListByIdUsingPOSTRequest(
         int $id
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/smartList/{id}/delete.json';
@@ -510,7 +510,7 @@ class SmartListsApi
     public function getSmartListByIdUsingGETRequest(
         int $id,
         bool $include_rules = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/smartList/{id}.json';
@@ -655,7 +655,7 @@ class SmartListsApi
      */
     public function getSmartListByNameUsingGETRequest(
         string $name
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/smartList/byName.json';
@@ -817,7 +817,7 @@ class SmartListsApi
         int $max_return = null,
         string $earliest_updated_at = null,
         string $latest_updated_at = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/smartLists.json';

@@ -50,7 +50,7 @@ class FoldersApiTest extends TestCase
      *
      * @covers ::createFolderUsingPOST
      */
-    public function testCreateFolderUsingPOST()
+    public function testCreateFolderUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -61,7 +61,7 @@ class FoldersApiTest extends TestCase
      *
      * @covers ::deleteFolderUsingPOST
      */
-    public function testDeleteFolderUsingPOST()
+    public function testDeleteFolderUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -72,7 +72,7 @@ class FoldersApiTest extends TestCase
      *
      * @covers ::getFolderByIdUsingGET
      */
-    public function testGetFolderByIdUsingGET()
+    public function testGetFolderByIdUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -83,7 +83,7 @@ class FoldersApiTest extends TestCase
      *
      * @covers ::getFolderByNameUsingGET
      */
-    public function testGetFolderByNameUsingGET()
+    public function testGetFolderByNameUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -94,7 +94,7 @@ class FoldersApiTest extends TestCase
      *
      * @covers ::getFolderContentUsingGET
      */
-    public function testGetFolderContentUsingGET()
+    public function testGetFolderContentUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -105,7 +105,7 @@ class FoldersApiTest extends TestCase
      *
      * @covers ::getFolderUsingGET
      */
-    public function testGetFolderUsingGET()
+    public function testGetFolderUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -116,7 +116,7 @@ class FoldersApiTest extends TestCase
      *
      * @covers ::updateFolderUsingPOST
      */
-    public function testUpdateFolderUsingPOST()
+    public function testUpdateFolderUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

@@ -44,7 +44,7 @@ class ExportResponseTest extends TestCase
     /**
      * Test "ExportResponse"
      */
-    public function testExportResponse()
+    public function testExportResponse(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class ExportResponseTest extends TestCase
     /**
      * Test attribute "created_at"
      */
-    public function testPropertyCreatedAt()
+    public function testPropertyCreatedAt(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class ExportResponseTest extends TestCase
     /**
      * Test attribute "error_msg"
      */
-    public function testPropertyErrorMsg()
+    public function testPropertyErrorMsg(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class ExportResponseTest extends TestCase
     /**
      * Test attribute "export_id"
      */
-    public function testPropertyExportId()
+    public function testPropertyExportId(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -80,7 +80,7 @@ class ExportResponseTest extends TestCase
     /**
      * Test attribute "file_size"
      */
-    public function testPropertyFileSize()
+    public function testPropertyFileSize(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -89,7 +89,7 @@ class ExportResponseTest extends TestCase
     /**
      * Test attribute "file_checksum"
      */
-    public function testPropertyFileChecksum()
+    public function testPropertyFileChecksum(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -98,7 +98,7 @@ class ExportResponseTest extends TestCase
     /**
      * Test attribute "finished_at"
      */
-    public function testPropertyFinishedAt()
+    public function testPropertyFinishedAt(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -107,7 +107,7 @@ class ExportResponseTest extends TestCase
     /**
      * Test attribute "format"
      */
-    public function testPropertyFormat()
+    public function testPropertyFormat(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -116,7 +116,7 @@ class ExportResponseTest extends TestCase
     /**
      * Test attribute "number_of_records"
      */
-    public function testPropertyNumberOfRecords()
+    public function testPropertyNumberOfRecords(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -125,7 +125,7 @@ class ExportResponseTest extends TestCase
     /**
      * Test attribute "queued_at"
      */
-    public function testPropertyQueuedAt()
+    public function testPropertyQueuedAt(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -134,7 +134,7 @@ class ExportResponseTest extends TestCase
     /**
      * Test attribute "started_at"
      */
-    public function testPropertyStartedAt()
+    public function testPropertyStartedAt(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -143,7 +143,7 @@ class ExportResponseTest extends TestCase
     /**
      * Test attribute "status"
      */
-    public function testPropertyStatus()
+    public function testPropertyStatus(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

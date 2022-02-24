@@ -50,7 +50,7 @@ class StaticListsApiTest extends TestCase
      *
      * @covers ::createStaticListUsingPOST
      */
-    public function testCreateStaticListUsingPOST()
+    public function testCreateStaticListUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -61,7 +61,7 @@ class StaticListsApiTest extends TestCase
      *
      * @covers ::deleteStaticListByIdUsingPOST
      */
-    public function testDeleteStaticListByIdUsingPOST()
+    public function testDeleteStaticListByIdUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -72,7 +72,7 @@ class StaticListsApiTest extends TestCase
      *
      * @covers ::getStaticListByIdUsingGET
      */
-    public function testGetStaticListByIdUsingGET()
+    public function testGetStaticListByIdUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -83,7 +83,7 @@ class StaticListsApiTest extends TestCase
      *
      * @covers ::getStaticListByNameUsingGET
      */
-    public function testGetStaticListByNameUsingGET()
+    public function testGetStaticListByNameUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -94,7 +94,7 @@ class StaticListsApiTest extends TestCase
      *
      * @covers ::getStaticListsUsingGET
      */
-    public function testGetStaticListsUsingGET()
+    public function testGetStaticListsUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -105,7 +105,7 @@ class StaticListsApiTest extends TestCase
      *
      * @covers ::updateStaticListUsingPOST
      */
-    public function testUpdateStaticListUsingPOST()
+    public function testUpdateStaticListUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

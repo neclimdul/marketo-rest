@@ -44,7 +44,7 @@ class ExportActivityFilterTest extends TestCase
     /**
      * Test "ExportActivityFilter"
      */
-    public function testExportActivityFilter()
+    public function testExportActivityFilter(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class ExportActivityFilterTest extends TestCase
     /**
      * Test attribute "activity_type_ids"
      */
-    public function testPropertyActivityTypeIds()
+    public function testPropertyActivityTypeIds(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class ExportActivityFilterTest extends TestCase
     /**
      * Test attribute "primary_attribute_value_ids"
      */
-    public function testPropertyPrimaryAttributeValueIds()
+    public function testPropertyPrimaryAttributeValueIds(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class ExportActivityFilterTest extends TestCase
     /**
      * Test attribute "primary_attribute_values"
      */
-    public function testPropertyPrimaryAttributeValues()
+    public function testPropertyPrimaryAttributeValues(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -80,7 +80,7 @@ class ExportActivityFilterTest extends TestCase
     /**
      * Test attribute "created_at"
      */
-    public function testPropertyCreatedAt()
+    public function testPropertyCreatedAt(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

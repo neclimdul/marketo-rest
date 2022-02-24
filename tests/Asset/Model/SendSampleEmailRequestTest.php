@@ -44,7 +44,7 @@ class SendSampleEmailRequestTest extends TestCase
     /**
      * Test "SendSampleEmailRequest"
      */
-    public function testSendSampleEmailRequest()
+    public function testSendSampleEmailRequest(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class SendSampleEmailRequestTest extends TestCase
     /**
      * Test attribute "email_address"
      */
-    public function testPropertyEmailAddress()
+    public function testPropertyEmailAddress(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class SendSampleEmailRequestTest extends TestCase
     /**
      * Test attribute "lead_id"
      */
-    public function testPropertyLeadId()
+    public function testPropertyLeadId(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class SendSampleEmailRequestTest extends TestCase
     /**
      * Test attribute "text_only"
      */
-    public function testPropertyTextOnly()
+    public function testPropertyTextOnly(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

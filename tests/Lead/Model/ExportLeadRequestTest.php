@@ -44,7 +44,7 @@ class ExportLeadRequestTest extends TestCase
     /**
      * Test "ExportLeadRequest"
      */
-    public function testExportLeadRequest()
+    public function testExportLeadRequest(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class ExportLeadRequestTest extends TestCase
     /**
      * Test attribute "column_header_names"
      */
-    public function testPropertyColumnHeaderNames()
+    public function testPropertyColumnHeaderNames(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class ExportLeadRequestTest extends TestCase
     /**
      * Test attribute "fields"
      */
-    public function testPropertyFields()
+    public function testPropertyFields(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class ExportLeadRequestTest extends TestCase
     /**
      * Test attribute "filter"
      */
-    public function testPropertyFilter()
+    public function testPropertyFilter(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -80,7 +80,7 @@ class ExportLeadRequestTest extends TestCase
     /**
      * Test attribute "format"
      */
-    public function testPropertyFormat()
+    public function testPropertyFormat(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

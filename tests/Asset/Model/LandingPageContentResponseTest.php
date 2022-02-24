@@ -44,7 +44,7 @@ class LandingPageContentResponseTest extends TestCase
     /**
      * Test "LandingPageContentResponse"
      */
-    public function testLandingPageContentResponse()
+    public function testLandingPageContentResponse(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class LandingPageContentResponseTest extends TestCase
     /**
      * Test attribute "content"
      */
-    public function testPropertyContent()
+    public function testPropertyContent(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class LandingPageContentResponseTest extends TestCase
     /**
      * Test attribute "followup_type"
      */
-    public function testPropertyFollowupType()
+    public function testPropertyFollowupType(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class LandingPageContentResponseTest extends TestCase
     /**
      * Test attribute "followup_value"
      */
-    public function testPropertyFollowupValue()
+    public function testPropertyFollowupValue(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -80,7 +80,7 @@ class LandingPageContentResponseTest extends TestCase
     /**
      * Test attribute "formatting_options"
      */
-    public function testPropertyFormattingOptions()
+    public function testPropertyFormattingOptions(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -89,7 +89,7 @@ class LandingPageContentResponseTest extends TestCase
     /**
      * Test attribute "id"
      */
-    public function testPropertyId()
+    public function testPropertyId(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -98,7 +98,7 @@ class LandingPageContentResponseTest extends TestCase
     /**
      * Test attribute "index"
      */
-    public function testPropertyIndex()
+    public function testPropertyIndex(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -107,7 +107,7 @@ class LandingPageContentResponseTest extends TestCase
     /**
      * Test attribute "type"
      */
-    public function testPropertyType()
+    public function testPropertyType(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

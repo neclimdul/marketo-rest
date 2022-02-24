@@ -50,7 +50,7 @@ class EmailsApiTest extends TestCase
      *
      * @covers ::addModuleUsingPOST
      */
-    public function testAddModuleUsingPOST()
+    public function testAddModuleUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -61,7 +61,7 @@ class EmailsApiTest extends TestCase
      *
      * @covers ::approveDraftUsingPOST
      */
-    public function testApproveDraftUsingPOST()
+    public function testApproveDraftUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -72,7 +72,7 @@ class EmailsApiTest extends TestCase
      *
      * @covers ::cloneEmailUsingPOST
      */
-    public function testCloneEmailUsingPOST()
+    public function testCloneEmailUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -83,7 +83,7 @@ class EmailsApiTest extends TestCase
      *
      * @covers ::createEmailFullContentUsingPOST
      */
-    public function testCreateEmailFullContentUsingPOST()
+    public function testCreateEmailFullContentUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -94,7 +94,7 @@ class EmailsApiTest extends TestCase
      *
      * @covers ::createEmailUsingPOST
      */
-    public function testCreateEmailUsingPOST()
+    public function testCreateEmailUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -105,7 +105,7 @@ class EmailsApiTest extends TestCase
      *
      * @covers ::deleteEmailUsingPOST
      */
-    public function testDeleteEmailUsingPOST()
+    public function testDeleteEmailUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -116,7 +116,7 @@ class EmailsApiTest extends TestCase
      *
      * @covers ::deleteModuleUsingPOST
      */
-    public function testDeleteModuleUsingPOST()
+    public function testDeleteModuleUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -127,7 +127,7 @@ class EmailsApiTest extends TestCase
      *
      * @covers ::discardDraftUsingPOST
      */
-    public function testDiscardDraftUsingPOST()
+    public function testDiscardDraftUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -138,7 +138,7 @@ class EmailsApiTest extends TestCase
      *
      * @covers ::duplicateModuleUsingPOST
      */
-    public function testDuplicateModuleUsingPOST()
+    public function testDuplicateModuleUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -149,7 +149,7 @@ class EmailsApiTest extends TestCase
      *
      * @covers ::getEmailByIdUsingGET
      */
-    public function testGetEmailByIdUsingGET()
+    public function testGetEmailByIdUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -160,7 +160,7 @@ class EmailsApiTest extends TestCase
      *
      * @covers ::getEmailByNameUsingGET
      */
-    public function testGetEmailByNameUsingGET()
+    public function testGetEmailByNameUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -171,7 +171,7 @@ class EmailsApiTest extends TestCase
      *
      * @covers ::getEmailCCFieldsUsingGET
      */
-    public function testGetEmailCCFieldsUsingGET()
+    public function testGetEmailCCFieldsUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -182,7 +182,7 @@ class EmailsApiTest extends TestCase
      *
      * @covers ::getEmailContentByIdUsingGET
      */
-    public function testGetEmailContentByIdUsingGET()
+    public function testGetEmailContentByIdUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -193,7 +193,7 @@ class EmailsApiTest extends TestCase
      *
      * @covers ::getEmailDynamicContentUsingGET
      */
-    public function testGetEmailDynamicContentUsingGET()
+    public function testGetEmailDynamicContentUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -204,7 +204,7 @@ class EmailsApiTest extends TestCase
      *
      * @covers ::getEmailFullContentUsingGET
      */
-    public function testGetEmailFullContentUsingGET()
+    public function testGetEmailFullContentUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -215,7 +215,7 @@ class EmailsApiTest extends TestCase
      *
      * @covers ::getEmailUsingGET
      */
-    public function testGetEmailUsingGET()
+    public function testGetEmailUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -226,7 +226,7 @@ class EmailsApiTest extends TestCase
      *
      * @covers ::getEmailVariablesUsingGET
      */
-    public function testGetEmailVariablesUsingGET()
+    public function testGetEmailVariablesUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -237,7 +237,7 @@ class EmailsApiTest extends TestCase
      *
      * @covers ::rearrangeModulesUsingPOST
      */
-    public function testRearrangeModulesUsingPOST()
+    public function testRearrangeModulesUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -248,7 +248,7 @@ class EmailsApiTest extends TestCase
      *
      * @covers ::renameUsingPOST
      */
-    public function testRenameUsingPOST()
+    public function testRenameUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -259,7 +259,7 @@ class EmailsApiTest extends TestCase
      *
      * @covers ::sendSampleEmailUsingPOST
      */
-    public function testSendSampleEmailUsingPOST()
+    public function testSendSampleEmailUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -270,7 +270,7 @@ class EmailsApiTest extends TestCase
      *
      * @covers ::unapproveDraftUsingPOST
      */
-    public function testUnapproveDraftUsingPOST()
+    public function testUnapproveDraftUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -281,7 +281,7 @@ class EmailsApiTest extends TestCase
      *
      * @covers ::updateEmailComponentContentUsingPOST
      */
-    public function testUpdateEmailComponentContentUsingPOST()
+    public function testUpdateEmailComponentContentUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -292,7 +292,7 @@ class EmailsApiTest extends TestCase
      *
      * @covers ::updateEmailContentUsingPOST
      */
-    public function testUpdateEmailContentUsingPOST()
+    public function testUpdateEmailContentUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -303,7 +303,7 @@ class EmailsApiTest extends TestCase
      *
      * @covers ::updateEmailDynamicContentUsingPOST
      */
-    public function testUpdateEmailDynamicContentUsingPOST()
+    public function testUpdateEmailDynamicContentUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -314,7 +314,7 @@ class EmailsApiTest extends TestCase
      *
      * @covers ::updateEmailUsingPOST
      */
-    public function testUpdateEmailUsingPOST()
+    public function testUpdateEmailUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -325,7 +325,7 @@ class EmailsApiTest extends TestCase
      *
      * @covers ::updateVariableUsingPOST
      */
-    public function testUpdateVariableUsingPOST()
+    public function testUpdateVariableUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

@@ -44,7 +44,7 @@ class ChangeLeadProgramStatusRequestTest extends TestCase
     /**
      * Test "ChangeLeadProgramStatusRequest"
      */
-    public function testChangeLeadProgramStatusRequest()
+    public function testChangeLeadProgramStatusRequest(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class ChangeLeadProgramStatusRequestTest extends TestCase
     /**
      * Test attribute "input"
      */
-    public function testPropertyInput()
+    public function testPropertyInput(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class ChangeLeadProgramStatusRequestTest extends TestCase
     /**
      * Test attribute "status"
      */
-    public function testPropertyStatus()
+    public function testPropertyStatus(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

@@ -44,7 +44,7 @@ class SubmitButtonRequestTest extends TestCase
     /**
      * Test "SubmitButtonRequest"
      */
-    public function testSubmitButtonRequest()
+    public function testSubmitButtonRequest(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class SubmitButtonRequestTest extends TestCase
     /**
      * Test attribute "button_position"
      */
-    public function testPropertyButtonPosition()
+    public function testPropertyButtonPosition(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class SubmitButtonRequestTest extends TestCase
     /**
      * Test attribute "button_style"
      */
-    public function testPropertyButtonStyle()
+    public function testPropertyButtonStyle(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class SubmitButtonRequestTest extends TestCase
     /**
      * Test attribute "label"
      */
-    public function testPropertyLabel()
+    public function testPropertyLabel(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -80,7 +80,7 @@ class SubmitButtonRequestTest extends TestCase
     /**
      * Test attribute "waiting_label"
      */
-    public function testPropertyWaitingLabel()
+    public function testPropertyWaitingLabel(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

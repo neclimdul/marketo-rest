@@ -44,7 +44,7 @@ class LeadTest extends TestCase
     /**
      * Test "Lead"
      */
-    public function testLead()
+    public function testLead(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class LeadTest extends TestCase
     /**
      * Test attribute "id"
      */
-    public function testPropertyId()
+    public function testPropertyId(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class LeadTest extends TestCase
     /**
      * Test attribute "membership"
      */
-    public function testPropertyMembership()
+    public function testPropertyMembership(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class LeadTest extends TestCase
     /**
      * Test attribute "reason"
      */
-    public function testPropertyReason()
+    public function testPropertyReason(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -80,7 +80,7 @@ class LeadTest extends TestCase
     /**
      * Test attribute "status"
      */
-    public function testPropertyStatus()
+    public function testPropertyStatus(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

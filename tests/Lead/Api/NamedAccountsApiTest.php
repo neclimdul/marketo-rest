@@ -50,7 +50,7 @@ class NamedAccountsApiTest extends TestCase
      *
      * @covers ::deleteNamedAccountsUsingPOST
      */
-    public function testDeleteNamedAccountsUsingPOST()
+    public function testDeleteNamedAccountsUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -61,7 +61,7 @@ class NamedAccountsApiTest extends TestCase
      *
      * @covers ::describeUsingGET3
      */
-    public function testDescribeUsingGET3()
+    public function testDescribeUsingGET3(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -72,7 +72,7 @@ class NamedAccountsApiTest extends TestCase
      *
      * @covers ::getNamedAccountFieldByNameUsingGET
      */
-    public function testGetNamedAccountFieldByNameUsingGET()
+    public function testGetNamedAccountFieldByNameUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -83,7 +83,7 @@ class NamedAccountsApiTest extends TestCase
      *
      * @covers ::getNamedAccountFieldsUsingGET
      */
-    public function testGetNamedAccountFieldsUsingGET()
+    public function testGetNamedAccountFieldsUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -94,7 +94,7 @@ class NamedAccountsApiTest extends TestCase
      *
      * @covers ::getNamedAccountsUsingGET
      */
-    public function testGetNamedAccountsUsingGET()
+    public function testGetNamedAccountsUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -105,7 +105,7 @@ class NamedAccountsApiTest extends TestCase
      *
      * @covers ::syncNamedAccountsUsingPOST
      */
-    public function testSyncNamedAccountsUsingPOST()
+    public function testSyncNamedAccountsUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

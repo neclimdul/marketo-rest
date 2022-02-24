@@ -44,7 +44,7 @@ class EmailModuleResponseTest extends TestCase
     /**
      * Test "EmailModuleResponse"
      */
-    public function testEmailModuleResponse()
+    public function testEmailModuleResponse(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class EmailModuleResponseTest extends TestCase
     /**
      * Test attribute "id"
      */
-    public function testPropertyId()
+    public function testPropertyId(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

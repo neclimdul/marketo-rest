@@ -44,7 +44,7 @@ class DateRangeTest extends TestCase
     /**
      * Test "DateRange"
      */
-    public function testDateRange()
+    public function testDateRange(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class DateRangeTest extends TestCase
     /**
      * Test attribute "end_at"
      */
-    public function testPropertyEndAt()
+    public function testPropertyEndAt(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class DateRangeTest extends TestCase
     /**
      * Test attribute "start_at"
      */
-    public function testPropertyStartAt()
+    public function testPropertyStartAt(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

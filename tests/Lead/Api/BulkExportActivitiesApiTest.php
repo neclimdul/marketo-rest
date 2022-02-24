@@ -50,7 +50,7 @@ class BulkExportActivitiesApiTest extends TestCase
      *
      * @covers ::cancelExportActivitiesUsingPOST
      */
-    public function testCancelExportActivitiesUsingPOST()
+    public function testCancelExportActivitiesUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -61,7 +61,7 @@ class BulkExportActivitiesApiTest extends TestCase
      *
      * @covers ::createExportActivitiesUsingPOST
      */
-    public function testCreateExportActivitiesUsingPOST()
+    public function testCreateExportActivitiesUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -72,7 +72,7 @@ class BulkExportActivitiesApiTest extends TestCase
      *
      * @covers ::enqueueExportActivitiesUsingPOST
      */
-    public function testEnqueueExportActivitiesUsingPOST()
+    public function testEnqueueExportActivitiesUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -83,7 +83,7 @@ class BulkExportActivitiesApiTest extends TestCase
      *
      * @covers ::getExportActivitiesFileUsingGET
      */
-    public function testGetExportActivitiesFileUsingGET()
+    public function testGetExportActivitiesFileUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -94,7 +94,7 @@ class BulkExportActivitiesApiTest extends TestCase
      *
      * @covers ::getExportActivitiesStatusUsingGET
      */
-    public function testGetExportActivitiesStatusUsingGET()
+    public function testGetExportActivitiesStatusUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -105,7 +105,7 @@ class BulkExportActivitiesApiTest extends TestCase
      *
      * @covers ::getExportActivitiesUsingGET
      */
-    public function testGetExportActivitiesUsingGET()
+    public function testGetExportActivitiesUsingGET(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

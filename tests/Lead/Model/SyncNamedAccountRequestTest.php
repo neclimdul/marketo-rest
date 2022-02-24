@@ -44,7 +44,7 @@ class SyncNamedAccountRequestTest extends TestCase
     /**
      * Test "SyncNamedAccountRequest"
      */
-    public function testSyncNamedAccountRequest()
+    public function testSyncNamedAccountRequest(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class SyncNamedAccountRequestTest extends TestCase
     /**
      * Test attribute "action"
      */
-    public function testPropertyAction()
+    public function testPropertyAction(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class SyncNamedAccountRequestTest extends TestCase
     /**
      * Test attribute "dedupe_by"
      */
-    public function testPropertyDedupeBy()
+    public function testPropertyDedupeBy(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class SyncNamedAccountRequestTest extends TestCase
     /**
      * Test attribute "input"
      */
-    public function testPropertyInput()
+    public function testPropertyInput(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

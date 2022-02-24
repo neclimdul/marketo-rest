@@ -44,7 +44,7 @@ class UpdateEmailComponentDataRequestTest extends TestCase
     /**
      * Test "UpdateEmailComponentDataRequest"
      */
-    public function testUpdateEmailComponentDataRequest()
+    public function testUpdateEmailComponentDataRequest(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class UpdateEmailComponentDataRequestTest extends TestCase
     /**
      * Test attribute "from_email"
      */
-    public function testPropertyFromEmail()
+    public function testPropertyFromEmail(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class UpdateEmailComponentDataRequestTest extends TestCase
     /**
      * Test attribute "from_name"
      */
-    public function testPropertyFromName()
+    public function testPropertyFromName(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class UpdateEmailComponentDataRequestTest extends TestCase
     /**
      * Test attribute "reply_to"
      */
-    public function testPropertyReplyTo()
+    public function testPropertyReplyTo(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -80,7 +80,7 @@ class UpdateEmailComponentDataRequestTest extends TestCase
     /**
      * Test attribute "subject"
      */
-    public function testPropertySubject()
+    public function testPropertySubject(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

@@ -44,7 +44,7 @@ class AddCustomObjectTypeFieldTest extends TestCase
     /**
      * Test "AddCustomObjectTypeField"
      */
-    public function testAddCustomObjectTypeField()
+    public function testAddCustomObjectTypeField(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -53,7 +53,7 @@ class AddCustomObjectTypeFieldTest extends TestCase
     /**
      * Test attribute "name"
      */
-    public function testPropertyName()
+    public function testPropertyName(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -62,7 +62,7 @@ class AddCustomObjectTypeFieldTest extends TestCase
     /**
      * Test attribute "display_name"
      */
-    public function testPropertyDisplayName()
+    public function testPropertyDisplayName(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -71,7 +71,7 @@ class AddCustomObjectTypeFieldTest extends TestCase
     /**
      * Test attribute "data_type"
      */
-    public function testPropertyDataType()
+    public function testPropertyDataType(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -80,7 +80,7 @@ class AddCustomObjectTypeFieldTest extends TestCase
     /**
      * Test attribute "description"
      */
-    public function testPropertyDescription()
+    public function testPropertyDescription(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -89,7 +89,7 @@ class AddCustomObjectTypeFieldTest extends TestCase
     /**
      * Test attribute "is_dedupe_field"
      */
-    public function testPropertyIsDedupeField()
+    public function testPropertyIsDedupeField(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -98,7 +98,7 @@ class AddCustomObjectTypeFieldTest extends TestCase
     /**
      * Test attribute "related_to"
      */
-    public function testPropertyRelatedTo()
+    public function testPropertyRelatedTo(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

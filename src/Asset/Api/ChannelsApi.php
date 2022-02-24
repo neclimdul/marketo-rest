@@ -94,7 +94,7 @@ class ChannelsApi
      *
      * @param int $hostIndex Host index (required)
      */
-    public function setHostIndex($hostIndex)
+    public function setHostIndex($hostIndex): void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -223,7 +223,7 @@ class ChannelsApi
     public function getAllChannelsUsingGETRequest(
         int $max_return = null,
         int $offset = null
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/channels.json';
@@ -362,7 +362,7 @@ class ChannelsApi
      */
     public function getChannelByNameUsingGETRequest(
         string $name
-    )
+    ): Request
     {
 
         $resourcePath = '/rest/asset/v1/channel/byName.json';
