@@ -29,14 +29,3 @@ parameters:
 			message: "#^Method NecLimDul\\\\MarketoRest\\\\Lead\\\\ObjectSerializer\\:\\:toFormValue\\(\\) should return string but returns string\\|false\\.$#"
 			count: 1
 			path: src/Lead/ObjectSerializer.php
-
-		-
-			message: "#^Cannot call method getFilename\\(\\) on SplFileInfo\\|string\\.$#"
-			count: 1
-			path: tests/Laravel/MarketoRestProviderTest.php
-
-		-
-			message: "#^Cannot call method getPath\\(\\) on SplFileInfo\\|string\\.$#"
-			count: 1
-			path: tests/Laravel/MarketoRestProviderTest.php
-

@@ -53,8 +53,13 @@ class MarketoRestProviderTest extends TestCase
         $x = [];
         foreach ($classes as $class) {
             $matches = [];
-            preg_match('#src/(.*)/Api#', $class->getPath(), $matches);
-            $x[] = 'NecLimDul\MarketoRest\\' . $matches[1] . '\Api\\' . basename($class->getFilename(), '.php');
+            if ($class instanceof \SplFileInfo) {
+                preg_match('#src/(.*)/Api#', $class->getPath(), $matches);
+                $x[] = 'NecLimDul\MarketoRest\\'
+                  . $matches[1]
+                  . '\Api\\'
+                  . basename($class->getFilename(), '.php');
+            }
         }
         return $x;
     }
