@@ -605,12 +605,13 @@ class CreateEmailRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      * Gets the string presentation of the object
      *
      * @return string
+     * @throws \JsonException
      */
     public function __toString()
     {
         return json_encode(
             ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
+            JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR
         );
     }
 
@@ -618,10 +619,14 @@ class CreateEmailRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      * Gets a header-safe presentation of the object
      *
      * @return string
+     * @throws \JsonException
      */
     public function toHeaderValue()
     {
-        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
+        return json_encode(
+            ObjectSerializer::sanitizeForSerialization($this),
+            JSON_THROW_ON_ERROR
+        );
     }
 }
 
