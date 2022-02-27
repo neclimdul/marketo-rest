@@ -237,11 +237,16 @@ class ObjectSerializer
      * @param string|\SplFileObject $value the value of the form parameter
      *
      * @return string the form string
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException
      */
     public static function toFormValue($value)
     {
         if ($value instanceof \SplFileObject) {
-            return $value->getRealPath();
+            $path = $value->getRealPath();
+            if ($path === FALSE) {
+                throw new ApiException('Unable to find file.');
+            }
+            return $path;
         } else {
             return self::toString($value);
         }
