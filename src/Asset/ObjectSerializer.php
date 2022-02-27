@@ -326,6 +326,7 @@ class ObjectSerializer
      * @param string[][] $httpHeaders HTTP headers
      *
      * @return mixed a single or an array of $type instances
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException
      */
     public static function deserialize($data, string $type, array $httpHeaders = null)
     {
@@ -342,9 +343,15 @@ class ObjectSerializer
                 $filename = Configuration::getDefaultConfiguration()->getTempFolderPath() . DIRECTORY_SEPARATOR . self::sanitizeFilename($match[1]);
             } else {
                 $filename = tempnam(Configuration::getDefaultConfiguration()->getTempFolderPath(), '');
+                if ($filename === FALSE) {
+                    throw new ApiException('Unable to create temporary directory');
+                }
             }
 
             $file = fopen($filename, 'w');
+            if ($file === FALSE) {
+                throw new ApiException('Unable to write temporary file');
+            }
             while ($chunk = $data->read(200)) {
                 fwrite($file, $chunk);
             }
