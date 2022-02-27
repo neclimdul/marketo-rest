@@ -1,17 +1,3 @@
 parameters:
-	ignoreErrors:
-		-
-			message: "#^Method NecLimDul\\\\MarketoRest\\\\Asset\\\\ObjectSerializer\\:\\:serializeCollection\\(\\) should return string but returns string\\|null\\.$#"
-			count: 1
-			path: src/Asset/ObjectSerializer.php
-
-		-
-			message: "#^Method NecLimDul\\\\MarketoRest\\\\Identity\\\\ObjectSerializer\\:\\:serializeCollection\\(\\) should return string but returns string\\|null\\.$#"
-			count: 1
-			path: src/Identity/ObjectSerializer.php
-
-		-
-			message: "#^Method NecLimDul\\\\MarketoRest\\\\Lead\\\\ObjectSerializer\\:\\:serializeCollection\\(\\) should return string but returns string\\|null\\.$#"
-			count: 1
-			path: src/Lead/ObjectSerializer.php
+	ignoreErrors: []
 

@@ -48,7 +48,7 @@ class ObjectSerializer
      * @param string $format
      *   The new date format to use.
      */
-    public static function setDateTimeFormat($format): void
+    public static function setDateTimeFormat(string $format): void
     {
         self::$dateTimeFormat = $format;
     }
@@ -62,7 +62,7 @@ class ObjectSerializer
      *
      * @return scalar|object|array|null serialized form of $data
      */
-    public static function sanitizeForSerialization($data, $type = null, $format = null)
+    public static function sanitizeForSerialization($data, string $type = null, string $format = null)
     {
         if (is_scalar($data) || null === $data) {
             return $data;
@@ -297,13 +297,18 @@ class ObjectSerializer
      * @param bool $allowCollectionFormatMulti Allow collection format to be a multidimensional array.
      *
      * @return string
+     * @throws \NecLimDul\MarketoRest\Lead\ApiException
      */
     public static function serializeCollection(array $collection, $style, $allowCollectionFormatMulti = false)
     {
         if ($allowCollectionFormatMulti && ('multi' === $style)) {
             // http_build_query() almost does the job for us. We just
             // need to fix the result of multidimensional arrays.
-            return preg_replace('/%5B[0-9]+%5D=/', '=', http_build_query($collection, '', '&'));
+            $string = preg_replace('/%5B[0-9]+%5D=/', '=', http_build_query($collection, '', '&'));
+            if ($string === null) {
+                throw new ApiException('Unable to serialize collection');
+            }
+            return $string;
         }
         switch ($style) {
             case 'pipeDelimited':
