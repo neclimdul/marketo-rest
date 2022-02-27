@@ -1,19 +1,9 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Argument of an invalid type object supplied for foreach, only iterables are supported\\.$#"
-			count: 1
-			path: src/Asset/ObjectSerializer.php
-
-		-
 			message: "#^Method NecLimDul\\\\MarketoRest\\\\Asset\\\\ObjectSerializer\\:\\:toFormValue\\(\\) should return string but returns string\\|false\\.$#"
 			count: 1
 			path: src/Asset/ObjectSerializer.php
-
-		-
-			message: "#^Argument of an invalid type object supplied for foreach, only iterables are supported\\.$#"
-			count: 1
-			path: src/Identity/ObjectSerializer.php
 
 		-
 			message: "#^Method NecLimDul\\\\MarketoRest\\\\Identity\\\\ObjectSerializer\\:\\:toFormValue\\(\\) should return string but returns string\\|false\\.$#"
@@ -21,11 +11,7 @@ parameters:
 			path: src/Identity/ObjectSerializer.php
 
 		-
-			message: "#^Argument of an invalid type object supplied for foreach, only iterables are supported\\.$#"
-			count: 1
-			path: src/Lead/ObjectSerializer.php
-
-		-
 			message: "#^Method NecLimDul\\\\MarketoRest\\\\Lead\\\\ObjectSerializer\\:\\:toFormValue\\(\\) should return string but returns string\\|false\\.$#"
 			count: 1
 			path: src/Lead/ObjectSerializer.php
+
