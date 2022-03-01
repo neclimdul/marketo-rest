@@ -1,4 +1,5 @@
 <?php
+
 /**
  * BulkExportProgramMembersApi
  *
@@ -48,7 +49,6 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  */
 class BulkExportProgramMembersApi
 {
-
     /**
      * @var ClientInterface
      */
@@ -73,7 +73,7 @@ class BulkExportProgramMembersApi
      * @param ClientInterface|null $client
      * @param Configuration|null   $config
      * @param HeaderSelector|null  $selector
-     * @param int                  $hostIndex (Optional) host index to select the list of hosts if defined in the OpenAPI spec
+     * @param int                  $hostIndex (Optional) host index to select the list of hosts if defined in the spec.
      */
     public function __construct(
         ClientInterface $client = null,
@@ -102,7 +102,7 @@ class BulkExportProgramMembersApi
      *
      * @return int Host index
      */
-    public function getHostIndex()
+    public function getHostIndex(): int
     {
         return $this->hostIndex;
     }
@@ -110,7 +110,7 @@ class BulkExportProgramMembersApi
     /**
      * @return Configuration
      */
-    public function getConfig()
+    public function getConfig(): Configuration
     {
         return $this->config;
     }
@@ -141,7 +141,8 @@ class BulkExportProgramMembersApi
     /**
      * Cancel Export Program Member Job
      *
-     * @param  string $export_id Id of export batch job. (required)
+     * @param string $export_id
+     *   Id of export batch job.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -149,8 +150,7 @@ class BulkExportProgramMembersApi
      */
     public function cancelExportProgramMembersUsingPOST(
         string $export_id
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse
-    {
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse {
         list($response) = $this->cancelExportProgramMembersUsingPOSTWithHttpInfo($export_id);
         return $response;
     }
@@ -158,17 +158,21 @@ class BulkExportProgramMembersApi
     /**
      * Cancel Export Program Member Job
      *
-     * @param  string $export_id Id of export batch job. (required)
+     * @param string $export_id
+     *   Id of export batch job.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function cancelExportProgramMembersUsingPOSTWithHttpInfo(
         string $export_id
-    ): array
-    {
+    ): array {
         $request = $this->cancelExportProgramMembersUsingPOSTRequest($export_id);
         try {
             $response = $this->makeRequest($request);
@@ -184,15 +188,15 @@ class BulkExportProgramMembersApi
     /**
      * Cancel Export Program Member Job
      *
-     * @param  string $export_id Id of export batch job. (required)
+     * @param string $export_id
+     *   Id of export batch job.
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function cancelExportProgramMembersUsingPOSTAsync(
         string $export_id
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->cancelExportProgramMembersUsingPOSTAsyncWithHttpInfo($export_id)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse {
@@ -204,15 +208,15 @@ class BulkExportProgramMembersApi
     /**
      * Cancel Export Program Member Job
      *
-     * @param  string $export_id Id of export batch job. (required)
+     * @param string $export_id
+     *   Id of export batch job.
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function cancelExportProgramMembersUsingPOSTAsyncWithHttpInfo(
         string $export_id
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->cancelExportProgramMembersUsingPOSTRequest($export_id);
         return $this->makeAsyncRequest(
             $request,
@@ -224,15 +228,15 @@ class BulkExportProgramMembersApi
     /**
      * Create request for operation 'cancelExportProgramMembersUsingPOST'
      *
-     * @param  string $export_id Id of export batch job. (required)
+     * @param string $export_id
+     *   Id of export batch job.
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
     public function cancelExportProgramMembersUsingPOSTRequest(
         string $export_id
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/bulk/v1/program/members/export/{exportId}/cancel.json';
         $resourcePath = str_replace(
@@ -297,7 +301,8 @@ class BulkExportProgramMembersApi
     /**
      * Create Export Program Member Job
      *
-     * @param  \NecLimDul\MarketoRest\Lead\Model\ExportProgramMemberRequest $export_program_member_request exportProgramMemberRequest&lt;br&gt;&lt;br&gt;ColumnHeaderNames: A JSON object containing key-value pairs of field and column header names.&lt;br&gt;&lt;br&gt;Example:&lt;br&gt;&lt;code&gt;\&quot;columnHeaderNames\&quot;:{&lt;br&gt;  \&quot;firstName\&quot;:\&quot;First Name\&quot;,&lt;br&gt;  \&quot;lastName\&quot;:\&quot;Last Name\&quot;,&lt;br&gt;  \&quot;email\&quot;:\&quot;Email Address\&quot;&lt;br&gt;}&lt;/code&gt;&lt;br&gt; (optional)
+     * @param \NecLimDul\MarketoRest\Lead\Model\ExportProgramMemberRequest|null $export_program_member_request
+     *   exportProgramMemberRequest&lt;br&gt;&lt;br&gt;ColumnHeaderNames: A JSON object containing key-value pairs of field and column header names.&lt;br&gt;&lt;br&gt;Example:&lt;br&gt;&lt;code&gt;\&quot;columnHeaderNames\&quot;:{&lt;br&gt;  \&quot;firstName\&quot;:\&quot;First Name\&quot;,&lt;br&gt;  \&quot;lastName\&quot;:\&quot;Last Name\&quot;,&lt;br&gt;  \&quot;email\&quot;:\&quot;Email Address\&quot;&lt;br&gt;}&lt;/code&gt;&lt;br&gt;
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -305,8 +310,7 @@ class BulkExportProgramMembersApi
      */
     public function createExportProgramMembersUsingPOST(
         \NecLimDul\MarketoRest\Lead\Model\ExportProgramMemberRequest $export_program_member_request = null
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse
-    {
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse {
         list($response) = $this->createExportProgramMembersUsingPOSTWithHttpInfo($export_program_member_request);
         return $response;
     }
@@ -314,17 +318,21 @@ class BulkExportProgramMembersApi
     /**
      * Create Export Program Member Job
      *
-     * @param  \NecLimDul\MarketoRest\Lead\Model\ExportProgramMemberRequest $export_program_member_request exportProgramMemberRequest&lt;br&gt;&lt;br&gt;ColumnHeaderNames: A JSON object containing key-value pairs of field and column header names.&lt;br&gt;&lt;br&gt;Example:&lt;br&gt;&lt;code&gt;\&quot;columnHeaderNames\&quot;:{&lt;br&gt;  \&quot;firstName\&quot;:\&quot;First Name\&quot;,&lt;br&gt;  \&quot;lastName\&quot;:\&quot;Last Name\&quot;,&lt;br&gt;  \&quot;email\&quot;:\&quot;Email Address\&quot;&lt;br&gt;}&lt;/code&gt;&lt;br&gt; (optional)
+     * @param \NecLimDul\MarketoRest\Lead\Model\ExportProgramMemberRequest|null $export_program_member_request
+     *   exportProgramMemberRequest&lt;br&gt;&lt;br&gt;ColumnHeaderNames: A JSON object containing key-value pairs of field and column header names.&lt;br&gt;&lt;br&gt;Example:&lt;br&gt;&lt;code&gt;\&quot;columnHeaderNames\&quot;:{&lt;br&gt;  \&quot;firstName\&quot;:\&quot;First Name\&quot;,&lt;br&gt;  \&quot;lastName\&quot;:\&quot;Last Name\&quot;,&lt;br&gt;  \&quot;email\&quot;:\&quot;Email Address\&quot;&lt;br&gt;}&lt;/code&gt;&lt;br&gt;
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function createExportProgramMembersUsingPOSTWithHttpInfo(
         \NecLimDul\MarketoRest\Lead\Model\ExportProgramMemberRequest $export_program_member_request = null
-    ): array
-    {
+    ): array {
         $request = $this->createExportProgramMembersUsingPOSTRequest($export_program_member_request);
         try {
             $response = $this->makeRequest($request);
@@ -340,15 +348,15 @@ class BulkExportProgramMembersApi
     /**
      * Create Export Program Member Job
      *
-     * @param  \NecLimDul\MarketoRest\Lead\Model\ExportProgramMemberRequest $export_program_member_request exportProgramMemberRequest&lt;br&gt;&lt;br&gt;ColumnHeaderNames: A JSON object containing key-value pairs of field and column header names.&lt;br&gt;&lt;br&gt;Example:&lt;br&gt;&lt;code&gt;\&quot;columnHeaderNames\&quot;:{&lt;br&gt;  \&quot;firstName\&quot;:\&quot;First Name\&quot;,&lt;br&gt;  \&quot;lastName\&quot;:\&quot;Last Name\&quot;,&lt;br&gt;  \&quot;email\&quot;:\&quot;Email Address\&quot;&lt;br&gt;}&lt;/code&gt;&lt;br&gt; (optional)
+     * @param \NecLimDul\MarketoRest\Lead\Model\ExportProgramMemberRequest|null $export_program_member_request
+     *   exportProgramMemberRequest&lt;br&gt;&lt;br&gt;ColumnHeaderNames: A JSON object containing key-value pairs of field and column header names.&lt;br&gt;&lt;br&gt;Example:&lt;br&gt;&lt;code&gt;\&quot;columnHeaderNames\&quot;:{&lt;br&gt;  \&quot;firstName\&quot;:\&quot;First Name\&quot;,&lt;br&gt;  \&quot;lastName\&quot;:\&quot;Last Name\&quot;,&lt;br&gt;  \&quot;email\&quot;:\&quot;Email Address\&quot;&lt;br&gt;}&lt;/code&gt;&lt;br&gt;
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function createExportProgramMembersUsingPOSTAsync(
         \NecLimDul\MarketoRest\Lead\Model\ExportProgramMemberRequest $export_program_member_request = null
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->createExportProgramMembersUsingPOSTAsyncWithHttpInfo($export_program_member_request)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse {
@@ -360,15 +368,15 @@ class BulkExportProgramMembersApi
     /**
      * Create Export Program Member Job
      *
-     * @param  \NecLimDul\MarketoRest\Lead\Model\ExportProgramMemberRequest $export_program_member_request exportProgramMemberRequest&lt;br&gt;&lt;br&gt;ColumnHeaderNames: A JSON object containing key-value pairs of field and column header names.&lt;br&gt;&lt;br&gt;Example:&lt;br&gt;&lt;code&gt;\&quot;columnHeaderNames\&quot;:{&lt;br&gt;  \&quot;firstName\&quot;:\&quot;First Name\&quot;,&lt;br&gt;  \&quot;lastName\&quot;:\&quot;Last Name\&quot;,&lt;br&gt;  \&quot;email\&quot;:\&quot;Email Address\&quot;&lt;br&gt;}&lt;/code&gt;&lt;br&gt; (optional)
+     * @param \NecLimDul\MarketoRest\Lead\Model\ExportProgramMemberRequest|null $export_program_member_request
+     *   exportProgramMemberRequest&lt;br&gt;&lt;br&gt;ColumnHeaderNames: A JSON object containing key-value pairs of field and column header names.&lt;br&gt;&lt;br&gt;Example:&lt;br&gt;&lt;code&gt;\&quot;columnHeaderNames\&quot;:{&lt;br&gt;  \&quot;firstName\&quot;:\&quot;First Name\&quot;,&lt;br&gt;  \&quot;lastName\&quot;:\&quot;Last Name\&quot;,&lt;br&gt;  \&quot;email\&quot;:\&quot;Email Address\&quot;&lt;br&gt;}&lt;/code&gt;&lt;br&gt;
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function createExportProgramMembersUsingPOSTAsyncWithHttpInfo(
         \NecLimDul\MarketoRest\Lead\Model\ExportProgramMemberRequest $export_program_member_request = null
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->createExportProgramMembersUsingPOSTRequest($export_program_member_request);
         return $this->makeAsyncRequest(
             $request,
@@ -380,15 +388,15 @@ class BulkExportProgramMembersApi
     /**
      * Create request for operation 'createExportProgramMembersUsingPOST'
      *
-     * @param  \NecLimDul\MarketoRest\Lead\Model\ExportProgramMemberRequest $export_program_member_request exportProgramMemberRequest&lt;br&gt;&lt;br&gt;ColumnHeaderNames: A JSON object containing key-value pairs of field and column header names.&lt;br&gt;&lt;br&gt;Example:&lt;br&gt;&lt;code&gt;\&quot;columnHeaderNames\&quot;:{&lt;br&gt;  \&quot;firstName\&quot;:\&quot;First Name\&quot;,&lt;br&gt;  \&quot;lastName\&quot;:\&quot;Last Name\&quot;,&lt;br&gt;  \&quot;email\&quot;:\&quot;Email Address\&quot;&lt;br&gt;}&lt;/code&gt;&lt;br&gt; (optional)
+     * @param \NecLimDul\MarketoRest\Lead\Model\ExportProgramMemberRequest|null $export_program_member_request
+     *   exportProgramMemberRequest&lt;br&gt;&lt;br&gt;ColumnHeaderNames: A JSON object containing key-value pairs of field and column header names.&lt;br&gt;&lt;br&gt;Example:&lt;br&gt;&lt;code&gt;\&quot;columnHeaderNames\&quot;:{&lt;br&gt;  \&quot;firstName\&quot;:\&quot;First Name\&quot;,&lt;br&gt;  \&quot;lastName\&quot;:\&quot;Last Name\&quot;,&lt;br&gt;  \&quot;email\&quot;:\&quot;Email Address\&quot;&lt;br&gt;}&lt;/code&gt;&lt;br&gt;
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
     public function createExportProgramMembersUsingPOSTRequest(
         \NecLimDul\MarketoRest\Lead\Model\ExportProgramMemberRequest $export_program_member_request = null
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/bulk/v1/program/members/export/create.json';
 
@@ -419,7 +427,6 @@ class BulkExportProgramMembersApi
             [
             ],
             $export_program_member_request
-            
         );
     }
 
@@ -449,7 +456,8 @@ class BulkExportProgramMembersApi
     /**
      * Enqueue Export Program Member Job
      *
-     * @param  string $export_id Id of export batch job. (required)
+     * @param string $export_id
+     *   Id of export batch job.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -457,8 +465,7 @@ class BulkExportProgramMembersApi
      */
     public function enqueueExportProgramMembersUsingPOST(
         string $export_id
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse
-    {
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse {
         list($response) = $this->enqueueExportProgramMembersUsingPOSTWithHttpInfo($export_id);
         return $response;
     }
@@ -466,17 +473,21 @@ class BulkExportProgramMembersApi
     /**
      * Enqueue Export Program Member Job
      *
-     * @param  string $export_id Id of export batch job. (required)
+     * @param string $export_id
+     *   Id of export batch job.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function enqueueExportProgramMembersUsingPOSTWithHttpInfo(
         string $export_id
-    ): array
-    {
+    ): array {
         $request = $this->enqueueExportProgramMembersUsingPOSTRequest($export_id);
         try {
             $response = $this->makeRequest($request);
@@ -492,15 +503,15 @@ class BulkExportProgramMembersApi
     /**
      * Enqueue Export Program Member Job
      *
-     * @param  string $export_id Id of export batch job. (required)
+     * @param string $export_id
+     *   Id of export batch job.
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function enqueueExportProgramMembersUsingPOSTAsync(
         string $export_id
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->enqueueExportProgramMembersUsingPOSTAsyncWithHttpInfo($export_id)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse {
@@ -512,15 +523,15 @@ class BulkExportProgramMembersApi
     /**
      * Enqueue Export Program Member Job
      *
-     * @param  string $export_id Id of export batch job. (required)
+     * @param string $export_id
+     *   Id of export batch job.
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function enqueueExportProgramMembersUsingPOSTAsyncWithHttpInfo(
         string $export_id
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->enqueueExportProgramMembersUsingPOSTRequest($export_id);
         return $this->makeAsyncRequest(
             $request,
@@ -532,15 +543,15 @@ class BulkExportProgramMembersApi
     /**
      * Create request for operation 'enqueueExportProgramMembersUsingPOST'
      *
-     * @param  string $export_id Id of export batch job. (required)
+     * @param string $export_id
+     *   Id of export batch job.
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
     public function enqueueExportProgramMembersUsingPOSTRequest(
         string $export_id
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/bulk/v1/program/members/export/{exportId}/enqueue.json';
         $resourcePath = str_replace(
@@ -605,8 +616,10 @@ class BulkExportProgramMembersApi
     /**
      * Get Export Program Member File
      *
-     * @param  string $export_id Id of export batch job. (required)
-     * @param  string $range To support partial retrieval of extracted data, the HTTP header \&quot;Range\&quot; of type \&quot;bytes\&quot; may be specified.  See RFC 2616 \&quot;Range Retrieval Requests\&quot; for more information. If the header is not set, the entire contents will be returned. (optional)
+     * @param string $export_id
+     *   Id of export batch job.
+     * @param string|null $range
+     *   To support partial retrieval of extracted data, the HTTP header \&quot;Range\&quot; of type \&quot;bytes\&quot; may be specified.  See RFC 2616 \&quot;Range Retrieval Requests\&quot; for more information. If the header is not set, the entire contents will be returned.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -615,8 +628,7 @@ class BulkExportProgramMembersApi
     public function getExportProgramMembersFileUsingGET(
         string $export_id,
         string $range = null
-    ): \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamRangeContent
-    {
+    ): \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamRangeContent {
         list($response) = $this->getExportProgramMembersFileUsingGETWithHttpInfo($export_id, $range);
         return $response;
     }
@@ -624,19 +636,24 @@ class BulkExportProgramMembersApi
     /**
      * Get Export Program Member File
      *
-     * @param  string $export_id Id of export batch job. (required)
-     * @param  string $range To support partial retrieval of extracted data, the HTTP header \&quot;Range\&quot; of type \&quot;bytes\&quot; may be specified.  See RFC 2616 \&quot;Range Retrieval Requests\&quot; for more information. If the header is not set, the entire contents will be returned. (optional)
+     * @param string $export_id
+     *   Id of export batch job.
+     * @param string|null $range
+     *   To support partial retrieval of extracted data, the HTTP header \&quot;Range\&quot; of type \&quot;bytes\&quot; may be specified.  See RFC 2616 \&quot;Range Retrieval Requests\&quot; for more information. If the header is not set, the entire contents will be returned.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamRangeContent, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamRangeContent, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamRangeContent,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function getExportProgramMembersFileUsingGETWithHttpInfo(
         string $export_id,
         string $range = null
-    ): array
-    {
+    ): array {
         $request = $this->getExportProgramMembersFileUsingGETRequest($export_id, $range);
         try {
             $response = $this->makeRequest($request);
@@ -652,8 +669,10 @@ class BulkExportProgramMembersApi
     /**
      * Get Export Program Member File
      *
-     * @param  string $export_id Id of export batch job. (required)
-     * @param  string $range To support partial retrieval of extracted data, the HTTP header \&quot;Range\&quot; of type \&quot;bytes\&quot; may be specified.  See RFC 2616 \&quot;Range Retrieval Requests\&quot; for more information. If the header is not set, the entire contents will be returned. (optional)
+     * @param string $export_id
+     *   Id of export batch job.
+     * @param string|null $range
+     *   To support partial retrieval of extracted data, the HTTP header \&quot;Range\&quot; of type \&quot;bytes\&quot; may be specified.  See RFC 2616 \&quot;Range Retrieval Requests\&quot; for more information. If the header is not set, the entire contents will be returned.
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -661,8 +680,7 @@ class BulkExportProgramMembersApi
     public function getExportProgramMembersFileUsingGETAsync(
         string $export_id,
         string $range = null
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->getExportProgramMembersFileUsingGETAsyncWithHttpInfo($export_id, $range)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamRangeContent {
@@ -674,8 +692,10 @@ class BulkExportProgramMembersApi
     /**
      * Get Export Program Member File
      *
-     * @param  string $export_id Id of export batch job. (required)
-     * @param  string $range To support partial retrieval of extracted data, the HTTP header \&quot;Range\&quot; of type \&quot;bytes\&quot; may be specified.  See RFC 2616 \&quot;Range Retrieval Requests\&quot; for more information. If the header is not set, the entire contents will be returned. (optional)
+     * @param string $export_id
+     *   Id of export batch job.
+     * @param string|null $range
+     *   To support partial retrieval of extracted data, the HTTP header \&quot;Range\&quot; of type \&quot;bytes\&quot; may be specified.  See RFC 2616 \&quot;Range Retrieval Requests\&quot; for more information. If the header is not set, the entire contents will be returned.
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -683,8 +703,7 @@ class BulkExportProgramMembersApi
     public function getExportProgramMembersFileUsingGETAsyncWithHttpInfo(
         string $export_id,
         string $range = null
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->getExportProgramMembersFileUsingGETRequest($export_id, $range);
         return $this->makeAsyncRequest(
             $request,
@@ -696,8 +715,10 @@ class BulkExportProgramMembersApi
     /**
      * Create request for operation 'getExportProgramMembersFileUsingGET'
      *
-     * @param  string $export_id Id of export batch job. (required)
-     * @param  string $range To support partial retrieval of extracted data, the HTTP header \&quot;Range\&quot; of type \&quot;bytes\&quot; may be specified.  See RFC 2616 \&quot;Range Retrieval Requests\&quot; for more information. If the header is not set, the entire contents will be returned. (optional)
+     * @param string $export_id
+     *   Id of export batch job.
+     * @param string|null $range
+     *   To support partial retrieval of extracted data, the HTTP header \&quot;Range\&quot; of type \&quot;bytes\&quot; may be specified.  See RFC 2616 \&quot;Range Retrieval Requests\&quot; for more information. If the header is not set, the entire contents will be returned.
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -705,8 +726,7 @@ class BulkExportProgramMembersApi
     public function getExportProgramMembersFileUsingGETRequest(
         string $export_id,
         string $range = null
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/bulk/v1/program/members/export/{exportId}/file.json';
         $resourcePath = str_replace(
@@ -772,7 +792,8 @@ class BulkExportProgramMembersApi
     /**
      * Get Export Program Member Job Status
      *
-     * @param  string $export_id Id of export batch job. (required)
+     * @param string $export_id
+     *   Id of export batch job.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -780,8 +801,7 @@ class BulkExportProgramMembersApi
      */
     public function getExportProgramMembersStatusUsingGET(
         string $export_id
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse
-    {
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse {
         list($response) = $this->getExportProgramMembersStatusUsingGETWithHttpInfo($export_id);
         return $response;
     }
@@ -789,17 +809,21 @@ class BulkExportProgramMembersApi
     /**
      * Get Export Program Member Job Status
      *
-     * @param  string $export_id Id of export batch job. (required)
+     * @param string $export_id
+     *   Id of export batch job.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function getExportProgramMembersStatusUsingGETWithHttpInfo(
         string $export_id
-    ): array
-    {
+    ): array {
         $request = $this->getExportProgramMembersStatusUsingGETRequest($export_id);
         try {
             $response = $this->makeRequest($request);
@@ -815,15 +839,15 @@ class BulkExportProgramMembersApi
     /**
      * Get Export Program Member Job Status
      *
-     * @param  string $export_id Id of export batch job. (required)
+     * @param string $export_id
+     *   Id of export batch job.
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function getExportProgramMembersStatusUsingGETAsync(
         string $export_id
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->getExportProgramMembersStatusUsingGETAsyncWithHttpInfo($export_id)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponse {
@@ -835,15 +859,15 @@ class BulkExportProgramMembersApi
     /**
      * Get Export Program Member Job Status
      *
-     * @param  string $export_id Id of export batch job. (required)
+     * @param string $export_id
+     *   Id of export batch job.
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function getExportProgramMembersStatusUsingGETAsyncWithHttpInfo(
         string $export_id
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->getExportProgramMembersStatusUsingGETRequest($export_id);
         return $this->makeAsyncRequest(
             $request,
@@ -855,15 +879,15 @@ class BulkExportProgramMembersApi
     /**
      * Create request for operation 'getExportProgramMembersStatusUsingGET'
      *
-     * @param  string $export_id Id of export batch job. (required)
+     * @param string $export_id
+     *   Id of export batch job.
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
     public function getExportProgramMembersStatusUsingGETRequest(
         string $export_id
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/bulk/v1/program/members/export/{exportId}/status.json';
         $resourcePath = str_replace(
@@ -928,9 +952,12 @@ class BulkExportProgramMembersApi
     /**
      * Get Export Program Member Jobs
      *
-     * @param  string[] $status Comma separated list of statuses to filter on. (optional)
-     * @param  int $batch_size The batch size to return. The max and default value is 300. (optional)
-     * @param  string $next_page_token A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info. (optional)
+     * @param string[]|null $status
+     *   Comma separated list of statuses to filter on.
+     * @param int|null $batch_size
+     *   The batch size to return. The max and default value is 300.
+     * @param string|null $next_page_token
+     *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -940,8 +967,7 @@ class BulkExportProgramMembersApi
         array $status = null,
         int $batch_size = null,
         string $next_page_token = null
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponseWithToken
-    {
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponseWithToken {
         list($response) = $this->getExportProgramMembersUsingGETWithHttpInfo($status, $batch_size, $next_page_token);
         return $response;
     }
@@ -949,21 +975,27 @@ class BulkExportProgramMembersApi
     /**
      * Get Export Program Member Jobs
      *
-     * @param  string[] $status Comma separated list of statuses to filter on. (optional)
-     * @param  int $batch_size The batch size to return. The max and default value is 300. (optional)
-     * @param  string $next_page_token A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info. (optional)
+     * @param string[]|null $status
+     *   Comma separated list of statuses to filter on.
+     * @param int|null $batch_size
+     *   The batch size to return. The max and default value is 300.
+     * @param string|null $next_page_token
+     *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponseWithToken, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponseWithToken, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponseWithToken,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function getExportProgramMembersUsingGETWithHttpInfo(
         array $status = null,
         int $batch_size = null,
         string $next_page_token = null
-    ): array
-    {
+    ): array {
         $request = $this->getExportProgramMembersUsingGETRequest($status, $batch_size, $next_page_token);
         try {
             $response = $this->makeRequest($request);
@@ -979,9 +1011,12 @@ class BulkExportProgramMembersApi
     /**
      * Get Export Program Member Jobs
      *
-     * @param  string[] $status Comma separated list of statuses to filter on. (optional)
-     * @param  int $batch_size The batch size to return. The max and default value is 300. (optional)
-     * @param  string $next_page_token A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info. (optional)
+     * @param string[]|null $status
+     *   Comma separated list of statuses to filter on.
+     * @param int|null $batch_size
+     *   The batch size to return. The max and default value is 300.
+     * @param string|null $next_page_token
+     *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -990,8 +1025,7 @@ class BulkExportProgramMembersApi
         array $status = null,
         int $batch_size = null,
         string $next_page_token = null
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->getExportProgramMembersUsingGETAsyncWithHttpInfo($status, $batch_size, $next_page_token)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfExportResponseWithToken {
@@ -1003,9 +1037,12 @@ class BulkExportProgramMembersApi
     /**
      * Get Export Program Member Jobs
      *
-     * @param  string[] $status Comma separated list of statuses to filter on. (optional)
-     * @param  int $batch_size The batch size to return. The max and default value is 300. (optional)
-     * @param  string $next_page_token A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info. (optional)
+     * @param string[]|null $status
+     *   Comma separated list of statuses to filter on.
+     * @param int|null $batch_size
+     *   The batch size to return. The max and default value is 300.
+     * @param string|null $next_page_token
+     *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1014,8 +1051,7 @@ class BulkExportProgramMembersApi
         array $status = null,
         int $batch_size = null,
         string $next_page_token = null
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->getExportProgramMembersUsingGETRequest($status, $batch_size, $next_page_token);
         return $this->makeAsyncRequest(
             $request,
@@ -1027,9 +1063,12 @@ class BulkExportProgramMembersApi
     /**
      * Create request for operation 'getExportProgramMembersUsingGET'
      *
-     * @param  string[] $status Comma separated list of statuses to filter on. (optional)
-     * @param  int $batch_size The batch size to return. The max and default value is 300. (optional)
-     * @param  string $next_page_token A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info. (optional)
+     * @param string[]|null $status
+     *   Comma separated list of statuses to filter on.
+     * @param int|null $batch_size
+     *   The batch size to return. The max and default value is 300.
+     * @param string|null $next_page_token
+     *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -1038,8 +1077,7 @@ class BulkExportProgramMembersApi
         array $status = null,
         int $batch_size = null,
         string $next_page_token = null
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/bulk/v1/program/members/export.json';
 
@@ -1103,10 +1141,11 @@ class BulkExportProgramMembersApi
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @return \Psr\Http\Message\ResponseInterface
      */
-    private function makeRequest(Request $request) {
+    private function makeRequest(Request $request)
+    {
         $options = $this->createHttpClientOption();
         try {
-           $response = $this->client->send($request, $options);
+            $response = $this->client->send($request, $options);
         } catch (RequestException $e) {
             $response = $e->getResponse();
             throw new ApiException(
@@ -1179,7 +1218,8 @@ class BulkExportProgramMembersApi
      * @return array structured array or response and http info.
      * @phpstan-return array{T, int, array<array<string>>}
      */
-    private function responseToReturn(ResponseInterface $response, string $returnType) {
+    private function responseToReturn(ResponseInterface $response, string $returnType)
+    {
         return [
             $this->deserializeResponseBody($response->getBody(), $returnType),
             $response->getStatusCode(),
@@ -1208,5 +1248,4 @@ class BulkExportProgramMembersApi
             $headers
         );
     }
-
 }

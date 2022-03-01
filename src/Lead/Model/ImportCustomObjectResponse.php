@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ImportCustomObjectResponse
  *
@@ -25,8 +26,8 @@
 
 namespace NecLimDul\MarketoRest\Lead\Model;
 
-use \ArrayAccess;
-use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
+use ArrayAccess;
+use NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * ImportCustomObjectResponse Class Doc Comment
@@ -163,7 +164,6 @@ class ImportCustomObjectResponse implements ModelInterface, ArrayAccess, \JsonSe
         'operation' => 'getOperation',
         'status' => 'getStatus'
     ];
-    
 
     /**
      * Associative array for storing property values
@@ -252,7 +252,6 @@ class ImportCustomObjectResponse implements ModelInterface, ArrayAccess, \JsonSe
     {
         return count($this->listInvalidProperties()) === 0;
     }
-    
 
     /**
      * Gets batch_id
@@ -507,7 +506,7 @@ class ImportCustomObjectResponse implements ModelInterface, ArrayAccess, \JsonSe
              * @param array-key $key
              * @return mixed
              */
-            function($key) use ($container) {
+            function ($key) use ($container) {
                 return $container[$key];
             };
         return array_map($map, $this->additionalProperties);
@@ -563,7 +562,7 @@ class ImportCustomObjectResponse implements ModelInterface, ArrayAccess, \JsonSe
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -579,5 +578,4 @@ class ImportCustomObjectResponse implements ModelInterface, ArrayAccess, \JsonSe
             JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR
         );
     }
-
 }

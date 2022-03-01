@@ -1,4 +1,5 @@
 <?php
+
 /**
  * LandingPageContentApi
  *
@@ -48,7 +49,6 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  */
 class LandingPageContentApi
 {
-
     /**
      * @var ClientInterface
      */
@@ -73,7 +73,7 @@ class LandingPageContentApi
      * @param ClientInterface|null $client
      * @param Configuration|null   $config
      * @param HeaderSelector|null  $selector
-     * @param int                  $hostIndex (Optional) host index to select the list of hosts if defined in the OpenAPI spec
+     * @param int                  $hostIndex (Optional) host index to select the list of hosts if defined in the spec.
      */
     public function __construct(
         ClientInterface $client = null,
@@ -102,7 +102,7 @@ class LandingPageContentApi
      *
      * @return int Host index
      */
-    public function getHostIndex()
+    public function getHostIndex(): int
     {
         return $this->hostIndex;
     }
@@ -110,7 +110,7 @@ class LandingPageContentApi
     /**
      * @return Configuration
      */
-    public function getConfig()
+    public function getConfig(): Configuration
     {
         return $this->config;
     }
@@ -141,8 +141,10 @@ class LandingPageContentApi
     /**
      * Add Landing Page Content Section
      *
-     * @param  int $id id (required)
-     * @param  \NecLimDul\MarketoRest\Asset\Model\CreateLandingPageContentRequest $request request (required)
+     * @param int $id
+     *   id
+     * @param \NecLimDul\MarketoRest\Asset\Model\CreateLandingPageContentRequest $request
+     *   request
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -151,8 +153,7 @@ class LandingPageContentApi
     public function addLandingPageContentUsingPOST(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\CreateLandingPageContentRequest $request
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse
-    {
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse {
         list($response) = $this->addLandingPageContentUsingPOSTWithHttpInfo($id, $request);
         return $response;
     }
@@ -160,19 +161,24 @@ class LandingPageContentApi
     /**
      * Add Landing Page Content Section
      *
-     * @param  int $id id (required)
-     * @param  \NecLimDul\MarketoRest\Asset\Model\CreateLandingPageContentRequest $request request (required)
+     * @param int $id
+     *   id
+     * @param \NecLimDul\MarketoRest\Asset\Model\CreateLandingPageContentRequest $request
+     *   request
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function addLandingPageContentUsingPOSTWithHttpInfo(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\CreateLandingPageContentRequest $request
-    ): array
-    {
+    ): array {
         $request = $this->addLandingPageContentUsingPOSTRequest($id, $request);
         try {
             $response = $this->makeRequest($request);
@@ -188,8 +194,10 @@ class LandingPageContentApi
     /**
      * Add Landing Page Content Section
      *
-     * @param  int $id id (required)
-     * @param  \NecLimDul\MarketoRest\Asset\Model\CreateLandingPageContentRequest $request request (required)
+     * @param int $id
+     *   id
+     * @param \NecLimDul\MarketoRest\Asset\Model\CreateLandingPageContentRequest $request
+     *   request
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -197,8 +205,7 @@ class LandingPageContentApi
     public function addLandingPageContentUsingPOSTAsync(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\CreateLandingPageContentRequest $request
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->addLandingPageContentUsingPOSTAsyncWithHttpInfo($id, $request)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse {
@@ -210,8 +217,10 @@ class LandingPageContentApi
     /**
      * Add Landing Page Content Section
      *
-     * @param  int $id id (required)
-     * @param  \NecLimDul\MarketoRest\Asset\Model\CreateLandingPageContentRequest $request request (required)
+     * @param int $id
+     *   id
+     * @param \NecLimDul\MarketoRest\Asset\Model\CreateLandingPageContentRequest $request
+     *   request
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -219,8 +228,7 @@ class LandingPageContentApi
     public function addLandingPageContentUsingPOSTAsyncWithHttpInfo(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\CreateLandingPageContentRequest $request
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->addLandingPageContentUsingPOSTRequest($id, $request);
         return $this->makeAsyncRequest(
             $request,
@@ -232,8 +240,10 @@ class LandingPageContentApi
     /**
      * Create request for operation 'addLandingPageContentUsingPOST'
      *
-     * @param  int $id id (required)
-     * @param  \NecLimDul\MarketoRest\Asset\Model\CreateLandingPageContentRequest $request request (required)
+     * @param int $id
+     *   id
+     * @param \NecLimDul\MarketoRest\Asset\Model\CreateLandingPageContentRequest $request
+     *   request
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -241,8 +251,7 @@ class LandingPageContentApi
     public function addLandingPageContentUsingPOSTRequest(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\CreateLandingPageContentRequest $request
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/asset/v1/landingPage/{id}/content.json';
         $resourcePath = str_replace(
@@ -278,7 +287,6 @@ class LandingPageContentApi
             [
             ],
             $request
-            
         );
     }
 
@@ -308,8 +316,10 @@ class LandingPageContentApi
     /**
      * Get Landing Page Content
      *
-     * @param  int $id id (required)
-     * @param  string $status Status filter for draft or approved versions (optional)
+     * @param int $id
+     *   id
+     * @param string|null $status
+     *   Status filter for draft or approved versions
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -318,8 +328,7 @@ class LandingPageContentApi
     public function getLandingPageContentUsingGET(
         int $id,
         string $status = null
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageContentResponse
-    {
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageContentResponse {
         list($response) = $this->getLandingPageContentUsingGETWithHttpInfo($id, $status);
         return $response;
     }
@@ -327,19 +336,24 @@ class LandingPageContentApi
     /**
      * Get Landing Page Content
      *
-     * @param  int $id id (required)
-     * @param  string $status Status filter for draft or approved versions (optional)
+     * @param int $id
+     *   id
+     * @param string|null $status
+     *   Status filter for draft or approved versions
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageContentResponse, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageContentResponse, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageContentResponse,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function getLandingPageContentUsingGETWithHttpInfo(
         int $id,
         string $status = null
-    ): array
-    {
+    ): array {
         $request = $this->getLandingPageContentUsingGETRequest($id, $status);
         try {
             $response = $this->makeRequest($request);
@@ -355,8 +369,10 @@ class LandingPageContentApi
     /**
      * Get Landing Page Content
      *
-     * @param  int $id id (required)
-     * @param  string $status Status filter for draft or approved versions (optional)
+     * @param int $id
+     *   id
+     * @param string|null $status
+     *   Status filter for draft or approved versions
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -364,8 +380,7 @@ class LandingPageContentApi
     public function getLandingPageContentUsingGETAsync(
         int $id,
         string $status = null
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->getLandingPageContentUsingGETAsyncWithHttpInfo($id, $status)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageContentResponse {
@@ -377,8 +392,10 @@ class LandingPageContentApi
     /**
      * Get Landing Page Content
      *
-     * @param  int $id id (required)
-     * @param  string $status Status filter for draft or approved versions (optional)
+     * @param int $id
+     *   id
+     * @param string|null $status
+     *   Status filter for draft or approved versions
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -386,8 +403,7 @@ class LandingPageContentApi
     public function getLandingPageContentUsingGETAsyncWithHttpInfo(
         int $id,
         string $status = null
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->getLandingPageContentUsingGETRequest($id, $status);
         return $this->makeAsyncRequest(
             $request,
@@ -399,8 +415,10 @@ class LandingPageContentApi
     /**
      * Create request for operation 'getLandingPageContentUsingGET'
      *
-     * @param  int $id id (required)
-     * @param  string $status Status filter for draft or approved versions (optional)
+     * @param int $id
+     *   id
+     * @param string|null $status
+     *   Status filter for draft or approved versions
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -408,8 +426,7 @@ class LandingPageContentApi
     public function getLandingPageContentUsingGETRequest(
         int $id,
         string $status = null
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/asset/v1/landingPage/{id}/content.json';
         $resourcePath = str_replace(
@@ -475,8 +492,10 @@ class LandingPageContentApi
     /**
      * Get Landing Page Dynamic Content
      *
-     * @param  int $id Id of landing page (required)
-     * @param  string $content_id Id of landing page dynamic content section (required)
+     * @param int $id
+     *   Id of landing page
+     * @param string $content_id
+     *   Id of landing page dynamic content section
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -485,8 +504,7 @@ class LandingPageContentApi
     public function getLandingPageDynamicContentsUsingGET(
         int $id,
         string $content_id
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageDynamicContentResponse
-    {
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageDynamicContentResponse {
         list($response) = $this->getLandingPageDynamicContentsUsingGETWithHttpInfo($id, $content_id);
         return $response;
     }
@@ -494,19 +512,24 @@ class LandingPageContentApi
     /**
      * Get Landing Page Dynamic Content
      *
-     * @param  int $id Id of landing page (required)
-     * @param  string $content_id Id of landing page dynamic content section (required)
+     * @param int $id
+     *   Id of landing page
+     * @param string $content_id
+     *   Id of landing page dynamic content section
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageDynamicContentResponse, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageDynamicContentResponse, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageDynamicContentResponse,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function getLandingPageDynamicContentsUsingGETWithHttpInfo(
         int $id,
         string $content_id
-    ): array
-    {
+    ): array {
         $request = $this->getLandingPageDynamicContentsUsingGETRequest($id, $content_id);
         try {
             $response = $this->makeRequest($request);
@@ -522,8 +545,10 @@ class LandingPageContentApi
     /**
      * Get Landing Page Dynamic Content
      *
-     * @param  int $id Id of landing page (required)
-     * @param  string $content_id Id of landing page dynamic content section (required)
+     * @param int $id
+     *   Id of landing page
+     * @param string $content_id
+     *   Id of landing page dynamic content section
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -531,8 +556,7 @@ class LandingPageContentApi
     public function getLandingPageDynamicContentsUsingGETAsync(
         int $id,
         string $content_id
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->getLandingPageDynamicContentsUsingGETAsyncWithHttpInfo($id, $content_id)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLandingPageDynamicContentResponse {
@@ -544,8 +568,10 @@ class LandingPageContentApi
     /**
      * Get Landing Page Dynamic Content
      *
-     * @param  int $id Id of landing page (required)
-     * @param  string $content_id Id of landing page dynamic content section (required)
+     * @param int $id
+     *   Id of landing page
+     * @param string $content_id
+     *   Id of landing page dynamic content section
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -553,8 +579,7 @@ class LandingPageContentApi
     public function getLandingPageDynamicContentsUsingGETAsyncWithHttpInfo(
         int $id,
         string $content_id
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->getLandingPageDynamicContentsUsingGETRequest($id, $content_id);
         return $this->makeAsyncRequest(
             $request,
@@ -566,8 +591,10 @@ class LandingPageContentApi
     /**
      * Create request for operation 'getLandingPageDynamicContentsUsingGET'
      *
-     * @param  int $id Id of landing page (required)
-     * @param  string $content_id Id of landing page dynamic content section (required)
+     * @param int $id
+     *   Id of landing page
+     * @param string $content_id
+     *   Id of landing page dynamic content section
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -575,8 +602,7 @@ class LandingPageContentApi
     public function getLandingPageDynamicContentsUsingGETRequest(
         int $id,
         string $content_id
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/asset/v1/landingPage/{id}/dynamicContent/{contentId}.json';
         $resourcePath = str_replace(
@@ -646,8 +672,10 @@ class LandingPageContentApi
     /**
      * Delete Landing Page Content Section
      *
-     * @param  int $id Id of landing page (required)
-     * @param  string $content_id Id of landing page content section (required)
+     * @param int $id
+     *   Id of landing page
+     * @param string $content_id
+     *   Id of landing page content section
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -656,8 +684,7 @@ class LandingPageContentApi
     public function removeLandingPageContentUsingPOST(
         int $id,
         string $content_id
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse
-    {
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse {
         list($response) = $this->removeLandingPageContentUsingPOSTWithHttpInfo($id, $content_id);
         return $response;
     }
@@ -665,19 +692,24 @@ class LandingPageContentApi
     /**
      * Delete Landing Page Content Section
      *
-     * @param  int $id Id of landing page (required)
-     * @param  string $content_id Id of landing page content section (required)
+     * @param int $id
+     *   Id of landing page
+     * @param string $content_id
+     *   Id of landing page content section
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function removeLandingPageContentUsingPOSTWithHttpInfo(
         int $id,
         string $content_id
-    ): array
-    {
+    ): array {
         $request = $this->removeLandingPageContentUsingPOSTRequest($id, $content_id);
         try {
             $response = $this->makeRequest($request);
@@ -693,8 +725,10 @@ class LandingPageContentApi
     /**
      * Delete Landing Page Content Section
      *
-     * @param  int $id Id of landing page (required)
-     * @param  string $content_id Id of landing page content section (required)
+     * @param int $id
+     *   Id of landing page
+     * @param string $content_id
+     *   Id of landing page content section
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -702,8 +736,7 @@ class LandingPageContentApi
     public function removeLandingPageContentUsingPOSTAsync(
         int $id,
         string $content_id
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->removeLandingPageContentUsingPOSTAsyncWithHttpInfo($id, $content_id)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse {
@@ -715,8 +748,10 @@ class LandingPageContentApi
     /**
      * Delete Landing Page Content Section
      *
-     * @param  int $id Id of landing page (required)
-     * @param  string $content_id Id of landing page content section (required)
+     * @param int $id
+     *   Id of landing page
+     * @param string $content_id
+     *   Id of landing page content section
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -724,8 +759,7 @@ class LandingPageContentApi
     public function removeLandingPageContentUsingPOSTAsyncWithHttpInfo(
         int $id,
         string $content_id
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->removeLandingPageContentUsingPOSTRequest($id, $content_id);
         return $this->makeAsyncRequest(
             $request,
@@ -737,8 +771,10 @@ class LandingPageContentApi
     /**
      * Create request for operation 'removeLandingPageContentUsingPOST'
      *
-     * @param  int $id Id of landing page (required)
-     * @param  string $content_id Id of landing page content section (required)
+     * @param int $id
+     *   Id of landing page
+     * @param string $content_id
+     *   Id of landing page content section
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -746,8 +782,7 @@ class LandingPageContentApi
     public function removeLandingPageContentUsingPOSTRequest(
         int $id,
         string $content_id
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/asset/v1/landingPage/{id}/content/{contentId}/delete.json';
         $resourcePath = str_replace(
@@ -817,9 +852,12 @@ class LandingPageContentApi
     /**
      * Update Landing Page Content Section
      *
-     * @param  int $id Id of landing page (required)
-     * @param  string $content_id Id of landing page content section (required)
-     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateLandingPageContentRequest $request Content properties (required)
+     * @param int $id
+     *   Id of landing page
+     * @param string $content_id
+     *   Id of landing page content section
+     * @param \NecLimDul\MarketoRest\Asset\Model\UpdateLandingPageContentRequest $request
+     *   Content properties
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -829,8 +867,7 @@ class LandingPageContentApi
         int $id,
         string $content_id,
         \NecLimDul\MarketoRest\Asset\Model\UpdateLandingPageContentRequest $request
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse
-    {
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse {
         list($response) = $this->updateLandingPageContentUsingPOSTWithHttpInfo($id, $content_id, $request);
         return $response;
     }
@@ -838,21 +875,27 @@ class LandingPageContentApi
     /**
      * Update Landing Page Content Section
      *
-     * @param  int $id Id of landing page (required)
-     * @param  string $content_id Id of landing page content section (required)
-     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateLandingPageContentRequest $request Content properties (required)
+     * @param int $id
+     *   Id of landing page
+     * @param string $content_id
+     *   Id of landing page content section
+     * @param \NecLimDul\MarketoRest\Asset\Model\UpdateLandingPageContentRequest $request
+     *   Content properties
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function updateLandingPageContentUsingPOSTWithHttpInfo(
         int $id,
         string $content_id,
         \NecLimDul\MarketoRest\Asset\Model\UpdateLandingPageContentRequest $request
-    ): array
-    {
+    ): array {
         $request = $this->updateLandingPageContentUsingPOSTRequest($id, $content_id, $request);
         try {
             $response = $this->makeRequest($request);
@@ -868,9 +911,12 @@ class LandingPageContentApi
     /**
      * Update Landing Page Content Section
      *
-     * @param  int $id Id of landing page (required)
-     * @param  string $content_id Id of landing page content section (required)
-     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateLandingPageContentRequest $request Content properties (required)
+     * @param int $id
+     *   Id of landing page
+     * @param string $content_id
+     *   Id of landing page content section
+     * @param \NecLimDul\MarketoRest\Asset\Model\UpdateLandingPageContentRequest $request
+     *   Content properties
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -879,8 +925,7 @@ class LandingPageContentApi
         int $id,
         string $content_id,
         \NecLimDul\MarketoRest\Asset\Model\UpdateLandingPageContentRequest $request
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->updateLandingPageContentUsingPOSTAsyncWithHttpInfo($id, $content_id, $request)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse {
@@ -892,9 +937,12 @@ class LandingPageContentApi
     /**
      * Update Landing Page Content Section
      *
-     * @param  int $id Id of landing page (required)
-     * @param  string $content_id Id of landing page content section (required)
-     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateLandingPageContentRequest $request Content properties (required)
+     * @param int $id
+     *   Id of landing page
+     * @param string $content_id
+     *   Id of landing page content section
+     * @param \NecLimDul\MarketoRest\Asset\Model\UpdateLandingPageContentRequest $request
+     *   Content properties
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -903,8 +951,7 @@ class LandingPageContentApi
         int $id,
         string $content_id,
         \NecLimDul\MarketoRest\Asset\Model\UpdateLandingPageContentRequest $request
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->updateLandingPageContentUsingPOSTRequest($id, $content_id, $request);
         return $this->makeAsyncRequest(
             $request,
@@ -916,9 +963,12 @@ class LandingPageContentApi
     /**
      * Create request for operation 'updateLandingPageContentUsingPOST'
      *
-     * @param  int $id Id of landing page (required)
-     * @param  string $content_id Id of landing page content section (required)
-     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateLandingPageContentRequest $request Content properties (required)
+     * @param int $id
+     *   Id of landing page
+     * @param string $content_id
+     *   Id of landing page content section
+     * @param \NecLimDul\MarketoRest\Asset\Model\UpdateLandingPageContentRequest $request
+     *   Content properties
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -927,8 +977,7 @@ class LandingPageContentApi
         int $id,
         string $content_id,
         \NecLimDul\MarketoRest\Asset\Model\UpdateLandingPageContentRequest $request
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/asset/v1/landingPage/{id}/content/{contentId}.json';
         $resourcePath = str_replace(
@@ -969,7 +1018,6 @@ class LandingPageContentApi
             [
             ],
             $request
-            
         );
     }
 
@@ -999,9 +1047,12 @@ class LandingPageContentApi
     /**
      * Update Landing Page Dynamic Content Section
      *
-     * @param  int $id Id of the landing page (required)
-     * @param  string $content_id Id of the landing page dynamic content (required)
-     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateLandingPageDynamicContentRequest $request Dynamic content properties (optional)
+     * @param int $id
+     *   Id of the landing page
+     * @param string $content_id
+     *   Id of the landing page dynamic content
+     * @param \NecLimDul\MarketoRest\Asset\Model\UpdateLandingPageDynamicContentRequest|null $request
+     *   Dynamic content properties
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -1011,8 +1062,7 @@ class LandingPageContentApi
         int $id,
         string $content_id,
         \NecLimDul\MarketoRest\Asset\Model\UpdateLandingPageDynamicContentRequest $request = null
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse
-    {
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse {
         list($response) = $this->updateLandingPageDynamicContentUsingPOSTWithHttpInfo($id, $content_id, $request);
         return $response;
     }
@@ -1020,21 +1070,27 @@ class LandingPageContentApi
     /**
      * Update Landing Page Dynamic Content Section
      *
-     * @param  int $id Id of the landing page (required)
-     * @param  string $content_id Id of the landing page dynamic content (required)
-     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateLandingPageDynamicContentRequest $request Dynamic content properties (optional)
+     * @param int $id
+     *   Id of the landing page
+     * @param string $content_id
+     *   Id of the landing page dynamic content
+     * @param \NecLimDul\MarketoRest\Asset\Model\UpdateLandingPageDynamicContentRequest|null $request
+     *   Dynamic content properties
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function updateLandingPageDynamicContentUsingPOSTWithHttpInfo(
         int $id,
         string $content_id,
         \NecLimDul\MarketoRest\Asset\Model\UpdateLandingPageDynamicContentRequest $request = null
-    ): array
-    {
+    ): array {
         $request = $this->updateLandingPageDynamicContentUsingPOSTRequest($id, $content_id, $request);
         try {
             $response = $this->makeRequest($request);
@@ -1050,9 +1106,12 @@ class LandingPageContentApi
     /**
      * Update Landing Page Dynamic Content Section
      *
-     * @param  int $id Id of the landing page (required)
-     * @param  string $content_id Id of the landing page dynamic content (required)
-     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateLandingPageDynamicContentRequest $request Dynamic content properties (optional)
+     * @param int $id
+     *   Id of the landing page
+     * @param string $content_id
+     *   Id of the landing page dynamic content
+     * @param \NecLimDul\MarketoRest\Asset\Model\UpdateLandingPageDynamicContentRequest|null $request
+     *   Dynamic content properties
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1061,8 +1120,7 @@ class LandingPageContentApi
         int $id,
         string $content_id,
         \NecLimDul\MarketoRest\Asset\Model\UpdateLandingPageDynamicContentRequest $request = null
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->updateLandingPageDynamicContentUsingPOSTAsyncWithHttpInfo($id, $content_id, $request)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse {
@@ -1074,9 +1132,12 @@ class LandingPageContentApi
     /**
      * Update Landing Page Dynamic Content Section
      *
-     * @param  int $id Id of the landing page (required)
-     * @param  string $content_id Id of the landing page dynamic content (required)
-     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateLandingPageDynamicContentRequest $request Dynamic content properties (optional)
+     * @param int $id
+     *   Id of the landing page
+     * @param string $content_id
+     *   Id of the landing page dynamic content
+     * @param \NecLimDul\MarketoRest\Asset\Model\UpdateLandingPageDynamicContentRequest|null $request
+     *   Dynamic content properties
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1085,8 +1146,7 @@ class LandingPageContentApi
         int $id,
         string $content_id,
         \NecLimDul\MarketoRest\Asset\Model\UpdateLandingPageDynamicContentRequest $request = null
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->updateLandingPageDynamicContentUsingPOSTRequest($id, $content_id, $request);
         return $this->makeAsyncRequest(
             $request,
@@ -1098,9 +1158,12 @@ class LandingPageContentApi
     /**
      * Create request for operation 'updateLandingPageDynamicContentUsingPOST'
      *
-     * @param  int $id Id of the landing page (required)
-     * @param  string $content_id Id of the landing page dynamic content (required)
-     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateLandingPageDynamicContentRequest $request Dynamic content properties (optional)
+     * @param int $id
+     *   Id of the landing page
+     * @param string $content_id
+     *   Id of the landing page dynamic content
+     * @param \NecLimDul\MarketoRest\Asset\Model\UpdateLandingPageDynamicContentRequest|null $request
+     *   Dynamic content properties
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -1109,8 +1172,7 @@ class LandingPageContentApi
         int $id,
         string $content_id,
         \NecLimDul\MarketoRest\Asset\Model\UpdateLandingPageDynamicContentRequest $request = null
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/asset/v1/landingPage/{id}/dynamicContent/{contentId}.json';
         $resourcePath = str_replace(
@@ -1151,7 +1213,6 @@ class LandingPageContentApi
             [
             ],
             $request
-            
         );
     }
 
@@ -1182,10 +1243,11 @@ class LandingPageContentApi
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @return \Psr\Http\Message\ResponseInterface
      */
-    private function makeRequest(Request $request) {
+    private function makeRequest(Request $request)
+    {
         $options = $this->createHttpClientOption();
         try {
-           $response = $this->client->send($request, $options);
+            $response = $this->client->send($request, $options);
         } catch (RequestException $e) {
             $response = $e->getResponse();
             throw new ApiException(
@@ -1258,7 +1320,8 @@ class LandingPageContentApi
      * @return array structured array or response and http info.
      * @phpstan-return array{T, int, array<array<string>>}
      */
-    private function responseToReturn(ResponseInterface $response, string $returnType) {
+    private function responseToReturn(ResponseInterface $response, string $returnType)
+    {
         return [
             $this->deserializeResponseBody($response->getBody(), $returnType),
             $response->getStatusCode(),
@@ -1287,5 +1350,4 @@ class LandingPageContentApi
             $headers
         );
     }
-
 }

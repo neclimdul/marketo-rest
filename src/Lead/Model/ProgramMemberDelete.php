@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ProgramMemberDelete
  *
@@ -25,8 +26,8 @@
 
 namespace NecLimDul\MarketoRest\Lead\Model;
 
-use \ArrayAccess;
-use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
+use ArrayAccess;
+use NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * ProgramMemberDelete Class Doc Comment
@@ -122,7 +123,6 @@ class ProgramMemberDelete implements ModelInterface, ArrayAccess, \JsonSerializa
     protected static $getters = [
         'lead_id' => 'getLeadId'
     ];
-    
 
     /**
      * Associative array for storing property values
@@ -194,7 +194,6 @@ class ProgramMemberDelete implements ModelInterface, ArrayAccess, \JsonSerializa
     {
         return count($this->listInvalidProperties()) === 0;
     }
-    
 
     /**
      * Gets lead_id
@@ -257,7 +256,7 @@ class ProgramMemberDelete implements ModelInterface, ArrayAccess, \JsonSerializa
              * @param array-key $key
              * @return mixed
              */
-            function($key) use ($container) {
+            function ($key) use ($container) {
                 return $container[$key];
             };
         return array_map($map, $this->additionalProperties);
@@ -313,7 +312,7 @@ class ProgramMemberDelete implements ModelInterface, ArrayAccess, \JsonSerializa
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -329,5 +328,4 @@ class ProgramMemberDelete implements ModelInterface, ArrayAccess, \JsonSerializa
             JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR
         );
     }
-
 }

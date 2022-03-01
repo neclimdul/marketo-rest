@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ResponseOfUpdateEmailFullContentResponse
  *
@@ -25,8 +26,8 @@
 
 namespace NecLimDul\MarketoRest\Asset\Model;
 
-use \ArrayAccess;
-use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
+use ArrayAccess;
+use NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * ResponseOfUpdateEmailFullContentResponse Class Doc Comment
@@ -142,7 +143,6 @@ class ResponseOfUpdateEmailFullContentResponse implements ModelInterface, ArrayA
         'success' => 'getSuccess',
         'warnings' => 'getWarnings'
     ];
-    
 
     /**
      * Associative array for storing property values
@@ -215,7 +215,6 @@ class ResponseOfUpdateEmailFullContentResponse implements ModelInterface, ArrayA
     {
         return count($this->listInvalidProperties()) === 0;
     }
-    
 
     /**
      * Gets errors
@@ -374,7 +373,7 @@ class ResponseOfUpdateEmailFullContentResponse implements ModelInterface, ArrayA
              * @param array-key $key
              * @return mixed
              */
-            function($key) use ($container) {
+            function ($key) use ($container) {
                 return $container[$key];
             };
         return array_map($map, $this->additionalProperties);
@@ -430,7 +429,7 @@ class ResponseOfUpdateEmailFullContentResponse implements ModelInterface, ArrayA
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -446,5 +445,4 @@ class ResponseOfUpdateEmailFullContentResponse implements ModelInterface, ArrayA
             JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR
         );
     }
-
 }

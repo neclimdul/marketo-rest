@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ActivitiesApi
  *
@@ -48,7 +49,6 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  */
 class ActivitiesApi
 {
-
     /**
      * @var ClientInterface
      */
@@ -73,7 +73,7 @@ class ActivitiesApi
      * @param ClientInterface|null $client
      * @param Configuration|null   $config
      * @param HeaderSelector|null  $selector
-     * @param int                  $hostIndex (Optional) host index to select the list of hosts if defined in the OpenAPI spec
+     * @param int                  $hostIndex (Optional) host index to select the list of hosts if defined in the spec.
      */
     public function __construct(
         ClientInterface $client = null,
@@ -102,7 +102,7 @@ class ActivitiesApi
      *
      * @return int Host index
      */
-    public function getHostIndex()
+    public function getHostIndex(): int
     {
         return $this->hostIndex;
     }
@@ -110,7 +110,7 @@ class ActivitiesApi
     /**
      * @return Configuration
      */
-    public function getConfig()
+    public function getConfig(): Configuration
     {
         return $this->config;
     }
@@ -141,7 +141,8 @@ class ActivitiesApi
     /**
      * Add Custom Activities
      *
-     * @param  \NecLimDul\MarketoRest\Lead\Model\CustomActivityRequest $custom_activity_request customActivityRequest (required)
+     * @param \NecLimDul\MarketoRest\Lead\Model\CustomActivityRequest $custom_activity_request
+     *   customActivityRequest
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -149,8 +150,7 @@ class ActivitiesApi
      */
     public function addCustomActivityUsingPOST(
         \NecLimDul\MarketoRest\Lead\Model\CustomActivityRequest $custom_activity_request
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivity
-    {
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivity {
         list($response) = $this->addCustomActivityUsingPOSTWithHttpInfo($custom_activity_request);
         return $response;
     }
@@ -158,17 +158,21 @@ class ActivitiesApi
     /**
      * Add Custom Activities
      *
-     * @param  \NecLimDul\MarketoRest\Lead\Model\CustomActivityRequest $custom_activity_request customActivityRequest (required)
+     * @param \NecLimDul\MarketoRest\Lead\Model\CustomActivityRequest $custom_activity_request
+     *   customActivityRequest
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivity, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivity, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivity,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function addCustomActivityUsingPOSTWithHttpInfo(
         \NecLimDul\MarketoRest\Lead\Model\CustomActivityRequest $custom_activity_request
-    ): array
-    {
+    ): array {
         $request = $this->addCustomActivityUsingPOSTRequest($custom_activity_request);
         try {
             $response = $this->makeRequest($request);
@@ -184,15 +188,15 @@ class ActivitiesApi
     /**
      * Add Custom Activities
      *
-     * @param  \NecLimDul\MarketoRest\Lead\Model\CustomActivityRequest $custom_activity_request customActivityRequest (required)
+     * @param \NecLimDul\MarketoRest\Lead\Model\CustomActivityRequest $custom_activity_request
+     *   customActivityRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function addCustomActivityUsingPOSTAsync(
         \NecLimDul\MarketoRest\Lead\Model\CustomActivityRequest $custom_activity_request
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->addCustomActivityUsingPOSTAsyncWithHttpInfo($custom_activity_request)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivity {
@@ -204,15 +208,15 @@ class ActivitiesApi
     /**
      * Add Custom Activities
      *
-     * @param  \NecLimDul\MarketoRest\Lead\Model\CustomActivityRequest $custom_activity_request customActivityRequest (required)
+     * @param \NecLimDul\MarketoRest\Lead\Model\CustomActivityRequest $custom_activity_request
+     *   customActivityRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function addCustomActivityUsingPOSTAsyncWithHttpInfo(
         \NecLimDul\MarketoRest\Lead\Model\CustomActivityRequest $custom_activity_request
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->addCustomActivityUsingPOSTRequest($custom_activity_request);
         return $this->makeAsyncRequest(
             $request,
@@ -224,15 +228,15 @@ class ActivitiesApi
     /**
      * Create request for operation 'addCustomActivityUsingPOST'
      *
-     * @param  \NecLimDul\MarketoRest\Lead\Model\CustomActivityRequest $custom_activity_request customActivityRequest (required)
+     * @param \NecLimDul\MarketoRest\Lead\Model\CustomActivityRequest $custom_activity_request
+     *   customActivityRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
     public function addCustomActivityUsingPOSTRequest(
         \NecLimDul\MarketoRest\Lead\Model\CustomActivityRequest $custom_activity_request
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/v1/activities/external.json';
 
@@ -263,7 +267,6 @@ class ActivitiesApi
             [
             ],
             $custom_activity_request
-            
         );
     }
 
@@ -293,7 +296,8 @@ class ActivitiesApi
     /**
      * Approve Custom Activity Type
      *
-     * @param  string $api_name API Name of the activity type (required)
+     * @param string $api_name
+     *   API Name of the activity type
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -301,8 +305,7 @@ class ActivitiesApi
      */
     public function approveCustomActivityTypeUsingPOST(
         string $api_name
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType
-    {
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType {
         list($response) = $this->approveCustomActivityTypeUsingPOSTWithHttpInfo($api_name);
         return $response;
     }
@@ -310,17 +313,21 @@ class ActivitiesApi
     /**
      * Approve Custom Activity Type
      *
-     * @param  string $api_name API Name of the activity type (required)
+     * @param string $api_name
+     *   API Name of the activity type
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function approveCustomActivityTypeUsingPOSTWithHttpInfo(
         string $api_name
-    ): array
-    {
+    ): array {
         $request = $this->approveCustomActivityTypeUsingPOSTRequest($api_name);
         try {
             $response = $this->makeRequest($request);
@@ -336,15 +343,15 @@ class ActivitiesApi
     /**
      * Approve Custom Activity Type
      *
-     * @param  string $api_name API Name of the activity type (required)
+     * @param string $api_name
+     *   API Name of the activity type
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function approveCustomActivityTypeUsingPOSTAsync(
         string $api_name
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->approveCustomActivityTypeUsingPOSTAsyncWithHttpInfo($api_name)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType {
@@ -356,15 +363,15 @@ class ActivitiesApi
     /**
      * Approve Custom Activity Type
      *
-     * @param  string $api_name API Name of the activity type (required)
+     * @param string $api_name
+     *   API Name of the activity type
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function approveCustomActivityTypeUsingPOSTAsyncWithHttpInfo(
         string $api_name
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->approveCustomActivityTypeUsingPOSTRequest($api_name);
         return $this->makeAsyncRequest(
             $request,
@@ -376,15 +383,15 @@ class ActivitiesApi
     /**
      * Create request for operation 'approveCustomActivityTypeUsingPOST'
      *
-     * @param  string $api_name API Name of the activity type (required)
+     * @param string $api_name
+     *   API Name of the activity type
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
     public function approveCustomActivityTypeUsingPOSTRequest(
         string $api_name
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/v1/activities/external/type/{apiName}/approve.json';
         $resourcePath = str_replace(
@@ -449,8 +456,10 @@ class ActivitiesApi
     /**
      * Create Custom Activity Type Attributes
      *
-     * @param  string $api_name API Name of the activity type (required)
-     * @param  \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request customActivityTypeAttributeRequest (required)
+     * @param string $api_name
+     *   API Name of the activity type
+     * @param \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request
+     *   customActivityTypeAttributeRequest
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -459,8 +468,7 @@ class ActivitiesApi
     public function createCustomActivityTypeAttributesUsingPOST(
         string $api_name,
         \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType
-    {
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType {
         list($response) = $this->createCustomActivityTypeAttributesUsingPOSTWithHttpInfo($api_name, $custom_activity_type_attribute_request);
         return $response;
     }
@@ -468,19 +476,24 @@ class ActivitiesApi
     /**
      * Create Custom Activity Type Attributes
      *
-     * @param  string $api_name API Name of the activity type (required)
-     * @param  \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request customActivityTypeAttributeRequest (required)
+     * @param string $api_name
+     *   API Name of the activity type
+     * @param \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request
+     *   customActivityTypeAttributeRequest
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function createCustomActivityTypeAttributesUsingPOSTWithHttpInfo(
         string $api_name,
         \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request
-    ): array
-    {
+    ): array {
         $request = $this->createCustomActivityTypeAttributesUsingPOSTRequest($api_name, $custom_activity_type_attribute_request);
         try {
             $response = $this->makeRequest($request);
@@ -496,8 +509,10 @@ class ActivitiesApi
     /**
      * Create Custom Activity Type Attributes
      *
-     * @param  string $api_name API Name of the activity type (required)
-     * @param  \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request customActivityTypeAttributeRequest (required)
+     * @param string $api_name
+     *   API Name of the activity type
+     * @param \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request
+     *   customActivityTypeAttributeRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -505,8 +520,7 @@ class ActivitiesApi
     public function createCustomActivityTypeAttributesUsingPOSTAsync(
         string $api_name,
         \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->createCustomActivityTypeAttributesUsingPOSTAsyncWithHttpInfo($api_name, $custom_activity_type_attribute_request)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType {
@@ -518,8 +532,10 @@ class ActivitiesApi
     /**
      * Create Custom Activity Type Attributes
      *
-     * @param  string $api_name API Name of the activity type (required)
-     * @param  \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request customActivityTypeAttributeRequest (required)
+     * @param string $api_name
+     *   API Name of the activity type
+     * @param \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request
+     *   customActivityTypeAttributeRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -527,8 +543,7 @@ class ActivitiesApi
     public function createCustomActivityTypeAttributesUsingPOSTAsyncWithHttpInfo(
         string $api_name,
         \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->createCustomActivityTypeAttributesUsingPOSTRequest($api_name, $custom_activity_type_attribute_request);
         return $this->makeAsyncRequest(
             $request,
@@ -540,8 +555,10 @@ class ActivitiesApi
     /**
      * Create request for operation 'createCustomActivityTypeAttributesUsingPOST'
      *
-     * @param  string $api_name API Name of the activity type (required)
-     * @param  \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request customActivityTypeAttributeRequest (required)
+     * @param string $api_name
+     *   API Name of the activity type
+     * @param \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request
+     *   customActivityTypeAttributeRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -549,8 +566,7 @@ class ActivitiesApi
     public function createCustomActivityTypeAttributesUsingPOSTRequest(
         string $api_name,
         \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/v1/activities/external/type/{apiName}/attributes/create.json';
         $resourcePath = str_replace(
@@ -586,7 +602,6 @@ class ActivitiesApi
             [
             ],
             $custom_activity_type_attribute_request
-            
         );
     }
 
@@ -616,7 +631,8 @@ class ActivitiesApi
     /**
      * Create Custom Activity Type
      *
-     * @param  \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeRequest $custom_activity_type_request customActivityTypeRequest (required)
+     * @param \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeRequest $custom_activity_type_request
+     *   customActivityTypeRequest
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -624,8 +640,7 @@ class ActivitiesApi
      */
     public function createCustomActivityTypeUsingPOST(
         \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeRequest $custom_activity_type_request
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType
-    {
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType {
         list($response) = $this->createCustomActivityTypeUsingPOSTWithHttpInfo($custom_activity_type_request);
         return $response;
     }
@@ -633,17 +648,21 @@ class ActivitiesApi
     /**
      * Create Custom Activity Type
      *
-     * @param  \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeRequest $custom_activity_type_request customActivityTypeRequest (required)
+     * @param \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeRequest $custom_activity_type_request
+     *   customActivityTypeRequest
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function createCustomActivityTypeUsingPOSTWithHttpInfo(
         \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeRequest $custom_activity_type_request
-    ): array
-    {
+    ): array {
         $request = $this->createCustomActivityTypeUsingPOSTRequest($custom_activity_type_request);
         try {
             $response = $this->makeRequest($request);
@@ -659,15 +678,15 @@ class ActivitiesApi
     /**
      * Create Custom Activity Type
      *
-     * @param  \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeRequest $custom_activity_type_request customActivityTypeRequest (required)
+     * @param \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeRequest $custom_activity_type_request
+     *   customActivityTypeRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function createCustomActivityTypeUsingPOSTAsync(
         \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeRequest $custom_activity_type_request
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->createCustomActivityTypeUsingPOSTAsyncWithHttpInfo($custom_activity_type_request)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType {
@@ -679,15 +698,15 @@ class ActivitiesApi
     /**
      * Create Custom Activity Type
      *
-     * @param  \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeRequest $custom_activity_type_request customActivityTypeRequest (required)
+     * @param \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeRequest $custom_activity_type_request
+     *   customActivityTypeRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function createCustomActivityTypeUsingPOSTAsyncWithHttpInfo(
         \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeRequest $custom_activity_type_request
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->createCustomActivityTypeUsingPOSTRequest($custom_activity_type_request);
         return $this->makeAsyncRequest(
             $request,
@@ -699,15 +718,15 @@ class ActivitiesApi
     /**
      * Create request for operation 'createCustomActivityTypeUsingPOST'
      *
-     * @param  \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeRequest $custom_activity_type_request customActivityTypeRequest (required)
+     * @param \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeRequest $custom_activity_type_request
+     *   customActivityTypeRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
     public function createCustomActivityTypeUsingPOSTRequest(
         \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeRequest $custom_activity_type_request
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/v1/activities/external/type.json';
 
@@ -738,7 +757,6 @@ class ActivitiesApi
             [
             ],
             $custom_activity_type_request
-            
         );
     }
 
@@ -768,8 +786,10 @@ class ActivitiesApi
     /**
      * Delete Custom Activity Type Attributes
      *
-     * @param  string $api_name API Name of the activity type (required)
-     * @param  \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request customActivityTypeAttributeRequest (required)
+     * @param string $api_name
+     *   API Name of the activity type
+     * @param \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request
+     *   customActivityTypeAttributeRequest
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -778,8 +798,7 @@ class ActivitiesApi
     public function deleteCustomActivityTypeAttributesUsingPOST(
         string $api_name,
         \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType
-    {
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType {
         list($response) = $this->deleteCustomActivityTypeAttributesUsingPOSTWithHttpInfo($api_name, $custom_activity_type_attribute_request);
         return $response;
     }
@@ -787,19 +806,24 @@ class ActivitiesApi
     /**
      * Delete Custom Activity Type Attributes
      *
-     * @param  string $api_name API Name of the activity type (required)
-     * @param  \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request customActivityTypeAttributeRequest (required)
+     * @param string $api_name
+     *   API Name of the activity type
+     * @param \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request
+     *   customActivityTypeAttributeRequest
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function deleteCustomActivityTypeAttributesUsingPOSTWithHttpInfo(
         string $api_name,
         \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request
-    ): array
-    {
+    ): array {
         $request = $this->deleteCustomActivityTypeAttributesUsingPOSTRequest($api_name, $custom_activity_type_attribute_request);
         try {
             $response = $this->makeRequest($request);
@@ -815,8 +839,10 @@ class ActivitiesApi
     /**
      * Delete Custom Activity Type Attributes
      *
-     * @param  string $api_name API Name of the activity type (required)
-     * @param  \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request customActivityTypeAttributeRequest (required)
+     * @param string $api_name
+     *   API Name of the activity type
+     * @param \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request
+     *   customActivityTypeAttributeRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -824,8 +850,7 @@ class ActivitiesApi
     public function deleteCustomActivityTypeAttributesUsingPOSTAsync(
         string $api_name,
         \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->deleteCustomActivityTypeAttributesUsingPOSTAsyncWithHttpInfo($api_name, $custom_activity_type_attribute_request)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType {
@@ -837,8 +862,10 @@ class ActivitiesApi
     /**
      * Delete Custom Activity Type Attributes
      *
-     * @param  string $api_name API Name of the activity type (required)
-     * @param  \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request customActivityTypeAttributeRequest (required)
+     * @param string $api_name
+     *   API Name of the activity type
+     * @param \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request
+     *   customActivityTypeAttributeRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -846,8 +873,7 @@ class ActivitiesApi
     public function deleteCustomActivityTypeAttributesUsingPOSTAsyncWithHttpInfo(
         string $api_name,
         \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->deleteCustomActivityTypeAttributesUsingPOSTRequest($api_name, $custom_activity_type_attribute_request);
         return $this->makeAsyncRequest(
             $request,
@@ -859,8 +885,10 @@ class ActivitiesApi
     /**
      * Create request for operation 'deleteCustomActivityTypeAttributesUsingPOST'
      *
-     * @param  string $api_name API Name of the activity type (required)
-     * @param  \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request customActivityTypeAttributeRequest (required)
+     * @param string $api_name
+     *   API Name of the activity type
+     * @param \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request
+     *   customActivityTypeAttributeRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -868,8 +896,7 @@ class ActivitiesApi
     public function deleteCustomActivityTypeAttributesUsingPOSTRequest(
         string $api_name,
         \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/v1/activities/external/type/{apiName}/attributes/delete.json';
         $resourcePath = str_replace(
@@ -905,7 +932,6 @@ class ActivitiesApi
             [
             ],
             $custom_activity_type_attribute_request
-            
         );
     }
 
@@ -935,7 +961,8 @@ class ActivitiesApi
     /**
      * Delete Custom Activity Type
      *
-     * @param  string $api_name API Name of the activity type (required)
+     * @param string $api_name
+     *   API Name of the activity type
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -943,8 +970,7 @@ class ActivitiesApi
      */
     public function deleteCustomActivityTypeUsingPOST(
         string $api_name
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType
-    {
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType {
         list($response) = $this->deleteCustomActivityTypeUsingPOSTWithHttpInfo($api_name);
         return $response;
     }
@@ -952,17 +978,21 @@ class ActivitiesApi
     /**
      * Delete Custom Activity Type
      *
-     * @param  string $api_name API Name of the activity type (required)
+     * @param string $api_name
+     *   API Name of the activity type
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function deleteCustomActivityTypeUsingPOSTWithHttpInfo(
         string $api_name
-    ): array
-    {
+    ): array {
         $request = $this->deleteCustomActivityTypeUsingPOSTRequest($api_name);
         try {
             $response = $this->makeRequest($request);
@@ -978,15 +1008,15 @@ class ActivitiesApi
     /**
      * Delete Custom Activity Type
      *
-     * @param  string $api_name API Name of the activity type (required)
+     * @param string $api_name
+     *   API Name of the activity type
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function deleteCustomActivityTypeUsingPOSTAsync(
         string $api_name
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->deleteCustomActivityTypeUsingPOSTAsyncWithHttpInfo($api_name)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType {
@@ -998,15 +1028,15 @@ class ActivitiesApi
     /**
      * Delete Custom Activity Type
      *
-     * @param  string $api_name API Name of the activity type (required)
+     * @param string $api_name
+     *   API Name of the activity type
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function deleteCustomActivityTypeUsingPOSTAsyncWithHttpInfo(
         string $api_name
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->deleteCustomActivityTypeUsingPOSTRequest($api_name);
         return $this->makeAsyncRequest(
             $request,
@@ -1018,15 +1048,15 @@ class ActivitiesApi
     /**
      * Create request for operation 'deleteCustomActivityTypeUsingPOST'
      *
-     * @param  string $api_name API Name of the activity type (required)
+     * @param string $api_name
+     *   API Name of the activity type
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
     public function deleteCustomActivityTypeUsingPOSTRequest(
         string $api_name
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/v1/activities/external/type/{apiName}/delete.json';
         $resourcePath = str_replace(
@@ -1091,8 +1121,10 @@ class ActivitiesApi
     /**
      * Describe Custom Activity Type
      *
-     * @param  string $api_name API Name of the activity type (required)
-     * @param  bool $draft draft (optional)
+     * @param string $api_name
+     *   API Name of the activity type
+     * @param bool|null $draft
+     *   draft
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -1101,8 +1133,7 @@ class ActivitiesApi
     public function describeCustomActivityTypeUsingGET(
         string $api_name,
         bool $draft = null
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType
-    {
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType {
         list($response) = $this->describeCustomActivityTypeUsingGETWithHttpInfo($api_name, $draft);
         return $response;
     }
@@ -1110,19 +1141,24 @@ class ActivitiesApi
     /**
      * Describe Custom Activity Type
      *
-     * @param  string $api_name API Name of the activity type (required)
-     * @param  bool $draft draft (optional)
+     * @param string $api_name
+     *   API Name of the activity type
+     * @param bool|null $draft
+     *   draft
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function describeCustomActivityTypeUsingGETWithHttpInfo(
         string $api_name,
         bool $draft = null
-    ): array
-    {
+    ): array {
         $request = $this->describeCustomActivityTypeUsingGETRequest($api_name, $draft);
         try {
             $response = $this->makeRequest($request);
@@ -1138,8 +1174,10 @@ class ActivitiesApi
     /**
      * Describe Custom Activity Type
      *
-     * @param  string $api_name API Name of the activity type (required)
-     * @param  bool $draft draft (optional)
+     * @param string $api_name
+     *   API Name of the activity type
+     * @param bool|null $draft
+     *   draft
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1147,8 +1185,7 @@ class ActivitiesApi
     public function describeCustomActivityTypeUsingGETAsync(
         string $api_name,
         bool $draft = null
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->describeCustomActivityTypeUsingGETAsyncWithHttpInfo($api_name, $draft)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType {
@@ -1160,8 +1197,10 @@ class ActivitiesApi
     /**
      * Describe Custom Activity Type
      *
-     * @param  string $api_name API Name of the activity type (required)
-     * @param  bool $draft draft (optional)
+     * @param string $api_name
+     *   API Name of the activity type
+     * @param bool|null $draft
+     *   draft
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1169,8 +1208,7 @@ class ActivitiesApi
     public function describeCustomActivityTypeUsingGETAsyncWithHttpInfo(
         string $api_name,
         bool $draft = null
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->describeCustomActivityTypeUsingGETRequest($api_name, $draft);
         return $this->makeAsyncRequest(
             $request,
@@ -1182,8 +1220,10 @@ class ActivitiesApi
     /**
      * Create request for operation 'describeCustomActivityTypeUsingGET'
      *
-     * @param  string $api_name API Name of the activity type (required)
-     * @param  bool $draft draft (optional)
+     * @param string $api_name
+     *   API Name of the activity type
+     * @param bool|null $draft
+     *   draft
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -1191,8 +1231,7 @@ class ActivitiesApi
     public function describeCustomActivityTypeUsingGETRequest(
         string $api_name,
         bool $draft = null
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/v1/activities/external/type/{apiName}/describe.json';
         $resourcePath = str_replace(
@@ -1258,7 +1297,8 @@ class ActivitiesApi
     /**
      * Discard Custom Activity Type Draft
      *
-     * @param  string $api_name API Name of the activity type (required)
+     * @param string $api_name
+     *   API Name of the activity type
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -1266,8 +1306,7 @@ class ActivitiesApi
      */
     public function discardDraftofCustomActivityTypeUsingPOST(
         string $api_name
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType
-    {
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType {
         list($response) = $this->discardDraftofCustomActivityTypeUsingPOSTWithHttpInfo($api_name);
         return $response;
     }
@@ -1275,17 +1314,21 @@ class ActivitiesApi
     /**
      * Discard Custom Activity Type Draft
      *
-     * @param  string $api_name API Name of the activity type (required)
+     * @param string $api_name
+     *   API Name of the activity type
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function discardDraftofCustomActivityTypeUsingPOSTWithHttpInfo(
         string $api_name
-    ): array
-    {
+    ): array {
         $request = $this->discardDraftofCustomActivityTypeUsingPOSTRequest($api_name);
         try {
             $response = $this->makeRequest($request);
@@ -1301,15 +1344,15 @@ class ActivitiesApi
     /**
      * Discard Custom Activity Type Draft
      *
-     * @param  string $api_name API Name of the activity type (required)
+     * @param string $api_name
+     *   API Name of the activity type
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function discardDraftofCustomActivityTypeUsingPOSTAsync(
         string $api_name
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->discardDraftofCustomActivityTypeUsingPOSTAsyncWithHttpInfo($api_name)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType {
@@ -1321,15 +1364,15 @@ class ActivitiesApi
     /**
      * Discard Custom Activity Type Draft
      *
-     * @param  string $api_name API Name of the activity type (required)
+     * @param string $api_name
+     *   API Name of the activity type
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function discardDraftofCustomActivityTypeUsingPOSTAsyncWithHttpInfo(
         string $api_name
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->discardDraftofCustomActivityTypeUsingPOSTRequest($api_name);
         return $this->makeAsyncRequest(
             $request,
@@ -1341,15 +1384,15 @@ class ActivitiesApi
     /**
      * Create request for operation 'discardDraftofCustomActivityTypeUsingPOST'
      *
-     * @param  string $api_name API Name of the activity type (required)
+     * @param string $api_name
+     *   API Name of the activity type
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
     public function discardDraftofCustomActivityTypeUsingPOSTRequest(
         string $api_name
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/v1/activities/external/type/{apiName}/discardDraft.json';
         $resourcePath = str_replace(
@@ -1414,7 +1457,8 @@ class ActivitiesApi
     /**
      * Get Paging Token
      *
-     * @param  \DateTime $since_datetime Earliest datetime to retrieve activities from (required)
+     * @param \DateTime $since_datetime
+     *   Earliest datetime to retrieve activities from
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -1422,8 +1466,7 @@ class ActivitiesApi
      */
     public function getActivitiesPagingTokenUsingGET(
         \DateTime $since_datetime
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfVoid
-    {
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfVoid {
         list($response) = $this->getActivitiesPagingTokenUsingGETWithHttpInfo($since_datetime);
         return $response;
     }
@@ -1431,17 +1474,21 @@ class ActivitiesApi
     /**
      * Get Paging Token
      *
-     * @param  \DateTime $since_datetime Earliest datetime to retrieve activities from (required)
+     * @param \DateTime $since_datetime
+     *   Earliest datetime to retrieve activities from
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfVoid, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfVoid, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfVoid,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function getActivitiesPagingTokenUsingGETWithHttpInfo(
         \DateTime $since_datetime
-    ): array
-    {
+    ): array {
         $request = $this->getActivitiesPagingTokenUsingGETRequest($since_datetime);
         try {
             $response = $this->makeRequest($request);
@@ -1457,15 +1504,15 @@ class ActivitiesApi
     /**
      * Get Paging Token
      *
-     * @param  \DateTime $since_datetime Earliest datetime to retrieve activities from (required)
+     * @param \DateTime $since_datetime
+     *   Earliest datetime to retrieve activities from
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function getActivitiesPagingTokenUsingGETAsync(
         \DateTime $since_datetime
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->getActivitiesPagingTokenUsingGETAsyncWithHttpInfo($since_datetime)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfVoid {
@@ -1477,15 +1524,15 @@ class ActivitiesApi
     /**
      * Get Paging Token
      *
-     * @param  \DateTime $since_datetime Earliest datetime to retrieve activities from (required)
+     * @param \DateTime $since_datetime
+     *   Earliest datetime to retrieve activities from
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function getActivitiesPagingTokenUsingGETAsyncWithHttpInfo(
         \DateTime $since_datetime
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->getActivitiesPagingTokenUsingGETRequest($since_datetime);
         return $this->makeAsyncRequest(
             $request,
@@ -1497,15 +1544,15 @@ class ActivitiesApi
     /**
      * Create request for operation 'getActivitiesPagingTokenUsingGET'
      *
-     * @param  \DateTime $since_datetime Earliest datetime to retrieve activities from (required)
+     * @param \DateTime $since_datetime
+     *   Earliest datetime to retrieve activities from
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
     public function getActivitiesPagingTokenUsingGETRequest(
         \DateTime $since_datetime
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/v1/activities/pagingtoken.json';
 
@@ -1570,8 +1617,7 @@ class ActivitiesApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfActivityType
      */
-    public function getAllActivityTypesUsingGET(
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfActivityType
+    public function getAllActivityTypesUsingGET(): \NecLimDul\MarketoRest\Lead\Model\ResponseOfActivityType
     {
         list($response) = $this->getAllActivityTypesUsingGETWithHttpInfo();
         return $response;
@@ -1582,11 +1628,14 @@ class ActivitiesApi
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfActivityType, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfActivityType, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfActivityType,
+     *     int,
+     *     array<array<string>>
+     * }
      */
-    public function getAllActivityTypesUsingGETWithHttpInfo(
-    ): array
+    public function getAllActivityTypesUsingGETWithHttpInfo(): array
     {
         $request = $this->getAllActivityTypesUsingGETRequest();
         try {
@@ -1606,8 +1655,7 @@ class ActivitiesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getAllActivityTypesUsingGETAsync(
-    ): PromiseInterface
+    public function getAllActivityTypesUsingGETAsync(): PromiseInterface
     {
         return $this->getAllActivityTypesUsingGETAsyncWithHttpInfo()
             ->then(
@@ -1623,8 +1671,7 @@ class ActivitiesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getAllActivityTypesUsingGETAsyncWithHttpInfo(
-    ): PromiseInterface
+    public function getAllActivityTypesUsingGETAsyncWithHttpInfo(): PromiseInterface
     {
         $request = $this->getAllActivityTypesUsingGETRequest();
         return $this->makeAsyncRequest(
@@ -1640,8 +1687,7 @@ class ActivitiesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getAllActivityTypesUsingGETRequest(
-    ): Request
+    public function getAllActivityTypesUsingGETRequest(): Request
     {
 
         $resourcePath = '/rest/v1/activities/types.json';
@@ -1706,8 +1752,7 @@ class ActivitiesApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType
      */
-    public function getCustomActivityTypeUsingGET(
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType
+    public function getCustomActivityTypeUsingGET(): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType
     {
         list($response) = $this->getCustomActivityTypeUsingGETWithHttpInfo();
         return $response;
@@ -1718,11 +1763,14 @@ class ActivitiesApi
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType,
+     *     int,
+     *     array<array<string>>
+     * }
      */
-    public function getCustomActivityTypeUsingGETWithHttpInfo(
-    ): array
+    public function getCustomActivityTypeUsingGETWithHttpInfo(): array
     {
         $request = $this->getCustomActivityTypeUsingGETRequest();
         try {
@@ -1742,8 +1790,7 @@ class ActivitiesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getCustomActivityTypeUsingGETAsync(
-    ): PromiseInterface
+    public function getCustomActivityTypeUsingGETAsync(): PromiseInterface
     {
         return $this->getCustomActivityTypeUsingGETAsyncWithHttpInfo()
             ->then(
@@ -1759,8 +1806,7 @@ class ActivitiesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getCustomActivityTypeUsingGETAsyncWithHttpInfo(
-    ): PromiseInterface
+    public function getCustomActivityTypeUsingGETAsyncWithHttpInfo(): PromiseInterface
     {
         $request = $this->getCustomActivityTypeUsingGETRequest();
         return $this->makeAsyncRequest(
@@ -1776,8 +1822,7 @@ class ActivitiesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getCustomActivityTypeUsingGETRequest(
-    ): Request
+    public function getCustomActivityTypeUsingGETRequest(): Request
     {
 
         $resourcePath = '/rest/v1/activities/external/types.json';
@@ -1838,8 +1883,10 @@ class ActivitiesApi
     /**
      * Get Deleted Leads
      *
-     * @param  string $next_page_token Token representation of a datetime returned by the Get Paging Token endpoint.  This endpoint will return activities after this datetime (required)
-     * @param  int $batch_size Maximum number of records to return.  Maximum and default is 300. (optional)
+     * @param string $next_page_token
+     *   Token representation of a datetime returned by the Get Paging Token endpoint.  This endpoint will return activities after this datetime
+     * @param int|null $batch_size
+     *   Maximum number of records to return.  Maximum and default is 300.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -1848,8 +1895,7 @@ class ActivitiesApi
     public function getDeletedLeadsUsingGET(
         string $next_page_token,
         int $batch_size = null
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfActivity
-    {
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfActivity {
         list($response) = $this->getDeletedLeadsUsingGETWithHttpInfo($next_page_token, $batch_size);
         return $response;
     }
@@ -1857,19 +1903,24 @@ class ActivitiesApi
     /**
      * Get Deleted Leads
      *
-     * @param  string $next_page_token Token representation of a datetime returned by the Get Paging Token endpoint.  This endpoint will return activities after this datetime (required)
-     * @param  int $batch_size Maximum number of records to return.  Maximum and default is 300. (optional)
+     * @param string $next_page_token
+     *   Token representation of a datetime returned by the Get Paging Token endpoint.  This endpoint will return activities after this datetime
+     * @param int|null $batch_size
+     *   Maximum number of records to return.  Maximum and default is 300.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfActivity, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfActivity, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfActivity,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function getDeletedLeadsUsingGETWithHttpInfo(
         string $next_page_token,
         int $batch_size = null
-    ): array
-    {
+    ): array {
         $request = $this->getDeletedLeadsUsingGETRequest($next_page_token, $batch_size);
         try {
             $response = $this->makeRequest($request);
@@ -1885,8 +1936,10 @@ class ActivitiesApi
     /**
      * Get Deleted Leads
      *
-     * @param  string $next_page_token Token representation of a datetime returned by the Get Paging Token endpoint.  This endpoint will return activities after this datetime (required)
-     * @param  int $batch_size Maximum number of records to return.  Maximum and default is 300. (optional)
+     * @param string $next_page_token
+     *   Token representation of a datetime returned by the Get Paging Token endpoint.  This endpoint will return activities after this datetime
+     * @param int|null $batch_size
+     *   Maximum number of records to return.  Maximum and default is 300.
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1894,8 +1947,7 @@ class ActivitiesApi
     public function getDeletedLeadsUsingGETAsync(
         string $next_page_token,
         int $batch_size = null
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->getDeletedLeadsUsingGETAsyncWithHttpInfo($next_page_token, $batch_size)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfActivity {
@@ -1907,8 +1959,10 @@ class ActivitiesApi
     /**
      * Get Deleted Leads
      *
-     * @param  string $next_page_token Token representation of a datetime returned by the Get Paging Token endpoint.  This endpoint will return activities after this datetime (required)
-     * @param  int $batch_size Maximum number of records to return.  Maximum and default is 300. (optional)
+     * @param string $next_page_token
+     *   Token representation of a datetime returned by the Get Paging Token endpoint.  This endpoint will return activities after this datetime
+     * @param int|null $batch_size
+     *   Maximum number of records to return.  Maximum and default is 300.
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1916,8 +1970,7 @@ class ActivitiesApi
     public function getDeletedLeadsUsingGETAsyncWithHttpInfo(
         string $next_page_token,
         int $batch_size = null
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->getDeletedLeadsUsingGETRequest($next_page_token, $batch_size);
         return $this->makeAsyncRequest(
             $request,
@@ -1929,8 +1982,10 @@ class ActivitiesApi
     /**
      * Create request for operation 'getDeletedLeadsUsingGET'
      *
-     * @param  string $next_page_token Token representation of a datetime returned by the Get Paging Token endpoint.  This endpoint will return activities after this datetime (required)
-     * @param  int $batch_size Maximum number of records to return.  Maximum and default is 300. (optional)
+     * @param string $next_page_token
+     *   Token representation of a datetime returned by the Get Paging Token endpoint.  This endpoint will return activities after this datetime
+     * @param int|null $batch_size
+     *   Maximum number of records to return.  Maximum and default is 300.
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -1938,8 +1993,7 @@ class ActivitiesApi
     public function getDeletedLeadsUsingGETRequest(
         string $next_page_token,
         int $batch_size = null
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/v1/activities/deletedleads.json';
 
@@ -2001,12 +2055,18 @@ class ActivitiesApi
     /**
      * Get Lead Activities
      *
-     * @param  string $next_page_token Token representation of a datetime returned by the Get Paging Token endpoint.  This endpoint will return activities after this datetime (required)
-     * @param  int[] $activity_type_ids Comma-separated list of activity type ids. These can be retrieved with the Get Activity Types API. (required)
-     * @param  int[] $asset_ids Id of the primary asset for an activity.  This is based on the primary asset id of a given activity type.  Should only be used when a single activity type is set (optional)
-     * @param  int $list_id Id of a static list.  If set, will only return activities of members of this static list. (optional)
-     * @param  int[] $lead_ids Comma-separated list of lead ids.  If set, will only return activities of the leads with these ids.  Allows up to 30 entries. (optional)
-     * @param  int $batch_size Maximum number of records to return.  Maximum and default is 300. (optional)
+     * @param string $next_page_token
+     *   Token representation of a datetime returned by the Get Paging Token endpoint.  This endpoint will return activities after this datetime
+     * @param int[] $activity_type_ids
+     *   Comma-separated list of activity type ids. These can be retrieved with the Get Activity Types API.
+     * @param int[]|null $asset_ids
+     *   Id of the primary asset for an activity.  This is based on the primary asset id of a given activity type.  Should only be used when a single activity type is set
+     * @param int|null $list_id
+     *   Id of a static list.  If set, will only return activities of members of this static list.
+     * @param int[]|null $lead_ids
+     *   Comma-separated list of lead ids.  If set, will only return activities of the leads with these ids.  Allows up to 30 entries.
+     * @param int|null $batch_size
+     *   Maximum number of records to return.  Maximum and default is 300.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -2019,8 +2079,7 @@ class ActivitiesApi
         int $list_id = null,
         array $lead_ids = null,
         int $batch_size = null
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfActivity
-    {
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfActivity {
         list($response) = $this->getLeadActivitiesUsingGETWithHttpInfo($next_page_token, $activity_type_ids, $asset_ids, $list_id, $lead_ids, $batch_size);
         return $response;
     }
@@ -2028,17 +2087,27 @@ class ActivitiesApi
     /**
      * Get Lead Activities
      *
-     * @param  string $next_page_token Token representation of a datetime returned by the Get Paging Token endpoint.  This endpoint will return activities after this datetime (required)
-     * @param  int[] $activity_type_ids Comma-separated list of activity type ids. These can be retrieved with the Get Activity Types API. (required)
-     * @param  int[] $asset_ids Id of the primary asset for an activity.  This is based on the primary asset id of a given activity type.  Should only be used when a single activity type is set (optional)
-     * @param  int $list_id Id of a static list.  If set, will only return activities of members of this static list. (optional)
-     * @param  int[] $lead_ids Comma-separated list of lead ids.  If set, will only return activities of the leads with these ids.  Allows up to 30 entries. (optional)
-     * @param  int $batch_size Maximum number of records to return.  Maximum and default is 300. (optional)
+     * @param string $next_page_token
+     *   Token representation of a datetime returned by the Get Paging Token endpoint.  This endpoint will return activities after this datetime
+     * @param int[] $activity_type_ids
+     *   Comma-separated list of activity type ids. These can be retrieved with the Get Activity Types API.
+     * @param int[]|null $asset_ids
+     *   Id of the primary asset for an activity.  This is based on the primary asset id of a given activity type.  Should only be used when a single activity type is set
+     * @param int|null $list_id
+     *   Id of a static list.  If set, will only return activities of members of this static list.
+     * @param int[]|null $lead_ids
+     *   Comma-separated list of lead ids.  If set, will only return activities of the leads with these ids.  Allows up to 30 entries.
+     * @param int|null $batch_size
+     *   Maximum number of records to return.  Maximum and default is 300.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfActivity, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfActivity, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfActivity,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function getLeadActivitiesUsingGETWithHttpInfo(
         string $next_page_token,
@@ -2047,8 +2116,7 @@ class ActivitiesApi
         int $list_id = null,
         array $lead_ids = null,
         int $batch_size = null
-    ): array
-    {
+    ): array {
         $request = $this->getLeadActivitiesUsingGETRequest($next_page_token, $activity_type_ids, $asset_ids, $list_id, $lead_ids, $batch_size);
         try {
             $response = $this->makeRequest($request);
@@ -2064,12 +2132,18 @@ class ActivitiesApi
     /**
      * Get Lead Activities
      *
-     * @param  string $next_page_token Token representation of a datetime returned by the Get Paging Token endpoint.  This endpoint will return activities after this datetime (required)
-     * @param  int[] $activity_type_ids Comma-separated list of activity type ids. These can be retrieved with the Get Activity Types API. (required)
-     * @param  int[] $asset_ids Id of the primary asset for an activity.  This is based on the primary asset id of a given activity type.  Should only be used when a single activity type is set (optional)
-     * @param  int $list_id Id of a static list.  If set, will only return activities of members of this static list. (optional)
-     * @param  int[] $lead_ids Comma-separated list of lead ids.  If set, will only return activities of the leads with these ids.  Allows up to 30 entries. (optional)
-     * @param  int $batch_size Maximum number of records to return.  Maximum and default is 300. (optional)
+     * @param string $next_page_token
+     *   Token representation of a datetime returned by the Get Paging Token endpoint.  This endpoint will return activities after this datetime
+     * @param int[] $activity_type_ids
+     *   Comma-separated list of activity type ids. These can be retrieved with the Get Activity Types API.
+     * @param int[]|null $asset_ids
+     *   Id of the primary asset for an activity.  This is based on the primary asset id of a given activity type.  Should only be used when a single activity type is set
+     * @param int|null $list_id
+     *   Id of a static list.  If set, will only return activities of members of this static list.
+     * @param int[]|null $lead_ids
+     *   Comma-separated list of lead ids.  If set, will only return activities of the leads with these ids.  Allows up to 30 entries.
+     * @param int|null $batch_size
+     *   Maximum number of records to return.  Maximum and default is 300.
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -2081,8 +2155,7 @@ class ActivitiesApi
         int $list_id = null,
         array $lead_ids = null,
         int $batch_size = null
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->getLeadActivitiesUsingGETAsyncWithHttpInfo($next_page_token, $activity_type_ids, $asset_ids, $list_id, $lead_ids, $batch_size)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfActivity {
@@ -2094,12 +2167,18 @@ class ActivitiesApi
     /**
      * Get Lead Activities
      *
-     * @param  string $next_page_token Token representation of a datetime returned by the Get Paging Token endpoint.  This endpoint will return activities after this datetime (required)
-     * @param  int[] $activity_type_ids Comma-separated list of activity type ids. These can be retrieved with the Get Activity Types API. (required)
-     * @param  int[] $asset_ids Id of the primary asset for an activity.  This is based on the primary asset id of a given activity type.  Should only be used when a single activity type is set (optional)
-     * @param  int $list_id Id of a static list.  If set, will only return activities of members of this static list. (optional)
-     * @param  int[] $lead_ids Comma-separated list of lead ids.  If set, will only return activities of the leads with these ids.  Allows up to 30 entries. (optional)
-     * @param  int $batch_size Maximum number of records to return.  Maximum and default is 300. (optional)
+     * @param string $next_page_token
+     *   Token representation of a datetime returned by the Get Paging Token endpoint.  This endpoint will return activities after this datetime
+     * @param int[] $activity_type_ids
+     *   Comma-separated list of activity type ids. These can be retrieved with the Get Activity Types API.
+     * @param int[]|null $asset_ids
+     *   Id of the primary asset for an activity.  This is based on the primary asset id of a given activity type.  Should only be used when a single activity type is set
+     * @param int|null $list_id
+     *   Id of a static list.  If set, will only return activities of members of this static list.
+     * @param int[]|null $lead_ids
+     *   Comma-separated list of lead ids.  If set, will only return activities of the leads with these ids.  Allows up to 30 entries.
+     * @param int|null $batch_size
+     *   Maximum number of records to return.  Maximum and default is 300.
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -2111,8 +2190,7 @@ class ActivitiesApi
         int $list_id = null,
         array $lead_ids = null,
         int $batch_size = null
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->getLeadActivitiesUsingGETRequest($next_page_token, $activity_type_ids, $asset_ids, $list_id, $lead_ids, $batch_size);
         return $this->makeAsyncRequest(
             $request,
@@ -2124,12 +2202,18 @@ class ActivitiesApi
     /**
      * Create request for operation 'getLeadActivitiesUsingGET'
      *
-     * @param  string $next_page_token Token representation of a datetime returned by the Get Paging Token endpoint.  This endpoint will return activities after this datetime (required)
-     * @param  int[] $activity_type_ids Comma-separated list of activity type ids. These can be retrieved with the Get Activity Types API. (required)
-     * @param  int[] $asset_ids Id of the primary asset for an activity.  This is based on the primary asset id of a given activity type.  Should only be used when a single activity type is set (optional)
-     * @param  int $list_id Id of a static list.  If set, will only return activities of members of this static list. (optional)
-     * @param  int[] $lead_ids Comma-separated list of lead ids.  If set, will only return activities of the leads with these ids.  Allows up to 30 entries. (optional)
-     * @param  int $batch_size Maximum number of records to return.  Maximum and default is 300. (optional)
+     * @param string $next_page_token
+     *   Token representation of a datetime returned by the Get Paging Token endpoint.  This endpoint will return activities after this datetime
+     * @param int[] $activity_type_ids
+     *   Comma-separated list of activity type ids. These can be retrieved with the Get Activity Types API.
+     * @param int[]|null $asset_ids
+     *   Id of the primary asset for an activity.  This is based on the primary asset id of a given activity type.  Should only be used when a single activity type is set
+     * @param int|null $list_id
+     *   Id of a static list.  If set, will only return activities of members of this static list.
+     * @param int[]|null $lead_ids
+     *   Comma-separated list of lead ids.  If set, will only return activities of the leads with these ids.  Allows up to 30 entries.
+     * @param int|null $batch_size
+     *   Maximum number of records to return.  Maximum and default is 300.
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -2141,8 +2225,7 @@ class ActivitiesApi
         int $list_id = null,
         array $lead_ids = null,
         int $batch_size = null
-    ): Request
-    {
+    ): Request {
         // Verify the required parameter 'activity_type_ids' is set.
         if (empty($activity_type_ids)) {
             throw new \InvalidArgumentException(
@@ -2214,11 +2297,16 @@ class ActivitiesApi
     /**
      * Get Lead Changes
      *
-     * @param  string $next_page_token Token representation of a datetime returned by the Get Paging Token endpoint.  This endpoint will return activities after this datetime (required)
-     * @param  string[] $fields Comma-separated list of field names to return changes for.  Field names can be retrieved with the Describe Lead API. (required)
-     * @param  int $list_id Id of a static list.  If set, will only return activities of members of this static list. (optional)
-     * @param  int[] $lead_ids Comma-separated list of lead ids.  If set, will only return activities of the leads with these ids.  Allows up to 30 entries. (optional)
-     * @param  int $batch_size Maximum number of records to return.  Maximum and default is 300. (optional)
+     * @param string $next_page_token
+     *   Token representation of a datetime returned by the Get Paging Token endpoint.  This endpoint will return activities after this datetime
+     * @param string[] $fields
+     *   Comma-separated list of field names to return changes for.  Field names can be retrieved with the Describe Lead API.
+     * @param int|null $list_id
+     *   Id of a static list.  If set, will only return activities of members of this static list.
+     * @param int[]|null $lead_ids
+     *   Comma-separated list of lead ids.  If set, will only return activities of the leads with these ids.  Allows up to 30 entries.
+     * @param int|null $batch_size
+     *   Maximum number of records to return.  Maximum and default is 300.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -2230,8 +2318,7 @@ class ActivitiesApi
         int $list_id = null,
         array $lead_ids = null,
         int $batch_size = null
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadChange
-    {
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadChange {
         list($response) = $this->getLeadChangesUsingGETWithHttpInfo($next_page_token, $fields, $list_id, $lead_ids, $batch_size);
         return $response;
     }
@@ -2239,16 +2326,25 @@ class ActivitiesApi
     /**
      * Get Lead Changes
      *
-     * @param  string $next_page_token Token representation of a datetime returned by the Get Paging Token endpoint.  This endpoint will return activities after this datetime (required)
-     * @param  string[] $fields Comma-separated list of field names to return changes for.  Field names can be retrieved with the Describe Lead API. (required)
-     * @param  int $list_id Id of a static list.  If set, will only return activities of members of this static list. (optional)
-     * @param  int[] $lead_ids Comma-separated list of lead ids.  If set, will only return activities of the leads with these ids.  Allows up to 30 entries. (optional)
-     * @param  int $batch_size Maximum number of records to return.  Maximum and default is 300. (optional)
+     * @param string $next_page_token
+     *   Token representation of a datetime returned by the Get Paging Token endpoint.  This endpoint will return activities after this datetime
+     * @param string[] $fields
+     *   Comma-separated list of field names to return changes for.  Field names can be retrieved with the Describe Lead API.
+     * @param int|null $list_id
+     *   Id of a static list.  If set, will only return activities of members of this static list.
+     * @param int[]|null $lead_ids
+     *   Comma-separated list of lead ids.  If set, will only return activities of the leads with these ids.  Allows up to 30 entries.
+     * @param int|null $batch_size
+     *   Maximum number of records to return.  Maximum and default is 300.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadChange, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadChange, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadChange,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function getLeadChangesUsingGETWithHttpInfo(
         string $next_page_token,
@@ -2256,8 +2352,7 @@ class ActivitiesApi
         int $list_id = null,
         array $lead_ids = null,
         int $batch_size = null
-    ): array
-    {
+    ): array {
         $request = $this->getLeadChangesUsingGETRequest($next_page_token, $fields, $list_id, $lead_ids, $batch_size);
         try {
             $response = $this->makeRequest($request);
@@ -2273,11 +2368,16 @@ class ActivitiesApi
     /**
      * Get Lead Changes
      *
-     * @param  string $next_page_token Token representation of a datetime returned by the Get Paging Token endpoint.  This endpoint will return activities after this datetime (required)
-     * @param  string[] $fields Comma-separated list of field names to return changes for.  Field names can be retrieved with the Describe Lead API. (required)
-     * @param  int $list_id Id of a static list.  If set, will only return activities of members of this static list. (optional)
-     * @param  int[] $lead_ids Comma-separated list of lead ids.  If set, will only return activities of the leads with these ids.  Allows up to 30 entries. (optional)
-     * @param  int $batch_size Maximum number of records to return.  Maximum and default is 300. (optional)
+     * @param string $next_page_token
+     *   Token representation of a datetime returned by the Get Paging Token endpoint.  This endpoint will return activities after this datetime
+     * @param string[] $fields
+     *   Comma-separated list of field names to return changes for.  Field names can be retrieved with the Describe Lead API.
+     * @param int|null $list_id
+     *   Id of a static list.  If set, will only return activities of members of this static list.
+     * @param int[]|null $lead_ids
+     *   Comma-separated list of lead ids.  If set, will only return activities of the leads with these ids.  Allows up to 30 entries.
+     * @param int|null $batch_size
+     *   Maximum number of records to return.  Maximum and default is 300.
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -2288,8 +2388,7 @@ class ActivitiesApi
         int $list_id = null,
         array $lead_ids = null,
         int $batch_size = null
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->getLeadChangesUsingGETAsyncWithHttpInfo($next_page_token, $fields, $list_id, $lead_ids, $batch_size)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadChange {
@@ -2301,11 +2400,16 @@ class ActivitiesApi
     /**
      * Get Lead Changes
      *
-     * @param  string $next_page_token Token representation of a datetime returned by the Get Paging Token endpoint.  This endpoint will return activities after this datetime (required)
-     * @param  string[] $fields Comma-separated list of field names to return changes for.  Field names can be retrieved with the Describe Lead API. (required)
-     * @param  int $list_id Id of a static list.  If set, will only return activities of members of this static list. (optional)
-     * @param  int[] $lead_ids Comma-separated list of lead ids.  If set, will only return activities of the leads with these ids.  Allows up to 30 entries. (optional)
-     * @param  int $batch_size Maximum number of records to return.  Maximum and default is 300. (optional)
+     * @param string $next_page_token
+     *   Token representation of a datetime returned by the Get Paging Token endpoint.  This endpoint will return activities after this datetime
+     * @param string[] $fields
+     *   Comma-separated list of field names to return changes for.  Field names can be retrieved with the Describe Lead API.
+     * @param int|null $list_id
+     *   Id of a static list.  If set, will only return activities of members of this static list.
+     * @param int[]|null $lead_ids
+     *   Comma-separated list of lead ids.  If set, will only return activities of the leads with these ids.  Allows up to 30 entries.
+     * @param int|null $batch_size
+     *   Maximum number of records to return.  Maximum and default is 300.
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -2316,8 +2420,7 @@ class ActivitiesApi
         int $list_id = null,
         array $lead_ids = null,
         int $batch_size = null
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->getLeadChangesUsingGETRequest($next_page_token, $fields, $list_id, $lead_ids, $batch_size);
         return $this->makeAsyncRequest(
             $request,
@@ -2329,11 +2432,16 @@ class ActivitiesApi
     /**
      * Create request for operation 'getLeadChangesUsingGET'
      *
-     * @param  string $next_page_token Token representation of a datetime returned by the Get Paging Token endpoint.  This endpoint will return activities after this datetime (required)
-     * @param  string[] $fields Comma-separated list of field names to return changes for.  Field names can be retrieved with the Describe Lead API. (required)
-     * @param  int $list_id Id of a static list.  If set, will only return activities of members of this static list. (optional)
-     * @param  int[] $lead_ids Comma-separated list of lead ids.  If set, will only return activities of the leads with these ids.  Allows up to 30 entries. (optional)
-     * @param  int $batch_size Maximum number of records to return.  Maximum and default is 300. (optional)
+     * @param string $next_page_token
+     *   Token representation of a datetime returned by the Get Paging Token endpoint.  This endpoint will return activities after this datetime
+     * @param string[] $fields
+     *   Comma-separated list of field names to return changes for.  Field names can be retrieved with the Describe Lead API.
+     * @param int|null $list_id
+     *   Id of a static list.  If set, will only return activities of members of this static list.
+     * @param int[]|null $lead_ids
+     *   Comma-separated list of lead ids.  If set, will only return activities of the leads with these ids.  Allows up to 30 entries.
+     * @param int|null $batch_size
+     *   Maximum number of records to return.  Maximum and default is 300.
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -2344,8 +2452,7 @@ class ActivitiesApi
         int $list_id = null,
         array $lead_ids = null,
         int $batch_size = null
-    ): Request
-    {
+    ): Request {
         // Verify the required parameter 'fields' is set.
         if (empty($fields)) {
             throw new \InvalidArgumentException(
@@ -2416,8 +2523,10 @@ class ActivitiesApi
     /**
      * Update Custom Activity Type Attributes
      *
-     * @param  string $api_name API Name of the activity type (required)
-     * @param  \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request customActivityTypeAttributeRequest (required)
+     * @param string $api_name
+     *   API Name of the activity type
+     * @param \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request
+     *   customActivityTypeAttributeRequest
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -2426,8 +2535,7 @@ class ActivitiesApi
     public function updateCustomActivityTypeAttributesUsingPOST(
         string $api_name,
         \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType
-    {
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType {
         list($response) = $this->updateCustomActivityTypeAttributesUsingPOSTWithHttpInfo($api_name, $custom_activity_type_attribute_request);
         return $response;
     }
@@ -2435,19 +2543,24 @@ class ActivitiesApi
     /**
      * Update Custom Activity Type Attributes
      *
-     * @param  string $api_name API Name of the activity type (required)
-     * @param  \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request customActivityTypeAttributeRequest (required)
+     * @param string $api_name
+     *   API Name of the activity type
+     * @param \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request
+     *   customActivityTypeAttributeRequest
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function updateCustomActivityTypeAttributesUsingPOSTWithHttpInfo(
         string $api_name,
         \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request
-    ): array
-    {
+    ): array {
         $request = $this->updateCustomActivityTypeAttributesUsingPOSTRequest($api_name, $custom_activity_type_attribute_request);
         try {
             $response = $this->makeRequest($request);
@@ -2463,8 +2576,10 @@ class ActivitiesApi
     /**
      * Update Custom Activity Type Attributes
      *
-     * @param  string $api_name API Name of the activity type (required)
-     * @param  \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request customActivityTypeAttributeRequest (required)
+     * @param string $api_name
+     *   API Name of the activity type
+     * @param \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request
+     *   customActivityTypeAttributeRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -2472,8 +2587,7 @@ class ActivitiesApi
     public function updateCustomActivityTypeAttributesUsingPOSTAsync(
         string $api_name,
         \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->updateCustomActivityTypeAttributesUsingPOSTAsyncWithHttpInfo($api_name, $custom_activity_type_attribute_request)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType {
@@ -2485,8 +2599,10 @@ class ActivitiesApi
     /**
      * Update Custom Activity Type Attributes
      *
-     * @param  string $api_name API Name of the activity type (required)
-     * @param  \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request customActivityTypeAttributeRequest (required)
+     * @param string $api_name
+     *   API Name of the activity type
+     * @param \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request
+     *   customActivityTypeAttributeRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -2494,8 +2610,7 @@ class ActivitiesApi
     public function updateCustomActivityTypeAttributesUsingPOSTAsyncWithHttpInfo(
         string $api_name,
         \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->updateCustomActivityTypeAttributesUsingPOSTRequest($api_name, $custom_activity_type_attribute_request);
         return $this->makeAsyncRequest(
             $request,
@@ -2507,8 +2622,10 @@ class ActivitiesApi
     /**
      * Create request for operation 'updateCustomActivityTypeAttributesUsingPOST'
      *
-     * @param  string $api_name API Name of the activity type (required)
-     * @param  \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request customActivityTypeAttributeRequest (required)
+     * @param string $api_name
+     *   API Name of the activity type
+     * @param \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request
+     *   customActivityTypeAttributeRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -2516,8 +2633,7 @@ class ActivitiesApi
     public function updateCustomActivityTypeAttributesUsingPOSTRequest(
         string $api_name,
         \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttributeRequest $custom_activity_type_attribute_request
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/v1/activities/external/type/{apiName}/attributes/update.json';
         $resourcePath = str_replace(
@@ -2553,7 +2669,6 @@ class ActivitiesApi
             [
             ],
             $custom_activity_type_attribute_request
-            
         );
     }
 
@@ -2583,8 +2698,10 @@ class ActivitiesApi
     /**
      * Update Custom Activity Type
      *
-     * @param  string $api_name API Name of the activity type (required)
-     * @param  \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeRequest $custom_activity_type_request customActivityTypeRequest (required)
+     * @param string $api_name
+     *   API Name of the activity type
+     * @param \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeRequest $custom_activity_type_request
+     *   customActivityTypeRequest
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -2593,8 +2710,7 @@ class ActivitiesApi
     public function updateCustomActivityTypeUsingPOST(
         string $api_name,
         \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeRequest $custom_activity_type_request
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType
-    {
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType {
         list($response) = $this->updateCustomActivityTypeUsingPOSTWithHttpInfo($api_name, $custom_activity_type_request);
         return $response;
     }
@@ -2602,19 +2718,24 @@ class ActivitiesApi
     /**
      * Update Custom Activity Type
      *
-     * @param  string $api_name API Name of the activity type (required)
-     * @param  \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeRequest $custom_activity_type_request customActivityTypeRequest (required)
+     * @param string $api_name
+     *   API Name of the activity type
+     * @param \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeRequest $custom_activity_type_request
+     *   customActivityTypeRequest
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function updateCustomActivityTypeUsingPOSTWithHttpInfo(
         string $api_name,
         \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeRequest $custom_activity_type_request
-    ): array
-    {
+    ): array {
         $request = $this->updateCustomActivityTypeUsingPOSTRequest($api_name, $custom_activity_type_request);
         try {
             $response = $this->makeRequest($request);
@@ -2630,8 +2751,10 @@ class ActivitiesApi
     /**
      * Update Custom Activity Type
      *
-     * @param  string $api_name API Name of the activity type (required)
-     * @param  \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeRequest $custom_activity_type_request customActivityTypeRequest (required)
+     * @param string $api_name
+     *   API Name of the activity type
+     * @param \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeRequest $custom_activity_type_request
+     *   customActivityTypeRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -2639,8 +2762,7 @@ class ActivitiesApi
     public function updateCustomActivityTypeUsingPOSTAsync(
         string $api_name,
         \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeRequest $custom_activity_type_request
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->updateCustomActivityTypeUsingPOSTAsyncWithHttpInfo($api_name, $custom_activity_type_request)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomActivityType {
@@ -2652,8 +2774,10 @@ class ActivitiesApi
     /**
      * Update Custom Activity Type
      *
-     * @param  string $api_name API Name of the activity type (required)
-     * @param  \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeRequest $custom_activity_type_request customActivityTypeRequest (required)
+     * @param string $api_name
+     *   API Name of the activity type
+     * @param \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeRequest $custom_activity_type_request
+     *   customActivityTypeRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -2661,8 +2785,7 @@ class ActivitiesApi
     public function updateCustomActivityTypeUsingPOSTAsyncWithHttpInfo(
         string $api_name,
         \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeRequest $custom_activity_type_request
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->updateCustomActivityTypeUsingPOSTRequest($api_name, $custom_activity_type_request);
         return $this->makeAsyncRequest(
             $request,
@@ -2674,8 +2797,10 @@ class ActivitiesApi
     /**
      * Create request for operation 'updateCustomActivityTypeUsingPOST'
      *
-     * @param  string $api_name API Name of the activity type (required)
-     * @param  \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeRequest $custom_activity_type_request customActivityTypeRequest (required)
+     * @param string $api_name
+     *   API Name of the activity type
+     * @param \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeRequest $custom_activity_type_request
+     *   customActivityTypeRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -2683,8 +2808,7 @@ class ActivitiesApi
     public function updateCustomActivityTypeUsingPOSTRequest(
         string $api_name,
         \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeRequest $custom_activity_type_request
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/v1/activities/external/type/{apiName}.json';
         $resourcePath = str_replace(
@@ -2720,7 +2844,6 @@ class ActivitiesApi
             [
             ],
             $custom_activity_type_request
-            
         );
     }
 
@@ -2751,10 +2874,11 @@ class ActivitiesApi
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @return \Psr\Http\Message\ResponseInterface
      */
-    private function makeRequest(Request $request) {
+    private function makeRequest(Request $request)
+    {
         $options = $this->createHttpClientOption();
         try {
-           $response = $this->client->send($request, $options);
+            $response = $this->client->send($request, $options);
         } catch (RequestException $e) {
             $response = $e->getResponse();
             throw new ApiException(
@@ -2827,7 +2951,8 @@ class ActivitiesApi
      * @return array structured array or response and http info.
      * @phpstan-return array{T, int, array<array<string>>}
      */
-    private function responseToReturn(ResponseInterface $response, string $returnType) {
+    private function responseToReturn(ResponseInterface $response, string $returnType)
+    {
         return [
             $this->deserializeResponseBody($response->getBody(), $returnType),
             $response->getStatusCode(),
@@ -2856,5 +2981,4 @@ class ActivitiesApi
             $headers
         );
     }
-
 }

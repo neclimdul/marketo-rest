@@ -1,4 +1,5 @@
 <?php
+
 /**
  * UpdateLpTemplateRequest
  *
@@ -25,8 +26,8 @@
 
 namespace NecLimDul\MarketoRest\Asset\Model;
 
-use \ArrayAccess;
-use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
+use ArrayAccess;
+use NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * UpdateLpTemplateRequest Class Doc Comment
@@ -132,7 +133,6 @@ class UpdateLpTemplateRequest implements ModelInterface, ArrayAccess, \JsonSeria
         'enable_munchkin' => 'getEnableMunchkin',
         'name' => 'getName'
     ];
-    
 
     /**
      * Associative array for storing property values
@@ -203,7 +203,6 @@ class UpdateLpTemplateRequest implements ModelInterface, ArrayAccess, \JsonSeria
     {
         return count($this->listInvalidProperties()) === 0;
     }
-    
 
     /**
      * Gets description
@@ -314,7 +313,7 @@ class UpdateLpTemplateRequest implements ModelInterface, ArrayAccess, \JsonSeria
              * @param array-key $key
              * @return mixed
              */
-            function($key) use ($container) {
+            function ($key) use ($container) {
                 return $container[$key];
             };
         return array_map($map, $this->additionalProperties);
@@ -370,7 +369,7 @@ class UpdateLpTemplateRequest implements ModelInterface, ArrayAccess, \JsonSeria
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -386,5 +385,4 @@ class UpdateLpTemplateRequest implements ModelInterface, ArrayAccess, \JsonSeria
             JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR
         );
     }
-
 }

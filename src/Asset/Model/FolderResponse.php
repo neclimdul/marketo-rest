@@ -1,4 +1,5 @@
 <?php
+
 /**
  * FolderResponse
  *
@@ -25,8 +26,8 @@
 
 namespace NecLimDul\MarketoRest\Asset\Model;
 
-use \ArrayAccess;
-use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
+use ArrayAccess;
+use NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * FolderResponse Class Doc Comment
@@ -42,6 +43,20 @@ use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
 class FolderResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    public const FOLDER_TYPE_EMAIL = 'Email';
+    public const FOLDER_TYPE_EMAIL_BATCH_PROGRAM = 'Email Batch Program';
+    public const FOLDER_TYPE_EMAIL_TEMPLATE = 'Email Template';
+    public const FOLDER_TYPE_IMAGE = 'Image';
+    public const FOLDER_TYPE_LANDING_PAGE = 'Landing Page';
+    public const FOLDER_TYPE_LANDING_PAGE_FORM = 'Landing Page Form';
+    public const FOLDER_TYPE_LANDING_PAGE_TEMPLATE = 'Landing Page Template';
+    public const FOLDER_TYPE_MARKETING_EVENT = 'Marketing Event';
+    public const FOLDER_TYPE_MARKETING_FOLDER = 'Marketing Folder';
+    public const FOLDER_TYPE_MARKETING_PROGRAM = 'Marketing Program';
+    public const FOLDER_TYPE_NURTURE_PROGRAM = 'Nurture Program';
+    public const FOLDER_TYPE_REPORT = 'Report';
+    public const FOLDER_TYPE_REVENUE_CYCLE_MODEL = 'Revenue Cycle Model';
+    public const FOLDER_TYPE_ZONE = 'Zone';
 
     /**
       * The original name of the model.
@@ -187,21 +202,6 @@ class FolderResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'url' => 'getUrl',
         'workspace' => 'getWorkspace'
     ];
-    
-    const FOLDER_TYPE_EMAIL = 'Email';
-    const FOLDER_TYPE_EMAIL_BATCH_PROGRAM = 'Email Batch Program';
-    const FOLDER_TYPE_EMAIL_TEMPLATE = 'Email Template';
-    const FOLDER_TYPE_IMAGE = 'Image';
-    const FOLDER_TYPE_LANDING_PAGE = 'Landing Page';
-    const FOLDER_TYPE_LANDING_PAGE_FORM = 'Landing Page Form';
-    const FOLDER_TYPE_LANDING_PAGE_TEMPLATE = 'Landing Page Template';
-    const FOLDER_TYPE_MARKETING_EVENT = 'Marketing Event';
-    const FOLDER_TYPE_MARKETING_FOLDER = 'Marketing Folder';
-    const FOLDER_TYPE_MARKETING_PROGRAM = 'Marketing Program';
-    const FOLDER_TYPE_NURTURE_PROGRAM = 'Nurture Program';
-    const FOLDER_TYPE_REPORT = 'Report';
-    const FOLDER_TYPE_REVENUE_CYCLE_MODEL = 'Revenue Cycle Model';
-    const FOLDER_TYPE_ZONE = 'Zone';
 
     /**
      * Associative array for storing property values
@@ -322,7 +322,6 @@ class FolderResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         return count($this->listInvalidProperties()) === 0;
     }
-    
     /**
      * Gets allowable values of the enum.
      *
@@ -347,7 +346,6 @@ class FolderResponse implements ModelInterface, ArrayAccess, \JsonSerializable
             self::FOLDER_TYPE_ZONE,
         ];
     }
-    
 
     /**
      * Gets access_zone_id
@@ -732,7 +730,7 @@ class FolderResponse implements ModelInterface, ArrayAccess, \JsonSerializable
              * @param array-key $key
              * @return mixed
              */
-            function($key) use ($container) {
+            function ($key) use ($container) {
                 return $container[$key];
             };
         return array_map($map, $this->additionalProperties);
@@ -788,7 +786,7 @@ class FolderResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -804,5 +802,4 @@ class FolderResponse implements ModelInterface, ArrayAccess, \JsonSerializable
             JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR
         );
     }
-
 }

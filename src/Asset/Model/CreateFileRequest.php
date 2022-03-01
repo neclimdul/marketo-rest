@@ -1,4 +1,5 @@
 <?php
+
 /**
  * CreateFileRequest
  *
@@ -25,8 +26,8 @@
 
 namespace NecLimDul\MarketoRest\Asset\Model;
 
-use \ArrayAccess;
-use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
+use ArrayAccess;
+use NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * CreateFileRequest Class Doc Comment
@@ -142,7 +143,6 @@ class CreateFileRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
         'insert_only' => 'getInsertOnly',
         'name' => 'getName'
     ];
-    
 
     /**
      * Associative array for storing property values
@@ -224,7 +224,6 @@ class CreateFileRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
     {
         return count($this->listInvalidProperties()) === 0;
     }
-    
 
     /**
      * Gets description
@@ -383,7 +382,7 @@ class CreateFileRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
              * @param array-key $key
              * @return mixed
              */
-            function($key) use ($container) {
+            function ($key) use ($container) {
                 return $container[$key];
             };
         return array_map($map, $this->additionalProperties);
@@ -439,7 +438,7 @@ class CreateFileRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -455,5 +454,4 @@ class CreateFileRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
             JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR
         );
     }
-
 }

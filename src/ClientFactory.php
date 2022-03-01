@@ -43,7 +43,7 @@ class ClientFactory
      * @return \GuzzleHttp\Client
      *   A configured guzzle client.
      */
-    public static function createOauthClient(Configuration $config, CacheItemPoolInterface $cache = NULL)
+    public static function createOauthClient(Configuration $config, CacheItemPoolInterface $cache = null)
     {
         $oauthProvider = new Marketo([
             'clientId' => $config->getClientId(),

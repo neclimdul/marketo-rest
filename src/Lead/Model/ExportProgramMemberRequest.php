@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ExportProgramMemberRequest
  *
@@ -25,8 +26,8 @@
 
 namespace NecLimDul\MarketoRest\Lead\Model;
 
-use \ArrayAccess;
-use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
+use ArrayAccess;
+use NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * ExportProgramMemberRequest Class Doc Comment
@@ -137,7 +138,6 @@ class ExportProgramMemberRequest implements ModelInterface, ArrayAccess, \JsonSe
         'filter' => 'getFilter',
         'format' => 'getFormat'
     ];
-    
 
     /**
      * Associative array for storing property values
@@ -215,7 +215,6 @@ class ExportProgramMemberRequest implements ModelInterface, ArrayAccess, \JsonSe
     {
         return count($this->listInvalidProperties()) === 0;
     }
-    
 
     /**
      * Gets column_header_names
@@ -350,7 +349,7 @@ class ExportProgramMemberRequest implements ModelInterface, ArrayAccess, \JsonSe
              * @param array-key $key
              * @return mixed
              */
-            function($key) use ($container) {
+            function ($key) use ($container) {
                 return $container[$key];
             };
         return array_map($map, $this->additionalProperties);
@@ -406,7 +405,7 @@ class ExportProgramMemberRequest implements ModelInterface, ArrayAccess, \JsonSe
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -422,5 +421,4 @@ class ExportProgramMemberRequest implements ModelInterface, ArrayAccess, \JsonSe
             JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR
         );
     }
-
 }

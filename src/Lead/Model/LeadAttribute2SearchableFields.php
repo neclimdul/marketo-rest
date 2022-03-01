@@ -1,4 +1,5 @@
 <?php
+
 /**
  * LeadAttribute2SearchableFields
  *
@@ -25,8 +26,8 @@
 
 namespace NecLimDul\MarketoRest\Lead\Model;
 
-use \ArrayAccess;
-use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
+use ArrayAccess;
+use NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * LeadAttribute2SearchableFields Class Doc Comment
@@ -59,7 +60,6 @@ class LeadAttribute2SearchableFields implements ModelInterface, ArrayAccess, \Js
       * @psalm-var array<string, string|class-string>
       */
     protected static $swaggerTypes = [
-        
     ];
 
     /**
@@ -70,7 +70,6 @@ class LeadAttribute2SearchableFields implements ModelInterface, ArrayAccess, \Js
       * @psalm-var array<string, string|null>
       */
     protected static $swaggerFormats = [
-        
     ];
 
     /**
@@ -103,7 +102,6 @@ class LeadAttribute2SearchableFields implements ModelInterface, ArrayAccess, \Js
      * @var string[]
      */
     protected static $attributeMap = [
-        
     ];
 
     /**
@@ -112,7 +110,6 @@ class LeadAttribute2SearchableFields implements ModelInterface, ArrayAccess, \Js
      * @var string[]
      */
     protected static $setters = [
-        
     ];
 
     /**
@@ -121,9 +118,8 @@ class LeadAttribute2SearchableFields implements ModelInterface, ArrayAccess, \Js
      * @var string[]
      */
     protected static $getters = [
-        
     ];
-    
+
     /**
      * Associative array for storing property values
      *
@@ -187,7 +183,6 @@ class LeadAttribute2SearchableFields implements ModelInterface, ArrayAccess, \Js
     {
         return count($this->listInvalidProperties()) === 0;
     }
-    
 
     /**
      * {@inheritdoc}
@@ -226,7 +221,7 @@ class LeadAttribute2SearchableFields implements ModelInterface, ArrayAccess, \Js
              * @param array-key $key
              * @return mixed
              */
-            function($key) use ($container) {
+            function ($key) use ($container) {
                 return $container[$key];
             };
         return array_map($map, $this->additionalProperties);
@@ -282,7 +277,7 @@ class LeadAttribute2SearchableFields implements ModelInterface, ArrayAccess, \Js
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -298,5 +293,4 @@ class LeadAttribute2SearchableFields implements ModelInterface, ArrayAccess, \Js
             JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR
         );
     }
-
 }

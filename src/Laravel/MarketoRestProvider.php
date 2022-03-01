@@ -55,7 +55,6 @@ use NecLimDul\MarketoRest\Lead\Configuration as LeadConfiguration;
  */
 class MarketoRestProvider extends ServiceProvider
 {
-
     /**
      * Indicates if loading of the provider is deferred.
      *
@@ -218,5 +217,4 @@ class MarketoRestProvider extends ServiceProvider
             );
         });
     }
-
 }

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleset name="marketo_rest">
+  <description>Default PHP CodeSniffer configuration for Marketo rest client.</description>
+  <file>./src</file>
+  <file>./config</file>
+  <rule ref="PSR12">
+      <!-- We can't control the documentation length so ignore this rule. -->
+      <exclude name="Generic.Files.LineLength.TooLong" />
+  </rule>
+</ruleset>

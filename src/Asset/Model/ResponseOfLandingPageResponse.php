@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ResponseOfLandingPageResponse
  *
@@ -25,8 +26,8 @@
 
 namespace NecLimDul\MarketoRest\Asset\Model;
 
-use \ArrayAccess;
-use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
+use ArrayAccess;
+use NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * ResponseOfLandingPageResponse Class Doc Comment
@@ -142,7 +143,6 @@ class ResponseOfLandingPageResponse implements ModelInterface, ArrayAccess, \Jso
         'success' => 'getSuccess',
         'warnings' => 'getWarnings'
     ];
-    
 
     /**
      * Associative array for storing property values
@@ -215,7 +215,6 @@ class ResponseOfLandingPageResponse implements ModelInterface, ArrayAccess, \Jso
     {
         return count($this->listInvalidProperties()) === 0;
     }
-    
 
     /**
      * Gets errors
@@ -374,7 +373,7 @@ class ResponseOfLandingPageResponse implements ModelInterface, ArrayAccess, \Jso
              * @param array-key $key
              * @return mixed
              */
-            function($key) use ($container) {
+            function ($key) use ($container) {
                 return $container[$key];
             };
         return array_map($map, $this->additionalProperties);
@@ -430,7 +429,7 @@ class ResponseOfLandingPageResponse implements ModelInterface, ArrayAccess, \Jso
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -446,5 +445,4 @@ class ResponseOfLandingPageResponse implements ModelInterface, ArrayAccess, \Jso
             JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR
         );
     }
-
 }

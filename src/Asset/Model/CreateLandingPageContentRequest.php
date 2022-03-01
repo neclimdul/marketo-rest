@@ -1,4 +1,5 @@
 <?php
+
 /**
  * CreateLandingPageContentRequest
  *
@@ -25,8 +26,8 @@
 
 namespace NecLimDul\MarketoRest\Asset\Model;
 
-use \ArrayAccess;
-use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
+use ArrayAccess;
+use NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * CreateLandingPageContentRequest Class Doc Comment
@@ -42,6 +43,12 @@ use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
 class CreateLandingPageContentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    public const TYPE_IMAGE = 'Image';
+    public const TYPE_FORM = 'Form';
+    public const TYPE_RECTANGLE = 'Rectangle';
+    public const TYPE_SNIPPET = 'Snippet';
+    public const TYPE_RICH_TEXT = 'RichText';
+    public const TYPE_HTML = 'HTML';
 
     /**
       * The original name of the model.
@@ -202,13 +209,6 @@ class CreateLandingPageContentRequest implements ModelInterface, ArrayAccess, \J
         'width' => 'getWidth',
         'z_index' => 'getZIndex'
     ];
-    
-    const TYPE_IMAGE = 'Image';
-    const TYPE_FORM = 'Form';
-    const TYPE_RECTANGLE = 'Rectangle';
-    const TYPE_SNIPPET = 'Snippet';
-    const TYPE_RICH_TEXT = 'RichText';
-    const TYPE_HTML = 'HTML';
 
     /**
      * Associative array for storing property values
@@ -308,7 +308,6 @@ class CreateLandingPageContentRequest implements ModelInterface, ArrayAccess, \J
     {
         return count($this->listInvalidProperties()) === 0;
     }
-    
     /**
      * Gets allowable values of the enum.
      *
@@ -325,7 +324,6 @@ class CreateLandingPageContentRequest implements ModelInterface, ArrayAccess, \J
             self::TYPE_HTML,
         ];
     }
-    
 
     /**
      * Gets background_color
@@ -782,7 +780,7 @@ class CreateLandingPageContentRequest implements ModelInterface, ArrayAccess, \J
              * @param array-key $key
              * @return mixed
              */
-            function($key) use ($container) {
+            function ($key) use ($container) {
                 return $container[$key];
             };
         return array_map($map, $this->additionalProperties);
@@ -838,7 +836,7 @@ class CreateLandingPageContentRequest implements ModelInterface, ArrayAccess, \J
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -854,5 +852,4 @@ class CreateLandingPageContentRequest implements ModelInterface, ArrayAccess, \J
             JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR
         );
     }
-
 }

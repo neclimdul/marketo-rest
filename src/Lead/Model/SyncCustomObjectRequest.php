@@ -1,4 +1,5 @@
 <?php
+
 /**
  * SyncCustomObjectRequest
  *
@@ -25,8 +26,8 @@
 
 namespace NecLimDul\MarketoRest\Lead\Model;
 
-use \ArrayAccess;
-use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
+use ArrayAccess;
+use NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * SyncCustomObjectRequest Class Doc Comment
@@ -42,6 +43,9 @@ use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
 class SyncCustomObjectRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    public const ACTION_CREATE_ONLY = 'createOnly';
+    public const ACTION_UPDATE_ONLY = 'updateOnly';
+    public const ACTION_CREATE_OR_UPDATE = 'createOrUpdate';
 
     /**
       * The original name of the model.
@@ -132,10 +136,6 @@ class SyncCustomObjectRequest implements ModelInterface, ArrayAccess, \JsonSeria
         'dedupe_by' => 'getDedupeBy',
         'input' => 'getInput'
     ];
-    
-    const ACTION_CREATE_ONLY = 'createOnly';
-    const ACTION_UPDATE_ONLY = 'updateOnly';
-    const ACTION_CREATE_OR_UPDATE = 'createOrUpdate';
 
     /**
      * Associative array for storing property values
@@ -218,7 +218,6 @@ class SyncCustomObjectRequest implements ModelInterface, ArrayAccess, \JsonSeria
     {
         return count($this->listInvalidProperties()) === 0;
     }
-    
     /**
      * Gets allowable values of the enum.
      *
@@ -232,7 +231,6 @@ class SyncCustomObjectRequest implements ModelInterface, ArrayAccess, \JsonSeria
             self::ACTION_CREATE_OR_UPDATE,
         ];
     }
-    
 
     /**
      * Gets action
@@ -353,7 +351,7 @@ class SyncCustomObjectRequest implements ModelInterface, ArrayAccess, \JsonSeria
              * @param array-key $key
              * @return mixed
              */
-            function($key) use ($container) {
+            function ($key) use ($container) {
                 return $container[$key];
             };
         return array_map($map, $this->additionalProperties);
@@ -409,7 +407,7 @@ class SyncCustomObjectRequest implements ModelInterface, ArrayAccess, \JsonSeria
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -425,5 +423,4 @@ class SyncCustomObjectRequest implements ModelInterface, ArrayAccess, \JsonSeria
             JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR
         );
     }
-
 }

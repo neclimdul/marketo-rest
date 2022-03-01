@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ProgramsApi
  *
@@ -48,7 +49,6 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  */
 class ProgramsApi
 {
-
     /**
      * @var ClientInterface
      */
@@ -73,7 +73,7 @@ class ProgramsApi
      * @param ClientInterface|null $client
      * @param Configuration|null   $config
      * @param HeaderSelector|null  $selector
-     * @param int                  $hostIndex (Optional) host index to select the list of hosts if defined in the OpenAPI spec
+     * @param int                  $hostIndex (Optional) host index to select the list of hosts if defined in the spec.
      */
     public function __construct(
         ClientInterface $client = null,
@@ -102,7 +102,7 @@ class ProgramsApi
      *
      * @return int Host index
      */
-    public function getHostIndex()
+    public function getHostIndex(): int
     {
         return $this->hostIndex;
     }
@@ -110,7 +110,7 @@ class ProgramsApi
     /**
      * @return Configuration
      */
-    public function getConfig()
+    public function getConfig(): Configuration
     {
         return $this->config;
     }
@@ -141,7 +141,8 @@ class ProgramsApi
     /**
      * Approve Program
      *
-     * @param  int $id id (required)
+     * @param int $id
+     *   id
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -149,8 +150,7 @@ class ProgramsApi
      */
     public function approveProgramUsingPOST(
         int $id
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse
-    {
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse {
         list($response) = $this->approveProgramUsingPOSTWithHttpInfo($id);
         return $response;
     }
@@ -158,17 +158,21 @@ class ProgramsApi
     /**
      * Approve Program
      *
-     * @param  int $id id (required)
+     * @param int $id
+     *   id
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function approveProgramUsingPOSTWithHttpInfo(
         int $id
-    ): array
-    {
+    ): array {
         $request = $this->approveProgramUsingPOSTRequest($id);
         try {
             $response = $this->makeRequest($request);
@@ -184,15 +188,15 @@ class ProgramsApi
     /**
      * Approve Program
      *
-     * @param  int $id id (required)
+     * @param int $id
+     *   id
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function approveProgramUsingPOSTAsync(
         int $id
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->approveProgramUsingPOSTAsyncWithHttpInfo($id)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse {
@@ -204,15 +208,15 @@ class ProgramsApi
     /**
      * Approve Program
      *
-     * @param  int $id id (required)
+     * @param int $id
+     *   id
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function approveProgramUsingPOSTAsyncWithHttpInfo(
         int $id
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->approveProgramUsingPOSTRequest($id);
         return $this->makeAsyncRequest(
             $request,
@@ -224,15 +228,15 @@ class ProgramsApi
     /**
      * Create request for operation 'approveProgramUsingPOST'
      *
-     * @param  int $id id (required)
+     * @param int $id
+     *   id
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
     public function approveProgramUsingPOSTRequest(
         int $id
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/asset/v1/program/{id}/approve.json';
         $resourcePath = str_replace(
@@ -297,11 +301,16 @@ class ProgramsApi
     /**
      * Get Programs
      *
-     * @param  int $max_return Maximum number of channels to return.  Max 200, default 20 (optional)
-     * @param  int $offset Integer offset for paging (optional)
-     * @param  string $filter_type Optional filter.  Requires filterValues (optional)
-     * @param  string $earliest_updated_at Exclude programs prior to this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. (optional)
-     * @param  string $latest_updated_at Exclude programs after this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. (optional)
+     * @param int|null $max_return
+     *   Maximum number of channels to return.  Max 200, default 20
+     * @param int|null $offset
+     *   Integer offset for paging
+     * @param string|null $filter_type
+     *   Optional filter.  Requires filterValues
+     * @param string|null $earliest_updated_at
+     *   Exclude programs prior to this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description.
+     * @param string|null $latest_updated_at
+     *   Exclude programs after this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description.
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -313,8 +322,7 @@ class ProgramsApi
         string $filter_type = null,
         string $earliest_updated_at = null,
         string $latest_updated_at = null
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfBrowseAllPrograms
-    {
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfBrowseAllPrograms {
         list($response) = $this->browseProgramsUsingGETWithHttpInfo($max_return, $offset, $filter_type, $earliest_updated_at, $latest_updated_at);
         return $response;
     }
@@ -322,16 +330,25 @@ class ProgramsApi
     /**
      * Get Programs
      *
-     * @param  int $max_return Maximum number of channels to return.  Max 200, default 20 (optional)
-     * @param  int $offset Integer offset for paging (optional)
-     * @param  string $filter_type Optional filter.  Requires filterValues (optional)
-     * @param  string $earliest_updated_at Exclude programs prior to this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. (optional)
-     * @param  string $latest_updated_at Exclude programs after this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. (optional)
+     * @param int|null $max_return
+     *   Maximum number of channels to return.  Max 200, default 20
+     * @param int|null $offset
+     *   Integer offset for paging
+     * @param string|null $filter_type
+     *   Optional filter.  Requires filterValues
+     * @param string|null $earliest_updated_at
+     *   Exclude programs prior to this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description.
+     * @param string|null $latest_updated_at
+     *   Exclude programs after this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description.
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfBrowseAllPrograms, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfBrowseAllPrograms, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfBrowseAllPrograms,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function browseProgramsUsingGETWithHttpInfo(
         int $max_return = null,
@@ -339,8 +356,7 @@ class ProgramsApi
         string $filter_type = null,
         string $earliest_updated_at = null,
         string $latest_updated_at = null
-    ): array
-    {
+    ): array {
         $request = $this->browseProgramsUsingGETRequest($max_return, $offset, $filter_type, $earliest_updated_at, $latest_updated_at);
         try {
             $response = $this->makeRequest($request);
@@ -356,11 +372,16 @@ class ProgramsApi
     /**
      * Get Programs
      *
-     * @param  int $max_return Maximum number of channels to return.  Max 200, default 20 (optional)
-     * @param  int $offset Integer offset for paging (optional)
-     * @param  string $filter_type Optional filter.  Requires filterValues (optional)
-     * @param  string $earliest_updated_at Exclude programs prior to this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. (optional)
-     * @param  string $latest_updated_at Exclude programs after this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. (optional)
+     * @param int|null $max_return
+     *   Maximum number of channels to return.  Max 200, default 20
+     * @param int|null $offset
+     *   Integer offset for paging
+     * @param string|null $filter_type
+     *   Optional filter.  Requires filterValues
+     * @param string|null $earliest_updated_at
+     *   Exclude programs prior to this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description.
+     * @param string|null $latest_updated_at
+     *   Exclude programs after this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description.
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -371,8 +392,7 @@ class ProgramsApi
         string $filter_type = null,
         string $earliest_updated_at = null,
         string $latest_updated_at = null
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->browseProgramsUsingGETAsyncWithHttpInfo($max_return, $offset, $filter_type, $earliest_updated_at, $latest_updated_at)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfBrowseAllPrograms {
@@ -384,11 +404,16 @@ class ProgramsApi
     /**
      * Get Programs
      *
-     * @param  int $max_return Maximum number of channels to return.  Max 200, default 20 (optional)
-     * @param  int $offset Integer offset for paging (optional)
-     * @param  string $filter_type Optional filter.  Requires filterValues (optional)
-     * @param  string $earliest_updated_at Exclude programs prior to this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. (optional)
-     * @param  string $latest_updated_at Exclude programs after this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. (optional)
+     * @param int|null $max_return
+     *   Maximum number of channels to return.  Max 200, default 20
+     * @param int|null $offset
+     *   Integer offset for paging
+     * @param string|null $filter_type
+     *   Optional filter.  Requires filterValues
+     * @param string|null $earliest_updated_at
+     *   Exclude programs prior to this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description.
+     * @param string|null $latest_updated_at
+     *   Exclude programs after this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description.
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -399,8 +424,7 @@ class ProgramsApi
         string $filter_type = null,
         string $earliest_updated_at = null,
         string $latest_updated_at = null
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->browseProgramsUsingGETRequest($max_return, $offset, $filter_type, $earliest_updated_at, $latest_updated_at);
         return $this->makeAsyncRequest(
             $request,
@@ -412,11 +436,16 @@ class ProgramsApi
     /**
      * Create request for operation 'browseProgramsUsingGET'
      *
-     * @param  int $max_return Maximum number of channels to return.  Max 200, default 20 (optional)
-     * @param  int $offset Integer offset for paging (optional)
-     * @param  string $filter_type Optional filter.  Requires filterValues (optional)
-     * @param  string $earliest_updated_at Exclude programs prior to this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. (optional)
-     * @param  string $latest_updated_at Exclude programs after this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description. (optional)
+     * @param int|null $max_return
+     *   Maximum number of channels to return.  Max 200, default 20
+     * @param int|null $offset
+     *   Integer offset for paging
+     * @param string|null $filter_type
+     *   Optional filter.  Requires filterValues
+     * @param string|null $earliest_updated_at
+     *   Exclude programs prior to this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description.
+     * @param string|null $latest_updated_at
+     *   Exclude programs after this date. Must be valid ISO-8601 string.  See &lt;a href&#x3D;\&quot;http://developers.marketo.com/rest-api/lead-database/fields/field-types/\&quot;&gt;Datetime&lt;/a&gt; field type description.
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -427,8 +456,7 @@ class ProgramsApi
         string $filter_type = null,
         string $earliest_updated_at = null,
         string $latest_updated_at = null
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/asset/v1/programs.json';
 
@@ -493,8 +521,10 @@ class ProgramsApi
     /**
      * Clone Program
      *
-     * @param  int $id id (required)
-     * @param  \NecLimDul\MarketoRest\Asset\Model\CloneProgramRequest $clone_program_request cloneProgramRequest (required)
+     * @param int $id
+     *   id
+     * @param \NecLimDul\MarketoRest\Asset\Model\CloneProgramRequest $clone_program_request
+     *   cloneProgramRequest
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -503,8 +533,7 @@ class ProgramsApi
     public function cloneProgramUsingPOST(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\CloneProgramRequest $clone_program_request
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse
-    {
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse {
         list($response) = $this->cloneProgramUsingPOSTWithHttpInfo($id, $clone_program_request);
         return $response;
     }
@@ -512,19 +541,24 @@ class ProgramsApi
     /**
      * Clone Program
      *
-     * @param  int $id id (required)
-     * @param  \NecLimDul\MarketoRest\Asset\Model\CloneProgramRequest $clone_program_request cloneProgramRequest (required)
+     * @param int $id
+     *   id
+     * @param \NecLimDul\MarketoRest\Asset\Model\CloneProgramRequest $clone_program_request
+     *   cloneProgramRequest
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function cloneProgramUsingPOSTWithHttpInfo(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\CloneProgramRequest $clone_program_request
-    ): array
-    {
+    ): array {
         $request = $this->cloneProgramUsingPOSTRequest($id, $clone_program_request);
         try {
             $response = $this->makeRequest($request);
@@ -540,8 +574,10 @@ class ProgramsApi
     /**
      * Clone Program
      *
-     * @param  int $id id (required)
-     * @param  \NecLimDul\MarketoRest\Asset\Model\CloneProgramRequest $clone_program_request cloneProgramRequest (required)
+     * @param int $id
+     *   id
+     * @param \NecLimDul\MarketoRest\Asset\Model\CloneProgramRequest $clone_program_request
+     *   cloneProgramRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -549,8 +585,7 @@ class ProgramsApi
     public function cloneProgramUsingPOSTAsync(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\CloneProgramRequest $clone_program_request
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->cloneProgramUsingPOSTAsyncWithHttpInfo($id, $clone_program_request)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse {
@@ -562,8 +597,10 @@ class ProgramsApi
     /**
      * Clone Program
      *
-     * @param  int $id id (required)
-     * @param  \NecLimDul\MarketoRest\Asset\Model\CloneProgramRequest $clone_program_request cloneProgramRequest (required)
+     * @param int $id
+     *   id
+     * @param \NecLimDul\MarketoRest\Asset\Model\CloneProgramRequest $clone_program_request
+     *   cloneProgramRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -571,8 +608,7 @@ class ProgramsApi
     public function cloneProgramUsingPOSTAsyncWithHttpInfo(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\CloneProgramRequest $clone_program_request
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->cloneProgramUsingPOSTRequest($id, $clone_program_request);
         return $this->makeAsyncRequest(
             $request,
@@ -584,8 +620,10 @@ class ProgramsApi
     /**
      * Create request for operation 'cloneProgramUsingPOST'
      *
-     * @param  int $id id (required)
-     * @param  \NecLimDul\MarketoRest\Asset\Model\CloneProgramRequest $clone_program_request cloneProgramRequest (required)
+     * @param int $id
+     *   id
+     * @param \NecLimDul\MarketoRest\Asset\Model\CloneProgramRequest $clone_program_request
+     *   cloneProgramRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -593,8 +631,7 @@ class ProgramsApi
     public function cloneProgramUsingPOSTRequest(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\CloneProgramRequest $clone_program_request
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/asset/v1/program/{id}/clone.json';
         $resourcePath = str_replace(
@@ -630,7 +667,6 @@ class ProgramsApi
             [
             ],
             $clone_program_request
-            
         );
     }
 
@@ -660,7 +696,8 @@ class ProgramsApi
     /**
      * Create Program
      *
-     * @param  \NecLimDul\MarketoRest\Asset\Model\CreateProgramRequest $create_program_request createProgramRequest (required)
+     * @param \NecLimDul\MarketoRest\Asset\Model\CreateProgramRequest $create_program_request
+     *   createProgramRequest
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -668,8 +705,7 @@ class ProgramsApi
      */
     public function createProgramUsingPOST(
         \NecLimDul\MarketoRest\Asset\Model\CreateProgramRequest $create_program_request
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse
-    {
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse {
         list($response) = $this->createProgramUsingPOSTWithHttpInfo($create_program_request);
         return $response;
     }
@@ -677,17 +713,21 @@ class ProgramsApi
     /**
      * Create Program
      *
-     * @param  \NecLimDul\MarketoRest\Asset\Model\CreateProgramRequest $create_program_request createProgramRequest (required)
+     * @param \NecLimDul\MarketoRest\Asset\Model\CreateProgramRequest $create_program_request
+     *   createProgramRequest
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function createProgramUsingPOSTWithHttpInfo(
         \NecLimDul\MarketoRest\Asset\Model\CreateProgramRequest $create_program_request
-    ): array
-    {
+    ): array {
         $request = $this->createProgramUsingPOSTRequest($create_program_request);
         try {
             $response = $this->makeRequest($request);
@@ -703,15 +743,15 @@ class ProgramsApi
     /**
      * Create Program
      *
-     * @param  \NecLimDul\MarketoRest\Asset\Model\CreateProgramRequest $create_program_request createProgramRequest (required)
+     * @param \NecLimDul\MarketoRest\Asset\Model\CreateProgramRequest $create_program_request
+     *   createProgramRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function createProgramUsingPOSTAsync(
         \NecLimDul\MarketoRest\Asset\Model\CreateProgramRequest $create_program_request
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->createProgramUsingPOSTAsyncWithHttpInfo($create_program_request)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse {
@@ -723,15 +763,15 @@ class ProgramsApi
     /**
      * Create Program
      *
-     * @param  \NecLimDul\MarketoRest\Asset\Model\CreateProgramRequest $create_program_request createProgramRequest (required)
+     * @param \NecLimDul\MarketoRest\Asset\Model\CreateProgramRequest $create_program_request
+     *   createProgramRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function createProgramUsingPOSTAsyncWithHttpInfo(
         \NecLimDul\MarketoRest\Asset\Model\CreateProgramRequest $create_program_request
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->createProgramUsingPOSTRequest($create_program_request);
         return $this->makeAsyncRequest(
             $request,
@@ -743,15 +783,15 @@ class ProgramsApi
     /**
      * Create request for operation 'createProgramUsingPOST'
      *
-     * @param  \NecLimDul\MarketoRest\Asset\Model\CreateProgramRequest $create_program_request createProgramRequest (required)
+     * @param \NecLimDul\MarketoRest\Asset\Model\CreateProgramRequest $create_program_request
+     *   createProgramRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
     public function createProgramUsingPOSTRequest(
         \NecLimDul\MarketoRest\Asset\Model\CreateProgramRequest $create_program_request
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/asset/v1/programs.json';
 
@@ -782,7 +822,6 @@ class ProgramsApi
             [
             ],
             $create_program_request
-            
         );
     }
 
@@ -812,7 +851,8 @@ class ProgramsApi
     /**
      * Delete Program
      *
-     * @param  int $id id (required)
+     * @param int $id
+     *   id
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -820,8 +860,7 @@ class ProgramsApi
      */
     public function deleteProgramUsingPOST(
         int $id
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse
-    {
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse {
         list($response) = $this->deleteProgramUsingPOSTWithHttpInfo($id);
         return $response;
     }
@@ -829,17 +868,21 @@ class ProgramsApi
     /**
      * Delete Program
      *
-     * @param  int $id id (required)
+     * @param int $id
+     *   id
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function deleteProgramUsingPOSTWithHttpInfo(
         int $id
-    ): array
-    {
+    ): array {
         $request = $this->deleteProgramUsingPOSTRequest($id);
         try {
             $response = $this->makeRequest($request);
@@ -855,15 +898,15 @@ class ProgramsApi
     /**
      * Delete Program
      *
-     * @param  int $id id (required)
+     * @param int $id
+     *   id
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function deleteProgramUsingPOSTAsync(
         int $id
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->deleteProgramUsingPOSTAsyncWithHttpInfo($id)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse {
@@ -875,15 +918,15 @@ class ProgramsApi
     /**
      * Delete Program
      *
-     * @param  int $id id (required)
+     * @param int $id
+     *   id
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function deleteProgramUsingPOSTAsyncWithHttpInfo(
         int $id
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->deleteProgramUsingPOSTRequest($id);
         return $this->makeAsyncRequest(
             $request,
@@ -895,15 +938,15 @@ class ProgramsApi
     /**
      * Create request for operation 'deleteProgramUsingPOST'
      *
-     * @param  int $id id (required)
+     * @param int $id
+     *   id
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
     public function deleteProgramUsingPOSTRequest(
         int $id
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/asset/v1/program/{id}/delete.json';
         $resourcePath = str_replace(
@@ -968,7 +1011,8 @@ class ProgramsApi
     /**
      * Get Program by Id
      *
-     * @param  int $id id (required)
+     * @param int $id
+     *   id
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -976,8 +1020,7 @@ class ProgramsApi
      */
     public function getProgramByIdUsingGET(
         int $id
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse
-    {
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse {
         list($response) = $this->getProgramByIdUsingGETWithHttpInfo($id);
         return $response;
     }
@@ -985,17 +1028,21 @@ class ProgramsApi
     /**
      * Get Program by Id
      *
-     * @param  int $id id (required)
+     * @param int $id
+     *   id
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function getProgramByIdUsingGETWithHttpInfo(
         int $id
-    ): array
-    {
+    ): array {
         $request = $this->getProgramByIdUsingGETRequest($id);
         try {
             $response = $this->makeRequest($request);
@@ -1011,15 +1058,15 @@ class ProgramsApi
     /**
      * Get Program by Id
      *
-     * @param  int $id id (required)
+     * @param int $id
+     *   id
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function getProgramByIdUsingGETAsync(
         int $id
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->getProgramByIdUsingGETAsyncWithHttpInfo($id)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse {
@@ -1031,15 +1078,15 @@ class ProgramsApi
     /**
      * Get Program by Id
      *
-     * @param  int $id id (required)
+     * @param int $id
+     *   id
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function getProgramByIdUsingGETAsyncWithHttpInfo(
         int $id
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->getProgramByIdUsingGETRequest($id);
         return $this->makeAsyncRequest(
             $request,
@@ -1051,15 +1098,15 @@ class ProgramsApi
     /**
      * Create request for operation 'getProgramByIdUsingGET'
      *
-     * @param  int $id id (required)
+     * @param int $id
+     *   id
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
     public function getProgramByIdUsingGETRequest(
         int $id
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/asset/v1/program/{id}.json';
         $resourcePath = str_replace(
@@ -1124,9 +1171,12 @@ class ProgramsApi
     /**
      * Get Program by Name
      *
-     * @param  string $name Name of the program (required)
-     * @param  bool $include_tags Set true to populate program tags (optional)
-     * @param  bool $include_costs Set true to populate program costs (optional)
+     * @param string $name
+     *   Name of the program
+     * @param bool|null $include_tags
+     *   Set true to populate program tags
+     * @param bool|null $include_costs
+     *   Set true to populate program costs
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -1136,8 +1186,7 @@ class ProgramsApi
         string $name,
         bool $include_tags = null,
         bool $include_costs = null
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse
-    {
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse {
         list($response) = $this->getProgramByNameUsingGETWithHttpInfo($name, $include_tags, $include_costs);
         return $response;
     }
@@ -1145,21 +1194,27 @@ class ProgramsApi
     /**
      * Get Program by Name
      *
-     * @param  string $name Name of the program (required)
-     * @param  bool $include_tags Set true to populate program tags (optional)
-     * @param  bool $include_costs Set true to populate program costs (optional)
+     * @param string $name
+     *   Name of the program
+     * @param bool|null $include_tags
+     *   Set true to populate program tags
+     * @param bool|null $include_costs
+     *   Set true to populate program costs
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function getProgramByNameUsingGETWithHttpInfo(
         string $name,
         bool $include_tags = null,
         bool $include_costs = null
-    ): array
-    {
+    ): array {
         $request = $this->getProgramByNameUsingGETRequest($name, $include_tags, $include_costs);
         try {
             $response = $this->makeRequest($request);
@@ -1175,9 +1230,12 @@ class ProgramsApi
     /**
      * Get Program by Name
      *
-     * @param  string $name Name of the program (required)
-     * @param  bool $include_tags Set true to populate program tags (optional)
-     * @param  bool $include_costs Set true to populate program costs (optional)
+     * @param string $name
+     *   Name of the program
+     * @param bool|null $include_tags
+     *   Set true to populate program tags
+     * @param bool|null $include_costs
+     *   Set true to populate program costs
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1186,8 +1244,7 @@ class ProgramsApi
         string $name,
         bool $include_tags = null,
         bool $include_costs = null
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->getProgramByNameUsingGETAsyncWithHttpInfo($name, $include_tags, $include_costs)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse {
@@ -1199,9 +1256,12 @@ class ProgramsApi
     /**
      * Get Program by Name
      *
-     * @param  string $name Name of the program (required)
-     * @param  bool $include_tags Set true to populate program tags (optional)
-     * @param  bool $include_costs Set true to populate program costs (optional)
+     * @param string $name
+     *   Name of the program
+     * @param bool|null $include_tags
+     *   Set true to populate program tags
+     * @param bool|null $include_costs
+     *   Set true to populate program costs
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1210,8 +1270,7 @@ class ProgramsApi
         string $name,
         bool $include_tags = null,
         bool $include_costs = null
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->getProgramByNameUsingGETRequest($name, $include_tags, $include_costs);
         return $this->makeAsyncRequest(
             $request,
@@ -1223,9 +1282,12 @@ class ProgramsApi
     /**
      * Create request for operation 'getProgramByNameUsingGET'
      *
-     * @param  string $name Name of the program (required)
-     * @param  bool $include_tags Set true to populate program tags (optional)
-     * @param  bool $include_costs Set true to populate program costs (optional)
+     * @param string $name
+     *   Name of the program
+     * @param bool|null $include_tags
+     *   Set true to populate program tags
+     * @param bool|null $include_costs
+     *   Set true to populate program costs
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -1234,8 +1296,7 @@ class ProgramsApi
         string $name,
         bool $include_tags = null,
         bool $include_costs = null
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/asset/v1/program/byName.json';
 
@@ -1298,10 +1359,14 @@ class ProgramsApi
     /**
      * Get Programs by Tag
      *
-     * @param  string $tag_type Type of program tag (required)
-     * @param  string $tag_value Value of the tag (required)
-     * @param  int $max_return Maximum number of channels to return.  Max 200, default 20 (optional)
-     * @param  int $offset Integer offset for paging (optional)
+     * @param string $tag_type
+     *   Type of program tag
+     * @param string $tag_value
+     *   Value of the tag
+     * @param int|null $max_return
+     *   Maximum number of channels to return.  Max 200, default 20
+     * @param int|null $offset
+     *   Integer offset for paging
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -1312,8 +1377,7 @@ class ProgramsApi
         string $tag_value,
         int $max_return = null,
         int $offset = null
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse
-    {
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse {
         list($response) = $this->getProgramListByTagUsingGETWithHttpInfo($tag_type, $tag_value, $max_return, $offset);
         return $response;
     }
@@ -1321,23 +1385,30 @@ class ProgramsApi
     /**
      * Get Programs by Tag
      *
-     * @param  string $tag_type Type of program tag (required)
-     * @param  string $tag_value Value of the tag (required)
-     * @param  int $max_return Maximum number of channels to return.  Max 200, default 20 (optional)
-     * @param  int $offset Integer offset for paging (optional)
+     * @param string $tag_type
+     *   Type of program tag
+     * @param string $tag_value
+     *   Value of the tag
+     * @param int|null $max_return
+     *   Maximum number of channels to return.  Max 200, default 20
+     * @param int|null $offset
+     *   Integer offset for paging
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function getProgramListByTagUsingGETWithHttpInfo(
         string $tag_type,
         string $tag_value,
         int $max_return = null,
         int $offset = null
-    ): array
-    {
+    ): array {
         $request = $this->getProgramListByTagUsingGETRequest($tag_type, $tag_value, $max_return, $offset);
         try {
             $response = $this->makeRequest($request);
@@ -1353,10 +1424,14 @@ class ProgramsApi
     /**
      * Get Programs by Tag
      *
-     * @param  string $tag_type Type of program tag (required)
-     * @param  string $tag_value Value of the tag (required)
-     * @param  int $max_return Maximum number of channels to return.  Max 200, default 20 (optional)
-     * @param  int $offset Integer offset for paging (optional)
+     * @param string $tag_type
+     *   Type of program tag
+     * @param string $tag_value
+     *   Value of the tag
+     * @param int|null $max_return
+     *   Maximum number of channels to return.  Max 200, default 20
+     * @param int|null $offset
+     *   Integer offset for paging
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1366,8 +1441,7 @@ class ProgramsApi
         string $tag_value,
         int $max_return = null,
         int $offset = null
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->getProgramListByTagUsingGETAsyncWithHttpInfo($tag_type, $tag_value, $max_return, $offset)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse {
@@ -1379,10 +1453,14 @@ class ProgramsApi
     /**
      * Get Programs by Tag
      *
-     * @param  string $tag_type Type of program tag (required)
-     * @param  string $tag_value Value of the tag (required)
-     * @param  int $max_return Maximum number of channels to return.  Max 200, default 20 (optional)
-     * @param  int $offset Integer offset for paging (optional)
+     * @param string $tag_type
+     *   Type of program tag
+     * @param string $tag_value
+     *   Value of the tag
+     * @param int|null $max_return
+     *   Maximum number of channels to return.  Max 200, default 20
+     * @param int|null $offset
+     *   Integer offset for paging
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1392,8 +1470,7 @@ class ProgramsApi
         string $tag_value,
         int $max_return = null,
         int $offset = null
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->getProgramListByTagUsingGETRequest($tag_type, $tag_value, $max_return, $offset);
         return $this->makeAsyncRequest(
             $request,
@@ -1405,10 +1482,14 @@ class ProgramsApi
     /**
      * Create request for operation 'getProgramListByTagUsingGET'
      *
-     * @param  string $tag_type Type of program tag (required)
-     * @param  string $tag_value Value of the tag (required)
-     * @param  int $max_return Maximum number of channels to return.  Max 200, default 20 (optional)
-     * @param  int $offset Integer offset for paging (optional)
+     * @param string $tag_type
+     *   Type of program tag
+     * @param string $tag_value
+     *   Value of the tag
+     * @param int|null $max_return
+     *   Maximum number of channels to return.  Max 200, default 20
+     * @param int|null $offset
+     *   Integer offset for paging
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -1418,8 +1499,7 @@ class ProgramsApi
         string $tag_value,
         int $max_return = null,
         int $offset = null
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/asset/v1/program/byTag.json';
 
@@ -1483,8 +1563,10 @@ class ProgramsApi
     /**
      * Get Smart List by Program Id
      *
-     * @param  int $program_id Id for the email program containing smart list to retrieve (required)
-     * @param  bool $include_rules Set true to populate smart list rules.  Default false (optional)
+     * @param int $program_id
+     *   Id for the email program containing smart list to retrieve
+     * @param bool|null $include_rules
+     *   Set true to populate smart list rules.  Default false
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -1493,8 +1575,7 @@ class ProgramsApi
     public function getSmartListByProgramIdUsingGET(
         int $program_id,
         bool $include_rules = null
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponseWithRules
-    {
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponseWithRules {
         list($response) = $this->getSmartListByProgramIdUsingGETWithHttpInfo($program_id, $include_rules);
         return $response;
     }
@@ -1502,19 +1583,24 @@ class ProgramsApi
     /**
      * Get Smart List by Program Id
      *
-     * @param  int $program_id Id for the email program containing smart list to retrieve (required)
-     * @param  bool $include_rules Set true to populate smart list rules.  Default false (optional)
+     * @param int $program_id
+     *   Id for the email program containing smart list to retrieve
+     * @param bool|null $include_rules
+     *   Set true to populate smart list rules.  Default false
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponseWithRules, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponseWithRules, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponseWithRules,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function getSmartListByProgramIdUsingGETWithHttpInfo(
         int $program_id,
         bool $include_rules = null
-    ): array
-    {
+    ): array {
         $request = $this->getSmartListByProgramIdUsingGETRequest($program_id, $include_rules);
         try {
             $response = $this->makeRequest($request);
@@ -1530,8 +1616,10 @@ class ProgramsApi
     /**
      * Get Smart List by Program Id
      *
-     * @param  int $program_id Id for the email program containing smart list to retrieve (required)
-     * @param  bool $include_rules Set true to populate smart list rules.  Default false (optional)
+     * @param int $program_id
+     *   Id for the email program containing smart list to retrieve
+     * @param bool|null $include_rules
+     *   Set true to populate smart list rules.  Default false
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1539,8 +1627,7 @@ class ProgramsApi
     public function getSmartListByProgramIdUsingGETAsync(
         int $program_id,
         bool $include_rules = null
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->getSmartListByProgramIdUsingGETAsyncWithHttpInfo($program_id, $include_rules)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartListResponseWithRules {
@@ -1552,8 +1639,10 @@ class ProgramsApi
     /**
      * Get Smart List by Program Id
      *
-     * @param  int $program_id Id for the email program containing smart list to retrieve (required)
-     * @param  bool $include_rules Set true to populate smart list rules.  Default false (optional)
+     * @param int $program_id
+     *   Id for the email program containing smart list to retrieve
+     * @param bool|null $include_rules
+     *   Set true to populate smart list rules.  Default false
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1561,8 +1650,7 @@ class ProgramsApi
     public function getSmartListByProgramIdUsingGETAsyncWithHttpInfo(
         int $program_id,
         bool $include_rules = null
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->getSmartListByProgramIdUsingGETRequest($program_id, $include_rules);
         return $this->makeAsyncRequest(
             $request,
@@ -1574,8 +1662,10 @@ class ProgramsApi
     /**
      * Create request for operation 'getSmartListByProgramIdUsingGET'
      *
-     * @param  int $program_id Id for the email program containing smart list to retrieve (required)
-     * @param  bool $include_rules Set true to populate smart list rules.  Default false (optional)
+     * @param int $program_id
+     *   Id for the email program containing smart list to retrieve
+     * @param bool|null $include_rules
+     *   Set true to populate smart list rules.  Default false
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -1583,8 +1673,7 @@ class ProgramsApi
     public function getSmartListByProgramIdUsingGETRequest(
         int $program_id,
         bool $include_rules = null
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/asset/v1/program/{programId}/smartList.json';
         $resourcePath = str_replace(
@@ -1650,7 +1739,8 @@ class ProgramsApi
     /**
      * Unapprove Program
      *
-     * @param  int $id id (required)
+     * @param int $id
+     *   id
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -1658,8 +1748,7 @@ class ProgramsApi
      */
     public function unapproveProgramUsingPOST(
         int $id
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse
-    {
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse {
         list($response) = $this->unapproveProgramUsingPOSTWithHttpInfo($id);
         return $response;
     }
@@ -1667,17 +1756,21 @@ class ProgramsApi
     /**
      * Unapprove Program
      *
-     * @param  int $id id (required)
+     * @param int $id
+     *   id
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function unapproveProgramUsingPOSTWithHttpInfo(
         int $id
-    ): array
-    {
+    ): array {
         $request = $this->unapproveProgramUsingPOSTRequest($id);
         try {
             $response = $this->makeRequest($request);
@@ -1693,15 +1786,15 @@ class ProgramsApi
     /**
      * Unapprove Program
      *
-     * @param  int $id id (required)
+     * @param int $id
+     *   id
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function unapproveProgramUsingPOSTAsync(
         int $id
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->unapproveProgramUsingPOSTAsyncWithHttpInfo($id)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse {
@@ -1713,15 +1806,15 @@ class ProgramsApi
     /**
      * Unapprove Program
      *
-     * @param  int $id id (required)
+     * @param int $id
+     *   id
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function unapproveProgramUsingPOSTAsyncWithHttpInfo(
         int $id
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->unapproveProgramUsingPOSTRequest($id);
         return $this->makeAsyncRequest(
             $request,
@@ -1733,15 +1826,15 @@ class ProgramsApi
     /**
      * Create request for operation 'unapproveProgramUsingPOST'
      *
-     * @param  int $id id (required)
+     * @param int $id
+     *   id
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
     public function unapproveProgramUsingPOSTRequest(
         int $id
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/asset/v1/program/{id}/unapprove.json';
         $resourcePath = str_replace(
@@ -1806,8 +1899,10 @@ class ProgramsApi
     /**
      * Update Program Metadata
      *
-     * @param  int $id id (required)
-     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateProgramRequest $update_program_request updateProgramRequest (required)
+     * @param int $id
+     *   id
+     * @param \NecLimDul\MarketoRest\Asset\Model\UpdateProgramRequest $update_program_request
+     *   updateProgramRequest
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -1816,8 +1911,7 @@ class ProgramsApi
     public function updateProgramUsingPOST(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\UpdateProgramRequest $update_program_request
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse
-    {
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse {
         list($response) = $this->updateProgramUsingPOSTWithHttpInfo($id, $update_program_request);
         return $response;
     }
@@ -1825,19 +1919,24 @@ class ProgramsApi
     /**
      * Update Program Metadata
      *
-     * @param  int $id id (required)
-     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateProgramRequest $update_program_request updateProgramRequest (required)
+     * @param int $id
+     *   id
+     * @param \NecLimDul\MarketoRest\Asset\Model\UpdateProgramRequest $update_program_request
+     *   updateProgramRequest
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function updateProgramUsingPOSTWithHttpInfo(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\UpdateProgramRequest $update_program_request
-    ): array
-    {
+    ): array {
         $request = $this->updateProgramUsingPOSTRequest($id, $update_program_request);
         try {
             $response = $this->makeRequest($request);
@@ -1853,8 +1952,10 @@ class ProgramsApi
     /**
      * Update Program Metadata
      *
-     * @param  int $id id (required)
-     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateProgramRequest $update_program_request updateProgramRequest (required)
+     * @param int $id
+     *   id
+     * @param \NecLimDul\MarketoRest\Asset\Model\UpdateProgramRequest $update_program_request
+     *   updateProgramRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1862,8 +1963,7 @@ class ProgramsApi
     public function updateProgramUsingPOSTAsync(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\UpdateProgramRequest $update_program_request
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->updateProgramUsingPOSTAsyncWithHttpInfo($id, $update_program_request)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfProgramResponse {
@@ -1875,8 +1975,10 @@ class ProgramsApi
     /**
      * Update Program Metadata
      *
-     * @param  int $id id (required)
-     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateProgramRequest $update_program_request updateProgramRequest (required)
+     * @param int $id
+     *   id
+     * @param \NecLimDul\MarketoRest\Asset\Model\UpdateProgramRequest $update_program_request
+     *   updateProgramRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1884,8 +1986,7 @@ class ProgramsApi
     public function updateProgramUsingPOSTAsyncWithHttpInfo(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\UpdateProgramRequest $update_program_request
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->updateProgramUsingPOSTRequest($id, $update_program_request);
         return $this->makeAsyncRequest(
             $request,
@@ -1897,8 +1998,10 @@ class ProgramsApi
     /**
      * Create request for operation 'updateProgramUsingPOST'
      *
-     * @param  int $id id (required)
-     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateProgramRequest $update_program_request updateProgramRequest (required)
+     * @param int $id
+     *   id
+     * @param \NecLimDul\MarketoRest\Asset\Model\UpdateProgramRequest $update_program_request
+     *   updateProgramRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -1906,8 +2009,7 @@ class ProgramsApi
     public function updateProgramUsingPOSTRequest(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\UpdateProgramRequest $update_program_request
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/asset/v1/program/{id}.json';
         $resourcePath = str_replace(
@@ -1943,7 +2045,6 @@ class ProgramsApi
             [
             ],
             $update_program_request
-            
         );
     }
 
@@ -1974,10 +2075,11 @@ class ProgramsApi
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @return \Psr\Http\Message\ResponseInterface
      */
-    private function makeRequest(Request $request) {
+    private function makeRequest(Request $request)
+    {
         $options = $this->createHttpClientOption();
         try {
-           $response = $this->client->send($request, $options);
+            $response = $this->client->send($request, $options);
         } catch (RequestException $e) {
             $response = $e->getResponse();
             throw new ApiException(
@@ -2050,7 +2152,8 @@ class ProgramsApi
      * @return array structured array or response and http info.
      * @phpstan-return array{T, int, array<array<string>>}
      */
-    private function responseToReturn(ResponseInterface $response, string $returnType) {
+    private function responseToReturn(ResponseInterface $response, string $returnType)
+    {
         return [
             $this->deserializeResponseBody($response->getBody(), $returnType),
             $response->getStatusCode(),
@@ -2079,5 +2182,4 @@ class ProgramsApi
             $headers
         );
     }
-
 }

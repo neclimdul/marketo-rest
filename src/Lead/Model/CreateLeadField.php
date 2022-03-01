@@ -1,4 +1,5 @@
 <?php
+
 /**
  * CreateLeadField
  *
@@ -25,8 +26,8 @@
 
 namespace NecLimDul\MarketoRest\Lead\Model;
 
-use \ArrayAccess;
-use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
+use ArrayAccess;
+use NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * CreateLeadField Class Doc Comment
@@ -43,6 +44,18 @@ use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
 class CreateLeadField implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    public const DATA_TYPE_BOOLEAN = 'boolean';
+    public const DATA_TYPE_CURRENCY = 'currency';
+    public const DATA_TYPE_DATE = 'date';
+    public const DATA_TYPE_DATETIME = 'datetime';
+    public const DATA_TYPE_EMAIL = 'email';
+    public const DATA_TYPE_FLOAT = 'float';
+    public const DATA_TYPE_INTEGER = 'integer';
+    public const DATA_TYPE_PERCENT = 'percent';
+    public const DATA_TYPE_PHONE = 'phone';
+    public const DATA_TYPE_SCORE = 'score';
+    public const DATA_TYPE_STRING = 'string';
+    public const DATA_TYPE_URL = 'url';
 
     /**
       * The original name of the model.
@@ -153,19 +166,6 @@ class CreateLeadField implements ModelInterface, ArrayAccess, \JsonSerializable
         'is_html_encoding_in_email' => 'getIsHtmlEncodingInEmail',
         'is_sensitive' => 'getIsSensitive'
     ];
-    
-    const DATA_TYPE_BOOLEAN = 'boolean';
-    const DATA_TYPE_CURRENCY = 'currency';
-    const DATA_TYPE_DATE = 'date';
-    const DATA_TYPE_DATETIME = 'datetime';
-    const DATA_TYPE_EMAIL = 'email';
-    const DATA_TYPE_FLOAT = 'float';
-    const DATA_TYPE_INTEGER = 'integer';
-    const DATA_TYPE_PERCENT = 'percent';
-    const DATA_TYPE_PHONE = 'phone';
-    const DATA_TYPE_SCORE = 'score';
-    const DATA_TYPE_STRING = 'string';
-    const DATA_TYPE_URL = 'url';
 
     /**
      * Associative array for storing property values
@@ -258,7 +258,6 @@ class CreateLeadField implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         return count($this->listInvalidProperties()) === 0;
     }
-    
     /**
      * Gets allowable values of the enum.
      *
@@ -281,7 +280,6 @@ class CreateLeadField implements ModelInterface, ArrayAccess, \JsonSerializable
             self::DATA_TYPE_URL,
         ];
     }
-    
 
     /**
      * Gets display_name
@@ -498,7 +496,7 @@ class CreateLeadField implements ModelInterface, ArrayAccess, \JsonSerializable
              * @param array-key $key
              * @return mixed
              */
-            function($key) use ($container) {
+            function ($key) use ($container) {
                 return $container[$key];
             };
         return array_map($map, $this->additionalProperties);
@@ -554,7 +552,7 @@ class CreateLeadField implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -570,5 +568,4 @@ class CreateLeadField implements ModelInterface, ArrayAccess, \JsonSerializable
             JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR
         );
     }
-
 }

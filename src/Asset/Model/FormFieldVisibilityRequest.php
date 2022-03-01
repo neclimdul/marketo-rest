@@ -1,4 +1,5 @@
 <?php
+
 /**
  * FormFieldVisibilityRequest
  *
@@ -25,8 +26,8 @@
 
 namespace NecLimDul\MarketoRest\Asset\Model;
 
-use \ArrayAccess;
-use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
+use ArrayAccess;
+use NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * FormFieldVisibilityRequest Class Doc Comment
@@ -42,6 +43,9 @@ use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
 class FormFieldVisibilityRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    public const RULE_TYPE_SHOW = 'show';
+    public const RULE_TYPE_ALWAYS_SHOW = 'alwaysShow';
+    public const RULE_TYPE_HIDE = 'hide';
 
     /**
       * The original name of the model.
@@ -127,10 +131,6 @@ class FormFieldVisibilityRequest implements ModelInterface, ArrayAccess, \JsonSe
         'rule_type' => 'getRuleType',
         'rules' => 'getRules'
     ];
-    
-    const RULE_TYPE_SHOW = 'show';
-    const RULE_TYPE_ALWAYS_SHOW = 'alwaysShow';
-    const RULE_TYPE_HIDE = 'hide';
 
     /**
      * Associative array for storing property values
@@ -215,7 +215,6 @@ class FormFieldVisibilityRequest implements ModelInterface, ArrayAccess, \JsonSe
     {
         return count($this->listInvalidProperties()) === 0;
     }
-    
     /**
      * Gets allowable values of the enum.
      *
@@ -229,7 +228,6 @@ class FormFieldVisibilityRequest implements ModelInterface, ArrayAccess, \JsonSe
             self::RULE_TYPE_HIDE,
         ];
     }
-    
 
     /**
      * Gets rule_type
@@ -326,7 +324,7 @@ class FormFieldVisibilityRequest implements ModelInterface, ArrayAccess, \JsonSe
              * @param array-key $key
              * @return mixed
              */
-            function($key) use ($container) {
+            function ($key) use ($container) {
                 return $container[$key];
             };
         return array_map($map, $this->additionalProperties);
@@ -382,7 +380,7 @@ class FormFieldVisibilityRequest implements ModelInterface, ArrayAccess, \JsonSe
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -398,5 +396,4 @@ class FormFieldVisibilityRequest implements ModelInterface, ArrayAccess, \JsonSe
             JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR
         );
     }
-
 }

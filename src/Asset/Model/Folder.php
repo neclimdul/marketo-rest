@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Folder
  *
@@ -25,8 +26,8 @@
 
 namespace NecLimDul\MarketoRest\Asset\Model;
 
-use \ArrayAccess;
-use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
+use ArrayAccess;
+use NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * Folder Class Doc Comment
@@ -43,6 +44,8 @@ use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
 class Folder implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    public const TYPE_FOLDER = 'Folder';
+    public const TYPE_PROGRAM = 'Program';
 
     /**
       * The original name of the model.
@@ -128,9 +131,6 @@ class Folder implements ModelInterface, ArrayAccess, \JsonSerializable
         'id' => 'getId',
         'type' => 'getType'
     ];
-    
-    const TYPE_FOLDER = 'Folder';
-    const TYPE_PROGRAM = 'Program';
 
     /**
      * Associative array for storing property values
@@ -215,7 +215,6 @@ class Folder implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         return count($this->listInvalidProperties()) === 0;
     }
-    
     /**
      * Gets allowable values of the enum.
      *
@@ -228,7 +227,6 @@ class Folder implements ModelInterface, ArrayAccess, \JsonSerializable
             self::TYPE_PROGRAM,
         ];
     }
-    
 
     /**
      * Gets id
@@ -325,7 +323,7 @@ class Folder implements ModelInterface, ArrayAccess, \JsonSerializable
              * @param array-key $key
              * @return mixed
              */
-            function($key) use ($container) {
+            function ($key) use ($container) {
                 return $container[$key];
             };
         return array_map($map, $this->additionalProperties);
@@ -381,7 +379,7 @@ class Folder implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -397,5 +395,4 @@ class Folder implements ModelInterface, ArrayAccess, \JsonSerializable
             JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR
         );
     }
-
 }

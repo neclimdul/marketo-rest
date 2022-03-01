@@ -1,4 +1,5 @@
 <?php
+
 /**
  * CustomObjectTypeFieldRelatedTo
  *
@@ -25,8 +26,8 @@
 
 namespace NecLimDul\MarketoRest\Lead\Model;
 
-use \ArrayAccess;
-use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
+use ArrayAccess;
+use NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * CustomObjectTypeFieldRelatedTo Class Doc Comment
@@ -127,7 +128,6 @@ class CustomObjectTypeFieldRelatedTo implements ModelInterface, ArrayAccess, \Js
         'name' => 'getName',
         'field' => 'getField'
     ];
-    
 
     /**
      * Associative array for storing property values
@@ -203,7 +203,6 @@ class CustomObjectTypeFieldRelatedTo implements ModelInterface, ArrayAccess, \Js
     {
         return count($this->listInvalidProperties()) === 0;
     }
-    
 
     /**
      * Gets name
@@ -290,7 +289,7 @@ class CustomObjectTypeFieldRelatedTo implements ModelInterface, ArrayAccess, \Js
              * @param array-key $key
              * @return mixed
              */
-            function($key) use ($container) {
+            function ($key) use ($container) {
                 return $container[$key];
             };
         return array_map($map, $this->additionalProperties);
@@ -346,7 +345,7 @@ class CustomObjectTypeFieldRelatedTo implements ModelInterface, ArrayAccess, \Js
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -362,5 +361,4 @@ class CustomObjectTypeFieldRelatedTo implements ModelInterface, ArrayAccess, \Js
             JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR
         );
     }
-
 }

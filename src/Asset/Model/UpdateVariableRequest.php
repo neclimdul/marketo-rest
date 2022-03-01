@@ -1,4 +1,5 @@
 <?php
+
 /**
  * UpdateVariableRequest
  *
@@ -25,8 +26,8 @@
 
 namespace NecLimDul\MarketoRest\Asset\Model;
 
-use \ArrayAccess;
-use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
+use ArrayAccess;
+use NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * UpdateVariableRequest Class Doc Comment
@@ -127,7 +128,6 @@ class UpdateVariableRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'value' => 'getValue',
         'module_id' => 'getModuleId'
     ];
-    
 
     /**
      * Associative array for storing property values
@@ -197,7 +197,6 @@ class UpdateVariableRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     {
         return count($this->listInvalidProperties()) === 0;
     }
-    
 
     /**
      * Gets value
@@ -284,7 +283,7 @@ class UpdateVariableRequest implements ModelInterface, ArrayAccess, \JsonSeriali
              * @param array-key $key
              * @return mixed
              */
-            function($key) use ($container) {
+            function ($key) use ($container) {
                 return $container[$key];
             };
         return array_map($map, $this->additionalProperties);
@@ -340,7 +339,7 @@ class UpdateVariableRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -356,5 +355,4 @@ class UpdateVariableRequest implements ModelInterface, ArrayAccess, \JsonSeriali
             JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR
         );
     }
-
 }

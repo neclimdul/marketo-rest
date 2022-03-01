@@ -1,4 +1,5 @@
 <?php
+
 /**
  * UpdateFormFieldRequest
  *
@@ -25,8 +26,8 @@
 
 namespace NecLimDul\MarketoRest\Asset\Model;
 
-use \ArrayAccess;
-use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
+use ArrayAccess;
+use NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * UpdateFormFieldRequest Class Doc Comment
@@ -222,7 +223,6 @@ class UpdateFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerial
         'values' => 'getValues',
         'visible_lines' => 'getVisibleLines'
     ];
-    
 
     /**
      * Associative array for storing property values
@@ -311,7 +311,6 @@ class UpdateFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerial
     {
         return count($this->listInvalidProperties()) === 0;
     }
-    
 
     /**
      * Gets blank_fields
@@ -854,7 +853,7 @@ class UpdateFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerial
              * @param array-key $key
              * @return mixed
              */
-            function($key) use ($container) {
+            function ($key) use ($container) {
                 return $container[$key];
             };
         return array_map($map, $this->additionalProperties);
@@ -910,7 +909,7 @@ class UpdateFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerial
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -926,5 +925,4 @@ class UpdateFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerial
             JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR
         );
     }
-
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * LeadFieldStatus
  *
@@ -25,8 +26,8 @@
 
 namespace NecLimDul\MarketoRest\Lead\Model;
 
-use \ArrayAccess;
-use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
+use ArrayAccess;
+use NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * LeadFieldStatus Class Doc Comment
@@ -43,6 +44,8 @@ use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
 class LeadFieldStatus implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    public const STATUS_CREATED = 'created';
+    public const STATUS_UPDATED = 'updated';
 
     /**
       * The original name of the model.
@@ -128,9 +131,6 @@ class LeadFieldStatus implements ModelInterface, ArrayAccess, \JsonSerializable
         'name' => 'getName',
         'status' => 'getStatus'
     ];
-    
-    const STATUS_CREATED = 'created';
-    const STATUS_UPDATED = 'updated';
 
     /**
      * Associative array for storing property values
@@ -215,7 +215,6 @@ class LeadFieldStatus implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         return count($this->listInvalidProperties()) === 0;
     }
-    
     /**
      * Gets allowable values of the enum.
      *
@@ -228,7 +227,6 @@ class LeadFieldStatus implements ModelInterface, ArrayAccess, \JsonSerializable
             self::STATUS_UPDATED,
         ];
     }
-    
 
     /**
      * Gets name
@@ -325,7 +323,7 @@ class LeadFieldStatus implements ModelInterface, ArrayAccess, \JsonSerializable
              * @param array-key $key
              * @return mixed
              */
-            function($key) use ($container) {
+            function ($key) use ($container) {
                 return $container[$key];
             };
         return array_map($map, $this->additionalProperties);
@@ -381,7 +379,7 @@ class LeadFieldStatus implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -397,5 +395,4 @@ class LeadFieldStatus implements ModelInterface, ArrayAccess, \JsonSerializable
             JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR
         );
     }
-
 }

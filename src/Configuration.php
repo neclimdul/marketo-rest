@@ -1,10 +1,13 @@
 <?php
 
+/**
+ * Client configuration.
+ */
+
 namespace NecLimDul\MarketoRest;
 
 class Configuration
 {
-
     /**
      * @var string
      */
@@ -35,7 +38,8 @@ class Configuration
      *
      * @param string $baseUrl
      */
-    public function setBaseUrl(string $baseUrl): void {
+    public function setBaseUrl(string $baseUrl): void
+    {
         $this->baseUrl = $baseUrl;
     }
 
@@ -44,7 +48,8 @@ class Configuration
      *
      * @return string
      */
-    public function getBaseUrl(): string {
+    public function getBaseUrl(): string
+    {
         return $this->baseUrl;
     }
 
@@ -53,7 +58,8 @@ class Configuration
      *
      * @param string $clientId
      */
-    public function setClientId(string $clientId): void {
+    public function setClientId(string $clientId): void
+    {
         $this->clientId = $clientId;
     }
 
@@ -62,7 +68,8 @@ class Configuration
      *
      * @return string
      */
-    public function getClientId(): string {
+    public function getClientId(): string
+    {
         return $this->clientId;
     }
 
@@ -71,7 +78,8 @@ class Configuration
      *
      * @param string $clientSecret
      */
-    public function setClientSecret(string $clientSecret): void {
+    public function setClientSecret(string $clientSecret): void
+    {
         $this->clientSecret = $clientSecret;
     }
 
@@ -80,8 +88,8 @@ class Configuration
      *
      * @return string
      */
-    public function getClientSecret(): string {
+    public function getClientSecret(): string
+    {
         return $this->clientSecret;
     }
-
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * BulkImportCustomObjectsApi
  *
@@ -48,7 +49,6 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  */
 class BulkImportCustomObjectsApi
 {
-
     /**
      * @var ClientInterface
      */
@@ -73,7 +73,7 @@ class BulkImportCustomObjectsApi
      * @param ClientInterface|null $client
      * @param Configuration|null   $config
      * @param HeaderSelector|null  $selector
-     * @param int                  $hostIndex (Optional) host index to select the list of hosts if defined in the OpenAPI spec
+     * @param int                  $hostIndex (Optional) host index to select the list of hosts if defined in the spec.
      */
     public function __construct(
         ClientInterface $client = null,
@@ -102,7 +102,7 @@ class BulkImportCustomObjectsApi
      *
      * @return int Host index
      */
-    public function getHostIndex()
+    public function getHostIndex(): int
     {
         return $this->hostIndex;
     }
@@ -110,7 +110,7 @@ class BulkImportCustomObjectsApi
     /**
      * @return Configuration
      */
-    public function getConfig()
+    public function getConfig(): Configuration
     {
         return $this->config;
     }
@@ -141,8 +141,10 @@ class BulkImportCustomObjectsApi
     /**
      * Get Import Custom Object Failures
      *
-     * @param  string $api_name API Name of the custom object for the import batch job. (required)
-     * @param  int $batch_id Id of the import batch job. (required)
+     * @param string $api_name
+     *   API Name of the custom object for the import batch job.
+     * @param int $batch_id
+     *   Id of the import batch job.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -151,8 +153,7 @@ class BulkImportCustomObjectsApi
     public function getImportCustomObjectFailuresUsingGET(
         string $api_name,
         int $batch_id
-    ): \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent
-    {
+    ): \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent {
         list($response) = $this->getImportCustomObjectFailuresUsingGETWithHttpInfo($api_name, $batch_id);
         return $response;
     }
@@ -160,19 +161,24 @@ class BulkImportCustomObjectsApi
     /**
      * Get Import Custom Object Failures
      *
-     * @param  string $api_name API Name of the custom object for the import batch job. (required)
-     * @param  int $batch_id Id of the import batch job. (required)
+     * @param string $api_name
+     *   API Name of the custom object for the import batch job.
+     * @param int $batch_id
+     *   Id of the import batch job.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function getImportCustomObjectFailuresUsingGETWithHttpInfo(
         string $api_name,
         int $batch_id
-    ): array
-    {
+    ): array {
         $request = $this->getImportCustomObjectFailuresUsingGETRequest($api_name, $batch_id);
         try {
             $response = $this->makeRequest($request);
@@ -188,8 +194,10 @@ class BulkImportCustomObjectsApi
     /**
      * Get Import Custom Object Failures
      *
-     * @param  string $api_name API Name of the custom object for the import batch job. (required)
-     * @param  int $batch_id Id of the import batch job. (required)
+     * @param string $api_name
+     *   API Name of the custom object for the import batch job.
+     * @param int $batch_id
+     *   Id of the import batch job.
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -197,8 +205,7 @@ class BulkImportCustomObjectsApi
     public function getImportCustomObjectFailuresUsingGETAsync(
         string $api_name,
         int $batch_id
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->getImportCustomObjectFailuresUsingGETAsyncWithHttpInfo($api_name, $batch_id)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent {
@@ -210,8 +217,10 @@ class BulkImportCustomObjectsApi
     /**
      * Get Import Custom Object Failures
      *
-     * @param  string $api_name API Name of the custom object for the import batch job. (required)
-     * @param  int $batch_id Id of the import batch job. (required)
+     * @param string $api_name
+     *   API Name of the custom object for the import batch job.
+     * @param int $batch_id
+     *   Id of the import batch job.
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -219,8 +228,7 @@ class BulkImportCustomObjectsApi
     public function getImportCustomObjectFailuresUsingGETAsyncWithHttpInfo(
         string $api_name,
         int $batch_id
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->getImportCustomObjectFailuresUsingGETRequest($api_name, $batch_id);
         return $this->makeAsyncRequest(
             $request,
@@ -232,8 +240,10 @@ class BulkImportCustomObjectsApi
     /**
      * Create request for operation 'getImportCustomObjectFailuresUsingGET'
      *
-     * @param  string $api_name API Name of the custom object for the import batch job. (required)
-     * @param  int $batch_id Id of the import batch job. (required)
+     * @param string $api_name
+     *   API Name of the custom object for the import batch job.
+     * @param int $batch_id
+     *   Id of the import batch job.
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -241,8 +251,7 @@ class BulkImportCustomObjectsApi
     public function getImportCustomObjectFailuresUsingGETRequest(
         string $api_name,
         int $batch_id
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/bulk/v1/customobjects/{apiName}/import/{batchId}/failures.json';
         $resourcePath = str_replace(
@@ -312,8 +321,10 @@ class BulkImportCustomObjectsApi
     /**
      * Get Import Custom Object Status
      *
-     * @param  string $api_name API Name of the custom object for the import batch job. (required)
-     * @param  int $batch_id Id of the import batch job. (required)
+     * @param string $api_name
+     *   API Name of the custom object for the import batch job.
+     * @param int $batch_id
+     *   Id of the import batch job.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -322,8 +333,7 @@ class BulkImportCustomObjectsApi
     public function getImportCustomObjectStatusUsingGET(
         string $api_name,
         int $batch_id
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportCustomObjectResponse
-    {
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportCustomObjectResponse {
         list($response) = $this->getImportCustomObjectStatusUsingGETWithHttpInfo($api_name, $batch_id);
         return $response;
     }
@@ -331,19 +341,24 @@ class BulkImportCustomObjectsApi
     /**
      * Get Import Custom Object Status
      *
-     * @param  string $api_name API Name of the custom object for the import batch job. (required)
-     * @param  int $batch_id Id of the import batch job. (required)
+     * @param string $api_name
+     *   API Name of the custom object for the import batch job.
+     * @param int $batch_id
+     *   Id of the import batch job.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportCustomObjectResponse, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportCustomObjectResponse, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportCustomObjectResponse,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function getImportCustomObjectStatusUsingGETWithHttpInfo(
         string $api_name,
         int $batch_id
-    ): array
-    {
+    ): array {
         $request = $this->getImportCustomObjectStatusUsingGETRequest($api_name, $batch_id);
         try {
             $response = $this->makeRequest($request);
@@ -359,8 +374,10 @@ class BulkImportCustomObjectsApi
     /**
      * Get Import Custom Object Status
      *
-     * @param  string $api_name API Name of the custom object for the import batch job. (required)
-     * @param  int $batch_id Id of the import batch job. (required)
+     * @param string $api_name
+     *   API Name of the custom object for the import batch job.
+     * @param int $batch_id
+     *   Id of the import batch job.
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -368,8 +385,7 @@ class BulkImportCustomObjectsApi
     public function getImportCustomObjectStatusUsingGETAsync(
         string $api_name,
         int $batch_id
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->getImportCustomObjectStatusUsingGETAsyncWithHttpInfo($api_name, $batch_id)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportCustomObjectResponse {
@@ -381,8 +397,10 @@ class BulkImportCustomObjectsApi
     /**
      * Get Import Custom Object Status
      *
-     * @param  string $api_name API Name of the custom object for the import batch job. (required)
-     * @param  int $batch_id Id of the import batch job. (required)
+     * @param string $api_name
+     *   API Name of the custom object for the import batch job.
+     * @param int $batch_id
+     *   Id of the import batch job.
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -390,8 +408,7 @@ class BulkImportCustomObjectsApi
     public function getImportCustomObjectStatusUsingGETAsyncWithHttpInfo(
         string $api_name,
         int $batch_id
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->getImportCustomObjectStatusUsingGETRequest($api_name, $batch_id);
         return $this->makeAsyncRequest(
             $request,
@@ -403,8 +420,10 @@ class BulkImportCustomObjectsApi
     /**
      * Create request for operation 'getImportCustomObjectStatusUsingGET'
      *
-     * @param  string $api_name API Name of the custom object for the import batch job. (required)
-     * @param  int $batch_id Id of the import batch job. (required)
+     * @param string $api_name
+     *   API Name of the custom object for the import batch job.
+     * @param int $batch_id
+     *   Id of the import batch job.
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -412,8 +431,7 @@ class BulkImportCustomObjectsApi
     public function getImportCustomObjectStatusUsingGETRequest(
         string $api_name,
         int $batch_id
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/bulk/v1/customobjects/{apiName}/import/{batchId}/status.json';
         $resourcePath = str_replace(
@@ -483,8 +501,10 @@ class BulkImportCustomObjectsApi
     /**
      * Get Import Custom Object Warnings
      *
-     * @param  string $api_name API Name of the custom object for the import batch job. (required)
-     * @param  int $batch_id Id of the import batch job. (required)
+     * @param string $api_name
+     *   API Name of the custom object for the import batch job.
+     * @param int $batch_id
+     *   Id of the import batch job.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -493,8 +513,7 @@ class BulkImportCustomObjectsApi
     public function getImportCustomObjectWarningsUsingGET(
         string $api_name,
         int $batch_id
-    ): \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent
-    {
+    ): \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent {
         list($response) = $this->getImportCustomObjectWarningsUsingGETWithHttpInfo($api_name, $batch_id);
         return $response;
     }
@@ -502,19 +521,24 @@ class BulkImportCustomObjectsApi
     /**
      * Get Import Custom Object Warnings
      *
-     * @param  string $api_name API Name of the custom object for the import batch job. (required)
-     * @param  int $batch_id Id of the import batch job. (required)
+     * @param string $api_name
+     *   API Name of the custom object for the import batch job.
+     * @param int $batch_id
+     *   Id of the import batch job.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function getImportCustomObjectWarningsUsingGETWithHttpInfo(
         string $api_name,
         int $batch_id
-    ): array
-    {
+    ): array {
         $request = $this->getImportCustomObjectWarningsUsingGETRequest($api_name, $batch_id);
         try {
             $response = $this->makeRequest($request);
@@ -530,8 +554,10 @@ class BulkImportCustomObjectsApi
     /**
      * Get Import Custom Object Warnings
      *
-     * @param  string $api_name API Name of the custom object for the import batch job. (required)
-     * @param  int $batch_id Id of the import batch job. (required)
+     * @param string $api_name
+     *   API Name of the custom object for the import batch job.
+     * @param int $batch_id
+     *   Id of the import batch job.
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -539,8 +565,7 @@ class BulkImportCustomObjectsApi
     public function getImportCustomObjectWarningsUsingGETAsync(
         string $api_name,
         int $batch_id
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->getImportCustomObjectWarningsUsingGETAsyncWithHttpInfo($api_name, $batch_id)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent {
@@ -552,8 +577,10 @@ class BulkImportCustomObjectsApi
     /**
      * Get Import Custom Object Warnings
      *
-     * @param  string $api_name API Name of the custom object for the import batch job. (required)
-     * @param  int $batch_id Id of the import batch job. (required)
+     * @param string $api_name
+     *   API Name of the custom object for the import batch job.
+     * @param int $batch_id
+     *   Id of the import batch job.
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -561,8 +588,7 @@ class BulkImportCustomObjectsApi
     public function getImportCustomObjectWarningsUsingGETAsyncWithHttpInfo(
         string $api_name,
         int $batch_id
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->getImportCustomObjectWarningsUsingGETRequest($api_name, $batch_id);
         return $this->makeAsyncRequest(
             $request,
@@ -574,8 +600,10 @@ class BulkImportCustomObjectsApi
     /**
      * Create request for operation 'getImportCustomObjectWarningsUsingGET'
      *
-     * @param  string $api_name API Name of the custom object for the import batch job. (required)
-     * @param  int $batch_id Id of the import batch job. (required)
+     * @param string $api_name
+     *   API Name of the custom object for the import batch job.
+     * @param int $batch_id
+     *   Id of the import batch job.
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -583,8 +611,7 @@ class BulkImportCustomObjectsApi
     public function getImportCustomObjectWarningsUsingGETRequest(
         string $api_name,
         int $batch_id
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/bulk/v1/customobjects/{apiName}/import/{batchId}/warnings.json';
         $resourcePath = str_replace(
@@ -654,9 +681,12 @@ class BulkImportCustomObjectsApi
     /**
      * Import Custom Objects
      *
-     * @param  string $api_name API Name of the custom object for the import batch job. (required)
-     * @param  string $format Import file format. (required)
-     * @param  \SplFileObject $file File containing the data records to import. (required)
+     * @param string $api_name
+     *   API Name of the custom object for the import batch job.
+     * @param string $format
+     *   Import file format.
+     * @param \SplFileObject $file
+     *   File containing the data records to import.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -666,8 +696,7 @@ class BulkImportCustomObjectsApi
         string $api_name,
         string $format,
         \SplFileObject $file
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportCustomObjectResponse
-    {
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportCustomObjectResponse {
         list($response) = $this->importCustomObjectUsingPOSTWithHttpInfo($api_name, $format, $file);
         return $response;
     }
@@ -675,21 +704,27 @@ class BulkImportCustomObjectsApi
     /**
      * Import Custom Objects
      *
-     * @param  string $api_name API Name of the custom object for the import batch job. (required)
-     * @param  string $format Import file format. (required)
-     * @param  \SplFileObject $file File containing the data records to import. (required)
+     * @param string $api_name
+     *   API Name of the custom object for the import batch job.
+     * @param string $format
+     *   Import file format.
+     * @param \SplFileObject $file
+     *   File containing the data records to import.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportCustomObjectResponse, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportCustomObjectResponse, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportCustomObjectResponse,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function importCustomObjectUsingPOSTWithHttpInfo(
         string $api_name,
         string $format,
         \SplFileObject $file
-    ): array
-    {
+    ): array {
         $request = $this->importCustomObjectUsingPOSTRequest($api_name, $format, $file);
         try {
             $response = $this->makeRequest($request);
@@ -705,9 +740,12 @@ class BulkImportCustomObjectsApi
     /**
      * Import Custom Objects
      *
-     * @param  string $api_name API Name of the custom object for the import batch job. (required)
-     * @param  string $format Import file format. (required)
-     * @param  \SplFileObject $file File containing the data records to import. (required)
+     * @param string $api_name
+     *   API Name of the custom object for the import batch job.
+     * @param string $format
+     *   Import file format.
+     * @param \SplFileObject $file
+     *   File containing the data records to import.
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -716,8 +754,7 @@ class BulkImportCustomObjectsApi
         string $api_name,
         string $format,
         \SplFileObject $file
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->importCustomObjectUsingPOSTAsyncWithHttpInfo($api_name, $format, $file)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportCustomObjectResponse {
@@ -729,9 +766,12 @@ class BulkImportCustomObjectsApi
     /**
      * Import Custom Objects
      *
-     * @param  string $api_name API Name of the custom object for the import batch job. (required)
-     * @param  string $format Import file format. (required)
-     * @param  \SplFileObject $file File containing the data records to import. (required)
+     * @param string $api_name
+     *   API Name of the custom object for the import batch job.
+     * @param string $format
+     *   Import file format.
+     * @param \SplFileObject $file
+     *   File containing the data records to import.
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -740,8 +780,7 @@ class BulkImportCustomObjectsApi
         string $api_name,
         string $format,
         \SplFileObject $file
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->importCustomObjectUsingPOSTRequest($api_name, $format, $file);
         return $this->makeAsyncRequest(
             $request,
@@ -753,9 +792,12 @@ class BulkImportCustomObjectsApi
     /**
      * Create request for operation 'importCustomObjectUsingPOST'
      *
-     * @param  string $api_name API Name of the custom object for the import batch job. (required)
-     * @param  string $format Import file format. (required)
-     * @param  \SplFileObject $file File containing the data records to import. (required)
+     * @param string $api_name
+     *   API Name of the custom object for the import batch job.
+     * @param string $format
+     *   Import file format.
+     * @param \SplFileObject $file
+     *   File containing the data records to import.
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -764,8 +806,7 @@ class BulkImportCustomObjectsApi
         string $api_name,
         string $format,
         \SplFileObject $file
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/bulk/v1/customobjects/{apiName}/import.json';
         $resourcePath = str_replace(
@@ -833,10 +874,11 @@ class BulkImportCustomObjectsApi
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @return \Psr\Http\Message\ResponseInterface
      */
-    private function makeRequest(Request $request) {
+    private function makeRequest(Request $request)
+    {
         $options = $this->createHttpClientOption();
         try {
-           $response = $this->client->send($request, $options);
+            $response = $this->client->send($request, $options);
         } catch (RequestException $e) {
             $response = $e->getResponse();
             throw new ApiException(
@@ -909,7 +951,8 @@ class BulkImportCustomObjectsApi
      * @return array structured array or response and http info.
      * @phpstan-return array{T, int, array<array<string>>}
      */
-    private function responseToReturn(ResponseInterface $response, string $returnType) {
+    private function responseToReturn(ResponseInterface $response, string $returnType)
+    {
         return [
             $this->deserializeResponseBody($response->getBody(), $returnType),
             $response->getStatusCode(),
@@ -938,5 +981,4 @@ class BulkImportCustomObjectsApi
             $headers
         );
     }
-
 }

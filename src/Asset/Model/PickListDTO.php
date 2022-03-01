@@ -1,4 +1,5 @@
 <?php
+
 /**
  * PickListDTO
  *
@@ -25,8 +26,8 @@
 
 namespace NecLimDul\MarketoRest\Asset\Model;
 
-use \ArrayAccess;
-use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
+use ArrayAccess;
+use NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * PickListDTO Class Doc Comment
@@ -137,7 +138,6 @@ class PickListDTO implements ModelInterface, ArrayAccess, \JsonSerializable
         'selected' => 'getSelected',
         'value' => 'getValue'
     ];
-    
 
     /**
      * Associative array for storing property values
@@ -209,7 +209,6 @@ class PickListDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         return count($this->listInvalidProperties()) === 0;
     }
-    
 
     /**
      * Gets is_default
@@ -344,7 +343,7 @@ class PickListDTO implements ModelInterface, ArrayAccess, \JsonSerializable
              * @param array-key $key
              * @return mixed
              */
-            function($key) use ($container) {
+            function ($key) use ($container) {
                 return $container[$key];
             };
         return array_map($map, $this->additionalProperties);
@@ -400,7 +399,7 @@ class PickListDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -416,5 +415,4 @@ class PickListDTO implements ModelInterface, ArrayAccess, \JsonSerializable
             JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR
         );
     }
-
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ResponseOfIdentity
  *
@@ -25,8 +26,8 @@
 
 namespace NecLimDul\MarketoRest\Identity\Model;
 
-use \ArrayAccess;
-use \NecLimDul\MarketoRest\Identity\ObjectSerializer;
+use ArrayAccess;
+use NecLimDul\MarketoRest\Identity\ObjectSerializer;
 
 /**
  * ResponseOfIdentity Class Doc Comment
@@ -42,6 +43,7 @@ use \NecLimDul\MarketoRest\Identity\ObjectSerializer;
 class ResponseOfIdentity implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    public const TOKEN_TYPE_BEARER = 'bearer';
 
     /**
       * The original name of the model.
@@ -137,8 +139,6 @@ class ResponseOfIdentity implements ModelInterface, ArrayAccess, \JsonSerializab
         'expires_in' => 'getExpiresIn',
         'token_type' => 'getTokenType'
     ];
-    
-    const TOKEN_TYPE_BEARER = 'bearer';
 
     /**
      * Associative array for storing property values
@@ -219,7 +219,6 @@ class ResponseOfIdentity implements ModelInterface, ArrayAccess, \JsonSerializab
     {
         return count($this->listInvalidProperties()) === 0;
     }
-    
     /**
      * Gets allowable values of the enum.
      *
@@ -231,7 +230,6 @@ class ResponseOfIdentity implements ModelInterface, ArrayAccess, \JsonSerializab
             self::TOKEN_TYPE_BEARER,
         ];
     }
-    
 
     /**
      * Gets access_token
@@ -376,7 +374,7 @@ class ResponseOfIdentity implements ModelInterface, ArrayAccess, \JsonSerializab
              * @param array-key $key
              * @return mixed
              */
-            function($key) use ($container) {
+            function ($key) use ($container) {
                 return $container[$key];
             };
         return array_map($map, $this->additionalProperties);
@@ -432,7 +430,7 @@ class ResponseOfIdentity implements ModelInterface, ArrayAccess, \JsonSerializab
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -448,5 +446,4 @@ class ResponseOfIdentity implements ModelInterface, ArrayAccess, \JsonSerializab
             JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR
         );
     }
-
 }

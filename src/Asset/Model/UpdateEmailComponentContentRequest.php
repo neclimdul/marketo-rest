@@ -1,4 +1,5 @@
 <?php
+
 /**
  * UpdateEmailComponentContentRequest
  *
@@ -25,8 +26,8 @@
 
 namespace NecLimDul\MarketoRest\Asset\Model;
 
-use \ArrayAccess;
-use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
+use ArrayAccess;
+use NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * UpdateEmailComponentContentRequest Class Doc Comment
@@ -42,6 +43,9 @@ use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
 class UpdateEmailComponentContentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    public const TYPE_TEXT = 'Text';
+    public const TYPE_DYNAMIC_CONTENT = 'DynamicContent';
+    public const TYPE_SNIPPET = 'Snippet';
 
     /**
       * The original name of the model.
@@ -177,10 +181,6 @@ class UpdateEmailComponentContentRequest implements ModelInterface, ArrayAccess,
         'video_url' => 'getVideoUrl',
         'width' => 'getWidth'
     ];
-    
-    const TYPE_TEXT = 'Text';
-    const TYPE_DYNAMIC_CONTENT = 'DynamicContent';
-    const TYPE_SNIPPET = 'Snippet';
 
     /**
      * Associative array for storing property values
@@ -275,7 +275,6 @@ class UpdateEmailComponentContentRequest implements ModelInterface, ArrayAccess,
     {
         return count($this->listInvalidProperties()) === 0;
     }
-    
     /**
      * Gets allowable values of the enum.
      *
@@ -289,7 +288,6 @@ class UpdateEmailComponentContentRequest implements ModelInterface, ArrayAccess,
             self::TYPE_SNIPPET,
         ];
     }
-    
 
     /**
      * Gets alt_text
@@ -626,7 +624,7 @@ class UpdateEmailComponentContentRequest implements ModelInterface, ArrayAccess,
              * @param array-key $key
              * @return mixed
              */
-            function($key) use ($container) {
+            function ($key) use ($container) {
                 return $container[$key];
             };
         return array_map($map, $this->additionalProperties);
@@ -682,7 +680,7 @@ class UpdateEmailComponentContentRequest implements ModelInterface, ArrayAccess,
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -698,5 +696,4 @@ class UpdateEmailComponentContentRequest implements ModelInterface, ArrayAccess,
             JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR
         );
     }
-
 }

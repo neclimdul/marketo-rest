@@ -1,4 +1,5 @@
 <?php
+
 /**
  * EmailTemplateUsedByResponse
  *
@@ -25,8 +26,8 @@
 
 namespace NecLimDul\MarketoRest\Asset\Model;
 
-use \ArrayAccess;
-use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
+use ArrayAccess;
+use NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * EmailTemplateUsedByResponse Class Doc Comment
@@ -42,6 +43,8 @@ use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
 class EmailTemplateUsedByResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    public const STATUS_APPROVED = 'approved';
+    public const STATUS_DRAFT = 'draft';
 
     /**
       * The original name of the model.
@@ -142,9 +145,6 @@ class EmailTemplateUsedByResponse implements ModelInterface, ArrayAccess, \JsonS
         'status' => 'getStatus',
         'updated_at' => 'getUpdatedAt'
     ];
-    
-    const STATUS_APPROVED = 'approved';
-    const STATUS_DRAFT = 'draft';
 
     /**
      * Associative array for storing property values
@@ -241,7 +241,6 @@ class EmailTemplateUsedByResponse implements ModelInterface, ArrayAccess, \JsonS
     {
         return count($this->listInvalidProperties()) === 0;
     }
-    
     /**
      * Gets allowable values of the enum.
      *
@@ -254,7 +253,6 @@ class EmailTemplateUsedByResponse implements ModelInterface, ArrayAccess, \JsonS
             self::STATUS_DRAFT,
         ];
     }
-    
 
     /**
      * Gets id
@@ -423,7 +421,7 @@ class EmailTemplateUsedByResponse implements ModelInterface, ArrayAccess, \JsonS
              * @param array-key $key
              * @return mixed
              */
-            function($key) use ($container) {
+            function ($key) use ($container) {
                 return $container[$key];
             };
         return array_map($map, $this->additionalProperties);
@@ -479,7 +477,7 @@ class EmailTemplateUsedByResponse implements ModelInterface, ArrayAccess, \JsonS
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -495,5 +493,4 @@ class EmailTemplateUsedByResponse implements ModelInterface, ArrayAccess, \JsonS
             JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR
         );
     }
-
 }

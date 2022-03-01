@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ActivityTypeAttribute
  *
@@ -25,8 +26,8 @@
 
 namespace NecLimDul\MarketoRest\Lead\Model;
 
-use \ArrayAccess;
-use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
+use ArrayAccess;
+use NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * ActivityTypeAttribute Class Doc Comment
@@ -132,7 +133,6 @@ class ActivityTypeAttribute implements ModelInterface, ArrayAccess, \JsonSeriali
         'data_type' => 'getDataType',
         'name' => 'getName'
     ];
-    
 
     /**
      * Associative array for storing property values
@@ -209,7 +209,6 @@ class ActivityTypeAttribute implements ModelInterface, ArrayAccess, \JsonSeriali
     {
         return count($this->listInvalidProperties()) === 0;
     }
-    
 
     /**
      * Gets api_name
@@ -320,7 +319,7 @@ class ActivityTypeAttribute implements ModelInterface, ArrayAccess, \JsonSeriali
              * @param array-key $key
              * @return mixed
              */
-            function($key) use ($container) {
+            function ($key) use ($container) {
                 return $container[$key];
             };
         return array_map($map, $this->additionalProperties);
@@ -376,7 +375,7 @@ class ActivityTypeAttribute implements ModelInterface, ArrayAccess, \JsonSeriali
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -392,5 +391,4 @@ class ActivityTypeAttribute implements ModelInterface, ArrayAccess, \JsonSeriali
             JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR
         );
     }
-
 }

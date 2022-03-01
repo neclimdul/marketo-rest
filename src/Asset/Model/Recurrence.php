@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Recurrence
  *
@@ -25,8 +26,8 @@
 
 namespace NecLimDul\MarketoRest\Asset\Model;
 
-use \ArrayAccess;
-use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
+use ArrayAccess;
+use NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * Recurrence Class Doc Comment
@@ -42,6 +43,16 @@ use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
 class Recurrence implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    public const INTERVAL_TYPE_DAILY = 'Daily';
+    public const INTERVAL_TYPE_WEEKLY = 'Weekly';
+    public const INTERVAL_TYPE_MONTHLY = 'Monthly';
+    public const DAY_OF_WEEK_MONDAY = 'Monday';
+    public const DAY_OF_WEEK_TUESDAY = 'Tuesday';
+    public const DAY_OF_WEEK_WEDNESDAY = 'Wednesday';
+    public const DAY_OF_WEEK_THURSDAY = 'Thursday';
+    public const DAY_OF_WEEK_FRIDAY = 'Friday';
+    public const DAY_OF_WEEK_SATURDAY = 'Saturday';
+    public const DAY_OF_WEEK_SUNDAY = 'Sunday';
 
     /**
       * The original name of the model.
@@ -162,17 +173,6 @@ class Recurrence implements ModelInterface, ArrayAccess, \JsonSerializable
         'day_of_week' => 'getDayOfWeek',
         'week_of_month' => 'getWeekOfMonth'
     ];
-    
-    const INTERVAL_TYPE_DAILY = 'Daily';
-    const INTERVAL_TYPE_WEEKLY = 'Weekly';
-    const INTERVAL_TYPE_MONTHLY = 'Monthly';
-    const DAY_OF_WEEK_MONDAY = 'Monday';
-    const DAY_OF_WEEK_TUESDAY = 'Tuesday';
-    const DAY_OF_WEEK_WEDNESDAY = 'Wednesday';
-    const DAY_OF_WEEK_THURSDAY = 'Thursday';
-    const DAY_OF_WEEK_FRIDAY = 'Friday';
-    const DAY_OF_WEEK_SATURDAY = 'Saturday';
-    const DAY_OF_WEEK_SUNDAY = 'Sunday';
 
     /**
      * Associative array for storing property values
@@ -294,7 +294,6 @@ class Recurrence implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         return count($this->listInvalidProperties()) === 0;
     }
-    
     /**
      * Gets allowable values of the enum.
      *
@@ -308,7 +307,6 @@ class Recurrence implements ModelInterface, ArrayAccess, \JsonSerializable
             self::INTERVAL_TYPE_MONTHLY,
         ];
     }
-    
     /**
      * Gets allowable values of the enum.
      *
@@ -326,7 +324,6 @@ class Recurrence implements ModelInterface, ArrayAccess, \JsonSerializable
             self::DAY_OF_WEEK_SUNDAY,
         ];
     }
-    
 
     /**
      * Gets start_at
@@ -601,7 +598,7 @@ class Recurrence implements ModelInterface, ArrayAccess, \JsonSerializable
              * @param array-key $key
              * @return mixed
              */
-            function($key) use ($container) {
+            function ($key) use ($container) {
                 return $container[$key];
             };
         return array_map($map, $this->additionalProperties);
@@ -657,7 +654,7 @@ class Recurrence implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -673,5 +670,4 @@ class Recurrence implements ModelInterface, ArrayAccess, \JsonSerializable
             JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR
         );
     }
-
 }

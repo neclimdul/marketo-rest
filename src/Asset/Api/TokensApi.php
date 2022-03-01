@@ -1,4 +1,5 @@
 <?php
+
 /**
  * TokensApi
  *
@@ -48,7 +49,6 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  */
 class TokensApi
 {
-
     /**
      * @var ClientInterface
      */
@@ -73,7 +73,7 @@ class TokensApi
      * @param ClientInterface|null $client
      * @param Configuration|null   $config
      * @param HeaderSelector|null  $selector
-     * @param int                  $hostIndex (Optional) host index to select the list of hosts if defined in the OpenAPI spec
+     * @param int                  $hostIndex (Optional) host index to select the list of hosts if defined in the spec.
      */
     public function __construct(
         ClientInterface $client = null,
@@ -102,7 +102,7 @@ class TokensApi
      *
      * @return int Host index
      */
-    public function getHostIndex()
+    public function getHostIndex(): int
     {
         return $this->hostIndex;
     }
@@ -110,7 +110,7 @@ class TokensApi
     /**
      * @return Configuration
      */
-    public function getConfig()
+    public function getConfig(): Configuration
     {
         return $this->config;
     }
@@ -141,8 +141,10 @@ class TokensApi
     /**
      * Create Token
      *
-     * @param  int $id Id of the folder to which the token will be associated with (required)
-     * @param  \NecLimDul\MarketoRest\Asset\Model\CreateTokenRequest $create_token_request createTokenRequest (required)
+     * @param int $id
+     *   Id of the folder to which the token will be associated with
+     * @param \NecLimDul\MarketoRest\Asset\Model\CreateTokenRequest $create_token_request
+     *   createTokenRequest
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -151,8 +153,7 @@ class TokensApi
     public function addTokenTOFolderUsingPOST(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\CreateTokenRequest $create_token_request
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse
-    {
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse {
         list($response) = $this->addTokenTOFolderUsingPOSTWithHttpInfo($id, $create_token_request);
         return $response;
     }
@@ -160,19 +161,24 @@ class TokensApi
     /**
      * Create Token
      *
-     * @param  int $id Id of the folder to which the token will be associated with (required)
-     * @param  \NecLimDul\MarketoRest\Asset\Model\CreateTokenRequest $create_token_request createTokenRequest (required)
+     * @param int $id
+     *   Id of the folder to which the token will be associated with
+     * @param \NecLimDul\MarketoRest\Asset\Model\CreateTokenRequest $create_token_request
+     *   createTokenRequest
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function addTokenTOFolderUsingPOSTWithHttpInfo(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\CreateTokenRequest $create_token_request
-    ): array
-    {
+    ): array {
         $request = $this->addTokenTOFolderUsingPOSTRequest($id, $create_token_request);
         try {
             $response = $this->makeRequest($request);
@@ -188,8 +194,10 @@ class TokensApi
     /**
      * Create Token
      *
-     * @param  int $id Id of the folder to which the token will be associated with (required)
-     * @param  \NecLimDul\MarketoRest\Asset\Model\CreateTokenRequest $create_token_request createTokenRequest (required)
+     * @param int $id
+     *   Id of the folder to which the token will be associated with
+     * @param \NecLimDul\MarketoRest\Asset\Model\CreateTokenRequest $create_token_request
+     *   createTokenRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -197,8 +205,7 @@ class TokensApi
     public function addTokenTOFolderUsingPOSTAsync(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\CreateTokenRequest $create_token_request
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->addTokenTOFolderUsingPOSTAsyncWithHttpInfo($id, $create_token_request)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse {
@@ -210,8 +217,10 @@ class TokensApi
     /**
      * Create Token
      *
-     * @param  int $id Id of the folder to which the token will be associated with (required)
-     * @param  \NecLimDul\MarketoRest\Asset\Model\CreateTokenRequest $create_token_request createTokenRequest (required)
+     * @param int $id
+     *   Id of the folder to which the token will be associated with
+     * @param \NecLimDul\MarketoRest\Asset\Model\CreateTokenRequest $create_token_request
+     *   createTokenRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -219,8 +228,7 @@ class TokensApi
     public function addTokenTOFolderUsingPOSTAsyncWithHttpInfo(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\CreateTokenRequest $create_token_request
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->addTokenTOFolderUsingPOSTRequest($id, $create_token_request);
         return $this->makeAsyncRequest(
             $request,
@@ -232,8 +240,10 @@ class TokensApi
     /**
      * Create request for operation 'addTokenTOFolderUsingPOST'
      *
-     * @param  int $id Id of the folder to which the token will be associated with (required)
-     * @param  \NecLimDul\MarketoRest\Asset\Model\CreateTokenRequest $create_token_request createTokenRequest (required)
+     * @param int $id
+     *   Id of the folder to which the token will be associated with
+     * @param \NecLimDul\MarketoRest\Asset\Model\CreateTokenRequest $create_token_request
+     *   createTokenRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -241,8 +251,7 @@ class TokensApi
     public function addTokenTOFolderUsingPOSTRequest(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\CreateTokenRequest $create_token_request
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/asset/v1/folder/{id}/tokens.json';
         $resourcePath = str_replace(
@@ -278,7 +287,6 @@ class TokensApi
             [
             ],
             $create_token_request
-            
         );
     }
 
@@ -308,8 +316,10 @@ class TokensApi
     /**
      * Delete Token by Name
      *
-     * @param  int $id id (required)
-     * @param  \NecLimDul\MarketoRest\Asset\Model\DeleteTokenRequest $delete_token_request deleteTokenRequest (required)
+     * @param int $id
+     *   id
+     * @param \NecLimDul\MarketoRest\Asset\Model\DeleteTokenRequest $delete_token_request
+     *   deleteTokenRequest
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -318,8 +328,7 @@ class TokensApi
     public function deleteTokenByNameUsingPOST(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\DeleteTokenRequest $delete_token_request
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse
-    {
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse {
         list($response) = $this->deleteTokenByNameUsingPOSTWithHttpInfo($id, $delete_token_request);
         return $response;
     }
@@ -327,19 +336,24 @@ class TokensApi
     /**
      * Delete Token by Name
      *
-     * @param  int $id id (required)
-     * @param  \NecLimDul\MarketoRest\Asset\Model\DeleteTokenRequest $delete_token_request deleteTokenRequest (required)
+     * @param int $id
+     *   id
+     * @param \NecLimDul\MarketoRest\Asset\Model\DeleteTokenRequest $delete_token_request
+     *   deleteTokenRequest
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function deleteTokenByNameUsingPOSTWithHttpInfo(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\DeleteTokenRequest $delete_token_request
-    ): array
-    {
+    ): array {
         $request = $this->deleteTokenByNameUsingPOSTRequest($id, $delete_token_request);
         try {
             $response = $this->makeRequest($request);
@@ -355,8 +369,10 @@ class TokensApi
     /**
      * Delete Token by Name
      *
-     * @param  int $id id (required)
-     * @param  \NecLimDul\MarketoRest\Asset\Model\DeleteTokenRequest $delete_token_request deleteTokenRequest (required)
+     * @param int $id
+     *   id
+     * @param \NecLimDul\MarketoRest\Asset\Model\DeleteTokenRequest $delete_token_request
+     *   deleteTokenRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -364,8 +380,7 @@ class TokensApi
     public function deleteTokenByNameUsingPOSTAsync(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\DeleteTokenRequest $delete_token_request
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->deleteTokenByNameUsingPOSTAsyncWithHttpInfo($id, $delete_token_request)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse {
@@ -377,8 +392,10 @@ class TokensApi
     /**
      * Delete Token by Name
      *
-     * @param  int $id id (required)
-     * @param  \NecLimDul\MarketoRest\Asset\Model\DeleteTokenRequest $delete_token_request deleteTokenRequest (required)
+     * @param int $id
+     *   id
+     * @param \NecLimDul\MarketoRest\Asset\Model\DeleteTokenRequest $delete_token_request
+     *   deleteTokenRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -386,8 +403,7 @@ class TokensApi
     public function deleteTokenByNameUsingPOSTAsyncWithHttpInfo(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\DeleteTokenRequest $delete_token_request
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->deleteTokenByNameUsingPOSTRequest($id, $delete_token_request);
         return $this->makeAsyncRequest(
             $request,
@@ -399,8 +415,10 @@ class TokensApi
     /**
      * Create request for operation 'deleteTokenByNameUsingPOST'
      *
-     * @param  int $id id (required)
-     * @param  \NecLimDul\MarketoRest\Asset\Model\DeleteTokenRequest $delete_token_request deleteTokenRequest (required)
+     * @param int $id
+     *   id
+     * @param \NecLimDul\MarketoRest\Asset\Model\DeleteTokenRequest $delete_token_request
+     *   deleteTokenRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -408,8 +426,7 @@ class TokensApi
     public function deleteTokenByNameUsingPOSTRequest(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\DeleteTokenRequest $delete_token_request
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/asset/v1/folder/{id}/tokens/delete.json';
         $resourcePath = str_replace(
@@ -445,7 +462,6 @@ class TokensApi
             [
             ],
             $delete_token_request
-            
         );
     }
 
@@ -475,8 +491,10 @@ class TokensApi
     /**
      * Get Tokens by Folder Id
      *
-     * @param  int $id id (required)
-     * @param  string $folder_type Type of folder.  &#39;Folder&#39; or &#39;Program&#39; (optional, default to Folder)
+     * @param int $id
+     *   id
+     * @param string|'Folder' $folder_type
+     *   Type of folder.  &#39;Folder&#39; or &#39;Program&#39;
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -485,8 +503,7 @@ class TokensApi
     public function getTokensByFolderIdUsingGET(
         int $id,
         string $folder_type = 'Folder'
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse
-    {
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse {
         list($response) = $this->getTokensByFolderIdUsingGETWithHttpInfo($id, $folder_type);
         return $response;
     }
@@ -494,19 +511,24 @@ class TokensApi
     /**
      * Get Tokens by Folder Id
      *
-     * @param  int $id id (required)
-     * @param  string $folder_type Type of folder.  &#39;Folder&#39; or &#39;Program&#39; (optional, default to Folder)
+     * @param int $id
+     *   id
+     * @param string|'Folder' $folder_type
+     *   Type of folder.  &#39;Folder&#39; or &#39;Program&#39;
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function getTokensByFolderIdUsingGETWithHttpInfo(
         int $id,
         string $folder_type = 'Folder'
-    ): array
-    {
+    ): array {
         $request = $this->getTokensByFolderIdUsingGETRequest($id, $folder_type);
         try {
             $response = $this->makeRequest($request);
@@ -522,8 +544,10 @@ class TokensApi
     /**
      * Get Tokens by Folder Id
      *
-     * @param  int $id id (required)
-     * @param  string $folder_type Type of folder.  &#39;Folder&#39; or &#39;Program&#39; (optional, default to Folder)
+     * @param int $id
+     *   id
+     * @param string|'Folder' $folder_type
+     *   Type of folder.  &#39;Folder&#39; or &#39;Program&#39;
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -531,8 +555,7 @@ class TokensApi
     public function getTokensByFolderIdUsingGETAsync(
         int $id,
         string $folder_type = 'Folder'
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->getTokensByFolderIdUsingGETAsyncWithHttpInfo($id, $folder_type)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfTokenResponse {
@@ -544,8 +567,10 @@ class TokensApi
     /**
      * Get Tokens by Folder Id
      *
-     * @param  int $id id (required)
-     * @param  string $folder_type Type of folder.  &#39;Folder&#39; or &#39;Program&#39; (optional, default to Folder)
+     * @param int $id
+     *   id
+     * @param string|'Folder' $folder_type
+     *   Type of folder.  &#39;Folder&#39; or &#39;Program&#39;
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -553,8 +578,7 @@ class TokensApi
     public function getTokensByFolderIdUsingGETAsyncWithHttpInfo(
         int $id,
         string $folder_type = 'Folder'
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->getTokensByFolderIdUsingGETRequest($id, $folder_type);
         return $this->makeAsyncRequest(
             $request,
@@ -566,8 +590,10 @@ class TokensApi
     /**
      * Create request for operation 'getTokensByFolderIdUsingGET'
      *
-     * @param  int $id id (required)
-     * @param  string $folder_type Type of folder.  &#39;Folder&#39; or &#39;Program&#39; (optional, default to Folder)
+     * @param int $id
+     *   id
+     * @param string|'Folder' $folder_type
+     *   Type of folder.  &#39;Folder&#39; or &#39;Program&#39;
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -575,8 +601,7 @@ class TokensApi
     public function getTokensByFolderIdUsingGETRequest(
         int $id,
         string $folder_type = 'Folder'
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/asset/v1/folder/{id}/tokens.json';
         $resourcePath = str_replace(
@@ -643,10 +668,11 @@ class TokensApi
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @return \Psr\Http\Message\ResponseInterface
      */
-    private function makeRequest(Request $request) {
+    private function makeRequest(Request $request)
+    {
         $options = $this->createHttpClientOption();
         try {
-           $response = $this->client->send($request, $options);
+            $response = $this->client->send($request, $options);
         } catch (RequestException $e) {
             $response = $e->getResponse();
             throw new ApiException(
@@ -719,7 +745,8 @@ class TokensApi
      * @return array structured array or response and http info.
      * @phpstan-return array{T, int, array<array<string>>}
      */
-    private function responseToReturn(ResponseInterface $response, string $returnType) {
+    private function responseToReturn(ResponseInterface $response, string $returnType)
+    {
         return [
             $this->deserializeResponseBody($response->getBody(), $returnType),
             $response->getStatusCode(),
@@ -748,5 +775,4 @@ class TokensApi
             $headers
         );
     }
-
 }

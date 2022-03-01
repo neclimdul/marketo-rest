@@ -1,4 +1,5 @@
 <?php
+
 /**
  * AddCustomObjectTypeField
  *
@@ -25,8 +26,8 @@
 
 namespace NecLimDul\MarketoRest\Lead\Model;
 
-use \ArrayAccess;
-use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
+use ArrayAccess;
+use NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * AddCustomObjectTypeField Class Doc Comment
@@ -147,7 +148,6 @@ class AddCustomObjectTypeField implements ModelInterface, ArrayAccess, \JsonSeri
         'is_dedupe_field' => 'getIsDedupeField',
         'related_to' => 'getRelatedTo'
     ];
-    
 
     /**
      * Associative array for storing property values
@@ -230,7 +230,6 @@ class AddCustomObjectTypeField implements ModelInterface, ArrayAccess, \JsonSeri
     {
         return count($this->listInvalidProperties()) === 0;
     }
-    
 
     /**
      * Gets name
@@ -413,7 +412,7 @@ class AddCustomObjectTypeField implements ModelInterface, ArrayAccess, \JsonSeri
              * @param array-key $key
              * @return mixed
              */
-            function($key) use ($container) {
+            function ($key) use ($container) {
                 return $container[$key];
             };
         return array_map($map, $this->additionalProperties);
@@ -469,7 +468,7 @@ class AddCustomObjectTypeField implements ModelInterface, ArrayAccess, \JsonSeri
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -485,5 +484,4 @@ class AddCustomObjectTypeField implements ModelInterface, ArrayAccess, \JsonSeri
             JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR
         );
     }
-
 }

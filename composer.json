@@ -50,7 +50,7 @@
     },
     "scripts": {
         "test": "phpunit",
-        "phpcs": "phpcs config/ src/*.php",
+        "phpcs": "phpcs",
         "static": [
             "parallel-lint src",
             "phpstan",

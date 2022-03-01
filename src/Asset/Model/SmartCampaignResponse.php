@@ -1,4 +1,5 @@
 <?php
+
 /**
  * SmartCampaignResponse
  *
@@ -25,8 +26,8 @@
 
 namespace NecLimDul\MarketoRest\Asset\Model;
 
-use \ArrayAccess;
-use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
+use ArrayAccess;
+use NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * SmartCampaignResponse Class Doc Comment
@@ -42,6 +43,23 @@ use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
 class SmartCampaignResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    public const TYPE_BATCH = 'batch';
+    public const TYPE__DEFAULT = 'default';
+    public const TYPE_TRIGGER = 'trigger';
+    public const QUALIFICATION_RULE_TYPE_ONCE = 'once';
+    public const QUALIFICATION_RULE_TYPE_ANY = 'any';
+    public const QUALIFICATION_RULE_TYPE_INTERVAL = 'interval';
+    public const QUALIFICATION_RULE_UNIT_HOUR = 'hour';
+    public const QUALIFICATION_RULE_UNIT_DAY = 'day';
+    public const QUALIFICATION_RULE_UNIT_WEEK = 'week';
+    public const QUALIFICATION_RULE_UNIT_MONTH = 'month';
+    public const STATUS_INACTIVE = 'Inactive';
+    public const STATUS_SINGLE_RUN = 'Single Run';
+    public const STATUS_INVALID = 'Invalid';
+    public const STATUS_RECURRING_RUN = 'Recurring Run';
+    public const STATUS_ACTIVE = 'Active';
+    public const STATUS_REQUESTED = 'Requested';
+    public const STATUS_NEVER_RUN = 'Never Run';
 
     /**
       * The original name of the model.
@@ -227,24 +245,6 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeriali
         'computed_url' => 'getComputedUrl',
         'status' => 'getStatus'
     ];
-    
-    const TYPE_BATCH = 'batch';
-    const TYPE__DEFAULT = 'default';
-    const TYPE_TRIGGER = 'trigger';
-    const QUALIFICATION_RULE_TYPE_ONCE = 'once';
-    const QUALIFICATION_RULE_TYPE_ANY = 'any';
-    const QUALIFICATION_RULE_TYPE_INTERVAL = 'interval';
-    const QUALIFICATION_RULE_UNIT_HOUR = 'hour';
-    const QUALIFICATION_RULE_UNIT_DAY = 'day';
-    const QUALIFICATION_RULE_UNIT_WEEK = 'week';
-    const QUALIFICATION_RULE_UNIT_MONTH = 'month';
-    const STATUS_INACTIVE = 'Inactive';
-    const STATUS_SINGLE_RUN = 'Single Run';
-    const STATUS_INVALID = 'Invalid';
-    const STATUS_RECURRING_RUN = 'Recurring Run';
-    const STATUS_ACTIVE = 'Active';
-    const STATUS_REQUESTED = 'Requested';
-    const STATUS_NEVER_RUN = 'Never Run';
 
     /**
      * Associative array for storing property values
@@ -430,7 +430,6 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     {
         return count($this->listInvalidProperties()) === 0;
     }
-    
     /**
      * Gets allowable values of the enum.
      *
@@ -444,7 +443,6 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeriali
             self::TYPE_TRIGGER,
         ];
     }
-    
     /**
      * Gets allowable values of the enum.
      *
@@ -458,7 +456,6 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeriali
             self::QUALIFICATION_RULE_TYPE_INTERVAL,
         ];
     }
-    
     /**
      * Gets allowable values of the enum.
      *
@@ -473,7 +470,6 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeriali
             self::QUALIFICATION_RULE_UNIT_MONTH,
         ];
     }
-    
     /**
      * Gets allowable values of the enum.
      *
@@ -491,7 +487,6 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeriali
             self::STATUS_NEVER_RUN,
         ];
     }
-    
 
     /**
      * Gets id
@@ -1098,7 +1093,7 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeriali
              * @param array-key $key
              * @return mixed
              */
-            function($key) use ($container) {
+            function ($key) use ($container) {
                 return $container[$key];
             };
         return array_map($map, $this->additionalProperties);
@@ -1154,7 +1149,7 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -1170,5 +1165,4 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeriali
             JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR
         );
     }
-
 }

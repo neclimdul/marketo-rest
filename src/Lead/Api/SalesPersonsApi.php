@@ -1,4 +1,5 @@
 <?php
+
 /**
  * SalesPersonsApi
  *
@@ -48,7 +49,6 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  */
 class SalesPersonsApi
 {
-
     /**
      * @var ClientInterface
      */
@@ -73,7 +73,7 @@ class SalesPersonsApi
      * @param ClientInterface|null $client
      * @param Configuration|null   $config
      * @param HeaderSelector|null  $selector
-     * @param int                  $hostIndex (Optional) host index to select the list of hosts if defined in the OpenAPI spec
+     * @param int                  $hostIndex (Optional) host index to select the list of hosts if defined in the spec.
      */
     public function __construct(
         ClientInterface $client = null,
@@ -102,7 +102,7 @@ class SalesPersonsApi
      *
      * @return int Host index
      */
-    public function getHostIndex()
+    public function getHostIndex(): int
     {
         return $this->hostIndex;
     }
@@ -110,7 +110,7 @@ class SalesPersonsApi
     /**
      * @return Configuration
      */
-    public function getConfig()
+    public function getConfig(): Configuration
     {
         return $this->config;
     }
@@ -141,7 +141,8 @@ class SalesPersonsApi
     /**
      * Delete SalesPersons
      *
-     * @param  \NecLimDul\MarketoRest\Lead\Model\DeleteSalesPersonRequest $delete_sales_person_request deleteSalesPersonRequest (required)
+     * @param \NecLimDul\MarketoRest\Lead\Model\DeleteSalesPersonRequest $delete_sales_person_request
+     *   deleteSalesPersonRequest
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -149,8 +150,7 @@ class SalesPersonsApi
      */
     public function deleteSalesPersonUsingPOST(
         \NecLimDul\MarketoRest\Lead\Model\DeleteSalesPersonRequest $delete_sales_person_request
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson
-    {
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson {
         list($response) = $this->deleteSalesPersonUsingPOSTWithHttpInfo($delete_sales_person_request);
         return $response;
     }
@@ -158,17 +158,21 @@ class SalesPersonsApi
     /**
      * Delete SalesPersons
      *
-     * @param  \NecLimDul\MarketoRest\Lead\Model\DeleteSalesPersonRequest $delete_sales_person_request deleteSalesPersonRequest (required)
+     * @param \NecLimDul\MarketoRest\Lead\Model\DeleteSalesPersonRequest $delete_sales_person_request
+     *   deleteSalesPersonRequest
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function deleteSalesPersonUsingPOSTWithHttpInfo(
         \NecLimDul\MarketoRest\Lead\Model\DeleteSalesPersonRequest $delete_sales_person_request
-    ): array
-    {
+    ): array {
         $request = $this->deleteSalesPersonUsingPOSTRequest($delete_sales_person_request);
         try {
             $response = $this->makeRequest($request);
@@ -184,15 +188,15 @@ class SalesPersonsApi
     /**
      * Delete SalesPersons
      *
-     * @param  \NecLimDul\MarketoRest\Lead\Model\DeleteSalesPersonRequest $delete_sales_person_request deleteSalesPersonRequest (required)
+     * @param \NecLimDul\MarketoRest\Lead\Model\DeleteSalesPersonRequest $delete_sales_person_request
+     *   deleteSalesPersonRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function deleteSalesPersonUsingPOSTAsync(
         \NecLimDul\MarketoRest\Lead\Model\DeleteSalesPersonRequest $delete_sales_person_request
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->deleteSalesPersonUsingPOSTAsyncWithHttpInfo($delete_sales_person_request)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson {
@@ -204,15 +208,15 @@ class SalesPersonsApi
     /**
      * Delete SalesPersons
      *
-     * @param  \NecLimDul\MarketoRest\Lead\Model\DeleteSalesPersonRequest $delete_sales_person_request deleteSalesPersonRequest (required)
+     * @param \NecLimDul\MarketoRest\Lead\Model\DeleteSalesPersonRequest $delete_sales_person_request
+     *   deleteSalesPersonRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function deleteSalesPersonUsingPOSTAsyncWithHttpInfo(
         \NecLimDul\MarketoRest\Lead\Model\DeleteSalesPersonRequest $delete_sales_person_request
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->deleteSalesPersonUsingPOSTRequest($delete_sales_person_request);
         return $this->makeAsyncRequest(
             $request,
@@ -224,15 +228,15 @@ class SalesPersonsApi
     /**
      * Create request for operation 'deleteSalesPersonUsingPOST'
      *
-     * @param  \NecLimDul\MarketoRest\Lead\Model\DeleteSalesPersonRequest $delete_sales_person_request deleteSalesPersonRequest (required)
+     * @param \NecLimDul\MarketoRest\Lead\Model\DeleteSalesPersonRequest $delete_sales_person_request
+     *   deleteSalesPersonRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
     public function deleteSalesPersonUsingPOSTRequest(
         \NecLimDul\MarketoRest\Lead\Model\DeleteSalesPersonRequest $delete_sales_person_request
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/v1/salespersons/delete.json';
 
@@ -263,7 +267,6 @@ class SalesPersonsApi
             [
             ],
             $delete_sales_person_request
-            
         );
     }
 
@@ -297,8 +300,7 @@ class SalesPersonsApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData
      */
-    public function describeUsingGET5(
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData
+    public function describeUsingGET5(): \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData
     {
         list($response) = $this->describeUsingGET5WithHttpInfo();
         return $response;
@@ -309,11 +311,14 @@ class SalesPersonsApi
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData,
+     *     int,
+     *     array<array<string>>
+     * }
      */
-    public function describeUsingGET5WithHttpInfo(
-    ): array
+    public function describeUsingGET5WithHttpInfo(): array
     {
         $request = $this->describeUsingGET5Request();
         try {
@@ -333,8 +338,7 @@ class SalesPersonsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function describeUsingGET5Async(
-    ): PromiseInterface
+    public function describeUsingGET5Async(): PromiseInterface
     {
         return $this->describeUsingGET5AsyncWithHttpInfo()
             ->then(
@@ -350,8 +354,7 @@ class SalesPersonsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function describeUsingGET5AsyncWithHttpInfo(
-    ): PromiseInterface
+    public function describeUsingGET5AsyncWithHttpInfo(): PromiseInterface
     {
         $request = $this->describeUsingGET5Request();
         return $this->makeAsyncRequest(
@@ -367,8 +370,7 @@ class SalesPersonsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function describeUsingGET5Request(
-    ): Request
+    public function describeUsingGET5Request(): Request
     {
 
         $resourcePath = '/rest/v1/salespersons/describe.json';
@@ -429,11 +431,16 @@ class SalesPersonsApi
     /**
      * Get SalesPersons
      *
-     * @param  string $filter_type The sales person field to filter on. Searchable fields can be retrieved with the Describe Sales Person call. (required)
-     * @param  string[] $filter_values Comma seperated list of search values. (required)
-     * @param  string[] $fields Comma-separated list of fields to include in the response (optional)
-     * @param  int $batch_size The batch size to return.  The max and default value is 300. (optional)
-     * @param  string $next_page_token A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info. (optional)
+     * @param string $filter_type
+     *   The sales person field to filter on. Searchable fields can be retrieved with the Describe Sales Person call.
+     * @param string[] $filter_values
+     *   Comma seperated list of search values.
+     * @param string[]|null $fields
+     *   Comma-separated list of fields to include in the response
+     * @param int|null $batch_size
+     *   The batch size to return.  The max and default value is 300.
+     * @param string|null $next_page_token
+     *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -445,8 +452,7 @@ class SalesPersonsApi
         array $fields = null,
         int $batch_size = null,
         string $next_page_token = null
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson
-    {
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson {
         list($response) = $this->getSalesPersonUsingGETWithHttpInfo($filter_type, $filter_values, $fields, $batch_size, $next_page_token);
         return $response;
     }
@@ -454,16 +460,25 @@ class SalesPersonsApi
     /**
      * Get SalesPersons
      *
-     * @param  string $filter_type The sales person field to filter on. Searchable fields can be retrieved with the Describe Sales Person call. (required)
-     * @param  string[] $filter_values Comma seperated list of search values. (required)
-     * @param  string[] $fields Comma-separated list of fields to include in the response (optional)
-     * @param  int $batch_size The batch size to return.  The max and default value is 300. (optional)
-     * @param  string $next_page_token A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info. (optional)
+     * @param string $filter_type
+     *   The sales person field to filter on. Searchable fields can be retrieved with the Describe Sales Person call.
+     * @param string[] $filter_values
+     *   Comma seperated list of search values.
+     * @param string[]|null $fields
+     *   Comma-separated list of fields to include in the response
+     * @param int|null $batch_size
+     *   The batch size to return.  The max and default value is 300.
+     * @param string|null $next_page_token
+     *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function getSalesPersonUsingGETWithHttpInfo(
         string $filter_type,
@@ -471,8 +486,7 @@ class SalesPersonsApi
         array $fields = null,
         int $batch_size = null,
         string $next_page_token = null
-    ): array
-    {
+    ): array {
         $request = $this->getSalesPersonUsingGETRequest($filter_type, $filter_values, $fields, $batch_size, $next_page_token);
         try {
             $response = $this->makeRequest($request);
@@ -488,11 +502,16 @@ class SalesPersonsApi
     /**
      * Get SalesPersons
      *
-     * @param  string $filter_type The sales person field to filter on. Searchable fields can be retrieved with the Describe Sales Person call. (required)
-     * @param  string[] $filter_values Comma seperated list of search values. (required)
-     * @param  string[] $fields Comma-separated list of fields to include in the response (optional)
-     * @param  int $batch_size The batch size to return.  The max and default value is 300. (optional)
-     * @param  string $next_page_token A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info. (optional)
+     * @param string $filter_type
+     *   The sales person field to filter on. Searchable fields can be retrieved with the Describe Sales Person call.
+     * @param string[] $filter_values
+     *   Comma seperated list of search values.
+     * @param string[]|null $fields
+     *   Comma-separated list of fields to include in the response
+     * @param int|null $batch_size
+     *   The batch size to return.  The max and default value is 300.
+     * @param string|null $next_page_token
+     *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info.
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -503,8 +522,7 @@ class SalesPersonsApi
         array $fields = null,
         int $batch_size = null,
         string $next_page_token = null
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->getSalesPersonUsingGETAsyncWithHttpInfo($filter_type, $filter_values, $fields, $batch_size, $next_page_token)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson {
@@ -516,11 +534,16 @@ class SalesPersonsApi
     /**
      * Get SalesPersons
      *
-     * @param  string $filter_type The sales person field to filter on. Searchable fields can be retrieved with the Describe Sales Person call. (required)
-     * @param  string[] $filter_values Comma seperated list of search values. (required)
-     * @param  string[] $fields Comma-separated list of fields to include in the response (optional)
-     * @param  int $batch_size The batch size to return.  The max and default value is 300. (optional)
-     * @param  string $next_page_token A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info. (optional)
+     * @param string $filter_type
+     *   The sales person field to filter on. Searchable fields can be retrieved with the Describe Sales Person call.
+     * @param string[] $filter_values
+     *   Comma seperated list of search values.
+     * @param string[]|null $fields
+     *   Comma-separated list of fields to include in the response
+     * @param int|null $batch_size
+     *   The batch size to return.  The max and default value is 300.
+     * @param string|null $next_page_token
+     *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info.
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -531,8 +554,7 @@ class SalesPersonsApi
         array $fields = null,
         int $batch_size = null,
         string $next_page_token = null
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->getSalesPersonUsingGETRequest($filter_type, $filter_values, $fields, $batch_size, $next_page_token);
         return $this->makeAsyncRequest(
             $request,
@@ -544,11 +566,16 @@ class SalesPersonsApi
     /**
      * Create request for operation 'getSalesPersonUsingGET'
      *
-     * @param  string $filter_type The sales person field to filter on. Searchable fields can be retrieved with the Describe Sales Person call. (required)
-     * @param  string[] $filter_values Comma seperated list of search values. (required)
-     * @param  string[] $fields Comma-separated list of fields to include in the response (optional)
-     * @param  int $batch_size The batch size to return.  The max and default value is 300. (optional)
-     * @param  string $next_page_token A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info. (optional)
+     * @param string $filter_type
+     *   The sales person field to filter on. Searchable fields can be retrieved with the Describe Sales Person call.
+     * @param string[] $filter_values
+     *   Comma seperated list of search values.
+     * @param string[]|null $fields
+     *   Comma-separated list of fields to include in the response
+     * @param int|null $batch_size
+     *   The batch size to return.  The max and default value is 300.
+     * @param string|null $next_page_token
+     *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info.
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -559,8 +586,7 @@ class SalesPersonsApi
         array $fields = null,
         int $batch_size = null,
         string $next_page_token = null
-    ): Request
-    {
+    ): Request {
         // Verify the required parameter 'filter_values' is set.
         if (empty($filter_values)) {
             throw new \InvalidArgumentException(
@@ -631,7 +657,8 @@ class SalesPersonsApi
     /**
      * Sync SalesPersons
      *
-     * @param  \NecLimDul\MarketoRest\Lead\Model\SyncSalesPersonRequest $sync_sales_person_request syncSalesPersonRequest (required)
+     * @param \NecLimDul\MarketoRest\Lead\Model\SyncSalesPersonRequest $sync_sales_person_request
+     *   syncSalesPersonRequest
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -639,8 +666,7 @@ class SalesPersonsApi
      */
     public function syncSalesPersonsUsingPOST(
         \NecLimDul\MarketoRest\Lead\Model\SyncSalesPersonRequest $sync_sales_person_request
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson
-    {
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson {
         list($response) = $this->syncSalesPersonsUsingPOSTWithHttpInfo($sync_sales_person_request);
         return $response;
     }
@@ -648,17 +674,21 @@ class SalesPersonsApi
     /**
      * Sync SalesPersons
      *
-     * @param  \NecLimDul\MarketoRest\Lead\Model\SyncSalesPersonRequest $sync_sales_person_request syncSalesPersonRequest (required)
+     * @param \NecLimDul\MarketoRest\Lead\Model\SyncSalesPersonRequest $sync_sales_person_request
+     *   syncSalesPersonRequest
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function syncSalesPersonsUsingPOSTWithHttpInfo(
         \NecLimDul\MarketoRest\Lead\Model\SyncSalesPersonRequest $sync_sales_person_request
-    ): array
-    {
+    ): array {
         $request = $this->syncSalesPersonsUsingPOSTRequest($sync_sales_person_request);
         try {
             $response = $this->makeRequest($request);
@@ -674,15 +704,15 @@ class SalesPersonsApi
     /**
      * Sync SalesPersons
      *
-     * @param  \NecLimDul\MarketoRest\Lead\Model\SyncSalesPersonRequest $sync_sales_person_request syncSalesPersonRequest (required)
+     * @param \NecLimDul\MarketoRest\Lead\Model\SyncSalesPersonRequest $sync_sales_person_request
+     *   syncSalesPersonRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function syncSalesPersonsUsingPOSTAsync(
         \NecLimDul\MarketoRest\Lead\Model\SyncSalesPersonRequest $sync_sales_person_request
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->syncSalesPersonsUsingPOSTAsyncWithHttpInfo($sync_sales_person_request)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfSalesPerson {
@@ -694,15 +724,15 @@ class SalesPersonsApi
     /**
      * Sync SalesPersons
      *
-     * @param  \NecLimDul\MarketoRest\Lead\Model\SyncSalesPersonRequest $sync_sales_person_request syncSalesPersonRequest (required)
+     * @param \NecLimDul\MarketoRest\Lead\Model\SyncSalesPersonRequest $sync_sales_person_request
+     *   syncSalesPersonRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function syncSalesPersonsUsingPOSTAsyncWithHttpInfo(
         \NecLimDul\MarketoRest\Lead\Model\SyncSalesPersonRequest $sync_sales_person_request
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->syncSalesPersonsUsingPOSTRequest($sync_sales_person_request);
         return $this->makeAsyncRequest(
             $request,
@@ -714,15 +744,15 @@ class SalesPersonsApi
     /**
      * Create request for operation 'syncSalesPersonsUsingPOST'
      *
-     * @param  \NecLimDul\MarketoRest\Lead\Model\SyncSalesPersonRequest $sync_sales_person_request syncSalesPersonRequest (required)
+     * @param \NecLimDul\MarketoRest\Lead\Model\SyncSalesPersonRequest $sync_sales_person_request
+     *   syncSalesPersonRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
     public function syncSalesPersonsUsingPOSTRequest(
         \NecLimDul\MarketoRest\Lead\Model\SyncSalesPersonRequest $sync_sales_person_request
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/v1/salespersons.json';
 
@@ -753,7 +783,6 @@ class SalesPersonsApi
             [
             ],
             $sync_sales_person_request
-            
         );
     }
 
@@ -784,10 +813,11 @@ class SalesPersonsApi
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @return \Psr\Http\Message\ResponseInterface
      */
-    private function makeRequest(Request $request) {
+    private function makeRequest(Request $request)
+    {
         $options = $this->createHttpClientOption();
         try {
-           $response = $this->client->send($request, $options);
+            $response = $this->client->send($request, $options);
         } catch (RequestException $e) {
             $response = $e->getResponse();
             throw new ApiException(
@@ -860,7 +890,8 @@ class SalesPersonsApi
      * @return array structured array or response and http info.
      * @phpstan-return array{T, int, array<array<string>>}
      */
-    private function responseToReturn(ResponseInterface $response, string $returnType) {
+    private function responseToReturn(ResponseInterface $response, string $returnType)
+    {
         return [
             $this->deserializeResponseBody($response->getBody(), $returnType),
             $response->getStatusCode(),
@@ -889,5 +920,4 @@ class SalesPersonsApi
             $headers
         );
     }
-
 }

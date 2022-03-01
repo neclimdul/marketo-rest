@@ -1,4 +1,5 @@
 <?php
+
 /**
  * CustomActivityType
  *
@@ -25,8 +26,8 @@
 
 namespace NecLimDul\MarketoRest\Lead\Model;
 
-use \ArrayAccess;
-use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
+use ArrayAccess;
+use NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * CustomActivityType Class Doc Comment
@@ -42,6 +43,10 @@ use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
 class CustomActivityType implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    public const STATUS_DRAFT = 'draft';
+    public const STATUS_APPROVED = 'approved';
+    public const STATUS_DELETED = 'deleted';
+    public const STATUS_APPROVED_WITH_DRAFT = 'approved with draft';
 
     /**
       * The original name of the model.
@@ -172,11 +177,6 @@ class CustomActivityType implements ModelInterface, ArrayAccess, \JsonSerializab
         'trigger_name' => 'getTriggerName',
         'updated_at' => 'getUpdatedAt'
     ];
-    
-    const STATUS_DRAFT = 'draft';
-    const STATUS_APPROVED = 'approved';
-    const STATUS_DELETED = 'deleted';
-    const STATUS_APPROVED_WITH_DRAFT = 'approved with draft';
 
     /**
      * Associative array for storing property values
@@ -264,7 +264,6 @@ class CustomActivityType implements ModelInterface, ArrayAccess, \JsonSerializab
     {
         return count($this->listInvalidProperties()) === 0;
     }
-    
     /**
      * Gets allowable values of the enum.
      *
@@ -279,7 +278,6 @@ class CustomActivityType implements ModelInterface, ArrayAccess, \JsonSerializab
             self::STATUS_APPROVED_WITH_DRAFT,
         ];
     }
-    
 
     /**
      * Gets api_name
@@ -592,7 +590,7 @@ class CustomActivityType implements ModelInterface, ArrayAccess, \JsonSerializab
              * @param array-key $key
              * @return mixed
              */
-            function($key) use ($container) {
+            function ($key) use ($container) {
                 return $container[$key];
             };
         return array_map($map, $this->additionalProperties);
@@ -648,7 +646,7 @@ class CustomActivityType implements ModelInterface, ArrayAccess, \JsonSerializab
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -664,5 +662,4 @@ class CustomActivityType implements ModelInterface, ArrayAccess, \JsonSerializab
             JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR
         );
     }
-
 }

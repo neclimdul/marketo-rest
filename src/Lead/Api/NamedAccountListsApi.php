@@ -1,4 +1,5 @@
 <?php
+
 /**
  * NamedAccountListsApi
  *
@@ -48,7 +49,6 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  */
 class NamedAccountListsApi
 {
-
     /**
      * @var ClientInterface
      */
@@ -73,7 +73,7 @@ class NamedAccountListsApi
      * @param ClientInterface|null $client
      * @param Configuration|null   $config
      * @param HeaderSelector|null  $selector
-     * @param int                  $hostIndex (Optional) host index to select the list of hosts if defined in the OpenAPI spec
+     * @param int                  $hostIndex (Optional) host index to select the list of hosts if defined in the spec.
      */
     public function __construct(
         ClientInterface $client = null,
@@ -102,7 +102,7 @@ class NamedAccountListsApi
      *
      * @return int Host index
      */
-    public function getHostIndex()
+    public function getHostIndex(): int
     {
         return $this->hostIndex;
     }
@@ -110,7 +110,7 @@ class NamedAccountListsApi
     /**
      * @return Configuration
      */
-    public function getConfig()
+    public function getConfig(): Configuration
     {
         return $this->config;
     }
@@ -141,8 +141,10 @@ class NamedAccountListsApi
     /**
      * Add Named Account List Members
      *
-     * @param  string $id Id of target named account list (required)
-     * @param  \NecLimDul\MarketoRest\Lead\Model\AddNamedAccountListMemberRequest $add_named_account_list_member_request addNamedAccountListMemberRequest (required)
+     * @param string $id
+     *   Id of target named account list
+     * @param \NecLimDul\MarketoRest\Lead\Model\AddNamedAccountListMemberRequest $add_named_account_list_member_request
+     *   addNamedAccountListMemberRequest
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -151,8 +153,7 @@ class NamedAccountListsApi
     public function addNamedAccountListMembersUsingPOST(
         string $id,
         \NecLimDul\MarketoRest\Lead\Model\AddNamedAccountListMemberRequest $add_named_account_list_member_request
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount
-    {
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount {
         list($response) = $this->addNamedAccountListMembersUsingPOSTWithHttpInfo($id, $add_named_account_list_member_request);
         return $response;
     }
@@ -160,19 +161,24 @@ class NamedAccountListsApi
     /**
      * Add Named Account List Members
      *
-     * @param  string $id Id of target named account list (required)
-     * @param  \NecLimDul\MarketoRest\Lead\Model\AddNamedAccountListMemberRequest $add_named_account_list_member_request addNamedAccountListMemberRequest (required)
+     * @param string $id
+     *   Id of target named account list
+     * @param \NecLimDul\MarketoRest\Lead\Model\AddNamedAccountListMemberRequest $add_named_account_list_member_request
+     *   addNamedAccountListMemberRequest
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function addNamedAccountListMembersUsingPOSTWithHttpInfo(
         string $id,
         \NecLimDul\MarketoRest\Lead\Model\AddNamedAccountListMemberRequest $add_named_account_list_member_request
-    ): array
-    {
+    ): array {
         $request = $this->addNamedAccountListMembersUsingPOSTRequest($id, $add_named_account_list_member_request);
         try {
             $response = $this->makeRequest($request);
@@ -188,8 +194,10 @@ class NamedAccountListsApi
     /**
      * Add Named Account List Members
      *
-     * @param  string $id Id of target named account list (required)
-     * @param  \NecLimDul\MarketoRest\Lead\Model\AddNamedAccountListMemberRequest $add_named_account_list_member_request addNamedAccountListMemberRequest (required)
+     * @param string $id
+     *   Id of target named account list
+     * @param \NecLimDul\MarketoRest\Lead\Model\AddNamedAccountListMemberRequest $add_named_account_list_member_request
+     *   addNamedAccountListMemberRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -197,8 +205,7 @@ class NamedAccountListsApi
     public function addNamedAccountListMembersUsingPOSTAsync(
         string $id,
         \NecLimDul\MarketoRest\Lead\Model\AddNamedAccountListMemberRequest $add_named_account_list_member_request
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->addNamedAccountListMembersUsingPOSTAsyncWithHttpInfo($id, $add_named_account_list_member_request)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount {
@@ -210,8 +217,10 @@ class NamedAccountListsApi
     /**
      * Add Named Account List Members
      *
-     * @param  string $id Id of target named account list (required)
-     * @param  \NecLimDul\MarketoRest\Lead\Model\AddNamedAccountListMemberRequest $add_named_account_list_member_request addNamedAccountListMemberRequest (required)
+     * @param string $id
+     *   Id of target named account list
+     * @param \NecLimDul\MarketoRest\Lead\Model\AddNamedAccountListMemberRequest $add_named_account_list_member_request
+     *   addNamedAccountListMemberRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -219,8 +228,7 @@ class NamedAccountListsApi
     public function addNamedAccountListMembersUsingPOSTAsyncWithHttpInfo(
         string $id,
         \NecLimDul\MarketoRest\Lead\Model\AddNamedAccountListMemberRequest $add_named_account_list_member_request
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->addNamedAccountListMembersUsingPOSTRequest($id, $add_named_account_list_member_request);
         return $this->makeAsyncRequest(
             $request,
@@ -232,8 +240,10 @@ class NamedAccountListsApi
     /**
      * Create request for operation 'addNamedAccountListMembersUsingPOST'
      *
-     * @param  string $id Id of target named account list (required)
-     * @param  \NecLimDul\MarketoRest\Lead\Model\AddNamedAccountListMemberRequest $add_named_account_list_member_request addNamedAccountListMemberRequest (required)
+     * @param string $id
+     *   Id of target named account list
+     * @param \NecLimDul\MarketoRest\Lead\Model\AddNamedAccountListMemberRequest $add_named_account_list_member_request
+     *   addNamedAccountListMemberRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -241,8 +251,7 @@ class NamedAccountListsApi
     public function addNamedAccountListMembersUsingPOSTRequest(
         string $id,
         \NecLimDul\MarketoRest\Lead\Model\AddNamedAccountListMemberRequest $add_named_account_list_member_request
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/v1/namedAccountList/{id}/namedAccounts.json';
         $resourcePath = str_replace(
@@ -278,7 +287,6 @@ class NamedAccountListsApi
             [
             ],
             $add_named_account_list_member_request
-            
         );
     }
 
@@ -308,7 +316,8 @@ class NamedAccountListsApi
     /**
      * Delete Named Account Lists
      *
-     * @param  \NecLimDul\MarketoRest\Lead\Model\DeleteNamedAccountListRequest $delete_named_account_list_request deleteNamedAccountListRequest (required)
+     * @param \NecLimDul\MarketoRest\Lead\Model\DeleteNamedAccountListRequest $delete_named_account_list_request
+     *   deleteNamedAccountListRequest
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -316,8 +325,7 @@ class NamedAccountListsApi
      */
     public function deleteNamedAccountListsUsingPOST(
         \NecLimDul\MarketoRest\Lead\Model\DeleteNamedAccountListRequest $delete_named_account_list_request
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccountList
-    {
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccountList {
         list($response) = $this->deleteNamedAccountListsUsingPOSTWithHttpInfo($delete_named_account_list_request);
         return $response;
     }
@@ -325,17 +333,21 @@ class NamedAccountListsApi
     /**
      * Delete Named Account Lists
      *
-     * @param  \NecLimDul\MarketoRest\Lead\Model\DeleteNamedAccountListRequest $delete_named_account_list_request deleteNamedAccountListRequest (required)
+     * @param \NecLimDul\MarketoRest\Lead\Model\DeleteNamedAccountListRequest $delete_named_account_list_request
+     *   deleteNamedAccountListRequest
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccountList, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccountList, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccountList,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function deleteNamedAccountListsUsingPOSTWithHttpInfo(
         \NecLimDul\MarketoRest\Lead\Model\DeleteNamedAccountListRequest $delete_named_account_list_request
-    ): array
-    {
+    ): array {
         $request = $this->deleteNamedAccountListsUsingPOSTRequest($delete_named_account_list_request);
         try {
             $response = $this->makeRequest($request);
@@ -351,15 +363,15 @@ class NamedAccountListsApi
     /**
      * Delete Named Account Lists
      *
-     * @param  \NecLimDul\MarketoRest\Lead\Model\DeleteNamedAccountListRequest $delete_named_account_list_request deleteNamedAccountListRequest (required)
+     * @param \NecLimDul\MarketoRest\Lead\Model\DeleteNamedAccountListRequest $delete_named_account_list_request
+     *   deleteNamedAccountListRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function deleteNamedAccountListsUsingPOSTAsync(
         \NecLimDul\MarketoRest\Lead\Model\DeleteNamedAccountListRequest $delete_named_account_list_request
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->deleteNamedAccountListsUsingPOSTAsyncWithHttpInfo($delete_named_account_list_request)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccountList {
@@ -371,15 +383,15 @@ class NamedAccountListsApi
     /**
      * Delete Named Account Lists
      *
-     * @param  \NecLimDul\MarketoRest\Lead\Model\DeleteNamedAccountListRequest $delete_named_account_list_request deleteNamedAccountListRequest (required)
+     * @param \NecLimDul\MarketoRest\Lead\Model\DeleteNamedAccountListRequest $delete_named_account_list_request
+     *   deleteNamedAccountListRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function deleteNamedAccountListsUsingPOSTAsyncWithHttpInfo(
         \NecLimDul\MarketoRest\Lead\Model\DeleteNamedAccountListRequest $delete_named_account_list_request
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->deleteNamedAccountListsUsingPOSTRequest($delete_named_account_list_request);
         return $this->makeAsyncRequest(
             $request,
@@ -391,15 +403,15 @@ class NamedAccountListsApi
     /**
      * Create request for operation 'deleteNamedAccountListsUsingPOST'
      *
-     * @param  \NecLimDul\MarketoRest\Lead\Model\DeleteNamedAccountListRequest $delete_named_account_list_request deleteNamedAccountListRequest (required)
+     * @param \NecLimDul\MarketoRest\Lead\Model\DeleteNamedAccountListRequest $delete_named_account_list_request
+     *   deleteNamedAccountListRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
     public function deleteNamedAccountListsUsingPOSTRequest(
         \NecLimDul\MarketoRest\Lead\Model\DeleteNamedAccountListRequest $delete_named_account_list_request
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/v1/namedAccountLists/delete.json';
 
@@ -430,7 +442,6 @@ class NamedAccountListsApi
             [
             ],
             $delete_named_account_list_request
-            
         );
     }
 
@@ -460,10 +471,14 @@ class NamedAccountListsApi
     /**
      * Get Named Account List Members
      *
-     * @param  string $id Id of the named account list (required)
-     * @param  string[] $fields Comma-separated list of fields to include in the response (optional)
-     * @param  int $batch_size The batch size to return.  The max and default value is 300. (optional)
-     * @param  string $next_page_token A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info. (optional)
+     * @param string $id
+     *   Id of the named account list
+     * @param string[]|null $fields
+     *   Comma-separated list of fields to include in the response
+     * @param int|null $batch_size
+     *   The batch size to return.  The max and default value is 300.
+     * @param string|null $next_page_token
+     *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -474,8 +489,7 @@ class NamedAccountListsApi
         array $fields = null,
         int $batch_size = null,
         string $next_page_token = null
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount
-    {
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount {
         list($response) = $this->getNamedAccountListMembersUsingGETWithHttpInfo($id, $fields, $batch_size, $next_page_token);
         return $response;
     }
@@ -483,23 +497,30 @@ class NamedAccountListsApi
     /**
      * Get Named Account List Members
      *
-     * @param  string $id Id of the named account list (required)
-     * @param  string[] $fields Comma-separated list of fields to include in the response (optional)
-     * @param  int $batch_size The batch size to return.  The max and default value is 300. (optional)
-     * @param  string $next_page_token A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info. (optional)
+     * @param string $id
+     *   Id of the named account list
+     * @param string[]|null $fields
+     *   Comma-separated list of fields to include in the response
+     * @param int|null $batch_size
+     *   The batch size to return.  The max and default value is 300.
+     * @param string|null $next_page_token
+     *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function getNamedAccountListMembersUsingGETWithHttpInfo(
         string $id,
         array $fields = null,
         int $batch_size = null,
         string $next_page_token = null
-    ): array
-    {
+    ): array {
         $request = $this->getNamedAccountListMembersUsingGETRequest($id, $fields, $batch_size, $next_page_token);
         try {
             $response = $this->makeRequest($request);
@@ -515,10 +536,14 @@ class NamedAccountListsApi
     /**
      * Get Named Account List Members
      *
-     * @param  string $id Id of the named account list (required)
-     * @param  string[] $fields Comma-separated list of fields to include in the response (optional)
-     * @param  int $batch_size The batch size to return.  The max and default value is 300. (optional)
-     * @param  string $next_page_token A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info. (optional)
+     * @param string $id
+     *   Id of the named account list
+     * @param string[]|null $fields
+     *   Comma-separated list of fields to include in the response
+     * @param int|null $batch_size
+     *   The batch size to return.  The max and default value is 300.
+     * @param string|null $next_page_token
+     *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info.
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -528,8 +553,7 @@ class NamedAccountListsApi
         array $fields = null,
         int $batch_size = null,
         string $next_page_token = null
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->getNamedAccountListMembersUsingGETAsyncWithHttpInfo($id, $fields, $batch_size, $next_page_token)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount {
@@ -541,10 +565,14 @@ class NamedAccountListsApi
     /**
      * Get Named Account List Members
      *
-     * @param  string $id Id of the named account list (required)
-     * @param  string[] $fields Comma-separated list of fields to include in the response (optional)
-     * @param  int $batch_size The batch size to return.  The max and default value is 300. (optional)
-     * @param  string $next_page_token A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info. (optional)
+     * @param string $id
+     *   Id of the named account list
+     * @param string[]|null $fields
+     *   Comma-separated list of fields to include in the response
+     * @param int|null $batch_size
+     *   The batch size to return.  The max and default value is 300.
+     * @param string|null $next_page_token
+     *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info.
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -554,8 +582,7 @@ class NamedAccountListsApi
         array $fields = null,
         int $batch_size = null,
         string $next_page_token = null
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->getNamedAccountListMembersUsingGETRequest($id, $fields, $batch_size, $next_page_token);
         return $this->makeAsyncRequest(
             $request,
@@ -567,10 +594,14 @@ class NamedAccountListsApi
     /**
      * Create request for operation 'getNamedAccountListMembersUsingGET'
      *
-     * @param  string $id Id of the named account list (required)
-     * @param  string[] $fields Comma-separated list of fields to include in the response (optional)
-     * @param  int $batch_size The batch size to return.  The max and default value is 300. (optional)
-     * @param  string $next_page_token A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info. (optional)
+     * @param string $id
+     *   Id of the named account list
+     * @param string[]|null $fields
+     *   Comma-separated list of fields to include in the response
+     * @param int|null $batch_size
+     *   The batch size to return.  The max and default value is 300.
+     * @param string|null $next_page_token
+     *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info.
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -580,8 +611,7 @@ class NamedAccountListsApi
         array $fields = null,
         int $batch_size = null,
         string $next_page_token = null
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/v1/namedAccountList/{id}/namedAccounts.json';
         $resourcePath = str_replace(
@@ -649,10 +679,14 @@ class NamedAccountListsApi
     /**
      * Get Named Account Lists
      *
-     * @param  string $filter_type The named account list field to filter on (\&quot;dedupeFields\&quot; or \&quot;idFields\&quot;). (required)
-     * @param  string[] $filter_values Comma-separated list of values to match against (required)
-     * @param  int $batch_size The batch size to return.  The max and default value is 300. (optional)
-     * @param  string $next_page_token A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info. (optional)
+     * @param string $filter_type
+     *   The named account list field to filter on (\&quot;dedupeFields\&quot; or \&quot;idFields\&quot;).
+     * @param string[] $filter_values
+     *   Comma-separated list of values to match against
+     * @param int|null $batch_size
+     *   The batch size to return.  The max and default value is 300.
+     * @param string|null $next_page_token
+     *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -663,8 +697,7 @@ class NamedAccountListsApi
         array $filter_values,
         int $batch_size = null,
         string $next_page_token = null
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccountList
-    {
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccountList {
         list($response) = $this->getNamedAccountListsUsingGETWithHttpInfo($filter_type, $filter_values, $batch_size, $next_page_token);
         return $response;
     }
@@ -672,23 +705,30 @@ class NamedAccountListsApi
     /**
      * Get Named Account Lists
      *
-     * @param  string $filter_type The named account list field to filter on (\&quot;dedupeFields\&quot; or \&quot;idFields\&quot;). (required)
-     * @param  string[] $filter_values Comma-separated list of values to match against (required)
-     * @param  int $batch_size The batch size to return.  The max and default value is 300. (optional)
-     * @param  string $next_page_token A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info. (optional)
+     * @param string $filter_type
+     *   The named account list field to filter on (\&quot;dedupeFields\&quot; or \&quot;idFields\&quot;).
+     * @param string[] $filter_values
+     *   Comma-separated list of values to match against
+     * @param int|null $batch_size
+     *   The batch size to return.  The max and default value is 300.
+     * @param string|null $next_page_token
+     *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccountList, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccountList, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccountList,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function getNamedAccountListsUsingGETWithHttpInfo(
         string $filter_type,
         array $filter_values,
         int $batch_size = null,
         string $next_page_token = null
-    ): array
-    {
+    ): array {
         $request = $this->getNamedAccountListsUsingGETRequest($filter_type, $filter_values, $batch_size, $next_page_token);
         try {
             $response = $this->makeRequest($request);
@@ -704,10 +744,14 @@ class NamedAccountListsApi
     /**
      * Get Named Account Lists
      *
-     * @param  string $filter_type The named account list field to filter on (\&quot;dedupeFields\&quot; or \&quot;idFields\&quot;). (required)
-     * @param  string[] $filter_values Comma-separated list of values to match against (required)
-     * @param  int $batch_size The batch size to return.  The max and default value is 300. (optional)
-     * @param  string $next_page_token A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info. (optional)
+     * @param string $filter_type
+     *   The named account list field to filter on (\&quot;dedupeFields\&quot; or \&quot;idFields\&quot;).
+     * @param string[] $filter_values
+     *   Comma-separated list of values to match against
+     * @param int|null $batch_size
+     *   The batch size to return.  The max and default value is 300.
+     * @param string|null $next_page_token
+     *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info.
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -717,8 +761,7 @@ class NamedAccountListsApi
         array $filter_values,
         int $batch_size = null,
         string $next_page_token = null
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->getNamedAccountListsUsingGETAsyncWithHttpInfo($filter_type, $filter_values, $batch_size, $next_page_token)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccountList {
@@ -730,10 +773,14 @@ class NamedAccountListsApi
     /**
      * Get Named Account Lists
      *
-     * @param  string $filter_type The named account list field to filter on (\&quot;dedupeFields\&quot; or \&quot;idFields\&quot;). (required)
-     * @param  string[] $filter_values Comma-separated list of values to match against (required)
-     * @param  int $batch_size The batch size to return.  The max and default value is 300. (optional)
-     * @param  string $next_page_token A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info. (optional)
+     * @param string $filter_type
+     *   The named account list field to filter on (\&quot;dedupeFields\&quot; or \&quot;idFields\&quot;).
+     * @param string[] $filter_values
+     *   Comma-separated list of values to match against
+     * @param int|null $batch_size
+     *   The batch size to return.  The max and default value is 300.
+     * @param string|null $next_page_token
+     *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info.
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -743,8 +790,7 @@ class NamedAccountListsApi
         array $filter_values,
         int $batch_size = null,
         string $next_page_token = null
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->getNamedAccountListsUsingGETRequest($filter_type, $filter_values, $batch_size, $next_page_token);
         return $this->makeAsyncRequest(
             $request,
@@ -756,10 +802,14 @@ class NamedAccountListsApi
     /**
      * Create request for operation 'getNamedAccountListsUsingGET'
      *
-     * @param  string $filter_type The named account list field to filter on (\&quot;dedupeFields\&quot; or \&quot;idFields\&quot;). (required)
-     * @param  string[] $filter_values Comma-separated list of values to match against (required)
-     * @param  int $batch_size The batch size to return.  The max and default value is 300. (optional)
-     * @param  string $next_page_token A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info. (optional)
+     * @param string $filter_type
+     *   The named account list field to filter on (\&quot;dedupeFields\&quot; or \&quot;idFields\&quot;).
+     * @param string[] $filter_values
+     *   Comma-separated list of values to match against
+     * @param int|null $batch_size
+     *   The batch size to return.  The max and default value is 300.
+     * @param string|null $next_page_token
+     *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info.
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -769,8 +819,7 @@ class NamedAccountListsApi
         array $filter_values,
         int $batch_size = null,
         string $next_page_token = null
-    ): Request
-    {
+    ): Request {
         // Verify the required parameter 'filter_values' is set.
         if (empty($filter_values)) {
             throw new \InvalidArgumentException(
@@ -840,8 +889,10 @@ class NamedAccountListsApi
     /**
      * Remove Named Account List Members
      *
-     * @param  string $id Id of target named account list (required)
-     * @param  \NecLimDul\MarketoRest\Lead\Model\RemoveNamedAccountListMemberRequest $remove_named_account_list_member_request removeNamedAccountListMemberRequest (required)
+     * @param string $id
+     *   Id of target named account list
+     * @param \NecLimDul\MarketoRest\Lead\Model\RemoveNamedAccountListMemberRequest $remove_named_account_list_member_request
+     *   removeNamedAccountListMemberRequest
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -850,8 +901,7 @@ class NamedAccountListsApi
     public function removeNamedAccountListMembersUsingPOST(
         string $id,
         \NecLimDul\MarketoRest\Lead\Model\RemoveNamedAccountListMemberRequest $remove_named_account_list_member_request
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount
-    {
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount {
         list($response) = $this->removeNamedAccountListMembersUsingPOSTWithHttpInfo($id, $remove_named_account_list_member_request);
         return $response;
     }
@@ -859,19 +909,24 @@ class NamedAccountListsApi
     /**
      * Remove Named Account List Members
      *
-     * @param  string $id Id of target named account list (required)
-     * @param  \NecLimDul\MarketoRest\Lead\Model\RemoveNamedAccountListMemberRequest $remove_named_account_list_member_request removeNamedAccountListMemberRequest (required)
+     * @param string $id
+     *   Id of target named account list
+     * @param \NecLimDul\MarketoRest\Lead\Model\RemoveNamedAccountListMemberRequest $remove_named_account_list_member_request
+     *   removeNamedAccountListMemberRequest
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function removeNamedAccountListMembersUsingPOSTWithHttpInfo(
         string $id,
         \NecLimDul\MarketoRest\Lead\Model\RemoveNamedAccountListMemberRequest $remove_named_account_list_member_request
-    ): array
-    {
+    ): array {
         $request = $this->removeNamedAccountListMembersUsingPOSTRequest($id, $remove_named_account_list_member_request);
         try {
             $response = $this->makeRequest($request);
@@ -887,8 +942,10 @@ class NamedAccountListsApi
     /**
      * Remove Named Account List Members
      *
-     * @param  string $id Id of target named account list (required)
-     * @param  \NecLimDul\MarketoRest\Lead\Model\RemoveNamedAccountListMemberRequest $remove_named_account_list_member_request removeNamedAccountListMemberRequest (required)
+     * @param string $id
+     *   Id of target named account list
+     * @param \NecLimDul\MarketoRest\Lead\Model\RemoveNamedAccountListMemberRequest $remove_named_account_list_member_request
+     *   removeNamedAccountListMemberRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -896,8 +953,7 @@ class NamedAccountListsApi
     public function removeNamedAccountListMembersUsingPOSTAsync(
         string $id,
         \NecLimDul\MarketoRest\Lead\Model\RemoveNamedAccountListMemberRequest $remove_named_account_list_member_request
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->removeNamedAccountListMembersUsingPOSTAsyncWithHttpInfo($id, $remove_named_account_list_member_request)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount {
@@ -909,8 +965,10 @@ class NamedAccountListsApi
     /**
      * Remove Named Account List Members
      *
-     * @param  string $id Id of target named account list (required)
-     * @param  \NecLimDul\MarketoRest\Lead\Model\RemoveNamedAccountListMemberRequest $remove_named_account_list_member_request removeNamedAccountListMemberRequest (required)
+     * @param string $id
+     *   Id of target named account list
+     * @param \NecLimDul\MarketoRest\Lead\Model\RemoveNamedAccountListMemberRequest $remove_named_account_list_member_request
+     *   removeNamedAccountListMemberRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -918,8 +976,7 @@ class NamedAccountListsApi
     public function removeNamedAccountListMembersUsingPOSTAsyncWithHttpInfo(
         string $id,
         \NecLimDul\MarketoRest\Lead\Model\RemoveNamedAccountListMemberRequest $remove_named_account_list_member_request
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->removeNamedAccountListMembersUsingPOSTRequest($id, $remove_named_account_list_member_request);
         return $this->makeAsyncRequest(
             $request,
@@ -931,8 +988,10 @@ class NamedAccountListsApi
     /**
      * Create request for operation 'removeNamedAccountListMembersUsingPOST'
      *
-     * @param  string $id Id of target named account list (required)
-     * @param  \NecLimDul\MarketoRest\Lead\Model\RemoveNamedAccountListMemberRequest $remove_named_account_list_member_request removeNamedAccountListMemberRequest (required)
+     * @param string $id
+     *   Id of target named account list
+     * @param \NecLimDul\MarketoRest\Lead\Model\RemoveNamedAccountListMemberRequest $remove_named_account_list_member_request
+     *   removeNamedAccountListMemberRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -940,8 +999,7 @@ class NamedAccountListsApi
     public function removeNamedAccountListMembersUsingPOSTRequest(
         string $id,
         \NecLimDul\MarketoRest\Lead\Model\RemoveNamedAccountListMemberRequest $remove_named_account_list_member_request
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/v1/namedAccountList/{id}/namedAccounts/remove.json';
         $resourcePath = str_replace(
@@ -977,7 +1035,6 @@ class NamedAccountListsApi
             [
             ],
             $remove_named_account_list_member_request
-            
         );
     }
 
@@ -1007,7 +1064,8 @@ class NamedAccountListsApi
     /**
      * Sync Named Account Lists
      *
-     * @param  \NecLimDul\MarketoRest\Lead\Model\SyncNamedAccountListRequest $sync_named_account_list_request syncNamedAccountListRequest (required)
+     * @param \NecLimDul\MarketoRest\Lead\Model\SyncNamedAccountListRequest $sync_named_account_list_request
+     *   syncNamedAccountListRequest
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -1015,8 +1073,7 @@ class NamedAccountListsApi
      */
     public function syncNamedAccountListsUsingPOST(
         \NecLimDul\MarketoRest\Lead\Model\SyncNamedAccountListRequest $sync_named_account_list_request
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccountList
-    {
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccountList {
         list($response) = $this->syncNamedAccountListsUsingPOSTWithHttpInfo($sync_named_account_list_request);
         return $response;
     }
@@ -1024,17 +1081,21 @@ class NamedAccountListsApi
     /**
      * Sync Named Account Lists
      *
-     * @param  \NecLimDul\MarketoRest\Lead\Model\SyncNamedAccountListRequest $sync_named_account_list_request syncNamedAccountListRequest (required)
+     * @param \NecLimDul\MarketoRest\Lead\Model\SyncNamedAccountListRequest $sync_named_account_list_request
+     *   syncNamedAccountListRequest
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccountList, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccountList, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccountList,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function syncNamedAccountListsUsingPOSTWithHttpInfo(
         \NecLimDul\MarketoRest\Lead\Model\SyncNamedAccountListRequest $sync_named_account_list_request
-    ): array
-    {
+    ): array {
         $request = $this->syncNamedAccountListsUsingPOSTRequest($sync_named_account_list_request);
         try {
             $response = $this->makeRequest($request);
@@ -1050,15 +1111,15 @@ class NamedAccountListsApi
     /**
      * Sync Named Account Lists
      *
-     * @param  \NecLimDul\MarketoRest\Lead\Model\SyncNamedAccountListRequest $sync_named_account_list_request syncNamedAccountListRequest (required)
+     * @param \NecLimDul\MarketoRest\Lead\Model\SyncNamedAccountListRequest $sync_named_account_list_request
+     *   syncNamedAccountListRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function syncNamedAccountListsUsingPOSTAsync(
         \NecLimDul\MarketoRest\Lead\Model\SyncNamedAccountListRequest $sync_named_account_list_request
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->syncNamedAccountListsUsingPOSTAsyncWithHttpInfo($sync_named_account_list_request)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccountList {
@@ -1070,15 +1131,15 @@ class NamedAccountListsApi
     /**
      * Sync Named Account Lists
      *
-     * @param  \NecLimDul\MarketoRest\Lead\Model\SyncNamedAccountListRequest $sync_named_account_list_request syncNamedAccountListRequest (required)
+     * @param \NecLimDul\MarketoRest\Lead\Model\SyncNamedAccountListRequest $sync_named_account_list_request
+     *   syncNamedAccountListRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function syncNamedAccountListsUsingPOSTAsyncWithHttpInfo(
         \NecLimDul\MarketoRest\Lead\Model\SyncNamedAccountListRequest $sync_named_account_list_request
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->syncNamedAccountListsUsingPOSTRequest($sync_named_account_list_request);
         return $this->makeAsyncRequest(
             $request,
@@ -1090,15 +1151,15 @@ class NamedAccountListsApi
     /**
      * Create request for operation 'syncNamedAccountListsUsingPOST'
      *
-     * @param  \NecLimDul\MarketoRest\Lead\Model\SyncNamedAccountListRequest $sync_named_account_list_request syncNamedAccountListRequest (required)
+     * @param \NecLimDul\MarketoRest\Lead\Model\SyncNamedAccountListRequest $sync_named_account_list_request
+     *   syncNamedAccountListRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
     public function syncNamedAccountListsUsingPOSTRequest(
         \NecLimDul\MarketoRest\Lead\Model\SyncNamedAccountListRequest $sync_named_account_list_request
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/v1/namedAccountLists.json';
 
@@ -1129,7 +1190,6 @@ class NamedAccountListsApi
             [
             ],
             $sync_named_account_list_request
-            
         );
     }
 
@@ -1160,10 +1220,11 @@ class NamedAccountListsApi
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @return \Psr\Http\Message\ResponseInterface
      */
-    private function makeRequest(Request $request) {
+    private function makeRequest(Request $request)
+    {
         $options = $this->createHttpClientOption();
         try {
-           $response = $this->client->send($request, $options);
+            $response = $this->client->send($request, $options);
         } catch (RequestException $e) {
             $response = $e->getResponse();
             throw new ApiException(
@@ -1236,7 +1297,8 @@ class NamedAccountListsApi
      * @return array structured array or response and http info.
      * @phpstan-return array{T, int, array<array<string>>}
      */
-    private function responseToReturn(ResponseInterface $response, string $returnType) {
+    private function responseToReturn(ResponseInterface $response, string $returnType)
+    {
         return [
             $this->deserializeResponseBody($response->getBody(), $returnType),
             $response->getStatusCode(),
@@ -1265,5 +1327,4 @@ class NamedAccountListsApi
             $headers
         );
     }
-
 }

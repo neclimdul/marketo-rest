@@ -1,4 +1,5 @@
 <?php
+
 /**
  * LookupCustomObjectRequest
  *
@@ -25,8 +26,8 @@
 
 namespace NecLimDul\MarketoRest\Lead\Model;
 
-use \ArrayAccess;
-use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
+use ArrayAccess;
+use NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * LookupCustomObjectRequest Class Doc Comment
@@ -142,7 +143,6 @@ class LookupCustomObjectRequest implements ModelInterface, ArrayAccess, \JsonSer
         'input' => 'getInput',
         'next_page_token' => 'getNextPageToken'
     ];
-    
 
     /**
      * Associative array for storing property values
@@ -218,7 +218,6 @@ class LookupCustomObjectRequest implements ModelInterface, ArrayAccess, \JsonSer
     {
         return count($this->listInvalidProperties()) === 0;
     }
-    
 
     /**
      * Gets batch_size
@@ -377,7 +376,7 @@ class LookupCustomObjectRequest implements ModelInterface, ArrayAccess, \JsonSer
              * @param array-key $key
              * @return mixed
              */
-            function($key) use ($container) {
+            function ($key) use ($container) {
                 return $container[$key];
             };
         return array_map($map, $this->additionalProperties);
@@ -433,7 +432,7 @@ class LookupCustomObjectRequest implements ModelInterface, ArrayAccess, \JsonSer
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -449,5 +448,4 @@ class LookupCustomObjectRequest implements ModelInterface, ArrayAccess, \JsonSer
             JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR
         );
     }
-
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * LpTemplateGetContentResponse
  *
@@ -25,8 +26,8 @@
 
 namespace NecLimDul\MarketoRest\Asset\Model;
 
-use \ArrayAccess;
-use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
+use ArrayAccess;
+use NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * LpTemplateGetContentResponse Class Doc Comment
@@ -42,6 +43,10 @@ use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
 class LpTemplateGetContentResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    public const STATUS_APPROVED = 'approved';
+    public const STATUS_DRAFT = 'draft';
+    public const TEMPLATE_TYPE_GUIDED = 'guided';
+    public const TEMPLATE_TYPE_FREE_FORM = 'freeForm';
 
     /**
       * The original name of the model.
@@ -142,11 +147,6 @@ class LpTemplateGetContentResponse implements ModelInterface, ArrayAccess, \Json
         'status' => 'getStatus',
         'template_type' => 'getTemplateType'
     ];
-    
-    const STATUS_APPROVED = 'approved';
-    const STATUS_DRAFT = 'draft';
-    const TEMPLATE_TYPE_GUIDED = 'guided';
-    const TEMPLATE_TYPE_FREE_FORM = 'freeForm';
 
     /**
      * Associative array for storing property values
@@ -252,7 +252,6 @@ class LpTemplateGetContentResponse implements ModelInterface, ArrayAccess, \Json
     {
         return count($this->listInvalidProperties()) === 0;
     }
-    
     /**
      * Gets allowable values of the enum.
      *
@@ -265,7 +264,6 @@ class LpTemplateGetContentResponse implements ModelInterface, ArrayAccess, \Json
             self::STATUS_DRAFT,
         ];
     }
-    
     /**
      * Gets allowable values of the enum.
      *
@@ -278,7 +276,6 @@ class LpTemplateGetContentResponse implements ModelInterface, ArrayAccess, \Json
             self::TEMPLATE_TYPE_FREE_FORM,
         ];
     }
-    
 
     /**
      * Gets content
@@ -457,7 +454,7 @@ class LpTemplateGetContentResponse implements ModelInterface, ArrayAccess, \Json
              * @param array-key $key
              * @return mixed
              */
-            function($key) use ($container) {
+            function ($key) use ($container) {
                 return $container[$key];
             };
         return array_map($map, $this->additionalProperties);
@@ -513,7 +510,7 @@ class LpTemplateGetContentResponse implements ModelInterface, ArrayAccess, \Json
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -529,5 +526,4 @@ class LpTemplateGetContentResponse implements ModelInterface, ArrayAccess, \Json
             JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR
         );
     }
-
 }
