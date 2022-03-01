@@ -50,7 +50,7 @@ class HeaderSelector
      * @param string[] $accept
      * @return array<string, string>
      */
-    public function selectHeadersForMultipart($accept): array
+    public function selectHeadersForMultipart(array $accept): array
     {
         $headers = $this->selectHeaders($accept, []);
 
@@ -65,7 +65,7 @@ class HeaderSelector
      *
      * @return string|null Accept (e.g. application/json)
      */
-    private function selectAcceptHeader($accept)
+    private function selectAcceptHeader(array $accept)
     {
         if (count($accept) === 0 || (count($accept) === 1 && $accept[0] === '')) {
             return null;
@@ -83,7 +83,7 @@ class HeaderSelector
      *
      * @return string Content-Type (e.g. application/json)
      */
-    private function selectContentTypeHeader($contentType)
+    private function selectContentTypeHeader(array $contentType)
     {
         if (count($contentType) === 0 || (count($contentType) === 1 && $contentType[0] === '')) {
             return 'application/json';

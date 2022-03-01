@@ -3,6 +3,7 @@
 namespace NecLimDul\MarketoRest\Hacks\Model;
 
 use NecLimDul\MarketoRest\Lead\Model\FormResponse as LeadFormResponse;
+use NecLimDul\MarketoRest\Lead\Model\Reason;
 
 class FormResponse extends LeadFormResponse
 {
@@ -30,7 +31,7 @@ class FormResponse extends LeadFormResponse
      *
      * @return \NecLimDul\MarketoRest\Lead\Model\Reason
      */
-    public function getReason()
+    public function getReason(): Reason
     {
         return $this->container['reason'];
     }
@@ -44,14 +45,17 @@ class FormResponse extends LeadFormResponse
      *
      * @return self
      */
-    public function setReason($reason)
+    public function setReason(Reason $reason): FormResponse
     {
         $this->container['reason'] = $reason;
 
         return $this;
     }
 
-    public function getStatusAllowableValues() {
+    /**
+     * {@inheritDoc}
+     */
+    public function getStatusAllowableValues(): array {
         $values = parent::getStatusAllowableValues();
         $values[] = self::STATUS_WARNING;
         return $values;

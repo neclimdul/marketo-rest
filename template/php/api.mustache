@@ -20,8 +20,6 @@ namespace {{apiPackage}};
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\RequestException;
-use GuzzleHttp\Psr7\MultipartStream;
-use GuzzleHttp\Psr7\Query;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\RequestOptions;
@@ -278,7 +276,7 @@ use {{invokerPackage}}\ObjectSerializer;
     {
         return $this->{{operationId}}AsyncWithHttpInfo({{^vendorExtensions.x-group-parameters}}{{#allParams}}${{paramName}}{{^-last}}, {{/-last}}{{/allParams}}{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}})
             ->then(
-                function ($response) {
+                function (array $response): {{#returnType}}{{.}}{{/returnType}}{{^returnType}}null{{/returnType}} {
                     return $response[0];
                 }
             );
@@ -414,47 +412,7 @@ use {{invokerPackage}}\ObjectSerializer;
         {{/allParams}}
 
         $resourcePath = '{{{path}}}';
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        {{#queryParams}}
-        {{#-first}}
-
-        // Query parameters.
-        {{/-first}}
-        {{! This doesn't support isContainer or style. Is there something to do? }}
-        $queryParams['{{baseName}}'] = ObjectSerializer::toQueryValue(${{paramName}});
-        {{#-last}}
-        // Remove any null (optional values).
-        $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
-        {{/-last}}
-        {{/queryParams}}
-        {{#headerParams}}
-        {{#-first}}
-
-        // Header parameters.
-        {{/-first}}
-        {{#collectionFormat}}
-        if (is_array(${{paramName}})) {
-            ${{paramName}} = ObjectSerializer::serializeCollection(${{paramName}}, '{{collectionFormat}}');
-        }
-        {{/collectionFormat}}
-        {{^required}}
-        $headerParams['{{baseName}}'] = isset(${{paramName}}) ? ObjectSerializer::toHeaderValue(${{paramName}}) : NULL;
-        {{/required}}
-        {{#required}}
-        $headerParams['{{baseName}}'] = ObjectSerializer::toHeaderValue(${{paramName}});
-        {{/required}}
-        {{#-last}}
-        // Remove any null (optional values).
-        $headerParams = array_filter($headerParams, function($v) { return $v !== null; });
-        {{/-last}}
-        {{/headerParams}}
         {{#pathParams}}
-        {{#-first}}
-
-        // Path parameters.
-        {{/-first}}
         {{#collectionFormat}}
         if (is_array(${{paramName}})) {
             ${{paramName}} = ObjectSerializer::serializeCollection(${{paramName}}, '{{collectionFormat}}');
@@ -466,91 +424,9 @@ use {{invokerPackage}}\ObjectSerializer;
             $resourcePath
         );
         {{/pathParams}}
-        {{#formParams}}
-        {{#-first}}
 
-        // Form parameters.
-        /** @var string[][] $formParams */
-        $formParams = [];
-        $multipart = false;
-        {{/-first}}
-        {{#isFile}}
-        $multipart = true;
-        $formParams['{{baseName}}'] = [];
-        foreach (ObjectSerializer::fileToFormValue(${{paramName}}) as $paramFile) {
-            $formParams['{{baseName}}'][] = $paramFile;
-        }
-        {{/isFile}}
-        {{^isFile}}
-        $formParams['{{baseName}}'] = ObjectSerializer::toFormValue(${{paramName}});
-        {{/isFile}}
-        {{#-last}}
-        // Remove any null (optional values).
-        $formParams = array_filter($formParams, function($v) { return $v !== null; });
-        /**
-         * @psalm-suppress RedundantCondition,TypeDoesNotContainType
-         * @phpstan-ignore-next-line
-         */
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                [{{#produces}}'{{{mediaType}}}'{{^-last}}, {{/-last}}{{/produces}}]
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                [{{#produces}}'{{{mediaType}}}'{{^-last}}, {{/-last}}{{/produces}}],
-                [{{#consumes}}'{{{mediaType}}}'{{^-last}}, {{/-last}}{{/consumes}}]
-            );
-        }
-        {{/-last}}
-        {{/formParams}}
-        {{^formParams}}
-        $headers = $this->headerSelector->selectHeaders(
-            [{{#produces}}'{{{mediaType}}}'{{^-last}}, {{/-last}}{{/produces}}],
-            [{{#consumes}}'{{{mediaType}}}'{{^-last}}, {{/-last}}{{/consumes}}]
-        );
-        {{/formParams}}
-        {{#bodyParams}}
-        {{#required}}
-        $httpBody = ObjectSerializer::toBodyValue(${{paramName}}, $headers['Content-Type'] === 'application/json');
-        {{/required}}
-        {{^required}}
-        // for model (json/xml)
-        if (!empty(${{paramName}})) {
-            $httpBody = ObjectSerializer::toBodyValue(${{paramName}}, $headers['Content-Type'] === 'application/json');
-        }
-        {{/required}}
-        {{/bodyParams}}
-        {{#formParams}}
-        {{#-last}}
-        {{#bodyParams}}{{#-last}}else{{/-last}}{{/bodyParams}}if (!empty($formParams)) {
-            /**
-             * @psalm-suppress RedundantCondition,TypeDoesNotContainType
-             * @phpstan-ignore-next-line
-             */
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    foreach ((array) $formParamValue as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-
-            } else {
-                // for HTTP post (form)
-                $httpBody = Query::build($formParams);
-            }
-        }
-        {{/-last}}
-        {{/formParams}}
-
+        {{! Header handling }}
+        $headers = [];
         {{#authMethods}}
         {{#isApiKey}}
         // this endpoint requires API key authentication
@@ -580,32 +456,74 @@ use {{invokerPackage}}\ObjectSerializer;
         }
         {{/isOAuth}}
         {{/authMethods}}
-
-        $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+            $headers['User-Agent'] = $this->config->getUserAgent();
         }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
+        {{#isMultipart}}
+        $headers = array_merge($headers, $this->headerSelector->selectHeadersForMultipart(
+            [{{#produces}}'{{{mediaType}}}'{{^-last}}, {{/-last}}{{/produces}}]
+        ));
+        {{/isMultipart}}
+        {{^isMultipart}}
+        $headers = array_merge($headers, $this->headerSelector->selectHeaders(
+            [{{#produces}}'{{{mediaType}}}'{{^-last}}, {{/-last}}{{/produces}}],
+            [{{#consumes}}'{{{mediaType}}}'{{^-last}}, {{/-last}}{{/consumes}}]
+        ));
+        {{/isMultipart}}
         {{#servers.0}}
         $operationHosts = [{{#servers}}"{{{url}}}"{{^-last}}, {{/-last}}{{/servers}}];
         if ($this->hostIndex < 0 || $this->hostIndex >= sizeof($operationHosts)) {
             throw new \InvalidArgumentException("Invalid index {$this->hostIndex} when selecting the host. Must be less than ".sizeof($operationHosts));
         }
         $operationHost = $operationHosts[$this->hostIndex];
-
         {{/servers.0}}
-        $query = Query::build($queryParams);
-        return new Request(
+        {{^servers.0}}
+        $operationHost = $this->config->getHost();
+        {{/servers.0}}
+
+        // figure out header select logic.
+        return ObjectSerializer::createRequest(
             '{{httpMethod}}',
-            {{^servers.0}}$this->config->getHost(){{/servers.0}}{{#servers.0}}$operationHost{{/servers.0}} . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
+            $operationHost . $resourcePath,
+            // Query.
+            [
+            {{#queryParams}}
+                {{! This doesn't support isContainer or style. Is there something to do? }}
+                '{{baseName}}' => ObjectSerializer::toQueryValue(${{paramName}}),
+            {{/queryParams}}
+            ],
+            // Headers.
+            array_merge(
+                [
+                {{#headerParams}}
+                {{#collectionFormat}}
+                    '{{baseName}}' => ObjectSerializer::serializeCollection(${{paramName}}, '{{collectionFormat}}');
+                {{/collectionFormat}}
+                {{^required}}
+                    '{{baseName}}' => isset(${{paramName}}) ? ObjectSerializer::toHeaderValue(${{paramName}}) : null,
+                {{/required}}
+                {{#required}}
+                    '{{baseName}}' => ObjectSerializer::toHeaderValue(${{paramName}}),
+                {{/required}}
+                {{/headerParams}}
+                ],
+                $headers
+            ),
+            // Form Params
+            [
+            {{#formParams}}
+                {{#isFile}}
+                '{{baseName}}' => ObjectSerializer::fileToFormValue(${{paramName}}),
+                {{/isFile}}
+                {{^isFile}}
+                '{{baseName}}' => ObjectSerializer::toFormValue(${{paramName}}),
+                {{/isFile}}
+            {{/formParams}}
+            ],
+            {{#bodyParams}}
+            ${{paramName}}
+            {{/bodyParams}}
+            {{^bodyParams}}''{{/bodyParams}}
         );
     }
 
@@ -646,7 +564,7 @@ use {{invokerPackage}}\ObjectSerializer;
             throw new ApiException(
                 "[{$e->getCode()}] {$e->getMessage()}",
                 (int) $e->getCode(),
-                $response ? $response->getHeaders() : null,
+                $response ? $response->getHeaders() : [],
                 $response ? (string) $response->getBody() : null
             );
         }
@@ -682,7 +600,7 @@ use {{invokerPackage}}\ObjectSerializer;
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
-                function ($response) use ($returnType) {
+                function (ResponseInterface $response) use ($returnType) {
                     return $this->responseToReturn($response, $returnType);
                 },
                 function (RequestException $exception) use ($exceptionHandler) {
@@ -694,7 +612,7 @@ use {{invokerPackage}}\ObjectSerializer;
                             (string) $exception->getRequest()->getUri()
                         ),
                         (int) $exception->getCode(),
-                        $response ? $response->getHeaders() : null,
+                        $response ? $response->getHeaders() : [],
                         $response ? (string) $response->getBody() : null
                     );
                     throw $exceptionHandler($e);
@@ -727,17 +645,17 @@ use {{invokerPackage}}\ObjectSerializer;
      * @template T
      * @param mixed $responseBody The response body.
      * @param string $returnType The return type.
-     * @param array<string, string[]>|null $headers A list of headers from the response.
+     * @param array<string, string[]> $headers A list of headers from the response.
      * @phpstan-param class-string<T> $returnType
      *
      * @return mixed Either a string or a stream to be passed to a file object.
      * @phpstan-return T
      * @psalm-return T
      */
-    private function deserializeResponseBody($responseBody, string $returnType, ?array $headers = [])
+    private function deserializeResponseBody($responseBody, string $returnType, array $headers = [])
     {
         return ObjectSerializer::deserialize(
-            $returnType === '\SplFileObject' ? $responseBody : (string) $responseBody,
+            $returnType === \SplFileObject::class ? $responseBody : (string) $responseBody,
             $returnType,
             $headers
         );

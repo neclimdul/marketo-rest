@@ -70,7 +70,7 @@ class LeadsApi extends LeadsLeadsApi
                             (string)$exception->getRequest()->getUri()
                         ),
                         (int)$exception->getCode(),
-                        $response ? $response->getHeaders() : null,
+                        $response ? $response->getHeaders() : [],
                         $response ? (string)$response->getBody() : null
                     );
                 }
@@ -96,7 +96,7 @@ class LeadsApi extends LeadsLeadsApi
             throw new ApiException(
                 "[{$e->getCode()}] {$e->getMessage()}",
                 (int)$e->getCode(),
-                $response ? $response->getHeaders() : null,
+                $response ? $response->getHeaders() : [],
                 $response ? (string)$response->getBody() : null
             );
         }
@@ -145,7 +145,7 @@ class LeadsApi extends LeadsLeadsApi
      * @template T
      * @param mixed $responseBody The response body.
      * @param string $returnType The return type.
-     * @param array<string, string[]>|null $headers A list of headers from the response.
+     * @param array<string, string[]> $headers A list of headers from the response.
      * @phpstan-param class-string<T> $returnType
      *
      * @return mixed Either a string or a stream to be passed to a file object.
@@ -154,7 +154,7 @@ class LeadsApi extends LeadsLeadsApi
     protected function deserializeResponseBody(
         $responseBody,
         string $returnType,
-        ?array $headers = []
+        array $headers = []
     ) {
         return ObjectSerializer::deserialize(
             $returnType === '\SplFileObject' ? $responseBody : (string)$responseBody,
