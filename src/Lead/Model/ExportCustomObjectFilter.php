@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ExportCustomObjectFilter
  *
@@ -25,8 +26,8 @@
 
 namespace NecLimDul\MarketoRest\Lead\Model;
 
-use \ArrayAccess;
-use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
+use ArrayAccess;
+use NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * ExportCustomObjectFilter Class Doc Comment
@@ -142,7 +143,6 @@ class ExportCustomObjectFilter implements ModelInterface, ArrayAccess, \JsonSeri
         'static_list_id' => 'getStaticListId',
         'static_list_name' => 'getStaticListName'
     ];
-    
 
     /**
      * Associative array for storing property values
@@ -230,7 +230,6 @@ class ExportCustomObjectFilter implements ModelInterface, ArrayAccess, \JsonSeri
     {
         return count($this->listInvalidProperties()) === 0;
     }
-    
 
     /**
      * Gets updated_at
@@ -389,7 +388,7 @@ class ExportCustomObjectFilter implements ModelInterface, ArrayAccess, \JsonSeri
              * @param array-key $key
              * @return mixed
              */
-            function($key) use ($container) {
+            function ($key) use ($container) {
                 return $container[$key];
             };
         return array_map($map, $this->additionalProperties);
@@ -445,7 +444,7 @@ class ExportCustomObjectFilter implements ModelInterface, ArrayAccess, \JsonSeri
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -461,5 +460,4 @@ class ExportCustomObjectFilter implements ModelInterface, ArrayAccess, \JsonSeri
             JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR
         );
     }
-
 }

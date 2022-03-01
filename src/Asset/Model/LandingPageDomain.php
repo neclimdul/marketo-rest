@@ -1,4 +1,5 @@
 <?php
+
 /**
  * LandingPageDomain
  *
@@ -25,8 +26,8 @@
 
 namespace NecLimDul\MarketoRest\Asset\Model;
 
-use \ArrayAccess;
-use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
+use ArrayAccess;
+use NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * LandingPageDomain Class Doc Comment
@@ -42,6 +43,8 @@ use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
 class LandingPageDomain implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    public const TYPE_DOMAIN = 'domain';
+    public const TYPE_DOMAIN_ALIAS = 'domain-alias';
 
     /**
       * The original name of the model.
@@ -127,9 +130,6 @@ class LandingPageDomain implements ModelInterface, ArrayAccess, \JsonSerializabl
         'hostname' => 'getHostname',
         'type' => 'getType'
     ];
-    
-    const TYPE_DOMAIN = 'domain';
-    const TYPE_DOMAIN_ALIAS = 'domain-alias';
 
     /**
      * Associative array for storing property values
@@ -214,7 +214,6 @@ class LandingPageDomain implements ModelInterface, ArrayAccess, \JsonSerializabl
     {
         return count($this->listInvalidProperties()) === 0;
     }
-    
     /**
      * Gets allowable values of the enum.
      *
@@ -227,7 +226,6 @@ class LandingPageDomain implements ModelInterface, ArrayAccess, \JsonSerializabl
             self::TYPE_DOMAIN_ALIAS,
         ];
     }
-    
 
     /**
      * Gets hostname
@@ -324,7 +322,7 @@ class LandingPageDomain implements ModelInterface, ArrayAccess, \JsonSerializabl
              * @param array-key $key
              * @return mixed
              */
-            function($key) use ($container) {
+            function ($key) use ($container) {
                 return $container[$key];
             };
         return array_map($map, $this->additionalProperties);
@@ -380,7 +378,7 @@ class LandingPageDomain implements ModelInterface, ArrayAccess, \JsonSerializabl
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -396,5 +394,4 @@ class LandingPageDomain implements ModelInterface, ArrayAccess, \JsonSerializabl
             JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR
         );
     }
-
 }

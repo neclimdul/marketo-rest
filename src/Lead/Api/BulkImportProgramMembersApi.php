@@ -1,4 +1,5 @@
 <?php
+
 /**
  * BulkImportProgramMembersApi
  *
@@ -48,7 +49,6 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  */
 class BulkImportProgramMembersApi
 {
-
     /**
      * @var ClientInterface
      */
@@ -73,7 +73,7 @@ class BulkImportProgramMembersApi
      * @param ClientInterface|null $client
      * @param Configuration|null   $config
      * @param HeaderSelector|null  $selector
-     * @param int                  $hostIndex (Optional) host index to select the list of hosts if defined in the OpenAPI spec
+     * @param int                  $hostIndex (Optional) host index to select the list of hosts if defined in the spec.
      */
     public function __construct(
         ClientInterface $client = null,
@@ -102,7 +102,7 @@ class BulkImportProgramMembersApi
      *
      * @return int Host index
      */
-    public function getHostIndex()
+    public function getHostIndex(): int
     {
         return $this->hostIndex;
     }
@@ -110,7 +110,7 @@ class BulkImportProgramMembersApi
     /**
      * @return Configuration
      */
-    public function getConfig()
+    public function getConfig(): Configuration
     {
         return $this->config;
     }
@@ -141,7 +141,8 @@ class BulkImportProgramMembersApi
     /**
      * Get Import Program Member Failures
      *
-     * @param  int $batch_id Id of the import batch job. (required)
+     * @param int $batch_id
+     *   Id of the import batch job.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -149,8 +150,7 @@ class BulkImportProgramMembersApi
      */
     public function getImportProgramMemberFailuresUsingGET(
         int $batch_id
-    ): \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent
-    {
+    ): \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent {
         list($response) = $this->getImportProgramMemberFailuresUsingGETWithHttpInfo($batch_id);
         return $response;
     }
@@ -158,17 +158,21 @@ class BulkImportProgramMembersApi
     /**
      * Get Import Program Member Failures
      *
-     * @param  int $batch_id Id of the import batch job. (required)
+     * @param int $batch_id
+     *   Id of the import batch job.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function getImportProgramMemberFailuresUsingGETWithHttpInfo(
         int $batch_id
-    ): array
-    {
+    ): array {
         $request = $this->getImportProgramMemberFailuresUsingGETRequest($batch_id);
         try {
             $response = $this->makeRequest($request);
@@ -184,15 +188,15 @@ class BulkImportProgramMembersApi
     /**
      * Get Import Program Member Failures
      *
-     * @param  int $batch_id Id of the import batch job. (required)
+     * @param int $batch_id
+     *   Id of the import batch job.
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function getImportProgramMemberFailuresUsingGETAsync(
         int $batch_id
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->getImportProgramMemberFailuresUsingGETAsyncWithHttpInfo($batch_id)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent {
@@ -204,15 +208,15 @@ class BulkImportProgramMembersApi
     /**
      * Get Import Program Member Failures
      *
-     * @param  int $batch_id Id of the import batch job. (required)
+     * @param int $batch_id
+     *   Id of the import batch job.
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function getImportProgramMemberFailuresUsingGETAsyncWithHttpInfo(
         int $batch_id
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->getImportProgramMemberFailuresUsingGETRequest($batch_id);
         return $this->makeAsyncRequest(
             $request,
@@ -224,15 +228,15 @@ class BulkImportProgramMembersApi
     /**
      * Create request for operation 'getImportProgramMemberFailuresUsingGET'
      *
-     * @param  int $batch_id Id of the import batch job. (required)
+     * @param int $batch_id
+     *   Id of the import batch job.
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
     public function getImportProgramMemberFailuresUsingGETRequest(
         int $batch_id
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/bulk/v1/program/members/import/{batchId}/failures.json';
         $resourcePath = str_replace(
@@ -297,7 +301,8 @@ class BulkImportProgramMembersApi
     /**
      * Get Import Program Member Status
      *
-     * @param  int $batch_id Id of the import batch job. (required)
+     * @param int $batch_id
+     *   Id of the import batch job.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -305,8 +310,7 @@ class BulkImportProgramMembersApi
      */
     public function getImportProgramMemberStatusUsingGET(
         int $batch_id
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportProgramMemberResponse
-    {
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportProgramMemberResponse {
         list($response) = $this->getImportProgramMemberStatusUsingGETWithHttpInfo($batch_id);
         return $response;
     }
@@ -314,17 +318,21 @@ class BulkImportProgramMembersApi
     /**
      * Get Import Program Member Status
      *
-     * @param  int $batch_id Id of the import batch job. (required)
+     * @param int $batch_id
+     *   Id of the import batch job.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportProgramMemberResponse, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportProgramMemberResponse, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportProgramMemberResponse,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function getImportProgramMemberStatusUsingGETWithHttpInfo(
         int $batch_id
-    ): array
-    {
+    ): array {
         $request = $this->getImportProgramMemberStatusUsingGETRequest($batch_id);
         try {
             $response = $this->makeRequest($request);
@@ -340,15 +348,15 @@ class BulkImportProgramMembersApi
     /**
      * Get Import Program Member Status
      *
-     * @param  int $batch_id Id of the import batch job. (required)
+     * @param int $batch_id
+     *   Id of the import batch job.
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function getImportProgramMemberStatusUsingGETAsync(
         int $batch_id
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->getImportProgramMemberStatusUsingGETAsyncWithHttpInfo($batch_id)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportProgramMemberResponse {
@@ -360,15 +368,15 @@ class BulkImportProgramMembersApi
     /**
      * Get Import Program Member Status
      *
-     * @param  int $batch_id Id of the import batch job. (required)
+     * @param int $batch_id
+     *   Id of the import batch job.
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function getImportProgramMemberStatusUsingGETAsyncWithHttpInfo(
         int $batch_id
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->getImportProgramMemberStatusUsingGETRequest($batch_id);
         return $this->makeAsyncRequest(
             $request,
@@ -380,15 +388,15 @@ class BulkImportProgramMembersApi
     /**
      * Create request for operation 'getImportProgramMemberStatusUsingGET'
      *
-     * @param  int $batch_id Id of the import batch job. (required)
+     * @param int $batch_id
+     *   Id of the import batch job.
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
     public function getImportProgramMemberStatusUsingGETRequest(
         int $batch_id
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/bulk/v1/program/members/import/{batchId}/status.json';
         $resourcePath = str_replace(
@@ -453,7 +461,8 @@ class BulkImportProgramMembersApi
     /**
      * Get Import Program Member Warnings
      *
-     * @param  int $batch_id Id of the import batch job. (required)
+     * @param int $batch_id
+     *   Id of the import batch job.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -461,8 +470,7 @@ class BulkImportProgramMembersApi
      */
     public function getImportProgramMemberWarningsUsingGET(
         int $batch_id
-    ): \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent
-    {
+    ): \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent {
         list($response) = $this->getImportProgramMemberWarningsUsingGETWithHttpInfo($batch_id);
         return $response;
     }
@@ -470,17 +478,21 @@ class BulkImportProgramMembersApi
     /**
      * Get Import Program Member Warnings
      *
-     * @param  int $batch_id Id of the import batch job. (required)
+     * @param int $batch_id
+     *   Id of the import batch job.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function getImportProgramMemberWarningsUsingGETWithHttpInfo(
         int $batch_id
-    ): array
-    {
+    ): array {
         $request = $this->getImportProgramMemberWarningsUsingGETRequest($batch_id);
         try {
             $response = $this->makeRequest($request);
@@ -496,15 +508,15 @@ class BulkImportProgramMembersApi
     /**
      * Get Import Program Member Warnings
      *
-     * @param  int $batch_id Id of the import batch job. (required)
+     * @param int $batch_id
+     *   Id of the import batch job.
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function getImportProgramMemberWarningsUsingGETAsync(
         int $batch_id
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->getImportProgramMemberWarningsUsingGETAsyncWithHttpInfo($batch_id)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent {
@@ -516,15 +528,15 @@ class BulkImportProgramMembersApi
     /**
      * Get Import Program Member Warnings
      *
-     * @param  int $batch_id Id of the import batch job. (required)
+     * @param int $batch_id
+     *   Id of the import batch job.
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function getImportProgramMemberWarningsUsingGETAsyncWithHttpInfo(
         int $batch_id
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->getImportProgramMemberWarningsUsingGETRequest($batch_id);
         return $this->makeAsyncRequest(
             $request,
@@ -536,15 +548,15 @@ class BulkImportProgramMembersApi
     /**
      * Create request for operation 'getImportProgramMemberWarningsUsingGET'
      *
-     * @param  int $batch_id Id of the import batch job. (required)
+     * @param int $batch_id
+     *   Id of the import batch job.
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
     public function getImportProgramMemberWarningsUsingGETRequest(
         int $batch_id
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/bulk/v1/program/members/import/{batchId}/warnings.json';
         $resourcePath = str_replace(
@@ -609,10 +621,14 @@ class BulkImportProgramMembersApi
     /**
      * Import Program Members
      *
-     * @param  string $program_id Id of the program to add members to. (required)
-     * @param  string $program_member_status Program member status for members being added. (required)
-     * @param  string $format Import file format. (required)
-     * @param  \SplFileObject $file File containing the data records to import. (required)
+     * @param string $program_id
+     *   Id of the program to add members to.
+     * @param string $program_member_status
+     *   Program member status for members being added.
+     * @param string $format
+     *   Import file format.
+     * @param \SplFileObject $file
+     *   File containing the data records to import.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -623,8 +639,7 @@ class BulkImportProgramMembersApi
         string $program_member_status,
         string $format,
         \SplFileObject $file
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportProgramMemberResponse
-    {
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportProgramMemberResponse {
         list($response) = $this->importProgramMemberUsingPOSTWithHttpInfo($program_id, $program_member_status, $format, $file);
         return $response;
     }
@@ -632,23 +647,30 @@ class BulkImportProgramMembersApi
     /**
      * Import Program Members
      *
-     * @param  string $program_id Id of the program to add members to. (required)
-     * @param  string $program_member_status Program member status for members being added. (required)
-     * @param  string $format Import file format. (required)
-     * @param  \SplFileObject $file File containing the data records to import. (required)
+     * @param string $program_id
+     *   Id of the program to add members to.
+     * @param string $program_member_status
+     *   Program member status for members being added.
+     * @param string $format
+     *   Import file format.
+     * @param \SplFileObject $file
+     *   File containing the data records to import.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportProgramMemberResponse, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportProgramMemberResponse, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportProgramMemberResponse,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function importProgramMemberUsingPOSTWithHttpInfo(
         string $program_id,
         string $program_member_status,
         string $format,
         \SplFileObject $file
-    ): array
-    {
+    ): array {
         $request = $this->importProgramMemberUsingPOSTRequest($program_id, $program_member_status, $format, $file);
         try {
             $response = $this->makeRequest($request);
@@ -664,10 +686,14 @@ class BulkImportProgramMembersApi
     /**
      * Import Program Members
      *
-     * @param  string $program_id Id of the program to add members to. (required)
-     * @param  string $program_member_status Program member status for members being added. (required)
-     * @param  string $format Import file format. (required)
-     * @param  \SplFileObject $file File containing the data records to import. (required)
+     * @param string $program_id
+     *   Id of the program to add members to.
+     * @param string $program_member_status
+     *   Program member status for members being added.
+     * @param string $format
+     *   Import file format.
+     * @param \SplFileObject $file
+     *   File containing the data records to import.
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -677,8 +703,7 @@ class BulkImportProgramMembersApi
         string $program_member_status,
         string $format,
         \SplFileObject $file
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->importProgramMemberUsingPOSTAsyncWithHttpInfo($program_id, $program_member_status, $format, $file)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfImportProgramMemberResponse {
@@ -690,10 +715,14 @@ class BulkImportProgramMembersApi
     /**
      * Import Program Members
      *
-     * @param  string $program_id Id of the program to add members to. (required)
-     * @param  string $program_member_status Program member status for members being added. (required)
-     * @param  string $format Import file format. (required)
-     * @param  \SplFileObject $file File containing the data records to import. (required)
+     * @param string $program_id
+     *   Id of the program to add members to.
+     * @param string $program_member_status
+     *   Program member status for members being added.
+     * @param string $format
+     *   Import file format.
+     * @param \SplFileObject $file
+     *   File containing the data records to import.
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -703,8 +732,7 @@ class BulkImportProgramMembersApi
         string $program_member_status,
         string $format,
         \SplFileObject $file
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->importProgramMemberUsingPOSTRequest($program_id, $program_member_status, $format, $file);
         return $this->makeAsyncRequest(
             $request,
@@ -716,10 +744,14 @@ class BulkImportProgramMembersApi
     /**
      * Create request for operation 'importProgramMemberUsingPOST'
      *
-     * @param  string $program_id Id of the program to add members to. (required)
-     * @param  string $program_member_status Program member status for members being added. (required)
-     * @param  string $format Import file format. (required)
-     * @param  \SplFileObject $file File containing the data records to import. (required)
+     * @param string $program_id
+     *   Id of the program to add members to.
+     * @param string $program_member_status
+     *   Program member status for members being added.
+     * @param string $format
+     *   Import file format.
+     * @param \SplFileObject $file
+     *   File containing the data records to import.
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -729,8 +761,7 @@ class BulkImportProgramMembersApi
         string $program_member_status,
         string $format,
         \SplFileObject $file
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/bulk/v1/program/{programId}/members/import.json';
         $resourcePath = str_replace(
@@ -799,10 +830,11 @@ class BulkImportProgramMembersApi
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @return \Psr\Http\Message\ResponseInterface
      */
-    private function makeRequest(Request $request) {
+    private function makeRequest(Request $request)
+    {
         $options = $this->createHttpClientOption();
         try {
-           $response = $this->client->send($request, $options);
+            $response = $this->client->send($request, $options);
         } catch (RequestException $e) {
             $response = $e->getResponse();
             throw new ApiException(
@@ -875,7 +907,8 @@ class BulkImportProgramMembersApi
      * @return array structured array or response and http info.
      * @phpstan-return array{T, int, array<array<string>>}
      */
-    private function responseToReturn(ResponseInterface $response, string $returnType) {
+    private function responseToReturn(ResponseInterface $response, string $returnType)
+    {
         return [
             $this->deserializeResponseBody($response->getBody(), $returnType),
             $response->getStatusCode(),
@@ -904,5 +937,4 @@ class BulkImportProgramMembersApi
             $headers
         );
     }
-
 }

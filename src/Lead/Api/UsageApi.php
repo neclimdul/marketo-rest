@@ -1,4 +1,5 @@
 <?php
+
 /**
  * UsageApi
  *
@@ -48,7 +49,6 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  */
 class UsageApi
 {
-
     /**
      * @var ClientInterface
      */
@@ -73,7 +73,7 @@ class UsageApi
      * @param ClientInterface|null $client
      * @param Configuration|null   $config
      * @param HeaderSelector|null  $selector
-     * @param int                  $hostIndex (Optional) host index to select the list of hosts if defined in the OpenAPI spec
+     * @param int                  $hostIndex (Optional) host index to select the list of hosts if defined in the spec.
      */
     public function __construct(
         ClientInterface $client = null,
@@ -102,7 +102,7 @@ class UsageApi
      *
      * @return int Host index
      */
-    public function getHostIndex()
+    public function getHostIndex(): int
     {
         return $this->hostIndex;
     }
@@ -110,7 +110,7 @@ class UsageApi
     /**
      * @return Configuration
      */
-    public function getConfig()
+    public function getConfig(): Configuration
     {
         return $this->config;
     }
@@ -145,8 +145,7 @@ class UsageApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfErrorsData
      */
-    public function getDailyErrorsUsingGET(
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfErrorsData
+    public function getDailyErrorsUsingGET(): \NecLimDul\MarketoRest\Lead\Model\ResponseOfErrorsData
     {
         list($response) = $this->getDailyErrorsUsingGETWithHttpInfo();
         return $response;
@@ -157,11 +156,14 @@ class UsageApi
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfErrorsData, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfErrorsData, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfErrorsData,
+     *     int,
+     *     array<array<string>>
+     * }
      */
-    public function getDailyErrorsUsingGETWithHttpInfo(
-    ): array
+    public function getDailyErrorsUsingGETWithHttpInfo(): array
     {
         $request = $this->getDailyErrorsUsingGETRequest();
         try {
@@ -181,8 +183,7 @@ class UsageApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getDailyErrorsUsingGETAsync(
-    ): PromiseInterface
+    public function getDailyErrorsUsingGETAsync(): PromiseInterface
     {
         return $this->getDailyErrorsUsingGETAsyncWithHttpInfo()
             ->then(
@@ -198,8 +199,7 @@ class UsageApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getDailyErrorsUsingGETAsyncWithHttpInfo(
-    ): PromiseInterface
+    public function getDailyErrorsUsingGETAsyncWithHttpInfo(): PromiseInterface
     {
         $request = $this->getDailyErrorsUsingGETRequest();
         return $this->makeAsyncRequest(
@@ -215,8 +215,7 @@ class UsageApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getDailyErrorsUsingGETRequest(
-    ): Request
+    public function getDailyErrorsUsingGETRequest(): Request
     {
 
         $resourcePath = '/rest/v1/stats/errors.json';
@@ -281,8 +280,7 @@ class UsageApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfUsageData
      */
-    public function getDailyUsageUsingGET(
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfUsageData
+    public function getDailyUsageUsingGET(): \NecLimDul\MarketoRest\Lead\Model\ResponseOfUsageData
     {
         list($response) = $this->getDailyUsageUsingGETWithHttpInfo();
         return $response;
@@ -293,11 +291,14 @@ class UsageApi
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfUsageData, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfUsageData, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfUsageData,
+     *     int,
+     *     array<array<string>>
+     * }
      */
-    public function getDailyUsageUsingGETWithHttpInfo(
-    ): array
+    public function getDailyUsageUsingGETWithHttpInfo(): array
     {
         $request = $this->getDailyUsageUsingGETRequest();
         try {
@@ -317,8 +318,7 @@ class UsageApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getDailyUsageUsingGETAsync(
-    ): PromiseInterface
+    public function getDailyUsageUsingGETAsync(): PromiseInterface
     {
         return $this->getDailyUsageUsingGETAsyncWithHttpInfo()
             ->then(
@@ -334,8 +334,7 @@ class UsageApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getDailyUsageUsingGETAsyncWithHttpInfo(
-    ): PromiseInterface
+    public function getDailyUsageUsingGETAsyncWithHttpInfo(): PromiseInterface
     {
         $request = $this->getDailyUsageUsingGETRequest();
         return $this->makeAsyncRequest(
@@ -351,8 +350,7 @@ class UsageApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getDailyUsageUsingGETRequest(
-    ): Request
+    public function getDailyUsageUsingGETRequest(): Request
     {
 
         $resourcePath = '/rest/v1/stats/usage.json';
@@ -417,8 +415,7 @@ class UsageApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfErrorsData
      */
-    public function getLast7DaysErrorsUsingGET(
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfErrorsData
+    public function getLast7DaysErrorsUsingGET(): \NecLimDul\MarketoRest\Lead\Model\ResponseOfErrorsData
     {
         list($response) = $this->getLast7DaysErrorsUsingGETWithHttpInfo();
         return $response;
@@ -429,11 +426,14 @@ class UsageApi
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfErrorsData, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfErrorsData, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfErrorsData,
+     *     int,
+     *     array<array<string>>
+     * }
      */
-    public function getLast7DaysErrorsUsingGETWithHttpInfo(
-    ): array
+    public function getLast7DaysErrorsUsingGETWithHttpInfo(): array
     {
         $request = $this->getLast7DaysErrorsUsingGETRequest();
         try {
@@ -453,8 +453,7 @@ class UsageApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getLast7DaysErrorsUsingGETAsync(
-    ): PromiseInterface
+    public function getLast7DaysErrorsUsingGETAsync(): PromiseInterface
     {
         return $this->getLast7DaysErrorsUsingGETAsyncWithHttpInfo()
             ->then(
@@ -470,8 +469,7 @@ class UsageApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getLast7DaysErrorsUsingGETAsyncWithHttpInfo(
-    ): PromiseInterface
+    public function getLast7DaysErrorsUsingGETAsyncWithHttpInfo(): PromiseInterface
     {
         $request = $this->getLast7DaysErrorsUsingGETRequest();
         return $this->makeAsyncRequest(
@@ -487,8 +485,7 @@ class UsageApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getLast7DaysErrorsUsingGETRequest(
-    ): Request
+    public function getLast7DaysErrorsUsingGETRequest(): Request
     {
 
         $resourcePath = '/rest/v1/stats/errors/last7days.json';
@@ -553,8 +550,7 @@ class UsageApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfUsageData
      */
-    public function getLast7DaysUsageUsingGET(
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfUsageData
+    public function getLast7DaysUsageUsingGET(): \NecLimDul\MarketoRest\Lead\Model\ResponseOfUsageData
     {
         list($response) = $this->getLast7DaysUsageUsingGETWithHttpInfo();
         return $response;
@@ -565,11 +561,14 @@ class UsageApi
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfUsageData, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfUsageData, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfUsageData,
+     *     int,
+     *     array<array<string>>
+     * }
      */
-    public function getLast7DaysUsageUsingGETWithHttpInfo(
-    ): array
+    public function getLast7DaysUsageUsingGETWithHttpInfo(): array
     {
         $request = $this->getLast7DaysUsageUsingGETRequest();
         try {
@@ -589,8 +588,7 @@ class UsageApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getLast7DaysUsageUsingGETAsync(
-    ): PromiseInterface
+    public function getLast7DaysUsageUsingGETAsync(): PromiseInterface
     {
         return $this->getLast7DaysUsageUsingGETAsyncWithHttpInfo()
             ->then(
@@ -606,8 +604,7 @@ class UsageApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getLast7DaysUsageUsingGETAsyncWithHttpInfo(
-    ): PromiseInterface
+    public function getLast7DaysUsageUsingGETAsyncWithHttpInfo(): PromiseInterface
     {
         $request = $this->getLast7DaysUsageUsingGETRequest();
         return $this->makeAsyncRequest(
@@ -623,8 +620,7 @@ class UsageApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getLast7DaysUsageUsingGETRequest(
-    ): Request
+    public function getLast7DaysUsageUsingGETRequest(): Request
     {
 
         $resourcePath = '/rest/v1/stats/usage/last7days.json';
@@ -686,10 +682,11 @@ class UsageApi
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @return \Psr\Http\Message\ResponseInterface
      */
-    private function makeRequest(Request $request) {
+    private function makeRequest(Request $request)
+    {
         $options = $this->createHttpClientOption();
         try {
-           $response = $this->client->send($request, $options);
+            $response = $this->client->send($request, $options);
         } catch (RequestException $e) {
             $response = $e->getResponse();
             throw new ApiException(
@@ -762,7 +759,8 @@ class UsageApi
      * @return array structured array or response and http info.
      * @phpstan-return array{T, int, array<array<string>>}
      */
-    private function responseToReturn(ResponseInterface $response, string $returnType) {
+    private function responseToReturn(ResponseInterface $response, string $returnType)
+    {
         return [
             $this->deserializeResponseBody($response->getBody(), $returnType),
             $response->getStatusCode(),
@@ -791,5 +789,4 @@ class UsageApi
             $headers
         );
     }
-
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * NamedAccountsApi
  *
@@ -48,7 +49,6 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  */
 class NamedAccountsApi
 {
-
     /**
      * @var ClientInterface
      */
@@ -73,7 +73,7 @@ class NamedAccountsApi
      * @param ClientInterface|null $client
      * @param Configuration|null   $config
      * @param HeaderSelector|null  $selector
-     * @param int                  $hostIndex (Optional) host index to select the list of hosts if defined in the OpenAPI spec
+     * @param int                  $hostIndex (Optional) host index to select the list of hosts if defined in the spec.
      */
     public function __construct(
         ClientInterface $client = null,
@@ -102,7 +102,7 @@ class NamedAccountsApi
      *
      * @return int Host index
      */
-    public function getHostIndex()
+    public function getHostIndex(): int
     {
         return $this->hostIndex;
     }
@@ -110,7 +110,7 @@ class NamedAccountsApi
     /**
      * @return Configuration
      */
-    public function getConfig()
+    public function getConfig(): Configuration
     {
         return $this->config;
     }
@@ -141,7 +141,8 @@ class NamedAccountsApi
     /**
      * Delete NamedAccounts
      *
-     * @param  \NecLimDul\MarketoRest\Lead\Model\DeleteNamedAccountRequest $delete_account_request deleteAccountRequest (required)
+     * @param \NecLimDul\MarketoRest\Lead\Model\DeleteNamedAccountRequest $delete_account_request
+     *   deleteAccountRequest
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -149,8 +150,7 @@ class NamedAccountsApi
      */
     public function deleteNamedAccountsUsingPOST(
         \NecLimDul\MarketoRest\Lead\Model\DeleteNamedAccountRequest $delete_account_request
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount
-    {
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount {
         list($response) = $this->deleteNamedAccountsUsingPOSTWithHttpInfo($delete_account_request);
         return $response;
     }
@@ -158,17 +158,21 @@ class NamedAccountsApi
     /**
      * Delete NamedAccounts
      *
-     * @param  \NecLimDul\MarketoRest\Lead\Model\DeleteNamedAccountRequest $delete_account_request deleteAccountRequest (required)
+     * @param \NecLimDul\MarketoRest\Lead\Model\DeleteNamedAccountRequest $delete_account_request
+     *   deleteAccountRequest
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function deleteNamedAccountsUsingPOSTWithHttpInfo(
         \NecLimDul\MarketoRest\Lead\Model\DeleteNamedAccountRequest $delete_account_request
-    ): array
-    {
+    ): array {
         $request = $this->deleteNamedAccountsUsingPOSTRequest($delete_account_request);
         try {
             $response = $this->makeRequest($request);
@@ -184,15 +188,15 @@ class NamedAccountsApi
     /**
      * Delete NamedAccounts
      *
-     * @param  \NecLimDul\MarketoRest\Lead\Model\DeleteNamedAccountRequest $delete_account_request deleteAccountRequest (required)
+     * @param \NecLimDul\MarketoRest\Lead\Model\DeleteNamedAccountRequest $delete_account_request
+     *   deleteAccountRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function deleteNamedAccountsUsingPOSTAsync(
         \NecLimDul\MarketoRest\Lead\Model\DeleteNamedAccountRequest $delete_account_request
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->deleteNamedAccountsUsingPOSTAsyncWithHttpInfo($delete_account_request)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount {
@@ -204,15 +208,15 @@ class NamedAccountsApi
     /**
      * Delete NamedAccounts
      *
-     * @param  \NecLimDul\MarketoRest\Lead\Model\DeleteNamedAccountRequest $delete_account_request deleteAccountRequest (required)
+     * @param \NecLimDul\MarketoRest\Lead\Model\DeleteNamedAccountRequest $delete_account_request
+     *   deleteAccountRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function deleteNamedAccountsUsingPOSTAsyncWithHttpInfo(
         \NecLimDul\MarketoRest\Lead\Model\DeleteNamedAccountRequest $delete_account_request
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->deleteNamedAccountsUsingPOSTRequest($delete_account_request);
         return $this->makeAsyncRequest(
             $request,
@@ -224,15 +228,15 @@ class NamedAccountsApi
     /**
      * Create request for operation 'deleteNamedAccountsUsingPOST'
      *
-     * @param  \NecLimDul\MarketoRest\Lead\Model\DeleteNamedAccountRequest $delete_account_request deleteAccountRequest (required)
+     * @param \NecLimDul\MarketoRest\Lead\Model\DeleteNamedAccountRequest $delete_account_request
+     *   deleteAccountRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
     public function deleteNamedAccountsUsingPOSTRequest(
         \NecLimDul\MarketoRest\Lead\Model\DeleteNamedAccountRequest $delete_account_request
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/v1/namedaccounts/delete.json';
 
@@ -263,7 +267,6 @@ class NamedAccountsApi
             [
             ],
             $delete_account_request
-            
         );
     }
 
@@ -297,8 +300,7 @@ class NamedAccountsApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData
      */
-    public function describeUsingGET3(
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData
+    public function describeUsingGET3(): \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData
     {
         list($response) = $this->describeUsingGET3WithHttpInfo();
         return $response;
@@ -309,11 +311,14 @@ class NamedAccountsApi
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData,
+     *     int,
+     *     array<array<string>>
+     * }
      */
-    public function describeUsingGET3WithHttpInfo(
-    ): array
+    public function describeUsingGET3WithHttpInfo(): array
     {
         $request = $this->describeUsingGET3Request();
         try {
@@ -333,8 +338,7 @@ class NamedAccountsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function describeUsingGET3Async(
-    ): PromiseInterface
+    public function describeUsingGET3Async(): PromiseInterface
     {
         return $this->describeUsingGET3AsyncWithHttpInfo()
             ->then(
@@ -350,8 +354,7 @@ class NamedAccountsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function describeUsingGET3AsyncWithHttpInfo(
-    ): PromiseInterface
+    public function describeUsingGET3AsyncWithHttpInfo(): PromiseInterface
     {
         $request = $this->describeUsingGET3Request();
         return $this->makeAsyncRequest(
@@ -367,8 +370,7 @@ class NamedAccountsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function describeUsingGET3Request(
-    ): Request
+    public function describeUsingGET3Request(): Request
     {
 
         $resourcePath = '/rest/v1/namedaccounts/describe.json';
@@ -429,7 +431,8 @@ class NamedAccountsApi
     /**
      * Get Named Account Field by Name
      *
-     * @param  string $field_api_name The API name of named account field (required)
+     * @param string $field_api_name
+     *   The API name of named account field
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -437,8 +440,7 @@ class NamedAccountsApi
      */
     public function getNamedAccountFieldByNameUsingGET(
         string $field_api_name
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField
-    {
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField {
         list($response) = $this->getNamedAccountFieldByNameUsingGETWithHttpInfo($field_api_name);
         return $response;
     }
@@ -446,17 +448,21 @@ class NamedAccountsApi
     /**
      * Get Named Account Field by Name
      *
-     * @param  string $field_api_name The API name of named account field (required)
+     * @param string $field_api_name
+     *   The API name of named account field
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function getNamedAccountFieldByNameUsingGETWithHttpInfo(
         string $field_api_name
-    ): array
-    {
+    ): array {
         $request = $this->getNamedAccountFieldByNameUsingGETRequest($field_api_name);
         try {
             $response = $this->makeRequest($request);
@@ -472,15 +478,15 @@ class NamedAccountsApi
     /**
      * Get Named Account Field by Name
      *
-     * @param  string $field_api_name The API name of named account field (required)
+     * @param string $field_api_name
+     *   The API name of named account field
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function getNamedAccountFieldByNameUsingGETAsync(
         string $field_api_name
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->getNamedAccountFieldByNameUsingGETAsyncWithHttpInfo($field_api_name)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField {
@@ -492,15 +498,15 @@ class NamedAccountsApi
     /**
      * Get Named Account Field by Name
      *
-     * @param  string $field_api_name The API name of named account field (required)
+     * @param string $field_api_name
+     *   The API name of named account field
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function getNamedAccountFieldByNameUsingGETAsyncWithHttpInfo(
         string $field_api_name
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->getNamedAccountFieldByNameUsingGETRequest($field_api_name);
         return $this->makeAsyncRequest(
             $request,
@@ -512,15 +518,15 @@ class NamedAccountsApi
     /**
      * Create request for operation 'getNamedAccountFieldByNameUsingGET'
      *
-     * @param  string $field_api_name The API name of named account field (required)
+     * @param string $field_api_name
+     *   The API name of named account field
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
     public function getNamedAccountFieldByNameUsingGETRequest(
         string $field_api_name
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/v1/namedaccounts/schema/fields/{fieldApiName}.json';
         $resourcePath = str_replace(
@@ -585,8 +591,10 @@ class NamedAccountsApi
     /**
      * Get Named Account Fields
      *
-     * @param  int $batch_size The batch size to return. The max and default value is 300. (optional)
-     * @param  string $next_page_token A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info. (optional)
+     * @param int|null $batch_size
+     *   The batch size to return. The max and default value is 300.
+     * @param string|null $next_page_token
+     *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -595,8 +603,7 @@ class NamedAccountsApi
     public function getNamedAccountFieldsUsingGET(
         int $batch_size = null,
         string $next_page_token = null
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField
-    {
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField {
         list($response) = $this->getNamedAccountFieldsUsingGETWithHttpInfo($batch_size, $next_page_token);
         return $response;
     }
@@ -604,19 +611,24 @@ class NamedAccountsApi
     /**
      * Get Named Account Fields
      *
-     * @param  int $batch_size The batch size to return. The max and default value is 300. (optional)
-     * @param  string $next_page_token A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info. (optional)
+     * @param int|null $batch_size
+     *   The batch size to return. The max and default value is 300.
+     * @param string|null $next_page_token
+     *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function getNamedAccountFieldsUsingGETWithHttpInfo(
         int $batch_size = null,
         string $next_page_token = null
-    ): array
-    {
+    ): array {
         $request = $this->getNamedAccountFieldsUsingGETRequest($batch_size, $next_page_token);
         try {
             $response = $this->makeRequest($request);
@@ -632,8 +644,10 @@ class NamedAccountsApi
     /**
      * Get Named Account Fields
      *
-     * @param  int $batch_size The batch size to return. The max and default value is 300. (optional)
-     * @param  string $next_page_token A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info. (optional)
+     * @param int|null $batch_size
+     *   The batch size to return. The max and default value is 300.
+     * @param string|null $next_page_token
+     *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -641,8 +655,7 @@ class NamedAccountsApi
     public function getNamedAccountFieldsUsingGETAsync(
         int $batch_size = null,
         string $next_page_token = null
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->getNamedAccountFieldsUsingGETAsyncWithHttpInfo($batch_size, $next_page_token)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField {
@@ -654,8 +667,10 @@ class NamedAccountsApi
     /**
      * Get Named Account Fields
      *
-     * @param  int $batch_size The batch size to return. The max and default value is 300. (optional)
-     * @param  string $next_page_token A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info. (optional)
+     * @param int|null $batch_size
+     *   The batch size to return. The max and default value is 300.
+     * @param string|null $next_page_token
+     *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -663,8 +678,7 @@ class NamedAccountsApi
     public function getNamedAccountFieldsUsingGETAsyncWithHttpInfo(
         int $batch_size = null,
         string $next_page_token = null
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->getNamedAccountFieldsUsingGETRequest($batch_size, $next_page_token);
         return $this->makeAsyncRequest(
             $request,
@@ -676,8 +690,10 @@ class NamedAccountsApi
     /**
      * Create request for operation 'getNamedAccountFieldsUsingGET'
      *
-     * @param  int $batch_size The batch size to return. The max and default value is 300. (optional)
-     * @param  string $next_page_token A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info. (optional)
+     * @param int|null $batch_size
+     *   The batch size to return. The max and default value is 300.
+     * @param string|null $next_page_token
+     *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -685,8 +701,7 @@ class NamedAccountsApi
     public function getNamedAccountFieldsUsingGETRequest(
         int $batch_size = null,
         string $next_page_token = null
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/v1/namedaccounts/schema/fields.json';
 
@@ -748,11 +763,16 @@ class NamedAccountsApi
     /**
      * Get NamedAccounts
      *
-     * @param  string $filter_type NamedAccounts field to filter on.  Can be any searchable fields (required)
-     * @param  string[] $filter_values A comma-separated list of values to match against (required)
-     * @param  string[] $fields Comma-separated list of fields to include in the response (optional)
-     * @param  int $batch_size The batch size to return.  The max and default value is 300. (optional)
-     * @param  string $next_page_token A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info. (optional)
+     * @param string $filter_type
+     *   NamedAccounts field to filter on.  Can be any searchable fields
+     * @param string[] $filter_values
+     *   A comma-separated list of values to match against
+     * @param string[]|null $fields
+     *   Comma-separated list of fields to include in the response
+     * @param int|null $batch_size
+     *   The batch size to return.  The max and default value is 300.
+     * @param string|null $next_page_token
+     *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -764,8 +784,7 @@ class NamedAccountsApi
         array $fields = null,
         int $batch_size = null,
         string $next_page_token = null
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount
-    {
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount {
         list($response) = $this->getNamedAccountsUsingGETWithHttpInfo($filter_type, $filter_values, $fields, $batch_size, $next_page_token);
         return $response;
     }
@@ -773,16 +792,25 @@ class NamedAccountsApi
     /**
      * Get NamedAccounts
      *
-     * @param  string $filter_type NamedAccounts field to filter on.  Can be any searchable fields (required)
-     * @param  string[] $filter_values A comma-separated list of values to match against (required)
-     * @param  string[] $fields Comma-separated list of fields to include in the response (optional)
-     * @param  int $batch_size The batch size to return.  The max and default value is 300. (optional)
-     * @param  string $next_page_token A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info. (optional)
+     * @param string $filter_type
+     *   NamedAccounts field to filter on.  Can be any searchable fields
+     * @param string[] $filter_values
+     *   A comma-separated list of values to match against
+     * @param string[]|null $fields
+     *   Comma-separated list of fields to include in the response
+     * @param int|null $batch_size
+     *   The batch size to return.  The max and default value is 300.
+     * @param string|null $next_page_token
+     *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function getNamedAccountsUsingGETWithHttpInfo(
         string $filter_type,
@@ -790,8 +818,7 @@ class NamedAccountsApi
         array $fields = null,
         int $batch_size = null,
         string $next_page_token = null
-    ): array
-    {
+    ): array {
         $request = $this->getNamedAccountsUsingGETRequest($filter_type, $filter_values, $fields, $batch_size, $next_page_token);
         try {
             $response = $this->makeRequest($request);
@@ -807,11 +834,16 @@ class NamedAccountsApi
     /**
      * Get NamedAccounts
      *
-     * @param  string $filter_type NamedAccounts field to filter on.  Can be any searchable fields (required)
-     * @param  string[] $filter_values A comma-separated list of values to match against (required)
-     * @param  string[] $fields Comma-separated list of fields to include in the response (optional)
-     * @param  int $batch_size The batch size to return.  The max and default value is 300. (optional)
-     * @param  string $next_page_token A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info. (optional)
+     * @param string $filter_type
+     *   NamedAccounts field to filter on.  Can be any searchable fields
+     * @param string[] $filter_values
+     *   A comma-separated list of values to match against
+     * @param string[]|null $fields
+     *   Comma-separated list of fields to include in the response
+     * @param int|null $batch_size
+     *   The batch size to return.  The max and default value is 300.
+     * @param string|null $next_page_token
+     *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info.
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -822,8 +854,7 @@ class NamedAccountsApi
         array $fields = null,
         int $batch_size = null,
         string $next_page_token = null
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->getNamedAccountsUsingGETAsyncWithHttpInfo($filter_type, $filter_values, $fields, $batch_size, $next_page_token)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount {
@@ -835,11 +866,16 @@ class NamedAccountsApi
     /**
      * Get NamedAccounts
      *
-     * @param  string $filter_type NamedAccounts field to filter on.  Can be any searchable fields (required)
-     * @param  string[] $filter_values A comma-separated list of values to match against (required)
-     * @param  string[] $fields Comma-separated list of fields to include in the response (optional)
-     * @param  int $batch_size The batch size to return.  The max and default value is 300. (optional)
-     * @param  string $next_page_token A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info. (optional)
+     * @param string $filter_type
+     *   NamedAccounts field to filter on.  Can be any searchable fields
+     * @param string[] $filter_values
+     *   A comma-separated list of values to match against
+     * @param string[]|null $fields
+     *   Comma-separated list of fields to include in the response
+     * @param int|null $batch_size
+     *   The batch size to return.  The max and default value is 300.
+     * @param string|null $next_page_token
+     *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info.
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -850,8 +886,7 @@ class NamedAccountsApi
         array $fields = null,
         int $batch_size = null,
         string $next_page_token = null
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->getNamedAccountsUsingGETRequest($filter_type, $filter_values, $fields, $batch_size, $next_page_token);
         return $this->makeAsyncRequest(
             $request,
@@ -863,11 +898,16 @@ class NamedAccountsApi
     /**
      * Create request for operation 'getNamedAccountsUsingGET'
      *
-     * @param  string $filter_type NamedAccounts field to filter on.  Can be any searchable fields (required)
-     * @param  string[] $filter_values A comma-separated list of values to match against (required)
-     * @param  string[] $fields Comma-separated list of fields to include in the response (optional)
-     * @param  int $batch_size The batch size to return.  The max and default value is 300. (optional)
-     * @param  string $next_page_token A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info. (optional)
+     * @param string $filter_type
+     *   NamedAccounts field to filter on.  Can be any searchable fields
+     * @param string[] $filter_values
+     *   A comma-separated list of values to match against
+     * @param string[]|null $fields
+     *   Comma-separated list of fields to include in the response
+     * @param int|null $batch_size
+     *   The batch size to return.  The max and default value is 300.
+     * @param string|null $next_page_token
+     *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info.
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -878,8 +918,7 @@ class NamedAccountsApi
         array $fields = null,
         int $batch_size = null,
         string $next_page_token = null
-    ): Request
-    {
+    ): Request {
         // Verify the required parameter 'filter_values' is set.
         if (empty($filter_values)) {
             throw new \InvalidArgumentException(
@@ -950,7 +989,8 @@ class NamedAccountsApi
     /**
      * Sync NamedAccounts
      *
-     * @param  \NecLimDul\MarketoRest\Lead\Model\SyncNamedAccountRequest $sync_account_request syncAccountRequest (required)
+     * @param \NecLimDul\MarketoRest\Lead\Model\SyncNamedAccountRequest $sync_account_request
+     *   syncAccountRequest
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -958,8 +998,7 @@ class NamedAccountsApi
      */
     public function syncNamedAccountsUsingPOST(
         \NecLimDul\MarketoRest\Lead\Model\SyncNamedAccountRequest $sync_account_request
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount
-    {
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount {
         list($response) = $this->syncNamedAccountsUsingPOSTWithHttpInfo($sync_account_request);
         return $response;
     }
@@ -967,17 +1006,21 @@ class NamedAccountsApi
     /**
      * Sync NamedAccounts
      *
-     * @param  \NecLimDul\MarketoRest\Lead\Model\SyncNamedAccountRequest $sync_account_request syncAccountRequest (required)
+     * @param \NecLimDul\MarketoRest\Lead\Model\SyncNamedAccountRequest $sync_account_request
+     *   syncAccountRequest
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function syncNamedAccountsUsingPOSTWithHttpInfo(
         \NecLimDul\MarketoRest\Lead\Model\SyncNamedAccountRequest $sync_account_request
-    ): array
-    {
+    ): array {
         $request = $this->syncNamedAccountsUsingPOSTRequest($sync_account_request);
         try {
             $response = $this->makeRequest($request);
@@ -993,15 +1036,15 @@ class NamedAccountsApi
     /**
      * Sync NamedAccounts
      *
-     * @param  \NecLimDul\MarketoRest\Lead\Model\SyncNamedAccountRequest $sync_account_request syncAccountRequest (required)
+     * @param \NecLimDul\MarketoRest\Lead\Model\SyncNamedAccountRequest $sync_account_request
+     *   syncAccountRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function syncNamedAccountsUsingPOSTAsync(
         \NecLimDul\MarketoRest\Lead\Model\SyncNamedAccountRequest $sync_account_request
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->syncNamedAccountsUsingPOSTAsyncWithHttpInfo($sync_account_request)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfNamedAccount {
@@ -1013,15 +1056,15 @@ class NamedAccountsApi
     /**
      * Sync NamedAccounts
      *
-     * @param  \NecLimDul\MarketoRest\Lead\Model\SyncNamedAccountRequest $sync_account_request syncAccountRequest (required)
+     * @param \NecLimDul\MarketoRest\Lead\Model\SyncNamedAccountRequest $sync_account_request
+     *   syncAccountRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function syncNamedAccountsUsingPOSTAsyncWithHttpInfo(
         \NecLimDul\MarketoRest\Lead\Model\SyncNamedAccountRequest $sync_account_request
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->syncNamedAccountsUsingPOSTRequest($sync_account_request);
         return $this->makeAsyncRequest(
             $request,
@@ -1033,15 +1076,15 @@ class NamedAccountsApi
     /**
      * Create request for operation 'syncNamedAccountsUsingPOST'
      *
-     * @param  \NecLimDul\MarketoRest\Lead\Model\SyncNamedAccountRequest $sync_account_request syncAccountRequest (required)
+     * @param \NecLimDul\MarketoRest\Lead\Model\SyncNamedAccountRequest $sync_account_request
+     *   syncAccountRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
     public function syncNamedAccountsUsingPOSTRequest(
         \NecLimDul\MarketoRest\Lead\Model\SyncNamedAccountRequest $sync_account_request
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/v1/namedaccounts.json';
 
@@ -1072,7 +1115,6 @@ class NamedAccountsApi
             [
             ],
             $sync_account_request
-            
         );
     }
 
@@ -1103,10 +1145,11 @@ class NamedAccountsApi
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @return \Psr\Http\Message\ResponseInterface
      */
-    private function makeRequest(Request $request) {
+    private function makeRequest(Request $request)
+    {
         $options = $this->createHttpClientOption();
         try {
-           $response = $this->client->send($request, $options);
+            $response = $this->client->send($request, $options);
         } catch (RequestException $e) {
             $response = $e->getResponse();
             throw new ApiException(
@@ -1179,7 +1222,8 @@ class NamedAccountsApi
      * @return array structured array or response and http info.
      * @phpstan-return array{T, int, array<array<string>>}
      */
-    private function responseToReturn(ResponseInterface $response, string $returnType) {
+    private function responseToReturn(ResponseInterface $response, string $returnType)
+    {
         return [
             $this->deserializeResponseBody($response->getBody(), $returnType),
             $response->getStatusCode(),
@@ -1208,5 +1252,4 @@ class NamedAccountsApi
             $headers
         );
     }
-
 }

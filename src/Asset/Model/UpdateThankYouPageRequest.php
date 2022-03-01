@@ -1,4 +1,5 @@
 <?php
+
 /**
  * UpdateThankYouPageRequest
  *
@@ -25,8 +26,8 @@
 
 namespace NecLimDul\MarketoRest\Asset\Model;
 
-use \ArrayAccess;
-use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
+use ArrayAccess;
+use NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * UpdateThankYouPageRequest Class Doc Comment
@@ -122,7 +123,6 @@ class UpdateThankYouPageRequest implements ModelInterface, ArrayAccess, \JsonSer
     protected static $getters = [
         'thankyou' => 'getThankyou'
     ];
-    
 
     /**
      * Associative array for storing property values
@@ -191,7 +191,6 @@ class UpdateThankYouPageRequest implements ModelInterface, ArrayAccess, \JsonSer
     {
         return count($this->listInvalidProperties()) === 0;
     }
-    
 
     /**
      * Gets thankyou
@@ -254,7 +253,7 @@ class UpdateThankYouPageRequest implements ModelInterface, ArrayAccess, \JsonSer
              * @param array-key $key
              * @return mixed
              */
-            function($key) use ($container) {
+            function ($key) use ($container) {
                 return $container[$key];
             };
         return array_map($map, $this->additionalProperties);
@@ -310,7 +309,7 @@ class UpdateThankYouPageRequest implements ModelInterface, ArrayAccess, \JsonSer
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -326,5 +325,4 @@ class UpdateThankYouPageRequest implements ModelInterface, ArrayAccess, \JsonSer
             JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR
         );
     }
-
 }

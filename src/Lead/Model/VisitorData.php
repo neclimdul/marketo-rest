@@ -1,4 +1,5 @@
 <?php
+
 /**
  * VisitorData
  *
@@ -25,8 +26,8 @@
 
 namespace NecLimDul\MarketoRest\Lead\Model;
 
-use \ArrayAccess;
-use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
+use ArrayAccess;
+use NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * VisitorData Class Doc Comment
@@ -138,7 +139,6 @@ class VisitorData implements ModelInterface, ArrayAccess, \JsonSerializable
         'lead_client_ip_address' => 'getLeadClientIpAddress',
         'user_agent_string' => 'getUserAgentString'
     ];
-    
 
     /**
      * Associative array for storing property values
@@ -210,7 +210,6 @@ class VisitorData implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         return count($this->listInvalidProperties()) === 0;
     }
-    
 
     /**
      * Gets page_url
@@ -345,7 +344,7 @@ class VisitorData implements ModelInterface, ArrayAccess, \JsonSerializable
              * @param array-key $key
              * @return mixed
              */
-            function($key) use ($container) {
+            function ($key) use ($container) {
                 return $container[$key];
             };
         return array_map($map, $this->additionalProperties);
@@ -401,7 +400,7 @@ class VisitorData implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -417,5 +416,4 @@ class VisitorData implements ModelInterface, ArrayAccess, \JsonSerializable
             JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR
         );
     }
-
 }

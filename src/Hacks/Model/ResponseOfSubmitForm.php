@@ -6,7 +6,6 @@ use NecLimDul\MarketoRest\Lead\Model\ResponseOfSubmitForm as LeadResponseOfSubmi
 
 class ResponseOfSubmitForm extends LeadResponseOfSubmitForm
 {
-
     /**
      * {@inheritDoc}
      */
@@ -26,5 +25,4 @@ class ResponseOfSubmitForm extends LeadResponseOfSubmitForm
         // Override works around static binding.
         return self::$swaggerTypes;
     }
-
 }

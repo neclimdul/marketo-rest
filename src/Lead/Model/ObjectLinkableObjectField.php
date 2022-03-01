@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ObjectLinkableObjectField
  *
@@ -25,8 +26,8 @@
 
 namespace NecLimDul\MarketoRest\Lead\Model;
 
-use \ArrayAccess;
-use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
+use ArrayAccess;
+use NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * ObjectLinkableObjectField Class Doc Comment
@@ -132,7 +133,6 @@ class ObjectLinkableObjectField implements ModelInterface, ArrayAccess, \JsonSer
         'display_name' => 'getDisplayName',
         'data_type' => 'getDataType'
     ];
-    
 
     /**
      * Associative array for storing property values
@@ -212,7 +212,6 @@ class ObjectLinkableObjectField implements ModelInterface, ArrayAccess, \JsonSer
     {
         return count($this->listInvalidProperties()) === 0;
     }
-    
 
     /**
      * Gets name
@@ -323,7 +322,7 @@ class ObjectLinkableObjectField implements ModelInterface, ArrayAccess, \JsonSer
              * @param array-key $key
              * @return mixed
              */
-            function($key) use ($container) {
+            function ($key) use ($container) {
                 return $container[$key];
             };
         return array_map($map, $this->additionalProperties);
@@ -379,7 +378,7 @@ class ObjectLinkableObjectField implements ModelInterface, ArrayAccess, \JsonSer
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -395,5 +394,4 @@ class ObjectLinkableObjectField implements ModelInterface, ArrayAccess, \JsonSer
             JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR
         );
     }
-
 }

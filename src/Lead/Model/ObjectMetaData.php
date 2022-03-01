@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ObjectMetaData
  *
@@ -25,8 +26,8 @@
 
 namespace NecLimDul\MarketoRest\Lead\Model;
 
-use \ArrayAccess;
-use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
+use ArrayAccess;
+use NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * ObjectMetaData Class Doc Comment
@@ -42,6 +43,11 @@ use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
 class ObjectMetaData implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    public const STATE_DRAFT = 'draft';
+    public const STATE_APPROVED = 'approved';
+    public const STATE_APPROVED_WITH_DRAFT = 'approvedWithDraft';
+    public const VERSION_DRAFT = 'draft';
+    public const VERSION_APPROVED = 'approved';
 
     /**
       * The original name of the model.
@@ -182,12 +188,6 @@ class ObjectMetaData implements ModelInterface, ArrayAccess, \JsonSerializable
         'state' => 'getState',
         'version' => 'getVersion'
     ];
-    
-    const STATE_DRAFT = 'draft';
-    const STATE_APPROVED = 'approved';
-    const STATE_APPROVED_WITH_DRAFT = 'approvedWithDraft';
-    const VERSION_DRAFT = 'draft';
-    const VERSION_APPROVED = 'approved';
 
     /**
      * Associative array for storing property values
@@ -322,7 +322,6 @@ class ObjectMetaData implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         return count($this->listInvalidProperties()) === 0;
     }
-    
     /**
      * Gets allowable values of the enum.
      *
@@ -336,7 +335,6 @@ class ObjectMetaData implements ModelInterface, ArrayAccess, \JsonSerializable
             self::STATE_APPROVED_WITH_DRAFT,
         ];
     }
-    
     /**
      * Gets allowable values of the enum.
      *
@@ -349,7 +347,6 @@ class ObjectMetaData implements ModelInterface, ArrayAccess, \JsonSerializable
             self::VERSION_APPROVED,
         ];
     }
-    
 
     /**
      * Gets created_at
@@ -720,7 +717,7 @@ class ObjectMetaData implements ModelInterface, ArrayAccess, \JsonSerializable
              * @param array-key $key
              * @return mixed
              */
-            function($key) use ($container) {
+            function ($key) use ($container) {
                 return $container[$key];
             };
         return array_map($map, $this->additionalProperties);
@@ -776,7 +773,7 @@ class ObjectMetaData implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -792,5 +789,4 @@ class ObjectMetaData implements ModelInterface, ArrayAccess, \JsonSerializable
             JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR
         );
     }
-
 }

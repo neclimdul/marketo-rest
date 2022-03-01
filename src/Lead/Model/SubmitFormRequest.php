@@ -1,4 +1,5 @@
 <?php
+
 /**
  * SubmitFormRequest
  *
@@ -25,8 +26,8 @@
 
 namespace NecLimDul\MarketoRest\Lead\Model;
 
-use \ArrayAccess;
-use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
+use ArrayAccess;
+use NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * SubmitFormRequest Class Doc Comment
@@ -132,7 +133,6 @@ class SubmitFormRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
         'form_id' => 'getFormId',
         'program_id' => 'getProgramId'
     ];
-    
 
     /**
      * Associative array for storing property values
@@ -209,7 +209,6 @@ class SubmitFormRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
     {
         return count($this->listInvalidProperties()) === 0;
     }
-    
 
     /**
      * Gets input
@@ -320,7 +319,7 @@ class SubmitFormRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
              * @param array-key $key
              * @return mixed
              */
-            function($key) use ($container) {
+            function ($key) use ($container) {
                 return $container[$key];
             };
         return array_map($map, $this->additionalProperties);
@@ -376,7 +375,7 @@ class SubmitFormRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -392,5 +391,4 @@ class SubmitFormRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
             JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR
         );
     }
-
 }

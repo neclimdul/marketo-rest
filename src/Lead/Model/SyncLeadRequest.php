@@ -1,4 +1,5 @@
 <?php
+
 /**
  * SyncLeadRequest
  *
@@ -25,8 +26,8 @@
 
 namespace NecLimDul\MarketoRest\Lead\Model;
 
-use \ArrayAccess;
-use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
+use ArrayAccess;
+use NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * SyncLeadRequest Class Doc Comment
@@ -42,6 +43,10 @@ use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
 class SyncLeadRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    public const ACTION_CREATE_ONLY = 'createOnly';
+    public const ACTION_UPDATE_ONLY = 'updateOnly';
+    public const ACTION_CREATE_OR_UPDATE = 'createOrUpdate';
+    public const ACTION_CREATE_DUPLICATE = 'createDuplicate';
 
     /**
       * The original name of the model.
@@ -142,11 +147,6 @@ class SyncLeadRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'lookup_field' => 'getLookupField',
         'partition_name' => 'getPartitionName'
     ];
-    
-    const ACTION_CREATE_ONLY = 'createOnly';
-    const ACTION_UPDATE_ONLY = 'updateOnly';
-    const ACTION_CREATE_OR_UPDATE = 'createOrUpdate';
-    const ACTION_CREATE_DUPLICATE = 'createDuplicate';
 
     /**
      * Associative array for storing property values
@@ -231,7 +231,6 @@ class SyncLeadRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         return count($this->listInvalidProperties()) === 0;
     }
-    
     /**
      * Gets allowable values of the enum.
      *
@@ -246,7 +245,6 @@ class SyncLeadRequest implements ModelInterface, ArrayAccess, \JsonSerializable
             self::ACTION_CREATE_DUPLICATE,
         ];
     }
-    
 
     /**
      * Gets action
@@ -415,7 +413,7 @@ class SyncLeadRequest implements ModelInterface, ArrayAccess, \JsonSerializable
              * @param array-key $key
              * @return mixed
              */
-            function($key) use ($container) {
+            function ($key) use ($container) {
                 return $container[$key];
             };
         return array_map($map, $this->additionalProperties);
@@ -471,7 +469,7 @@ class SyncLeadRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -487,5 +485,4 @@ class SyncLeadRequest implements ModelInterface, ArrayAccess, \JsonSerializable
             JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR
         );
     }
-
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * TagsApi
  *
@@ -48,7 +49,6 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  */
 class TagsApi
 {
-
     /**
      * @var ClientInterface
      */
@@ -73,7 +73,7 @@ class TagsApi
      * @param ClientInterface|null $client
      * @param Configuration|null   $config
      * @param HeaderSelector|null  $selector
-     * @param int                  $hostIndex (Optional) host index to select the list of hosts if defined in the OpenAPI spec
+     * @param int                  $hostIndex (Optional) host index to select the list of hosts if defined in the spec.
      */
     public function __construct(
         ClientInterface $client = null,
@@ -102,7 +102,7 @@ class TagsApi
      *
      * @return int Host index
      */
-    public function getHostIndex()
+    public function getHostIndex(): int
     {
         return $this->hostIndex;
     }
@@ -110,7 +110,7 @@ class TagsApi
     /**
      * @return Configuration
      */
-    public function getConfig()
+    public function getConfig(): Configuration
     {
         return $this->config;
     }
@@ -141,7 +141,8 @@ class TagsApi
     /**
      * Get Tag By Name
      *
-     * @param  string $name Name of the tag (required)
+     * @param string $name
+     *   Name of the tag
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -149,8 +150,7 @@ class TagsApi
      */
     public function getTagByNameUsingGET(
         string $name
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfTagResponse
-    {
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfTagResponse {
         list($response) = $this->getTagByNameUsingGETWithHttpInfo($name);
         return $response;
     }
@@ -158,17 +158,21 @@ class TagsApi
     /**
      * Get Tag By Name
      *
-     * @param  string $name Name of the tag (required)
+     * @param string $name
+     *   Name of the tag
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfTagResponse, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfTagResponse, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfTagResponse,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function getTagByNameUsingGETWithHttpInfo(
         string $name
-    ): array
-    {
+    ): array {
         $request = $this->getTagByNameUsingGETRequest($name);
         try {
             $response = $this->makeRequest($request);
@@ -184,15 +188,15 @@ class TagsApi
     /**
      * Get Tag By Name
      *
-     * @param  string $name Name of the tag (required)
+     * @param string $name
+     *   Name of the tag
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function getTagByNameUsingGETAsync(
         string $name
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->getTagByNameUsingGETAsyncWithHttpInfo($name)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfTagResponse {
@@ -204,15 +208,15 @@ class TagsApi
     /**
      * Get Tag By Name
      *
-     * @param  string $name Name of the tag (required)
+     * @param string $name
+     *   Name of the tag
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function getTagByNameUsingGETAsyncWithHttpInfo(
         string $name
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->getTagByNameUsingGETRequest($name);
         return $this->makeAsyncRequest(
             $request,
@@ -224,15 +228,15 @@ class TagsApi
     /**
      * Create request for operation 'getTagByNameUsingGET'
      *
-     * @param  string $name Name of the tag (required)
+     * @param string $name
+     *   Name of the tag
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
     public function getTagByNameUsingGETRequest(
         string $name
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/asset/v1/tagType/byName.json';
 
@@ -293,8 +297,10 @@ class TagsApi
     /**
      * Get Tag Types
      *
-     * @param  int $max_return Maximum number of channels to return.  Max 200, default 20 (optional)
-     * @param  int $offset Integer offset for paging (optional)
+     * @param int|null $max_return
+     *   Maximum number of channels to return.  Max 200, default 20
+     * @param int|null $offset
+     *   Integer offset for paging
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -303,8 +309,7 @@ class TagsApi
     public function getTagTypesUsingGET(
         int $max_return = null,
         int $offset = null
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfTagResponseGetAll
-    {
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfTagResponseGetAll {
         list($response) = $this->getTagTypesUsingGETWithHttpInfo($max_return, $offset);
         return $response;
     }
@@ -312,19 +317,24 @@ class TagsApi
     /**
      * Get Tag Types
      *
-     * @param  int $max_return Maximum number of channels to return.  Max 200, default 20 (optional)
-     * @param  int $offset Integer offset for paging (optional)
+     * @param int|null $max_return
+     *   Maximum number of channels to return.  Max 200, default 20
+     * @param int|null $offset
+     *   Integer offset for paging
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfTagResponseGetAll, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfTagResponseGetAll, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfTagResponseGetAll,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function getTagTypesUsingGETWithHttpInfo(
         int $max_return = null,
         int $offset = null
-    ): array
-    {
+    ): array {
         $request = $this->getTagTypesUsingGETRequest($max_return, $offset);
         try {
             $response = $this->makeRequest($request);
@@ -340,8 +350,10 @@ class TagsApi
     /**
      * Get Tag Types
      *
-     * @param  int $max_return Maximum number of channels to return.  Max 200, default 20 (optional)
-     * @param  int $offset Integer offset for paging (optional)
+     * @param int|null $max_return
+     *   Maximum number of channels to return.  Max 200, default 20
+     * @param int|null $offset
+     *   Integer offset for paging
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -349,8 +361,7 @@ class TagsApi
     public function getTagTypesUsingGETAsync(
         int $max_return = null,
         int $offset = null
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->getTagTypesUsingGETAsyncWithHttpInfo($max_return, $offset)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfTagResponseGetAll {
@@ -362,8 +373,10 @@ class TagsApi
     /**
      * Get Tag Types
      *
-     * @param  int $max_return Maximum number of channels to return.  Max 200, default 20 (optional)
-     * @param  int $offset Integer offset for paging (optional)
+     * @param int|null $max_return
+     *   Maximum number of channels to return.  Max 200, default 20
+     * @param int|null $offset
+     *   Integer offset for paging
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -371,8 +384,7 @@ class TagsApi
     public function getTagTypesUsingGETAsyncWithHttpInfo(
         int $max_return = null,
         int $offset = null
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->getTagTypesUsingGETRequest($max_return, $offset);
         return $this->makeAsyncRequest(
             $request,
@@ -384,8 +396,10 @@ class TagsApi
     /**
      * Create request for operation 'getTagTypesUsingGET'
      *
-     * @param  int $max_return Maximum number of channels to return.  Max 200, default 20 (optional)
-     * @param  int $offset Integer offset for paging (optional)
+     * @param int|null $max_return
+     *   Maximum number of channels to return.  Max 200, default 20
+     * @param int|null $offset
+     *   Integer offset for paging
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -393,8 +407,7 @@ class TagsApi
     public function getTagTypesUsingGETRequest(
         int $max_return = null,
         int $offset = null
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/asset/v1/tagTypes.json';
 
@@ -457,10 +470,11 @@ class TagsApi
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @return \Psr\Http\Message\ResponseInterface
      */
-    private function makeRequest(Request $request) {
+    private function makeRequest(Request $request)
+    {
         $options = $this->createHttpClientOption();
         try {
-           $response = $this->client->send($request, $options);
+            $response = $this->client->send($request, $options);
         } catch (RequestException $e) {
             $response = $e->getResponse();
             throw new ApiException(
@@ -533,7 +547,8 @@ class TagsApi
      * @return array structured array or response and http info.
      * @phpstan-return array{T, int, array<array<string>>}
      */
-    private function responseToReturn(ResponseInterface $response, string $returnType) {
+    private function responseToReturn(ResponseInterface $response, string $returnType)
+    {
         return [
             $this->deserializeResponseBody($response->getBody(), $returnType),
             $response->getStatusCode(),
@@ -562,5 +577,4 @@ class TagsApi
             $headers
         );
     }
-
 }

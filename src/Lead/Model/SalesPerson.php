@@ -1,4 +1,5 @@
 <?php
+
 /**
  * SalesPerson
  *
@@ -25,8 +26,8 @@
 
 namespace NecLimDul\MarketoRest\Lead\Model;
 
-use \ArrayAccess;
-use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
+use ArrayAccess;
+use NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * SalesPerson Class Doc Comment
@@ -42,6 +43,12 @@ use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
 class SalesPerson implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    public const STATUS_CREATED = 'created';
+    public const STATUS_UPDATED = 'updated';
+    public const STATUS_DELETED = 'deleted';
+    public const STATUS_SKIPPED = 'skipped';
+    public const STATUS_ADDED = 'added';
+    public const STATUS_REMOVED = 'removed';
 
     /**
       * The original name of the model.
@@ -137,13 +144,6 @@ class SalesPerson implements ModelInterface, ArrayAccess, \JsonSerializable
         'seq' => 'getSeq',
         'status' => 'getStatus'
     ];
-    
-    const STATUS_CREATED = 'created';
-    const STATUS_UPDATED = 'updated';
-    const STATUS_DELETED = 'deleted';
-    const STATUS_SKIPPED = 'skipped';
-    const STATUS_ADDED = 'added';
-    const STATUS_REMOVED = 'removed';
 
     /**
      * Associative array for storing property values
@@ -224,7 +224,6 @@ class SalesPerson implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         return count($this->listInvalidProperties()) === 0;
     }
-    
     /**
      * Gets allowable values of the enum.
      *
@@ -241,7 +240,6 @@ class SalesPerson implements ModelInterface, ArrayAccess, \JsonSerializable
             self::STATUS_REMOVED,
         ];
     }
-    
 
     /**
      * Gets id
@@ -386,7 +384,7 @@ class SalesPerson implements ModelInterface, ArrayAccess, \JsonSerializable
              * @param array-key $key
              * @return mixed
              */
-            function($key) use ($container) {
+            function ($key) use ($container) {
                 return $container[$key];
             };
         return array_map($map, $this->additionalProperties);
@@ -442,7 +440,7 @@ class SalesPerson implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -458,5 +456,4 @@ class SalesPerson implements ModelInterface, ArrayAccess, \JsonSerializable
             JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR
         );
     }
-
 }

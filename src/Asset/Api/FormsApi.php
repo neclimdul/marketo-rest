@@ -1,4 +1,5 @@
 <?php
+
 /**
  * FormsApi
  *
@@ -48,7 +49,6 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  */
 class FormsApi
 {
-
     /**
      * @var ClientInterface
      */
@@ -73,7 +73,7 @@ class FormsApi
      * @param ClientInterface|null $client
      * @param Configuration|null   $config
      * @param HeaderSelector|null  $selector
-     * @param int                  $hostIndex (Optional) host index to select the list of hosts if defined in the OpenAPI spec
+     * @param int                  $hostIndex (Optional) host index to select the list of hosts if defined in the spec.
      */
     public function __construct(
         ClientInterface $client = null,
@@ -102,7 +102,7 @@ class FormsApi
      *
      * @return int Host index
      */
-    public function getHostIndex()
+    public function getHostIndex(): int
     {
         return $this->hostIndex;
     }
@@ -110,7 +110,7 @@ class FormsApi
     /**
      * @return Configuration
      */
-    public function getConfig()
+    public function getConfig(): Configuration
     {
         return $this->config;
     }
@@ -141,7 +141,8 @@ class FormsApi
     /**
      * Approve Form Draft
      *
-     * @param  int $id id (required)
+     * @param int $id
+     *   id
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -149,8 +150,7 @@ class FormsApi
      */
     public function approveFromUsingPOST(
         int $id
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse
-    {
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse {
         list($response) = $this->approveFromUsingPOSTWithHttpInfo($id);
         return $response;
     }
@@ -158,17 +158,21 @@ class FormsApi
     /**
      * Approve Form Draft
      *
-     * @param  int $id id (required)
+     * @param int $id
+     *   id
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function approveFromUsingPOSTWithHttpInfo(
         int $id
-    ): array
-    {
+    ): array {
         $request = $this->approveFromUsingPOSTRequest($id);
         try {
             $response = $this->makeRequest($request);
@@ -184,15 +188,15 @@ class FormsApi
     /**
      * Approve Form Draft
      *
-     * @param  int $id id (required)
+     * @param int $id
+     *   id
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function approveFromUsingPOSTAsync(
         int $id
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->approveFromUsingPOSTAsyncWithHttpInfo($id)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse {
@@ -204,15 +208,15 @@ class FormsApi
     /**
      * Approve Form Draft
      *
-     * @param  int $id id (required)
+     * @param int $id
+     *   id
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function approveFromUsingPOSTAsyncWithHttpInfo(
         int $id
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->approveFromUsingPOSTRequest($id);
         return $this->makeAsyncRequest(
             $request,
@@ -224,15 +228,15 @@ class FormsApi
     /**
      * Create request for operation 'approveFromUsingPOST'
      *
-     * @param  int $id id (required)
+     * @param int $id
+     *   id
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
     public function approveFromUsingPOSTRequest(
         int $id
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/asset/v1/form/{id}/approveDraft.json';
         $resourcePath = str_replace(
@@ -297,10 +301,14 @@ class FormsApi
     /**
      * Get Forms
      *
-     * @param  string $folder JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39; (required)
-     * @param  string $status Status filter for draft or approved versions (optional)
-     * @param  string $max_return Maximum number of channels to return.  Max 200, default 20 (optional)
-     * @param  string $offset Integer offset for paging (optional)
+     * @param string $folder
+     *   JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39;
+     * @param string|null $status
+     *   Status filter for draft or approved versions
+     * @param string|null $max_return
+     *   Maximum number of channels to return.  Max 200, default 20
+     * @param string|null $offset
+     *   Integer offset for paging
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -311,8 +319,7 @@ class FormsApi
         string $status = null,
         string $max_return = null,
         string $offset = null
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse
-    {
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse {
         list($response) = $this->browseForms2UsingGETWithHttpInfo($folder, $status, $max_return, $offset);
         return $response;
     }
@@ -320,23 +327,30 @@ class FormsApi
     /**
      * Get Forms
      *
-     * @param  string $folder JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39; (required)
-     * @param  string $status Status filter for draft or approved versions (optional)
-     * @param  string $max_return Maximum number of channels to return.  Max 200, default 20 (optional)
-     * @param  string $offset Integer offset for paging (optional)
+     * @param string $folder
+     *   JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39;
+     * @param string|null $status
+     *   Status filter for draft or approved versions
+     * @param string|null $max_return
+     *   Maximum number of channels to return.  Max 200, default 20
+     * @param string|null $offset
+     *   Integer offset for paging
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function browseForms2UsingGETWithHttpInfo(
         string $folder,
         string $status = null,
         string $max_return = null,
         string $offset = null
-    ): array
-    {
+    ): array {
         $request = $this->browseForms2UsingGETRequest($folder, $status, $max_return, $offset);
         try {
             $response = $this->makeRequest($request);
@@ -352,10 +366,14 @@ class FormsApi
     /**
      * Get Forms
      *
-     * @param  string $folder JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39; (required)
-     * @param  string $status Status filter for draft or approved versions (optional)
-     * @param  string $max_return Maximum number of channels to return.  Max 200, default 20 (optional)
-     * @param  string $offset Integer offset for paging (optional)
+     * @param string $folder
+     *   JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39;
+     * @param string|null $status
+     *   Status filter for draft or approved versions
+     * @param string|null $max_return
+     *   Maximum number of channels to return.  Max 200, default 20
+     * @param string|null $offset
+     *   Integer offset for paging
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -365,8 +383,7 @@ class FormsApi
         string $status = null,
         string $max_return = null,
         string $offset = null
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->browseForms2UsingGETAsyncWithHttpInfo($folder, $status, $max_return, $offset)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse {
@@ -378,10 +395,14 @@ class FormsApi
     /**
      * Get Forms
      *
-     * @param  string $folder JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39; (required)
-     * @param  string $status Status filter for draft or approved versions (optional)
-     * @param  string $max_return Maximum number of channels to return.  Max 200, default 20 (optional)
-     * @param  string $offset Integer offset for paging (optional)
+     * @param string $folder
+     *   JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39;
+     * @param string|null $status
+     *   Status filter for draft or approved versions
+     * @param string|null $max_return
+     *   Maximum number of channels to return.  Max 200, default 20
+     * @param string|null $offset
+     *   Integer offset for paging
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -391,8 +412,7 @@ class FormsApi
         string $status = null,
         string $max_return = null,
         string $offset = null
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->browseForms2UsingGETRequest($folder, $status, $max_return, $offset);
         return $this->makeAsyncRequest(
             $request,
@@ -404,10 +424,14 @@ class FormsApi
     /**
      * Create request for operation 'browseForms2UsingGET'
      *
-     * @param  string $folder JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39; (required)
-     * @param  string $status Status filter for draft or approved versions (optional)
-     * @param  string $max_return Maximum number of channels to return.  Max 200, default 20 (optional)
-     * @param  string $offset Integer offset for paging (optional)
+     * @param string $folder
+     *   JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39;
+     * @param string|null $status
+     *   Status filter for draft or approved versions
+     * @param string|null $max_return
+     *   Maximum number of channels to return.  Max 200, default 20
+     * @param string|null $offset
+     *   Integer offset for paging
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -417,8 +441,7 @@ class FormsApi
         string $status = null,
         string $max_return = null,
         string $offset = null
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/asset/v1/forms.json';
 
@@ -482,8 +505,10 @@ class FormsApi
     /**
      * Clone Form
      *
-     * @param  int $id id (required)
-     * @param  \NecLimDul\MarketoRest\Asset\Model\CloneFormRequest $clone_form_request cloneFormRequest (optional)
+     * @param int $id
+     *   id
+     * @param \NecLimDul\MarketoRest\Asset\Model\CloneFormRequest|null $clone_form_request
+     *   cloneFormRequest
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -492,8 +517,7 @@ class FormsApi
     public function cloneLpFormsUsingPOST(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\CloneFormRequest $clone_form_request = null
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse
-    {
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse {
         list($response) = $this->cloneLpFormsUsingPOSTWithHttpInfo($id, $clone_form_request);
         return $response;
     }
@@ -501,19 +525,24 @@ class FormsApi
     /**
      * Clone Form
      *
-     * @param  int $id id (required)
-     * @param  \NecLimDul\MarketoRest\Asset\Model\CloneFormRequest $clone_form_request cloneFormRequest (optional)
+     * @param int $id
+     *   id
+     * @param \NecLimDul\MarketoRest\Asset\Model\CloneFormRequest|null $clone_form_request
+     *   cloneFormRequest
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function cloneLpFormsUsingPOSTWithHttpInfo(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\CloneFormRequest $clone_form_request = null
-    ): array
-    {
+    ): array {
         $request = $this->cloneLpFormsUsingPOSTRequest($id, $clone_form_request);
         try {
             $response = $this->makeRequest($request);
@@ -529,8 +558,10 @@ class FormsApi
     /**
      * Clone Form
      *
-     * @param  int $id id (required)
-     * @param  \NecLimDul\MarketoRest\Asset\Model\CloneFormRequest $clone_form_request cloneFormRequest (optional)
+     * @param int $id
+     *   id
+     * @param \NecLimDul\MarketoRest\Asset\Model\CloneFormRequest|null $clone_form_request
+     *   cloneFormRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -538,8 +569,7 @@ class FormsApi
     public function cloneLpFormsUsingPOSTAsync(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\CloneFormRequest $clone_form_request = null
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->cloneLpFormsUsingPOSTAsyncWithHttpInfo($id, $clone_form_request)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse {
@@ -551,8 +581,10 @@ class FormsApi
     /**
      * Clone Form
      *
-     * @param  int $id id (required)
-     * @param  \NecLimDul\MarketoRest\Asset\Model\CloneFormRequest $clone_form_request cloneFormRequest (optional)
+     * @param int $id
+     *   id
+     * @param \NecLimDul\MarketoRest\Asset\Model\CloneFormRequest|null $clone_form_request
+     *   cloneFormRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -560,8 +592,7 @@ class FormsApi
     public function cloneLpFormsUsingPOSTAsyncWithHttpInfo(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\CloneFormRequest $clone_form_request = null
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->cloneLpFormsUsingPOSTRequest($id, $clone_form_request);
         return $this->makeAsyncRequest(
             $request,
@@ -573,8 +604,10 @@ class FormsApi
     /**
      * Create request for operation 'cloneLpFormsUsingPOST'
      *
-     * @param  int $id id (required)
-     * @param  \NecLimDul\MarketoRest\Asset\Model\CloneFormRequest $clone_form_request cloneFormRequest (optional)
+     * @param int $id
+     *   id
+     * @param \NecLimDul\MarketoRest\Asset\Model\CloneFormRequest|null $clone_form_request
+     *   cloneFormRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -582,8 +615,7 @@ class FormsApi
     public function cloneLpFormsUsingPOSTRequest(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\CloneFormRequest $clone_form_request = null
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/asset/v1/form/{id}/clone.json';
         $resourcePath = str_replace(
@@ -619,7 +651,6 @@ class FormsApi
             [
             ],
             $clone_form_request
-            
         );
     }
 
@@ -649,7 +680,8 @@ class FormsApi
     /**
      * Create Form
      *
-     * @param  \NecLimDul\MarketoRest\Asset\Model\CreateLpFormRequest $create_form_request createFormRequest (required)
+     * @param \NecLimDul\MarketoRest\Asset\Model\CreateLpFormRequest $create_form_request
+     *   createFormRequest
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -657,8 +689,7 @@ class FormsApi
      */
     public function createLpFormsUsingPOST(
         \NecLimDul\MarketoRest\Asset\Model\CreateLpFormRequest $create_form_request
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse
-    {
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse {
         list($response) = $this->createLpFormsUsingPOSTWithHttpInfo($create_form_request);
         return $response;
     }
@@ -666,17 +697,21 @@ class FormsApi
     /**
      * Create Form
      *
-     * @param  \NecLimDul\MarketoRest\Asset\Model\CreateLpFormRequest $create_form_request createFormRequest (required)
+     * @param \NecLimDul\MarketoRest\Asset\Model\CreateLpFormRequest $create_form_request
+     *   createFormRequest
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function createLpFormsUsingPOSTWithHttpInfo(
         \NecLimDul\MarketoRest\Asset\Model\CreateLpFormRequest $create_form_request
-    ): array
-    {
+    ): array {
         $request = $this->createLpFormsUsingPOSTRequest($create_form_request);
         try {
             $response = $this->makeRequest($request);
@@ -692,15 +727,15 @@ class FormsApi
     /**
      * Create Form
      *
-     * @param  \NecLimDul\MarketoRest\Asset\Model\CreateLpFormRequest $create_form_request createFormRequest (required)
+     * @param \NecLimDul\MarketoRest\Asset\Model\CreateLpFormRequest $create_form_request
+     *   createFormRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function createLpFormsUsingPOSTAsync(
         \NecLimDul\MarketoRest\Asset\Model\CreateLpFormRequest $create_form_request
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->createLpFormsUsingPOSTAsyncWithHttpInfo($create_form_request)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse {
@@ -712,15 +747,15 @@ class FormsApi
     /**
      * Create Form
      *
-     * @param  \NecLimDul\MarketoRest\Asset\Model\CreateLpFormRequest $create_form_request createFormRequest (required)
+     * @param \NecLimDul\MarketoRest\Asset\Model\CreateLpFormRequest $create_form_request
+     *   createFormRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function createLpFormsUsingPOSTAsyncWithHttpInfo(
         \NecLimDul\MarketoRest\Asset\Model\CreateLpFormRequest $create_form_request
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->createLpFormsUsingPOSTRequest($create_form_request);
         return $this->makeAsyncRequest(
             $request,
@@ -732,15 +767,15 @@ class FormsApi
     /**
      * Create request for operation 'createLpFormsUsingPOST'
      *
-     * @param  \NecLimDul\MarketoRest\Asset\Model\CreateLpFormRequest $create_form_request createFormRequest (required)
+     * @param \NecLimDul\MarketoRest\Asset\Model\CreateLpFormRequest $create_form_request
+     *   createFormRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
     public function createLpFormsUsingPOSTRequest(
         \NecLimDul\MarketoRest\Asset\Model\CreateLpFormRequest $create_form_request
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/asset/v1/forms.json';
 
@@ -771,7 +806,6 @@ class FormsApi
             [
             ],
             $create_form_request
-            
         );
     }
 
@@ -801,7 +835,8 @@ class FormsApi
     /**
      * Delete Form
      *
-     * @param  int $id id (required)
+     * @param int $id
+     *   id
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -809,8 +844,7 @@ class FormsApi
      */
     public function deleteFormByIdUsingPOST(
         int $id
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse
-    {
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse {
         list($response) = $this->deleteFormByIdUsingPOSTWithHttpInfo($id);
         return $response;
     }
@@ -818,17 +852,21 @@ class FormsApi
     /**
      * Delete Form
      *
-     * @param  int $id id (required)
+     * @param int $id
+     *   id
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function deleteFormByIdUsingPOSTWithHttpInfo(
         int $id
-    ): array
-    {
+    ): array {
         $request = $this->deleteFormByIdUsingPOSTRequest($id);
         try {
             $response = $this->makeRequest($request);
@@ -844,15 +882,15 @@ class FormsApi
     /**
      * Delete Form
      *
-     * @param  int $id id (required)
+     * @param int $id
+     *   id
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function deleteFormByIdUsingPOSTAsync(
         int $id
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->deleteFormByIdUsingPOSTAsyncWithHttpInfo($id)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse {
@@ -864,15 +902,15 @@ class FormsApi
     /**
      * Delete Form
      *
-     * @param  int $id id (required)
+     * @param int $id
+     *   id
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function deleteFormByIdUsingPOSTAsyncWithHttpInfo(
         int $id
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->deleteFormByIdUsingPOSTRequest($id);
         return $this->makeAsyncRequest(
             $request,
@@ -884,15 +922,15 @@ class FormsApi
     /**
      * Create request for operation 'deleteFormByIdUsingPOST'
      *
-     * @param  int $id id (required)
+     * @param int $id
+     *   id
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
     public function deleteFormByIdUsingPOSTRequest(
         int $id
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/asset/v1/form/{id}/delete.json';
         $resourcePath = str_replace(
@@ -957,7 +995,8 @@ class FormsApi
     /**
      * Discard Form Draft
      *
-     * @param  int $id id (required)
+     * @param int $id
+     *   id
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -965,8 +1004,7 @@ class FormsApi
      */
     public function discardFormByIdUsingPOST(
         int $id
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse
-    {
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse {
         list($response) = $this->discardFormByIdUsingPOSTWithHttpInfo($id);
         return $response;
     }
@@ -974,17 +1012,21 @@ class FormsApi
     /**
      * Discard Form Draft
      *
-     * @param  int $id id (required)
+     * @param int $id
+     *   id
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function discardFormByIdUsingPOSTWithHttpInfo(
         int $id
-    ): array
-    {
+    ): array {
         $request = $this->discardFormByIdUsingPOSTRequest($id);
         try {
             $response = $this->makeRequest($request);
@@ -1000,15 +1042,15 @@ class FormsApi
     /**
      * Discard Form Draft
      *
-     * @param  int $id id (required)
+     * @param int $id
+     *   id
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function discardFormByIdUsingPOSTAsync(
         int $id
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->discardFormByIdUsingPOSTAsyncWithHttpInfo($id)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse {
@@ -1020,15 +1062,15 @@ class FormsApi
     /**
      * Discard Form Draft
      *
-     * @param  int $id id (required)
+     * @param int $id
+     *   id
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function discardFormByIdUsingPOSTAsyncWithHttpInfo(
         int $id
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->discardFormByIdUsingPOSTRequest($id);
         return $this->makeAsyncRequest(
             $request,
@@ -1040,15 +1082,15 @@ class FormsApi
     /**
      * Create request for operation 'discardFormByIdUsingPOST'
      *
-     * @param  int $id id (required)
+     * @param int $id
+     *   id
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
     public function discardFormByIdUsingPOSTRequest(
         int $id
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/asset/v1/form/{id}/discardDraft.json';
         $resourcePath = str_replace(
@@ -1113,9 +1155,12 @@ class FormsApi
     /**
      * Get Form Used By
      *
-     * @param  int $id Id of the form (required)
-     * @param  int $offset Integer offset for paging (optional)
-     * @param  int $max_return Maximum number of assets to return.  Max 200, default 20 (optional)
+     * @param int $id
+     *   Id of the form
+     * @param int|null $offset
+     *   Integer offset for paging
+     * @param int|null $max_return
+     *   Maximum number of assets to return.  Max 200, default 20
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -1125,8 +1170,7 @@ class FormsApi
         int $id,
         int $offset = null,
         int $max_return = null
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfFormUsedByResponse
-    {
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfFormUsedByResponse {
         list($response) = $this->getFormUsedByUsingGETWithHttpInfo($id, $offset, $max_return);
         return $response;
     }
@@ -1134,21 +1178,27 @@ class FormsApi
     /**
      * Get Form Used By
      *
-     * @param  int $id Id of the form (required)
-     * @param  int $offset Integer offset for paging (optional)
-     * @param  int $max_return Maximum number of assets to return.  Max 200, default 20 (optional)
+     * @param int $id
+     *   Id of the form
+     * @param int|null $offset
+     *   Integer offset for paging
+     * @param int|null $max_return
+     *   Maximum number of assets to return.  Max 200, default 20
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfFormUsedByResponse, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfFormUsedByResponse, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfFormUsedByResponse,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function getFormUsedByUsingGETWithHttpInfo(
         int $id,
         int $offset = null,
         int $max_return = null
-    ): array
-    {
+    ): array {
         $request = $this->getFormUsedByUsingGETRequest($id, $offset, $max_return);
         try {
             $response = $this->makeRequest($request);
@@ -1164,9 +1214,12 @@ class FormsApi
     /**
      * Get Form Used By
      *
-     * @param  int $id Id of the form (required)
-     * @param  int $offset Integer offset for paging (optional)
-     * @param  int $max_return Maximum number of assets to return.  Max 200, default 20 (optional)
+     * @param int $id
+     *   Id of the form
+     * @param int|null $offset
+     *   Integer offset for paging
+     * @param int|null $max_return
+     *   Maximum number of assets to return.  Max 200, default 20
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1175,8 +1228,7 @@ class FormsApi
         int $id,
         int $offset = null,
         int $max_return = null
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->getFormUsedByUsingGETAsyncWithHttpInfo($id, $offset, $max_return)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfFormUsedByResponse {
@@ -1188,9 +1240,12 @@ class FormsApi
     /**
      * Get Form Used By
      *
-     * @param  int $id Id of the form (required)
-     * @param  int $offset Integer offset for paging (optional)
-     * @param  int $max_return Maximum number of assets to return.  Max 200, default 20 (optional)
+     * @param int $id
+     *   Id of the form
+     * @param int|null $offset
+     *   Integer offset for paging
+     * @param int|null $max_return
+     *   Maximum number of assets to return.  Max 200, default 20
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1199,8 +1254,7 @@ class FormsApi
         int $id,
         int $offset = null,
         int $max_return = null
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->getFormUsedByUsingGETRequest($id, $offset, $max_return);
         return $this->makeAsyncRequest(
             $request,
@@ -1212,9 +1266,12 @@ class FormsApi
     /**
      * Create request for operation 'getFormUsedByUsingGET'
      *
-     * @param  int $id Id of the form (required)
-     * @param  int $offset Integer offset for paging (optional)
-     * @param  int $max_return Maximum number of assets to return.  Max 200, default 20 (optional)
+     * @param int $id
+     *   Id of the form
+     * @param int|null $offset
+     *   Integer offset for paging
+     * @param int|null $max_return
+     *   Maximum number of assets to return.  Max 200, default 20
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -1223,8 +1280,7 @@ class FormsApi
         int $id,
         int $offset = null,
         int $max_return = null
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/asset/v1/form/{id}/usedBy.json';
         $resourcePath = str_replace(
@@ -1291,8 +1347,10 @@ class FormsApi
     /**
      * Get Form By Id
      *
-     * @param  int $id id (required)
-     * @param  string $status Status filter for draft or approved versions (optional)
+     * @param int $id
+     *   id
+     * @param string|null $status
+     *   Status filter for draft or approved versions
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -1301,8 +1359,7 @@ class FormsApi
     public function getLpFormByIdUsingGET(
         int $id,
         string $status = null
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse
-    {
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse {
         list($response) = $this->getLpFormByIdUsingGETWithHttpInfo($id, $status);
         return $response;
     }
@@ -1310,19 +1367,24 @@ class FormsApi
     /**
      * Get Form By Id
      *
-     * @param  int $id id (required)
-     * @param  string $status Status filter for draft or approved versions (optional)
+     * @param int $id
+     *   id
+     * @param string|null $status
+     *   Status filter for draft or approved versions
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function getLpFormByIdUsingGETWithHttpInfo(
         int $id,
         string $status = null
-    ): array
-    {
+    ): array {
         $request = $this->getLpFormByIdUsingGETRequest($id, $status);
         try {
             $response = $this->makeRequest($request);
@@ -1338,8 +1400,10 @@ class FormsApi
     /**
      * Get Form By Id
      *
-     * @param  int $id id (required)
-     * @param  string $status Status filter for draft or approved versions (optional)
+     * @param int $id
+     *   id
+     * @param string|null $status
+     *   Status filter for draft or approved versions
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1347,8 +1411,7 @@ class FormsApi
     public function getLpFormByIdUsingGETAsync(
         int $id,
         string $status = null
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->getLpFormByIdUsingGETAsyncWithHttpInfo($id, $status)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse {
@@ -1360,8 +1423,10 @@ class FormsApi
     /**
      * Get Form By Id
      *
-     * @param  int $id id (required)
-     * @param  string $status Status filter for draft or approved versions (optional)
+     * @param int $id
+     *   id
+     * @param string|null $status
+     *   Status filter for draft or approved versions
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1369,8 +1434,7 @@ class FormsApi
     public function getLpFormByIdUsingGETAsyncWithHttpInfo(
         int $id,
         string $status = null
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->getLpFormByIdUsingGETRequest($id, $status);
         return $this->makeAsyncRequest(
             $request,
@@ -1382,8 +1446,10 @@ class FormsApi
     /**
      * Create request for operation 'getLpFormByIdUsingGET'
      *
-     * @param  int $id id (required)
-     * @param  string $status Status filter for draft or approved versions (optional)
+     * @param int $id
+     *   id
+     * @param string|null $status
+     *   Status filter for draft or approved versions
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -1391,8 +1457,7 @@ class FormsApi
     public function getLpFormByIdUsingGETRequest(
         int $id,
         string $status = null
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/asset/v1/form/{id}.json';
         $resourcePath = str_replace(
@@ -1458,9 +1523,12 @@ class FormsApi
     /**
      * Get Form by Name
      *
-     * @param  string $name Name of the form (required)
-     * @param  string $status Status filter for draft or approved versions (optional)
-     * @param  string $folder JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39; (optional)
+     * @param string $name
+     *   Name of the form
+     * @param string|null $status
+     *   Status filter for draft or approved versions
+     * @param string|null $folder
+     *   JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39;
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -1470,8 +1538,7 @@ class FormsApi
         string $name,
         string $status = null,
         string $folder = null
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse
-    {
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse {
         list($response) = $this->getLpFormByNameUsingGETWithHttpInfo($name, $status, $folder);
         return $response;
     }
@@ -1479,21 +1546,27 @@ class FormsApi
     /**
      * Get Form by Name
      *
-     * @param  string $name Name of the form (required)
-     * @param  string $status Status filter for draft or approved versions (optional)
-     * @param  string $folder JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39; (optional)
+     * @param string $name
+     *   Name of the form
+     * @param string|null $status
+     *   Status filter for draft or approved versions
+     * @param string|null $folder
+     *   JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39;
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function getLpFormByNameUsingGETWithHttpInfo(
         string $name,
         string $status = null,
         string $folder = null
-    ): array
-    {
+    ): array {
         $request = $this->getLpFormByNameUsingGETRequest($name, $status, $folder);
         try {
             $response = $this->makeRequest($request);
@@ -1509,9 +1582,12 @@ class FormsApi
     /**
      * Get Form by Name
      *
-     * @param  string $name Name of the form (required)
-     * @param  string $status Status filter for draft or approved versions (optional)
-     * @param  string $folder JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39; (optional)
+     * @param string $name
+     *   Name of the form
+     * @param string|null $status
+     *   Status filter for draft or approved versions
+     * @param string|null $folder
+     *   JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39;
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1520,8 +1596,7 @@ class FormsApi
         string $name,
         string $status = null,
         string $folder = null
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->getLpFormByNameUsingGETAsyncWithHttpInfo($name, $status, $folder)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse {
@@ -1533,9 +1608,12 @@ class FormsApi
     /**
      * Get Form by Name
      *
-     * @param  string $name Name of the form (required)
-     * @param  string $status Status filter for draft or approved versions (optional)
-     * @param  string $folder JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39; (optional)
+     * @param string $name
+     *   Name of the form
+     * @param string|null $status
+     *   Status filter for draft or approved versions
+     * @param string|null $folder
+     *   JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39;
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1544,8 +1622,7 @@ class FormsApi
         string $name,
         string $status = null,
         string $folder = null
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->getLpFormByNameUsingGETRequest($name, $status, $folder);
         return $this->makeAsyncRequest(
             $request,
@@ -1557,9 +1634,12 @@ class FormsApi
     /**
      * Create request for operation 'getLpFormByNameUsingGET'
      *
-     * @param  string $name Name of the form (required)
-     * @param  string $status Status filter for draft or approved versions (optional)
-     * @param  string $folder JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39; (optional)
+     * @param string $name
+     *   Name of the form
+     * @param string|null $status
+     *   Status filter for draft or approved versions
+     * @param string|null $folder
+     *   JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39;
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -1568,8 +1648,7 @@ class FormsApi
         string $name,
         string $status = null,
         string $folder = null
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/asset/v1/form/byName.json';
 
@@ -1632,8 +1711,10 @@ class FormsApi
     /**
      * Get Thank You Page by Form Id
      *
-     * @param  int $id id (required)
-     * @param  string $status Status filter for draft or approved versions (optional)
+     * @param int $id
+     *   id
+     * @param string|null $status
+     *   Status filter for draft or approved versions
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -1642,8 +1723,7 @@ class FormsApi
     public function getThankYouPageByIdUsingGET(
         int $id,
         string $status = null
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfThankYouPageResponse
-    {
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfThankYouPageResponse {
         list($response) = $this->getThankYouPageByIdUsingGETWithHttpInfo($id, $status);
         return $response;
     }
@@ -1651,19 +1731,24 @@ class FormsApi
     /**
      * Get Thank You Page by Form Id
      *
-     * @param  int $id id (required)
-     * @param  string $status Status filter for draft or approved versions (optional)
+     * @param int $id
+     *   id
+     * @param string|null $status
+     *   Status filter for draft or approved versions
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfThankYouPageResponse, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfThankYouPageResponse, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfThankYouPageResponse,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function getThankYouPageByIdUsingGETWithHttpInfo(
         int $id,
         string $status = null
-    ): array
-    {
+    ): array {
         $request = $this->getThankYouPageByIdUsingGETRequest($id, $status);
         try {
             $response = $this->makeRequest($request);
@@ -1679,8 +1764,10 @@ class FormsApi
     /**
      * Get Thank You Page by Form Id
      *
-     * @param  int $id id (required)
-     * @param  string $status Status filter for draft or approved versions (optional)
+     * @param int $id
+     *   id
+     * @param string|null $status
+     *   Status filter for draft or approved versions
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1688,8 +1775,7 @@ class FormsApi
     public function getThankYouPageByIdUsingGETAsync(
         int $id,
         string $status = null
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->getThankYouPageByIdUsingGETAsyncWithHttpInfo($id, $status)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfThankYouPageResponse {
@@ -1701,8 +1787,10 @@ class FormsApi
     /**
      * Get Thank You Page by Form Id
      *
-     * @param  int $id id (required)
-     * @param  string $status Status filter for draft or approved versions (optional)
+     * @param int $id
+     *   id
+     * @param string|null $status
+     *   Status filter for draft or approved versions
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1710,8 +1798,7 @@ class FormsApi
     public function getThankYouPageByIdUsingGETAsyncWithHttpInfo(
         int $id,
         string $status = null
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->getThankYouPageByIdUsingGETRequest($id, $status);
         return $this->makeAsyncRequest(
             $request,
@@ -1723,8 +1810,10 @@ class FormsApi
     /**
      * Create request for operation 'getThankYouPageByIdUsingGET'
      *
-     * @param  int $id id (required)
-     * @param  string $status Status filter for draft or approved versions (optional)
+     * @param int $id
+     *   id
+     * @param string|null $status
+     *   Status filter for draft or approved versions
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -1732,8 +1821,7 @@ class FormsApi
     public function getThankYouPageByIdUsingGETRequest(
         int $id,
         string $status = null
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/asset/v1/form/{id}/thankYouPage.json';
         $resourcePath = str_replace(
@@ -1799,8 +1887,10 @@ class FormsApi
     /**
      * Update Submit Button
      *
-     * @param  int $id id (required)
-     * @param  \NecLimDul\MarketoRest\Asset\Model\SubmitButtonRequest $submit_button_request submitButtonRequest (required)
+     * @param int $id
+     *   id
+     * @param \NecLimDul\MarketoRest\Asset\Model\SubmitButtonRequest $submit_button_request
+     *   submitButtonRequest
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -1809,8 +1899,7 @@ class FormsApi
     public function updateFormSubmitButtonUsingPOST(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\SubmitButtonRequest $submit_button_request
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse
-    {
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse {
         list($response) = $this->updateFormSubmitButtonUsingPOSTWithHttpInfo($id, $submit_button_request);
         return $response;
     }
@@ -1818,19 +1907,24 @@ class FormsApi
     /**
      * Update Submit Button
      *
-     * @param  int $id id (required)
-     * @param  \NecLimDul\MarketoRest\Asset\Model\SubmitButtonRequest $submit_button_request submitButtonRequest (required)
+     * @param int $id
+     *   id
+     * @param \NecLimDul\MarketoRest\Asset\Model\SubmitButtonRequest $submit_button_request
+     *   submitButtonRequest
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function updateFormSubmitButtonUsingPOSTWithHttpInfo(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\SubmitButtonRequest $submit_button_request
-    ): array
-    {
+    ): array {
         $request = $this->updateFormSubmitButtonUsingPOSTRequest($id, $submit_button_request);
         try {
             $response = $this->makeRequest($request);
@@ -1846,8 +1940,10 @@ class FormsApi
     /**
      * Update Submit Button
      *
-     * @param  int $id id (required)
-     * @param  \NecLimDul\MarketoRest\Asset\Model\SubmitButtonRequest $submit_button_request submitButtonRequest (required)
+     * @param int $id
+     *   id
+     * @param \NecLimDul\MarketoRest\Asset\Model\SubmitButtonRequest $submit_button_request
+     *   submitButtonRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1855,8 +1951,7 @@ class FormsApi
     public function updateFormSubmitButtonUsingPOSTAsync(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\SubmitButtonRequest $submit_button_request
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->updateFormSubmitButtonUsingPOSTAsyncWithHttpInfo($id, $submit_button_request)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse {
@@ -1868,8 +1963,10 @@ class FormsApi
     /**
      * Update Submit Button
      *
-     * @param  int $id id (required)
-     * @param  \NecLimDul\MarketoRest\Asset\Model\SubmitButtonRequest $submit_button_request submitButtonRequest (required)
+     * @param int $id
+     *   id
+     * @param \NecLimDul\MarketoRest\Asset\Model\SubmitButtonRequest $submit_button_request
+     *   submitButtonRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1877,8 +1974,7 @@ class FormsApi
     public function updateFormSubmitButtonUsingPOSTAsyncWithHttpInfo(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\SubmitButtonRequest $submit_button_request
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->updateFormSubmitButtonUsingPOSTRequest($id, $submit_button_request);
         return $this->makeAsyncRequest(
             $request,
@@ -1890,8 +1986,10 @@ class FormsApi
     /**
      * Create request for operation 'updateFormSubmitButtonUsingPOST'
      *
-     * @param  int $id id (required)
-     * @param  \NecLimDul\MarketoRest\Asset\Model\SubmitButtonRequest $submit_button_request submitButtonRequest (required)
+     * @param int $id
+     *   id
+     * @param \NecLimDul\MarketoRest\Asset\Model\SubmitButtonRequest $submit_button_request
+     *   submitButtonRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -1899,8 +1997,7 @@ class FormsApi
     public function updateFormSubmitButtonUsingPOSTRequest(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\SubmitButtonRequest $submit_button_request
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/asset/v1/form/{id}/submitButton.json';
         $resourcePath = str_replace(
@@ -1936,7 +2033,6 @@ class FormsApi
             [
             ],
             $submit_button_request
-            
         );
     }
 
@@ -1966,8 +2062,10 @@ class FormsApi
     /**
      * Update Form Metadata
      *
-     * @param  int $id id (required)
-     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateFormMetaDataRequest $update_form_meta_data_request updateFormMetaDataRequest (required)
+     * @param int $id
+     *   id
+     * @param \NecLimDul\MarketoRest\Asset\Model\UpdateFormMetaDataRequest $update_form_meta_data_request
+     *   updateFormMetaDataRequest
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -1976,8 +2074,7 @@ class FormsApi
     public function updateFormsUsingPOST(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\UpdateFormMetaDataRequest $update_form_meta_data_request
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse
-    {
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse {
         list($response) = $this->updateFormsUsingPOSTWithHttpInfo($id, $update_form_meta_data_request);
         return $response;
     }
@@ -1985,19 +2082,24 @@ class FormsApi
     /**
      * Update Form Metadata
      *
-     * @param  int $id id (required)
-     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateFormMetaDataRequest $update_form_meta_data_request updateFormMetaDataRequest (required)
+     * @param int $id
+     *   id
+     * @param \NecLimDul\MarketoRest\Asset\Model\UpdateFormMetaDataRequest $update_form_meta_data_request
+     *   updateFormMetaDataRequest
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function updateFormsUsingPOSTWithHttpInfo(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\UpdateFormMetaDataRequest $update_form_meta_data_request
-    ): array
-    {
+    ): array {
         $request = $this->updateFormsUsingPOSTRequest($id, $update_form_meta_data_request);
         try {
             $response = $this->makeRequest($request);
@@ -2013,8 +2115,10 @@ class FormsApi
     /**
      * Update Form Metadata
      *
-     * @param  int $id id (required)
-     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateFormMetaDataRequest $update_form_meta_data_request updateFormMetaDataRequest (required)
+     * @param int $id
+     *   id
+     * @param \NecLimDul\MarketoRest\Asset\Model\UpdateFormMetaDataRequest $update_form_meta_data_request
+     *   updateFormMetaDataRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -2022,8 +2126,7 @@ class FormsApi
     public function updateFormsUsingPOSTAsync(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\UpdateFormMetaDataRequest $update_form_meta_data_request
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->updateFormsUsingPOSTAsyncWithHttpInfo($id, $update_form_meta_data_request)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpFormResponse {
@@ -2035,8 +2138,10 @@ class FormsApi
     /**
      * Update Form Metadata
      *
-     * @param  int $id id (required)
-     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateFormMetaDataRequest $update_form_meta_data_request updateFormMetaDataRequest (required)
+     * @param int $id
+     *   id
+     * @param \NecLimDul\MarketoRest\Asset\Model\UpdateFormMetaDataRequest $update_form_meta_data_request
+     *   updateFormMetaDataRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -2044,8 +2149,7 @@ class FormsApi
     public function updateFormsUsingPOSTAsyncWithHttpInfo(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\UpdateFormMetaDataRequest $update_form_meta_data_request
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->updateFormsUsingPOSTRequest($id, $update_form_meta_data_request);
         return $this->makeAsyncRequest(
             $request,
@@ -2057,8 +2161,10 @@ class FormsApi
     /**
      * Create request for operation 'updateFormsUsingPOST'
      *
-     * @param  int $id id (required)
-     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateFormMetaDataRequest $update_form_meta_data_request updateFormMetaDataRequest (required)
+     * @param int $id
+     *   id
+     * @param \NecLimDul\MarketoRest\Asset\Model\UpdateFormMetaDataRequest $update_form_meta_data_request
+     *   updateFormMetaDataRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -2066,8 +2172,7 @@ class FormsApi
     public function updateFormsUsingPOSTRequest(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\UpdateFormMetaDataRequest $update_form_meta_data_request
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/asset/v1/form/{id}.json';
         $resourcePath = str_replace(
@@ -2103,7 +2208,6 @@ class FormsApi
             [
             ],
             $update_form_meta_data_request
-            
         );
     }
 
@@ -2133,8 +2237,10 @@ class FormsApi
     /**
      * Update Thank You Page
      *
-     * @param  int $id id (required)
-     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateThankYouPageRequest $thank_you_page_request thankYouPageRequest (required)
+     * @param int $id
+     *   id
+     * @param \NecLimDul\MarketoRest\Asset\Model\UpdateThankYouPageRequest $thank_you_page_request
+     *   thankYouPageRequest
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -2143,8 +2249,7 @@ class FormsApi
     public function updateThankYouPageByIdUsingPOST(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\UpdateThankYouPageRequest $thank_you_page_request
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfThankYouPageResponse
-    {
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfThankYouPageResponse {
         list($response) = $this->updateThankYouPageByIdUsingPOSTWithHttpInfo($id, $thank_you_page_request);
         return $response;
     }
@@ -2152,19 +2257,24 @@ class FormsApi
     /**
      * Update Thank You Page
      *
-     * @param  int $id id (required)
-     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateThankYouPageRequest $thank_you_page_request thankYouPageRequest (required)
+     * @param int $id
+     *   id
+     * @param \NecLimDul\MarketoRest\Asset\Model\UpdateThankYouPageRequest $thank_you_page_request
+     *   thankYouPageRequest
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfThankYouPageResponse, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfThankYouPageResponse, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfThankYouPageResponse,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function updateThankYouPageByIdUsingPOSTWithHttpInfo(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\UpdateThankYouPageRequest $thank_you_page_request
-    ): array
-    {
+    ): array {
         $request = $this->updateThankYouPageByIdUsingPOSTRequest($id, $thank_you_page_request);
         try {
             $response = $this->makeRequest($request);
@@ -2180,8 +2290,10 @@ class FormsApi
     /**
      * Update Thank You Page
      *
-     * @param  int $id id (required)
-     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateThankYouPageRequest $thank_you_page_request thankYouPageRequest (required)
+     * @param int $id
+     *   id
+     * @param \NecLimDul\MarketoRest\Asset\Model\UpdateThankYouPageRequest $thank_you_page_request
+     *   thankYouPageRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -2189,8 +2301,7 @@ class FormsApi
     public function updateThankYouPageByIdUsingPOSTAsync(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\UpdateThankYouPageRequest $thank_you_page_request
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->updateThankYouPageByIdUsingPOSTAsyncWithHttpInfo($id, $thank_you_page_request)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfThankYouPageResponse {
@@ -2202,8 +2313,10 @@ class FormsApi
     /**
      * Update Thank You Page
      *
-     * @param  int $id id (required)
-     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateThankYouPageRequest $thank_you_page_request thankYouPageRequest (required)
+     * @param int $id
+     *   id
+     * @param \NecLimDul\MarketoRest\Asset\Model\UpdateThankYouPageRequest $thank_you_page_request
+     *   thankYouPageRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -2211,8 +2324,7 @@ class FormsApi
     public function updateThankYouPageByIdUsingPOSTAsyncWithHttpInfo(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\UpdateThankYouPageRequest $thank_you_page_request
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->updateThankYouPageByIdUsingPOSTRequest($id, $thank_you_page_request);
         return $this->makeAsyncRequest(
             $request,
@@ -2224,8 +2336,10 @@ class FormsApi
     /**
      * Create request for operation 'updateThankYouPageByIdUsingPOST'
      *
-     * @param  int $id id (required)
-     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateThankYouPageRequest $thank_you_page_request thankYouPageRequest (required)
+     * @param int $id
+     *   id
+     * @param \NecLimDul\MarketoRest\Asset\Model\UpdateThankYouPageRequest $thank_you_page_request
+     *   thankYouPageRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -2233,8 +2347,7 @@ class FormsApi
     public function updateThankYouPageByIdUsingPOSTRequest(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\UpdateThankYouPageRequest $thank_you_page_request
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/asset/v1/form/{id}/thankYouPage.json';
         $resourcePath = str_replace(
@@ -2270,7 +2383,6 @@ class FormsApi
             [
             ],
             $thank_you_page_request
-            
         );
     }
 
@@ -2301,10 +2413,11 @@ class FormsApi
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @return \Psr\Http\Message\ResponseInterface
      */
-    private function makeRequest(Request $request) {
+    private function makeRequest(Request $request)
+    {
         $options = $this->createHttpClientOption();
         try {
-           $response = $this->client->send($request, $options);
+            $response = $this->client->send($request, $options);
         } catch (RequestException $e) {
             $response = $e->getResponse();
             throw new ApiException(
@@ -2377,7 +2490,8 @@ class FormsApi
      * @return array structured array or response and http info.
      * @phpstan-return array{T, int, array<array<string>>}
      */
-    private function responseToReturn(ResponseInterface $response, string $returnType) {
+    private function responseToReturn(ResponseInterface $response, string $returnType)
+    {
         return [
             $this->deserializeResponseBody($response->getBody(), $returnType),
             $response->getStatusCode(),
@@ -2406,5 +2520,4 @@ class FormsApi
             $headers
         );
     }
-
 }

@@ -13,12 +13,11 @@ use Psr\Http\Message\ResponseInterface;
 
 class LeadsApi extends LeadsLeadsApi
 {
-
     /**
      * {@inheritDoc}
      */
     public function submitFormUsingPOSTWithHttpInfo(
-      SubmitFormRequest $submit_form_request
+        SubmitFormRequest $submit_form_request
     ): array {
         $request = $this->submitFormUsingPOSTRequest($submit_form_request);
         try {
@@ -27,14 +26,13 @@ class LeadsApi extends LeadsLeadsApi
                 $response,
                 \NecLimDul\MarketoRest\Hacks\Model\ResponseOfSubmitForm::class
             );
-
         } catch (ApiException $e) {
             switch ($e->getCode()) {
                 case 200:
                     $e->setResponseObject(
                         $this->deserializeResponseBody(
                             $e->getResponseBody(),
-                        \NecLimDul\MarketoRest\Hacks\Model\ResponseOfSubmitForm::class,
+                            \NecLimDul\MarketoRest\Hacks\Model\ResponseOfSubmitForm::class,
                             $e->getResponseHeaders()
                         )
                     );
@@ -48,7 +46,7 @@ class LeadsApi extends LeadsLeadsApi
      * {@inheritDoc}
      */
     public function submitFormUsingPOSTAsyncWithHttpInfo(
-      SubmitFormRequest $submit_form_request
+        SubmitFormRequest $submit_form_request
     ): PromiseInterface {
         $request = $this->submitFormUsingPOSTRequest($submit_form_request);
 
@@ -162,5 +160,4 @@ class LeadsApi extends LeadsLeadsApi
             $headers
         );
     }
-
 }

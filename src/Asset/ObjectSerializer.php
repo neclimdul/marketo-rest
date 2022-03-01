@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ObjectSerializer
  *
@@ -106,7 +107,7 @@ class ObjectSerializer
                     }
                 }
             } elseif (is_iterable($data)) {
-                foreach($data as $property => $value) {
+                foreach ($data as $property => $value) {
                     $values[$property] = self::sanitizeForSerialization($value);
                 }
             } elseif ($data instanceof \stdClass) {
@@ -126,7 +127,7 @@ class ObjectSerializer
      *
      * @return string the sanitized filename
      */
-    public static function sanitizeFilename($filename)
+    public static function sanitizeFilename($filename): string
     {
         if (preg_match("/.*[\/\\\\](.*)$/", $filename, $match)) {
             return $match[1];
@@ -165,8 +166,8 @@ class ObjectSerializer
     {
         if (is_array($object)) {
             return implode(',', $object);
-        } elseif ($object === NULL) {
-            return NULL;
+        } elseif ($object === null) {
+            return null;
         } else {
             return self::toString($object);
         }
@@ -227,8 +228,8 @@ class ObjectSerializer
         $return = [];
         foreach ($paramFiles as $paramFile) {
             $return[] = \GuzzleHttp\Psr7\Utils::tryFopen(
-              ObjectSerializer::toFormValue($paramFile),
-              'rb'
+                ObjectSerializer::toFormValue($paramFile),
+                'rb'
             );
         }
         return $return;
@@ -248,7 +249,7 @@ class ObjectSerializer
     {
         if ($value instanceof \SplFileObject) {
             $path = $value->getRealPath();
-            if ($path === FALSE) {
+            if ($path === false) {
                 throw new ApiException('Unable to find file.');
             }
             return $path;
@@ -285,7 +286,8 @@ class ObjectSerializer
      * @param string $contentType The expected body content type.
      * @return string Encoded body value.
      */
-    public static function toBodyValue($object, string $contentType): string {
+    public static function toBodyValue($object, string $contentType): string
+    {
         if ($contentType === 'application/json') {
             /**
              * @todo remove when Guzzle 6 support is removed.
@@ -359,18 +361,20 @@ class ObjectSerializer
             /** @var \Psr\Http\Message\StreamInterface $data */
 
             // determine file name
-            if (isset($httpHeaders['Content-Disposition'][0]) &&
-                preg_match('/inline; filename=[\'"]?([^\'"\s]+)[\'"]?$/i', $httpHeaders['Content-Disposition'][0], $match)) {
+            if (
+                isset($httpHeaders['Content-Disposition'][0]) &&
+                preg_match('/inline; filename=[\'"]?([^\'"\s]+)[\'"]?$/i', $httpHeaders['Content-Disposition'][0], $match)
+            ) {
                 $filename = Configuration::getDefaultConfiguration()->getTempFolderPath() . DIRECTORY_SEPARATOR . self::sanitizeFilename($match[1]);
             } else {
                 $filename = tempnam(Configuration::getDefaultConfiguration()->getTempFolderPath(), '');
-                if ($filename === FALSE) {
+                if ($filename === false) {
                     throw new ApiException('Unable to create temporary directory');
                 }
             }
 
             $file = fopen($filename, 'w');
-            if ($file === FALSE) {
+            if ($file === false) {
                 throw new ApiException('Unable to write temporary file');
             }
             while ($chunk = $data->read(200)) {
@@ -398,7 +402,6 @@ class ObjectSerializer
     {
 
         if (strcasecmp(substr($type, -2), '[]') === 0) {
-
             if (!is_array($data)) {
                 throw new \InvalidArgumentException("Invalid array '$type'");
             }
@@ -478,8 +481,8 @@ class ObjectSerializer
 
                 $propertyValue = $data->{$instance::attributeMap()[$property]};
                 $instance->$propertySetter(self::doDeserialize(
-                  $propertyValue,
-                  $model_types
+                    $propertyValue,
+                    $model_types
                 ));
             }
             // Add any additional properties directly. This doesn't get any
@@ -504,12 +507,12 @@ class ObjectSerializer
      * @return \GuzzleHttp\Psr7\Request
      */
     public static function createRequest(
-      string $method,
-      string $uri,
-      array $query,
-      array $headers,
-      array $form,
-      $body
+        string $method,
+        string $uri,
+        array $query,
+        array $headers,
+        array $form,
+        $body
     ): Request {
         $query = array_filter($query, function ($v) {
             return $v !== null;
@@ -525,7 +528,7 @@ class ObjectSerializer
         // This is a bit hacky but sometimes API's aren't great about reporting
         // they need to post multipart data. This detects any file parameters
         // and forces a multipart submission.
-        $multipart = array_reduce($form, function(bool $carry, $items): bool {
+        $multipart = array_reduce($form, function (bool $carry, $items): bool {
             if (is_array($items)) {
                 foreach ($items as $item) {
                     if (is_resource($item)) {
@@ -548,8 +551,7 @@ class ObjectSerializer
                                 'contents' => $paramValueItem
                             ];
                         }
-                    }
-                    else {
+                    } else {
                         $multipartContents[] = [
                             'name' => $paramName,
                             'contents' => $paramValue
@@ -576,5 +578,4 @@ class ObjectSerializer
             !empty($body) ? ObjectSerializer::toBodyValue($body, $headers['Content-Type']) : ''
         );
     }
-
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * FileContentsApi
  *
@@ -48,7 +49,6 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  */
 class FileContentsApi
 {
-
     /**
      * @var ClientInterface
      */
@@ -73,7 +73,7 @@ class FileContentsApi
      * @param ClientInterface|null $client
      * @param Configuration|null   $config
      * @param HeaderSelector|null  $selector
-     * @param int                  $hostIndex (Optional) host index to select the list of hosts if defined in the OpenAPI spec
+     * @param int                  $hostIndex (Optional) host index to select the list of hosts if defined in the spec.
      */
     public function __construct(
         ClientInterface $client = null,
@@ -102,7 +102,7 @@ class FileContentsApi
      *
      * @return int Host index
      */
-    public function getHostIndex()
+    public function getHostIndex(): int
     {
         return $this->hostIndex;
     }
@@ -110,7 +110,7 @@ class FileContentsApi
     /**
      * @return Configuration
      */
-    public function getConfig()
+    public function getConfig(): Configuration
     {
         return $this->config;
     }
@@ -141,8 +141,10 @@ class FileContentsApi
     /**
      * Update File Content
      *
-     * @param  int $id Id for file in database (required)
-     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateFileContentRequest $request request (required)
+     * @param int $id
+     *   Id for file in database
+     * @param \NecLimDul\MarketoRest\Asset\Model\UpdateFileContentRequest $request
+     *   request
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -151,8 +153,7 @@ class FileContentsApi
     public function updateContentUsingPOST(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\UpdateFileContentRequest $request
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse
-    {
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse {
         list($response) = $this->updateContentUsingPOSTWithHttpInfo($id, $request);
         return $response;
     }
@@ -160,19 +161,24 @@ class FileContentsApi
     /**
      * Update File Content
      *
-     * @param  int $id Id for file in database (required)
-     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateFileContentRequest $request request (required)
+     * @param int $id
+     *   Id for file in database
+     * @param \NecLimDul\MarketoRest\Asset\Model\UpdateFileContentRequest $request
+     *   request
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function updateContentUsingPOSTWithHttpInfo(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\UpdateFileContentRequest $request
-    ): array
-    {
+    ): array {
         $request = $this->updateContentUsingPOSTRequest($id, $request);
         try {
             $response = $this->makeRequest($request);
@@ -188,8 +194,10 @@ class FileContentsApi
     /**
      * Update File Content
      *
-     * @param  int $id Id for file in database (required)
-     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateFileContentRequest $request request (required)
+     * @param int $id
+     *   Id for file in database
+     * @param \NecLimDul\MarketoRest\Asset\Model\UpdateFileContentRequest $request
+     *   request
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -197,8 +205,7 @@ class FileContentsApi
     public function updateContentUsingPOSTAsync(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\UpdateFileContentRequest $request
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->updateContentUsingPOSTAsyncWithHttpInfo($id, $request)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse {
@@ -210,8 +217,10 @@ class FileContentsApi
     /**
      * Update File Content
      *
-     * @param  int $id Id for file in database (required)
-     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateFileContentRequest $request request (required)
+     * @param int $id
+     *   Id for file in database
+     * @param \NecLimDul\MarketoRest\Asset\Model\UpdateFileContentRequest $request
+     *   request
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -219,8 +228,7 @@ class FileContentsApi
     public function updateContentUsingPOSTAsyncWithHttpInfo(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\UpdateFileContentRequest $request
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->updateContentUsingPOSTRequest($id, $request);
         return $this->makeAsyncRequest(
             $request,
@@ -232,8 +240,10 @@ class FileContentsApi
     /**
      * Create request for operation 'updateContentUsingPOST'
      *
-     * @param  int $id Id for file in database (required)
-     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateFileContentRequest $request request (required)
+     * @param int $id
+     *   Id for file in database
+     * @param \NecLimDul\MarketoRest\Asset\Model\UpdateFileContentRequest $request
+     *   request
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -241,8 +251,7 @@ class FileContentsApi
     public function updateContentUsingPOSTRequest(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\UpdateFileContentRequest $request
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/asset/v1/file/{id}/content.json';
         $resourcePath = str_replace(
@@ -278,7 +287,6 @@ class FileContentsApi
             [
             ],
             $request
-            
         );
     }
 
@@ -309,10 +317,11 @@ class FileContentsApi
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @return \Psr\Http\Message\ResponseInterface
      */
-    private function makeRequest(Request $request) {
+    private function makeRequest(Request $request)
+    {
         $options = $this->createHttpClientOption();
         try {
-           $response = $this->client->send($request, $options);
+            $response = $this->client->send($request, $options);
         } catch (RequestException $e) {
             $response = $e->getResponse();
             throw new ApiException(
@@ -385,7 +394,8 @@ class FileContentsApi
      * @return array structured array or response and http info.
      * @phpstan-return array{T, int, array<array<string>>}
      */
-    private function responseToReturn(ResponseInterface $response, string $returnType) {
+    private function responseToReturn(ResponseInterface $response, string $returnType)
+    {
         return [
             $this->deserializeResponseBody($response->getBody(), $returnType),
             $response->getStatusCode(),
@@ -414,5 +424,4 @@ class FileContentsApi
             $headers
         );
     }
-
 }

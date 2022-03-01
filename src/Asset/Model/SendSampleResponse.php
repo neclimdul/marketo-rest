@@ -1,4 +1,5 @@
 <?php
+
 /**
  * SendSampleResponse
  *
@@ -25,8 +26,8 @@
 
 namespace NecLimDul\MarketoRest\Asset\Model;
 
-use \ArrayAccess;
-use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
+use ArrayAccess;
+use NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * SendSampleResponse Class Doc Comment
@@ -42,6 +43,7 @@ use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
 class SendSampleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    public const SERVICE_SEND_TEST_EMAIL = 'sendTestEmail';
 
     /**
       * The original name of the model.
@@ -127,8 +129,6 @@ class SendSampleResponse implements ModelInterface, ArrayAccess, \JsonSerializab
         'service' => 'getService',
         'result' => 'getResult'
     ];
-    
-    const SERVICE_SEND_TEST_EMAIL = 'sendTestEmail';
 
     /**
      * Associative array for storing property values
@@ -213,7 +213,6 @@ class SendSampleResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     {
         return count($this->listInvalidProperties()) === 0;
     }
-    
     /**
      * Gets allowable values of the enum.
      *
@@ -225,7 +224,6 @@ class SendSampleResponse implements ModelInterface, ArrayAccess, \JsonSerializab
             self::SERVICE_SEND_TEST_EMAIL,
         ];
     }
-    
 
     /**
      * Gets service
@@ -322,7 +320,7 @@ class SendSampleResponse implements ModelInterface, ArrayAccess, \JsonSerializab
              * @param array-key $key
              * @return mixed
              */
-            function($key) use ($container) {
+            function ($key) use ($container) {
                 return $container[$key];
             };
         return array_map($map, $this->additionalProperties);
@@ -378,7 +376,7 @@ class SendSampleResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -394,5 +392,4 @@ class SendSampleResponse implements ModelInterface, ArrayAccess, \JsonSerializab
             JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR
         );
     }
-
 }

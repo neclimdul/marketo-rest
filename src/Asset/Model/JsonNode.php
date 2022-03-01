@@ -1,4 +1,5 @@
 <?php
+
 /**
  * JsonNode
  *
@@ -25,8 +26,8 @@
 
 namespace NecLimDul\MarketoRest\Asset\Model;
 
-use \ArrayAccess;
-use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
+use ArrayAccess;
+use NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * JsonNode Class Doc Comment
@@ -42,6 +43,15 @@ use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
 class JsonNode implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    public const NODE_TYPE__ARRAY = 'ARRAY';
+    public const NODE_TYPE_BINARY = 'BINARY';
+    public const NODE_TYPE_BOOLEAN = 'BOOLEAN';
+    public const NODE_TYPE_MISSING = 'MISSING';
+    public const NODE_TYPE_NULL = 'NULL';
+    public const NODE_TYPE_NUMBER = 'NUMBER';
+    public const NODE_TYPE_OBJECT = 'OBJECT';
+    public const NODE_TYPE_POJO = 'POJO';
+    public const NODE_TYPE_STRING = 'STRING';
 
     /**
       * The original name of the model.
@@ -222,16 +232,6 @@ class JsonNode implements ModelInterface, ArrayAccess, \JsonSerializable
         'textual' => 'getTextual',
         'value_node' => 'getValueNode'
     ];
-    
-    const NODE_TYPE__ARRAY = 'ARRAY';
-    const NODE_TYPE_BINARY = 'BINARY';
-    const NODE_TYPE_BOOLEAN = 'BOOLEAN';
-    const NODE_TYPE_MISSING = 'MISSING';
-    const NODE_TYPE_NULL = 'NULL';
-    const NODE_TYPE_NUMBER = 'NUMBER';
-    const NODE_TYPE_OBJECT = 'OBJECT';
-    const NODE_TYPE_POJO = 'POJO';
-    const NODE_TYPE_STRING = 'STRING';
 
     /**
      * Associative array for storing property values
@@ -329,7 +329,6 @@ class JsonNode implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         return count($this->listInvalidProperties()) === 0;
     }
-    
     /**
      * Gets allowable values of the enum.
      *
@@ -349,7 +348,6 @@ class JsonNode implements ModelInterface, ArrayAccess, \JsonSerializable
             self::NODE_TYPE_STRING,
         ];
     }
-    
 
     /**
      * Gets array
@@ -902,7 +900,7 @@ class JsonNode implements ModelInterface, ArrayAccess, \JsonSerializable
              * @param array-key $key
              * @return mixed
              */
-            function($key) use ($container) {
+            function ($key) use ($container) {
                 return $container[$key];
             };
         return array_map($map, $this->additionalProperties);
@@ -958,7 +956,7 @@ class JsonNode implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -974,5 +972,4 @@ class JsonNode implements ModelInterface, ArrayAccess, \JsonSerializable
             JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR
         );
     }
-
 }

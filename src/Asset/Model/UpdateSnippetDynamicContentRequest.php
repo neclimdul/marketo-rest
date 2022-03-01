@@ -1,4 +1,5 @@
 <?php
+
 /**
  * UpdateSnippetDynamicContentRequest
  *
@@ -25,8 +26,8 @@
 
 namespace NecLimDul\MarketoRest\Asset\Model;
 
-use \ArrayAccess;
-use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
+use ArrayAccess;
+use NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * UpdateSnippetDynamicContentRequest Class Doc Comment
@@ -42,6 +43,7 @@ use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
 class UpdateSnippetDynamicContentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    public const TYPE_TYPEOFCONTENTEITHERHTMLORTEXT = 'Typeofcontent.Either\'HTML2\'or\'Text\'';
 
     /**
       * The original name of the model.
@@ -127,8 +129,6 @@ class UpdateSnippetDynamicContentRequest implements ModelInterface, ArrayAccess,
         'type' => 'getType',
         'value' => 'getValue'
     ];
-    
-    const TYPE_TYPEOFCONTENTEITHERHTMLORTEXT = 'Typeofcontent.Either\'HTML2\'or\'Text\'';
 
     /**
      * Associative array for storing property values
@@ -207,7 +207,6 @@ class UpdateSnippetDynamicContentRequest implements ModelInterface, ArrayAccess,
     {
         return count($this->listInvalidProperties()) === 0;
     }
-    
     /**
      * Gets allowable values of the enum.
      *
@@ -219,7 +218,6 @@ class UpdateSnippetDynamicContentRequest implements ModelInterface, ArrayAccess,
             self::TYPE_TYPEOFCONTENTEITHERHTMLORTEXT,
         ];
     }
-    
 
     /**
      * Gets type
@@ -316,7 +314,7 @@ class UpdateSnippetDynamicContentRequest implements ModelInterface, ArrayAccess,
              * @param array-key $key
              * @return mixed
              */
-            function($key) use ($container) {
+            function ($key) use ($container) {
                 return $container[$key];
             };
         return array_map($map, $this->additionalProperties);
@@ -372,7 +370,7 @@ class UpdateSnippetDynamicContentRequest implements ModelInterface, ArrayAccess,
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -388,5 +386,4 @@ class UpdateSnippetDynamicContentRequest implements ModelInterface, ArrayAccess,
             JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR
         );
     }
-
 }

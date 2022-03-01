@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ProgramMembership
  *
@@ -25,8 +26,8 @@
 
 namespace NecLimDul\MarketoRest\Lead\Model;
 
-use \ArrayAccess;
-use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
+use ArrayAccess;
+use NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * ProgramMembership Class Doc Comment
@@ -152,7 +153,6 @@ class ProgramMembership implements ModelInterface, ArrayAccess, \JsonSerializabl
         'reached_success' => 'getReachedSuccess',
         'stream' => 'getStream'
     ];
-    
 
     /**
      * Associative array for storing property values
@@ -233,7 +233,6 @@ class ProgramMembership implements ModelInterface, ArrayAccess, \JsonSerializabl
     {
         return count($this->listInvalidProperties()) === 0;
     }
-    
 
     /**
      * Gets acquired_by
@@ -440,7 +439,7 @@ class ProgramMembership implements ModelInterface, ArrayAccess, \JsonSerializabl
              * @param array-key $key
              * @return mixed
              */
-            function($key) use ($container) {
+            function ($key) use ($container) {
                 return $container[$key];
             };
         return array_map($map, $this->additionalProperties);
@@ -496,7 +495,7 @@ class ProgramMembership implements ModelInterface, ArrayAccess, \JsonSerializabl
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -512,5 +511,4 @@ class ProgramMembership implements ModelInterface, ArrayAccess, \JsonSerializabl
             JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR
         );
     }
-
 }

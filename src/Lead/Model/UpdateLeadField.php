@@ -1,4 +1,5 @@
 <?php
+
 /**
  * UpdateLeadField
  *
@@ -25,8 +26,8 @@
 
 namespace NecLimDul\MarketoRest\Lead\Model;
 
-use \ArrayAccess;
-use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
+use ArrayAccess;
+use NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * UpdateLeadField Class Doc Comment
@@ -143,7 +144,6 @@ class UpdateLeadField implements ModelInterface, ArrayAccess, \JsonSerializable
         'is_html_encoding_in_email' => 'getIsHtmlEncodingInEmail',
         'is_sensitive' => 'getIsSensitive'
     ];
-    
 
     /**
      * Associative array for storing property values
@@ -216,7 +216,6 @@ class UpdateLeadField implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         return count($this->listInvalidProperties()) === 0;
     }
-    
 
     /**
      * Gets display_name
@@ -375,7 +374,7 @@ class UpdateLeadField implements ModelInterface, ArrayAccess, \JsonSerializable
              * @param array-key $key
              * @return mixed
              */
-            function($key) use ($container) {
+            function ($key) use ($container) {
                 return $container[$key];
             };
         return array_map($map, $this->additionalProperties);
@@ -431,7 +430,7 @@ class UpdateLeadField implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -447,5 +446,4 @@ class UpdateLeadField implements ModelInterface, ArrayAccess, \JsonSerializable
             JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR
         );
     }
-
 }

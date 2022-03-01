@@ -1,4 +1,5 @@
 <?php
+
 /**
  * UpdateStaticListRequest
  *
@@ -25,8 +26,8 @@
 
 namespace NecLimDul\MarketoRest\Asset\Model;
 
-use \ArrayAccess;
-use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
+use ArrayAccess;
+use NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * UpdateStaticListRequest Class Doc Comment
@@ -127,7 +128,6 @@ class UpdateStaticListRequest implements ModelInterface, ArrayAccess, \JsonSeria
         'description' => 'getDescription',
         'name' => 'getName'
     ];
-    
 
     /**
      * Associative array for storing property values
@@ -197,7 +197,6 @@ class UpdateStaticListRequest implements ModelInterface, ArrayAccess, \JsonSeria
     {
         return count($this->listInvalidProperties()) === 0;
     }
-    
 
     /**
      * Gets description
@@ -284,7 +283,7 @@ class UpdateStaticListRequest implements ModelInterface, ArrayAccess, \JsonSeria
              * @param array-key $key
              * @return mixed
              */
-            function($key) use ($container) {
+            function ($key) use ($container) {
                 return $container[$key];
             };
         return array_map($map, $this->additionalProperties);
@@ -340,7 +339,7 @@ class UpdateStaticListRequest implements ModelInterface, ArrayAccess, \JsonSeria
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -356,5 +355,4 @@ class UpdateStaticListRequest implements ModelInterface, ArrayAccess, \JsonSeria
             JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR
         );
     }
-
 }

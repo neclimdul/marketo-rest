@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Campaign
  *
@@ -25,8 +26,8 @@
 
 namespace NecLimDul\MarketoRest\Lead\Model;
 
-use \ArrayAccess;
-use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
+use ArrayAccess;
+use NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * Campaign Class Doc Comment
@@ -43,6 +44,8 @@ use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
 class Campaign implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    public const TYPE_BATCH = 'batch';
+    public const TYPE_TRIGGER = 'trigger';
 
     /**
       * The original name of the model.
@@ -168,9 +171,6 @@ class Campaign implements ModelInterface, ArrayAccess, \JsonSerializable
         'updated_at' => 'getUpdatedAt',
         'workspace_name' => 'getWorkspaceName'
     ];
-    
-    const TYPE_BATCH = 'batch';
-    const TYPE_TRIGGER = 'trigger';
 
     /**
      * Associative array for storing property values
@@ -272,7 +272,6 @@ class Campaign implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         return count($this->listInvalidProperties()) === 0;
     }
-    
     /**
      * Gets allowable values of the enum.
      *
@@ -285,7 +284,6 @@ class Campaign implements ModelInterface, ArrayAccess, \JsonSerializable
             self::TYPE_TRIGGER,
         ];
     }
-    
 
     /**
      * Gets active
@@ -574,7 +572,7 @@ class Campaign implements ModelInterface, ArrayAccess, \JsonSerializable
              * @param array-key $key
              * @return mixed
              */
-            function($key) use ($container) {
+            function ($key) use ($container) {
                 return $container[$key];
             };
         return array_map($map, $this->additionalProperties);
@@ -630,7 +628,7 @@ class Campaign implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -646,5 +644,4 @@ class Campaign implements ModelInterface, ArrayAccess, \JsonSerializable
             JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR
         );
     }
-
 }

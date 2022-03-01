@@ -1,4 +1,5 @@
 <?php
+
 /**
  * CreateTokenRequest
  *
@@ -25,8 +26,8 @@
 
 namespace NecLimDul\MarketoRest\Asset\Model;
 
-use \ArrayAccess;
-use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
+use ArrayAccess;
+use NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * CreateTokenRequest Class Doc Comment
@@ -42,6 +43,14 @@ use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
 class CreateTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    public const FOLDER_TYPE_PROGRAM = 'Program';
+    public const FOLDER_TYPE_FOLDER = 'Folder';
+    public const TYPE_DATE = 'date';
+    public const TYPE_NUMBER = 'number';
+    public const TYPE_RICH_TEXT = 'rich text';
+    public const TYPE_SCORE = 'score';
+    public const TYPE_SFDC_CAMPAIGN = 'sfdc campaign';
+    public const TYPE_TEXT = 'text';
 
     /**
       * The original name of the model.
@@ -137,15 +146,6 @@ class CreateTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         'type' => 'getType',
         'value' => 'getValue'
     ];
-    
-    const FOLDER_TYPE_PROGRAM = 'Program';
-    const FOLDER_TYPE_FOLDER = 'Folder';
-    const TYPE_DATE = 'date';
-    const TYPE_NUMBER = 'number';
-    const TYPE_RICH_TEXT = 'rich text';
-    const TYPE_SCORE = 'score';
-    const TYPE_SFDC_CAMPAIGN = 'sfdc campaign';
-    const TYPE_TEXT = 'text';
 
     /**
      * Associative array for storing property values
@@ -247,7 +247,6 @@ class CreateTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     {
         return count($this->listInvalidProperties()) === 0;
     }
-    
     /**
      * Gets allowable values of the enum.
      *
@@ -260,7 +259,6 @@ class CreateTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializab
             self::FOLDER_TYPE_FOLDER,
         ];
     }
-    
     /**
      * Gets allowable values of the enum.
      *
@@ -277,7 +275,6 @@ class CreateTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializab
             self::TYPE_TEXT,
         ];
     }
-    
 
     /**
      * Gets folder_type
@@ -432,7 +429,7 @@ class CreateTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializab
              * @param array-key $key
              * @return mixed
              */
-            function($key) use ($container) {
+            function ($key) use ($container) {
                 return $container[$key];
             };
         return array_map($map, $this->additionalProperties);
@@ -488,7 +485,7 @@ class CreateTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -504,5 +501,4 @@ class CreateTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializab
             JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR
         );
     }
-
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * HeaderSelector
  *
@@ -36,7 +37,6 @@ namespace NecLimDul\MarketoRest\Asset;
  */
 class HeaderSelector
 {
-
     /**
      * @param string[] $accept
      * @param string[] $contentTypes
@@ -103,4 +103,3 @@ class HeaderSelector
         }
     }
 }
-

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * LandingPageVariableResponse
  *
@@ -25,8 +26,8 @@
 
 namespace NecLimDul\MarketoRest\Asset\Model;
 
-use \ArrayAccess;
-use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
+use ArrayAccess;
+use NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * LandingPageVariableResponse Class Doc Comment
@@ -132,7 +133,6 @@ class LandingPageVariableResponse implements ModelInterface, ArrayAccess, \JsonS
         'type' => 'getType',
         'value' => 'getValue'
     ];
-    
 
     /**
      * Associative array for storing property values
@@ -206,7 +206,6 @@ class LandingPageVariableResponse implements ModelInterface, ArrayAccess, \JsonS
     {
         return count($this->listInvalidProperties()) === 0;
     }
-    
 
     /**
      * Gets id
@@ -317,7 +316,7 @@ class LandingPageVariableResponse implements ModelInterface, ArrayAccess, \JsonS
              * @param array-key $key
              * @return mixed
              */
-            function($key) use ($container) {
+            function ($key) use ($container) {
                 return $container[$key];
             };
         return array_map($map, $this->additionalProperties);
@@ -373,7 +372,7 @@ class LandingPageVariableResponse implements ModelInterface, ArrayAccess, \JsonS
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -389,5 +388,4 @@ class LandingPageVariableResponse implements ModelInterface, ArrayAccess, \JsonS
             JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR
         );
     }
-
 }

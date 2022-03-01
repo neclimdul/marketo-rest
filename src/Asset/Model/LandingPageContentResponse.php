@@ -1,4 +1,5 @@
 <?php
+
 /**
  * LandingPageContentResponse
  *
@@ -25,8 +26,8 @@
 
 namespace NecLimDul\MarketoRest\Asset\Model;
 
-use \ArrayAccess;
-use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
+use ArrayAccess;
+use NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * LandingPageContentResponse Class Doc Comment
@@ -42,6 +43,21 @@ use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
 class LandingPageContentResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    public const FOLLOWUP_TYPE_URL = 'url';
+    public const FOLLOWUP_TYPE_LP = 'lp';
+    public const FOLLOWUP_TYPE_FORM_DEFINED = 'formDefined';
+    public const TYPE_IMAGE = 'Image';
+    public const TYPE_SOCIAL_BUTTON = 'SocialButton';
+    public const TYPE_FORM = 'Form';
+    public const TYPE_DYNAMIC_CONTENT = 'DynamicContent';
+    public const TYPE_RECTANGLE = 'Rectangle';
+    public const TYPE_SNIPPET = 'Snippet';
+    public const TYPE_RICH_TEXT = 'RichText';
+    public const TYPE_HTML = 'HTML';
+    public const TYPE_VIDEO = 'Video';
+    public const TYPE_POLL = 'Poll';
+    public const TYPE_REFERRAL_OFFER = 'ReferralOffer';
+    public const TYPE_SWEEPSTAKES = 'Sweepstakes';
 
     /**
       * The original name of the model.
@@ -152,22 +168,6 @@ class LandingPageContentResponse implements ModelInterface, ArrayAccess, \JsonSe
         'index' => 'getIndex',
         'type' => 'getType'
     ];
-    
-    const FOLLOWUP_TYPE_URL = 'url';
-    const FOLLOWUP_TYPE_LP = 'lp';
-    const FOLLOWUP_TYPE_FORM_DEFINED = 'formDefined';
-    const TYPE_IMAGE = 'Image';
-    const TYPE_SOCIAL_BUTTON = 'SocialButton';
-    const TYPE_FORM = 'Form';
-    const TYPE_DYNAMIC_CONTENT = 'DynamicContent';
-    const TYPE_RECTANGLE = 'Rectangle';
-    const TYPE_SNIPPET = 'Snippet';
-    const TYPE_RICH_TEXT = 'RichText';
-    const TYPE_HTML = 'HTML';
-    const TYPE_VIDEO = 'Video';
-    const TYPE_POLL = 'Poll';
-    const TYPE_REFERRAL_OFFER = 'ReferralOffer';
-    const TYPE_SWEEPSTAKES = 'Sweepstakes';
 
     /**
      * Associative array for storing property values
@@ -266,7 +266,6 @@ class LandingPageContentResponse implements ModelInterface, ArrayAccess, \JsonSe
     {
         return count($this->listInvalidProperties()) === 0;
     }
-    
     /**
      * Gets allowable values of the enum.
      *
@@ -280,7 +279,6 @@ class LandingPageContentResponse implements ModelInterface, ArrayAccess, \JsonSe
             self::FOLLOWUP_TYPE_FORM_DEFINED,
         ];
     }
-    
     /**
      * Gets allowable values of the enum.
      *
@@ -303,7 +301,6 @@ class LandingPageContentResponse implements ModelInterface, ArrayAccess, \JsonSe
             self::TYPE_SWEEPSTAKES,
         ];
     }
-    
 
     /**
      * Gets content
@@ -530,7 +527,7 @@ class LandingPageContentResponse implements ModelInterface, ArrayAccess, \JsonSe
              * @param array-key $key
              * @return mixed
              */
-            function($key) use ($container) {
+            function ($key) use ($container) {
                 return $container[$key];
             };
         return array_map($map, $this->additionalProperties);
@@ -586,7 +583,7 @@ class LandingPageContentResponse implements ModelInterface, ArrayAccess, \JsonSe
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -602,5 +599,4 @@ class LandingPageContentResponse implements ModelInterface, ArrayAccess, \JsonSe
             JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR
         );
     }
-
 }

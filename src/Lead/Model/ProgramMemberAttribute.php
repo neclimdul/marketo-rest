@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ProgramMemberAttribute
  *
@@ -25,8 +26,8 @@
 
 namespace NecLimDul\MarketoRest\Lead\Model;
 
-use \ArrayAccess;
-use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
+use ArrayAccess;
+use NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * ProgramMemberAttribute Class Doc Comment
@@ -127,7 +128,6 @@ class ProgramMemberAttribute implements ModelInterface, ArrayAccess, \JsonSerial
         'name' => 'getName',
         'fields' => 'getFields'
     ];
-    
 
     /**
      * Associative array for storing property values
@@ -200,7 +200,6 @@ class ProgramMemberAttribute implements ModelInterface, ArrayAccess, \JsonSerial
     {
         return count($this->listInvalidProperties()) === 0;
     }
-    
 
     /**
      * Gets name
@@ -287,7 +286,7 @@ class ProgramMemberAttribute implements ModelInterface, ArrayAccess, \JsonSerial
              * @param array-key $key
              * @return mixed
              */
-            function($key) use ($container) {
+            function ($key) use ($container) {
                 return $container[$key];
             };
         return array_map($map, $this->additionalProperties);
@@ -343,7 +342,7 @@ class ProgramMemberAttribute implements ModelInterface, ArrayAccess, \JsonSerial
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -359,5 +358,4 @@ class ProgramMemberAttribute implements ModelInterface, ArrayAccess, \JsonSerial
             JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR
         );
     }
-
 }

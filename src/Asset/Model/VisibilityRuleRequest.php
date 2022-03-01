@@ -1,4 +1,5 @@
 <?php
+
 /**
  * VisibilityRuleRequest
  *
@@ -25,8 +26,8 @@
 
 namespace NecLimDul\MarketoRest\Asset\Model;
 
-use \ArrayAccess;
-use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
+use ArrayAccess;
+use NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * VisibilityRuleRequest Class Doc Comment
@@ -42,6 +43,30 @@ use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
 class VisibilityRuleRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    public const OPERATOR_IS = 'is';
+    public const OPERATOR_IS_NOT = 'isNot';
+    public const OPERATOR_IS_EMPTY = 'isEmpty';
+    public const OPERATOR_IS_NOT_EMPTY = 'isNotEmpty';
+    public const OPERATOR_STARTS_WITH = 'startsWith';
+    public const OPERATOR_NOT_STARTS_WITH = 'notStartsWith';
+    public const OPERATOR_ENDS_WITH = 'endsWith';
+    public const OPERATOR_NOT_ENDS_WITH = 'notEndsWith';
+    public const OPERATOR_CONTAINS = 'contains';
+    public const OPERATOR_NOT_CONTAINS = 'notContains';
+    public const OPERATOR_GREATER_THAN = 'greaterThan';
+    public const OPERATOR_LESS_THAN = 'lessThan';
+    public const OPERATOR_AT_LEAST = 'atLeast';
+    public const OPERATOR_AT_MOST = 'atMost';
+    public const OPERATOR_BETWEEN = 'between';
+    public const OPERATOR_NOT_BETWEEN = 'notBetween';
+    public const OPERATOR_NOT_IN_TIME_FRAME = 'notInTimeFrame';
+    public const OPERATOR_IN_PAST = 'inPast';
+    public const OPERATOR_NOT_IN_PAST = 'notInPast';
+    public const OPERATOR_AFTER = 'after';
+    public const OPERATOR_BEFORE = 'before';
+    public const OPERATOR_IN_TIME_FRAME = 'inTimeFrame';
+    public const OPERATOR_ON_OR_AFTER = 'onOrAfter';
+    public const OPERATOR_ON_OR_BEFORE = 'onOrBefore';
 
     /**
       * The original name of the model.
@@ -142,31 +167,6 @@ class VisibilityRuleRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         'subject_field' => 'getSubjectField',
         'values' => 'getValues'
     ];
-    
-    const OPERATOR_IS = 'is';
-    const OPERATOR_IS_NOT = 'isNot';
-    const OPERATOR_IS_EMPTY = 'isEmpty';
-    const OPERATOR_IS_NOT_EMPTY = 'isNotEmpty';
-    const OPERATOR_STARTS_WITH = 'startsWith';
-    const OPERATOR_NOT_STARTS_WITH = 'notStartsWith';
-    const OPERATOR_ENDS_WITH = 'endsWith';
-    const OPERATOR_NOT_ENDS_WITH = 'notEndsWith';
-    const OPERATOR_CONTAINS = 'contains';
-    const OPERATOR_NOT_CONTAINS = 'notContains';
-    const OPERATOR_GREATER_THAN = 'greaterThan';
-    const OPERATOR_LESS_THAN = 'lessThan';
-    const OPERATOR_AT_LEAST = 'atLeast';
-    const OPERATOR_AT_MOST = 'atMost';
-    const OPERATOR_BETWEEN = 'between';
-    const OPERATOR_NOT_BETWEEN = 'notBetween';
-    const OPERATOR_NOT_IN_TIME_FRAME = 'notInTimeFrame';
-    const OPERATOR_IN_PAST = 'inPast';
-    const OPERATOR_NOT_IN_PAST = 'notInPast';
-    const OPERATOR_AFTER = 'after';
-    const OPERATOR_BEFORE = 'before';
-    const OPERATOR_IN_TIME_FRAME = 'inTimeFrame';
-    const OPERATOR_ON_OR_AFTER = 'onOrAfter';
-    const OPERATOR_ON_OR_BEFORE = 'onOrBefore';
 
     /**
      * Associative array for storing property values
@@ -257,7 +257,6 @@ class VisibilityRuleRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     {
         return count($this->listInvalidProperties()) === 0;
     }
-    
     /**
      * Gets allowable values of the enum.
      *
@@ -292,7 +291,6 @@ class VisibilityRuleRequest implements ModelInterface, ArrayAccess, \JsonSeriali
             self::OPERATOR_ON_OR_BEFORE,
         ];
     }
-    
 
     /**
      * Gets alt_label
@@ -461,7 +459,7 @@ class VisibilityRuleRequest implements ModelInterface, ArrayAccess, \JsonSeriali
              * @param array-key $key
              * @return mixed
              */
-            function($key) use ($container) {
+            function ($key) use ($container) {
                 return $container[$key];
             };
         return array_map($map, $this->additionalProperties);
@@ -517,7 +515,7 @@ class VisibilityRuleRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -533,5 +531,4 @@ class VisibilityRuleRequest implements ModelInterface, ArrayAccess, \JsonSeriali
             JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR
         );
     }
-
 }

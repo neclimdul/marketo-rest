@@ -1,4 +1,5 @@
 <?php
+
 /**
  * LandingPageRedirectRule
  *
@@ -25,8 +26,8 @@
 
 namespace NecLimDul\MarketoRest\Asset\Model;
 
-use \ArrayAccess;
-use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
+use ArrayAccess;
+use NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * LandingPageRedirectRule Class Doc Comment
@@ -157,7 +158,6 @@ class LandingPageRedirectRule implements ModelInterface, ArrayAccess, \JsonSeria
         'created_at' => 'getCreatedAt',
         'updated_at' => 'getUpdatedAt'
     ];
-    
 
     /**
      * Associative array for storing property values
@@ -257,7 +257,6 @@ class LandingPageRedirectRule implements ModelInterface, ArrayAccess, \JsonSeria
     {
         return count($this->listInvalidProperties()) === 0;
     }
-    
 
     /**
      * Gets id
@@ -488,7 +487,7 @@ class LandingPageRedirectRule implements ModelInterface, ArrayAccess, \JsonSeria
              * @param array-key $key
              * @return mixed
              */
-            function($key) use ($container) {
+            function ($key) use ($container) {
                 return $container[$key];
             };
         return array_map($map, $this->additionalProperties);
@@ -544,7 +543,7 @@ class LandingPageRedirectRule implements ModelInterface, ArrayAccess, \JsonSeria
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -560,5 +559,4 @@ class LandingPageRedirectRule implements ModelInterface, ArrayAccess, \JsonSeria
             JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR
         );
     }
-
 }

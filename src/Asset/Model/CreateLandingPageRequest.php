@@ -1,4 +1,5 @@
 <?php
+
 /**
  * CreateLandingPageRequest
  *
@@ -25,8 +26,8 @@
 
 namespace NecLimDul\MarketoRest\Asset\Model;
 
-use \ArrayAccess;
-use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
+use ArrayAccess;
+use NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * CreateLandingPageRequest Class Doc Comment
@@ -182,7 +183,6 @@ class CreateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
         'url_page_name' => 'getUrlPageName',
         'workspace' => 'getWorkspace'
     ];
-    
 
     /**
      * Associative array for storing property values
@@ -272,7 +272,6 @@ class CreateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
     {
         return count($this->listInvalidProperties()) === 0;
     }
-    
 
     /**
      * Gets custom_head_html
@@ -623,7 +622,7 @@ class CreateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
              * @param array-key $key
              * @return mixed
              */
-            function($key) use ($container) {
+            function ($key) use ($container) {
                 return $container[$key];
             };
         return array_map($map, $this->additionalProperties);
@@ -679,7 +678,7 @@ class CreateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -695,5 +694,4 @@ class CreateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
             JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR
         );
     }
-
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ApiException
  *
@@ -26,7 +27,7 @@
 
 namespace NecLimDul\MarketoRest\Asset;
 
-use \Exception;
+use Exception;
 
 /**
  * ApiException Class Doc Comment
@@ -38,7 +39,6 @@ use \Exception;
  */
 class ApiException extends Exception
 {
-
     /**
      * The HTTP body of the server response either as Json or string.
      *
@@ -66,7 +66,7 @@ class ApiException extends Exception
      * @param string                $message         Error message
      * @param int                   $code            HTTP status code
      * @param string[][]       $responseHeaders HTTP response header
-     * @param \stdClass|string|null $responseBody    HTTP decoded body of the server response either as \stdClass or string
+     * @param \stdClass|string|null $responseBody    HTTP decoded body of the server response.
      */
     public function __construct(string $message = "", int $code = 0, array $responseHeaders = [], $responseBody = null)
     {

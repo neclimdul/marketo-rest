@@ -1,4 +1,5 @@
 <?php
+
 /**
  * DeleteTokenRequest
  *
@@ -25,8 +26,8 @@
 
 namespace NecLimDul\MarketoRest\Asset\Model;
 
-use \ArrayAccess;
-use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
+use ArrayAccess;
+use NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * DeleteTokenRequest Class Doc Comment
@@ -42,6 +43,8 @@ use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
 class DeleteTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    public const FOLDER_TYPE_PROGRAM = 'Program';
+    public const FOLDER_TYPE_FOLDER = 'Folder';
 
     /**
       * The original name of the model.
@@ -132,9 +135,6 @@ class DeleteTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         'name' => 'getName',
         'type' => 'getType'
     ];
-    
-    const FOLDER_TYPE_PROGRAM = 'Program';
-    const FOLDER_TYPE_FOLDER = 'Folder';
 
     /**
      * Associative array for storing property values
@@ -214,7 +214,6 @@ class DeleteTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     {
         return count($this->listInvalidProperties()) === 0;
     }
-    
     /**
      * Gets allowable values of the enum.
      *
@@ -227,7 +226,6 @@ class DeleteTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializab
             self::FOLDER_TYPE_FOLDER,
         ];
     }
-    
 
     /**
      * Gets folder_type
@@ -348,7 +346,7 @@ class DeleteTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializab
              * @param array-key $key
              * @return mixed
              */
-            function($key) use ($container) {
+            function ($key) use ($container) {
                 return $container[$key];
             };
         return array_map($map, $this->additionalProperties);
@@ -404,7 +402,7 @@ class DeleteTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -420,5 +418,4 @@ class DeleteTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializab
             JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR
         );
     }
-
 }

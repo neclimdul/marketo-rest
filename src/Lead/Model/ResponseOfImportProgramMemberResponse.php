@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ResponseOfImportProgramMemberResponse
  *
@@ -25,8 +26,8 @@
 
 namespace NecLimDul\MarketoRest\Lead\Model;
 
-use \ArrayAccess;
-use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
+use ArrayAccess;
+use NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * ResponseOfImportProgramMemberResponse Class Doc Comment
@@ -142,7 +143,6 @@ class ResponseOfImportProgramMemberResponse implements ModelInterface, ArrayAcce
         'success' => 'getSuccess',
         'warnings' => 'getWarnings'
     ];
-    
 
     /**
      * Associative array for storing property values
@@ -230,7 +230,6 @@ class ResponseOfImportProgramMemberResponse implements ModelInterface, ArrayAcce
     {
         return count($this->listInvalidProperties()) === 0;
     }
-    
 
     /**
      * Gets errors
@@ -389,7 +388,7 @@ class ResponseOfImportProgramMemberResponse implements ModelInterface, ArrayAcce
              * @param array-key $key
              * @return mixed
              */
-            function($key) use ($container) {
+            function ($key) use ($container) {
                 return $container[$key];
             };
         return array_map($map, $this->additionalProperties);
@@ -445,7 +444,7 @@ class ResponseOfImportProgramMemberResponse implements ModelInterface, ArrayAcce
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -461,5 +460,4 @@ class ResponseOfImportProgramMemberResponse implements ModelInterface, ArrayAcce
             JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR
         );
     }
-
 }

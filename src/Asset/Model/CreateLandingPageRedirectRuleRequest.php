@@ -1,4 +1,5 @@
 <?php
+
 /**
  * CreateLandingPageRedirectRuleRequest
  *
@@ -25,8 +26,8 @@
 
 namespace NecLimDul\MarketoRest\Asset\Model;
 
-use \ArrayAccess;
-use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
+use ArrayAccess;
+use NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * CreateLandingPageRedirectRuleRequest Class Doc Comment
@@ -132,7 +133,6 @@ class CreateLandingPageRedirectRuleRequest implements ModelInterface, ArrayAcces
         'redirect_from' => 'getRedirectFrom',
         'redirect_to' => 'getRedirectTo'
     ];
-    
 
     /**
      * Associative array for storing property values
@@ -212,7 +212,6 @@ class CreateLandingPageRedirectRuleRequest implements ModelInterface, ArrayAcces
     {
         return count($this->listInvalidProperties()) === 0;
     }
-    
 
     /**
      * Gets hostname
@@ -323,7 +322,7 @@ class CreateLandingPageRedirectRuleRequest implements ModelInterface, ArrayAcces
              * @param array-key $key
              * @return mixed
              */
-            function($key) use ($container) {
+            function ($key) use ($container) {
                 return $container[$key];
             };
         return array_map($map, $this->additionalProperties);
@@ -379,7 +378,7 @@ class CreateLandingPageRedirectRuleRequest implements ModelInterface, ArrayAcces
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -395,5 +394,4 @@ class CreateLandingPageRedirectRuleRequest implements ModelInterface, ArrayAcces
             JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR
         );
     }
-
 }

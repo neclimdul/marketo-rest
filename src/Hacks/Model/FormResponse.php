@@ -7,7 +7,7 @@ use NecLimDul\MarketoRest\Lead\Model\Reason;
 
 class FormResponse extends LeadFormResponse
 {
-    const STATUS_WARNING = 'warning';
+    public const STATUS_WARNING = 'warning';
 
     /**
      * {@inheritDoc}
@@ -55,10 +55,10 @@ class FormResponse extends LeadFormResponse
     /**
      * {@inheritDoc}
      */
-    public function getStatusAllowableValues(): array {
+    public function getStatusAllowableValues(): array
+    {
         $values = parent::getStatusAllowableValues();
         $values[] = self::STATUS_WARNING;
         return $values;
     }
-
 }

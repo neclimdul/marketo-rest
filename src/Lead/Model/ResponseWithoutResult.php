@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ResponseWithoutResult
  *
@@ -25,8 +26,8 @@
 
 namespace NecLimDul\MarketoRest\Lead\Model;
 
-use \ArrayAccess;
-use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
+use ArrayAccess;
+use NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * ResponseWithoutResult Class Doc Comment
@@ -142,7 +143,6 @@ class ResponseWithoutResult implements ModelInterface, ArrayAccess, \JsonSeriali
         'success' => 'getSuccess',
         'warnings' => 'getWarnings'
     ];
-    
 
     /**
      * Associative array for storing property values
@@ -221,7 +221,6 @@ class ResponseWithoutResult implements ModelInterface, ArrayAccess, \JsonSeriali
     {
         return count($this->listInvalidProperties()) === 0;
     }
-    
 
     /**
      * Gets errors
@@ -380,7 +379,7 @@ class ResponseWithoutResult implements ModelInterface, ArrayAccess, \JsonSeriali
              * @param array-key $key
              * @return mixed
              */
-            function($key) use ($container) {
+            function ($key) use ($container) {
                 return $container[$key];
             };
         return array_map($map, $this->additionalProperties);
@@ -436,7 +435,7 @@ class ResponseWithoutResult implements ModelInterface, ArrayAccess, \JsonSeriali
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -452,5 +451,4 @@ class ResponseWithoutResult implements ModelInterface, ArrayAccess, \JsonSeriali
             JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR
         );
     }
-
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * {{classname}}
  *
@@ -39,7 +40,6 @@ use {{invokerPackage}}\ObjectSerializer;
  */
 {{#operations}}class {{classname}}
 {
-
     /**
      * @var ClientInterface
      */
@@ -64,7 +64,7 @@ use {{invokerPackage}}\ObjectSerializer;
      * @param ClientInterface|null $client
      * @param Configuration|null   $config
      * @param HeaderSelector|null  $selector
-     * @param int                  $hostIndex (Optional) host index to select the list of hosts if defined in the OpenAPI spec
+     * @param int                  $hostIndex (Optional) host index to select the list of hosts if defined in the spec.
      */
     public function __construct(
         ClientInterface $client = null,
@@ -93,7 +93,7 @@ use {{invokerPackage}}\ObjectSerializer;
      *
      * @return int Host index
      */
-    public function getHostIndex()
+    public function getHostIndex(): int
     {
         return $this->hostIndex;
     }
@@ -101,7 +101,7 @@ use {{invokerPackage}}\ObjectSerializer;
     /**
      * @return Configuration
      */
-    public function getConfig()
+    public function getConfig(): Configuration
     {
         return $this->config;
     }
@@ -166,17 +166,24 @@ use {{invokerPackage}}\ObjectSerializer;
 {{#-first}}
      *
 {{/-first}}
-     * @param  {{dataType}} ${{paramName}}{{#description}} {{description}}{{/description}}{{^description}} {{paramName}}{{/description}} {{#required}}(required){{/required}}{{^required}}(optional{{#defaultValue}}, default to {{{.}}}{{/defaultValue}}){{/required}}
+     * @param {{dataType}}{{^required}}|{{#defaultValue}}'{{{.}}}'{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}} ${{paramName}}
+     *   {{#description}}{{.}}{{/description}}
 {{/allParams}}
      *
      * @throws \{{invokerPackage}}\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return {{#returnType}}{{.}}{{/returnType}}{{^returnType}}void{{/returnType}}
      */
-    public function {{operationId}}({{^vendorExtensions.x-group-parameters}}{{#allParams}}
-        {{^isContainer}}{{dataType}}{{/isContainer}}{{#isContainer}}array{{/isContainer}} ${{paramName}}{{^required}} = {{#defaultValue}}'{{{.}}}'{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}{{^-last}},{{/-last}}{{/allParams}}{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}}
-    ): {{returnType}}
+    public function {{operationId}}({{#hasParams}}
+    {{^vendorExtensions.x-group-parameters}}
+    {{#allParams}}
+        {{^isContainer}}{{dataType}}{{/isContainer}}{{#isContainer}}array{{/isContainer}} ${{paramName}}{{^required}} = {{#defaultValue}}'{{{.}}}'{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}{{^-last}},{{/-last}}
+    {{/allParams}}
+    {{/vendorExtensions.x-group-parameters}}
+    {{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}}{{/hasParams}}): {{returnType}}{{#hasParams}} {{=<% %>=}}{<%={{ }}=%>{{/hasParams}}
+    {{^hasParams}}
     {
+    {{/hasParams}}
         {{#returnType}}list($response) = {{/returnType}}$this->{{operationId}}WithHttpInfo({{^vendorExtensions.x-group-parameters}}{{#allParams}}${{paramName}}{{^-last}}, {{/-last}}{{/allParams}}{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}});
         {{#returnType}}
         return $response;
@@ -209,18 +216,29 @@ use {{invokerPackage}}\ObjectSerializer;
 {{#-first}}
      *
 {{/-first}}
-     * @param  {{dataType}} ${{paramName}}{{#description}} {{description}}{{/description}} {{#required}}(required){{/required}}{{^required}}(optional{{#defaultValue}}, default to {{{.}}}{{/defaultValue}}){{/required}}
+     * @param {{dataType}}{{^required}}|{{#defaultValue}}'{{{.}}}'{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}} ${{paramName}}
+     *   {{#description}}{{.}}{{/description}}
 {{/allParams}}
      *
      * @throws \{{invokerPackage}}\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of {{#returnType}}{{.}}{{/returnType}}{{^returnType}}null{{/returnType}}, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ {{#returnType}}{{.}}{{/returnType}}{{^returnType}}null{{/returnType}}, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     {{#returnType}}{{.}}{{/returnType}}{{^returnType}}null{{/returnType}},
+     *     int,
+     *     array<array<string>>
+     * }
      */
-    public function {{operationId}}WithHttpInfo({{^vendorExtensions.x-group-parameters}}{{#allParams}}
-        {{^isContainer}}{{dataType}}{{/isContainer}}{{#isContainer}}array{{/isContainer}} ${{paramName}}{{^required}} = {{#defaultValue}}'{{{.}}}'{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}{{^-last}},{{/-last}}{{/allParams}}{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}}
-    ): array
+    public function {{operationId}}WithHttpInfo({{#hasParams}}
+    {{^vendorExtensions.x-group-parameters}}
+    {{#allParams}}
+        {{^isContainer}}{{dataType}}{{/isContainer}}{{#isContainer}}array{{/isContainer}} ${{paramName}}{{^required}} = {{#defaultValue}}'{{{.}}}'{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}{{^-last}},{{/-last}}
+    {{/allParams}}
+    {{/vendorExtensions.x-group-parameters}}
+    {{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}}{{/hasParams}}): array{{#hasParams}} {{=<% %>=}}{<%={{ }}=%>{{/hasParams}}
+    {{^hasParams}}
     {
+    {{/hasParams}}
         $request = $this->{{operationId}}Request({{^vendorExtensions.x-group-parameters}}{{#allParams}}${{paramName}}{{^-last}}, {{/-last}}{{/allParams}}{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}});
         try {
             $response = $this->makeRequest($request);
@@ -264,16 +282,23 @@ use {{invokerPackage}}\ObjectSerializer;
 {{#-first}}
      *
 {{/-first}}
-     * @param  {{dataType}} ${{paramName}}{{#description}} {{description}}{{/description}} {{#required}}(required){{/required}}{{^required}}(optional{{#defaultValue}}, default to {{{.}}}{{/defaultValue}}){{/required}}
+     * @param {{dataType}}{{^required}}|{{#defaultValue}}'{{{.}}}'{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}} ${{paramName}}
+     *   {{#description}}{{.}}{{/description}}
 {{/allParams}}
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function {{operationId}}Async({{^vendorExtensions.x-group-parameters}}{{#allParams}}
-        {{^isContainer}}{{dataType}}{{/isContainer}}{{#isContainer}}array{{/isContainer}} ${{paramName}}{{^required}} = {{#defaultValue}}'{{{.}}}'{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}{{^-last}},{{/-last}}{{/allParams}}{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}}
-    ): PromiseInterface
+    public function {{operationId}}Async({{#hasParams}}
+    {{^vendorExtensions.x-group-parameters}}
+    {{#allParams}}
+        {{^isContainer}}{{dataType}}{{/isContainer}}{{#isContainer}}array{{/isContainer}} ${{paramName}}{{^required}} = {{#defaultValue}}'{{{.}}}'{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}{{^-last}},{{/-last}}
+    {{/allParams}}
+    {{/vendorExtensions.x-group-parameters}}
+    {{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}}{{/hasParams}}): PromiseInterface{{#hasParams}} {{=<% %>=}}{<%={{ }}=%>{{/hasParams}}
+    {{^hasParams}}
     {
+    {{/hasParams}}
         return $this->{{operationId}}AsyncWithHttpInfo({{^vendorExtensions.x-group-parameters}}{{#allParams}}${{paramName}}{{^-last}}, {{/-last}}{{/allParams}}{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}})
             ->then(
                 function (array $response): {{#returnType}}{{.}}{{/returnType}}{{^returnType}}null{{/returnType}} {
@@ -308,16 +333,23 @@ use {{invokerPackage}}\ObjectSerializer;
 {{#-first}}
      *
 {{/-first}}
-     * @param  {{dataType}} ${{paramName}}{{#description}} {{description}}{{/description}} {{#required}}(required){{/required}}{{^required}}(optional{{#defaultValue}}, default to {{{.}}}{{/defaultValue}}){{/required}}
+     * @param {{dataType}}{{^required}}|{{#defaultValue}}'{{{.}}}'{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}} ${{paramName}}
+     *   {{#description}}{{.}}{{/description}}
 {{/allParams}}
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function {{operationId}}AsyncWithHttpInfo({{^vendorExtensions.x-group-parameters}}{{#allParams}}
-        {{^isContainer}}{{dataType}}{{/isContainer}}{{#isContainer}}array{{/isContainer}} ${{paramName}}{{^required}} = {{#defaultValue}}'{{{.}}}'{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}{{^-last}},{{/-last}}{{/allParams}}{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}}
-    ): PromiseInterface
+    public function {{operationId}}AsyncWithHttpInfo({{#hasParams}}
+    {{^vendorExtensions.x-group-parameters}}
+    {{#allParams}}
+        {{^isContainer}}{{dataType}}{{/isContainer}}{{#isContainer}}array{{/isContainer}} ${{paramName}}{{^required}} = {{#defaultValue}}'{{{.}}}'{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}{{^-last}},{{/-last}}
+    {{/allParams}}
+    {{/vendorExtensions.x-group-parameters}}
+    {{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}}{{/hasParams}}): PromiseInterface{{#hasParams}} {{=<% %>=}}{<%={{ }}=%>{{/hasParams}}
+    {{^hasParams}}
     {
+    {{/hasParams}}
         $request = $this->{{operationId}}Request({{^vendorExtensions.x-group-parameters}}{{#allParams}}${{paramName}}{{^-last}}, {{/-last}}{{/allParams}}{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}});
         return $this->makeAsyncRequest(
             $request,
@@ -343,16 +375,23 @@ use {{invokerPackage}}\ObjectSerializer;
 {{#-first}}
      *
 {{/-first}}
-     * @param  {{dataType}} ${{paramName}}{{#description}} {{description}}{{/description}} {{#required}}(required){{/required}}{{^required}}(optional{{#defaultValue}}, default to {{{.}}}{{/defaultValue}}){{/required}}
+     * @param {{dataType}}{{^required}}|{{#defaultValue}}'{{{.}}}'{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}} ${{paramName}}
+     *   {{#description}}{{.}}{{/description}}
 {{/allParams}}
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function {{operationId}}Request({{^vendorExtensions.x-group-parameters}}{{#allParams}}
-        {{^isContainer}}{{dataType}}{{/isContainer}}{{#isContainer}}array{{/isContainer}} ${{paramName}}{{^required}} = {{#defaultValue}}'{{{.}}}'{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}{{^-last}},{{/-last}}{{/allParams}}{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}}
-    ): Request
+    public function {{operationId}}Request({{#hasParams}}
+    {{^vendorExtensions.x-group-parameters}}
+    {{#allParams}}
+        {{^isContainer}}{{dataType}}{{/isContainer}}{{#isContainer}}array{{/isContainer}} ${{paramName}}{{^required}} = {{#defaultValue}}'{{{.}}}'{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}{{^-last}},{{/-last}}
+    {{/allParams}}
+    {{/vendorExtensions.x-group-parameters}}
+    {{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}}{{/hasParams}}): Request{{#hasParams}} {{=<% %>=}}{<%={{ }}=%>{{/hasParams}}
+    {{^hasParams}}
     {
+    {{/hasParams}}
         {{#vendorExtensions.x-group-parameters}}
         // unbox the parameters from the associative array
         {{#allParams}}
@@ -520,10 +559,7 @@ use {{invokerPackage}}\ObjectSerializer;
                 {{/isFile}}
             {{/formParams}}
             ],
-            {{#bodyParams}}
-            ${{paramName}}
-            {{/bodyParams}}
-            {{^bodyParams}}''{{/bodyParams}}
+            {{#bodyParams}}${{paramName}}{{/bodyParams}}{{^bodyParams}}''{{/bodyParams}}
         );
     }
 
@@ -555,10 +591,11 @@ use {{invokerPackage}}\ObjectSerializer;
      * @throws \{{invokerPackage}}\ApiException on non-2xx response
      * @return \Psr\Http\Message\ResponseInterface
      */
-    private function makeRequest(Request $request) {
+    private function makeRequest(Request $request)
+    {
         $options = $this->createHttpClientOption();
         try {
-           $response = $this->client->send($request, $options);
+            $response = $this->client->send($request, $options);
         } catch (RequestException $e) {
             $response = $e->getResponse();
             throw new ApiException(
@@ -631,7 +668,8 @@ use {{invokerPackage}}\ObjectSerializer;
      * @return array structured array or response and http info.
      * @phpstan-return array{T, int, array<array<string>>}
      */
-    private function responseToReturn(ResponseInterface $response, string $returnType) {
+    private function responseToReturn(ResponseInterface $response, string $returnType)
+    {
         return [
             $this->deserializeResponseBody($response->getBody(), $returnType),
             $response->getStatusCode(),
@@ -660,6 +698,5 @@ use {{invokerPackage}}\ObjectSerializer;
             $headers
         );
     }
-
 }
 {{/operations}}

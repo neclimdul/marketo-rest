@@ -1,4 +1,5 @@
 <?php
+
 /**
  * SyncProgramMemberDataRequest
  *
@@ -25,8 +26,8 @@
 
 namespace NecLimDul\MarketoRest\Lead\Model;
 
-use \ArrayAccess;
-use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
+use ArrayAccess;
+use NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * SyncProgramMemberDataRequest Class Doc Comment
@@ -122,7 +123,6 @@ class SyncProgramMemberDataRequest implements ModelInterface, ArrayAccess, \Json
     protected static $getters = [
         'input' => 'getInput'
     ];
-    
 
     /**
      * Associative array for storing property values
@@ -194,7 +194,6 @@ class SyncProgramMemberDataRequest implements ModelInterface, ArrayAccess, \Json
     {
         return count($this->listInvalidProperties()) === 0;
     }
-    
 
     /**
      * Gets input
@@ -257,7 +256,7 @@ class SyncProgramMemberDataRequest implements ModelInterface, ArrayAccess, \Json
              * @param array-key $key
              * @return mixed
              */
-            function($key) use ($container) {
+            function ($key) use ($container) {
                 return $container[$key];
             };
         return array_map($map, $this->additionalProperties);
@@ -313,7 +312,7 @@ class SyncProgramMemberDataRequest implements ModelInterface, ArrayAccess, \Json
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -329,5 +328,4 @@ class SyncProgramMemberDataRequest implements ModelInterface, ArrayAccess, \Json
             JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR
         );
     }
-
 }

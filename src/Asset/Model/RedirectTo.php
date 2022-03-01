@@ -1,4 +1,5 @@
 <?php
+
 /**
  * RedirectTo
  *
@@ -25,8 +26,8 @@
 
 namespace NecLimDul\MarketoRest\Asset\Model;
 
-use \ArrayAccess;
-use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
+use ArrayAccess;
+use NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * RedirectTo Class Doc Comment
@@ -43,6 +44,8 @@ use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
 class RedirectTo implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    public const TYPE_LANDING_PAGE_ID = 'landingPageId';
+    public const TYPE_URL = 'url';
 
     /**
       * The original name of the model.
@@ -128,9 +131,6 @@ class RedirectTo implements ModelInterface, ArrayAccess, \JsonSerializable
         'type' => 'getType',
         'value' => 'getValue'
     ];
-    
-    const TYPE_LANDING_PAGE_ID = 'landingPageId';
-    const TYPE_URL = 'url';
 
     /**
      * Associative array for storing property values
@@ -215,7 +215,6 @@ class RedirectTo implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         return count($this->listInvalidProperties()) === 0;
     }
-    
     /**
      * Gets allowable values of the enum.
      *
@@ -228,7 +227,6 @@ class RedirectTo implements ModelInterface, ArrayAccess, \JsonSerializable
             self::TYPE_URL,
         ];
     }
-    
 
     /**
      * Gets type
@@ -325,7 +323,7 @@ class RedirectTo implements ModelInterface, ArrayAccess, \JsonSerializable
              * @param array-key $key
              * @return mixed
              */
-            function($key) use ($container) {
+            function ($key) use ($container) {
                 return $container[$key];
             };
         return array_map($map, $this->additionalProperties);
@@ -381,7 +379,7 @@ class RedirectTo implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -397,5 +395,4 @@ class RedirectTo implements ModelInterface, ArrayAccess, \JsonSerializable
             JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR
         );
     }
-
 }

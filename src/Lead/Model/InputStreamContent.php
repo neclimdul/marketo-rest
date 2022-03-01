@@ -1,4 +1,5 @@
 <?php
+
 /**
  * InputStreamContent
  *
@@ -25,8 +26,8 @@
 
 namespace NecLimDul\MarketoRest\Lead\Model;
 
-use \ArrayAccess;
-use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
+use ArrayAccess;
+use NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * InputStreamContent Class Doc Comment
@@ -127,7 +128,6 @@ class InputStreamContent implements ModelInterface, ArrayAccess, \JsonSerializab
         'content_type' => 'getContentType',
         'input_stream' => 'getInputStream'
     ];
-    
 
     /**
      * Associative array for storing property values
@@ -197,7 +197,6 @@ class InputStreamContent implements ModelInterface, ArrayAccess, \JsonSerializab
     {
         return count($this->listInvalidProperties()) === 0;
     }
-    
 
     /**
      * Gets content_type
@@ -284,7 +283,7 @@ class InputStreamContent implements ModelInterface, ArrayAccess, \JsonSerializab
              * @param array-key $key
              * @return mixed
              */
-            function($key) use ($container) {
+            function ($key) use ($container) {
                 return $container[$key];
             };
         return array_map($map, $this->additionalProperties);
@@ -340,7 +339,7 @@ class InputStreamContent implements ModelInterface, ArrayAccess, \JsonSerializab
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -356,5 +355,4 @@ class InputStreamContent implements ModelInterface, ArrayAccess, \JsonSerializab
             JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR
         );
     }
-
 }

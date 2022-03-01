@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ScheduleCampaignRequest
  *
@@ -25,8 +26,8 @@
 
 namespace NecLimDul\MarketoRest\Lead\Model;
 
-use \ArrayAccess;
-use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
+use ArrayAccess;
+use NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * ScheduleCampaignRequest Class Doc Comment
@@ -123,7 +124,6 @@ class ScheduleCampaignRequest implements ModelInterface, ArrayAccess, \JsonSeria
     protected static $getters = [
         'input' => 'getInput'
     ];
-    
 
     /**
      * Associative array for storing property values
@@ -192,7 +192,6 @@ class ScheduleCampaignRequest implements ModelInterface, ArrayAccess, \JsonSeria
     {
         return count($this->listInvalidProperties()) === 0;
     }
-    
 
     /**
      * Gets input
@@ -255,7 +254,7 @@ class ScheduleCampaignRequest implements ModelInterface, ArrayAccess, \JsonSeria
              * @param array-key $key
              * @return mixed
              */
-            function($key) use ($container) {
+            function ($key) use ($container) {
                 return $container[$key];
             };
         return array_map($map, $this->additionalProperties);
@@ -311,7 +310,7 @@ class ScheduleCampaignRequest implements ModelInterface, ArrayAccess, \JsonSeria
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -327,5 +326,4 @@ class ScheduleCampaignRequest implements ModelInterface, ArrayAccess, \JsonSeria
             JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR
         );
     }
-
 }

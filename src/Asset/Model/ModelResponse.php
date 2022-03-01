@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ModelResponse
  *
@@ -25,8 +26,8 @@
 
 namespace NecLimDul\MarketoRest\Asset\Model;
 
-use \ArrayAccess;
-use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
+use ArrayAccess;
+use NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * ModelResponse Class Doc Comment
@@ -58,7 +59,6 @@ class ModelResponse implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|class-string>
       */
     protected static $swaggerTypes = [
-        
     ];
 
     /**
@@ -69,7 +69,6 @@ class ModelResponse implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $swaggerFormats = [
-        
     ];
 
     /**
@@ -102,7 +101,6 @@ class ModelResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        
     ];
 
     /**
@@ -111,7 +109,6 @@ class ModelResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        
     ];
 
     /**
@@ -120,9 +117,8 @@ class ModelResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        
     ];
-    
+
     /**
      * Associative array for storing property values
      *
@@ -186,7 +182,6 @@ class ModelResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         return count($this->listInvalidProperties()) === 0;
     }
-    
 
     /**
      * {@inheritdoc}
@@ -225,7 +220,7 @@ class ModelResponse implements ModelInterface, ArrayAccess, \JsonSerializable
              * @param array-key $key
              * @return mixed
              */
-            function($key) use ($container) {
+            function ($key) use ($container) {
                 return $container[$key];
             };
         return array_map($map, $this->additionalProperties);
@@ -281,7 +276,7 @@ class ModelResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -297,5 +292,4 @@ class ModelResponse implements ModelInterface, ArrayAccess, \JsonSerializable
             JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR
         );
     }
-
 }

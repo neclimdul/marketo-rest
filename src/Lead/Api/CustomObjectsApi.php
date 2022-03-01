@@ -1,4 +1,5 @@
 <?php
+
 /**
  * CustomObjectsApi
  *
@@ -48,7 +49,6 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  */
 class CustomObjectsApi
 {
-
     /**
      * @var ClientInterface
      */
@@ -73,7 +73,7 @@ class CustomObjectsApi
      * @param ClientInterface|null $client
      * @param Configuration|null   $config
      * @param HeaderSelector|null  $selector
-     * @param int                  $hostIndex (Optional) host index to select the list of hosts if defined in the OpenAPI spec
+     * @param int                  $hostIndex (Optional) host index to select the list of hosts if defined in the spec.
      */
     public function __construct(
         ClientInterface $client = null,
@@ -102,7 +102,7 @@ class CustomObjectsApi
      *
      * @return int Host index
      */
-    public function getHostIndex()
+    public function getHostIndex(): int
     {
         return $this->hostIndex;
     }
@@ -110,7 +110,7 @@ class CustomObjectsApi
     /**
      * @return Configuration
      */
-    public function getConfig()
+    public function getConfig(): Configuration
     {
         return $this->config;
     }
@@ -141,8 +141,10 @@ class CustomObjectsApi
     /**
      * Add Custom Object Type Fields
      *
-     * @param  string $api_name API name of custom object type (required)
-     * @param  \NecLimDul\MarketoRest\Lead\Model\AddCustomObjectTypeFieldsRequest $add_custom_object_type_fields_request JSON object containing custom object type fields (required)
+     * @param string $api_name
+     *   API name of custom object type
+     * @param \NecLimDul\MarketoRest\Lead\Model\AddCustomObjectTypeFieldsRequest $add_custom_object_type_fields_request
+     *   JSON object containing custom object type fields
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -151,8 +153,7 @@ class CustomObjectsApi
     public function addCustomObjectTypeFieldsUsingPOST(
         string $api_name,
         \NecLimDul\MarketoRest\Lead\Model\AddCustomObjectTypeFieldsRequest $add_custom_object_type_fields_request
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType
-    {
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType {
         list($response) = $this->addCustomObjectTypeFieldsUsingPOSTWithHttpInfo($api_name, $add_custom_object_type_fields_request);
         return $response;
     }
@@ -160,19 +161,24 @@ class CustomObjectsApi
     /**
      * Add Custom Object Type Fields
      *
-     * @param  string $api_name API name of custom object type (required)
-     * @param  \NecLimDul\MarketoRest\Lead\Model\AddCustomObjectTypeFieldsRequest $add_custom_object_type_fields_request JSON object containing custom object type fields (required)
+     * @param string $api_name
+     *   API name of custom object type
+     * @param \NecLimDul\MarketoRest\Lead\Model\AddCustomObjectTypeFieldsRequest $add_custom_object_type_fields_request
+     *   JSON object containing custom object type fields
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function addCustomObjectTypeFieldsUsingPOSTWithHttpInfo(
         string $api_name,
         \NecLimDul\MarketoRest\Lead\Model\AddCustomObjectTypeFieldsRequest $add_custom_object_type_fields_request
-    ): array
-    {
+    ): array {
         $request = $this->addCustomObjectTypeFieldsUsingPOSTRequest($api_name, $add_custom_object_type_fields_request);
         try {
             $response = $this->makeRequest($request);
@@ -188,8 +194,10 @@ class CustomObjectsApi
     /**
      * Add Custom Object Type Fields
      *
-     * @param  string $api_name API name of custom object type (required)
-     * @param  \NecLimDul\MarketoRest\Lead\Model\AddCustomObjectTypeFieldsRequest $add_custom_object_type_fields_request JSON object containing custom object type fields (required)
+     * @param string $api_name
+     *   API name of custom object type
+     * @param \NecLimDul\MarketoRest\Lead\Model\AddCustomObjectTypeFieldsRequest $add_custom_object_type_fields_request
+     *   JSON object containing custom object type fields
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -197,8 +205,7 @@ class CustomObjectsApi
     public function addCustomObjectTypeFieldsUsingPOSTAsync(
         string $api_name,
         \NecLimDul\MarketoRest\Lead\Model\AddCustomObjectTypeFieldsRequest $add_custom_object_type_fields_request
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->addCustomObjectTypeFieldsUsingPOSTAsyncWithHttpInfo($api_name, $add_custom_object_type_fields_request)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType {
@@ -210,8 +217,10 @@ class CustomObjectsApi
     /**
      * Add Custom Object Type Fields
      *
-     * @param  string $api_name API name of custom object type (required)
-     * @param  \NecLimDul\MarketoRest\Lead\Model\AddCustomObjectTypeFieldsRequest $add_custom_object_type_fields_request JSON object containing custom object type fields (required)
+     * @param string $api_name
+     *   API name of custom object type
+     * @param \NecLimDul\MarketoRest\Lead\Model\AddCustomObjectTypeFieldsRequest $add_custom_object_type_fields_request
+     *   JSON object containing custom object type fields
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -219,8 +228,7 @@ class CustomObjectsApi
     public function addCustomObjectTypeFieldsUsingPOSTAsyncWithHttpInfo(
         string $api_name,
         \NecLimDul\MarketoRest\Lead\Model\AddCustomObjectTypeFieldsRequest $add_custom_object_type_fields_request
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->addCustomObjectTypeFieldsUsingPOSTRequest($api_name, $add_custom_object_type_fields_request);
         return $this->makeAsyncRequest(
             $request,
@@ -232,8 +240,10 @@ class CustomObjectsApi
     /**
      * Create request for operation 'addCustomObjectTypeFieldsUsingPOST'
      *
-     * @param  string $api_name API name of custom object type (required)
-     * @param  \NecLimDul\MarketoRest\Lead\Model\AddCustomObjectTypeFieldsRequest $add_custom_object_type_fields_request JSON object containing custom object type fields (required)
+     * @param string $api_name
+     *   API name of custom object type
+     * @param \NecLimDul\MarketoRest\Lead\Model\AddCustomObjectTypeFieldsRequest $add_custom_object_type_fields_request
+     *   JSON object containing custom object type fields
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -241,8 +251,7 @@ class CustomObjectsApi
     public function addCustomObjectTypeFieldsUsingPOSTRequest(
         string $api_name,
         \NecLimDul\MarketoRest\Lead\Model\AddCustomObjectTypeFieldsRequest $add_custom_object_type_fields_request
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/v1/customobjects/schema/{apiName}/addField.json';
         $resourcePath = str_replace(
@@ -278,7 +287,6 @@ class CustomObjectsApi
             [
             ],
             $add_custom_object_type_fields_request
-            
         );
     }
 
@@ -308,7 +316,8 @@ class CustomObjectsApi
     /**
      * Approve Custom Object Type
      *
-     * @param  string $api_name API Name of the custom object type to approve (required)
+     * @param string $api_name
+     *   API Name of the custom object type to approve
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -316,8 +325,7 @@ class CustomObjectsApi
      */
     public function approveCustomObjectTypeUsingPOST(
         string $api_name
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType
-    {
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType {
         list($response) = $this->approveCustomObjectTypeUsingPOSTWithHttpInfo($api_name);
         return $response;
     }
@@ -325,17 +333,21 @@ class CustomObjectsApi
     /**
      * Approve Custom Object Type
      *
-     * @param  string $api_name API Name of the custom object type to approve (required)
+     * @param string $api_name
+     *   API Name of the custom object type to approve
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function approveCustomObjectTypeUsingPOSTWithHttpInfo(
         string $api_name
-    ): array
-    {
+    ): array {
         $request = $this->approveCustomObjectTypeUsingPOSTRequest($api_name);
         try {
             $response = $this->makeRequest($request);
@@ -351,15 +363,15 @@ class CustomObjectsApi
     /**
      * Approve Custom Object Type
      *
-     * @param  string $api_name API Name of the custom object type to approve (required)
+     * @param string $api_name
+     *   API Name of the custom object type to approve
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function approveCustomObjectTypeUsingPOSTAsync(
         string $api_name
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->approveCustomObjectTypeUsingPOSTAsyncWithHttpInfo($api_name)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType {
@@ -371,15 +383,15 @@ class CustomObjectsApi
     /**
      * Approve Custom Object Type
      *
-     * @param  string $api_name API Name of the custom object type to approve (required)
+     * @param string $api_name
+     *   API Name of the custom object type to approve
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function approveCustomObjectTypeUsingPOSTAsyncWithHttpInfo(
         string $api_name
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->approveCustomObjectTypeUsingPOSTRequest($api_name);
         return $this->makeAsyncRequest(
             $request,
@@ -391,15 +403,15 @@ class CustomObjectsApi
     /**
      * Create request for operation 'approveCustomObjectTypeUsingPOST'
      *
-     * @param  string $api_name API Name of the custom object type to approve (required)
+     * @param string $api_name
+     *   API Name of the custom object type to approve
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
     public function approveCustomObjectTypeUsingPOSTRequest(
         string $api_name
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/v1/customobjects/schema/{apiName}/approve.json';
         $resourcePath = str_replace(
@@ -464,8 +476,10 @@ class CustomObjectsApi
     /**
      * Delete Custom Object Type Fields
      *
-     * @param  string $api_name API name of custom object type (required)
-     * @param  \NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectTypeFieldsRequest $delete_custom_object_type_fields_request JSON object containing custom object type fields (required)
+     * @param string $api_name
+     *   API name of custom object type
+     * @param \NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectTypeFieldsRequest $delete_custom_object_type_fields_request
+     *   JSON object containing custom object type fields
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -474,8 +488,7 @@ class CustomObjectsApi
     public function deleteCustomObjectTypeFieldsUsingPOST(
         string $api_name,
         \NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectTypeFieldsRequest $delete_custom_object_type_fields_request
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType
-    {
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType {
         list($response) = $this->deleteCustomObjectTypeFieldsUsingPOSTWithHttpInfo($api_name, $delete_custom_object_type_fields_request);
         return $response;
     }
@@ -483,19 +496,24 @@ class CustomObjectsApi
     /**
      * Delete Custom Object Type Fields
      *
-     * @param  string $api_name API name of custom object type (required)
-     * @param  \NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectTypeFieldsRequest $delete_custom_object_type_fields_request JSON object containing custom object type fields (required)
+     * @param string $api_name
+     *   API name of custom object type
+     * @param \NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectTypeFieldsRequest $delete_custom_object_type_fields_request
+     *   JSON object containing custom object type fields
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function deleteCustomObjectTypeFieldsUsingPOSTWithHttpInfo(
         string $api_name,
         \NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectTypeFieldsRequest $delete_custom_object_type_fields_request
-    ): array
-    {
+    ): array {
         $request = $this->deleteCustomObjectTypeFieldsUsingPOSTRequest($api_name, $delete_custom_object_type_fields_request);
         try {
             $response = $this->makeRequest($request);
@@ -511,8 +529,10 @@ class CustomObjectsApi
     /**
      * Delete Custom Object Type Fields
      *
-     * @param  string $api_name API name of custom object type (required)
-     * @param  \NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectTypeFieldsRequest $delete_custom_object_type_fields_request JSON object containing custom object type fields (required)
+     * @param string $api_name
+     *   API name of custom object type
+     * @param \NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectTypeFieldsRequest $delete_custom_object_type_fields_request
+     *   JSON object containing custom object type fields
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -520,8 +540,7 @@ class CustomObjectsApi
     public function deleteCustomObjectTypeFieldsUsingPOSTAsync(
         string $api_name,
         \NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectTypeFieldsRequest $delete_custom_object_type_fields_request
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->deleteCustomObjectTypeFieldsUsingPOSTAsyncWithHttpInfo($api_name, $delete_custom_object_type_fields_request)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType {
@@ -533,8 +552,10 @@ class CustomObjectsApi
     /**
      * Delete Custom Object Type Fields
      *
-     * @param  string $api_name API name of custom object type (required)
-     * @param  \NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectTypeFieldsRequest $delete_custom_object_type_fields_request JSON object containing custom object type fields (required)
+     * @param string $api_name
+     *   API name of custom object type
+     * @param \NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectTypeFieldsRequest $delete_custom_object_type_fields_request
+     *   JSON object containing custom object type fields
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -542,8 +563,7 @@ class CustomObjectsApi
     public function deleteCustomObjectTypeFieldsUsingPOSTAsyncWithHttpInfo(
         string $api_name,
         \NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectTypeFieldsRequest $delete_custom_object_type_fields_request
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->deleteCustomObjectTypeFieldsUsingPOSTRequest($api_name, $delete_custom_object_type_fields_request);
         return $this->makeAsyncRequest(
             $request,
@@ -555,8 +575,10 @@ class CustomObjectsApi
     /**
      * Create request for operation 'deleteCustomObjectTypeFieldsUsingPOST'
      *
-     * @param  string $api_name API name of custom object type (required)
-     * @param  \NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectTypeFieldsRequest $delete_custom_object_type_fields_request JSON object containing custom object type fields (required)
+     * @param string $api_name
+     *   API name of custom object type
+     * @param \NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectTypeFieldsRequest $delete_custom_object_type_fields_request
+     *   JSON object containing custom object type fields
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -564,8 +586,7 @@ class CustomObjectsApi
     public function deleteCustomObjectTypeFieldsUsingPOSTRequest(
         string $api_name,
         \NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectTypeFieldsRequest $delete_custom_object_type_fields_request
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/v1/customobjects/schema/{apiName}/deleteField.json';
         $resourcePath = str_replace(
@@ -601,7 +622,6 @@ class CustomObjectsApi
             [
             ],
             $delete_custom_object_type_fields_request
-            
         );
     }
 
@@ -631,7 +651,8 @@ class CustomObjectsApi
     /**
      * Delete Custom Object Type
      *
-     * @param  string $api_name API Name of the custom object type to delete (required)
+     * @param string $api_name
+     *   API Name of the custom object type to delete
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -639,8 +660,7 @@ class CustomObjectsApi
      */
     public function deleteCustomObjectTypeUsingPOST(
         string $api_name
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType
-    {
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType {
         list($response) = $this->deleteCustomObjectTypeUsingPOSTWithHttpInfo($api_name);
         return $response;
     }
@@ -648,17 +668,21 @@ class CustomObjectsApi
     /**
      * Delete Custom Object Type
      *
-     * @param  string $api_name API Name of the custom object type to delete (required)
+     * @param string $api_name
+     *   API Name of the custom object type to delete
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function deleteCustomObjectTypeUsingPOSTWithHttpInfo(
         string $api_name
-    ): array
-    {
+    ): array {
         $request = $this->deleteCustomObjectTypeUsingPOSTRequest($api_name);
         try {
             $response = $this->makeRequest($request);
@@ -674,15 +698,15 @@ class CustomObjectsApi
     /**
      * Delete Custom Object Type
      *
-     * @param  string $api_name API Name of the custom object type to delete (required)
+     * @param string $api_name
+     *   API Name of the custom object type to delete
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function deleteCustomObjectTypeUsingPOSTAsync(
         string $api_name
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->deleteCustomObjectTypeUsingPOSTAsyncWithHttpInfo($api_name)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType {
@@ -694,15 +718,15 @@ class CustomObjectsApi
     /**
      * Delete Custom Object Type
      *
-     * @param  string $api_name API Name of the custom object type to delete (required)
+     * @param string $api_name
+     *   API Name of the custom object type to delete
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function deleteCustomObjectTypeUsingPOSTAsyncWithHttpInfo(
         string $api_name
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->deleteCustomObjectTypeUsingPOSTRequest($api_name);
         return $this->makeAsyncRequest(
             $request,
@@ -714,15 +738,15 @@ class CustomObjectsApi
     /**
      * Create request for operation 'deleteCustomObjectTypeUsingPOST'
      *
-     * @param  string $api_name API Name of the custom object type to delete (required)
+     * @param string $api_name
+     *   API Name of the custom object type to delete
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
     public function deleteCustomObjectTypeUsingPOSTRequest(
         string $api_name
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/v1/customobjects/schema/{apiName}/delete.json';
         $resourcePath = str_replace(
@@ -787,8 +811,10 @@ class CustomObjectsApi
     /**
      * Delete Custom Objects
      *
-     * @param  string $custom_object_name customObjectName (required)
-     * @param  \NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectRequest $delete_custom_object_request deleteCustomObjectRequest (optional)
+     * @param string $custom_object_name
+     *   customObjectName
+     * @param \NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectRequest|null $delete_custom_object_request
+     *   deleteCustomObjectRequest
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -797,8 +823,7 @@ class CustomObjectsApi
     public function deleteCustomObjectsUsingPOST(
         string $custom_object_name,
         \NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectRequest $delete_custom_object_request = null
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject
-    {
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject {
         list($response) = $this->deleteCustomObjectsUsingPOSTWithHttpInfo($custom_object_name, $delete_custom_object_request);
         return $response;
     }
@@ -806,19 +831,24 @@ class CustomObjectsApi
     /**
      * Delete Custom Objects
      *
-     * @param  string $custom_object_name customObjectName (required)
-     * @param  \NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectRequest $delete_custom_object_request deleteCustomObjectRequest (optional)
+     * @param string $custom_object_name
+     *   customObjectName
+     * @param \NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectRequest|null $delete_custom_object_request
+     *   deleteCustomObjectRequest
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function deleteCustomObjectsUsingPOSTWithHttpInfo(
         string $custom_object_name,
         \NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectRequest $delete_custom_object_request = null
-    ): array
-    {
+    ): array {
         $request = $this->deleteCustomObjectsUsingPOSTRequest($custom_object_name, $delete_custom_object_request);
         try {
             $response = $this->makeRequest($request);
@@ -834,8 +864,10 @@ class CustomObjectsApi
     /**
      * Delete Custom Objects
      *
-     * @param  string $custom_object_name customObjectName (required)
-     * @param  \NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectRequest $delete_custom_object_request deleteCustomObjectRequest (optional)
+     * @param string $custom_object_name
+     *   customObjectName
+     * @param \NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectRequest|null $delete_custom_object_request
+     *   deleteCustomObjectRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -843,8 +875,7 @@ class CustomObjectsApi
     public function deleteCustomObjectsUsingPOSTAsync(
         string $custom_object_name,
         \NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectRequest $delete_custom_object_request = null
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->deleteCustomObjectsUsingPOSTAsyncWithHttpInfo($custom_object_name, $delete_custom_object_request)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject {
@@ -856,8 +887,10 @@ class CustomObjectsApi
     /**
      * Delete Custom Objects
      *
-     * @param  string $custom_object_name customObjectName (required)
-     * @param  \NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectRequest $delete_custom_object_request deleteCustomObjectRequest (optional)
+     * @param string $custom_object_name
+     *   customObjectName
+     * @param \NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectRequest|null $delete_custom_object_request
+     *   deleteCustomObjectRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -865,8 +898,7 @@ class CustomObjectsApi
     public function deleteCustomObjectsUsingPOSTAsyncWithHttpInfo(
         string $custom_object_name,
         \NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectRequest $delete_custom_object_request = null
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->deleteCustomObjectsUsingPOSTRequest($custom_object_name, $delete_custom_object_request);
         return $this->makeAsyncRequest(
             $request,
@@ -878,8 +910,10 @@ class CustomObjectsApi
     /**
      * Create request for operation 'deleteCustomObjectsUsingPOST'
      *
-     * @param  string $custom_object_name customObjectName (required)
-     * @param  \NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectRequest $delete_custom_object_request deleteCustomObjectRequest (optional)
+     * @param string $custom_object_name
+     *   customObjectName
+     * @param \NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectRequest|null $delete_custom_object_request
+     *   deleteCustomObjectRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -887,8 +921,7 @@ class CustomObjectsApi
     public function deleteCustomObjectsUsingPOSTRequest(
         string $custom_object_name,
         \NecLimDul\MarketoRest\Lead\Model\DeleteCustomObjectRequest $delete_custom_object_request = null
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/v1/customobjects/{customObjectName}/delete.json';
         $resourcePath = str_replace(
@@ -924,7 +957,6 @@ class CustomObjectsApi
             [
             ],
             $delete_custom_object_request
-            
         );
     }
 
@@ -954,8 +986,10 @@ class CustomObjectsApi
     /**
      * Describe Custom Object Type
      *
-     * @param  string $api_name API name of custom object type to describe (required)
-     * @param  string $state State of custom object type to filter on.  By default, if an approved version exists, it is returned.  Otherwise, the draft version is returned. (optional)
+     * @param string $api_name
+     *   API name of custom object type to describe
+     * @param string|null $state
+     *   State of custom object type to filter on.  By default, if an approved version exists, it is returned.  Otherwise, the draft version is returned.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -964,8 +998,7 @@ class CustomObjectsApi
     public function describeCustomObjectTypeUsingGET(
         string $api_name,
         string $state = null
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData
-    {
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData {
         list($response) = $this->describeCustomObjectTypeUsingGETWithHttpInfo($api_name, $state);
         return $response;
     }
@@ -973,19 +1006,24 @@ class CustomObjectsApi
     /**
      * Describe Custom Object Type
      *
-     * @param  string $api_name API name of custom object type to describe (required)
-     * @param  string $state State of custom object type to filter on.  By default, if an approved version exists, it is returned.  Otherwise, the draft version is returned. (optional)
+     * @param string $api_name
+     *   API name of custom object type to describe
+     * @param string|null $state
+     *   State of custom object type to filter on.  By default, if an approved version exists, it is returned.  Otherwise, the draft version is returned.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function describeCustomObjectTypeUsingGETWithHttpInfo(
         string $api_name,
         string $state = null
-    ): array
-    {
+    ): array {
         $request = $this->describeCustomObjectTypeUsingGETRequest($api_name, $state);
         try {
             $response = $this->makeRequest($request);
@@ -1001,8 +1039,10 @@ class CustomObjectsApi
     /**
      * Describe Custom Object Type
      *
-     * @param  string $api_name API name of custom object type to describe (required)
-     * @param  string $state State of custom object type to filter on.  By default, if an approved version exists, it is returned.  Otherwise, the draft version is returned. (optional)
+     * @param string $api_name
+     *   API name of custom object type to describe
+     * @param string|null $state
+     *   State of custom object type to filter on.  By default, if an approved version exists, it is returned.  Otherwise, the draft version is returned.
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1010,8 +1050,7 @@ class CustomObjectsApi
     public function describeCustomObjectTypeUsingGETAsync(
         string $api_name,
         string $state = null
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->describeCustomObjectTypeUsingGETAsyncWithHttpInfo($api_name, $state)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData {
@@ -1023,8 +1062,10 @@ class CustomObjectsApi
     /**
      * Describe Custom Object Type
      *
-     * @param  string $api_name API name of custom object type to describe (required)
-     * @param  string $state State of custom object type to filter on.  By default, if an approved version exists, it is returned.  Otherwise, the draft version is returned. (optional)
+     * @param string $api_name
+     *   API name of custom object type to describe
+     * @param string|null $state
+     *   State of custom object type to filter on.  By default, if an approved version exists, it is returned.  Otherwise, the draft version is returned.
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1032,8 +1073,7 @@ class CustomObjectsApi
     public function describeCustomObjectTypeUsingGETAsyncWithHttpInfo(
         string $api_name,
         string $state = null
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->describeCustomObjectTypeUsingGETRequest($api_name, $state);
         return $this->makeAsyncRequest(
             $request,
@@ -1045,8 +1085,10 @@ class CustomObjectsApi
     /**
      * Create request for operation 'describeCustomObjectTypeUsingGET'
      *
-     * @param  string $api_name API name of custom object type to describe (required)
-     * @param  string $state State of custom object type to filter on.  By default, if an approved version exists, it is returned.  Otherwise, the draft version is returned. (optional)
+     * @param string $api_name
+     *   API name of custom object type to describe
+     * @param string|null $state
+     *   State of custom object type to filter on.  By default, if an approved version exists, it is returned.  Otherwise, the draft version is returned.
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -1054,8 +1096,7 @@ class CustomObjectsApi
     public function describeCustomObjectTypeUsingGETRequest(
         string $api_name,
         string $state = null
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/v1/customobjects/schema/{apiName}/describe.json';
         $resourcePath = str_replace(
@@ -1121,7 +1162,8 @@ class CustomObjectsApi
     /**
      * Describe Custom Objects
      *
-     * @param  string $custom_object_name customObjectName (required)
+     * @param string $custom_object_name
+     *   customObjectName
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -1129,8 +1171,7 @@ class CustomObjectsApi
      */
     public function describeUsingGET1(
         string $custom_object_name
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData
-    {
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData {
         list($response) = $this->describeUsingGET1WithHttpInfo($custom_object_name);
         return $response;
     }
@@ -1138,17 +1179,21 @@ class CustomObjectsApi
     /**
      * Describe Custom Objects
      *
-     * @param  string $custom_object_name customObjectName (required)
+     * @param string $custom_object_name
+     *   customObjectName
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function describeUsingGET1WithHttpInfo(
         string $custom_object_name
-    ): array
-    {
+    ): array {
         $request = $this->describeUsingGET1Request($custom_object_name);
         try {
             $response = $this->makeRequest($request);
@@ -1164,15 +1209,15 @@ class CustomObjectsApi
     /**
      * Describe Custom Objects
      *
-     * @param  string $custom_object_name customObjectName (required)
+     * @param string $custom_object_name
+     *   customObjectName
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function describeUsingGET1Async(
         string $custom_object_name
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->describeUsingGET1AsyncWithHttpInfo($custom_object_name)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData {
@@ -1184,15 +1229,15 @@ class CustomObjectsApi
     /**
      * Describe Custom Objects
      *
-     * @param  string $custom_object_name customObjectName (required)
+     * @param string $custom_object_name
+     *   customObjectName
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function describeUsingGET1AsyncWithHttpInfo(
         string $custom_object_name
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->describeUsingGET1Request($custom_object_name);
         return $this->makeAsyncRequest(
             $request,
@@ -1204,15 +1249,15 @@ class CustomObjectsApi
     /**
      * Create request for operation 'describeUsingGET1'
      *
-     * @param  string $custom_object_name customObjectName (required)
+     * @param string $custom_object_name
+     *   customObjectName
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
     public function describeUsingGET1Request(
         string $custom_object_name
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/v1/customobjects/{customObjectName}/describe.json';
         $resourcePath = str_replace(
@@ -1277,7 +1322,8 @@ class CustomObjectsApi
     /**
      * Discard Custom Object Type Draft
      *
-     * @param  string $api_name API Name of the custom object type draft to discard (required)
+     * @param string $api_name
+     *   API Name of the custom object type draft to discard
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -1285,8 +1331,7 @@ class CustomObjectsApi
      */
     public function discardCustomObjectTypeUsingPOST(
         string $api_name
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType
-    {
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType {
         list($response) = $this->discardCustomObjectTypeUsingPOSTWithHttpInfo($api_name);
         return $response;
     }
@@ -1294,17 +1339,21 @@ class CustomObjectsApi
     /**
      * Discard Custom Object Type Draft
      *
-     * @param  string $api_name API Name of the custom object type draft to discard (required)
+     * @param string $api_name
+     *   API Name of the custom object type draft to discard
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function discardCustomObjectTypeUsingPOSTWithHttpInfo(
         string $api_name
-    ): array
-    {
+    ): array {
         $request = $this->discardCustomObjectTypeUsingPOSTRequest($api_name);
         try {
             $response = $this->makeRequest($request);
@@ -1320,15 +1369,15 @@ class CustomObjectsApi
     /**
      * Discard Custom Object Type Draft
      *
-     * @param  string $api_name API Name of the custom object type draft to discard (required)
+     * @param string $api_name
+     *   API Name of the custom object type draft to discard
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function discardCustomObjectTypeUsingPOSTAsync(
         string $api_name
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->discardCustomObjectTypeUsingPOSTAsyncWithHttpInfo($api_name)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType {
@@ -1340,15 +1389,15 @@ class CustomObjectsApi
     /**
      * Discard Custom Object Type Draft
      *
-     * @param  string $api_name API Name of the custom object type draft to discard (required)
+     * @param string $api_name
+     *   API Name of the custom object type draft to discard
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function discardCustomObjectTypeUsingPOSTAsyncWithHttpInfo(
         string $api_name
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->discardCustomObjectTypeUsingPOSTRequest($api_name);
         return $this->makeAsyncRequest(
             $request,
@@ -1360,15 +1409,15 @@ class CustomObjectsApi
     /**
      * Create request for operation 'discardCustomObjectTypeUsingPOST'
      *
-     * @param  string $api_name API Name of the custom object type draft to discard (required)
+     * @param string $api_name
+     *   API Name of the custom object type draft to discard
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
     public function discardCustomObjectTypeUsingPOSTRequest(
         string $api_name
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/v1/customobjects/schema/{apiName}/discardDraft.json';
         $resourcePath = str_replace(
@@ -1433,7 +1482,8 @@ class CustomObjectsApi
     /**
      * Get Custom Object Dependent Assets
      *
-     * @param  string $api_name REST API name for custom object (required)
+     * @param string $api_name
+     *   REST API name for custom object
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -1441,8 +1491,7 @@ class CustomObjectsApi
      */
     public function getCustomObjectTypeDependentAssetsUsingGET(
         string $api_name
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectDependentAssets
-    {
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectDependentAssets {
         list($response) = $this->getCustomObjectTypeDependentAssetsUsingGETWithHttpInfo($api_name);
         return $response;
     }
@@ -1450,17 +1499,21 @@ class CustomObjectsApi
     /**
      * Get Custom Object Dependent Assets
      *
-     * @param  string $api_name REST API name for custom object (required)
+     * @param string $api_name
+     *   REST API name for custom object
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectDependentAssets, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectDependentAssets, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectDependentAssets,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function getCustomObjectTypeDependentAssetsUsingGETWithHttpInfo(
         string $api_name
-    ): array
-    {
+    ): array {
         $request = $this->getCustomObjectTypeDependentAssetsUsingGETRequest($api_name);
         try {
             $response = $this->makeRequest($request);
@@ -1476,15 +1529,15 @@ class CustomObjectsApi
     /**
      * Get Custom Object Dependent Assets
      *
-     * @param  string $api_name REST API name for custom object (required)
+     * @param string $api_name
+     *   REST API name for custom object
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function getCustomObjectTypeDependentAssetsUsingGETAsync(
         string $api_name
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->getCustomObjectTypeDependentAssetsUsingGETAsyncWithHttpInfo($api_name)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectDependentAssets {
@@ -1496,15 +1549,15 @@ class CustomObjectsApi
     /**
      * Get Custom Object Dependent Assets
      *
-     * @param  string $api_name REST API name for custom object (required)
+     * @param string $api_name
+     *   REST API name for custom object
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function getCustomObjectTypeDependentAssetsUsingGETAsyncWithHttpInfo(
         string $api_name
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->getCustomObjectTypeDependentAssetsUsingGETRequest($api_name);
         return $this->makeAsyncRequest(
             $request,
@@ -1516,15 +1569,15 @@ class CustomObjectsApi
     /**
      * Create request for operation 'getCustomObjectTypeDependentAssetsUsingGET'
      *
-     * @param  string $api_name REST API name for custom object (required)
+     * @param string $api_name
+     *   REST API name for custom object
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
     public function getCustomObjectTypeDependentAssetsUsingGETRequest(
         string $api_name
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/v1/customobjects/schema/{apiName}/dependentAssets.json';
         $resourcePath = str_replace(
@@ -1593,8 +1646,7 @@ class CustomObjectsApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectTypeFieldDataTypes
      */
-    public function getCustomObjectTypeFieldDataTypesUsingGET(
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectTypeFieldDataTypes
+    public function getCustomObjectTypeFieldDataTypesUsingGET(): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectTypeFieldDataTypes
     {
         list($response) = $this->getCustomObjectTypeFieldDataTypesUsingGETWithHttpInfo();
         return $response;
@@ -1605,11 +1657,14 @@ class CustomObjectsApi
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectTypeFieldDataTypes, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectTypeFieldDataTypes, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectTypeFieldDataTypes,
+     *     int,
+     *     array<array<string>>
+     * }
      */
-    public function getCustomObjectTypeFieldDataTypesUsingGETWithHttpInfo(
-    ): array
+    public function getCustomObjectTypeFieldDataTypesUsingGETWithHttpInfo(): array
     {
         $request = $this->getCustomObjectTypeFieldDataTypesUsingGETRequest();
         try {
@@ -1629,8 +1684,7 @@ class CustomObjectsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getCustomObjectTypeFieldDataTypesUsingGETAsync(
-    ): PromiseInterface
+    public function getCustomObjectTypeFieldDataTypesUsingGETAsync(): PromiseInterface
     {
         return $this->getCustomObjectTypeFieldDataTypesUsingGETAsyncWithHttpInfo()
             ->then(
@@ -1646,8 +1700,7 @@ class CustomObjectsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getCustomObjectTypeFieldDataTypesUsingGETAsyncWithHttpInfo(
-    ): PromiseInterface
+    public function getCustomObjectTypeFieldDataTypesUsingGETAsyncWithHttpInfo(): PromiseInterface
     {
         $request = $this->getCustomObjectTypeFieldDataTypesUsingGETRequest();
         return $this->makeAsyncRequest(
@@ -1663,8 +1716,7 @@ class CustomObjectsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getCustomObjectTypeFieldDataTypesUsingGETRequest(
-    ): Request
+    public function getCustomObjectTypeFieldDataTypesUsingGETRequest(): Request
     {
 
         $resourcePath = '/rest/v1/customobjects/schema/fieldDataTypes.json';
@@ -1729,8 +1781,7 @@ class CustomObjectsApi
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectLinkableObject
      */
-    public function getCustomObjectTypeLinkableObjectsUsingGET(
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectLinkableObject
+    public function getCustomObjectTypeLinkableObjectsUsingGET(): \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectLinkableObject
     {
         list($response) = $this->getCustomObjectTypeLinkableObjectsUsingGETWithHttpInfo();
         return $response;
@@ -1741,11 +1792,14 @@ class CustomObjectsApi
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectLinkableObject, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectLinkableObject, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectLinkableObject,
+     *     int,
+     *     array<array<string>>
+     * }
      */
-    public function getCustomObjectTypeLinkableObjectsUsingGETWithHttpInfo(
-    ): array
+    public function getCustomObjectTypeLinkableObjectsUsingGETWithHttpInfo(): array
     {
         $request = $this->getCustomObjectTypeLinkableObjectsUsingGETRequest();
         try {
@@ -1765,8 +1819,7 @@ class CustomObjectsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getCustomObjectTypeLinkableObjectsUsingGETAsync(
-    ): PromiseInterface
+    public function getCustomObjectTypeLinkableObjectsUsingGETAsync(): PromiseInterface
     {
         return $this->getCustomObjectTypeLinkableObjectsUsingGETAsyncWithHttpInfo()
             ->then(
@@ -1782,8 +1835,7 @@ class CustomObjectsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getCustomObjectTypeLinkableObjectsUsingGETAsyncWithHttpInfo(
-    ): PromiseInterface
+    public function getCustomObjectTypeLinkableObjectsUsingGETAsyncWithHttpInfo(): PromiseInterface
     {
         $request = $this->getCustomObjectTypeLinkableObjectsUsingGETRequest();
         return $this->makeAsyncRequest(
@@ -1799,8 +1851,7 @@ class CustomObjectsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getCustomObjectTypeLinkableObjectsUsingGETRequest(
-    ): Request
+    public function getCustomObjectTypeLinkableObjectsUsingGETRequest(): Request
     {
 
         $resourcePath = '/rest/v1/customobjects/schema/linkableObjects.json';
@@ -1861,13 +1912,20 @@ class CustomObjectsApi
     /**
      * Get Custom Objects
      *
-     * @param  string $custom_object_name Name of custom object type to retrieve records for (required)
-     * @param  string $filter_type Field to filter on. Searchable fields can be retrieved with Describe Custom Object (required)
-     * @param  string[] $filter_values Comma-separated list of field values to match against. (required)
-     * @param  \NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest $custom_object_lookup_request Optional JSON request for retrieving custom objects with compound keys.  Example:&lt;br&gt;&lt;code&gt;{&lt;br&gt;\&quot;filterType\&quot;:\&quot;dedupeFields\&quot;,&lt;br&gt;\&quot;fields\&quot;:[&lt;br&gt;\&quot;marketoGuid\&quot;,&lt;br&gt;\&quot;Bedrooms\&quot;,&lt;br&gt;\&quot;yearBuilt\&quot;&lt;br&gt;],&lt;br&gt;\&quot;input\&quot;:[&lt;br&gt;{&lt;br&gt;\&quot;mlsNum\&quot;:\&quot;1962352\&quot;,&lt;br&gt;\&quot;houseOwnerId\&quot;:\&quot;42645756\&quot;&lt;br&gt;},&lt;br&gt;{&lt;br&gt;\&quot;mlsNum\&quot;:\&quot;3962352\&quot;,&lt;br&gt;\&quot;houseOwnerId\&quot;:\&quot;62645756\&quot;&lt;br&gt;}&lt;br&gt;]&lt;br&gt;}&lt;/code&gt;&lt;br&gt; (optional)
-     * @param  string[] $fields Comma-separated list of fields to return for each record.  If unset marketoGuid, dedupeFields, updatedAt, createdAt will be returned (optional)
-     * @param  int $batch_size The batch size to return.  The max and default value is 300. (optional)
-     * @param  string $next_page_token A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info. (optional)
+     * @param string $custom_object_name
+     *   Name of custom object type to retrieve records for
+     * @param string $filter_type
+     *   Field to filter on. Searchable fields can be retrieved with Describe Custom Object
+     * @param string[] $filter_values
+     *   Comma-separated list of field values to match against.
+     * @param \NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest|null $custom_object_lookup_request
+     *   Optional JSON request for retrieving custom objects with compound keys.  Example:&lt;br&gt;&lt;code&gt;{&lt;br&gt;\&quot;filterType\&quot;:\&quot;dedupeFields\&quot;,&lt;br&gt;\&quot;fields\&quot;:[&lt;br&gt;\&quot;marketoGuid\&quot;,&lt;br&gt;\&quot;Bedrooms\&quot;,&lt;br&gt;\&quot;yearBuilt\&quot;&lt;br&gt;],&lt;br&gt;\&quot;input\&quot;:[&lt;br&gt;{&lt;br&gt;\&quot;mlsNum\&quot;:\&quot;1962352\&quot;,&lt;br&gt;\&quot;houseOwnerId\&quot;:\&quot;42645756\&quot;&lt;br&gt;},&lt;br&gt;{&lt;br&gt;\&quot;mlsNum\&quot;:\&quot;3962352\&quot;,&lt;br&gt;\&quot;houseOwnerId\&quot;:\&quot;62645756\&quot;&lt;br&gt;}&lt;br&gt;]&lt;br&gt;}&lt;/code&gt;&lt;br&gt;
+     * @param string[]|null $fields
+     *   Comma-separated list of fields to return for each record.  If unset marketoGuid, dedupeFields, updatedAt, createdAt will be returned
+     * @param int|null $batch_size
+     *   The batch size to return.  The max and default value is 300.
+     * @param string|null $next_page_token
+     *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -1881,8 +1939,7 @@ class CustomObjectsApi
         array $fields = null,
         int $batch_size = null,
         string $next_page_token = null
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject
-    {
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject {
         list($response) = $this->getCustomObjectsUsingGETWithHttpInfo($custom_object_name, $filter_type, $filter_values, $custom_object_lookup_request, $fields, $batch_size, $next_page_token);
         return $response;
     }
@@ -1890,18 +1947,29 @@ class CustomObjectsApi
     /**
      * Get Custom Objects
      *
-     * @param  string $custom_object_name Name of custom object type to retrieve records for (required)
-     * @param  string $filter_type Field to filter on. Searchable fields can be retrieved with Describe Custom Object (required)
-     * @param  string[] $filter_values Comma-separated list of field values to match against. (required)
-     * @param  \NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest $custom_object_lookup_request Optional JSON request for retrieving custom objects with compound keys.  Example:&lt;br&gt;&lt;code&gt;{&lt;br&gt;\&quot;filterType\&quot;:\&quot;dedupeFields\&quot;,&lt;br&gt;\&quot;fields\&quot;:[&lt;br&gt;\&quot;marketoGuid\&quot;,&lt;br&gt;\&quot;Bedrooms\&quot;,&lt;br&gt;\&quot;yearBuilt\&quot;&lt;br&gt;],&lt;br&gt;\&quot;input\&quot;:[&lt;br&gt;{&lt;br&gt;\&quot;mlsNum\&quot;:\&quot;1962352\&quot;,&lt;br&gt;\&quot;houseOwnerId\&quot;:\&quot;42645756\&quot;&lt;br&gt;},&lt;br&gt;{&lt;br&gt;\&quot;mlsNum\&quot;:\&quot;3962352\&quot;,&lt;br&gt;\&quot;houseOwnerId\&quot;:\&quot;62645756\&quot;&lt;br&gt;}&lt;br&gt;]&lt;br&gt;}&lt;/code&gt;&lt;br&gt; (optional)
-     * @param  string[] $fields Comma-separated list of fields to return for each record.  If unset marketoGuid, dedupeFields, updatedAt, createdAt will be returned (optional)
-     * @param  int $batch_size The batch size to return.  The max and default value is 300. (optional)
-     * @param  string $next_page_token A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info. (optional)
+     * @param string $custom_object_name
+     *   Name of custom object type to retrieve records for
+     * @param string $filter_type
+     *   Field to filter on. Searchable fields can be retrieved with Describe Custom Object
+     * @param string[] $filter_values
+     *   Comma-separated list of field values to match against.
+     * @param \NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest|null $custom_object_lookup_request
+     *   Optional JSON request for retrieving custom objects with compound keys.  Example:&lt;br&gt;&lt;code&gt;{&lt;br&gt;\&quot;filterType\&quot;:\&quot;dedupeFields\&quot;,&lt;br&gt;\&quot;fields\&quot;:[&lt;br&gt;\&quot;marketoGuid\&quot;,&lt;br&gt;\&quot;Bedrooms\&quot;,&lt;br&gt;\&quot;yearBuilt\&quot;&lt;br&gt;],&lt;br&gt;\&quot;input\&quot;:[&lt;br&gt;{&lt;br&gt;\&quot;mlsNum\&quot;:\&quot;1962352\&quot;,&lt;br&gt;\&quot;houseOwnerId\&quot;:\&quot;42645756\&quot;&lt;br&gt;},&lt;br&gt;{&lt;br&gt;\&quot;mlsNum\&quot;:\&quot;3962352\&quot;,&lt;br&gt;\&quot;houseOwnerId\&quot;:\&quot;62645756\&quot;&lt;br&gt;}&lt;br&gt;]&lt;br&gt;}&lt;/code&gt;&lt;br&gt;
+     * @param string[]|null $fields
+     *   Comma-separated list of fields to return for each record.  If unset marketoGuid, dedupeFields, updatedAt, createdAt will be returned
+     * @param int|null $batch_size
+     *   The batch size to return.  The max and default value is 300.
+     * @param string|null $next_page_token
+     *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function getCustomObjectsUsingGETWithHttpInfo(
         string $custom_object_name,
@@ -1911,8 +1979,7 @@ class CustomObjectsApi
         array $fields = null,
         int $batch_size = null,
         string $next_page_token = null
-    ): array
-    {
+    ): array {
         $request = $this->getCustomObjectsUsingGETRequest($custom_object_name, $filter_type, $filter_values, $custom_object_lookup_request, $fields, $batch_size, $next_page_token);
         try {
             $response = $this->makeRequest($request);
@@ -1928,13 +1995,20 @@ class CustomObjectsApi
     /**
      * Get Custom Objects
      *
-     * @param  string $custom_object_name Name of custom object type to retrieve records for (required)
-     * @param  string $filter_type Field to filter on. Searchable fields can be retrieved with Describe Custom Object (required)
-     * @param  string[] $filter_values Comma-separated list of field values to match against. (required)
-     * @param  \NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest $custom_object_lookup_request Optional JSON request for retrieving custom objects with compound keys.  Example:&lt;br&gt;&lt;code&gt;{&lt;br&gt;\&quot;filterType\&quot;:\&quot;dedupeFields\&quot;,&lt;br&gt;\&quot;fields\&quot;:[&lt;br&gt;\&quot;marketoGuid\&quot;,&lt;br&gt;\&quot;Bedrooms\&quot;,&lt;br&gt;\&quot;yearBuilt\&quot;&lt;br&gt;],&lt;br&gt;\&quot;input\&quot;:[&lt;br&gt;{&lt;br&gt;\&quot;mlsNum\&quot;:\&quot;1962352\&quot;,&lt;br&gt;\&quot;houseOwnerId\&quot;:\&quot;42645756\&quot;&lt;br&gt;},&lt;br&gt;{&lt;br&gt;\&quot;mlsNum\&quot;:\&quot;3962352\&quot;,&lt;br&gt;\&quot;houseOwnerId\&quot;:\&quot;62645756\&quot;&lt;br&gt;}&lt;br&gt;]&lt;br&gt;}&lt;/code&gt;&lt;br&gt; (optional)
-     * @param  string[] $fields Comma-separated list of fields to return for each record.  If unset marketoGuid, dedupeFields, updatedAt, createdAt will be returned (optional)
-     * @param  int $batch_size The batch size to return.  The max and default value is 300. (optional)
-     * @param  string $next_page_token A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info. (optional)
+     * @param string $custom_object_name
+     *   Name of custom object type to retrieve records for
+     * @param string $filter_type
+     *   Field to filter on. Searchable fields can be retrieved with Describe Custom Object
+     * @param string[] $filter_values
+     *   Comma-separated list of field values to match against.
+     * @param \NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest|null $custom_object_lookup_request
+     *   Optional JSON request for retrieving custom objects with compound keys.  Example:&lt;br&gt;&lt;code&gt;{&lt;br&gt;\&quot;filterType\&quot;:\&quot;dedupeFields\&quot;,&lt;br&gt;\&quot;fields\&quot;:[&lt;br&gt;\&quot;marketoGuid\&quot;,&lt;br&gt;\&quot;Bedrooms\&quot;,&lt;br&gt;\&quot;yearBuilt\&quot;&lt;br&gt;],&lt;br&gt;\&quot;input\&quot;:[&lt;br&gt;{&lt;br&gt;\&quot;mlsNum\&quot;:\&quot;1962352\&quot;,&lt;br&gt;\&quot;houseOwnerId\&quot;:\&quot;42645756\&quot;&lt;br&gt;},&lt;br&gt;{&lt;br&gt;\&quot;mlsNum\&quot;:\&quot;3962352\&quot;,&lt;br&gt;\&quot;houseOwnerId\&quot;:\&quot;62645756\&quot;&lt;br&gt;}&lt;br&gt;]&lt;br&gt;}&lt;/code&gt;&lt;br&gt;
+     * @param string[]|null $fields
+     *   Comma-separated list of fields to return for each record.  If unset marketoGuid, dedupeFields, updatedAt, createdAt will be returned
+     * @param int|null $batch_size
+     *   The batch size to return.  The max and default value is 300.
+     * @param string|null $next_page_token
+     *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info.
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1947,8 +2021,7 @@ class CustomObjectsApi
         array $fields = null,
         int $batch_size = null,
         string $next_page_token = null
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->getCustomObjectsUsingGETAsyncWithHttpInfo($custom_object_name, $filter_type, $filter_values, $custom_object_lookup_request, $fields, $batch_size, $next_page_token)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject {
@@ -1960,13 +2033,20 @@ class CustomObjectsApi
     /**
      * Get Custom Objects
      *
-     * @param  string $custom_object_name Name of custom object type to retrieve records for (required)
-     * @param  string $filter_type Field to filter on. Searchable fields can be retrieved with Describe Custom Object (required)
-     * @param  string[] $filter_values Comma-separated list of field values to match against. (required)
-     * @param  \NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest $custom_object_lookup_request Optional JSON request for retrieving custom objects with compound keys.  Example:&lt;br&gt;&lt;code&gt;{&lt;br&gt;\&quot;filterType\&quot;:\&quot;dedupeFields\&quot;,&lt;br&gt;\&quot;fields\&quot;:[&lt;br&gt;\&quot;marketoGuid\&quot;,&lt;br&gt;\&quot;Bedrooms\&quot;,&lt;br&gt;\&quot;yearBuilt\&quot;&lt;br&gt;],&lt;br&gt;\&quot;input\&quot;:[&lt;br&gt;{&lt;br&gt;\&quot;mlsNum\&quot;:\&quot;1962352\&quot;,&lt;br&gt;\&quot;houseOwnerId\&quot;:\&quot;42645756\&quot;&lt;br&gt;},&lt;br&gt;{&lt;br&gt;\&quot;mlsNum\&quot;:\&quot;3962352\&quot;,&lt;br&gt;\&quot;houseOwnerId\&quot;:\&quot;62645756\&quot;&lt;br&gt;}&lt;br&gt;]&lt;br&gt;}&lt;/code&gt;&lt;br&gt; (optional)
-     * @param  string[] $fields Comma-separated list of fields to return for each record.  If unset marketoGuid, dedupeFields, updatedAt, createdAt will be returned (optional)
-     * @param  int $batch_size The batch size to return.  The max and default value is 300. (optional)
-     * @param  string $next_page_token A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info. (optional)
+     * @param string $custom_object_name
+     *   Name of custom object type to retrieve records for
+     * @param string $filter_type
+     *   Field to filter on. Searchable fields can be retrieved with Describe Custom Object
+     * @param string[] $filter_values
+     *   Comma-separated list of field values to match against.
+     * @param \NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest|null $custom_object_lookup_request
+     *   Optional JSON request for retrieving custom objects with compound keys.  Example:&lt;br&gt;&lt;code&gt;{&lt;br&gt;\&quot;filterType\&quot;:\&quot;dedupeFields\&quot;,&lt;br&gt;\&quot;fields\&quot;:[&lt;br&gt;\&quot;marketoGuid\&quot;,&lt;br&gt;\&quot;Bedrooms\&quot;,&lt;br&gt;\&quot;yearBuilt\&quot;&lt;br&gt;],&lt;br&gt;\&quot;input\&quot;:[&lt;br&gt;{&lt;br&gt;\&quot;mlsNum\&quot;:\&quot;1962352\&quot;,&lt;br&gt;\&quot;houseOwnerId\&quot;:\&quot;42645756\&quot;&lt;br&gt;},&lt;br&gt;{&lt;br&gt;\&quot;mlsNum\&quot;:\&quot;3962352\&quot;,&lt;br&gt;\&quot;houseOwnerId\&quot;:\&quot;62645756\&quot;&lt;br&gt;}&lt;br&gt;]&lt;br&gt;}&lt;/code&gt;&lt;br&gt;
+     * @param string[]|null $fields
+     *   Comma-separated list of fields to return for each record.  If unset marketoGuid, dedupeFields, updatedAt, createdAt will be returned
+     * @param int|null $batch_size
+     *   The batch size to return.  The max and default value is 300.
+     * @param string|null $next_page_token
+     *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info.
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1979,8 +2059,7 @@ class CustomObjectsApi
         array $fields = null,
         int $batch_size = null,
         string $next_page_token = null
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->getCustomObjectsUsingGETRequest($custom_object_name, $filter_type, $filter_values, $custom_object_lookup_request, $fields, $batch_size, $next_page_token);
         return $this->makeAsyncRequest(
             $request,
@@ -1992,13 +2071,20 @@ class CustomObjectsApi
     /**
      * Create request for operation 'getCustomObjectsUsingGET'
      *
-     * @param  string $custom_object_name Name of custom object type to retrieve records for (required)
-     * @param  string $filter_type Field to filter on. Searchable fields can be retrieved with Describe Custom Object (required)
-     * @param  string[] $filter_values Comma-separated list of field values to match against. (required)
-     * @param  \NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest $custom_object_lookup_request Optional JSON request for retrieving custom objects with compound keys.  Example:&lt;br&gt;&lt;code&gt;{&lt;br&gt;\&quot;filterType\&quot;:\&quot;dedupeFields\&quot;,&lt;br&gt;\&quot;fields\&quot;:[&lt;br&gt;\&quot;marketoGuid\&quot;,&lt;br&gt;\&quot;Bedrooms\&quot;,&lt;br&gt;\&quot;yearBuilt\&quot;&lt;br&gt;],&lt;br&gt;\&quot;input\&quot;:[&lt;br&gt;{&lt;br&gt;\&quot;mlsNum\&quot;:\&quot;1962352\&quot;,&lt;br&gt;\&quot;houseOwnerId\&quot;:\&quot;42645756\&quot;&lt;br&gt;},&lt;br&gt;{&lt;br&gt;\&quot;mlsNum\&quot;:\&quot;3962352\&quot;,&lt;br&gt;\&quot;houseOwnerId\&quot;:\&quot;62645756\&quot;&lt;br&gt;}&lt;br&gt;]&lt;br&gt;}&lt;/code&gt;&lt;br&gt; (optional)
-     * @param  string[] $fields Comma-separated list of fields to return for each record.  If unset marketoGuid, dedupeFields, updatedAt, createdAt will be returned (optional)
-     * @param  int $batch_size The batch size to return.  The max and default value is 300. (optional)
-     * @param  string $next_page_token A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info. (optional)
+     * @param string $custom_object_name
+     *   Name of custom object type to retrieve records for
+     * @param string $filter_type
+     *   Field to filter on. Searchable fields can be retrieved with Describe Custom Object
+     * @param string[] $filter_values
+     *   Comma-separated list of field values to match against.
+     * @param \NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest|null $custom_object_lookup_request
+     *   Optional JSON request for retrieving custom objects with compound keys.  Example:&lt;br&gt;&lt;code&gt;{&lt;br&gt;\&quot;filterType\&quot;:\&quot;dedupeFields\&quot;,&lt;br&gt;\&quot;fields\&quot;:[&lt;br&gt;\&quot;marketoGuid\&quot;,&lt;br&gt;\&quot;Bedrooms\&quot;,&lt;br&gt;\&quot;yearBuilt\&quot;&lt;br&gt;],&lt;br&gt;\&quot;input\&quot;:[&lt;br&gt;{&lt;br&gt;\&quot;mlsNum\&quot;:\&quot;1962352\&quot;,&lt;br&gt;\&quot;houseOwnerId\&quot;:\&quot;42645756\&quot;&lt;br&gt;},&lt;br&gt;{&lt;br&gt;\&quot;mlsNum\&quot;:\&quot;3962352\&quot;,&lt;br&gt;\&quot;houseOwnerId\&quot;:\&quot;62645756\&quot;&lt;br&gt;}&lt;br&gt;]&lt;br&gt;}&lt;/code&gt;&lt;br&gt;
+     * @param string[]|null $fields
+     *   Comma-separated list of fields to return for each record.  If unset marketoGuid, dedupeFields, updatedAt, createdAt will be returned
+     * @param int|null $batch_size
+     *   The batch size to return.  The max and default value is 300.
+     * @param string|null $next_page_token
+     *   A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info.
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -2011,8 +2097,7 @@ class CustomObjectsApi
         array $fields = null,
         int $batch_size = null,
         string $next_page_token = null
-    ): Request
-    {
+    ): Request {
         // Verify the required parameter 'filter_values' is set.
         if (empty($filter_values)) {
             throw new \InvalidArgumentException(
@@ -2059,7 +2144,6 @@ class CustomObjectsApi
             [
             ],
             $custom_object_lookup_request
-            
         );
     }
 
@@ -2089,8 +2173,10 @@ class CustomObjectsApi
     /**
      * List Custom Object Types
      *
-     * @param  string[] $names Comma-separated list of API names of custom object types to filter on (optional)
-     * @param  string $state State of custom object type to filter on.  By default, if an approved version exists, it is returned.  Otherwise, the draft version is returned. (optional)
+     * @param string[]|null $names
+     *   Comma-separated list of API names of custom object types to filter on
+     * @param string|null $state
+     *   State of custom object type to filter on.  By default, if an approved version exists, it is returned.  Otherwise, the draft version is returned.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -2099,8 +2185,7 @@ class CustomObjectsApi
     public function listCustomObjectTypesUsingGET(
         array $names = null,
         string $state = null
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData
-    {
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData {
         list($response) = $this->listCustomObjectTypesUsingGETWithHttpInfo($names, $state);
         return $response;
     }
@@ -2108,19 +2193,24 @@ class CustomObjectsApi
     /**
      * List Custom Object Types
      *
-     * @param  string[] $names Comma-separated list of API names of custom object types to filter on (optional)
-     * @param  string $state State of custom object type to filter on.  By default, if an approved version exists, it is returned.  Otherwise, the draft version is returned. (optional)
+     * @param string[]|null $names
+     *   Comma-separated list of API names of custom object types to filter on
+     * @param string|null $state
+     *   State of custom object type to filter on.  By default, if an approved version exists, it is returned.  Otherwise, the draft version is returned.
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function listCustomObjectTypesUsingGETWithHttpInfo(
         array $names = null,
         string $state = null
-    ): array
-    {
+    ): array {
         $request = $this->listCustomObjectTypesUsingGETRequest($names, $state);
         try {
             $response = $this->makeRequest($request);
@@ -2136,8 +2226,10 @@ class CustomObjectsApi
     /**
      * List Custom Object Types
      *
-     * @param  string[] $names Comma-separated list of API names of custom object types to filter on (optional)
-     * @param  string $state State of custom object type to filter on.  By default, if an approved version exists, it is returned.  Otherwise, the draft version is returned. (optional)
+     * @param string[]|null $names
+     *   Comma-separated list of API names of custom object types to filter on
+     * @param string|null $state
+     *   State of custom object type to filter on.  By default, if an approved version exists, it is returned.  Otherwise, the draft version is returned.
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -2145,8 +2237,7 @@ class CustomObjectsApi
     public function listCustomObjectTypesUsingGETAsync(
         array $names = null,
         string $state = null
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->listCustomObjectTypesUsingGETAsyncWithHttpInfo($names, $state)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData {
@@ -2158,8 +2249,10 @@ class CustomObjectsApi
     /**
      * List Custom Object Types
      *
-     * @param  string[] $names Comma-separated list of API names of custom object types to filter on (optional)
-     * @param  string $state State of custom object type to filter on.  By default, if an approved version exists, it is returned.  Otherwise, the draft version is returned. (optional)
+     * @param string[]|null $names
+     *   Comma-separated list of API names of custom object types to filter on
+     * @param string|null $state
+     *   State of custom object type to filter on.  By default, if an approved version exists, it is returned.  Otherwise, the draft version is returned.
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -2167,8 +2260,7 @@ class CustomObjectsApi
     public function listCustomObjectTypesUsingGETAsyncWithHttpInfo(
         array $names = null,
         string $state = null
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->listCustomObjectTypesUsingGETRequest($names, $state);
         return $this->makeAsyncRequest(
             $request,
@@ -2180,8 +2272,10 @@ class CustomObjectsApi
     /**
      * Create request for operation 'listCustomObjectTypesUsingGET'
      *
-     * @param  string[] $names Comma-separated list of API names of custom object types to filter on (optional)
-     * @param  string $state State of custom object type to filter on.  By default, if an approved version exists, it is returned.  Otherwise, the draft version is returned. (optional)
+     * @param string[]|null $names
+     *   Comma-separated list of API names of custom object types to filter on
+     * @param string|null $state
+     *   State of custom object type to filter on.  By default, if an approved version exists, it is returned.  Otherwise, the draft version is returned.
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -2189,8 +2283,7 @@ class CustomObjectsApi
     public function listCustomObjectTypesUsingGETRequest(
         array $names = null,
         string $state = null
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/v1/customobjects/schema.json';
 
@@ -2252,7 +2345,8 @@ class CustomObjectsApi
     /**
      * List Custom Objects
      *
-     * @param  string[] $names Comma-separated list of names to filter types on (optional)
+     * @param string[]|null $names
+     *   Comma-separated list of names to filter types on
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -2260,8 +2354,7 @@ class CustomObjectsApi
      */
     public function listCustomObjectsUsingGET(
         array $names = null
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData
-    {
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData {
         list($response) = $this->listCustomObjectsUsingGETWithHttpInfo($names);
         return $response;
     }
@@ -2269,17 +2362,21 @@ class CustomObjectsApi
     /**
      * List Custom Objects
      *
-     * @param  string[] $names Comma-separated list of names to filter types on (optional)
+     * @param string[]|null $names
+     *   Comma-separated list of names to filter types on
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function listCustomObjectsUsingGETWithHttpInfo(
         array $names = null
-    ): array
-    {
+    ): array {
         $request = $this->listCustomObjectsUsingGETRequest($names);
         try {
             $response = $this->makeRequest($request);
@@ -2295,15 +2392,15 @@ class CustomObjectsApi
     /**
      * List Custom Objects
      *
-     * @param  string[] $names Comma-separated list of names to filter types on (optional)
+     * @param string[]|null $names
+     *   Comma-separated list of names to filter types on
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function listCustomObjectsUsingGETAsync(
         array $names = null
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->listCustomObjectsUsingGETAsyncWithHttpInfo($names)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData {
@@ -2315,15 +2412,15 @@ class CustomObjectsApi
     /**
      * List Custom Objects
      *
-     * @param  string[] $names Comma-separated list of names to filter types on (optional)
+     * @param string[]|null $names
+     *   Comma-separated list of names to filter types on
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function listCustomObjectsUsingGETAsyncWithHttpInfo(
         array $names = null
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->listCustomObjectsUsingGETRequest($names);
         return $this->makeAsyncRequest(
             $request,
@@ -2335,15 +2432,15 @@ class CustomObjectsApi
     /**
      * Create request for operation 'listCustomObjectsUsingGET'
      *
-     * @param  string[] $names Comma-separated list of names to filter types on (optional)
+     * @param string[]|null $names
+     *   Comma-separated list of names to filter types on
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
     public function listCustomObjectsUsingGETRequest(
         array $names = null
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/v1/customobjects.json';
 
@@ -2404,7 +2501,8 @@ class CustomObjectsApi
     /**
      * Sync Custom Object Type
      *
-     * @param  \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectTypeRequest $sync_custom_object_type_request JSON object containing custom object type attributes (required)
+     * @param \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectTypeRequest $sync_custom_object_type_request
+     *   JSON object containing custom object type attributes
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -2412,8 +2510,7 @@ class CustomObjectsApi
      */
     public function syncCustomObjectTypeUsingPOST(
         \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectTypeRequest $sync_custom_object_type_request
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType
-    {
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType {
         list($response) = $this->syncCustomObjectTypeUsingPOSTWithHttpInfo($sync_custom_object_type_request);
         return $response;
     }
@@ -2421,17 +2518,21 @@ class CustomObjectsApi
     /**
      * Sync Custom Object Type
      *
-     * @param  \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectTypeRequest $sync_custom_object_type_request JSON object containing custom object type attributes (required)
+     * @param \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectTypeRequest $sync_custom_object_type_request
+     *   JSON object containing custom object type attributes
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function syncCustomObjectTypeUsingPOSTWithHttpInfo(
         \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectTypeRequest $sync_custom_object_type_request
-    ): array
-    {
+    ): array {
         $request = $this->syncCustomObjectTypeUsingPOSTRequest($sync_custom_object_type_request);
         try {
             $response = $this->makeRequest($request);
@@ -2447,15 +2548,15 @@ class CustomObjectsApi
     /**
      * Sync Custom Object Type
      *
-     * @param  \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectTypeRequest $sync_custom_object_type_request JSON object containing custom object type attributes (required)
+     * @param \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectTypeRequest $sync_custom_object_type_request
+     *   JSON object containing custom object type attributes
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function syncCustomObjectTypeUsingPOSTAsync(
         \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectTypeRequest $sync_custom_object_type_request
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->syncCustomObjectTypeUsingPOSTAsyncWithHttpInfo($sync_custom_object_type_request)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType {
@@ -2467,15 +2568,15 @@ class CustomObjectsApi
     /**
      * Sync Custom Object Type
      *
-     * @param  \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectTypeRequest $sync_custom_object_type_request JSON object containing custom object type attributes (required)
+     * @param \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectTypeRequest $sync_custom_object_type_request
+     *   JSON object containing custom object type attributes
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function syncCustomObjectTypeUsingPOSTAsyncWithHttpInfo(
         \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectTypeRequest $sync_custom_object_type_request
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->syncCustomObjectTypeUsingPOSTRequest($sync_custom_object_type_request);
         return $this->makeAsyncRequest(
             $request,
@@ -2487,15 +2588,15 @@ class CustomObjectsApi
     /**
      * Create request for operation 'syncCustomObjectTypeUsingPOST'
      *
-     * @param  \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectTypeRequest $sync_custom_object_type_request JSON object containing custom object type attributes (required)
+     * @param \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectTypeRequest $sync_custom_object_type_request
+     *   JSON object containing custom object type attributes
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
     public function syncCustomObjectTypeUsingPOSTRequest(
         \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectTypeRequest $sync_custom_object_type_request
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/v1/customobjects/schema.json';
 
@@ -2526,7 +2627,6 @@ class CustomObjectsApi
             [
             ],
             $sync_custom_object_type_request
-            
         );
     }
 
@@ -2556,8 +2656,10 @@ class CustomObjectsApi
     /**
      * Sync Custom Objects
      *
-     * @param  string $custom_object_name customObjectName (required)
-     * @param  \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectRequest $sync_custom_object_request syncCustomObjectRequest (required)
+     * @param string $custom_object_name
+     *   customObjectName
+     * @param \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectRequest $sync_custom_object_request
+     *   syncCustomObjectRequest
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -2566,8 +2668,7 @@ class CustomObjectsApi
     public function syncCustomObjectsUsingPOST(
         string $custom_object_name,
         \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectRequest $sync_custom_object_request
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject
-    {
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject {
         list($response) = $this->syncCustomObjectsUsingPOSTWithHttpInfo($custom_object_name, $sync_custom_object_request);
         return $response;
     }
@@ -2575,19 +2676,24 @@ class CustomObjectsApi
     /**
      * Sync Custom Objects
      *
-     * @param  string $custom_object_name customObjectName (required)
-     * @param  \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectRequest $sync_custom_object_request syncCustomObjectRequest (required)
+     * @param string $custom_object_name
+     *   customObjectName
+     * @param \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectRequest $sync_custom_object_request
+     *   syncCustomObjectRequest
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function syncCustomObjectsUsingPOSTWithHttpInfo(
         string $custom_object_name,
         \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectRequest $sync_custom_object_request
-    ): array
-    {
+    ): array {
         $request = $this->syncCustomObjectsUsingPOSTRequest($custom_object_name, $sync_custom_object_request);
         try {
             $response = $this->makeRequest($request);
@@ -2603,8 +2709,10 @@ class CustomObjectsApi
     /**
      * Sync Custom Objects
      *
-     * @param  string $custom_object_name customObjectName (required)
-     * @param  \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectRequest $sync_custom_object_request syncCustomObjectRequest (required)
+     * @param string $custom_object_name
+     *   customObjectName
+     * @param \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectRequest $sync_custom_object_request
+     *   syncCustomObjectRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -2612,8 +2720,7 @@ class CustomObjectsApi
     public function syncCustomObjectsUsingPOSTAsync(
         string $custom_object_name,
         \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectRequest $sync_custom_object_request
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->syncCustomObjectsUsingPOSTAsyncWithHttpInfo($custom_object_name, $sync_custom_object_request)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObject {
@@ -2625,8 +2732,10 @@ class CustomObjectsApi
     /**
      * Sync Custom Objects
      *
-     * @param  string $custom_object_name customObjectName (required)
-     * @param  \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectRequest $sync_custom_object_request syncCustomObjectRequest (required)
+     * @param string $custom_object_name
+     *   customObjectName
+     * @param \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectRequest $sync_custom_object_request
+     *   syncCustomObjectRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -2634,8 +2743,7 @@ class CustomObjectsApi
     public function syncCustomObjectsUsingPOSTAsyncWithHttpInfo(
         string $custom_object_name,
         \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectRequest $sync_custom_object_request
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->syncCustomObjectsUsingPOSTRequest($custom_object_name, $sync_custom_object_request);
         return $this->makeAsyncRequest(
             $request,
@@ -2647,8 +2755,10 @@ class CustomObjectsApi
     /**
      * Create request for operation 'syncCustomObjectsUsingPOST'
      *
-     * @param  string $custom_object_name customObjectName (required)
-     * @param  \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectRequest $sync_custom_object_request syncCustomObjectRequest (required)
+     * @param string $custom_object_name
+     *   customObjectName
+     * @param \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectRequest $sync_custom_object_request
+     *   syncCustomObjectRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -2656,8 +2766,7 @@ class CustomObjectsApi
     public function syncCustomObjectsUsingPOSTRequest(
         string $custom_object_name,
         \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectRequest $sync_custom_object_request
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/v1/customobjects/{customObjectName}.json';
         $resourcePath = str_replace(
@@ -2693,7 +2802,6 @@ class CustomObjectsApi
             [
             ],
             $sync_custom_object_request
-            
         );
     }
 
@@ -2723,9 +2831,12 @@ class CustomObjectsApi
     /**
      * Update Custom Object Type Field
      *
-     * @param  string $api_name API name of custom object type (required)
-     * @param  string $field_api_name API name of custom object type field (required)
-     * @param  \NecLimDul\MarketoRest\Lead\Model\UpdateCustomObjectTypeFieldRequest $update_custom_object_type_field_request JSON object containing custom object type fields (required)
+     * @param string $api_name
+     *   API name of custom object type
+     * @param string $field_api_name
+     *   API name of custom object type field
+     * @param \NecLimDul\MarketoRest\Lead\Model\UpdateCustomObjectTypeFieldRequest $update_custom_object_type_field_request
+     *   JSON object containing custom object type fields
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -2735,8 +2846,7 @@ class CustomObjectsApi
         string $api_name,
         string $field_api_name,
         \NecLimDul\MarketoRest\Lead\Model\UpdateCustomObjectTypeFieldRequest $update_custom_object_type_field_request
-    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType
-    {
+    ): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType {
         list($response) = $this->updateCustomObjectTypeFieldUsingPOSTWithHttpInfo($api_name, $field_api_name, $update_custom_object_type_field_request);
         return $response;
     }
@@ -2744,21 +2854,27 @@ class CustomObjectsApi
     /**
      * Update Custom Object Type Field
      *
-     * @param  string $api_name API name of custom object type (required)
-     * @param  string $field_api_name API name of custom object type field (required)
-     * @param  \NecLimDul\MarketoRest\Lead\Model\UpdateCustomObjectTypeFieldRequest $update_custom_object_type_field_request JSON object containing custom object type fields (required)
+     * @param string $api_name
+     *   API name of custom object type
+     * @param string $field_api_name
+     *   API name of custom object type field
+     * @param \NecLimDul\MarketoRest\Lead\Model\UpdateCustomObjectTypeFieldRequest $update_custom_object_type_field_request
+     *   JSON object containing custom object type fields
      *
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function updateCustomObjectTypeFieldUsingPOSTWithHttpInfo(
         string $api_name,
         string $field_api_name,
         \NecLimDul\MarketoRest\Lead\Model\UpdateCustomObjectTypeFieldRequest $update_custom_object_type_field_request
-    ): array
-    {
+    ): array {
         $request = $this->updateCustomObjectTypeFieldUsingPOSTRequest($api_name, $field_api_name, $update_custom_object_type_field_request);
         try {
             $response = $this->makeRequest($request);
@@ -2774,9 +2890,12 @@ class CustomObjectsApi
     /**
      * Update Custom Object Type Field
      *
-     * @param  string $api_name API name of custom object type (required)
-     * @param  string $field_api_name API name of custom object type field (required)
-     * @param  \NecLimDul\MarketoRest\Lead\Model\UpdateCustomObjectTypeFieldRequest $update_custom_object_type_field_request JSON object containing custom object type fields (required)
+     * @param string $api_name
+     *   API name of custom object type
+     * @param string $field_api_name
+     *   API name of custom object type field
+     * @param \NecLimDul\MarketoRest\Lead\Model\UpdateCustomObjectTypeFieldRequest $update_custom_object_type_field_request
+     *   JSON object containing custom object type fields
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -2785,8 +2904,7 @@ class CustomObjectsApi
         string $api_name,
         string $field_api_name,
         \NecLimDul\MarketoRest\Lead\Model\UpdateCustomObjectTypeFieldRequest $update_custom_object_type_field_request
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->updateCustomObjectTypeFieldUsingPOSTAsyncWithHttpInfo($api_name, $field_api_name, $update_custom_object_type_field_request)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCustomObjectType {
@@ -2798,9 +2916,12 @@ class CustomObjectsApi
     /**
      * Update Custom Object Type Field
      *
-     * @param  string $api_name API name of custom object type (required)
-     * @param  string $field_api_name API name of custom object type field (required)
-     * @param  \NecLimDul\MarketoRest\Lead\Model\UpdateCustomObjectTypeFieldRequest $update_custom_object_type_field_request JSON object containing custom object type fields (required)
+     * @param string $api_name
+     *   API name of custom object type
+     * @param string $field_api_name
+     *   API name of custom object type field
+     * @param \NecLimDul\MarketoRest\Lead\Model\UpdateCustomObjectTypeFieldRequest $update_custom_object_type_field_request
+     *   JSON object containing custom object type fields
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -2809,8 +2930,7 @@ class CustomObjectsApi
         string $api_name,
         string $field_api_name,
         \NecLimDul\MarketoRest\Lead\Model\UpdateCustomObjectTypeFieldRequest $update_custom_object_type_field_request
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->updateCustomObjectTypeFieldUsingPOSTRequest($api_name, $field_api_name, $update_custom_object_type_field_request);
         return $this->makeAsyncRequest(
             $request,
@@ -2822,9 +2942,12 @@ class CustomObjectsApi
     /**
      * Create request for operation 'updateCustomObjectTypeFieldUsingPOST'
      *
-     * @param  string $api_name API name of custom object type (required)
-     * @param  string $field_api_name API name of custom object type field (required)
-     * @param  \NecLimDul\MarketoRest\Lead\Model\UpdateCustomObjectTypeFieldRequest $update_custom_object_type_field_request JSON object containing custom object type fields (required)
+     * @param string $api_name
+     *   API name of custom object type
+     * @param string $field_api_name
+     *   API name of custom object type field
+     * @param \NecLimDul\MarketoRest\Lead\Model\UpdateCustomObjectTypeFieldRequest $update_custom_object_type_field_request
+     *   JSON object containing custom object type fields
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -2833,8 +2956,7 @@ class CustomObjectsApi
         string $api_name,
         string $field_api_name,
         \NecLimDul\MarketoRest\Lead\Model\UpdateCustomObjectTypeFieldRequest $update_custom_object_type_field_request
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/v1/customobjects/schema/{apiName}/{fieldApiName}/updateField.json';
         $resourcePath = str_replace(
@@ -2875,7 +2997,6 @@ class CustomObjectsApi
             [
             ],
             $update_custom_object_type_field_request
-            
         );
     }
 
@@ -2906,10 +3027,11 @@ class CustomObjectsApi
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @return \Psr\Http\Message\ResponseInterface
      */
-    private function makeRequest(Request $request) {
+    private function makeRequest(Request $request)
+    {
         $options = $this->createHttpClientOption();
         try {
-           $response = $this->client->send($request, $options);
+            $response = $this->client->send($request, $options);
         } catch (RequestException $e) {
             $response = $e->getResponse();
             throw new ApiException(
@@ -2982,7 +3104,8 @@ class CustomObjectsApi
      * @return array structured array or response and http info.
      * @phpstan-return array{T, int, array<array<string>>}
      */
-    private function responseToReturn(ResponseInterface $response, string $returnType) {
+    private function responseToReturn(ResponseInterface $response, string $returnType)
+    {
         return [
             $this->deserializeResponseBody($response->getBody(), $returnType),
             $response->getStatusCode(),
@@ -3011,5 +3134,4 @@ class CustomObjectsApi
             $headers
         );
     }
-
 }

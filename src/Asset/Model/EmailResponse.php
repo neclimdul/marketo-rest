@@ -1,4 +1,5 @@
 <?php
+
 /**
  * EmailResponse
  *
@@ -25,8 +26,8 @@
 
 namespace NecLimDul\MarketoRest\Asset\Model;
 
-use \ArrayAccess;
-use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
+use ArrayAccess;
+use NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * EmailResponse Class Doc Comment
@@ -42,6 +43,8 @@ use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
 class EmailResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    public const VERSION_1 = 1;
+    public const VERSION_2 = 2;
 
     /**
       * The original name of the model.
@@ -227,9 +230,6 @@ class EmailResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'pre_header' => 'getPreHeader',
         'cc_fields' => 'getCcFields'
     ];
-    
-    const VERSION_1 = 1;
-    const VERSION_2 = 2;
 
     /**
      * Associative array for storing property values
@@ -367,7 +367,6 @@ class EmailResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         return count($this->listInvalidProperties()) === 0;
     }
-    
     /**
      * Gets allowable values of the enum.
      *
@@ -380,7 +379,6 @@ class EmailResponse implements ModelInterface, ArrayAccess, \JsonSerializable
             self::VERSION_2,
         ];
     }
-    
 
     /**
      * Gets created_at
@@ -957,7 +955,7 @@ class EmailResponse implements ModelInterface, ArrayAccess, \JsonSerializable
              * @param array-key $key
              * @return mixed
              */
-            function($key) use ($container) {
+            function ($key) use ($container) {
                 return $container[$key];
             };
         return array_map($map, $this->additionalProperties);
@@ -1013,7 +1011,7 @@ class EmailResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -1029,5 +1027,4 @@ class EmailResponse implements ModelInterface, ArrayAccess, \JsonSerializable
             JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR
         );
     }
-
 }

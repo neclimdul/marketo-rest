@@ -7,7 +7,6 @@ use Psr\Cache\CacheItemPoolInterface;
 
 class StaticCachePool implements CacheItemPoolInterface
 {
-
     /**
      * @var \Psr\Cache\CacheItemInterface[]
      */
@@ -117,5 +116,4 @@ class StaticCachePool implements CacheItemPoolInterface
         }
         return true;
     }
-
 }

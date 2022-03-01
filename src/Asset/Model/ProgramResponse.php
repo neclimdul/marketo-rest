@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ProgramResponse
  *
@@ -25,8 +26,8 @@
 
 namespace NecLimDul\MarketoRest\Asset\Model;
 
-use \ArrayAccess;
-use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
+use ArrayAccess;
+use NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * ProgramResponse Class Doc Comment
@@ -42,6 +43,14 @@ use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
 class ProgramResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    public const STATUS_LOCKED = 'locked';
+    public const STATUS_UNLOCKED = 'unlocked';
+    public const STATUS_ON = 'on';
+    public const STATUS_OFF = 'off';
+    public const TYPE__DEFAULT = 'default';
+    public const TYPE_EVENT = 'event';
+    public const TYPE_WEBINAR = 'webinar';
+    public const TYPE_NURTURE = 'nurture';
 
     /**
       * The original name of the model.
@@ -202,15 +211,6 @@ class ProgramResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'url' => 'getUrl',
         'workspace' => 'getWorkspace'
     ];
-    
-    const STATUS_LOCKED = 'locked';
-    const STATUS_UNLOCKED = 'unlocked';
-    const STATUS_ON = 'on';
-    const STATUS_OFF = 'off';
-    const TYPE__DEFAULT = 'default';
-    const TYPE_EVENT = 'event';
-    const TYPE_WEBINAR = 'webinar';
-    const TYPE_NURTURE = 'nurture';
 
     /**
      * Associative array for storing property values
@@ -331,7 +331,6 @@ class ProgramResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         return count($this->listInvalidProperties()) === 0;
     }
-    
     /**
      * Gets allowable values of the enum.
      *
@@ -346,7 +345,6 @@ class ProgramResponse implements ModelInterface, ArrayAccess, \JsonSerializable
             self::STATUS_OFF,
         ];
     }
-    
     /**
      * Gets allowable values of the enum.
      *
@@ -361,7 +359,6 @@ class ProgramResponse implements ModelInterface, ArrayAccess, \JsonSerializable
             self::TYPE_NURTURE,
         ];
     }
-    
 
     /**
      * Gets channel
@@ -828,7 +825,7 @@ class ProgramResponse implements ModelInterface, ArrayAccess, \JsonSerializable
              * @param array-key $key
              * @return mixed
              */
-            function($key) use ($container) {
+            function ($key) use ($container) {
                 return $container[$key];
             };
         return array_map($map, $this->additionalProperties);
@@ -884,7 +881,7 @@ class ProgramResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -900,5 +897,4 @@ class ProgramResponse implements ModelInterface, ArrayAccess, \JsonSerializable
             JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR
         );
     }
-
 }

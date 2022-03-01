@@ -1,4 +1,5 @@
 <?php
+
 /**
  * BrowseAllPrograms
  *
@@ -25,8 +26,8 @@
 
 namespace NecLimDul\MarketoRest\Asset\Model;
 
-use \ArrayAccess;
-use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
+use ArrayAccess;
+use NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * BrowseAllPrograms Class Doc Comment
@@ -42,6 +43,14 @@ use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
 class BrowseAllPrograms implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    public const STATUS_LOCKED = 'locked';
+    public const STATUS_UNLOCKED = 'unlocked';
+    public const STATUS_ON = 'on';
+    public const STATUS_OFF = 'off';
+    public const TYPE_PROGRAM = 'program';
+    public const TYPE_EVENT = 'event';
+    public const TYPE_WEBINAR = 'webinar';
+    public const TYPE_NURTURE = 'nurture';
 
     /**
       * The original name of the model.
@@ -182,15 +191,6 @@ class BrowseAllPrograms implements ModelInterface, ArrayAccess, \JsonSerializabl
         'url' => 'getUrl',
         'workspace' => 'getWorkspace'
     ];
-    
-    const STATUS_LOCKED = 'locked';
-    const STATUS_UNLOCKED = 'unlocked';
-    const STATUS_ON = 'on';
-    const STATUS_OFF = 'off';
-    const TYPE_PROGRAM = 'program';
-    const TYPE_EVENT = 'event';
-    const TYPE_WEBINAR = 'webinar';
-    const TYPE_NURTURE = 'nurture';
 
     /**
      * Associative array for storing property values
@@ -301,7 +301,6 @@ class BrowseAllPrograms implements ModelInterface, ArrayAccess, \JsonSerializabl
     {
         return count($this->listInvalidProperties()) === 0;
     }
-    
     /**
      * Gets allowable values of the enum.
      *
@@ -316,7 +315,6 @@ class BrowseAllPrograms implements ModelInterface, ArrayAccess, \JsonSerializabl
             self::STATUS_OFF,
         ];
     }
-    
     /**
      * Gets allowable values of the enum.
      *
@@ -331,7 +329,6 @@ class BrowseAllPrograms implements ModelInterface, ArrayAccess, \JsonSerializabl
             self::TYPE_NURTURE,
         ];
     }
-    
 
     /**
      * Gets channel
@@ -702,7 +699,7 @@ class BrowseAllPrograms implements ModelInterface, ArrayAccess, \JsonSerializabl
              * @param array-key $key
              * @return mixed
              */
-            function($key) use ($container) {
+            function ($key) use ($container) {
                 return $container[$key];
             };
         return array_map($map, $this->additionalProperties);
@@ -758,7 +755,7 @@ class BrowseAllPrograms implements ModelInterface, ArrayAccess, \JsonSerializabl
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -774,5 +771,4 @@ class BrowseAllPrograms implements ModelInterface, ArrayAccess, \JsonSerializabl
             JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR
         );
     }
-
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * LandingPageTemplatesApi
  *
@@ -48,7 +49,6 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  */
 class LandingPageTemplatesApi
 {
-
     /**
      * @var ClientInterface
      */
@@ -73,7 +73,7 @@ class LandingPageTemplatesApi
      * @param ClientInterface|null $client
      * @param Configuration|null   $config
      * @param HeaderSelector|null  $selector
-     * @param int                  $hostIndex (Optional) host index to select the list of hosts if defined in the OpenAPI spec
+     * @param int                  $hostIndex (Optional) host index to select the list of hosts if defined in the spec.
      */
     public function __construct(
         ClientInterface $client = null,
@@ -102,7 +102,7 @@ class LandingPageTemplatesApi
      *
      * @return int Host index
      */
-    public function getHostIndex()
+    public function getHostIndex(): int
     {
         return $this->hostIndex;
     }
@@ -110,7 +110,7 @@ class LandingPageTemplatesApi
     /**
      * @return Configuration
      */
-    public function getConfig()
+    public function getConfig(): Configuration
     {
         return $this->config;
     }
@@ -141,7 +141,8 @@ class LandingPageTemplatesApi
     /**
      * Approve Landing Page Template Draft
      *
-     * @param  int $id id (required)
+     * @param int $id
+     *   id
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -149,8 +150,7 @@ class LandingPageTemplatesApi
      */
     public function approveLandingPageTemplateUsingPOST(
         int $id
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse
-    {
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse {
         list($response) = $this->approveLandingPageTemplateUsingPOSTWithHttpInfo($id);
         return $response;
     }
@@ -158,17 +158,21 @@ class LandingPageTemplatesApi
     /**
      * Approve Landing Page Template Draft
      *
-     * @param  int $id id (required)
+     * @param int $id
+     *   id
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function approveLandingPageTemplateUsingPOSTWithHttpInfo(
         int $id
-    ): array
-    {
+    ): array {
         $request = $this->approveLandingPageTemplateUsingPOSTRequest($id);
         try {
             $response = $this->makeRequest($request);
@@ -184,15 +188,15 @@ class LandingPageTemplatesApi
     /**
      * Approve Landing Page Template Draft
      *
-     * @param  int $id id (required)
+     * @param int $id
+     *   id
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function approveLandingPageTemplateUsingPOSTAsync(
         int $id
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->approveLandingPageTemplateUsingPOSTAsyncWithHttpInfo($id)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse {
@@ -204,15 +208,15 @@ class LandingPageTemplatesApi
     /**
      * Approve Landing Page Template Draft
      *
-     * @param  int $id id (required)
+     * @param int $id
+     *   id
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function approveLandingPageTemplateUsingPOSTAsyncWithHttpInfo(
         int $id
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->approveLandingPageTemplateUsingPOSTRequest($id);
         return $this->makeAsyncRequest(
             $request,
@@ -224,15 +228,15 @@ class LandingPageTemplatesApi
     /**
      * Create request for operation 'approveLandingPageTemplateUsingPOST'
      *
-     * @param  int $id id (required)
+     * @param int $id
+     *   id
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
     public function approveLandingPageTemplateUsingPOSTRequest(
         int $id
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/asset/v1/landingPageTemplate/{id}/approveDraft.json';
         $resourcePath = str_replace(
@@ -297,8 +301,10 @@ class LandingPageTemplatesApi
     /**
      * Clone Landing Page Template
      *
-     * @param  int $id id (required)
-     * @param  \NecLimDul\MarketoRest\Asset\Model\CloneLpTemplateRequest $clone_lp_template_request cloneLpTemplateRequest (required)
+     * @param int $id
+     *   id
+     * @param \NecLimDul\MarketoRest\Asset\Model\CloneLpTemplateRequest $clone_lp_template_request
+     *   cloneLpTemplateRequest
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -307,8 +313,7 @@ class LandingPageTemplatesApi
     public function cloneLpTemplateUsingPOST(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\CloneLpTemplateRequest $clone_lp_template_request
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse
-    {
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse {
         list($response) = $this->cloneLpTemplateUsingPOSTWithHttpInfo($id, $clone_lp_template_request);
         return $response;
     }
@@ -316,19 +321,24 @@ class LandingPageTemplatesApi
     /**
      * Clone Landing Page Template
      *
-     * @param  int $id id (required)
-     * @param  \NecLimDul\MarketoRest\Asset\Model\CloneLpTemplateRequest $clone_lp_template_request cloneLpTemplateRequest (required)
+     * @param int $id
+     *   id
+     * @param \NecLimDul\MarketoRest\Asset\Model\CloneLpTemplateRequest $clone_lp_template_request
+     *   cloneLpTemplateRequest
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function cloneLpTemplateUsingPOSTWithHttpInfo(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\CloneLpTemplateRequest $clone_lp_template_request
-    ): array
-    {
+    ): array {
         $request = $this->cloneLpTemplateUsingPOSTRequest($id, $clone_lp_template_request);
         try {
             $response = $this->makeRequest($request);
@@ -344,8 +354,10 @@ class LandingPageTemplatesApi
     /**
      * Clone Landing Page Template
      *
-     * @param  int $id id (required)
-     * @param  \NecLimDul\MarketoRest\Asset\Model\CloneLpTemplateRequest $clone_lp_template_request cloneLpTemplateRequest (required)
+     * @param int $id
+     *   id
+     * @param \NecLimDul\MarketoRest\Asset\Model\CloneLpTemplateRequest $clone_lp_template_request
+     *   cloneLpTemplateRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -353,8 +365,7 @@ class LandingPageTemplatesApi
     public function cloneLpTemplateUsingPOSTAsync(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\CloneLpTemplateRequest $clone_lp_template_request
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->cloneLpTemplateUsingPOSTAsyncWithHttpInfo($id, $clone_lp_template_request)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse {
@@ -366,8 +377,10 @@ class LandingPageTemplatesApi
     /**
      * Clone Landing Page Template
      *
-     * @param  int $id id (required)
-     * @param  \NecLimDul\MarketoRest\Asset\Model\CloneLpTemplateRequest $clone_lp_template_request cloneLpTemplateRequest (required)
+     * @param int $id
+     *   id
+     * @param \NecLimDul\MarketoRest\Asset\Model\CloneLpTemplateRequest $clone_lp_template_request
+     *   cloneLpTemplateRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -375,8 +388,7 @@ class LandingPageTemplatesApi
     public function cloneLpTemplateUsingPOSTAsyncWithHttpInfo(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\CloneLpTemplateRequest $clone_lp_template_request
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->cloneLpTemplateUsingPOSTRequest($id, $clone_lp_template_request);
         return $this->makeAsyncRequest(
             $request,
@@ -388,8 +400,10 @@ class LandingPageTemplatesApi
     /**
      * Create request for operation 'cloneLpTemplateUsingPOST'
      *
-     * @param  int $id id (required)
-     * @param  \NecLimDul\MarketoRest\Asset\Model\CloneLpTemplateRequest $clone_lp_template_request cloneLpTemplateRequest (required)
+     * @param int $id
+     *   id
+     * @param \NecLimDul\MarketoRest\Asset\Model\CloneLpTemplateRequest $clone_lp_template_request
+     *   cloneLpTemplateRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -397,8 +411,7 @@ class LandingPageTemplatesApi
     public function cloneLpTemplateUsingPOSTRequest(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\CloneLpTemplateRequest $clone_lp_template_request
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/asset/v1/landingPageTemplate/{id}/clone.json';
         $resourcePath = str_replace(
@@ -434,7 +447,6 @@ class LandingPageTemplatesApi
             [
             ],
             $clone_lp_template_request
-            
         );
     }
 
@@ -464,7 +476,8 @@ class LandingPageTemplatesApi
     /**
      * Create Landing Page Template
      *
-     * @param  \NecLimDul\MarketoRest\Asset\Model\CreateLpTemplateRequest $create_lp_template_request createLpTemplateRequest (required)
+     * @param \NecLimDul\MarketoRest\Asset\Model\CreateLpTemplateRequest $create_lp_template_request
+     *   createLpTemplateRequest
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -472,8 +485,7 @@ class LandingPageTemplatesApi
      */
     public function createLpTemplateUsingPOST(
         \NecLimDul\MarketoRest\Asset\Model\CreateLpTemplateRequest $create_lp_template_request
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse
-    {
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse {
         list($response) = $this->createLpTemplateUsingPOSTWithHttpInfo($create_lp_template_request);
         return $response;
     }
@@ -481,17 +493,21 @@ class LandingPageTemplatesApi
     /**
      * Create Landing Page Template
      *
-     * @param  \NecLimDul\MarketoRest\Asset\Model\CreateLpTemplateRequest $create_lp_template_request createLpTemplateRequest (required)
+     * @param \NecLimDul\MarketoRest\Asset\Model\CreateLpTemplateRequest $create_lp_template_request
+     *   createLpTemplateRequest
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function createLpTemplateUsingPOSTWithHttpInfo(
         \NecLimDul\MarketoRest\Asset\Model\CreateLpTemplateRequest $create_lp_template_request
-    ): array
-    {
+    ): array {
         $request = $this->createLpTemplateUsingPOSTRequest($create_lp_template_request);
         try {
             $response = $this->makeRequest($request);
@@ -507,15 +523,15 @@ class LandingPageTemplatesApi
     /**
      * Create Landing Page Template
      *
-     * @param  \NecLimDul\MarketoRest\Asset\Model\CreateLpTemplateRequest $create_lp_template_request createLpTemplateRequest (required)
+     * @param \NecLimDul\MarketoRest\Asset\Model\CreateLpTemplateRequest $create_lp_template_request
+     *   createLpTemplateRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function createLpTemplateUsingPOSTAsync(
         \NecLimDul\MarketoRest\Asset\Model\CreateLpTemplateRequest $create_lp_template_request
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->createLpTemplateUsingPOSTAsyncWithHttpInfo($create_lp_template_request)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse {
@@ -527,15 +543,15 @@ class LandingPageTemplatesApi
     /**
      * Create Landing Page Template
      *
-     * @param  \NecLimDul\MarketoRest\Asset\Model\CreateLpTemplateRequest $create_lp_template_request createLpTemplateRequest (required)
+     * @param \NecLimDul\MarketoRest\Asset\Model\CreateLpTemplateRequest $create_lp_template_request
+     *   createLpTemplateRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function createLpTemplateUsingPOSTAsyncWithHttpInfo(
         \NecLimDul\MarketoRest\Asset\Model\CreateLpTemplateRequest $create_lp_template_request
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->createLpTemplateUsingPOSTRequest($create_lp_template_request);
         return $this->makeAsyncRequest(
             $request,
@@ -547,15 +563,15 @@ class LandingPageTemplatesApi
     /**
      * Create request for operation 'createLpTemplateUsingPOST'
      *
-     * @param  \NecLimDul\MarketoRest\Asset\Model\CreateLpTemplateRequest $create_lp_template_request createLpTemplateRequest (required)
+     * @param \NecLimDul\MarketoRest\Asset\Model\CreateLpTemplateRequest $create_lp_template_request
+     *   createLpTemplateRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
     public function createLpTemplateUsingPOSTRequest(
         \NecLimDul\MarketoRest\Asset\Model\CreateLpTemplateRequest $create_lp_template_request
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/asset/v1/landingPageTemplates.json';
 
@@ -586,7 +602,6 @@ class LandingPageTemplatesApi
             [
             ],
             $create_lp_template_request
-            
         );
     }
 
@@ -616,7 +631,8 @@ class LandingPageTemplatesApi
     /**
      * Delete Landing Page Template
      *
-     * @param  int $id id (required)
+     * @param int $id
+     *   id
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -624,8 +640,7 @@ class LandingPageTemplatesApi
      */
     public function deleteLpTemplateUsingPOST(
         int $id
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse
-    {
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse {
         list($response) = $this->deleteLpTemplateUsingPOSTWithHttpInfo($id);
         return $response;
     }
@@ -633,17 +648,21 @@ class LandingPageTemplatesApi
     /**
      * Delete Landing Page Template
      *
-     * @param  int $id id (required)
+     * @param int $id
+     *   id
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function deleteLpTemplateUsingPOSTWithHttpInfo(
         int $id
-    ): array
-    {
+    ): array {
         $request = $this->deleteLpTemplateUsingPOSTRequest($id);
         try {
             $response = $this->makeRequest($request);
@@ -659,15 +678,15 @@ class LandingPageTemplatesApi
     /**
      * Delete Landing Page Template
      *
-     * @param  int $id id (required)
+     * @param int $id
+     *   id
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function deleteLpTemplateUsingPOSTAsync(
         int $id
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->deleteLpTemplateUsingPOSTAsyncWithHttpInfo($id)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse {
@@ -679,15 +698,15 @@ class LandingPageTemplatesApi
     /**
      * Delete Landing Page Template
      *
-     * @param  int $id id (required)
+     * @param int $id
+     *   id
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function deleteLpTemplateUsingPOSTAsyncWithHttpInfo(
         int $id
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->deleteLpTemplateUsingPOSTRequest($id);
         return $this->makeAsyncRequest(
             $request,
@@ -699,15 +718,15 @@ class LandingPageTemplatesApi
     /**
      * Create request for operation 'deleteLpTemplateUsingPOST'
      *
-     * @param  int $id id (required)
+     * @param int $id
+     *   id
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
     public function deleteLpTemplateUsingPOSTRequest(
         int $id
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/asset/v1/landingPageTemplate/{id}/delete.json';
         $resourcePath = str_replace(
@@ -772,7 +791,8 @@ class LandingPageTemplatesApi
     /**
      * Discard Landing Page Template Draft
      *
-     * @param  int $id id (required)
+     * @param int $id
+     *   id
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -780,8 +800,7 @@ class LandingPageTemplatesApi
      */
     public function discardDraftUsingPOST2(
         int $id
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse
-    {
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse {
         list($response) = $this->discardDraftUsingPOST2WithHttpInfo($id);
         return $response;
     }
@@ -789,17 +808,21 @@ class LandingPageTemplatesApi
     /**
      * Discard Landing Page Template Draft
      *
-     * @param  int $id id (required)
+     * @param int $id
+     *   id
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function discardDraftUsingPOST2WithHttpInfo(
         int $id
-    ): array
-    {
+    ): array {
         $request = $this->discardDraftUsingPOST2Request($id);
         try {
             $response = $this->makeRequest($request);
@@ -815,15 +838,15 @@ class LandingPageTemplatesApi
     /**
      * Discard Landing Page Template Draft
      *
-     * @param  int $id id (required)
+     * @param int $id
+     *   id
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function discardDraftUsingPOST2Async(
         int $id
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->discardDraftUsingPOST2AsyncWithHttpInfo($id)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse {
@@ -835,15 +858,15 @@ class LandingPageTemplatesApi
     /**
      * Discard Landing Page Template Draft
      *
-     * @param  int $id id (required)
+     * @param int $id
+     *   id
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function discardDraftUsingPOST2AsyncWithHttpInfo(
         int $id
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->discardDraftUsingPOST2Request($id);
         return $this->makeAsyncRequest(
             $request,
@@ -855,15 +878,15 @@ class LandingPageTemplatesApi
     /**
      * Create request for operation 'discardDraftUsingPOST2'
      *
-     * @param  int $id id (required)
+     * @param int $id
+     *   id
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
     public function discardDraftUsingPOST2Request(
         int $id
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/asset/v1/landingPageTemplate/{id}/discardDraft.json';
         $resourcePath = str_replace(
@@ -928,8 +951,10 @@ class LandingPageTemplatesApi
     /**
      * Get Landing Page Template by Id
      *
-     * @param  int $id id (required)
-     * @param  string $status Status filter for draft or approved versions (optional)
+     * @param int $id
+     *   id
+     * @param string|null $status
+     *   Status filter for draft or approved versions
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -938,8 +963,7 @@ class LandingPageTemplatesApi
     public function getLandingPageTemplateByIdUsingGET(
         int $id,
         string $status = null
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse
-    {
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse {
         list($response) = $this->getLandingPageTemplateByIdUsingGETWithHttpInfo($id, $status);
         return $response;
     }
@@ -947,19 +971,24 @@ class LandingPageTemplatesApi
     /**
      * Get Landing Page Template by Id
      *
-     * @param  int $id id (required)
-     * @param  string $status Status filter for draft or approved versions (optional)
+     * @param int $id
+     *   id
+     * @param string|null $status
+     *   Status filter for draft or approved versions
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function getLandingPageTemplateByIdUsingGETWithHttpInfo(
         int $id,
         string $status = null
-    ): array
-    {
+    ): array {
         $request = $this->getLandingPageTemplateByIdUsingGETRequest($id, $status);
         try {
             $response = $this->makeRequest($request);
@@ -975,8 +1004,10 @@ class LandingPageTemplatesApi
     /**
      * Get Landing Page Template by Id
      *
-     * @param  int $id id (required)
-     * @param  string $status Status filter for draft or approved versions (optional)
+     * @param int $id
+     *   id
+     * @param string|null $status
+     *   Status filter for draft or approved versions
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -984,8 +1015,7 @@ class LandingPageTemplatesApi
     public function getLandingPageTemplateByIdUsingGETAsync(
         int $id,
         string $status = null
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->getLandingPageTemplateByIdUsingGETAsyncWithHttpInfo($id, $status)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse {
@@ -997,8 +1027,10 @@ class LandingPageTemplatesApi
     /**
      * Get Landing Page Template by Id
      *
-     * @param  int $id id (required)
-     * @param  string $status Status filter for draft or approved versions (optional)
+     * @param int $id
+     *   id
+     * @param string|null $status
+     *   Status filter for draft or approved versions
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1006,8 +1038,7 @@ class LandingPageTemplatesApi
     public function getLandingPageTemplateByIdUsingGETAsyncWithHttpInfo(
         int $id,
         string $status = null
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->getLandingPageTemplateByIdUsingGETRequest($id, $status);
         return $this->makeAsyncRequest(
             $request,
@@ -1019,8 +1050,10 @@ class LandingPageTemplatesApi
     /**
      * Create request for operation 'getLandingPageTemplateByIdUsingGET'
      *
-     * @param  int $id id (required)
-     * @param  string $status Status filter for draft or approved versions (optional)
+     * @param int $id
+     *   id
+     * @param string|null $status
+     *   Status filter for draft or approved versions
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -1028,8 +1061,7 @@ class LandingPageTemplatesApi
     public function getLandingPageTemplateByIdUsingGETRequest(
         int $id,
         string $status = null
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/asset/v1/landingPageTemplate/{id}.json';
         $resourcePath = str_replace(
@@ -1095,7 +1127,8 @@ class LandingPageTemplatesApi
     /**
      * Get Landing Page Template by Name
      *
-     * @param  string $name Name of the landing page template (required)
+     * @param string $name
+     *   Name of the landing page template
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -1103,8 +1136,7 @@ class LandingPageTemplatesApi
      */
     public function getLandingPageTemplateByNameUsingGET(
         string $name
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse
-    {
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse {
         list($response) = $this->getLandingPageTemplateByNameUsingGETWithHttpInfo($name);
         return $response;
     }
@@ -1112,17 +1144,21 @@ class LandingPageTemplatesApi
     /**
      * Get Landing Page Template by Name
      *
-     * @param  string $name Name of the landing page template (required)
+     * @param string $name
+     *   Name of the landing page template
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function getLandingPageTemplateByNameUsingGETWithHttpInfo(
         string $name
-    ): array
-    {
+    ): array {
         $request = $this->getLandingPageTemplateByNameUsingGETRequest($name);
         try {
             $response = $this->makeRequest($request);
@@ -1138,15 +1174,15 @@ class LandingPageTemplatesApi
     /**
      * Get Landing Page Template by Name
      *
-     * @param  string $name Name of the landing page template (required)
+     * @param string $name
+     *   Name of the landing page template
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function getLandingPageTemplateByNameUsingGETAsync(
         string $name
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->getLandingPageTemplateByNameUsingGETAsyncWithHttpInfo($name)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse {
@@ -1158,15 +1194,15 @@ class LandingPageTemplatesApi
     /**
      * Get Landing Page Template by Name
      *
-     * @param  string $name Name of the landing page template (required)
+     * @param string $name
+     *   Name of the landing page template
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function getLandingPageTemplateByNameUsingGETAsyncWithHttpInfo(
         string $name
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->getLandingPageTemplateByNameUsingGETRequest($name);
         return $this->makeAsyncRequest(
             $request,
@@ -1178,15 +1214,15 @@ class LandingPageTemplatesApi
     /**
      * Create request for operation 'getLandingPageTemplateByNameUsingGET'
      *
-     * @param  string $name Name of the landing page template (required)
+     * @param string $name
+     *   Name of the landing page template
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
     public function getLandingPageTemplateByNameUsingGETRequest(
         string $name
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/asset/v1/landingPageTemplate/byName.json';
 
@@ -1247,8 +1283,10 @@ class LandingPageTemplatesApi
     /**
      * Get Landing Page Template Content
      *
-     * @param  int $id id (required)
-     * @param  string $status Status filter for draft or approved versions (optional)
+     * @param int $id
+     *   id
+     * @param string|null $status
+     *   Status filter for draft or approved versions
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -1257,8 +1295,7 @@ class LandingPageTemplatesApi
     public function getLandingPageTemplateContentUsingGET(
         int $id,
         string $status = null
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateGetContentResponse
-    {
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateGetContentResponse {
         list($response) = $this->getLandingPageTemplateContentUsingGETWithHttpInfo($id, $status);
         return $response;
     }
@@ -1266,19 +1303,24 @@ class LandingPageTemplatesApi
     /**
      * Get Landing Page Template Content
      *
-     * @param  int $id id (required)
-     * @param  string $status Status filter for draft or approved versions (optional)
+     * @param int $id
+     *   id
+     * @param string|null $status
+     *   Status filter for draft or approved versions
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateGetContentResponse, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateGetContentResponse, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateGetContentResponse,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function getLandingPageTemplateContentUsingGETWithHttpInfo(
         int $id,
         string $status = null
-    ): array
-    {
+    ): array {
         $request = $this->getLandingPageTemplateContentUsingGETRequest($id, $status);
         try {
             $response = $this->makeRequest($request);
@@ -1294,8 +1336,10 @@ class LandingPageTemplatesApi
     /**
      * Get Landing Page Template Content
      *
-     * @param  int $id id (required)
-     * @param  string $status Status filter for draft or approved versions (optional)
+     * @param int $id
+     *   id
+     * @param string|null $status
+     *   Status filter for draft or approved versions
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1303,8 +1347,7 @@ class LandingPageTemplatesApi
     public function getLandingPageTemplateContentUsingGETAsync(
         int $id,
         string $status = null
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->getLandingPageTemplateContentUsingGETAsyncWithHttpInfo($id, $status)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateGetContentResponse {
@@ -1316,8 +1359,10 @@ class LandingPageTemplatesApi
     /**
      * Get Landing Page Template Content
      *
-     * @param  int $id id (required)
-     * @param  string $status Status filter for draft or approved versions (optional)
+     * @param int $id
+     *   id
+     * @param string|null $status
+     *   Status filter for draft or approved versions
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1325,8 +1370,7 @@ class LandingPageTemplatesApi
     public function getLandingPageTemplateContentUsingGETAsyncWithHttpInfo(
         int $id,
         string $status = null
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->getLandingPageTemplateContentUsingGETRequest($id, $status);
         return $this->makeAsyncRequest(
             $request,
@@ -1338,8 +1382,10 @@ class LandingPageTemplatesApi
     /**
      * Create request for operation 'getLandingPageTemplateContentUsingGET'
      *
-     * @param  int $id id (required)
-     * @param  string $status Status filter for draft or approved versions (optional)
+     * @param int $id
+     *   id
+     * @param string|null $status
+     *   Status filter for draft or approved versions
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -1347,8 +1393,7 @@ class LandingPageTemplatesApi
     public function getLandingPageTemplateContentUsingGETRequest(
         int $id,
         string $status = null
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/asset/v1/landingPageTemplate/{id}/content.json';
         $resourcePath = str_replace(
@@ -1414,10 +1459,14 @@ class LandingPageTemplatesApi
     /**
      * Get Landing Page Templates
      *
-     * @param  int $max_return Maximum number of channels to return.  Max 200, default 20 (optional)
-     * @param  int $offset Integer offset for paging (optional)
-     * @param  string $status Status filter for draft or approved versions (optional)
-     * @param  string $folder JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39; (optional)
+     * @param int|null $max_return
+     *   Maximum number of channels to return.  Max 200, default 20
+     * @param int|null $offset
+     *   Integer offset for paging
+     * @param string|null $status
+     *   Status filter for draft or approved versions
+     * @param string|null $folder
+     *   JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39;
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -1428,8 +1477,7 @@ class LandingPageTemplatesApi
         int $offset = null,
         string $status = null,
         string $folder = null
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse
-    {
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse {
         list($response) = $this->getLandingPageTemplatesUsingGETWithHttpInfo($max_return, $offset, $status, $folder);
         return $response;
     }
@@ -1437,23 +1485,30 @@ class LandingPageTemplatesApi
     /**
      * Get Landing Page Templates
      *
-     * @param  int $max_return Maximum number of channels to return.  Max 200, default 20 (optional)
-     * @param  int $offset Integer offset for paging (optional)
-     * @param  string $status Status filter for draft or approved versions (optional)
-     * @param  string $folder JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39; (optional)
+     * @param int|null $max_return
+     *   Maximum number of channels to return.  Max 200, default 20
+     * @param int|null $offset
+     *   Integer offset for paging
+     * @param string|null $status
+     *   Status filter for draft or approved versions
+     * @param string|null $folder
+     *   JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39;
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function getLandingPageTemplatesUsingGETWithHttpInfo(
         int $max_return = null,
         int $offset = null,
         string $status = null,
         string $folder = null
-    ): array
-    {
+    ): array {
         $request = $this->getLandingPageTemplatesUsingGETRequest($max_return, $offset, $status, $folder);
         try {
             $response = $this->makeRequest($request);
@@ -1469,10 +1524,14 @@ class LandingPageTemplatesApi
     /**
      * Get Landing Page Templates
      *
-     * @param  int $max_return Maximum number of channels to return.  Max 200, default 20 (optional)
-     * @param  int $offset Integer offset for paging (optional)
-     * @param  string $status Status filter for draft or approved versions (optional)
-     * @param  string $folder JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39; (optional)
+     * @param int|null $max_return
+     *   Maximum number of channels to return.  Max 200, default 20
+     * @param int|null $offset
+     *   Integer offset for paging
+     * @param string|null $status
+     *   Status filter for draft or approved versions
+     * @param string|null $folder
+     *   JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39;
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1482,8 +1541,7 @@ class LandingPageTemplatesApi
         int $offset = null,
         string $status = null,
         string $folder = null
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->getLandingPageTemplatesUsingGETAsyncWithHttpInfo($max_return, $offset, $status, $folder)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse {
@@ -1495,10 +1553,14 @@ class LandingPageTemplatesApi
     /**
      * Get Landing Page Templates
      *
-     * @param  int $max_return Maximum number of channels to return.  Max 200, default 20 (optional)
-     * @param  int $offset Integer offset for paging (optional)
-     * @param  string $status Status filter for draft or approved versions (optional)
-     * @param  string $folder JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39; (optional)
+     * @param int|null $max_return
+     *   Maximum number of channels to return.  Max 200, default 20
+     * @param int|null $offset
+     *   Integer offset for paging
+     * @param string|null $status
+     *   Status filter for draft or approved versions
+     * @param string|null $folder
+     *   JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39;
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1508,8 +1570,7 @@ class LandingPageTemplatesApi
         int $offset = null,
         string $status = null,
         string $folder = null
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->getLandingPageTemplatesUsingGETRequest($max_return, $offset, $status, $folder);
         return $this->makeAsyncRequest(
             $request,
@@ -1521,10 +1582,14 @@ class LandingPageTemplatesApi
     /**
      * Create request for operation 'getLandingPageTemplatesUsingGET'
      *
-     * @param  int $max_return Maximum number of channels to return.  Max 200, default 20 (optional)
-     * @param  int $offset Integer offset for paging (optional)
-     * @param  string $status Status filter for draft or approved versions (optional)
-     * @param  string $folder JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39; (optional)
+     * @param int|null $max_return
+     *   Maximum number of channels to return.  Max 200, default 20
+     * @param int|null $offset
+     *   Integer offset for paging
+     * @param string|null $status
+     *   Status filter for draft or approved versions
+     * @param string|null $folder
+     *   JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39;
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -1534,8 +1599,7 @@ class LandingPageTemplatesApi
         int $offset = null,
         string $status = null,
         string $folder = null
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/asset/v1/landingPageTemplates.json';
 
@@ -1599,7 +1663,8 @@ class LandingPageTemplatesApi
     /**
      * Unapprove Landing Page Template
      *
-     * @param  int $id id (required)
+     * @param int $id
+     *   id
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -1607,8 +1672,7 @@ class LandingPageTemplatesApi
      */
     public function unapproveLandingPageTemplateUsingPOST(
         int $id
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse
-    {
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse {
         list($response) = $this->unapproveLandingPageTemplateUsingPOSTWithHttpInfo($id);
         return $response;
     }
@@ -1616,17 +1680,21 @@ class LandingPageTemplatesApi
     /**
      * Unapprove Landing Page Template
      *
-     * @param  int $id id (required)
+     * @param int $id
+     *   id
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function unapproveLandingPageTemplateUsingPOSTWithHttpInfo(
         int $id
-    ): array
-    {
+    ): array {
         $request = $this->unapproveLandingPageTemplateUsingPOSTRequest($id);
         try {
             $response = $this->makeRequest($request);
@@ -1642,15 +1710,15 @@ class LandingPageTemplatesApi
     /**
      * Unapprove Landing Page Template
      *
-     * @param  int $id id (required)
+     * @param int $id
+     *   id
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function unapproveLandingPageTemplateUsingPOSTAsync(
         int $id
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->unapproveLandingPageTemplateUsingPOSTAsyncWithHttpInfo($id)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse {
@@ -1662,15 +1730,15 @@ class LandingPageTemplatesApi
     /**
      * Unapprove Landing Page Template
      *
-     * @param  int $id id (required)
+     * @param int $id
+     *   id
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function unapproveLandingPageTemplateUsingPOSTAsyncWithHttpInfo(
         int $id
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->unapproveLandingPageTemplateUsingPOSTRequest($id);
         return $this->makeAsyncRequest(
             $request,
@@ -1682,15 +1750,15 @@ class LandingPageTemplatesApi
     /**
      * Create request for operation 'unapproveLandingPageTemplateUsingPOST'
      *
-     * @param  int $id id (required)
+     * @param int $id
+     *   id
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
     public function unapproveLandingPageTemplateUsingPOSTRequest(
         int $id
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/asset/v1/landingPageTemplate/{id}/unapprove.json';
         $resourcePath = str_replace(
@@ -1755,8 +1823,10 @@ class LandingPageTemplatesApi
     /**
      * Update Landing Page Template Content
      *
-     * @param  int $id id (required)
-     * @param  string $content content (required)
+     * @param int $id
+     *   id
+     * @param string $content
+     *   content
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -1765,8 +1835,7 @@ class LandingPageTemplatesApi
     public function updateLandingPageTemplateContentUsingPOST(
         int $id,
         string $content
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse
-    {
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse {
         list($response) = $this->updateLandingPageTemplateContentUsingPOSTWithHttpInfo($id, $content);
         return $response;
     }
@@ -1774,19 +1843,24 @@ class LandingPageTemplatesApi
     /**
      * Update Landing Page Template Content
      *
-     * @param  int $id id (required)
-     * @param  string $content content (required)
+     * @param int $id
+     *   id
+     * @param string $content
+     *   content
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function updateLandingPageTemplateContentUsingPOSTWithHttpInfo(
         int $id,
         string $content
-    ): array
-    {
+    ): array {
         $request = $this->updateLandingPageTemplateContentUsingPOSTRequest($id, $content);
         try {
             $response = $this->makeRequest($request);
@@ -1802,8 +1876,10 @@ class LandingPageTemplatesApi
     /**
      * Update Landing Page Template Content
      *
-     * @param  int $id id (required)
-     * @param  string $content content (required)
+     * @param int $id
+     *   id
+     * @param string $content
+     *   content
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1811,8 +1887,7 @@ class LandingPageTemplatesApi
     public function updateLandingPageTemplateContentUsingPOSTAsync(
         int $id,
         string $content
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->updateLandingPageTemplateContentUsingPOSTAsyncWithHttpInfo($id, $content)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse {
@@ -1824,8 +1899,10 @@ class LandingPageTemplatesApi
     /**
      * Update Landing Page Template Content
      *
-     * @param  int $id id (required)
-     * @param  string $content content (required)
+     * @param int $id
+     *   id
+     * @param string $content
+     *   content
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1833,8 +1910,7 @@ class LandingPageTemplatesApi
     public function updateLandingPageTemplateContentUsingPOSTAsyncWithHttpInfo(
         int $id,
         string $content
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->updateLandingPageTemplateContentUsingPOSTRequest($id, $content);
         return $this->makeAsyncRequest(
             $request,
@@ -1846,8 +1922,10 @@ class LandingPageTemplatesApi
     /**
      * Create request for operation 'updateLandingPageTemplateContentUsingPOST'
      *
-     * @param  int $id id (required)
-     * @param  string $content content (required)
+     * @param int $id
+     *   id
+     * @param string $content
+     *   content
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -1855,8 +1933,7 @@ class LandingPageTemplatesApi
     public function updateLandingPageTemplateContentUsingPOSTRequest(
         int $id,
         string $content
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/asset/v1/landingPageTemplate/{id}/content.json';
         $resourcePath = str_replace(
@@ -1922,8 +1999,10 @@ class LandingPageTemplatesApi
     /**
      * Update Landing Page Template Metadata
      *
-     * @param  int $id id (required)
-     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateLpTemplateRequest $update_lp_template_request updateLpTemplateRequest (required)
+     * @param int $id
+     *   id
+     * @param \NecLimDul\MarketoRest\Asset\Model\UpdateLpTemplateRequest $update_lp_template_request
+     *   updateLpTemplateRequest
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -1932,8 +2011,7 @@ class LandingPageTemplatesApi
     public function updateLpTemplateUsingPOST(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\UpdateLpTemplateRequest $update_lp_template_request
-    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse
-    {
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse {
         list($response) = $this->updateLpTemplateUsingPOSTWithHttpInfo($id, $update_lp_template_request);
         return $response;
     }
@@ -1941,19 +2019,24 @@ class LandingPageTemplatesApi
     /**
      * Update Landing Page Template Metadata
      *
-     * @param  int $id id (required)
-     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateLpTemplateRequest $update_lp_template_request updateLpTemplateRequest (required)
+     * @param int $id
+     *   id
+     * @param \NecLimDul\MarketoRest\Asset\Model\UpdateLpTemplateRequest $update_lp_template_request
+     *   updateLpTemplateRequest
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse, HTTP status code, HTTP response headers (array of strings)
-     * @phpstan-return array{ \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse, int, array<array<string>>}
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse,
+     *     int,
+     *     array<array<string>>
+     * }
      */
     public function updateLpTemplateUsingPOSTWithHttpInfo(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\UpdateLpTemplateRequest $update_lp_template_request
-    ): array
-    {
+    ): array {
         $request = $this->updateLpTemplateUsingPOSTRequest($id, $update_lp_template_request);
         try {
             $response = $this->makeRequest($request);
@@ -1969,8 +2052,10 @@ class LandingPageTemplatesApi
     /**
      * Update Landing Page Template Metadata
      *
-     * @param  int $id id (required)
-     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateLpTemplateRequest $update_lp_template_request updateLpTemplateRequest (required)
+     * @param int $id
+     *   id
+     * @param \NecLimDul\MarketoRest\Asset\Model\UpdateLpTemplateRequest $update_lp_template_request
+     *   updateLpTemplateRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1978,8 +2063,7 @@ class LandingPageTemplatesApi
     public function updateLpTemplateUsingPOSTAsync(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\UpdateLpTemplateRequest $update_lp_template_request
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->updateLpTemplateUsingPOSTAsyncWithHttpInfo($id, $update_lp_template_request)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfLpTemplateResponse {
@@ -1991,8 +2075,10 @@ class LandingPageTemplatesApi
     /**
      * Update Landing Page Template Metadata
      *
-     * @param  int $id id (required)
-     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateLpTemplateRequest $update_lp_template_request updateLpTemplateRequest (required)
+     * @param int $id
+     *   id
+     * @param \NecLimDul\MarketoRest\Asset\Model\UpdateLpTemplateRequest $update_lp_template_request
+     *   updateLpTemplateRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -2000,8 +2086,7 @@ class LandingPageTemplatesApi
     public function updateLpTemplateUsingPOSTAsyncWithHttpInfo(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\UpdateLpTemplateRequest $update_lp_template_request
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $request = $this->updateLpTemplateUsingPOSTRequest($id, $update_lp_template_request);
         return $this->makeAsyncRequest(
             $request,
@@ -2013,8 +2098,10 @@ class LandingPageTemplatesApi
     /**
      * Create request for operation 'updateLpTemplateUsingPOST'
      *
-     * @param  int $id id (required)
-     * @param  \NecLimDul\MarketoRest\Asset\Model\UpdateLpTemplateRequest $update_lp_template_request updateLpTemplateRequest (required)
+     * @param int $id
+     *   id
+     * @param \NecLimDul\MarketoRest\Asset\Model\UpdateLpTemplateRequest $update_lp_template_request
+     *   updateLpTemplateRequest
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -2022,8 +2109,7 @@ class LandingPageTemplatesApi
     public function updateLpTemplateUsingPOSTRequest(
         int $id,
         \NecLimDul\MarketoRest\Asset\Model\UpdateLpTemplateRequest $update_lp_template_request
-    ): Request
-    {
+    ): Request {
 
         $resourcePath = '/rest/asset/v1/landingPageTemplate/{id}.json';
         $resourcePath = str_replace(
@@ -2059,7 +2145,6 @@ class LandingPageTemplatesApi
             [
             ],
             $update_lp_template_request
-            
         );
     }
 
@@ -2090,10 +2175,11 @@ class LandingPageTemplatesApi
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @return \Psr\Http\Message\ResponseInterface
      */
-    private function makeRequest(Request $request) {
+    private function makeRequest(Request $request)
+    {
         $options = $this->createHttpClientOption();
         try {
-           $response = $this->client->send($request, $options);
+            $response = $this->client->send($request, $options);
         } catch (RequestException $e) {
             $response = $e->getResponse();
             throw new ApiException(
@@ -2166,7 +2252,8 @@ class LandingPageTemplatesApi
      * @return array structured array or response and http info.
      * @phpstan-return array{T, int, array<array<string>>}
      */
-    private function responseToReturn(ResponseInterface $response, string $returnType) {
+    private function responseToReturn(ResponseInterface $response, string $returnType)
+    {
         return [
             $this->deserializeResponseBody($response->getBody(), $returnType),
             $response->getStatusCode(),
@@ -2195,5 +2282,4 @@ class LandingPageTemplatesApi
             $headers
         );
     }
-
 }

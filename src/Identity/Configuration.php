@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Configuration
  *
@@ -421,5 +422,4 @@ class Configuration
 
         return $keyWithPrefix;
     }
-
 }

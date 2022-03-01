@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ActivityType
  *
@@ -25,8 +26,8 @@
 
 namespace NecLimDul\MarketoRest\Lead\Model;
 
-use \ArrayAccess;
-use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
+use ArrayAccess;
+use NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * ActivityType Class Doc Comment
@@ -147,7 +148,6 @@ class ActivityType implements ModelInterface, ArrayAccess, \JsonSerializable
         'name' => 'getName',
         'primary_attribute' => 'getPrimaryAttribute'
     ];
-    
 
     /**
      * Associative array for storing property values
@@ -233,7 +233,6 @@ class ActivityType implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         return count($this->listInvalidProperties()) === 0;
     }
-    
 
     /**
      * Gets api_name
@@ -416,7 +415,7 @@ class ActivityType implements ModelInterface, ArrayAccess, \JsonSerializable
              * @param array-key $key
              * @return mixed
              */
-            function($key) use ($container) {
+            function ($key) use ($container) {
                 return $container[$key];
             };
         return array_map($map, $this->additionalProperties);
@@ -472,7 +471,7 @@ class ActivityType implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -488,5 +487,4 @@ class ActivityType implements ModelInterface, ArrayAccess, \JsonSerializable
             JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR
         );
     }
-
 }

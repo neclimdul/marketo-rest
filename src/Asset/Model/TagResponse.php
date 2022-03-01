@@ -1,4 +1,5 @@
 <?php
+
 /**
  * TagResponse
  *
@@ -25,8 +26,8 @@
 
 namespace NecLimDul\MarketoRest\Asset\Model;
 
-use \ArrayAccess;
-use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
+use ArrayAccess;
+use NecLimDul\MarketoRest\Asset\ObjectSerializer;
 
 /**
  * TagResponse Class Doc Comment
@@ -137,7 +138,6 @@ class TagResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'required' => 'getRequired',
         'tag_type' => 'getTagType'
     ];
-    
 
     /**
      * Associative array for storing property values
@@ -218,7 +218,6 @@ class TagResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         return count($this->listInvalidProperties()) === 0;
     }
-    
 
     /**
      * Gets allowable_values
@@ -353,7 +352,7 @@ class TagResponse implements ModelInterface, ArrayAccess, \JsonSerializable
              * @param array-key $key
              * @return mixed
              */
-            function($key) use ($container) {
+            function ($key) use ($container) {
                 return $container[$key];
             };
         return array_map($map, $this->additionalProperties);
@@ -409,7 +408,7 @@ class TagResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -425,5 +424,4 @@ class TagResponse implements ModelInterface, ArrayAccess, \JsonSerializable
             JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR
         );
     }
-
 }

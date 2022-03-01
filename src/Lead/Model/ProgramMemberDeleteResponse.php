@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ProgramMemberDeleteResponse
  *
@@ -25,8 +26,8 @@
 
 namespace NecLimDul\MarketoRest\Lead\Model;
 
-use \ArrayAccess;
-use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
+use ArrayAccess;
+use NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * ProgramMemberDeleteResponse Class Doc Comment
@@ -42,6 +43,8 @@ use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
 class ProgramMemberDeleteResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    public const STATUS_DELETED = 'deleted';
+    public const STATUS_SKIPPED = 'skipped';
 
     /**
       * The original name of the model.
@@ -137,9 +140,6 @@ class ProgramMemberDeleteResponse implements ModelInterface, ArrayAccess, \JsonS
         'lead_id' => 'getLeadId',
         'seq' => 'getSeq'
     ];
-    
-    const STATUS_DELETED = 'deleted';
-    const STATUS_SKIPPED = 'skipped';
 
     /**
      * Associative array for storing property values
@@ -229,7 +229,6 @@ class ProgramMemberDeleteResponse implements ModelInterface, ArrayAccess, \JsonS
     {
         return count($this->listInvalidProperties()) === 0;
     }
-    
     /**
      * Gets allowable values of the enum.
      *
@@ -242,7 +241,6 @@ class ProgramMemberDeleteResponse implements ModelInterface, ArrayAccess, \JsonS
             self::STATUS_SKIPPED,
         ];
     }
-    
 
     /**
      * Gets status
@@ -387,7 +385,7 @@ class ProgramMemberDeleteResponse implements ModelInterface, ArrayAccess, \JsonS
              * @param array-key $key
              * @return mixed
              */
-            function($key) use ($container) {
+            function ($key) use ($container) {
                 return $container[$key];
             };
         return array_map($map, $this->additionalProperties);
@@ -443,7 +441,7 @@ class ProgramMemberDeleteResponse implements ModelInterface, ArrayAccess, \JsonS
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -459,5 +457,4 @@ class ProgramMemberDeleteResponse implements ModelInterface, ArrayAccess, \JsonS
             JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR
         );
     }
-
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * CustomActivityTypeAttribute
  *
@@ -25,8 +26,8 @@
 
 namespace NecLimDul\MarketoRest\Lead\Model;
 
-use \ArrayAccess;
-use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
+use ArrayAccess;
+use NecLimDul\MarketoRest\Lead\ObjectSerializer;
 
 /**
  * CustomActivityTypeAttribute Class Doc Comment
@@ -42,6 +43,17 @@ use \NecLimDul\MarketoRest\Lead\ObjectSerializer;
 class CustomActivityTypeAttribute implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
+    public const DATA_TYPE_STRING = 'string';
+    public const DATA_TYPE_BOOLEAN = 'boolean';
+    public const DATA_TYPE_INTEGER = 'integer';
+    public const DATA_TYPE_FLOAT = 'float';
+    public const DATA_TYPE_LINK = 'link';
+    public const DATA_TYPE_EMAIL = 'email';
+    public const DATA_TYPE_CURRENCY = 'currency';
+    public const DATA_TYPE_DATE = 'date';
+    public const DATA_TYPE_DATETIME = 'datetime';
+    public const DATA_TYPE_PHONE = 'phone';
+    public const DATA_TYPE_TEXT = 'text';
 
     /**
       * The original name of the model.
@@ -142,18 +154,6 @@ class CustomActivityTypeAttribute implements ModelInterface, ArrayAccess, \JsonS
         'is_primary' => 'getIsPrimary',
         'name' => 'getName'
     ];
-    
-    const DATA_TYPE_STRING = 'string';
-    const DATA_TYPE_BOOLEAN = 'boolean';
-    const DATA_TYPE_INTEGER = 'integer';
-    const DATA_TYPE_FLOAT = 'float';
-    const DATA_TYPE_LINK = 'link';
-    const DATA_TYPE_EMAIL = 'email';
-    const DATA_TYPE_CURRENCY = 'currency';
-    const DATA_TYPE_DATE = 'date';
-    const DATA_TYPE_DATETIME = 'datetime';
-    const DATA_TYPE_PHONE = 'phone';
-    const DATA_TYPE_TEXT = 'text';
 
     /**
      * Associative array for storing property values
@@ -241,7 +241,6 @@ class CustomActivityTypeAttribute implements ModelInterface, ArrayAccess, \JsonS
     {
         return count($this->listInvalidProperties()) === 0;
     }
-    
     /**
      * Gets allowable values of the enum.
      *
@@ -263,7 +262,6 @@ class CustomActivityTypeAttribute implements ModelInterface, ArrayAccess, \JsonS
             self::DATA_TYPE_TEXT,
         ];
     }
-    
 
     /**
      * Gets api_name
@@ -432,7 +430,7 @@ class CustomActivityTypeAttribute implements ModelInterface, ArrayAccess, \JsonS
              * @param array-key $key
              * @return mixed
              */
-            function($key) use ($container) {
+            function ($key) use ($container) {
                 return $container[$key];
             };
         return array_map($map, $this->additionalProperties);
@@ -488,7 +486,7 @@ class CustomActivityTypeAttribute implements ModelInterface, ArrayAccess, \JsonS
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -504,5 +502,4 @@ class CustomActivityTypeAttribute implements ModelInterface, ArrayAccess, \JsonS
             JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR
         );
     }
-
 }
