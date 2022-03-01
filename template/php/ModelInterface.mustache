@@ -30,7 +30,7 @@ interface ModelInterface
      *
      * @return string
      */
-    public function getModelName();
+    public function getModelName(): string;
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -80,7 +80,7 @@ interface ModelInterface
      *
      * @return bool
      */
-    public function valid();
+    public function valid(): bool;
 
     /**
      * Set list of additional properties for the model.
