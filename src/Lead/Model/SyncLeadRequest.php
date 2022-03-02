@@ -91,22 +91,6 @@ class SyncLeadRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -169,6 +153,22 @@ class SyncLeadRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -209,7 +209,7 @@ class SyncLeadRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 
         $allowedValues = $this->getActionAllowableValues();
         if (!is_null($this->container['action']) && !in_array($this->container['action'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
+            $invalidProperties['action'] = sprintf(
                 "invalid value '%s' for 'action', must be one of '%s'",
                 $this->container['action'],
                 implode("', '", $allowedValues)
@@ -217,7 +217,7 @@ class SyncLeadRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         if ($this->container['input'] === null) {
-            $invalidProperties[] = "'input' can't be null";
+            $invalidProperties['input'] = "'input' can't be null";
         }
         return $invalidProperties;
     }
@@ -247,9 +247,9 @@ class SyncLeadRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets action
      *
-     * @return string
+     * @return string|null
      */
-    public function getAction(): string
+    public function getAction(): ?string
     {
         return $this->container['action'];
     }
@@ -281,9 +281,9 @@ class SyncLeadRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets async_processing
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getAsyncProcessing(): bool
+    public function getAsyncProcessing(): ?bool
     {
         return $this->container['async_processing'];
     }
@@ -329,9 +329,9 @@ class SyncLeadRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets lookup_field
      *
-     * @return string
+     * @return string|null
      */
-    public function getLookupField(): string
+    public function getLookupField(): ?string
     {
         return $this->container['lookup_field'];
     }
@@ -353,9 +353,9 @@ class SyncLeadRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets partition_name
      *
-     * @return string
+     * @return string|null
      */
-    public function getPartitionName(): string
+    public function getPartitionName(): ?string
     {
         return $this->container['partition_name'];
     }

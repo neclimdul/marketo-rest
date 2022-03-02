@@ -91,22 +91,6 @@ class UpdateProgramRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -177,6 +161,22 @@ class UpdateProgramRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -229,9 +229,9 @@ class UpdateProgramRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets costs
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\CostRequest[]
+     * @return \NecLimDul\MarketoRest\Asset\Model\CostRequest[]|null
      */
-    public function getCosts(): array
+    public function getCosts(): ?array
     {
         return $this->container['costs'];
     }
@@ -253,9 +253,9 @@ class UpdateProgramRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets costs_destructive_update
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getCostsDestructiveUpdate(): bool
+    public function getCostsDestructiveUpdate(): ?bool
     {
         return $this->container['costs_destructive_update'];
     }
@@ -277,9 +277,9 @@ class UpdateProgramRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->container['description'];
     }
@@ -301,9 +301,9 @@ class UpdateProgramRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets end_date
      *
-     * @return string
+     * @return string|null
      */
-    public function getEndDate(): string
+    public function getEndDate(): ?string
     {
         return $this->container['end_date'];
     }
@@ -325,9 +325,9 @@ class UpdateProgramRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets name
      *
-     * @return string
+     * @return string|null
      */
-    public function getName(): string
+    public function getName(): ?string
     {
         return $this->container['name'];
     }
@@ -349,9 +349,9 @@ class UpdateProgramRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets start_date
      *
-     * @return string
+     * @return string|null
      */
-    public function getStartDate(): string
+    public function getStartDate(): ?string
     {
         return $this->container['start_date'];
     }
@@ -373,9 +373,9 @@ class UpdateProgramRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets tags
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\TagRequest[]
+     * @return \NecLimDul\MarketoRest\Asset\Model\TagRequest[]|null
      */
-    public function getTags(): array
+    public function getTags(): ?array
     {
         return $this->container['tags'];
     }

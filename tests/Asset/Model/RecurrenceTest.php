@@ -37,7 +37,7 @@ use PHPUnit\Framework\TestCase;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  *
- * @coversDefault \NecLimDul\MarketoRest\Asset\Model\Recurrence
+ * @coversDefaultClass \NecLimDul\MarketoRest\Asset\Model\Recurrence
  */
 class RecurrenceTest extends TestCase
 {
@@ -46,11 +46,6 @@ class RecurrenceTest extends TestCase
      * @var \NecLimDul\MarketoRest\Asset\Model\Recurrence
      */
     private $sot;
-
-    /**
-     * @var \Faker\Generator
-     */
-    private $faker;
 
     /**
      * @var string[]
@@ -65,7 +60,13 @@ class RecurrenceTest extends TestCase
         'day_of_month' => 'int',
         'day_of_week' => 'string',
         'week_of_month' => 'int',
-    ];
+];
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
     /**
      * @var scalar[][]
      */
@@ -132,7 +133,14 @@ class RecurrenceTest extends TestCase
                 return new \stdClass();
         }
         if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
-            return new $type();
+            $model = new $type();
+            $types = $type::swaggerTypes();
+            foreach ($model->listInvalidProperties() as $field => $reason) {
+                // @todo get allowed values? ((getter))AllowedValues
+                // @phpstan-ignore-next-line
+                $model[$field] = $this->getFakeValue($types[$field], null);
+            }
+            return $model;
         }
         $this->markTestSkipped('This type is not mocked yet: ' . $type);
     }
@@ -144,7 +152,117 @@ class RecurrenceTest extends TestCase
      */
     public function testRecurrence(): void
     {
-        $this->assertInstanceOf(\NecLimDul\MarketoRest\Asset\Model\Recurrence::class, $this->sot);
+        $this->assertInstanceOf(Recurrence::class, $this->sot);
+    }
+
+    /**
+     * @covers ::swaggerTypes
+     */
+    public function testSwaggerTypes(): void
+    {
+        $this->assertEquals($this->types, Recurrence::swaggerTypes());
+    }
+
+    /**
+     * @covers ::swaggerFormats
+     */
+    public function testSwaggerFormats(): void
+    {
+        $formats = $this->sot->swaggerFormats();
+        $this->assertEquals('date-time', $formats['start_at']);
+        $this->assertEquals('date-time', $formats['end_at']);
+        $this->assertEquals(null, $formats['interval_type']);
+        $this->assertEquals('int32', $formats['interval']);
+        $this->assertEquals(null, $formats['weekday_only']);
+        $this->assertEquals(null, $formats['weekday_mask']);
+        $this->assertEquals('int32', $formats['day_of_month']);
+        $this->assertEquals('int32', $formats['day_of_week']);
+        $this->assertEquals('int32', $formats['week_of_month']);
+    }
+
+    /**
+     * @covers ::attributeMap
+     */
+    public function testAttributeMap(): void
+    {
+        $formats = $this->sot->attributeMap();
+        $this->assertEquals('startAt', $formats['start_at']);
+        $this->assertEquals('endAt', $formats['end_at']);
+        $this->assertEquals('intervalType', $formats['interval_type']);
+        $this->assertEquals('interval', $formats['interval']);
+        $this->assertEquals('weekdayOnly', $formats['weekday_only']);
+        $this->assertEquals('weekdayMask', $formats['weekday_mask']);
+        $this->assertEquals('dayOfMonth', $formats['day_of_month']);
+        $this->assertEquals('dayOfWeek', $formats['day_of_week']);
+        $this->assertEquals('weekOfMonth', $formats['week_of_month']);
+    }
+
+    /**
+     * @covers ::getters
+     * @covers ::setters
+     */
+    public function testGettersSetters(): void
+    {
+        $getters = $this->sot->getters();
+        $setters = $this->sot->setters();
+        foreach (array_keys($this->types) as $field) {
+            $this->assertTrue(isset($setters[$field]));
+            $this->assertTrue(isset($getters[$field]));
+            $this->assertTrue(
+                method_exists($this->sot, $getters[$field]),
+                'Getter exists on model.'
+            );
+            $this->assertTrue(
+                method_exists($this->sot, $setters[$field]),
+                'Setter exists on model.'
+            );
+        }
+    }
+
+    /**
+     * @covers ::getModelName
+     */
+    public function testGetModelName(): void
+    {
+        $this->assertEquals('Recurrence', $this->sot->getModelName());
+    }
+
+    /**
+     * @covers ::listInvalidProperties
+     * @covers ::valid
+     */
+    public function testValid(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::setAdditionalProperties
+     * @covers ::setAdditionalProperty
+     * @covers ::getAdditionalProperties
+     */
+    public function testAdditionalProperties(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::jsonSerialize
+     * @covers ::__toString
+     */
+    public function testJson(): void
+    {
+        // Some minimal tests that json generates well.
+        $json = json_encode($this->sot);
+        $this->assertIsString($json, 'Json encoded');
+        $json = json_decode($json);
+        $string = json_decode((string) $this->sot);
+        $this->assertEquals(
+            $json,
+            $string
+        );
+        $this->assertInstanceOf(\stdClass::class, $json);
+        $this->assertInstanceOf(\stdClass::class, $string);
     }
 
     /**
@@ -153,6 +271,10 @@ class RecurrenceTest extends TestCase
      * @covers ::__construct
      * @covers ::getStartAt
      * @covers ::setStartAt
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyStartAt(): void
     {
@@ -163,7 +285,20 @@ class RecurrenceTest extends TestCase
         );
         $this->sot->setStartAt($v);
         $this->assertEquals($v, $this->sot->getStartAt());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['start_at']);
+        $v = $this->getFakeValue(
+            $this->types['start_at'],
+            $this->allowedValues['start_at'] ?? null
+        );
+        $this->sot['start_at'] = $v;
+        $this->assertEquals($v, $this->sot['start_at']);
+        $this->assertTrue(isset($this->sot['start_at']));
+        unset($this->sot['start_at']);
+        $this->assertFalse(isset($this->sot['start_at']));
+        $this->sot['start_at'] = $v;
+        $this->assertEquals($v, $this->sot['start_at']);
+        $this->assertTrue(isset($this->sot['start_at']));
     }
 
     /**
@@ -172,6 +307,10 @@ class RecurrenceTest extends TestCase
      * @covers ::__construct
      * @covers ::getEndAt
      * @covers ::setEndAt
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyEndAt(): void
     {
@@ -182,7 +321,20 @@ class RecurrenceTest extends TestCase
         );
         $this->sot->setEndAt($v);
         $this->assertEquals($v, $this->sot->getEndAt());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['end_at']);
+        $v = $this->getFakeValue(
+            $this->types['end_at'],
+            $this->allowedValues['end_at'] ?? null
+        );
+        $this->sot['end_at'] = $v;
+        $this->assertEquals($v, $this->sot['end_at']);
+        $this->assertTrue(isset($this->sot['end_at']));
+        unset($this->sot['end_at']);
+        $this->assertFalse(isset($this->sot['end_at']));
+        $this->sot['end_at'] = $v;
+        $this->assertEquals($v, $this->sot['end_at']);
+        $this->assertTrue(isset($this->sot['end_at']));
     }
 
     /**
@@ -191,6 +343,10 @@ class RecurrenceTest extends TestCase
      * @covers ::__construct
      * @covers ::getIntervalType
      * @covers ::setIntervalType
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyIntervalType(): void
     {
@@ -201,7 +357,20 @@ class RecurrenceTest extends TestCase
         );
         $this->sot->setIntervalType($v);
         $this->assertEquals($v, $this->sot->getIntervalType());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['interval_type']);
+        $v = $this->getFakeValue(
+            $this->types['interval_type'],
+            $this->allowedValues['interval_type'] ?? null
+        );
+        $this->sot['interval_type'] = $v;
+        $this->assertEquals($v, $this->sot['interval_type']);
+        $this->assertTrue(isset($this->sot['interval_type']));
+        unset($this->sot['interval_type']);
+        $this->assertFalse(isset($this->sot['interval_type']));
+        $this->sot['interval_type'] = $v;
+        $this->assertEquals($v, $this->sot['interval_type']);
+        $this->assertTrue(isset($this->sot['interval_type']));
     }
 
     /**
@@ -210,6 +379,10 @@ class RecurrenceTest extends TestCase
      * @covers ::__construct
      * @covers ::getInterval
      * @covers ::setInterval
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyInterval(): void
     {
@@ -220,7 +393,20 @@ class RecurrenceTest extends TestCase
         );
         $this->sot->setInterval($v);
         $this->assertEquals($v, $this->sot->getInterval());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['interval']);
+        $v = $this->getFakeValue(
+            $this->types['interval'],
+            $this->allowedValues['interval'] ?? null
+        );
+        $this->sot['interval'] = $v;
+        $this->assertEquals($v, $this->sot['interval']);
+        $this->assertTrue(isset($this->sot['interval']));
+        unset($this->sot['interval']);
+        $this->assertFalse(isset($this->sot['interval']));
+        $this->sot['interval'] = $v;
+        $this->assertEquals($v, $this->sot['interval']);
+        $this->assertTrue(isset($this->sot['interval']));
     }
 
     /**
@@ -229,6 +415,10 @@ class RecurrenceTest extends TestCase
      * @covers ::__construct
      * @covers ::getWeekdayOnly
      * @covers ::setWeekdayOnly
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyWeekdayOnly(): void
     {
@@ -239,7 +429,20 @@ class RecurrenceTest extends TestCase
         );
         $this->sot->setWeekdayOnly($v);
         $this->assertEquals($v, $this->sot->getWeekdayOnly());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['weekday_only']);
+        $v = $this->getFakeValue(
+            $this->types['weekday_only'],
+            $this->allowedValues['weekday_only'] ?? null
+        );
+        $this->sot['weekday_only'] = $v;
+        $this->assertEquals($v, $this->sot['weekday_only']);
+        $this->assertTrue(isset($this->sot['weekday_only']));
+        unset($this->sot['weekday_only']);
+        $this->assertFalse(isset($this->sot['weekday_only']));
+        $this->sot['weekday_only'] = $v;
+        $this->assertEquals($v, $this->sot['weekday_only']);
+        $this->assertTrue(isset($this->sot['weekday_only']));
     }
 
     /**
@@ -248,6 +451,10 @@ class RecurrenceTest extends TestCase
      * @covers ::__construct
      * @covers ::getWeekdayMask
      * @covers ::setWeekdayMask
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyWeekdayMask(): void
     {
@@ -258,7 +465,20 @@ class RecurrenceTest extends TestCase
         );
         $this->sot->setWeekdayMask($v);
         $this->assertEquals($v, $this->sot->getWeekdayMask());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['weekday_mask']);
+        $v = $this->getFakeValue(
+            $this->types['weekday_mask'],
+            $this->allowedValues['weekday_mask'] ?? null
+        );
+        $this->sot['weekday_mask'] = $v;
+        $this->assertEquals($v, $this->sot['weekday_mask']);
+        $this->assertTrue(isset($this->sot['weekday_mask']));
+        unset($this->sot['weekday_mask']);
+        $this->assertFalse(isset($this->sot['weekday_mask']));
+        $this->sot['weekday_mask'] = $v;
+        $this->assertEquals($v, $this->sot['weekday_mask']);
+        $this->assertTrue(isset($this->sot['weekday_mask']));
     }
 
     /**
@@ -267,6 +487,10 @@ class RecurrenceTest extends TestCase
      * @covers ::__construct
      * @covers ::getDayOfMonth
      * @covers ::setDayOfMonth
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyDayOfMonth(): void
     {
@@ -277,7 +501,20 @@ class RecurrenceTest extends TestCase
         );
         $this->sot->setDayOfMonth($v);
         $this->assertEquals($v, $this->sot->getDayOfMonth());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['day_of_month']);
+        $v = $this->getFakeValue(
+            $this->types['day_of_month'],
+            $this->allowedValues['day_of_month'] ?? null
+        );
+        $this->sot['day_of_month'] = $v;
+        $this->assertEquals($v, $this->sot['day_of_month']);
+        $this->assertTrue(isset($this->sot['day_of_month']));
+        unset($this->sot['day_of_month']);
+        $this->assertFalse(isset($this->sot['day_of_month']));
+        $this->sot['day_of_month'] = $v;
+        $this->assertEquals($v, $this->sot['day_of_month']);
+        $this->assertTrue(isset($this->sot['day_of_month']));
     }
 
     /**
@@ -286,6 +523,10 @@ class RecurrenceTest extends TestCase
      * @covers ::__construct
      * @covers ::getDayOfWeek
      * @covers ::setDayOfWeek
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyDayOfWeek(): void
     {
@@ -296,7 +537,20 @@ class RecurrenceTest extends TestCase
         );
         $this->sot->setDayOfWeek($v);
         $this->assertEquals($v, $this->sot->getDayOfWeek());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['day_of_week']);
+        $v = $this->getFakeValue(
+            $this->types['day_of_week'],
+            $this->allowedValues['day_of_week'] ?? null
+        );
+        $this->sot['day_of_week'] = $v;
+        $this->assertEquals($v, $this->sot['day_of_week']);
+        $this->assertTrue(isset($this->sot['day_of_week']));
+        unset($this->sot['day_of_week']);
+        $this->assertFalse(isset($this->sot['day_of_week']));
+        $this->sot['day_of_week'] = $v;
+        $this->assertEquals($v, $this->sot['day_of_week']);
+        $this->assertTrue(isset($this->sot['day_of_week']));
     }
 
     /**
@@ -305,6 +559,10 @@ class RecurrenceTest extends TestCase
      * @covers ::__construct
      * @covers ::getWeekOfMonth
      * @covers ::setWeekOfMonth
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyWeekOfMonth(): void
     {
@@ -315,6 +573,19 @@ class RecurrenceTest extends TestCase
         );
         $this->sot->setWeekOfMonth($v);
         $this->assertEquals($v, $this->sot->getWeekOfMonth());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['week_of_month']);
+        $v = $this->getFakeValue(
+            $this->types['week_of_month'],
+            $this->allowedValues['week_of_month'] ?? null
+        );
+        $this->sot['week_of_month'] = $v;
+        $this->assertEquals($v, $this->sot['week_of_month']);
+        $this->assertTrue(isset($this->sot['week_of_month']));
+        unset($this->sot['week_of_month']);
+        $this->assertFalse(isset($this->sot['week_of_month']));
+        $this->sot['week_of_month'] = $v;
+        $this->assertEquals($v, $this->sot['week_of_month']);
+        $this->assertTrue(isset($this->sot['week_of_month']));
     }
 }

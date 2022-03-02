@@ -103,22 +103,6 @@ class CustomActivity implements ModelInterface, ArrayAccess, \JsonSerializable
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -201,6 +185,22 @@ class CustomActivity implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -240,29 +240,29 @@ class CustomActivity implements ModelInterface, ArrayAccess, \JsonSerializable
         $invalidProperties = [];
 
         if ($this->container['activity_date'] === null) {
-            $invalidProperties[] = "'activity_date' can't be null";
+            $invalidProperties['activity_date'] = "'activity_date' can't be null";
         }
         if ($this->container['activity_type_id'] === null) {
-            $invalidProperties[] = "'activity_type_id' can't be null";
+            $invalidProperties['activity_type_id'] = "'activity_type_id' can't be null";
         }
         if ($this->container['attributes'] === null) {
-            $invalidProperties[] = "'attributes' can't be null";
+            $invalidProperties['attributes'] = "'attributes' can't be null";
         }
         if ($this->container['errors'] === null) {
-            $invalidProperties[] = "'errors' can't be null";
+            $invalidProperties['errors'] = "'errors' can't be null";
         }
         if ($this->container['id'] === null) {
-            $invalidProperties[] = "'id' can't be null";
+            $invalidProperties['id'] = "'id' can't be null";
         }
         if ($this->container['lead_id'] === null) {
-            $invalidProperties[] = "'lead_id' can't be null";
+            $invalidProperties['lead_id'] = "'lead_id' can't be null";
         }
         if ($this->container['primary_attribute_value'] === null) {
-            $invalidProperties[] = "'primary_attribute_value' can't be null";
+            $invalidProperties['primary_attribute_value'] = "'primary_attribute_value' can't be null";
         }
         $allowedValues = $this->getStatusAllowableValues();
         if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
+            $invalidProperties['status'] = sprintf(
                 "invalid value '%s' for 'status', must be one of '%s'",
                 $this->container['status'],
                 implode("', '", $allowedValues)
@@ -347,9 +347,9 @@ class CustomActivity implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets api_name
      *
-     * @return string
+     * @return string|null
      */
-    public function getApiName(): string
+    public function getApiName(): ?string
     {
         return $this->container['api_name'];
     }
@@ -467,9 +467,9 @@ class CustomActivity implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets marketo_guid
      *
-     * @return string
+     * @return string|null
      */
-    public function getMarketoGuid(): string
+    public function getMarketoGuid(): ?string
     {
         return $this->container['marketo_guid'];
     }
@@ -515,9 +515,9 @@ class CustomActivity implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets status
      *
-     * @return string
+     * @return string|null
      */
-    public function getStatus(): string
+    public function getStatus(): ?string
     {
         return $this->container['status'];
     }

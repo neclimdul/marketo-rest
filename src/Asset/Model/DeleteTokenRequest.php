@@ -85,22 +85,6 @@ class DeleteTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -155,6 +139,22 @@ class DeleteTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -195,7 +195,7 @@ class DeleteTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializab
 
         $allowedValues = $this->getFolderTypeAllowableValues();
         if (!is_null($this->container['folder_type']) && !in_array($this->container['folder_type'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
+            $invalidProperties['folder_type'] = sprintf(
                 "invalid value '%s' for 'folder_type', must be one of '%s'",
                 $this->container['folder_type'],
                 implode("', '", $allowedValues)
@@ -228,9 +228,9 @@ class DeleteTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets folder_type
      *
-     * @return string
+     * @return string|null
      */
-    public function getFolderType(): string
+    public function getFolderType(): ?string
     {
         return $this->container['folder_type'];
     }
@@ -262,9 +262,9 @@ class DeleteTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets name
      *
-     * @return string
+     * @return string|null
      */
-    public function getName(): string
+    public function getName(): ?string
     {
         return $this->container['name'];
     }
@@ -286,9 +286,9 @@ class DeleteTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets type
      *
-     * @return string
+     * @return string|null
      */
-    public function getType(): string
+    public function getType(): ?string
     {
         return $this->container['type'];
     }

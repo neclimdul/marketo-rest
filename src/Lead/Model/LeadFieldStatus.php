@@ -84,22 +84,6 @@ class LeadFieldStatus implements ModelInterface, ArrayAccess, \JsonSerializable
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -150,6 +134,22 @@ class LeadFieldStatus implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -189,14 +189,14 @@ class LeadFieldStatus implements ModelInterface, ArrayAccess, \JsonSerializable
         $invalidProperties = [];
 
         if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
+            $invalidProperties['name'] = "'name' can't be null";
         }
         if ($this->container['status'] === null) {
-            $invalidProperties[] = "'status' can't be null";
+            $invalidProperties['status'] = "'status' can't be null";
         }
         $allowedValues = $this->getStatusAllowableValues();
         if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
+            $invalidProperties['status'] = sprintf(
                 "invalid value '%s' for 'status', must be one of '%s'",
                 $this->container['status'],
                 implode("', '", $allowedValues)

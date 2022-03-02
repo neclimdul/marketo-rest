@@ -81,22 +81,6 @@ class DeleteSalesPersonRequest implements ModelInterface, ArrayAccess, \JsonSeri
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -147,6 +131,22 @@ class DeleteSalesPersonRequest implements ModelInterface, ArrayAccess, \JsonSeri
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -186,7 +186,7 @@ class DeleteSalesPersonRequest implements ModelInterface, ArrayAccess, \JsonSeri
         $invalidProperties = [];
 
         if ($this->container['input'] === null) {
-            $invalidProperties[] = "'input' can't be null";
+            $invalidProperties['input'] = "'input' can't be null";
         }
         return $invalidProperties;
     }
@@ -202,9 +202,9 @@ class DeleteSalesPersonRequest implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets delete_by
      *
-     * @return string
+     * @return string|null
      */
-    public function getDeleteBy(): string
+    public function getDeleteBy(): ?string
     {
         return $this->container['delete_by'];
     }

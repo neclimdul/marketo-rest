@@ -37,7 +37,7 @@ use PHPUnit\Framework\TestCase;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  *
- * @coversDefault \NecLimDul\MarketoRest\Lead\Model\ProgramMemberAttribute
+ * @coversDefaultClass \NecLimDul\MarketoRest\Lead\Model\ProgramMemberAttribute
  */
 class ProgramMemberAttributeTest extends TestCase
 {
@@ -48,17 +48,18 @@ class ProgramMemberAttributeTest extends TestCase
     private $sot;
 
     /**
-     * @var \Faker\Generator
-     */
-    private $faker;
-
-    /**
      * @var string[]
      */
     private $types = [
         'name' => 'string',
         'fields' => '\NecLimDul\MarketoRest\Lead\Model\LeadAttribute2Fields[]',
-    ];
+];
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
     /**
      * @var scalar[][]
      */
@@ -111,7 +112,14 @@ class ProgramMemberAttributeTest extends TestCase
                 return new \stdClass();
         }
         if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
-            return new $type();
+            $model = new $type();
+            $types = $type::swaggerTypes();
+            foreach ($model->listInvalidProperties() as $field => $reason) {
+                // @todo get allowed values? ((getter))AllowedValues
+                // @phpstan-ignore-next-line
+                $model[$field] = $this->getFakeValue($types[$field], null);
+            }
+            return $model;
         }
         $this->markTestSkipped('This type is not mocked yet: ' . $type);
     }
@@ -123,7 +131,103 @@ class ProgramMemberAttributeTest extends TestCase
      */
     public function testProgramMemberAttribute(): void
     {
-        $this->assertInstanceOf(\NecLimDul\MarketoRest\Lead\Model\ProgramMemberAttribute::class, $this->sot);
+        $this->assertInstanceOf(ProgramMemberAttribute::class, $this->sot);
+    }
+
+    /**
+     * @covers ::swaggerTypes
+     */
+    public function testSwaggerTypes(): void
+    {
+        $this->assertEquals($this->types, ProgramMemberAttribute::swaggerTypes());
+    }
+
+    /**
+     * @covers ::swaggerFormats
+     */
+    public function testSwaggerFormats(): void
+    {
+        $formats = $this->sot->swaggerFormats();
+        $this->assertEquals(null, $formats['name']);
+        $this->assertEquals(null, $formats['fields']);
+    }
+
+    /**
+     * @covers ::attributeMap
+     */
+    public function testAttributeMap(): void
+    {
+        $formats = $this->sot->attributeMap();
+        $this->assertEquals('name', $formats['name']);
+        $this->assertEquals('fields', $formats['fields']);
+    }
+
+    /**
+     * @covers ::getters
+     * @covers ::setters
+     */
+    public function testGettersSetters(): void
+    {
+        $getters = $this->sot->getters();
+        $setters = $this->sot->setters();
+        foreach (array_keys($this->types) as $field) {
+            $this->assertTrue(isset($setters[$field]));
+            $this->assertTrue(isset($getters[$field]));
+            $this->assertTrue(
+                method_exists($this->sot, $getters[$field]),
+                'Getter exists on model.'
+            );
+            $this->assertTrue(
+                method_exists($this->sot, $setters[$field]),
+                'Setter exists on model.'
+            );
+        }
+    }
+
+    /**
+     * @covers ::getModelName
+     */
+    public function testGetModelName(): void
+    {
+        $this->assertEquals('ProgramMemberAttribute', $this->sot->getModelName());
+    }
+
+    /**
+     * @covers ::listInvalidProperties
+     * @covers ::valid
+     */
+    public function testValid(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::setAdditionalProperties
+     * @covers ::setAdditionalProperty
+     * @covers ::getAdditionalProperties
+     */
+    public function testAdditionalProperties(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::jsonSerialize
+     * @covers ::__toString
+     */
+    public function testJson(): void
+    {
+        // Some minimal tests that json generates well.
+        $json = json_encode($this->sot);
+        $this->assertIsString($json, 'Json encoded');
+        $json = json_decode($json);
+        $string = json_decode((string) $this->sot);
+        $this->assertEquals(
+            $json,
+            $string
+        );
+        $this->assertInstanceOf(\stdClass::class, $json);
+        $this->assertInstanceOf(\stdClass::class, $string);
     }
 
     /**
@@ -132,6 +236,10 @@ class ProgramMemberAttributeTest extends TestCase
      * @covers ::__construct
      * @covers ::getName
      * @covers ::setName
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyName(): void
     {
@@ -142,7 +250,23 @@ class ProgramMemberAttributeTest extends TestCase
         );
         $this->sot->setName($v);
         $this->assertEquals($v, $this->sot->getName());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setName(null);
+        $this->assertNull($this->sot->getName());
+        $this->sot->setName($v);
+
+        $this->assertEquals($v, $this->sot['name']);
+        $v = $this->getFakeValue(
+            $this->types['name'],
+            $this->allowedValues['name'] ?? null
+        );
+        $this->sot['name'] = $v;
+        $this->assertEquals($v, $this->sot['name']);
+        $this->assertTrue(isset($this->sot['name']));
+        unset($this->sot['name']);
+        $this->assertFalse(isset($this->sot['name']));
+        $this->sot['name'] = $v;
+        $this->assertEquals($v, $this->sot['name']);
+        $this->assertTrue(isset($this->sot['name']));
     }
 
     /**
@@ -151,6 +275,10 @@ class ProgramMemberAttributeTest extends TestCase
      * @covers ::__construct
      * @covers ::getFields
      * @covers ::setFields
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyFields(): void
     {
@@ -161,6 +289,19 @@ class ProgramMemberAttributeTest extends TestCase
         );
         $this->sot->setFields($v);
         $this->assertEquals($v, $this->sot->getFields());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['fields']);
+        $v = $this->getFakeValue(
+            $this->types['fields'],
+            $this->allowedValues['fields'] ?? null
+        );
+        $this->sot['fields'] = $v;
+        $this->assertEquals($v, $this->sot['fields']);
+        $this->assertTrue(isset($this->sot['fields']));
+        unset($this->sot['fields']);
+        $this->assertFalse(isset($this->sot['fields']));
+        $this->sot['fields'] = $v;
+        $this->assertEquals($v, $this->sot['fields']);
+        $this->assertTrue(isset($this->sot['fields']));
     }
 }

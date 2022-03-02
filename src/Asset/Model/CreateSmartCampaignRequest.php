@@ -83,22 +83,6 @@ class CreateSmartCampaignRequest implements ModelInterface, ArrayAccess, \JsonSe
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -153,6 +137,22 @@ class CreateSmartCampaignRequest implements ModelInterface, ArrayAccess, \JsonSe
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -192,10 +192,10 @@ class CreateSmartCampaignRequest implements ModelInterface, ArrayAccess, \JsonSe
         $invalidProperties = [];
 
         if ($this->container['folder'] === null) {
-            $invalidProperties[] = "'folder' can't be null";
+            $invalidProperties['folder'] = "'folder' can't be null";
         }
         if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
+            $invalidProperties['name'] = "'name' can't be null";
         }
         return $invalidProperties;
     }
@@ -211,9 +211,9 @@ class CreateSmartCampaignRequest implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->container['description'];
     }

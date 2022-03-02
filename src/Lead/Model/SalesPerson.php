@@ -91,22 +91,6 @@ class SalesPerson implements ModelInterface, ArrayAccess, \JsonSerializable
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -165,6 +149,22 @@ class SalesPerson implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -205,7 +205,7 @@ class SalesPerson implements ModelInterface, ArrayAccess, \JsonSerializable
 
         $allowedValues = $this->getStatusAllowableValues();
         if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
+            $invalidProperties['status'] = sprintf(
                 "invalid value '%s' for 'status', must be one of '%s'",
                 $this->container['status'],
                 implode("', '", $allowedValues)
@@ -242,9 +242,9 @@ class SalesPerson implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets id
      *
-     * @return int
+     * @return int|null
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->container['id'];
     }
@@ -266,9 +266,9 @@ class SalesPerson implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets reasons
      *
-     * @return \NecLimDul\MarketoRest\Lead\Model\Reason[]
+     * @return \NecLimDul\MarketoRest\Lead\Model\Reason[]|null
      */
-    public function getReasons(): array
+    public function getReasons(): ?array
     {
         return $this->container['reasons'];
     }
@@ -290,9 +290,9 @@ class SalesPerson implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets seq
      *
-     * @return int
+     * @return int|null
      */
-    public function getSeq(): int
+    public function getSeq(): ?int
     {
         return $this->container['seq'];
     }
@@ -314,9 +314,9 @@ class SalesPerson implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets status
      *
-     * @return string
+     * @return string|null
      */
-    public function getStatus(): string
+    public function getStatus(): ?string
     {
         return $this->container['status'];
     }

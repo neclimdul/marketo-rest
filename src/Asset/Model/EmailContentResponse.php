@@ -89,22 +89,6 @@ class EmailContentResponse implements ModelInterface, ArrayAccess, \JsonSerializ
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -171,6 +155,22 @@ class EmailContentResponse implements ModelInterface, ArrayAccess, \JsonSerializ
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -210,13 +210,13 @@ class EmailContentResponse implements ModelInterface, ArrayAccess, \JsonSerializ
         $invalidProperties = [];
 
         if ($this->container['content_type'] === null) {
-            $invalidProperties[] = "'content_type' can't be null";
+            $invalidProperties['content_type'] = "'content_type' can't be null";
         }
         if ($this->container['html_id'] === null) {
-            $invalidProperties[] = "'html_id' can't be null";
+            $invalidProperties['html_id'] = "'html_id' can't be null";
         }
         if ($this->container['value'] === null) {
-            $invalidProperties[] = "'value' can't be null";
+            $invalidProperties['value'] = "'value' can't be null";
         }
         return $invalidProperties;
     }
@@ -280,9 +280,9 @@ class EmailContentResponse implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets index
      *
-     * @return int
+     * @return int|null
      */
-    public function getIndex(): int
+    public function getIndex(): ?int
     {
         return $this->container['index'];
     }
@@ -304,9 +304,9 @@ class EmailContentResponse implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets is_locked
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getIsLocked(): bool
+    public function getIsLocked(): ?bool
     {
         return $this->container['is_locked'];
     }
@@ -328,9 +328,9 @@ class EmailContentResponse implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets parent_html_id
      *
-     * @return string
+     * @return string|null
      */
-    public function getParentHtmlId(): string
+    public function getParentHtmlId(): ?string
     {
         return $this->container['parent_html_id'];
     }

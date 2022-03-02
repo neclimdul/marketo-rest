@@ -111,22 +111,6 @@ class BrowseAllPrograms implements ModelInterface, ArrayAccess, \JsonSerializabl
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -221,6 +205,22 @@ class BrowseAllPrograms implements ModelInterface, ArrayAccess, \JsonSerializabl
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -260,17 +260,17 @@ class BrowseAllPrograms implements ModelInterface, ArrayAccess, \JsonSerializabl
         $invalidProperties = [];
 
         if ($this->container['channel'] === null) {
-            $invalidProperties[] = "'channel' can't be null";
+            $invalidProperties['channel'] = "'channel' can't be null";
         }
         if ($this->container['folder'] === null) {
-            $invalidProperties[] = "'folder' can't be null";
+            $invalidProperties['folder'] = "'folder' can't be null";
         }
         if ($this->container['status'] === null) {
-            $invalidProperties[] = "'status' can't be null";
+            $invalidProperties['status'] = "'status' can't be null";
         }
         $allowedValues = $this->getStatusAllowableValues();
         if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
+            $invalidProperties['status'] = sprintf(
                 "invalid value '%s' for 'status', must be one of '%s'",
                 $this->container['status'],
                 implode("', '", $allowedValues)
@@ -278,11 +278,11 @@ class BrowseAllPrograms implements ModelInterface, ArrayAccess, \JsonSerializabl
         }
 
         if ($this->container['type'] === null) {
-            $invalidProperties[] = "'type' can't be null";
+            $invalidProperties['type'] = "'type' can't be null";
         }
         $allowedValues = $this->getTypeAllowableValues();
         if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
+            $invalidProperties['type'] = sprintf(
                 "invalid value '%s' for 'type', must be one of '%s'",
                 $this->container['type'],
                 implode("', '", $allowedValues)
@@ -355,9 +355,9 @@ class BrowseAllPrograms implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets created_at
      *
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getCreatedAt(): \DateTime
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->container['created_at'];
     }
@@ -379,9 +379,9 @@ class BrowseAllPrograms implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->container['description'];
     }
@@ -427,9 +427,9 @@ class BrowseAllPrograms implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets id
      *
-     * @return int
+     * @return int|null
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->container['id'];
     }
@@ -451,9 +451,9 @@ class BrowseAllPrograms implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets name
      *
-     * @return string
+     * @return string|null
      */
-    public function getName(): string
+    public function getName(): ?string
     {
         return $this->container['name'];
     }
@@ -475,9 +475,9 @@ class BrowseAllPrograms implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets sfdc_id
      *
-     * @return string
+     * @return string|null
      */
-    public function getSfdcId(): string
+    public function getSfdcId(): ?string
     {
         return $this->container['sfdc_id'];
     }
@@ -499,9 +499,9 @@ class BrowseAllPrograms implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets sfdc_name
      *
-     * @return string
+     * @return string|null
      */
-    public function getSfdcName(): string
+    public function getSfdcName(): ?string
     {
         return $this->container['sfdc_name'];
     }
@@ -591,9 +591,9 @@ class BrowseAllPrograms implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets updated_at
      *
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getUpdatedAt(): \DateTime
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->container['updated_at'];
     }
@@ -615,9 +615,9 @@ class BrowseAllPrograms implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets url
      *
-     * @return string
+     * @return string|null
      */
-    public function getUrl(): string
+    public function getUrl(): ?string
     {
         return $this->container['url'];
     }
@@ -639,9 +639,9 @@ class BrowseAllPrograms implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets workspace
      *
-     * @return string
+     * @return string|null
      */
-    public function getWorkspace(): string
+    public function getWorkspace(): ?string
     {
         return $this->container['workspace'];
     }

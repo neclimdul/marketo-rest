@@ -37,7 +37,7 @@ use PHPUnit\Framework\TestCase;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  *
- * @coversDefault \NecLimDul\MarketoRest\Lead\Model\DateRange
+ * @coversDefaultClass \NecLimDul\MarketoRest\Lead\Model\DateRange
  */
 class DateRangeTest extends TestCase
 {
@@ -48,17 +48,18 @@ class DateRangeTest extends TestCase
     private $sot;
 
     /**
-     * @var \Faker\Generator
-     */
-    private $faker;
-
-    /**
      * @var string[]
      */
     private $types = [
         'end_at' => 'string',
         'start_at' => 'string',
-    ];
+];
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
     /**
      * @var scalar[][]
      */
@@ -111,7 +112,14 @@ class DateRangeTest extends TestCase
                 return new \stdClass();
         }
         if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
-            return new $type();
+            $model = new $type();
+            $types = $type::swaggerTypes();
+            foreach ($model->listInvalidProperties() as $field => $reason) {
+                // @todo get allowed values? ((getter))AllowedValues
+                // @phpstan-ignore-next-line
+                $model[$field] = $this->getFakeValue($types[$field], null);
+            }
+            return $model;
         }
         $this->markTestSkipped('This type is not mocked yet: ' . $type);
     }
@@ -123,7 +131,103 @@ class DateRangeTest extends TestCase
      */
     public function testDateRange(): void
     {
-        $this->assertInstanceOf(\NecLimDul\MarketoRest\Lead\Model\DateRange::class, $this->sot);
+        $this->assertInstanceOf(DateRange::class, $this->sot);
+    }
+
+    /**
+     * @covers ::swaggerTypes
+     */
+    public function testSwaggerTypes(): void
+    {
+        $this->assertEquals($this->types, DateRange::swaggerTypes());
+    }
+
+    /**
+     * @covers ::swaggerFormats
+     */
+    public function testSwaggerFormats(): void
+    {
+        $formats = $this->sot->swaggerFormats();
+        $this->assertEquals(null, $formats['end_at']);
+        $this->assertEquals(null, $formats['start_at']);
+    }
+
+    /**
+     * @covers ::attributeMap
+     */
+    public function testAttributeMap(): void
+    {
+        $formats = $this->sot->attributeMap();
+        $this->assertEquals('endAt', $formats['end_at']);
+        $this->assertEquals('startAt', $formats['start_at']);
+    }
+
+    /**
+     * @covers ::getters
+     * @covers ::setters
+     */
+    public function testGettersSetters(): void
+    {
+        $getters = $this->sot->getters();
+        $setters = $this->sot->setters();
+        foreach (array_keys($this->types) as $field) {
+            $this->assertTrue(isset($setters[$field]));
+            $this->assertTrue(isset($getters[$field]));
+            $this->assertTrue(
+                method_exists($this->sot, $getters[$field]),
+                'Getter exists on model.'
+            );
+            $this->assertTrue(
+                method_exists($this->sot, $setters[$field]),
+                'Setter exists on model.'
+            );
+        }
+    }
+
+    /**
+     * @covers ::getModelName
+     */
+    public function testGetModelName(): void
+    {
+        $this->assertEquals('DateRange', $this->sot->getModelName());
+    }
+
+    /**
+     * @covers ::listInvalidProperties
+     * @covers ::valid
+     */
+    public function testValid(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::setAdditionalProperties
+     * @covers ::setAdditionalProperty
+     * @covers ::getAdditionalProperties
+     */
+    public function testAdditionalProperties(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::jsonSerialize
+     * @covers ::__toString
+     */
+    public function testJson(): void
+    {
+        // Some minimal tests that json generates well.
+        $json = json_encode($this->sot);
+        $this->assertIsString($json, 'Json encoded');
+        $json = json_decode($json);
+        $string = json_decode((string) $this->sot);
+        $this->assertEquals(
+            $json,
+            $string
+        );
+        $this->assertInstanceOf(\stdClass::class, $json);
+        $this->assertInstanceOf(\stdClass::class, $string);
     }
 
     /**
@@ -132,6 +236,10 @@ class DateRangeTest extends TestCase
      * @covers ::__construct
      * @covers ::getEndAt
      * @covers ::setEndAt
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyEndAt(): void
     {
@@ -142,7 +250,23 @@ class DateRangeTest extends TestCase
         );
         $this->sot->setEndAt($v);
         $this->assertEquals($v, $this->sot->getEndAt());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setEndAt(null);
+        $this->assertNull($this->sot->getEndAt());
+        $this->sot->setEndAt($v);
+
+        $this->assertEquals($v, $this->sot['end_at']);
+        $v = $this->getFakeValue(
+            $this->types['end_at'],
+            $this->allowedValues['end_at'] ?? null
+        );
+        $this->sot['end_at'] = $v;
+        $this->assertEquals($v, $this->sot['end_at']);
+        $this->assertTrue(isset($this->sot['end_at']));
+        unset($this->sot['end_at']);
+        $this->assertFalse(isset($this->sot['end_at']));
+        $this->sot['end_at'] = $v;
+        $this->assertEquals($v, $this->sot['end_at']);
+        $this->assertTrue(isset($this->sot['end_at']));
     }
 
     /**
@@ -151,6 +275,10 @@ class DateRangeTest extends TestCase
      * @covers ::__construct
      * @covers ::getStartAt
      * @covers ::setStartAt
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyStartAt(): void
     {
@@ -161,6 +289,22 @@ class DateRangeTest extends TestCase
         );
         $this->sot->setStartAt($v);
         $this->assertEquals($v, $this->sot->getStartAt());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setStartAt(null);
+        $this->assertNull($this->sot->getStartAt());
+        $this->sot->setStartAt($v);
+
+        $this->assertEquals($v, $this->sot['start_at']);
+        $v = $this->getFakeValue(
+            $this->types['start_at'],
+            $this->allowedValues['start_at'] ?? null
+        );
+        $this->sot['start_at'] = $v;
+        $this->assertEquals($v, $this->sot['start_at']);
+        $this->assertTrue(isset($this->sot['start_at']));
+        unset($this->sot['start_at']);
+        $this->assertFalse(isset($this->sot['start_at']));
+        $this->sot['start_at'] = $v;
+        $this->assertEquals($v, $this->sot['start_at']);
+        $this->assertTrue(isset($this->sot['start_at']));
     }
 }

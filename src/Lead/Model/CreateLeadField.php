@@ -104,22 +104,6 @@ class CreateLeadField implements ModelInterface, ArrayAccess, \JsonSerializable
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -190,6 +174,22 @@ class CreateLeadField implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -229,17 +229,17 @@ class CreateLeadField implements ModelInterface, ArrayAccess, \JsonSerializable
         $invalidProperties = [];
 
         if ($this->container['display_name'] === null) {
-            $invalidProperties[] = "'display_name' can't be null";
+            $invalidProperties['display_name'] = "'display_name' can't be null";
         }
         if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
+            $invalidProperties['name'] = "'name' can't be null";
         }
         if ($this->container['data_type'] === null) {
-            $invalidProperties[] = "'data_type' can't be null";
+            $invalidProperties['data_type'] = "'data_type' can't be null";
         }
         $allowedValues = $this->getDataTypeAllowableValues();
         if (!is_null($this->container['data_type']) && !in_array($this->container['data_type'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
+            $invalidProperties['data_type'] = sprintf(
                 "invalid value '%s' for 'data_type', must be one of '%s'",
                 $this->container['data_type'],
                 implode("', '", $allowedValues)
@@ -330,9 +330,9 @@ class CreateLeadField implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->container['description'];
     }
@@ -388,9 +388,9 @@ class CreateLeadField implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets is_hidden
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getIsHidden(): bool
+    public function getIsHidden(): ?bool
     {
         return $this->container['is_hidden'];
     }
@@ -412,9 +412,9 @@ class CreateLeadField implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets is_html_encoding_in_email
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getIsHtmlEncodingInEmail(): bool
+    public function getIsHtmlEncodingInEmail(): ?bool
     {
         return $this->container['is_html_encoding_in_email'];
     }
@@ -436,9 +436,9 @@ class CreateLeadField implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets is_sensitive
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getIsSensitive(): bool
+    public function getIsSensitive(): ?bool
     {
         return $this->container['is_sensitive'];
     }

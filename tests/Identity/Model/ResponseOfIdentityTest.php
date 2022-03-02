@@ -37,7 +37,7 @@ use PHPUnit\Framework\TestCase;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  *
- * @coversDefault \NecLimDul\MarketoRest\Identity\Model\ResponseOfIdentity
+ * @coversDefaultClass \NecLimDul\MarketoRest\Identity\Model\ResponseOfIdentity
  */
 class ResponseOfIdentityTest extends TestCase
 {
@@ -48,11 +48,6 @@ class ResponseOfIdentityTest extends TestCase
     private $sot;
 
     /**
-     * @var \Faker\Generator
-     */
-    private $faker;
-
-    /**
      * @var string[]
      */
     private $types = [
@@ -60,7 +55,13 @@ class ResponseOfIdentityTest extends TestCase
         'scope' => 'string',
         'expires_in' => 'int',
         'token_type' => 'string',
-    ];
+];
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
     /**
      * @var scalar[][]
      */
@@ -116,7 +117,14 @@ class ResponseOfIdentityTest extends TestCase
                 return new \stdClass();
         }
         if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
-            return new $type();
+            $model = new $type();
+            $types = $type::swaggerTypes();
+            foreach ($model->listInvalidProperties() as $field => $reason) {
+                // @todo get allowed values? ((getter))AllowedValues
+                // @phpstan-ignore-next-line
+                $model[$field] = $this->getFakeValue($types[$field], null);
+            }
+            return $model;
         }
         $this->markTestSkipped('This type is not mocked yet: ' . $type);
     }
@@ -128,7 +136,107 @@ class ResponseOfIdentityTest extends TestCase
      */
     public function testResponseOfIdentity(): void
     {
-        $this->assertInstanceOf(\NecLimDul\MarketoRest\Identity\Model\ResponseOfIdentity::class, $this->sot);
+        $this->assertInstanceOf(ResponseOfIdentity::class, $this->sot);
+    }
+
+    /**
+     * @covers ::swaggerTypes
+     */
+    public function testSwaggerTypes(): void
+    {
+        $this->assertEquals($this->types, ResponseOfIdentity::swaggerTypes());
+    }
+
+    /**
+     * @covers ::swaggerFormats
+     */
+    public function testSwaggerFormats(): void
+    {
+        $formats = $this->sot->swaggerFormats();
+        $this->assertEquals(null, $formats['access_token']);
+        $this->assertEquals(null, $formats['scope']);
+        $this->assertEquals(null, $formats['expires_in']);
+        $this->assertEquals(null, $formats['token_type']);
+    }
+
+    /**
+     * @covers ::attributeMap
+     */
+    public function testAttributeMap(): void
+    {
+        $formats = $this->sot->attributeMap();
+        $this->assertEquals('access_token', $formats['access_token']);
+        $this->assertEquals('scope', $formats['scope']);
+        $this->assertEquals('expires_in', $formats['expires_in']);
+        $this->assertEquals('token_type', $formats['token_type']);
+    }
+
+    /**
+     * @covers ::getters
+     * @covers ::setters
+     */
+    public function testGettersSetters(): void
+    {
+        $getters = $this->sot->getters();
+        $setters = $this->sot->setters();
+        foreach (array_keys($this->types) as $field) {
+            $this->assertTrue(isset($setters[$field]));
+            $this->assertTrue(isset($getters[$field]));
+            $this->assertTrue(
+                method_exists($this->sot, $getters[$field]),
+                'Getter exists on model.'
+            );
+            $this->assertTrue(
+                method_exists($this->sot, $setters[$field]),
+                'Setter exists on model.'
+            );
+        }
+    }
+
+    /**
+     * @covers ::getModelName
+     */
+    public function testGetModelName(): void
+    {
+        $this->assertEquals('ResponseOfIdentity', $this->sot->getModelName());
+    }
+
+    /**
+     * @covers ::listInvalidProperties
+     * @covers ::valid
+     */
+    public function testValid(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::setAdditionalProperties
+     * @covers ::setAdditionalProperty
+     * @covers ::getAdditionalProperties
+     */
+    public function testAdditionalProperties(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::jsonSerialize
+     * @covers ::__toString
+     */
+    public function testJson(): void
+    {
+        // Some minimal tests that json generates well.
+        $json = json_encode($this->sot);
+        $this->assertIsString($json, 'Json encoded');
+        $json = json_decode($json);
+        $string = json_decode((string) $this->sot);
+        $this->assertEquals(
+            $json,
+            $string
+        );
+        $this->assertInstanceOf(\stdClass::class, $json);
+        $this->assertInstanceOf(\stdClass::class, $string);
     }
 
     /**
@@ -137,6 +245,10 @@ class ResponseOfIdentityTest extends TestCase
      * @covers ::__construct
      * @covers ::getAccessToken
      * @covers ::setAccessToken
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyAccessToken(): void
     {
@@ -147,7 +259,23 @@ class ResponseOfIdentityTest extends TestCase
         );
         $this->sot->setAccessToken($v);
         $this->assertEquals($v, $this->sot->getAccessToken());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setAccessToken(null);
+        $this->assertNull($this->sot->getAccessToken());
+        $this->sot->setAccessToken($v);
+
+        $this->assertEquals($v, $this->sot['access_token']);
+        $v = $this->getFakeValue(
+            $this->types['access_token'],
+            $this->allowedValues['access_token'] ?? null
+        );
+        $this->sot['access_token'] = $v;
+        $this->assertEquals($v, $this->sot['access_token']);
+        $this->assertTrue(isset($this->sot['access_token']));
+        unset($this->sot['access_token']);
+        $this->assertFalse(isset($this->sot['access_token']));
+        $this->sot['access_token'] = $v;
+        $this->assertEquals($v, $this->sot['access_token']);
+        $this->assertTrue(isset($this->sot['access_token']));
     }
 
     /**
@@ -156,6 +284,10 @@ class ResponseOfIdentityTest extends TestCase
      * @covers ::__construct
      * @covers ::getScope
      * @covers ::setScope
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyScope(): void
     {
@@ -166,7 +298,23 @@ class ResponseOfIdentityTest extends TestCase
         );
         $this->sot->setScope($v);
         $this->assertEquals($v, $this->sot->getScope());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setScope(null);
+        $this->assertNull($this->sot->getScope());
+        $this->sot->setScope($v);
+
+        $this->assertEquals($v, $this->sot['scope']);
+        $v = $this->getFakeValue(
+            $this->types['scope'],
+            $this->allowedValues['scope'] ?? null
+        );
+        $this->sot['scope'] = $v;
+        $this->assertEquals($v, $this->sot['scope']);
+        $this->assertTrue(isset($this->sot['scope']));
+        unset($this->sot['scope']);
+        $this->assertFalse(isset($this->sot['scope']));
+        $this->sot['scope'] = $v;
+        $this->assertEquals($v, $this->sot['scope']);
+        $this->assertTrue(isset($this->sot['scope']));
     }
 
     /**
@@ -175,6 +323,10 @@ class ResponseOfIdentityTest extends TestCase
      * @covers ::__construct
      * @covers ::getExpiresIn
      * @covers ::setExpiresIn
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyExpiresIn(): void
     {
@@ -185,7 +337,23 @@ class ResponseOfIdentityTest extends TestCase
         );
         $this->sot->setExpiresIn($v);
         $this->assertEquals($v, $this->sot->getExpiresIn());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setExpiresIn(null);
+        $this->assertNull($this->sot->getExpiresIn());
+        $this->sot->setExpiresIn($v);
+
+        $this->assertEquals($v, $this->sot['expires_in']);
+        $v = $this->getFakeValue(
+            $this->types['expires_in'],
+            $this->allowedValues['expires_in'] ?? null
+        );
+        $this->sot['expires_in'] = $v;
+        $this->assertEquals($v, $this->sot['expires_in']);
+        $this->assertTrue(isset($this->sot['expires_in']));
+        unset($this->sot['expires_in']);
+        $this->assertFalse(isset($this->sot['expires_in']));
+        $this->sot['expires_in'] = $v;
+        $this->assertEquals($v, $this->sot['expires_in']);
+        $this->assertTrue(isset($this->sot['expires_in']));
     }
 
     /**
@@ -194,6 +362,10 @@ class ResponseOfIdentityTest extends TestCase
      * @covers ::__construct
      * @covers ::getTokenType
      * @covers ::setTokenType
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyTokenType(): void
     {
@@ -204,6 +376,22 @@ class ResponseOfIdentityTest extends TestCase
         );
         $this->sot->setTokenType($v);
         $this->assertEquals($v, $this->sot->getTokenType());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setTokenType(null);
+        $this->assertNull($this->sot->getTokenType());
+        $this->sot->setTokenType($v);
+
+        $this->assertEquals($v, $this->sot['token_type']);
+        $v = $this->getFakeValue(
+            $this->types['token_type'],
+            $this->allowedValues['token_type'] ?? null
+        );
+        $this->sot['token_type'] = $v;
+        $this->assertEquals($v, $this->sot['token_type']);
+        $this->assertTrue(isset($this->sot['token_type']));
+        unset($this->sot['token_type']);
+        $this->assertFalse(isset($this->sot['token_type']));
+        $this->sot['token_type'] = $v;
+        $this->assertEquals($v, $this->sot['token_type']);
+        $this->assertTrue(isset($this->sot['token_type']));
     }
 }

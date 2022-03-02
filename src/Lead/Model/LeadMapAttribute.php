@@ -81,22 +81,6 @@ class LeadMapAttribute implements ModelInterface, ArrayAccess, \JsonSerializable
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -147,6 +131,22 @@ class LeadMapAttribute implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -186,7 +186,7 @@ class LeadMapAttribute implements ModelInterface, ArrayAccess, \JsonSerializable
         $invalidProperties = [];
 
         if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
+            $invalidProperties['name'] = "'name' can't be null";
         }
         return $invalidProperties;
     }
@@ -226,9 +226,9 @@ class LeadMapAttribute implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets read_only
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getReadOnly(): bool
+    public function getReadOnly(): ?bool
     {
         return $this->container['read_only'];
     }

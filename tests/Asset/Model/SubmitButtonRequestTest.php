@@ -37,7 +37,7 @@ use PHPUnit\Framework\TestCase;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  *
- * @coversDefault \NecLimDul\MarketoRest\Asset\Model\SubmitButtonRequest
+ * @coversDefaultClass \NecLimDul\MarketoRest\Asset\Model\SubmitButtonRequest
  */
 class SubmitButtonRequestTest extends TestCase
 {
@@ -48,11 +48,6 @@ class SubmitButtonRequestTest extends TestCase
     private $sot;
 
     /**
-     * @var \Faker\Generator
-     */
-    private $faker;
-
-    /**
      * @var string[]
      */
     private $types = [
@@ -60,7 +55,13 @@ class SubmitButtonRequestTest extends TestCase
         'button_style' => 'string',
         'label' => 'string',
         'waiting_label' => 'string',
-    ];
+];
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
     /**
      * @var scalar[][]
      */
@@ -113,7 +114,14 @@ class SubmitButtonRequestTest extends TestCase
                 return new \stdClass();
         }
         if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
-            return new $type();
+            $model = new $type();
+            $types = $type::swaggerTypes();
+            foreach ($model->listInvalidProperties() as $field => $reason) {
+                // @todo get allowed values? ((getter))AllowedValues
+                // @phpstan-ignore-next-line
+                $model[$field] = $this->getFakeValue($types[$field], null);
+            }
+            return $model;
         }
         $this->markTestSkipped('This type is not mocked yet: ' . $type);
     }
@@ -125,7 +133,107 @@ class SubmitButtonRequestTest extends TestCase
      */
     public function testSubmitButtonRequest(): void
     {
-        $this->assertInstanceOf(\NecLimDul\MarketoRest\Asset\Model\SubmitButtonRequest::class, $this->sot);
+        $this->assertInstanceOf(SubmitButtonRequest::class, $this->sot);
+    }
+
+    /**
+     * @covers ::swaggerTypes
+     */
+    public function testSwaggerTypes(): void
+    {
+        $this->assertEquals($this->types, SubmitButtonRequest::swaggerTypes());
+    }
+
+    /**
+     * @covers ::swaggerFormats
+     */
+    public function testSwaggerFormats(): void
+    {
+        $formats = $this->sot->swaggerFormats();
+        $this->assertEquals('int32', $formats['button_position']);
+        $this->assertEquals(null, $formats['button_style']);
+        $this->assertEquals(null, $formats['label']);
+        $this->assertEquals(null, $formats['waiting_label']);
+    }
+
+    /**
+     * @covers ::attributeMap
+     */
+    public function testAttributeMap(): void
+    {
+        $formats = $this->sot->attributeMap();
+        $this->assertEquals('buttonPosition', $formats['button_position']);
+        $this->assertEquals('buttonStyle', $formats['button_style']);
+        $this->assertEquals('label', $formats['label']);
+        $this->assertEquals('waitingLabel', $formats['waiting_label']);
+    }
+
+    /**
+     * @covers ::getters
+     * @covers ::setters
+     */
+    public function testGettersSetters(): void
+    {
+        $getters = $this->sot->getters();
+        $setters = $this->sot->setters();
+        foreach (array_keys($this->types) as $field) {
+            $this->assertTrue(isset($setters[$field]));
+            $this->assertTrue(isset($getters[$field]));
+            $this->assertTrue(
+                method_exists($this->sot, $getters[$field]),
+                'Getter exists on model.'
+            );
+            $this->assertTrue(
+                method_exists($this->sot, $setters[$field]),
+                'Setter exists on model.'
+            );
+        }
+    }
+
+    /**
+     * @covers ::getModelName
+     */
+    public function testGetModelName(): void
+    {
+        $this->assertEquals('SubmitButtonRequest', $this->sot->getModelName());
+    }
+
+    /**
+     * @covers ::listInvalidProperties
+     * @covers ::valid
+     */
+    public function testValid(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::setAdditionalProperties
+     * @covers ::setAdditionalProperty
+     * @covers ::getAdditionalProperties
+     */
+    public function testAdditionalProperties(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::jsonSerialize
+     * @covers ::__toString
+     */
+    public function testJson(): void
+    {
+        // Some minimal tests that json generates well.
+        $json = json_encode($this->sot);
+        $this->assertIsString($json, 'Json encoded');
+        $json = json_decode($json);
+        $string = json_decode((string) $this->sot);
+        $this->assertEquals(
+            $json,
+            $string
+        );
+        $this->assertInstanceOf(\stdClass::class, $json);
+        $this->assertInstanceOf(\stdClass::class, $string);
     }
 
     /**
@@ -134,6 +242,10 @@ class SubmitButtonRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getButtonPosition
      * @covers ::setButtonPosition
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyButtonPosition(): void
     {
@@ -144,7 +256,23 @@ class SubmitButtonRequestTest extends TestCase
         );
         $this->sot->setButtonPosition($v);
         $this->assertEquals($v, $this->sot->getButtonPosition());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setButtonPosition(null);
+        $this->assertNull($this->sot->getButtonPosition());
+        $this->sot->setButtonPosition($v);
+
+        $this->assertEquals($v, $this->sot['button_position']);
+        $v = $this->getFakeValue(
+            $this->types['button_position'],
+            $this->allowedValues['button_position'] ?? null
+        );
+        $this->sot['button_position'] = $v;
+        $this->assertEquals($v, $this->sot['button_position']);
+        $this->assertTrue(isset($this->sot['button_position']));
+        unset($this->sot['button_position']);
+        $this->assertFalse(isset($this->sot['button_position']));
+        $this->sot['button_position'] = $v;
+        $this->assertEquals($v, $this->sot['button_position']);
+        $this->assertTrue(isset($this->sot['button_position']));
     }
 
     /**
@@ -153,6 +281,10 @@ class SubmitButtonRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getButtonStyle
      * @covers ::setButtonStyle
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyButtonStyle(): void
     {
@@ -163,7 +295,23 @@ class SubmitButtonRequestTest extends TestCase
         );
         $this->sot->setButtonStyle($v);
         $this->assertEquals($v, $this->sot->getButtonStyle());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setButtonStyle(null);
+        $this->assertNull($this->sot->getButtonStyle());
+        $this->sot->setButtonStyle($v);
+
+        $this->assertEquals($v, $this->sot['button_style']);
+        $v = $this->getFakeValue(
+            $this->types['button_style'],
+            $this->allowedValues['button_style'] ?? null
+        );
+        $this->sot['button_style'] = $v;
+        $this->assertEquals($v, $this->sot['button_style']);
+        $this->assertTrue(isset($this->sot['button_style']));
+        unset($this->sot['button_style']);
+        $this->assertFalse(isset($this->sot['button_style']));
+        $this->sot['button_style'] = $v;
+        $this->assertEquals($v, $this->sot['button_style']);
+        $this->assertTrue(isset($this->sot['button_style']));
     }
 
     /**
@@ -172,6 +320,10 @@ class SubmitButtonRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getLabel
      * @covers ::setLabel
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyLabel(): void
     {
@@ -182,7 +334,23 @@ class SubmitButtonRequestTest extends TestCase
         );
         $this->sot->setLabel($v);
         $this->assertEquals($v, $this->sot->getLabel());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setLabel(null);
+        $this->assertNull($this->sot->getLabel());
+        $this->sot->setLabel($v);
+
+        $this->assertEquals($v, $this->sot['label']);
+        $v = $this->getFakeValue(
+            $this->types['label'],
+            $this->allowedValues['label'] ?? null
+        );
+        $this->sot['label'] = $v;
+        $this->assertEquals($v, $this->sot['label']);
+        $this->assertTrue(isset($this->sot['label']));
+        unset($this->sot['label']);
+        $this->assertFalse(isset($this->sot['label']));
+        $this->sot['label'] = $v;
+        $this->assertEquals($v, $this->sot['label']);
+        $this->assertTrue(isset($this->sot['label']));
     }
 
     /**
@@ -191,6 +359,10 @@ class SubmitButtonRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getWaitingLabel
      * @covers ::setWaitingLabel
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyWaitingLabel(): void
     {
@@ -201,6 +373,22 @@ class SubmitButtonRequestTest extends TestCase
         );
         $this->sot->setWaitingLabel($v);
         $this->assertEquals($v, $this->sot->getWaitingLabel());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setWaitingLabel(null);
+        $this->assertNull($this->sot->getWaitingLabel());
+        $this->sot->setWaitingLabel($v);
+
+        $this->assertEquals($v, $this->sot['waiting_label']);
+        $v = $this->getFakeValue(
+            $this->types['waiting_label'],
+            $this->allowedValues['waiting_label'] ?? null
+        );
+        $this->sot['waiting_label'] = $v;
+        $this->assertEquals($v, $this->sot['waiting_label']);
+        $this->assertTrue(isset($this->sot['waiting_label']));
+        unset($this->sot['waiting_label']);
+        $this->assertFalse(isset($this->sot['waiting_label']));
+        $this->sot['waiting_label'] = $v;
+        $this->assertEquals($v, $this->sot['waiting_label']);
+        $this->assertTrue(isset($this->sot['waiting_label']));
     }
 }

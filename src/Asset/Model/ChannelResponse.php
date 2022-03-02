@@ -89,22 +89,6 @@ class ChannelResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -171,6 +155,22 @@ class ChannelResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -210,19 +210,19 @@ class ChannelResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         $invalidProperties = [];
 
         if ($this->container['applicable_program_type'] === null) {
-            $invalidProperties[] = "'applicable_program_type' can't be null";
+            $invalidProperties['applicable_program_type'] = "'applicable_program_type' can't be null";
         }
         if ($this->container['created_at'] === null) {
-            $invalidProperties[] = "'created_at' can't be null";
+            $invalidProperties['created_at'] = "'created_at' can't be null";
         }
         if ($this->container['id'] === null) {
-            $invalidProperties[] = "'id' can't be null";
+            $invalidProperties['id'] = "'id' can't be null";
         }
         if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
+            $invalidProperties['name'] = "'name' can't be null";
         }
         if ($this->container['updated_at'] === null) {
-            $invalidProperties[] = "'updated_at' can't be null";
+            $invalidProperties['updated_at'] = "'updated_at' can't be null";
         }
         return $invalidProperties;
     }
@@ -334,9 +334,9 @@ class ChannelResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets progression_statuses
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\ChannelProgression[]
+     * @return \NecLimDul\MarketoRest\Asset\Model\ChannelProgression[]|null
      */
-    public function getProgressionStatuses(): array
+    public function getProgressionStatuses(): ?array
     {
         return $this->container['progression_statuses'];
     }

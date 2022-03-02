@@ -83,22 +83,6 @@ class LeadAttribute2 implements ModelInterface, ArrayAccess, \JsonSerializable
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -153,6 +137,22 @@ class LeadAttribute2 implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -192,13 +192,13 @@ class LeadAttribute2 implements ModelInterface, ArrayAccess, \JsonSerializable
         $invalidProperties = [];
 
         if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
+            $invalidProperties['name'] = "'name' can't be null";
         }
         if ($this->container['searchable_fields'] === null) {
-            $invalidProperties[] = "'searchable_fields' can't be null";
+            $invalidProperties['searchable_fields'] = "'searchable_fields' can't be null";
         }
         if ($this->container['fields'] === null) {
-            $invalidProperties[] = "'fields' can't be null";
+            $invalidProperties['fields'] = "'fields' can't be null";
         }
         return $invalidProperties;
     }

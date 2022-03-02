@@ -92,22 +92,6 @@ class SyncCustomObjectTypeRequest implements ModelInterface, ArrayAccess, \JsonS
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -174,6 +158,22 @@ class SyncCustomObjectTypeRequest implements ModelInterface, ArrayAccess, \JsonS
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -214,7 +214,7 @@ class SyncCustomObjectTypeRequest implements ModelInterface, ArrayAccess, \JsonS
 
         $allowedValues = $this->getActionAllowableValues();
         if (!is_null($this->container['action']) && !in_array($this->container['action'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
+            $invalidProperties['action'] = sprintf(
                 "invalid value '%s' for 'action', must be one of '%s'",
                 $this->container['action'],
                 implode("', '", $allowedValues)
@@ -222,10 +222,10 @@ class SyncCustomObjectTypeRequest implements ModelInterface, ArrayAccess, \JsonS
         }
 
         if ($this->container['display_name'] === null) {
-            $invalidProperties[] = "'display_name' can't be null";
+            $invalidProperties['display_name'] = "'display_name' can't be null";
         }
         if ($this->container['api_name'] === null) {
-            $invalidProperties[] = "'api_name' can't be null";
+            $invalidProperties['api_name'] = "'api_name' can't be null";
         }
         return $invalidProperties;
     }
@@ -254,9 +254,9 @@ class SyncCustomObjectTypeRequest implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Gets action
      *
-     * @return string
+     * @return string|null
      */
-    public function getAction(): string
+    public function getAction(): ?string
     {
         return $this->container['action'];
     }
@@ -336,9 +336,9 @@ class SyncCustomObjectTypeRequest implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Gets plural_name
      *
-     * @return string
+     * @return string|null
      */
-    public function getPluralName(): string
+    public function getPluralName(): ?string
     {
         return $this->container['plural_name'];
     }
@@ -360,9 +360,9 @@ class SyncCustomObjectTypeRequest implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->container['description'];
     }
@@ -384,9 +384,9 @@ class SyncCustomObjectTypeRequest implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Gets show_in_lead_detail
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getShowInLeadDetail(): bool
+    public function getShowInLeadDetail(): ?bool
     {
         return $this->container['show_in_lead_detail'];
     }

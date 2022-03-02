@@ -101,22 +101,6 @@ class NamedAccountList implements ModelInterface, ArrayAccess, \JsonSerializable
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -195,6 +179,22 @@ class NamedAccountList implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -234,14 +234,14 @@ class NamedAccountList implements ModelInterface, ArrayAccess, \JsonSerializable
         $invalidProperties = [];
 
         if ($this->container['marketo_guid'] === null) {
-            $invalidProperties[] = "'marketo_guid' can't be null";
+            $invalidProperties['marketo_guid'] = "'marketo_guid' can't be null";
         }
         if ($this->container['seq'] === null) {
-            $invalidProperties[] = "'seq' can't be null";
+            $invalidProperties['seq'] = "'seq' can't be null";
         }
         $allowedValues = $this->getStatusAllowableValues();
         if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
+            $invalidProperties['status'] = sprintf(
                 "invalid value '%s' for 'status', must be one of '%s'",
                 $this->container['status'],
                 implode("', '", $allowedValues)
@@ -278,9 +278,9 @@ class NamedAccountList implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets created_at
      *
-     * @return string
+     * @return string|null
      */
-    public function getCreatedAt(): string
+    public function getCreatedAt(): ?string
     {
         return $this->container['created_at'];
     }
@@ -326,9 +326,9 @@ class NamedAccountList implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets name
      *
-     * @return string
+     * @return string|null
      */
-    public function getName(): string
+    public function getName(): ?string
     {
         return $this->container['name'];
     }
@@ -350,9 +350,9 @@ class NamedAccountList implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets reasons
      *
-     * @return \NecLimDul\MarketoRest\Lead\Model\Reason[]
+     * @return \NecLimDul\MarketoRest\Lead\Model\Reason[]|null
      */
-    public function getReasons(): array
+    public function getReasons(): ?array
     {
         return $this->container['reasons'];
     }
@@ -398,9 +398,9 @@ class NamedAccountList implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets status
      *
-     * @return string
+     * @return string|null
      */
-    public function getStatus(): string
+    public function getStatus(): ?string
     {
         return $this->container['status'];
     }
@@ -432,9 +432,9 @@ class NamedAccountList implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets type
      *
-     * @return string
+     * @return string|null
      */
-    public function getType(): string
+    public function getType(): ?string
     {
         return $this->container['type'];
     }
@@ -456,9 +456,9 @@ class NamedAccountList implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets updateable
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getUpdateable(): bool
+    public function getUpdateable(): ?bool
     {
         return $this->container['updateable'];
     }
@@ -480,9 +480,9 @@ class NamedAccountList implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets updated_at
      *
-     * @return string
+     * @return string|null
      */
-    public function getUpdatedAt(): string
+    public function getUpdatedAt(): ?string
     {
         return $this->container['updated_at'];
     }

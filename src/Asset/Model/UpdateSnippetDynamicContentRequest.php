@@ -82,22 +82,6 @@ class UpdateSnippetDynamicContentRequest implements ModelInterface, ArrayAccess,
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -148,6 +132,22 @@ class UpdateSnippetDynamicContentRequest implements ModelInterface, ArrayAccess,
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -188,7 +188,7 @@ class UpdateSnippetDynamicContentRequest implements ModelInterface, ArrayAccess,
 
         $allowedValues = $this->getTypeAllowableValues();
         if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
+            $invalidProperties['type'] = sprintf(
                 "invalid value '%s' for 'type', must be one of '%s'",
                 $this->container['type'],
                 implode("', '", $allowedValues)
@@ -220,9 +220,9 @@ class UpdateSnippetDynamicContentRequest implements ModelInterface, ArrayAccess,
     /**
      * Gets type
      *
-     * @return string
+     * @return string|null
      */
-    public function getType(): string
+    public function getType(): ?string
     {
         return $this->container['type'];
     }
@@ -254,9 +254,9 @@ class UpdateSnippetDynamicContentRequest implements ModelInterface, ArrayAccess,
     /**
      * Gets value
      *
-     * @return string
+     * @return string|null
      */
-    public function getValue(): string
+    public function getValue(): ?string
     {
         return $this->container['value'];
     }

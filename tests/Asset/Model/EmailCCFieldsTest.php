@@ -37,7 +37,7 @@ use PHPUnit\Framework\TestCase;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  *
- * @coversDefault \NecLimDul\MarketoRest\Asset\Model\EmailCCFields
+ * @coversDefaultClass \NecLimDul\MarketoRest\Asset\Model\EmailCCFields
  */
 class EmailCCFieldsTest extends TestCase
 {
@@ -48,11 +48,6 @@ class EmailCCFieldsTest extends TestCase
     private $sot;
 
     /**
-     * @var \Faker\Generator
-     */
-    private $faker;
-
-    /**
      * @var string[]
      */
     private $types = [
@@ -60,7 +55,13 @@ class EmailCCFieldsTest extends TestCase
         'object_name' => 'string',
         'display_name' => 'string',
         'api_name' => 'string',
-    ];
+];
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
     /**
      * @var scalar[][]
      */
@@ -113,7 +114,14 @@ class EmailCCFieldsTest extends TestCase
                 return new \stdClass();
         }
         if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
-            return new $type();
+            $model = new $type();
+            $types = $type::swaggerTypes();
+            foreach ($model->listInvalidProperties() as $field => $reason) {
+                // @todo get allowed values? ((getter))AllowedValues
+                // @phpstan-ignore-next-line
+                $model[$field] = $this->getFakeValue($types[$field], null);
+            }
+            return $model;
         }
         $this->markTestSkipped('This type is not mocked yet: ' . $type);
     }
@@ -125,7 +133,107 @@ class EmailCCFieldsTest extends TestCase
      */
     public function testEmailCCFields(): void
     {
-        $this->assertInstanceOf(\NecLimDul\MarketoRest\Asset\Model\EmailCCFields::class, $this->sot);
+        $this->assertInstanceOf(EmailCCFields::class, $this->sot);
+    }
+
+    /**
+     * @covers ::swaggerTypes
+     */
+    public function testSwaggerTypes(): void
+    {
+        $this->assertEquals($this->types, EmailCCFields::swaggerTypes());
+    }
+
+    /**
+     * @covers ::swaggerFormats
+     */
+    public function testSwaggerFormats(): void
+    {
+        $formats = $this->sot->swaggerFormats();
+        $this->assertEquals(null, $formats['attribute_id']);
+        $this->assertEquals(null, $formats['object_name']);
+        $this->assertEquals(null, $formats['display_name']);
+        $this->assertEquals(null, $formats['api_name']);
+    }
+
+    /**
+     * @covers ::attributeMap
+     */
+    public function testAttributeMap(): void
+    {
+        $formats = $this->sot->attributeMap();
+        $this->assertEquals('attributeId', $formats['attribute_id']);
+        $this->assertEquals('objectName', $formats['object_name']);
+        $this->assertEquals('displayName', $formats['display_name']);
+        $this->assertEquals('apiName', $formats['api_name']);
+    }
+
+    /**
+     * @covers ::getters
+     * @covers ::setters
+     */
+    public function testGettersSetters(): void
+    {
+        $getters = $this->sot->getters();
+        $setters = $this->sot->setters();
+        foreach (array_keys($this->types) as $field) {
+            $this->assertTrue(isset($setters[$field]));
+            $this->assertTrue(isset($getters[$field]));
+            $this->assertTrue(
+                method_exists($this->sot, $getters[$field]),
+                'Getter exists on model.'
+            );
+            $this->assertTrue(
+                method_exists($this->sot, $setters[$field]),
+                'Setter exists on model.'
+            );
+        }
+    }
+
+    /**
+     * @covers ::getModelName
+     */
+    public function testGetModelName(): void
+    {
+        $this->assertEquals('EmailCCFields', $this->sot->getModelName());
+    }
+
+    /**
+     * @covers ::listInvalidProperties
+     * @covers ::valid
+     */
+    public function testValid(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::setAdditionalProperties
+     * @covers ::setAdditionalProperty
+     * @covers ::getAdditionalProperties
+     */
+    public function testAdditionalProperties(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::jsonSerialize
+     * @covers ::__toString
+     */
+    public function testJson(): void
+    {
+        // Some minimal tests that json generates well.
+        $json = json_encode($this->sot);
+        $this->assertIsString($json, 'Json encoded');
+        $json = json_decode($json);
+        $string = json_decode((string) $this->sot);
+        $this->assertEquals(
+            $json,
+            $string
+        );
+        $this->assertInstanceOf(\stdClass::class, $json);
+        $this->assertInstanceOf(\stdClass::class, $string);
     }
 
     /**
@@ -134,6 +242,10 @@ class EmailCCFieldsTest extends TestCase
      * @covers ::__construct
      * @covers ::getAttributeId
      * @covers ::setAttributeId
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyAttributeId(): void
     {
@@ -144,7 +256,20 @@ class EmailCCFieldsTest extends TestCase
         );
         $this->sot->setAttributeId($v);
         $this->assertEquals($v, $this->sot->getAttributeId());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['attribute_id']);
+        $v = $this->getFakeValue(
+            $this->types['attribute_id'],
+            $this->allowedValues['attribute_id'] ?? null
+        );
+        $this->sot['attribute_id'] = $v;
+        $this->assertEquals($v, $this->sot['attribute_id']);
+        $this->assertTrue(isset($this->sot['attribute_id']));
+        unset($this->sot['attribute_id']);
+        $this->assertFalse(isset($this->sot['attribute_id']));
+        $this->sot['attribute_id'] = $v;
+        $this->assertEquals($v, $this->sot['attribute_id']);
+        $this->assertTrue(isset($this->sot['attribute_id']));
     }
 
     /**
@@ -153,6 +278,10 @@ class EmailCCFieldsTest extends TestCase
      * @covers ::__construct
      * @covers ::getObjectName
      * @covers ::setObjectName
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyObjectName(): void
     {
@@ -163,7 +292,20 @@ class EmailCCFieldsTest extends TestCase
         );
         $this->sot->setObjectName($v);
         $this->assertEquals($v, $this->sot->getObjectName());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['object_name']);
+        $v = $this->getFakeValue(
+            $this->types['object_name'],
+            $this->allowedValues['object_name'] ?? null
+        );
+        $this->sot['object_name'] = $v;
+        $this->assertEquals($v, $this->sot['object_name']);
+        $this->assertTrue(isset($this->sot['object_name']));
+        unset($this->sot['object_name']);
+        $this->assertFalse(isset($this->sot['object_name']));
+        $this->sot['object_name'] = $v;
+        $this->assertEquals($v, $this->sot['object_name']);
+        $this->assertTrue(isset($this->sot['object_name']));
     }
 
     /**
@@ -172,6 +314,10 @@ class EmailCCFieldsTest extends TestCase
      * @covers ::__construct
      * @covers ::getDisplayName
      * @covers ::setDisplayName
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyDisplayName(): void
     {
@@ -182,7 +328,20 @@ class EmailCCFieldsTest extends TestCase
         );
         $this->sot->setDisplayName($v);
         $this->assertEquals($v, $this->sot->getDisplayName());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['display_name']);
+        $v = $this->getFakeValue(
+            $this->types['display_name'],
+            $this->allowedValues['display_name'] ?? null
+        );
+        $this->sot['display_name'] = $v;
+        $this->assertEquals($v, $this->sot['display_name']);
+        $this->assertTrue(isset($this->sot['display_name']));
+        unset($this->sot['display_name']);
+        $this->assertFalse(isset($this->sot['display_name']));
+        $this->sot['display_name'] = $v;
+        $this->assertEquals($v, $this->sot['display_name']);
+        $this->assertTrue(isset($this->sot['display_name']));
     }
 
     /**
@@ -191,6 +350,10 @@ class EmailCCFieldsTest extends TestCase
      * @covers ::__construct
      * @covers ::getApiName
      * @covers ::setApiName
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyApiName(): void
     {
@@ -201,6 +364,19 @@ class EmailCCFieldsTest extends TestCase
         );
         $this->sot->setApiName($v);
         $this->assertEquals($v, $this->sot->getApiName());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['api_name']);
+        $v = $this->getFakeValue(
+            $this->types['api_name'],
+            $this->allowedValues['api_name'] ?? null
+        );
+        $this->sot['api_name'] = $v;
+        $this->assertEquals($v, $this->sot['api_name']);
+        $this->assertTrue(isset($this->sot['api_name']));
+        unset($this->sot['api_name']);
+        $this->assertFalse(isset($this->sot['api_name']));
+        $this->sot['api_name'] = $v;
+        $this->assertEquals($v, $this->sot['api_name']);
+        $this->assertTrue(isset($this->sot['api_name']));
     }
 }

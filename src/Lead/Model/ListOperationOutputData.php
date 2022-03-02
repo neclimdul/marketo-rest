@@ -83,22 +83,6 @@ class ListOperationOutputData implements ModelInterface, ArrayAccess, \JsonSeria
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -153,6 +137,22 @@ class ListOperationOutputData implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -192,7 +192,7 @@ class ListOperationOutputData implements ModelInterface, ArrayAccess, \JsonSeria
         $invalidProperties = [];
 
         if ($this->container['id'] === null) {
-            $invalidProperties[] = "'id' can't be null";
+            $invalidProperties['id'] = "'id' can't be null";
         }
         return $invalidProperties;
     }
@@ -232,9 +232,9 @@ class ListOperationOutputData implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets reasons
      *
-     * @return \NecLimDul\MarketoRest\Lead\Model\Reason[]
+     * @return \NecLimDul\MarketoRest\Lead\Model\Reason[]|null
      */
-    public function getReasons(): array
+    public function getReasons(): ?array
     {
         return $this->container['reasons'];
     }
@@ -256,9 +256,9 @@ class ListOperationOutputData implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets status
      *
-     * @return string
+     * @return string|null
      */
-    public function getStatus(): string
+    public function getStatus(): ?string
     {
         return $this->container['status'];
     }

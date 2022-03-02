@@ -37,7 +37,7 @@ use PHPUnit\Framework\TestCase;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  *
- * @coversDefault \NecLimDul\MarketoRest\Asset\Model\AddFormFieldSetRequest
+ * @coversDefaultClass \NecLimDul\MarketoRest\Asset\Model\AddFormFieldSetRequest
  */
 class AddFormFieldSetRequestTest extends TestCase
 {
@@ -48,16 +48,17 @@ class AddFormFieldSetRequestTest extends TestCase
     private $sot;
 
     /**
-     * @var \Faker\Generator
-     */
-    private $faker;
-
-    /**
      * @var string[]
      */
     private $types = [
         'label' => 'string',
-    ];
+];
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
     /**
      * @var scalar[][]
      */
@@ -110,7 +111,14 @@ class AddFormFieldSetRequestTest extends TestCase
                 return new \stdClass();
         }
         if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
-            return new $type();
+            $model = new $type();
+            $types = $type::swaggerTypes();
+            foreach ($model->listInvalidProperties() as $field => $reason) {
+                // @todo get allowed values? ((getter))AllowedValues
+                // @phpstan-ignore-next-line
+                $model[$field] = $this->getFakeValue($types[$field], null);
+            }
+            return $model;
         }
         $this->markTestSkipped('This type is not mocked yet: ' . $type);
     }
@@ -122,7 +130,101 @@ class AddFormFieldSetRequestTest extends TestCase
      */
     public function testAddFormFieldSetRequest(): void
     {
-        $this->assertInstanceOf(\NecLimDul\MarketoRest\Asset\Model\AddFormFieldSetRequest::class, $this->sot);
+        $this->assertInstanceOf(AddFormFieldSetRequest::class, $this->sot);
+    }
+
+    /**
+     * @covers ::swaggerTypes
+     */
+    public function testSwaggerTypes(): void
+    {
+        $this->assertEquals($this->types, AddFormFieldSetRequest::swaggerTypes());
+    }
+
+    /**
+     * @covers ::swaggerFormats
+     */
+    public function testSwaggerFormats(): void
+    {
+        $formats = $this->sot->swaggerFormats();
+        $this->assertEquals(null, $formats['label']);
+    }
+
+    /**
+     * @covers ::attributeMap
+     */
+    public function testAttributeMap(): void
+    {
+        $formats = $this->sot->attributeMap();
+        $this->assertEquals('label', $formats['label']);
+    }
+
+    /**
+     * @covers ::getters
+     * @covers ::setters
+     */
+    public function testGettersSetters(): void
+    {
+        $getters = $this->sot->getters();
+        $setters = $this->sot->setters();
+        foreach (array_keys($this->types) as $field) {
+            $this->assertTrue(isset($setters[$field]));
+            $this->assertTrue(isset($getters[$field]));
+            $this->assertTrue(
+                method_exists($this->sot, $getters[$field]),
+                'Getter exists on model.'
+            );
+            $this->assertTrue(
+                method_exists($this->sot, $setters[$field]),
+                'Setter exists on model.'
+            );
+        }
+    }
+
+    /**
+     * @covers ::getModelName
+     */
+    public function testGetModelName(): void
+    {
+        $this->assertEquals('AddFormFieldSetRequest', $this->sot->getModelName());
+    }
+
+    /**
+     * @covers ::listInvalidProperties
+     * @covers ::valid
+     */
+    public function testValid(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::setAdditionalProperties
+     * @covers ::setAdditionalProperty
+     * @covers ::getAdditionalProperties
+     */
+    public function testAdditionalProperties(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::jsonSerialize
+     * @covers ::__toString
+     */
+    public function testJson(): void
+    {
+        // Some minimal tests that json generates well.
+        $json = json_encode($this->sot);
+        $this->assertIsString($json, 'Json encoded');
+        $json = json_decode($json);
+        $string = json_decode((string) $this->sot);
+        $this->assertEquals(
+            $json,
+            $string
+        );
+        $this->assertInstanceOf(\stdClass::class, $json);
+        $this->assertInstanceOf(\stdClass::class, $string);
     }
 
     /**
@@ -131,6 +233,10 @@ class AddFormFieldSetRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getLabel
      * @covers ::setLabel
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyLabel(): void
     {
@@ -141,6 +247,19 @@ class AddFormFieldSetRequestTest extends TestCase
         );
         $this->sot->setLabel($v);
         $this->assertEquals($v, $this->sot->getLabel());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['label']);
+        $v = $this->getFakeValue(
+            $this->types['label'],
+            $this->allowedValues['label'] ?? null
+        );
+        $this->sot['label'] = $v;
+        $this->assertEquals($v, $this->sot['label']);
+        $this->assertTrue(isset($this->sot['label']));
+        unset($this->sot['label']);
+        $this->assertFalse(isset($this->sot['label']));
+        $this->sot['label'] = $v;
+        $this->assertEquals($v, $this->sot['label']);
+        $this->assertTrue(isset($this->sot['label']));
     }
 }

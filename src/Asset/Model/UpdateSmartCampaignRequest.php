@@ -81,22 +81,6 @@ class UpdateSmartCampaignRequest implements ModelInterface, ArrayAccess, \JsonSe
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -144,6 +128,22 @@ class UpdateSmartCampaignRequest implements ModelInterface, ArrayAccess, \JsonSe
     {
         $this->container['description'] = $data['description'] ?? null;
         $this->container['name'] = $data['name'] ?? null;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
     }
 
     /**
@@ -199,9 +199,9 @@ class UpdateSmartCampaignRequest implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->container['description'];
     }
@@ -223,9 +223,9 @@ class UpdateSmartCampaignRequest implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Gets name
      *
-     * @return string
+     * @return string|null
      */
-    public function getName(): string
+    public function getName(): ?string
     {
         return $this->container['name'];
     }

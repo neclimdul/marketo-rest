@@ -91,22 +91,6 @@ class ProgramMembership implements ModelInterface, ArrayAccess, \JsonSerializabl
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -177,6 +161,22 @@ class ProgramMembership implements ModelInterface, ArrayAccess, \JsonSerializabl
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -216,10 +216,10 @@ class ProgramMembership implements ModelInterface, ArrayAccess, \JsonSerializabl
         $invalidProperties = [];
 
         if ($this->container['membership_date'] === null) {
-            $invalidProperties[] = "'membership_date' can't be null";
+            $invalidProperties['membership_date'] = "'membership_date' can't be null";
         }
         if ($this->container['progression_status'] === null) {
-            $invalidProperties[] = "'progression_status' can't be null";
+            $invalidProperties['progression_status'] = "'progression_status' can't be null";
         }
         return $invalidProperties;
     }
@@ -235,9 +235,9 @@ class ProgramMembership implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets acquired_by
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getAcquiredBy(): bool
+    public function getAcquiredBy(): ?bool
     {
         return $this->container['acquired_by'];
     }
@@ -259,9 +259,9 @@ class ProgramMembership implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets is_exhausted
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getIsExhausted(): bool
+    public function getIsExhausted(): ?bool
     {
         return $this->container['is_exhausted'];
     }
@@ -307,9 +307,9 @@ class ProgramMembership implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets nurture_cadence
      *
-     * @return string
+     * @return string|null
      */
-    public function getNurtureCadence(): string
+    public function getNurtureCadence(): ?string
     {
         return $this->container['nurture_cadence'];
     }
@@ -355,9 +355,9 @@ class ProgramMembership implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets reached_success
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getReachedSuccess(): bool
+    public function getReachedSuccess(): ?bool
     {
         return $this->container['reached_success'];
     }
@@ -379,9 +379,9 @@ class ProgramMembership implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets stream
      *
-     * @return string
+     * @return string|null
      */
-    public function getStream(): string
+    public function getStream(): ?string
     {
         return $this->container['stream'];
     }

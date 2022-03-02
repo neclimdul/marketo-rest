@@ -83,22 +83,6 @@ class CustomObject implements ModelInterface, ArrayAccess, \JsonSerializable
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -153,6 +137,22 @@ class CustomObject implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -192,10 +192,10 @@ class CustomObject implements ModelInterface, ArrayAccess, \JsonSerializable
         $invalidProperties = [];
 
         if ($this->container['marketo_guid'] === null) {
-            $invalidProperties[] = "'marketo_guid' can't be null";
+            $invalidProperties['marketo_guid'] = "'marketo_guid' can't be null";
         }
         if ($this->container['seq'] === null) {
-            $invalidProperties[] = "'seq' can't be null";
+            $invalidProperties['seq'] = "'seq' can't be null";
         }
         return $invalidProperties;
     }
@@ -235,9 +235,9 @@ class CustomObject implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets reasons
      *
-     * @return \NecLimDul\MarketoRest\Lead\Model\Reason[]
+     * @return \NecLimDul\MarketoRest\Lead\Model\Reason[]|null
      */
-    public function getReasons(): array
+    public function getReasons(): ?array
     {
         return $this->container['reasons'];
     }

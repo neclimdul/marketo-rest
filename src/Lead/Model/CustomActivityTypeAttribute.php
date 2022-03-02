@@ -98,22 +98,6 @@ class CustomActivityTypeAttribute implements ModelInterface, ArrayAccess, \JsonS
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -176,6 +160,22 @@ class CustomActivityTypeAttribute implements ModelInterface, ArrayAccess, \JsonS
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -215,11 +215,11 @@ class CustomActivityTypeAttribute implements ModelInterface, ArrayAccess, \JsonS
         $invalidProperties = [];
 
         if ($this->container['api_name'] === null) {
-            $invalidProperties[] = "'api_name' can't be null";
+            $invalidProperties['api_name'] = "'api_name' can't be null";
         }
         $allowedValues = $this->getDataTypeAllowableValues();
         if (!is_null($this->container['data_type']) && !in_array($this->container['data_type'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
+            $invalidProperties['data_type'] = sprintf(
                 "invalid value '%s' for 'data_type', must be one of '%s'",
                 $this->container['data_type'],
                 implode("', '", $allowedValues)
@@ -227,7 +227,7 @@ class CustomActivityTypeAttribute implements ModelInterface, ArrayAccess, \JsonS
         }
 
         if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
+            $invalidProperties['name'] = "'name' can't be null";
         }
         return $invalidProperties;
     }
@@ -288,9 +288,9 @@ class CustomActivityTypeAttribute implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Gets data_type
      *
-     * @return string
+     * @return string|null
      */
-    public function getDataType(): string
+    public function getDataType(): ?string
     {
         return $this->container['data_type'];
     }
@@ -322,9 +322,9 @@ class CustomActivityTypeAttribute implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->container['description'];
     }
@@ -346,9 +346,9 @@ class CustomActivityTypeAttribute implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Gets is_primary
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getIsPrimary(): bool
+    public function getIsPrimary(): ?bool
     {
         return $this->container['is_primary'];
     }

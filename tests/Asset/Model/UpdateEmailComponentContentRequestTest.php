@@ -37,7 +37,7 @@ use PHPUnit\Framework\TestCase;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  *
- * @coversDefault \NecLimDul\MarketoRest\Asset\Model\UpdateEmailComponentContentRequest
+ * @coversDefaultClass \NecLimDul\MarketoRest\Asset\Model\UpdateEmailComponentContentRequest
  */
 class UpdateEmailComponentContentRequestTest extends TestCase
 {
@@ -46,11 +46,6 @@ class UpdateEmailComponentContentRequestTest extends TestCase
      * @var \NecLimDul\MarketoRest\Asset\Model\UpdateEmailComponentContentRequest
      */
     private $sot;
-
-    /**
-     * @var \Faker\Generator
-     */
-    private $faker;
 
     /**
      * @var string[]
@@ -68,7 +63,13 @@ class UpdateEmailComponentContentRequestTest extends TestCase
         'value' => 'string',
         'video_url' => 'string',
         'width' => 'int',
-    ];
+];
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
     /**
      * @var scalar[][]
      */
@@ -126,7 +127,14 @@ class UpdateEmailComponentContentRequestTest extends TestCase
                 return new \stdClass();
         }
         if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
-            return new $type();
+            $model = new $type();
+            $types = $type::swaggerTypes();
+            foreach ($model->listInvalidProperties() as $field => $reason) {
+                // @todo get allowed values? ((getter))AllowedValues
+                // @phpstan-ignore-next-line
+                $model[$field] = $this->getFakeValue($types[$field], null);
+            }
+            return $model;
         }
         $this->markTestSkipped('This type is not mocked yet: ' . $type);
     }
@@ -138,7 +146,123 @@ class UpdateEmailComponentContentRequestTest extends TestCase
      */
     public function testUpdateEmailComponentContentRequest(): void
     {
-        $this->assertInstanceOf(\NecLimDul\MarketoRest\Asset\Model\UpdateEmailComponentContentRequest::class, $this->sot);
+        $this->assertInstanceOf(UpdateEmailComponentContentRequest::class, $this->sot);
+    }
+
+    /**
+     * @covers ::swaggerTypes
+     */
+    public function testSwaggerTypes(): void
+    {
+        $this->assertEquals($this->types, UpdateEmailComponentContentRequest::swaggerTypes());
+    }
+
+    /**
+     * @covers ::swaggerFormats
+     */
+    public function testSwaggerFormats(): void
+    {
+        $formats = $this->sot->swaggerFormats();
+        $this->assertEquals(null, $formats['alt_text']);
+        $this->assertEquals(null, $formats['external_url']);
+        $this->assertEquals('int32', $formats['height']);
+        $this->assertEquals(null, $formats['image']);
+        $this->assertEquals(null, $formats['link_url']);
+        $this->assertEquals(null, $formats['over_write']);
+        $this->assertEquals(null, $formats['style']);
+        $this->assertEquals(null, $formats['text_value']);
+        $this->assertEquals(null, $formats['type']);
+        $this->assertEquals(null, $formats['value']);
+        $this->assertEquals(null, $formats['video_url']);
+        $this->assertEquals('int32', $formats['width']);
+    }
+
+    /**
+     * @covers ::attributeMap
+     */
+    public function testAttributeMap(): void
+    {
+        $formats = $this->sot->attributeMap();
+        $this->assertEquals('altText', $formats['alt_text']);
+        $this->assertEquals('externalUrl', $formats['external_url']);
+        $this->assertEquals('height', $formats['height']);
+        $this->assertEquals('image', $formats['image']);
+        $this->assertEquals('linkUrl', $formats['link_url']);
+        $this->assertEquals('overWrite', $formats['over_write']);
+        $this->assertEquals('style', $formats['style']);
+        $this->assertEquals('textValue', $formats['text_value']);
+        $this->assertEquals('type', $formats['type']);
+        $this->assertEquals('value', $formats['value']);
+        $this->assertEquals('videoUrl', $formats['video_url']);
+        $this->assertEquals('width', $formats['width']);
+    }
+
+    /**
+     * @covers ::getters
+     * @covers ::setters
+     */
+    public function testGettersSetters(): void
+    {
+        $getters = $this->sot->getters();
+        $setters = $this->sot->setters();
+        foreach (array_keys($this->types) as $field) {
+            $this->assertTrue(isset($setters[$field]));
+            $this->assertTrue(isset($getters[$field]));
+            $this->assertTrue(
+                method_exists($this->sot, $getters[$field]),
+                'Getter exists on model.'
+            );
+            $this->assertTrue(
+                method_exists($this->sot, $setters[$field]),
+                'Setter exists on model.'
+            );
+        }
+    }
+
+    /**
+     * @covers ::getModelName
+     */
+    public function testGetModelName(): void
+    {
+        $this->assertEquals('UpdateEmailComponentContentRequest', $this->sot->getModelName());
+    }
+
+    /**
+     * @covers ::listInvalidProperties
+     * @covers ::valid
+     */
+    public function testValid(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::setAdditionalProperties
+     * @covers ::setAdditionalProperty
+     * @covers ::getAdditionalProperties
+     */
+    public function testAdditionalProperties(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::jsonSerialize
+     * @covers ::__toString
+     */
+    public function testJson(): void
+    {
+        // Some minimal tests that json generates well.
+        $json = json_encode($this->sot);
+        $this->assertIsString($json, 'Json encoded');
+        $json = json_decode($json);
+        $string = json_decode((string) $this->sot);
+        $this->assertEquals(
+            $json,
+            $string
+        );
+        $this->assertInstanceOf(\stdClass::class, $json);
+        $this->assertInstanceOf(\stdClass::class, $string);
     }
 
     /**
@@ -147,6 +271,10 @@ class UpdateEmailComponentContentRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getAltText
      * @covers ::setAltText
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyAltText(): void
     {
@@ -157,7 +285,23 @@ class UpdateEmailComponentContentRequestTest extends TestCase
         );
         $this->sot->setAltText($v);
         $this->assertEquals($v, $this->sot->getAltText());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setAltText(null);
+        $this->assertNull($this->sot->getAltText());
+        $this->sot->setAltText($v);
+
+        $this->assertEquals($v, $this->sot['alt_text']);
+        $v = $this->getFakeValue(
+            $this->types['alt_text'],
+            $this->allowedValues['alt_text'] ?? null
+        );
+        $this->sot['alt_text'] = $v;
+        $this->assertEquals($v, $this->sot['alt_text']);
+        $this->assertTrue(isset($this->sot['alt_text']));
+        unset($this->sot['alt_text']);
+        $this->assertFalse(isset($this->sot['alt_text']));
+        $this->sot['alt_text'] = $v;
+        $this->assertEquals($v, $this->sot['alt_text']);
+        $this->assertTrue(isset($this->sot['alt_text']));
     }
 
     /**
@@ -166,6 +310,10 @@ class UpdateEmailComponentContentRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getExternalUrl
      * @covers ::setExternalUrl
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyExternalUrl(): void
     {
@@ -176,7 +324,23 @@ class UpdateEmailComponentContentRequestTest extends TestCase
         );
         $this->sot->setExternalUrl($v);
         $this->assertEquals($v, $this->sot->getExternalUrl());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setExternalUrl(null);
+        $this->assertNull($this->sot->getExternalUrl());
+        $this->sot->setExternalUrl($v);
+
+        $this->assertEquals($v, $this->sot['external_url']);
+        $v = $this->getFakeValue(
+            $this->types['external_url'],
+            $this->allowedValues['external_url'] ?? null
+        );
+        $this->sot['external_url'] = $v;
+        $this->assertEquals($v, $this->sot['external_url']);
+        $this->assertTrue(isset($this->sot['external_url']));
+        unset($this->sot['external_url']);
+        $this->assertFalse(isset($this->sot['external_url']));
+        $this->sot['external_url'] = $v;
+        $this->assertEquals($v, $this->sot['external_url']);
+        $this->assertTrue(isset($this->sot['external_url']));
     }
 
     /**
@@ -185,6 +349,10 @@ class UpdateEmailComponentContentRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getHeight
      * @covers ::setHeight
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyHeight(): void
     {
@@ -195,7 +363,23 @@ class UpdateEmailComponentContentRequestTest extends TestCase
         );
         $this->sot->setHeight($v);
         $this->assertEquals($v, $this->sot->getHeight());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setHeight(null);
+        $this->assertNull($this->sot->getHeight());
+        $this->sot->setHeight($v);
+
+        $this->assertEquals($v, $this->sot['height']);
+        $v = $this->getFakeValue(
+            $this->types['height'],
+            $this->allowedValues['height'] ?? null
+        );
+        $this->sot['height'] = $v;
+        $this->assertEquals($v, $this->sot['height']);
+        $this->assertTrue(isset($this->sot['height']));
+        unset($this->sot['height']);
+        $this->assertFalse(isset($this->sot['height']));
+        $this->sot['height'] = $v;
+        $this->assertEquals($v, $this->sot['height']);
+        $this->assertTrue(isset($this->sot['height']));
     }
 
     /**
@@ -204,6 +388,10 @@ class UpdateEmailComponentContentRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getImage
      * @covers ::setImage
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyImage(): void
     {
@@ -214,7 +402,23 @@ class UpdateEmailComponentContentRequestTest extends TestCase
         );
         $this->sot->setImage($v);
         $this->assertEquals($v, $this->sot->getImage());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setImage(null);
+        $this->assertNull($this->sot->getImage());
+        $this->sot->setImage($v);
+
+        $this->assertEquals($v, $this->sot['image']);
+        $v = $this->getFakeValue(
+            $this->types['image'],
+            $this->allowedValues['image'] ?? null
+        );
+        $this->sot['image'] = $v;
+        $this->assertEquals($v, $this->sot['image']);
+        $this->assertTrue(isset($this->sot['image']));
+        unset($this->sot['image']);
+        $this->assertFalse(isset($this->sot['image']));
+        $this->sot['image'] = $v;
+        $this->assertEquals($v, $this->sot['image']);
+        $this->assertTrue(isset($this->sot['image']));
     }
 
     /**
@@ -223,6 +427,10 @@ class UpdateEmailComponentContentRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getLinkUrl
      * @covers ::setLinkUrl
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyLinkUrl(): void
     {
@@ -233,7 +441,23 @@ class UpdateEmailComponentContentRequestTest extends TestCase
         );
         $this->sot->setLinkUrl($v);
         $this->assertEquals($v, $this->sot->getLinkUrl());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setLinkUrl(null);
+        $this->assertNull($this->sot->getLinkUrl());
+        $this->sot->setLinkUrl($v);
+
+        $this->assertEquals($v, $this->sot['link_url']);
+        $v = $this->getFakeValue(
+            $this->types['link_url'],
+            $this->allowedValues['link_url'] ?? null
+        );
+        $this->sot['link_url'] = $v;
+        $this->assertEquals($v, $this->sot['link_url']);
+        $this->assertTrue(isset($this->sot['link_url']));
+        unset($this->sot['link_url']);
+        $this->assertFalse(isset($this->sot['link_url']));
+        $this->sot['link_url'] = $v;
+        $this->assertEquals($v, $this->sot['link_url']);
+        $this->assertTrue(isset($this->sot['link_url']));
     }
 
     /**
@@ -242,6 +466,10 @@ class UpdateEmailComponentContentRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getOverWrite
      * @covers ::setOverWrite
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyOverWrite(): void
     {
@@ -252,7 +480,23 @@ class UpdateEmailComponentContentRequestTest extends TestCase
         );
         $this->sot->setOverWrite($v);
         $this->assertEquals($v, $this->sot->getOverWrite());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setOverWrite(null);
+        $this->assertNull($this->sot->getOverWrite());
+        $this->sot->setOverWrite($v);
+
+        $this->assertEquals($v, $this->sot['over_write']);
+        $v = $this->getFakeValue(
+            $this->types['over_write'],
+            $this->allowedValues['over_write'] ?? null
+        );
+        $this->sot['over_write'] = $v;
+        $this->assertEquals($v, $this->sot['over_write']);
+        $this->assertTrue(isset($this->sot['over_write']));
+        unset($this->sot['over_write']);
+        $this->assertFalse(isset($this->sot['over_write']));
+        $this->sot['over_write'] = $v;
+        $this->assertEquals($v, $this->sot['over_write']);
+        $this->assertTrue(isset($this->sot['over_write']));
     }
 
     /**
@@ -261,6 +505,10 @@ class UpdateEmailComponentContentRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getStyle
      * @covers ::setStyle
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyStyle(): void
     {
@@ -271,7 +519,23 @@ class UpdateEmailComponentContentRequestTest extends TestCase
         );
         $this->sot->setStyle($v);
         $this->assertEquals($v, $this->sot->getStyle());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setStyle(null);
+        $this->assertNull($this->sot->getStyle());
+        $this->sot->setStyle($v);
+
+        $this->assertEquals($v, $this->sot['style']);
+        $v = $this->getFakeValue(
+            $this->types['style'],
+            $this->allowedValues['style'] ?? null
+        );
+        $this->sot['style'] = $v;
+        $this->assertEquals($v, $this->sot['style']);
+        $this->assertTrue(isset($this->sot['style']));
+        unset($this->sot['style']);
+        $this->assertFalse(isset($this->sot['style']));
+        $this->sot['style'] = $v;
+        $this->assertEquals($v, $this->sot['style']);
+        $this->assertTrue(isset($this->sot['style']));
     }
 
     /**
@@ -280,6 +544,10 @@ class UpdateEmailComponentContentRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getTextValue
      * @covers ::setTextValue
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyTextValue(): void
     {
@@ -290,7 +558,23 @@ class UpdateEmailComponentContentRequestTest extends TestCase
         );
         $this->sot->setTextValue($v);
         $this->assertEquals($v, $this->sot->getTextValue());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setTextValue(null);
+        $this->assertNull($this->sot->getTextValue());
+        $this->sot->setTextValue($v);
+
+        $this->assertEquals($v, $this->sot['text_value']);
+        $v = $this->getFakeValue(
+            $this->types['text_value'],
+            $this->allowedValues['text_value'] ?? null
+        );
+        $this->sot['text_value'] = $v;
+        $this->assertEquals($v, $this->sot['text_value']);
+        $this->assertTrue(isset($this->sot['text_value']));
+        unset($this->sot['text_value']);
+        $this->assertFalse(isset($this->sot['text_value']));
+        $this->sot['text_value'] = $v;
+        $this->assertEquals($v, $this->sot['text_value']);
+        $this->assertTrue(isset($this->sot['text_value']));
     }
 
     /**
@@ -299,6 +583,10 @@ class UpdateEmailComponentContentRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getType
      * @covers ::setType
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyType(): void
     {
@@ -309,7 +597,20 @@ class UpdateEmailComponentContentRequestTest extends TestCase
         );
         $this->sot->setType($v);
         $this->assertEquals($v, $this->sot->getType());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['type']);
+        $v = $this->getFakeValue(
+            $this->types['type'],
+            $this->allowedValues['type'] ?? null
+        );
+        $this->sot['type'] = $v;
+        $this->assertEquals($v, $this->sot['type']);
+        $this->assertTrue(isset($this->sot['type']));
+        unset($this->sot['type']);
+        $this->assertFalse(isset($this->sot['type']));
+        $this->sot['type'] = $v;
+        $this->assertEquals($v, $this->sot['type']);
+        $this->assertTrue(isset($this->sot['type']));
     }
 
     /**
@@ -318,6 +619,10 @@ class UpdateEmailComponentContentRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getValue
      * @covers ::setValue
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyValue(): void
     {
@@ -328,7 +633,20 @@ class UpdateEmailComponentContentRequestTest extends TestCase
         );
         $this->sot->setValue($v);
         $this->assertEquals($v, $this->sot->getValue());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['value']);
+        $v = $this->getFakeValue(
+            $this->types['value'],
+            $this->allowedValues['value'] ?? null
+        );
+        $this->sot['value'] = $v;
+        $this->assertEquals($v, $this->sot['value']);
+        $this->assertTrue(isset($this->sot['value']));
+        unset($this->sot['value']);
+        $this->assertFalse(isset($this->sot['value']));
+        $this->sot['value'] = $v;
+        $this->assertEquals($v, $this->sot['value']);
+        $this->assertTrue(isset($this->sot['value']));
     }
 
     /**
@@ -337,6 +655,10 @@ class UpdateEmailComponentContentRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getVideoUrl
      * @covers ::setVideoUrl
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyVideoUrl(): void
     {
@@ -347,7 +669,23 @@ class UpdateEmailComponentContentRequestTest extends TestCase
         );
         $this->sot->setVideoUrl($v);
         $this->assertEquals($v, $this->sot->getVideoUrl());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setVideoUrl(null);
+        $this->assertNull($this->sot->getVideoUrl());
+        $this->sot->setVideoUrl($v);
+
+        $this->assertEquals($v, $this->sot['video_url']);
+        $v = $this->getFakeValue(
+            $this->types['video_url'],
+            $this->allowedValues['video_url'] ?? null
+        );
+        $this->sot['video_url'] = $v;
+        $this->assertEquals($v, $this->sot['video_url']);
+        $this->assertTrue(isset($this->sot['video_url']));
+        unset($this->sot['video_url']);
+        $this->assertFalse(isset($this->sot['video_url']));
+        $this->sot['video_url'] = $v;
+        $this->assertEquals($v, $this->sot['video_url']);
+        $this->assertTrue(isset($this->sot['video_url']));
     }
 
     /**
@@ -356,6 +694,10 @@ class UpdateEmailComponentContentRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getWidth
      * @covers ::setWidth
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyWidth(): void
     {
@@ -366,6 +708,22 @@ class UpdateEmailComponentContentRequestTest extends TestCase
         );
         $this->sot->setWidth($v);
         $this->assertEquals($v, $this->sot->getWidth());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setWidth(null);
+        $this->assertNull($this->sot->getWidth());
+        $this->sot->setWidth($v);
+
+        $this->assertEquals($v, $this->sot['width']);
+        $v = $this->getFakeValue(
+            $this->types['width'],
+            $this->allowedValues['width'] ?? null
+        );
+        $this->sot['width'] = $v;
+        $this->assertEquals($v, $this->sot['width']);
+        $this->assertTrue(isset($this->sot['width']));
+        unset($this->sot['width']);
+        $this->assertFalse(isset($this->sot['width']));
+        $this->sot['width'] = $v;
+        $this->assertEquals($v, $this->sot['width']);
+        $this->assertTrue(isset($this->sot['width']));
     }
 }

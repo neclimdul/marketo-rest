@@ -37,7 +37,7 @@ use PHPUnit\Framework\TestCase;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  *
- * @coversDefault \NecLimDul\MarketoRest\Asset\Model\GetFilesRequest
+ * @coversDefaultClass \NecLimDul\MarketoRest\Asset\Model\GetFilesRequest
  */
 class GetFilesRequestTest extends TestCase
 {
@@ -48,18 +48,19 @@ class GetFilesRequestTest extends TestCase
     private $sot;
 
     /**
-     * @var \Faker\Generator
-     */
-    private $faker;
-
-    /**
      * @var string[]
      */
     private $types = [
         'folder' => '\NecLimDul\MarketoRest\Asset\Model\Folder',
         'max_return' => 'int',
         'offset' => 'int',
-    ];
+];
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
     /**
      * @var scalar[][]
      */
@@ -112,7 +113,14 @@ class GetFilesRequestTest extends TestCase
                 return new \stdClass();
         }
         if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
-            return new $type();
+            $model = new $type();
+            $types = $type::swaggerTypes();
+            foreach ($model->listInvalidProperties() as $field => $reason) {
+                // @todo get allowed values? ((getter))AllowedValues
+                // @phpstan-ignore-next-line
+                $model[$field] = $this->getFakeValue($types[$field], null);
+            }
+            return $model;
         }
         $this->markTestSkipped('This type is not mocked yet: ' . $type);
     }
@@ -124,7 +132,105 @@ class GetFilesRequestTest extends TestCase
      */
     public function testGetFilesRequest(): void
     {
-        $this->assertInstanceOf(\NecLimDul\MarketoRest\Asset\Model\GetFilesRequest::class, $this->sot);
+        $this->assertInstanceOf(GetFilesRequest::class, $this->sot);
+    }
+
+    /**
+     * @covers ::swaggerTypes
+     */
+    public function testSwaggerTypes(): void
+    {
+        $this->assertEquals($this->types, GetFilesRequest::swaggerTypes());
+    }
+
+    /**
+     * @covers ::swaggerFormats
+     */
+    public function testSwaggerFormats(): void
+    {
+        $formats = $this->sot->swaggerFormats();
+        $this->assertEquals(null, $formats['folder']);
+        $this->assertEquals('int32', $formats['max_return']);
+        $this->assertEquals('int32', $formats['offset']);
+    }
+
+    /**
+     * @covers ::attributeMap
+     */
+    public function testAttributeMap(): void
+    {
+        $formats = $this->sot->attributeMap();
+        $this->assertEquals('folder', $formats['folder']);
+        $this->assertEquals('maxReturn', $formats['max_return']);
+        $this->assertEquals('offset', $formats['offset']);
+    }
+
+    /**
+     * @covers ::getters
+     * @covers ::setters
+     */
+    public function testGettersSetters(): void
+    {
+        $getters = $this->sot->getters();
+        $setters = $this->sot->setters();
+        foreach (array_keys($this->types) as $field) {
+            $this->assertTrue(isset($setters[$field]));
+            $this->assertTrue(isset($getters[$field]));
+            $this->assertTrue(
+                method_exists($this->sot, $getters[$field]),
+                'Getter exists on model.'
+            );
+            $this->assertTrue(
+                method_exists($this->sot, $setters[$field]),
+                'Setter exists on model.'
+            );
+        }
+    }
+
+    /**
+     * @covers ::getModelName
+     */
+    public function testGetModelName(): void
+    {
+        $this->assertEquals('GetFilesRequest', $this->sot->getModelName());
+    }
+
+    /**
+     * @covers ::listInvalidProperties
+     * @covers ::valid
+     */
+    public function testValid(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::setAdditionalProperties
+     * @covers ::setAdditionalProperty
+     * @covers ::getAdditionalProperties
+     */
+    public function testAdditionalProperties(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::jsonSerialize
+     * @covers ::__toString
+     */
+    public function testJson(): void
+    {
+        // Some minimal tests that json generates well.
+        $json = json_encode($this->sot);
+        $this->assertIsString($json, 'Json encoded');
+        $json = json_decode($json);
+        $string = json_decode((string) $this->sot);
+        $this->assertEquals(
+            $json,
+            $string
+        );
+        $this->assertInstanceOf(\stdClass::class, $json);
+        $this->assertInstanceOf(\stdClass::class, $string);
     }
 
     /**
@@ -133,6 +239,10 @@ class GetFilesRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getFolder
      * @covers ::setFolder
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyFolder(): void
     {
@@ -143,7 +253,23 @@ class GetFilesRequestTest extends TestCase
         );
         $this->sot->setFolder($v);
         $this->assertEquals($v, $this->sot->getFolder());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setFolder(null);
+        $this->assertNull($this->sot->getFolder());
+        $this->sot->setFolder($v);
+
+        $this->assertEquals($v, $this->sot['folder']);
+        $v = $this->getFakeValue(
+            $this->types['folder'],
+            $this->allowedValues['folder'] ?? null
+        );
+        $this->sot['folder'] = $v;
+        $this->assertEquals($v, $this->sot['folder']);
+        $this->assertTrue(isset($this->sot['folder']));
+        unset($this->sot['folder']);
+        $this->assertFalse(isset($this->sot['folder']));
+        $this->sot['folder'] = $v;
+        $this->assertEquals($v, $this->sot['folder']);
+        $this->assertTrue(isset($this->sot['folder']));
     }
 
     /**
@@ -152,6 +278,10 @@ class GetFilesRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getMaxReturn
      * @covers ::setMaxReturn
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyMaxReturn(): void
     {
@@ -162,7 +292,23 @@ class GetFilesRequestTest extends TestCase
         );
         $this->sot->setMaxReturn($v);
         $this->assertEquals($v, $this->sot->getMaxReturn());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setMaxReturn(null);
+        $this->assertNull($this->sot->getMaxReturn());
+        $this->sot->setMaxReturn($v);
+
+        $this->assertEquals($v, $this->sot['max_return']);
+        $v = $this->getFakeValue(
+            $this->types['max_return'],
+            $this->allowedValues['max_return'] ?? null
+        );
+        $this->sot['max_return'] = $v;
+        $this->assertEquals($v, $this->sot['max_return']);
+        $this->assertTrue(isset($this->sot['max_return']));
+        unset($this->sot['max_return']);
+        $this->assertFalse(isset($this->sot['max_return']));
+        $this->sot['max_return'] = $v;
+        $this->assertEquals($v, $this->sot['max_return']);
+        $this->assertTrue(isset($this->sot['max_return']));
     }
 
     /**
@@ -171,6 +317,10 @@ class GetFilesRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getOffset
      * @covers ::setOffset
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyOffset(): void
     {
@@ -181,6 +331,22 @@ class GetFilesRequestTest extends TestCase
         );
         $this->sot->setOffset($v);
         $this->assertEquals($v, $this->sot->getOffset());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setOffset(null);
+        $this->assertNull($this->sot->getOffset());
+        $this->sot->setOffset($v);
+
+        $this->assertEquals($v, $this->sot['offset']);
+        $v = $this->getFakeValue(
+            $this->types['offset'],
+            $this->allowedValues['offset'] ?? null
+        );
+        $this->sot['offset'] = $v;
+        $this->assertEquals($v, $this->sot['offset']);
+        $this->assertTrue(isset($this->sot['offset']));
+        unset($this->sot['offset']);
+        $this->assertFalse(isset($this->sot['offset']));
+        $this->sot['offset'] = $v;
+        $this->assertEquals($v, $this->sot['offset']);
+        $this->assertTrue(isset($this->sot['offset']));
     }
 }

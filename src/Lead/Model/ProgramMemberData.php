@@ -83,22 +83,6 @@ class ProgramMemberData implements ModelInterface, ArrayAccess, \JsonSerializabl
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -153,6 +137,22 @@ class ProgramMemberData implements ModelInterface, ArrayAccess, \JsonSerializabl
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -192,10 +192,10 @@ class ProgramMemberData implements ModelInterface, ArrayAccess, \JsonSerializabl
         $invalidProperties = [];
 
         if ($this->container['lead_id'] === null) {
-            $invalidProperties[] = "'lead_id' can't be null";
+            $invalidProperties['lead_id'] = "'lead_id' can't be null";
         }
         if ($this->container['field_api_name'] === null) {
-            $invalidProperties[] = "'field_api_name' can't be null";
+            $invalidProperties['field_api_name'] = "'field_api_name' can't be null";
         }
         return $invalidProperties;
     }
@@ -259,9 +259,9 @@ class ProgramMemberData implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets field_api_name2
      *
-     * @return string
+     * @return string|null
      */
-    public function getFieldApiName2(): string
+    public function getFieldApiName2(): ?string
     {
         return $this->container['field_api_name2'];
     }

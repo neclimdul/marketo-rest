@@ -91,22 +91,6 @@ class ProgramMemberAttribute2 implements ModelInterface, ArrayAccess, \JsonSeria
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -177,6 +161,22 @@ class ProgramMemberAttribute2 implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -216,25 +216,25 @@ class ProgramMemberAttribute2 implements ModelInterface, ArrayAccess, \JsonSeria
         $invalidProperties = [];
 
         if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
+            $invalidProperties['name'] = "'name' can't be null";
         }
         if ($this->container['description'] === null) {
-            $invalidProperties[] = "'description' can't be null";
+            $invalidProperties['description'] = "'description' can't be null";
         }
         if ($this->container['created_at'] === null) {
-            $invalidProperties[] = "'created_at' can't be null";
+            $invalidProperties['created_at'] = "'created_at' can't be null";
         }
         if ($this->container['updated_at'] === null) {
-            $invalidProperties[] = "'updated_at' can't be null";
+            $invalidProperties['updated_at'] = "'updated_at' can't be null";
         }
         if ($this->container['dedupe_fields'] === null) {
-            $invalidProperties[] = "'dedupe_fields' can't be null";
+            $invalidProperties['dedupe_fields'] = "'dedupe_fields' can't be null";
         }
         if ($this->container['searchable_fields'] === null) {
-            $invalidProperties[] = "'searchable_fields' can't be null";
+            $invalidProperties['searchable_fields'] = "'searchable_fields' can't be null";
         }
         if ($this->container['fields'] === null) {
-            $invalidProperties[] = "'fields' can't be null";
+            $invalidProperties['fields'] = "'fields' can't be null";
         }
         return $invalidProperties;
     }

@@ -86,22 +86,6 @@ class SyncCompanyRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -156,6 +140,22 @@ class SyncCompanyRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -196,7 +196,7 @@ class SyncCompanyRequest implements ModelInterface, ArrayAccess, \JsonSerializab
 
         $allowedValues = $this->getActionAllowableValues();
         if (!is_null($this->container['action']) && !in_array($this->container['action'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
+            $invalidProperties['action'] = sprintf(
                 "invalid value '%s' for 'action', must be one of '%s'",
                 $this->container['action'],
                 implode("', '", $allowedValues)
@@ -204,7 +204,7 @@ class SyncCompanyRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         }
 
         if ($this->container['input'] === null) {
-            $invalidProperties[] = "'input' can't be null";
+            $invalidProperties['input'] = "'input' can't be null";
         }
         return $invalidProperties;
     }
@@ -233,9 +233,9 @@ class SyncCompanyRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets action
      *
-     * @return string
+     * @return string|null
      */
-    public function getAction(): string
+    public function getAction(): ?string
     {
         return $this->container['action'];
     }
@@ -267,9 +267,9 @@ class SyncCompanyRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets dedupe_by
      *
-     * @return string
+     * @return string|null
      */
-    public function getDedupeBy(): string
+    public function getDedupeBy(): ?string
     {
         return $this->container['dedupe_by'];
     }

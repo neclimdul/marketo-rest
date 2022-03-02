@@ -37,7 +37,7 @@ use PHPUnit\Framework\TestCase;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  *
- * @coversDefault \NecLimDul\MarketoRest\Asset\Model\LpTemplateGetContentResponse
+ * @coversDefaultClass \NecLimDul\MarketoRest\Asset\Model\LpTemplateGetContentResponse
  */
 class LpTemplateGetContentResponseTest extends TestCase
 {
@@ -48,11 +48,6 @@ class LpTemplateGetContentResponseTest extends TestCase
     private $sot;
 
     /**
-     * @var \Faker\Generator
-     */
-    private $faker;
-
-    /**
      * @var string[]
      */
     private $types = [
@@ -61,7 +56,13 @@ class LpTemplateGetContentResponseTest extends TestCase
         'id' => 'int',
         'status' => 'string',
         'template_type' => 'string',
-    ];
+];
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
     /**
      * @var scalar[][]
      */
@@ -122,7 +123,14 @@ class LpTemplateGetContentResponseTest extends TestCase
                 return new \stdClass();
         }
         if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
-            return new $type();
+            $model = new $type();
+            $types = $type::swaggerTypes();
+            foreach ($model->listInvalidProperties() as $field => $reason) {
+                // @todo get allowed values? ((getter))AllowedValues
+                // @phpstan-ignore-next-line
+                $model[$field] = $this->getFakeValue($types[$field], null);
+            }
+            return $model;
         }
         $this->markTestSkipped('This type is not mocked yet: ' . $type);
     }
@@ -134,7 +142,109 @@ class LpTemplateGetContentResponseTest extends TestCase
      */
     public function testLpTemplateGetContentResponse(): void
     {
-        $this->assertInstanceOf(\NecLimDul\MarketoRest\Asset\Model\LpTemplateGetContentResponse::class, $this->sot);
+        $this->assertInstanceOf(LpTemplateGetContentResponse::class, $this->sot);
+    }
+
+    /**
+     * @covers ::swaggerTypes
+     */
+    public function testSwaggerTypes(): void
+    {
+        $this->assertEquals($this->types, LpTemplateGetContentResponse::swaggerTypes());
+    }
+
+    /**
+     * @covers ::swaggerFormats
+     */
+    public function testSwaggerFormats(): void
+    {
+        $formats = $this->sot->swaggerFormats();
+        $this->assertEquals(null, $formats['content']);
+        $this->assertEquals(null, $formats['enable_munchkin']);
+        $this->assertEquals('int32', $formats['id']);
+        $this->assertEquals(null, $formats['status']);
+        $this->assertEquals(null, $formats['template_type']);
+    }
+
+    /**
+     * @covers ::attributeMap
+     */
+    public function testAttributeMap(): void
+    {
+        $formats = $this->sot->attributeMap();
+        $this->assertEquals('content', $formats['content']);
+        $this->assertEquals('enableMunchkin', $formats['enable_munchkin']);
+        $this->assertEquals('id', $formats['id']);
+        $this->assertEquals('status', $formats['status']);
+        $this->assertEquals('templateType', $formats['template_type']);
+    }
+
+    /**
+     * @covers ::getters
+     * @covers ::setters
+     */
+    public function testGettersSetters(): void
+    {
+        $getters = $this->sot->getters();
+        $setters = $this->sot->setters();
+        foreach (array_keys($this->types) as $field) {
+            $this->assertTrue(isset($setters[$field]));
+            $this->assertTrue(isset($getters[$field]));
+            $this->assertTrue(
+                method_exists($this->sot, $getters[$field]),
+                'Getter exists on model.'
+            );
+            $this->assertTrue(
+                method_exists($this->sot, $setters[$field]),
+                'Setter exists on model.'
+            );
+        }
+    }
+
+    /**
+     * @covers ::getModelName
+     */
+    public function testGetModelName(): void
+    {
+        $this->assertEquals('LpTemplateGetContentResponse', $this->sot->getModelName());
+    }
+
+    /**
+     * @covers ::listInvalidProperties
+     * @covers ::valid
+     */
+    public function testValid(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::setAdditionalProperties
+     * @covers ::setAdditionalProperty
+     * @covers ::getAdditionalProperties
+     */
+    public function testAdditionalProperties(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::jsonSerialize
+     * @covers ::__toString
+     */
+    public function testJson(): void
+    {
+        // Some minimal tests that json generates well.
+        $json = json_encode($this->sot);
+        $this->assertIsString($json, 'Json encoded');
+        $json = json_decode($json);
+        $string = json_decode((string) $this->sot);
+        $this->assertEquals(
+            $json,
+            $string
+        );
+        $this->assertInstanceOf(\stdClass::class, $json);
+        $this->assertInstanceOf(\stdClass::class, $string);
     }
 
     /**
@@ -143,6 +253,10 @@ class LpTemplateGetContentResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getContent
      * @covers ::setContent
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyContent(): void
     {
@@ -153,7 +267,20 @@ class LpTemplateGetContentResponseTest extends TestCase
         );
         $this->sot->setContent($v);
         $this->assertEquals($v, $this->sot->getContent());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['content']);
+        $v = $this->getFakeValue(
+            $this->types['content'],
+            $this->allowedValues['content'] ?? null
+        );
+        $this->sot['content'] = $v;
+        $this->assertEquals($v, $this->sot['content']);
+        $this->assertTrue(isset($this->sot['content']));
+        unset($this->sot['content']);
+        $this->assertFalse(isset($this->sot['content']));
+        $this->sot['content'] = $v;
+        $this->assertEquals($v, $this->sot['content']);
+        $this->assertTrue(isset($this->sot['content']));
     }
 
     /**
@@ -162,6 +289,10 @@ class LpTemplateGetContentResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getEnableMunchkin
      * @covers ::setEnableMunchkin
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyEnableMunchkin(): void
     {
@@ -172,7 +303,20 @@ class LpTemplateGetContentResponseTest extends TestCase
         );
         $this->sot->setEnableMunchkin($v);
         $this->assertEquals($v, $this->sot->getEnableMunchkin());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['enable_munchkin']);
+        $v = $this->getFakeValue(
+            $this->types['enable_munchkin'],
+            $this->allowedValues['enable_munchkin'] ?? null
+        );
+        $this->sot['enable_munchkin'] = $v;
+        $this->assertEquals($v, $this->sot['enable_munchkin']);
+        $this->assertTrue(isset($this->sot['enable_munchkin']));
+        unset($this->sot['enable_munchkin']);
+        $this->assertFalse(isset($this->sot['enable_munchkin']));
+        $this->sot['enable_munchkin'] = $v;
+        $this->assertEquals($v, $this->sot['enable_munchkin']);
+        $this->assertTrue(isset($this->sot['enable_munchkin']));
     }
 
     /**
@@ -181,6 +325,10 @@ class LpTemplateGetContentResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getId
      * @covers ::setId
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyId(): void
     {
@@ -191,7 +339,20 @@ class LpTemplateGetContentResponseTest extends TestCase
         );
         $this->sot->setId($v);
         $this->assertEquals($v, $this->sot->getId());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['id']);
+        $v = $this->getFakeValue(
+            $this->types['id'],
+            $this->allowedValues['id'] ?? null
+        );
+        $this->sot['id'] = $v;
+        $this->assertEquals($v, $this->sot['id']);
+        $this->assertTrue(isset($this->sot['id']));
+        unset($this->sot['id']);
+        $this->assertFalse(isset($this->sot['id']));
+        $this->sot['id'] = $v;
+        $this->assertEquals($v, $this->sot['id']);
+        $this->assertTrue(isset($this->sot['id']));
     }
 
     /**
@@ -200,6 +361,10 @@ class LpTemplateGetContentResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getStatus
      * @covers ::setStatus
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyStatus(): void
     {
@@ -210,7 +375,20 @@ class LpTemplateGetContentResponseTest extends TestCase
         );
         $this->sot->setStatus($v);
         $this->assertEquals($v, $this->sot->getStatus());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['status']);
+        $v = $this->getFakeValue(
+            $this->types['status'],
+            $this->allowedValues['status'] ?? null
+        );
+        $this->sot['status'] = $v;
+        $this->assertEquals($v, $this->sot['status']);
+        $this->assertTrue(isset($this->sot['status']));
+        unset($this->sot['status']);
+        $this->assertFalse(isset($this->sot['status']));
+        $this->sot['status'] = $v;
+        $this->assertEquals($v, $this->sot['status']);
+        $this->assertTrue(isset($this->sot['status']));
     }
 
     /**
@@ -219,6 +397,10 @@ class LpTemplateGetContentResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getTemplateType
      * @covers ::setTemplateType
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyTemplateType(): void
     {
@@ -229,6 +411,19 @@ class LpTemplateGetContentResponseTest extends TestCase
         );
         $this->sot->setTemplateType($v);
         $this->assertEquals($v, $this->sot->getTemplateType());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['template_type']);
+        $v = $this->getFakeValue(
+            $this->types['template_type'],
+            $this->allowedValues['template_type'] ?? null
+        );
+        $this->sot['template_type'] = $v;
+        $this->assertEquals($v, $this->sot['template_type']);
+        $this->assertTrue(isset($this->sot['template_type']));
+        unset($this->sot['template_type']);
+        $this->assertFalse(isset($this->sot['template_type']));
+        $this->sot['template_type'] = $v;
+        $this->assertEquals($v, $this->sot['template_type']);
+        $this->assertTrue(isset($this->sot['template_type']));
     }
 }

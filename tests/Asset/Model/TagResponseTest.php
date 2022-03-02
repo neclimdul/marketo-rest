@@ -37,7 +37,7 @@ use PHPUnit\Framework\TestCase;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  *
- * @coversDefault \NecLimDul\MarketoRest\Asset\Model\TagResponse
+ * @coversDefaultClass \NecLimDul\MarketoRest\Asset\Model\TagResponse
  */
 class TagResponseTest extends TestCase
 {
@@ -48,11 +48,6 @@ class TagResponseTest extends TestCase
     private $sot;
 
     /**
-     * @var \Faker\Generator
-     */
-    private $faker;
-
-    /**
      * @var string[]
      */
     private $types = [
@@ -60,7 +55,13 @@ class TagResponseTest extends TestCase
         'applicable_program_types' => 'string',
         'required' => 'bool',
         'tag_type' => 'string',
-    ];
+];
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
     /**
      * @var scalar[][]
      */
@@ -113,7 +114,14 @@ class TagResponseTest extends TestCase
                 return new \stdClass();
         }
         if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
-            return new $type();
+            $model = new $type();
+            $types = $type::swaggerTypes();
+            foreach ($model->listInvalidProperties() as $field => $reason) {
+                // @todo get allowed values? ((getter))AllowedValues
+                // @phpstan-ignore-next-line
+                $model[$field] = $this->getFakeValue($types[$field], null);
+            }
+            return $model;
         }
         $this->markTestSkipped('This type is not mocked yet: ' . $type);
     }
@@ -125,7 +133,107 @@ class TagResponseTest extends TestCase
      */
     public function testTagResponse(): void
     {
-        $this->assertInstanceOf(\NecLimDul\MarketoRest\Asset\Model\TagResponse::class, $this->sot);
+        $this->assertInstanceOf(TagResponse::class, $this->sot);
+    }
+
+    /**
+     * @covers ::swaggerTypes
+     */
+    public function testSwaggerTypes(): void
+    {
+        $this->assertEquals($this->types, TagResponse::swaggerTypes());
+    }
+
+    /**
+     * @covers ::swaggerFormats
+     */
+    public function testSwaggerFormats(): void
+    {
+        $formats = $this->sot->swaggerFormats();
+        $this->assertEquals(null, $formats['allowable_values']);
+        $this->assertEquals(null, $formats['applicable_program_types']);
+        $this->assertEquals(null, $formats['required']);
+        $this->assertEquals(null, $formats['tag_type']);
+    }
+
+    /**
+     * @covers ::attributeMap
+     */
+    public function testAttributeMap(): void
+    {
+        $formats = $this->sot->attributeMap();
+        $this->assertEquals('allowableValues', $formats['allowable_values']);
+        $this->assertEquals('applicableProgramTypes', $formats['applicable_program_types']);
+        $this->assertEquals('required', $formats['required']);
+        $this->assertEquals('tagType', $formats['tag_type']);
+    }
+
+    /**
+     * @covers ::getters
+     * @covers ::setters
+     */
+    public function testGettersSetters(): void
+    {
+        $getters = $this->sot->getters();
+        $setters = $this->sot->setters();
+        foreach (array_keys($this->types) as $field) {
+            $this->assertTrue(isset($setters[$field]));
+            $this->assertTrue(isset($getters[$field]));
+            $this->assertTrue(
+                method_exists($this->sot, $getters[$field]),
+                'Getter exists on model.'
+            );
+            $this->assertTrue(
+                method_exists($this->sot, $setters[$field]),
+                'Setter exists on model.'
+            );
+        }
+    }
+
+    /**
+     * @covers ::getModelName
+     */
+    public function testGetModelName(): void
+    {
+        $this->assertEquals('TagResponse', $this->sot->getModelName());
+    }
+
+    /**
+     * @covers ::listInvalidProperties
+     * @covers ::valid
+     */
+    public function testValid(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::setAdditionalProperties
+     * @covers ::setAdditionalProperty
+     * @covers ::getAdditionalProperties
+     */
+    public function testAdditionalProperties(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::jsonSerialize
+     * @covers ::__toString
+     */
+    public function testJson(): void
+    {
+        // Some minimal tests that json generates well.
+        $json = json_encode($this->sot);
+        $this->assertIsString($json, 'Json encoded');
+        $json = json_decode($json);
+        $string = json_decode((string) $this->sot);
+        $this->assertEquals(
+            $json,
+            $string
+        );
+        $this->assertInstanceOf(\stdClass::class, $json);
+        $this->assertInstanceOf(\stdClass::class, $string);
     }
 
     /**
@@ -134,6 +242,10 @@ class TagResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getAllowableValues
      * @covers ::setAllowableValues
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyAllowableValues(): void
     {
@@ -144,7 +256,23 @@ class TagResponseTest extends TestCase
         );
         $this->sot->setAllowableValues($v);
         $this->assertEquals($v, $this->sot->getAllowableValues());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setAllowableValues(null);
+        $this->assertNull($this->sot->getAllowableValues());
+        $this->sot->setAllowableValues($v);
+
+        $this->assertEquals($v, $this->sot['allowable_values']);
+        $v = $this->getFakeValue(
+            $this->types['allowable_values'],
+            $this->allowedValues['allowable_values'] ?? null
+        );
+        $this->sot['allowable_values'] = $v;
+        $this->assertEquals($v, $this->sot['allowable_values']);
+        $this->assertTrue(isset($this->sot['allowable_values']));
+        unset($this->sot['allowable_values']);
+        $this->assertFalse(isset($this->sot['allowable_values']));
+        $this->sot['allowable_values'] = $v;
+        $this->assertEquals($v, $this->sot['allowable_values']);
+        $this->assertTrue(isset($this->sot['allowable_values']));
     }
 
     /**
@@ -153,6 +281,10 @@ class TagResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getApplicableProgramTypes
      * @covers ::setApplicableProgramTypes
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyApplicableProgramTypes(): void
     {
@@ -163,7 +295,20 @@ class TagResponseTest extends TestCase
         );
         $this->sot->setApplicableProgramTypes($v);
         $this->assertEquals($v, $this->sot->getApplicableProgramTypes());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['applicable_program_types']);
+        $v = $this->getFakeValue(
+            $this->types['applicable_program_types'],
+            $this->allowedValues['applicable_program_types'] ?? null
+        );
+        $this->sot['applicable_program_types'] = $v;
+        $this->assertEquals($v, $this->sot['applicable_program_types']);
+        $this->assertTrue(isset($this->sot['applicable_program_types']));
+        unset($this->sot['applicable_program_types']);
+        $this->assertFalse(isset($this->sot['applicable_program_types']));
+        $this->sot['applicable_program_types'] = $v;
+        $this->assertEquals($v, $this->sot['applicable_program_types']);
+        $this->assertTrue(isset($this->sot['applicable_program_types']));
     }
 
     /**
@@ -172,6 +317,10 @@ class TagResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getRequired
      * @covers ::setRequired
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyRequired(): void
     {
@@ -182,7 +331,20 @@ class TagResponseTest extends TestCase
         );
         $this->sot->setRequired($v);
         $this->assertEquals($v, $this->sot->getRequired());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['required']);
+        $v = $this->getFakeValue(
+            $this->types['required'],
+            $this->allowedValues['required'] ?? null
+        );
+        $this->sot['required'] = $v;
+        $this->assertEquals($v, $this->sot['required']);
+        $this->assertTrue(isset($this->sot['required']));
+        unset($this->sot['required']);
+        $this->assertFalse(isset($this->sot['required']));
+        $this->sot['required'] = $v;
+        $this->assertEquals($v, $this->sot['required']);
+        $this->assertTrue(isset($this->sot['required']));
     }
 
     /**
@@ -191,6 +353,10 @@ class TagResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getTagType
      * @covers ::setTagType
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyTagType(): void
     {
@@ -201,6 +367,19 @@ class TagResponseTest extends TestCase
         );
         $this->sot->setTagType($v);
         $this->assertEquals($v, $this->sot->getTagType());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['tag_type']);
+        $v = $this->getFakeValue(
+            $this->types['tag_type'],
+            $this->allowedValues['tag_type'] ?? null
+        );
+        $this->sot['tag_type'] = $v;
+        $this->assertEquals($v, $this->sot['tag_type']);
+        $this->assertTrue(isset($this->sot['tag_type']));
+        unset($this->sot['tag_type']);
+        $this->assertFalse(isset($this->sot['tag_type']));
+        $this->sot['tag_type'] = $v;
+        $this->assertEquals($v, $this->sot['tag_type']);
+        $this->assertTrue(isset($this->sot['tag_type']));
     }
 }

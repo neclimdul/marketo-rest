@@ -106,22 +106,6 @@ class LandingPageContentResponse implements ModelInterface, ArrayAccess, \JsonSe
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -192,6 +176,22 @@ class LandingPageContentResponse implements ModelInterface, ArrayAccess, \JsonSe
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -232,7 +232,7 @@ class LandingPageContentResponse implements ModelInterface, ArrayAccess, \JsonSe
 
         $allowedValues = $this->getFollowupTypeAllowableValues();
         if (!is_null($this->container['followup_type']) && !in_array($this->container['followup_type'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
+            $invalidProperties['followup_type'] = sprintf(
                 "invalid value '%s' for 'followup_type', must be one of '%s'",
                 $this->container['followup_type'],
                 implode("', '", $allowedValues)
@@ -240,14 +240,14 @@ class LandingPageContentResponse implements ModelInterface, ArrayAccess, \JsonSe
         }
 
         if ($this->container['id'] === null) {
-            $invalidProperties[] = "'id' can't be null";
+            $invalidProperties['id'] = "'id' can't be null";
         }
         if ($this->container['type'] === null) {
-            $invalidProperties[] = "'type' can't be null";
+            $invalidProperties['type'] = "'type' can't be null";
         }
         $allowedValues = $this->getTypeAllowableValues();
         if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
+            $invalidProperties['type'] = sprintf(
                 "invalid value '%s' for 'type', must be one of '%s'",
                 $this->container['type'],
                 implode("', '", $allowedValues)
@@ -303,9 +303,9 @@ class LandingPageContentResponse implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Gets content
      *
-     * @return object
+     * @return object|null
      */
-    public function getContent(): object
+    public function getContent(): ?object
     {
         return $this->container['content'];
     }
@@ -327,9 +327,9 @@ class LandingPageContentResponse implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Gets followup_type
      *
-     * @return string
+     * @return string|null
      */
-    public function getFollowupType(): string
+    public function getFollowupType(): ?string
     {
         return $this->container['followup_type'];
     }
@@ -361,9 +361,9 @@ class LandingPageContentResponse implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Gets followup_value
      *
-     * @return string
+     * @return string|null
      */
-    public function getFollowupValue(): string
+    public function getFollowupValue(): ?string
     {
         return $this->container['followup_value'];
     }
@@ -385,9 +385,9 @@ class LandingPageContentResponse implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Gets formatting_options
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\JsonNode
+     * @return \NecLimDul\MarketoRest\Asset\Model\JsonNode|null
      */
-    public function getFormattingOptions(): \NecLimDul\MarketoRest\Asset\Model\JsonNode
+    public function getFormattingOptions(): ?\NecLimDul\MarketoRest\Asset\Model\JsonNode
     {
         return $this->container['formatting_options'];
     }
@@ -433,9 +433,9 @@ class LandingPageContentResponse implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Gets index
      *
-     * @return int
+     * @return int|null
      */
-    public function getIndex(): int
+    public function getIndex(): ?int
     {
         return $this->container['index'];
     }

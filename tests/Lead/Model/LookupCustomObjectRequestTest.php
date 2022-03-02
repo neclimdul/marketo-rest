@@ -37,7 +37,7 @@ use PHPUnit\Framework\TestCase;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  *
- * @coversDefault \NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest
+ * @coversDefaultClass \NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest
  */
 class LookupCustomObjectRequestTest extends TestCase
 {
@@ -48,11 +48,6 @@ class LookupCustomObjectRequestTest extends TestCase
     private $sot;
 
     /**
-     * @var \Faker\Generator
-     */
-    private $faker;
-
-    /**
      * @var string[]
      */
     private $types = [
@@ -61,7 +56,13 @@ class LookupCustomObjectRequestTest extends TestCase
         'filter_type' => 'string',
         'input' => '\NecLimDul\MarketoRest\Lead\Model\CustomObject[]',
         'next_page_token' => 'string',
-    ];
+];
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
     /**
      * @var scalar[][]
      */
@@ -114,7 +115,14 @@ class LookupCustomObjectRequestTest extends TestCase
                 return new \stdClass();
         }
         if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
-            return new $type();
+            $model = new $type();
+            $types = $type::swaggerTypes();
+            foreach ($model->listInvalidProperties() as $field => $reason) {
+                // @todo get allowed values? ((getter))AllowedValues
+                // @phpstan-ignore-next-line
+                $model[$field] = $this->getFakeValue($types[$field], null);
+            }
+            return $model;
         }
         $this->markTestSkipped('This type is not mocked yet: ' . $type);
     }
@@ -126,7 +134,109 @@ class LookupCustomObjectRequestTest extends TestCase
      */
     public function testLookupCustomObjectRequest(): void
     {
-        $this->assertInstanceOf(\NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest::class, $this->sot);
+        $this->assertInstanceOf(LookupCustomObjectRequest::class, $this->sot);
+    }
+
+    /**
+     * @covers ::swaggerTypes
+     */
+    public function testSwaggerTypes(): void
+    {
+        $this->assertEquals($this->types, LookupCustomObjectRequest::swaggerTypes());
+    }
+
+    /**
+     * @covers ::swaggerFormats
+     */
+    public function testSwaggerFormats(): void
+    {
+        $formats = $this->sot->swaggerFormats();
+        $this->assertEquals('int32', $formats['batch_size']);
+        $this->assertEquals(null, $formats['fields']);
+        $this->assertEquals(null, $formats['filter_type']);
+        $this->assertEquals(null, $formats['input']);
+        $this->assertEquals(null, $formats['next_page_token']);
+    }
+
+    /**
+     * @covers ::attributeMap
+     */
+    public function testAttributeMap(): void
+    {
+        $formats = $this->sot->attributeMap();
+        $this->assertEquals('batchSize', $formats['batch_size']);
+        $this->assertEquals('fields', $formats['fields']);
+        $this->assertEquals('filterType', $formats['filter_type']);
+        $this->assertEquals('input', $formats['input']);
+        $this->assertEquals('nextPageToken', $formats['next_page_token']);
+    }
+
+    /**
+     * @covers ::getters
+     * @covers ::setters
+     */
+    public function testGettersSetters(): void
+    {
+        $getters = $this->sot->getters();
+        $setters = $this->sot->setters();
+        foreach (array_keys($this->types) as $field) {
+            $this->assertTrue(isset($setters[$field]));
+            $this->assertTrue(isset($getters[$field]));
+            $this->assertTrue(
+                method_exists($this->sot, $getters[$field]),
+                'Getter exists on model.'
+            );
+            $this->assertTrue(
+                method_exists($this->sot, $setters[$field]),
+                'Setter exists on model.'
+            );
+        }
+    }
+
+    /**
+     * @covers ::getModelName
+     */
+    public function testGetModelName(): void
+    {
+        $this->assertEquals('LookupCustomObjectRequest', $this->sot->getModelName());
+    }
+
+    /**
+     * @covers ::listInvalidProperties
+     * @covers ::valid
+     */
+    public function testValid(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::setAdditionalProperties
+     * @covers ::setAdditionalProperty
+     * @covers ::getAdditionalProperties
+     */
+    public function testAdditionalProperties(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::jsonSerialize
+     * @covers ::__toString
+     */
+    public function testJson(): void
+    {
+        // Some minimal tests that json generates well.
+        $json = json_encode($this->sot);
+        $this->assertIsString($json, 'Json encoded');
+        $json = json_decode($json);
+        $string = json_decode((string) $this->sot);
+        $this->assertEquals(
+            $json,
+            $string
+        );
+        $this->assertInstanceOf(\stdClass::class, $json);
+        $this->assertInstanceOf(\stdClass::class, $string);
     }
 
     /**
@@ -135,6 +245,10 @@ class LookupCustomObjectRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getBatchSize
      * @covers ::setBatchSize
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyBatchSize(): void
     {
@@ -145,7 +259,23 @@ class LookupCustomObjectRequestTest extends TestCase
         );
         $this->sot->setBatchSize($v);
         $this->assertEquals($v, $this->sot->getBatchSize());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setBatchSize(null);
+        $this->assertNull($this->sot->getBatchSize());
+        $this->sot->setBatchSize($v);
+
+        $this->assertEquals($v, $this->sot['batch_size']);
+        $v = $this->getFakeValue(
+            $this->types['batch_size'],
+            $this->allowedValues['batch_size'] ?? null
+        );
+        $this->sot['batch_size'] = $v;
+        $this->assertEquals($v, $this->sot['batch_size']);
+        $this->assertTrue(isset($this->sot['batch_size']));
+        unset($this->sot['batch_size']);
+        $this->assertFalse(isset($this->sot['batch_size']));
+        $this->sot['batch_size'] = $v;
+        $this->assertEquals($v, $this->sot['batch_size']);
+        $this->assertTrue(isset($this->sot['batch_size']));
     }
 
     /**
@@ -154,6 +284,10 @@ class LookupCustomObjectRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getFields
      * @covers ::setFields
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyFields(): void
     {
@@ -164,7 +298,23 @@ class LookupCustomObjectRequestTest extends TestCase
         );
         $this->sot->setFields($v);
         $this->assertEquals($v, $this->sot->getFields());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setFields(null);
+        $this->assertNull($this->sot->getFields());
+        $this->sot->setFields($v);
+
+        $this->assertEquals($v, $this->sot['fields']);
+        $v = $this->getFakeValue(
+            $this->types['fields'],
+            $this->allowedValues['fields'] ?? null
+        );
+        $this->sot['fields'] = $v;
+        $this->assertEquals($v, $this->sot['fields']);
+        $this->assertTrue(isset($this->sot['fields']));
+        unset($this->sot['fields']);
+        $this->assertFalse(isset($this->sot['fields']));
+        $this->sot['fields'] = $v;
+        $this->assertEquals($v, $this->sot['fields']);
+        $this->assertTrue(isset($this->sot['fields']));
     }
 
     /**
@@ -173,6 +323,10 @@ class LookupCustomObjectRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getFilterType
      * @covers ::setFilterType
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyFilterType(): void
     {
@@ -183,7 +337,23 @@ class LookupCustomObjectRequestTest extends TestCase
         );
         $this->sot->setFilterType($v);
         $this->assertEquals($v, $this->sot->getFilterType());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setFilterType(null);
+        $this->assertNull($this->sot->getFilterType());
+        $this->sot->setFilterType($v);
+
+        $this->assertEquals($v, $this->sot['filter_type']);
+        $v = $this->getFakeValue(
+            $this->types['filter_type'],
+            $this->allowedValues['filter_type'] ?? null
+        );
+        $this->sot['filter_type'] = $v;
+        $this->assertEquals($v, $this->sot['filter_type']);
+        $this->assertTrue(isset($this->sot['filter_type']));
+        unset($this->sot['filter_type']);
+        $this->assertFalse(isset($this->sot['filter_type']));
+        $this->sot['filter_type'] = $v;
+        $this->assertEquals($v, $this->sot['filter_type']);
+        $this->assertTrue(isset($this->sot['filter_type']));
     }
 
     /**
@@ -192,6 +362,10 @@ class LookupCustomObjectRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getInput
      * @covers ::setInput
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyInput(): void
     {
@@ -202,7 +376,20 @@ class LookupCustomObjectRequestTest extends TestCase
         );
         $this->sot->setInput($v);
         $this->assertEquals($v, $this->sot->getInput());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['input']);
+        $v = $this->getFakeValue(
+            $this->types['input'],
+            $this->allowedValues['input'] ?? null
+        );
+        $this->sot['input'] = $v;
+        $this->assertEquals($v, $this->sot['input']);
+        $this->assertTrue(isset($this->sot['input']));
+        unset($this->sot['input']);
+        $this->assertFalse(isset($this->sot['input']));
+        $this->sot['input'] = $v;
+        $this->assertEquals($v, $this->sot['input']);
+        $this->assertTrue(isset($this->sot['input']));
     }
 
     /**
@@ -211,6 +398,10 @@ class LookupCustomObjectRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getNextPageToken
      * @covers ::setNextPageToken
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyNextPageToken(): void
     {
@@ -221,6 +412,22 @@ class LookupCustomObjectRequestTest extends TestCase
         );
         $this->sot->setNextPageToken($v);
         $this->assertEquals($v, $this->sot->getNextPageToken());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setNextPageToken(null);
+        $this->assertNull($this->sot->getNextPageToken());
+        $this->sot->setNextPageToken($v);
+
+        $this->assertEquals($v, $this->sot['next_page_token']);
+        $v = $this->getFakeValue(
+            $this->types['next_page_token'],
+            $this->allowedValues['next_page_token'] ?? null
+        );
+        $this->sot['next_page_token'] = $v;
+        $this->assertEquals($v, $this->sot['next_page_token']);
+        $this->assertTrue(isset($this->sot['next_page_token']));
+        unset($this->sot['next_page_token']);
+        $this->assertFalse(isset($this->sot['next_page_token']));
+        $this->sot['next_page_token'] = $v;
+        $this->assertEquals($v, $this->sot['next_page_token']);
+        $this->assertTrue(isset($this->sot['next_page_token']));
     }
 }

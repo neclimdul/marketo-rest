@@ -37,7 +37,7 @@ use PHPUnit\Framework\TestCase;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  *
- * @coversDefault \NecLimDul\MarketoRest\Asset\Model\ChannelProgression
+ * @coversDefaultClass \NecLimDul\MarketoRest\Asset\Model\ChannelProgression
  */
 class ChannelProgressionTest extends TestCase
 {
@@ -46,11 +46,6 @@ class ChannelProgressionTest extends TestCase
      * @var \NecLimDul\MarketoRest\Asset\Model\ChannelProgression
      */
     private $sot;
-
-    /**
-     * @var \Faker\Generator
-     */
-    private $faker;
 
     /**
      * @var string[]
@@ -62,7 +57,13 @@ class ChannelProgressionTest extends TestCase
         'type' => 'string',
         'step' => 'int',
         'success' => 'bool',
-    ];
+];
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
     /**
      * @var scalar[][]
      */
@@ -115,7 +116,14 @@ class ChannelProgressionTest extends TestCase
                 return new \stdClass();
         }
         if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
-            return new $type();
+            $model = new $type();
+            $types = $type::swaggerTypes();
+            foreach ($model->listInvalidProperties() as $field => $reason) {
+                // @todo get allowed values? ((getter))AllowedValues
+                // @phpstan-ignore-next-line
+                $model[$field] = $this->getFakeValue($types[$field], null);
+            }
+            return $model;
         }
         $this->markTestSkipped('This type is not mocked yet: ' . $type);
     }
@@ -127,7 +135,111 @@ class ChannelProgressionTest extends TestCase
      */
     public function testChannelProgression(): void
     {
-        $this->assertInstanceOf(\NecLimDul\MarketoRest\Asset\Model\ChannelProgression::class, $this->sot);
+        $this->assertInstanceOf(ChannelProgression::class, $this->sot);
+    }
+
+    /**
+     * @covers ::swaggerTypes
+     */
+    public function testSwaggerTypes(): void
+    {
+        $this->assertEquals($this->types, ChannelProgression::swaggerTypes());
+    }
+
+    /**
+     * @covers ::swaggerFormats
+     */
+    public function testSwaggerFormats(): void
+    {
+        $formats = $this->sot->swaggerFormats();
+        $this->assertEquals(null, $formats['description']);
+        $this->assertEquals(null, $formats['hidden']);
+        $this->assertEquals(null, $formats['name']);
+        $this->assertEquals(null, $formats['type']);
+        $this->assertEquals('int32', $formats['step']);
+        $this->assertEquals(null, $formats['success']);
+    }
+
+    /**
+     * @covers ::attributeMap
+     */
+    public function testAttributeMap(): void
+    {
+        $formats = $this->sot->attributeMap();
+        $this->assertEquals('description', $formats['description']);
+        $this->assertEquals('hidden', $formats['hidden']);
+        $this->assertEquals('name', $formats['name']);
+        $this->assertEquals('type', $formats['type']);
+        $this->assertEquals('step', $formats['step']);
+        $this->assertEquals('success', $formats['success']);
+    }
+
+    /**
+     * @covers ::getters
+     * @covers ::setters
+     */
+    public function testGettersSetters(): void
+    {
+        $getters = $this->sot->getters();
+        $setters = $this->sot->setters();
+        foreach (array_keys($this->types) as $field) {
+            $this->assertTrue(isset($setters[$field]));
+            $this->assertTrue(isset($getters[$field]));
+            $this->assertTrue(
+                method_exists($this->sot, $getters[$field]),
+                'Getter exists on model.'
+            );
+            $this->assertTrue(
+                method_exists($this->sot, $setters[$field]),
+                'Setter exists on model.'
+            );
+        }
+    }
+
+    /**
+     * @covers ::getModelName
+     */
+    public function testGetModelName(): void
+    {
+        $this->assertEquals('ChannelProgression', $this->sot->getModelName());
+    }
+
+    /**
+     * @covers ::listInvalidProperties
+     * @covers ::valid
+     */
+    public function testValid(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::setAdditionalProperties
+     * @covers ::setAdditionalProperty
+     * @covers ::getAdditionalProperties
+     */
+    public function testAdditionalProperties(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::jsonSerialize
+     * @covers ::__toString
+     */
+    public function testJson(): void
+    {
+        // Some minimal tests that json generates well.
+        $json = json_encode($this->sot);
+        $this->assertIsString($json, 'Json encoded');
+        $json = json_decode($json);
+        $string = json_decode((string) $this->sot);
+        $this->assertEquals(
+            $json,
+            $string
+        );
+        $this->assertInstanceOf(\stdClass::class, $json);
+        $this->assertInstanceOf(\stdClass::class, $string);
     }
 
     /**
@@ -136,6 +248,10 @@ class ChannelProgressionTest extends TestCase
      * @covers ::__construct
      * @covers ::getDescription
      * @covers ::setDescription
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyDescription(): void
     {
@@ -146,7 +262,23 @@ class ChannelProgressionTest extends TestCase
         );
         $this->sot->setDescription($v);
         $this->assertEquals($v, $this->sot->getDescription());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setDescription(null);
+        $this->assertNull($this->sot->getDescription());
+        $this->sot->setDescription($v);
+
+        $this->assertEquals($v, $this->sot['description']);
+        $v = $this->getFakeValue(
+            $this->types['description'],
+            $this->allowedValues['description'] ?? null
+        );
+        $this->sot['description'] = $v;
+        $this->assertEquals($v, $this->sot['description']);
+        $this->assertTrue(isset($this->sot['description']));
+        unset($this->sot['description']);
+        $this->assertFalse(isset($this->sot['description']));
+        $this->sot['description'] = $v;
+        $this->assertEquals($v, $this->sot['description']);
+        $this->assertTrue(isset($this->sot['description']));
     }
 
     /**
@@ -155,6 +287,10 @@ class ChannelProgressionTest extends TestCase
      * @covers ::__construct
      * @covers ::getHidden
      * @covers ::setHidden
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyHidden(): void
     {
@@ -165,7 +301,23 @@ class ChannelProgressionTest extends TestCase
         );
         $this->sot->setHidden($v);
         $this->assertEquals($v, $this->sot->getHidden());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setHidden(null);
+        $this->assertNull($this->sot->getHidden());
+        $this->sot->setHidden($v);
+
+        $this->assertEquals($v, $this->sot['hidden']);
+        $v = $this->getFakeValue(
+            $this->types['hidden'],
+            $this->allowedValues['hidden'] ?? null
+        );
+        $this->sot['hidden'] = $v;
+        $this->assertEquals($v, $this->sot['hidden']);
+        $this->assertTrue(isset($this->sot['hidden']));
+        unset($this->sot['hidden']);
+        $this->assertFalse(isset($this->sot['hidden']));
+        $this->sot['hidden'] = $v;
+        $this->assertEquals($v, $this->sot['hidden']);
+        $this->assertTrue(isset($this->sot['hidden']));
     }
 
     /**
@@ -174,6 +326,10 @@ class ChannelProgressionTest extends TestCase
      * @covers ::__construct
      * @covers ::getName
      * @covers ::setName
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyName(): void
     {
@@ -184,7 +340,23 @@ class ChannelProgressionTest extends TestCase
         );
         $this->sot->setName($v);
         $this->assertEquals($v, $this->sot->getName());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setName(null);
+        $this->assertNull($this->sot->getName());
+        $this->sot->setName($v);
+
+        $this->assertEquals($v, $this->sot['name']);
+        $v = $this->getFakeValue(
+            $this->types['name'],
+            $this->allowedValues['name'] ?? null
+        );
+        $this->sot['name'] = $v;
+        $this->assertEquals($v, $this->sot['name']);
+        $this->assertTrue(isset($this->sot['name']));
+        unset($this->sot['name']);
+        $this->assertFalse(isset($this->sot['name']));
+        $this->sot['name'] = $v;
+        $this->assertEquals($v, $this->sot['name']);
+        $this->assertTrue(isset($this->sot['name']));
     }
 
     /**
@@ -193,6 +365,10 @@ class ChannelProgressionTest extends TestCase
      * @covers ::__construct
      * @covers ::getType
      * @covers ::setType
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyType(): void
     {
@@ -203,7 +379,23 @@ class ChannelProgressionTest extends TestCase
         );
         $this->sot->setType($v);
         $this->assertEquals($v, $this->sot->getType());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setType(null);
+        $this->assertNull($this->sot->getType());
+        $this->sot->setType($v);
+
+        $this->assertEquals($v, $this->sot['type']);
+        $v = $this->getFakeValue(
+            $this->types['type'],
+            $this->allowedValues['type'] ?? null
+        );
+        $this->sot['type'] = $v;
+        $this->assertEquals($v, $this->sot['type']);
+        $this->assertTrue(isset($this->sot['type']));
+        unset($this->sot['type']);
+        $this->assertFalse(isset($this->sot['type']));
+        $this->sot['type'] = $v;
+        $this->assertEquals($v, $this->sot['type']);
+        $this->assertTrue(isset($this->sot['type']));
     }
 
     /**
@@ -212,6 +404,10 @@ class ChannelProgressionTest extends TestCase
      * @covers ::__construct
      * @covers ::getStep
      * @covers ::setStep
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyStep(): void
     {
@@ -222,7 +418,23 @@ class ChannelProgressionTest extends TestCase
         );
         $this->sot->setStep($v);
         $this->assertEquals($v, $this->sot->getStep());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setStep(null);
+        $this->assertNull($this->sot->getStep());
+        $this->sot->setStep($v);
+
+        $this->assertEquals($v, $this->sot['step']);
+        $v = $this->getFakeValue(
+            $this->types['step'],
+            $this->allowedValues['step'] ?? null
+        );
+        $this->sot['step'] = $v;
+        $this->assertEquals($v, $this->sot['step']);
+        $this->assertTrue(isset($this->sot['step']));
+        unset($this->sot['step']);
+        $this->assertFalse(isset($this->sot['step']));
+        $this->sot['step'] = $v;
+        $this->assertEquals($v, $this->sot['step']);
+        $this->assertTrue(isset($this->sot['step']));
     }
 
     /**
@@ -231,6 +443,10 @@ class ChannelProgressionTest extends TestCase
      * @covers ::__construct
      * @covers ::getSuccess
      * @covers ::setSuccess
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertySuccess(): void
     {
@@ -241,6 +457,22 @@ class ChannelProgressionTest extends TestCase
         );
         $this->sot->setSuccess($v);
         $this->assertEquals($v, $this->sot->getSuccess());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setSuccess(null);
+        $this->assertNull($this->sot->getSuccess());
+        $this->sot->setSuccess($v);
+
+        $this->assertEquals($v, $this->sot['success']);
+        $v = $this->getFakeValue(
+            $this->types['success'],
+            $this->allowedValues['success'] ?? null
+        );
+        $this->sot['success'] = $v;
+        $this->assertEquals($v, $this->sot['success']);
+        $this->assertTrue(isset($this->sot['success']));
+        unset($this->sot['success']);
+        $this->assertFalse(isset($this->sot['success']));
+        $this->sot['success'] = $v;
+        $this->assertEquals($v, $this->sot['success']);
+        $this->assertTrue(isset($this->sot['success']));
     }
 }

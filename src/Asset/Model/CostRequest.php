@@ -83,22 +83,6 @@ class CostRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -153,6 +137,22 @@ class CostRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -192,10 +192,10 @@ class CostRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         $invalidProperties = [];
 
         if ($this->container['cost'] === null) {
-            $invalidProperties[] = "'cost' can't be null";
+            $invalidProperties['cost'] = "'cost' can't be null";
         }
         if ($this->container['start_date'] === null) {
-            $invalidProperties[] = "'start_date' can't be null";
+            $invalidProperties['start_date'] = "'start_date' can't be null";
         }
         return $invalidProperties;
     }
@@ -235,9 +235,9 @@ class CostRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets note
      *
-     * @return string
+     * @return string|null
      */
-    public function getNote(): string
+    public function getNote(): ?string
     {
         return $this->container['note'];
     }

@@ -87,22 +87,6 @@ class EmailDynamicContentResponse implements ModelInterface, ArrayAccess, \JsonS
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -165,6 +149,22 @@ class EmailDynamicContentResponse implements ModelInterface, ArrayAccess, \JsonS
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -217,9 +217,9 @@ class EmailDynamicContentResponse implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Gets content
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\EmailDynamicContentItem[]
+     * @return \NecLimDul\MarketoRest\Asset\Model\EmailDynamicContentItem[]|null
      */
-    public function getContent(): array
+    public function getContent(): ?array
     {
         return $this->container['content'];
     }
@@ -241,9 +241,9 @@ class EmailDynamicContentResponse implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Gets created_at
      *
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getCreatedAt(): \DateTime
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->container['created_at'];
     }
@@ -265,9 +265,9 @@ class EmailDynamicContentResponse implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Gets id
      *
-     * @return int
+     * @return int|null
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->container['id'];
     }
@@ -289,9 +289,9 @@ class EmailDynamicContentResponse implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Gets segmentation
      *
-     * @return int
+     * @return int|null
      */
-    public function getSegmentation(): int
+    public function getSegmentation(): ?int
     {
         return $this->container['segmentation'];
     }
@@ -313,9 +313,9 @@ class EmailDynamicContentResponse implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Gets updated_at
      *
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getUpdatedAt(): \DateTime
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->container['updated_at'];
     }

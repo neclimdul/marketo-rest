@@ -37,7 +37,7 @@ use PHPUnit\Framework\TestCase;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  *
- * @coversDefault \NecLimDul\MarketoRest\Lead\Model\ObjectRelation
+ * @coversDefaultClass \NecLimDul\MarketoRest\Lead\Model\ObjectRelation
  */
 class ObjectRelationTest extends TestCase
 {
@@ -48,18 +48,19 @@ class ObjectRelationTest extends TestCase
     private $sot;
 
     /**
-     * @var \Faker\Generator
-     */
-    private $faker;
-
-    /**
      * @var string[]
      */
     private $types = [
         'field' => 'string',
         'related_to' => '\NecLimDul\MarketoRest\Lead\Model\RelatedObject',
         'type' => 'string',
-    ];
+];
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
     /**
      * @var scalar[][]
      */
@@ -112,7 +113,14 @@ class ObjectRelationTest extends TestCase
                 return new \stdClass();
         }
         if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
-            return new $type();
+            $model = new $type();
+            $types = $type::swaggerTypes();
+            foreach ($model->listInvalidProperties() as $field => $reason) {
+                // @todo get allowed values? ((getter))AllowedValues
+                // @phpstan-ignore-next-line
+                $model[$field] = $this->getFakeValue($types[$field], null);
+            }
+            return $model;
         }
         $this->markTestSkipped('This type is not mocked yet: ' . $type);
     }
@@ -124,7 +132,105 @@ class ObjectRelationTest extends TestCase
      */
     public function testObjectRelation(): void
     {
-        $this->assertInstanceOf(\NecLimDul\MarketoRest\Lead\Model\ObjectRelation::class, $this->sot);
+        $this->assertInstanceOf(ObjectRelation::class, $this->sot);
+    }
+
+    /**
+     * @covers ::swaggerTypes
+     */
+    public function testSwaggerTypes(): void
+    {
+        $this->assertEquals($this->types, ObjectRelation::swaggerTypes());
+    }
+
+    /**
+     * @covers ::swaggerFormats
+     */
+    public function testSwaggerFormats(): void
+    {
+        $formats = $this->sot->swaggerFormats();
+        $this->assertEquals(null, $formats['field']);
+        $this->assertEquals(null, $formats['related_to']);
+        $this->assertEquals(null, $formats['type']);
+    }
+
+    /**
+     * @covers ::attributeMap
+     */
+    public function testAttributeMap(): void
+    {
+        $formats = $this->sot->attributeMap();
+        $this->assertEquals('field', $formats['field']);
+        $this->assertEquals('relatedTo', $formats['related_to']);
+        $this->assertEquals('type', $formats['type']);
+    }
+
+    /**
+     * @covers ::getters
+     * @covers ::setters
+     */
+    public function testGettersSetters(): void
+    {
+        $getters = $this->sot->getters();
+        $setters = $this->sot->setters();
+        foreach (array_keys($this->types) as $field) {
+            $this->assertTrue(isset($setters[$field]));
+            $this->assertTrue(isset($getters[$field]));
+            $this->assertTrue(
+                method_exists($this->sot, $getters[$field]),
+                'Getter exists on model.'
+            );
+            $this->assertTrue(
+                method_exists($this->sot, $setters[$field]),
+                'Setter exists on model.'
+            );
+        }
+    }
+
+    /**
+     * @covers ::getModelName
+     */
+    public function testGetModelName(): void
+    {
+        $this->assertEquals('ObjectRelation', $this->sot->getModelName());
+    }
+
+    /**
+     * @covers ::listInvalidProperties
+     * @covers ::valid
+     */
+    public function testValid(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::setAdditionalProperties
+     * @covers ::setAdditionalProperty
+     * @covers ::getAdditionalProperties
+     */
+    public function testAdditionalProperties(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::jsonSerialize
+     * @covers ::__toString
+     */
+    public function testJson(): void
+    {
+        // Some minimal tests that json generates well.
+        $json = json_encode($this->sot);
+        $this->assertIsString($json, 'Json encoded');
+        $json = json_decode($json);
+        $string = json_decode((string) $this->sot);
+        $this->assertEquals(
+            $json,
+            $string
+        );
+        $this->assertInstanceOf(\stdClass::class, $json);
+        $this->assertInstanceOf(\stdClass::class, $string);
     }
 
     /**
@@ -133,6 +239,10 @@ class ObjectRelationTest extends TestCase
      * @covers ::__construct
      * @covers ::getField
      * @covers ::setField
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyField(): void
     {
@@ -143,7 +253,20 @@ class ObjectRelationTest extends TestCase
         );
         $this->sot->setField($v);
         $this->assertEquals($v, $this->sot->getField());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['field']);
+        $v = $this->getFakeValue(
+            $this->types['field'],
+            $this->allowedValues['field'] ?? null
+        );
+        $this->sot['field'] = $v;
+        $this->assertEquals($v, $this->sot['field']);
+        $this->assertTrue(isset($this->sot['field']));
+        unset($this->sot['field']);
+        $this->assertFalse(isset($this->sot['field']));
+        $this->sot['field'] = $v;
+        $this->assertEquals($v, $this->sot['field']);
+        $this->assertTrue(isset($this->sot['field']));
     }
 
     /**
@@ -152,6 +275,10 @@ class ObjectRelationTest extends TestCase
      * @covers ::__construct
      * @covers ::getRelatedTo
      * @covers ::setRelatedTo
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyRelatedTo(): void
     {
@@ -162,7 +289,20 @@ class ObjectRelationTest extends TestCase
         );
         $this->sot->setRelatedTo($v);
         $this->assertEquals($v, $this->sot->getRelatedTo());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['related_to']);
+        $v = $this->getFakeValue(
+            $this->types['related_to'],
+            $this->allowedValues['related_to'] ?? null
+        );
+        $this->sot['related_to'] = $v;
+        $this->assertEquals($v, $this->sot['related_to']);
+        $this->assertTrue(isset($this->sot['related_to']));
+        unset($this->sot['related_to']);
+        $this->assertFalse(isset($this->sot['related_to']));
+        $this->sot['related_to'] = $v;
+        $this->assertEquals($v, $this->sot['related_to']);
+        $this->assertTrue(isset($this->sot['related_to']));
     }
 
     /**
@@ -171,6 +311,10 @@ class ObjectRelationTest extends TestCase
      * @covers ::__construct
      * @covers ::getType
      * @covers ::setType
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyType(): void
     {
@@ -181,6 +325,19 @@ class ObjectRelationTest extends TestCase
         );
         $this->sot->setType($v);
         $this->assertEquals($v, $this->sot->getType());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['type']);
+        $v = $this->getFakeValue(
+            $this->types['type'],
+            $this->allowedValues['type'] ?? null
+        );
+        $this->sot['type'] = $v;
+        $this->assertEquals($v, $this->sot['type']);
+        $this->assertTrue(isset($this->sot['type']));
+        unset($this->sot['type']);
+        $this->assertFalse(isset($this->sot['type']));
+        $this->sot['type'] = $v;
+        $this->assertEquals($v, $this->sot['type']);
+        $this->assertTrue(isset($this->sot['type']));
     }
 }

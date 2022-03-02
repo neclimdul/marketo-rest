@@ -37,7 +37,7 @@ use PHPUnit\Framework\TestCase;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  *
- * @coversDefault \NecLimDul\MarketoRest\Asset\Model\FileFolder
+ * @coversDefaultClass \NecLimDul\MarketoRest\Asset\Model\FileFolder
  */
 class FileFolderTest extends TestCase
 {
@@ -48,18 +48,19 @@ class FileFolderTest extends TestCase
     private $sot;
 
     /**
-     * @var \Faker\Generator
-     */
-    private $faker;
-
-    /**
      * @var string[]
      */
     private $types = [
         'id' => 'int',
         'name' => 'string',
         'type' => 'string',
-    ];
+];
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
     /**
      * @var scalar[][]
      */
@@ -112,7 +113,14 @@ class FileFolderTest extends TestCase
                 return new \stdClass();
         }
         if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
-            return new $type();
+            $model = new $type();
+            $types = $type::swaggerTypes();
+            foreach ($model->listInvalidProperties() as $field => $reason) {
+                // @todo get allowed values? ((getter))AllowedValues
+                // @phpstan-ignore-next-line
+                $model[$field] = $this->getFakeValue($types[$field], null);
+            }
+            return $model;
         }
         $this->markTestSkipped('This type is not mocked yet: ' . $type);
     }
@@ -124,7 +132,105 @@ class FileFolderTest extends TestCase
      */
     public function testFileFolder(): void
     {
-        $this->assertInstanceOf(\NecLimDul\MarketoRest\Asset\Model\FileFolder::class, $this->sot);
+        $this->assertInstanceOf(FileFolder::class, $this->sot);
+    }
+
+    /**
+     * @covers ::swaggerTypes
+     */
+    public function testSwaggerTypes(): void
+    {
+        $this->assertEquals($this->types, FileFolder::swaggerTypes());
+    }
+
+    /**
+     * @covers ::swaggerFormats
+     */
+    public function testSwaggerFormats(): void
+    {
+        $formats = $this->sot->swaggerFormats();
+        $this->assertEquals('int32', $formats['id']);
+        $this->assertEquals(null, $formats['name']);
+        $this->assertEquals(null, $formats['type']);
+    }
+
+    /**
+     * @covers ::attributeMap
+     */
+    public function testAttributeMap(): void
+    {
+        $formats = $this->sot->attributeMap();
+        $this->assertEquals('id', $formats['id']);
+        $this->assertEquals('name', $formats['name']);
+        $this->assertEquals('type', $formats['type']);
+    }
+
+    /**
+     * @covers ::getters
+     * @covers ::setters
+     */
+    public function testGettersSetters(): void
+    {
+        $getters = $this->sot->getters();
+        $setters = $this->sot->setters();
+        foreach (array_keys($this->types) as $field) {
+            $this->assertTrue(isset($setters[$field]));
+            $this->assertTrue(isset($getters[$field]));
+            $this->assertTrue(
+                method_exists($this->sot, $getters[$field]),
+                'Getter exists on model.'
+            );
+            $this->assertTrue(
+                method_exists($this->sot, $setters[$field]),
+                'Setter exists on model.'
+            );
+        }
+    }
+
+    /**
+     * @covers ::getModelName
+     */
+    public function testGetModelName(): void
+    {
+        $this->assertEquals('FileFolder', $this->sot->getModelName());
+    }
+
+    /**
+     * @covers ::listInvalidProperties
+     * @covers ::valid
+     */
+    public function testValid(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::setAdditionalProperties
+     * @covers ::setAdditionalProperty
+     * @covers ::getAdditionalProperties
+     */
+    public function testAdditionalProperties(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::jsonSerialize
+     * @covers ::__toString
+     */
+    public function testJson(): void
+    {
+        // Some minimal tests that json generates well.
+        $json = json_encode($this->sot);
+        $this->assertIsString($json, 'Json encoded');
+        $json = json_decode($json);
+        $string = json_decode((string) $this->sot);
+        $this->assertEquals(
+            $json,
+            $string
+        );
+        $this->assertInstanceOf(\stdClass::class, $json);
+        $this->assertInstanceOf(\stdClass::class, $string);
     }
 
     /**
@@ -133,6 +239,10 @@ class FileFolderTest extends TestCase
      * @covers ::__construct
      * @covers ::getId
      * @covers ::setId
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyId(): void
     {
@@ -143,7 +253,23 @@ class FileFolderTest extends TestCase
         );
         $this->sot->setId($v);
         $this->assertEquals($v, $this->sot->getId());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setId(null);
+        $this->assertNull($this->sot->getId());
+        $this->sot->setId($v);
+
+        $this->assertEquals($v, $this->sot['id']);
+        $v = $this->getFakeValue(
+            $this->types['id'],
+            $this->allowedValues['id'] ?? null
+        );
+        $this->sot['id'] = $v;
+        $this->assertEquals($v, $this->sot['id']);
+        $this->assertTrue(isset($this->sot['id']));
+        unset($this->sot['id']);
+        $this->assertFalse(isset($this->sot['id']));
+        $this->sot['id'] = $v;
+        $this->assertEquals($v, $this->sot['id']);
+        $this->assertTrue(isset($this->sot['id']));
     }
 
     /**
@@ -152,6 +278,10 @@ class FileFolderTest extends TestCase
      * @covers ::__construct
      * @covers ::getName
      * @covers ::setName
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyName(): void
     {
@@ -162,7 +292,23 @@ class FileFolderTest extends TestCase
         );
         $this->sot->setName($v);
         $this->assertEquals($v, $this->sot->getName());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setName(null);
+        $this->assertNull($this->sot->getName());
+        $this->sot->setName($v);
+
+        $this->assertEquals($v, $this->sot['name']);
+        $v = $this->getFakeValue(
+            $this->types['name'],
+            $this->allowedValues['name'] ?? null
+        );
+        $this->sot['name'] = $v;
+        $this->assertEquals($v, $this->sot['name']);
+        $this->assertTrue(isset($this->sot['name']));
+        unset($this->sot['name']);
+        $this->assertFalse(isset($this->sot['name']));
+        $this->sot['name'] = $v;
+        $this->assertEquals($v, $this->sot['name']);
+        $this->assertTrue(isset($this->sot['name']));
     }
 
     /**
@@ -171,6 +317,10 @@ class FileFolderTest extends TestCase
      * @covers ::__construct
      * @covers ::getType
      * @covers ::setType
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyType(): void
     {
@@ -181,6 +331,22 @@ class FileFolderTest extends TestCase
         );
         $this->sot->setType($v);
         $this->assertEquals($v, $this->sot->getType());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setType(null);
+        $this->assertNull($this->sot->getType());
+        $this->sot->setType($v);
+
+        $this->assertEquals($v, $this->sot['type']);
+        $v = $this->getFakeValue(
+            $this->types['type'],
+            $this->allowedValues['type'] ?? null
+        );
+        $this->sot['type'] = $v;
+        $this->assertEquals($v, $this->sot['type']);
+        $this->assertTrue(isset($this->sot['type']));
+        unset($this->sot['type']);
+        $this->assertFalse(isset($this->sot['type']));
+        $this->sot['type'] = $v;
+        $this->assertEquals($v, $this->sot['type']);
+        $this->assertTrue(isset($this->sot['type']));
     }
 }

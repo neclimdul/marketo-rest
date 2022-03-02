@@ -83,22 +83,6 @@ class TagResponseGetAll implements ModelInterface, ArrayAccess, \JsonSerializabl
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -153,6 +137,22 @@ class TagResponseGetAll implements ModelInterface, ArrayAccess, \JsonSerializabl
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -192,13 +192,13 @@ class TagResponseGetAll implements ModelInterface, ArrayAccess, \JsonSerializabl
         $invalidProperties = [];
 
         if ($this->container['applicable_program_types'] === null) {
-            $invalidProperties[] = "'applicable_program_types' can't be null";
+            $invalidProperties['applicable_program_types'] = "'applicable_program_types' can't be null";
         }
         if ($this->container['required'] === null) {
-            $invalidProperties[] = "'required' can't be null";
+            $invalidProperties['required'] = "'required' can't be null";
         }
         if ($this->container['tag_type'] === null) {
-            $invalidProperties[] = "'tag_type' can't be null";
+            $invalidProperties['tag_type'] = "'tag_type' can't be null";
         }
         return $invalidProperties;
     }

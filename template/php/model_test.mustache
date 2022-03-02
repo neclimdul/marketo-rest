@@ -32,7 +32,7 @@ use PHPUnit\Framework\TestCase;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  *
- * @coversDefault \{{modelPackage}}\{{classname}}
+ * @coversDefaultClass \{{modelPackage}}\{{classname}}
  */
 class {{classname}}Test extends TestCase
 {
@@ -42,12 +42,6 @@ class {{classname}}Test extends TestCase
      */
     private $sot;
 
-{{#hasVars}}
-    /**
-     * @var \Faker\Generator
-     */
-    private $faker;
-
     /**
      * @var string[]
      */
@@ -55,7 +49,14 @@ class {{classname}}Test extends TestCase
 {{#vars}}
         '{{name}}' => '{{datatype}}',
 {{/vars}}
-    ];
+];
+
+{{#hasVars}}
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
     /**
      * @var scalar[][]
      */
@@ -126,7 +127,14 @@ class {{classname}}Test extends TestCase
                 return new \stdClass();
         }
         if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
-            return new $type();
+            $model = new $type();
+            $types = $type::swaggerTypes();
+            foreach ($model->listInvalidProperties() as $field => $reason) {
+                // @todo get allowed values? ((getter))AllowedValues
+                // @phpstan-ignore-next-line
+                $model[$field] = $this->getFakeValue($types[$field], null);
+            }
+            return $model;
         }
         $this->markTestSkipped('This type is not mocked yet: ' . $type);
     }
@@ -139,7 +147,121 @@ class {{classname}}Test extends TestCase
      */
     public function test{{classname}}(): void
     {
-        $this->assertInstanceOf(\{{modelPackage}}\{{classname}}::class, $this->sot);
+        $this->assertInstanceOf({{classname}}::class, $this->sot);
+    }
+
+    /**
+     * @covers ::swaggerTypes
+     */
+    public function testSwaggerTypes(): void
+    {
+        $this->assertEquals($this->types, {{classname}}::swaggerTypes());
+    }
+
+    /**
+     * @covers ::swaggerFormats
+     */
+    public function testSwaggerFormats(): void
+    {
+        {{#hasVars}}
+        $formats = $this->sot->swaggerFormats();
+        {{#vars}}
+        $this->assertEquals({{#dataFormat}}'{{{.}}}'{{/dataFormat}}{{^dataFormat}}null{{/dataFormat}}, $formats['{{name}}']);
+        {{/vars}}
+        {{/hasVars}}
+        {{^hasVars}}
+        $this->assertEmpty($this->sot->swaggerFormats());
+        {{/hasVars}}
+    }
+
+    /**
+     * @covers ::attributeMap
+     */
+    public function testAttributeMap(): void
+    {
+        {{#hasVars}}
+        $formats = $this->sot->attributeMap();
+        {{#vars}}
+        $this->assertEquals('{{baseName}}', $formats['{{name}}']);
+        {{/vars}}
+        {{/hasVars}}
+        {{^hasVars}}
+        $this->assertEmpty($this->sot->attributeMap());
+        {{/hasVars}}
+    }
+
+    /**
+     * @covers ::getters
+     * @covers ::setters
+     */
+    public function testGettersSetters(): void
+    {
+        $getters = $this->sot->getters();
+        $setters = $this->sot->setters();
+        {{^hasVars}}
+            $this->assertEmpty($setters);
+            $this->assertEmpty($getters);
+        {{/hasVars}}
+        {{#hasVars}}
+        foreach (array_keys($this->types) as $field) {
+            $this->assertTrue(isset($setters[$field]));
+            $this->assertTrue(isset($getters[$field]));
+            $this->assertTrue(
+                method_exists($this->sot, $getters[$field]),
+                'Getter exists on model.'
+            );
+            $this->assertTrue(
+                method_exists($this->sot, $setters[$field]),
+                'Setter exists on model.'
+            );
+        }
+        {{/hasVars}}
+    }
+
+    /**
+     * @covers ::getModelName
+     */
+    public function testGetModelName(): void
+    {
+        $this->assertEquals('{{name}}', $this->sot->getModelName());
+    }
+
+    /**
+     * @covers ::listInvalidProperties
+     * @covers ::valid
+     */
+    public function testValid(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::setAdditionalProperties
+     * @covers ::setAdditionalProperty
+     * @covers ::getAdditionalProperties
+     */
+    public function testAdditionalProperties(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::jsonSerialize
+     * @covers ::__toString
+     */
+    public function testJson(): void
+    {
+        // Some minimal tests that json generates well.
+        $json = json_encode($this->sot);
+        $this->assertIsString($json, 'Json encoded');
+        $json = json_decode($json);
+        $string = json_decode((string) $this->sot);
+        $this->assertEquals(
+            $json,
+            $string
+        );
+        $this->assertInstanceOf(\stdClass::class, $json);
+        $this->assertInstanceOf(\stdClass::class, $string);
     }
 {{#vars}}
 
@@ -149,6 +271,10 @@ class {{classname}}Test extends TestCase
      * @covers ::__construct
      * @covers ::{{getter}}
      * @covers ::{{setter}}
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testProperty{{nameInCamelCase}}(): void
     {
@@ -159,7 +285,25 @@ class {{classname}}Test extends TestCase
         );
         $this->sot->{{setter}}($v);
         $this->assertEquals($v, $this->sot->{{getter}}());
-        // $this->markTestIncomplete('Not implemented');
+        {{^required}}
+        $this->sot->{{setter}}(null);
+        $this->assertNull($this->sot->{{getter}}());
+        $this->sot->{{setter}}($v);
+        {{/required}}
+
+        $this->assertEquals($v, $this->sot['{{name}}']);
+        $v = $this->getFakeValue(
+            $this->types['{{name}}'],
+            $this->allowedValues['{{name}}'] ?? null
+        );
+        $this->sot['{{name}}'] = $v;
+        $this->assertEquals($v, $this->sot['{{name}}']);
+        $this->assertTrue(isset($this->sot['{{name}}']));
+        unset($this->sot['{{name}}']);
+        $this->assertFalse(isset($this->sot['{{name}}']));
+        $this->sot['{{name}}'] = $v;
+        $this->assertEquals($v, $this->sot['{{name}}']);
+        $this->assertTrue(isset($this->sot['{{name}}']));
     }
 {{/vars}}
 }

@@ -119,22 +119,6 @@ class LpFormResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -257,6 +241,22 @@ class LpFormResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -296,41 +296,41 @@ class LpFormResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         $invalidProperties = [];
 
         if ($this->container['button_label'] === null) {
-            $invalidProperties[] = "'button_label' can't be null";
+            $invalidProperties['button_label'] = "'button_label' can't be null";
         }
         if ($this->container['button_location'] === null) {
-            $invalidProperties[] = "'button_location' can't be null";
+            $invalidProperties['button_location'] = "'button_location' can't be null";
         }
         if ($this->container['folder'] === null) {
-            $invalidProperties[] = "'folder' can't be null";
+            $invalidProperties['folder'] = "'folder' can't be null";
         }
         if ($this->container['font_family'] === null) {
-            $invalidProperties[] = "'font_family' can't be null";
+            $invalidProperties['font_family'] = "'font_family' can't be null";
         }
         if ($this->container['font_size'] === null) {
-            $invalidProperties[] = "'font_size' can't be null";
+            $invalidProperties['font_size'] = "'font_size' can't be null";
         }
         if ($this->container['known_visitor'] === null) {
-            $invalidProperties[] = "'known_visitor' can't be null";
+            $invalidProperties['known_visitor'] = "'known_visitor' can't be null";
         }
         if ($this->container['label_position'] === null) {
-            $invalidProperties[] = "'label_position' can't be null";
+            $invalidProperties['label_position'] = "'label_position' can't be null";
         }
         if ($this->container['language'] === null) {
-            $invalidProperties[] = "'language' can't be null";
+            $invalidProperties['language'] = "'language' can't be null";
         }
         if ($this->container['locale'] === null) {
-            $invalidProperties[] = "'locale' can't be null";
+            $invalidProperties['locale'] = "'locale' can't be null";
         }
         if ($this->container['progressive_profiling'] === null) {
-            $invalidProperties[] = "'progressive_profiling' can't be null";
+            $invalidProperties['progressive_profiling'] = "'progressive_profiling' can't be null";
         }
         if ($this->container['status'] === null) {
-            $invalidProperties[] = "'status' can't be null";
+            $invalidProperties['status'] = "'status' can't be null";
         }
         $allowedValues = $this->getStatusAllowableValues();
         if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
+            $invalidProperties['status'] = sprintf(
                 "invalid value '%s' for 'status', must be one of '%s'",
                 $this->container['status'],
                 implode("', '", $allowedValues)
@@ -338,13 +338,13 @@ class LpFormResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         if ($this->container['thank_you_list'] === null) {
-            $invalidProperties[] = "'thank_you_list' can't be null";
+            $invalidProperties['thank_you_list'] = "'thank_you_list' can't be null";
         }
         if ($this->container['theme'] === null) {
-            $invalidProperties[] = "'theme' can't be null";
+            $invalidProperties['theme'] = "'theme' can't be null";
         }
         if ($this->container['waiting_label'] === null) {
-            $invalidProperties[] = "'waiting_label' can't be null";
+            $invalidProperties['waiting_label'] = "'waiting_label' can't be null";
         }
         return $invalidProperties;
     }
@@ -420,9 +420,9 @@ class LpFormResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets created_at
      *
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getCreatedAt(): \DateTime
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->container['created_at'];
     }
@@ -444,9 +444,9 @@ class LpFormResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->container['description'];
     }
@@ -540,9 +540,9 @@ class LpFormResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets id
      *
-     * @return int
+     * @return int|null
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->container['id'];
     }
@@ -660,9 +660,9 @@ class LpFormResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets name
      *
-     * @return string
+     * @return string|null
      */
-    public function getName(): string
+    public function getName(): ?string
     {
         return $this->container['name'];
     }
@@ -790,9 +790,9 @@ class LpFormResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets updated_at
      *
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getUpdatedAt(): \DateTime
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->container['updated_at'];
     }
@@ -814,9 +814,9 @@ class LpFormResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets url
      *
-     * @return string
+     * @return string|null
      */
-    public function getUrl(): string
+    public function getUrl(): ?string
     {
         return $this->container['url'];
     }

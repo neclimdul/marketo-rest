@@ -83,22 +83,6 @@ class UsageData implements ModelInterface, ArrayAccess, \JsonSerializable
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -153,6 +137,22 @@ class UsageData implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -192,7 +192,7 @@ class UsageData implements ModelInterface, ArrayAccess, \JsonSerializable
         $invalidProperties = [];
 
         if ($this->container['date'] === null) {
-            $invalidProperties[] = "'date' can't be null";
+            $invalidProperties['date'] = "'date' can't be null";
         }
         return $invalidProperties;
     }
@@ -232,9 +232,9 @@ class UsageData implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets total
      *
-     * @return int
+     * @return int|null
      */
-    public function getTotal(): int
+    public function getTotal(): ?int
     {
         return $this->container['total'];
     }
@@ -256,9 +256,9 @@ class UsageData implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets users
      *
-     * @return \NecLimDul\MarketoRest\Lead\Model\UserCount[]
+     * @return \NecLimDul\MarketoRest\Lead\Model\UserCount[]|null
      */
-    public function getUsers(): array
+    public function getUsers(): ?array
     {
         return $this->container['users'];
     }

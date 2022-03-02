@@ -84,22 +84,6 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -151,6 +135,22 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['external_company_id'] = $data['external_company_id'] ?? null;
         $this->container['id'] = $data['id'] ?? null;
         $this->container['company'] = $data['company'] ?? null;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
     }
 
     /**
@@ -206,9 +206,9 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets external_company_id
      *
-     * @return string
+     * @return string|null
      */
-    public function getExternalCompanyId(): string
+    public function getExternalCompanyId(): ?string
     {
         return $this->container['external_company_id'];
     }
@@ -230,9 +230,9 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets id
      *
-     * @return int
+     * @return int|null
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->container['id'];
     }
@@ -254,9 +254,9 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets company
      *
-     * @return string
+     * @return string|null
      */
-    public function getCompany(): string
+    public function getCompany(): ?string
     {
         return $this->container['company'];
     }

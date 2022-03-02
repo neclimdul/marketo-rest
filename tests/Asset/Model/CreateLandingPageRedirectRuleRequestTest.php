@@ -37,7 +37,7 @@ use PHPUnit\Framework\TestCase;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  *
- * @coversDefault \NecLimDul\MarketoRest\Asset\Model\CreateLandingPageRedirectRuleRequest
+ * @coversDefaultClass \NecLimDul\MarketoRest\Asset\Model\CreateLandingPageRedirectRuleRequest
  */
 class CreateLandingPageRedirectRuleRequestTest extends TestCase
 {
@@ -48,18 +48,19 @@ class CreateLandingPageRedirectRuleRequestTest extends TestCase
     private $sot;
 
     /**
-     * @var \Faker\Generator
-     */
-    private $faker;
-
-    /**
      * @var string[]
      */
     private $types = [
         'hostname' => 'string',
         'redirect_from' => '\NecLimDul\MarketoRest\Asset\Model\RedirectFrom',
         'redirect_to' => '\NecLimDul\MarketoRest\Asset\Model\RedirectTo',
-    ];
+];
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
     /**
      * @var scalar[][]
      */
@@ -112,7 +113,14 @@ class CreateLandingPageRedirectRuleRequestTest extends TestCase
                 return new \stdClass();
         }
         if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
-            return new $type();
+            $model = new $type();
+            $types = $type::swaggerTypes();
+            foreach ($model->listInvalidProperties() as $field => $reason) {
+                // @todo get allowed values? ((getter))AllowedValues
+                // @phpstan-ignore-next-line
+                $model[$field] = $this->getFakeValue($types[$field], null);
+            }
+            return $model;
         }
         $this->markTestSkipped('This type is not mocked yet: ' . $type);
     }
@@ -124,7 +132,105 @@ class CreateLandingPageRedirectRuleRequestTest extends TestCase
      */
     public function testCreateLandingPageRedirectRuleRequest(): void
     {
-        $this->assertInstanceOf(\NecLimDul\MarketoRest\Asset\Model\CreateLandingPageRedirectRuleRequest::class, $this->sot);
+        $this->assertInstanceOf(CreateLandingPageRedirectRuleRequest::class, $this->sot);
+    }
+
+    /**
+     * @covers ::swaggerTypes
+     */
+    public function testSwaggerTypes(): void
+    {
+        $this->assertEquals($this->types, CreateLandingPageRedirectRuleRequest::swaggerTypes());
+    }
+
+    /**
+     * @covers ::swaggerFormats
+     */
+    public function testSwaggerFormats(): void
+    {
+        $formats = $this->sot->swaggerFormats();
+        $this->assertEquals(null, $formats['hostname']);
+        $this->assertEquals(null, $formats['redirect_from']);
+        $this->assertEquals(null, $formats['redirect_to']);
+    }
+
+    /**
+     * @covers ::attributeMap
+     */
+    public function testAttributeMap(): void
+    {
+        $formats = $this->sot->attributeMap();
+        $this->assertEquals('hostname', $formats['hostname']);
+        $this->assertEquals('redirectFrom', $formats['redirect_from']);
+        $this->assertEquals('redirectTo', $formats['redirect_to']);
+    }
+
+    /**
+     * @covers ::getters
+     * @covers ::setters
+     */
+    public function testGettersSetters(): void
+    {
+        $getters = $this->sot->getters();
+        $setters = $this->sot->setters();
+        foreach (array_keys($this->types) as $field) {
+            $this->assertTrue(isset($setters[$field]));
+            $this->assertTrue(isset($getters[$field]));
+            $this->assertTrue(
+                method_exists($this->sot, $getters[$field]),
+                'Getter exists on model.'
+            );
+            $this->assertTrue(
+                method_exists($this->sot, $setters[$field]),
+                'Setter exists on model.'
+            );
+        }
+    }
+
+    /**
+     * @covers ::getModelName
+     */
+    public function testGetModelName(): void
+    {
+        $this->assertEquals('CreateLandingPageRedirectRuleRequest', $this->sot->getModelName());
+    }
+
+    /**
+     * @covers ::listInvalidProperties
+     * @covers ::valid
+     */
+    public function testValid(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::setAdditionalProperties
+     * @covers ::setAdditionalProperty
+     * @covers ::getAdditionalProperties
+     */
+    public function testAdditionalProperties(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::jsonSerialize
+     * @covers ::__toString
+     */
+    public function testJson(): void
+    {
+        // Some minimal tests that json generates well.
+        $json = json_encode($this->sot);
+        $this->assertIsString($json, 'Json encoded');
+        $json = json_decode($json);
+        $string = json_decode((string) $this->sot);
+        $this->assertEquals(
+            $json,
+            $string
+        );
+        $this->assertInstanceOf(\stdClass::class, $json);
+        $this->assertInstanceOf(\stdClass::class, $string);
     }
 
     /**
@@ -133,6 +239,10 @@ class CreateLandingPageRedirectRuleRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getHostname
      * @covers ::setHostname
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyHostname(): void
     {
@@ -143,7 +253,20 @@ class CreateLandingPageRedirectRuleRequestTest extends TestCase
         );
         $this->sot->setHostname($v);
         $this->assertEquals($v, $this->sot->getHostname());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['hostname']);
+        $v = $this->getFakeValue(
+            $this->types['hostname'],
+            $this->allowedValues['hostname'] ?? null
+        );
+        $this->sot['hostname'] = $v;
+        $this->assertEquals($v, $this->sot['hostname']);
+        $this->assertTrue(isset($this->sot['hostname']));
+        unset($this->sot['hostname']);
+        $this->assertFalse(isset($this->sot['hostname']));
+        $this->sot['hostname'] = $v;
+        $this->assertEquals($v, $this->sot['hostname']);
+        $this->assertTrue(isset($this->sot['hostname']));
     }
 
     /**
@@ -152,6 +275,10 @@ class CreateLandingPageRedirectRuleRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getRedirectFrom
      * @covers ::setRedirectFrom
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyRedirectFrom(): void
     {
@@ -162,7 +289,20 @@ class CreateLandingPageRedirectRuleRequestTest extends TestCase
         );
         $this->sot->setRedirectFrom($v);
         $this->assertEquals($v, $this->sot->getRedirectFrom());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['redirect_from']);
+        $v = $this->getFakeValue(
+            $this->types['redirect_from'],
+            $this->allowedValues['redirect_from'] ?? null
+        );
+        $this->sot['redirect_from'] = $v;
+        $this->assertEquals($v, $this->sot['redirect_from']);
+        $this->assertTrue(isset($this->sot['redirect_from']));
+        unset($this->sot['redirect_from']);
+        $this->assertFalse(isset($this->sot['redirect_from']));
+        $this->sot['redirect_from'] = $v;
+        $this->assertEquals($v, $this->sot['redirect_from']);
+        $this->assertTrue(isset($this->sot['redirect_from']));
     }
 
     /**
@@ -171,6 +311,10 @@ class CreateLandingPageRedirectRuleRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getRedirectTo
      * @covers ::setRedirectTo
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyRedirectTo(): void
     {
@@ -181,6 +325,19 @@ class CreateLandingPageRedirectRuleRequestTest extends TestCase
         );
         $this->sot->setRedirectTo($v);
         $this->assertEquals($v, $this->sot->getRedirectTo());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['redirect_to']);
+        $v = $this->getFakeValue(
+            $this->types['redirect_to'],
+            $this->allowedValues['redirect_to'] ?? null
+        );
+        $this->sot['redirect_to'] = $v;
+        $this->assertEquals($v, $this->sot['redirect_to']);
+        $this->assertTrue(isset($this->sot['redirect_to']));
+        unset($this->sot['redirect_to']);
+        $this->assertFalse(isset($this->sot['redirect_to']));
+        $this->sot['redirect_to'] = $v;
+        $this->assertEquals($v, $this->sot['redirect_to']);
+        $this->assertTrue(isset($this->sot['redirect_to']));
     }
 }

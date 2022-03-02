@@ -85,22 +85,6 @@ class UpdateFieldPosition implements ModelInterface, ArrayAccess, \JsonSerializa
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -159,6 +143,22 @@ class UpdateFieldPosition implements ModelInterface, ArrayAccess, \JsonSerializa
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -198,13 +198,13 @@ class UpdateFieldPosition implements ModelInterface, ArrayAccess, \JsonSerializa
         $invalidProperties = [];
 
         if ($this->container['column_number'] === null) {
-            $invalidProperties[] = "'column_number' can't be null";
+            $invalidProperties['column_number'] = "'column_number' can't be null";
         }
         if ($this->container['field_name'] === null) {
-            $invalidProperties[] = "'field_name' can't be null";
+            $invalidProperties['field_name'] = "'field_name' can't be null";
         }
         if ($this->container['row_number'] === null) {
-            $invalidProperties[] = "'row_number' can't be null";
+            $invalidProperties['row_number'] = "'row_number' can't be null";
         }
         return $invalidProperties;
     }
@@ -244,9 +244,9 @@ class UpdateFieldPosition implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets field_list
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\UpdateFieldPosition[]
+     * @return \NecLimDul\MarketoRest\Asset\Model\UpdateFieldPosition[]|null
      */
-    public function getFieldList(): array
+    public function getFieldList(): ?array
     {
         return $this->container['field_list'];
     }

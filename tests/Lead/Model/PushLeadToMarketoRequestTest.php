@@ -37,7 +37,7 @@ use PHPUnit\Framework\TestCase;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  *
- * @coversDefault \NecLimDul\MarketoRest\Lead\Model\PushLeadToMarketoRequest
+ * @coversDefaultClass \NecLimDul\MarketoRest\Lead\Model\PushLeadToMarketoRequest
  */
 class PushLeadToMarketoRequestTest extends TestCase
 {
@@ -46,11 +46,6 @@ class PushLeadToMarketoRequestTest extends TestCase
      * @var \NecLimDul\MarketoRest\Lead\Model\PushLeadToMarketoRequest
      */
     private $sot;
-
-    /**
-     * @var \Faker\Generator
-     */
-    private $faker;
 
     /**
      * @var string[]
@@ -63,7 +58,13 @@ class PushLeadToMarketoRequestTest extends TestCase
         'program_status' => 'string',
         'reason' => 'string',
         'source' => 'string',
-    ];
+];
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
     /**
      * @var scalar[][]
      */
@@ -116,7 +117,14 @@ class PushLeadToMarketoRequestTest extends TestCase
                 return new \stdClass();
         }
         if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
-            return new $type();
+            $model = new $type();
+            $types = $type::swaggerTypes();
+            foreach ($model->listInvalidProperties() as $field => $reason) {
+                // @todo get allowed values? ((getter))AllowedValues
+                // @phpstan-ignore-next-line
+                $model[$field] = $this->getFakeValue($types[$field], null);
+            }
+            return $model;
         }
         $this->markTestSkipped('This type is not mocked yet: ' . $type);
     }
@@ -128,7 +136,113 @@ class PushLeadToMarketoRequestTest extends TestCase
      */
     public function testPushLeadToMarketoRequest(): void
     {
-        $this->assertInstanceOf(\NecLimDul\MarketoRest\Lead\Model\PushLeadToMarketoRequest::class, $this->sot);
+        $this->assertInstanceOf(PushLeadToMarketoRequest::class, $this->sot);
+    }
+
+    /**
+     * @covers ::swaggerTypes
+     */
+    public function testSwaggerTypes(): void
+    {
+        $this->assertEquals($this->types, PushLeadToMarketoRequest::swaggerTypes());
+    }
+
+    /**
+     * @covers ::swaggerFormats
+     */
+    public function testSwaggerFormats(): void
+    {
+        $formats = $this->sot->swaggerFormats();
+        $this->assertEquals(null, $formats['input']);
+        $this->assertEquals(null, $formats['lookup_field']);
+        $this->assertEquals(null, $formats['partition_name']);
+        $this->assertEquals(null, $formats['program_name']);
+        $this->assertEquals(null, $formats['program_status']);
+        $this->assertEquals(null, $formats['reason']);
+        $this->assertEquals(null, $formats['source']);
+    }
+
+    /**
+     * @covers ::attributeMap
+     */
+    public function testAttributeMap(): void
+    {
+        $formats = $this->sot->attributeMap();
+        $this->assertEquals('input', $formats['input']);
+        $this->assertEquals('lookupField', $formats['lookup_field']);
+        $this->assertEquals('partitionName', $formats['partition_name']);
+        $this->assertEquals('programName', $formats['program_name']);
+        $this->assertEquals('programStatus', $formats['program_status']);
+        $this->assertEquals('reason', $formats['reason']);
+        $this->assertEquals('source', $formats['source']);
+    }
+
+    /**
+     * @covers ::getters
+     * @covers ::setters
+     */
+    public function testGettersSetters(): void
+    {
+        $getters = $this->sot->getters();
+        $setters = $this->sot->setters();
+        foreach (array_keys($this->types) as $field) {
+            $this->assertTrue(isset($setters[$field]));
+            $this->assertTrue(isset($getters[$field]));
+            $this->assertTrue(
+                method_exists($this->sot, $getters[$field]),
+                'Getter exists on model.'
+            );
+            $this->assertTrue(
+                method_exists($this->sot, $setters[$field]),
+                'Setter exists on model.'
+            );
+        }
+    }
+
+    /**
+     * @covers ::getModelName
+     */
+    public function testGetModelName(): void
+    {
+        $this->assertEquals('PushLeadToMarketoRequest', $this->sot->getModelName());
+    }
+
+    /**
+     * @covers ::listInvalidProperties
+     * @covers ::valid
+     */
+    public function testValid(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::setAdditionalProperties
+     * @covers ::setAdditionalProperty
+     * @covers ::getAdditionalProperties
+     */
+    public function testAdditionalProperties(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::jsonSerialize
+     * @covers ::__toString
+     */
+    public function testJson(): void
+    {
+        // Some minimal tests that json generates well.
+        $json = json_encode($this->sot);
+        $this->assertIsString($json, 'Json encoded');
+        $json = json_decode($json);
+        $string = json_decode((string) $this->sot);
+        $this->assertEquals(
+            $json,
+            $string
+        );
+        $this->assertInstanceOf(\stdClass::class, $json);
+        $this->assertInstanceOf(\stdClass::class, $string);
     }
 
     /**
@@ -137,6 +251,10 @@ class PushLeadToMarketoRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getInput
      * @covers ::setInput
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyInput(): void
     {
@@ -147,7 +265,23 @@ class PushLeadToMarketoRequestTest extends TestCase
         );
         $this->sot->setInput($v);
         $this->assertEquals($v, $this->sot->getInput());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setInput(null);
+        $this->assertNull($this->sot->getInput());
+        $this->sot->setInput($v);
+
+        $this->assertEquals($v, $this->sot['input']);
+        $v = $this->getFakeValue(
+            $this->types['input'],
+            $this->allowedValues['input'] ?? null
+        );
+        $this->sot['input'] = $v;
+        $this->assertEquals($v, $this->sot['input']);
+        $this->assertTrue(isset($this->sot['input']));
+        unset($this->sot['input']);
+        $this->assertFalse(isset($this->sot['input']));
+        $this->sot['input'] = $v;
+        $this->assertEquals($v, $this->sot['input']);
+        $this->assertTrue(isset($this->sot['input']));
     }
 
     /**
@@ -156,6 +290,10 @@ class PushLeadToMarketoRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getLookupField
      * @covers ::setLookupField
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyLookupField(): void
     {
@@ -166,7 +304,23 @@ class PushLeadToMarketoRequestTest extends TestCase
         );
         $this->sot->setLookupField($v);
         $this->assertEquals($v, $this->sot->getLookupField());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setLookupField(null);
+        $this->assertNull($this->sot->getLookupField());
+        $this->sot->setLookupField($v);
+
+        $this->assertEquals($v, $this->sot['lookup_field']);
+        $v = $this->getFakeValue(
+            $this->types['lookup_field'],
+            $this->allowedValues['lookup_field'] ?? null
+        );
+        $this->sot['lookup_field'] = $v;
+        $this->assertEquals($v, $this->sot['lookup_field']);
+        $this->assertTrue(isset($this->sot['lookup_field']));
+        unset($this->sot['lookup_field']);
+        $this->assertFalse(isset($this->sot['lookup_field']));
+        $this->sot['lookup_field'] = $v;
+        $this->assertEquals($v, $this->sot['lookup_field']);
+        $this->assertTrue(isset($this->sot['lookup_field']));
     }
 
     /**
@@ -175,6 +329,10 @@ class PushLeadToMarketoRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getPartitionName
      * @covers ::setPartitionName
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyPartitionName(): void
     {
@@ -185,7 +343,23 @@ class PushLeadToMarketoRequestTest extends TestCase
         );
         $this->sot->setPartitionName($v);
         $this->assertEquals($v, $this->sot->getPartitionName());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setPartitionName(null);
+        $this->assertNull($this->sot->getPartitionName());
+        $this->sot->setPartitionName($v);
+
+        $this->assertEquals($v, $this->sot['partition_name']);
+        $v = $this->getFakeValue(
+            $this->types['partition_name'],
+            $this->allowedValues['partition_name'] ?? null
+        );
+        $this->sot['partition_name'] = $v;
+        $this->assertEquals($v, $this->sot['partition_name']);
+        $this->assertTrue(isset($this->sot['partition_name']));
+        unset($this->sot['partition_name']);
+        $this->assertFalse(isset($this->sot['partition_name']));
+        $this->sot['partition_name'] = $v;
+        $this->assertEquals($v, $this->sot['partition_name']);
+        $this->assertTrue(isset($this->sot['partition_name']));
     }
 
     /**
@@ -194,6 +368,10 @@ class PushLeadToMarketoRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getProgramName
      * @covers ::setProgramName
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyProgramName(): void
     {
@@ -204,7 +382,23 @@ class PushLeadToMarketoRequestTest extends TestCase
         );
         $this->sot->setProgramName($v);
         $this->assertEquals($v, $this->sot->getProgramName());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setProgramName(null);
+        $this->assertNull($this->sot->getProgramName());
+        $this->sot->setProgramName($v);
+
+        $this->assertEquals($v, $this->sot['program_name']);
+        $v = $this->getFakeValue(
+            $this->types['program_name'],
+            $this->allowedValues['program_name'] ?? null
+        );
+        $this->sot['program_name'] = $v;
+        $this->assertEquals($v, $this->sot['program_name']);
+        $this->assertTrue(isset($this->sot['program_name']));
+        unset($this->sot['program_name']);
+        $this->assertFalse(isset($this->sot['program_name']));
+        $this->sot['program_name'] = $v;
+        $this->assertEquals($v, $this->sot['program_name']);
+        $this->assertTrue(isset($this->sot['program_name']));
     }
 
     /**
@@ -213,6 +407,10 @@ class PushLeadToMarketoRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getProgramStatus
      * @covers ::setProgramStatus
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyProgramStatus(): void
     {
@@ -223,7 +421,23 @@ class PushLeadToMarketoRequestTest extends TestCase
         );
         $this->sot->setProgramStatus($v);
         $this->assertEquals($v, $this->sot->getProgramStatus());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setProgramStatus(null);
+        $this->assertNull($this->sot->getProgramStatus());
+        $this->sot->setProgramStatus($v);
+
+        $this->assertEquals($v, $this->sot['program_status']);
+        $v = $this->getFakeValue(
+            $this->types['program_status'],
+            $this->allowedValues['program_status'] ?? null
+        );
+        $this->sot['program_status'] = $v;
+        $this->assertEquals($v, $this->sot['program_status']);
+        $this->assertTrue(isset($this->sot['program_status']));
+        unset($this->sot['program_status']);
+        $this->assertFalse(isset($this->sot['program_status']));
+        $this->sot['program_status'] = $v;
+        $this->assertEquals($v, $this->sot['program_status']);
+        $this->assertTrue(isset($this->sot['program_status']));
     }
 
     /**
@@ -232,6 +446,10 @@ class PushLeadToMarketoRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getReason
      * @covers ::setReason
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyReason(): void
     {
@@ -242,7 +460,23 @@ class PushLeadToMarketoRequestTest extends TestCase
         );
         $this->sot->setReason($v);
         $this->assertEquals($v, $this->sot->getReason());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setReason(null);
+        $this->assertNull($this->sot->getReason());
+        $this->sot->setReason($v);
+
+        $this->assertEquals($v, $this->sot['reason']);
+        $v = $this->getFakeValue(
+            $this->types['reason'],
+            $this->allowedValues['reason'] ?? null
+        );
+        $this->sot['reason'] = $v;
+        $this->assertEquals($v, $this->sot['reason']);
+        $this->assertTrue(isset($this->sot['reason']));
+        unset($this->sot['reason']);
+        $this->assertFalse(isset($this->sot['reason']));
+        $this->sot['reason'] = $v;
+        $this->assertEquals($v, $this->sot['reason']);
+        $this->assertTrue(isset($this->sot['reason']));
     }
 
     /**
@@ -251,6 +485,10 @@ class PushLeadToMarketoRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getSource
      * @covers ::setSource
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertySource(): void
     {
@@ -261,6 +499,22 @@ class PushLeadToMarketoRequestTest extends TestCase
         );
         $this->sot->setSource($v);
         $this->assertEquals($v, $this->sot->getSource());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setSource(null);
+        $this->assertNull($this->sot->getSource());
+        $this->sot->setSource($v);
+
+        $this->assertEquals($v, $this->sot['source']);
+        $v = $this->getFakeValue(
+            $this->types['source'],
+            $this->allowedValues['source'] ?? null
+        );
+        $this->sot['source'] = $v;
+        $this->assertEquals($v, $this->sot['source']);
+        $this->assertTrue(isset($this->sot['source']));
+        unset($this->sot['source']);
+        $this->assertFalse(isset($this->sot['source']));
+        $this->sot['source'] = $v;
+        $this->assertEquals($v, $this->sot['source']);
+        $this->assertTrue(isset($this->sot['source']));
     }
 }

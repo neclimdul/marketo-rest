@@ -89,22 +89,6 @@ class ExportLeadFilter implements ModelInterface, ArrayAccess, \JsonSerializable
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -171,6 +155,22 @@ class ExportLeadFilter implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -210,22 +210,22 @@ class ExportLeadFilter implements ModelInterface, ArrayAccess, \JsonSerializable
         $invalidProperties = [];
 
         if ($this->container['created_at'] === null) {
-            $invalidProperties[] = "'created_at' can't be null";
+            $invalidProperties['created_at'] = "'created_at' can't be null";
         }
         if ($this->container['smart_list_id'] === null) {
-            $invalidProperties[] = "'smart_list_id' can't be null";
+            $invalidProperties['smart_list_id'] = "'smart_list_id' can't be null";
         }
         if ($this->container['smart_list_name'] === null) {
-            $invalidProperties[] = "'smart_list_name' can't be null";
+            $invalidProperties['smart_list_name'] = "'smart_list_name' can't be null";
         }
         if ($this->container['static_list_id'] === null) {
-            $invalidProperties[] = "'static_list_id' can't be null";
+            $invalidProperties['static_list_id'] = "'static_list_id' can't be null";
         }
         if ($this->container['static_list_name'] === null) {
-            $invalidProperties[] = "'static_list_name' can't be null";
+            $invalidProperties['static_list_name'] = "'static_list_name' can't be null";
         }
         if ($this->container['updated_at'] === null) {
-            $invalidProperties[] = "'updated_at' can't be null";
+            $invalidProperties['updated_at'] = "'updated_at' can't be null";
         }
         return $invalidProperties;
     }

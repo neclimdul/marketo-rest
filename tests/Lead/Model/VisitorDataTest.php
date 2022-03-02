@@ -37,7 +37,7 @@ use PHPUnit\Framework\TestCase;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  *
- * @coversDefault \NecLimDul\MarketoRest\Lead\Model\VisitorData
+ * @coversDefaultClass \NecLimDul\MarketoRest\Lead\Model\VisitorData
  */
 class VisitorDataTest extends TestCase
 {
@@ -48,11 +48,6 @@ class VisitorDataTest extends TestCase
     private $sot;
 
     /**
-     * @var \Faker\Generator
-     */
-    private $faker;
-
-    /**
      * @var string[]
      */
     private $types = [
@@ -60,7 +55,13 @@ class VisitorDataTest extends TestCase
         'query_string' => 'string',
         'lead_client_ip_address' => 'string',
         'user_agent_string' => 'string',
-    ];
+];
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
     /**
      * @var scalar[][]
      */
@@ -113,7 +114,14 @@ class VisitorDataTest extends TestCase
                 return new \stdClass();
         }
         if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
-            return new $type();
+            $model = new $type();
+            $types = $type::swaggerTypes();
+            foreach ($model->listInvalidProperties() as $field => $reason) {
+                // @todo get allowed values? ((getter))AllowedValues
+                // @phpstan-ignore-next-line
+                $model[$field] = $this->getFakeValue($types[$field], null);
+            }
+            return $model;
         }
         $this->markTestSkipped('This type is not mocked yet: ' . $type);
     }
@@ -125,7 +133,107 @@ class VisitorDataTest extends TestCase
      */
     public function testVisitorData(): void
     {
-        $this->assertInstanceOf(\NecLimDul\MarketoRest\Lead\Model\VisitorData::class, $this->sot);
+        $this->assertInstanceOf(VisitorData::class, $this->sot);
+    }
+
+    /**
+     * @covers ::swaggerTypes
+     */
+    public function testSwaggerTypes(): void
+    {
+        $this->assertEquals($this->types, VisitorData::swaggerTypes());
+    }
+
+    /**
+     * @covers ::swaggerFormats
+     */
+    public function testSwaggerFormats(): void
+    {
+        $formats = $this->sot->swaggerFormats();
+        $this->assertEquals(null, $formats['page_url']);
+        $this->assertEquals(null, $formats['query_string']);
+        $this->assertEquals(null, $formats['lead_client_ip_address']);
+        $this->assertEquals(null, $formats['user_agent_string']);
+    }
+
+    /**
+     * @covers ::attributeMap
+     */
+    public function testAttributeMap(): void
+    {
+        $formats = $this->sot->attributeMap();
+        $this->assertEquals('pageURL', $formats['page_url']);
+        $this->assertEquals('queryString', $formats['query_string']);
+        $this->assertEquals('leadClientIpAddress', $formats['lead_client_ip_address']);
+        $this->assertEquals('userAgentString', $formats['user_agent_string']);
+    }
+
+    /**
+     * @covers ::getters
+     * @covers ::setters
+     */
+    public function testGettersSetters(): void
+    {
+        $getters = $this->sot->getters();
+        $setters = $this->sot->setters();
+        foreach (array_keys($this->types) as $field) {
+            $this->assertTrue(isset($setters[$field]));
+            $this->assertTrue(isset($getters[$field]));
+            $this->assertTrue(
+                method_exists($this->sot, $getters[$field]),
+                'Getter exists on model.'
+            );
+            $this->assertTrue(
+                method_exists($this->sot, $setters[$field]),
+                'Setter exists on model.'
+            );
+        }
+    }
+
+    /**
+     * @covers ::getModelName
+     */
+    public function testGetModelName(): void
+    {
+        $this->assertEquals('VisitorData', $this->sot->getModelName());
+    }
+
+    /**
+     * @covers ::listInvalidProperties
+     * @covers ::valid
+     */
+    public function testValid(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::setAdditionalProperties
+     * @covers ::setAdditionalProperty
+     * @covers ::getAdditionalProperties
+     */
+    public function testAdditionalProperties(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::jsonSerialize
+     * @covers ::__toString
+     */
+    public function testJson(): void
+    {
+        // Some minimal tests that json generates well.
+        $json = json_encode($this->sot);
+        $this->assertIsString($json, 'Json encoded');
+        $json = json_decode($json);
+        $string = json_decode((string) $this->sot);
+        $this->assertEquals(
+            $json,
+            $string
+        );
+        $this->assertInstanceOf(\stdClass::class, $json);
+        $this->assertInstanceOf(\stdClass::class, $string);
     }
 
     /**
@@ -134,6 +242,10 @@ class VisitorDataTest extends TestCase
      * @covers ::__construct
      * @covers ::getPageUrl
      * @covers ::setPageUrl
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyPageUrl(): void
     {
@@ -144,7 +256,23 @@ class VisitorDataTest extends TestCase
         );
         $this->sot->setPageUrl($v);
         $this->assertEquals($v, $this->sot->getPageUrl());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setPageUrl(null);
+        $this->assertNull($this->sot->getPageUrl());
+        $this->sot->setPageUrl($v);
+
+        $this->assertEquals($v, $this->sot['page_url']);
+        $v = $this->getFakeValue(
+            $this->types['page_url'],
+            $this->allowedValues['page_url'] ?? null
+        );
+        $this->sot['page_url'] = $v;
+        $this->assertEquals($v, $this->sot['page_url']);
+        $this->assertTrue(isset($this->sot['page_url']));
+        unset($this->sot['page_url']);
+        $this->assertFalse(isset($this->sot['page_url']));
+        $this->sot['page_url'] = $v;
+        $this->assertEquals($v, $this->sot['page_url']);
+        $this->assertTrue(isset($this->sot['page_url']));
     }
 
     /**
@@ -153,6 +281,10 @@ class VisitorDataTest extends TestCase
      * @covers ::__construct
      * @covers ::getQueryString
      * @covers ::setQueryString
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyQueryString(): void
     {
@@ -163,7 +295,23 @@ class VisitorDataTest extends TestCase
         );
         $this->sot->setQueryString($v);
         $this->assertEquals($v, $this->sot->getQueryString());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setQueryString(null);
+        $this->assertNull($this->sot->getQueryString());
+        $this->sot->setQueryString($v);
+
+        $this->assertEquals($v, $this->sot['query_string']);
+        $v = $this->getFakeValue(
+            $this->types['query_string'],
+            $this->allowedValues['query_string'] ?? null
+        );
+        $this->sot['query_string'] = $v;
+        $this->assertEquals($v, $this->sot['query_string']);
+        $this->assertTrue(isset($this->sot['query_string']));
+        unset($this->sot['query_string']);
+        $this->assertFalse(isset($this->sot['query_string']));
+        $this->sot['query_string'] = $v;
+        $this->assertEquals($v, $this->sot['query_string']);
+        $this->assertTrue(isset($this->sot['query_string']));
     }
 
     /**
@@ -172,6 +320,10 @@ class VisitorDataTest extends TestCase
      * @covers ::__construct
      * @covers ::getLeadClientIpAddress
      * @covers ::setLeadClientIpAddress
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyLeadClientIpAddress(): void
     {
@@ -182,7 +334,23 @@ class VisitorDataTest extends TestCase
         );
         $this->sot->setLeadClientIpAddress($v);
         $this->assertEquals($v, $this->sot->getLeadClientIpAddress());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setLeadClientIpAddress(null);
+        $this->assertNull($this->sot->getLeadClientIpAddress());
+        $this->sot->setLeadClientIpAddress($v);
+
+        $this->assertEquals($v, $this->sot['lead_client_ip_address']);
+        $v = $this->getFakeValue(
+            $this->types['lead_client_ip_address'],
+            $this->allowedValues['lead_client_ip_address'] ?? null
+        );
+        $this->sot['lead_client_ip_address'] = $v;
+        $this->assertEquals($v, $this->sot['lead_client_ip_address']);
+        $this->assertTrue(isset($this->sot['lead_client_ip_address']));
+        unset($this->sot['lead_client_ip_address']);
+        $this->assertFalse(isset($this->sot['lead_client_ip_address']));
+        $this->sot['lead_client_ip_address'] = $v;
+        $this->assertEquals($v, $this->sot['lead_client_ip_address']);
+        $this->assertTrue(isset($this->sot['lead_client_ip_address']));
     }
 
     /**
@@ -191,6 +359,10 @@ class VisitorDataTest extends TestCase
      * @covers ::__construct
      * @covers ::getUserAgentString
      * @covers ::setUserAgentString
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyUserAgentString(): void
     {
@@ -201,6 +373,22 @@ class VisitorDataTest extends TestCase
         );
         $this->sot->setUserAgentString($v);
         $this->assertEquals($v, $this->sot->getUserAgentString());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setUserAgentString(null);
+        $this->assertNull($this->sot->getUserAgentString());
+        $this->sot->setUserAgentString($v);
+
+        $this->assertEquals($v, $this->sot['user_agent_string']);
+        $v = $this->getFakeValue(
+            $this->types['user_agent_string'],
+            $this->allowedValues['user_agent_string'] ?? null
+        );
+        $this->sot['user_agent_string'] = $v;
+        $this->assertEquals($v, $this->sot['user_agent_string']);
+        $this->assertTrue(isset($this->sot['user_agent_string']));
+        unset($this->sot['user_agent_string']);
+        $this->assertFalse(isset($this->sot['user_agent_string']));
+        $this->sot['user_agent_string'] = $v;
+        $this->assertEquals($v, $this->sot['user_agent_string']);
+        $this->assertTrue(isset($this->sot['user_agent_string']));
     }
 }

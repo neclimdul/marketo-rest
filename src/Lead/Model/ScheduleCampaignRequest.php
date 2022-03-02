@@ -80,22 +80,6 @@ class ScheduleCampaignRequest implements ModelInterface, ArrayAccess, \JsonSeria
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -139,6 +123,22 @@ class ScheduleCampaignRequest implements ModelInterface, ArrayAccess, \JsonSeria
     public function __construct(array $data = null)
     {
         $this->container['input'] = $data['input'] ?? null;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
     }
 
     /**
@@ -194,9 +194,9 @@ class ScheduleCampaignRequest implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets input
      *
-     * @return \NecLimDul\MarketoRest\Lead\Model\ScheduleCampaignData
+     * @return \NecLimDul\MarketoRest\Lead\Model\ScheduleCampaignData|null
      */
-    public function getInput(): \NecLimDul\MarketoRest\Lead\Model\ScheduleCampaignData
+    public function getInput(): ?\NecLimDul\MarketoRest\Lead\Model\ScheduleCampaignData
     {
         return $this->container['input'];
     }

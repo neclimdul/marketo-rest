@@ -84,22 +84,6 @@ class FormFieldVisibilityRequest implements ModelInterface, ArrayAccess, \JsonSe
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -150,6 +134,22 @@ class FormFieldVisibilityRequest implements ModelInterface, ArrayAccess, \JsonSe
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -189,11 +189,11 @@ class FormFieldVisibilityRequest implements ModelInterface, ArrayAccess, \JsonSe
         $invalidProperties = [];
 
         if ($this->container['rule_type'] === null) {
-            $invalidProperties[] = "'rule_type' can't be null";
+            $invalidProperties['rule_type'] = "'rule_type' can't be null";
         }
         $allowedValues = $this->getRuleTypeAllowableValues();
         if (!is_null($this->container['rule_type']) && !in_array($this->container['rule_type'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
+            $invalidProperties['rule_type'] = sprintf(
                 "invalid value '%s' for 'rule_type', must be one of '%s'",
                 $this->container['rule_type'],
                 implode("', '", $allowedValues)
@@ -201,7 +201,7 @@ class FormFieldVisibilityRequest implements ModelInterface, ArrayAccess, \JsonSe
         }
 
         if ($this->container['rules'] === null) {
-            $invalidProperties[] = "'rules' can't be null";
+            $invalidProperties['rules'] = "'rules' can't be null";
         }
         return $invalidProperties;
     }

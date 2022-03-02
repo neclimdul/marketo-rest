@@ -37,7 +37,7 @@ use PHPUnit\Framework\TestCase;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  *
- * @coversDefault \NecLimDul\MarketoRest\Lead\Model\SubmitFormRequest
+ * @coversDefaultClass \NecLimDul\MarketoRest\Lead\Model\SubmitFormRequest
  */
 class SubmitFormRequestTest extends TestCase
 {
@@ -48,18 +48,19 @@ class SubmitFormRequestTest extends TestCase
     private $sot;
 
     /**
-     * @var \Faker\Generator
-     */
-    private $faker;
-
-    /**
      * @var string[]
      */
     private $types = [
         'input' => '\NecLimDul\MarketoRest\Lead\Model\Form[]',
         'form_id' => 'int',
         'program_id' => 'int',
-    ];
+];
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
     /**
      * @var scalar[][]
      */
@@ -112,7 +113,14 @@ class SubmitFormRequestTest extends TestCase
                 return new \stdClass();
         }
         if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
-            return new $type();
+            $model = new $type();
+            $types = $type::swaggerTypes();
+            foreach ($model->listInvalidProperties() as $field => $reason) {
+                // @todo get allowed values? ((getter))AllowedValues
+                // @phpstan-ignore-next-line
+                $model[$field] = $this->getFakeValue($types[$field], null);
+            }
+            return $model;
         }
         $this->markTestSkipped('This type is not mocked yet: ' . $type);
     }
@@ -124,7 +132,105 @@ class SubmitFormRequestTest extends TestCase
      */
     public function testSubmitFormRequest(): void
     {
-        $this->assertInstanceOf(\NecLimDul\MarketoRest\Lead\Model\SubmitFormRequest::class, $this->sot);
+        $this->assertInstanceOf(SubmitFormRequest::class, $this->sot);
+    }
+
+    /**
+     * @covers ::swaggerTypes
+     */
+    public function testSwaggerTypes(): void
+    {
+        $this->assertEquals($this->types, SubmitFormRequest::swaggerTypes());
+    }
+
+    /**
+     * @covers ::swaggerFormats
+     */
+    public function testSwaggerFormats(): void
+    {
+        $formats = $this->sot->swaggerFormats();
+        $this->assertEquals(null, $formats['input']);
+        $this->assertEquals('int32', $formats['form_id']);
+        $this->assertEquals('int32', $formats['program_id']);
+    }
+
+    /**
+     * @covers ::attributeMap
+     */
+    public function testAttributeMap(): void
+    {
+        $formats = $this->sot->attributeMap();
+        $this->assertEquals('input', $formats['input']);
+        $this->assertEquals('formId', $formats['form_id']);
+        $this->assertEquals('programId', $formats['program_id']);
+    }
+
+    /**
+     * @covers ::getters
+     * @covers ::setters
+     */
+    public function testGettersSetters(): void
+    {
+        $getters = $this->sot->getters();
+        $setters = $this->sot->setters();
+        foreach (array_keys($this->types) as $field) {
+            $this->assertTrue(isset($setters[$field]));
+            $this->assertTrue(isset($getters[$field]));
+            $this->assertTrue(
+                method_exists($this->sot, $getters[$field]),
+                'Getter exists on model.'
+            );
+            $this->assertTrue(
+                method_exists($this->sot, $setters[$field]),
+                'Setter exists on model.'
+            );
+        }
+    }
+
+    /**
+     * @covers ::getModelName
+     */
+    public function testGetModelName(): void
+    {
+        $this->assertEquals('SubmitFormRequest', $this->sot->getModelName());
+    }
+
+    /**
+     * @covers ::listInvalidProperties
+     * @covers ::valid
+     */
+    public function testValid(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::setAdditionalProperties
+     * @covers ::setAdditionalProperty
+     * @covers ::getAdditionalProperties
+     */
+    public function testAdditionalProperties(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::jsonSerialize
+     * @covers ::__toString
+     */
+    public function testJson(): void
+    {
+        // Some minimal tests that json generates well.
+        $json = json_encode($this->sot);
+        $this->assertIsString($json, 'Json encoded');
+        $json = json_decode($json);
+        $string = json_decode((string) $this->sot);
+        $this->assertEquals(
+            $json,
+            $string
+        );
+        $this->assertInstanceOf(\stdClass::class, $json);
+        $this->assertInstanceOf(\stdClass::class, $string);
     }
 
     /**
@@ -133,6 +239,10 @@ class SubmitFormRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getInput
      * @covers ::setInput
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyInput(): void
     {
@@ -143,7 +253,20 @@ class SubmitFormRequestTest extends TestCase
         );
         $this->sot->setInput($v);
         $this->assertEquals($v, $this->sot->getInput());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['input']);
+        $v = $this->getFakeValue(
+            $this->types['input'],
+            $this->allowedValues['input'] ?? null
+        );
+        $this->sot['input'] = $v;
+        $this->assertEquals($v, $this->sot['input']);
+        $this->assertTrue(isset($this->sot['input']));
+        unset($this->sot['input']);
+        $this->assertFalse(isset($this->sot['input']));
+        $this->sot['input'] = $v;
+        $this->assertEquals($v, $this->sot['input']);
+        $this->assertTrue(isset($this->sot['input']));
     }
 
     /**
@@ -152,6 +275,10 @@ class SubmitFormRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getFormId
      * @covers ::setFormId
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyFormId(): void
     {
@@ -162,7 +289,20 @@ class SubmitFormRequestTest extends TestCase
         );
         $this->sot->setFormId($v);
         $this->assertEquals($v, $this->sot->getFormId());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['form_id']);
+        $v = $this->getFakeValue(
+            $this->types['form_id'],
+            $this->allowedValues['form_id'] ?? null
+        );
+        $this->sot['form_id'] = $v;
+        $this->assertEquals($v, $this->sot['form_id']);
+        $this->assertTrue(isset($this->sot['form_id']));
+        unset($this->sot['form_id']);
+        $this->assertFalse(isset($this->sot['form_id']));
+        $this->sot['form_id'] = $v;
+        $this->assertEquals($v, $this->sot['form_id']);
+        $this->assertTrue(isset($this->sot['form_id']));
     }
 
     /**
@@ -171,6 +311,10 @@ class SubmitFormRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getProgramId
      * @covers ::setProgramId
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyProgramId(): void
     {
@@ -181,6 +325,22 @@ class SubmitFormRequestTest extends TestCase
         );
         $this->sot->setProgramId($v);
         $this->assertEquals($v, $this->sot->getProgramId());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setProgramId(null);
+        $this->assertNull($this->sot->getProgramId());
+        $this->sot->setProgramId($v);
+
+        $this->assertEquals($v, $this->sot['program_id']);
+        $v = $this->getFakeValue(
+            $this->types['program_id'],
+            $this->allowedValues['program_id'] ?? null
+        );
+        $this->sot['program_id'] = $v;
+        $this->assertEquals($v, $this->sot['program_id']);
+        $this->assertTrue(isset($this->sot['program_id']));
+        unset($this->sot['program_id']);
+        $this->assertFalse(isset($this->sot['program_id']));
+        $this->sot['program_id'] = $v;
+        $this->assertEquals($v, $this->sot['program_id']);
+        $this->assertTrue(isset($this->sot['program_id']));
     }
 }

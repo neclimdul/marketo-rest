@@ -123,22 +123,6 @@ class EmailResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -269,6 +253,22 @@ class EmailResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -308,38 +308,38 @@ class EmailResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         $invalidProperties = [];
 
         if ($this->container['folder'] === null) {
-            $invalidProperties[] = "'folder' can't be null";
+            $invalidProperties['folder'] = "'folder' can't be null";
         }
         if ($this->container['from_email'] === null) {
-            $invalidProperties[] = "'from_email' can't be null";
+            $invalidProperties['from_email'] = "'from_email' can't be null";
         }
         if ($this->container['from_name'] === null) {
-            $invalidProperties[] = "'from_name' can't be null";
+            $invalidProperties['from_name'] = "'from_name' can't be null";
         }
         if ($this->container['operational'] === null) {
-            $invalidProperties[] = "'operational' can't be null";
+            $invalidProperties['operational'] = "'operational' can't be null";
         }
         if ($this->container['publish_to_msi'] === null) {
-            $invalidProperties[] = "'publish_to_msi' can't be null";
+            $invalidProperties['publish_to_msi'] = "'publish_to_msi' can't be null";
         }
         if ($this->container['reply_email'] === null) {
-            $invalidProperties[] = "'reply_email' can't be null";
+            $invalidProperties['reply_email'] = "'reply_email' can't be null";
         }
         if ($this->container['status'] === null) {
-            $invalidProperties[] = "'status' can't be null";
+            $invalidProperties['status'] = "'status' can't be null";
         }
         if ($this->container['subject'] === null) {
-            $invalidProperties[] = "'subject' can't be null";
+            $invalidProperties['subject'] = "'subject' can't be null";
         }
         if ($this->container['template'] === null) {
-            $invalidProperties[] = "'template' can't be null";
+            $invalidProperties['template'] = "'template' can't be null";
         }
         if ($this->container['text_only'] === null) {
-            $invalidProperties[] = "'text_only' can't be null";
+            $invalidProperties['text_only'] = "'text_only' can't be null";
         }
         $allowedValues = $this->getVersionAllowableValues();
         if (!is_null($this->container['version']) && !in_array($this->container['version'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
+            $invalidProperties['version'] = sprintf(
                 "invalid value '%s' for 'version', must be one of '%s'",
                 $this->container['version'],
                 implode("', '", $allowedValues)
@@ -347,13 +347,13 @@ class EmailResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         if ($this->container['web_view'] === null) {
-            $invalidProperties[] = "'web_view' can't be null";
+            $invalidProperties['web_view'] = "'web_view' can't be null";
         }
         if ($this->container['auto_copy_to_text'] === null) {
-            $invalidProperties[] = "'auto_copy_to_text' can't be null";
+            $invalidProperties['auto_copy_to_text'] = "'auto_copy_to_text' can't be null";
         }
         if ($this->container['pre_header'] === null) {
-            $invalidProperties[] = "'pre_header' can't be null";
+            $invalidProperties['pre_header'] = "'pre_header' can't be null";
         }
         return $invalidProperties;
     }
@@ -381,9 +381,9 @@ class EmailResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets created_at
      *
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getCreatedAt(): \DateTime
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->container['created_at'];
     }
@@ -405,9 +405,9 @@ class EmailResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->container['description'];
     }
@@ -501,9 +501,9 @@ class EmailResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets id
      *
-     * @return int
+     * @return int|null
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->container['id'];
     }
@@ -525,9 +525,9 @@ class EmailResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets name
      *
-     * @return string
+     * @return string|null
      */
-    public function getName(): string
+    public function getName(): ?string
     {
         return $this->container['name'];
     }
@@ -717,9 +717,9 @@ class EmailResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets updated_at
      *
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getUpdatedAt(): \DateTime
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->container['updated_at'];
     }
@@ -741,9 +741,9 @@ class EmailResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets url
      *
-     * @return string
+     * @return string|null
      */
-    public function getUrl(): string
+    public function getUrl(): ?string
     {
         return $this->container['url'];
     }
@@ -765,9 +765,9 @@ class EmailResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets version
      *
-     * @return int
+     * @return int|null
      */
-    public function getVersion(): int
+    public function getVersion(): ?int
     {
         return $this->container['version'];
     }
@@ -823,9 +823,9 @@ class EmailResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets workspace
      *
-     * @return string
+     * @return string|null
      */
-    public function getWorkspace(): string
+    public function getWorkspace(): ?string
     {
         return $this->container['workspace'];
     }
@@ -895,9 +895,9 @@ class EmailResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets cc_fields
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\EmailCCFields[]
+     * @return \NecLimDul\MarketoRest\Asset\Model\EmailCCFields[]|null
      */
-    public function getCcFields(): array
+    public function getCcFields(): ?array
     {
         return $this->container['cc_fields'];
     }

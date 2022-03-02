@@ -87,22 +87,6 @@ class EmailDynamicContentItem implements ModelInterface, ArrayAccess, \JsonSeria
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -165,6 +149,22 @@ class EmailDynamicContentItem implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -217,9 +217,9 @@ class EmailDynamicContentItem implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets content
      *
-     * @return string
+     * @return string|null
      */
-    public function getContent(): string
+    public function getContent(): ?string
     {
         return $this->container['content'];
     }
@@ -241,9 +241,9 @@ class EmailDynamicContentItem implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets id
      *
-     * @return string
+     * @return string|null
      */
-    public function getId(): string
+    public function getId(): ?string
     {
         return $this->container['id'];
     }
@@ -265,9 +265,9 @@ class EmailDynamicContentItem implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets segment_id
      *
-     * @return string
+     * @return string|null
      */
-    public function getSegmentId(): string
+    public function getSegmentId(): ?string
     {
         return $this->container['segment_id'];
     }
@@ -289,9 +289,9 @@ class EmailDynamicContentItem implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets segment_name
      *
-     * @return string
+     * @return string|null
      */
-    public function getSegmentName(): string
+    public function getSegmentName(): ?string
     {
         return $this->container['segment_name'];
     }
@@ -313,9 +313,9 @@ class EmailDynamicContentItem implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets type
      *
-     * @return string
+     * @return string|null
      */
-    public function getType(): string
+    public function getType(): ?string
     {
         return $this->container['type'];
     }

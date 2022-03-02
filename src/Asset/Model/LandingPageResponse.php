@@ -113,22 +113,6 @@ class LandingPageResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -243,6 +227,22 @@ class LandingPageResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -282,16 +282,16 @@ class LandingPageResponse implements ModelInterface, ArrayAccess, \JsonSerializa
         $invalidProperties = [];
 
         if ($this->container['custom_head_html'] === null) {
-            $invalidProperties[] = "'custom_head_html' can't be null";
+            $invalidProperties['custom_head_html'] = "'custom_head_html' can't be null";
         }
         if ($this->container['facebook_og_tags'] === null) {
-            $invalidProperties[] = "'facebook_og_tags' can't be null";
+            $invalidProperties['facebook_og_tags'] = "'facebook_og_tags' can't be null";
         }
         if ($this->container['robots'] === null) {
-            $invalidProperties[] = "'robots' can't be null";
+            $invalidProperties['robots'] = "'robots' can't be null";
         }
         if ($this->container['title'] === null) {
-            $invalidProperties[] = "'title' can't be null";
+            $invalidProperties['title'] = "'title' can't be null";
         }
         return $invalidProperties;
     }
@@ -307,9 +307,9 @@ class LandingPageResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets url
      *
-     * @return string
+     * @return string|null
      */
-    public function getUrl(): string
+    public function getUrl(): ?string
     {
         return $this->container['url'];
     }
@@ -331,9 +331,9 @@ class LandingPageResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets computed_url
      *
-     * @return string
+     * @return string|null
      */
-    public function getComputedUrl(): string
+    public function getComputedUrl(): ?string
     {
         return $this->container['computed_url'];
     }
@@ -355,9 +355,9 @@ class LandingPageResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets created_at
      *
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getCreatedAt(): \DateTime
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->container['created_at'];
     }
@@ -403,9 +403,9 @@ class LandingPageResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->container['description'];
     }
@@ -451,9 +451,9 @@ class LandingPageResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets folder
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\Folder
+     * @return \NecLimDul\MarketoRest\Asset\Model\Folder|null
      */
-    public function getFolder(): \NecLimDul\MarketoRest\Asset\Model\Folder
+    public function getFolder(): ?\NecLimDul\MarketoRest\Asset\Model\Folder
     {
         return $this->container['folder'];
     }
@@ -475,9 +475,9 @@ class LandingPageResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets form_prefill
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getFormPrefill(): bool
+    public function getFormPrefill(): ?bool
     {
         return $this->container['form_prefill'];
     }
@@ -499,9 +499,9 @@ class LandingPageResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets id
      *
-     * @return int
+     * @return int|null
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->container['id'];
     }
@@ -523,9 +523,9 @@ class LandingPageResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets keywords
      *
-     * @return string
+     * @return string|null
      */
-    public function getKeywords(): string
+    public function getKeywords(): ?string
     {
         return $this->container['keywords'];
     }
@@ -547,9 +547,9 @@ class LandingPageResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets mobile_enabled
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getMobileEnabled(): bool
+    public function getMobileEnabled(): ?bool
     {
         return $this->container['mobile_enabled'];
     }
@@ -571,9 +571,9 @@ class LandingPageResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets name
      *
-     * @return string
+     * @return string|null
      */
-    public function getName(): string
+    public function getName(): ?string
     {
         return $this->container['name'];
     }
@@ -619,9 +619,9 @@ class LandingPageResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets status
      *
-     * @return string
+     * @return string|null
      */
-    public function getStatus(): string
+    public function getStatus(): ?string
     {
         return $this->container['status'];
     }
@@ -643,9 +643,9 @@ class LandingPageResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets template
      *
-     * @return int
+     * @return int|null
      */
-    public function getTemplate(): int
+    public function getTemplate(): ?int
     {
         return $this->container['template'];
     }
@@ -691,9 +691,9 @@ class LandingPageResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets updated_at
      *
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getUpdatedAt(): \DateTime
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->container['updated_at'];
     }
@@ -715,9 +715,9 @@ class LandingPageResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets workspace
      *
-     * @return string
+     * @return string|null
      */
-    public function getWorkspace(): string
+    public function getWorkspace(): ?string
     {
         return $this->container['workspace'];
     }

@@ -37,7 +37,7 @@ use PHPUnit\Framework\TestCase;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  *
- * @coversDefault \NecLimDul\MarketoRest\Lead\Model\ProgramMember
+ * @coversDefaultClass \NecLimDul\MarketoRest\Lead\Model\ProgramMember
  */
 class ProgramMemberTest extends TestCase
 {
@@ -46,11 +46,6 @@ class ProgramMemberTest extends TestCase
      * @var \NecLimDul\MarketoRest\Lead\Model\ProgramMember
      */
     private $sot;
-
-    /**
-     * @var \Faker\Generator
-     */
-    private $faker;
 
     /**
      * @var string[]
@@ -62,7 +57,13 @@ class ProgramMemberTest extends TestCase
         'program_id' => 'int',
         'acquired_by' => 'bool',
         'membership_date' => 'string',
-    ];
+];
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
     /**
      * @var scalar[][]
      */
@@ -115,7 +116,14 @@ class ProgramMemberTest extends TestCase
                 return new \stdClass();
         }
         if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
-            return new $type();
+            $model = new $type();
+            $types = $type::swaggerTypes();
+            foreach ($model->listInvalidProperties() as $field => $reason) {
+                // @todo get allowed values? ((getter))AllowedValues
+                // @phpstan-ignore-next-line
+                $model[$field] = $this->getFakeValue($types[$field], null);
+            }
+            return $model;
         }
         $this->markTestSkipped('This type is not mocked yet: ' . $type);
     }
@@ -127,7 +135,111 @@ class ProgramMemberTest extends TestCase
      */
     public function testProgramMember(): void
     {
-        $this->assertInstanceOf(\NecLimDul\MarketoRest\Lead\Model\ProgramMember::class, $this->sot);
+        $this->assertInstanceOf(ProgramMember::class, $this->sot);
+    }
+
+    /**
+     * @covers ::swaggerTypes
+     */
+    public function testSwaggerTypes(): void
+    {
+        $this->assertEquals($this->types, ProgramMember::swaggerTypes());
+    }
+
+    /**
+     * @covers ::swaggerFormats
+     */
+    public function testSwaggerFormats(): void
+    {
+        $formats = $this->sot->swaggerFormats();
+        $this->assertEquals('int32', $formats['seq']);
+        $this->assertEquals('int32', $formats['lead_id']);
+        $this->assertEquals(null, $formats['reached_success']);
+        $this->assertEquals('int32', $formats['program_id']);
+        $this->assertEquals(null, $formats['acquired_by']);
+        $this->assertEquals(null, $formats['membership_date']);
+    }
+
+    /**
+     * @covers ::attributeMap
+     */
+    public function testAttributeMap(): void
+    {
+        $formats = $this->sot->attributeMap();
+        $this->assertEquals('seq', $formats['seq']);
+        $this->assertEquals('leadId', $formats['lead_id']);
+        $this->assertEquals('reachedSuccess', $formats['reached_success']);
+        $this->assertEquals('programId', $formats['program_id']);
+        $this->assertEquals('acquiredBy', $formats['acquired_by']);
+        $this->assertEquals('membershipDate', $formats['membership_date']);
+    }
+
+    /**
+     * @covers ::getters
+     * @covers ::setters
+     */
+    public function testGettersSetters(): void
+    {
+        $getters = $this->sot->getters();
+        $setters = $this->sot->setters();
+        foreach (array_keys($this->types) as $field) {
+            $this->assertTrue(isset($setters[$field]));
+            $this->assertTrue(isset($getters[$field]));
+            $this->assertTrue(
+                method_exists($this->sot, $getters[$field]),
+                'Getter exists on model.'
+            );
+            $this->assertTrue(
+                method_exists($this->sot, $setters[$field]),
+                'Setter exists on model.'
+            );
+        }
+    }
+
+    /**
+     * @covers ::getModelName
+     */
+    public function testGetModelName(): void
+    {
+        $this->assertEquals('ProgramMember', $this->sot->getModelName());
+    }
+
+    /**
+     * @covers ::listInvalidProperties
+     * @covers ::valid
+     */
+    public function testValid(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::setAdditionalProperties
+     * @covers ::setAdditionalProperty
+     * @covers ::getAdditionalProperties
+     */
+    public function testAdditionalProperties(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::jsonSerialize
+     * @covers ::__toString
+     */
+    public function testJson(): void
+    {
+        // Some minimal tests that json generates well.
+        $json = json_encode($this->sot);
+        $this->assertIsString($json, 'Json encoded');
+        $json = json_decode($json);
+        $string = json_decode((string) $this->sot);
+        $this->assertEquals(
+            $json,
+            $string
+        );
+        $this->assertInstanceOf(\stdClass::class, $json);
+        $this->assertInstanceOf(\stdClass::class, $string);
     }
 
     /**
@@ -136,6 +248,10 @@ class ProgramMemberTest extends TestCase
      * @covers ::__construct
      * @covers ::getSeq
      * @covers ::setSeq
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertySeq(): void
     {
@@ -146,7 +262,20 @@ class ProgramMemberTest extends TestCase
         );
         $this->sot->setSeq($v);
         $this->assertEquals($v, $this->sot->getSeq());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['seq']);
+        $v = $this->getFakeValue(
+            $this->types['seq'],
+            $this->allowedValues['seq'] ?? null
+        );
+        $this->sot['seq'] = $v;
+        $this->assertEquals($v, $this->sot['seq']);
+        $this->assertTrue(isset($this->sot['seq']));
+        unset($this->sot['seq']);
+        $this->assertFalse(isset($this->sot['seq']));
+        $this->sot['seq'] = $v;
+        $this->assertEquals($v, $this->sot['seq']);
+        $this->assertTrue(isset($this->sot['seq']));
     }
 
     /**
@@ -155,6 +284,10 @@ class ProgramMemberTest extends TestCase
      * @covers ::__construct
      * @covers ::getLeadId
      * @covers ::setLeadId
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyLeadId(): void
     {
@@ -165,7 +298,20 @@ class ProgramMemberTest extends TestCase
         );
         $this->sot->setLeadId($v);
         $this->assertEquals($v, $this->sot->getLeadId());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['lead_id']);
+        $v = $this->getFakeValue(
+            $this->types['lead_id'],
+            $this->allowedValues['lead_id'] ?? null
+        );
+        $this->sot['lead_id'] = $v;
+        $this->assertEquals($v, $this->sot['lead_id']);
+        $this->assertTrue(isset($this->sot['lead_id']));
+        unset($this->sot['lead_id']);
+        $this->assertFalse(isset($this->sot['lead_id']));
+        $this->sot['lead_id'] = $v;
+        $this->assertEquals($v, $this->sot['lead_id']);
+        $this->assertTrue(isset($this->sot['lead_id']));
     }
 
     /**
@@ -174,6 +320,10 @@ class ProgramMemberTest extends TestCase
      * @covers ::__construct
      * @covers ::getReachedSuccess
      * @covers ::setReachedSuccess
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyReachedSuccess(): void
     {
@@ -184,7 +334,20 @@ class ProgramMemberTest extends TestCase
         );
         $this->sot->setReachedSuccess($v);
         $this->assertEquals($v, $this->sot->getReachedSuccess());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['reached_success']);
+        $v = $this->getFakeValue(
+            $this->types['reached_success'],
+            $this->allowedValues['reached_success'] ?? null
+        );
+        $this->sot['reached_success'] = $v;
+        $this->assertEquals($v, $this->sot['reached_success']);
+        $this->assertTrue(isset($this->sot['reached_success']));
+        unset($this->sot['reached_success']);
+        $this->assertFalse(isset($this->sot['reached_success']));
+        $this->sot['reached_success'] = $v;
+        $this->assertEquals($v, $this->sot['reached_success']);
+        $this->assertTrue(isset($this->sot['reached_success']));
     }
 
     /**
@@ -193,6 +356,10 @@ class ProgramMemberTest extends TestCase
      * @covers ::__construct
      * @covers ::getProgramId
      * @covers ::setProgramId
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyProgramId(): void
     {
@@ -203,7 +370,20 @@ class ProgramMemberTest extends TestCase
         );
         $this->sot->setProgramId($v);
         $this->assertEquals($v, $this->sot->getProgramId());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['program_id']);
+        $v = $this->getFakeValue(
+            $this->types['program_id'],
+            $this->allowedValues['program_id'] ?? null
+        );
+        $this->sot['program_id'] = $v;
+        $this->assertEquals($v, $this->sot['program_id']);
+        $this->assertTrue(isset($this->sot['program_id']));
+        unset($this->sot['program_id']);
+        $this->assertFalse(isset($this->sot['program_id']));
+        $this->sot['program_id'] = $v;
+        $this->assertEquals($v, $this->sot['program_id']);
+        $this->assertTrue(isset($this->sot['program_id']));
     }
 
     /**
@@ -212,6 +392,10 @@ class ProgramMemberTest extends TestCase
      * @covers ::__construct
      * @covers ::getAcquiredBy
      * @covers ::setAcquiredBy
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyAcquiredBy(): void
     {
@@ -222,7 +406,20 @@ class ProgramMemberTest extends TestCase
         );
         $this->sot->setAcquiredBy($v);
         $this->assertEquals($v, $this->sot->getAcquiredBy());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['acquired_by']);
+        $v = $this->getFakeValue(
+            $this->types['acquired_by'],
+            $this->allowedValues['acquired_by'] ?? null
+        );
+        $this->sot['acquired_by'] = $v;
+        $this->assertEquals($v, $this->sot['acquired_by']);
+        $this->assertTrue(isset($this->sot['acquired_by']));
+        unset($this->sot['acquired_by']);
+        $this->assertFalse(isset($this->sot['acquired_by']));
+        $this->sot['acquired_by'] = $v;
+        $this->assertEquals($v, $this->sot['acquired_by']);
+        $this->assertTrue(isset($this->sot['acquired_by']));
     }
 
     /**
@@ -231,6 +428,10 @@ class ProgramMemberTest extends TestCase
      * @covers ::__construct
      * @covers ::getMembershipDate
      * @covers ::setMembershipDate
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyMembershipDate(): void
     {
@@ -241,6 +442,19 @@ class ProgramMemberTest extends TestCase
         );
         $this->sot->setMembershipDate($v);
         $this->assertEquals($v, $this->sot->getMembershipDate());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['membership_date']);
+        $v = $this->getFakeValue(
+            $this->types['membership_date'],
+            $this->allowedValues['membership_date'] ?? null
+        );
+        $this->sot['membership_date'] = $v;
+        $this->assertEquals($v, $this->sot['membership_date']);
+        $this->assertTrue(isset($this->sot['membership_date']));
+        unset($this->sot['membership_date']);
+        $this->assertFalse(isset($this->sot['membership_date']));
+        $this->sot['membership_date'] = $v;
+        $this->assertEquals($v, $this->sot['membership_date']);
+        $this->assertTrue(isset($this->sot['membership_date']));
     }
 }

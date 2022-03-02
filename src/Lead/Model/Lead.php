@@ -86,22 +86,6 @@ class Lead implements ModelInterface, ArrayAccess, \JsonSerializable
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -160,6 +144,22 @@ class Lead implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -212,9 +212,9 @@ class Lead implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets id
      *
-     * @return int
+     * @return int|null
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->container['id'];
     }
@@ -236,9 +236,9 @@ class Lead implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets membership
      *
-     * @return \NecLimDul\MarketoRest\Lead\Model\ProgramMembership
+     * @return \NecLimDul\MarketoRest\Lead\Model\ProgramMembership|null
      */
-    public function getMembership(): \NecLimDul\MarketoRest\Lead\Model\ProgramMembership
+    public function getMembership(): ?\NecLimDul\MarketoRest\Lead\Model\ProgramMembership
     {
         return $this->container['membership'];
     }
@@ -260,9 +260,9 @@ class Lead implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets reason
      *
-     * @return \NecLimDul\MarketoRest\Lead\Model\Reason
+     * @return \NecLimDul\MarketoRest\Lead\Model\Reason|null
      */
-    public function getReason(): \NecLimDul\MarketoRest\Lead\Model\Reason
+    public function getReason(): ?\NecLimDul\MarketoRest\Lead\Model\Reason
     {
         return $this->container['reason'];
     }
@@ -284,9 +284,9 @@ class Lead implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets status
      *
-     * @return string
+     * @return string|null
      */
-    public function getStatus(): string
+    public function getStatus(): ?string
     {
         return $this->container['status'];
     }

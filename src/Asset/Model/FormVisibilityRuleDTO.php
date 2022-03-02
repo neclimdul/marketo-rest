@@ -87,22 +87,6 @@ class FormVisibilityRuleDTO implements ModelInterface, ArrayAccess, \JsonSeriali
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -165,6 +149,22 @@ class FormVisibilityRuleDTO implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -217,9 +217,9 @@ class FormVisibilityRuleDTO implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets alt_label
      *
-     * @return string
+     * @return string|null
      */
-    public function getAltLabel(): string
+    public function getAltLabel(): ?string
     {
         return $this->container['alt_label'];
     }
@@ -241,9 +241,9 @@ class FormVisibilityRuleDTO implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets operator
      *
-     * @return string
+     * @return string|null
      */
-    public function getOperator(): string
+    public function getOperator(): ?string
     {
         return $this->container['operator'];
     }
@@ -265,9 +265,9 @@ class FormVisibilityRuleDTO implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets picklist_filter_values
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\PickListDTO[]
+     * @return \NecLimDul\MarketoRest\Asset\Model\PickListDTO[]|null
      */
-    public function getPicklistFilterValues(): array
+    public function getPicklistFilterValues(): ?array
     {
         return $this->container['picklist_filter_values'];
     }
@@ -289,9 +289,9 @@ class FormVisibilityRuleDTO implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets subject_field
      *
-     * @return string
+     * @return string|null
      */
-    public function getSubjectField(): string
+    public function getSubjectField(): ?string
     {
         return $this->container['subject_field'];
     }
@@ -313,9 +313,9 @@ class FormVisibilityRuleDTO implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets values
      *
-     * @return string[]
+     * @return string[]|null
      */
-    public function getValues(): array
+    public function getValues(): ?array
     {
         return $this->container['values'];
     }

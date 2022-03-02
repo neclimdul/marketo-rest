@@ -83,22 +83,6 @@ class CloneSmartListRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -153,6 +137,22 @@ class CloneSmartListRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -192,10 +192,10 @@ class CloneSmartListRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         $invalidProperties = [];
 
         if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
+            $invalidProperties['name'] = "'name' can't be null";
         }
         if ($this->container['folder'] === null) {
-            $invalidProperties[] = "'folder' can't be null";
+            $invalidProperties['folder'] = "'folder' can't be null";
         }
         return $invalidProperties;
     }
@@ -259,9 +259,9 @@ class CloneSmartListRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->container['description'];
     }

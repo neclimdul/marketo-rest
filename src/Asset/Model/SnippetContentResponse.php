@@ -81,22 +81,6 @@ class SnippetContentResponse implements ModelInterface, ArrayAccess, \JsonSerial
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -147,6 +131,22 @@ class SnippetContentResponse implements ModelInterface, ArrayAccess, \JsonSerial
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -186,7 +186,7 @@ class SnippetContentResponse implements ModelInterface, ArrayAccess, \JsonSerial
         $invalidProperties = [];
 
         if ($this->container['type'] === null) {
-            $invalidProperties[] = "'type' can't be null";
+            $invalidProperties['type'] = "'type' can't be null";
         }
         return $invalidProperties;
     }
@@ -202,9 +202,9 @@ class SnippetContentResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets content
      *
-     * @return string
+     * @return string|null
      */
-    public function getContent(): string
+    public function getContent(): ?string
     {
         return $this->container['content'];
     }

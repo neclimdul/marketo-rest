@@ -83,22 +83,6 @@ class UpdateLandingPageRedirectRuleRequest implements ModelInterface, ArrayAcces
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -150,6 +134,22 @@ class UpdateLandingPageRedirectRuleRequest implements ModelInterface, ArrayAcces
         $this->container['hostname'] = $data['hostname'] ?? null;
         $this->container['redirect_from'] = $data['redirect_from'] ?? null;
         $this->container['redirect_to'] = $data['redirect_to'] ?? null;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
     }
 
     /**
@@ -205,9 +205,9 @@ class UpdateLandingPageRedirectRuleRequest implements ModelInterface, ArrayAcces
     /**
      * Gets hostname
      *
-     * @return string
+     * @return string|null
      */
-    public function getHostname(): string
+    public function getHostname(): ?string
     {
         return $this->container['hostname'];
     }
@@ -229,9 +229,9 @@ class UpdateLandingPageRedirectRuleRequest implements ModelInterface, ArrayAcces
     /**
      * Gets redirect_from
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\RedirectFrom
+     * @return \NecLimDul\MarketoRest\Asset\Model\RedirectFrom|null
      */
-    public function getRedirectFrom(): \NecLimDul\MarketoRest\Asset\Model\RedirectFrom
+    public function getRedirectFrom(): ?\NecLimDul\MarketoRest\Asset\Model\RedirectFrom
     {
         return $this->container['redirect_from'];
     }
@@ -253,9 +253,9 @@ class UpdateLandingPageRedirectRuleRequest implements ModelInterface, ArrayAcces
     /**
      * Gets redirect_to
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\RedirectTo
+     * @return \NecLimDul\MarketoRest\Asset\Model\RedirectTo|null
      */
-    public function getRedirectTo(): \NecLimDul\MarketoRest\Asset\Model\RedirectTo
+    public function getRedirectTo(): ?\NecLimDul\MarketoRest\Asset\Model\RedirectTo
     {
         return $this->container['redirect_to'];
     }

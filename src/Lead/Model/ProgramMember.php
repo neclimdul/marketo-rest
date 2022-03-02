@@ -90,22 +90,6 @@ class ProgramMember implements ModelInterface, ArrayAccess, \JsonSerializable
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -172,6 +156,22 @@ class ProgramMember implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -211,22 +211,22 @@ class ProgramMember implements ModelInterface, ArrayAccess, \JsonSerializable
         $invalidProperties = [];
 
         if ($this->container['seq'] === null) {
-            $invalidProperties[] = "'seq' can't be null";
+            $invalidProperties['seq'] = "'seq' can't be null";
         }
         if ($this->container['lead_id'] === null) {
-            $invalidProperties[] = "'lead_id' can't be null";
+            $invalidProperties['lead_id'] = "'lead_id' can't be null";
         }
         if ($this->container['reached_success'] === null) {
-            $invalidProperties[] = "'reached_success' can't be null";
+            $invalidProperties['reached_success'] = "'reached_success' can't be null";
         }
         if ($this->container['program_id'] === null) {
-            $invalidProperties[] = "'program_id' can't be null";
+            $invalidProperties['program_id'] = "'program_id' can't be null";
         }
         if ($this->container['acquired_by'] === null) {
-            $invalidProperties[] = "'acquired_by' can't be null";
+            $invalidProperties['acquired_by'] = "'acquired_by' can't be null";
         }
         if ($this->container['membership_date'] === null) {
-            $invalidProperties[] = "'membership_date' can't be null";
+            $invalidProperties['membership_date'] = "'membership_date' can't be null";
         }
         return $invalidProperties;
     }

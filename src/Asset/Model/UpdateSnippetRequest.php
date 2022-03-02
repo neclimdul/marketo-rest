@@ -83,22 +83,6 @@ class UpdateSnippetRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -150,6 +134,22 @@ class UpdateSnippetRequest implements ModelInterface, ArrayAccess, \JsonSerializ
         $this->container['description'] = $data['description'] ?? null;
         $this->container['is_archive'] = $data['is_archive'] ?? null;
         $this->container['name'] = $data['name'] ?? null;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
     }
 
     /**
@@ -205,9 +205,9 @@ class UpdateSnippetRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->container['description'];
     }
@@ -229,9 +229,9 @@ class UpdateSnippetRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets is_archive
      *
-     * @return string
+     * @return string|null
      */
-    public function getIsArchive(): string
+    public function getIsArchive(): ?string
     {
         return $this->container['is_archive'];
     }
@@ -253,9 +253,9 @@ class UpdateSnippetRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets name
      *
-     * @return string
+     * @return string|null
      */
-    public function getName(): string
+    public function getName(): ?string
     {
         return $this->container['name'];
     }

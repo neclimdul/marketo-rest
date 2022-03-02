@@ -82,22 +82,6 @@ class SendSampleResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -148,6 +132,22 @@ class SendSampleResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -187,11 +187,11 @@ class SendSampleResponse implements ModelInterface, ArrayAccess, \JsonSerializab
         $invalidProperties = [];
 
         if ($this->container['service'] === null) {
-            $invalidProperties[] = "'service' can't be null";
+            $invalidProperties['service'] = "'service' can't be null";
         }
         $allowedValues = $this->getServiceAllowableValues();
         if (!is_null($this->container['service']) && !in_array($this->container['service'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
+            $invalidProperties['service'] = sprintf(
                 "invalid value '%s' for 'service', must be one of '%s'",
                 $this->container['service'],
                 implode("', '", $allowedValues)
@@ -199,7 +199,7 @@ class SendSampleResponse implements ModelInterface, ArrayAccess, \JsonSerializab
         }
 
         if ($this->container['result'] === null) {
-            $invalidProperties[] = "'result' can't be null";
+            $invalidProperties['result'] = "'result' can't be null";
         }
         return $invalidProperties;
     }

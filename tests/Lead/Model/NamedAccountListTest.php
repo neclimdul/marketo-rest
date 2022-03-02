@@ -37,7 +37,7 @@ use PHPUnit\Framework\TestCase;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  *
- * @coversDefault \NecLimDul\MarketoRest\Lead\Model\NamedAccountList
+ * @coversDefaultClass \NecLimDul\MarketoRest\Lead\Model\NamedAccountList
  */
 class NamedAccountListTest extends TestCase
 {
@@ -46,11 +46,6 @@ class NamedAccountListTest extends TestCase
      * @var \NecLimDul\MarketoRest\Lead\Model\NamedAccountList
      */
     private $sot;
-
-    /**
-     * @var \Faker\Generator
-     */
-    private $faker;
 
     /**
      * @var string[]
@@ -65,7 +60,13 @@ class NamedAccountListTest extends TestCase
         'type' => 'string',
         'updateable' => 'bool',
         'updated_at' => 'string',
-    ];
+];
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
     /**
      * @var scalar[][]
      */
@@ -126,7 +127,14 @@ class NamedAccountListTest extends TestCase
                 return new \stdClass();
         }
         if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
-            return new $type();
+            $model = new $type();
+            $types = $type::swaggerTypes();
+            foreach ($model->listInvalidProperties() as $field => $reason) {
+                // @todo get allowed values? ((getter))AllowedValues
+                // @phpstan-ignore-next-line
+                $model[$field] = $this->getFakeValue($types[$field], null);
+            }
+            return $model;
         }
         $this->markTestSkipped('This type is not mocked yet: ' . $type);
     }
@@ -138,7 +146,117 @@ class NamedAccountListTest extends TestCase
      */
     public function testNamedAccountList(): void
     {
-        $this->assertInstanceOf(\NecLimDul\MarketoRest\Lead\Model\NamedAccountList::class, $this->sot);
+        $this->assertInstanceOf(NamedAccountList::class, $this->sot);
+    }
+
+    /**
+     * @covers ::swaggerTypes
+     */
+    public function testSwaggerTypes(): void
+    {
+        $this->assertEquals($this->types, NamedAccountList::swaggerTypes());
+    }
+
+    /**
+     * @covers ::swaggerFormats
+     */
+    public function testSwaggerFormats(): void
+    {
+        $formats = $this->sot->swaggerFormats();
+        $this->assertEquals(null, $formats['created_at']);
+        $this->assertEquals(null, $formats['marketo_guid']);
+        $this->assertEquals(null, $formats['name']);
+        $this->assertEquals(null, $formats['reasons']);
+        $this->assertEquals('int32', $formats['seq']);
+        $this->assertEquals(null, $formats['status']);
+        $this->assertEquals(null, $formats['type']);
+        $this->assertEquals(null, $formats['updateable']);
+        $this->assertEquals(null, $formats['updated_at']);
+    }
+
+    /**
+     * @covers ::attributeMap
+     */
+    public function testAttributeMap(): void
+    {
+        $formats = $this->sot->attributeMap();
+        $this->assertEquals('createdAt', $formats['created_at']);
+        $this->assertEquals('marketoGUID', $formats['marketo_guid']);
+        $this->assertEquals('name', $formats['name']);
+        $this->assertEquals('reasons', $formats['reasons']);
+        $this->assertEquals('seq', $formats['seq']);
+        $this->assertEquals('status', $formats['status']);
+        $this->assertEquals('type', $formats['type']);
+        $this->assertEquals('updateable', $formats['updateable']);
+        $this->assertEquals('updatedAt', $formats['updated_at']);
+    }
+
+    /**
+     * @covers ::getters
+     * @covers ::setters
+     */
+    public function testGettersSetters(): void
+    {
+        $getters = $this->sot->getters();
+        $setters = $this->sot->setters();
+        foreach (array_keys($this->types) as $field) {
+            $this->assertTrue(isset($setters[$field]));
+            $this->assertTrue(isset($getters[$field]));
+            $this->assertTrue(
+                method_exists($this->sot, $getters[$field]),
+                'Getter exists on model.'
+            );
+            $this->assertTrue(
+                method_exists($this->sot, $setters[$field]),
+                'Setter exists on model.'
+            );
+        }
+    }
+
+    /**
+     * @covers ::getModelName
+     */
+    public function testGetModelName(): void
+    {
+        $this->assertEquals('NamedAccountList', $this->sot->getModelName());
+    }
+
+    /**
+     * @covers ::listInvalidProperties
+     * @covers ::valid
+     */
+    public function testValid(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::setAdditionalProperties
+     * @covers ::setAdditionalProperty
+     * @covers ::getAdditionalProperties
+     */
+    public function testAdditionalProperties(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::jsonSerialize
+     * @covers ::__toString
+     */
+    public function testJson(): void
+    {
+        // Some minimal tests that json generates well.
+        $json = json_encode($this->sot);
+        $this->assertIsString($json, 'Json encoded');
+        $json = json_decode($json);
+        $string = json_decode((string) $this->sot);
+        $this->assertEquals(
+            $json,
+            $string
+        );
+        $this->assertInstanceOf(\stdClass::class, $json);
+        $this->assertInstanceOf(\stdClass::class, $string);
     }
 
     /**
@@ -147,6 +265,10 @@ class NamedAccountListTest extends TestCase
      * @covers ::__construct
      * @covers ::getCreatedAt
      * @covers ::setCreatedAt
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyCreatedAt(): void
     {
@@ -157,7 +279,23 @@ class NamedAccountListTest extends TestCase
         );
         $this->sot->setCreatedAt($v);
         $this->assertEquals($v, $this->sot->getCreatedAt());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setCreatedAt(null);
+        $this->assertNull($this->sot->getCreatedAt());
+        $this->sot->setCreatedAt($v);
+
+        $this->assertEquals($v, $this->sot['created_at']);
+        $v = $this->getFakeValue(
+            $this->types['created_at'],
+            $this->allowedValues['created_at'] ?? null
+        );
+        $this->sot['created_at'] = $v;
+        $this->assertEquals($v, $this->sot['created_at']);
+        $this->assertTrue(isset($this->sot['created_at']));
+        unset($this->sot['created_at']);
+        $this->assertFalse(isset($this->sot['created_at']));
+        $this->sot['created_at'] = $v;
+        $this->assertEquals($v, $this->sot['created_at']);
+        $this->assertTrue(isset($this->sot['created_at']));
     }
 
     /**
@@ -166,6 +304,10 @@ class NamedAccountListTest extends TestCase
      * @covers ::__construct
      * @covers ::getMarketoGuid
      * @covers ::setMarketoGuid
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyMarketoGuid(): void
     {
@@ -176,7 +318,20 @@ class NamedAccountListTest extends TestCase
         );
         $this->sot->setMarketoGuid($v);
         $this->assertEquals($v, $this->sot->getMarketoGuid());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['marketo_guid']);
+        $v = $this->getFakeValue(
+            $this->types['marketo_guid'],
+            $this->allowedValues['marketo_guid'] ?? null
+        );
+        $this->sot['marketo_guid'] = $v;
+        $this->assertEquals($v, $this->sot['marketo_guid']);
+        $this->assertTrue(isset($this->sot['marketo_guid']));
+        unset($this->sot['marketo_guid']);
+        $this->assertFalse(isset($this->sot['marketo_guid']));
+        $this->sot['marketo_guid'] = $v;
+        $this->assertEquals($v, $this->sot['marketo_guid']);
+        $this->assertTrue(isset($this->sot['marketo_guid']));
     }
 
     /**
@@ -185,6 +340,10 @@ class NamedAccountListTest extends TestCase
      * @covers ::__construct
      * @covers ::getName
      * @covers ::setName
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyName(): void
     {
@@ -195,7 +354,23 @@ class NamedAccountListTest extends TestCase
         );
         $this->sot->setName($v);
         $this->assertEquals($v, $this->sot->getName());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setName(null);
+        $this->assertNull($this->sot->getName());
+        $this->sot->setName($v);
+
+        $this->assertEquals($v, $this->sot['name']);
+        $v = $this->getFakeValue(
+            $this->types['name'],
+            $this->allowedValues['name'] ?? null
+        );
+        $this->sot['name'] = $v;
+        $this->assertEquals($v, $this->sot['name']);
+        $this->assertTrue(isset($this->sot['name']));
+        unset($this->sot['name']);
+        $this->assertFalse(isset($this->sot['name']));
+        $this->sot['name'] = $v;
+        $this->assertEquals($v, $this->sot['name']);
+        $this->assertTrue(isset($this->sot['name']));
     }
 
     /**
@@ -204,6 +379,10 @@ class NamedAccountListTest extends TestCase
      * @covers ::__construct
      * @covers ::getReasons
      * @covers ::setReasons
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyReasons(): void
     {
@@ -214,7 +393,23 @@ class NamedAccountListTest extends TestCase
         );
         $this->sot->setReasons($v);
         $this->assertEquals($v, $this->sot->getReasons());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setReasons(null);
+        $this->assertNull($this->sot->getReasons());
+        $this->sot->setReasons($v);
+
+        $this->assertEquals($v, $this->sot['reasons']);
+        $v = $this->getFakeValue(
+            $this->types['reasons'],
+            $this->allowedValues['reasons'] ?? null
+        );
+        $this->sot['reasons'] = $v;
+        $this->assertEquals($v, $this->sot['reasons']);
+        $this->assertTrue(isset($this->sot['reasons']));
+        unset($this->sot['reasons']);
+        $this->assertFalse(isset($this->sot['reasons']));
+        $this->sot['reasons'] = $v;
+        $this->assertEquals($v, $this->sot['reasons']);
+        $this->assertTrue(isset($this->sot['reasons']));
     }
 
     /**
@@ -223,6 +418,10 @@ class NamedAccountListTest extends TestCase
      * @covers ::__construct
      * @covers ::getSeq
      * @covers ::setSeq
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertySeq(): void
     {
@@ -233,7 +432,20 @@ class NamedAccountListTest extends TestCase
         );
         $this->sot->setSeq($v);
         $this->assertEquals($v, $this->sot->getSeq());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['seq']);
+        $v = $this->getFakeValue(
+            $this->types['seq'],
+            $this->allowedValues['seq'] ?? null
+        );
+        $this->sot['seq'] = $v;
+        $this->assertEquals($v, $this->sot['seq']);
+        $this->assertTrue(isset($this->sot['seq']));
+        unset($this->sot['seq']);
+        $this->assertFalse(isset($this->sot['seq']));
+        $this->sot['seq'] = $v;
+        $this->assertEquals($v, $this->sot['seq']);
+        $this->assertTrue(isset($this->sot['seq']));
     }
 
     /**
@@ -242,6 +454,10 @@ class NamedAccountListTest extends TestCase
      * @covers ::__construct
      * @covers ::getStatus
      * @covers ::setStatus
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyStatus(): void
     {
@@ -252,7 +468,23 @@ class NamedAccountListTest extends TestCase
         );
         $this->sot->setStatus($v);
         $this->assertEquals($v, $this->sot->getStatus());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setStatus(null);
+        $this->assertNull($this->sot->getStatus());
+        $this->sot->setStatus($v);
+
+        $this->assertEquals($v, $this->sot['status']);
+        $v = $this->getFakeValue(
+            $this->types['status'],
+            $this->allowedValues['status'] ?? null
+        );
+        $this->sot['status'] = $v;
+        $this->assertEquals($v, $this->sot['status']);
+        $this->assertTrue(isset($this->sot['status']));
+        unset($this->sot['status']);
+        $this->assertFalse(isset($this->sot['status']));
+        $this->sot['status'] = $v;
+        $this->assertEquals($v, $this->sot['status']);
+        $this->assertTrue(isset($this->sot['status']));
     }
 
     /**
@@ -261,6 +493,10 @@ class NamedAccountListTest extends TestCase
      * @covers ::__construct
      * @covers ::getType
      * @covers ::setType
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyType(): void
     {
@@ -271,7 +507,23 @@ class NamedAccountListTest extends TestCase
         );
         $this->sot->setType($v);
         $this->assertEquals($v, $this->sot->getType());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setType(null);
+        $this->assertNull($this->sot->getType());
+        $this->sot->setType($v);
+
+        $this->assertEquals($v, $this->sot['type']);
+        $v = $this->getFakeValue(
+            $this->types['type'],
+            $this->allowedValues['type'] ?? null
+        );
+        $this->sot['type'] = $v;
+        $this->assertEquals($v, $this->sot['type']);
+        $this->assertTrue(isset($this->sot['type']));
+        unset($this->sot['type']);
+        $this->assertFalse(isset($this->sot['type']));
+        $this->sot['type'] = $v;
+        $this->assertEquals($v, $this->sot['type']);
+        $this->assertTrue(isset($this->sot['type']));
     }
 
     /**
@@ -280,6 +532,10 @@ class NamedAccountListTest extends TestCase
      * @covers ::__construct
      * @covers ::getUpdateable
      * @covers ::setUpdateable
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyUpdateable(): void
     {
@@ -290,7 +546,23 @@ class NamedAccountListTest extends TestCase
         );
         $this->sot->setUpdateable($v);
         $this->assertEquals($v, $this->sot->getUpdateable());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setUpdateable(null);
+        $this->assertNull($this->sot->getUpdateable());
+        $this->sot->setUpdateable($v);
+
+        $this->assertEquals($v, $this->sot['updateable']);
+        $v = $this->getFakeValue(
+            $this->types['updateable'],
+            $this->allowedValues['updateable'] ?? null
+        );
+        $this->sot['updateable'] = $v;
+        $this->assertEquals($v, $this->sot['updateable']);
+        $this->assertTrue(isset($this->sot['updateable']));
+        unset($this->sot['updateable']);
+        $this->assertFalse(isset($this->sot['updateable']));
+        $this->sot['updateable'] = $v;
+        $this->assertEquals($v, $this->sot['updateable']);
+        $this->assertTrue(isset($this->sot['updateable']));
     }
 
     /**
@@ -299,6 +571,10 @@ class NamedAccountListTest extends TestCase
      * @covers ::__construct
      * @covers ::getUpdatedAt
      * @covers ::setUpdatedAt
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyUpdatedAt(): void
     {
@@ -309,6 +585,22 @@ class NamedAccountListTest extends TestCase
         );
         $this->sot->setUpdatedAt($v);
         $this->assertEquals($v, $this->sot->getUpdatedAt());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setUpdatedAt(null);
+        $this->assertNull($this->sot->getUpdatedAt());
+        $this->sot->setUpdatedAt($v);
+
+        $this->assertEquals($v, $this->sot['updated_at']);
+        $v = $this->getFakeValue(
+            $this->types['updated_at'],
+            $this->allowedValues['updated_at'] ?? null
+        );
+        $this->sot['updated_at'] = $v;
+        $this->assertEquals($v, $this->sot['updated_at']);
+        $this->assertTrue(isset($this->sot['updated_at']));
+        unset($this->sot['updated_at']);
+        $this->assertFalse(isset($this->sot['updated_at']));
+        $this->sot['updated_at'] = $v;
+        $this->assertEquals($v, $this->sot['updated_at']);
+        $this->assertTrue(isset($this->sot['updated_at']));
     }
 }

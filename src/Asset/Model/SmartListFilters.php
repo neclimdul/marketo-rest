@@ -90,22 +90,6 @@ class SmartListFilters implements ModelInterface, ArrayAccess, \JsonSerializable
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -172,6 +156,22 @@ class SmartListFilters implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -211,22 +211,22 @@ class SmartListFilters implements ModelInterface, ArrayAccess, \JsonSerializable
         $invalidProperties = [];
 
         if ($this->container['id'] === null) {
-            $invalidProperties[] = "'id' can't be null";
+            $invalidProperties['id'] = "'id' can't be null";
         }
         if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
+            $invalidProperties['name'] = "'name' can't be null";
         }
         if ($this->container['rule_type_id'] === null) {
-            $invalidProperties[] = "'rule_type_id' can't be null";
+            $invalidProperties['rule_type_id'] = "'rule_type_id' can't be null";
         }
         if ($this->container['rule_type'] === null) {
-            $invalidProperties[] = "'rule_type' can't be null";
+            $invalidProperties['rule_type'] = "'rule_type' can't be null";
         }
         if ($this->container['operator'] === null) {
-            $invalidProperties[] = "'operator' can't be null";
+            $invalidProperties['operator'] = "'operator' can't be null";
         }
         if ($this->container['conditions'] === null) {
-            $invalidProperties[] = "'conditions' can't be null";
+            $invalidProperties['conditions'] = "'conditions' can't be null";
         }
         return $invalidProperties;
     }

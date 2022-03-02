@@ -37,7 +37,7 @@ use PHPUnit\Framework\TestCase;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  *
- * @coversDefault \NecLimDul\MarketoRest\Asset\Model\CreateProgramRequest
+ * @coversDefaultClass \NecLimDul\MarketoRest\Asset\Model\CreateProgramRequest
  */
 class CreateProgramRequestTest extends TestCase
 {
@@ -46,11 +46,6 @@ class CreateProgramRequestTest extends TestCase
      * @var \NecLimDul\MarketoRest\Asset\Model\CreateProgramRequest
      */
     private $sot;
-
-    /**
-     * @var \Faker\Generator
-     */
-    private $faker;
 
     /**
      * @var string[]
@@ -63,7 +58,13 @@ class CreateProgramRequestTest extends TestCase
         'name' => 'string',
         'tags' => '\NecLimDul\MarketoRest\Asset\Model\TagRequest[]',
         'type' => 'string',
-    ];
+];
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
     /**
      * @var scalar[][]
      */
@@ -116,7 +117,14 @@ class CreateProgramRequestTest extends TestCase
                 return new \stdClass();
         }
         if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
-            return new $type();
+            $model = new $type();
+            $types = $type::swaggerTypes();
+            foreach ($model->listInvalidProperties() as $field => $reason) {
+                // @todo get allowed values? ((getter))AllowedValues
+                // @phpstan-ignore-next-line
+                $model[$field] = $this->getFakeValue($types[$field], null);
+            }
+            return $model;
         }
         $this->markTestSkipped('This type is not mocked yet: ' . $type);
     }
@@ -128,7 +136,113 @@ class CreateProgramRequestTest extends TestCase
      */
     public function testCreateProgramRequest(): void
     {
-        $this->assertInstanceOf(\NecLimDul\MarketoRest\Asset\Model\CreateProgramRequest::class, $this->sot);
+        $this->assertInstanceOf(CreateProgramRequest::class, $this->sot);
+    }
+
+    /**
+     * @covers ::swaggerTypes
+     */
+    public function testSwaggerTypes(): void
+    {
+        $this->assertEquals($this->types, CreateProgramRequest::swaggerTypes());
+    }
+
+    /**
+     * @covers ::swaggerFormats
+     */
+    public function testSwaggerFormats(): void
+    {
+        $formats = $this->sot->swaggerFormats();
+        $this->assertEquals(null, $formats['channel']);
+        $this->assertEquals(null, $formats['costs']);
+        $this->assertEquals(null, $formats['description']);
+        $this->assertEquals(null, $formats['folder']);
+        $this->assertEquals(null, $formats['name']);
+        $this->assertEquals(null, $formats['tags']);
+        $this->assertEquals(null, $formats['type']);
+    }
+
+    /**
+     * @covers ::attributeMap
+     */
+    public function testAttributeMap(): void
+    {
+        $formats = $this->sot->attributeMap();
+        $this->assertEquals('channel', $formats['channel']);
+        $this->assertEquals('costs', $formats['costs']);
+        $this->assertEquals('description', $formats['description']);
+        $this->assertEquals('folder', $formats['folder']);
+        $this->assertEquals('name', $formats['name']);
+        $this->assertEquals('tags', $formats['tags']);
+        $this->assertEquals('type', $formats['type']);
+    }
+
+    /**
+     * @covers ::getters
+     * @covers ::setters
+     */
+    public function testGettersSetters(): void
+    {
+        $getters = $this->sot->getters();
+        $setters = $this->sot->setters();
+        foreach (array_keys($this->types) as $field) {
+            $this->assertTrue(isset($setters[$field]));
+            $this->assertTrue(isset($getters[$field]));
+            $this->assertTrue(
+                method_exists($this->sot, $getters[$field]),
+                'Getter exists on model.'
+            );
+            $this->assertTrue(
+                method_exists($this->sot, $setters[$field]),
+                'Setter exists on model.'
+            );
+        }
+    }
+
+    /**
+     * @covers ::getModelName
+     */
+    public function testGetModelName(): void
+    {
+        $this->assertEquals('CreateProgramRequest', $this->sot->getModelName());
+    }
+
+    /**
+     * @covers ::listInvalidProperties
+     * @covers ::valid
+     */
+    public function testValid(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::setAdditionalProperties
+     * @covers ::setAdditionalProperty
+     * @covers ::getAdditionalProperties
+     */
+    public function testAdditionalProperties(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::jsonSerialize
+     * @covers ::__toString
+     */
+    public function testJson(): void
+    {
+        // Some minimal tests that json generates well.
+        $json = json_encode($this->sot);
+        $this->assertIsString($json, 'Json encoded');
+        $json = json_decode($json);
+        $string = json_decode((string) $this->sot);
+        $this->assertEquals(
+            $json,
+            $string
+        );
+        $this->assertInstanceOf(\stdClass::class, $json);
+        $this->assertInstanceOf(\stdClass::class, $string);
     }
 
     /**
@@ -137,6 +251,10 @@ class CreateProgramRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getChannel
      * @covers ::setChannel
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyChannel(): void
     {
@@ -147,7 +265,20 @@ class CreateProgramRequestTest extends TestCase
         );
         $this->sot->setChannel($v);
         $this->assertEquals($v, $this->sot->getChannel());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['channel']);
+        $v = $this->getFakeValue(
+            $this->types['channel'],
+            $this->allowedValues['channel'] ?? null
+        );
+        $this->sot['channel'] = $v;
+        $this->assertEquals($v, $this->sot['channel']);
+        $this->assertTrue(isset($this->sot['channel']));
+        unset($this->sot['channel']);
+        $this->assertFalse(isset($this->sot['channel']));
+        $this->sot['channel'] = $v;
+        $this->assertEquals($v, $this->sot['channel']);
+        $this->assertTrue(isset($this->sot['channel']));
     }
 
     /**
@@ -156,6 +287,10 @@ class CreateProgramRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getCosts
      * @covers ::setCosts
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyCosts(): void
     {
@@ -166,7 +301,23 @@ class CreateProgramRequestTest extends TestCase
         );
         $this->sot->setCosts($v);
         $this->assertEquals($v, $this->sot->getCosts());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setCosts(null);
+        $this->assertNull($this->sot->getCosts());
+        $this->sot->setCosts($v);
+
+        $this->assertEquals($v, $this->sot['costs']);
+        $v = $this->getFakeValue(
+            $this->types['costs'],
+            $this->allowedValues['costs'] ?? null
+        );
+        $this->sot['costs'] = $v;
+        $this->assertEquals($v, $this->sot['costs']);
+        $this->assertTrue(isset($this->sot['costs']));
+        unset($this->sot['costs']);
+        $this->assertFalse(isset($this->sot['costs']));
+        $this->sot['costs'] = $v;
+        $this->assertEquals($v, $this->sot['costs']);
+        $this->assertTrue(isset($this->sot['costs']));
     }
 
     /**
@@ -175,6 +326,10 @@ class CreateProgramRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getDescription
      * @covers ::setDescription
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyDescription(): void
     {
@@ -185,7 +340,23 @@ class CreateProgramRequestTest extends TestCase
         );
         $this->sot->setDescription($v);
         $this->assertEquals($v, $this->sot->getDescription());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setDescription(null);
+        $this->assertNull($this->sot->getDescription());
+        $this->sot->setDescription($v);
+
+        $this->assertEquals($v, $this->sot['description']);
+        $v = $this->getFakeValue(
+            $this->types['description'],
+            $this->allowedValues['description'] ?? null
+        );
+        $this->sot['description'] = $v;
+        $this->assertEquals($v, $this->sot['description']);
+        $this->assertTrue(isset($this->sot['description']));
+        unset($this->sot['description']);
+        $this->assertFalse(isset($this->sot['description']));
+        $this->sot['description'] = $v;
+        $this->assertEquals($v, $this->sot['description']);
+        $this->assertTrue(isset($this->sot['description']));
     }
 
     /**
@@ -194,6 +365,10 @@ class CreateProgramRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getFolder
      * @covers ::setFolder
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyFolder(): void
     {
@@ -204,7 +379,20 @@ class CreateProgramRequestTest extends TestCase
         );
         $this->sot->setFolder($v);
         $this->assertEquals($v, $this->sot->getFolder());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['folder']);
+        $v = $this->getFakeValue(
+            $this->types['folder'],
+            $this->allowedValues['folder'] ?? null
+        );
+        $this->sot['folder'] = $v;
+        $this->assertEquals($v, $this->sot['folder']);
+        $this->assertTrue(isset($this->sot['folder']));
+        unset($this->sot['folder']);
+        $this->assertFalse(isset($this->sot['folder']));
+        $this->sot['folder'] = $v;
+        $this->assertEquals($v, $this->sot['folder']);
+        $this->assertTrue(isset($this->sot['folder']));
     }
 
     /**
@@ -213,6 +401,10 @@ class CreateProgramRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getName
      * @covers ::setName
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyName(): void
     {
@@ -223,7 +415,20 @@ class CreateProgramRequestTest extends TestCase
         );
         $this->sot->setName($v);
         $this->assertEquals($v, $this->sot->getName());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['name']);
+        $v = $this->getFakeValue(
+            $this->types['name'],
+            $this->allowedValues['name'] ?? null
+        );
+        $this->sot['name'] = $v;
+        $this->assertEquals($v, $this->sot['name']);
+        $this->assertTrue(isset($this->sot['name']));
+        unset($this->sot['name']);
+        $this->assertFalse(isset($this->sot['name']));
+        $this->sot['name'] = $v;
+        $this->assertEquals($v, $this->sot['name']);
+        $this->assertTrue(isset($this->sot['name']));
     }
 
     /**
@@ -232,6 +437,10 @@ class CreateProgramRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getTags
      * @covers ::setTags
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyTags(): void
     {
@@ -242,7 +451,23 @@ class CreateProgramRequestTest extends TestCase
         );
         $this->sot->setTags($v);
         $this->assertEquals($v, $this->sot->getTags());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setTags(null);
+        $this->assertNull($this->sot->getTags());
+        $this->sot->setTags($v);
+
+        $this->assertEquals($v, $this->sot['tags']);
+        $v = $this->getFakeValue(
+            $this->types['tags'],
+            $this->allowedValues['tags'] ?? null
+        );
+        $this->sot['tags'] = $v;
+        $this->assertEquals($v, $this->sot['tags']);
+        $this->assertTrue(isset($this->sot['tags']));
+        unset($this->sot['tags']);
+        $this->assertFalse(isset($this->sot['tags']));
+        $this->sot['tags'] = $v;
+        $this->assertEquals($v, $this->sot['tags']);
+        $this->assertTrue(isset($this->sot['tags']));
     }
 
     /**
@@ -251,6 +476,10 @@ class CreateProgramRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getType
      * @covers ::setType
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyType(): void
     {
@@ -261,6 +490,19 @@ class CreateProgramRequestTest extends TestCase
         );
         $this->sot->setType($v);
         $this->assertEquals($v, $this->sot->getType());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['type']);
+        $v = $this->getFakeValue(
+            $this->types['type'],
+            $this->allowedValues['type'] ?? null
+        );
+        $this->sot['type'] = $v;
+        $this->assertEquals($v, $this->sot['type']);
+        $this->assertTrue(isset($this->sot['type']));
+        unset($this->sot['type']);
+        $this->assertFalse(isset($this->sot['type']));
+        $this->sot['type'] = $v;
+        $this->assertEquals($v, $this->sot['type']);
+        $this->assertTrue(isset($this->sot['type']));
     }
 }

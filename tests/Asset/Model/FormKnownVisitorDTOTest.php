@@ -37,7 +37,7 @@ use PHPUnit\Framework\TestCase;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  *
- * @coversDefault \NecLimDul\MarketoRest\Asset\Model\FormKnownVisitorDTO
+ * @coversDefaultClass \NecLimDul\MarketoRest\Asset\Model\FormKnownVisitorDTO
  */
 class FormKnownVisitorDTOTest extends TestCase
 {
@@ -48,17 +48,18 @@ class FormKnownVisitorDTOTest extends TestCase
     private $sot;
 
     /**
-     * @var \Faker\Generator
-     */
-    private $faker;
-
-    /**
      * @var string[]
      */
     private $types = [
         'template' => 'string',
         'type' => 'string',
-    ];
+];
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
     /**
      * @var scalar[][]
      */
@@ -111,7 +112,14 @@ class FormKnownVisitorDTOTest extends TestCase
                 return new \stdClass();
         }
         if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
-            return new $type();
+            $model = new $type();
+            $types = $type::swaggerTypes();
+            foreach ($model->listInvalidProperties() as $field => $reason) {
+                // @todo get allowed values? ((getter))AllowedValues
+                // @phpstan-ignore-next-line
+                $model[$field] = $this->getFakeValue($types[$field], null);
+            }
+            return $model;
         }
         $this->markTestSkipped('This type is not mocked yet: ' . $type);
     }
@@ -123,7 +131,103 @@ class FormKnownVisitorDTOTest extends TestCase
      */
     public function testFormKnownVisitorDTO(): void
     {
-        $this->assertInstanceOf(\NecLimDul\MarketoRest\Asset\Model\FormKnownVisitorDTO::class, $this->sot);
+        $this->assertInstanceOf(FormKnownVisitorDTO::class, $this->sot);
+    }
+
+    /**
+     * @covers ::swaggerTypes
+     */
+    public function testSwaggerTypes(): void
+    {
+        $this->assertEquals($this->types, FormKnownVisitorDTO::swaggerTypes());
+    }
+
+    /**
+     * @covers ::swaggerFormats
+     */
+    public function testSwaggerFormats(): void
+    {
+        $formats = $this->sot->swaggerFormats();
+        $this->assertEquals(null, $formats['template']);
+        $this->assertEquals(null, $formats['type']);
+    }
+
+    /**
+     * @covers ::attributeMap
+     */
+    public function testAttributeMap(): void
+    {
+        $formats = $this->sot->attributeMap();
+        $this->assertEquals('template', $formats['template']);
+        $this->assertEquals('type', $formats['type']);
+    }
+
+    /**
+     * @covers ::getters
+     * @covers ::setters
+     */
+    public function testGettersSetters(): void
+    {
+        $getters = $this->sot->getters();
+        $setters = $this->sot->setters();
+        foreach (array_keys($this->types) as $field) {
+            $this->assertTrue(isset($setters[$field]));
+            $this->assertTrue(isset($getters[$field]));
+            $this->assertTrue(
+                method_exists($this->sot, $getters[$field]),
+                'Getter exists on model.'
+            );
+            $this->assertTrue(
+                method_exists($this->sot, $setters[$field]),
+                'Setter exists on model.'
+            );
+        }
+    }
+
+    /**
+     * @covers ::getModelName
+     */
+    public function testGetModelName(): void
+    {
+        $this->assertEquals('FormKnownVisitorDTO', $this->sot->getModelName());
+    }
+
+    /**
+     * @covers ::listInvalidProperties
+     * @covers ::valid
+     */
+    public function testValid(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::setAdditionalProperties
+     * @covers ::setAdditionalProperty
+     * @covers ::getAdditionalProperties
+     */
+    public function testAdditionalProperties(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::jsonSerialize
+     * @covers ::__toString
+     */
+    public function testJson(): void
+    {
+        // Some minimal tests that json generates well.
+        $json = json_encode($this->sot);
+        $this->assertIsString($json, 'Json encoded');
+        $json = json_decode($json);
+        $string = json_decode((string) $this->sot);
+        $this->assertEquals(
+            $json,
+            $string
+        );
+        $this->assertInstanceOf(\stdClass::class, $json);
+        $this->assertInstanceOf(\stdClass::class, $string);
     }
 
     /**
@@ -132,6 +236,10 @@ class FormKnownVisitorDTOTest extends TestCase
      * @covers ::__construct
      * @covers ::getTemplate
      * @covers ::setTemplate
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyTemplate(): void
     {
@@ -142,7 +250,23 @@ class FormKnownVisitorDTOTest extends TestCase
         );
         $this->sot->setTemplate($v);
         $this->assertEquals($v, $this->sot->getTemplate());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setTemplate(null);
+        $this->assertNull($this->sot->getTemplate());
+        $this->sot->setTemplate($v);
+
+        $this->assertEquals($v, $this->sot['template']);
+        $v = $this->getFakeValue(
+            $this->types['template'],
+            $this->allowedValues['template'] ?? null
+        );
+        $this->sot['template'] = $v;
+        $this->assertEquals($v, $this->sot['template']);
+        $this->assertTrue(isset($this->sot['template']));
+        unset($this->sot['template']);
+        $this->assertFalse(isset($this->sot['template']));
+        $this->sot['template'] = $v;
+        $this->assertEquals($v, $this->sot['template']);
+        $this->assertTrue(isset($this->sot['template']));
     }
 
     /**
@@ -151,6 +275,10 @@ class FormKnownVisitorDTOTest extends TestCase
      * @covers ::__construct
      * @covers ::getType
      * @covers ::setType
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyType(): void
     {
@@ -161,6 +289,22 @@ class FormKnownVisitorDTOTest extends TestCase
         );
         $this->sot->setType($v);
         $this->assertEquals($v, $this->sot->getType());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setType(null);
+        $this->assertNull($this->sot->getType());
+        $this->sot->setType($v);
+
+        $this->assertEquals($v, $this->sot['type']);
+        $v = $this->getFakeValue(
+            $this->types['type'],
+            $this->allowedValues['type'] ?? null
+        );
+        $this->sot['type'] = $v;
+        $this->assertEquals($v, $this->sot['type']);
+        $this->assertTrue(isset($this->sot['type']));
+        unset($this->sot['type']);
+        $this->assertFalse(isset($this->sot['type']));
+        $this->sot['type'] = $v;
+        $this->assertEquals($v, $this->sot['type']);
+        $this->assertTrue(isset($this->sot['type']));
     }
 }

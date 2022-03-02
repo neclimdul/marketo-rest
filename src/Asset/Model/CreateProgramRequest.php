@@ -91,22 +91,6 @@ class CreateProgramRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -177,6 +161,22 @@ class CreateProgramRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -216,16 +216,16 @@ class CreateProgramRequest implements ModelInterface, ArrayAccess, \JsonSerializ
         $invalidProperties = [];
 
         if ($this->container['channel'] === null) {
-            $invalidProperties[] = "'channel' can't be null";
+            $invalidProperties['channel'] = "'channel' can't be null";
         }
         if ($this->container['folder'] === null) {
-            $invalidProperties[] = "'folder' can't be null";
+            $invalidProperties['folder'] = "'folder' can't be null";
         }
         if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
+            $invalidProperties['name'] = "'name' can't be null";
         }
         if ($this->container['type'] === null) {
-            $invalidProperties[] = "'type' can't be null";
+            $invalidProperties['type'] = "'type' can't be null";
         }
         return $invalidProperties;
     }
@@ -265,9 +265,9 @@ class CreateProgramRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets costs
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\CostRequest[]
+     * @return \NecLimDul\MarketoRest\Asset\Model\CostRequest[]|null
      */
-    public function getCosts(): array
+    public function getCosts(): ?array
     {
         return $this->container['costs'];
     }
@@ -289,9 +289,9 @@ class CreateProgramRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->container['description'];
     }
@@ -361,9 +361,9 @@ class CreateProgramRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets tags
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\TagRequest[]
+     * @return \NecLimDul\MarketoRest\Asset\Model\TagRequest[]|null
      */
-    public function getTags(): array
+    public function getTags(): ?array
     {
         return $this->container['tags'];
     }

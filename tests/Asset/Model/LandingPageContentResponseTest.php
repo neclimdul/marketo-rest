@@ -37,7 +37,7 @@ use PHPUnit\Framework\TestCase;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  *
- * @coversDefault \NecLimDul\MarketoRest\Asset\Model\LandingPageContentResponse
+ * @coversDefaultClass \NecLimDul\MarketoRest\Asset\Model\LandingPageContentResponse
  */
 class LandingPageContentResponseTest extends TestCase
 {
@@ -46,11 +46,6 @@ class LandingPageContentResponseTest extends TestCase
      * @var \NecLimDul\MarketoRest\Asset\Model\LandingPageContentResponse
      */
     private $sot;
-
-    /**
-     * @var \Faker\Generator
-     */
-    private $faker;
 
     /**
      * @var string[]
@@ -63,7 +58,13 @@ class LandingPageContentResponseTest extends TestCase
         'id' => 'object',
         'index' => 'int',
         'type' => 'string',
-    ];
+];
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
     /**
      * @var scalar[][]
      */
@@ -135,7 +136,14 @@ class LandingPageContentResponseTest extends TestCase
                 return new \stdClass();
         }
         if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
-            return new $type();
+            $model = new $type();
+            $types = $type::swaggerTypes();
+            foreach ($model->listInvalidProperties() as $field => $reason) {
+                // @todo get allowed values? ((getter))AllowedValues
+                // @phpstan-ignore-next-line
+                $model[$field] = $this->getFakeValue($types[$field], null);
+            }
+            return $model;
         }
         $this->markTestSkipped('This type is not mocked yet: ' . $type);
     }
@@ -147,7 +155,113 @@ class LandingPageContentResponseTest extends TestCase
      */
     public function testLandingPageContentResponse(): void
     {
-        $this->assertInstanceOf(\NecLimDul\MarketoRest\Asset\Model\LandingPageContentResponse::class, $this->sot);
+        $this->assertInstanceOf(LandingPageContentResponse::class, $this->sot);
+    }
+
+    /**
+     * @covers ::swaggerTypes
+     */
+    public function testSwaggerTypes(): void
+    {
+        $this->assertEquals($this->types, LandingPageContentResponse::swaggerTypes());
+    }
+
+    /**
+     * @covers ::swaggerFormats
+     */
+    public function testSwaggerFormats(): void
+    {
+        $formats = $this->sot->swaggerFormats();
+        $this->assertEquals(null, $formats['content']);
+        $this->assertEquals(null, $formats['followup_type']);
+        $this->assertEquals(null, $formats['followup_value']);
+        $this->assertEquals(null, $formats['formatting_options']);
+        $this->assertEquals(null, $formats['id']);
+        $this->assertEquals('int32', $formats['index']);
+        $this->assertEquals(null, $formats['type']);
+    }
+
+    /**
+     * @covers ::attributeMap
+     */
+    public function testAttributeMap(): void
+    {
+        $formats = $this->sot->attributeMap();
+        $this->assertEquals('content', $formats['content']);
+        $this->assertEquals('followupType', $formats['followup_type']);
+        $this->assertEquals('followupValue', $formats['followup_value']);
+        $this->assertEquals('formattingOptions', $formats['formatting_options']);
+        $this->assertEquals('id', $formats['id']);
+        $this->assertEquals('index', $formats['index']);
+        $this->assertEquals('type', $formats['type']);
+    }
+
+    /**
+     * @covers ::getters
+     * @covers ::setters
+     */
+    public function testGettersSetters(): void
+    {
+        $getters = $this->sot->getters();
+        $setters = $this->sot->setters();
+        foreach (array_keys($this->types) as $field) {
+            $this->assertTrue(isset($setters[$field]));
+            $this->assertTrue(isset($getters[$field]));
+            $this->assertTrue(
+                method_exists($this->sot, $getters[$field]),
+                'Getter exists on model.'
+            );
+            $this->assertTrue(
+                method_exists($this->sot, $setters[$field]),
+                'Setter exists on model.'
+            );
+        }
+    }
+
+    /**
+     * @covers ::getModelName
+     */
+    public function testGetModelName(): void
+    {
+        $this->assertEquals('LandingPageContentResponse', $this->sot->getModelName());
+    }
+
+    /**
+     * @covers ::listInvalidProperties
+     * @covers ::valid
+     */
+    public function testValid(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::setAdditionalProperties
+     * @covers ::setAdditionalProperty
+     * @covers ::getAdditionalProperties
+     */
+    public function testAdditionalProperties(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::jsonSerialize
+     * @covers ::__toString
+     */
+    public function testJson(): void
+    {
+        // Some minimal tests that json generates well.
+        $json = json_encode($this->sot);
+        $this->assertIsString($json, 'Json encoded');
+        $json = json_decode($json);
+        $string = json_decode((string) $this->sot);
+        $this->assertEquals(
+            $json,
+            $string
+        );
+        $this->assertInstanceOf(\stdClass::class, $json);
+        $this->assertInstanceOf(\stdClass::class, $string);
     }
 
     /**
@@ -156,6 +270,10 @@ class LandingPageContentResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getContent
      * @covers ::setContent
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyContent(): void
     {
@@ -166,7 +284,23 @@ class LandingPageContentResponseTest extends TestCase
         );
         $this->sot->setContent($v);
         $this->assertEquals($v, $this->sot->getContent());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setContent(null);
+        $this->assertNull($this->sot->getContent());
+        $this->sot->setContent($v);
+
+        $this->assertEquals($v, $this->sot['content']);
+        $v = $this->getFakeValue(
+            $this->types['content'],
+            $this->allowedValues['content'] ?? null
+        );
+        $this->sot['content'] = $v;
+        $this->assertEquals($v, $this->sot['content']);
+        $this->assertTrue(isset($this->sot['content']));
+        unset($this->sot['content']);
+        $this->assertFalse(isset($this->sot['content']));
+        $this->sot['content'] = $v;
+        $this->assertEquals($v, $this->sot['content']);
+        $this->assertTrue(isset($this->sot['content']));
     }
 
     /**
@@ -175,6 +309,10 @@ class LandingPageContentResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getFollowupType
      * @covers ::setFollowupType
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyFollowupType(): void
     {
@@ -185,7 +323,23 @@ class LandingPageContentResponseTest extends TestCase
         );
         $this->sot->setFollowupType($v);
         $this->assertEquals($v, $this->sot->getFollowupType());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setFollowupType(null);
+        $this->assertNull($this->sot->getFollowupType());
+        $this->sot->setFollowupType($v);
+
+        $this->assertEquals($v, $this->sot['followup_type']);
+        $v = $this->getFakeValue(
+            $this->types['followup_type'],
+            $this->allowedValues['followup_type'] ?? null
+        );
+        $this->sot['followup_type'] = $v;
+        $this->assertEquals($v, $this->sot['followup_type']);
+        $this->assertTrue(isset($this->sot['followup_type']));
+        unset($this->sot['followup_type']);
+        $this->assertFalse(isset($this->sot['followup_type']));
+        $this->sot['followup_type'] = $v;
+        $this->assertEquals($v, $this->sot['followup_type']);
+        $this->assertTrue(isset($this->sot['followup_type']));
     }
 
     /**
@@ -194,6 +348,10 @@ class LandingPageContentResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getFollowupValue
      * @covers ::setFollowupValue
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyFollowupValue(): void
     {
@@ -204,7 +362,23 @@ class LandingPageContentResponseTest extends TestCase
         );
         $this->sot->setFollowupValue($v);
         $this->assertEquals($v, $this->sot->getFollowupValue());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setFollowupValue(null);
+        $this->assertNull($this->sot->getFollowupValue());
+        $this->sot->setFollowupValue($v);
+
+        $this->assertEquals($v, $this->sot['followup_value']);
+        $v = $this->getFakeValue(
+            $this->types['followup_value'],
+            $this->allowedValues['followup_value'] ?? null
+        );
+        $this->sot['followup_value'] = $v;
+        $this->assertEquals($v, $this->sot['followup_value']);
+        $this->assertTrue(isset($this->sot['followup_value']));
+        unset($this->sot['followup_value']);
+        $this->assertFalse(isset($this->sot['followup_value']));
+        $this->sot['followup_value'] = $v;
+        $this->assertEquals($v, $this->sot['followup_value']);
+        $this->assertTrue(isset($this->sot['followup_value']));
     }
 
     /**
@@ -213,6 +387,10 @@ class LandingPageContentResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getFormattingOptions
      * @covers ::setFormattingOptions
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyFormattingOptions(): void
     {
@@ -223,7 +401,23 @@ class LandingPageContentResponseTest extends TestCase
         );
         $this->sot->setFormattingOptions($v);
         $this->assertEquals($v, $this->sot->getFormattingOptions());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setFormattingOptions(null);
+        $this->assertNull($this->sot->getFormattingOptions());
+        $this->sot->setFormattingOptions($v);
+
+        $this->assertEquals($v, $this->sot['formatting_options']);
+        $v = $this->getFakeValue(
+            $this->types['formatting_options'],
+            $this->allowedValues['formatting_options'] ?? null
+        );
+        $this->sot['formatting_options'] = $v;
+        $this->assertEquals($v, $this->sot['formatting_options']);
+        $this->assertTrue(isset($this->sot['formatting_options']));
+        unset($this->sot['formatting_options']);
+        $this->assertFalse(isset($this->sot['formatting_options']));
+        $this->sot['formatting_options'] = $v;
+        $this->assertEquals($v, $this->sot['formatting_options']);
+        $this->assertTrue(isset($this->sot['formatting_options']));
     }
 
     /**
@@ -232,6 +426,10 @@ class LandingPageContentResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getId
      * @covers ::setId
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyId(): void
     {
@@ -242,7 +440,20 @@ class LandingPageContentResponseTest extends TestCase
         );
         $this->sot->setId($v);
         $this->assertEquals($v, $this->sot->getId());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['id']);
+        $v = $this->getFakeValue(
+            $this->types['id'],
+            $this->allowedValues['id'] ?? null
+        );
+        $this->sot['id'] = $v;
+        $this->assertEquals($v, $this->sot['id']);
+        $this->assertTrue(isset($this->sot['id']));
+        unset($this->sot['id']);
+        $this->assertFalse(isset($this->sot['id']));
+        $this->sot['id'] = $v;
+        $this->assertEquals($v, $this->sot['id']);
+        $this->assertTrue(isset($this->sot['id']));
     }
 
     /**
@@ -251,6 +462,10 @@ class LandingPageContentResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getIndex
      * @covers ::setIndex
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyIndex(): void
     {
@@ -261,7 +476,23 @@ class LandingPageContentResponseTest extends TestCase
         );
         $this->sot->setIndex($v);
         $this->assertEquals($v, $this->sot->getIndex());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setIndex(null);
+        $this->assertNull($this->sot->getIndex());
+        $this->sot->setIndex($v);
+
+        $this->assertEquals($v, $this->sot['index']);
+        $v = $this->getFakeValue(
+            $this->types['index'],
+            $this->allowedValues['index'] ?? null
+        );
+        $this->sot['index'] = $v;
+        $this->assertEquals($v, $this->sot['index']);
+        $this->assertTrue(isset($this->sot['index']));
+        unset($this->sot['index']);
+        $this->assertFalse(isset($this->sot['index']));
+        $this->sot['index'] = $v;
+        $this->assertEquals($v, $this->sot['index']);
+        $this->assertTrue(isset($this->sot['index']));
     }
 
     /**
@@ -270,6 +501,10 @@ class LandingPageContentResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getType
      * @covers ::setType
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyType(): void
     {
@@ -280,6 +515,19 @@ class LandingPageContentResponseTest extends TestCase
         );
         $this->sot->setType($v);
         $this->assertEquals($v, $this->sot->getType());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['type']);
+        $v = $this->getFakeValue(
+            $this->types['type'],
+            $this->allowedValues['type'] ?? null
+        );
+        $this->sot['type'] = $v;
+        $this->assertEquals($v, $this->sot['type']);
+        $this->assertTrue(isset($this->sot['type']));
+        unset($this->sot['type']);
+        $this->assertFalse(isset($this->sot['type']));
+        $this->sot['type'] = $v;
+        $this->assertEquals($v, $this->sot['type']);
+        $this->assertTrue(isset($this->sot['type']));
     }
 }

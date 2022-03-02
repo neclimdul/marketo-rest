@@ -103,22 +103,6 @@ class CreateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -213,6 +197,22 @@ class CreateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -252,13 +252,13 @@ class CreateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
         $invalidProperties = [];
 
         if ($this->container['folder'] === null) {
-            $invalidProperties[] = "'folder' can't be null";
+            $invalidProperties['folder'] = "'folder' can't be null";
         }
         if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
+            $invalidProperties['name'] = "'name' can't be null";
         }
         if ($this->container['template'] === null) {
-            $invalidProperties[] = "'template' can't be null";
+            $invalidProperties['template'] = "'template' can't be null";
         }
         return $invalidProperties;
     }
@@ -274,9 +274,9 @@ class CreateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets custom_head_html
      *
-     * @return string
+     * @return string|null
      */
-    public function getCustomHeadHtml(): string
+    public function getCustomHeadHtml(): ?string
     {
         return $this->container['custom_head_html'];
     }
@@ -298,9 +298,9 @@ class CreateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->container['description'];
     }
@@ -322,9 +322,9 @@ class CreateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets facebook_og_tags
      *
-     * @return string
+     * @return string|null
      */
-    public function getFacebookOgTags(): string
+    public function getFacebookOgTags(): ?string
     {
         return $this->container['facebook_og_tags'];
     }
@@ -370,9 +370,9 @@ class CreateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets keywords
      *
-     * @return string
+     * @return string|null
      */
-    public function getKeywords(): string
+    public function getKeywords(): ?string
     {
         return $this->container['keywords'];
     }
@@ -394,9 +394,9 @@ class CreateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets mobile_enabled
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getMobileEnabled(): bool
+    public function getMobileEnabled(): ?bool
     {
         return $this->container['mobile_enabled'];
     }
@@ -442,9 +442,9 @@ class CreateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets prefill_form
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getPrefillForm(): bool
+    public function getPrefillForm(): ?bool
     {
         return $this->container['prefill_form'];
     }
@@ -466,9 +466,9 @@ class CreateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets robots
      *
-     * @return string
+     * @return string|null
      */
-    public function getRobots(): string
+    public function getRobots(): ?string
     {
         return $this->container['robots'];
     }
@@ -514,9 +514,9 @@ class CreateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets title
      *
-     * @return string
+     * @return string|null
      */
-    public function getTitle(): string
+    public function getTitle(): ?string
     {
         return $this->container['title'];
     }
@@ -538,9 +538,9 @@ class CreateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets url_page_name
      *
-     * @return string
+     * @return string|null
      */
-    public function getUrlPageName(): string
+    public function getUrlPageName(): ?string
     {
         return $this->container['url_page_name'];
     }
@@ -562,9 +562,9 @@ class CreateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets workspace
      *
-     * @return string
+     * @return string|null
      */
-    public function getWorkspace(): string
+    public function getWorkspace(): ?string
     {
         return $this->container['workspace'];
     }

@@ -79,22 +79,6 @@ class CustomActivityTypeAttributeRequest implements ModelInterface, ArrayAccess,
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -138,6 +122,22 @@ class CustomActivityTypeAttributeRequest implements ModelInterface, ArrayAccess,
     public function __construct(array $data = null)
     {
         $this->container['attributes'] = $data['attributes'] ?? null;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
     }
 
     /**
@@ -193,9 +193,9 @@ class CustomActivityTypeAttributeRequest implements ModelInterface, ArrayAccess,
     /**
      * Gets attributes
      *
-     * @return \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttribute[]
+     * @return \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttribute[]|null
      */
-    public function getAttributes(): array
+    public function getAttributes(): ?array
     {
         return $this->container['attributes'];
     }

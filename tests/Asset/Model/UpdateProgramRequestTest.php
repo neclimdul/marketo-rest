@@ -37,7 +37,7 @@ use PHPUnit\Framework\TestCase;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  *
- * @coversDefault \NecLimDul\MarketoRest\Asset\Model\UpdateProgramRequest
+ * @coversDefaultClass \NecLimDul\MarketoRest\Asset\Model\UpdateProgramRequest
  */
 class UpdateProgramRequestTest extends TestCase
 {
@@ -46,11 +46,6 @@ class UpdateProgramRequestTest extends TestCase
      * @var \NecLimDul\MarketoRest\Asset\Model\UpdateProgramRequest
      */
     private $sot;
-
-    /**
-     * @var \Faker\Generator
-     */
-    private $faker;
 
     /**
      * @var string[]
@@ -63,7 +58,13 @@ class UpdateProgramRequestTest extends TestCase
         'name' => 'string',
         'start_date' => 'string',
         'tags' => '\NecLimDul\MarketoRest\Asset\Model\TagRequest[]',
-    ];
+];
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
     /**
      * @var scalar[][]
      */
@@ -116,7 +117,14 @@ class UpdateProgramRequestTest extends TestCase
                 return new \stdClass();
         }
         if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
-            return new $type();
+            $model = new $type();
+            $types = $type::swaggerTypes();
+            foreach ($model->listInvalidProperties() as $field => $reason) {
+                // @todo get allowed values? ((getter))AllowedValues
+                // @phpstan-ignore-next-line
+                $model[$field] = $this->getFakeValue($types[$field], null);
+            }
+            return $model;
         }
         $this->markTestSkipped('This type is not mocked yet: ' . $type);
     }
@@ -128,7 +136,113 @@ class UpdateProgramRequestTest extends TestCase
      */
     public function testUpdateProgramRequest(): void
     {
-        $this->assertInstanceOf(\NecLimDul\MarketoRest\Asset\Model\UpdateProgramRequest::class, $this->sot);
+        $this->assertInstanceOf(UpdateProgramRequest::class, $this->sot);
+    }
+
+    /**
+     * @covers ::swaggerTypes
+     */
+    public function testSwaggerTypes(): void
+    {
+        $this->assertEquals($this->types, UpdateProgramRequest::swaggerTypes());
+    }
+
+    /**
+     * @covers ::swaggerFormats
+     */
+    public function testSwaggerFormats(): void
+    {
+        $formats = $this->sot->swaggerFormats();
+        $this->assertEquals(null, $formats['costs']);
+        $this->assertEquals(null, $formats['costs_destructive_update']);
+        $this->assertEquals(null, $formats['description']);
+        $this->assertEquals(null, $formats['end_date']);
+        $this->assertEquals(null, $formats['name']);
+        $this->assertEquals(null, $formats['start_date']);
+        $this->assertEquals(null, $formats['tags']);
+    }
+
+    /**
+     * @covers ::attributeMap
+     */
+    public function testAttributeMap(): void
+    {
+        $formats = $this->sot->attributeMap();
+        $this->assertEquals('costs', $formats['costs']);
+        $this->assertEquals('costsDestructiveUpdate', $formats['costs_destructive_update']);
+        $this->assertEquals('description', $formats['description']);
+        $this->assertEquals('endDate', $formats['end_date']);
+        $this->assertEquals('name', $formats['name']);
+        $this->assertEquals('startDate', $formats['start_date']);
+        $this->assertEquals('tags', $formats['tags']);
+    }
+
+    /**
+     * @covers ::getters
+     * @covers ::setters
+     */
+    public function testGettersSetters(): void
+    {
+        $getters = $this->sot->getters();
+        $setters = $this->sot->setters();
+        foreach (array_keys($this->types) as $field) {
+            $this->assertTrue(isset($setters[$field]));
+            $this->assertTrue(isset($getters[$field]));
+            $this->assertTrue(
+                method_exists($this->sot, $getters[$field]),
+                'Getter exists on model.'
+            );
+            $this->assertTrue(
+                method_exists($this->sot, $setters[$field]),
+                'Setter exists on model.'
+            );
+        }
+    }
+
+    /**
+     * @covers ::getModelName
+     */
+    public function testGetModelName(): void
+    {
+        $this->assertEquals('UpdateProgramRequest', $this->sot->getModelName());
+    }
+
+    /**
+     * @covers ::listInvalidProperties
+     * @covers ::valid
+     */
+    public function testValid(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::setAdditionalProperties
+     * @covers ::setAdditionalProperty
+     * @covers ::getAdditionalProperties
+     */
+    public function testAdditionalProperties(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::jsonSerialize
+     * @covers ::__toString
+     */
+    public function testJson(): void
+    {
+        // Some minimal tests that json generates well.
+        $json = json_encode($this->sot);
+        $this->assertIsString($json, 'Json encoded');
+        $json = json_decode($json);
+        $string = json_decode((string) $this->sot);
+        $this->assertEquals(
+            $json,
+            $string
+        );
+        $this->assertInstanceOf(\stdClass::class, $json);
+        $this->assertInstanceOf(\stdClass::class, $string);
     }
 
     /**
@@ -137,6 +251,10 @@ class UpdateProgramRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getCosts
      * @covers ::setCosts
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyCosts(): void
     {
@@ -147,7 +265,23 @@ class UpdateProgramRequestTest extends TestCase
         );
         $this->sot->setCosts($v);
         $this->assertEquals($v, $this->sot->getCosts());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setCosts(null);
+        $this->assertNull($this->sot->getCosts());
+        $this->sot->setCosts($v);
+
+        $this->assertEquals($v, $this->sot['costs']);
+        $v = $this->getFakeValue(
+            $this->types['costs'],
+            $this->allowedValues['costs'] ?? null
+        );
+        $this->sot['costs'] = $v;
+        $this->assertEquals($v, $this->sot['costs']);
+        $this->assertTrue(isset($this->sot['costs']));
+        unset($this->sot['costs']);
+        $this->assertFalse(isset($this->sot['costs']));
+        $this->sot['costs'] = $v;
+        $this->assertEquals($v, $this->sot['costs']);
+        $this->assertTrue(isset($this->sot['costs']));
     }
 
     /**
@@ -156,6 +290,10 @@ class UpdateProgramRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getCostsDestructiveUpdate
      * @covers ::setCostsDestructiveUpdate
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyCostsDestructiveUpdate(): void
     {
@@ -166,7 +304,23 @@ class UpdateProgramRequestTest extends TestCase
         );
         $this->sot->setCostsDestructiveUpdate($v);
         $this->assertEquals($v, $this->sot->getCostsDestructiveUpdate());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setCostsDestructiveUpdate(null);
+        $this->assertNull($this->sot->getCostsDestructiveUpdate());
+        $this->sot->setCostsDestructiveUpdate($v);
+
+        $this->assertEquals($v, $this->sot['costs_destructive_update']);
+        $v = $this->getFakeValue(
+            $this->types['costs_destructive_update'],
+            $this->allowedValues['costs_destructive_update'] ?? null
+        );
+        $this->sot['costs_destructive_update'] = $v;
+        $this->assertEquals($v, $this->sot['costs_destructive_update']);
+        $this->assertTrue(isset($this->sot['costs_destructive_update']));
+        unset($this->sot['costs_destructive_update']);
+        $this->assertFalse(isset($this->sot['costs_destructive_update']));
+        $this->sot['costs_destructive_update'] = $v;
+        $this->assertEquals($v, $this->sot['costs_destructive_update']);
+        $this->assertTrue(isset($this->sot['costs_destructive_update']));
     }
 
     /**
@@ -175,6 +329,10 @@ class UpdateProgramRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getDescription
      * @covers ::setDescription
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyDescription(): void
     {
@@ -185,7 +343,23 @@ class UpdateProgramRequestTest extends TestCase
         );
         $this->sot->setDescription($v);
         $this->assertEquals($v, $this->sot->getDescription());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setDescription(null);
+        $this->assertNull($this->sot->getDescription());
+        $this->sot->setDescription($v);
+
+        $this->assertEquals($v, $this->sot['description']);
+        $v = $this->getFakeValue(
+            $this->types['description'],
+            $this->allowedValues['description'] ?? null
+        );
+        $this->sot['description'] = $v;
+        $this->assertEquals($v, $this->sot['description']);
+        $this->assertTrue(isset($this->sot['description']));
+        unset($this->sot['description']);
+        $this->assertFalse(isset($this->sot['description']));
+        $this->sot['description'] = $v;
+        $this->assertEquals($v, $this->sot['description']);
+        $this->assertTrue(isset($this->sot['description']));
     }
 
     /**
@@ -194,6 +368,10 @@ class UpdateProgramRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getEndDate
      * @covers ::setEndDate
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyEndDate(): void
     {
@@ -204,7 +382,23 @@ class UpdateProgramRequestTest extends TestCase
         );
         $this->sot->setEndDate($v);
         $this->assertEquals($v, $this->sot->getEndDate());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setEndDate(null);
+        $this->assertNull($this->sot->getEndDate());
+        $this->sot->setEndDate($v);
+
+        $this->assertEquals($v, $this->sot['end_date']);
+        $v = $this->getFakeValue(
+            $this->types['end_date'],
+            $this->allowedValues['end_date'] ?? null
+        );
+        $this->sot['end_date'] = $v;
+        $this->assertEquals($v, $this->sot['end_date']);
+        $this->assertTrue(isset($this->sot['end_date']));
+        unset($this->sot['end_date']);
+        $this->assertFalse(isset($this->sot['end_date']));
+        $this->sot['end_date'] = $v;
+        $this->assertEquals($v, $this->sot['end_date']);
+        $this->assertTrue(isset($this->sot['end_date']));
     }
 
     /**
@@ -213,6 +407,10 @@ class UpdateProgramRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getName
      * @covers ::setName
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyName(): void
     {
@@ -223,7 +421,23 @@ class UpdateProgramRequestTest extends TestCase
         );
         $this->sot->setName($v);
         $this->assertEquals($v, $this->sot->getName());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setName(null);
+        $this->assertNull($this->sot->getName());
+        $this->sot->setName($v);
+
+        $this->assertEquals($v, $this->sot['name']);
+        $v = $this->getFakeValue(
+            $this->types['name'],
+            $this->allowedValues['name'] ?? null
+        );
+        $this->sot['name'] = $v;
+        $this->assertEquals($v, $this->sot['name']);
+        $this->assertTrue(isset($this->sot['name']));
+        unset($this->sot['name']);
+        $this->assertFalse(isset($this->sot['name']));
+        $this->sot['name'] = $v;
+        $this->assertEquals($v, $this->sot['name']);
+        $this->assertTrue(isset($this->sot['name']));
     }
 
     /**
@@ -232,6 +446,10 @@ class UpdateProgramRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getStartDate
      * @covers ::setStartDate
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyStartDate(): void
     {
@@ -242,7 +460,23 @@ class UpdateProgramRequestTest extends TestCase
         );
         $this->sot->setStartDate($v);
         $this->assertEquals($v, $this->sot->getStartDate());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setStartDate(null);
+        $this->assertNull($this->sot->getStartDate());
+        $this->sot->setStartDate($v);
+
+        $this->assertEquals($v, $this->sot['start_date']);
+        $v = $this->getFakeValue(
+            $this->types['start_date'],
+            $this->allowedValues['start_date'] ?? null
+        );
+        $this->sot['start_date'] = $v;
+        $this->assertEquals($v, $this->sot['start_date']);
+        $this->assertTrue(isset($this->sot['start_date']));
+        unset($this->sot['start_date']);
+        $this->assertFalse(isset($this->sot['start_date']));
+        $this->sot['start_date'] = $v;
+        $this->assertEquals($v, $this->sot['start_date']);
+        $this->assertTrue(isset($this->sot['start_date']));
     }
 
     /**
@@ -251,6 +485,10 @@ class UpdateProgramRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getTags
      * @covers ::setTags
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyTags(): void
     {
@@ -261,6 +499,22 @@ class UpdateProgramRequestTest extends TestCase
         );
         $this->sot->setTags($v);
         $this->assertEquals($v, $this->sot->getTags());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setTags(null);
+        $this->assertNull($this->sot->getTags());
+        $this->sot->setTags($v);
+
+        $this->assertEquals($v, $this->sot['tags']);
+        $v = $this->getFakeValue(
+            $this->types['tags'],
+            $this->allowedValues['tags'] ?? null
+        );
+        $this->sot['tags'] = $v;
+        $this->assertEquals($v, $this->sot['tags']);
+        $this->assertTrue(isset($this->sot['tags']));
+        unset($this->sot['tags']);
+        $this->assertFalse(isset($this->sot['tags']));
+        $this->sot['tags'] = $v;
+        $this->assertEquals($v, $this->sot['tags']);
+        $this->assertTrue(isset($this->sot['tags']));
     }
 }

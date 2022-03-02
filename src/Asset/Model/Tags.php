@@ -81,22 +81,6 @@ class Tags implements ModelInterface, ArrayAccess, \JsonSerializable
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -147,6 +131,22 @@ class Tags implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -186,10 +186,10 @@ class Tags implements ModelInterface, ArrayAccess, \JsonSerializable
         $invalidProperties = [];
 
         if ($this->container['tag_type'] === null) {
-            $invalidProperties[] = "'tag_type' can't be null";
+            $invalidProperties['tag_type'] = "'tag_type' can't be null";
         }
         if ($this->container['tag_value'] === null) {
-            $invalidProperties[] = "'tag_value' can't be null";
+            $invalidProperties['tag_value'] = "'tag_value' can't be null";
         }
         return $invalidProperties;
     }

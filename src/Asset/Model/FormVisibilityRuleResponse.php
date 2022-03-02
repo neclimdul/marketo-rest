@@ -83,22 +83,6 @@ class FormVisibilityRuleResponse implements ModelInterface, ArrayAccess, \JsonSe
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -150,6 +134,22 @@ class FormVisibilityRuleResponse implements ModelInterface, ArrayAccess, \JsonSe
         $this->container['form_field_id'] = $data['form_field_id'] ?? null;
         $this->container['rule_type'] = $data['rule_type'] ?? null;
         $this->container['rules'] = $data['rules'] ?? null;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
     }
 
     /**
@@ -205,9 +205,9 @@ class FormVisibilityRuleResponse implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Gets form_field_id
      *
-     * @return string
+     * @return string|null
      */
-    public function getFormFieldId(): string
+    public function getFormFieldId(): ?string
     {
         return $this->container['form_field_id'];
     }
@@ -229,9 +229,9 @@ class FormVisibilityRuleResponse implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Gets rule_type
      *
-     * @return string
+     * @return string|null
      */
-    public function getRuleType(): string
+    public function getRuleType(): ?string
     {
         return $this->container['rule_type'];
     }
@@ -253,9 +253,9 @@ class FormVisibilityRuleResponse implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Gets rules
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\FormVisibilityRuleDTO[]
+     * @return \NecLimDul\MarketoRest\Asset\Model\FormVisibilityRuleDTO[]|null
      */
-    public function getRules(): array
+    public function getRules(): ?array
     {
         return $this->container['rules'];
     }

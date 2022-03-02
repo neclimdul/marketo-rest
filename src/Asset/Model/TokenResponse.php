@@ -81,22 +81,6 @@ class TokenResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -147,6 +131,22 @@ class TokenResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -186,7 +186,7 @@ class TokenResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         $invalidProperties = [];
 
         if ($this->container['folder'] === null) {
-            $invalidProperties[] = "'folder' can't be null";
+            $invalidProperties['folder'] = "'folder' can't be null";
         }
         return $invalidProperties;
     }
@@ -226,9 +226,9 @@ class TokenResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets tokens
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\TokenDTO[]
+     * @return \NecLimDul\MarketoRest\Asset\Model\TokenDTO[]|null
      */
-    public function getTokens(): array
+    public function getTokens(): ?array
     {
         return $this->container['tokens'];
     }

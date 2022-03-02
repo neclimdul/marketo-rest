@@ -81,22 +81,6 @@ class InputStreamContent implements ModelInterface, ArrayAccess, \JsonSerializab
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -144,6 +128,22 @@ class InputStreamContent implements ModelInterface, ArrayAccess, \JsonSerializab
     {
         $this->container['content_type'] = $data['content_type'] ?? null;
         $this->container['input_stream'] = $data['input_stream'] ?? null;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
     }
 
     /**
@@ -199,9 +199,9 @@ class InputStreamContent implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets content_type
      *
-     * @return string
+     * @return string|null
      */
-    public function getContentType(): string
+    public function getContentType(): ?string
     {
         return $this->container['content_type'];
     }
@@ -223,9 +223,9 @@ class InputStreamContent implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets input_stream
      *
-     * @return \NecLimDul\MarketoRest\Lead\Model\InputStream
+     * @return \NecLimDul\MarketoRest\Lead\Model\InputStream|null
      */
-    public function getInputStream(): \NecLimDul\MarketoRest\Lead\Model\InputStream
+    public function getInputStream(): ?\NecLimDul\MarketoRest\Lead\Model\InputStream
     {
         return $this->container['input_stream'];
     }

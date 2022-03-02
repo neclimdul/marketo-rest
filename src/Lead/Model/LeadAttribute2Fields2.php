@@ -89,22 +89,6 @@ class LeadAttribute2Fields2 implements ModelInterface, ArrayAccess, \JsonSeriali
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -171,6 +155,22 @@ class LeadAttribute2Fields2 implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -210,19 +210,19 @@ class LeadAttribute2Fields2 implements ModelInterface, ArrayAccess, \JsonSeriali
         $invalidProperties = [];
 
         if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
+            $invalidProperties['name'] = "'name' can't be null";
         }
         if ($this->container['display_name'] === null) {
-            $invalidProperties[] = "'display_name' can't be null";
+            $invalidProperties['display_name'] = "'display_name' can't be null";
         }
         if ($this->container['data_type'] === null) {
-            $invalidProperties[] = "'data_type' can't be null";
+            $invalidProperties['data_type'] = "'data_type' can't be null";
         }
         if ($this->container['updateable'] === null) {
-            $invalidProperties[] = "'updateable' can't be null";
+            $invalidProperties['updateable'] = "'updateable' can't be null";
         }
         if ($this->container['crm_managed'] === null) {
-            $invalidProperties[] = "'crm_managed' can't be null";
+            $invalidProperties['crm_managed'] = "'crm_managed' can't be null";
         }
         return $invalidProperties;
     }
@@ -310,9 +310,9 @@ class LeadAttribute2Fields2 implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets length
      *
-     * @return int
+     * @return int|null
      */
-    public function getLength(): int
+    public function getLength(): ?int
     {
         return $this->container['length'];
     }

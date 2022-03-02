@@ -37,7 +37,7 @@ use PHPUnit\Framework\TestCase;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  *
- * @coversDefault \NecLimDul\MarketoRest\Asset\Model\ThankYouPageRequest
+ * @coversDefaultClass \NecLimDul\MarketoRest\Asset\Model\ThankYouPageRequest
  */
 class ThankYouPageRequestTest extends TestCase
 {
@@ -46,11 +46,6 @@ class ThankYouPageRequestTest extends TestCase
      * @var \NecLimDul\MarketoRest\Asset\Model\ThankYouPageRequest
      */
     private $sot;
-
-    /**
-     * @var \Faker\Generator
-     */
-    private $faker;
 
     /**
      * @var string[]
@@ -62,7 +57,13 @@ class ThankYouPageRequestTest extends TestCase
         'operator' => 'string',
         'subject_field' => 'string',
         'values' => 'string[]',
-    ];
+];
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
     /**
      * @var scalar[][]
      */
@@ -115,7 +116,14 @@ class ThankYouPageRequestTest extends TestCase
                 return new \stdClass();
         }
         if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
-            return new $type();
+            $model = new $type();
+            $types = $type::swaggerTypes();
+            foreach ($model->listInvalidProperties() as $field => $reason) {
+                // @todo get allowed values? ((getter))AllowedValues
+                // @phpstan-ignore-next-line
+                $model[$field] = $this->getFakeValue($types[$field], null);
+            }
+            return $model;
         }
         $this->markTestSkipped('This type is not mocked yet: ' . $type);
     }
@@ -127,7 +135,111 @@ class ThankYouPageRequestTest extends TestCase
      */
     public function testThankYouPageRequest(): void
     {
-        $this->assertInstanceOf(\NecLimDul\MarketoRest\Asset\Model\ThankYouPageRequest::class, $this->sot);
+        $this->assertInstanceOf(ThankYouPageRequest::class, $this->sot);
+    }
+
+    /**
+     * @covers ::swaggerTypes
+     */
+    public function testSwaggerTypes(): void
+    {
+        $this->assertEquals($this->types, ThankYouPageRequest::swaggerTypes());
+    }
+
+    /**
+     * @covers ::swaggerFormats
+     */
+    public function testSwaggerFormats(): void
+    {
+        $formats = $this->sot->swaggerFormats();
+        $this->assertEquals(null, $formats['default']);
+        $this->assertEquals(null, $formats['followup_type']);
+        $this->assertEquals(null, $formats['followup_value']);
+        $this->assertEquals(null, $formats['operator']);
+        $this->assertEquals(null, $formats['subject_field']);
+        $this->assertEquals(null, $formats['values']);
+    }
+
+    /**
+     * @covers ::attributeMap
+     */
+    public function testAttributeMap(): void
+    {
+        $formats = $this->sot->attributeMap();
+        $this->assertEquals('default', $formats['default']);
+        $this->assertEquals('followupType', $formats['followup_type']);
+        $this->assertEquals('followupValue', $formats['followup_value']);
+        $this->assertEquals('operator', $formats['operator']);
+        $this->assertEquals('subjectField', $formats['subject_field']);
+        $this->assertEquals('values', $formats['values']);
+    }
+
+    /**
+     * @covers ::getters
+     * @covers ::setters
+     */
+    public function testGettersSetters(): void
+    {
+        $getters = $this->sot->getters();
+        $setters = $this->sot->setters();
+        foreach (array_keys($this->types) as $field) {
+            $this->assertTrue(isset($setters[$field]));
+            $this->assertTrue(isset($getters[$field]));
+            $this->assertTrue(
+                method_exists($this->sot, $getters[$field]),
+                'Getter exists on model.'
+            );
+            $this->assertTrue(
+                method_exists($this->sot, $setters[$field]),
+                'Setter exists on model.'
+            );
+        }
+    }
+
+    /**
+     * @covers ::getModelName
+     */
+    public function testGetModelName(): void
+    {
+        $this->assertEquals('ThankYouPageRequest', $this->sot->getModelName());
+    }
+
+    /**
+     * @covers ::listInvalidProperties
+     * @covers ::valid
+     */
+    public function testValid(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::setAdditionalProperties
+     * @covers ::setAdditionalProperty
+     * @covers ::getAdditionalProperties
+     */
+    public function testAdditionalProperties(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::jsonSerialize
+     * @covers ::__toString
+     */
+    public function testJson(): void
+    {
+        // Some minimal tests that json generates well.
+        $json = json_encode($this->sot);
+        $this->assertIsString($json, 'Json encoded');
+        $json = json_decode($json);
+        $string = json_decode((string) $this->sot);
+        $this->assertEquals(
+            $json,
+            $string
+        );
+        $this->assertInstanceOf(\stdClass::class, $json);
+        $this->assertInstanceOf(\stdClass::class, $string);
     }
 
     /**
@@ -136,6 +248,10 @@ class ThankYouPageRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getDefault
      * @covers ::setDefault
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyDefault(): void
     {
@@ -146,7 +262,23 @@ class ThankYouPageRequestTest extends TestCase
         );
         $this->sot->setDefault($v);
         $this->assertEquals($v, $this->sot->getDefault());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setDefault(null);
+        $this->assertNull($this->sot->getDefault());
+        $this->sot->setDefault($v);
+
+        $this->assertEquals($v, $this->sot['default']);
+        $v = $this->getFakeValue(
+            $this->types['default'],
+            $this->allowedValues['default'] ?? null
+        );
+        $this->sot['default'] = $v;
+        $this->assertEquals($v, $this->sot['default']);
+        $this->assertTrue(isset($this->sot['default']));
+        unset($this->sot['default']);
+        $this->assertFalse(isset($this->sot['default']));
+        $this->sot['default'] = $v;
+        $this->assertEquals($v, $this->sot['default']);
+        $this->assertTrue(isset($this->sot['default']));
     }
 
     /**
@@ -155,6 +287,10 @@ class ThankYouPageRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getFollowupType
      * @covers ::setFollowupType
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyFollowupType(): void
     {
@@ -165,7 +301,20 @@ class ThankYouPageRequestTest extends TestCase
         );
         $this->sot->setFollowupType($v);
         $this->assertEquals($v, $this->sot->getFollowupType());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['followup_type']);
+        $v = $this->getFakeValue(
+            $this->types['followup_type'],
+            $this->allowedValues['followup_type'] ?? null
+        );
+        $this->sot['followup_type'] = $v;
+        $this->assertEquals($v, $this->sot['followup_type']);
+        $this->assertTrue(isset($this->sot['followup_type']));
+        unset($this->sot['followup_type']);
+        $this->assertFalse(isset($this->sot['followup_type']));
+        $this->sot['followup_type'] = $v;
+        $this->assertEquals($v, $this->sot['followup_type']);
+        $this->assertTrue(isset($this->sot['followup_type']));
     }
 
     /**
@@ -174,6 +323,10 @@ class ThankYouPageRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getFollowupValue
      * @covers ::setFollowupValue
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyFollowupValue(): void
     {
@@ -184,7 +337,20 @@ class ThankYouPageRequestTest extends TestCase
         );
         $this->sot->setFollowupValue($v);
         $this->assertEquals($v, $this->sot->getFollowupValue());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['followup_value']);
+        $v = $this->getFakeValue(
+            $this->types['followup_value'],
+            $this->allowedValues['followup_value'] ?? null
+        );
+        $this->sot['followup_value'] = $v;
+        $this->assertEquals($v, $this->sot['followup_value']);
+        $this->assertTrue(isset($this->sot['followup_value']));
+        unset($this->sot['followup_value']);
+        $this->assertFalse(isset($this->sot['followup_value']));
+        $this->sot['followup_value'] = $v;
+        $this->assertEquals($v, $this->sot['followup_value']);
+        $this->assertTrue(isset($this->sot['followup_value']));
     }
 
     /**
@@ -193,6 +359,10 @@ class ThankYouPageRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getOperator
      * @covers ::setOperator
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyOperator(): void
     {
@@ -203,7 +373,20 @@ class ThankYouPageRequestTest extends TestCase
         );
         $this->sot->setOperator($v);
         $this->assertEquals($v, $this->sot->getOperator());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['operator']);
+        $v = $this->getFakeValue(
+            $this->types['operator'],
+            $this->allowedValues['operator'] ?? null
+        );
+        $this->sot['operator'] = $v;
+        $this->assertEquals($v, $this->sot['operator']);
+        $this->assertTrue(isset($this->sot['operator']));
+        unset($this->sot['operator']);
+        $this->assertFalse(isset($this->sot['operator']));
+        $this->sot['operator'] = $v;
+        $this->assertEquals($v, $this->sot['operator']);
+        $this->assertTrue(isset($this->sot['operator']));
     }
 
     /**
@@ -212,6 +395,10 @@ class ThankYouPageRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getSubjectField
      * @covers ::setSubjectField
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertySubjectField(): void
     {
@@ -222,7 +409,20 @@ class ThankYouPageRequestTest extends TestCase
         );
         $this->sot->setSubjectField($v);
         $this->assertEquals($v, $this->sot->getSubjectField());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['subject_field']);
+        $v = $this->getFakeValue(
+            $this->types['subject_field'],
+            $this->allowedValues['subject_field'] ?? null
+        );
+        $this->sot['subject_field'] = $v;
+        $this->assertEquals($v, $this->sot['subject_field']);
+        $this->assertTrue(isset($this->sot['subject_field']));
+        unset($this->sot['subject_field']);
+        $this->assertFalse(isset($this->sot['subject_field']));
+        $this->sot['subject_field'] = $v;
+        $this->assertEquals($v, $this->sot['subject_field']);
+        $this->assertTrue(isset($this->sot['subject_field']));
     }
 
     /**
@@ -231,6 +431,10 @@ class ThankYouPageRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getValues
      * @covers ::setValues
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyValues(): void
     {
@@ -241,6 +445,19 @@ class ThankYouPageRequestTest extends TestCase
         );
         $this->sot->setValues($v);
         $this->assertEquals($v, $this->sot->getValues());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['values']);
+        $v = $this->getFakeValue(
+            $this->types['values'],
+            $this->allowedValues['values'] ?? null
+        );
+        $this->sot['values'] = $v;
+        $this->assertEquals($v, $this->sot['values']);
+        $this->assertTrue(isset($this->sot['values']));
+        unset($this->sot['values']);
+        $this->assertFalse(isset($this->sot['values']));
+        $this->sot['values'] = $v;
+        $this->assertEquals($v, $this->sot['values']);
+        $this->assertTrue(isset($this->sot['values']));
     }
 }

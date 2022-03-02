@@ -37,7 +37,7 @@ use PHPUnit\Framework\TestCase;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  *
- * @coversDefault \NecLimDul\MarketoRest\Asset\Model\UpdateThankYouPageRequest
+ * @coversDefaultClass \NecLimDul\MarketoRest\Asset\Model\UpdateThankYouPageRequest
  */
 class UpdateThankYouPageRequestTest extends TestCase
 {
@@ -48,16 +48,17 @@ class UpdateThankYouPageRequestTest extends TestCase
     private $sot;
 
     /**
-     * @var \Faker\Generator
-     */
-    private $faker;
-
-    /**
      * @var string[]
      */
     private $types = [
         'thankyou' => '\NecLimDul\MarketoRest\Asset\Model\ThankYouPageRequest[]',
-    ];
+];
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
     /**
      * @var scalar[][]
      */
@@ -110,7 +111,14 @@ class UpdateThankYouPageRequestTest extends TestCase
                 return new \stdClass();
         }
         if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
-            return new $type();
+            $model = new $type();
+            $types = $type::swaggerTypes();
+            foreach ($model->listInvalidProperties() as $field => $reason) {
+                // @todo get allowed values? ((getter))AllowedValues
+                // @phpstan-ignore-next-line
+                $model[$field] = $this->getFakeValue($types[$field], null);
+            }
+            return $model;
         }
         $this->markTestSkipped('This type is not mocked yet: ' . $type);
     }
@@ -122,7 +130,101 @@ class UpdateThankYouPageRequestTest extends TestCase
      */
     public function testUpdateThankYouPageRequest(): void
     {
-        $this->assertInstanceOf(\NecLimDul\MarketoRest\Asset\Model\UpdateThankYouPageRequest::class, $this->sot);
+        $this->assertInstanceOf(UpdateThankYouPageRequest::class, $this->sot);
+    }
+
+    /**
+     * @covers ::swaggerTypes
+     */
+    public function testSwaggerTypes(): void
+    {
+        $this->assertEquals($this->types, UpdateThankYouPageRequest::swaggerTypes());
+    }
+
+    /**
+     * @covers ::swaggerFormats
+     */
+    public function testSwaggerFormats(): void
+    {
+        $formats = $this->sot->swaggerFormats();
+        $this->assertEquals(null, $formats['thankyou']);
+    }
+
+    /**
+     * @covers ::attributeMap
+     */
+    public function testAttributeMap(): void
+    {
+        $formats = $this->sot->attributeMap();
+        $this->assertEquals('thankyou', $formats['thankyou']);
+    }
+
+    /**
+     * @covers ::getters
+     * @covers ::setters
+     */
+    public function testGettersSetters(): void
+    {
+        $getters = $this->sot->getters();
+        $setters = $this->sot->setters();
+        foreach (array_keys($this->types) as $field) {
+            $this->assertTrue(isset($setters[$field]));
+            $this->assertTrue(isset($getters[$field]));
+            $this->assertTrue(
+                method_exists($this->sot, $getters[$field]),
+                'Getter exists on model.'
+            );
+            $this->assertTrue(
+                method_exists($this->sot, $setters[$field]),
+                'Setter exists on model.'
+            );
+        }
+    }
+
+    /**
+     * @covers ::getModelName
+     */
+    public function testGetModelName(): void
+    {
+        $this->assertEquals('UpdateThankYouPageRequest', $this->sot->getModelName());
+    }
+
+    /**
+     * @covers ::listInvalidProperties
+     * @covers ::valid
+     */
+    public function testValid(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::setAdditionalProperties
+     * @covers ::setAdditionalProperty
+     * @covers ::getAdditionalProperties
+     */
+    public function testAdditionalProperties(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::jsonSerialize
+     * @covers ::__toString
+     */
+    public function testJson(): void
+    {
+        // Some minimal tests that json generates well.
+        $json = json_encode($this->sot);
+        $this->assertIsString($json, 'Json encoded');
+        $json = json_decode($json);
+        $string = json_decode((string) $this->sot);
+        $this->assertEquals(
+            $json,
+            $string
+        );
+        $this->assertInstanceOf(\stdClass::class, $json);
+        $this->assertInstanceOf(\stdClass::class, $string);
     }
 
     /**
@@ -131,6 +233,10 @@ class UpdateThankYouPageRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getThankyou
      * @covers ::setThankyou
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyThankyou(): void
     {
@@ -141,6 +247,22 @@ class UpdateThankYouPageRequestTest extends TestCase
         );
         $this->sot->setThankyou($v);
         $this->assertEquals($v, $this->sot->getThankyou());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setThankyou(null);
+        $this->assertNull($this->sot->getThankyou());
+        $this->sot->setThankyou($v);
+
+        $this->assertEquals($v, $this->sot['thankyou']);
+        $v = $this->getFakeValue(
+            $this->types['thankyou'],
+            $this->allowedValues['thankyou'] ?? null
+        );
+        $this->sot['thankyou'] = $v;
+        $this->assertEquals($v, $this->sot['thankyou']);
+        $this->assertTrue(isset($this->sot['thankyou']));
+        unset($this->sot['thankyou']);
+        $this->assertFalse(isset($this->sot['thankyou']));
+        $this->sot['thankyou'] = $v;
+        $this->assertEquals($v, $this->sot['thankyou']);
+        $this->assertTrue(isset($this->sot['thankyou']));
     }
 }

@@ -104,22 +104,6 @@ class UpdateEmailComponentContentRequest implements ModelInterface, ArrayAccess,
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -210,6 +194,22 @@ class UpdateEmailComponentContentRequest implements ModelInterface, ArrayAccess,
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -249,11 +249,11 @@ class UpdateEmailComponentContentRequest implements ModelInterface, ArrayAccess,
         $invalidProperties = [];
 
         if ($this->container['type'] === null) {
-            $invalidProperties[] = "'type' can't be null";
+            $invalidProperties['type'] = "'type' can't be null";
         }
         $allowedValues = $this->getTypeAllowableValues();
         if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
+            $invalidProperties['type'] = sprintf(
                 "invalid value '%s' for 'type', must be one of '%s'",
                 $this->container['type'],
                 implode("', '", $allowedValues)
@@ -261,7 +261,7 @@ class UpdateEmailComponentContentRequest implements ModelInterface, ArrayAccess,
         }
 
         if ($this->container['value'] === null) {
-            $invalidProperties[] = "'value' can't be null";
+            $invalidProperties['value'] = "'value' can't be null";
         }
         return $invalidProperties;
     }
@@ -290,9 +290,9 @@ class UpdateEmailComponentContentRequest implements ModelInterface, ArrayAccess,
     /**
      * Gets alt_text
      *
-     * @return string
+     * @return string|null
      */
-    public function getAltText(): string
+    public function getAltText(): ?string
     {
         return $this->container['alt_text'];
     }
@@ -314,9 +314,9 @@ class UpdateEmailComponentContentRequest implements ModelInterface, ArrayAccess,
     /**
      * Gets external_url
      *
-     * @return string
+     * @return string|null
      */
-    public function getExternalUrl(): string
+    public function getExternalUrl(): ?string
     {
         return $this->container['external_url'];
     }
@@ -338,9 +338,9 @@ class UpdateEmailComponentContentRequest implements ModelInterface, ArrayAccess,
     /**
      * Gets height
      *
-     * @return int
+     * @return int|null
      */
-    public function getHeight(): int
+    public function getHeight(): ?int
     {
         return $this->container['height'];
     }
@@ -362,9 +362,9 @@ class UpdateEmailComponentContentRequest implements ModelInterface, ArrayAccess,
     /**
      * Gets image
      *
-     * @return string
+     * @return string|null
      */
-    public function getImage(): string
+    public function getImage(): ?string
     {
         return $this->container['image'];
     }
@@ -386,9 +386,9 @@ class UpdateEmailComponentContentRequest implements ModelInterface, ArrayAccess,
     /**
      * Gets link_url
      *
-     * @return string
+     * @return string|null
      */
-    public function getLinkUrl(): string
+    public function getLinkUrl(): ?string
     {
         return $this->container['link_url'];
     }
@@ -410,9 +410,9 @@ class UpdateEmailComponentContentRequest implements ModelInterface, ArrayAccess,
     /**
      * Gets over_write
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getOverWrite(): bool
+    public function getOverWrite(): ?bool
     {
         return $this->container['over_write'];
     }
@@ -434,9 +434,9 @@ class UpdateEmailComponentContentRequest implements ModelInterface, ArrayAccess,
     /**
      * Gets style
      *
-     * @return string
+     * @return string|null
      */
-    public function getStyle(): string
+    public function getStyle(): ?string
     {
         return $this->container['style'];
     }
@@ -458,9 +458,9 @@ class UpdateEmailComponentContentRequest implements ModelInterface, ArrayAccess,
     /**
      * Gets text_value
      *
-     * @return string
+     * @return string|null
      */
-    public function getTextValue(): string
+    public function getTextValue(): ?string
     {
         return $this->container['text_value'];
     }
@@ -540,9 +540,9 @@ class UpdateEmailComponentContentRequest implements ModelInterface, ArrayAccess,
     /**
      * Gets video_url
      *
-     * @return string
+     * @return string|null
      */
-    public function getVideoUrl(): string
+    public function getVideoUrl(): ?string
     {
         return $this->container['video_url'];
     }
@@ -564,9 +564,9 @@ class UpdateEmailComponentContentRequest implements ModelInterface, ArrayAccess,
     /**
      * Gets width
      *
-     * @return int
+     * @return int|null
      */
-    public function getWidth(): int
+    public function getWidth(): ?int
     {
         return $this->container['width'];
     }

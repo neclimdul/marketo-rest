@@ -83,22 +83,6 @@ class UpdateLpTemplateRequest implements ModelInterface, ArrayAccess, \JsonSeria
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -150,6 +134,22 @@ class UpdateLpTemplateRequest implements ModelInterface, ArrayAccess, \JsonSeria
         $this->container['description'] = $data['description'] ?? null;
         $this->container['enable_munchkin'] = $data['enable_munchkin'] ?? null;
         $this->container['name'] = $data['name'] ?? null;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
     }
 
     /**
@@ -205,9 +205,9 @@ class UpdateLpTemplateRequest implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->container['description'];
     }
@@ -229,9 +229,9 @@ class UpdateLpTemplateRequest implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets enable_munchkin
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getEnableMunchkin(): bool
+    public function getEnableMunchkin(): ?bool
     {
         return $this->container['enable_munchkin'];
     }
@@ -253,9 +253,9 @@ class UpdateLpTemplateRequest implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets name
      *
-     * @return string
+     * @return string|null
      */
-    public function getName(): string
+    public function getName(): ?string
     {
         return $this->container['name'];
     }

@@ -83,22 +83,6 @@ class ActivityTypeAttribute implements ModelInterface, ArrayAccess, \JsonSeriali
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -153,6 +137,22 @@ class ActivityTypeAttribute implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -192,10 +192,10 @@ class ActivityTypeAttribute implements ModelInterface, ArrayAccess, \JsonSeriali
         $invalidProperties = [];
 
         if ($this->container['data_type'] === null) {
-            $invalidProperties[] = "'data_type' can't be null";
+            $invalidProperties['data_type'] = "'data_type' can't be null";
         }
         if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
+            $invalidProperties['name'] = "'name' can't be null";
         }
         return $invalidProperties;
     }
@@ -211,9 +211,9 @@ class ActivityTypeAttribute implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets api_name
      *
-     * @return string
+     * @return string|null
      */
-    public function getApiName(): string
+    public function getApiName(): ?string
     {
         return $this->container['api_name'];
     }

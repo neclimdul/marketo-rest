@@ -105,22 +105,6 @@ class Recurrence implements ModelInterface, ArrayAccess, \JsonSerializable
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -199,6 +183,22 @@ class Recurrence implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -238,17 +238,17 @@ class Recurrence implements ModelInterface, ArrayAccess, \JsonSerializable
         $invalidProperties = [];
 
         if ($this->container['start_at'] === null) {
-            $invalidProperties[] = "'start_at' can't be null";
+            $invalidProperties['start_at'] = "'start_at' can't be null";
         }
         if ($this->container['end_at'] === null) {
-            $invalidProperties[] = "'end_at' can't be null";
+            $invalidProperties['end_at'] = "'end_at' can't be null";
         }
         if ($this->container['interval_type'] === null) {
-            $invalidProperties[] = "'interval_type' can't be null";
+            $invalidProperties['interval_type'] = "'interval_type' can't be null";
         }
         $allowedValues = $this->getIntervalTypeAllowableValues();
         if (!is_null($this->container['interval_type']) && !in_array($this->container['interval_type'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
+            $invalidProperties['interval_type'] = sprintf(
                 "invalid value '%s' for 'interval_type', must be one of '%s'",
                 $this->container['interval_type'],
                 implode("', '", $allowedValues)
@@ -256,23 +256,23 @@ class Recurrence implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         if ($this->container['interval'] === null) {
-            $invalidProperties[] = "'interval' can't be null";
+            $invalidProperties['interval'] = "'interval' can't be null";
         }
         if ($this->container['weekday_only'] === null) {
-            $invalidProperties[] = "'weekday_only' can't be null";
+            $invalidProperties['weekday_only'] = "'weekday_only' can't be null";
         }
         if ($this->container['weekday_mask'] === null) {
-            $invalidProperties[] = "'weekday_mask' can't be null";
+            $invalidProperties['weekday_mask'] = "'weekday_mask' can't be null";
         }
         if ($this->container['day_of_month'] === null) {
-            $invalidProperties[] = "'day_of_month' can't be null";
+            $invalidProperties['day_of_month'] = "'day_of_month' can't be null";
         }
         if ($this->container['day_of_week'] === null) {
-            $invalidProperties[] = "'day_of_week' can't be null";
+            $invalidProperties['day_of_week'] = "'day_of_week' can't be null";
         }
         $allowedValues = $this->getDayOfWeekAllowableValues();
         if (!is_null($this->container['day_of_week']) && !in_array($this->container['day_of_week'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
+            $invalidProperties['day_of_week'] = sprintf(
                 "invalid value '%s' for 'day_of_week', must be one of '%s'",
                 $this->container['day_of_week'],
                 implode("', '", $allowedValues)
@@ -280,7 +280,7 @@ class Recurrence implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         if ($this->container['week_of_month'] === null) {
-            $invalidProperties[] = "'week_of_month' can't be null";
+            $invalidProperties['week_of_month'] = "'week_of_month' can't be null";
         }
         return $invalidProperties;
     }

@@ -115,22 +115,6 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess, \JsonSerial
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -249,6 +233,22 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess, \JsonSerial
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -288,7 +288,7 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess, \JsonSerial
         $invalidProperties = [];
 
         if ($this->container['id'] === null) {
-            $invalidProperties[] = "'id' can't be null";
+            $invalidProperties['id'] = "'id' can't be null";
         }
         return $invalidProperties;
     }
@@ -304,9 +304,9 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets data_type
      *
-     * @return string
+     * @return string|null
      */
-    public function getDataType(): string
+    public function getDataType(): ?string
     {
         return $this->container['data_type'];
     }
@@ -328,9 +328,9 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets default_value
      *
-     * @return string
+     * @return string|null
      */
-    public function getDefaultValue(): string
+    public function getDefaultValue(): ?string
     {
         return $this->container['default_value'];
     }
@@ -352,9 +352,9 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->container['description'];
     }
@@ -376,9 +376,9 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets field_mask_values
      *
-     * @return string
+     * @return string|null
      */
-    public function getFieldMaskValues(): string
+    public function getFieldMaskValues(): ?string
     {
         return $this->container['field_mask_values'];
     }
@@ -400,9 +400,9 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets field_width
      *
-     * @return int
+     * @return int|null
      */
-    public function getFieldWidth(): int
+    public function getFieldWidth(): ?int
     {
         return $this->container['field_width'];
     }
@@ -448,9 +448,9 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets initially_checked
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getInitiallyChecked(): bool
+    public function getInitiallyChecked(): ?bool
     {
         return $this->container['initially_checked'];
     }
@@ -472,9 +472,9 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets is_label_to_right
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getIsLabelToRight(): bool
+    public function getIsLabelToRight(): ?bool
     {
         return $this->container['is_label_to_right'];
     }
@@ -496,9 +496,9 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets is_multiselect
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getIsMultiselect(): bool
+    public function getIsMultiselect(): ?bool
     {
         return $this->container['is_multiselect'];
     }
@@ -520,9 +520,9 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets is_required
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getIsRequired(): bool
+    public function getIsRequired(): ?bool
     {
         return $this->container['is_required'];
     }
@@ -544,9 +544,9 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets is_sensitive
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getIsSensitive(): bool
+    public function getIsSensitive(): ?bool
     {
         return $this->container['is_sensitive'];
     }
@@ -568,9 +568,9 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets label_width
      *
-     * @return int
+     * @return int|null
      */
-    public function getLabelWidth(): int
+    public function getLabelWidth(): ?int
     {
         return $this->container['label_width'];
     }
@@ -592,9 +592,9 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets max_length
      *
-     * @return int
+     * @return int|null
      */
-    public function getMaxLength(): int
+    public function getMaxLength(): ?int
     {
         return $this->container['max_length'];
     }
@@ -616,9 +616,9 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets maximum_number
      *
-     * @return float
+     * @return float|null
      */
-    public function getMaximumNumber(): float
+    public function getMaximumNumber(): ?float
     {
         return $this->container['maximum_number'];
     }
@@ -640,9 +640,9 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets minimum_number
      *
-     * @return float
+     * @return float|null
      */
-    public function getMinimumNumber(): float
+    public function getMinimumNumber(): ?float
     {
         return $this->container['minimum_number'];
     }
@@ -664,9 +664,9 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets picklist_values
      *
-     * @return string
+     * @return string|null
      */
-    public function getPicklistValues(): string
+    public function getPicklistValues(): ?string
     {
         return $this->container['picklist_values'];
     }
@@ -688,9 +688,9 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets placeholder_text
      *
-     * @return string
+     * @return string|null
      */
-    public function getPlaceholderText(): string
+    public function getPlaceholderText(): ?string
     {
         return $this->container['placeholder_text'];
     }
@@ -712,9 +712,9 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets validation_message
      *
-     * @return string
+     * @return string|null
      */
-    public function getValidationMessage(): string
+    public function getValidationMessage(): ?string
     {
         return $this->container['validation_message'];
     }
@@ -736,9 +736,9 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets visible_rows
      *
-     * @return int
+     * @return int|null
      */
-    public function getVisibleRows(): int
+    public function getVisibleRows(): ?int
     {
         return $this->container['visible_rows'];
     }

@@ -37,7 +37,7 @@ use PHPUnit\Framework\TestCase;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  *
- * @coversDefault \NecLimDul\MarketoRest\Lead\Model\SmartCampaign
+ * @coversDefaultClass \NecLimDul\MarketoRest\Lead\Model\SmartCampaign
  */
 class SmartCampaignTest extends TestCase
 {
@@ -48,18 +48,19 @@ class SmartCampaignTest extends TestCase
     private $sot;
 
     /**
-     * @var \Faker\Generator
-     */
-    private $faker;
-
-    /**
      * @var string[]
      */
     private $types = [
         'created_at' => 'string',
         'smart_campaign_id' => 'int',
         'updated_at' => 'string',
-    ];
+];
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
     /**
      * @var scalar[][]
      */
@@ -112,7 +113,14 @@ class SmartCampaignTest extends TestCase
                 return new \stdClass();
         }
         if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
-            return new $type();
+            $model = new $type();
+            $types = $type::swaggerTypes();
+            foreach ($model->listInvalidProperties() as $field => $reason) {
+                // @todo get allowed values? ((getter))AllowedValues
+                // @phpstan-ignore-next-line
+                $model[$field] = $this->getFakeValue($types[$field], null);
+            }
+            return $model;
         }
         $this->markTestSkipped('This type is not mocked yet: ' . $type);
     }
@@ -124,7 +132,105 @@ class SmartCampaignTest extends TestCase
      */
     public function testSmartCampaign(): void
     {
-        $this->assertInstanceOf(\NecLimDul\MarketoRest\Lead\Model\SmartCampaign::class, $this->sot);
+        $this->assertInstanceOf(SmartCampaign::class, $this->sot);
+    }
+
+    /**
+     * @covers ::swaggerTypes
+     */
+    public function testSwaggerTypes(): void
+    {
+        $this->assertEquals($this->types, SmartCampaign::swaggerTypes());
+    }
+
+    /**
+     * @covers ::swaggerFormats
+     */
+    public function testSwaggerFormats(): void
+    {
+        $formats = $this->sot->swaggerFormats();
+        $this->assertEquals(null, $formats['created_at']);
+        $this->assertEquals('int32', $formats['smart_campaign_id']);
+        $this->assertEquals(null, $formats['updated_at']);
+    }
+
+    /**
+     * @covers ::attributeMap
+     */
+    public function testAttributeMap(): void
+    {
+        $formats = $this->sot->attributeMap();
+        $this->assertEquals('createdAt', $formats['created_at']);
+        $this->assertEquals('smartCampaignId', $formats['smart_campaign_id']);
+        $this->assertEquals('updatedAt', $formats['updated_at']);
+    }
+
+    /**
+     * @covers ::getters
+     * @covers ::setters
+     */
+    public function testGettersSetters(): void
+    {
+        $getters = $this->sot->getters();
+        $setters = $this->sot->setters();
+        foreach (array_keys($this->types) as $field) {
+            $this->assertTrue(isset($setters[$field]));
+            $this->assertTrue(isset($getters[$field]));
+            $this->assertTrue(
+                method_exists($this->sot, $getters[$field]),
+                'Getter exists on model.'
+            );
+            $this->assertTrue(
+                method_exists($this->sot, $setters[$field]),
+                'Setter exists on model.'
+            );
+        }
+    }
+
+    /**
+     * @covers ::getModelName
+     */
+    public function testGetModelName(): void
+    {
+        $this->assertEquals('SmartCampaign', $this->sot->getModelName());
+    }
+
+    /**
+     * @covers ::listInvalidProperties
+     * @covers ::valid
+     */
+    public function testValid(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::setAdditionalProperties
+     * @covers ::setAdditionalProperty
+     * @covers ::getAdditionalProperties
+     */
+    public function testAdditionalProperties(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::jsonSerialize
+     * @covers ::__toString
+     */
+    public function testJson(): void
+    {
+        // Some minimal tests that json generates well.
+        $json = json_encode($this->sot);
+        $this->assertIsString($json, 'Json encoded');
+        $json = json_decode($json);
+        $string = json_decode((string) $this->sot);
+        $this->assertEquals(
+            $json,
+            $string
+        );
+        $this->assertInstanceOf(\stdClass::class, $json);
+        $this->assertInstanceOf(\stdClass::class, $string);
     }
 
     /**
@@ -133,6 +239,10 @@ class SmartCampaignTest extends TestCase
      * @covers ::__construct
      * @covers ::getCreatedAt
      * @covers ::setCreatedAt
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyCreatedAt(): void
     {
@@ -143,7 +253,20 @@ class SmartCampaignTest extends TestCase
         );
         $this->sot->setCreatedAt($v);
         $this->assertEquals($v, $this->sot->getCreatedAt());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['created_at']);
+        $v = $this->getFakeValue(
+            $this->types['created_at'],
+            $this->allowedValues['created_at'] ?? null
+        );
+        $this->sot['created_at'] = $v;
+        $this->assertEquals($v, $this->sot['created_at']);
+        $this->assertTrue(isset($this->sot['created_at']));
+        unset($this->sot['created_at']);
+        $this->assertFalse(isset($this->sot['created_at']));
+        $this->sot['created_at'] = $v;
+        $this->assertEquals($v, $this->sot['created_at']);
+        $this->assertTrue(isset($this->sot['created_at']));
     }
 
     /**
@@ -152,6 +275,10 @@ class SmartCampaignTest extends TestCase
      * @covers ::__construct
      * @covers ::getSmartCampaignId
      * @covers ::setSmartCampaignId
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertySmartCampaignId(): void
     {
@@ -162,7 +289,20 @@ class SmartCampaignTest extends TestCase
         );
         $this->sot->setSmartCampaignId($v);
         $this->assertEquals($v, $this->sot->getSmartCampaignId());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['smart_campaign_id']);
+        $v = $this->getFakeValue(
+            $this->types['smart_campaign_id'],
+            $this->allowedValues['smart_campaign_id'] ?? null
+        );
+        $this->sot['smart_campaign_id'] = $v;
+        $this->assertEquals($v, $this->sot['smart_campaign_id']);
+        $this->assertTrue(isset($this->sot['smart_campaign_id']));
+        unset($this->sot['smart_campaign_id']);
+        $this->assertFalse(isset($this->sot['smart_campaign_id']));
+        $this->sot['smart_campaign_id'] = $v;
+        $this->assertEquals($v, $this->sot['smart_campaign_id']);
+        $this->assertTrue(isset($this->sot['smart_campaign_id']));
     }
 
     /**
@@ -171,6 +311,10 @@ class SmartCampaignTest extends TestCase
      * @covers ::__construct
      * @covers ::getUpdatedAt
      * @covers ::setUpdatedAt
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyUpdatedAt(): void
     {
@@ -181,6 +325,19 @@ class SmartCampaignTest extends TestCase
         );
         $this->sot->setUpdatedAt($v);
         $this->assertEquals($v, $this->sot->getUpdatedAt());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['updated_at']);
+        $v = $this->getFakeValue(
+            $this->types['updated_at'],
+            $this->allowedValues['updated_at'] ?? null
+        );
+        $this->sot['updated_at'] = $v;
+        $this->assertEquals($v, $this->sot['updated_at']);
+        $this->assertTrue(isset($this->sot['updated_at']));
+        unset($this->sot['updated_at']);
+        $this->assertFalse(isset($this->sot['updated_at']));
+        $this->sot['updated_at'] = $v;
+        $this->assertEquals($v, $this->sot['updated_at']);
+        $this->assertTrue(isset($this->sot['updated_at']));
     }
 }

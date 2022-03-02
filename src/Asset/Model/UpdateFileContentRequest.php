@@ -81,22 +81,6 @@ class UpdateFileContentRequest implements ModelInterface, ArrayAccess, \JsonSeri
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -147,6 +131,22 @@ class UpdateFileContentRequest implements ModelInterface, ArrayAccess, \JsonSeri
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -186,10 +186,10 @@ class UpdateFileContentRequest implements ModelInterface, ArrayAccess, \JsonSeri
         $invalidProperties = [];
 
         if ($this->container['file'] === null) {
-            $invalidProperties[] = "'file' can't be null";
+            $invalidProperties['file'] = "'file' can't be null";
         }
         if ($this->container['id'] === null) {
-            $invalidProperties[] = "'id' can't be null";
+            $invalidProperties['id'] = "'id' can't be null";
         }
         return $invalidProperties;
     }

@@ -81,22 +81,6 @@ class TagRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -144,6 +128,22 @@ class TagRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $this->container['tag_type'] = $data['tag_type'] ?? null;
         $this->container['tag_value'] = $data['tag_value'] ?? null;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
     }
 
     /**
@@ -199,9 +199,9 @@ class TagRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets tag_type
      *
-     * @return string
+     * @return string|null
      */
-    public function getTagType(): string
+    public function getTagType(): ?string
     {
         return $this->container['tag_type'];
     }
@@ -223,9 +223,9 @@ class TagRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets tag_value
      *
-     * @return string
+     * @return string|null
      */
-    public function getTagValue(): string
+    public function getTagValue(): ?string
     {
         return $this->container['tag_value'];
     }

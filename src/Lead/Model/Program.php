@@ -95,22 +95,6 @@ class Program implements ModelInterface, ArrayAccess, \JsonSerializable
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -189,6 +173,22 @@ class Program implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -228,25 +228,25 @@ class Program implements ModelInterface, ArrayAccess, \JsonSerializable
         $invalidProperties = [];
 
         if ($this->container['id'] === null) {
-            $invalidProperties[] = "'id' can't be null";
+            $invalidProperties['id'] = "'id' can't be null";
         }
         if ($this->container['acquired_by'] === null) {
-            $invalidProperties[] = "'acquired_by' can't be null";
+            $invalidProperties['acquired_by'] = "'acquired_by' can't be null";
         }
         if ($this->container['is_exhausted'] === null) {
-            $invalidProperties[] = "'is_exhausted' can't be null";
+            $invalidProperties['is_exhausted'] = "'is_exhausted' can't be null";
         }
         if ($this->container['membership_date'] === null) {
-            $invalidProperties[] = "'membership_date' can't be null";
+            $invalidProperties['membership_date'] = "'membership_date' can't be null";
         }
         if ($this->container['progression_status'] === null) {
-            $invalidProperties[] = "'progression_status' can't be null";
+            $invalidProperties['progression_status'] = "'progression_status' can't be null";
         }
         if ($this->container['reached_success'] === null) {
-            $invalidProperties[] = "'reached_success' can't be null";
+            $invalidProperties['reached_success'] = "'reached_success' can't be null";
         }
         if ($this->container['updated_at'] === null) {
-            $invalidProperties[] = "'updated_at' can't be null";
+            $invalidProperties['updated_at'] = "'updated_at' can't be null";
         }
         return $invalidProperties;
     }
@@ -358,9 +358,9 @@ class Program implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets nurture_cadence
      *
-     * @return string
+     * @return string|null
      */
-    public function getNurtureCadence(): string
+    public function getNurtureCadence(): ?string
     {
         return $this->container['nurture_cadence'];
     }
@@ -430,9 +430,9 @@ class Program implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets stream
      *
-     * @return string
+     * @return string|null
      */
-    public function getStream(): string
+    public function getStream(): ?string
     {
         return $this->container['stream'];
     }

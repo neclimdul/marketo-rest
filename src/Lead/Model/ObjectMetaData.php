@@ -108,22 +108,6 @@ class ObjectMetaData implements ModelInterface, ArrayAccess, \JsonSerializable
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -218,6 +202,22 @@ class ObjectMetaData implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -257,41 +257,41 @@ class ObjectMetaData implements ModelInterface, ArrayAccess, \JsonSerializable
         $invalidProperties = [];
 
         if ($this->container['created_at'] === null) {
-            $invalidProperties[] = "'created_at' can't be null";
+            $invalidProperties['created_at'] = "'created_at' can't be null";
         }
         if ($this->container['dedupe_fields'] === null) {
-            $invalidProperties[] = "'dedupe_fields' can't be null";
+            $invalidProperties['dedupe_fields'] = "'dedupe_fields' can't be null";
         }
         if ($this->container['description'] === null) {
-            $invalidProperties[] = "'description' can't be null";
+            $invalidProperties['description'] = "'description' can't be null";
         }
         if ($this->container['display_name'] === null) {
-            $invalidProperties[] = "'display_name' can't be null";
+            $invalidProperties['display_name'] = "'display_name' can't be null";
         }
         if ($this->container['plural_name'] === null) {
-            $invalidProperties[] = "'plural_name' can't be null";
+            $invalidProperties['plural_name'] = "'plural_name' can't be null";
         }
         if ($this->container['fields'] === null) {
-            $invalidProperties[] = "'fields' can't be null";
+            $invalidProperties['fields'] = "'fields' can't be null";
         }
         if ($this->container['id_field'] === null) {
-            $invalidProperties[] = "'id_field' can't be null";
+            $invalidProperties['id_field'] = "'id_field' can't be null";
         }
         if ($this->container['api_name'] === null) {
-            $invalidProperties[] = "'api_name' can't be null";
+            $invalidProperties['api_name'] = "'api_name' can't be null";
         }
         if ($this->container['relationships'] === null) {
-            $invalidProperties[] = "'relationships' can't be null";
+            $invalidProperties['relationships'] = "'relationships' can't be null";
         }
         if ($this->container['searchable_fields'] === null) {
-            $invalidProperties[] = "'searchable_fields' can't be null";
+            $invalidProperties['searchable_fields'] = "'searchable_fields' can't be null";
         }
         if ($this->container['updated_at'] === null) {
-            $invalidProperties[] = "'updated_at' can't be null";
+            $invalidProperties['updated_at'] = "'updated_at' can't be null";
         }
         $allowedValues = $this->getStateAllowableValues();
         if (!is_null($this->container['state']) && !in_array($this->container['state'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
+            $invalidProperties['state'] = sprintf(
                 "invalid value '%s' for 'state', must be one of '%s'",
                 $this->container['state'],
                 implode("', '", $allowedValues)
@@ -299,11 +299,11 @@ class ObjectMetaData implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         if ($this->container['version'] === null) {
-            $invalidProperties[] = "'version' can't be null";
+            $invalidProperties['version'] = "'version' can't be null";
         }
         $allowedValues = $this->getVersionAllowableValues();
         if (!is_null($this->container['version']) && !in_array($this->container['version'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
+            $invalidProperties['version'] = sprintf(
                 "invalid value '%s' for 'version', must be one of '%s'",
                 $this->container['version'],
                 implode("', '", $allowedValues)
@@ -613,9 +613,9 @@ class ObjectMetaData implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets state
      *
-     * @return string
+     * @return string|null
      */
-    public function getState(): string
+    public function getState(): ?string
     {
         return $this->container['state'];
     }

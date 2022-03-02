@@ -37,7 +37,7 @@ use PHPUnit\Framework\TestCase;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  *
- * @coversDefault \NecLimDul\MarketoRest\Lead\Model\ObjectDependentAsset
+ * @coversDefaultClass \NecLimDul\MarketoRest\Lead\Model\ObjectDependentAsset
  */
 class ObjectDependentAssetTest extends TestCase
 {
@@ -48,11 +48,6 @@ class ObjectDependentAssetTest extends TestCase
     private $sot;
 
     /**
-     * @var \Faker\Generator
-     */
-    private $faker;
-
-    /**
      * @var string[]
      */
     private $types = [
@@ -60,7 +55,13 @@ class ObjectDependentAssetTest extends TestCase
         'asset_id' => 'int',
         'asset_name' => 'string',
         'used_fields' => 'string[]',
-    ];
+];
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
     /**
      * @var scalar[][]
      */
@@ -113,7 +114,14 @@ class ObjectDependentAssetTest extends TestCase
                 return new \stdClass();
         }
         if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
-            return new $type();
+            $model = new $type();
+            $types = $type::swaggerTypes();
+            foreach ($model->listInvalidProperties() as $field => $reason) {
+                // @todo get allowed values? ((getter))AllowedValues
+                // @phpstan-ignore-next-line
+                $model[$field] = $this->getFakeValue($types[$field], null);
+            }
+            return $model;
         }
         $this->markTestSkipped('This type is not mocked yet: ' . $type);
     }
@@ -125,7 +133,107 @@ class ObjectDependentAssetTest extends TestCase
      */
     public function testObjectDependentAsset(): void
     {
-        $this->assertInstanceOf(\NecLimDul\MarketoRest\Lead\Model\ObjectDependentAsset::class, $this->sot);
+        $this->assertInstanceOf(ObjectDependentAsset::class, $this->sot);
+    }
+
+    /**
+     * @covers ::swaggerTypes
+     */
+    public function testSwaggerTypes(): void
+    {
+        $this->assertEquals($this->types, ObjectDependentAsset::swaggerTypes());
+    }
+
+    /**
+     * @covers ::swaggerFormats
+     */
+    public function testSwaggerFormats(): void
+    {
+        $formats = $this->sot->swaggerFormats();
+        $this->assertEquals(null, $formats['asset_type']);
+        $this->assertEquals('int32', $formats['asset_id']);
+        $this->assertEquals(null, $formats['asset_name']);
+        $this->assertEquals(null, $formats['used_fields']);
+    }
+
+    /**
+     * @covers ::attributeMap
+     */
+    public function testAttributeMap(): void
+    {
+        $formats = $this->sot->attributeMap();
+        $this->assertEquals('assetType', $formats['asset_type']);
+        $this->assertEquals('assetId', $formats['asset_id']);
+        $this->assertEquals('assetName', $formats['asset_name']);
+        $this->assertEquals('usedFields', $formats['used_fields']);
+    }
+
+    /**
+     * @covers ::getters
+     * @covers ::setters
+     */
+    public function testGettersSetters(): void
+    {
+        $getters = $this->sot->getters();
+        $setters = $this->sot->setters();
+        foreach (array_keys($this->types) as $field) {
+            $this->assertTrue(isset($setters[$field]));
+            $this->assertTrue(isset($getters[$field]));
+            $this->assertTrue(
+                method_exists($this->sot, $getters[$field]),
+                'Getter exists on model.'
+            );
+            $this->assertTrue(
+                method_exists($this->sot, $setters[$field]),
+                'Setter exists on model.'
+            );
+        }
+    }
+
+    /**
+     * @covers ::getModelName
+     */
+    public function testGetModelName(): void
+    {
+        $this->assertEquals('ObjectDependentAsset', $this->sot->getModelName());
+    }
+
+    /**
+     * @covers ::listInvalidProperties
+     * @covers ::valid
+     */
+    public function testValid(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::setAdditionalProperties
+     * @covers ::setAdditionalProperty
+     * @covers ::getAdditionalProperties
+     */
+    public function testAdditionalProperties(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::jsonSerialize
+     * @covers ::__toString
+     */
+    public function testJson(): void
+    {
+        // Some minimal tests that json generates well.
+        $json = json_encode($this->sot);
+        $this->assertIsString($json, 'Json encoded');
+        $json = json_decode($json);
+        $string = json_decode((string) $this->sot);
+        $this->assertEquals(
+            $json,
+            $string
+        );
+        $this->assertInstanceOf(\stdClass::class, $json);
+        $this->assertInstanceOf(\stdClass::class, $string);
     }
 
     /**
@@ -134,6 +242,10 @@ class ObjectDependentAssetTest extends TestCase
      * @covers ::__construct
      * @covers ::getAssetType
      * @covers ::setAssetType
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyAssetType(): void
     {
@@ -144,7 +256,20 @@ class ObjectDependentAssetTest extends TestCase
         );
         $this->sot->setAssetType($v);
         $this->assertEquals($v, $this->sot->getAssetType());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['asset_type']);
+        $v = $this->getFakeValue(
+            $this->types['asset_type'],
+            $this->allowedValues['asset_type'] ?? null
+        );
+        $this->sot['asset_type'] = $v;
+        $this->assertEquals($v, $this->sot['asset_type']);
+        $this->assertTrue(isset($this->sot['asset_type']));
+        unset($this->sot['asset_type']);
+        $this->assertFalse(isset($this->sot['asset_type']));
+        $this->sot['asset_type'] = $v;
+        $this->assertEquals($v, $this->sot['asset_type']);
+        $this->assertTrue(isset($this->sot['asset_type']));
     }
 
     /**
@@ -153,6 +278,10 @@ class ObjectDependentAssetTest extends TestCase
      * @covers ::__construct
      * @covers ::getAssetId
      * @covers ::setAssetId
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyAssetId(): void
     {
@@ -163,7 +292,20 @@ class ObjectDependentAssetTest extends TestCase
         );
         $this->sot->setAssetId($v);
         $this->assertEquals($v, $this->sot->getAssetId());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['asset_id']);
+        $v = $this->getFakeValue(
+            $this->types['asset_id'],
+            $this->allowedValues['asset_id'] ?? null
+        );
+        $this->sot['asset_id'] = $v;
+        $this->assertEquals($v, $this->sot['asset_id']);
+        $this->assertTrue(isset($this->sot['asset_id']));
+        unset($this->sot['asset_id']);
+        $this->assertFalse(isset($this->sot['asset_id']));
+        $this->sot['asset_id'] = $v;
+        $this->assertEquals($v, $this->sot['asset_id']);
+        $this->assertTrue(isset($this->sot['asset_id']));
     }
 
     /**
@@ -172,6 +314,10 @@ class ObjectDependentAssetTest extends TestCase
      * @covers ::__construct
      * @covers ::getAssetName
      * @covers ::setAssetName
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyAssetName(): void
     {
@@ -182,7 +328,20 @@ class ObjectDependentAssetTest extends TestCase
         );
         $this->sot->setAssetName($v);
         $this->assertEquals($v, $this->sot->getAssetName());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['asset_name']);
+        $v = $this->getFakeValue(
+            $this->types['asset_name'],
+            $this->allowedValues['asset_name'] ?? null
+        );
+        $this->sot['asset_name'] = $v;
+        $this->assertEquals($v, $this->sot['asset_name']);
+        $this->assertTrue(isset($this->sot['asset_name']));
+        unset($this->sot['asset_name']);
+        $this->assertFalse(isset($this->sot['asset_name']));
+        $this->sot['asset_name'] = $v;
+        $this->assertEquals($v, $this->sot['asset_name']);
+        $this->assertTrue(isset($this->sot['asset_name']));
     }
 
     /**
@@ -191,6 +350,10 @@ class ObjectDependentAssetTest extends TestCase
      * @covers ::__construct
      * @covers ::getUsedFields
      * @covers ::setUsedFields
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyUsedFields(): void
     {
@@ -201,6 +364,22 @@ class ObjectDependentAssetTest extends TestCase
         );
         $this->sot->setUsedFields($v);
         $this->assertEquals($v, $this->sot->getUsedFields());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setUsedFields(null);
+        $this->assertNull($this->sot->getUsedFields());
+        $this->sot->setUsedFields($v);
+
+        $this->assertEquals($v, $this->sot['used_fields']);
+        $v = $this->getFakeValue(
+            $this->types['used_fields'],
+            $this->allowedValues['used_fields'] ?? null
+        );
+        $this->sot['used_fields'] = $v;
+        $this->assertEquals($v, $this->sot['used_fields']);
+        $this->assertTrue(isset($this->sot['used_fields']));
+        unset($this->sot['used_fields']);
+        $this->assertFalse(isset($this->sot['used_fields']));
+        $this->sot['used_fields'] = $v;
+        $this->assertEquals($v, $this->sot['used_fields']);
+        $this->assertTrue(isset($this->sot['used_fields']));
     }
 }

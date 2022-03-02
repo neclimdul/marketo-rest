@@ -37,7 +37,7 @@ use PHPUnit\Framework\TestCase;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  *
- * @coversDefault \NecLimDul\MarketoRest\Asset\Model\SmartListConditions
+ * @coversDefaultClass \NecLimDul\MarketoRest\Asset\Model\SmartListConditions
  */
 class SmartListConditionsTest extends TestCase
 {
@@ -48,11 +48,6 @@ class SmartListConditionsTest extends TestCase
     private $sot;
 
     /**
-     * @var \Faker\Generator
-     */
-    private $faker;
-
-    /**
      * @var string[]
      */
     private $types = [
@@ -61,7 +56,13 @@ class SmartListConditionsTest extends TestCase
         'operator' => 'string',
         'values' => 'string[]',
         'is_primary' => 'bool',
-    ];
+];
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
     /**
      * @var scalar[][]
      */
@@ -114,7 +115,14 @@ class SmartListConditionsTest extends TestCase
                 return new \stdClass();
         }
         if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
-            return new $type();
+            $model = new $type();
+            $types = $type::swaggerTypes();
+            foreach ($model->listInvalidProperties() as $field => $reason) {
+                // @todo get allowed values? ((getter))AllowedValues
+                // @phpstan-ignore-next-line
+                $model[$field] = $this->getFakeValue($types[$field], null);
+            }
+            return $model;
         }
         $this->markTestSkipped('This type is not mocked yet: ' . $type);
     }
@@ -126,7 +134,109 @@ class SmartListConditionsTest extends TestCase
      */
     public function testSmartListConditions(): void
     {
-        $this->assertInstanceOf(\NecLimDul\MarketoRest\Asset\Model\SmartListConditions::class, $this->sot);
+        $this->assertInstanceOf(SmartListConditions::class, $this->sot);
+    }
+
+    /**
+     * @covers ::swaggerTypes
+     */
+    public function testSwaggerTypes(): void
+    {
+        $this->assertEquals($this->types, SmartListConditions::swaggerTypes());
+    }
+
+    /**
+     * @covers ::swaggerFormats
+     */
+    public function testSwaggerFormats(): void
+    {
+        $formats = $this->sot->swaggerFormats();
+        $this->assertEquals('int32', $formats['activity_attribute_id']);
+        $this->assertEquals(null, $formats['activity_attribute_name']);
+        $this->assertEquals(null, $formats['operator']);
+        $this->assertEquals(null, $formats['values']);
+        $this->assertEquals(null, $formats['is_primary']);
+    }
+
+    /**
+     * @covers ::attributeMap
+     */
+    public function testAttributeMap(): void
+    {
+        $formats = $this->sot->attributeMap();
+        $this->assertEquals('activityAttributeId', $formats['activity_attribute_id']);
+        $this->assertEquals('activityAttributeName', $formats['activity_attribute_name']);
+        $this->assertEquals('operator', $formats['operator']);
+        $this->assertEquals('values', $formats['values']);
+        $this->assertEquals('isPrimary', $formats['is_primary']);
+    }
+
+    /**
+     * @covers ::getters
+     * @covers ::setters
+     */
+    public function testGettersSetters(): void
+    {
+        $getters = $this->sot->getters();
+        $setters = $this->sot->setters();
+        foreach (array_keys($this->types) as $field) {
+            $this->assertTrue(isset($setters[$field]));
+            $this->assertTrue(isset($getters[$field]));
+            $this->assertTrue(
+                method_exists($this->sot, $getters[$field]),
+                'Getter exists on model.'
+            );
+            $this->assertTrue(
+                method_exists($this->sot, $setters[$field]),
+                'Setter exists on model.'
+            );
+        }
+    }
+
+    /**
+     * @covers ::getModelName
+     */
+    public function testGetModelName(): void
+    {
+        $this->assertEquals('SmartListConditions', $this->sot->getModelName());
+    }
+
+    /**
+     * @covers ::listInvalidProperties
+     * @covers ::valid
+     */
+    public function testValid(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::setAdditionalProperties
+     * @covers ::setAdditionalProperty
+     * @covers ::getAdditionalProperties
+     */
+    public function testAdditionalProperties(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::jsonSerialize
+     * @covers ::__toString
+     */
+    public function testJson(): void
+    {
+        // Some minimal tests that json generates well.
+        $json = json_encode($this->sot);
+        $this->assertIsString($json, 'Json encoded');
+        $json = json_decode($json);
+        $string = json_decode((string) $this->sot);
+        $this->assertEquals(
+            $json,
+            $string
+        );
+        $this->assertInstanceOf(\stdClass::class, $json);
+        $this->assertInstanceOf(\stdClass::class, $string);
     }
 
     /**
@@ -135,6 +245,10 @@ class SmartListConditionsTest extends TestCase
      * @covers ::__construct
      * @covers ::getActivityAttributeId
      * @covers ::setActivityAttributeId
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyActivityAttributeId(): void
     {
@@ -145,7 +259,20 @@ class SmartListConditionsTest extends TestCase
         );
         $this->sot->setActivityAttributeId($v);
         $this->assertEquals($v, $this->sot->getActivityAttributeId());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['activity_attribute_id']);
+        $v = $this->getFakeValue(
+            $this->types['activity_attribute_id'],
+            $this->allowedValues['activity_attribute_id'] ?? null
+        );
+        $this->sot['activity_attribute_id'] = $v;
+        $this->assertEquals($v, $this->sot['activity_attribute_id']);
+        $this->assertTrue(isset($this->sot['activity_attribute_id']));
+        unset($this->sot['activity_attribute_id']);
+        $this->assertFalse(isset($this->sot['activity_attribute_id']));
+        $this->sot['activity_attribute_id'] = $v;
+        $this->assertEquals($v, $this->sot['activity_attribute_id']);
+        $this->assertTrue(isset($this->sot['activity_attribute_id']));
     }
 
     /**
@@ -154,6 +281,10 @@ class SmartListConditionsTest extends TestCase
      * @covers ::__construct
      * @covers ::getActivityAttributeName
      * @covers ::setActivityAttributeName
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyActivityAttributeName(): void
     {
@@ -164,7 +295,20 @@ class SmartListConditionsTest extends TestCase
         );
         $this->sot->setActivityAttributeName($v);
         $this->assertEquals($v, $this->sot->getActivityAttributeName());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['activity_attribute_name']);
+        $v = $this->getFakeValue(
+            $this->types['activity_attribute_name'],
+            $this->allowedValues['activity_attribute_name'] ?? null
+        );
+        $this->sot['activity_attribute_name'] = $v;
+        $this->assertEquals($v, $this->sot['activity_attribute_name']);
+        $this->assertTrue(isset($this->sot['activity_attribute_name']));
+        unset($this->sot['activity_attribute_name']);
+        $this->assertFalse(isset($this->sot['activity_attribute_name']));
+        $this->sot['activity_attribute_name'] = $v;
+        $this->assertEquals($v, $this->sot['activity_attribute_name']);
+        $this->assertTrue(isset($this->sot['activity_attribute_name']));
     }
 
     /**
@@ -173,6 +317,10 @@ class SmartListConditionsTest extends TestCase
      * @covers ::__construct
      * @covers ::getOperator
      * @covers ::setOperator
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyOperator(): void
     {
@@ -183,7 +331,20 @@ class SmartListConditionsTest extends TestCase
         );
         $this->sot->setOperator($v);
         $this->assertEquals($v, $this->sot->getOperator());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['operator']);
+        $v = $this->getFakeValue(
+            $this->types['operator'],
+            $this->allowedValues['operator'] ?? null
+        );
+        $this->sot['operator'] = $v;
+        $this->assertEquals($v, $this->sot['operator']);
+        $this->assertTrue(isset($this->sot['operator']));
+        unset($this->sot['operator']);
+        $this->assertFalse(isset($this->sot['operator']));
+        $this->sot['operator'] = $v;
+        $this->assertEquals($v, $this->sot['operator']);
+        $this->assertTrue(isset($this->sot['operator']));
     }
 
     /**
@@ -192,6 +353,10 @@ class SmartListConditionsTest extends TestCase
      * @covers ::__construct
      * @covers ::getValues
      * @covers ::setValues
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyValues(): void
     {
@@ -202,7 +367,20 @@ class SmartListConditionsTest extends TestCase
         );
         $this->sot->setValues($v);
         $this->assertEquals($v, $this->sot->getValues());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['values']);
+        $v = $this->getFakeValue(
+            $this->types['values'],
+            $this->allowedValues['values'] ?? null
+        );
+        $this->sot['values'] = $v;
+        $this->assertEquals($v, $this->sot['values']);
+        $this->assertTrue(isset($this->sot['values']));
+        unset($this->sot['values']);
+        $this->assertFalse(isset($this->sot['values']));
+        $this->sot['values'] = $v;
+        $this->assertEquals($v, $this->sot['values']);
+        $this->assertTrue(isset($this->sot['values']));
     }
 
     /**
@@ -211,6 +389,10 @@ class SmartListConditionsTest extends TestCase
      * @covers ::__construct
      * @covers ::getIsPrimary
      * @covers ::setIsPrimary
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyIsPrimary(): void
     {
@@ -221,6 +403,19 @@ class SmartListConditionsTest extends TestCase
         );
         $this->sot->setIsPrimary($v);
         $this->assertEquals($v, $this->sot->getIsPrimary());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['is_primary']);
+        $v = $this->getFakeValue(
+            $this->types['is_primary'],
+            $this->allowedValues['is_primary'] ?? null
+        );
+        $this->sot['is_primary'] = $v;
+        $this->assertEquals($v, $this->sot['is_primary']);
+        $this->assertTrue(isset($this->sot['is_primary']));
+        unset($this->sot['is_primary']);
+        $this->assertFalse(isset($this->sot['is_primary']));
+        $this->sot['is_primary'] = $v;
+        $this->assertEquals($v, $this->sot['is_primary']);
+        $this->assertTrue(isset($this->sot['is_primary']));
     }
 }

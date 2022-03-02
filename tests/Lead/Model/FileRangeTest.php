@@ -37,7 +37,7 @@ use PHPUnit\Framework\TestCase;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  *
- * @coversDefault \NecLimDul\MarketoRest\Lead\Model\FileRange
+ * @coversDefaultClass \NecLimDul\MarketoRest\Lead\Model\FileRange
  */
 class FileRangeTest extends TestCase
 {
@@ -48,17 +48,18 @@ class FileRangeTest extends TestCase
     private $sot;
 
     /**
-     * @var \Faker\Generator
-     */
-    private $faker;
-
-    /**
      * @var string[]
      */
     private $types = [
         'end' => 'int',
         'start' => 'int',
-    ];
+];
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
     /**
      * @var scalar[][]
      */
@@ -111,7 +112,14 @@ class FileRangeTest extends TestCase
                 return new \stdClass();
         }
         if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
-            return new $type();
+            $model = new $type();
+            $types = $type::swaggerTypes();
+            foreach ($model->listInvalidProperties() as $field => $reason) {
+                // @todo get allowed values? ((getter))AllowedValues
+                // @phpstan-ignore-next-line
+                $model[$field] = $this->getFakeValue($types[$field], null);
+            }
+            return $model;
         }
         $this->markTestSkipped('This type is not mocked yet: ' . $type);
     }
@@ -123,7 +131,103 @@ class FileRangeTest extends TestCase
      */
     public function testFileRange(): void
     {
-        $this->assertInstanceOf(\NecLimDul\MarketoRest\Lead\Model\FileRange::class, $this->sot);
+        $this->assertInstanceOf(FileRange::class, $this->sot);
+    }
+
+    /**
+     * @covers ::swaggerTypes
+     */
+    public function testSwaggerTypes(): void
+    {
+        $this->assertEquals($this->types, FileRange::swaggerTypes());
+    }
+
+    /**
+     * @covers ::swaggerFormats
+     */
+    public function testSwaggerFormats(): void
+    {
+        $formats = $this->sot->swaggerFormats();
+        $this->assertEquals('int64', $formats['end']);
+        $this->assertEquals('int64', $formats['start']);
+    }
+
+    /**
+     * @covers ::attributeMap
+     */
+    public function testAttributeMap(): void
+    {
+        $formats = $this->sot->attributeMap();
+        $this->assertEquals('end', $formats['end']);
+        $this->assertEquals('start', $formats['start']);
+    }
+
+    /**
+     * @covers ::getters
+     * @covers ::setters
+     */
+    public function testGettersSetters(): void
+    {
+        $getters = $this->sot->getters();
+        $setters = $this->sot->setters();
+        foreach (array_keys($this->types) as $field) {
+            $this->assertTrue(isset($setters[$field]));
+            $this->assertTrue(isset($getters[$field]));
+            $this->assertTrue(
+                method_exists($this->sot, $getters[$field]),
+                'Getter exists on model.'
+            );
+            $this->assertTrue(
+                method_exists($this->sot, $setters[$field]),
+                'Setter exists on model.'
+            );
+        }
+    }
+
+    /**
+     * @covers ::getModelName
+     */
+    public function testGetModelName(): void
+    {
+        $this->assertEquals('FileRange', $this->sot->getModelName());
+    }
+
+    /**
+     * @covers ::listInvalidProperties
+     * @covers ::valid
+     */
+    public function testValid(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::setAdditionalProperties
+     * @covers ::setAdditionalProperty
+     * @covers ::getAdditionalProperties
+     */
+    public function testAdditionalProperties(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::jsonSerialize
+     * @covers ::__toString
+     */
+    public function testJson(): void
+    {
+        // Some minimal tests that json generates well.
+        $json = json_encode($this->sot);
+        $this->assertIsString($json, 'Json encoded');
+        $json = json_decode($json);
+        $string = json_decode((string) $this->sot);
+        $this->assertEquals(
+            $json,
+            $string
+        );
+        $this->assertInstanceOf(\stdClass::class, $json);
+        $this->assertInstanceOf(\stdClass::class, $string);
     }
 
     /**
@@ -132,6 +236,10 @@ class FileRangeTest extends TestCase
      * @covers ::__construct
      * @covers ::getEnd
      * @covers ::setEnd
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyEnd(): void
     {
@@ -142,7 +250,23 @@ class FileRangeTest extends TestCase
         );
         $this->sot->setEnd($v);
         $this->assertEquals($v, $this->sot->getEnd());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setEnd(null);
+        $this->assertNull($this->sot->getEnd());
+        $this->sot->setEnd($v);
+
+        $this->assertEquals($v, $this->sot['end']);
+        $v = $this->getFakeValue(
+            $this->types['end'],
+            $this->allowedValues['end'] ?? null
+        );
+        $this->sot['end'] = $v;
+        $this->assertEquals($v, $this->sot['end']);
+        $this->assertTrue(isset($this->sot['end']));
+        unset($this->sot['end']);
+        $this->assertFalse(isset($this->sot['end']));
+        $this->sot['end'] = $v;
+        $this->assertEquals($v, $this->sot['end']);
+        $this->assertTrue(isset($this->sot['end']));
     }
 
     /**
@@ -151,6 +275,10 @@ class FileRangeTest extends TestCase
      * @covers ::__construct
      * @covers ::getStart
      * @covers ::setStart
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyStart(): void
     {
@@ -161,6 +289,22 @@ class FileRangeTest extends TestCase
         );
         $this->sot->setStart($v);
         $this->assertEquals($v, $this->sot->getStart());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setStart(null);
+        $this->assertNull($this->sot->getStart());
+        $this->sot->setStart($v);
+
+        $this->assertEquals($v, $this->sot['start']);
+        $v = $this->getFakeValue(
+            $this->types['start'],
+            $this->allowedValues['start'] ?? null
+        );
+        $this->sot['start'] = $v;
+        $this->assertEquals($v, $this->sot['start']);
+        $this->assertTrue(isset($this->sot['start']));
+        unset($this->sot['start']);
+        $this->assertFalse(isset($this->sot['start']));
+        $this->sot['start'] = $v;
+        $this->assertEquals($v, $this->sot['start']);
+        $this->assertTrue(isset($this->sot['start']));
     }
 }

@@ -89,22 +89,6 @@ class AddCustomObjectTypeField implements ModelInterface, ArrayAccess, \JsonSeri
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -171,6 +155,22 @@ class AddCustomObjectTypeField implements ModelInterface, ArrayAccess, \JsonSeri
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -210,13 +210,13 @@ class AddCustomObjectTypeField implements ModelInterface, ArrayAccess, \JsonSeri
         $invalidProperties = [];
 
         if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
+            $invalidProperties['name'] = "'name' can't be null";
         }
         if ($this->container['display_name'] === null) {
-            $invalidProperties[] = "'display_name' can't be null";
+            $invalidProperties['display_name'] = "'display_name' can't be null";
         }
         if ($this->container['data_type'] === null) {
-            $invalidProperties[] = "'data_type' can't be null";
+            $invalidProperties['data_type'] = "'data_type' can't be null";
         }
         return $invalidProperties;
     }
@@ -304,9 +304,9 @@ class AddCustomObjectTypeField implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->container['description'];
     }
@@ -328,9 +328,9 @@ class AddCustomObjectTypeField implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets is_dedupe_field
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getIsDedupeField(): bool
+    public function getIsDedupeField(): ?bool
     {
         return $this->container['is_dedupe_field'];
     }
@@ -352,9 +352,9 @@ class AddCustomObjectTypeField implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets related_to
      *
-     * @return \NecLimDul\MarketoRest\Lead\Model\CustomObjectTypeFieldRelatedTo
+     * @return \NecLimDul\MarketoRest\Lead\Model\CustomObjectTypeFieldRelatedTo|null
      */
-    public function getRelatedTo(): \NecLimDul\MarketoRest\Lead\Model\CustomObjectTypeFieldRelatedTo
+    public function getRelatedTo(): ?\NecLimDul\MarketoRest\Lead\Model\CustomObjectTypeFieldRelatedTo
     {
         return $this->container['related_to'];
     }

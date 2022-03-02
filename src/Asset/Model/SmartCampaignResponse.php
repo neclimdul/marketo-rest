@@ -138,22 +138,6 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -284,6 +268,22 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -323,20 +323,20 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeriali
         $invalidProperties = [];
 
         if ($this->container['id'] === null) {
-            $invalidProperties[] = "'id' can't be null";
+            $invalidProperties['id'] = "'id' can't be null";
         }
         if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
+            $invalidProperties['name'] = "'name' can't be null";
         }
         if ($this->container['description'] === null) {
-            $invalidProperties[] = "'description' can't be null";
+            $invalidProperties['description'] = "'description' can't be null";
         }
         if ($this->container['type'] === null) {
-            $invalidProperties[] = "'type' can't be null";
+            $invalidProperties['type'] = "'type' can't be null";
         }
         $allowedValues = $this->getTypeAllowableValues();
         if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
+            $invalidProperties['type'] = sprintf(
                 "invalid value '%s' for 'type', must be one of '%s'",
                 $this->container['type'],
                 implode("', '", $allowedValues)
@@ -344,23 +344,23 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeriali
         }
 
         if ($this->container['is_system'] === null) {
-            $invalidProperties[] = "'is_system' can't be null";
+            $invalidProperties['is_system'] = "'is_system' can't be null";
         }
         if ($this->container['is_active'] === null) {
-            $invalidProperties[] = "'is_active' can't be null";
+            $invalidProperties['is_active'] = "'is_active' can't be null";
         }
         if ($this->container['is_requestable'] === null) {
-            $invalidProperties[] = "'is_requestable' can't be null";
+            $invalidProperties['is_requestable'] = "'is_requestable' can't be null";
         }
         if ($this->container['recurrence'] === null) {
-            $invalidProperties[] = "'recurrence' can't be null";
+            $invalidProperties['recurrence'] = "'recurrence' can't be null";
         }
         if ($this->container['qualification_rule_type'] === null) {
-            $invalidProperties[] = "'qualification_rule_type' can't be null";
+            $invalidProperties['qualification_rule_type'] = "'qualification_rule_type' can't be null";
         }
         $allowedValues = $this->getQualificationRuleTypeAllowableValues();
         if (!is_null($this->container['qualification_rule_type']) && !in_array($this->container['qualification_rule_type'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
+            $invalidProperties['qualification_rule_type'] = sprintf(
                 "invalid value '%s' for 'qualification_rule_type', must be one of '%s'",
                 $this->container['qualification_rule_type'],
                 implode("', '", $allowedValues)
@@ -368,14 +368,14 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeriali
         }
 
         if ($this->container['qualification_rule_interval'] === null) {
-            $invalidProperties[] = "'qualification_rule_interval' can't be null";
+            $invalidProperties['qualification_rule_interval'] = "'qualification_rule_interval' can't be null";
         }
         if ($this->container['qualification_rule_unit'] === null) {
-            $invalidProperties[] = "'qualification_rule_unit' can't be null";
+            $invalidProperties['qualification_rule_unit'] = "'qualification_rule_unit' can't be null";
         }
         $allowedValues = $this->getQualificationRuleUnitAllowableValues();
         if (!is_null($this->container['qualification_rule_unit']) && !in_array($this->container['qualification_rule_unit'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
+            $invalidProperties['qualification_rule_unit'] = sprintf(
                 "invalid value '%s' for 'qualification_rule_unit', must be one of '%s'",
                 $this->container['qualification_rule_unit'],
                 implode("', '", $allowedValues)
@@ -383,35 +383,35 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeriali
         }
 
         if ($this->container['max_members'] === null) {
-            $invalidProperties[] = "'max_members' can't be null";
+            $invalidProperties['max_members'] = "'max_members' can't be null";
         }
         if ($this->container['is_communication_limit_enabled'] === null) {
-            $invalidProperties[] = "'is_communication_limit_enabled' can't be null";
+            $invalidProperties['is_communication_limit_enabled'] = "'is_communication_limit_enabled' can't be null";
         }
         if ($this->container['smart_list_id'] === null) {
-            $invalidProperties[] = "'smart_list_id' can't be null";
+            $invalidProperties['smart_list_id'] = "'smart_list_id' can't be null";
         }
         if ($this->container['flow_id'] === null) {
-            $invalidProperties[] = "'flow_id' can't be null";
+            $invalidProperties['flow_id'] = "'flow_id' can't be null";
         }
         if ($this->container['folder'] === null) {
-            $invalidProperties[] = "'folder' can't be null";
+            $invalidProperties['folder'] = "'folder' can't be null";
         }
         if ($this->container['created_at'] === null) {
-            $invalidProperties[] = "'created_at' can't be null";
+            $invalidProperties['created_at'] = "'created_at' can't be null";
         }
         if ($this->container['updated_at'] === null) {
-            $invalidProperties[] = "'updated_at' can't be null";
+            $invalidProperties['updated_at'] = "'updated_at' can't be null";
         }
         if ($this->container['workspace'] === null) {
-            $invalidProperties[] = "'workspace' can't be null";
+            $invalidProperties['workspace'] = "'workspace' can't be null";
         }
         if ($this->container['status'] === null) {
-            $invalidProperties[] = "'status' can't be null";
+            $invalidProperties['status'] = "'status' can't be null";
         }
         $allowedValues = $this->getStatusAllowableValues();
         if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
+            $invalidProperties['status'] = sprintf(
                 "invalid value '%s' for 'status', must be one of '%s'",
                 $this->container['status'],
                 implode("', '", $allowedValues)
@@ -879,9 +879,9 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets parent_program_id
      *
-     * @return int
+     * @return int|null
      */
-    public function getParentProgramId(): int
+    public function getParentProgramId(): ?int
     {
         return $this->container['parent_program_id'];
     }
@@ -999,9 +999,9 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets computed_url
      *
-     * @return string
+     * @return string|null
      */
-    public function getComputedUrl(): string
+    public function getComputedUrl(): ?string
     {
         return $this->container['computed_url'];
     }

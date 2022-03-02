@@ -83,22 +83,6 @@ class ScheduleCampaignData implements ModelInterface, ArrayAccess, \JsonSerializ
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -150,6 +134,22 @@ class ScheduleCampaignData implements ModelInterface, ArrayAccess, \JsonSerializ
         $this->container['clone_to_program_name'] = $data['clone_to_program_name'] ?? null;
         $this->container['run_at'] = $data['run_at'] ?? null;
         $this->container['tokens'] = $data['tokens'] ?? null;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
     }
 
     /**
@@ -205,9 +205,9 @@ class ScheduleCampaignData implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets clone_to_program_name
      *
-     * @return string
+     * @return string|null
      */
-    public function getCloneToProgramName(): string
+    public function getCloneToProgramName(): ?string
     {
         return $this->container['clone_to_program_name'];
     }
@@ -229,9 +229,9 @@ class ScheduleCampaignData implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets run_at
      *
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getRunAt(): \DateTime
+    public function getRunAt(): ?\DateTime
     {
         return $this->container['run_at'];
     }
@@ -253,9 +253,9 @@ class ScheduleCampaignData implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets tokens
      *
-     * @return \NecLimDul\MarketoRest\Lead\Model\Token[]
+     * @return \NecLimDul\MarketoRest\Lead\Model\Token[]|null
      */
-    public function getTokens(): array
+    public function getTokens(): ?array
     {
         return $this->container['tokens'];
     }

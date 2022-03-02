@@ -87,22 +87,6 @@ class UpdateFolderRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -161,6 +145,22 @@ class UpdateFolderRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -200,11 +200,11 @@ class UpdateFolderRequest implements ModelInterface, ArrayAccess, \JsonSerializa
         $invalidProperties = [];
 
         if ($this->container['type'] === null) {
-            $invalidProperties[] = "'type' can't be null";
+            $invalidProperties['type'] = "'type' can't be null";
         }
         $allowedValues = $this->getTypeAllowableValues();
         if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
+            $invalidProperties['type'] = sprintf(
                 "invalid value '%s' for 'type', must be one of '%s'",
                 $this->container['type'],
                 implode("', '", $allowedValues)
@@ -237,9 +237,9 @@ class UpdateFolderRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->container['description'];
     }
@@ -261,9 +261,9 @@ class UpdateFolderRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets is_archive
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getIsArchive(): bool
+    public function getIsArchive(): ?bool
     {
         return $this->container['is_archive'];
     }
@@ -285,9 +285,9 @@ class UpdateFolderRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets name
      *
-     * @return string
+     * @return string|null
      */
-    public function getName(): string
+    public function getName(): ?string
     {
         return $this->container['name'];
     }

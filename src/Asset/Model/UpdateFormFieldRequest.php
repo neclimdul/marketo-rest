@@ -119,22 +119,6 @@ class UpdateFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerial
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -261,6 +245,22 @@ class UpdateFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerial
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -313,9 +313,9 @@ class UpdateFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets blank_fields
      *
-     * @return int
+     * @return int|null
      */
-    public function getBlankFields(): int
+    public function getBlankFields(): ?int
     {
         return $this->container['blank_fields'];
     }
@@ -337,9 +337,9 @@ class UpdateFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets default_value
      *
-     * @return string
+     * @return string|null
      */
-    public function getDefaultValue(): string
+    public function getDefaultValue(): ?string
     {
         return $this->container['default_value'];
     }
@@ -361,9 +361,9 @@ class UpdateFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets field_type
      *
-     * @return string
+     * @return string|null
      */
-    public function getFieldType(): string
+    public function getFieldType(): ?string
     {
         return $this->container['field_type'];
     }
@@ -385,9 +385,9 @@ class UpdateFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets field_width
      *
-     * @return int
+     * @return int|null
      */
-    public function getFieldWidth(): int
+    public function getFieldWidth(): ?int
     {
         return $this->container['field_width'];
     }
@@ -409,9 +409,9 @@ class UpdateFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets form_prefill
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getFormPrefill(): bool
+    public function getFormPrefill(): ?bool
     {
         return $this->container['form_prefill'];
     }
@@ -433,9 +433,9 @@ class UpdateFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets is_sensitive
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getIsSensitive(): bool
+    public function getIsSensitive(): ?bool
     {
         return $this->container['is_sensitive'];
     }
@@ -457,9 +457,9 @@ class UpdateFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets hint_text
      *
-     * @return string
+     * @return string|null
      */
-    public function getHintText(): string
+    public function getHintText(): ?string
     {
         return $this->container['hint_text'];
     }
@@ -481,9 +481,9 @@ class UpdateFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets initially_checked
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getInitiallyChecked(): bool
+    public function getInitiallyChecked(): ?bool
     {
         return $this->container['initially_checked'];
     }
@@ -505,9 +505,9 @@ class UpdateFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets instructions
      *
-     * @return string
+     * @return string|null
      */
-    public function getInstructions(): string
+    public function getInstructions(): ?string
     {
         return $this->container['instructions'];
     }
@@ -529,9 +529,9 @@ class UpdateFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets label
      *
-     * @return string
+     * @return string|null
      */
-    public function getLabel(): string
+    public function getLabel(): ?string
     {
         return $this->container['label'];
     }
@@ -553,9 +553,9 @@ class UpdateFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets label_to_right
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getLabelToRight(): bool
+    public function getLabelToRight(): ?bool
     {
         return $this->container['label_to_right'];
     }
@@ -577,9 +577,9 @@ class UpdateFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets label_width
      *
-     * @return int
+     * @return int|null
      */
-    public function getLabelWidth(): int
+    public function getLabelWidth(): ?int
     {
         return $this->container['label_width'];
     }
@@ -601,9 +601,9 @@ class UpdateFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets mask_input
      *
-     * @return string
+     * @return string|null
      */
-    public function getMaskInput(): string
+    public function getMaskInput(): ?string
     {
         return $this->container['mask_input'];
     }
@@ -625,9 +625,9 @@ class UpdateFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets max_length
      *
-     * @return int
+     * @return int|null
      */
-    public function getMaxLength(): int
+    public function getMaxLength(): ?int
     {
         return $this->container['max_length'];
     }
@@ -649,9 +649,9 @@ class UpdateFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets max_value
      *
-     * @return float
+     * @return float|null
      */
-    public function getMaxValue(): float
+    public function getMaxValue(): ?float
     {
         return $this->container['max_value'];
     }
@@ -673,9 +673,9 @@ class UpdateFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets min_value
      *
-     * @return float
+     * @return float|null
      */
-    public function getMinValue(): float
+    public function getMinValue(): ?float
     {
         return $this->container['min_value'];
     }
@@ -697,9 +697,9 @@ class UpdateFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets multi_select
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getMultiSelect(): bool
+    public function getMultiSelect(): ?bool
     {
         return $this->container['multi_select'];
     }
@@ -721,9 +721,9 @@ class UpdateFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets required
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getRequired(): bool
+    public function getRequired(): ?bool
     {
         return $this->container['required'];
     }
@@ -745,9 +745,9 @@ class UpdateFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets validation_message
      *
-     * @return string
+     * @return string|null
      */
-    public function getValidationMessage(): string
+    public function getValidationMessage(): ?string
     {
         return $this->container['validation_message'];
     }
@@ -769,9 +769,9 @@ class UpdateFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets values
      *
-     * @return string
+     * @return string|null
      */
-    public function getValues(): string
+    public function getValues(): ?string
     {
         return $this->container['values'];
     }
@@ -793,9 +793,9 @@ class UpdateFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets visible_lines
      *
-     * @return int
+     * @return int|null
      */
-    public function getVisibleLines(): int
+    public function getVisibleLines(): ?int
     {
         return $this->container['visible_lines'];
     }

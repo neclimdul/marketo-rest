@@ -79,22 +79,6 @@ class UpdateEmailTemplateContentRequest implements ModelInterface, ArrayAccess, 
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -138,6 +122,22 @@ class UpdateEmailTemplateContentRequest implements ModelInterface, ArrayAccess, 
     public function __construct(array $data = null)
     {
         $this->container['content'] = $data['content'] ?? null;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
     }
 
     /**
@@ -193,9 +193,9 @@ class UpdateEmailTemplateContentRequest implements ModelInterface, ArrayAccess, 
     /**
      * Gets content
      *
-     * @return string
+     * @return string|null
      */
-    public function getContent(): string
+    public function getContent(): ?string
     {
         return $this->container['content'];
     }

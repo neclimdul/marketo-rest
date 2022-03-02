@@ -111,22 +111,6 @@ class VisibilityRuleRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -189,6 +173,22 @@ class VisibilityRuleRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -228,11 +228,11 @@ class VisibilityRuleRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         $invalidProperties = [];
 
         if ($this->container['operator'] === null) {
-            $invalidProperties[] = "'operator' can't be null";
+            $invalidProperties['operator'] = "'operator' can't be null";
         }
         $allowedValues = $this->getOperatorAllowableValues();
         if (!is_null($this->container['operator']) && !in_array($this->container['operator'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
+            $invalidProperties['operator'] = sprintf(
                 "invalid value '%s' for 'operator', must be one of '%s'",
                 $this->container['operator'],
                 implode("', '", $allowedValues)
@@ -240,10 +240,10 @@ class VisibilityRuleRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         }
 
         if ($this->container['subject_field'] === null) {
-            $invalidProperties[] = "'subject_field' can't be null";
+            $invalidProperties['subject_field'] = "'subject_field' can't be null";
         }
         if ($this->container['values'] === null) {
-            $invalidProperties[] = "'values' can't be null";
+            $invalidProperties['values'] = "'values' can't be null";
         }
         return $invalidProperties;
     }
@@ -293,9 +293,9 @@ class VisibilityRuleRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets alt_label
      *
-     * @return string
+     * @return string|null
      */
-    public function getAltLabel(): string
+    public function getAltLabel(): ?string
     {
         return $this->container['alt_label'];
     }
@@ -351,9 +351,9 @@ class VisibilityRuleRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets pick_list_values
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\PickListDTO[]
+     * @return \NecLimDul\MarketoRest\Asset\Model\PickListDTO[]|null
      */
-    public function getPickListValues(): array
+    public function getPickListValues(): ?array
     {
         return $this->container['pick_list_values'];
     }

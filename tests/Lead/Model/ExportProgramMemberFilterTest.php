@@ -37,7 +37,7 @@ use PHPUnit\Framework\TestCase;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  *
- * @coversDefault \NecLimDul\MarketoRest\Lead\Model\ExportProgramMemberFilter
+ * @coversDefaultClass \NecLimDul\MarketoRest\Lead\Model\ExportProgramMemberFilter
  */
 class ExportProgramMemberFilterTest extends TestCase
 {
@@ -48,16 +48,17 @@ class ExportProgramMemberFilterTest extends TestCase
     private $sot;
 
     /**
-     * @var \Faker\Generator
-     */
-    private $faker;
-
-    /**
      * @var string[]
      */
     private $types = [
         'program_id' => 'int',
-    ];
+];
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
     /**
      * @var scalar[][]
      */
@@ -110,7 +111,14 @@ class ExportProgramMemberFilterTest extends TestCase
                 return new \stdClass();
         }
         if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
-            return new $type();
+            $model = new $type();
+            $types = $type::swaggerTypes();
+            foreach ($model->listInvalidProperties() as $field => $reason) {
+                // @todo get allowed values? ((getter))AllowedValues
+                // @phpstan-ignore-next-line
+                $model[$field] = $this->getFakeValue($types[$field], null);
+            }
+            return $model;
         }
         $this->markTestSkipped('This type is not mocked yet: ' . $type);
     }
@@ -122,7 +130,101 @@ class ExportProgramMemberFilterTest extends TestCase
      */
     public function testExportProgramMemberFilter(): void
     {
-        $this->assertInstanceOf(\NecLimDul\MarketoRest\Lead\Model\ExportProgramMemberFilter::class, $this->sot);
+        $this->assertInstanceOf(ExportProgramMemberFilter::class, $this->sot);
+    }
+
+    /**
+     * @covers ::swaggerTypes
+     */
+    public function testSwaggerTypes(): void
+    {
+        $this->assertEquals($this->types, ExportProgramMemberFilter::swaggerTypes());
+    }
+
+    /**
+     * @covers ::swaggerFormats
+     */
+    public function testSwaggerFormats(): void
+    {
+        $formats = $this->sot->swaggerFormats();
+        $this->assertEquals('int32', $formats['program_id']);
+    }
+
+    /**
+     * @covers ::attributeMap
+     */
+    public function testAttributeMap(): void
+    {
+        $formats = $this->sot->attributeMap();
+        $this->assertEquals('programId', $formats['program_id']);
+    }
+
+    /**
+     * @covers ::getters
+     * @covers ::setters
+     */
+    public function testGettersSetters(): void
+    {
+        $getters = $this->sot->getters();
+        $setters = $this->sot->setters();
+        foreach (array_keys($this->types) as $field) {
+            $this->assertTrue(isset($setters[$field]));
+            $this->assertTrue(isset($getters[$field]));
+            $this->assertTrue(
+                method_exists($this->sot, $getters[$field]),
+                'Getter exists on model.'
+            );
+            $this->assertTrue(
+                method_exists($this->sot, $setters[$field]),
+                'Setter exists on model.'
+            );
+        }
+    }
+
+    /**
+     * @covers ::getModelName
+     */
+    public function testGetModelName(): void
+    {
+        $this->assertEquals('ExportProgramMemberFilter', $this->sot->getModelName());
+    }
+
+    /**
+     * @covers ::listInvalidProperties
+     * @covers ::valid
+     */
+    public function testValid(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::setAdditionalProperties
+     * @covers ::setAdditionalProperty
+     * @covers ::getAdditionalProperties
+     */
+    public function testAdditionalProperties(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::jsonSerialize
+     * @covers ::__toString
+     */
+    public function testJson(): void
+    {
+        // Some minimal tests that json generates well.
+        $json = json_encode($this->sot);
+        $this->assertIsString($json, 'Json encoded');
+        $json = json_decode($json);
+        $string = json_decode((string) $this->sot);
+        $this->assertEquals(
+            $json,
+            $string
+        );
+        $this->assertInstanceOf(\stdClass::class, $json);
+        $this->assertInstanceOf(\stdClass::class, $string);
     }
 
     /**
@@ -131,6 +233,10 @@ class ExportProgramMemberFilterTest extends TestCase
      * @covers ::__construct
      * @covers ::getProgramId
      * @covers ::setProgramId
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyProgramId(): void
     {
@@ -141,6 +247,19 @@ class ExportProgramMemberFilterTest extends TestCase
         );
         $this->sot->setProgramId($v);
         $this->assertEquals($v, $this->sot->getProgramId());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['program_id']);
+        $v = $this->getFakeValue(
+            $this->types['program_id'],
+            $this->allowedValues['program_id'] ?? null
+        );
+        $this->sot['program_id'] = $v;
+        $this->assertEquals($v, $this->sot['program_id']);
+        $this->assertTrue(isset($this->sot['program_id']));
+        unset($this->sot['program_id']);
+        $this->assertFalse(isset($this->sot['program_id']));
+        $this->sot['program_id'] = $v;
+        $this->assertEquals($v, $this->sot['program_id']);
+        $this->assertTrue(isset($this->sot['program_id']));
     }
 }

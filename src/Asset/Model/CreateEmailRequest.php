@@ -97,22 +97,6 @@ class CreateEmailRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -195,6 +179,22 @@ class CreateEmailRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -234,25 +234,25 @@ class CreateEmailRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         $invalidProperties = [];
 
         if ($this->container['folder'] === null) {
-            $invalidProperties[] = "'folder' can't be null";
+            $invalidProperties['folder'] = "'folder' can't be null";
         }
         if ($this->container['from_email'] === null) {
-            $invalidProperties[] = "'from_email' can't be null";
+            $invalidProperties['from_email'] = "'from_email' can't be null";
         }
         if ($this->container['from_name'] === null) {
-            $invalidProperties[] = "'from_name' can't be null";
+            $invalidProperties['from_name'] = "'from_name' can't be null";
         }
         if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
+            $invalidProperties['name'] = "'name' can't be null";
         }
         if ($this->container['reply_email'] === null) {
-            $invalidProperties[] = "'reply_email' can't be null";
+            $invalidProperties['reply_email'] = "'reply_email' can't be null";
         }
         if ($this->container['subject'] === null) {
-            $invalidProperties[] = "'subject' can't be null";
+            $invalidProperties['subject'] = "'subject' can't be null";
         }
         if ($this->container['template'] === null) {
-            $invalidProperties[] = "'template' can't be null";
+            $invalidProperties['template'] = "'template' can't be null";
         }
         return $invalidProperties;
     }
@@ -268,9 +268,9 @@ class CreateEmailRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->container['description'];
     }
@@ -388,9 +388,9 @@ class CreateEmailRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets operational
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getOperational(): bool
+    public function getOperational(): ?bool
     {
         return $this->container['operational'];
     }
@@ -484,9 +484,9 @@ class CreateEmailRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets text_only
      *
-     * @return string
+     * @return string|null
      */
-    public function getTextOnly(): string
+    public function getTextOnly(): ?string
     {
         return $this->container['text_only'];
     }

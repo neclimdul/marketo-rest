@@ -37,7 +37,7 @@ use PHPUnit\Framework\TestCase;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  *
- * @coversDefault \NecLimDul\MarketoRest\Asset\Model\UpdateEmailComponentDataRequest
+ * @coversDefaultClass \NecLimDul\MarketoRest\Asset\Model\UpdateEmailComponentDataRequest
  */
 class UpdateEmailComponentDataRequestTest extends TestCase
 {
@@ -48,11 +48,6 @@ class UpdateEmailComponentDataRequestTest extends TestCase
     private $sot;
 
     /**
-     * @var \Faker\Generator
-     */
-    private $faker;
-
-    /**
      * @var string[]
      */
     private $types = [
@@ -60,7 +55,13 @@ class UpdateEmailComponentDataRequestTest extends TestCase
         'from_name' => '\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField',
         'reply_to' => '\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField',
         'subject' => '\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField',
-    ];
+];
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
     /**
      * @var scalar[][]
      */
@@ -113,7 +114,14 @@ class UpdateEmailComponentDataRequestTest extends TestCase
                 return new \stdClass();
         }
         if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
-            return new $type();
+            $model = new $type();
+            $types = $type::swaggerTypes();
+            foreach ($model->listInvalidProperties() as $field => $reason) {
+                // @todo get allowed values? ((getter))AllowedValues
+                // @phpstan-ignore-next-line
+                $model[$field] = $this->getFakeValue($types[$field], null);
+            }
+            return $model;
         }
         $this->markTestSkipped('This type is not mocked yet: ' . $type);
     }
@@ -125,7 +133,107 @@ class UpdateEmailComponentDataRequestTest extends TestCase
      */
     public function testUpdateEmailComponentDataRequest(): void
     {
-        $this->assertInstanceOf(\NecLimDul\MarketoRest\Asset\Model\UpdateEmailComponentDataRequest::class, $this->sot);
+        $this->assertInstanceOf(UpdateEmailComponentDataRequest::class, $this->sot);
+    }
+
+    /**
+     * @covers ::swaggerTypes
+     */
+    public function testSwaggerTypes(): void
+    {
+        $this->assertEquals($this->types, UpdateEmailComponentDataRequest::swaggerTypes());
+    }
+
+    /**
+     * @covers ::swaggerFormats
+     */
+    public function testSwaggerFormats(): void
+    {
+        $formats = $this->sot->swaggerFormats();
+        $this->assertEquals(null, $formats['from_email']);
+        $this->assertEquals(null, $formats['from_name']);
+        $this->assertEquals(null, $formats['reply_to']);
+        $this->assertEquals(null, $formats['subject']);
+    }
+
+    /**
+     * @covers ::attributeMap
+     */
+    public function testAttributeMap(): void
+    {
+        $formats = $this->sot->attributeMap();
+        $this->assertEquals('fromEmail', $formats['from_email']);
+        $this->assertEquals('fromName', $formats['from_name']);
+        $this->assertEquals('replyTO', $formats['reply_to']);
+        $this->assertEquals('subject', $formats['subject']);
+    }
+
+    /**
+     * @covers ::getters
+     * @covers ::setters
+     */
+    public function testGettersSetters(): void
+    {
+        $getters = $this->sot->getters();
+        $setters = $this->sot->setters();
+        foreach (array_keys($this->types) as $field) {
+            $this->assertTrue(isset($setters[$field]));
+            $this->assertTrue(isset($getters[$field]));
+            $this->assertTrue(
+                method_exists($this->sot, $getters[$field]),
+                'Getter exists on model.'
+            );
+            $this->assertTrue(
+                method_exists($this->sot, $setters[$field]),
+                'Setter exists on model.'
+            );
+        }
+    }
+
+    /**
+     * @covers ::getModelName
+     */
+    public function testGetModelName(): void
+    {
+        $this->assertEquals('UpdateEmailComponentDataRequest', $this->sot->getModelName());
+    }
+
+    /**
+     * @covers ::listInvalidProperties
+     * @covers ::valid
+     */
+    public function testValid(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::setAdditionalProperties
+     * @covers ::setAdditionalProperty
+     * @covers ::getAdditionalProperties
+     */
+    public function testAdditionalProperties(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::jsonSerialize
+     * @covers ::__toString
+     */
+    public function testJson(): void
+    {
+        // Some minimal tests that json generates well.
+        $json = json_encode($this->sot);
+        $this->assertIsString($json, 'Json encoded');
+        $json = json_decode($json);
+        $string = json_decode((string) $this->sot);
+        $this->assertEquals(
+            $json,
+            $string
+        );
+        $this->assertInstanceOf(\stdClass::class, $json);
+        $this->assertInstanceOf(\stdClass::class, $string);
     }
 
     /**
@@ -134,6 +242,10 @@ class UpdateEmailComponentDataRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getFromEmail
      * @covers ::setFromEmail
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyFromEmail(): void
     {
@@ -144,7 +256,23 @@ class UpdateEmailComponentDataRequestTest extends TestCase
         );
         $this->sot->setFromEmail($v);
         $this->assertEquals($v, $this->sot->getFromEmail());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setFromEmail(null);
+        $this->assertNull($this->sot->getFromEmail());
+        $this->sot->setFromEmail($v);
+
+        $this->assertEquals($v, $this->sot['from_email']);
+        $v = $this->getFakeValue(
+            $this->types['from_email'],
+            $this->allowedValues['from_email'] ?? null
+        );
+        $this->sot['from_email'] = $v;
+        $this->assertEquals($v, $this->sot['from_email']);
+        $this->assertTrue(isset($this->sot['from_email']));
+        unset($this->sot['from_email']);
+        $this->assertFalse(isset($this->sot['from_email']));
+        $this->sot['from_email'] = $v;
+        $this->assertEquals($v, $this->sot['from_email']);
+        $this->assertTrue(isset($this->sot['from_email']));
     }
 
     /**
@@ -153,6 +281,10 @@ class UpdateEmailComponentDataRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getFromName
      * @covers ::setFromName
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyFromName(): void
     {
@@ -163,7 +295,23 @@ class UpdateEmailComponentDataRequestTest extends TestCase
         );
         $this->sot->setFromName($v);
         $this->assertEquals($v, $this->sot->getFromName());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setFromName(null);
+        $this->assertNull($this->sot->getFromName());
+        $this->sot->setFromName($v);
+
+        $this->assertEquals($v, $this->sot['from_name']);
+        $v = $this->getFakeValue(
+            $this->types['from_name'],
+            $this->allowedValues['from_name'] ?? null
+        );
+        $this->sot['from_name'] = $v;
+        $this->assertEquals($v, $this->sot['from_name']);
+        $this->assertTrue(isset($this->sot['from_name']));
+        unset($this->sot['from_name']);
+        $this->assertFalse(isset($this->sot['from_name']));
+        $this->sot['from_name'] = $v;
+        $this->assertEquals($v, $this->sot['from_name']);
+        $this->assertTrue(isset($this->sot['from_name']));
     }
 
     /**
@@ -172,6 +320,10 @@ class UpdateEmailComponentDataRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getReplyTo
      * @covers ::setReplyTo
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyReplyTo(): void
     {
@@ -182,7 +334,23 @@ class UpdateEmailComponentDataRequestTest extends TestCase
         );
         $this->sot->setReplyTo($v);
         $this->assertEquals($v, $this->sot->getReplyTo());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setReplyTo(null);
+        $this->assertNull($this->sot->getReplyTo());
+        $this->sot->setReplyTo($v);
+
+        $this->assertEquals($v, $this->sot['reply_to']);
+        $v = $this->getFakeValue(
+            $this->types['reply_to'],
+            $this->allowedValues['reply_to'] ?? null
+        );
+        $this->sot['reply_to'] = $v;
+        $this->assertEquals($v, $this->sot['reply_to']);
+        $this->assertTrue(isset($this->sot['reply_to']));
+        unset($this->sot['reply_to']);
+        $this->assertFalse(isset($this->sot['reply_to']));
+        $this->sot['reply_to'] = $v;
+        $this->assertEquals($v, $this->sot['reply_to']);
+        $this->assertTrue(isset($this->sot['reply_to']));
     }
 
     /**
@@ -191,6 +359,10 @@ class UpdateEmailComponentDataRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getSubject
      * @covers ::setSubject
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertySubject(): void
     {
@@ -201,6 +373,22 @@ class UpdateEmailComponentDataRequestTest extends TestCase
         );
         $this->sot->setSubject($v);
         $this->assertEquals($v, $this->sot->getSubject());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setSubject(null);
+        $this->assertNull($this->sot->getSubject());
+        $this->sot->setSubject($v);
+
+        $this->assertEquals($v, $this->sot['subject']);
+        $v = $this->getFakeValue(
+            $this->types['subject'],
+            $this->allowedValues['subject'] ?? null
+        );
+        $this->sot['subject'] = $v;
+        $this->assertEquals($v, $this->sot['subject']);
+        $this->assertTrue(isset($this->sot['subject']));
+        unset($this->sot['subject']);
+        $this->assertFalse(isset($this->sot['subject']));
+        $this->sot['subject'] = $v;
+        $this->assertEquals($v, $this->sot['subject']);
+        $this->assertTrue(isset($this->sot['subject']));
     }
 }

@@ -79,22 +79,6 @@ class UpdateThankYouPageRequest implements ModelInterface, ArrayAccess, \JsonSer
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -138,6 +122,22 @@ class UpdateThankYouPageRequest implements ModelInterface, ArrayAccess, \JsonSer
     public function __construct(array $data = null)
     {
         $this->container['thankyou'] = $data['thankyou'] ?? null;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
     }
 
     /**
@@ -193,9 +193,9 @@ class UpdateThankYouPageRequest implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Gets thankyou
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\ThankYouPageRequest[]
+     * @return \NecLimDul\MarketoRest\Asset\Model\ThankYouPageRequest[]|null
      */
-    public function getThankyou(): array
+    public function getThankyou(): ?array
     {
         return $this->container['thankyou'];
     }

@@ -37,7 +37,7 @@ use PHPUnit\Framework\TestCase;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  *
- * @coversDefault \NecLimDul\MarketoRest\Lead\Model\InputStreamContent
+ * @coversDefaultClass \NecLimDul\MarketoRest\Lead\Model\InputStreamContent
  */
 class InputStreamContentTest extends TestCase
 {
@@ -48,17 +48,18 @@ class InputStreamContentTest extends TestCase
     private $sot;
 
     /**
-     * @var \Faker\Generator
-     */
-    private $faker;
-
-    /**
      * @var string[]
      */
     private $types = [
         'content_type' => 'string',
         'input_stream' => '\NecLimDul\MarketoRest\Lead\Model\InputStream',
-    ];
+];
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
     /**
      * @var scalar[][]
      */
@@ -111,7 +112,14 @@ class InputStreamContentTest extends TestCase
                 return new \stdClass();
         }
         if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
-            return new $type();
+            $model = new $type();
+            $types = $type::swaggerTypes();
+            foreach ($model->listInvalidProperties() as $field => $reason) {
+                // @todo get allowed values? ((getter))AllowedValues
+                // @phpstan-ignore-next-line
+                $model[$field] = $this->getFakeValue($types[$field], null);
+            }
+            return $model;
         }
         $this->markTestSkipped('This type is not mocked yet: ' . $type);
     }
@@ -123,7 +131,103 @@ class InputStreamContentTest extends TestCase
      */
     public function testInputStreamContent(): void
     {
-        $this->assertInstanceOf(\NecLimDul\MarketoRest\Lead\Model\InputStreamContent::class, $this->sot);
+        $this->assertInstanceOf(InputStreamContent::class, $this->sot);
+    }
+
+    /**
+     * @covers ::swaggerTypes
+     */
+    public function testSwaggerTypes(): void
+    {
+        $this->assertEquals($this->types, InputStreamContent::swaggerTypes());
+    }
+
+    /**
+     * @covers ::swaggerFormats
+     */
+    public function testSwaggerFormats(): void
+    {
+        $formats = $this->sot->swaggerFormats();
+        $this->assertEquals(null, $formats['content_type']);
+        $this->assertEquals(null, $formats['input_stream']);
+    }
+
+    /**
+     * @covers ::attributeMap
+     */
+    public function testAttributeMap(): void
+    {
+        $formats = $this->sot->attributeMap();
+        $this->assertEquals('contentType', $formats['content_type']);
+        $this->assertEquals('inputStream', $formats['input_stream']);
+    }
+
+    /**
+     * @covers ::getters
+     * @covers ::setters
+     */
+    public function testGettersSetters(): void
+    {
+        $getters = $this->sot->getters();
+        $setters = $this->sot->setters();
+        foreach (array_keys($this->types) as $field) {
+            $this->assertTrue(isset($setters[$field]));
+            $this->assertTrue(isset($getters[$field]));
+            $this->assertTrue(
+                method_exists($this->sot, $getters[$field]),
+                'Getter exists on model.'
+            );
+            $this->assertTrue(
+                method_exists($this->sot, $setters[$field]),
+                'Setter exists on model.'
+            );
+        }
+    }
+
+    /**
+     * @covers ::getModelName
+     */
+    public function testGetModelName(): void
+    {
+        $this->assertEquals('InputStreamContent', $this->sot->getModelName());
+    }
+
+    /**
+     * @covers ::listInvalidProperties
+     * @covers ::valid
+     */
+    public function testValid(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::setAdditionalProperties
+     * @covers ::setAdditionalProperty
+     * @covers ::getAdditionalProperties
+     */
+    public function testAdditionalProperties(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::jsonSerialize
+     * @covers ::__toString
+     */
+    public function testJson(): void
+    {
+        // Some minimal tests that json generates well.
+        $json = json_encode($this->sot);
+        $this->assertIsString($json, 'Json encoded');
+        $json = json_decode($json);
+        $string = json_decode((string) $this->sot);
+        $this->assertEquals(
+            $json,
+            $string
+        );
+        $this->assertInstanceOf(\stdClass::class, $json);
+        $this->assertInstanceOf(\stdClass::class, $string);
     }
 
     /**
@@ -132,6 +236,10 @@ class InputStreamContentTest extends TestCase
      * @covers ::__construct
      * @covers ::getContentType
      * @covers ::setContentType
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyContentType(): void
     {
@@ -142,7 +250,23 @@ class InputStreamContentTest extends TestCase
         );
         $this->sot->setContentType($v);
         $this->assertEquals($v, $this->sot->getContentType());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setContentType(null);
+        $this->assertNull($this->sot->getContentType());
+        $this->sot->setContentType($v);
+
+        $this->assertEquals($v, $this->sot['content_type']);
+        $v = $this->getFakeValue(
+            $this->types['content_type'],
+            $this->allowedValues['content_type'] ?? null
+        );
+        $this->sot['content_type'] = $v;
+        $this->assertEquals($v, $this->sot['content_type']);
+        $this->assertTrue(isset($this->sot['content_type']));
+        unset($this->sot['content_type']);
+        $this->assertFalse(isset($this->sot['content_type']));
+        $this->sot['content_type'] = $v;
+        $this->assertEquals($v, $this->sot['content_type']);
+        $this->assertTrue(isset($this->sot['content_type']));
     }
 
     /**
@@ -151,6 +275,10 @@ class InputStreamContentTest extends TestCase
      * @covers ::__construct
      * @covers ::getInputStream
      * @covers ::setInputStream
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyInputStream(): void
     {
@@ -161,6 +289,22 @@ class InputStreamContentTest extends TestCase
         );
         $this->sot->setInputStream($v);
         $this->assertEquals($v, $this->sot->getInputStream());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setInputStream(null);
+        $this->assertNull($this->sot->getInputStream());
+        $this->sot->setInputStream($v);
+
+        $this->assertEquals($v, $this->sot['input_stream']);
+        $v = $this->getFakeValue(
+            $this->types['input_stream'],
+            $this->allowedValues['input_stream'] ?? null
+        );
+        $this->sot['input_stream'] = $v;
+        $this->assertEquals($v, $this->sot['input_stream']);
+        $this->assertTrue(isset($this->sot['input_stream']));
+        unset($this->sot['input_stream']);
+        $this->assertFalse(isset($this->sot['input_stream']));
+        $this->sot['input_stream'] = $v;
+        $this->assertEquals($v, $this->sot['input_stream']);
+        $this->assertTrue(isset($this->sot['input_stream']));
     }
 }

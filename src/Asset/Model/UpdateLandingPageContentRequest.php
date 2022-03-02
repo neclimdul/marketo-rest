@@ -118,22 +118,6 @@ class UpdateLandingPageContentRequest implements ModelInterface, ArrayAccess, \J
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -244,6 +228,22 @@ class UpdateLandingPageContentRequest implements ModelInterface, ArrayAccess, \J
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -283,11 +283,11 @@ class UpdateLandingPageContentRequest implements ModelInterface, ArrayAccess, \J
         $invalidProperties = [];
 
         if ($this->container['type'] === null) {
-            $invalidProperties[] = "'type' can't be null";
+            $invalidProperties['type'] = "'type' can't be null";
         }
         $allowedValues = $this->getTypeAllowableValues();
         if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
+            $invalidProperties['type'] = sprintf(
                 "invalid value '%s' for 'type', must be one of '%s'",
                 $this->container['type'],
                 implode("', '", $allowedValues)
@@ -325,9 +325,9 @@ class UpdateLandingPageContentRequest implements ModelInterface, ArrayAccess, \J
     /**
      * Gets background_color
      *
-     * @return string
+     * @return string|null
      */
-    public function getBackgroundColor(): string
+    public function getBackgroundColor(): ?string
     {
         return $this->container['background_color'];
     }
@@ -349,9 +349,9 @@ class UpdateLandingPageContentRequest implements ModelInterface, ArrayAccess, \J
     /**
      * Gets border_color
      *
-     * @return string
+     * @return string|null
      */
-    public function getBorderColor(): string
+    public function getBorderColor(): ?string
     {
         return $this->container['border_color'];
     }
@@ -373,9 +373,9 @@ class UpdateLandingPageContentRequest implements ModelInterface, ArrayAccess, \J
     /**
      * Gets border_style
      *
-     * @return string
+     * @return string|null
      */
-    public function getBorderStyle(): string
+    public function getBorderStyle(): ?string
     {
         return $this->container['border_style'];
     }
@@ -397,9 +397,9 @@ class UpdateLandingPageContentRequest implements ModelInterface, ArrayAccess, \J
     /**
      * Gets border_width
      *
-     * @return string
+     * @return string|null
      */
-    public function getBorderWidth(): string
+    public function getBorderWidth(): ?string
     {
         return $this->container['border_width'];
     }
@@ -421,9 +421,9 @@ class UpdateLandingPageContentRequest implements ModelInterface, ArrayAccess, \J
     /**
      * Gets height
      *
-     * @return string
+     * @return string|null
      */
-    public function getHeight(): string
+    public function getHeight(): ?string
     {
         return $this->container['height'];
     }
@@ -445,9 +445,9 @@ class UpdateLandingPageContentRequest implements ModelInterface, ArrayAccess, \J
     /**
      * Gets hide_desktop
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getHideDesktop(): bool
+    public function getHideDesktop(): ?bool
     {
         return $this->container['hide_desktop'];
     }
@@ -469,9 +469,9 @@ class UpdateLandingPageContentRequest implements ModelInterface, ArrayAccess, \J
     /**
      * Gets hide_mobile
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getHideMobile(): bool
+    public function getHideMobile(): ?bool
     {
         return $this->container['hide_mobile'];
     }
@@ -493,9 +493,9 @@ class UpdateLandingPageContentRequest implements ModelInterface, ArrayAccess, \J
     /**
      * Gets image_open_new_window
      *
-     * @return string
+     * @return string|null
      */
-    public function getImageOpenNewWindow(): string
+    public function getImageOpenNewWindow(): ?string
     {
         return $this->container['image_open_new_window'];
     }
@@ -517,9 +517,9 @@ class UpdateLandingPageContentRequest implements ModelInterface, ArrayAccess, \J
     /**
      * Gets index
      *
-     * @return int
+     * @return int|null
      */
-    public function getIndex(): int
+    public function getIndex(): ?int
     {
         return $this->container['index'];
     }
@@ -541,9 +541,9 @@ class UpdateLandingPageContentRequest implements ModelInterface, ArrayAccess, \J
     /**
      * Gets left
      *
-     * @return string
+     * @return string|null
      */
-    public function getLeft(): string
+    public function getLeft(): ?string
     {
         return $this->container['left'];
     }
@@ -565,9 +565,9 @@ class UpdateLandingPageContentRequest implements ModelInterface, ArrayAccess, \J
     /**
      * Gets link_url
      *
-     * @return string
+     * @return string|null
      */
-    public function getLinkUrl(): string
+    public function getLinkUrl(): ?string
     {
         return $this->container['link_url'];
     }
@@ -589,9 +589,9 @@ class UpdateLandingPageContentRequest implements ModelInterface, ArrayAccess, \J
     /**
      * Gets opacity
      *
-     * @return string
+     * @return string|null
      */
-    public function getOpacity(): string
+    public function getOpacity(): ?string
     {
         return $this->container['opacity'];
     }
@@ -613,9 +613,9 @@ class UpdateLandingPageContentRequest implements ModelInterface, ArrayAccess, \J
     /**
      * Gets top
      *
-     * @return string
+     * @return string|null
      */
-    public function getTop(): string
+    public function getTop(): ?string
     {
         return $this->container['top'];
     }
@@ -671,9 +671,9 @@ class UpdateLandingPageContentRequest implements ModelInterface, ArrayAccess, \J
     /**
      * Gets value
      *
-     * @return string
+     * @return string|null
      */
-    public function getValue(): string
+    public function getValue(): ?string
     {
         return $this->container['value'];
     }
@@ -695,9 +695,9 @@ class UpdateLandingPageContentRequest implements ModelInterface, ArrayAccess, \J
     /**
      * Gets width
      *
-     * @return string
+     * @return string|null
      */
-    public function getWidth(): string
+    public function getWidth(): ?string
     {
         return $this->container['width'];
     }
@@ -719,9 +719,9 @@ class UpdateLandingPageContentRequest implements ModelInterface, ArrayAccess, \J
     /**
      * Gets z_index
      *
-     * @return string
+     * @return string|null
      */
-    public function getZIndex(): string
+    public function getZIndex(): ?string
     {
         return $this->container['z_index'];
     }

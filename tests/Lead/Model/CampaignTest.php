@@ -37,7 +37,7 @@ use PHPUnit\Framework\TestCase;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  *
- * @coversDefault \NecLimDul\MarketoRest\Lead\Model\Campaign
+ * @coversDefaultClass \NecLimDul\MarketoRest\Lead\Model\Campaign
  */
 class CampaignTest extends TestCase
 {
@@ -46,11 +46,6 @@ class CampaignTest extends TestCase
      * @var \NecLimDul\MarketoRest\Lead\Model\Campaign
      */
     private $sot;
-
-    /**
-     * @var \Faker\Generator
-     */
-    private $faker;
 
     /**
      * @var string[]
@@ -66,7 +61,13 @@ class CampaignTest extends TestCase
         'type' => 'string',
         'updated_at' => 'string',
         'workspace_name' => 'string',
-    ];
+];
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
     /**
      * @var scalar[][]
      */
@@ -123,7 +124,14 @@ class CampaignTest extends TestCase
                 return new \stdClass();
         }
         if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
-            return new $type();
+            $model = new $type();
+            $types = $type::swaggerTypes();
+            foreach ($model->listInvalidProperties() as $field => $reason) {
+                // @todo get allowed values? ((getter))AllowedValues
+                // @phpstan-ignore-next-line
+                $model[$field] = $this->getFakeValue($types[$field], null);
+            }
+            return $model;
         }
         $this->markTestSkipped('This type is not mocked yet: ' . $type);
     }
@@ -135,7 +143,119 @@ class CampaignTest extends TestCase
      */
     public function testCampaign(): void
     {
-        $this->assertInstanceOf(\NecLimDul\MarketoRest\Lead\Model\Campaign::class, $this->sot);
+        $this->assertInstanceOf(Campaign::class, $this->sot);
+    }
+
+    /**
+     * @covers ::swaggerTypes
+     */
+    public function testSwaggerTypes(): void
+    {
+        $this->assertEquals($this->types, Campaign::swaggerTypes());
+    }
+
+    /**
+     * @covers ::swaggerFormats
+     */
+    public function testSwaggerFormats(): void
+    {
+        $formats = $this->sot->swaggerFormats();
+        $this->assertEquals(null, $formats['active']);
+        $this->assertEquals(null, $formats['created_at']);
+        $this->assertEquals(null, $formats['description']);
+        $this->assertEquals('int32', $formats['id']);
+        $this->assertEquals(null, $formats['name']);
+        $this->assertEquals('int32', $formats['program_id']);
+        $this->assertEquals(null, $formats['program_name']);
+        $this->assertEquals(null, $formats['type']);
+        $this->assertEquals(null, $formats['updated_at']);
+        $this->assertEquals(null, $formats['workspace_name']);
+    }
+
+    /**
+     * @covers ::attributeMap
+     */
+    public function testAttributeMap(): void
+    {
+        $formats = $this->sot->attributeMap();
+        $this->assertEquals('active', $formats['active']);
+        $this->assertEquals('createdAt', $formats['created_at']);
+        $this->assertEquals('description', $formats['description']);
+        $this->assertEquals('id', $formats['id']);
+        $this->assertEquals('name', $formats['name']);
+        $this->assertEquals('programId', $formats['program_id']);
+        $this->assertEquals('programName', $formats['program_name']);
+        $this->assertEquals('type', $formats['type']);
+        $this->assertEquals('updatedAt', $formats['updated_at']);
+        $this->assertEquals('workspaceName', $formats['workspace_name']);
+    }
+
+    /**
+     * @covers ::getters
+     * @covers ::setters
+     */
+    public function testGettersSetters(): void
+    {
+        $getters = $this->sot->getters();
+        $setters = $this->sot->setters();
+        foreach (array_keys($this->types) as $field) {
+            $this->assertTrue(isset($setters[$field]));
+            $this->assertTrue(isset($getters[$field]));
+            $this->assertTrue(
+                method_exists($this->sot, $getters[$field]),
+                'Getter exists on model.'
+            );
+            $this->assertTrue(
+                method_exists($this->sot, $setters[$field]),
+                'Setter exists on model.'
+            );
+        }
+    }
+
+    /**
+     * @covers ::getModelName
+     */
+    public function testGetModelName(): void
+    {
+        $this->assertEquals('Campaign', $this->sot->getModelName());
+    }
+
+    /**
+     * @covers ::listInvalidProperties
+     * @covers ::valid
+     */
+    public function testValid(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::setAdditionalProperties
+     * @covers ::setAdditionalProperty
+     * @covers ::getAdditionalProperties
+     */
+    public function testAdditionalProperties(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::jsonSerialize
+     * @covers ::__toString
+     */
+    public function testJson(): void
+    {
+        // Some minimal tests that json generates well.
+        $json = json_encode($this->sot);
+        $this->assertIsString($json, 'Json encoded');
+        $json = json_decode($json);
+        $string = json_decode((string) $this->sot);
+        $this->assertEquals(
+            $json,
+            $string
+        );
+        $this->assertInstanceOf(\stdClass::class, $json);
+        $this->assertInstanceOf(\stdClass::class, $string);
     }
 
     /**
@@ -144,6 +264,10 @@ class CampaignTest extends TestCase
      * @covers ::__construct
      * @covers ::getActive
      * @covers ::setActive
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyActive(): void
     {
@@ -154,7 +278,23 @@ class CampaignTest extends TestCase
         );
         $this->sot->setActive($v);
         $this->assertEquals($v, $this->sot->getActive());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setActive(null);
+        $this->assertNull($this->sot->getActive());
+        $this->sot->setActive($v);
+
+        $this->assertEquals($v, $this->sot['active']);
+        $v = $this->getFakeValue(
+            $this->types['active'],
+            $this->allowedValues['active'] ?? null
+        );
+        $this->sot['active'] = $v;
+        $this->assertEquals($v, $this->sot['active']);
+        $this->assertTrue(isset($this->sot['active']));
+        unset($this->sot['active']);
+        $this->assertFalse(isset($this->sot['active']));
+        $this->sot['active'] = $v;
+        $this->assertEquals($v, $this->sot['active']);
+        $this->assertTrue(isset($this->sot['active']));
     }
 
     /**
@@ -163,6 +303,10 @@ class CampaignTest extends TestCase
      * @covers ::__construct
      * @covers ::getCreatedAt
      * @covers ::setCreatedAt
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyCreatedAt(): void
     {
@@ -173,7 +317,20 @@ class CampaignTest extends TestCase
         );
         $this->sot->setCreatedAt($v);
         $this->assertEquals($v, $this->sot->getCreatedAt());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['created_at']);
+        $v = $this->getFakeValue(
+            $this->types['created_at'],
+            $this->allowedValues['created_at'] ?? null
+        );
+        $this->sot['created_at'] = $v;
+        $this->assertEquals($v, $this->sot['created_at']);
+        $this->assertTrue(isset($this->sot['created_at']));
+        unset($this->sot['created_at']);
+        $this->assertFalse(isset($this->sot['created_at']));
+        $this->sot['created_at'] = $v;
+        $this->assertEquals($v, $this->sot['created_at']);
+        $this->assertTrue(isset($this->sot['created_at']));
     }
 
     /**
@@ -182,6 +339,10 @@ class CampaignTest extends TestCase
      * @covers ::__construct
      * @covers ::getDescription
      * @covers ::setDescription
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyDescription(): void
     {
@@ -192,7 +353,23 @@ class CampaignTest extends TestCase
         );
         $this->sot->setDescription($v);
         $this->assertEquals($v, $this->sot->getDescription());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setDescription(null);
+        $this->assertNull($this->sot->getDescription());
+        $this->sot->setDescription($v);
+
+        $this->assertEquals($v, $this->sot['description']);
+        $v = $this->getFakeValue(
+            $this->types['description'],
+            $this->allowedValues['description'] ?? null
+        );
+        $this->sot['description'] = $v;
+        $this->assertEquals($v, $this->sot['description']);
+        $this->assertTrue(isset($this->sot['description']));
+        unset($this->sot['description']);
+        $this->assertFalse(isset($this->sot['description']));
+        $this->sot['description'] = $v;
+        $this->assertEquals($v, $this->sot['description']);
+        $this->assertTrue(isset($this->sot['description']));
     }
 
     /**
@@ -201,6 +378,10 @@ class CampaignTest extends TestCase
      * @covers ::__construct
      * @covers ::getId
      * @covers ::setId
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyId(): void
     {
@@ -211,7 +392,20 @@ class CampaignTest extends TestCase
         );
         $this->sot->setId($v);
         $this->assertEquals($v, $this->sot->getId());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['id']);
+        $v = $this->getFakeValue(
+            $this->types['id'],
+            $this->allowedValues['id'] ?? null
+        );
+        $this->sot['id'] = $v;
+        $this->assertEquals($v, $this->sot['id']);
+        $this->assertTrue(isset($this->sot['id']));
+        unset($this->sot['id']);
+        $this->assertFalse(isset($this->sot['id']));
+        $this->sot['id'] = $v;
+        $this->assertEquals($v, $this->sot['id']);
+        $this->assertTrue(isset($this->sot['id']));
     }
 
     /**
@@ -220,6 +414,10 @@ class CampaignTest extends TestCase
      * @covers ::__construct
      * @covers ::getName
      * @covers ::setName
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyName(): void
     {
@@ -230,7 +428,20 @@ class CampaignTest extends TestCase
         );
         $this->sot->setName($v);
         $this->assertEquals($v, $this->sot->getName());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['name']);
+        $v = $this->getFakeValue(
+            $this->types['name'],
+            $this->allowedValues['name'] ?? null
+        );
+        $this->sot['name'] = $v;
+        $this->assertEquals($v, $this->sot['name']);
+        $this->assertTrue(isset($this->sot['name']));
+        unset($this->sot['name']);
+        $this->assertFalse(isset($this->sot['name']));
+        $this->sot['name'] = $v;
+        $this->assertEquals($v, $this->sot['name']);
+        $this->assertTrue(isset($this->sot['name']));
     }
 
     /**
@@ -239,6 +450,10 @@ class CampaignTest extends TestCase
      * @covers ::__construct
      * @covers ::getProgramId
      * @covers ::setProgramId
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyProgramId(): void
     {
@@ -249,7 +464,23 @@ class CampaignTest extends TestCase
         );
         $this->sot->setProgramId($v);
         $this->assertEquals($v, $this->sot->getProgramId());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setProgramId(null);
+        $this->assertNull($this->sot->getProgramId());
+        $this->sot->setProgramId($v);
+
+        $this->assertEquals($v, $this->sot['program_id']);
+        $v = $this->getFakeValue(
+            $this->types['program_id'],
+            $this->allowedValues['program_id'] ?? null
+        );
+        $this->sot['program_id'] = $v;
+        $this->assertEquals($v, $this->sot['program_id']);
+        $this->assertTrue(isset($this->sot['program_id']));
+        unset($this->sot['program_id']);
+        $this->assertFalse(isset($this->sot['program_id']));
+        $this->sot['program_id'] = $v;
+        $this->assertEquals($v, $this->sot['program_id']);
+        $this->assertTrue(isset($this->sot['program_id']));
     }
 
     /**
@@ -258,6 +489,10 @@ class CampaignTest extends TestCase
      * @covers ::__construct
      * @covers ::getProgramName
      * @covers ::setProgramName
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyProgramName(): void
     {
@@ -268,7 +503,23 @@ class CampaignTest extends TestCase
         );
         $this->sot->setProgramName($v);
         $this->assertEquals($v, $this->sot->getProgramName());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setProgramName(null);
+        $this->assertNull($this->sot->getProgramName());
+        $this->sot->setProgramName($v);
+
+        $this->assertEquals($v, $this->sot['program_name']);
+        $v = $this->getFakeValue(
+            $this->types['program_name'],
+            $this->allowedValues['program_name'] ?? null
+        );
+        $this->sot['program_name'] = $v;
+        $this->assertEquals($v, $this->sot['program_name']);
+        $this->assertTrue(isset($this->sot['program_name']));
+        unset($this->sot['program_name']);
+        $this->assertFalse(isset($this->sot['program_name']));
+        $this->sot['program_name'] = $v;
+        $this->assertEquals($v, $this->sot['program_name']);
+        $this->assertTrue(isset($this->sot['program_name']));
     }
 
     /**
@@ -277,6 +528,10 @@ class CampaignTest extends TestCase
      * @covers ::__construct
      * @covers ::getType
      * @covers ::setType
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyType(): void
     {
@@ -287,7 +542,20 @@ class CampaignTest extends TestCase
         );
         $this->sot->setType($v);
         $this->assertEquals($v, $this->sot->getType());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['type']);
+        $v = $this->getFakeValue(
+            $this->types['type'],
+            $this->allowedValues['type'] ?? null
+        );
+        $this->sot['type'] = $v;
+        $this->assertEquals($v, $this->sot['type']);
+        $this->assertTrue(isset($this->sot['type']));
+        unset($this->sot['type']);
+        $this->assertFalse(isset($this->sot['type']));
+        $this->sot['type'] = $v;
+        $this->assertEquals($v, $this->sot['type']);
+        $this->assertTrue(isset($this->sot['type']));
     }
 
     /**
@@ -296,6 +564,10 @@ class CampaignTest extends TestCase
      * @covers ::__construct
      * @covers ::getUpdatedAt
      * @covers ::setUpdatedAt
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyUpdatedAt(): void
     {
@@ -306,7 +578,20 @@ class CampaignTest extends TestCase
         );
         $this->sot->setUpdatedAt($v);
         $this->assertEquals($v, $this->sot->getUpdatedAt());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['updated_at']);
+        $v = $this->getFakeValue(
+            $this->types['updated_at'],
+            $this->allowedValues['updated_at'] ?? null
+        );
+        $this->sot['updated_at'] = $v;
+        $this->assertEquals($v, $this->sot['updated_at']);
+        $this->assertTrue(isset($this->sot['updated_at']));
+        unset($this->sot['updated_at']);
+        $this->assertFalse(isset($this->sot['updated_at']));
+        $this->sot['updated_at'] = $v;
+        $this->assertEquals($v, $this->sot['updated_at']);
+        $this->assertTrue(isset($this->sot['updated_at']));
     }
 
     /**
@@ -315,6 +600,10 @@ class CampaignTest extends TestCase
      * @covers ::__construct
      * @covers ::getWorkspaceName
      * @covers ::setWorkspaceName
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyWorkspaceName(): void
     {
@@ -325,6 +614,22 @@ class CampaignTest extends TestCase
         );
         $this->sot->setWorkspaceName($v);
         $this->assertEquals($v, $this->sot->getWorkspaceName());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setWorkspaceName(null);
+        $this->assertNull($this->sot->getWorkspaceName());
+        $this->sot->setWorkspaceName($v);
+
+        $this->assertEquals($v, $this->sot['workspace_name']);
+        $v = $this->getFakeValue(
+            $this->types['workspace_name'],
+            $this->allowedValues['workspace_name'] ?? null
+        );
+        $this->sot['workspace_name'] = $v;
+        $this->assertEquals($v, $this->sot['workspace_name']);
+        $this->assertTrue(isset($this->sot['workspace_name']));
+        unset($this->sot['workspace_name']);
+        $this->assertFalse(isset($this->sot['workspace_name']));
+        $this->sot['workspace_name'] = $v;
+        $this->assertEquals($v, $this->sot['workspace_name']);
+        $this->assertTrue(isset($this->sot['workspace_name']));
     }
 }

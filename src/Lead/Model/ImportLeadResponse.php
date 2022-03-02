@@ -92,22 +92,6 @@ class ImportLeadResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -178,6 +162,22 @@ class ImportLeadResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -217,13 +217,13 @@ class ImportLeadResponse implements ModelInterface, ArrayAccess, \JsonSerializab
         $invalidProperties = [];
 
         if ($this->container['batch_id'] === null) {
-            $invalidProperties[] = "'batch_id' can't be null";
+            $invalidProperties['batch_id'] = "'batch_id' can't be null";
         }
         if ($this->container['num_of_leads_processed'] === null) {
-            $invalidProperties[] = "'num_of_leads_processed' can't be null";
+            $invalidProperties['num_of_leads_processed'] = "'num_of_leads_processed' can't be null";
         }
         if ($this->container['status'] === null) {
-            $invalidProperties[] = "'status' can't be null";
+            $invalidProperties['status'] = "'status' can't be null";
         }
         return $invalidProperties;
     }
@@ -263,9 +263,9 @@ class ImportLeadResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets import_id
      *
-     * @return string
+     * @return string|null
      */
-    public function getImportId(): string
+    public function getImportId(): ?string
     {
         return $this->container['import_id'];
     }
@@ -287,9 +287,9 @@ class ImportLeadResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets message
      *
-     * @return string
+     * @return string|null
      */
-    public function getMessage(): string
+    public function getMessage(): ?string
     {
         return $this->container['message'];
     }
@@ -335,9 +335,9 @@ class ImportLeadResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets num_of_rows_failed
      *
-     * @return int
+     * @return int|null
      */
-    public function getNumOfRowsFailed(): int
+    public function getNumOfRowsFailed(): ?int
     {
         return $this->container['num_of_rows_failed'];
     }
@@ -359,9 +359,9 @@ class ImportLeadResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets num_of_rows_with_warning
      *
-     * @return int
+     * @return int|null
      */
-    public function getNumOfRowsWithWarning(): int
+    public function getNumOfRowsWithWarning(): ?int
     {
         return $this->container['num_of_rows_with_warning'];
     }

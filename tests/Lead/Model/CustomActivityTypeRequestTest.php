@@ -37,7 +37,7 @@ use PHPUnit\Framework\TestCase;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  *
- * @coversDefault \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeRequest
+ * @coversDefaultClass \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeRequest
  */
 class CustomActivityTypeRequestTest extends TestCase
 {
@@ -46,11 +46,6 @@ class CustomActivityTypeRequestTest extends TestCase
      * @var \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeRequest
      */
     private $sot;
-
-    /**
-     * @var \Faker\Generator
-     */
-    private $faker;
 
     /**
      * @var string[]
@@ -62,7 +57,13 @@ class CustomActivityTypeRequestTest extends TestCase
         'name' => 'string',
         'primary_attribute' => '\NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttribute',
         'trigger_name' => 'string',
-    ];
+];
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
     /**
      * @var scalar[][]
      */
@@ -115,7 +116,14 @@ class CustomActivityTypeRequestTest extends TestCase
                 return new \stdClass();
         }
         if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
-            return new $type();
+            $model = new $type();
+            $types = $type::swaggerTypes();
+            foreach ($model->listInvalidProperties() as $field => $reason) {
+                // @todo get allowed values? ((getter))AllowedValues
+                // @phpstan-ignore-next-line
+                $model[$field] = $this->getFakeValue($types[$field], null);
+            }
+            return $model;
         }
         $this->markTestSkipped('This type is not mocked yet: ' . $type);
     }
@@ -127,7 +135,111 @@ class CustomActivityTypeRequestTest extends TestCase
      */
     public function testCustomActivityTypeRequest(): void
     {
-        $this->assertInstanceOf(\NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeRequest::class, $this->sot);
+        $this->assertInstanceOf(CustomActivityTypeRequest::class, $this->sot);
+    }
+
+    /**
+     * @covers ::swaggerTypes
+     */
+    public function testSwaggerTypes(): void
+    {
+        $this->assertEquals($this->types, CustomActivityTypeRequest::swaggerTypes());
+    }
+
+    /**
+     * @covers ::swaggerFormats
+     */
+    public function testSwaggerFormats(): void
+    {
+        $formats = $this->sot->swaggerFormats();
+        $this->assertEquals(null, $formats['api_name']);
+        $this->assertEquals(null, $formats['description']);
+        $this->assertEquals(null, $formats['filter_name']);
+        $this->assertEquals(null, $formats['name']);
+        $this->assertEquals(null, $formats['primary_attribute']);
+        $this->assertEquals(null, $formats['trigger_name']);
+    }
+
+    /**
+     * @covers ::attributeMap
+     */
+    public function testAttributeMap(): void
+    {
+        $formats = $this->sot->attributeMap();
+        $this->assertEquals('apiName', $formats['api_name']);
+        $this->assertEquals('description', $formats['description']);
+        $this->assertEquals('filterName', $formats['filter_name']);
+        $this->assertEquals('name', $formats['name']);
+        $this->assertEquals('primaryAttribute', $formats['primary_attribute']);
+        $this->assertEquals('triggerName', $formats['trigger_name']);
+    }
+
+    /**
+     * @covers ::getters
+     * @covers ::setters
+     */
+    public function testGettersSetters(): void
+    {
+        $getters = $this->sot->getters();
+        $setters = $this->sot->setters();
+        foreach (array_keys($this->types) as $field) {
+            $this->assertTrue(isset($setters[$field]));
+            $this->assertTrue(isset($getters[$field]));
+            $this->assertTrue(
+                method_exists($this->sot, $getters[$field]),
+                'Getter exists on model.'
+            );
+            $this->assertTrue(
+                method_exists($this->sot, $setters[$field]),
+                'Setter exists on model.'
+            );
+        }
+    }
+
+    /**
+     * @covers ::getModelName
+     */
+    public function testGetModelName(): void
+    {
+        $this->assertEquals('CustomActivityTypeRequest', $this->sot->getModelName());
+    }
+
+    /**
+     * @covers ::listInvalidProperties
+     * @covers ::valid
+     */
+    public function testValid(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::setAdditionalProperties
+     * @covers ::setAdditionalProperty
+     * @covers ::getAdditionalProperties
+     */
+    public function testAdditionalProperties(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::jsonSerialize
+     * @covers ::__toString
+     */
+    public function testJson(): void
+    {
+        // Some minimal tests that json generates well.
+        $json = json_encode($this->sot);
+        $this->assertIsString($json, 'Json encoded');
+        $json = json_decode($json);
+        $string = json_decode((string) $this->sot);
+        $this->assertEquals(
+            $json,
+            $string
+        );
+        $this->assertInstanceOf(\stdClass::class, $json);
+        $this->assertInstanceOf(\stdClass::class, $string);
     }
 
     /**
@@ -136,6 +248,10 @@ class CustomActivityTypeRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getApiName
      * @covers ::setApiName
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyApiName(): void
     {
@@ -146,7 +262,20 @@ class CustomActivityTypeRequestTest extends TestCase
         );
         $this->sot->setApiName($v);
         $this->assertEquals($v, $this->sot->getApiName());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['api_name']);
+        $v = $this->getFakeValue(
+            $this->types['api_name'],
+            $this->allowedValues['api_name'] ?? null
+        );
+        $this->sot['api_name'] = $v;
+        $this->assertEquals($v, $this->sot['api_name']);
+        $this->assertTrue(isset($this->sot['api_name']));
+        unset($this->sot['api_name']);
+        $this->assertFalse(isset($this->sot['api_name']));
+        $this->sot['api_name'] = $v;
+        $this->assertEquals($v, $this->sot['api_name']);
+        $this->assertTrue(isset($this->sot['api_name']));
     }
 
     /**
@@ -155,6 +284,10 @@ class CustomActivityTypeRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getDescription
      * @covers ::setDescription
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyDescription(): void
     {
@@ -165,7 +298,23 @@ class CustomActivityTypeRequestTest extends TestCase
         );
         $this->sot->setDescription($v);
         $this->assertEquals($v, $this->sot->getDescription());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setDescription(null);
+        $this->assertNull($this->sot->getDescription());
+        $this->sot->setDescription($v);
+
+        $this->assertEquals($v, $this->sot['description']);
+        $v = $this->getFakeValue(
+            $this->types['description'],
+            $this->allowedValues['description'] ?? null
+        );
+        $this->sot['description'] = $v;
+        $this->assertEquals($v, $this->sot['description']);
+        $this->assertTrue(isset($this->sot['description']));
+        unset($this->sot['description']);
+        $this->assertFalse(isset($this->sot['description']));
+        $this->sot['description'] = $v;
+        $this->assertEquals($v, $this->sot['description']);
+        $this->assertTrue(isset($this->sot['description']));
     }
 
     /**
@@ -174,6 +323,10 @@ class CustomActivityTypeRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getFilterName
      * @covers ::setFilterName
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyFilterName(): void
     {
@@ -184,7 +337,20 @@ class CustomActivityTypeRequestTest extends TestCase
         );
         $this->sot->setFilterName($v);
         $this->assertEquals($v, $this->sot->getFilterName());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['filter_name']);
+        $v = $this->getFakeValue(
+            $this->types['filter_name'],
+            $this->allowedValues['filter_name'] ?? null
+        );
+        $this->sot['filter_name'] = $v;
+        $this->assertEquals($v, $this->sot['filter_name']);
+        $this->assertTrue(isset($this->sot['filter_name']));
+        unset($this->sot['filter_name']);
+        $this->assertFalse(isset($this->sot['filter_name']));
+        $this->sot['filter_name'] = $v;
+        $this->assertEquals($v, $this->sot['filter_name']);
+        $this->assertTrue(isset($this->sot['filter_name']));
     }
 
     /**
@@ -193,6 +359,10 @@ class CustomActivityTypeRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getName
      * @covers ::setName
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyName(): void
     {
@@ -203,7 +373,20 @@ class CustomActivityTypeRequestTest extends TestCase
         );
         $this->sot->setName($v);
         $this->assertEquals($v, $this->sot->getName());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['name']);
+        $v = $this->getFakeValue(
+            $this->types['name'],
+            $this->allowedValues['name'] ?? null
+        );
+        $this->sot['name'] = $v;
+        $this->assertEquals($v, $this->sot['name']);
+        $this->assertTrue(isset($this->sot['name']));
+        unset($this->sot['name']);
+        $this->assertFalse(isset($this->sot['name']));
+        $this->sot['name'] = $v;
+        $this->assertEquals($v, $this->sot['name']);
+        $this->assertTrue(isset($this->sot['name']));
     }
 
     /**
@@ -212,6 +395,10 @@ class CustomActivityTypeRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getPrimaryAttribute
      * @covers ::setPrimaryAttribute
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyPrimaryAttribute(): void
     {
@@ -222,7 +409,20 @@ class CustomActivityTypeRequestTest extends TestCase
         );
         $this->sot->setPrimaryAttribute($v);
         $this->assertEquals($v, $this->sot->getPrimaryAttribute());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['primary_attribute']);
+        $v = $this->getFakeValue(
+            $this->types['primary_attribute'],
+            $this->allowedValues['primary_attribute'] ?? null
+        );
+        $this->sot['primary_attribute'] = $v;
+        $this->assertEquals($v, $this->sot['primary_attribute']);
+        $this->assertTrue(isset($this->sot['primary_attribute']));
+        unset($this->sot['primary_attribute']);
+        $this->assertFalse(isset($this->sot['primary_attribute']));
+        $this->sot['primary_attribute'] = $v;
+        $this->assertEquals($v, $this->sot['primary_attribute']);
+        $this->assertTrue(isset($this->sot['primary_attribute']));
     }
 
     /**
@@ -231,6 +431,10 @@ class CustomActivityTypeRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getTriggerName
      * @covers ::setTriggerName
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyTriggerName(): void
     {
@@ -241,6 +445,19 @@ class CustomActivityTypeRequestTest extends TestCase
         );
         $this->sot->setTriggerName($v);
         $this->assertEquals($v, $this->sot->getTriggerName());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['trigger_name']);
+        $v = $this->getFakeValue(
+            $this->types['trigger_name'],
+            $this->allowedValues['trigger_name'] ?? null
+        );
+        $this->sot['trigger_name'] = $v;
+        $this->assertEquals($v, $this->sot['trigger_name']);
+        $this->assertTrue(isset($this->sot['trigger_name']));
+        unset($this->sot['trigger_name']);
+        $this->assertFalse(isset($this->sot['trigger_name']));
+        $this->sot['trigger_name'] = $v;
+        $this->assertEquals($v, $this->sot['trigger_name']);
+        $this->assertTrue(isset($this->sot['trigger_name']));
     }
 }

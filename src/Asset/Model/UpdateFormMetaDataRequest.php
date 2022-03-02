@@ -99,22 +99,6 @@ class UpdateFormMetaDataRequest implements ModelInterface, ArrayAccess, \JsonSer
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -201,6 +185,22 @@ class UpdateFormMetaDataRequest implements ModelInterface, ArrayAccess, \JsonSer
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -253,9 +253,9 @@ class UpdateFormMetaDataRequest implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Gets custom_css
      *
-     * @return string
+     * @return string|null
      */
-    public function getCustomCss(): string
+    public function getCustomCss(): ?string
     {
         return $this->container['custom_css'];
     }
@@ -277,9 +277,9 @@ class UpdateFormMetaDataRequest implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->container['description'];
     }
@@ -301,9 +301,9 @@ class UpdateFormMetaDataRequest implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Gets font_family
      *
-     * @return string
+     * @return string|null
      */
-    public function getFontFamily(): string
+    public function getFontFamily(): ?string
     {
         return $this->container['font_family'];
     }
@@ -325,9 +325,9 @@ class UpdateFormMetaDataRequest implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Gets font_size
      *
-     * @return string
+     * @return string|null
      */
-    public function getFontSize(): string
+    public function getFontSize(): ?string
     {
         return $this->container['font_size'];
     }
@@ -349,9 +349,9 @@ class UpdateFormMetaDataRequest implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Gets known_visitor
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\FormKnownVisitorDTO
+     * @return \NecLimDul\MarketoRest\Asset\Model\FormKnownVisitorDTO|null
      */
-    public function getKnownVisitor(): \NecLimDul\MarketoRest\Asset\Model\FormKnownVisitorDTO
+    public function getKnownVisitor(): ?\NecLimDul\MarketoRest\Asset\Model\FormKnownVisitorDTO
     {
         return $this->container['known_visitor'];
     }
@@ -373,9 +373,9 @@ class UpdateFormMetaDataRequest implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Gets label_position
      *
-     * @return string
+     * @return string|null
      */
-    public function getLabelPosition(): string
+    public function getLabelPosition(): ?string
     {
         return $this->container['label_position'];
     }
@@ -397,9 +397,9 @@ class UpdateFormMetaDataRequest implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Gets language
      *
-     * @return string
+     * @return string|null
      */
-    public function getLanguage(): string
+    public function getLanguage(): ?string
     {
         return $this->container['language'];
     }
@@ -421,9 +421,9 @@ class UpdateFormMetaDataRequest implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Gets locale
      *
-     * @return string
+     * @return string|null
      */
-    public function getLocale(): string
+    public function getLocale(): ?string
     {
         return $this->container['locale'];
     }
@@ -445,9 +445,9 @@ class UpdateFormMetaDataRequest implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Gets name
      *
-     * @return string
+     * @return string|null
      */
-    public function getName(): string
+    public function getName(): ?string
     {
         return $this->container['name'];
     }
@@ -469,9 +469,9 @@ class UpdateFormMetaDataRequest implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Gets progressive_profiling
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getProgressiveProfiling(): bool
+    public function getProgressiveProfiling(): ?bool
     {
         return $this->container['progressive_profiling'];
     }
@@ -493,9 +493,9 @@ class UpdateFormMetaDataRequest implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Gets theme
      *
-     * @return string
+     * @return string|null
      */
-    public function getTheme(): string
+    public function getTheme(): ?string
     {
         return $this->container['theme'];
     }

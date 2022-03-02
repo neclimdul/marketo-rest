@@ -119,22 +119,6 @@ class FolderResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -233,6 +217,22 @@ class FolderResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -272,17 +272,17 @@ class FolderResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         $invalidProperties = [];
 
         if ($this->container['created_at'] === null) {
-            $invalidProperties[] = "'created_at' can't be null";
+            $invalidProperties['created_at'] = "'created_at' can't be null";
         }
         if ($this->container['folder_id'] === null) {
-            $invalidProperties[] = "'folder_id' can't be null";
+            $invalidProperties['folder_id'] = "'folder_id' can't be null";
         }
         if ($this->container['folder_type'] === null) {
-            $invalidProperties[] = "'folder_type' can't be null";
+            $invalidProperties['folder_type'] = "'folder_type' can't be null";
         }
         $allowedValues = $this->getFolderTypeAllowableValues();
         if (!is_null($this->container['folder_type']) && !in_array($this->container['folder_type'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
+            $invalidProperties['folder_type'] = sprintf(
                 "invalid value '%s' for 'folder_type', must be one of '%s'",
                 $this->container['folder_type'],
                 implode("', '", $allowedValues)
@@ -290,25 +290,25 @@ class FolderResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         if ($this->container['id'] === null) {
-            $invalidProperties[] = "'id' can't be null";
+            $invalidProperties['id'] = "'id' can't be null";
         }
         if ($this->container['is_archive'] === null) {
-            $invalidProperties[] = "'is_archive' can't be null";
+            $invalidProperties['is_archive'] = "'is_archive' can't be null";
         }
         if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
+            $invalidProperties['name'] = "'name' can't be null";
         }
         if ($this->container['parent'] === null) {
-            $invalidProperties[] = "'parent' can't be null";
+            $invalidProperties['parent'] = "'parent' can't be null";
         }
         if ($this->container['path'] === null) {
-            $invalidProperties[] = "'path' can't be null";
+            $invalidProperties['path'] = "'path' can't be null";
         }
         if ($this->container['updated_at'] === null) {
-            $invalidProperties[] = "'updated_at' can't be null";
+            $invalidProperties['updated_at'] = "'updated_at' can't be null";
         }
         if ($this->container['url'] === null) {
-            $invalidProperties[] = "'url' can't be null";
+            $invalidProperties['url'] = "'url' can't be null";
         }
         return $invalidProperties;
     }
@@ -348,9 +348,9 @@ class FolderResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets access_zone_id
      *
-     * @return int
+     * @return int|null
      */
-    public function getAccessZoneId(): int
+    public function getAccessZoneId(): ?int
     {
         return $this->container['access_zone_id'];
     }
@@ -396,9 +396,9 @@ class FolderResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->container['description'];
     }
@@ -526,9 +526,9 @@ class FolderResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets is_system
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getIsSystem(): bool
+    public function getIsSystem(): ?bool
     {
         return $this->container['is_system'];
     }
@@ -670,9 +670,9 @@ class FolderResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets workspace
      *
-     * @return string
+     * @return string|null
      */
-    public function getWorkspace(): string
+    public function getWorkspace(): ?string
     {
         return $this->container['workspace'];
     }

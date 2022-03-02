@@ -37,7 +37,7 @@ use PHPUnit\Framework\TestCase;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  *
- * @coversDefault \NecLimDul\MarketoRest\Lead\Model\ProgramMemberAttribute2
+ * @coversDefaultClass \NecLimDul\MarketoRest\Lead\Model\ProgramMemberAttribute2
  */
 class ProgramMemberAttribute2Test extends TestCase
 {
@@ -46,11 +46,6 @@ class ProgramMemberAttribute2Test extends TestCase
      * @var \NecLimDul\MarketoRest\Lead\Model\ProgramMemberAttribute2
      */
     private $sot;
-
-    /**
-     * @var \Faker\Generator
-     */
-    private $faker;
 
     /**
      * @var string[]
@@ -63,7 +58,13 @@ class ProgramMemberAttribute2Test extends TestCase
         'dedupe_fields' => 'string[]',
         'searchable_fields' => '\NecLimDul\MarketoRest\Lead\Model\LeadAttribute2SearchableFields[]',
         'fields' => '\NecLimDul\MarketoRest\Lead\Model\LeadAttribute2Fields2[]',
-    ];
+];
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
     /**
      * @var scalar[][]
      */
@@ -116,7 +117,14 @@ class ProgramMemberAttribute2Test extends TestCase
                 return new \stdClass();
         }
         if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
-            return new $type();
+            $model = new $type();
+            $types = $type::swaggerTypes();
+            foreach ($model->listInvalidProperties() as $field => $reason) {
+                // @todo get allowed values? ((getter))AllowedValues
+                // @phpstan-ignore-next-line
+                $model[$field] = $this->getFakeValue($types[$field], null);
+            }
+            return $model;
         }
         $this->markTestSkipped('This type is not mocked yet: ' . $type);
     }
@@ -128,7 +136,113 @@ class ProgramMemberAttribute2Test extends TestCase
      */
     public function testProgramMemberAttribute2(): void
     {
-        $this->assertInstanceOf(\NecLimDul\MarketoRest\Lead\Model\ProgramMemberAttribute2::class, $this->sot);
+        $this->assertInstanceOf(ProgramMemberAttribute2::class, $this->sot);
+    }
+
+    /**
+     * @covers ::swaggerTypes
+     */
+    public function testSwaggerTypes(): void
+    {
+        $this->assertEquals($this->types, ProgramMemberAttribute2::swaggerTypes());
+    }
+
+    /**
+     * @covers ::swaggerFormats
+     */
+    public function testSwaggerFormats(): void
+    {
+        $formats = $this->sot->swaggerFormats();
+        $this->assertEquals(null, $formats['name']);
+        $this->assertEquals(null, $formats['description']);
+        $this->assertEquals(null, $formats['created_at']);
+        $this->assertEquals(null, $formats['updated_at']);
+        $this->assertEquals(null, $formats['dedupe_fields']);
+        $this->assertEquals(null, $formats['searchable_fields']);
+        $this->assertEquals(null, $formats['fields']);
+    }
+
+    /**
+     * @covers ::attributeMap
+     */
+    public function testAttributeMap(): void
+    {
+        $formats = $this->sot->attributeMap();
+        $this->assertEquals('name', $formats['name']);
+        $this->assertEquals('description', $formats['description']);
+        $this->assertEquals('createdAt', $formats['created_at']);
+        $this->assertEquals('updatedAt', $formats['updated_at']);
+        $this->assertEquals('dedupeFields', $formats['dedupe_fields']);
+        $this->assertEquals('searchableFields', $formats['searchable_fields']);
+        $this->assertEquals('fields', $formats['fields']);
+    }
+
+    /**
+     * @covers ::getters
+     * @covers ::setters
+     */
+    public function testGettersSetters(): void
+    {
+        $getters = $this->sot->getters();
+        $setters = $this->sot->setters();
+        foreach (array_keys($this->types) as $field) {
+            $this->assertTrue(isset($setters[$field]));
+            $this->assertTrue(isset($getters[$field]));
+            $this->assertTrue(
+                method_exists($this->sot, $getters[$field]),
+                'Getter exists on model.'
+            );
+            $this->assertTrue(
+                method_exists($this->sot, $setters[$field]),
+                'Setter exists on model.'
+            );
+        }
+    }
+
+    /**
+     * @covers ::getModelName
+     */
+    public function testGetModelName(): void
+    {
+        $this->assertEquals('ProgramMemberAttribute2', $this->sot->getModelName());
+    }
+
+    /**
+     * @covers ::listInvalidProperties
+     * @covers ::valid
+     */
+    public function testValid(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::setAdditionalProperties
+     * @covers ::setAdditionalProperty
+     * @covers ::getAdditionalProperties
+     */
+    public function testAdditionalProperties(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::jsonSerialize
+     * @covers ::__toString
+     */
+    public function testJson(): void
+    {
+        // Some minimal tests that json generates well.
+        $json = json_encode($this->sot);
+        $this->assertIsString($json, 'Json encoded');
+        $json = json_decode($json);
+        $string = json_decode((string) $this->sot);
+        $this->assertEquals(
+            $json,
+            $string
+        );
+        $this->assertInstanceOf(\stdClass::class, $json);
+        $this->assertInstanceOf(\stdClass::class, $string);
     }
 
     /**
@@ -137,6 +251,10 @@ class ProgramMemberAttribute2Test extends TestCase
      * @covers ::__construct
      * @covers ::getName
      * @covers ::setName
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyName(): void
     {
@@ -147,7 +265,20 @@ class ProgramMemberAttribute2Test extends TestCase
         );
         $this->sot->setName($v);
         $this->assertEquals($v, $this->sot->getName());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['name']);
+        $v = $this->getFakeValue(
+            $this->types['name'],
+            $this->allowedValues['name'] ?? null
+        );
+        $this->sot['name'] = $v;
+        $this->assertEquals($v, $this->sot['name']);
+        $this->assertTrue(isset($this->sot['name']));
+        unset($this->sot['name']);
+        $this->assertFalse(isset($this->sot['name']));
+        $this->sot['name'] = $v;
+        $this->assertEquals($v, $this->sot['name']);
+        $this->assertTrue(isset($this->sot['name']));
     }
 
     /**
@@ -156,6 +287,10 @@ class ProgramMemberAttribute2Test extends TestCase
      * @covers ::__construct
      * @covers ::getDescription
      * @covers ::setDescription
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyDescription(): void
     {
@@ -166,7 +301,20 @@ class ProgramMemberAttribute2Test extends TestCase
         );
         $this->sot->setDescription($v);
         $this->assertEquals($v, $this->sot->getDescription());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['description']);
+        $v = $this->getFakeValue(
+            $this->types['description'],
+            $this->allowedValues['description'] ?? null
+        );
+        $this->sot['description'] = $v;
+        $this->assertEquals($v, $this->sot['description']);
+        $this->assertTrue(isset($this->sot['description']));
+        unset($this->sot['description']);
+        $this->assertFalse(isset($this->sot['description']));
+        $this->sot['description'] = $v;
+        $this->assertEquals($v, $this->sot['description']);
+        $this->assertTrue(isset($this->sot['description']));
     }
 
     /**
@@ -175,6 +323,10 @@ class ProgramMemberAttribute2Test extends TestCase
      * @covers ::__construct
      * @covers ::getCreatedAt
      * @covers ::setCreatedAt
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyCreatedAt(): void
     {
@@ -185,7 +337,20 @@ class ProgramMemberAttribute2Test extends TestCase
         );
         $this->sot->setCreatedAt($v);
         $this->assertEquals($v, $this->sot->getCreatedAt());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['created_at']);
+        $v = $this->getFakeValue(
+            $this->types['created_at'],
+            $this->allowedValues['created_at'] ?? null
+        );
+        $this->sot['created_at'] = $v;
+        $this->assertEquals($v, $this->sot['created_at']);
+        $this->assertTrue(isset($this->sot['created_at']));
+        unset($this->sot['created_at']);
+        $this->assertFalse(isset($this->sot['created_at']));
+        $this->sot['created_at'] = $v;
+        $this->assertEquals($v, $this->sot['created_at']);
+        $this->assertTrue(isset($this->sot['created_at']));
     }
 
     /**
@@ -194,6 +359,10 @@ class ProgramMemberAttribute2Test extends TestCase
      * @covers ::__construct
      * @covers ::getUpdatedAt
      * @covers ::setUpdatedAt
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyUpdatedAt(): void
     {
@@ -204,7 +373,20 @@ class ProgramMemberAttribute2Test extends TestCase
         );
         $this->sot->setUpdatedAt($v);
         $this->assertEquals($v, $this->sot->getUpdatedAt());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['updated_at']);
+        $v = $this->getFakeValue(
+            $this->types['updated_at'],
+            $this->allowedValues['updated_at'] ?? null
+        );
+        $this->sot['updated_at'] = $v;
+        $this->assertEquals($v, $this->sot['updated_at']);
+        $this->assertTrue(isset($this->sot['updated_at']));
+        unset($this->sot['updated_at']);
+        $this->assertFalse(isset($this->sot['updated_at']));
+        $this->sot['updated_at'] = $v;
+        $this->assertEquals($v, $this->sot['updated_at']);
+        $this->assertTrue(isset($this->sot['updated_at']));
     }
 
     /**
@@ -213,6 +395,10 @@ class ProgramMemberAttribute2Test extends TestCase
      * @covers ::__construct
      * @covers ::getDedupeFields
      * @covers ::setDedupeFields
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyDedupeFields(): void
     {
@@ -223,7 +409,20 @@ class ProgramMemberAttribute2Test extends TestCase
         );
         $this->sot->setDedupeFields($v);
         $this->assertEquals($v, $this->sot->getDedupeFields());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['dedupe_fields']);
+        $v = $this->getFakeValue(
+            $this->types['dedupe_fields'],
+            $this->allowedValues['dedupe_fields'] ?? null
+        );
+        $this->sot['dedupe_fields'] = $v;
+        $this->assertEquals($v, $this->sot['dedupe_fields']);
+        $this->assertTrue(isset($this->sot['dedupe_fields']));
+        unset($this->sot['dedupe_fields']);
+        $this->assertFalse(isset($this->sot['dedupe_fields']));
+        $this->sot['dedupe_fields'] = $v;
+        $this->assertEquals($v, $this->sot['dedupe_fields']);
+        $this->assertTrue(isset($this->sot['dedupe_fields']));
     }
 
     /**
@@ -232,6 +431,10 @@ class ProgramMemberAttribute2Test extends TestCase
      * @covers ::__construct
      * @covers ::getSearchableFields
      * @covers ::setSearchableFields
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertySearchableFields(): void
     {
@@ -242,7 +445,20 @@ class ProgramMemberAttribute2Test extends TestCase
         );
         $this->sot->setSearchableFields($v);
         $this->assertEquals($v, $this->sot->getSearchableFields());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['searchable_fields']);
+        $v = $this->getFakeValue(
+            $this->types['searchable_fields'],
+            $this->allowedValues['searchable_fields'] ?? null
+        );
+        $this->sot['searchable_fields'] = $v;
+        $this->assertEquals($v, $this->sot['searchable_fields']);
+        $this->assertTrue(isset($this->sot['searchable_fields']));
+        unset($this->sot['searchable_fields']);
+        $this->assertFalse(isset($this->sot['searchable_fields']));
+        $this->sot['searchable_fields'] = $v;
+        $this->assertEquals($v, $this->sot['searchable_fields']);
+        $this->assertTrue(isset($this->sot['searchable_fields']));
     }
 
     /**
@@ -251,6 +467,10 @@ class ProgramMemberAttribute2Test extends TestCase
      * @covers ::__construct
      * @covers ::getFields
      * @covers ::setFields
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyFields(): void
     {
@@ -261,6 +481,19 @@ class ProgramMemberAttribute2Test extends TestCase
         );
         $this->sot->setFields($v);
         $this->assertEquals($v, $this->sot->getFields());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['fields']);
+        $v = $this->getFakeValue(
+            $this->types['fields'],
+            $this->allowedValues['fields'] ?? null
+        );
+        $this->sot['fields'] = $v;
+        $this->assertEquals($v, $this->sot['fields']);
+        $this->assertTrue(isset($this->sot['fields']));
+        unset($this->sot['fields']);
+        $this->assertFalse(isset($this->sot['fields']));
+        $this->sot['fields'] = $v;
+        $this->assertEquals($v, $this->sot['fields']);
+        $this->assertTrue(isset($this->sot['fields']));
     }
 }

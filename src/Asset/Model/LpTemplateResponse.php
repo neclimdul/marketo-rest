@@ -101,22 +101,6 @@ class LpTemplateResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -203,6 +187,22 @@ class LpTemplateResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -242,20 +242,20 @@ class LpTemplateResponse implements ModelInterface, ArrayAccess, \JsonSerializab
         $invalidProperties = [];
 
         if ($this->container['enable_munchkin'] === null) {
-            $invalidProperties[] = "'enable_munchkin' can't be null";
+            $invalidProperties['enable_munchkin'] = "'enable_munchkin' can't be null";
         }
         if ($this->container['folder'] === null) {
-            $invalidProperties[] = "'folder' can't be null";
+            $invalidProperties['folder'] = "'folder' can't be null";
         }
         if ($this->container['status'] === null) {
-            $invalidProperties[] = "'status' can't be null";
+            $invalidProperties['status'] = "'status' can't be null";
         }
         if ($this->container['template_type'] === null) {
-            $invalidProperties[] = "'template_type' can't be null";
+            $invalidProperties['template_type'] = "'template_type' can't be null";
         }
         $allowedValues = $this->getTemplateTypeAllowableValues();
         if (!is_null($this->container['template_type']) && !in_array($this->container['template_type'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
+            $invalidProperties['template_type'] = sprintf(
                 "invalid value '%s' for 'template_type', must be one of '%s'",
                 $this->container['template_type'],
                 implode("', '", $allowedValues)
@@ -288,9 +288,9 @@ class LpTemplateResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets created_at
      *
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getCreatedAt(): \DateTime
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->container['created_at'];
     }
@@ -312,9 +312,9 @@ class LpTemplateResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->container['description'];
     }
@@ -384,9 +384,9 @@ class LpTemplateResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets id
      *
-     * @return int
+     * @return int|null
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->container['id'];
     }
@@ -408,9 +408,9 @@ class LpTemplateResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets name
      *
-     * @return string
+     * @return string|null
      */
-    public function getName(): string
+    public function getName(): ?string
     {
         return $this->container['name'];
     }
@@ -490,9 +490,9 @@ class LpTemplateResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets updated_at
      *
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getUpdatedAt(): \DateTime
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->container['updated_at'];
     }
@@ -514,9 +514,9 @@ class LpTemplateResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets url
      *
-     * @return string
+     * @return string|null
      */
-    public function getUrl(): string
+    public function getUrl(): ?string
     {
         return $this->container['url'];
     }
@@ -538,9 +538,9 @@ class LpTemplateResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets workspace
      *
-     * @return string
+     * @return string|null
      */
-    public function getWorkspace(): string
+    public function getWorkspace(): ?string
     {
         return $this->container['workspace'];
     }

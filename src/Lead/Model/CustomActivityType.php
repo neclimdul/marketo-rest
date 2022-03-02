@@ -103,22 +103,6 @@ class CustomActivityType implements ModelInterface, ArrayAccess, \JsonSerializab
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -205,6 +189,22 @@ class CustomActivityType implements ModelInterface, ArrayAccess, \JsonSerializab
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -245,7 +245,7 @@ class CustomActivityType implements ModelInterface, ArrayAccess, \JsonSerializab
 
         $allowedValues = $this->getStatusAllowableValues();
         if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
+            $invalidProperties['status'] = sprintf(
                 "invalid value '%s' for 'status', must be one of '%s'",
                 $this->container['status'],
                 implode("', '", $allowedValues)
@@ -280,9 +280,9 @@ class CustomActivityType implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets api_name
      *
-     * @return string
+     * @return string|null
      */
-    public function getApiName(): string
+    public function getApiName(): ?string
     {
         return $this->container['api_name'];
     }
@@ -304,9 +304,9 @@ class CustomActivityType implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets attributes
      *
-     * @return \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttribute[]
+     * @return \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttribute[]|null
      */
-    public function getAttributes(): array
+    public function getAttributes(): ?array
     {
         return $this->container['attributes'];
     }
@@ -328,9 +328,9 @@ class CustomActivityType implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets created_at
      *
-     * @return string
+     * @return string|null
      */
-    public function getCreatedAt(): string
+    public function getCreatedAt(): ?string
     {
         return $this->container['created_at'];
     }
@@ -352,9 +352,9 @@ class CustomActivityType implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->container['description'];
     }
@@ -376,9 +376,9 @@ class CustomActivityType implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets filter_name
      *
-     * @return string
+     * @return string|null
      */
-    public function getFilterName(): string
+    public function getFilterName(): ?string
     {
         return $this->container['filter_name'];
     }
@@ -400,9 +400,9 @@ class CustomActivityType implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets id
      *
-     * @return int
+     * @return int|null
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->container['id'];
     }
@@ -424,9 +424,9 @@ class CustomActivityType implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets name
      *
-     * @return string
+     * @return string|null
      */
-    public function getName(): string
+    public function getName(): ?string
     {
         return $this->container['name'];
     }
@@ -448,9 +448,9 @@ class CustomActivityType implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets primary_attribute
      *
-     * @return \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttribute
+     * @return \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttribute|null
      */
-    public function getPrimaryAttribute(): \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttribute
+    public function getPrimaryAttribute(): ?\NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttribute
     {
         return $this->container['primary_attribute'];
     }
@@ -472,9 +472,9 @@ class CustomActivityType implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets status
      *
-     * @return string
+     * @return string|null
      */
-    public function getStatus(): string
+    public function getStatus(): ?string
     {
         return $this->container['status'];
     }
@@ -506,9 +506,9 @@ class CustomActivityType implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets trigger_name
      *
-     * @return string
+     * @return string|null
      */
-    public function getTriggerName(): string
+    public function getTriggerName(): ?string
     {
         return $this->container['trigger_name'];
     }
@@ -530,9 +530,9 @@ class CustomActivityType implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets updated_at
      *
-     * @return string
+     * @return string|null
      */
-    public function getUpdatedAt(): string
+    public function getUpdatedAt(): ?string
     {
         return $this->container['updated_at'];
     }

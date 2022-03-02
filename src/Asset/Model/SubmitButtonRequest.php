@@ -85,22 +85,6 @@ class SubmitButtonRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -159,6 +143,22 @@ class SubmitButtonRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -211,9 +211,9 @@ class SubmitButtonRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets button_position
      *
-     * @return int
+     * @return int|null
      */
-    public function getButtonPosition(): int
+    public function getButtonPosition(): ?int
     {
         return $this->container['button_position'];
     }
@@ -235,9 +235,9 @@ class SubmitButtonRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets button_style
      *
-     * @return string
+     * @return string|null
      */
-    public function getButtonStyle(): string
+    public function getButtonStyle(): ?string
     {
         return $this->container['button_style'];
     }
@@ -259,9 +259,9 @@ class SubmitButtonRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets label
      *
-     * @return string
+     * @return string|null
      */
-    public function getLabel(): string
+    public function getLabel(): ?string
     {
         return $this->container['label'];
     }
@@ -283,9 +283,9 @@ class SubmitButtonRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets waiting_label
      *
-     * @return string
+     * @return string|null
      */
-    public function getWaitingLabel(): string
+    public function getWaitingLabel(): ?string
     {
         return $this->container['waiting_label'];
     }

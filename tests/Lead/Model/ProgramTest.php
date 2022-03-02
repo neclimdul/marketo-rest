@@ -37,7 +37,7 @@ use PHPUnit\Framework\TestCase;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  *
- * @coversDefault \NecLimDul\MarketoRest\Lead\Model\Program
+ * @coversDefaultClass \NecLimDul\MarketoRest\Lead\Model\Program
  */
 class ProgramTest extends TestCase
 {
@@ -46,11 +46,6 @@ class ProgramTest extends TestCase
      * @var \NecLimDul\MarketoRest\Lead\Model\Program
      */
     private $sot;
-
-    /**
-     * @var \Faker\Generator
-     */
-    private $faker;
 
     /**
      * @var string[]
@@ -65,7 +60,13 @@ class ProgramTest extends TestCase
         'reached_success' => 'bool',
         'stream' => 'string',
         'updated_at' => 'string',
-    ];
+];
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
     /**
      * @var scalar[][]
      */
@@ -118,7 +119,14 @@ class ProgramTest extends TestCase
                 return new \stdClass();
         }
         if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
-            return new $type();
+            $model = new $type();
+            $types = $type::swaggerTypes();
+            foreach ($model->listInvalidProperties() as $field => $reason) {
+                // @todo get allowed values? ((getter))AllowedValues
+                // @phpstan-ignore-next-line
+                $model[$field] = $this->getFakeValue($types[$field], null);
+            }
+            return $model;
         }
         $this->markTestSkipped('This type is not mocked yet: ' . $type);
     }
@@ -130,7 +138,117 @@ class ProgramTest extends TestCase
      */
     public function testProgram(): void
     {
-        $this->assertInstanceOf(\NecLimDul\MarketoRest\Lead\Model\Program::class, $this->sot);
+        $this->assertInstanceOf(Program::class, $this->sot);
+    }
+
+    /**
+     * @covers ::swaggerTypes
+     */
+    public function testSwaggerTypes(): void
+    {
+        $this->assertEquals($this->types, Program::swaggerTypes());
+    }
+
+    /**
+     * @covers ::swaggerFormats
+     */
+    public function testSwaggerFormats(): void
+    {
+        $formats = $this->sot->swaggerFormats();
+        $this->assertEquals('int64', $formats['id']);
+        $this->assertEquals(null, $formats['acquired_by']);
+        $this->assertEquals(null, $formats['is_exhausted']);
+        $this->assertEquals(null, $formats['membership_date']);
+        $this->assertEquals(null, $formats['nurture_cadence']);
+        $this->assertEquals(null, $formats['progression_status']);
+        $this->assertEquals(null, $formats['reached_success']);
+        $this->assertEquals(null, $formats['stream']);
+        $this->assertEquals(null, $formats['updated_at']);
+    }
+
+    /**
+     * @covers ::attributeMap
+     */
+    public function testAttributeMap(): void
+    {
+        $formats = $this->sot->attributeMap();
+        $this->assertEquals('id', $formats['id']);
+        $this->assertEquals('acquiredBy', $formats['acquired_by']);
+        $this->assertEquals('isExhausted', $formats['is_exhausted']);
+        $this->assertEquals('membershipDate', $formats['membership_date']);
+        $this->assertEquals('nurtureCadence', $formats['nurture_cadence']);
+        $this->assertEquals('progressionStatus', $formats['progression_status']);
+        $this->assertEquals('reachedSuccess', $formats['reached_success']);
+        $this->assertEquals('stream', $formats['stream']);
+        $this->assertEquals('updatedAt', $formats['updated_at']);
+    }
+
+    /**
+     * @covers ::getters
+     * @covers ::setters
+     */
+    public function testGettersSetters(): void
+    {
+        $getters = $this->sot->getters();
+        $setters = $this->sot->setters();
+        foreach (array_keys($this->types) as $field) {
+            $this->assertTrue(isset($setters[$field]));
+            $this->assertTrue(isset($getters[$field]));
+            $this->assertTrue(
+                method_exists($this->sot, $getters[$field]),
+                'Getter exists on model.'
+            );
+            $this->assertTrue(
+                method_exists($this->sot, $setters[$field]),
+                'Setter exists on model.'
+            );
+        }
+    }
+
+    /**
+     * @covers ::getModelName
+     */
+    public function testGetModelName(): void
+    {
+        $this->assertEquals('Program', $this->sot->getModelName());
+    }
+
+    /**
+     * @covers ::listInvalidProperties
+     * @covers ::valid
+     */
+    public function testValid(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::setAdditionalProperties
+     * @covers ::setAdditionalProperty
+     * @covers ::getAdditionalProperties
+     */
+    public function testAdditionalProperties(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::jsonSerialize
+     * @covers ::__toString
+     */
+    public function testJson(): void
+    {
+        // Some minimal tests that json generates well.
+        $json = json_encode($this->sot);
+        $this->assertIsString($json, 'Json encoded');
+        $json = json_decode($json);
+        $string = json_decode((string) $this->sot);
+        $this->assertEquals(
+            $json,
+            $string
+        );
+        $this->assertInstanceOf(\stdClass::class, $json);
+        $this->assertInstanceOf(\stdClass::class, $string);
     }
 
     /**
@@ -139,6 +257,10 @@ class ProgramTest extends TestCase
      * @covers ::__construct
      * @covers ::getId
      * @covers ::setId
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyId(): void
     {
@@ -149,7 +271,20 @@ class ProgramTest extends TestCase
         );
         $this->sot->setId($v);
         $this->assertEquals($v, $this->sot->getId());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['id']);
+        $v = $this->getFakeValue(
+            $this->types['id'],
+            $this->allowedValues['id'] ?? null
+        );
+        $this->sot['id'] = $v;
+        $this->assertEquals($v, $this->sot['id']);
+        $this->assertTrue(isset($this->sot['id']));
+        unset($this->sot['id']);
+        $this->assertFalse(isset($this->sot['id']));
+        $this->sot['id'] = $v;
+        $this->assertEquals($v, $this->sot['id']);
+        $this->assertTrue(isset($this->sot['id']));
     }
 
     /**
@@ -158,6 +293,10 @@ class ProgramTest extends TestCase
      * @covers ::__construct
      * @covers ::getAcquiredBy
      * @covers ::setAcquiredBy
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyAcquiredBy(): void
     {
@@ -168,7 +307,20 @@ class ProgramTest extends TestCase
         );
         $this->sot->setAcquiredBy($v);
         $this->assertEquals($v, $this->sot->getAcquiredBy());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['acquired_by']);
+        $v = $this->getFakeValue(
+            $this->types['acquired_by'],
+            $this->allowedValues['acquired_by'] ?? null
+        );
+        $this->sot['acquired_by'] = $v;
+        $this->assertEquals($v, $this->sot['acquired_by']);
+        $this->assertTrue(isset($this->sot['acquired_by']));
+        unset($this->sot['acquired_by']);
+        $this->assertFalse(isset($this->sot['acquired_by']));
+        $this->sot['acquired_by'] = $v;
+        $this->assertEquals($v, $this->sot['acquired_by']);
+        $this->assertTrue(isset($this->sot['acquired_by']));
     }
 
     /**
@@ -177,6 +329,10 @@ class ProgramTest extends TestCase
      * @covers ::__construct
      * @covers ::getIsExhausted
      * @covers ::setIsExhausted
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyIsExhausted(): void
     {
@@ -187,7 +343,20 @@ class ProgramTest extends TestCase
         );
         $this->sot->setIsExhausted($v);
         $this->assertEquals($v, $this->sot->getIsExhausted());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['is_exhausted']);
+        $v = $this->getFakeValue(
+            $this->types['is_exhausted'],
+            $this->allowedValues['is_exhausted'] ?? null
+        );
+        $this->sot['is_exhausted'] = $v;
+        $this->assertEquals($v, $this->sot['is_exhausted']);
+        $this->assertTrue(isset($this->sot['is_exhausted']));
+        unset($this->sot['is_exhausted']);
+        $this->assertFalse(isset($this->sot['is_exhausted']));
+        $this->sot['is_exhausted'] = $v;
+        $this->assertEquals($v, $this->sot['is_exhausted']);
+        $this->assertTrue(isset($this->sot['is_exhausted']));
     }
 
     /**
@@ -196,6 +365,10 @@ class ProgramTest extends TestCase
      * @covers ::__construct
      * @covers ::getMembershipDate
      * @covers ::setMembershipDate
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyMembershipDate(): void
     {
@@ -206,7 +379,20 @@ class ProgramTest extends TestCase
         );
         $this->sot->setMembershipDate($v);
         $this->assertEquals($v, $this->sot->getMembershipDate());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['membership_date']);
+        $v = $this->getFakeValue(
+            $this->types['membership_date'],
+            $this->allowedValues['membership_date'] ?? null
+        );
+        $this->sot['membership_date'] = $v;
+        $this->assertEquals($v, $this->sot['membership_date']);
+        $this->assertTrue(isset($this->sot['membership_date']));
+        unset($this->sot['membership_date']);
+        $this->assertFalse(isset($this->sot['membership_date']));
+        $this->sot['membership_date'] = $v;
+        $this->assertEquals($v, $this->sot['membership_date']);
+        $this->assertTrue(isset($this->sot['membership_date']));
     }
 
     /**
@@ -215,6 +401,10 @@ class ProgramTest extends TestCase
      * @covers ::__construct
      * @covers ::getNurtureCadence
      * @covers ::setNurtureCadence
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyNurtureCadence(): void
     {
@@ -225,7 +415,23 @@ class ProgramTest extends TestCase
         );
         $this->sot->setNurtureCadence($v);
         $this->assertEquals($v, $this->sot->getNurtureCadence());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setNurtureCadence(null);
+        $this->assertNull($this->sot->getNurtureCadence());
+        $this->sot->setNurtureCadence($v);
+
+        $this->assertEquals($v, $this->sot['nurture_cadence']);
+        $v = $this->getFakeValue(
+            $this->types['nurture_cadence'],
+            $this->allowedValues['nurture_cadence'] ?? null
+        );
+        $this->sot['nurture_cadence'] = $v;
+        $this->assertEquals($v, $this->sot['nurture_cadence']);
+        $this->assertTrue(isset($this->sot['nurture_cadence']));
+        unset($this->sot['nurture_cadence']);
+        $this->assertFalse(isset($this->sot['nurture_cadence']));
+        $this->sot['nurture_cadence'] = $v;
+        $this->assertEquals($v, $this->sot['nurture_cadence']);
+        $this->assertTrue(isset($this->sot['nurture_cadence']));
     }
 
     /**
@@ -234,6 +440,10 @@ class ProgramTest extends TestCase
      * @covers ::__construct
      * @covers ::getProgressionStatus
      * @covers ::setProgressionStatus
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyProgressionStatus(): void
     {
@@ -244,7 +454,20 @@ class ProgramTest extends TestCase
         );
         $this->sot->setProgressionStatus($v);
         $this->assertEquals($v, $this->sot->getProgressionStatus());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['progression_status']);
+        $v = $this->getFakeValue(
+            $this->types['progression_status'],
+            $this->allowedValues['progression_status'] ?? null
+        );
+        $this->sot['progression_status'] = $v;
+        $this->assertEquals($v, $this->sot['progression_status']);
+        $this->assertTrue(isset($this->sot['progression_status']));
+        unset($this->sot['progression_status']);
+        $this->assertFalse(isset($this->sot['progression_status']));
+        $this->sot['progression_status'] = $v;
+        $this->assertEquals($v, $this->sot['progression_status']);
+        $this->assertTrue(isset($this->sot['progression_status']));
     }
 
     /**
@@ -253,6 +476,10 @@ class ProgramTest extends TestCase
      * @covers ::__construct
      * @covers ::getReachedSuccess
      * @covers ::setReachedSuccess
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyReachedSuccess(): void
     {
@@ -263,7 +490,20 @@ class ProgramTest extends TestCase
         );
         $this->sot->setReachedSuccess($v);
         $this->assertEquals($v, $this->sot->getReachedSuccess());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['reached_success']);
+        $v = $this->getFakeValue(
+            $this->types['reached_success'],
+            $this->allowedValues['reached_success'] ?? null
+        );
+        $this->sot['reached_success'] = $v;
+        $this->assertEquals($v, $this->sot['reached_success']);
+        $this->assertTrue(isset($this->sot['reached_success']));
+        unset($this->sot['reached_success']);
+        $this->assertFalse(isset($this->sot['reached_success']));
+        $this->sot['reached_success'] = $v;
+        $this->assertEquals($v, $this->sot['reached_success']);
+        $this->assertTrue(isset($this->sot['reached_success']));
     }
 
     /**
@@ -272,6 +512,10 @@ class ProgramTest extends TestCase
      * @covers ::__construct
      * @covers ::getStream
      * @covers ::setStream
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyStream(): void
     {
@@ -282,7 +526,23 @@ class ProgramTest extends TestCase
         );
         $this->sot->setStream($v);
         $this->assertEquals($v, $this->sot->getStream());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setStream(null);
+        $this->assertNull($this->sot->getStream());
+        $this->sot->setStream($v);
+
+        $this->assertEquals($v, $this->sot['stream']);
+        $v = $this->getFakeValue(
+            $this->types['stream'],
+            $this->allowedValues['stream'] ?? null
+        );
+        $this->sot['stream'] = $v;
+        $this->assertEquals($v, $this->sot['stream']);
+        $this->assertTrue(isset($this->sot['stream']));
+        unset($this->sot['stream']);
+        $this->assertFalse(isset($this->sot['stream']));
+        $this->sot['stream'] = $v;
+        $this->assertEquals($v, $this->sot['stream']);
+        $this->assertTrue(isset($this->sot['stream']));
     }
 
     /**
@@ -291,6 +551,10 @@ class ProgramTest extends TestCase
      * @covers ::__construct
      * @covers ::getUpdatedAt
      * @covers ::setUpdatedAt
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyUpdatedAt(): void
     {
@@ -301,6 +565,19 @@ class ProgramTest extends TestCase
         );
         $this->sot->setUpdatedAt($v);
         $this->assertEquals($v, $this->sot->getUpdatedAt());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['updated_at']);
+        $v = $this->getFakeValue(
+            $this->types['updated_at'],
+            $this->allowedValues['updated_at'] ?? null
+        );
+        $this->sot['updated_at'] = $v;
+        $this->assertEquals($v, $this->sot['updated_at']);
+        $this->assertTrue(isset($this->sot['updated_at']));
+        unset($this->sot['updated_at']);
+        $this->assertFalse(isset($this->sot['updated_at']));
+        $this->sot['updated_at'] = $v;
+        $this->assertEquals($v, $this->sot['updated_at']);
+        $this->assertTrue(isset($this->sot['updated_at']));
     }
 }

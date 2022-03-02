@@ -37,7 +37,7 @@ use PHPUnit\Framework\TestCase;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  *
- * @coversDefault \NecLimDul\MarketoRest\Lead\Model\ScheduleCampaignData
+ * @coversDefaultClass \NecLimDul\MarketoRest\Lead\Model\ScheduleCampaignData
  */
 class ScheduleCampaignDataTest extends TestCase
 {
@@ -48,18 +48,19 @@ class ScheduleCampaignDataTest extends TestCase
     private $sot;
 
     /**
-     * @var \Faker\Generator
-     */
-    private $faker;
-
-    /**
      * @var string[]
      */
     private $types = [
         'clone_to_program_name' => 'string',
         'run_at' => '\DateTime',
         'tokens' => '\NecLimDul\MarketoRest\Lead\Model\Token[]',
-    ];
+];
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
     /**
      * @var scalar[][]
      */
@@ -112,7 +113,14 @@ class ScheduleCampaignDataTest extends TestCase
                 return new \stdClass();
         }
         if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
-            return new $type();
+            $model = new $type();
+            $types = $type::swaggerTypes();
+            foreach ($model->listInvalidProperties() as $field => $reason) {
+                // @todo get allowed values? ((getter))AllowedValues
+                // @phpstan-ignore-next-line
+                $model[$field] = $this->getFakeValue($types[$field], null);
+            }
+            return $model;
         }
         $this->markTestSkipped('This type is not mocked yet: ' . $type);
     }
@@ -124,7 +132,105 @@ class ScheduleCampaignDataTest extends TestCase
      */
     public function testScheduleCampaignData(): void
     {
-        $this->assertInstanceOf(\NecLimDul\MarketoRest\Lead\Model\ScheduleCampaignData::class, $this->sot);
+        $this->assertInstanceOf(ScheduleCampaignData::class, $this->sot);
+    }
+
+    /**
+     * @covers ::swaggerTypes
+     */
+    public function testSwaggerTypes(): void
+    {
+        $this->assertEquals($this->types, ScheduleCampaignData::swaggerTypes());
+    }
+
+    /**
+     * @covers ::swaggerFormats
+     */
+    public function testSwaggerFormats(): void
+    {
+        $formats = $this->sot->swaggerFormats();
+        $this->assertEquals(null, $formats['clone_to_program_name']);
+        $this->assertEquals('date-time', $formats['run_at']);
+        $this->assertEquals(null, $formats['tokens']);
+    }
+
+    /**
+     * @covers ::attributeMap
+     */
+    public function testAttributeMap(): void
+    {
+        $formats = $this->sot->attributeMap();
+        $this->assertEquals('cloneToProgramName', $formats['clone_to_program_name']);
+        $this->assertEquals('runAt', $formats['run_at']);
+        $this->assertEquals('tokens', $formats['tokens']);
+    }
+
+    /**
+     * @covers ::getters
+     * @covers ::setters
+     */
+    public function testGettersSetters(): void
+    {
+        $getters = $this->sot->getters();
+        $setters = $this->sot->setters();
+        foreach (array_keys($this->types) as $field) {
+            $this->assertTrue(isset($setters[$field]));
+            $this->assertTrue(isset($getters[$field]));
+            $this->assertTrue(
+                method_exists($this->sot, $getters[$field]),
+                'Getter exists on model.'
+            );
+            $this->assertTrue(
+                method_exists($this->sot, $setters[$field]),
+                'Setter exists on model.'
+            );
+        }
+    }
+
+    /**
+     * @covers ::getModelName
+     */
+    public function testGetModelName(): void
+    {
+        $this->assertEquals('ScheduleCampaignData', $this->sot->getModelName());
+    }
+
+    /**
+     * @covers ::listInvalidProperties
+     * @covers ::valid
+     */
+    public function testValid(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::setAdditionalProperties
+     * @covers ::setAdditionalProperty
+     * @covers ::getAdditionalProperties
+     */
+    public function testAdditionalProperties(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::jsonSerialize
+     * @covers ::__toString
+     */
+    public function testJson(): void
+    {
+        // Some minimal tests that json generates well.
+        $json = json_encode($this->sot);
+        $this->assertIsString($json, 'Json encoded');
+        $json = json_decode($json);
+        $string = json_decode((string) $this->sot);
+        $this->assertEquals(
+            $json,
+            $string
+        );
+        $this->assertInstanceOf(\stdClass::class, $json);
+        $this->assertInstanceOf(\stdClass::class, $string);
     }
 
     /**
@@ -133,6 +239,10 @@ class ScheduleCampaignDataTest extends TestCase
      * @covers ::__construct
      * @covers ::getCloneToProgramName
      * @covers ::setCloneToProgramName
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyCloneToProgramName(): void
     {
@@ -143,7 +253,23 @@ class ScheduleCampaignDataTest extends TestCase
         );
         $this->sot->setCloneToProgramName($v);
         $this->assertEquals($v, $this->sot->getCloneToProgramName());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setCloneToProgramName(null);
+        $this->assertNull($this->sot->getCloneToProgramName());
+        $this->sot->setCloneToProgramName($v);
+
+        $this->assertEquals($v, $this->sot['clone_to_program_name']);
+        $v = $this->getFakeValue(
+            $this->types['clone_to_program_name'],
+            $this->allowedValues['clone_to_program_name'] ?? null
+        );
+        $this->sot['clone_to_program_name'] = $v;
+        $this->assertEquals($v, $this->sot['clone_to_program_name']);
+        $this->assertTrue(isset($this->sot['clone_to_program_name']));
+        unset($this->sot['clone_to_program_name']);
+        $this->assertFalse(isset($this->sot['clone_to_program_name']));
+        $this->sot['clone_to_program_name'] = $v;
+        $this->assertEquals($v, $this->sot['clone_to_program_name']);
+        $this->assertTrue(isset($this->sot['clone_to_program_name']));
     }
 
     /**
@@ -152,6 +278,10 @@ class ScheduleCampaignDataTest extends TestCase
      * @covers ::__construct
      * @covers ::getRunAt
      * @covers ::setRunAt
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyRunAt(): void
     {
@@ -162,7 +292,23 @@ class ScheduleCampaignDataTest extends TestCase
         );
         $this->sot->setRunAt($v);
         $this->assertEquals($v, $this->sot->getRunAt());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setRunAt(null);
+        $this->assertNull($this->sot->getRunAt());
+        $this->sot->setRunAt($v);
+
+        $this->assertEquals($v, $this->sot['run_at']);
+        $v = $this->getFakeValue(
+            $this->types['run_at'],
+            $this->allowedValues['run_at'] ?? null
+        );
+        $this->sot['run_at'] = $v;
+        $this->assertEquals($v, $this->sot['run_at']);
+        $this->assertTrue(isset($this->sot['run_at']));
+        unset($this->sot['run_at']);
+        $this->assertFalse(isset($this->sot['run_at']));
+        $this->sot['run_at'] = $v;
+        $this->assertEquals($v, $this->sot['run_at']);
+        $this->assertTrue(isset($this->sot['run_at']));
     }
 
     /**
@@ -171,6 +317,10 @@ class ScheduleCampaignDataTest extends TestCase
      * @covers ::__construct
      * @covers ::getTokens
      * @covers ::setTokens
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyTokens(): void
     {
@@ -181,6 +331,22 @@ class ScheduleCampaignDataTest extends TestCase
         );
         $this->sot->setTokens($v);
         $this->assertEquals($v, $this->sot->getTokens());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setTokens(null);
+        $this->assertNull($this->sot->getTokens());
+        $this->sot->setTokens($v);
+
+        $this->assertEquals($v, $this->sot['tokens']);
+        $v = $this->getFakeValue(
+            $this->types['tokens'],
+            $this->allowedValues['tokens'] ?? null
+        );
+        $this->sot['tokens'] = $v;
+        $this->assertEquals($v, $this->sot['tokens']);
+        $this->assertTrue(isset($this->sot['tokens']));
+        unset($this->sot['tokens']);
+        $this->assertFalse(isset($this->sot['tokens']));
+        $this->sot['tokens'] = $v;
+        $this->assertEquals($v, $this->sot['tokens']);
+        $this->assertTrue(isset($this->sot['tokens']));
     }
 }

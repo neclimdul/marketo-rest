@@ -37,7 +37,7 @@ use PHPUnit\Framework\TestCase;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  *
- * @coversDefault \NecLimDul\MarketoRest\Asset\Model\LandingPageRedirectRule
+ * @coversDefaultClass \NecLimDul\MarketoRest\Asset\Model\LandingPageRedirectRule
  */
 class LandingPageRedirectRuleTest extends TestCase
 {
@@ -46,11 +46,6 @@ class LandingPageRedirectRuleTest extends TestCase
      * @var \NecLimDul\MarketoRest\Asset\Model\LandingPageRedirectRule
      */
     private $sot;
-
-    /**
-     * @var \Faker\Generator
-     */
-    private $faker;
 
     /**
      * @var string[]
@@ -64,7 +59,13 @@ class LandingPageRedirectRuleTest extends TestCase
         'redirect_to' => '\NecLimDul\MarketoRest\Asset\Model\RedirectTo',
         'created_at' => '\DateTime',
         'updated_at' => '\DateTime',
-    ];
+];
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
     /**
      * @var scalar[][]
      */
@@ -117,7 +118,14 @@ class LandingPageRedirectRuleTest extends TestCase
                 return new \stdClass();
         }
         if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
-            return new $type();
+            $model = new $type();
+            $types = $type::swaggerTypes();
+            foreach ($model->listInvalidProperties() as $field => $reason) {
+                // @todo get allowed values? ((getter))AllowedValues
+                // @phpstan-ignore-next-line
+                $model[$field] = $this->getFakeValue($types[$field], null);
+            }
+            return $model;
         }
         $this->markTestSkipped('This type is not mocked yet: ' . $type);
     }
@@ -129,7 +137,115 @@ class LandingPageRedirectRuleTest extends TestCase
      */
     public function testLandingPageRedirectRule(): void
     {
-        $this->assertInstanceOf(\NecLimDul\MarketoRest\Asset\Model\LandingPageRedirectRule::class, $this->sot);
+        $this->assertInstanceOf(LandingPageRedirectRule::class, $this->sot);
+    }
+
+    /**
+     * @covers ::swaggerTypes
+     */
+    public function testSwaggerTypes(): void
+    {
+        $this->assertEquals($this->types, LandingPageRedirectRule::swaggerTypes());
+    }
+
+    /**
+     * @covers ::swaggerFormats
+     */
+    public function testSwaggerFormats(): void
+    {
+        $formats = $this->sot->swaggerFormats();
+        $this->assertEquals('int64', $formats['id']);
+        $this->assertEquals(null, $formats['redirect_from_url']);
+        $this->assertEquals(null, $formats['redirect_to_url']);
+        $this->assertEquals(null, $formats['hostname']);
+        $this->assertEquals(null, $formats['redirect_from']);
+        $this->assertEquals(null, $formats['redirect_to']);
+        $this->assertEquals('date-time', $formats['created_at']);
+        $this->assertEquals('date-time', $formats['updated_at']);
+    }
+
+    /**
+     * @covers ::attributeMap
+     */
+    public function testAttributeMap(): void
+    {
+        $formats = $this->sot->attributeMap();
+        $this->assertEquals('id', $formats['id']);
+        $this->assertEquals('redirectFromUrl', $formats['redirect_from_url']);
+        $this->assertEquals('redirectToUrl', $formats['redirect_to_url']);
+        $this->assertEquals('hostname', $formats['hostname']);
+        $this->assertEquals('redirectFrom', $formats['redirect_from']);
+        $this->assertEquals('redirectTo', $formats['redirect_to']);
+        $this->assertEquals('createdAt', $formats['created_at']);
+        $this->assertEquals('updatedAt', $formats['updated_at']);
+    }
+
+    /**
+     * @covers ::getters
+     * @covers ::setters
+     */
+    public function testGettersSetters(): void
+    {
+        $getters = $this->sot->getters();
+        $setters = $this->sot->setters();
+        foreach (array_keys($this->types) as $field) {
+            $this->assertTrue(isset($setters[$field]));
+            $this->assertTrue(isset($getters[$field]));
+            $this->assertTrue(
+                method_exists($this->sot, $getters[$field]),
+                'Getter exists on model.'
+            );
+            $this->assertTrue(
+                method_exists($this->sot, $setters[$field]),
+                'Setter exists on model.'
+            );
+        }
+    }
+
+    /**
+     * @covers ::getModelName
+     */
+    public function testGetModelName(): void
+    {
+        $this->assertEquals('LandingPageRedirectRule', $this->sot->getModelName());
+    }
+
+    /**
+     * @covers ::listInvalidProperties
+     * @covers ::valid
+     */
+    public function testValid(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::setAdditionalProperties
+     * @covers ::setAdditionalProperty
+     * @covers ::getAdditionalProperties
+     */
+    public function testAdditionalProperties(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::jsonSerialize
+     * @covers ::__toString
+     */
+    public function testJson(): void
+    {
+        // Some minimal tests that json generates well.
+        $json = json_encode($this->sot);
+        $this->assertIsString($json, 'Json encoded');
+        $json = json_decode($json);
+        $string = json_decode((string) $this->sot);
+        $this->assertEquals(
+            $json,
+            $string
+        );
+        $this->assertInstanceOf(\stdClass::class, $json);
+        $this->assertInstanceOf(\stdClass::class, $string);
     }
 
     /**
@@ -138,6 +254,10 @@ class LandingPageRedirectRuleTest extends TestCase
      * @covers ::__construct
      * @covers ::getId
      * @covers ::setId
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyId(): void
     {
@@ -148,7 +268,20 @@ class LandingPageRedirectRuleTest extends TestCase
         );
         $this->sot->setId($v);
         $this->assertEquals($v, $this->sot->getId());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['id']);
+        $v = $this->getFakeValue(
+            $this->types['id'],
+            $this->allowedValues['id'] ?? null
+        );
+        $this->sot['id'] = $v;
+        $this->assertEquals($v, $this->sot['id']);
+        $this->assertTrue(isset($this->sot['id']));
+        unset($this->sot['id']);
+        $this->assertFalse(isset($this->sot['id']));
+        $this->sot['id'] = $v;
+        $this->assertEquals($v, $this->sot['id']);
+        $this->assertTrue(isset($this->sot['id']));
     }
 
     /**
@@ -157,6 +290,10 @@ class LandingPageRedirectRuleTest extends TestCase
      * @covers ::__construct
      * @covers ::getRedirectFromUrl
      * @covers ::setRedirectFromUrl
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyRedirectFromUrl(): void
     {
@@ -167,7 +304,20 @@ class LandingPageRedirectRuleTest extends TestCase
         );
         $this->sot->setRedirectFromUrl($v);
         $this->assertEquals($v, $this->sot->getRedirectFromUrl());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['redirect_from_url']);
+        $v = $this->getFakeValue(
+            $this->types['redirect_from_url'],
+            $this->allowedValues['redirect_from_url'] ?? null
+        );
+        $this->sot['redirect_from_url'] = $v;
+        $this->assertEquals($v, $this->sot['redirect_from_url']);
+        $this->assertTrue(isset($this->sot['redirect_from_url']));
+        unset($this->sot['redirect_from_url']);
+        $this->assertFalse(isset($this->sot['redirect_from_url']));
+        $this->sot['redirect_from_url'] = $v;
+        $this->assertEquals($v, $this->sot['redirect_from_url']);
+        $this->assertTrue(isset($this->sot['redirect_from_url']));
     }
 
     /**
@@ -176,6 +326,10 @@ class LandingPageRedirectRuleTest extends TestCase
      * @covers ::__construct
      * @covers ::getRedirectToUrl
      * @covers ::setRedirectToUrl
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyRedirectToUrl(): void
     {
@@ -186,7 +340,20 @@ class LandingPageRedirectRuleTest extends TestCase
         );
         $this->sot->setRedirectToUrl($v);
         $this->assertEquals($v, $this->sot->getRedirectToUrl());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['redirect_to_url']);
+        $v = $this->getFakeValue(
+            $this->types['redirect_to_url'],
+            $this->allowedValues['redirect_to_url'] ?? null
+        );
+        $this->sot['redirect_to_url'] = $v;
+        $this->assertEquals($v, $this->sot['redirect_to_url']);
+        $this->assertTrue(isset($this->sot['redirect_to_url']));
+        unset($this->sot['redirect_to_url']);
+        $this->assertFalse(isset($this->sot['redirect_to_url']));
+        $this->sot['redirect_to_url'] = $v;
+        $this->assertEquals($v, $this->sot['redirect_to_url']);
+        $this->assertTrue(isset($this->sot['redirect_to_url']));
     }
 
     /**
@@ -195,6 +362,10 @@ class LandingPageRedirectRuleTest extends TestCase
      * @covers ::__construct
      * @covers ::getHostname
      * @covers ::setHostname
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyHostname(): void
     {
@@ -205,7 +376,20 @@ class LandingPageRedirectRuleTest extends TestCase
         );
         $this->sot->setHostname($v);
         $this->assertEquals($v, $this->sot->getHostname());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['hostname']);
+        $v = $this->getFakeValue(
+            $this->types['hostname'],
+            $this->allowedValues['hostname'] ?? null
+        );
+        $this->sot['hostname'] = $v;
+        $this->assertEquals($v, $this->sot['hostname']);
+        $this->assertTrue(isset($this->sot['hostname']));
+        unset($this->sot['hostname']);
+        $this->assertFalse(isset($this->sot['hostname']));
+        $this->sot['hostname'] = $v;
+        $this->assertEquals($v, $this->sot['hostname']);
+        $this->assertTrue(isset($this->sot['hostname']));
     }
 
     /**
@@ -214,6 +398,10 @@ class LandingPageRedirectRuleTest extends TestCase
      * @covers ::__construct
      * @covers ::getRedirectFrom
      * @covers ::setRedirectFrom
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyRedirectFrom(): void
     {
@@ -224,7 +412,20 @@ class LandingPageRedirectRuleTest extends TestCase
         );
         $this->sot->setRedirectFrom($v);
         $this->assertEquals($v, $this->sot->getRedirectFrom());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['redirect_from']);
+        $v = $this->getFakeValue(
+            $this->types['redirect_from'],
+            $this->allowedValues['redirect_from'] ?? null
+        );
+        $this->sot['redirect_from'] = $v;
+        $this->assertEquals($v, $this->sot['redirect_from']);
+        $this->assertTrue(isset($this->sot['redirect_from']));
+        unset($this->sot['redirect_from']);
+        $this->assertFalse(isset($this->sot['redirect_from']));
+        $this->sot['redirect_from'] = $v;
+        $this->assertEquals($v, $this->sot['redirect_from']);
+        $this->assertTrue(isset($this->sot['redirect_from']));
     }
 
     /**
@@ -233,6 +434,10 @@ class LandingPageRedirectRuleTest extends TestCase
      * @covers ::__construct
      * @covers ::getRedirectTo
      * @covers ::setRedirectTo
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyRedirectTo(): void
     {
@@ -243,7 +448,20 @@ class LandingPageRedirectRuleTest extends TestCase
         );
         $this->sot->setRedirectTo($v);
         $this->assertEquals($v, $this->sot->getRedirectTo());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['redirect_to']);
+        $v = $this->getFakeValue(
+            $this->types['redirect_to'],
+            $this->allowedValues['redirect_to'] ?? null
+        );
+        $this->sot['redirect_to'] = $v;
+        $this->assertEquals($v, $this->sot['redirect_to']);
+        $this->assertTrue(isset($this->sot['redirect_to']));
+        unset($this->sot['redirect_to']);
+        $this->assertFalse(isset($this->sot['redirect_to']));
+        $this->sot['redirect_to'] = $v;
+        $this->assertEquals($v, $this->sot['redirect_to']);
+        $this->assertTrue(isset($this->sot['redirect_to']));
     }
 
     /**
@@ -252,6 +470,10 @@ class LandingPageRedirectRuleTest extends TestCase
      * @covers ::__construct
      * @covers ::getCreatedAt
      * @covers ::setCreatedAt
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyCreatedAt(): void
     {
@@ -262,7 +484,20 @@ class LandingPageRedirectRuleTest extends TestCase
         );
         $this->sot->setCreatedAt($v);
         $this->assertEquals($v, $this->sot->getCreatedAt());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['created_at']);
+        $v = $this->getFakeValue(
+            $this->types['created_at'],
+            $this->allowedValues['created_at'] ?? null
+        );
+        $this->sot['created_at'] = $v;
+        $this->assertEquals($v, $this->sot['created_at']);
+        $this->assertTrue(isset($this->sot['created_at']));
+        unset($this->sot['created_at']);
+        $this->assertFalse(isset($this->sot['created_at']));
+        $this->sot['created_at'] = $v;
+        $this->assertEquals($v, $this->sot['created_at']);
+        $this->assertTrue(isset($this->sot['created_at']));
     }
 
     /**
@@ -271,6 +506,10 @@ class LandingPageRedirectRuleTest extends TestCase
      * @covers ::__construct
      * @covers ::getUpdatedAt
      * @covers ::setUpdatedAt
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyUpdatedAt(): void
     {
@@ -281,6 +520,19 @@ class LandingPageRedirectRuleTest extends TestCase
         );
         $this->sot->setUpdatedAt($v);
         $this->assertEquals($v, $this->sot->getUpdatedAt());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['updated_at']);
+        $v = $this->getFakeValue(
+            $this->types['updated_at'],
+            $this->allowedValues['updated_at'] ?? null
+        );
+        $this->sot['updated_at'] = $v;
+        $this->assertEquals($v, $this->sot['updated_at']);
+        $this->assertTrue(isset($this->sot['updated_at']));
+        unset($this->sot['updated_at']);
+        $this->assertFalse(isset($this->sot['updated_at']));
+        $this->sot['updated_at'] = $v;
+        $this->assertEquals($v, $this->sot['updated_at']);
+        $this->assertTrue(isset($this->sot['updated_at']));
     }
 }

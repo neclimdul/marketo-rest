@@ -95,22 +95,6 @@ class StaticListResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -189,6 +173,22 @@ class StaticListResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -228,28 +228,28 @@ class StaticListResponse implements ModelInterface, ArrayAccess, \JsonSerializab
         $invalidProperties = [];
 
         if ($this->container['id'] === null) {
-            $invalidProperties[] = "'id' can't be null";
+            $invalidProperties['id'] = "'id' can't be null";
         }
         if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
+            $invalidProperties['name'] = "'name' can't be null";
         }
         if ($this->container['description'] === null) {
-            $invalidProperties[] = "'description' can't be null";
+            $invalidProperties['description'] = "'description' can't be null";
         }
         if ($this->container['created_at'] === null) {
-            $invalidProperties[] = "'created_at' can't be null";
+            $invalidProperties['created_at'] = "'created_at' can't be null";
         }
         if ($this->container['updated_at'] === null) {
-            $invalidProperties[] = "'updated_at' can't be null";
+            $invalidProperties['updated_at'] = "'updated_at' can't be null";
         }
         if ($this->container['url'] === null) {
-            $invalidProperties[] = "'url' can't be null";
+            $invalidProperties['url'] = "'url' can't be null";
         }
         if ($this->container['folder'] === null) {
-            $invalidProperties[] = "'folder' can't be null";
+            $invalidProperties['folder'] = "'folder' can't be null";
         }
         if ($this->container['workspace'] === null) {
-            $invalidProperties[] = "'workspace' can't be null";
+            $invalidProperties['workspace'] = "'workspace' can't be null";
         }
         return $invalidProperties;
     }
@@ -457,9 +457,9 @@ class StaticListResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets computed_url
      *
-     * @return string
+     * @return string|null
      */
-    public function getComputedUrl(): string
+    public function getComputedUrl(): ?string
     {
         return $this->container['computed_url'];
     }

@@ -37,7 +37,7 @@ use PHPUnit\Framework\TestCase;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  *
- * @coversDefault \NecLimDul\MarketoRest\Asset\Model\JsonNode
+ * @coversDefaultClass \NecLimDul\MarketoRest\Asset\Model\JsonNode
  */
 class JsonNodeTest extends TestCase
 {
@@ -46,11 +46,6 @@ class JsonNodeTest extends TestCase
      * @var \NecLimDul\MarketoRest\Asset\Model\JsonNode
      */
     private $sot;
-
-    /**
-     * @var \Faker\Generator
-     */
-    private $faker;
 
     /**
      * @var string[]
@@ -77,7 +72,13 @@ class JsonNodeTest extends TestCase
         'short' => 'bool',
         'textual' => 'bool',
         'value_node' => 'bool',
-    ];
+];
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
     /**
      * @var scalar[][]
      */
@@ -141,7 +142,14 @@ class JsonNodeTest extends TestCase
                 return new \stdClass();
         }
         if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
-            return new $type();
+            $model = new $type();
+            $types = $type::swaggerTypes();
+            foreach ($model->listInvalidProperties() as $field => $reason) {
+                // @todo get allowed values? ((getter))AllowedValues
+                // @phpstan-ignore-next-line
+                $model[$field] = $this->getFakeValue($types[$field], null);
+            }
+            return $model;
         }
         $this->markTestSkipped('This type is not mocked yet: ' . $type);
     }
@@ -153,7 +161,141 @@ class JsonNodeTest extends TestCase
      */
     public function testJsonNode(): void
     {
-        $this->assertInstanceOf(\NecLimDul\MarketoRest\Asset\Model\JsonNode::class, $this->sot);
+        $this->assertInstanceOf(JsonNode::class, $this->sot);
+    }
+
+    /**
+     * @covers ::swaggerTypes
+     */
+    public function testSwaggerTypes(): void
+    {
+        $this->assertEquals($this->types, JsonNode::swaggerTypes());
+    }
+
+    /**
+     * @covers ::swaggerFormats
+     */
+    public function testSwaggerFormats(): void
+    {
+        $formats = $this->sot->swaggerFormats();
+        $this->assertEquals(null, $formats['array']);
+        $this->assertEquals(null, $formats['big_decimal']);
+        $this->assertEquals(null, $formats['big_integer']);
+        $this->assertEquals(null, $formats['binary']);
+        $this->assertEquals(null, $formats['boolean']);
+        $this->assertEquals(null, $formats['container_node']);
+        $this->assertEquals(null, $formats['double']);
+        $this->assertEquals(null, $formats['float']);
+        $this->assertEquals(null, $formats['floating_point_number']);
+        $this->assertEquals(null, $formats['int']);
+        $this->assertEquals(null, $formats['integral_number']);
+        $this->assertEquals(null, $formats['long']);
+        $this->assertEquals(null, $formats['missing_node']);
+        $this->assertEquals(null, $formats['node_type']);
+        $this->assertEquals(null, $formats['null']);
+        $this->assertEquals(null, $formats['number']);
+        $this->assertEquals(null, $formats['object']);
+        $this->assertEquals(null, $formats['pojo']);
+        $this->assertEquals(null, $formats['short']);
+        $this->assertEquals(null, $formats['textual']);
+        $this->assertEquals(null, $formats['value_node']);
+    }
+
+    /**
+     * @covers ::attributeMap
+     */
+    public function testAttributeMap(): void
+    {
+        $formats = $this->sot->attributeMap();
+        $this->assertEquals('array', $formats['array']);
+        $this->assertEquals('bigDecimal', $formats['big_decimal']);
+        $this->assertEquals('bigInteger', $formats['big_integer']);
+        $this->assertEquals('binary', $formats['binary']);
+        $this->assertEquals('boolean', $formats['boolean']);
+        $this->assertEquals('containerNode', $formats['container_node']);
+        $this->assertEquals('double', $formats['double']);
+        $this->assertEquals('float', $formats['float']);
+        $this->assertEquals('floatingPointNumber', $formats['floating_point_number']);
+        $this->assertEquals('int', $formats['int']);
+        $this->assertEquals('integralNumber', $formats['integral_number']);
+        $this->assertEquals('long', $formats['long']);
+        $this->assertEquals('missingNode', $formats['missing_node']);
+        $this->assertEquals('nodeType', $formats['node_type']);
+        $this->assertEquals('null', $formats['null']);
+        $this->assertEquals('number', $formats['number']);
+        $this->assertEquals('object', $formats['object']);
+        $this->assertEquals('pojo', $formats['pojo']);
+        $this->assertEquals('short', $formats['short']);
+        $this->assertEquals('textual', $formats['textual']);
+        $this->assertEquals('valueNode', $formats['value_node']);
+    }
+
+    /**
+     * @covers ::getters
+     * @covers ::setters
+     */
+    public function testGettersSetters(): void
+    {
+        $getters = $this->sot->getters();
+        $setters = $this->sot->setters();
+        foreach (array_keys($this->types) as $field) {
+            $this->assertTrue(isset($setters[$field]));
+            $this->assertTrue(isset($getters[$field]));
+            $this->assertTrue(
+                method_exists($this->sot, $getters[$field]),
+                'Getter exists on model.'
+            );
+            $this->assertTrue(
+                method_exists($this->sot, $setters[$field]),
+                'Setter exists on model.'
+            );
+        }
+    }
+
+    /**
+     * @covers ::getModelName
+     */
+    public function testGetModelName(): void
+    {
+        $this->assertEquals('JsonNode', $this->sot->getModelName());
+    }
+
+    /**
+     * @covers ::listInvalidProperties
+     * @covers ::valid
+     */
+    public function testValid(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::setAdditionalProperties
+     * @covers ::setAdditionalProperty
+     * @covers ::getAdditionalProperties
+     */
+    public function testAdditionalProperties(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::jsonSerialize
+     * @covers ::__toString
+     */
+    public function testJson(): void
+    {
+        // Some minimal tests that json generates well.
+        $json = json_encode($this->sot);
+        $this->assertIsString($json, 'Json encoded');
+        $json = json_decode($json);
+        $string = json_decode((string) $this->sot);
+        $this->assertEquals(
+            $json,
+            $string
+        );
+        $this->assertInstanceOf(\stdClass::class, $json);
+        $this->assertInstanceOf(\stdClass::class, $string);
     }
 
     /**
@@ -162,6 +304,10 @@ class JsonNodeTest extends TestCase
      * @covers ::__construct
      * @covers ::getArray
      * @covers ::setArray
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyArray(): void
     {
@@ -172,7 +318,23 @@ class JsonNodeTest extends TestCase
         );
         $this->sot->setArray($v);
         $this->assertEquals($v, $this->sot->getArray());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setArray(null);
+        $this->assertNull($this->sot->getArray());
+        $this->sot->setArray($v);
+
+        $this->assertEquals($v, $this->sot['array']);
+        $v = $this->getFakeValue(
+            $this->types['array'],
+            $this->allowedValues['array'] ?? null
+        );
+        $this->sot['array'] = $v;
+        $this->assertEquals($v, $this->sot['array']);
+        $this->assertTrue(isset($this->sot['array']));
+        unset($this->sot['array']);
+        $this->assertFalse(isset($this->sot['array']));
+        $this->sot['array'] = $v;
+        $this->assertEquals($v, $this->sot['array']);
+        $this->assertTrue(isset($this->sot['array']));
     }
 
     /**
@@ -181,6 +343,10 @@ class JsonNodeTest extends TestCase
      * @covers ::__construct
      * @covers ::getBigDecimal
      * @covers ::setBigDecimal
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyBigDecimal(): void
     {
@@ -191,7 +357,23 @@ class JsonNodeTest extends TestCase
         );
         $this->sot->setBigDecimal($v);
         $this->assertEquals($v, $this->sot->getBigDecimal());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setBigDecimal(null);
+        $this->assertNull($this->sot->getBigDecimal());
+        $this->sot->setBigDecimal($v);
+
+        $this->assertEquals($v, $this->sot['big_decimal']);
+        $v = $this->getFakeValue(
+            $this->types['big_decimal'],
+            $this->allowedValues['big_decimal'] ?? null
+        );
+        $this->sot['big_decimal'] = $v;
+        $this->assertEquals($v, $this->sot['big_decimal']);
+        $this->assertTrue(isset($this->sot['big_decimal']));
+        unset($this->sot['big_decimal']);
+        $this->assertFalse(isset($this->sot['big_decimal']));
+        $this->sot['big_decimal'] = $v;
+        $this->assertEquals($v, $this->sot['big_decimal']);
+        $this->assertTrue(isset($this->sot['big_decimal']));
     }
 
     /**
@@ -200,6 +382,10 @@ class JsonNodeTest extends TestCase
      * @covers ::__construct
      * @covers ::getBigInteger
      * @covers ::setBigInteger
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyBigInteger(): void
     {
@@ -210,7 +396,23 @@ class JsonNodeTest extends TestCase
         );
         $this->sot->setBigInteger($v);
         $this->assertEquals($v, $this->sot->getBigInteger());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setBigInteger(null);
+        $this->assertNull($this->sot->getBigInteger());
+        $this->sot->setBigInteger($v);
+
+        $this->assertEquals($v, $this->sot['big_integer']);
+        $v = $this->getFakeValue(
+            $this->types['big_integer'],
+            $this->allowedValues['big_integer'] ?? null
+        );
+        $this->sot['big_integer'] = $v;
+        $this->assertEquals($v, $this->sot['big_integer']);
+        $this->assertTrue(isset($this->sot['big_integer']));
+        unset($this->sot['big_integer']);
+        $this->assertFalse(isset($this->sot['big_integer']));
+        $this->sot['big_integer'] = $v;
+        $this->assertEquals($v, $this->sot['big_integer']);
+        $this->assertTrue(isset($this->sot['big_integer']));
     }
 
     /**
@@ -219,6 +421,10 @@ class JsonNodeTest extends TestCase
      * @covers ::__construct
      * @covers ::getBinary
      * @covers ::setBinary
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyBinary(): void
     {
@@ -229,7 +435,23 @@ class JsonNodeTest extends TestCase
         );
         $this->sot->setBinary($v);
         $this->assertEquals($v, $this->sot->getBinary());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setBinary(null);
+        $this->assertNull($this->sot->getBinary());
+        $this->sot->setBinary($v);
+
+        $this->assertEquals($v, $this->sot['binary']);
+        $v = $this->getFakeValue(
+            $this->types['binary'],
+            $this->allowedValues['binary'] ?? null
+        );
+        $this->sot['binary'] = $v;
+        $this->assertEquals($v, $this->sot['binary']);
+        $this->assertTrue(isset($this->sot['binary']));
+        unset($this->sot['binary']);
+        $this->assertFalse(isset($this->sot['binary']));
+        $this->sot['binary'] = $v;
+        $this->assertEquals($v, $this->sot['binary']);
+        $this->assertTrue(isset($this->sot['binary']));
     }
 
     /**
@@ -238,6 +460,10 @@ class JsonNodeTest extends TestCase
      * @covers ::__construct
      * @covers ::getBoolean
      * @covers ::setBoolean
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyBoolean(): void
     {
@@ -248,7 +474,23 @@ class JsonNodeTest extends TestCase
         );
         $this->sot->setBoolean($v);
         $this->assertEquals($v, $this->sot->getBoolean());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setBoolean(null);
+        $this->assertNull($this->sot->getBoolean());
+        $this->sot->setBoolean($v);
+
+        $this->assertEquals($v, $this->sot['boolean']);
+        $v = $this->getFakeValue(
+            $this->types['boolean'],
+            $this->allowedValues['boolean'] ?? null
+        );
+        $this->sot['boolean'] = $v;
+        $this->assertEquals($v, $this->sot['boolean']);
+        $this->assertTrue(isset($this->sot['boolean']));
+        unset($this->sot['boolean']);
+        $this->assertFalse(isset($this->sot['boolean']));
+        $this->sot['boolean'] = $v;
+        $this->assertEquals($v, $this->sot['boolean']);
+        $this->assertTrue(isset($this->sot['boolean']));
     }
 
     /**
@@ -257,6 +499,10 @@ class JsonNodeTest extends TestCase
      * @covers ::__construct
      * @covers ::getContainerNode
      * @covers ::setContainerNode
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyContainerNode(): void
     {
@@ -267,7 +513,23 @@ class JsonNodeTest extends TestCase
         );
         $this->sot->setContainerNode($v);
         $this->assertEquals($v, $this->sot->getContainerNode());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setContainerNode(null);
+        $this->assertNull($this->sot->getContainerNode());
+        $this->sot->setContainerNode($v);
+
+        $this->assertEquals($v, $this->sot['container_node']);
+        $v = $this->getFakeValue(
+            $this->types['container_node'],
+            $this->allowedValues['container_node'] ?? null
+        );
+        $this->sot['container_node'] = $v;
+        $this->assertEquals($v, $this->sot['container_node']);
+        $this->assertTrue(isset($this->sot['container_node']));
+        unset($this->sot['container_node']);
+        $this->assertFalse(isset($this->sot['container_node']));
+        $this->sot['container_node'] = $v;
+        $this->assertEquals($v, $this->sot['container_node']);
+        $this->assertTrue(isset($this->sot['container_node']));
     }
 
     /**
@@ -276,6 +538,10 @@ class JsonNodeTest extends TestCase
      * @covers ::__construct
      * @covers ::getDouble
      * @covers ::setDouble
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyDouble(): void
     {
@@ -286,7 +552,23 @@ class JsonNodeTest extends TestCase
         );
         $this->sot->setDouble($v);
         $this->assertEquals($v, $this->sot->getDouble());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setDouble(null);
+        $this->assertNull($this->sot->getDouble());
+        $this->sot->setDouble($v);
+
+        $this->assertEquals($v, $this->sot['double']);
+        $v = $this->getFakeValue(
+            $this->types['double'],
+            $this->allowedValues['double'] ?? null
+        );
+        $this->sot['double'] = $v;
+        $this->assertEquals($v, $this->sot['double']);
+        $this->assertTrue(isset($this->sot['double']));
+        unset($this->sot['double']);
+        $this->assertFalse(isset($this->sot['double']));
+        $this->sot['double'] = $v;
+        $this->assertEquals($v, $this->sot['double']);
+        $this->assertTrue(isset($this->sot['double']));
     }
 
     /**
@@ -295,6 +577,10 @@ class JsonNodeTest extends TestCase
      * @covers ::__construct
      * @covers ::getFloat
      * @covers ::setFloat
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyFloat(): void
     {
@@ -305,7 +591,23 @@ class JsonNodeTest extends TestCase
         );
         $this->sot->setFloat($v);
         $this->assertEquals($v, $this->sot->getFloat());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setFloat(null);
+        $this->assertNull($this->sot->getFloat());
+        $this->sot->setFloat($v);
+
+        $this->assertEquals($v, $this->sot['float']);
+        $v = $this->getFakeValue(
+            $this->types['float'],
+            $this->allowedValues['float'] ?? null
+        );
+        $this->sot['float'] = $v;
+        $this->assertEquals($v, $this->sot['float']);
+        $this->assertTrue(isset($this->sot['float']));
+        unset($this->sot['float']);
+        $this->assertFalse(isset($this->sot['float']));
+        $this->sot['float'] = $v;
+        $this->assertEquals($v, $this->sot['float']);
+        $this->assertTrue(isset($this->sot['float']));
     }
 
     /**
@@ -314,6 +616,10 @@ class JsonNodeTest extends TestCase
      * @covers ::__construct
      * @covers ::getFloatingPointNumber
      * @covers ::setFloatingPointNumber
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyFloatingPointNumber(): void
     {
@@ -324,7 +630,23 @@ class JsonNodeTest extends TestCase
         );
         $this->sot->setFloatingPointNumber($v);
         $this->assertEquals($v, $this->sot->getFloatingPointNumber());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setFloatingPointNumber(null);
+        $this->assertNull($this->sot->getFloatingPointNumber());
+        $this->sot->setFloatingPointNumber($v);
+
+        $this->assertEquals($v, $this->sot['floating_point_number']);
+        $v = $this->getFakeValue(
+            $this->types['floating_point_number'],
+            $this->allowedValues['floating_point_number'] ?? null
+        );
+        $this->sot['floating_point_number'] = $v;
+        $this->assertEquals($v, $this->sot['floating_point_number']);
+        $this->assertTrue(isset($this->sot['floating_point_number']));
+        unset($this->sot['floating_point_number']);
+        $this->assertFalse(isset($this->sot['floating_point_number']));
+        $this->sot['floating_point_number'] = $v;
+        $this->assertEquals($v, $this->sot['floating_point_number']);
+        $this->assertTrue(isset($this->sot['floating_point_number']));
     }
 
     /**
@@ -333,6 +655,10 @@ class JsonNodeTest extends TestCase
      * @covers ::__construct
      * @covers ::getInt
      * @covers ::setInt
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyInt(): void
     {
@@ -343,7 +669,23 @@ class JsonNodeTest extends TestCase
         );
         $this->sot->setInt($v);
         $this->assertEquals($v, $this->sot->getInt());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setInt(null);
+        $this->assertNull($this->sot->getInt());
+        $this->sot->setInt($v);
+
+        $this->assertEquals($v, $this->sot['int']);
+        $v = $this->getFakeValue(
+            $this->types['int'],
+            $this->allowedValues['int'] ?? null
+        );
+        $this->sot['int'] = $v;
+        $this->assertEquals($v, $this->sot['int']);
+        $this->assertTrue(isset($this->sot['int']));
+        unset($this->sot['int']);
+        $this->assertFalse(isset($this->sot['int']));
+        $this->sot['int'] = $v;
+        $this->assertEquals($v, $this->sot['int']);
+        $this->assertTrue(isset($this->sot['int']));
     }
 
     /**
@@ -352,6 +694,10 @@ class JsonNodeTest extends TestCase
      * @covers ::__construct
      * @covers ::getIntegralNumber
      * @covers ::setIntegralNumber
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyIntegralNumber(): void
     {
@@ -362,7 +708,23 @@ class JsonNodeTest extends TestCase
         );
         $this->sot->setIntegralNumber($v);
         $this->assertEquals($v, $this->sot->getIntegralNumber());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setIntegralNumber(null);
+        $this->assertNull($this->sot->getIntegralNumber());
+        $this->sot->setIntegralNumber($v);
+
+        $this->assertEquals($v, $this->sot['integral_number']);
+        $v = $this->getFakeValue(
+            $this->types['integral_number'],
+            $this->allowedValues['integral_number'] ?? null
+        );
+        $this->sot['integral_number'] = $v;
+        $this->assertEquals($v, $this->sot['integral_number']);
+        $this->assertTrue(isset($this->sot['integral_number']));
+        unset($this->sot['integral_number']);
+        $this->assertFalse(isset($this->sot['integral_number']));
+        $this->sot['integral_number'] = $v;
+        $this->assertEquals($v, $this->sot['integral_number']);
+        $this->assertTrue(isset($this->sot['integral_number']));
     }
 
     /**
@@ -371,6 +733,10 @@ class JsonNodeTest extends TestCase
      * @covers ::__construct
      * @covers ::getLong
      * @covers ::setLong
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyLong(): void
     {
@@ -381,7 +747,23 @@ class JsonNodeTest extends TestCase
         );
         $this->sot->setLong($v);
         $this->assertEquals($v, $this->sot->getLong());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setLong(null);
+        $this->assertNull($this->sot->getLong());
+        $this->sot->setLong($v);
+
+        $this->assertEquals($v, $this->sot['long']);
+        $v = $this->getFakeValue(
+            $this->types['long'],
+            $this->allowedValues['long'] ?? null
+        );
+        $this->sot['long'] = $v;
+        $this->assertEquals($v, $this->sot['long']);
+        $this->assertTrue(isset($this->sot['long']));
+        unset($this->sot['long']);
+        $this->assertFalse(isset($this->sot['long']));
+        $this->sot['long'] = $v;
+        $this->assertEquals($v, $this->sot['long']);
+        $this->assertTrue(isset($this->sot['long']));
     }
 
     /**
@@ -390,6 +772,10 @@ class JsonNodeTest extends TestCase
      * @covers ::__construct
      * @covers ::getMissingNode
      * @covers ::setMissingNode
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyMissingNode(): void
     {
@@ -400,7 +786,23 @@ class JsonNodeTest extends TestCase
         );
         $this->sot->setMissingNode($v);
         $this->assertEquals($v, $this->sot->getMissingNode());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setMissingNode(null);
+        $this->assertNull($this->sot->getMissingNode());
+        $this->sot->setMissingNode($v);
+
+        $this->assertEquals($v, $this->sot['missing_node']);
+        $v = $this->getFakeValue(
+            $this->types['missing_node'],
+            $this->allowedValues['missing_node'] ?? null
+        );
+        $this->sot['missing_node'] = $v;
+        $this->assertEquals($v, $this->sot['missing_node']);
+        $this->assertTrue(isset($this->sot['missing_node']));
+        unset($this->sot['missing_node']);
+        $this->assertFalse(isset($this->sot['missing_node']));
+        $this->sot['missing_node'] = $v;
+        $this->assertEquals($v, $this->sot['missing_node']);
+        $this->assertTrue(isset($this->sot['missing_node']));
     }
 
     /**
@@ -409,6 +811,10 @@ class JsonNodeTest extends TestCase
      * @covers ::__construct
      * @covers ::getNodeType
      * @covers ::setNodeType
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyNodeType(): void
     {
@@ -419,7 +825,23 @@ class JsonNodeTest extends TestCase
         );
         $this->sot->setNodeType($v);
         $this->assertEquals($v, $this->sot->getNodeType());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setNodeType(null);
+        $this->assertNull($this->sot->getNodeType());
+        $this->sot->setNodeType($v);
+
+        $this->assertEquals($v, $this->sot['node_type']);
+        $v = $this->getFakeValue(
+            $this->types['node_type'],
+            $this->allowedValues['node_type'] ?? null
+        );
+        $this->sot['node_type'] = $v;
+        $this->assertEquals($v, $this->sot['node_type']);
+        $this->assertTrue(isset($this->sot['node_type']));
+        unset($this->sot['node_type']);
+        $this->assertFalse(isset($this->sot['node_type']));
+        $this->sot['node_type'] = $v;
+        $this->assertEquals($v, $this->sot['node_type']);
+        $this->assertTrue(isset($this->sot['node_type']));
     }
 
     /**
@@ -428,6 +850,10 @@ class JsonNodeTest extends TestCase
      * @covers ::__construct
      * @covers ::getNull
      * @covers ::setNull
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyNull(): void
     {
@@ -438,7 +864,23 @@ class JsonNodeTest extends TestCase
         );
         $this->sot->setNull($v);
         $this->assertEquals($v, $this->sot->getNull());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setNull(null);
+        $this->assertNull($this->sot->getNull());
+        $this->sot->setNull($v);
+
+        $this->assertEquals($v, $this->sot['null']);
+        $v = $this->getFakeValue(
+            $this->types['null'],
+            $this->allowedValues['null'] ?? null
+        );
+        $this->sot['null'] = $v;
+        $this->assertEquals($v, $this->sot['null']);
+        $this->assertTrue(isset($this->sot['null']));
+        unset($this->sot['null']);
+        $this->assertFalse(isset($this->sot['null']));
+        $this->sot['null'] = $v;
+        $this->assertEquals($v, $this->sot['null']);
+        $this->assertTrue(isset($this->sot['null']));
     }
 
     /**
@@ -447,6 +889,10 @@ class JsonNodeTest extends TestCase
      * @covers ::__construct
      * @covers ::getNumber
      * @covers ::setNumber
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyNumber(): void
     {
@@ -457,7 +903,23 @@ class JsonNodeTest extends TestCase
         );
         $this->sot->setNumber($v);
         $this->assertEquals($v, $this->sot->getNumber());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setNumber(null);
+        $this->assertNull($this->sot->getNumber());
+        $this->sot->setNumber($v);
+
+        $this->assertEquals($v, $this->sot['number']);
+        $v = $this->getFakeValue(
+            $this->types['number'],
+            $this->allowedValues['number'] ?? null
+        );
+        $this->sot['number'] = $v;
+        $this->assertEquals($v, $this->sot['number']);
+        $this->assertTrue(isset($this->sot['number']));
+        unset($this->sot['number']);
+        $this->assertFalse(isset($this->sot['number']));
+        $this->sot['number'] = $v;
+        $this->assertEquals($v, $this->sot['number']);
+        $this->assertTrue(isset($this->sot['number']));
     }
 
     /**
@@ -466,6 +928,10 @@ class JsonNodeTest extends TestCase
      * @covers ::__construct
      * @covers ::getObject
      * @covers ::setObject
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyObject(): void
     {
@@ -476,7 +942,23 @@ class JsonNodeTest extends TestCase
         );
         $this->sot->setObject($v);
         $this->assertEquals($v, $this->sot->getObject());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setObject(null);
+        $this->assertNull($this->sot->getObject());
+        $this->sot->setObject($v);
+
+        $this->assertEquals($v, $this->sot['object']);
+        $v = $this->getFakeValue(
+            $this->types['object'],
+            $this->allowedValues['object'] ?? null
+        );
+        $this->sot['object'] = $v;
+        $this->assertEquals($v, $this->sot['object']);
+        $this->assertTrue(isset($this->sot['object']));
+        unset($this->sot['object']);
+        $this->assertFalse(isset($this->sot['object']));
+        $this->sot['object'] = $v;
+        $this->assertEquals($v, $this->sot['object']);
+        $this->assertTrue(isset($this->sot['object']));
     }
 
     /**
@@ -485,6 +967,10 @@ class JsonNodeTest extends TestCase
      * @covers ::__construct
      * @covers ::getPojo
      * @covers ::setPojo
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyPojo(): void
     {
@@ -495,7 +981,23 @@ class JsonNodeTest extends TestCase
         );
         $this->sot->setPojo($v);
         $this->assertEquals($v, $this->sot->getPojo());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setPojo(null);
+        $this->assertNull($this->sot->getPojo());
+        $this->sot->setPojo($v);
+
+        $this->assertEquals($v, $this->sot['pojo']);
+        $v = $this->getFakeValue(
+            $this->types['pojo'],
+            $this->allowedValues['pojo'] ?? null
+        );
+        $this->sot['pojo'] = $v;
+        $this->assertEquals($v, $this->sot['pojo']);
+        $this->assertTrue(isset($this->sot['pojo']));
+        unset($this->sot['pojo']);
+        $this->assertFalse(isset($this->sot['pojo']));
+        $this->sot['pojo'] = $v;
+        $this->assertEquals($v, $this->sot['pojo']);
+        $this->assertTrue(isset($this->sot['pojo']));
     }
 
     /**
@@ -504,6 +1006,10 @@ class JsonNodeTest extends TestCase
      * @covers ::__construct
      * @covers ::getShort
      * @covers ::setShort
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyShort(): void
     {
@@ -514,7 +1020,23 @@ class JsonNodeTest extends TestCase
         );
         $this->sot->setShort($v);
         $this->assertEquals($v, $this->sot->getShort());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setShort(null);
+        $this->assertNull($this->sot->getShort());
+        $this->sot->setShort($v);
+
+        $this->assertEquals($v, $this->sot['short']);
+        $v = $this->getFakeValue(
+            $this->types['short'],
+            $this->allowedValues['short'] ?? null
+        );
+        $this->sot['short'] = $v;
+        $this->assertEquals($v, $this->sot['short']);
+        $this->assertTrue(isset($this->sot['short']));
+        unset($this->sot['short']);
+        $this->assertFalse(isset($this->sot['short']));
+        $this->sot['short'] = $v;
+        $this->assertEquals($v, $this->sot['short']);
+        $this->assertTrue(isset($this->sot['short']));
     }
 
     /**
@@ -523,6 +1045,10 @@ class JsonNodeTest extends TestCase
      * @covers ::__construct
      * @covers ::getTextual
      * @covers ::setTextual
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyTextual(): void
     {
@@ -533,7 +1059,23 @@ class JsonNodeTest extends TestCase
         );
         $this->sot->setTextual($v);
         $this->assertEquals($v, $this->sot->getTextual());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setTextual(null);
+        $this->assertNull($this->sot->getTextual());
+        $this->sot->setTextual($v);
+
+        $this->assertEquals($v, $this->sot['textual']);
+        $v = $this->getFakeValue(
+            $this->types['textual'],
+            $this->allowedValues['textual'] ?? null
+        );
+        $this->sot['textual'] = $v;
+        $this->assertEquals($v, $this->sot['textual']);
+        $this->assertTrue(isset($this->sot['textual']));
+        unset($this->sot['textual']);
+        $this->assertFalse(isset($this->sot['textual']));
+        $this->sot['textual'] = $v;
+        $this->assertEquals($v, $this->sot['textual']);
+        $this->assertTrue(isset($this->sot['textual']));
     }
 
     /**
@@ -542,6 +1084,10 @@ class JsonNodeTest extends TestCase
      * @covers ::__construct
      * @covers ::getValueNode
      * @covers ::setValueNode
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyValueNode(): void
     {
@@ -552,6 +1098,22 @@ class JsonNodeTest extends TestCase
         );
         $this->sot->setValueNode($v);
         $this->assertEquals($v, $this->sot->getValueNode());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setValueNode(null);
+        $this->assertNull($this->sot->getValueNode());
+        $this->sot->setValueNode($v);
+
+        $this->assertEquals($v, $this->sot['value_node']);
+        $v = $this->getFakeValue(
+            $this->types['value_node'],
+            $this->allowedValues['value_node'] ?? null
+        );
+        $this->sot['value_node'] = $v;
+        $this->assertEquals($v, $this->sot['value_node']);
+        $this->assertTrue(isset($this->sot['value_node']));
+        unset($this->sot['value_node']);
+        $this->assertFalse(isset($this->sot['value_node']));
+        $this->sot['value_node'] = $v;
+        $this->assertEquals($v, $this->sot['value_node']);
+        $this->assertTrue(isset($this->sot['value_node']));
     }
 }

@@ -85,22 +85,6 @@ class ObjectDependentAsset implements ModelInterface, ArrayAccess, \JsonSerializ
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -159,6 +143,22 @@ class ObjectDependentAsset implements ModelInterface, ArrayAccess, \JsonSerializ
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -198,13 +198,13 @@ class ObjectDependentAsset implements ModelInterface, ArrayAccess, \JsonSerializ
         $invalidProperties = [];
 
         if ($this->container['asset_type'] === null) {
-            $invalidProperties[] = "'asset_type' can't be null";
+            $invalidProperties['asset_type'] = "'asset_type' can't be null";
         }
         if ($this->container['asset_id'] === null) {
-            $invalidProperties[] = "'asset_id' can't be null";
+            $invalidProperties['asset_id'] = "'asset_id' can't be null";
         }
         if ($this->container['asset_name'] === null) {
-            $invalidProperties[] = "'asset_name' can't be null";
+            $invalidProperties['asset_name'] = "'asset_name' can't be null";
         }
         return $invalidProperties;
     }
@@ -292,9 +292,9 @@ class ObjectDependentAsset implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets used_fields
      *
-     * @return string[]
+     * @return string[]|null
      */
-    public function getUsedFields(): array
+    public function getUsedFields(): ?array
     {
         return $this->container['used_fields'];
     }

@@ -89,22 +89,6 @@ class FormThankYouPageDTO implements ModelInterface, ArrayAccess, \JsonSerializa
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -171,6 +155,22 @@ class FormThankYouPageDTO implements ModelInterface, ArrayAccess, \JsonSerializa
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -223,9 +223,9 @@ class FormThankYouPageDTO implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets default
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getDefault(): bool
+    public function getDefault(): ?bool
     {
         return $this->container['default'];
     }
@@ -247,9 +247,9 @@ class FormThankYouPageDTO implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets followup_type
      *
-     * @return string
+     * @return string|null
      */
-    public function getFollowupType(): string
+    public function getFollowupType(): ?string
     {
         return $this->container['followup_type'];
     }
@@ -271,9 +271,9 @@ class FormThankYouPageDTO implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets followup_value
      *
-     * @return object
+     * @return object|null
      */
-    public function getFollowupValue(): object
+    public function getFollowupValue(): ?object
     {
         return $this->container['followup_value'];
     }
@@ -295,9 +295,9 @@ class FormThankYouPageDTO implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets operator
      *
-     * @return string
+     * @return string|null
      */
-    public function getOperator(): string
+    public function getOperator(): ?string
     {
         return $this->container['operator'];
     }
@@ -319,9 +319,9 @@ class FormThankYouPageDTO implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets subject_field
      *
-     * @return string
+     * @return string|null
      */
-    public function getSubjectField(): string
+    public function getSubjectField(): ?string
     {
         return $this->container['subject_field'];
     }
@@ -343,9 +343,9 @@ class FormThankYouPageDTO implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets values
      *
-     * @return string[]
+     * @return string[]|null
      */
-    public function getValues(): array
+    public function getValues(): ?array
     {
         return $this->container['values'];
     }

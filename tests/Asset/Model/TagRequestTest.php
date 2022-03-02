@@ -37,7 +37,7 @@ use PHPUnit\Framework\TestCase;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  *
- * @coversDefault \NecLimDul\MarketoRest\Asset\Model\TagRequest
+ * @coversDefaultClass \NecLimDul\MarketoRest\Asset\Model\TagRequest
  */
 class TagRequestTest extends TestCase
 {
@@ -48,17 +48,18 @@ class TagRequestTest extends TestCase
     private $sot;
 
     /**
-     * @var \Faker\Generator
-     */
-    private $faker;
-
-    /**
      * @var string[]
      */
     private $types = [
         'tag_type' => 'string',
         'tag_value' => 'string',
-    ];
+];
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
     /**
      * @var scalar[][]
      */
@@ -111,7 +112,14 @@ class TagRequestTest extends TestCase
                 return new \stdClass();
         }
         if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
-            return new $type();
+            $model = new $type();
+            $types = $type::swaggerTypes();
+            foreach ($model->listInvalidProperties() as $field => $reason) {
+                // @todo get allowed values? ((getter))AllowedValues
+                // @phpstan-ignore-next-line
+                $model[$field] = $this->getFakeValue($types[$field], null);
+            }
+            return $model;
         }
         $this->markTestSkipped('This type is not mocked yet: ' . $type);
     }
@@ -123,7 +131,103 @@ class TagRequestTest extends TestCase
      */
     public function testTagRequest(): void
     {
-        $this->assertInstanceOf(\NecLimDul\MarketoRest\Asset\Model\TagRequest::class, $this->sot);
+        $this->assertInstanceOf(TagRequest::class, $this->sot);
+    }
+
+    /**
+     * @covers ::swaggerTypes
+     */
+    public function testSwaggerTypes(): void
+    {
+        $this->assertEquals($this->types, TagRequest::swaggerTypes());
+    }
+
+    /**
+     * @covers ::swaggerFormats
+     */
+    public function testSwaggerFormats(): void
+    {
+        $formats = $this->sot->swaggerFormats();
+        $this->assertEquals(null, $formats['tag_type']);
+        $this->assertEquals(null, $formats['tag_value']);
+    }
+
+    /**
+     * @covers ::attributeMap
+     */
+    public function testAttributeMap(): void
+    {
+        $formats = $this->sot->attributeMap();
+        $this->assertEquals('tagType', $formats['tag_type']);
+        $this->assertEquals('tagValue', $formats['tag_value']);
+    }
+
+    /**
+     * @covers ::getters
+     * @covers ::setters
+     */
+    public function testGettersSetters(): void
+    {
+        $getters = $this->sot->getters();
+        $setters = $this->sot->setters();
+        foreach (array_keys($this->types) as $field) {
+            $this->assertTrue(isset($setters[$field]));
+            $this->assertTrue(isset($getters[$field]));
+            $this->assertTrue(
+                method_exists($this->sot, $getters[$field]),
+                'Getter exists on model.'
+            );
+            $this->assertTrue(
+                method_exists($this->sot, $setters[$field]),
+                'Setter exists on model.'
+            );
+        }
+    }
+
+    /**
+     * @covers ::getModelName
+     */
+    public function testGetModelName(): void
+    {
+        $this->assertEquals('TagRequest', $this->sot->getModelName());
+    }
+
+    /**
+     * @covers ::listInvalidProperties
+     * @covers ::valid
+     */
+    public function testValid(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::setAdditionalProperties
+     * @covers ::setAdditionalProperty
+     * @covers ::getAdditionalProperties
+     */
+    public function testAdditionalProperties(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::jsonSerialize
+     * @covers ::__toString
+     */
+    public function testJson(): void
+    {
+        // Some minimal tests that json generates well.
+        $json = json_encode($this->sot);
+        $this->assertIsString($json, 'Json encoded');
+        $json = json_decode($json);
+        $string = json_decode((string) $this->sot);
+        $this->assertEquals(
+            $json,
+            $string
+        );
+        $this->assertInstanceOf(\stdClass::class, $json);
+        $this->assertInstanceOf(\stdClass::class, $string);
     }
 
     /**
@@ -132,6 +236,10 @@ class TagRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getTagType
      * @covers ::setTagType
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyTagType(): void
     {
@@ -142,7 +250,23 @@ class TagRequestTest extends TestCase
         );
         $this->sot->setTagType($v);
         $this->assertEquals($v, $this->sot->getTagType());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setTagType(null);
+        $this->assertNull($this->sot->getTagType());
+        $this->sot->setTagType($v);
+
+        $this->assertEquals($v, $this->sot['tag_type']);
+        $v = $this->getFakeValue(
+            $this->types['tag_type'],
+            $this->allowedValues['tag_type'] ?? null
+        );
+        $this->sot['tag_type'] = $v;
+        $this->assertEquals($v, $this->sot['tag_type']);
+        $this->assertTrue(isset($this->sot['tag_type']));
+        unset($this->sot['tag_type']);
+        $this->assertFalse(isset($this->sot['tag_type']));
+        $this->sot['tag_type'] = $v;
+        $this->assertEquals($v, $this->sot['tag_type']);
+        $this->assertTrue(isset($this->sot['tag_type']));
     }
 
     /**
@@ -151,6 +275,10 @@ class TagRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getTagValue
      * @covers ::setTagValue
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyTagValue(): void
     {
@@ -161,6 +289,22 @@ class TagRequestTest extends TestCase
         );
         $this->sot->setTagValue($v);
         $this->assertEquals($v, $this->sot->getTagValue());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setTagValue(null);
+        $this->assertNull($this->sot->getTagValue());
+        $this->sot->setTagValue($v);
+
+        $this->assertEquals($v, $this->sot['tag_value']);
+        $v = $this->getFakeValue(
+            $this->types['tag_value'],
+            $this->allowedValues['tag_value'] ?? null
+        );
+        $this->sot['tag_value'] = $v;
+        $this->assertEquals($v, $this->sot['tag_value']);
+        $this->assertTrue(isset($this->sot['tag_value']));
+        unset($this->sot['tag_value']);
+        $this->assertFalse(isset($this->sot['tag_value']));
+        $this->sot['tag_value'] = $v;
+        $this->assertEquals($v, $this->sot['tag_value']);
+        $this->assertTrue(isset($this->sot['tag_value']));
     }
 }

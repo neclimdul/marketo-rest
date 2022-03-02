@@ -83,22 +83,6 @@ class SubmitFormRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -153,6 +137,22 @@ class SubmitFormRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -192,10 +192,10 @@ class SubmitFormRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
         $invalidProperties = [];
 
         if ($this->container['input'] === null) {
-            $invalidProperties[] = "'input' can't be null";
+            $invalidProperties['input'] = "'input' can't be null";
         }
         if ($this->container['form_id'] === null) {
-            $invalidProperties[] = "'form_id' can't be null";
+            $invalidProperties['form_id'] = "'form_id' can't be null";
         }
         return $invalidProperties;
     }
@@ -259,9 +259,9 @@ class SubmitFormRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets program_id
      *
-     * @return int
+     * @return int|null
      */
-    public function getProgramId(): int
+    public function getProgramId(): ?int
     {
         return $this->container['program_id'];
     }

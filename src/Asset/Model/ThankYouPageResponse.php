@@ -81,22 +81,6 @@ class ThankYouPageResponse implements ModelInterface, ArrayAccess, \JsonSerializ
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -144,6 +128,22 @@ class ThankYouPageResponse implements ModelInterface, ArrayAccess, \JsonSerializ
     {
         $this->container['id'] = $data['id'] ?? null;
         $this->container['thank_you_list'] = $data['thank_you_list'] ?? null;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
     }
 
     /**
@@ -199,9 +199,9 @@ class ThankYouPageResponse implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets id
      *
-     * @return int
+     * @return int|null
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->container['id'];
     }
@@ -223,9 +223,9 @@ class ThankYouPageResponse implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets thank_you_list
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\FormThankYouPageDTO[]
+     * @return \NecLimDul\MarketoRest\Asset\Model\FormThankYouPageDTO[]|null
      */
-    public function getThankYouList(): array
+    public function getThankYouList(): ?array
     {
         return $this->container['thank_you_list'];
     }

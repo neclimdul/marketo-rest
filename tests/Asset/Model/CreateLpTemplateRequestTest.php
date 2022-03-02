@@ -37,7 +37,7 @@ use PHPUnit\Framework\TestCase;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  *
- * @coversDefault \NecLimDul\MarketoRest\Asset\Model\CreateLpTemplateRequest
+ * @coversDefaultClass \NecLimDul\MarketoRest\Asset\Model\CreateLpTemplateRequest
  */
 class CreateLpTemplateRequestTest extends TestCase
 {
@@ -48,11 +48,6 @@ class CreateLpTemplateRequestTest extends TestCase
     private $sot;
 
     /**
-     * @var \Faker\Generator
-     */
-    private $faker;
-
-    /**
      * @var string[]
      */
     private $types = [
@@ -61,7 +56,13 @@ class CreateLpTemplateRequestTest extends TestCase
         'folder' => '\NecLimDul\MarketoRest\Asset\Model\Folder',
         'name' => 'string',
         'template_type' => 'string',
-    ];
+];
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
     /**
      * @var scalar[][]
      */
@@ -118,7 +119,14 @@ class CreateLpTemplateRequestTest extends TestCase
                 return new \stdClass();
         }
         if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
-            return new $type();
+            $model = new $type();
+            $types = $type::swaggerTypes();
+            foreach ($model->listInvalidProperties() as $field => $reason) {
+                // @todo get allowed values? ((getter))AllowedValues
+                // @phpstan-ignore-next-line
+                $model[$field] = $this->getFakeValue($types[$field], null);
+            }
+            return $model;
         }
         $this->markTestSkipped('This type is not mocked yet: ' . $type);
     }
@@ -130,7 +138,109 @@ class CreateLpTemplateRequestTest extends TestCase
      */
     public function testCreateLpTemplateRequest(): void
     {
-        $this->assertInstanceOf(\NecLimDul\MarketoRest\Asset\Model\CreateLpTemplateRequest::class, $this->sot);
+        $this->assertInstanceOf(CreateLpTemplateRequest::class, $this->sot);
+    }
+
+    /**
+     * @covers ::swaggerTypes
+     */
+    public function testSwaggerTypes(): void
+    {
+        $this->assertEquals($this->types, CreateLpTemplateRequest::swaggerTypes());
+    }
+
+    /**
+     * @covers ::swaggerFormats
+     */
+    public function testSwaggerFormats(): void
+    {
+        $formats = $this->sot->swaggerFormats();
+        $this->assertEquals(null, $formats['description']);
+        $this->assertEquals(null, $formats['enable_munchkin']);
+        $this->assertEquals(null, $formats['folder']);
+        $this->assertEquals(null, $formats['name']);
+        $this->assertEquals(null, $formats['template_type']);
+    }
+
+    /**
+     * @covers ::attributeMap
+     */
+    public function testAttributeMap(): void
+    {
+        $formats = $this->sot->attributeMap();
+        $this->assertEquals('description', $formats['description']);
+        $this->assertEquals('enableMunchkin', $formats['enable_munchkin']);
+        $this->assertEquals('folder', $formats['folder']);
+        $this->assertEquals('name', $formats['name']);
+        $this->assertEquals('templateType', $formats['template_type']);
+    }
+
+    /**
+     * @covers ::getters
+     * @covers ::setters
+     */
+    public function testGettersSetters(): void
+    {
+        $getters = $this->sot->getters();
+        $setters = $this->sot->setters();
+        foreach (array_keys($this->types) as $field) {
+            $this->assertTrue(isset($setters[$field]));
+            $this->assertTrue(isset($getters[$field]));
+            $this->assertTrue(
+                method_exists($this->sot, $getters[$field]),
+                'Getter exists on model.'
+            );
+            $this->assertTrue(
+                method_exists($this->sot, $setters[$field]),
+                'Setter exists on model.'
+            );
+        }
+    }
+
+    /**
+     * @covers ::getModelName
+     */
+    public function testGetModelName(): void
+    {
+        $this->assertEquals('CreateLpTemplateRequest', $this->sot->getModelName());
+    }
+
+    /**
+     * @covers ::listInvalidProperties
+     * @covers ::valid
+     */
+    public function testValid(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::setAdditionalProperties
+     * @covers ::setAdditionalProperty
+     * @covers ::getAdditionalProperties
+     */
+    public function testAdditionalProperties(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::jsonSerialize
+     * @covers ::__toString
+     */
+    public function testJson(): void
+    {
+        // Some minimal tests that json generates well.
+        $json = json_encode($this->sot);
+        $this->assertIsString($json, 'Json encoded');
+        $json = json_decode($json);
+        $string = json_decode((string) $this->sot);
+        $this->assertEquals(
+            $json,
+            $string
+        );
+        $this->assertInstanceOf(\stdClass::class, $json);
+        $this->assertInstanceOf(\stdClass::class, $string);
     }
 
     /**
@@ -139,6 +249,10 @@ class CreateLpTemplateRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getDescription
      * @covers ::setDescription
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyDescription(): void
     {
@@ -149,7 +263,23 @@ class CreateLpTemplateRequestTest extends TestCase
         );
         $this->sot->setDescription($v);
         $this->assertEquals($v, $this->sot->getDescription());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setDescription(null);
+        $this->assertNull($this->sot->getDescription());
+        $this->sot->setDescription($v);
+
+        $this->assertEquals($v, $this->sot['description']);
+        $v = $this->getFakeValue(
+            $this->types['description'],
+            $this->allowedValues['description'] ?? null
+        );
+        $this->sot['description'] = $v;
+        $this->assertEquals($v, $this->sot['description']);
+        $this->assertTrue(isset($this->sot['description']));
+        unset($this->sot['description']);
+        $this->assertFalse(isset($this->sot['description']));
+        $this->sot['description'] = $v;
+        $this->assertEquals($v, $this->sot['description']);
+        $this->assertTrue(isset($this->sot['description']));
     }
 
     /**
@@ -158,6 +288,10 @@ class CreateLpTemplateRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getEnableMunchkin
      * @covers ::setEnableMunchkin
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyEnableMunchkin(): void
     {
@@ -168,7 +302,23 @@ class CreateLpTemplateRequestTest extends TestCase
         );
         $this->sot->setEnableMunchkin($v);
         $this->assertEquals($v, $this->sot->getEnableMunchkin());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setEnableMunchkin(null);
+        $this->assertNull($this->sot->getEnableMunchkin());
+        $this->sot->setEnableMunchkin($v);
+
+        $this->assertEquals($v, $this->sot['enable_munchkin']);
+        $v = $this->getFakeValue(
+            $this->types['enable_munchkin'],
+            $this->allowedValues['enable_munchkin'] ?? null
+        );
+        $this->sot['enable_munchkin'] = $v;
+        $this->assertEquals($v, $this->sot['enable_munchkin']);
+        $this->assertTrue(isset($this->sot['enable_munchkin']));
+        unset($this->sot['enable_munchkin']);
+        $this->assertFalse(isset($this->sot['enable_munchkin']));
+        $this->sot['enable_munchkin'] = $v;
+        $this->assertEquals($v, $this->sot['enable_munchkin']);
+        $this->assertTrue(isset($this->sot['enable_munchkin']));
     }
 
     /**
@@ -177,6 +327,10 @@ class CreateLpTemplateRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getFolder
      * @covers ::setFolder
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyFolder(): void
     {
@@ -187,7 +341,20 @@ class CreateLpTemplateRequestTest extends TestCase
         );
         $this->sot->setFolder($v);
         $this->assertEquals($v, $this->sot->getFolder());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['folder']);
+        $v = $this->getFakeValue(
+            $this->types['folder'],
+            $this->allowedValues['folder'] ?? null
+        );
+        $this->sot['folder'] = $v;
+        $this->assertEquals($v, $this->sot['folder']);
+        $this->assertTrue(isset($this->sot['folder']));
+        unset($this->sot['folder']);
+        $this->assertFalse(isset($this->sot['folder']));
+        $this->sot['folder'] = $v;
+        $this->assertEquals($v, $this->sot['folder']);
+        $this->assertTrue(isset($this->sot['folder']));
     }
 
     /**
@@ -196,6 +363,10 @@ class CreateLpTemplateRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getName
      * @covers ::setName
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyName(): void
     {
@@ -206,7 +377,20 @@ class CreateLpTemplateRequestTest extends TestCase
         );
         $this->sot->setName($v);
         $this->assertEquals($v, $this->sot->getName());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['name']);
+        $v = $this->getFakeValue(
+            $this->types['name'],
+            $this->allowedValues['name'] ?? null
+        );
+        $this->sot['name'] = $v;
+        $this->assertEquals($v, $this->sot['name']);
+        $this->assertTrue(isset($this->sot['name']));
+        unset($this->sot['name']);
+        $this->assertFalse(isset($this->sot['name']));
+        $this->sot['name'] = $v;
+        $this->assertEquals($v, $this->sot['name']);
+        $this->assertTrue(isset($this->sot['name']));
     }
 
     /**
@@ -215,6 +399,10 @@ class CreateLpTemplateRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getTemplateType
      * @covers ::setTemplateType
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyTemplateType(): void
     {
@@ -225,6 +413,22 @@ class CreateLpTemplateRequestTest extends TestCase
         );
         $this->sot->setTemplateType($v);
         $this->assertEquals($v, $this->sot->getTemplateType());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setTemplateType(null);
+        $this->assertNull($this->sot->getTemplateType());
+        $this->sot->setTemplateType($v);
+
+        $this->assertEquals($v, $this->sot['template_type']);
+        $v = $this->getFakeValue(
+            $this->types['template_type'],
+            $this->allowedValues['template_type'] ?? null
+        );
+        $this->sot['template_type'] = $v;
+        $this->assertEquals($v, $this->sot['template_type']);
+        $this->assertTrue(isset($this->sot['template_type']));
+        unset($this->sot['template_type']);
+        $this->assertFalse(isset($this->sot['template_type']));
+        $this->sot['template_type'] = $v;
+        $this->assertEquals($v, $this->sot['template_type']);
+        $this->assertTrue(isset($this->sot['template_type']));
     }
 }

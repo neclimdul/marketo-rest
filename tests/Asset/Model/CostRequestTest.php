@@ -37,7 +37,7 @@ use PHPUnit\Framework\TestCase;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  *
- * @coversDefault \NecLimDul\MarketoRest\Asset\Model\CostRequest
+ * @coversDefaultClass \NecLimDul\MarketoRest\Asset\Model\CostRequest
  */
 class CostRequestTest extends TestCase
 {
@@ -48,18 +48,19 @@ class CostRequestTest extends TestCase
     private $sot;
 
     /**
-     * @var \Faker\Generator
-     */
-    private $faker;
-
-    /**
      * @var string[]
      */
     private $types = [
         'cost' => 'int',
         'note' => 'string',
         'start_date' => '\DateTime',
-    ];
+];
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
     /**
      * @var scalar[][]
      */
@@ -112,7 +113,14 @@ class CostRequestTest extends TestCase
                 return new \stdClass();
         }
         if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
-            return new $type();
+            $model = new $type();
+            $types = $type::swaggerTypes();
+            foreach ($model->listInvalidProperties() as $field => $reason) {
+                // @todo get allowed values? ((getter))AllowedValues
+                // @phpstan-ignore-next-line
+                $model[$field] = $this->getFakeValue($types[$field], null);
+            }
+            return $model;
         }
         $this->markTestSkipped('This type is not mocked yet: ' . $type);
     }
@@ -124,7 +132,105 @@ class CostRequestTest extends TestCase
      */
     public function testCostRequest(): void
     {
-        $this->assertInstanceOf(\NecLimDul\MarketoRest\Asset\Model\CostRequest::class, $this->sot);
+        $this->assertInstanceOf(CostRequest::class, $this->sot);
+    }
+
+    /**
+     * @covers ::swaggerTypes
+     */
+    public function testSwaggerTypes(): void
+    {
+        $this->assertEquals($this->types, CostRequest::swaggerTypes());
+    }
+
+    /**
+     * @covers ::swaggerFormats
+     */
+    public function testSwaggerFormats(): void
+    {
+        $formats = $this->sot->swaggerFormats();
+        $this->assertEquals('int32', $formats['cost']);
+        $this->assertEquals(null, $formats['note']);
+        $this->assertEquals('date-time', $formats['start_date']);
+    }
+
+    /**
+     * @covers ::attributeMap
+     */
+    public function testAttributeMap(): void
+    {
+        $formats = $this->sot->attributeMap();
+        $this->assertEquals('cost', $formats['cost']);
+        $this->assertEquals('note', $formats['note']);
+        $this->assertEquals('startDate', $formats['start_date']);
+    }
+
+    /**
+     * @covers ::getters
+     * @covers ::setters
+     */
+    public function testGettersSetters(): void
+    {
+        $getters = $this->sot->getters();
+        $setters = $this->sot->setters();
+        foreach (array_keys($this->types) as $field) {
+            $this->assertTrue(isset($setters[$field]));
+            $this->assertTrue(isset($getters[$field]));
+            $this->assertTrue(
+                method_exists($this->sot, $getters[$field]),
+                'Getter exists on model.'
+            );
+            $this->assertTrue(
+                method_exists($this->sot, $setters[$field]),
+                'Setter exists on model.'
+            );
+        }
+    }
+
+    /**
+     * @covers ::getModelName
+     */
+    public function testGetModelName(): void
+    {
+        $this->assertEquals('CostRequest', $this->sot->getModelName());
+    }
+
+    /**
+     * @covers ::listInvalidProperties
+     * @covers ::valid
+     */
+    public function testValid(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::setAdditionalProperties
+     * @covers ::setAdditionalProperty
+     * @covers ::getAdditionalProperties
+     */
+    public function testAdditionalProperties(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::jsonSerialize
+     * @covers ::__toString
+     */
+    public function testJson(): void
+    {
+        // Some minimal tests that json generates well.
+        $json = json_encode($this->sot);
+        $this->assertIsString($json, 'Json encoded');
+        $json = json_decode($json);
+        $string = json_decode((string) $this->sot);
+        $this->assertEquals(
+            $json,
+            $string
+        );
+        $this->assertInstanceOf(\stdClass::class, $json);
+        $this->assertInstanceOf(\stdClass::class, $string);
     }
 
     /**
@@ -133,6 +239,10 @@ class CostRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getCost
      * @covers ::setCost
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyCost(): void
     {
@@ -143,7 +253,20 @@ class CostRequestTest extends TestCase
         );
         $this->sot->setCost($v);
         $this->assertEquals($v, $this->sot->getCost());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['cost']);
+        $v = $this->getFakeValue(
+            $this->types['cost'],
+            $this->allowedValues['cost'] ?? null
+        );
+        $this->sot['cost'] = $v;
+        $this->assertEquals($v, $this->sot['cost']);
+        $this->assertTrue(isset($this->sot['cost']));
+        unset($this->sot['cost']);
+        $this->assertFalse(isset($this->sot['cost']));
+        $this->sot['cost'] = $v;
+        $this->assertEquals($v, $this->sot['cost']);
+        $this->assertTrue(isset($this->sot['cost']));
     }
 
     /**
@@ -152,6 +275,10 @@ class CostRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getNote
      * @covers ::setNote
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyNote(): void
     {
@@ -162,7 +289,23 @@ class CostRequestTest extends TestCase
         );
         $this->sot->setNote($v);
         $this->assertEquals($v, $this->sot->getNote());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setNote(null);
+        $this->assertNull($this->sot->getNote());
+        $this->sot->setNote($v);
+
+        $this->assertEquals($v, $this->sot['note']);
+        $v = $this->getFakeValue(
+            $this->types['note'],
+            $this->allowedValues['note'] ?? null
+        );
+        $this->sot['note'] = $v;
+        $this->assertEquals($v, $this->sot['note']);
+        $this->assertTrue(isset($this->sot['note']));
+        unset($this->sot['note']);
+        $this->assertFalse(isset($this->sot['note']));
+        $this->sot['note'] = $v;
+        $this->assertEquals($v, $this->sot['note']);
+        $this->assertTrue(isset($this->sot['note']));
     }
 
     /**
@@ -171,6 +314,10 @@ class CostRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getStartDate
      * @covers ::setStartDate
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyStartDate(): void
     {
@@ -181,6 +328,19 @@ class CostRequestTest extends TestCase
         );
         $this->sot->setStartDate($v);
         $this->assertEquals($v, $this->sot->getStartDate());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['start_date']);
+        $v = $this->getFakeValue(
+            $this->types['start_date'],
+            $this->allowedValues['start_date'] ?? null
+        );
+        $this->sot['start_date'] = $v;
+        $this->assertEquals($v, $this->sot['start_date']);
+        $this->assertTrue(isset($this->sot['start_date']));
+        unset($this->sot['start_date']);
+        $this->assertFalse(isset($this->sot['start_date']));
+        $this->sot['start_date'] = $v;
+        $this->assertEquals($v, $this->sot['start_date']);
+        $this->assertTrue(isset($this->sot['start_date']));
     }
 }

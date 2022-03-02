@@ -79,22 +79,6 @@ class AddFormFieldVisibilityRequest implements ModelInterface, ArrayAccess, \Jso
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -138,6 +122,22 @@ class AddFormFieldVisibilityRequest implements ModelInterface, ArrayAccess, \Jso
     public function __construct(array $data = null)
     {
         $this->container['visibility_rule'] = $data['visibility_rule'] ?? null;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
     }
 
     /**
@@ -193,9 +193,9 @@ class AddFormFieldVisibilityRequest implements ModelInterface, ArrayAccess, \Jso
     /**
      * Gets visibility_rule
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\FormFieldVisibilityRequest
+     * @return \NecLimDul\MarketoRest\Asset\Model\FormFieldVisibilityRequest|null
      */
-    public function getVisibilityRule(): \NecLimDul\MarketoRest\Asset\Model\FormFieldVisibilityRequest
+    public function getVisibilityRule(): ?\NecLimDul\MarketoRest\Asset\Model\FormFieldVisibilityRequest
     {
         return $this->container['visibility_rule'];
     }

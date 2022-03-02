@@ -100,22 +100,6 @@ class Campaign implements ModelInterface, ArrayAccess, \JsonSerializable
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -198,6 +182,22 @@ class Campaign implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -237,20 +237,20 @@ class Campaign implements ModelInterface, ArrayAccess, \JsonSerializable
         $invalidProperties = [];
 
         if ($this->container['created_at'] === null) {
-            $invalidProperties[] = "'created_at' can't be null";
+            $invalidProperties['created_at'] = "'created_at' can't be null";
         }
         if ($this->container['id'] === null) {
-            $invalidProperties[] = "'id' can't be null";
+            $invalidProperties['id'] = "'id' can't be null";
         }
         if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
+            $invalidProperties['name'] = "'name' can't be null";
         }
         if ($this->container['type'] === null) {
-            $invalidProperties[] = "'type' can't be null";
+            $invalidProperties['type'] = "'type' can't be null";
         }
         $allowedValues = $this->getTypeAllowableValues();
         if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
+            $invalidProperties['type'] = sprintf(
                 "invalid value '%s' for 'type', must be one of '%s'",
                 $this->container['type'],
                 implode("', '", $allowedValues)
@@ -258,7 +258,7 @@ class Campaign implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         if ($this->container['updated_at'] === null) {
-            $invalidProperties[] = "'updated_at' can't be null";
+            $invalidProperties['updated_at'] = "'updated_at' can't be null";
         }
         return $invalidProperties;
     }
@@ -286,9 +286,9 @@ class Campaign implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets active
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getActive(): bool
+    public function getActive(): ?bool
     {
         return $this->container['active'];
     }
@@ -334,9 +334,9 @@ class Campaign implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->container['description'];
     }
@@ -406,9 +406,9 @@ class Campaign implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets program_id
      *
-     * @return int
+     * @return int|null
      */
-    public function getProgramId(): int
+    public function getProgramId(): ?int
     {
         return $this->container['program_id'];
     }
@@ -430,9 +430,9 @@ class Campaign implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets program_name
      *
-     * @return string
+     * @return string|null
      */
-    public function getProgramName(): string
+    public function getProgramName(): ?string
     {
         return $this->container['program_name'];
     }
@@ -512,9 +512,9 @@ class Campaign implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets workspace_name
      *
-     * @return string
+     * @return string|null
      */
-    public function getWorkspaceName(): string
+    public function getWorkspaceName(): ?string
     {
         return $this->container['workspace_name'];
     }

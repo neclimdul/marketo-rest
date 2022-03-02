@@ -37,7 +37,7 @@ use PHPUnit\Framework\TestCase;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  *
- * @coversDefault \NecLimDul\MarketoRest\Asset\Model\FieldsMetaDataResponse
+ * @coversDefaultClass \NecLimDul\MarketoRest\Asset\Model\FieldsMetaDataResponse
  */
 class FieldsMetaDataResponseTest extends TestCase
 {
@@ -46,11 +46,6 @@ class FieldsMetaDataResponseTest extends TestCase
      * @var \NecLimDul\MarketoRest\Asset\Model\FieldsMetaDataResponse
      */
     private $sot;
-
-    /**
-     * @var \Faker\Generator
-     */
-    private $faker;
 
     /**
      * @var string[]
@@ -75,7 +70,13 @@ class FieldsMetaDataResponseTest extends TestCase
         'placeholder_text' => 'string',
         'validation_message' => 'string',
         'visible_rows' => 'int',
-    ];
+];
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
     /**
      * @var scalar[][]
      */
@@ -128,7 +129,14 @@ class FieldsMetaDataResponseTest extends TestCase
                 return new \stdClass();
         }
         if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
-            return new $type();
+            $model = new $type();
+            $types = $type::swaggerTypes();
+            foreach ($model->listInvalidProperties() as $field => $reason) {
+                // @todo get allowed values? ((getter))AllowedValues
+                // @phpstan-ignore-next-line
+                $model[$field] = $this->getFakeValue($types[$field], null);
+            }
+            return $model;
         }
         $this->markTestSkipped('This type is not mocked yet: ' . $type);
     }
@@ -140,7 +148,137 @@ class FieldsMetaDataResponseTest extends TestCase
      */
     public function testFieldsMetaDataResponse(): void
     {
-        $this->assertInstanceOf(\NecLimDul\MarketoRest\Asset\Model\FieldsMetaDataResponse::class, $this->sot);
+        $this->assertInstanceOf(FieldsMetaDataResponse::class, $this->sot);
+    }
+
+    /**
+     * @covers ::swaggerTypes
+     */
+    public function testSwaggerTypes(): void
+    {
+        $this->assertEquals($this->types, FieldsMetaDataResponse::swaggerTypes());
+    }
+
+    /**
+     * @covers ::swaggerFormats
+     */
+    public function testSwaggerFormats(): void
+    {
+        $formats = $this->sot->swaggerFormats();
+        $this->assertEquals(null, $formats['data_type']);
+        $this->assertEquals(null, $formats['default_value']);
+        $this->assertEquals(null, $formats['description']);
+        $this->assertEquals(null, $formats['field_mask_values']);
+        $this->assertEquals('int32', $formats['field_width']);
+        $this->assertEquals(null, $formats['id']);
+        $this->assertEquals(null, $formats['initially_checked']);
+        $this->assertEquals(null, $formats['is_label_to_right']);
+        $this->assertEquals(null, $formats['is_multiselect']);
+        $this->assertEquals(null, $formats['is_required']);
+        $this->assertEquals(null, $formats['is_sensitive']);
+        $this->assertEquals('int32', $formats['label_width']);
+        $this->assertEquals('int32', $formats['max_length']);
+        $this->assertEquals('float', $formats['maximum_number']);
+        $this->assertEquals('float', $formats['minimum_number']);
+        $this->assertEquals(null, $formats['picklist_values']);
+        $this->assertEquals(null, $formats['placeholder_text']);
+        $this->assertEquals(null, $formats['validation_message']);
+        $this->assertEquals('int32', $formats['visible_rows']);
+    }
+
+    /**
+     * @covers ::attributeMap
+     */
+    public function testAttributeMap(): void
+    {
+        $formats = $this->sot->attributeMap();
+        $this->assertEquals('dataType', $formats['data_type']);
+        $this->assertEquals('defaultValue', $formats['default_value']);
+        $this->assertEquals('description', $formats['description']);
+        $this->assertEquals('fieldMaskValues', $formats['field_mask_values']);
+        $this->assertEquals('fieldWidth', $formats['field_width']);
+        $this->assertEquals('id', $formats['id']);
+        $this->assertEquals('initiallyChecked', $formats['initially_checked']);
+        $this->assertEquals('isLabelToRight', $formats['is_label_to_right']);
+        $this->assertEquals('isMultiselect', $formats['is_multiselect']);
+        $this->assertEquals('isRequired', $formats['is_required']);
+        $this->assertEquals('isSensitive', $formats['is_sensitive']);
+        $this->assertEquals('labelWidth', $formats['label_width']);
+        $this->assertEquals('maxLength', $formats['max_length']);
+        $this->assertEquals('maximumNumber', $formats['maximum_number']);
+        $this->assertEquals('minimumNumber', $formats['minimum_number']);
+        $this->assertEquals('picklistValues', $formats['picklist_values']);
+        $this->assertEquals('placeholderText', $formats['placeholder_text']);
+        $this->assertEquals('validationMessage', $formats['validation_message']);
+        $this->assertEquals('visibleRows', $formats['visible_rows']);
+    }
+
+    /**
+     * @covers ::getters
+     * @covers ::setters
+     */
+    public function testGettersSetters(): void
+    {
+        $getters = $this->sot->getters();
+        $setters = $this->sot->setters();
+        foreach (array_keys($this->types) as $field) {
+            $this->assertTrue(isset($setters[$field]));
+            $this->assertTrue(isset($getters[$field]));
+            $this->assertTrue(
+                method_exists($this->sot, $getters[$field]),
+                'Getter exists on model.'
+            );
+            $this->assertTrue(
+                method_exists($this->sot, $setters[$field]),
+                'Setter exists on model.'
+            );
+        }
+    }
+
+    /**
+     * @covers ::getModelName
+     */
+    public function testGetModelName(): void
+    {
+        $this->assertEquals('FieldsMetaDataResponse', $this->sot->getModelName());
+    }
+
+    /**
+     * @covers ::listInvalidProperties
+     * @covers ::valid
+     */
+    public function testValid(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::setAdditionalProperties
+     * @covers ::setAdditionalProperty
+     * @covers ::getAdditionalProperties
+     */
+    public function testAdditionalProperties(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::jsonSerialize
+     * @covers ::__toString
+     */
+    public function testJson(): void
+    {
+        // Some minimal tests that json generates well.
+        $json = json_encode($this->sot);
+        $this->assertIsString($json, 'Json encoded');
+        $json = json_decode($json);
+        $string = json_decode((string) $this->sot);
+        $this->assertEquals(
+            $json,
+            $string
+        );
+        $this->assertInstanceOf(\stdClass::class, $json);
+        $this->assertInstanceOf(\stdClass::class, $string);
     }
 
     /**
@@ -149,6 +287,10 @@ class FieldsMetaDataResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getDataType
      * @covers ::setDataType
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyDataType(): void
     {
@@ -159,7 +301,23 @@ class FieldsMetaDataResponseTest extends TestCase
         );
         $this->sot->setDataType($v);
         $this->assertEquals($v, $this->sot->getDataType());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setDataType(null);
+        $this->assertNull($this->sot->getDataType());
+        $this->sot->setDataType($v);
+
+        $this->assertEquals($v, $this->sot['data_type']);
+        $v = $this->getFakeValue(
+            $this->types['data_type'],
+            $this->allowedValues['data_type'] ?? null
+        );
+        $this->sot['data_type'] = $v;
+        $this->assertEquals($v, $this->sot['data_type']);
+        $this->assertTrue(isset($this->sot['data_type']));
+        unset($this->sot['data_type']);
+        $this->assertFalse(isset($this->sot['data_type']));
+        $this->sot['data_type'] = $v;
+        $this->assertEquals($v, $this->sot['data_type']);
+        $this->assertTrue(isset($this->sot['data_type']));
     }
 
     /**
@@ -168,6 +326,10 @@ class FieldsMetaDataResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getDefaultValue
      * @covers ::setDefaultValue
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyDefaultValue(): void
     {
@@ -178,7 +340,23 @@ class FieldsMetaDataResponseTest extends TestCase
         );
         $this->sot->setDefaultValue($v);
         $this->assertEquals($v, $this->sot->getDefaultValue());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setDefaultValue(null);
+        $this->assertNull($this->sot->getDefaultValue());
+        $this->sot->setDefaultValue($v);
+
+        $this->assertEquals($v, $this->sot['default_value']);
+        $v = $this->getFakeValue(
+            $this->types['default_value'],
+            $this->allowedValues['default_value'] ?? null
+        );
+        $this->sot['default_value'] = $v;
+        $this->assertEquals($v, $this->sot['default_value']);
+        $this->assertTrue(isset($this->sot['default_value']));
+        unset($this->sot['default_value']);
+        $this->assertFalse(isset($this->sot['default_value']));
+        $this->sot['default_value'] = $v;
+        $this->assertEquals($v, $this->sot['default_value']);
+        $this->assertTrue(isset($this->sot['default_value']));
     }
 
     /**
@@ -187,6 +365,10 @@ class FieldsMetaDataResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getDescription
      * @covers ::setDescription
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyDescription(): void
     {
@@ -197,7 +379,23 @@ class FieldsMetaDataResponseTest extends TestCase
         );
         $this->sot->setDescription($v);
         $this->assertEquals($v, $this->sot->getDescription());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setDescription(null);
+        $this->assertNull($this->sot->getDescription());
+        $this->sot->setDescription($v);
+
+        $this->assertEquals($v, $this->sot['description']);
+        $v = $this->getFakeValue(
+            $this->types['description'],
+            $this->allowedValues['description'] ?? null
+        );
+        $this->sot['description'] = $v;
+        $this->assertEquals($v, $this->sot['description']);
+        $this->assertTrue(isset($this->sot['description']));
+        unset($this->sot['description']);
+        $this->assertFalse(isset($this->sot['description']));
+        $this->sot['description'] = $v;
+        $this->assertEquals($v, $this->sot['description']);
+        $this->assertTrue(isset($this->sot['description']));
     }
 
     /**
@@ -206,6 +404,10 @@ class FieldsMetaDataResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getFieldMaskValues
      * @covers ::setFieldMaskValues
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyFieldMaskValues(): void
     {
@@ -216,7 +418,23 @@ class FieldsMetaDataResponseTest extends TestCase
         );
         $this->sot->setFieldMaskValues($v);
         $this->assertEquals($v, $this->sot->getFieldMaskValues());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setFieldMaskValues(null);
+        $this->assertNull($this->sot->getFieldMaskValues());
+        $this->sot->setFieldMaskValues($v);
+
+        $this->assertEquals($v, $this->sot['field_mask_values']);
+        $v = $this->getFakeValue(
+            $this->types['field_mask_values'],
+            $this->allowedValues['field_mask_values'] ?? null
+        );
+        $this->sot['field_mask_values'] = $v;
+        $this->assertEquals($v, $this->sot['field_mask_values']);
+        $this->assertTrue(isset($this->sot['field_mask_values']));
+        unset($this->sot['field_mask_values']);
+        $this->assertFalse(isset($this->sot['field_mask_values']));
+        $this->sot['field_mask_values'] = $v;
+        $this->assertEquals($v, $this->sot['field_mask_values']);
+        $this->assertTrue(isset($this->sot['field_mask_values']));
     }
 
     /**
@@ -225,6 +443,10 @@ class FieldsMetaDataResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getFieldWidth
      * @covers ::setFieldWidth
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyFieldWidth(): void
     {
@@ -235,7 +457,23 @@ class FieldsMetaDataResponseTest extends TestCase
         );
         $this->sot->setFieldWidth($v);
         $this->assertEquals($v, $this->sot->getFieldWidth());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setFieldWidth(null);
+        $this->assertNull($this->sot->getFieldWidth());
+        $this->sot->setFieldWidth($v);
+
+        $this->assertEquals($v, $this->sot['field_width']);
+        $v = $this->getFakeValue(
+            $this->types['field_width'],
+            $this->allowedValues['field_width'] ?? null
+        );
+        $this->sot['field_width'] = $v;
+        $this->assertEquals($v, $this->sot['field_width']);
+        $this->assertTrue(isset($this->sot['field_width']));
+        unset($this->sot['field_width']);
+        $this->assertFalse(isset($this->sot['field_width']));
+        $this->sot['field_width'] = $v;
+        $this->assertEquals($v, $this->sot['field_width']);
+        $this->assertTrue(isset($this->sot['field_width']));
     }
 
     /**
@@ -244,6 +482,10 @@ class FieldsMetaDataResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getId
      * @covers ::setId
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyId(): void
     {
@@ -254,7 +496,20 @@ class FieldsMetaDataResponseTest extends TestCase
         );
         $this->sot->setId($v);
         $this->assertEquals($v, $this->sot->getId());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['id']);
+        $v = $this->getFakeValue(
+            $this->types['id'],
+            $this->allowedValues['id'] ?? null
+        );
+        $this->sot['id'] = $v;
+        $this->assertEquals($v, $this->sot['id']);
+        $this->assertTrue(isset($this->sot['id']));
+        unset($this->sot['id']);
+        $this->assertFalse(isset($this->sot['id']));
+        $this->sot['id'] = $v;
+        $this->assertEquals($v, $this->sot['id']);
+        $this->assertTrue(isset($this->sot['id']));
     }
 
     /**
@@ -263,6 +518,10 @@ class FieldsMetaDataResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getInitiallyChecked
      * @covers ::setInitiallyChecked
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyInitiallyChecked(): void
     {
@@ -273,7 +532,23 @@ class FieldsMetaDataResponseTest extends TestCase
         );
         $this->sot->setInitiallyChecked($v);
         $this->assertEquals($v, $this->sot->getInitiallyChecked());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setInitiallyChecked(null);
+        $this->assertNull($this->sot->getInitiallyChecked());
+        $this->sot->setInitiallyChecked($v);
+
+        $this->assertEquals($v, $this->sot['initially_checked']);
+        $v = $this->getFakeValue(
+            $this->types['initially_checked'],
+            $this->allowedValues['initially_checked'] ?? null
+        );
+        $this->sot['initially_checked'] = $v;
+        $this->assertEquals($v, $this->sot['initially_checked']);
+        $this->assertTrue(isset($this->sot['initially_checked']));
+        unset($this->sot['initially_checked']);
+        $this->assertFalse(isset($this->sot['initially_checked']));
+        $this->sot['initially_checked'] = $v;
+        $this->assertEquals($v, $this->sot['initially_checked']);
+        $this->assertTrue(isset($this->sot['initially_checked']));
     }
 
     /**
@@ -282,6 +557,10 @@ class FieldsMetaDataResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getIsLabelToRight
      * @covers ::setIsLabelToRight
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyIsLabelToRight(): void
     {
@@ -292,7 +571,23 @@ class FieldsMetaDataResponseTest extends TestCase
         );
         $this->sot->setIsLabelToRight($v);
         $this->assertEquals($v, $this->sot->getIsLabelToRight());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setIsLabelToRight(null);
+        $this->assertNull($this->sot->getIsLabelToRight());
+        $this->sot->setIsLabelToRight($v);
+
+        $this->assertEquals($v, $this->sot['is_label_to_right']);
+        $v = $this->getFakeValue(
+            $this->types['is_label_to_right'],
+            $this->allowedValues['is_label_to_right'] ?? null
+        );
+        $this->sot['is_label_to_right'] = $v;
+        $this->assertEquals($v, $this->sot['is_label_to_right']);
+        $this->assertTrue(isset($this->sot['is_label_to_right']));
+        unset($this->sot['is_label_to_right']);
+        $this->assertFalse(isset($this->sot['is_label_to_right']));
+        $this->sot['is_label_to_right'] = $v;
+        $this->assertEquals($v, $this->sot['is_label_to_right']);
+        $this->assertTrue(isset($this->sot['is_label_to_right']));
     }
 
     /**
@@ -301,6 +596,10 @@ class FieldsMetaDataResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getIsMultiselect
      * @covers ::setIsMultiselect
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyIsMultiselect(): void
     {
@@ -311,7 +610,23 @@ class FieldsMetaDataResponseTest extends TestCase
         );
         $this->sot->setIsMultiselect($v);
         $this->assertEquals($v, $this->sot->getIsMultiselect());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setIsMultiselect(null);
+        $this->assertNull($this->sot->getIsMultiselect());
+        $this->sot->setIsMultiselect($v);
+
+        $this->assertEquals($v, $this->sot['is_multiselect']);
+        $v = $this->getFakeValue(
+            $this->types['is_multiselect'],
+            $this->allowedValues['is_multiselect'] ?? null
+        );
+        $this->sot['is_multiselect'] = $v;
+        $this->assertEquals($v, $this->sot['is_multiselect']);
+        $this->assertTrue(isset($this->sot['is_multiselect']));
+        unset($this->sot['is_multiselect']);
+        $this->assertFalse(isset($this->sot['is_multiselect']));
+        $this->sot['is_multiselect'] = $v;
+        $this->assertEquals($v, $this->sot['is_multiselect']);
+        $this->assertTrue(isset($this->sot['is_multiselect']));
     }
 
     /**
@@ -320,6 +635,10 @@ class FieldsMetaDataResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getIsRequired
      * @covers ::setIsRequired
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyIsRequired(): void
     {
@@ -330,7 +649,23 @@ class FieldsMetaDataResponseTest extends TestCase
         );
         $this->sot->setIsRequired($v);
         $this->assertEquals($v, $this->sot->getIsRequired());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setIsRequired(null);
+        $this->assertNull($this->sot->getIsRequired());
+        $this->sot->setIsRequired($v);
+
+        $this->assertEquals($v, $this->sot['is_required']);
+        $v = $this->getFakeValue(
+            $this->types['is_required'],
+            $this->allowedValues['is_required'] ?? null
+        );
+        $this->sot['is_required'] = $v;
+        $this->assertEquals($v, $this->sot['is_required']);
+        $this->assertTrue(isset($this->sot['is_required']));
+        unset($this->sot['is_required']);
+        $this->assertFalse(isset($this->sot['is_required']));
+        $this->sot['is_required'] = $v;
+        $this->assertEquals($v, $this->sot['is_required']);
+        $this->assertTrue(isset($this->sot['is_required']));
     }
 
     /**
@@ -339,6 +674,10 @@ class FieldsMetaDataResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getIsSensitive
      * @covers ::setIsSensitive
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyIsSensitive(): void
     {
@@ -349,7 +688,23 @@ class FieldsMetaDataResponseTest extends TestCase
         );
         $this->sot->setIsSensitive($v);
         $this->assertEquals($v, $this->sot->getIsSensitive());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setIsSensitive(null);
+        $this->assertNull($this->sot->getIsSensitive());
+        $this->sot->setIsSensitive($v);
+
+        $this->assertEquals($v, $this->sot['is_sensitive']);
+        $v = $this->getFakeValue(
+            $this->types['is_sensitive'],
+            $this->allowedValues['is_sensitive'] ?? null
+        );
+        $this->sot['is_sensitive'] = $v;
+        $this->assertEquals($v, $this->sot['is_sensitive']);
+        $this->assertTrue(isset($this->sot['is_sensitive']));
+        unset($this->sot['is_sensitive']);
+        $this->assertFalse(isset($this->sot['is_sensitive']));
+        $this->sot['is_sensitive'] = $v;
+        $this->assertEquals($v, $this->sot['is_sensitive']);
+        $this->assertTrue(isset($this->sot['is_sensitive']));
     }
 
     /**
@@ -358,6 +713,10 @@ class FieldsMetaDataResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getLabelWidth
      * @covers ::setLabelWidth
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyLabelWidth(): void
     {
@@ -368,7 +727,23 @@ class FieldsMetaDataResponseTest extends TestCase
         );
         $this->sot->setLabelWidth($v);
         $this->assertEquals($v, $this->sot->getLabelWidth());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setLabelWidth(null);
+        $this->assertNull($this->sot->getLabelWidth());
+        $this->sot->setLabelWidth($v);
+
+        $this->assertEquals($v, $this->sot['label_width']);
+        $v = $this->getFakeValue(
+            $this->types['label_width'],
+            $this->allowedValues['label_width'] ?? null
+        );
+        $this->sot['label_width'] = $v;
+        $this->assertEquals($v, $this->sot['label_width']);
+        $this->assertTrue(isset($this->sot['label_width']));
+        unset($this->sot['label_width']);
+        $this->assertFalse(isset($this->sot['label_width']));
+        $this->sot['label_width'] = $v;
+        $this->assertEquals($v, $this->sot['label_width']);
+        $this->assertTrue(isset($this->sot['label_width']));
     }
 
     /**
@@ -377,6 +752,10 @@ class FieldsMetaDataResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getMaxLength
      * @covers ::setMaxLength
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyMaxLength(): void
     {
@@ -387,7 +766,23 @@ class FieldsMetaDataResponseTest extends TestCase
         );
         $this->sot->setMaxLength($v);
         $this->assertEquals($v, $this->sot->getMaxLength());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setMaxLength(null);
+        $this->assertNull($this->sot->getMaxLength());
+        $this->sot->setMaxLength($v);
+
+        $this->assertEquals($v, $this->sot['max_length']);
+        $v = $this->getFakeValue(
+            $this->types['max_length'],
+            $this->allowedValues['max_length'] ?? null
+        );
+        $this->sot['max_length'] = $v;
+        $this->assertEquals($v, $this->sot['max_length']);
+        $this->assertTrue(isset($this->sot['max_length']));
+        unset($this->sot['max_length']);
+        $this->assertFalse(isset($this->sot['max_length']));
+        $this->sot['max_length'] = $v;
+        $this->assertEquals($v, $this->sot['max_length']);
+        $this->assertTrue(isset($this->sot['max_length']));
     }
 
     /**
@@ -396,6 +791,10 @@ class FieldsMetaDataResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getMaximumNumber
      * @covers ::setMaximumNumber
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyMaximumNumber(): void
     {
@@ -406,7 +805,23 @@ class FieldsMetaDataResponseTest extends TestCase
         );
         $this->sot->setMaximumNumber($v);
         $this->assertEquals($v, $this->sot->getMaximumNumber());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setMaximumNumber(null);
+        $this->assertNull($this->sot->getMaximumNumber());
+        $this->sot->setMaximumNumber($v);
+
+        $this->assertEquals($v, $this->sot['maximum_number']);
+        $v = $this->getFakeValue(
+            $this->types['maximum_number'],
+            $this->allowedValues['maximum_number'] ?? null
+        );
+        $this->sot['maximum_number'] = $v;
+        $this->assertEquals($v, $this->sot['maximum_number']);
+        $this->assertTrue(isset($this->sot['maximum_number']));
+        unset($this->sot['maximum_number']);
+        $this->assertFalse(isset($this->sot['maximum_number']));
+        $this->sot['maximum_number'] = $v;
+        $this->assertEquals($v, $this->sot['maximum_number']);
+        $this->assertTrue(isset($this->sot['maximum_number']));
     }
 
     /**
@@ -415,6 +830,10 @@ class FieldsMetaDataResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getMinimumNumber
      * @covers ::setMinimumNumber
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyMinimumNumber(): void
     {
@@ -425,7 +844,23 @@ class FieldsMetaDataResponseTest extends TestCase
         );
         $this->sot->setMinimumNumber($v);
         $this->assertEquals($v, $this->sot->getMinimumNumber());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setMinimumNumber(null);
+        $this->assertNull($this->sot->getMinimumNumber());
+        $this->sot->setMinimumNumber($v);
+
+        $this->assertEquals($v, $this->sot['minimum_number']);
+        $v = $this->getFakeValue(
+            $this->types['minimum_number'],
+            $this->allowedValues['minimum_number'] ?? null
+        );
+        $this->sot['minimum_number'] = $v;
+        $this->assertEquals($v, $this->sot['minimum_number']);
+        $this->assertTrue(isset($this->sot['minimum_number']));
+        unset($this->sot['minimum_number']);
+        $this->assertFalse(isset($this->sot['minimum_number']));
+        $this->sot['minimum_number'] = $v;
+        $this->assertEquals($v, $this->sot['minimum_number']);
+        $this->assertTrue(isset($this->sot['minimum_number']));
     }
 
     /**
@@ -434,6 +869,10 @@ class FieldsMetaDataResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getPicklistValues
      * @covers ::setPicklistValues
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyPicklistValues(): void
     {
@@ -444,7 +883,23 @@ class FieldsMetaDataResponseTest extends TestCase
         );
         $this->sot->setPicklistValues($v);
         $this->assertEquals($v, $this->sot->getPicklistValues());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setPicklistValues(null);
+        $this->assertNull($this->sot->getPicklistValues());
+        $this->sot->setPicklistValues($v);
+
+        $this->assertEquals($v, $this->sot['picklist_values']);
+        $v = $this->getFakeValue(
+            $this->types['picklist_values'],
+            $this->allowedValues['picklist_values'] ?? null
+        );
+        $this->sot['picklist_values'] = $v;
+        $this->assertEquals($v, $this->sot['picklist_values']);
+        $this->assertTrue(isset($this->sot['picklist_values']));
+        unset($this->sot['picklist_values']);
+        $this->assertFalse(isset($this->sot['picklist_values']));
+        $this->sot['picklist_values'] = $v;
+        $this->assertEquals($v, $this->sot['picklist_values']);
+        $this->assertTrue(isset($this->sot['picklist_values']));
     }
 
     /**
@@ -453,6 +908,10 @@ class FieldsMetaDataResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getPlaceholderText
      * @covers ::setPlaceholderText
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyPlaceholderText(): void
     {
@@ -463,7 +922,23 @@ class FieldsMetaDataResponseTest extends TestCase
         );
         $this->sot->setPlaceholderText($v);
         $this->assertEquals($v, $this->sot->getPlaceholderText());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setPlaceholderText(null);
+        $this->assertNull($this->sot->getPlaceholderText());
+        $this->sot->setPlaceholderText($v);
+
+        $this->assertEquals($v, $this->sot['placeholder_text']);
+        $v = $this->getFakeValue(
+            $this->types['placeholder_text'],
+            $this->allowedValues['placeholder_text'] ?? null
+        );
+        $this->sot['placeholder_text'] = $v;
+        $this->assertEquals($v, $this->sot['placeholder_text']);
+        $this->assertTrue(isset($this->sot['placeholder_text']));
+        unset($this->sot['placeholder_text']);
+        $this->assertFalse(isset($this->sot['placeholder_text']));
+        $this->sot['placeholder_text'] = $v;
+        $this->assertEquals($v, $this->sot['placeholder_text']);
+        $this->assertTrue(isset($this->sot['placeholder_text']));
     }
 
     /**
@@ -472,6 +947,10 @@ class FieldsMetaDataResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getValidationMessage
      * @covers ::setValidationMessage
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyValidationMessage(): void
     {
@@ -482,7 +961,23 @@ class FieldsMetaDataResponseTest extends TestCase
         );
         $this->sot->setValidationMessage($v);
         $this->assertEquals($v, $this->sot->getValidationMessage());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setValidationMessage(null);
+        $this->assertNull($this->sot->getValidationMessage());
+        $this->sot->setValidationMessage($v);
+
+        $this->assertEquals($v, $this->sot['validation_message']);
+        $v = $this->getFakeValue(
+            $this->types['validation_message'],
+            $this->allowedValues['validation_message'] ?? null
+        );
+        $this->sot['validation_message'] = $v;
+        $this->assertEquals($v, $this->sot['validation_message']);
+        $this->assertTrue(isset($this->sot['validation_message']));
+        unset($this->sot['validation_message']);
+        $this->assertFalse(isset($this->sot['validation_message']));
+        $this->sot['validation_message'] = $v;
+        $this->assertEquals($v, $this->sot['validation_message']);
+        $this->assertTrue(isset($this->sot['validation_message']));
     }
 
     /**
@@ -491,6 +986,10 @@ class FieldsMetaDataResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getVisibleRows
      * @covers ::setVisibleRows
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyVisibleRows(): void
     {
@@ -501,6 +1000,22 @@ class FieldsMetaDataResponseTest extends TestCase
         );
         $this->sot->setVisibleRows($v);
         $this->assertEquals($v, $this->sot->getVisibleRows());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setVisibleRows(null);
+        $this->assertNull($this->sot->getVisibleRows());
+        $this->sot->setVisibleRows($v);
+
+        $this->assertEquals($v, $this->sot['visible_rows']);
+        $v = $this->getFakeValue(
+            $this->types['visible_rows'],
+            $this->allowedValues['visible_rows'] ?? null
+        );
+        $this->sot['visible_rows'] = $v;
+        $this->assertEquals($v, $this->sot['visible_rows']);
+        $this->assertTrue(isset($this->sot['visible_rows']));
+        unset($this->sot['visible_rows']);
+        $this->assertFalse(isset($this->sot['visible_rows']));
+        $this->sot['visible_rows'] = $v;
+        $this->assertEquals($v, $this->sot['visible_rows']);
+        $this->assertTrue(isset($this->sot['visible_rows']));
     }
 }

@@ -85,22 +85,6 @@ class EmailCCFields implements ModelInterface, ArrayAccess, \JsonSerializable
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -159,6 +143,22 @@ class EmailCCFields implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -198,16 +198,16 @@ class EmailCCFields implements ModelInterface, ArrayAccess, \JsonSerializable
         $invalidProperties = [];
 
         if ($this->container['attribute_id'] === null) {
-            $invalidProperties[] = "'attribute_id' can't be null";
+            $invalidProperties['attribute_id'] = "'attribute_id' can't be null";
         }
         if ($this->container['object_name'] === null) {
-            $invalidProperties[] = "'object_name' can't be null";
+            $invalidProperties['object_name'] = "'object_name' can't be null";
         }
         if ($this->container['display_name'] === null) {
-            $invalidProperties[] = "'display_name' can't be null";
+            $invalidProperties['display_name'] = "'display_name' can't be null";
         }
         if ($this->container['api_name'] === null) {
-            $invalidProperties[] = "'api_name' can't be null";
+            $invalidProperties['api_name'] = "'api_name' can't be null";
         }
         return $invalidProperties;
     }

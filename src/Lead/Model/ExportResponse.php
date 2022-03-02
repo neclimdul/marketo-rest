@@ -100,22 +100,6 @@ class ExportResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -202,6 +186,22 @@ class ExportResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -241,10 +241,10 @@ class ExportResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         $invalidProperties = [];
 
         if ($this->container['export_id'] === null) {
-            $invalidProperties[] = "'export_id' can't be null";
+            $invalidProperties['export_id'] = "'export_id' can't be null";
         }
         if ($this->container['status'] === null) {
-            $invalidProperties[] = "'status' can't be null";
+            $invalidProperties['status'] = "'status' can't be null";
         }
         return $invalidProperties;
     }
@@ -260,9 +260,9 @@ class ExportResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets created_at
      *
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getCreatedAt(): \DateTime
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->container['created_at'];
     }
@@ -284,9 +284,9 @@ class ExportResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets error_msg
      *
-     * @return string
+     * @return string|null
      */
-    public function getErrorMsg(): string
+    public function getErrorMsg(): ?string
     {
         return $this->container['error_msg'];
     }
@@ -332,9 +332,9 @@ class ExportResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets file_size
      *
-     * @return int
+     * @return int|null
      */
-    public function getFileSize(): int
+    public function getFileSize(): ?int
     {
         return $this->container['file_size'];
     }
@@ -356,9 +356,9 @@ class ExportResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets file_checksum
      *
-     * @return string
+     * @return string|null
      */
-    public function getFileChecksum(): string
+    public function getFileChecksum(): ?string
     {
         return $this->container['file_checksum'];
     }
@@ -380,9 +380,9 @@ class ExportResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets finished_at
      *
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getFinishedAt(): \DateTime
+    public function getFinishedAt(): ?\DateTime
     {
         return $this->container['finished_at'];
     }
@@ -404,9 +404,9 @@ class ExportResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets format
      *
-     * @return string
+     * @return string|null
      */
-    public function getFormat(): string
+    public function getFormat(): ?string
     {
         return $this->container['format'];
     }
@@ -428,9 +428,9 @@ class ExportResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets number_of_records
      *
-     * @return int
+     * @return int|null
      */
-    public function getNumberOfRecords(): int
+    public function getNumberOfRecords(): ?int
     {
         return $this->container['number_of_records'];
     }
@@ -452,9 +452,9 @@ class ExportResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets queued_at
      *
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getQueuedAt(): \DateTime
+    public function getQueuedAt(): ?\DateTime
     {
         return $this->container['queued_at'];
     }
@@ -476,9 +476,9 @@ class ExportResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets started_at
      *
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getStartedAt(): \DateTime
+    public function getStartedAt(): ?\DateTime
     {
         return $this->container['started_at'];
     }

@@ -85,22 +85,6 @@ class PickListDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -159,6 +143,22 @@ class PickListDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -211,9 +211,9 @@ class PickListDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets is_default
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getIsDefault(): bool
+    public function getIsDefault(): ?bool
     {
         return $this->container['is_default'];
     }
@@ -235,9 +235,9 @@ class PickListDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets label
      *
-     * @return string
+     * @return string|null
      */
-    public function getLabel(): string
+    public function getLabel(): ?string
     {
         return $this->container['label'];
     }
@@ -259,9 +259,9 @@ class PickListDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets selected
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getSelected(): bool
+    public function getSelected(): ?bool
     {
         return $this->container['selected'];
     }
@@ -283,9 +283,9 @@ class PickListDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets value
      *
-     * @return string
+     * @return string|null
      */
-    public function getValue(): string
+    public function getValue(): ?string
     {
         return $this->container['value'];
     }

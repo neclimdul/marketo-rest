@@ -37,7 +37,7 @@ use PHPUnit\Framework\TestCase;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  *
- * @coversDefault \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectTypeRequest
+ * @coversDefaultClass \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectTypeRequest
  */
 class SyncCustomObjectTypeRequestTest extends TestCase
 {
@@ -46,11 +46,6 @@ class SyncCustomObjectTypeRequestTest extends TestCase
      * @var \NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectTypeRequest
      */
     private $sot;
-
-    /**
-     * @var \Faker\Generator
-     */
-    private $faker;
 
     /**
      * @var string[]
@@ -62,7 +57,13 @@ class SyncCustomObjectTypeRequestTest extends TestCase
         'plural_name' => 'string',
         'description' => 'string',
         'show_in_lead_detail' => 'bool',
-    ];
+];
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
     /**
      * @var scalar[][]
      */
@@ -120,7 +121,14 @@ class SyncCustomObjectTypeRequestTest extends TestCase
                 return new \stdClass();
         }
         if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
-            return new $type();
+            $model = new $type();
+            $types = $type::swaggerTypes();
+            foreach ($model->listInvalidProperties() as $field => $reason) {
+                // @todo get allowed values? ((getter))AllowedValues
+                // @phpstan-ignore-next-line
+                $model[$field] = $this->getFakeValue($types[$field], null);
+            }
+            return $model;
         }
         $this->markTestSkipped('This type is not mocked yet: ' . $type);
     }
@@ -132,7 +140,111 @@ class SyncCustomObjectTypeRequestTest extends TestCase
      */
     public function testSyncCustomObjectTypeRequest(): void
     {
-        $this->assertInstanceOf(\NecLimDul\MarketoRest\Lead\Model\SyncCustomObjectTypeRequest::class, $this->sot);
+        $this->assertInstanceOf(SyncCustomObjectTypeRequest::class, $this->sot);
+    }
+
+    /**
+     * @covers ::swaggerTypes
+     */
+    public function testSwaggerTypes(): void
+    {
+        $this->assertEquals($this->types, SyncCustomObjectTypeRequest::swaggerTypes());
+    }
+
+    /**
+     * @covers ::swaggerFormats
+     */
+    public function testSwaggerFormats(): void
+    {
+        $formats = $this->sot->swaggerFormats();
+        $this->assertEquals(null, $formats['action']);
+        $this->assertEquals(null, $formats['display_name']);
+        $this->assertEquals(null, $formats['api_name']);
+        $this->assertEquals(null, $formats['plural_name']);
+        $this->assertEquals(null, $formats['description']);
+        $this->assertEquals(null, $formats['show_in_lead_detail']);
+    }
+
+    /**
+     * @covers ::attributeMap
+     */
+    public function testAttributeMap(): void
+    {
+        $formats = $this->sot->attributeMap();
+        $this->assertEquals('action', $formats['action']);
+        $this->assertEquals('displayName', $formats['display_name']);
+        $this->assertEquals('apiName', $formats['api_name']);
+        $this->assertEquals('pluralName', $formats['plural_name']);
+        $this->assertEquals('description', $formats['description']);
+        $this->assertEquals('showInLeadDetail', $formats['show_in_lead_detail']);
+    }
+
+    /**
+     * @covers ::getters
+     * @covers ::setters
+     */
+    public function testGettersSetters(): void
+    {
+        $getters = $this->sot->getters();
+        $setters = $this->sot->setters();
+        foreach (array_keys($this->types) as $field) {
+            $this->assertTrue(isset($setters[$field]));
+            $this->assertTrue(isset($getters[$field]));
+            $this->assertTrue(
+                method_exists($this->sot, $getters[$field]),
+                'Getter exists on model.'
+            );
+            $this->assertTrue(
+                method_exists($this->sot, $setters[$field]),
+                'Setter exists on model.'
+            );
+        }
+    }
+
+    /**
+     * @covers ::getModelName
+     */
+    public function testGetModelName(): void
+    {
+        $this->assertEquals('SyncCustomObjectTypeRequest', $this->sot->getModelName());
+    }
+
+    /**
+     * @covers ::listInvalidProperties
+     * @covers ::valid
+     */
+    public function testValid(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::setAdditionalProperties
+     * @covers ::setAdditionalProperty
+     * @covers ::getAdditionalProperties
+     */
+    public function testAdditionalProperties(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::jsonSerialize
+     * @covers ::__toString
+     */
+    public function testJson(): void
+    {
+        // Some minimal tests that json generates well.
+        $json = json_encode($this->sot);
+        $this->assertIsString($json, 'Json encoded');
+        $json = json_decode($json);
+        $string = json_decode((string) $this->sot);
+        $this->assertEquals(
+            $json,
+            $string
+        );
+        $this->assertInstanceOf(\stdClass::class, $json);
+        $this->assertInstanceOf(\stdClass::class, $string);
     }
 
     /**
@@ -141,6 +253,10 @@ class SyncCustomObjectTypeRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getAction
      * @covers ::setAction
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyAction(): void
     {
@@ -151,7 +267,23 @@ class SyncCustomObjectTypeRequestTest extends TestCase
         );
         $this->sot->setAction($v);
         $this->assertEquals($v, $this->sot->getAction());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setAction(null);
+        $this->assertNull($this->sot->getAction());
+        $this->sot->setAction($v);
+
+        $this->assertEquals($v, $this->sot['action']);
+        $v = $this->getFakeValue(
+            $this->types['action'],
+            $this->allowedValues['action'] ?? null
+        );
+        $this->sot['action'] = $v;
+        $this->assertEquals($v, $this->sot['action']);
+        $this->assertTrue(isset($this->sot['action']));
+        unset($this->sot['action']);
+        $this->assertFalse(isset($this->sot['action']));
+        $this->sot['action'] = $v;
+        $this->assertEquals($v, $this->sot['action']);
+        $this->assertTrue(isset($this->sot['action']));
     }
 
     /**
@@ -160,6 +292,10 @@ class SyncCustomObjectTypeRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getDisplayName
      * @covers ::setDisplayName
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyDisplayName(): void
     {
@@ -170,7 +306,20 @@ class SyncCustomObjectTypeRequestTest extends TestCase
         );
         $this->sot->setDisplayName($v);
         $this->assertEquals($v, $this->sot->getDisplayName());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['display_name']);
+        $v = $this->getFakeValue(
+            $this->types['display_name'],
+            $this->allowedValues['display_name'] ?? null
+        );
+        $this->sot['display_name'] = $v;
+        $this->assertEquals($v, $this->sot['display_name']);
+        $this->assertTrue(isset($this->sot['display_name']));
+        unset($this->sot['display_name']);
+        $this->assertFalse(isset($this->sot['display_name']));
+        $this->sot['display_name'] = $v;
+        $this->assertEquals($v, $this->sot['display_name']);
+        $this->assertTrue(isset($this->sot['display_name']));
     }
 
     /**
@@ -179,6 +328,10 @@ class SyncCustomObjectTypeRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getApiName
      * @covers ::setApiName
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyApiName(): void
     {
@@ -189,7 +342,20 @@ class SyncCustomObjectTypeRequestTest extends TestCase
         );
         $this->sot->setApiName($v);
         $this->assertEquals($v, $this->sot->getApiName());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['api_name']);
+        $v = $this->getFakeValue(
+            $this->types['api_name'],
+            $this->allowedValues['api_name'] ?? null
+        );
+        $this->sot['api_name'] = $v;
+        $this->assertEquals($v, $this->sot['api_name']);
+        $this->assertTrue(isset($this->sot['api_name']));
+        unset($this->sot['api_name']);
+        $this->assertFalse(isset($this->sot['api_name']));
+        $this->sot['api_name'] = $v;
+        $this->assertEquals($v, $this->sot['api_name']);
+        $this->assertTrue(isset($this->sot['api_name']));
     }
 
     /**
@@ -198,6 +364,10 @@ class SyncCustomObjectTypeRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getPluralName
      * @covers ::setPluralName
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyPluralName(): void
     {
@@ -208,7 +378,23 @@ class SyncCustomObjectTypeRequestTest extends TestCase
         );
         $this->sot->setPluralName($v);
         $this->assertEquals($v, $this->sot->getPluralName());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setPluralName(null);
+        $this->assertNull($this->sot->getPluralName());
+        $this->sot->setPluralName($v);
+
+        $this->assertEquals($v, $this->sot['plural_name']);
+        $v = $this->getFakeValue(
+            $this->types['plural_name'],
+            $this->allowedValues['plural_name'] ?? null
+        );
+        $this->sot['plural_name'] = $v;
+        $this->assertEquals($v, $this->sot['plural_name']);
+        $this->assertTrue(isset($this->sot['plural_name']));
+        unset($this->sot['plural_name']);
+        $this->assertFalse(isset($this->sot['plural_name']));
+        $this->sot['plural_name'] = $v;
+        $this->assertEquals($v, $this->sot['plural_name']);
+        $this->assertTrue(isset($this->sot['plural_name']));
     }
 
     /**
@@ -217,6 +403,10 @@ class SyncCustomObjectTypeRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getDescription
      * @covers ::setDescription
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyDescription(): void
     {
@@ -227,7 +417,23 @@ class SyncCustomObjectTypeRequestTest extends TestCase
         );
         $this->sot->setDescription($v);
         $this->assertEquals($v, $this->sot->getDescription());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setDescription(null);
+        $this->assertNull($this->sot->getDescription());
+        $this->sot->setDescription($v);
+
+        $this->assertEquals($v, $this->sot['description']);
+        $v = $this->getFakeValue(
+            $this->types['description'],
+            $this->allowedValues['description'] ?? null
+        );
+        $this->sot['description'] = $v;
+        $this->assertEquals($v, $this->sot['description']);
+        $this->assertTrue(isset($this->sot['description']));
+        unset($this->sot['description']);
+        $this->assertFalse(isset($this->sot['description']));
+        $this->sot['description'] = $v;
+        $this->assertEquals($v, $this->sot['description']);
+        $this->assertTrue(isset($this->sot['description']));
     }
 
     /**
@@ -236,6 +442,10 @@ class SyncCustomObjectTypeRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getShowInLeadDetail
      * @covers ::setShowInLeadDetail
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyShowInLeadDetail(): void
     {
@@ -246,6 +456,22 @@ class SyncCustomObjectTypeRequestTest extends TestCase
         );
         $this->sot->setShowInLeadDetail($v);
         $this->assertEquals($v, $this->sot->getShowInLeadDetail());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setShowInLeadDetail(null);
+        $this->assertNull($this->sot->getShowInLeadDetail());
+        $this->sot->setShowInLeadDetail($v);
+
+        $this->assertEquals($v, $this->sot['show_in_lead_detail']);
+        $v = $this->getFakeValue(
+            $this->types['show_in_lead_detail'],
+            $this->allowedValues['show_in_lead_detail'] ?? null
+        );
+        $this->sot['show_in_lead_detail'] = $v;
+        $this->assertEquals($v, $this->sot['show_in_lead_detail']);
+        $this->assertTrue(isset($this->sot['show_in_lead_detail']));
+        unset($this->sot['show_in_lead_detail']);
+        $this->assertFalse(isset($this->sot['show_in_lead_detail']));
+        $this->sot['show_in_lead_detail'] = $v;
+        $this->assertEquals($v, $this->sot['show_in_lead_detail']);
+        $this->assertTrue(isset($this->sot['show_in_lead_detail']));
     }
 }

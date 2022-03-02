@@ -93,22 +93,6 @@ class CreateTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -167,6 +151,22 @@ class CreateTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -206,11 +206,11 @@ class CreateTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         $invalidProperties = [];
 
         if ($this->container['folder_type'] === null) {
-            $invalidProperties[] = "'folder_type' can't be null";
+            $invalidProperties['folder_type'] = "'folder_type' can't be null";
         }
         $allowedValues = $this->getFolderTypeAllowableValues();
         if (!is_null($this->container['folder_type']) && !in_array($this->container['folder_type'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
+            $invalidProperties['folder_type'] = sprintf(
                 "invalid value '%s' for 'folder_type', must be one of '%s'",
                 $this->container['folder_type'],
                 implode("', '", $allowedValues)
@@ -218,14 +218,14 @@ class CreateTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         }
 
         if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
+            $invalidProperties['name'] = "'name' can't be null";
         }
         if ($this->container['type'] === null) {
-            $invalidProperties[] = "'type' can't be null";
+            $invalidProperties['type'] = "'type' can't be null";
         }
         $allowedValues = $this->getTypeAllowableValues();
         if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
+            $invalidProperties['type'] = sprintf(
                 "invalid value '%s' for 'type', must be one of '%s'",
                 $this->container['type'],
                 implode("', '", $allowedValues)
@@ -233,7 +233,7 @@ class CreateTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         }
 
         if ($this->container['value'] === null) {
-            $invalidProperties[] = "'value' can't be null";
+            $invalidProperties['value'] = "'value' can't be null";
         }
         return $invalidProperties;
     }

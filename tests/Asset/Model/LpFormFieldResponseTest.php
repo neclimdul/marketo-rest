@@ -37,7 +37,7 @@ use PHPUnit\Framework\TestCase;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  *
- * @coversDefault \NecLimDul\MarketoRest\Asset\Model\LpFormFieldResponse
+ * @coversDefaultClass \NecLimDul\MarketoRest\Asset\Model\LpFormFieldResponse
  */
 class LpFormFieldResponseTest extends TestCase
 {
@@ -46,11 +46,6 @@ class LpFormFieldResponseTest extends TestCase
      * @var \NecLimDul\MarketoRest\Asset\Model\LpFormFieldResponse
      */
     private $sot;
-
-    /**
-     * @var \Faker\Generator
-     */
-    private $faker;
 
     /**
      * @var string[]
@@ -76,7 +71,13 @@ class LpFormFieldResponseTest extends TestCase
         'text' => 'string',
         'validation_message' => 'object',
         'visibility_rules' => '\NecLimDul\MarketoRest\Asset\Model\FormFieldVisibilityRuleResponse',
-    ];
+];
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
     /**
      * @var scalar[][]
      */
@@ -129,7 +130,14 @@ class LpFormFieldResponseTest extends TestCase
                 return new \stdClass();
         }
         if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
-            return new $type();
+            $model = new $type();
+            $types = $type::swaggerTypes();
+            foreach ($model->listInvalidProperties() as $field => $reason) {
+                // @todo get allowed values? ((getter))AllowedValues
+                // @phpstan-ignore-next-line
+                $model[$field] = $this->getFakeValue($types[$field], null);
+            }
+            return $model;
         }
         $this->markTestSkipped('This type is not mocked yet: ' . $type);
     }
@@ -141,7 +149,139 @@ class LpFormFieldResponseTest extends TestCase
      */
     public function testLpFormFieldResponse(): void
     {
-        $this->assertInstanceOf(\NecLimDul\MarketoRest\Asset\Model\LpFormFieldResponse::class, $this->sot);
+        $this->assertInstanceOf(LpFormFieldResponse::class, $this->sot);
+    }
+
+    /**
+     * @covers ::swaggerTypes
+     */
+    public function testSwaggerTypes(): void
+    {
+        $this->assertEquals($this->types, LpFormFieldResponse::swaggerTypes());
+    }
+
+    /**
+     * @covers ::swaggerFormats
+     */
+    public function testSwaggerFormats(): void
+    {
+        $formats = $this->sot->swaggerFormats();
+        $this->assertEquals('int32', $formats['blank_fields']);
+        $this->assertEquals('int32', $formats['column_number']);
+        $this->assertEquals(null, $formats['data_type']);
+        $this->assertEquals(null, $formats['default_value']);
+        $this->assertEquals(null, $formats['field_meta_data']);
+        $this->assertEquals('int32', $formats['field_width']);
+        $this->assertEquals(null, $formats['fields']);
+        $this->assertEquals(null, $formats['form_prefill']);
+        $this->assertEquals(null, $formats['is_sensitive']);
+        $this->assertEquals(null, $formats['hint_text']);
+        $this->assertEquals(null, $formats['id']);
+        $this->assertEquals(null, $formats['instructions']);
+        $this->assertEquals(null, $formats['label']);
+        $this->assertEquals('int32', $formats['label_width']);
+        $this->assertEquals('int32', $formats['max_length']);
+        $this->assertEquals(null, $formats['required']);
+        $this->assertEquals('int32', $formats['row_number']);
+        $this->assertEquals(null, $formats['text']);
+        $this->assertEquals(null, $formats['validation_message']);
+        $this->assertEquals(null, $formats['visibility_rules']);
+    }
+
+    /**
+     * @covers ::attributeMap
+     */
+    public function testAttributeMap(): void
+    {
+        $formats = $this->sot->attributeMap();
+        $this->assertEquals('blankFields', $formats['blank_fields']);
+        $this->assertEquals('columnNumber', $formats['column_number']);
+        $this->assertEquals('dataType', $formats['data_type']);
+        $this->assertEquals('defaultValue', $formats['default_value']);
+        $this->assertEquals('fieldMetaData', $formats['field_meta_data']);
+        $this->assertEquals('fieldWidth', $formats['field_width']);
+        $this->assertEquals('fields', $formats['fields']);
+        $this->assertEquals('formPrefill', $formats['form_prefill']);
+        $this->assertEquals('isSensitive', $formats['is_sensitive']);
+        $this->assertEquals('hintText', $formats['hint_text']);
+        $this->assertEquals('id', $formats['id']);
+        $this->assertEquals('instructions', $formats['instructions']);
+        $this->assertEquals('label', $formats['label']);
+        $this->assertEquals('labelWidth', $formats['label_width']);
+        $this->assertEquals('maxLength', $formats['max_length']);
+        $this->assertEquals('required', $formats['required']);
+        $this->assertEquals('rowNumber', $formats['row_number']);
+        $this->assertEquals('text', $formats['text']);
+        $this->assertEquals('validationMessage', $formats['validation_message']);
+        $this->assertEquals('visibilityRules', $formats['visibility_rules']);
+    }
+
+    /**
+     * @covers ::getters
+     * @covers ::setters
+     */
+    public function testGettersSetters(): void
+    {
+        $getters = $this->sot->getters();
+        $setters = $this->sot->setters();
+        foreach (array_keys($this->types) as $field) {
+            $this->assertTrue(isset($setters[$field]));
+            $this->assertTrue(isset($getters[$field]));
+            $this->assertTrue(
+                method_exists($this->sot, $getters[$field]),
+                'Getter exists on model.'
+            );
+            $this->assertTrue(
+                method_exists($this->sot, $setters[$field]),
+                'Setter exists on model.'
+            );
+        }
+    }
+
+    /**
+     * @covers ::getModelName
+     */
+    public function testGetModelName(): void
+    {
+        $this->assertEquals('LpFormFieldResponse', $this->sot->getModelName());
+    }
+
+    /**
+     * @covers ::listInvalidProperties
+     * @covers ::valid
+     */
+    public function testValid(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::setAdditionalProperties
+     * @covers ::setAdditionalProperty
+     * @covers ::getAdditionalProperties
+     */
+    public function testAdditionalProperties(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::jsonSerialize
+     * @covers ::__toString
+     */
+    public function testJson(): void
+    {
+        // Some minimal tests that json generates well.
+        $json = json_encode($this->sot);
+        $this->assertIsString($json, 'Json encoded');
+        $json = json_decode($json);
+        $string = json_decode((string) $this->sot);
+        $this->assertEquals(
+            $json,
+            $string
+        );
+        $this->assertInstanceOf(\stdClass::class, $json);
+        $this->assertInstanceOf(\stdClass::class, $string);
     }
 
     /**
@@ -150,6 +290,10 @@ class LpFormFieldResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getBlankFields
      * @covers ::setBlankFields
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyBlankFields(): void
     {
@@ -160,7 +304,23 @@ class LpFormFieldResponseTest extends TestCase
         );
         $this->sot->setBlankFields($v);
         $this->assertEquals($v, $this->sot->getBlankFields());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setBlankFields(null);
+        $this->assertNull($this->sot->getBlankFields());
+        $this->sot->setBlankFields($v);
+
+        $this->assertEquals($v, $this->sot['blank_fields']);
+        $v = $this->getFakeValue(
+            $this->types['blank_fields'],
+            $this->allowedValues['blank_fields'] ?? null
+        );
+        $this->sot['blank_fields'] = $v;
+        $this->assertEquals($v, $this->sot['blank_fields']);
+        $this->assertTrue(isset($this->sot['blank_fields']));
+        unset($this->sot['blank_fields']);
+        $this->assertFalse(isset($this->sot['blank_fields']));
+        $this->sot['blank_fields'] = $v;
+        $this->assertEquals($v, $this->sot['blank_fields']);
+        $this->assertTrue(isset($this->sot['blank_fields']));
     }
 
     /**
@@ -169,6 +329,10 @@ class LpFormFieldResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getColumnNumber
      * @covers ::setColumnNumber
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyColumnNumber(): void
     {
@@ -179,7 +343,23 @@ class LpFormFieldResponseTest extends TestCase
         );
         $this->sot->setColumnNumber($v);
         $this->assertEquals($v, $this->sot->getColumnNumber());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setColumnNumber(null);
+        $this->assertNull($this->sot->getColumnNumber());
+        $this->sot->setColumnNumber($v);
+
+        $this->assertEquals($v, $this->sot['column_number']);
+        $v = $this->getFakeValue(
+            $this->types['column_number'],
+            $this->allowedValues['column_number'] ?? null
+        );
+        $this->sot['column_number'] = $v;
+        $this->assertEquals($v, $this->sot['column_number']);
+        $this->assertTrue(isset($this->sot['column_number']));
+        unset($this->sot['column_number']);
+        $this->assertFalse(isset($this->sot['column_number']));
+        $this->sot['column_number'] = $v;
+        $this->assertEquals($v, $this->sot['column_number']);
+        $this->assertTrue(isset($this->sot['column_number']));
     }
 
     /**
@@ -188,6 +368,10 @@ class LpFormFieldResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getDataType
      * @covers ::setDataType
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyDataType(): void
     {
@@ -198,7 +382,23 @@ class LpFormFieldResponseTest extends TestCase
         );
         $this->sot->setDataType($v);
         $this->assertEquals($v, $this->sot->getDataType());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setDataType(null);
+        $this->assertNull($this->sot->getDataType());
+        $this->sot->setDataType($v);
+
+        $this->assertEquals($v, $this->sot['data_type']);
+        $v = $this->getFakeValue(
+            $this->types['data_type'],
+            $this->allowedValues['data_type'] ?? null
+        );
+        $this->sot['data_type'] = $v;
+        $this->assertEquals($v, $this->sot['data_type']);
+        $this->assertTrue(isset($this->sot['data_type']));
+        unset($this->sot['data_type']);
+        $this->assertFalse(isset($this->sot['data_type']));
+        $this->sot['data_type'] = $v;
+        $this->assertEquals($v, $this->sot['data_type']);
+        $this->assertTrue(isset($this->sot['data_type']));
     }
 
     /**
@@ -207,6 +407,10 @@ class LpFormFieldResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getDefaultValue
      * @covers ::setDefaultValue
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyDefaultValue(): void
     {
@@ -217,7 +421,23 @@ class LpFormFieldResponseTest extends TestCase
         );
         $this->sot->setDefaultValue($v);
         $this->assertEquals($v, $this->sot->getDefaultValue());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setDefaultValue(null);
+        $this->assertNull($this->sot->getDefaultValue());
+        $this->sot->setDefaultValue($v);
+
+        $this->assertEquals($v, $this->sot['default_value']);
+        $v = $this->getFakeValue(
+            $this->types['default_value'],
+            $this->allowedValues['default_value'] ?? null
+        );
+        $this->sot['default_value'] = $v;
+        $this->assertEquals($v, $this->sot['default_value']);
+        $this->assertTrue(isset($this->sot['default_value']));
+        unset($this->sot['default_value']);
+        $this->assertFalse(isset($this->sot['default_value']));
+        $this->sot['default_value'] = $v;
+        $this->assertEquals($v, $this->sot['default_value']);
+        $this->assertTrue(isset($this->sot['default_value']));
     }
 
     /**
@@ -226,6 +446,10 @@ class LpFormFieldResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getFieldMetaData
      * @covers ::setFieldMetaData
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyFieldMetaData(): void
     {
@@ -236,7 +460,23 @@ class LpFormFieldResponseTest extends TestCase
         );
         $this->sot->setFieldMetaData($v);
         $this->assertEquals($v, $this->sot->getFieldMetaData());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setFieldMetaData(null);
+        $this->assertNull($this->sot->getFieldMetaData());
+        $this->sot->setFieldMetaData($v);
+
+        $this->assertEquals($v, $this->sot['field_meta_data']);
+        $v = $this->getFakeValue(
+            $this->types['field_meta_data'],
+            $this->allowedValues['field_meta_data'] ?? null
+        );
+        $this->sot['field_meta_data'] = $v;
+        $this->assertEquals($v, $this->sot['field_meta_data']);
+        $this->assertTrue(isset($this->sot['field_meta_data']));
+        unset($this->sot['field_meta_data']);
+        $this->assertFalse(isset($this->sot['field_meta_data']));
+        $this->sot['field_meta_data'] = $v;
+        $this->assertEquals($v, $this->sot['field_meta_data']);
+        $this->assertTrue(isset($this->sot['field_meta_data']));
     }
 
     /**
@@ -245,6 +485,10 @@ class LpFormFieldResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getFieldWidth
      * @covers ::setFieldWidth
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyFieldWidth(): void
     {
@@ -255,7 +499,23 @@ class LpFormFieldResponseTest extends TestCase
         );
         $this->sot->setFieldWidth($v);
         $this->assertEquals($v, $this->sot->getFieldWidth());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setFieldWidth(null);
+        $this->assertNull($this->sot->getFieldWidth());
+        $this->sot->setFieldWidth($v);
+
+        $this->assertEquals($v, $this->sot['field_width']);
+        $v = $this->getFakeValue(
+            $this->types['field_width'],
+            $this->allowedValues['field_width'] ?? null
+        );
+        $this->sot['field_width'] = $v;
+        $this->assertEquals($v, $this->sot['field_width']);
+        $this->assertTrue(isset($this->sot['field_width']));
+        unset($this->sot['field_width']);
+        $this->assertFalse(isset($this->sot['field_width']));
+        $this->sot['field_width'] = $v;
+        $this->assertEquals($v, $this->sot['field_width']);
+        $this->assertTrue(isset($this->sot['field_width']));
     }
 
     /**
@@ -264,6 +524,10 @@ class LpFormFieldResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getFields
      * @covers ::setFields
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyFields(): void
     {
@@ -274,7 +538,23 @@ class LpFormFieldResponseTest extends TestCase
         );
         $this->sot->setFields($v);
         $this->assertEquals($v, $this->sot->getFields());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setFields(null);
+        $this->assertNull($this->sot->getFields());
+        $this->sot->setFields($v);
+
+        $this->assertEquals($v, $this->sot['fields']);
+        $v = $this->getFakeValue(
+            $this->types['fields'],
+            $this->allowedValues['fields'] ?? null
+        );
+        $this->sot['fields'] = $v;
+        $this->assertEquals($v, $this->sot['fields']);
+        $this->assertTrue(isset($this->sot['fields']));
+        unset($this->sot['fields']);
+        $this->assertFalse(isset($this->sot['fields']));
+        $this->sot['fields'] = $v;
+        $this->assertEquals($v, $this->sot['fields']);
+        $this->assertTrue(isset($this->sot['fields']));
     }
 
     /**
@@ -283,6 +563,10 @@ class LpFormFieldResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getFormPrefill
      * @covers ::setFormPrefill
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyFormPrefill(): void
     {
@@ -293,7 +577,23 @@ class LpFormFieldResponseTest extends TestCase
         );
         $this->sot->setFormPrefill($v);
         $this->assertEquals($v, $this->sot->getFormPrefill());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setFormPrefill(null);
+        $this->assertNull($this->sot->getFormPrefill());
+        $this->sot->setFormPrefill($v);
+
+        $this->assertEquals($v, $this->sot['form_prefill']);
+        $v = $this->getFakeValue(
+            $this->types['form_prefill'],
+            $this->allowedValues['form_prefill'] ?? null
+        );
+        $this->sot['form_prefill'] = $v;
+        $this->assertEquals($v, $this->sot['form_prefill']);
+        $this->assertTrue(isset($this->sot['form_prefill']));
+        unset($this->sot['form_prefill']);
+        $this->assertFalse(isset($this->sot['form_prefill']));
+        $this->sot['form_prefill'] = $v;
+        $this->assertEquals($v, $this->sot['form_prefill']);
+        $this->assertTrue(isset($this->sot['form_prefill']));
     }
 
     /**
@@ -302,6 +602,10 @@ class LpFormFieldResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getIsSensitive
      * @covers ::setIsSensitive
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyIsSensitive(): void
     {
@@ -312,7 +616,23 @@ class LpFormFieldResponseTest extends TestCase
         );
         $this->sot->setIsSensitive($v);
         $this->assertEquals($v, $this->sot->getIsSensitive());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setIsSensitive(null);
+        $this->assertNull($this->sot->getIsSensitive());
+        $this->sot->setIsSensitive($v);
+
+        $this->assertEquals($v, $this->sot['is_sensitive']);
+        $v = $this->getFakeValue(
+            $this->types['is_sensitive'],
+            $this->allowedValues['is_sensitive'] ?? null
+        );
+        $this->sot['is_sensitive'] = $v;
+        $this->assertEquals($v, $this->sot['is_sensitive']);
+        $this->assertTrue(isset($this->sot['is_sensitive']));
+        unset($this->sot['is_sensitive']);
+        $this->assertFalse(isset($this->sot['is_sensitive']));
+        $this->sot['is_sensitive'] = $v;
+        $this->assertEquals($v, $this->sot['is_sensitive']);
+        $this->assertTrue(isset($this->sot['is_sensitive']));
     }
 
     /**
@@ -321,6 +641,10 @@ class LpFormFieldResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getHintText
      * @covers ::setHintText
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyHintText(): void
     {
@@ -331,7 +655,23 @@ class LpFormFieldResponseTest extends TestCase
         );
         $this->sot->setHintText($v);
         $this->assertEquals($v, $this->sot->getHintText());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setHintText(null);
+        $this->assertNull($this->sot->getHintText());
+        $this->sot->setHintText($v);
+
+        $this->assertEquals($v, $this->sot['hint_text']);
+        $v = $this->getFakeValue(
+            $this->types['hint_text'],
+            $this->allowedValues['hint_text'] ?? null
+        );
+        $this->sot['hint_text'] = $v;
+        $this->assertEquals($v, $this->sot['hint_text']);
+        $this->assertTrue(isset($this->sot['hint_text']));
+        unset($this->sot['hint_text']);
+        $this->assertFalse(isset($this->sot['hint_text']));
+        $this->sot['hint_text'] = $v;
+        $this->assertEquals($v, $this->sot['hint_text']);
+        $this->assertTrue(isset($this->sot['hint_text']));
     }
 
     /**
@@ -340,6 +680,10 @@ class LpFormFieldResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getId
      * @covers ::setId
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyId(): void
     {
@@ -350,7 +694,23 @@ class LpFormFieldResponseTest extends TestCase
         );
         $this->sot->setId($v);
         $this->assertEquals($v, $this->sot->getId());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setId(null);
+        $this->assertNull($this->sot->getId());
+        $this->sot->setId($v);
+
+        $this->assertEquals($v, $this->sot['id']);
+        $v = $this->getFakeValue(
+            $this->types['id'],
+            $this->allowedValues['id'] ?? null
+        );
+        $this->sot['id'] = $v;
+        $this->assertEquals($v, $this->sot['id']);
+        $this->assertTrue(isset($this->sot['id']));
+        unset($this->sot['id']);
+        $this->assertFalse(isset($this->sot['id']));
+        $this->sot['id'] = $v;
+        $this->assertEquals($v, $this->sot['id']);
+        $this->assertTrue(isset($this->sot['id']));
     }
 
     /**
@@ -359,6 +719,10 @@ class LpFormFieldResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getInstructions
      * @covers ::setInstructions
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyInstructions(): void
     {
@@ -369,7 +733,23 @@ class LpFormFieldResponseTest extends TestCase
         );
         $this->sot->setInstructions($v);
         $this->assertEquals($v, $this->sot->getInstructions());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setInstructions(null);
+        $this->assertNull($this->sot->getInstructions());
+        $this->sot->setInstructions($v);
+
+        $this->assertEquals($v, $this->sot['instructions']);
+        $v = $this->getFakeValue(
+            $this->types['instructions'],
+            $this->allowedValues['instructions'] ?? null
+        );
+        $this->sot['instructions'] = $v;
+        $this->assertEquals($v, $this->sot['instructions']);
+        $this->assertTrue(isset($this->sot['instructions']));
+        unset($this->sot['instructions']);
+        $this->assertFalse(isset($this->sot['instructions']));
+        $this->sot['instructions'] = $v;
+        $this->assertEquals($v, $this->sot['instructions']);
+        $this->assertTrue(isset($this->sot['instructions']));
     }
 
     /**
@@ -378,6 +758,10 @@ class LpFormFieldResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getLabel
      * @covers ::setLabel
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyLabel(): void
     {
@@ -388,7 +772,23 @@ class LpFormFieldResponseTest extends TestCase
         );
         $this->sot->setLabel($v);
         $this->assertEquals($v, $this->sot->getLabel());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setLabel(null);
+        $this->assertNull($this->sot->getLabel());
+        $this->sot->setLabel($v);
+
+        $this->assertEquals($v, $this->sot['label']);
+        $v = $this->getFakeValue(
+            $this->types['label'],
+            $this->allowedValues['label'] ?? null
+        );
+        $this->sot['label'] = $v;
+        $this->assertEquals($v, $this->sot['label']);
+        $this->assertTrue(isset($this->sot['label']));
+        unset($this->sot['label']);
+        $this->assertFalse(isset($this->sot['label']));
+        $this->sot['label'] = $v;
+        $this->assertEquals($v, $this->sot['label']);
+        $this->assertTrue(isset($this->sot['label']));
     }
 
     /**
@@ -397,6 +797,10 @@ class LpFormFieldResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getLabelWidth
      * @covers ::setLabelWidth
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyLabelWidth(): void
     {
@@ -407,7 +811,23 @@ class LpFormFieldResponseTest extends TestCase
         );
         $this->sot->setLabelWidth($v);
         $this->assertEquals($v, $this->sot->getLabelWidth());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setLabelWidth(null);
+        $this->assertNull($this->sot->getLabelWidth());
+        $this->sot->setLabelWidth($v);
+
+        $this->assertEquals($v, $this->sot['label_width']);
+        $v = $this->getFakeValue(
+            $this->types['label_width'],
+            $this->allowedValues['label_width'] ?? null
+        );
+        $this->sot['label_width'] = $v;
+        $this->assertEquals($v, $this->sot['label_width']);
+        $this->assertTrue(isset($this->sot['label_width']));
+        unset($this->sot['label_width']);
+        $this->assertFalse(isset($this->sot['label_width']));
+        $this->sot['label_width'] = $v;
+        $this->assertEquals($v, $this->sot['label_width']);
+        $this->assertTrue(isset($this->sot['label_width']));
     }
 
     /**
@@ -416,6 +836,10 @@ class LpFormFieldResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getMaxLength
      * @covers ::setMaxLength
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyMaxLength(): void
     {
@@ -426,7 +850,23 @@ class LpFormFieldResponseTest extends TestCase
         );
         $this->sot->setMaxLength($v);
         $this->assertEquals($v, $this->sot->getMaxLength());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setMaxLength(null);
+        $this->assertNull($this->sot->getMaxLength());
+        $this->sot->setMaxLength($v);
+
+        $this->assertEquals($v, $this->sot['max_length']);
+        $v = $this->getFakeValue(
+            $this->types['max_length'],
+            $this->allowedValues['max_length'] ?? null
+        );
+        $this->sot['max_length'] = $v;
+        $this->assertEquals($v, $this->sot['max_length']);
+        $this->assertTrue(isset($this->sot['max_length']));
+        unset($this->sot['max_length']);
+        $this->assertFalse(isset($this->sot['max_length']));
+        $this->sot['max_length'] = $v;
+        $this->assertEquals($v, $this->sot['max_length']);
+        $this->assertTrue(isset($this->sot['max_length']));
     }
 
     /**
@@ -435,6 +875,10 @@ class LpFormFieldResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getRequired
      * @covers ::setRequired
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyRequired(): void
     {
@@ -445,7 +889,23 @@ class LpFormFieldResponseTest extends TestCase
         );
         $this->sot->setRequired($v);
         $this->assertEquals($v, $this->sot->getRequired());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setRequired(null);
+        $this->assertNull($this->sot->getRequired());
+        $this->sot->setRequired($v);
+
+        $this->assertEquals($v, $this->sot['required']);
+        $v = $this->getFakeValue(
+            $this->types['required'],
+            $this->allowedValues['required'] ?? null
+        );
+        $this->sot['required'] = $v;
+        $this->assertEquals($v, $this->sot['required']);
+        $this->assertTrue(isset($this->sot['required']));
+        unset($this->sot['required']);
+        $this->assertFalse(isset($this->sot['required']));
+        $this->sot['required'] = $v;
+        $this->assertEquals($v, $this->sot['required']);
+        $this->assertTrue(isset($this->sot['required']));
     }
 
     /**
@@ -454,6 +914,10 @@ class LpFormFieldResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getRowNumber
      * @covers ::setRowNumber
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyRowNumber(): void
     {
@@ -464,7 +928,23 @@ class LpFormFieldResponseTest extends TestCase
         );
         $this->sot->setRowNumber($v);
         $this->assertEquals($v, $this->sot->getRowNumber());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setRowNumber(null);
+        $this->assertNull($this->sot->getRowNumber());
+        $this->sot->setRowNumber($v);
+
+        $this->assertEquals($v, $this->sot['row_number']);
+        $v = $this->getFakeValue(
+            $this->types['row_number'],
+            $this->allowedValues['row_number'] ?? null
+        );
+        $this->sot['row_number'] = $v;
+        $this->assertEquals($v, $this->sot['row_number']);
+        $this->assertTrue(isset($this->sot['row_number']));
+        unset($this->sot['row_number']);
+        $this->assertFalse(isset($this->sot['row_number']));
+        $this->sot['row_number'] = $v;
+        $this->assertEquals($v, $this->sot['row_number']);
+        $this->assertTrue(isset($this->sot['row_number']));
     }
 
     /**
@@ -473,6 +953,10 @@ class LpFormFieldResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getText
      * @covers ::setText
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyText(): void
     {
@@ -483,7 +967,23 @@ class LpFormFieldResponseTest extends TestCase
         );
         $this->sot->setText($v);
         $this->assertEquals($v, $this->sot->getText());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setText(null);
+        $this->assertNull($this->sot->getText());
+        $this->sot->setText($v);
+
+        $this->assertEquals($v, $this->sot['text']);
+        $v = $this->getFakeValue(
+            $this->types['text'],
+            $this->allowedValues['text'] ?? null
+        );
+        $this->sot['text'] = $v;
+        $this->assertEquals($v, $this->sot['text']);
+        $this->assertTrue(isset($this->sot['text']));
+        unset($this->sot['text']);
+        $this->assertFalse(isset($this->sot['text']));
+        $this->sot['text'] = $v;
+        $this->assertEquals($v, $this->sot['text']);
+        $this->assertTrue(isset($this->sot['text']));
     }
 
     /**
@@ -492,6 +992,10 @@ class LpFormFieldResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getValidationMessage
      * @covers ::setValidationMessage
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyValidationMessage(): void
     {
@@ -502,7 +1006,23 @@ class LpFormFieldResponseTest extends TestCase
         );
         $this->sot->setValidationMessage($v);
         $this->assertEquals($v, $this->sot->getValidationMessage());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setValidationMessage(null);
+        $this->assertNull($this->sot->getValidationMessage());
+        $this->sot->setValidationMessage($v);
+
+        $this->assertEquals($v, $this->sot['validation_message']);
+        $v = $this->getFakeValue(
+            $this->types['validation_message'],
+            $this->allowedValues['validation_message'] ?? null
+        );
+        $this->sot['validation_message'] = $v;
+        $this->assertEquals($v, $this->sot['validation_message']);
+        $this->assertTrue(isset($this->sot['validation_message']));
+        unset($this->sot['validation_message']);
+        $this->assertFalse(isset($this->sot['validation_message']));
+        $this->sot['validation_message'] = $v;
+        $this->assertEquals($v, $this->sot['validation_message']);
+        $this->assertTrue(isset($this->sot['validation_message']));
     }
 
     /**
@@ -511,6 +1031,10 @@ class LpFormFieldResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getVisibilityRules
      * @covers ::setVisibilityRules
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyVisibilityRules(): void
     {
@@ -521,6 +1045,22 @@ class LpFormFieldResponseTest extends TestCase
         );
         $this->sot->setVisibilityRules($v);
         $this->assertEquals($v, $this->sot->getVisibilityRules());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setVisibilityRules(null);
+        $this->assertNull($this->sot->getVisibilityRules());
+        $this->sot->setVisibilityRules($v);
+
+        $this->assertEquals($v, $this->sot['visibility_rules']);
+        $v = $this->getFakeValue(
+            $this->types['visibility_rules'],
+            $this->allowedValues['visibility_rules'] ?? null
+        );
+        $this->sot['visibility_rules'] = $v;
+        $this->assertEquals($v, $this->sot['visibility_rules']);
+        $this->assertTrue(isset($this->sot['visibility_rules']));
+        unset($this->sot['visibility_rules']);
+        $this->assertFalse(isset($this->sot['visibility_rules']));
+        $this->sot['visibility_rules'] = $v;
+        $this->assertEquals($v, $this->sot['visibility_rules']);
+        $this->assertTrue(isset($this->sot['visibility_rules']));
     }
 }

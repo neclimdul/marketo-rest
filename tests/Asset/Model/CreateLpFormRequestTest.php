@@ -37,7 +37,7 @@ use PHPUnit\Framework\TestCase;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  *
- * @coversDefault \NecLimDul\MarketoRest\Asset\Model\CreateLpFormRequest
+ * @coversDefaultClass \NecLimDul\MarketoRest\Asset\Model\CreateLpFormRequest
  */
 class CreateLpFormRequestTest extends TestCase
 {
@@ -46,11 +46,6 @@ class CreateLpFormRequestTest extends TestCase
      * @var \NecLimDul\MarketoRest\Asset\Model\CreateLpFormRequest
      */
     private $sot;
-
-    /**
-     * @var \Faker\Generator
-     */
-    private $faker;
 
     /**
      * @var string[]
@@ -67,7 +62,13 @@ class CreateLpFormRequestTest extends TestCase
         'name' => 'string',
         'progressive_profiling' => 'bool',
         'theme' => 'string',
-    ];
+];
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
     /**
      * @var scalar[][]
      */
@@ -120,7 +121,14 @@ class CreateLpFormRequestTest extends TestCase
                 return new \stdClass();
         }
         if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
-            return new $type();
+            $model = new $type();
+            $types = $type::swaggerTypes();
+            foreach ($model->listInvalidProperties() as $field => $reason) {
+                // @todo get allowed values? ((getter))AllowedValues
+                // @phpstan-ignore-next-line
+                $model[$field] = $this->getFakeValue($types[$field], null);
+            }
+            return $model;
         }
         $this->markTestSkipped('This type is not mocked yet: ' . $type);
     }
@@ -132,7 +140,121 @@ class CreateLpFormRequestTest extends TestCase
      */
     public function testCreateLpFormRequest(): void
     {
-        $this->assertInstanceOf(\NecLimDul\MarketoRest\Asset\Model\CreateLpFormRequest::class, $this->sot);
+        $this->assertInstanceOf(CreateLpFormRequest::class, $this->sot);
+    }
+
+    /**
+     * @covers ::swaggerTypes
+     */
+    public function testSwaggerTypes(): void
+    {
+        $this->assertEquals($this->types, CreateLpFormRequest::swaggerTypes());
+    }
+
+    /**
+     * @covers ::swaggerFormats
+     */
+    public function testSwaggerFormats(): void
+    {
+        $formats = $this->sot->swaggerFormats();
+        $this->assertEquals(null, $formats['description']);
+        $this->assertEquals(null, $formats['folder']);
+        $this->assertEquals(null, $formats['font_family']);
+        $this->assertEquals(null, $formats['font_size']);
+        $this->assertEquals(null, $formats['known_visitor']);
+        $this->assertEquals(null, $formats['label_position']);
+        $this->assertEquals(null, $formats['language']);
+        $this->assertEquals(null, $formats['locale']);
+        $this->assertEquals(null, $formats['name']);
+        $this->assertEquals(null, $formats['progressive_profiling']);
+        $this->assertEquals(null, $formats['theme']);
+    }
+
+    /**
+     * @covers ::attributeMap
+     */
+    public function testAttributeMap(): void
+    {
+        $formats = $this->sot->attributeMap();
+        $this->assertEquals('description', $formats['description']);
+        $this->assertEquals('folder', $formats['folder']);
+        $this->assertEquals('fontFamily', $formats['font_family']);
+        $this->assertEquals('fontSize', $formats['font_size']);
+        $this->assertEquals('knownVisitor', $formats['known_visitor']);
+        $this->assertEquals('labelPosition', $formats['label_position']);
+        $this->assertEquals('language', $formats['language']);
+        $this->assertEquals('locale', $formats['locale']);
+        $this->assertEquals('name', $formats['name']);
+        $this->assertEquals('progressiveProfiling', $formats['progressive_profiling']);
+        $this->assertEquals('theme', $formats['theme']);
+    }
+
+    /**
+     * @covers ::getters
+     * @covers ::setters
+     */
+    public function testGettersSetters(): void
+    {
+        $getters = $this->sot->getters();
+        $setters = $this->sot->setters();
+        foreach (array_keys($this->types) as $field) {
+            $this->assertTrue(isset($setters[$field]));
+            $this->assertTrue(isset($getters[$field]));
+            $this->assertTrue(
+                method_exists($this->sot, $getters[$field]),
+                'Getter exists on model.'
+            );
+            $this->assertTrue(
+                method_exists($this->sot, $setters[$field]),
+                'Setter exists on model.'
+            );
+        }
+    }
+
+    /**
+     * @covers ::getModelName
+     */
+    public function testGetModelName(): void
+    {
+        $this->assertEquals('CreateLpFormRequest', $this->sot->getModelName());
+    }
+
+    /**
+     * @covers ::listInvalidProperties
+     * @covers ::valid
+     */
+    public function testValid(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::setAdditionalProperties
+     * @covers ::setAdditionalProperty
+     * @covers ::getAdditionalProperties
+     */
+    public function testAdditionalProperties(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::jsonSerialize
+     * @covers ::__toString
+     */
+    public function testJson(): void
+    {
+        // Some minimal tests that json generates well.
+        $json = json_encode($this->sot);
+        $this->assertIsString($json, 'Json encoded');
+        $json = json_decode($json);
+        $string = json_decode((string) $this->sot);
+        $this->assertEquals(
+            $json,
+            $string
+        );
+        $this->assertInstanceOf(\stdClass::class, $json);
+        $this->assertInstanceOf(\stdClass::class, $string);
     }
 
     /**
@@ -141,6 +263,10 @@ class CreateLpFormRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getDescription
      * @covers ::setDescription
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyDescription(): void
     {
@@ -151,7 +277,23 @@ class CreateLpFormRequestTest extends TestCase
         );
         $this->sot->setDescription($v);
         $this->assertEquals($v, $this->sot->getDescription());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setDescription(null);
+        $this->assertNull($this->sot->getDescription());
+        $this->sot->setDescription($v);
+
+        $this->assertEquals($v, $this->sot['description']);
+        $v = $this->getFakeValue(
+            $this->types['description'],
+            $this->allowedValues['description'] ?? null
+        );
+        $this->sot['description'] = $v;
+        $this->assertEquals($v, $this->sot['description']);
+        $this->assertTrue(isset($this->sot['description']));
+        unset($this->sot['description']);
+        $this->assertFalse(isset($this->sot['description']));
+        $this->sot['description'] = $v;
+        $this->assertEquals($v, $this->sot['description']);
+        $this->assertTrue(isset($this->sot['description']));
     }
 
     /**
@@ -160,6 +302,10 @@ class CreateLpFormRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getFolder
      * @covers ::setFolder
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyFolder(): void
     {
@@ -170,7 +316,20 @@ class CreateLpFormRequestTest extends TestCase
         );
         $this->sot->setFolder($v);
         $this->assertEquals($v, $this->sot->getFolder());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['folder']);
+        $v = $this->getFakeValue(
+            $this->types['folder'],
+            $this->allowedValues['folder'] ?? null
+        );
+        $this->sot['folder'] = $v;
+        $this->assertEquals($v, $this->sot['folder']);
+        $this->assertTrue(isset($this->sot['folder']));
+        unset($this->sot['folder']);
+        $this->assertFalse(isset($this->sot['folder']));
+        $this->sot['folder'] = $v;
+        $this->assertEquals($v, $this->sot['folder']);
+        $this->assertTrue(isset($this->sot['folder']));
     }
 
     /**
@@ -179,6 +338,10 @@ class CreateLpFormRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getFontFamily
      * @covers ::setFontFamily
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyFontFamily(): void
     {
@@ -189,7 +352,23 @@ class CreateLpFormRequestTest extends TestCase
         );
         $this->sot->setFontFamily($v);
         $this->assertEquals($v, $this->sot->getFontFamily());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setFontFamily(null);
+        $this->assertNull($this->sot->getFontFamily());
+        $this->sot->setFontFamily($v);
+
+        $this->assertEquals($v, $this->sot['font_family']);
+        $v = $this->getFakeValue(
+            $this->types['font_family'],
+            $this->allowedValues['font_family'] ?? null
+        );
+        $this->sot['font_family'] = $v;
+        $this->assertEquals($v, $this->sot['font_family']);
+        $this->assertTrue(isset($this->sot['font_family']));
+        unset($this->sot['font_family']);
+        $this->assertFalse(isset($this->sot['font_family']));
+        $this->sot['font_family'] = $v;
+        $this->assertEquals($v, $this->sot['font_family']);
+        $this->assertTrue(isset($this->sot['font_family']));
     }
 
     /**
@@ -198,6 +377,10 @@ class CreateLpFormRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getFontSize
      * @covers ::setFontSize
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyFontSize(): void
     {
@@ -208,7 +391,23 @@ class CreateLpFormRequestTest extends TestCase
         );
         $this->sot->setFontSize($v);
         $this->assertEquals($v, $this->sot->getFontSize());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setFontSize(null);
+        $this->assertNull($this->sot->getFontSize());
+        $this->sot->setFontSize($v);
+
+        $this->assertEquals($v, $this->sot['font_size']);
+        $v = $this->getFakeValue(
+            $this->types['font_size'],
+            $this->allowedValues['font_size'] ?? null
+        );
+        $this->sot['font_size'] = $v;
+        $this->assertEquals($v, $this->sot['font_size']);
+        $this->assertTrue(isset($this->sot['font_size']));
+        unset($this->sot['font_size']);
+        $this->assertFalse(isset($this->sot['font_size']));
+        $this->sot['font_size'] = $v;
+        $this->assertEquals($v, $this->sot['font_size']);
+        $this->assertTrue(isset($this->sot['font_size']));
     }
 
     /**
@@ -217,6 +416,10 @@ class CreateLpFormRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getKnownVisitor
      * @covers ::setKnownVisitor
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyKnownVisitor(): void
     {
@@ -227,7 +430,23 @@ class CreateLpFormRequestTest extends TestCase
         );
         $this->sot->setKnownVisitor($v);
         $this->assertEquals($v, $this->sot->getKnownVisitor());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setKnownVisitor(null);
+        $this->assertNull($this->sot->getKnownVisitor());
+        $this->sot->setKnownVisitor($v);
+
+        $this->assertEquals($v, $this->sot['known_visitor']);
+        $v = $this->getFakeValue(
+            $this->types['known_visitor'],
+            $this->allowedValues['known_visitor'] ?? null
+        );
+        $this->sot['known_visitor'] = $v;
+        $this->assertEquals($v, $this->sot['known_visitor']);
+        $this->assertTrue(isset($this->sot['known_visitor']));
+        unset($this->sot['known_visitor']);
+        $this->assertFalse(isset($this->sot['known_visitor']));
+        $this->sot['known_visitor'] = $v;
+        $this->assertEquals($v, $this->sot['known_visitor']);
+        $this->assertTrue(isset($this->sot['known_visitor']));
     }
 
     /**
@@ -236,6 +455,10 @@ class CreateLpFormRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getLabelPosition
      * @covers ::setLabelPosition
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyLabelPosition(): void
     {
@@ -246,7 +469,23 @@ class CreateLpFormRequestTest extends TestCase
         );
         $this->sot->setLabelPosition($v);
         $this->assertEquals($v, $this->sot->getLabelPosition());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setLabelPosition(null);
+        $this->assertNull($this->sot->getLabelPosition());
+        $this->sot->setLabelPosition($v);
+
+        $this->assertEquals($v, $this->sot['label_position']);
+        $v = $this->getFakeValue(
+            $this->types['label_position'],
+            $this->allowedValues['label_position'] ?? null
+        );
+        $this->sot['label_position'] = $v;
+        $this->assertEquals($v, $this->sot['label_position']);
+        $this->assertTrue(isset($this->sot['label_position']));
+        unset($this->sot['label_position']);
+        $this->assertFalse(isset($this->sot['label_position']));
+        $this->sot['label_position'] = $v;
+        $this->assertEquals($v, $this->sot['label_position']);
+        $this->assertTrue(isset($this->sot['label_position']));
     }
 
     /**
@@ -255,6 +494,10 @@ class CreateLpFormRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getLanguage
      * @covers ::setLanguage
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyLanguage(): void
     {
@@ -265,7 +508,23 @@ class CreateLpFormRequestTest extends TestCase
         );
         $this->sot->setLanguage($v);
         $this->assertEquals($v, $this->sot->getLanguage());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setLanguage(null);
+        $this->assertNull($this->sot->getLanguage());
+        $this->sot->setLanguage($v);
+
+        $this->assertEquals($v, $this->sot['language']);
+        $v = $this->getFakeValue(
+            $this->types['language'],
+            $this->allowedValues['language'] ?? null
+        );
+        $this->sot['language'] = $v;
+        $this->assertEquals($v, $this->sot['language']);
+        $this->assertTrue(isset($this->sot['language']));
+        unset($this->sot['language']);
+        $this->assertFalse(isset($this->sot['language']));
+        $this->sot['language'] = $v;
+        $this->assertEquals($v, $this->sot['language']);
+        $this->assertTrue(isset($this->sot['language']));
     }
 
     /**
@@ -274,6 +533,10 @@ class CreateLpFormRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getLocale
      * @covers ::setLocale
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyLocale(): void
     {
@@ -284,7 +547,23 @@ class CreateLpFormRequestTest extends TestCase
         );
         $this->sot->setLocale($v);
         $this->assertEquals($v, $this->sot->getLocale());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setLocale(null);
+        $this->assertNull($this->sot->getLocale());
+        $this->sot->setLocale($v);
+
+        $this->assertEquals($v, $this->sot['locale']);
+        $v = $this->getFakeValue(
+            $this->types['locale'],
+            $this->allowedValues['locale'] ?? null
+        );
+        $this->sot['locale'] = $v;
+        $this->assertEquals($v, $this->sot['locale']);
+        $this->assertTrue(isset($this->sot['locale']));
+        unset($this->sot['locale']);
+        $this->assertFalse(isset($this->sot['locale']));
+        $this->sot['locale'] = $v;
+        $this->assertEquals($v, $this->sot['locale']);
+        $this->assertTrue(isset($this->sot['locale']));
     }
 
     /**
@@ -293,6 +572,10 @@ class CreateLpFormRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getName
      * @covers ::setName
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyName(): void
     {
@@ -303,7 +586,23 @@ class CreateLpFormRequestTest extends TestCase
         );
         $this->sot->setName($v);
         $this->assertEquals($v, $this->sot->getName());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setName(null);
+        $this->assertNull($this->sot->getName());
+        $this->sot->setName($v);
+
+        $this->assertEquals($v, $this->sot['name']);
+        $v = $this->getFakeValue(
+            $this->types['name'],
+            $this->allowedValues['name'] ?? null
+        );
+        $this->sot['name'] = $v;
+        $this->assertEquals($v, $this->sot['name']);
+        $this->assertTrue(isset($this->sot['name']));
+        unset($this->sot['name']);
+        $this->assertFalse(isset($this->sot['name']));
+        $this->sot['name'] = $v;
+        $this->assertEquals($v, $this->sot['name']);
+        $this->assertTrue(isset($this->sot['name']));
     }
 
     /**
@@ -312,6 +611,10 @@ class CreateLpFormRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getProgressiveProfiling
      * @covers ::setProgressiveProfiling
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyProgressiveProfiling(): void
     {
@@ -322,7 +625,23 @@ class CreateLpFormRequestTest extends TestCase
         );
         $this->sot->setProgressiveProfiling($v);
         $this->assertEquals($v, $this->sot->getProgressiveProfiling());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setProgressiveProfiling(null);
+        $this->assertNull($this->sot->getProgressiveProfiling());
+        $this->sot->setProgressiveProfiling($v);
+
+        $this->assertEquals($v, $this->sot['progressive_profiling']);
+        $v = $this->getFakeValue(
+            $this->types['progressive_profiling'],
+            $this->allowedValues['progressive_profiling'] ?? null
+        );
+        $this->sot['progressive_profiling'] = $v;
+        $this->assertEquals($v, $this->sot['progressive_profiling']);
+        $this->assertTrue(isset($this->sot['progressive_profiling']));
+        unset($this->sot['progressive_profiling']);
+        $this->assertFalse(isset($this->sot['progressive_profiling']));
+        $this->sot['progressive_profiling'] = $v;
+        $this->assertEquals($v, $this->sot['progressive_profiling']);
+        $this->assertTrue(isset($this->sot['progressive_profiling']));
     }
 
     /**
@@ -331,6 +650,10 @@ class CreateLpFormRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getTheme
      * @covers ::setTheme
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyTheme(): void
     {
@@ -341,6 +664,22 @@ class CreateLpFormRequestTest extends TestCase
         );
         $this->sot->setTheme($v);
         $this->assertEquals($v, $this->sot->getTheme());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setTheme(null);
+        $this->assertNull($this->sot->getTheme());
+        $this->sot->setTheme($v);
+
+        $this->assertEquals($v, $this->sot['theme']);
+        $v = $this->getFakeValue(
+            $this->types['theme'],
+            $this->allowedValues['theme'] ?? null
+        );
+        $this->sot['theme'] = $v;
+        $this->assertEquals($v, $this->sot['theme']);
+        $this->assertTrue(isset($this->sot['theme']));
+        unset($this->sot['theme']);
+        $this->assertFalse(isset($this->sot['theme']));
+        $this->sot['theme'] = $v;
+        $this->assertEquals($v, $this->sot['theme']);
+        $this->assertTrue(isset($this->sot['theme']));
     }
 }

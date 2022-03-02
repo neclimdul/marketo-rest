@@ -117,22 +117,6 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -255,6 +239,22 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -307,9 +307,9 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets blank_fields
      *
-     * @return int
+     * @return int|null
      */
-    public function getBlankFields(): int
+    public function getBlankFields(): ?int
     {
         return $this->container['blank_fields'];
     }
@@ -331,9 +331,9 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets column_number
      *
-     * @return int
+     * @return int|null
      */
-    public function getColumnNumber(): int
+    public function getColumnNumber(): ?int
     {
         return $this->container['column_number'];
     }
@@ -355,9 +355,9 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets data_type
      *
-     * @return string
+     * @return string|null
      */
-    public function getDataType(): string
+    public function getDataType(): ?string
     {
         return $this->container['data_type'];
     }
@@ -379,9 +379,9 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets default_value
      *
-     * @return string
+     * @return string|null
      */
-    public function getDefaultValue(): string
+    public function getDefaultValue(): ?string
     {
         return $this->container['default_value'];
     }
@@ -403,9 +403,9 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets field_meta_data
      *
-     * @return object
+     * @return object|null
      */
-    public function getFieldMetaData(): object
+    public function getFieldMetaData(): ?object
     {
         return $this->container['field_meta_data'];
     }
@@ -427,9 +427,9 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets field_width
      *
-     * @return int
+     * @return int|null
      */
-    public function getFieldWidth(): int
+    public function getFieldWidth(): ?int
     {
         return $this->container['field_width'];
     }
@@ -451,9 +451,9 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets fields
      *
-     * @return string[]
+     * @return string[]|null
      */
-    public function getFields(): array
+    public function getFields(): ?array
     {
         return $this->container['fields'];
     }
@@ -475,9 +475,9 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets form_prefill
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getFormPrefill(): bool
+    public function getFormPrefill(): ?bool
     {
         return $this->container['form_prefill'];
     }
@@ -499,9 +499,9 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets is_sensitive
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getIsSensitive(): bool
+    public function getIsSensitive(): ?bool
     {
         return $this->container['is_sensitive'];
     }
@@ -523,9 +523,9 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets hint_text
      *
-     * @return string
+     * @return string|null
      */
-    public function getHintText(): string
+    public function getHintText(): ?string
     {
         return $this->container['hint_text'];
     }
@@ -547,9 +547,9 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets id
      *
-     * @return string
+     * @return string|null
      */
-    public function getId(): string
+    public function getId(): ?string
     {
         return $this->container['id'];
     }
@@ -571,9 +571,9 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets instructions
      *
-     * @return string
+     * @return string|null
      */
-    public function getInstructions(): string
+    public function getInstructions(): ?string
     {
         return $this->container['instructions'];
     }
@@ -595,9 +595,9 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets label
      *
-     * @return string
+     * @return string|null
      */
-    public function getLabel(): string
+    public function getLabel(): ?string
     {
         return $this->container['label'];
     }
@@ -619,9 +619,9 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets label_width
      *
-     * @return int
+     * @return int|null
      */
-    public function getLabelWidth(): int
+    public function getLabelWidth(): ?int
     {
         return $this->container['label_width'];
     }
@@ -643,9 +643,9 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets max_length
      *
-     * @return int
+     * @return int|null
      */
-    public function getMaxLength(): int
+    public function getMaxLength(): ?int
     {
         return $this->container['max_length'];
     }
@@ -667,9 +667,9 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets required
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getRequired(): bool
+    public function getRequired(): ?bool
     {
         return $this->container['required'];
     }
@@ -691,9 +691,9 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets row_number
      *
-     * @return int
+     * @return int|null
      */
-    public function getRowNumber(): int
+    public function getRowNumber(): ?int
     {
         return $this->container['row_number'];
     }
@@ -715,9 +715,9 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets text
      *
-     * @return string
+     * @return string|null
      */
-    public function getText(): string
+    public function getText(): ?string
     {
         return $this->container['text'];
     }
@@ -739,9 +739,9 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets validation_message
      *
-     * @return object
+     * @return object|null
      */
-    public function getValidationMessage(): object
+    public function getValidationMessage(): ?object
     {
         return $this->container['validation_message'];
     }
@@ -763,9 +763,9 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets visibility_rules
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\FormFieldVisibilityRuleResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\FormFieldVisibilityRuleResponse|null
      */
-    public function getVisibilityRules(): \NecLimDul\MarketoRest\Asset\Model\FormFieldVisibilityRuleResponse
+    public function getVisibilityRules(): ?\NecLimDul\MarketoRest\Asset\Model\FormFieldVisibilityRuleResponse
     {
         return $this->container['visibility_rules'];
     }

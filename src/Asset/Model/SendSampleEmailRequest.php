@@ -83,22 +83,6 @@ class SendSampleEmailRequest implements ModelInterface, ArrayAccess, \JsonSerial
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -153,6 +137,22 @@ class SendSampleEmailRequest implements ModelInterface, ArrayAccess, \JsonSerial
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -192,7 +192,7 @@ class SendSampleEmailRequest implements ModelInterface, ArrayAccess, \JsonSerial
         $invalidProperties = [];
 
         if ($this->container['email_address'] === null) {
-            $invalidProperties[] = "'email_address' can't be null";
+            $invalidProperties['email_address'] = "'email_address' can't be null";
         }
         return $invalidProperties;
     }
@@ -232,9 +232,9 @@ class SendSampleEmailRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets lead_id
      *
-     * @return string
+     * @return string|null
      */
-    public function getLeadId(): string
+    public function getLeadId(): ?string
     {
         return $this->container['lead_id'];
     }
@@ -256,9 +256,9 @@ class SendSampleEmailRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets text_only
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getTextOnly(): bool
+    public function getTextOnly(): ?bool
     {
         return $this->container['text_only'];
     }

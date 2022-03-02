@@ -81,22 +81,6 @@ class DeleteCompanyRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -144,6 +128,22 @@ class DeleteCompanyRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     {
         $this->container['delete_by'] = $data['delete_by'] ?? null;
         $this->container['input'] = $data['input'] ?? null;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
     }
 
     /**
@@ -199,9 +199,9 @@ class DeleteCompanyRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets delete_by
      *
-     * @return string
+     * @return string|null
      */
-    public function getDeleteBy(): string
+    public function getDeleteBy(): ?string
     {
         return $this->container['delete_by'];
     }
@@ -223,9 +223,9 @@ class DeleteCompanyRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets input
      *
-     * @return \NecLimDul\MarketoRest\Lead\Model\Company[]
+     * @return \NecLimDul\MarketoRest\Lead\Model\Company[]|null
      */
-    public function getInput(): array
+    public function getInput(): ?array
     {
         return $this->container['input'];
     }

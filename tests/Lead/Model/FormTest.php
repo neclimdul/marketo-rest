@@ -37,7 +37,7 @@ use PHPUnit\Framework\TestCase;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  *
- * @coversDefault \NecLimDul\MarketoRest\Lead\Model\Form
+ * @coversDefaultClass \NecLimDul\MarketoRest\Lead\Model\Form
  */
 class FormTest extends TestCase
 {
@@ -48,18 +48,19 @@ class FormTest extends TestCase
     private $sot;
 
     /**
-     * @var \Faker\Generator
-     */
-    private $faker;
-
-    /**
      * @var string[]
      */
     private $types = [
         'lead_form_fields' => '\NecLimDul\MarketoRest\Lead\Model\LeadFormFields',
         'visitor_data' => '\NecLimDul\MarketoRest\Lead\Model\VisitorData',
         'cookie' => 'string',
-    ];
+];
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
     /**
      * @var scalar[][]
      */
@@ -112,7 +113,14 @@ class FormTest extends TestCase
                 return new \stdClass();
         }
         if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
-            return new $type();
+            $model = new $type();
+            $types = $type::swaggerTypes();
+            foreach ($model->listInvalidProperties() as $field => $reason) {
+                // @todo get allowed values? ((getter))AllowedValues
+                // @phpstan-ignore-next-line
+                $model[$field] = $this->getFakeValue($types[$field], null);
+            }
+            return $model;
         }
         $this->markTestSkipped('This type is not mocked yet: ' . $type);
     }
@@ -124,7 +132,105 @@ class FormTest extends TestCase
      */
     public function testForm(): void
     {
-        $this->assertInstanceOf(\NecLimDul\MarketoRest\Lead\Model\Form::class, $this->sot);
+        $this->assertInstanceOf(Form::class, $this->sot);
+    }
+
+    /**
+     * @covers ::swaggerTypes
+     */
+    public function testSwaggerTypes(): void
+    {
+        $this->assertEquals($this->types, Form::swaggerTypes());
+    }
+
+    /**
+     * @covers ::swaggerFormats
+     */
+    public function testSwaggerFormats(): void
+    {
+        $formats = $this->sot->swaggerFormats();
+        $this->assertEquals(null, $formats['lead_form_fields']);
+        $this->assertEquals(null, $formats['visitor_data']);
+        $this->assertEquals(null, $formats['cookie']);
+    }
+
+    /**
+     * @covers ::attributeMap
+     */
+    public function testAttributeMap(): void
+    {
+        $formats = $this->sot->attributeMap();
+        $this->assertEquals('leadFormFields', $formats['lead_form_fields']);
+        $this->assertEquals('visitorData', $formats['visitor_data']);
+        $this->assertEquals('cookie', $formats['cookie']);
+    }
+
+    /**
+     * @covers ::getters
+     * @covers ::setters
+     */
+    public function testGettersSetters(): void
+    {
+        $getters = $this->sot->getters();
+        $setters = $this->sot->setters();
+        foreach (array_keys($this->types) as $field) {
+            $this->assertTrue(isset($setters[$field]));
+            $this->assertTrue(isset($getters[$field]));
+            $this->assertTrue(
+                method_exists($this->sot, $getters[$field]),
+                'Getter exists on model.'
+            );
+            $this->assertTrue(
+                method_exists($this->sot, $setters[$field]),
+                'Setter exists on model.'
+            );
+        }
+    }
+
+    /**
+     * @covers ::getModelName
+     */
+    public function testGetModelName(): void
+    {
+        $this->assertEquals('Form', $this->sot->getModelName());
+    }
+
+    /**
+     * @covers ::listInvalidProperties
+     * @covers ::valid
+     */
+    public function testValid(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::setAdditionalProperties
+     * @covers ::setAdditionalProperty
+     * @covers ::getAdditionalProperties
+     */
+    public function testAdditionalProperties(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::jsonSerialize
+     * @covers ::__toString
+     */
+    public function testJson(): void
+    {
+        // Some minimal tests that json generates well.
+        $json = json_encode($this->sot);
+        $this->assertIsString($json, 'Json encoded');
+        $json = json_decode($json);
+        $string = json_decode((string) $this->sot);
+        $this->assertEquals(
+            $json,
+            $string
+        );
+        $this->assertInstanceOf(\stdClass::class, $json);
+        $this->assertInstanceOf(\stdClass::class, $string);
     }
 
     /**
@@ -133,6 +239,10 @@ class FormTest extends TestCase
      * @covers ::__construct
      * @covers ::getLeadFormFields
      * @covers ::setLeadFormFields
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyLeadFormFields(): void
     {
@@ -143,7 +253,20 @@ class FormTest extends TestCase
         );
         $this->sot->setLeadFormFields($v);
         $this->assertEquals($v, $this->sot->getLeadFormFields());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['lead_form_fields']);
+        $v = $this->getFakeValue(
+            $this->types['lead_form_fields'],
+            $this->allowedValues['lead_form_fields'] ?? null
+        );
+        $this->sot['lead_form_fields'] = $v;
+        $this->assertEquals($v, $this->sot['lead_form_fields']);
+        $this->assertTrue(isset($this->sot['lead_form_fields']));
+        unset($this->sot['lead_form_fields']);
+        $this->assertFalse(isset($this->sot['lead_form_fields']));
+        $this->sot['lead_form_fields'] = $v;
+        $this->assertEquals($v, $this->sot['lead_form_fields']);
+        $this->assertTrue(isset($this->sot['lead_form_fields']));
     }
 
     /**
@@ -152,6 +275,10 @@ class FormTest extends TestCase
      * @covers ::__construct
      * @covers ::getVisitorData
      * @covers ::setVisitorData
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyVisitorData(): void
     {
@@ -162,7 +289,23 @@ class FormTest extends TestCase
         );
         $this->sot->setVisitorData($v);
         $this->assertEquals($v, $this->sot->getVisitorData());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setVisitorData(null);
+        $this->assertNull($this->sot->getVisitorData());
+        $this->sot->setVisitorData($v);
+
+        $this->assertEquals($v, $this->sot['visitor_data']);
+        $v = $this->getFakeValue(
+            $this->types['visitor_data'],
+            $this->allowedValues['visitor_data'] ?? null
+        );
+        $this->sot['visitor_data'] = $v;
+        $this->assertEquals($v, $this->sot['visitor_data']);
+        $this->assertTrue(isset($this->sot['visitor_data']));
+        unset($this->sot['visitor_data']);
+        $this->assertFalse(isset($this->sot['visitor_data']));
+        $this->sot['visitor_data'] = $v;
+        $this->assertEquals($v, $this->sot['visitor_data']);
+        $this->assertTrue(isset($this->sot['visitor_data']));
     }
 
     /**
@@ -171,6 +314,10 @@ class FormTest extends TestCase
      * @covers ::__construct
      * @covers ::getCookie
      * @covers ::setCookie
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyCookie(): void
     {
@@ -181,6 +328,22 @@ class FormTest extends TestCase
         );
         $this->sot->setCookie($v);
         $this->assertEquals($v, $this->sot->getCookie());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setCookie(null);
+        $this->assertNull($this->sot->getCookie());
+        $this->sot->setCookie($v);
+
+        $this->assertEquals($v, $this->sot['cookie']);
+        $v = $this->getFakeValue(
+            $this->types['cookie'],
+            $this->allowedValues['cookie'] ?? null
+        );
+        $this->sot['cookie'] = $v;
+        $this->assertEquals($v, $this->sot['cookie']);
+        $this->assertTrue(isset($this->sot['cookie']));
+        unset($this->sot['cookie']);
+        $this->assertFalse(isset($this->sot['cookie']));
+        $this->sot['cookie'] = $v;
+        $this->assertEquals($v, $this->sot['cookie']);
+        $this->assertTrue(isset($this->sot['cookie']));
     }
 }

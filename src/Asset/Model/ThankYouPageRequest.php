@@ -89,22 +89,6 @@ class ThankYouPageRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -171,6 +155,22 @@ class ThankYouPageRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -210,19 +210,19 @@ class ThankYouPageRequest implements ModelInterface, ArrayAccess, \JsonSerializa
         $invalidProperties = [];
 
         if ($this->container['followup_type'] === null) {
-            $invalidProperties[] = "'followup_type' can't be null";
+            $invalidProperties['followup_type'] = "'followup_type' can't be null";
         }
         if ($this->container['followup_value'] === null) {
-            $invalidProperties[] = "'followup_value' can't be null";
+            $invalidProperties['followup_value'] = "'followup_value' can't be null";
         }
         if ($this->container['operator'] === null) {
-            $invalidProperties[] = "'operator' can't be null";
+            $invalidProperties['operator'] = "'operator' can't be null";
         }
         if ($this->container['subject_field'] === null) {
-            $invalidProperties[] = "'subject_field' can't be null";
+            $invalidProperties['subject_field'] = "'subject_field' can't be null";
         }
         if ($this->container['values'] === null) {
-            $invalidProperties[] = "'values' can't be null";
+            $invalidProperties['values'] = "'values' can't be null";
         }
         return $invalidProperties;
     }
@@ -238,9 +238,9 @@ class ThankYouPageRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets default
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getDefault(): bool
+    public function getDefault(): ?bool
     {
         return $this->container['default'];
     }

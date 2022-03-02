@@ -85,22 +85,6 @@ class InputStreamRangeContent implements ModelInterface, ArrayAccess, \JsonSeria
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -159,6 +143,22 @@ class InputStreamRangeContent implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -211,9 +211,9 @@ class InputStreamRangeContent implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets content_type
      *
-     * @return string
+     * @return string|null
      */
-    public function getContentType(): string
+    public function getContentType(): ?string
     {
         return $this->container['content_type'];
     }
@@ -235,9 +235,9 @@ class InputStreamRangeContent implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets file_range
      *
-     * @return \NecLimDul\MarketoRest\Lead\Model\FileRange
+     * @return \NecLimDul\MarketoRest\Lead\Model\FileRange|null
      */
-    public function getFileRange(): \NecLimDul\MarketoRest\Lead\Model\FileRange
+    public function getFileRange(): ?\NecLimDul\MarketoRest\Lead\Model\FileRange
     {
         return $this->container['file_range'];
     }
@@ -259,9 +259,9 @@ class InputStreamRangeContent implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets input_stream
      *
-     * @return \NecLimDul\MarketoRest\Lead\Model\InputStream
+     * @return \NecLimDul\MarketoRest\Lead\Model\InputStream|null
      */
-    public function getInputStream(): \NecLimDul\MarketoRest\Lead\Model\InputStream
+    public function getInputStream(): ?\NecLimDul\MarketoRest\Lead\Model\InputStream
     {
         return $this->container['input_stream'];
     }
@@ -283,9 +283,9 @@ class InputStreamRangeContent implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets length
      *
-     * @return int
+     * @return int|null
      */
-    public function getLength(): int
+    public function getLength(): ?int
     {
         return $this->container['length'];
     }

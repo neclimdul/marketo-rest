@@ -89,22 +89,6 @@ class UpdateCustomObjectTypeFieldRequest implements ModelInterface, ArrayAccess,
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -171,6 +155,22 @@ class UpdateCustomObjectTypeFieldRequest implements ModelInterface, ArrayAccess,
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -223,9 +223,9 @@ class UpdateCustomObjectTypeFieldRequest implements ModelInterface, ArrayAccess,
     /**
      * Gets name
      *
-     * @return string
+     * @return string|null
      */
-    public function getName(): string
+    public function getName(): ?string
     {
         return $this->container['name'];
     }
@@ -247,9 +247,9 @@ class UpdateCustomObjectTypeFieldRequest implements ModelInterface, ArrayAccess,
     /**
      * Gets display_name
      *
-     * @return string
+     * @return string|null
      */
-    public function getDisplayName(): string
+    public function getDisplayName(): ?string
     {
         return $this->container['display_name'];
     }
@@ -271,9 +271,9 @@ class UpdateCustomObjectTypeFieldRequest implements ModelInterface, ArrayAccess,
     /**
      * Gets data_type
      *
-     * @return string
+     * @return string|null
      */
-    public function getDataType(): string
+    public function getDataType(): ?string
     {
         return $this->container['data_type'];
     }
@@ -295,9 +295,9 @@ class UpdateCustomObjectTypeFieldRequest implements ModelInterface, ArrayAccess,
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->container['description'];
     }
@@ -319,9 +319,9 @@ class UpdateCustomObjectTypeFieldRequest implements ModelInterface, ArrayAccess,
     /**
      * Gets is_dedupe_field
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getIsDedupeField(): bool
+    public function getIsDedupeField(): ?bool
     {
         return $this->container['is_dedupe_field'];
     }
@@ -343,9 +343,9 @@ class UpdateCustomObjectTypeFieldRequest implements ModelInterface, ArrayAccess,
     /**
      * Gets related_to
      *
-     * @return \NecLimDul\MarketoRest\Lead\Model\CustomObjectTypeFieldRelatedTo
+     * @return \NecLimDul\MarketoRest\Lead\Model\CustomObjectTypeFieldRelatedTo|null
      */
-    public function getRelatedTo(): \NecLimDul\MarketoRest\Lead\Model\CustomObjectTypeFieldRelatedTo
+    public function getRelatedTo(): ?\NecLimDul\MarketoRest\Lead\Model\CustomObjectTypeFieldRelatedTo
     {
         return $this->container['related_to'];
     }

@@ -91,22 +91,6 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess, \JsonSeri
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -177,6 +161,22 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess, \JsonSeri
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -229,9 +229,9 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets input
      *
-     * @return \NecLimDul\MarketoRest\Lead\Model\PushLead[]
+     * @return \NecLimDul\MarketoRest\Lead\Model\PushLead[]|null
      */
-    public function getInput(): array
+    public function getInput(): ?array
     {
         return $this->container['input'];
     }
@@ -253,9 +253,9 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets lookup_field
      *
-     * @return string
+     * @return string|null
      */
-    public function getLookupField(): string
+    public function getLookupField(): ?string
     {
         return $this->container['lookup_field'];
     }
@@ -277,9 +277,9 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets partition_name
      *
-     * @return string
+     * @return string|null
      */
-    public function getPartitionName(): string
+    public function getPartitionName(): ?string
     {
         return $this->container['partition_name'];
     }
@@ -301,9 +301,9 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets program_name
      *
-     * @return string
+     * @return string|null
      */
-    public function getProgramName(): string
+    public function getProgramName(): ?string
     {
         return $this->container['program_name'];
     }
@@ -325,9 +325,9 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets program_status
      *
-     * @return string
+     * @return string|null
      */
-    public function getProgramStatus(): string
+    public function getProgramStatus(): ?string
     {
         return $this->container['program_status'];
     }
@@ -349,9 +349,9 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets reason
      *
-     * @return string
+     * @return string|null
      */
-    public function getReason(): string
+    public function getReason(): ?string
     {
         return $this->container['reason'];
     }
@@ -373,9 +373,9 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets source
      *
-     * @return string
+     * @return string|null
      */
-    public function getSource(): string
+    public function getSource(): ?string
     {
         return $this->container['source'];
     }

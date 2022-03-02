@@ -86,22 +86,6 @@ class ResponseOfIdentity implements ModelInterface, ArrayAccess, \JsonSerializab
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -160,6 +144,22 @@ class ResponseOfIdentity implements ModelInterface, ArrayAccess, \JsonSerializab
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -200,7 +200,7 @@ class ResponseOfIdentity implements ModelInterface, ArrayAccess, \JsonSerializab
 
         $allowedValues = $this->getTokenTypeAllowableValues();
         if (!is_null($this->container['token_type']) && !in_array($this->container['token_type'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
+            $invalidProperties['token_type'] = sprintf(
                 "invalid value '%s' for 'token_type', must be one of '%s'",
                 $this->container['token_type'],
                 implode("', '", $allowedValues)
@@ -232,9 +232,9 @@ class ResponseOfIdentity implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets access_token
      *
-     * @return string
+     * @return string|null
      */
-    public function getAccessToken(): string
+    public function getAccessToken(): ?string
     {
         return $this->container['access_token'];
     }
@@ -256,9 +256,9 @@ class ResponseOfIdentity implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets scope
      *
-     * @return string
+     * @return string|null
      */
-    public function getScope(): string
+    public function getScope(): ?string
     {
         return $this->container['scope'];
     }
@@ -280,9 +280,9 @@ class ResponseOfIdentity implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets expires_in
      *
-     * @return int
+     * @return int|null
      */
-    public function getExpiresIn(): int
+    public function getExpiresIn(): ?int
     {
         return $this->container['expires_in'];
     }
@@ -304,9 +304,9 @@ class ResponseOfIdentity implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets token_type
      *
-     * @return string
+     * @return string|null
      */
-    public function getTokenType(): string
+    public function getTokenType(): ?string
     {
         return $this->container['token_type'];
     }

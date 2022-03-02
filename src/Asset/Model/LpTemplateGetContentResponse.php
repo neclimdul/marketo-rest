@@ -91,22 +91,6 @@ class LpTemplateGetContentResponse implements ModelInterface, ArrayAccess, \Json
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -169,6 +153,22 @@ class LpTemplateGetContentResponse implements ModelInterface, ArrayAccess, \Json
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -208,20 +208,20 @@ class LpTemplateGetContentResponse implements ModelInterface, ArrayAccess, \Json
         $invalidProperties = [];
 
         if ($this->container['content'] === null) {
-            $invalidProperties[] = "'content' can't be null";
+            $invalidProperties['content'] = "'content' can't be null";
         }
         if ($this->container['enable_munchkin'] === null) {
-            $invalidProperties[] = "'enable_munchkin' can't be null";
+            $invalidProperties['enable_munchkin'] = "'enable_munchkin' can't be null";
         }
         if ($this->container['id'] === null) {
-            $invalidProperties[] = "'id' can't be null";
+            $invalidProperties['id'] = "'id' can't be null";
         }
         if ($this->container['status'] === null) {
-            $invalidProperties[] = "'status' can't be null";
+            $invalidProperties['status'] = "'status' can't be null";
         }
         $allowedValues = $this->getStatusAllowableValues();
         if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
+            $invalidProperties['status'] = sprintf(
                 "invalid value '%s' for 'status', must be one of '%s'",
                 $this->container['status'],
                 implode("', '", $allowedValues)
@@ -229,11 +229,11 @@ class LpTemplateGetContentResponse implements ModelInterface, ArrayAccess, \Json
         }
 
         if ($this->container['template_type'] === null) {
-            $invalidProperties[] = "'template_type' can't be null";
+            $invalidProperties['template_type'] = "'template_type' can't be null";
         }
         $allowedValues = $this->getTemplateTypeAllowableValues();
         if (!is_null($this->container['template_type']) && !in_array($this->container['template_type'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
+            $invalidProperties['template_type'] = sprintf(
                 "invalid value '%s' for 'template_type', must be one of '%s'",
                 $this->container['template_type'],
                 implode("', '", $allowedValues)

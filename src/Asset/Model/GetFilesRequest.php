@@ -83,22 +83,6 @@ class GetFilesRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -150,6 +134,22 @@ class GetFilesRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['folder'] = $data['folder'] ?? null;
         $this->container['max_return'] = $data['max_return'] ?? null;
         $this->container['offset'] = $data['offset'] ?? null;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
     }
 
     /**
@@ -205,9 +205,9 @@ class GetFilesRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets folder
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\Folder
+     * @return \NecLimDul\MarketoRest\Asset\Model\Folder|null
      */
-    public function getFolder(): \NecLimDul\MarketoRest\Asset\Model\Folder
+    public function getFolder(): ?\NecLimDul\MarketoRest\Asset\Model\Folder
     {
         return $this->container['folder'];
     }
@@ -229,9 +229,9 @@ class GetFilesRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets max_return
      *
-     * @return int
+     * @return int|null
      */
-    public function getMaxReturn(): int
+    public function getMaxReturn(): ?int
     {
         return $this->container['max_return'];
     }
@@ -253,9 +253,9 @@ class GetFilesRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets offset
      *
-     * @return int
+     * @return int|null
      */
-    public function getOffset(): int
+    public function getOffset(): ?int
     {
         return $this->container['offset'];
     }

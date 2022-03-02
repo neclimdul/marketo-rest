@@ -81,22 +81,6 @@ class SyncProgramMemberStatusRequest implements ModelInterface, ArrayAccess, \Js
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -147,6 +131,22 @@ class SyncProgramMemberStatusRequest implements ModelInterface, ArrayAccess, \Js
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -186,10 +186,10 @@ class SyncProgramMemberStatusRequest implements ModelInterface, ArrayAccess, \Js
         $invalidProperties = [];
 
         if ($this->container['status_name'] === null) {
-            $invalidProperties[] = "'status_name' can't be null";
+            $invalidProperties['status_name'] = "'status_name' can't be null";
         }
         if ($this->container['input'] === null) {
-            $invalidProperties[] = "'input' can't be null";
+            $invalidProperties['input'] = "'input' can't be null";
         }
         return $invalidProperties;
     }

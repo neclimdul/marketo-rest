@@ -85,22 +85,6 @@ class ExportActivityRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -159,6 +143,22 @@ class ExportActivityRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -198,10 +198,10 @@ class ExportActivityRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         $invalidProperties = [];
 
         if ($this->container['fields'] === null) {
-            $invalidProperties[] = "'fields' can't be null";
+            $invalidProperties['fields'] = "'fields' can't be null";
         }
         if ($this->container['filter'] === null) {
-            $invalidProperties[] = "'filter' can't be null";
+            $invalidProperties['filter'] = "'filter' can't be null";
         }
         return $invalidProperties;
     }
@@ -217,9 +217,9 @@ class ExportActivityRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets column_header_names
      *
-     * @return \NecLimDul\MarketoRest\Lead\Model\ColumnHeaderNames
+     * @return \NecLimDul\MarketoRest\Lead\Model\ColumnHeaderNames|null
      */
-    public function getColumnHeaderNames(): \NecLimDul\MarketoRest\Lead\Model\ColumnHeaderNames
+    public function getColumnHeaderNames(): ?\NecLimDul\MarketoRest\Lead\Model\ColumnHeaderNames
     {
         return $this->container['column_header_names'];
     }
@@ -289,9 +289,9 @@ class ExportActivityRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets format
      *
-     * @return string
+     * @return string|null
      */
-    public function getFormat(): string
+    public function getFormat(): ?string
     {
         return $this->container['format'];
     }

@@ -85,22 +85,6 @@ class UpdateEmailComponentDataRequest implements ModelInterface, ArrayAccess, \J
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -159,6 +143,22 @@ class UpdateEmailComponentDataRequest implements ModelInterface, ArrayAccess, \J
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -211,9 +211,9 @@ class UpdateEmailComponentDataRequest implements ModelInterface, ArrayAccess, \J
     /**
      * Gets from_email
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField
+     * @return \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField|null
      */
-    public function getFromEmail(): \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField
+    public function getFromEmail(): ?\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField
     {
         return $this->container['from_email'];
     }
@@ -235,9 +235,9 @@ class UpdateEmailComponentDataRequest implements ModelInterface, ArrayAccess, \J
     /**
      * Gets from_name
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField
+     * @return \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField|null
      */
-    public function getFromName(): \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField
+    public function getFromName(): ?\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField
     {
         return $this->container['from_name'];
     }
@@ -259,9 +259,9 @@ class UpdateEmailComponentDataRequest implements ModelInterface, ArrayAccess, \J
     /**
      * Gets reply_to
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField
+     * @return \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField|null
      */
-    public function getReplyTo(): \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField
+    public function getReplyTo(): ?\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField
     {
         return $this->container['reply_to'];
     }
@@ -283,9 +283,9 @@ class UpdateEmailComponentDataRequest implements ModelInterface, ArrayAccess, \J
     /**
      * Gets subject
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField
+     * @return \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField|null
      */
-    public function getSubject(): \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField
+    public function getSubject(): ?\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField
     {
         return $this->container['subject'];
     }

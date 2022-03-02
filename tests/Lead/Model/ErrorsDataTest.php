@@ -37,7 +37,7 @@ use PHPUnit\Framework\TestCase;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  *
- * @coversDefault \NecLimDul\MarketoRest\Lead\Model\ErrorsData
+ * @coversDefaultClass \NecLimDul\MarketoRest\Lead\Model\ErrorsData
  */
 class ErrorsDataTest extends TestCase
 {
@@ -48,18 +48,19 @@ class ErrorsDataTest extends TestCase
     private $sot;
 
     /**
-     * @var \Faker\Generator
-     */
-    private $faker;
-
-    /**
      * @var string[]
      */
     private $types = [
         'date' => '\DateTime',
         'errors' => '\NecLimDul\MarketoRest\Lead\Model\ErrorCount[]',
         'total' => 'int',
-    ];
+];
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
     /**
      * @var scalar[][]
      */
@@ -112,7 +113,14 @@ class ErrorsDataTest extends TestCase
                 return new \stdClass();
         }
         if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
-            return new $type();
+            $model = new $type();
+            $types = $type::swaggerTypes();
+            foreach ($model->listInvalidProperties() as $field => $reason) {
+                // @todo get allowed values? ((getter))AllowedValues
+                // @phpstan-ignore-next-line
+                $model[$field] = $this->getFakeValue($types[$field], null);
+            }
+            return $model;
         }
         $this->markTestSkipped('This type is not mocked yet: ' . $type);
     }
@@ -124,7 +132,105 @@ class ErrorsDataTest extends TestCase
      */
     public function testErrorsData(): void
     {
-        $this->assertInstanceOf(\NecLimDul\MarketoRest\Lead\Model\ErrorsData::class, $this->sot);
+        $this->assertInstanceOf(ErrorsData::class, $this->sot);
+    }
+
+    /**
+     * @covers ::swaggerTypes
+     */
+    public function testSwaggerTypes(): void
+    {
+        $this->assertEquals($this->types, ErrorsData::swaggerTypes());
+    }
+
+    /**
+     * @covers ::swaggerFormats
+     */
+    public function testSwaggerFormats(): void
+    {
+        $formats = $this->sot->swaggerFormats();
+        $this->assertEquals('date-time', $formats['date']);
+        $this->assertEquals(null, $formats['errors']);
+        $this->assertEquals('int32', $formats['total']);
+    }
+
+    /**
+     * @covers ::attributeMap
+     */
+    public function testAttributeMap(): void
+    {
+        $formats = $this->sot->attributeMap();
+        $this->assertEquals('date', $formats['date']);
+        $this->assertEquals('errors', $formats['errors']);
+        $this->assertEquals('total', $formats['total']);
+    }
+
+    /**
+     * @covers ::getters
+     * @covers ::setters
+     */
+    public function testGettersSetters(): void
+    {
+        $getters = $this->sot->getters();
+        $setters = $this->sot->setters();
+        foreach (array_keys($this->types) as $field) {
+            $this->assertTrue(isset($setters[$field]));
+            $this->assertTrue(isset($getters[$field]));
+            $this->assertTrue(
+                method_exists($this->sot, $getters[$field]),
+                'Getter exists on model.'
+            );
+            $this->assertTrue(
+                method_exists($this->sot, $setters[$field]),
+                'Setter exists on model.'
+            );
+        }
+    }
+
+    /**
+     * @covers ::getModelName
+     */
+    public function testGetModelName(): void
+    {
+        $this->assertEquals('ErrorsData', $this->sot->getModelName());
+    }
+
+    /**
+     * @covers ::listInvalidProperties
+     * @covers ::valid
+     */
+    public function testValid(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::setAdditionalProperties
+     * @covers ::setAdditionalProperty
+     * @covers ::getAdditionalProperties
+     */
+    public function testAdditionalProperties(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::jsonSerialize
+     * @covers ::__toString
+     */
+    public function testJson(): void
+    {
+        // Some minimal tests that json generates well.
+        $json = json_encode($this->sot);
+        $this->assertIsString($json, 'Json encoded');
+        $json = json_decode($json);
+        $string = json_decode((string) $this->sot);
+        $this->assertEquals(
+            $json,
+            $string
+        );
+        $this->assertInstanceOf(\stdClass::class, $json);
+        $this->assertInstanceOf(\stdClass::class, $string);
     }
 
     /**
@@ -133,6 +239,10 @@ class ErrorsDataTest extends TestCase
      * @covers ::__construct
      * @covers ::getDate
      * @covers ::setDate
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyDate(): void
     {
@@ -143,7 +253,20 @@ class ErrorsDataTest extends TestCase
         );
         $this->sot->setDate($v);
         $this->assertEquals($v, $this->sot->getDate());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['date']);
+        $v = $this->getFakeValue(
+            $this->types['date'],
+            $this->allowedValues['date'] ?? null
+        );
+        $this->sot['date'] = $v;
+        $this->assertEquals($v, $this->sot['date']);
+        $this->assertTrue(isset($this->sot['date']));
+        unset($this->sot['date']);
+        $this->assertFalse(isset($this->sot['date']));
+        $this->sot['date'] = $v;
+        $this->assertEquals($v, $this->sot['date']);
+        $this->assertTrue(isset($this->sot['date']));
     }
 
     /**
@@ -152,6 +275,10 @@ class ErrorsDataTest extends TestCase
      * @covers ::__construct
      * @covers ::getErrors
      * @covers ::setErrors
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyErrors(): void
     {
@@ -162,7 +289,23 @@ class ErrorsDataTest extends TestCase
         );
         $this->sot->setErrors($v);
         $this->assertEquals($v, $this->sot->getErrors());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setErrors(null);
+        $this->assertNull($this->sot->getErrors());
+        $this->sot->setErrors($v);
+
+        $this->assertEquals($v, $this->sot['errors']);
+        $v = $this->getFakeValue(
+            $this->types['errors'],
+            $this->allowedValues['errors'] ?? null
+        );
+        $this->sot['errors'] = $v;
+        $this->assertEquals($v, $this->sot['errors']);
+        $this->assertTrue(isset($this->sot['errors']));
+        unset($this->sot['errors']);
+        $this->assertFalse(isset($this->sot['errors']));
+        $this->sot['errors'] = $v;
+        $this->assertEquals($v, $this->sot['errors']);
+        $this->assertTrue(isset($this->sot['errors']));
     }
 
     /**
@@ -171,6 +314,10 @@ class ErrorsDataTest extends TestCase
      * @covers ::__construct
      * @covers ::getTotal
      * @covers ::setTotal
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyTotal(): void
     {
@@ -181,6 +328,22 @@ class ErrorsDataTest extends TestCase
         );
         $this->sot->setTotal($v);
         $this->assertEquals($v, $this->sot->getTotal());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setTotal(null);
+        $this->assertNull($this->sot->getTotal());
+        $this->sot->setTotal($v);
+
+        $this->assertEquals($v, $this->sot['total']);
+        $v = $this->getFakeValue(
+            $this->types['total'],
+            $this->allowedValues['total'] ?? null
+        );
+        $this->sot['total'] = $v;
+        $this->assertEquals($v, $this->sot['total']);
+        $this->assertTrue(isset($this->sot['total']));
+        unset($this->sot['total']);
+        $this->assertFalse(isset($this->sot['total']));
+        $this->sot['total'] = $v;
+        $this->assertEquals($v, $this->sot['total']);
+        $this->assertTrue(isset($this->sot['total']));
     }
 }

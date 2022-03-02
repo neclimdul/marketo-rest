@@ -87,22 +87,6 @@ class ResponseOfLandingPageContentResponse implements ModelInterface, ArrayAcces
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -165,6 +149,22 @@ class ResponseOfLandingPageContentResponse implements ModelInterface, ArrayAcces
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -217,9 +217,9 @@ class ResponseOfLandingPageContentResponse implements ModelInterface, ArrayAcces
     /**
      * Gets errors
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\Error[]
+     * @return \NecLimDul\MarketoRest\Asset\Model\Error[]|null
      */
-    public function getErrors(): array
+    public function getErrors(): ?array
     {
         return $this->container['errors'];
     }
@@ -241,9 +241,9 @@ class ResponseOfLandingPageContentResponse implements ModelInterface, ArrayAcces
     /**
      * Gets request_id
      *
-     * @return string
+     * @return string|null
      */
-    public function getRequestId(): string
+    public function getRequestId(): ?string
     {
         return $this->container['request_id'];
     }
@@ -265,9 +265,9 @@ class ResponseOfLandingPageContentResponse implements ModelInterface, ArrayAcces
     /**
      * Gets result
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\LandingPageContentResponse[]
+     * @return \NecLimDul\MarketoRest\Asset\Model\LandingPageContentResponse[]|null
      */
-    public function getResult(): array
+    public function getResult(): ?array
     {
         return $this->container['result'];
     }
@@ -289,9 +289,9 @@ class ResponseOfLandingPageContentResponse implements ModelInterface, ArrayAcces
     /**
      * Gets success
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getSuccess(): bool
+    public function getSuccess(): ?bool
     {
         return $this->container['success'];
     }
@@ -313,9 +313,9 @@ class ResponseOfLandingPageContentResponse implements ModelInterface, ArrayAcces
     /**
      * Gets warnings
      *
-     * @return string[]
+     * @return string[]|null
      */
-    public function getWarnings(): array
+    public function getWarnings(): ?array
     {
         return $this->container['warnings'];
     }

@@ -85,22 +85,6 @@ class EmailVariableResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -159,6 +143,22 @@ class EmailVariableResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -198,13 +198,13 @@ class EmailVariableResponse implements ModelInterface, ArrayAccess, \JsonSeriali
         $invalidProperties = [];
 
         if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
+            $invalidProperties['name'] = "'name' can't be null";
         }
         if ($this->container['value'] === null) {
-            $invalidProperties[] = "'value' can't be null";
+            $invalidProperties['value'] = "'value' can't be null";
         }
         if ($this->container['module_scope'] === null) {
-            $invalidProperties[] = "'module_scope' can't be null";
+            $invalidProperties['module_scope'] = "'module_scope' can't be null";
         }
         return $invalidProperties;
     }
@@ -292,9 +292,9 @@ class EmailVariableResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets module_id
      *
-     * @return string
+     * @return string|null
      */
-    public function getModuleId(): string
+    public function getModuleId(): ?string
     {
         return $this->container['module_id'];
     }

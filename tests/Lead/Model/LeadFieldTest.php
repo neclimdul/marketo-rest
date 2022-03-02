@@ -37,7 +37,7 @@ use PHPUnit\Framework\TestCase;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  *
- * @coversDefault \NecLimDul\MarketoRest\Lead\Model\LeadField
+ * @coversDefaultClass \NecLimDul\MarketoRest\Lead\Model\LeadField
  */
 class LeadFieldTest extends TestCase
 {
@@ -46,11 +46,6 @@ class LeadFieldTest extends TestCase
      * @var \NecLimDul\MarketoRest\Lead\Model\LeadField
      */
     private $sot;
-
-    /**
-     * @var \Faker\Generator
-     */
-    private $faker;
 
     /**
      * @var string[]
@@ -66,7 +61,13 @@ class LeadFieldTest extends TestCase
         'is_sensitive' => 'bool',
         'is_custom' => 'bool',
         'is_api_created' => 'bool',
-    ];
+];
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
     /**
      * @var scalar[][]
      */
@@ -119,7 +120,14 @@ class LeadFieldTest extends TestCase
                 return new \stdClass();
         }
         if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
-            return new $type();
+            $model = new $type();
+            $types = $type::swaggerTypes();
+            foreach ($model->listInvalidProperties() as $field => $reason) {
+                // @todo get allowed values? ((getter))AllowedValues
+                // @phpstan-ignore-next-line
+                $model[$field] = $this->getFakeValue($types[$field], null);
+            }
+            return $model;
         }
         $this->markTestSkipped('This type is not mocked yet: ' . $type);
     }
@@ -131,7 +139,119 @@ class LeadFieldTest extends TestCase
      */
     public function testLeadField(): void
     {
-        $this->assertInstanceOf(\NecLimDul\MarketoRest\Lead\Model\LeadField::class, $this->sot);
+        $this->assertInstanceOf(LeadField::class, $this->sot);
+    }
+
+    /**
+     * @covers ::swaggerTypes
+     */
+    public function testSwaggerTypes(): void
+    {
+        $this->assertEquals($this->types, LeadField::swaggerTypes());
+    }
+
+    /**
+     * @covers ::swaggerFormats
+     */
+    public function testSwaggerFormats(): void
+    {
+        $formats = $this->sot->swaggerFormats();
+        $this->assertEquals(null, $formats['display_name']);
+        $this->assertEquals(null, $formats['name']);
+        $this->assertEquals(null, $formats['description']);
+        $this->assertEquals(null, $formats['data_type']);
+        $this->assertEquals('int32', $formats['length']);
+        $this->assertEquals(null, $formats['is_hidden']);
+        $this->assertEquals(null, $formats['is_html_encoding_in_email']);
+        $this->assertEquals(null, $formats['is_sensitive']);
+        $this->assertEquals(null, $formats['is_custom']);
+        $this->assertEquals(null, $formats['is_api_created']);
+    }
+
+    /**
+     * @covers ::attributeMap
+     */
+    public function testAttributeMap(): void
+    {
+        $formats = $this->sot->attributeMap();
+        $this->assertEquals('displayName', $formats['display_name']);
+        $this->assertEquals('name', $formats['name']);
+        $this->assertEquals('description', $formats['description']);
+        $this->assertEquals('dataType', $formats['data_type']);
+        $this->assertEquals('length', $formats['length']);
+        $this->assertEquals('isHidden', $formats['is_hidden']);
+        $this->assertEquals('isHtmlEncodingInEmail', $formats['is_html_encoding_in_email']);
+        $this->assertEquals('isSensitive', $formats['is_sensitive']);
+        $this->assertEquals('isCustom', $formats['is_custom']);
+        $this->assertEquals('isApiCreated', $formats['is_api_created']);
+    }
+
+    /**
+     * @covers ::getters
+     * @covers ::setters
+     */
+    public function testGettersSetters(): void
+    {
+        $getters = $this->sot->getters();
+        $setters = $this->sot->setters();
+        foreach (array_keys($this->types) as $field) {
+            $this->assertTrue(isset($setters[$field]));
+            $this->assertTrue(isset($getters[$field]));
+            $this->assertTrue(
+                method_exists($this->sot, $getters[$field]),
+                'Getter exists on model.'
+            );
+            $this->assertTrue(
+                method_exists($this->sot, $setters[$field]),
+                'Setter exists on model.'
+            );
+        }
+    }
+
+    /**
+     * @covers ::getModelName
+     */
+    public function testGetModelName(): void
+    {
+        $this->assertEquals('LeadField', $this->sot->getModelName());
+    }
+
+    /**
+     * @covers ::listInvalidProperties
+     * @covers ::valid
+     */
+    public function testValid(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::setAdditionalProperties
+     * @covers ::setAdditionalProperty
+     * @covers ::getAdditionalProperties
+     */
+    public function testAdditionalProperties(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::jsonSerialize
+     * @covers ::__toString
+     */
+    public function testJson(): void
+    {
+        // Some minimal tests that json generates well.
+        $json = json_encode($this->sot);
+        $this->assertIsString($json, 'Json encoded');
+        $json = json_decode($json);
+        $string = json_decode((string) $this->sot);
+        $this->assertEquals(
+            $json,
+            $string
+        );
+        $this->assertInstanceOf(\stdClass::class, $json);
+        $this->assertInstanceOf(\stdClass::class, $string);
     }
 
     /**
@@ -140,6 +260,10 @@ class LeadFieldTest extends TestCase
      * @covers ::__construct
      * @covers ::getDisplayName
      * @covers ::setDisplayName
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyDisplayName(): void
     {
@@ -150,7 +274,20 @@ class LeadFieldTest extends TestCase
         );
         $this->sot->setDisplayName($v);
         $this->assertEquals($v, $this->sot->getDisplayName());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['display_name']);
+        $v = $this->getFakeValue(
+            $this->types['display_name'],
+            $this->allowedValues['display_name'] ?? null
+        );
+        $this->sot['display_name'] = $v;
+        $this->assertEquals($v, $this->sot['display_name']);
+        $this->assertTrue(isset($this->sot['display_name']));
+        unset($this->sot['display_name']);
+        $this->assertFalse(isset($this->sot['display_name']));
+        $this->sot['display_name'] = $v;
+        $this->assertEquals($v, $this->sot['display_name']);
+        $this->assertTrue(isset($this->sot['display_name']));
     }
 
     /**
@@ -159,6 +296,10 @@ class LeadFieldTest extends TestCase
      * @covers ::__construct
      * @covers ::getName
      * @covers ::setName
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyName(): void
     {
@@ -169,7 +310,20 @@ class LeadFieldTest extends TestCase
         );
         $this->sot->setName($v);
         $this->assertEquals($v, $this->sot->getName());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['name']);
+        $v = $this->getFakeValue(
+            $this->types['name'],
+            $this->allowedValues['name'] ?? null
+        );
+        $this->sot['name'] = $v;
+        $this->assertEquals($v, $this->sot['name']);
+        $this->assertTrue(isset($this->sot['name']));
+        unset($this->sot['name']);
+        $this->assertFalse(isset($this->sot['name']));
+        $this->sot['name'] = $v;
+        $this->assertEquals($v, $this->sot['name']);
+        $this->assertTrue(isset($this->sot['name']));
     }
 
     /**
@@ -178,6 +332,10 @@ class LeadFieldTest extends TestCase
      * @covers ::__construct
      * @covers ::getDescription
      * @covers ::setDescription
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyDescription(): void
     {
@@ -188,7 +346,20 @@ class LeadFieldTest extends TestCase
         );
         $this->sot->setDescription($v);
         $this->assertEquals($v, $this->sot->getDescription());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['description']);
+        $v = $this->getFakeValue(
+            $this->types['description'],
+            $this->allowedValues['description'] ?? null
+        );
+        $this->sot['description'] = $v;
+        $this->assertEquals($v, $this->sot['description']);
+        $this->assertTrue(isset($this->sot['description']));
+        unset($this->sot['description']);
+        $this->assertFalse(isset($this->sot['description']));
+        $this->sot['description'] = $v;
+        $this->assertEquals($v, $this->sot['description']);
+        $this->assertTrue(isset($this->sot['description']));
     }
 
     /**
@@ -197,6 +368,10 @@ class LeadFieldTest extends TestCase
      * @covers ::__construct
      * @covers ::getDataType
      * @covers ::setDataType
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyDataType(): void
     {
@@ -207,7 +382,20 @@ class LeadFieldTest extends TestCase
         );
         $this->sot->setDataType($v);
         $this->assertEquals($v, $this->sot->getDataType());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['data_type']);
+        $v = $this->getFakeValue(
+            $this->types['data_type'],
+            $this->allowedValues['data_type'] ?? null
+        );
+        $this->sot['data_type'] = $v;
+        $this->assertEquals($v, $this->sot['data_type']);
+        $this->assertTrue(isset($this->sot['data_type']));
+        unset($this->sot['data_type']);
+        $this->assertFalse(isset($this->sot['data_type']));
+        $this->sot['data_type'] = $v;
+        $this->assertEquals($v, $this->sot['data_type']);
+        $this->assertTrue(isset($this->sot['data_type']));
     }
 
     /**
@@ -216,6 +404,10 @@ class LeadFieldTest extends TestCase
      * @covers ::__construct
      * @covers ::getLength
      * @covers ::setLength
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyLength(): void
     {
@@ -226,7 +418,23 @@ class LeadFieldTest extends TestCase
         );
         $this->sot->setLength($v);
         $this->assertEquals($v, $this->sot->getLength());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setLength(null);
+        $this->assertNull($this->sot->getLength());
+        $this->sot->setLength($v);
+
+        $this->assertEquals($v, $this->sot['length']);
+        $v = $this->getFakeValue(
+            $this->types['length'],
+            $this->allowedValues['length'] ?? null
+        );
+        $this->sot['length'] = $v;
+        $this->assertEquals($v, $this->sot['length']);
+        $this->assertTrue(isset($this->sot['length']));
+        unset($this->sot['length']);
+        $this->assertFalse(isset($this->sot['length']));
+        $this->sot['length'] = $v;
+        $this->assertEquals($v, $this->sot['length']);
+        $this->assertTrue(isset($this->sot['length']));
     }
 
     /**
@@ -235,6 +443,10 @@ class LeadFieldTest extends TestCase
      * @covers ::__construct
      * @covers ::getIsHidden
      * @covers ::setIsHidden
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyIsHidden(): void
     {
@@ -245,7 +457,20 @@ class LeadFieldTest extends TestCase
         );
         $this->sot->setIsHidden($v);
         $this->assertEquals($v, $this->sot->getIsHidden());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['is_hidden']);
+        $v = $this->getFakeValue(
+            $this->types['is_hidden'],
+            $this->allowedValues['is_hidden'] ?? null
+        );
+        $this->sot['is_hidden'] = $v;
+        $this->assertEquals($v, $this->sot['is_hidden']);
+        $this->assertTrue(isset($this->sot['is_hidden']));
+        unset($this->sot['is_hidden']);
+        $this->assertFalse(isset($this->sot['is_hidden']));
+        $this->sot['is_hidden'] = $v;
+        $this->assertEquals($v, $this->sot['is_hidden']);
+        $this->assertTrue(isset($this->sot['is_hidden']));
     }
 
     /**
@@ -254,6 +479,10 @@ class LeadFieldTest extends TestCase
      * @covers ::__construct
      * @covers ::getIsHtmlEncodingInEmail
      * @covers ::setIsHtmlEncodingInEmail
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyIsHtmlEncodingInEmail(): void
     {
@@ -264,7 +493,20 @@ class LeadFieldTest extends TestCase
         );
         $this->sot->setIsHtmlEncodingInEmail($v);
         $this->assertEquals($v, $this->sot->getIsHtmlEncodingInEmail());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['is_html_encoding_in_email']);
+        $v = $this->getFakeValue(
+            $this->types['is_html_encoding_in_email'],
+            $this->allowedValues['is_html_encoding_in_email'] ?? null
+        );
+        $this->sot['is_html_encoding_in_email'] = $v;
+        $this->assertEquals($v, $this->sot['is_html_encoding_in_email']);
+        $this->assertTrue(isset($this->sot['is_html_encoding_in_email']));
+        unset($this->sot['is_html_encoding_in_email']);
+        $this->assertFalse(isset($this->sot['is_html_encoding_in_email']));
+        $this->sot['is_html_encoding_in_email'] = $v;
+        $this->assertEquals($v, $this->sot['is_html_encoding_in_email']);
+        $this->assertTrue(isset($this->sot['is_html_encoding_in_email']));
     }
 
     /**
@@ -273,6 +515,10 @@ class LeadFieldTest extends TestCase
      * @covers ::__construct
      * @covers ::getIsSensitive
      * @covers ::setIsSensitive
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyIsSensitive(): void
     {
@@ -283,7 +529,20 @@ class LeadFieldTest extends TestCase
         );
         $this->sot->setIsSensitive($v);
         $this->assertEquals($v, $this->sot->getIsSensitive());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['is_sensitive']);
+        $v = $this->getFakeValue(
+            $this->types['is_sensitive'],
+            $this->allowedValues['is_sensitive'] ?? null
+        );
+        $this->sot['is_sensitive'] = $v;
+        $this->assertEquals($v, $this->sot['is_sensitive']);
+        $this->assertTrue(isset($this->sot['is_sensitive']));
+        unset($this->sot['is_sensitive']);
+        $this->assertFalse(isset($this->sot['is_sensitive']));
+        $this->sot['is_sensitive'] = $v;
+        $this->assertEquals($v, $this->sot['is_sensitive']);
+        $this->assertTrue(isset($this->sot['is_sensitive']));
     }
 
     /**
@@ -292,6 +551,10 @@ class LeadFieldTest extends TestCase
      * @covers ::__construct
      * @covers ::getIsCustom
      * @covers ::setIsCustom
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyIsCustom(): void
     {
@@ -302,7 +565,20 @@ class LeadFieldTest extends TestCase
         );
         $this->sot->setIsCustom($v);
         $this->assertEquals($v, $this->sot->getIsCustom());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['is_custom']);
+        $v = $this->getFakeValue(
+            $this->types['is_custom'],
+            $this->allowedValues['is_custom'] ?? null
+        );
+        $this->sot['is_custom'] = $v;
+        $this->assertEquals($v, $this->sot['is_custom']);
+        $this->assertTrue(isset($this->sot['is_custom']));
+        unset($this->sot['is_custom']);
+        $this->assertFalse(isset($this->sot['is_custom']));
+        $this->sot['is_custom'] = $v;
+        $this->assertEquals($v, $this->sot['is_custom']);
+        $this->assertTrue(isset($this->sot['is_custom']));
     }
 
     /**
@@ -311,6 +587,10 @@ class LeadFieldTest extends TestCase
      * @covers ::__construct
      * @covers ::getIsApiCreated
      * @covers ::setIsApiCreated
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyIsApiCreated(): void
     {
@@ -321,6 +601,19 @@ class LeadFieldTest extends TestCase
         );
         $this->sot->setIsApiCreated($v);
         $this->assertEquals($v, $this->sot->getIsApiCreated());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['is_api_created']);
+        $v = $this->getFakeValue(
+            $this->types['is_api_created'],
+            $this->allowedValues['is_api_created'] ?? null
+        );
+        $this->sot['is_api_created'] = $v;
+        $this->assertEquals($v, $this->sot['is_api_created']);
+        $this->assertTrue(isset($this->sot['is_api_created']));
+        unset($this->sot['is_api_created']);
+        $this->assertFalse(isset($this->sot['is_api_created']));
+        $this->sot['is_api_created'] = $v;
+        $this->assertEquals($v, $this->sot['is_api_created']);
+        $this->assertTrue(isset($this->sot['is_api_created']));
     }
 }

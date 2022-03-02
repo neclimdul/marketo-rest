@@ -37,7 +37,7 @@ use PHPUnit\Framework\TestCase;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  *
- * @coversDefault \NecLimDul\MarketoRest\Lead\Model\ImportLeadResponse
+ * @coversDefaultClass \NecLimDul\MarketoRest\Lead\Model\ImportLeadResponse
  */
 class ImportLeadResponseTest extends TestCase
 {
@@ -46,11 +46,6 @@ class ImportLeadResponseTest extends TestCase
      * @var \NecLimDul\MarketoRest\Lead\Model\ImportLeadResponse
      */
     private $sot;
-
-    /**
-     * @var \Faker\Generator
-     */
-    private $faker;
 
     /**
      * @var string[]
@@ -63,7 +58,13 @@ class ImportLeadResponseTest extends TestCase
         'num_of_rows_failed' => 'int',
         'num_of_rows_with_warning' => 'int',
         'status' => 'string',
-    ];
+];
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
     /**
      * @var scalar[][]
      */
@@ -116,7 +117,14 @@ class ImportLeadResponseTest extends TestCase
                 return new \stdClass();
         }
         if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
-            return new $type();
+            $model = new $type();
+            $types = $type::swaggerTypes();
+            foreach ($model->listInvalidProperties() as $field => $reason) {
+                // @todo get allowed values? ((getter))AllowedValues
+                // @phpstan-ignore-next-line
+                $model[$field] = $this->getFakeValue($types[$field], null);
+            }
+            return $model;
         }
         $this->markTestSkipped('This type is not mocked yet: ' . $type);
     }
@@ -128,7 +136,113 @@ class ImportLeadResponseTest extends TestCase
      */
     public function testImportLeadResponse(): void
     {
-        $this->assertInstanceOf(\NecLimDul\MarketoRest\Lead\Model\ImportLeadResponse::class, $this->sot);
+        $this->assertInstanceOf(ImportLeadResponse::class, $this->sot);
+    }
+
+    /**
+     * @covers ::swaggerTypes
+     */
+    public function testSwaggerTypes(): void
+    {
+        $this->assertEquals($this->types, ImportLeadResponse::swaggerTypes());
+    }
+
+    /**
+     * @covers ::swaggerFormats
+     */
+    public function testSwaggerFormats(): void
+    {
+        $formats = $this->sot->swaggerFormats();
+        $this->assertEquals('int32', $formats['batch_id']);
+        $this->assertEquals(null, $formats['import_id']);
+        $this->assertEquals(null, $formats['message']);
+        $this->assertEquals('int32', $formats['num_of_leads_processed']);
+        $this->assertEquals('int32', $formats['num_of_rows_failed']);
+        $this->assertEquals('int32', $formats['num_of_rows_with_warning']);
+        $this->assertEquals(null, $formats['status']);
+    }
+
+    /**
+     * @covers ::attributeMap
+     */
+    public function testAttributeMap(): void
+    {
+        $formats = $this->sot->attributeMap();
+        $this->assertEquals('batchId', $formats['batch_id']);
+        $this->assertEquals('importId', $formats['import_id']);
+        $this->assertEquals('message', $formats['message']);
+        $this->assertEquals('numOfLeadsProcessed', $formats['num_of_leads_processed']);
+        $this->assertEquals('numOfRowsFailed', $formats['num_of_rows_failed']);
+        $this->assertEquals('numOfRowsWithWarning', $formats['num_of_rows_with_warning']);
+        $this->assertEquals('status', $formats['status']);
+    }
+
+    /**
+     * @covers ::getters
+     * @covers ::setters
+     */
+    public function testGettersSetters(): void
+    {
+        $getters = $this->sot->getters();
+        $setters = $this->sot->setters();
+        foreach (array_keys($this->types) as $field) {
+            $this->assertTrue(isset($setters[$field]));
+            $this->assertTrue(isset($getters[$field]));
+            $this->assertTrue(
+                method_exists($this->sot, $getters[$field]),
+                'Getter exists on model.'
+            );
+            $this->assertTrue(
+                method_exists($this->sot, $setters[$field]),
+                'Setter exists on model.'
+            );
+        }
+    }
+
+    /**
+     * @covers ::getModelName
+     */
+    public function testGetModelName(): void
+    {
+        $this->assertEquals('ImportLeadResponse', $this->sot->getModelName());
+    }
+
+    /**
+     * @covers ::listInvalidProperties
+     * @covers ::valid
+     */
+    public function testValid(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::setAdditionalProperties
+     * @covers ::setAdditionalProperty
+     * @covers ::getAdditionalProperties
+     */
+    public function testAdditionalProperties(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::jsonSerialize
+     * @covers ::__toString
+     */
+    public function testJson(): void
+    {
+        // Some minimal tests that json generates well.
+        $json = json_encode($this->sot);
+        $this->assertIsString($json, 'Json encoded');
+        $json = json_decode($json);
+        $string = json_decode((string) $this->sot);
+        $this->assertEquals(
+            $json,
+            $string
+        );
+        $this->assertInstanceOf(\stdClass::class, $json);
+        $this->assertInstanceOf(\stdClass::class, $string);
     }
 
     /**
@@ -137,6 +251,10 @@ class ImportLeadResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getBatchId
      * @covers ::setBatchId
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyBatchId(): void
     {
@@ -147,7 +265,20 @@ class ImportLeadResponseTest extends TestCase
         );
         $this->sot->setBatchId($v);
         $this->assertEquals($v, $this->sot->getBatchId());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['batch_id']);
+        $v = $this->getFakeValue(
+            $this->types['batch_id'],
+            $this->allowedValues['batch_id'] ?? null
+        );
+        $this->sot['batch_id'] = $v;
+        $this->assertEquals($v, $this->sot['batch_id']);
+        $this->assertTrue(isset($this->sot['batch_id']));
+        unset($this->sot['batch_id']);
+        $this->assertFalse(isset($this->sot['batch_id']));
+        $this->sot['batch_id'] = $v;
+        $this->assertEquals($v, $this->sot['batch_id']);
+        $this->assertTrue(isset($this->sot['batch_id']));
     }
 
     /**
@@ -156,6 +287,10 @@ class ImportLeadResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getImportId
      * @covers ::setImportId
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyImportId(): void
     {
@@ -166,7 +301,23 @@ class ImportLeadResponseTest extends TestCase
         );
         $this->sot->setImportId($v);
         $this->assertEquals($v, $this->sot->getImportId());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setImportId(null);
+        $this->assertNull($this->sot->getImportId());
+        $this->sot->setImportId($v);
+
+        $this->assertEquals($v, $this->sot['import_id']);
+        $v = $this->getFakeValue(
+            $this->types['import_id'],
+            $this->allowedValues['import_id'] ?? null
+        );
+        $this->sot['import_id'] = $v;
+        $this->assertEquals($v, $this->sot['import_id']);
+        $this->assertTrue(isset($this->sot['import_id']));
+        unset($this->sot['import_id']);
+        $this->assertFalse(isset($this->sot['import_id']));
+        $this->sot['import_id'] = $v;
+        $this->assertEquals($v, $this->sot['import_id']);
+        $this->assertTrue(isset($this->sot['import_id']));
     }
 
     /**
@@ -175,6 +326,10 @@ class ImportLeadResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getMessage
      * @covers ::setMessage
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyMessage(): void
     {
@@ -185,7 +340,23 @@ class ImportLeadResponseTest extends TestCase
         );
         $this->sot->setMessage($v);
         $this->assertEquals($v, $this->sot->getMessage());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setMessage(null);
+        $this->assertNull($this->sot->getMessage());
+        $this->sot->setMessage($v);
+
+        $this->assertEquals($v, $this->sot['message']);
+        $v = $this->getFakeValue(
+            $this->types['message'],
+            $this->allowedValues['message'] ?? null
+        );
+        $this->sot['message'] = $v;
+        $this->assertEquals($v, $this->sot['message']);
+        $this->assertTrue(isset($this->sot['message']));
+        unset($this->sot['message']);
+        $this->assertFalse(isset($this->sot['message']));
+        $this->sot['message'] = $v;
+        $this->assertEquals($v, $this->sot['message']);
+        $this->assertTrue(isset($this->sot['message']));
     }
 
     /**
@@ -194,6 +365,10 @@ class ImportLeadResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getNumOfLeadsProcessed
      * @covers ::setNumOfLeadsProcessed
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyNumOfLeadsProcessed(): void
     {
@@ -204,7 +379,20 @@ class ImportLeadResponseTest extends TestCase
         );
         $this->sot->setNumOfLeadsProcessed($v);
         $this->assertEquals($v, $this->sot->getNumOfLeadsProcessed());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['num_of_leads_processed']);
+        $v = $this->getFakeValue(
+            $this->types['num_of_leads_processed'],
+            $this->allowedValues['num_of_leads_processed'] ?? null
+        );
+        $this->sot['num_of_leads_processed'] = $v;
+        $this->assertEquals($v, $this->sot['num_of_leads_processed']);
+        $this->assertTrue(isset($this->sot['num_of_leads_processed']));
+        unset($this->sot['num_of_leads_processed']);
+        $this->assertFalse(isset($this->sot['num_of_leads_processed']));
+        $this->sot['num_of_leads_processed'] = $v;
+        $this->assertEquals($v, $this->sot['num_of_leads_processed']);
+        $this->assertTrue(isset($this->sot['num_of_leads_processed']));
     }
 
     /**
@@ -213,6 +401,10 @@ class ImportLeadResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getNumOfRowsFailed
      * @covers ::setNumOfRowsFailed
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyNumOfRowsFailed(): void
     {
@@ -223,7 +415,23 @@ class ImportLeadResponseTest extends TestCase
         );
         $this->sot->setNumOfRowsFailed($v);
         $this->assertEquals($v, $this->sot->getNumOfRowsFailed());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setNumOfRowsFailed(null);
+        $this->assertNull($this->sot->getNumOfRowsFailed());
+        $this->sot->setNumOfRowsFailed($v);
+
+        $this->assertEquals($v, $this->sot['num_of_rows_failed']);
+        $v = $this->getFakeValue(
+            $this->types['num_of_rows_failed'],
+            $this->allowedValues['num_of_rows_failed'] ?? null
+        );
+        $this->sot['num_of_rows_failed'] = $v;
+        $this->assertEquals($v, $this->sot['num_of_rows_failed']);
+        $this->assertTrue(isset($this->sot['num_of_rows_failed']));
+        unset($this->sot['num_of_rows_failed']);
+        $this->assertFalse(isset($this->sot['num_of_rows_failed']));
+        $this->sot['num_of_rows_failed'] = $v;
+        $this->assertEquals($v, $this->sot['num_of_rows_failed']);
+        $this->assertTrue(isset($this->sot['num_of_rows_failed']));
     }
 
     /**
@@ -232,6 +440,10 @@ class ImportLeadResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getNumOfRowsWithWarning
      * @covers ::setNumOfRowsWithWarning
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyNumOfRowsWithWarning(): void
     {
@@ -242,7 +454,23 @@ class ImportLeadResponseTest extends TestCase
         );
         $this->sot->setNumOfRowsWithWarning($v);
         $this->assertEquals($v, $this->sot->getNumOfRowsWithWarning());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setNumOfRowsWithWarning(null);
+        $this->assertNull($this->sot->getNumOfRowsWithWarning());
+        $this->sot->setNumOfRowsWithWarning($v);
+
+        $this->assertEquals($v, $this->sot['num_of_rows_with_warning']);
+        $v = $this->getFakeValue(
+            $this->types['num_of_rows_with_warning'],
+            $this->allowedValues['num_of_rows_with_warning'] ?? null
+        );
+        $this->sot['num_of_rows_with_warning'] = $v;
+        $this->assertEquals($v, $this->sot['num_of_rows_with_warning']);
+        $this->assertTrue(isset($this->sot['num_of_rows_with_warning']));
+        unset($this->sot['num_of_rows_with_warning']);
+        $this->assertFalse(isset($this->sot['num_of_rows_with_warning']));
+        $this->sot['num_of_rows_with_warning'] = $v;
+        $this->assertEquals($v, $this->sot['num_of_rows_with_warning']);
+        $this->assertTrue(isset($this->sot['num_of_rows_with_warning']));
     }
 
     /**
@@ -251,6 +479,10 @@ class ImportLeadResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getStatus
      * @covers ::setStatus
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyStatus(): void
     {
@@ -261,6 +493,19 @@ class ImportLeadResponseTest extends TestCase
         );
         $this->sot->setStatus($v);
         $this->assertEquals($v, $this->sot->getStatus());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['status']);
+        $v = $this->getFakeValue(
+            $this->types['status'],
+            $this->allowedValues['status'] ?? null
+        );
+        $this->sot['status'] = $v;
+        $this->assertEquals($v, $this->sot['status']);
+        $this->assertTrue(isset($this->sot['status']));
+        unset($this->sot['status']);
+        $this->assertFalse(isset($this->sot['status']));
+        $this->sot['status'] = $v;
+        $this->assertEquals($v, $this->sot['status']);
+        $this->assertTrue(isset($this->sot['status']));
     }
 }

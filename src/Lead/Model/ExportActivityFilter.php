@@ -85,22 +85,6 @@ class ExportActivityFilter implements ModelInterface, ArrayAccess, \JsonSerializ
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -159,6 +143,22 @@ class ExportActivityFilter implements ModelInterface, ArrayAccess, \JsonSerializ
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -198,7 +198,7 @@ class ExportActivityFilter implements ModelInterface, ArrayAccess, \JsonSerializ
         $invalidProperties = [];
 
         if ($this->container['created_at'] === null) {
-            $invalidProperties[] = "'created_at' can't be null";
+            $invalidProperties['created_at'] = "'created_at' can't be null";
         }
         return $invalidProperties;
     }
@@ -214,9 +214,9 @@ class ExportActivityFilter implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets activity_type_ids
      *
-     * @return int[]
+     * @return int[]|null
      */
-    public function getActivityTypeIds(): array
+    public function getActivityTypeIds(): ?array
     {
         return $this->container['activity_type_ids'];
     }
@@ -238,9 +238,9 @@ class ExportActivityFilter implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets primary_attribute_value_ids
      *
-     * @return int[]
+     * @return int[]|null
      */
-    public function getPrimaryAttributeValueIds(): array
+    public function getPrimaryAttributeValueIds(): ?array
     {
         return $this->container['primary_attribute_value_ids'];
     }
@@ -262,9 +262,9 @@ class ExportActivityFilter implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets primary_attribute_values
      *
-     * @return string[]
+     * @return string[]|null
      */
-    public function getPrimaryAttributeValues(): array
+    public function getPrimaryAttributeValues(): ?array
     {
         return $this->container['primary_attribute_values'];
     }

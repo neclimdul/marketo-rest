@@ -87,22 +87,6 @@ class LookupCustomObjectRequest implements ModelInterface, ArrayAccess, \JsonSer
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -165,6 +149,22 @@ class LookupCustomObjectRequest implements ModelInterface, ArrayAccess, \JsonSer
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -204,7 +204,7 @@ class LookupCustomObjectRequest implements ModelInterface, ArrayAccess, \JsonSer
         $invalidProperties = [];
 
         if ($this->container['input'] === null) {
-            $invalidProperties[] = "'input' can't be null";
+            $invalidProperties['input'] = "'input' can't be null";
         }
         return $invalidProperties;
     }
@@ -220,9 +220,9 @@ class LookupCustomObjectRequest implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Gets batch_size
      *
-     * @return int
+     * @return int|null
      */
-    public function getBatchSize(): int
+    public function getBatchSize(): ?int
     {
         return $this->container['batch_size'];
     }
@@ -244,9 +244,9 @@ class LookupCustomObjectRequest implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Gets fields
      *
-     * @return string[]
+     * @return string[]|null
      */
-    public function getFields(): array
+    public function getFields(): ?array
     {
         return $this->container['fields'];
     }
@@ -268,9 +268,9 @@ class LookupCustomObjectRequest implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Gets filter_type
      *
-     * @return string
+     * @return string|null
      */
-    public function getFilterType(): string
+    public function getFilterType(): ?string
     {
         return $this->container['filter_type'];
     }
@@ -316,9 +316,9 @@ class LookupCustomObjectRequest implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Gets next_page_token
      *
-     * @return string
+     * @return string|null
      */
-    public function getNextPageToken(): string
+    public function getNextPageToken(): ?string
     {
         return $this->container['next_page_token'];
     }

@@ -79,22 +79,6 @@ class AddFormFieldSetRequest implements ModelInterface, ArrayAccess, \JsonSerial
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -141,6 +125,22 @@ class AddFormFieldSetRequest implements ModelInterface, ArrayAccess, \JsonSerial
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -180,7 +180,7 @@ class AddFormFieldSetRequest implements ModelInterface, ArrayAccess, \JsonSerial
         $invalidProperties = [];
 
         if ($this->container['label'] === null) {
-            $invalidProperties[] = "'label' can't be null";
+            $invalidProperties['label'] = "'label' can't be null";
         }
         return $invalidProperties;
     }

@@ -81,22 +81,6 @@ class FormFieldVisibilityRuleResponse implements ModelInterface, ArrayAccess, \J
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -144,6 +128,22 @@ class FormFieldVisibilityRuleResponse implements ModelInterface, ArrayAccess, \J
     {
         $this->container['rule_type'] = $data['rule_type'] ?? null;
         $this->container['rules'] = $data['rules'] ?? null;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
     }
 
     /**
@@ -199,9 +199,9 @@ class FormFieldVisibilityRuleResponse implements ModelInterface, ArrayAccess, \J
     /**
      * Gets rule_type
      *
-     * @return string
+     * @return string|null
      */
-    public function getRuleType(): string
+    public function getRuleType(): ?string
     {
         return $this->container['rule_type'];
     }
@@ -223,9 +223,9 @@ class FormFieldVisibilityRuleResponse implements ModelInterface, ArrayAccess, \J
     /**
      * Gets rules
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\FormVisibilityRuleDTO[]
+     * @return \NecLimDul\MarketoRest\Asset\Model\FormVisibilityRuleDTO[]|null
      */
-    public function getRules(): array
+    public function getRules(): ?array
     {
         return $this->container['rules'];
     }

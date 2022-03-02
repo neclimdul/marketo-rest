@@ -37,7 +37,7 @@ use PHPUnit\Framework\TestCase;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  *
- * @coversDefault \NecLimDul\MarketoRest\Lead\Model\ExportActivityRequest
+ * @coversDefaultClass \NecLimDul\MarketoRest\Lead\Model\ExportActivityRequest
  */
 class ExportActivityRequestTest extends TestCase
 {
@@ -48,11 +48,6 @@ class ExportActivityRequestTest extends TestCase
     private $sot;
 
     /**
-     * @var \Faker\Generator
-     */
-    private $faker;
-
-    /**
      * @var string[]
      */
     private $types = [
@@ -60,7 +55,13 @@ class ExportActivityRequestTest extends TestCase
         'fields' => 'string[]',
         'filter' => '\NecLimDul\MarketoRest\Lead\Model\ExportActivityFilter',
         'format' => 'string',
-    ];
+];
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
     /**
      * @var scalar[][]
      */
@@ -113,7 +114,14 @@ class ExportActivityRequestTest extends TestCase
                 return new \stdClass();
         }
         if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
-            return new $type();
+            $model = new $type();
+            $types = $type::swaggerTypes();
+            foreach ($model->listInvalidProperties() as $field => $reason) {
+                // @todo get allowed values? ((getter))AllowedValues
+                // @phpstan-ignore-next-line
+                $model[$field] = $this->getFakeValue($types[$field], null);
+            }
+            return $model;
         }
         $this->markTestSkipped('This type is not mocked yet: ' . $type);
     }
@@ -125,7 +133,107 @@ class ExportActivityRequestTest extends TestCase
      */
     public function testExportActivityRequest(): void
     {
-        $this->assertInstanceOf(\NecLimDul\MarketoRest\Lead\Model\ExportActivityRequest::class, $this->sot);
+        $this->assertInstanceOf(ExportActivityRequest::class, $this->sot);
+    }
+
+    /**
+     * @covers ::swaggerTypes
+     */
+    public function testSwaggerTypes(): void
+    {
+        $this->assertEquals($this->types, ExportActivityRequest::swaggerTypes());
+    }
+
+    /**
+     * @covers ::swaggerFormats
+     */
+    public function testSwaggerFormats(): void
+    {
+        $formats = $this->sot->swaggerFormats();
+        $this->assertEquals(null, $formats['column_header_names']);
+        $this->assertEquals(null, $formats['fields']);
+        $this->assertEquals(null, $formats['filter']);
+        $this->assertEquals(null, $formats['format']);
+    }
+
+    /**
+     * @covers ::attributeMap
+     */
+    public function testAttributeMap(): void
+    {
+        $formats = $this->sot->attributeMap();
+        $this->assertEquals('columnHeaderNames', $formats['column_header_names']);
+        $this->assertEquals('fields', $formats['fields']);
+        $this->assertEquals('filter', $formats['filter']);
+        $this->assertEquals('format', $formats['format']);
+    }
+
+    /**
+     * @covers ::getters
+     * @covers ::setters
+     */
+    public function testGettersSetters(): void
+    {
+        $getters = $this->sot->getters();
+        $setters = $this->sot->setters();
+        foreach (array_keys($this->types) as $field) {
+            $this->assertTrue(isset($setters[$field]));
+            $this->assertTrue(isset($getters[$field]));
+            $this->assertTrue(
+                method_exists($this->sot, $getters[$field]),
+                'Getter exists on model.'
+            );
+            $this->assertTrue(
+                method_exists($this->sot, $setters[$field]),
+                'Setter exists on model.'
+            );
+        }
+    }
+
+    /**
+     * @covers ::getModelName
+     */
+    public function testGetModelName(): void
+    {
+        $this->assertEquals('ExportActivityRequest', $this->sot->getModelName());
+    }
+
+    /**
+     * @covers ::listInvalidProperties
+     * @covers ::valid
+     */
+    public function testValid(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::setAdditionalProperties
+     * @covers ::setAdditionalProperty
+     * @covers ::getAdditionalProperties
+     */
+    public function testAdditionalProperties(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::jsonSerialize
+     * @covers ::__toString
+     */
+    public function testJson(): void
+    {
+        // Some minimal tests that json generates well.
+        $json = json_encode($this->sot);
+        $this->assertIsString($json, 'Json encoded');
+        $json = json_decode($json);
+        $string = json_decode((string) $this->sot);
+        $this->assertEquals(
+            $json,
+            $string
+        );
+        $this->assertInstanceOf(\stdClass::class, $json);
+        $this->assertInstanceOf(\stdClass::class, $string);
     }
 
     /**
@@ -134,6 +242,10 @@ class ExportActivityRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getColumnHeaderNames
      * @covers ::setColumnHeaderNames
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyColumnHeaderNames(): void
     {
@@ -144,7 +256,23 @@ class ExportActivityRequestTest extends TestCase
         );
         $this->sot->setColumnHeaderNames($v);
         $this->assertEquals($v, $this->sot->getColumnHeaderNames());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setColumnHeaderNames(null);
+        $this->assertNull($this->sot->getColumnHeaderNames());
+        $this->sot->setColumnHeaderNames($v);
+
+        $this->assertEquals($v, $this->sot['column_header_names']);
+        $v = $this->getFakeValue(
+            $this->types['column_header_names'],
+            $this->allowedValues['column_header_names'] ?? null
+        );
+        $this->sot['column_header_names'] = $v;
+        $this->assertEquals($v, $this->sot['column_header_names']);
+        $this->assertTrue(isset($this->sot['column_header_names']));
+        unset($this->sot['column_header_names']);
+        $this->assertFalse(isset($this->sot['column_header_names']));
+        $this->sot['column_header_names'] = $v;
+        $this->assertEquals($v, $this->sot['column_header_names']);
+        $this->assertTrue(isset($this->sot['column_header_names']));
     }
 
     /**
@@ -153,6 +281,10 @@ class ExportActivityRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getFields
      * @covers ::setFields
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyFields(): void
     {
@@ -163,7 +295,20 @@ class ExportActivityRequestTest extends TestCase
         );
         $this->sot->setFields($v);
         $this->assertEquals($v, $this->sot->getFields());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['fields']);
+        $v = $this->getFakeValue(
+            $this->types['fields'],
+            $this->allowedValues['fields'] ?? null
+        );
+        $this->sot['fields'] = $v;
+        $this->assertEquals($v, $this->sot['fields']);
+        $this->assertTrue(isset($this->sot['fields']));
+        unset($this->sot['fields']);
+        $this->assertFalse(isset($this->sot['fields']));
+        $this->sot['fields'] = $v;
+        $this->assertEquals($v, $this->sot['fields']);
+        $this->assertTrue(isset($this->sot['fields']));
     }
 
     /**
@@ -172,6 +317,10 @@ class ExportActivityRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getFilter
      * @covers ::setFilter
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyFilter(): void
     {
@@ -182,7 +331,20 @@ class ExportActivityRequestTest extends TestCase
         );
         $this->sot->setFilter($v);
         $this->assertEquals($v, $this->sot->getFilter());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['filter']);
+        $v = $this->getFakeValue(
+            $this->types['filter'],
+            $this->allowedValues['filter'] ?? null
+        );
+        $this->sot['filter'] = $v;
+        $this->assertEquals($v, $this->sot['filter']);
+        $this->assertTrue(isset($this->sot['filter']));
+        unset($this->sot['filter']);
+        $this->assertFalse(isset($this->sot['filter']));
+        $this->sot['filter'] = $v;
+        $this->assertEquals($v, $this->sot['filter']);
+        $this->assertTrue(isset($this->sot['filter']));
     }
 
     /**
@@ -191,6 +353,10 @@ class ExportActivityRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getFormat
      * @covers ::setFormat
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyFormat(): void
     {
@@ -201,6 +367,22 @@ class ExportActivityRequestTest extends TestCase
         );
         $this->sot->setFormat($v);
         $this->assertEquals($v, $this->sot->getFormat());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setFormat(null);
+        $this->assertNull($this->sot->getFormat());
+        $this->sot->setFormat($v);
+
+        $this->assertEquals($v, $this->sot['format']);
+        $v = $this->getFakeValue(
+            $this->types['format'],
+            $this->allowedValues['format'] ?? null
+        );
+        $this->sot['format'] = $v;
+        $this->assertEquals($v, $this->sot['format']);
+        $this->assertTrue(isset($this->sot['format']));
+        unset($this->sot['format']);
+        $this->assertFalse(isset($this->sot['format']));
+        $this->sot['format'] = $v;
+        $this->assertEquals($v, $this->sot['format']);
+        $this->assertTrue(isset($this->sot['format']));
     }
 }

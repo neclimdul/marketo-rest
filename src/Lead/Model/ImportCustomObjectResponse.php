@@ -96,22 +96,6 @@ class ImportCustomObjectResponse implements ModelInterface, ArrayAccess, \JsonSe
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -190,6 +174,22 @@ class ImportCustomObjectResponse implements ModelInterface, ArrayAccess, \JsonSe
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -229,16 +229,16 @@ class ImportCustomObjectResponse implements ModelInterface, ArrayAccess, \JsonSe
         $invalidProperties = [];
 
         if ($this->container['batch_id'] === null) {
-            $invalidProperties[] = "'batch_id' can't be null";
+            $invalidProperties['batch_id'] = "'batch_id' can't be null";
         }
         if ($this->container['object_api_name'] === null) {
-            $invalidProperties[] = "'object_api_name' can't be null";
+            $invalidProperties['object_api_name'] = "'object_api_name' can't be null";
         }
         if ($this->container['operation'] === null) {
-            $invalidProperties[] = "'operation' can't be null";
+            $invalidProperties['operation'] = "'operation' can't be null";
         }
         if ($this->container['status'] === null) {
-            $invalidProperties[] = "'status' can't be null";
+            $invalidProperties['status'] = "'status' can't be null";
         }
         return $invalidProperties;
     }
@@ -278,9 +278,9 @@ class ImportCustomObjectResponse implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Gets import_time
      *
-     * @return string
+     * @return string|null
      */
-    public function getImportTime(): string
+    public function getImportTime(): ?string
     {
         return $this->container['import_time'];
     }
@@ -302,9 +302,9 @@ class ImportCustomObjectResponse implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Gets message
      *
-     * @return string
+     * @return string|null
      */
-    public function getMessage(): string
+    public function getMessage(): ?string
     {
         return $this->container['message'];
     }
@@ -326,9 +326,9 @@ class ImportCustomObjectResponse implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Gets num_of_objects_processed
      *
-     * @return int
+     * @return int|null
      */
-    public function getNumOfObjectsProcessed(): int
+    public function getNumOfObjectsProcessed(): ?int
     {
         return $this->container['num_of_objects_processed'];
     }
@@ -350,9 +350,9 @@ class ImportCustomObjectResponse implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Gets num_of_rows_failed
      *
-     * @return int
+     * @return int|null
      */
-    public function getNumOfRowsFailed(): int
+    public function getNumOfRowsFailed(): ?int
     {
         return $this->container['num_of_rows_failed'];
     }
@@ -374,9 +374,9 @@ class ImportCustomObjectResponse implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Gets num_of_rows_with_warning
      *
-     * @return int
+     * @return int|null
      */
-    public function getNumOfRowsWithWarning(): int
+    public function getNumOfRowsWithWarning(): ?int
     {
         return $this->container['num_of_rows_with_warning'];
     }

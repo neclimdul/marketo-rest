@@ -99,22 +99,6 @@ class CreateLpFormRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -201,6 +185,22 @@ class CreateLpFormRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -240,7 +240,7 @@ class CreateLpFormRequest implements ModelInterface, ArrayAccess, \JsonSerializa
         $invalidProperties = [];
 
         if ($this->container['folder'] === null) {
-            $invalidProperties[] = "'folder' can't be null";
+            $invalidProperties['folder'] = "'folder' can't be null";
         }
         return $invalidProperties;
     }
@@ -256,9 +256,9 @@ class CreateLpFormRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->container['description'];
     }
@@ -304,9 +304,9 @@ class CreateLpFormRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets font_family
      *
-     * @return string
+     * @return string|null
      */
-    public function getFontFamily(): string
+    public function getFontFamily(): ?string
     {
         return $this->container['font_family'];
     }
@@ -328,9 +328,9 @@ class CreateLpFormRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets font_size
      *
-     * @return string
+     * @return string|null
      */
-    public function getFontSize(): string
+    public function getFontSize(): ?string
     {
         return $this->container['font_size'];
     }
@@ -352,9 +352,9 @@ class CreateLpFormRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets known_visitor
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\FormKnownVisitorDTO
+     * @return \NecLimDul\MarketoRest\Asset\Model\FormKnownVisitorDTO|null
      */
-    public function getKnownVisitor(): \NecLimDul\MarketoRest\Asset\Model\FormKnownVisitorDTO
+    public function getKnownVisitor(): ?\NecLimDul\MarketoRest\Asset\Model\FormKnownVisitorDTO
     {
         return $this->container['known_visitor'];
     }
@@ -376,9 +376,9 @@ class CreateLpFormRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets label_position
      *
-     * @return string
+     * @return string|null
      */
-    public function getLabelPosition(): string
+    public function getLabelPosition(): ?string
     {
         return $this->container['label_position'];
     }
@@ -400,9 +400,9 @@ class CreateLpFormRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets language
      *
-     * @return string
+     * @return string|null
      */
-    public function getLanguage(): string
+    public function getLanguage(): ?string
     {
         return $this->container['language'];
     }
@@ -424,9 +424,9 @@ class CreateLpFormRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets locale
      *
-     * @return string
+     * @return string|null
      */
-    public function getLocale(): string
+    public function getLocale(): ?string
     {
         return $this->container['locale'];
     }
@@ -448,9 +448,9 @@ class CreateLpFormRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets name
      *
-     * @return string
+     * @return string|null
      */
-    public function getName(): string
+    public function getName(): ?string
     {
         return $this->container['name'];
     }
@@ -472,9 +472,9 @@ class CreateLpFormRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets progressive_profiling
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getProgressiveProfiling(): bool
+    public function getProgressiveProfiling(): ?bool
     {
         return $this->container['progressive_profiling'];
     }
@@ -496,9 +496,9 @@ class CreateLpFormRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets theme
      *
-     * @return string
+     * @return string|null
      */
-    public function getTheme(): string
+    public function getTheme(): ?string
     {
         return $this->container['theme'];
     }

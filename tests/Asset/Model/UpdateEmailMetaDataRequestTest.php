@@ -37,7 +37,7 @@ use PHPUnit\Framework\TestCase;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  *
- * @coversDefault \NecLimDul\MarketoRest\Asset\Model\UpdateEmailMetaDataRequest
+ * @coversDefaultClass \NecLimDul\MarketoRest\Asset\Model\UpdateEmailMetaDataRequest
  */
 class UpdateEmailMetaDataRequestTest extends TestCase
 {
@@ -46,11 +46,6 @@ class UpdateEmailMetaDataRequestTest extends TestCase
      * @var \NecLimDul\MarketoRest\Asset\Model\UpdateEmailMetaDataRequest
      */
     private $sot;
-
-    /**
-     * @var \Faker\Generator
-     */
-    private $faker;
 
     /**
      * @var string[]
@@ -63,7 +58,13 @@ class UpdateEmailMetaDataRequestTest extends TestCase
         'published' => 'bool',
         'text_only' => 'bool',
         'web_view' => 'bool',
-    ];
+];
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
     /**
      * @var scalar[][]
      */
@@ -116,7 +117,14 @@ class UpdateEmailMetaDataRequestTest extends TestCase
                 return new \stdClass();
         }
         if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
-            return new $type();
+            $model = new $type();
+            $types = $type::swaggerTypes();
+            foreach ($model->listInvalidProperties() as $field => $reason) {
+                // @todo get allowed values? ((getter))AllowedValues
+                // @phpstan-ignore-next-line
+                $model[$field] = $this->getFakeValue($types[$field], null);
+            }
+            return $model;
         }
         $this->markTestSkipped('This type is not mocked yet: ' . $type);
     }
@@ -128,7 +136,113 @@ class UpdateEmailMetaDataRequestTest extends TestCase
      */
     public function testUpdateEmailMetaDataRequest(): void
     {
-        $this->assertInstanceOf(\NecLimDul\MarketoRest\Asset\Model\UpdateEmailMetaDataRequest::class, $this->sot);
+        $this->assertInstanceOf(UpdateEmailMetaDataRequest::class, $this->sot);
+    }
+
+    /**
+     * @covers ::swaggerTypes
+     */
+    public function testSwaggerTypes(): void
+    {
+        $this->assertEquals($this->types, UpdateEmailMetaDataRequest::swaggerTypes());
+    }
+
+    /**
+     * @covers ::swaggerFormats
+     */
+    public function testSwaggerFormats(): void
+    {
+        $formats = $this->sot->swaggerFormats();
+        $this->assertEquals(null, $formats['description']);
+        $this->assertEquals(null, $formats['name']);
+        $this->assertEquals(null, $formats['pre_header']);
+        $this->assertEquals(null, $formats['operational']);
+        $this->assertEquals(null, $formats['published']);
+        $this->assertEquals(null, $formats['text_only']);
+        $this->assertEquals(null, $formats['web_view']);
+    }
+
+    /**
+     * @covers ::attributeMap
+     */
+    public function testAttributeMap(): void
+    {
+        $formats = $this->sot->attributeMap();
+        $this->assertEquals('description', $formats['description']);
+        $this->assertEquals('name', $formats['name']);
+        $this->assertEquals('preHeader', $formats['pre_header']);
+        $this->assertEquals('operational', $formats['operational']);
+        $this->assertEquals('published', $formats['published']);
+        $this->assertEquals('textOnly', $formats['text_only']);
+        $this->assertEquals('webView', $formats['web_view']);
+    }
+
+    /**
+     * @covers ::getters
+     * @covers ::setters
+     */
+    public function testGettersSetters(): void
+    {
+        $getters = $this->sot->getters();
+        $setters = $this->sot->setters();
+        foreach (array_keys($this->types) as $field) {
+            $this->assertTrue(isset($setters[$field]));
+            $this->assertTrue(isset($getters[$field]));
+            $this->assertTrue(
+                method_exists($this->sot, $getters[$field]),
+                'Getter exists on model.'
+            );
+            $this->assertTrue(
+                method_exists($this->sot, $setters[$field]),
+                'Setter exists on model.'
+            );
+        }
+    }
+
+    /**
+     * @covers ::getModelName
+     */
+    public function testGetModelName(): void
+    {
+        $this->assertEquals('UpdateEmailMetaDataRequest', $this->sot->getModelName());
+    }
+
+    /**
+     * @covers ::listInvalidProperties
+     * @covers ::valid
+     */
+    public function testValid(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::setAdditionalProperties
+     * @covers ::setAdditionalProperty
+     * @covers ::getAdditionalProperties
+     */
+    public function testAdditionalProperties(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::jsonSerialize
+     * @covers ::__toString
+     */
+    public function testJson(): void
+    {
+        // Some minimal tests that json generates well.
+        $json = json_encode($this->sot);
+        $this->assertIsString($json, 'Json encoded');
+        $json = json_decode($json);
+        $string = json_decode((string) $this->sot);
+        $this->assertEquals(
+            $json,
+            $string
+        );
+        $this->assertInstanceOf(\stdClass::class, $json);
+        $this->assertInstanceOf(\stdClass::class, $string);
     }
 
     /**
@@ -137,6 +251,10 @@ class UpdateEmailMetaDataRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getDescription
      * @covers ::setDescription
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyDescription(): void
     {
@@ -147,7 +265,23 @@ class UpdateEmailMetaDataRequestTest extends TestCase
         );
         $this->sot->setDescription($v);
         $this->assertEquals($v, $this->sot->getDescription());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setDescription(null);
+        $this->assertNull($this->sot->getDescription());
+        $this->sot->setDescription($v);
+
+        $this->assertEquals($v, $this->sot['description']);
+        $v = $this->getFakeValue(
+            $this->types['description'],
+            $this->allowedValues['description'] ?? null
+        );
+        $this->sot['description'] = $v;
+        $this->assertEquals($v, $this->sot['description']);
+        $this->assertTrue(isset($this->sot['description']));
+        unset($this->sot['description']);
+        $this->assertFalse(isset($this->sot['description']));
+        $this->sot['description'] = $v;
+        $this->assertEquals($v, $this->sot['description']);
+        $this->assertTrue(isset($this->sot['description']));
     }
 
     /**
@@ -156,6 +290,10 @@ class UpdateEmailMetaDataRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getName
      * @covers ::setName
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyName(): void
     {
@@ -166,7 +304,23 @@ class UpdateEmailMetaDataRequestTest extends TestCase
         );
         $this->sot->setName($v);
         $this->assertEquals($v, $this->sot->getName());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setName(null);
+        $this->assertNull($this->sot->getName());
+        $this->sot->setName($v);
+
+        $this->assertEquals($v, $this->sot['name']);
+        $v = $this->getFakeValue(
+            $this->types['name'],
+            $this->allowedValues['name'] ?? null
+        );
+        $this->sot['name'] = $v;
+        $this->assertEquals($v, $this->sot['name']);
+        $this->assertTrue(isset($this->sot['name']));
+        unset($this->sot['name']);
+        $this->assertFalse(isset($this->sot['name']));
+        $this->sot['name'] = $v;
+        $this->assertEquals($v, $this->sot['name']);
+        $this->assertTrue(isset($this->sot['name']));
     }
 
     /**
@@ -175,6 +329,10 @@ class UpdateEmailMetaDataRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getPreHeader
      * @covers ::setPreHeader
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyPreHeader(): void
     {
@@ -185,7 +343,23 @@ class UpdateEmailMetaDataRequestTest extends TestCase
         );
         $this->sot->setPreHeader($v);
         $this->assertEquals($v, $this->sot->getPreHeader());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setPreHeader(null);
+        $this->assertNull($this->sot->getPreHeader());
+        $this->sot->setPreHeader($v);
+
+        $this->assertEquals($v, $this->sot['pre_header']);
+        $v = $this->getFakeValue(
+            $this->types['pre_header'],
+            $this->allowedValues['pre_header'] ?? null
+        );
+        $this->sot['pre_header'] = $v;
+        $this->assertEquals($v, $this->sot['pre_header']);
+        $this->assertTrue(isset($this->sot['pre_header']));
+        unset($this->sot['pre_header']);
+        $this->assertFalse(isset($this->sot['pre_header']));
+        $this->sot['pre_header'] = $v;
+        $this->assertEquals($v, $this->sot['pre_header']);
+        $this->assertTrue(isset($this->sot['pre_header']));
     }
 
     /**
@@ -194,6 +368,10 @@ class UpdateEmailMetaDataRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getOperational
      * @covers ::setOperational
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyOperational(): void
     {
@@ -204,7 +382,23 @@ class UpdateEmailMetaDataRequestTest extends TestCase
         );
         $this->sot->setOperational($v);
         $this->assertEquals($v, $this->sot->getOperational());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setOperational(null);
+        $this->assertNull($this->sot->getOperational());
+        $this->sot->setOperational($v);
+
+        $this->assertEquals($v, $this->sot['operational']);
+        $v = $this->getFakeValue(
+            $this->types['operational'],
+            $this->allowedValues['operational'] ?? null
+        );
+        $this->sot['operational'] = $v;
+        $this->assertEquals($v, $this->sot['operational']);
+        $this->assertTrue(isset($this->sot['operational']));
+        unset($this->sot['operational']);
+        $this->assertFalse(isset($this->sot['operational']));
+        $this->sot['operational'] = $v;
+        $this->assertEquals($v, $this->sot['operational']);
+        $this->assertTrue(isset($this->sot['operational']));
     }
 
     /**
@@ -213,6 +407,10 @@ class UpdateEmailMetaDataRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getPublished
      * @covers ::setPublished
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyPublished(): void
     {
@@ -223,7 +421,23 @@ class UpdateEmailMetaDataRequestTest extends TestCase
         );
         $this->sot->setPublished($v);
         $this->assertEquals($v, $this->sot->getPublished());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setPublished(null);
+        $this->assertNull($this->sot->getPublished());
+        $this->sot->setPublished($v);
+
+        $this->assertEquals($v, $this->sot['published']);
+        $v = $this->getFakeValue(
+            $this->types['published'],
+            $this->allowedValues['published'] ?? null
+        );
+        $this->sot['published'] = $v;
+        $this->assertEquals($v, $this->sot['published']);
+        $this->assertTrue(isset($this->sot['published']));
+        unset($this->sot['published']);
+        $this->assertFalse(isset($this->sot['published']));
+        $this->sot['published'] = $v;
+        $this->assertEquals($v, $this->sot['published']);
+        $this->assertTrue(isset($this->sot['published']));
     }
 
     /**
@@ -232,6 +446,10 @@ class UpdateEmailMetaDataRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getTextOnly
      * @covers ::setTextOnly
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyTextOnly(): void
     {
@@ -242,7 +460,23 @@ class UpdateEmailMetaDataRequestTest extends TestCase
         );
         $this->sot->setTextOnly($v);
         $this->assertEquals($v, $this->sot->getTextOnly());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setTextOnly(null);
+        $this->assertNull($this->sot->getTextOnly());
+        $this->sot->setTextOnly($v);
+
+        $this->assertEquals($v, $this->sot['text_only']);
+        $v = $this->getFakeValue(
+            $this->types['text_only'],
+            $this->allowedValues['text_only'] ?? null
+        );
+        $this->sot['text_only'] = $v;
+        $this->assertEquals($v, $this->sot['text_only']);
+        $this->assertTrue(isset($this->sot['text_only']));
+        unset($this->sot['text_only']);
+        $this->assertFalse(isset($this->sot['text_only']));
+        $this->sot['text_only'] = $v;
+        $this->assertEquals($v, $this->sot['text_only']);
+        $this->assertTrue(isset($this->sot['text_only']));
     }
 
     /**
@@ -251,6 +485,10 @@ class UpdateEmailMetaDataRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getWebView
      * @covers ::setWebView
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyWebView(): void
     {
@@ -261,6 +499,22 @@ class UpdateEmailMetaDataRequestTest extends TestCase
         );
         $this->sot->setWebView($v);
         $this->assertEquals($v, $this->sot->getWebView());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setWebView(null);
+        $this->assertNull($this->sot->getWebView());
+        $this->sot->setWebView($v);
+
+        $this->assertEquals($v, $this->sot['web_view']);
+        $v = $this->getFakeValue(
+            $this->types['web_view'],
+            $this->allowedValues['web_view'] ?? null
+        );
+        $this->sot['web_view'] = $v;
+        $this->assertEquals($v, $this->sot['web_view']);
+        $this->assertTrue(isset($this->sot['web_view']));
+        unset($this->sot['web_view']);
+        $this->assertFalse(isset($this->sot['web_view']));
+        $this->sot['web_view'] = $v;
+        $this->assertEquals($v, $this->sot['web_view']);
+        $this->assertTrue(isset($this->sot['web_view']));
     }
 }

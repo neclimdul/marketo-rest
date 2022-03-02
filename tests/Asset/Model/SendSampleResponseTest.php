@@ -37,7 +37,7 @@ use PHPUnit\Framework\TestCase;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  *
- * @coversDefault \NecLimDul\MarketoRest\Asset\Model\SendSampleResponse
+ * @coversDefaultClass \NecLimDul\MarketoRest\Asset\Model\SendSampleResponse
  */
 class SendSampleResponseTest extends TestCase
 {
@@ -48,17 +48,18 @@ class SendSampleResponseTest extends TestCase
     private $sot;
 
     /**
-     * @var \Faker\Generator
-     */
-    private $faker;
-
-    /**
      * @var string[]
      */
     private $types = [
         'service' => 'string',
         'result' => 'bool',
-    ];
+];
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
     /**
      * @var scalar[][]
      */
@@ -114,7 +115,14 @@ class SendSampleResponseTest extends TestCase
                 return new \stdClass();
         }
         if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
-            return new $type();
+            $model = new $type();
+            $types = $type::swaggerTypes();
+            foreach ($model->listInvalidProperties() as $field => $reason) {
+                // @todo get allowed values? ((getter))AllowedValues
+                // @phpstan-ignore-next-line
+                $model[$field] = $this->getFakeValue($types[$field], null);
+            }
+            return $model;
         }
         $this->markTestSkipped('This type is not mocked yet: ' . $type);
     }
@@ -126,7 +134,103 @@ class SendSampleResponseTest extends TestCase
      */
     public function testSendSampleResponse(): void
     {
-        $this->assertInstanceOf(\NecLimDul\MarketoRest\Asset\Model\SendSampleResponse::class, $this->sot);
+        $this->assertInstanceOf(SendSampleResponse::class, $this->sot);
+    }
+
+    /**
+     * @covers ::swaggerTypes
+     */
+    public function testSwaggerTypes(): void
+    {
+        $this->assertEquals($this->types, SendSampleResponse::swaggerTypes());
+    }
+
+    /**
+     * @covers ::swaggerFormats
+     */
+    public function testSwaggerFormats(): void
+    {
+        $formats = $this->sot->swaggerFormats();
+        $this->assertEquals(null, $formats['service']);
+        $this->assertEquals(null, $formats['result']);
+    }
+
+    /**
+     * @covers ::attributeMap
+     */
+    public function testAttributeMap(): void
+    {
+        $formats = $this->sot->attributeMap();
+        $this->assertEquals('service', $formats['service']);
+        $this->assertEquals('result', $formats['result']);
+    }
+
+    /**
+     * @covers ::getters
+     * @covers ::setters
+     */
+    public function testGettersSetters(): void
+    {
+        $getters = $this->sot->getters();
+        $setters = $this->sot->setters();
+        foreach (array_keys($this->types) as $field) {
+            $this->assertTrue(isset($setters[$field]));
+            $this->assertTrue(isset($getters[$field]));
+            $this->assertTrue(
+                method_exists($this->sot, $getters[$field]),
+                'Getter exists on model.'
+            );
+            $this->assertTrue(
+                method_exists($this->sot, $setters[$field]),
+                'Setter exists on model.'
+            );
+        }
+    }
+
+    /**
+     * @covers ::getModelName
+     */
+    public function testGetModelName(): void
+    {
+        $this->assertEquals('SendSampleResponse', $this->sot->getModelName());
+    }
+
+    /**
+     * @covers ::listInvalidProperties
+     * @covers ::valid
+     */
+    public function testValid(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::setAdditionalProperties
+     * @covers ::setAdditionalProperty
+     * @covers ::getAdditionalProperties
+     */
+    public function testAdditionalProperties(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::jsonSerialize
+     * @covers ::__toString
+     */
+    public function testJson(): void
+    {
+        // Some minimal tests that json generates well.
+        $json = json_encode($this->sot);
+        $this->assertIsString($json, 'Json encoded');
+        $json = json_decode($json);
+        $string = json_decode((string) $this->sot);
+        $this->assertEquals(
+            $json,
+            $string
+        );
+        $this->assertInstanceOf(\stdClass::class, $json);
+        $this->assertInstanceOf(\stdClass::class, $string);
     }
 
     /**
@@ -135,6 +239,10 @@ class SendSampleResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getService
      * @covers ::setService
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyService(): void
     {
@@ -145,7 +253,20 @@ class SendSampleResponseTest extends TestCase
         );
         $this->sot->setService($v);
         $this->assertEquals($v, $this->sot->getService());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['service']);
+        $v = $this->getFakeValue(
+            $this->types['service'],
+            $this->allowedValues['service'] ?? null
+        );
+        $this->sot['service'] = $v;
+        $this->assertEquals($v, $this->sot['service']);
+        $this->assertTrue(isset($this->sot['service']));
+        unset($this->sot['service']);
+        $this->assertFalse(isset($this->sot['service']));
+        $this->sot['service'] = $v;
+        $this->assertEquals($v, $this->sot['service']);
+        $this->assertTrue(isset($this->sot['service']));
     }
 
     /**
@@ -154,6 +275,10 @@ class SendSampleResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getResult
      * @covers ::setResult
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyResult(): void
     {
@@ -164,6 +289,19 @@ class SendSampleResponseTest extends TestCase
         );
         $this->sot->setResult($v);
         $this->assertEquals($v, $this->sot->getResult());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['result']);
+        $v = $this->getFakeValue(
+            $this->types['result'],
+            $this->allowedValues['result'] ?? null
+        );
+        $this->sot['result'] = $v;
+        $this->assertEquals($v, $this->sot['result']);
+        $this->assertTrue(isset($this->sot['result']));
+        unset($this->sot['result']);
+        $this->assertFalse(isset($this->sot['result']));
+        $this->sot['result'] = $v;
+        $this->assertEquals($v, $this->sot['result']);
+        $this->assertTrue(isset($this->sot['result']));
     }
 }

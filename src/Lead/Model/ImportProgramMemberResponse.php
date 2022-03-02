@@ -84,22 +84,6 @@ class ImportProgramMemberResponse implements ModelInterface, ArrayAccess, \JsonS
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -154,6 +138,22 @@ class ImportProgramMemberResponse implements ModelInterface, ArrayAccess, \JsonS
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -193,13 +193,13 @@ class ImportProgramMemberResponse implements ModelInterface, ArrayAccess, \JsonS
         $invalidProperties = [];
 
         if ($this->container['batch_id'] === null) {
-            $invalidProperties[] = "'batch_id' can't be null";
+            $invalidProperties['batch_id'] = "'batch_id' can't be null";
         }
         if ($this->container['import_id'] === null) {
-            $invalidProperties[] = "'import_id' can't be null";
+            $invalidProperties['import_id'] = "'import_id' can't be null";
         }
         if ($this->container['status'] === null) {
-            $invalidProperties[] = "'status' can't be null";
+            $invalidProperties['status'] = "'status' can't be null";
         }
         return $invalidProperties;
     }

@@ -37,7 +37,7 @@ use PHPUnit\Framework\TestCase;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  *
- * @coversDefault \NecLimDul\MarketoRest\Asset\Model\CreateLandingPageRequest
+ * @coversDefaultClass \NecLimDul\MarketoRest\Asset\Model\CreateLandingPageRequest
  */
 class CreateLandingPageRequestTest extends TestCase
 {
@@ -46,11 +46,6 @@ class CreateLandingPageRequestTest extends TestCase
      * @var \NecLimDul\MarketoRest\Asset\Model\CreateLandingPageRequest
      */
     private $sot;
-
-    /**
-     * @var \Faker\Generator
-     */
-    private $faker;
 
     /**
      * @var string[]
@@ -69,7 +64,13 @@ class CreateLandingPageRequestTest extends TestCase
         'title' => 'string',
         'url_page_name' => 'string',
         'workspace' => 'string',
-    ];
+];
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
     /**
      * @var scalar[][]
      */
@@ -122,7 +123,14 @@ class CreateLandingPageRequestTest extends TestCase
                 return new \stdClass();
         }
         if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
-            return new $type();
+            $model = new $type();
+            $types = $type::swaggerTypes();
+            foreach ($model->listInvalidProperties() as $field => $reason) {
+                // @todo get allowed values? ((getter))AllowedValues
+                // @phpstan-ignore-next-line
+                $model[$field] = $this->getFakeValue($types[$field], null);
+            }
+            return $model;
         }
         $this->markTestSkipped('This type is not mocked yet: ' . $type);
     }
@@ -134,7 +142,125 @@ class CreateLandingPageRequestTest extends TestCase
      */
     public function testCreateLandingPageRequest(): void
     {
-        $this->assertInstanceOf(\NecLimDul\MarketoRest\Asset\Model\CreateLandingPageRequest::class, $this->sot);
+        $this->assertInstanceOf(CreateLandingPageRequest::class, $this->sot);
+    }
+
+    /**
+     * @covers ::swaggerTypes
+     */
+    public function testSwaggerTypes(): void
+    {
+        $this->assertEquals($this->types, CreateLandingPageRequest::swaggerTypes());
+    }
+
+    /**
+     * @covers ::swaggerFormats
+     */
+    public function testSwaggerFormats(): void
+    {
+        $formats = $this->sot->swaggerFormats();
+        $this->assertEquals(null, $formats['custom_head_html']);
+        $this->assertEquals(null, $formats['description']);
+        $this->assertEquals(null, $formats['facebook_og_tags']);
+        $this->assertEquals(null, $formats['folder']);
+        $this->assertEquals(null, $formats['keywords']);
+        $this->assertEquals(null, $formats['mobile_enabled']);
+        $this->assertEquals(null, $formats['name']);
+        $this->assertEquals(null, $formats['prefill_form']);
+        $this->assertEquals(null, $formats['robots']);
+        $this->assertEquals('int32', $formats['template']);
+        $this->assertEquals(null, $formats['title']);
+        $this->assertEquals(null, $formats['url_page_name']);
+        $this->assertEquals(null, $formats['workspace']);
+    }
+
+    /**
+     * @covers ::attributeMap
+     */
+    public function testAttributeMap(): void
+    {
+        $formats = $this->sot->attributeMap();
+        $this->assertEquals('customHeadHTML', $formats['custom_head_html']);
+        $this->assertEquals('description', $formats['description']);
+        $this->assertEquals('facebookOgTags', $formats['facebook_og_tags']);
+        $this->assertEquals('folder', $formats['folder']);
+        $this->assertEquals('keywords', $formats['keywords']);
+        $this->assertEquals('mobileEnabled', $formats['mobile_enabled']);
+        $this->assertEquals('name', $formats['name']);
+        $this->assertEquals('prefillForm', $formats['prefill_form']);
+        $this->assertEquals('robots', $formats['robots']);
+        $this->assertEquals('template', $formats['template']);
+        $this->assertEquals('title', $formats['title']);
+        $this->assertEquals('urlPageName', $formats['url_page_name']);
+        $this->assertEquals('workspace', $formats['workspace']);
+    }
+
+    /**
+     * @covers ::getters
+     * @covers ::setters
+     */
+    public function testGettersSetters(): void
+    {
+        $getters = $this->sot->getters();
+        $setters = $this->sot->setters();
+        foreach (array_keys($this->types) as $field) {
+            $this->assertTrue(isset($setters[$field]));
+            $this->assertTrue(isset($getters[$field]));
+            $this->assertTrue(
+                method_exists($this->sot, $getters[$field]),
+                'Getter exists on model.'
+            );
+            $this->assertTrue(
+                method_exists($this->sot, $setters[$field]),
+                'Setter exists on model.'
+            );
+        }
+    }
+
+    /**
+     * @covers ::getModelName
+     */
+    public function testGetModelName(): void
+    {
+        $this->assertEquals('CreateLandingPageRequest', $this->sot->getModelName());
+    }
+
+    /**
+     * @covers ::listInvalidProperties
+     * @covers ::valid
+     */
+    public function testValid(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::setAdditionalProperties
+     * @covers ::setAdditionalProperty
+     * @covers ::getAdditionalProperties
+     */
+    public function testAdditionalProperties(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::jsonSerialize
+     * @covers ::__toString
+     */
+    public function testJson(): void
+    {
+        // Some minimal tests that json generates well.
+        $json = json_encode($this->sot);
+        $this->assertIsString($json, 'Json encoded');
+        $json = json_decode($json);
+        $string = json_decode((string) $this->sot);
+        $this->assertEquals(
+            $json,
+            $string
+        );
+        $this->assertInstanceOf(\stdClass::class, $json);
+        $this->assertInstanceOf(\stdClass::class, $string);
     }
 
     /**
@@ -143,6 +269,10 @@ class CreateLandingPageRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getCustomHeadHtml
      * @covers ::setCustomHeadHtml
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyCustomHeadHtml(): void
     {
@@ -153,7 +283,23 @@ class CreateLandingPageRequestTest extends TestCase
         );
         $this->sot->setCustomHeadHtml($v);
         $this->assertEquals($v, $this->sot->getCustomHeadHtml());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setCustomHeadHtml(null);
+        $this->assertNull($this->sot->getCustomHeadHtml());
+        $this->sot->setCustomHeadHtml($v);
+
+        $this->assertEquals($v, $this->sot['custom_head_html']);
+        $v = $this->getFakeValue(
+            $this->types['custom_head_html'],
+            $this->allowedValues['custom_head_html'] ?? null
+        );
+        $this->sot['custom_head_html'] = $v;
+        $this->assertEquals($v, $this->sot['custom_head_html']);
+        $this->assertTrue(isset($this->sot['custom_head_html']));
+        unset($this->sot['custom_head_html']);
+        $this->assertFalse(isset($this->sot['custom_head_html']));
+        $this->sot['custom_head_html'] = $v;
+        $this->assertEquals($v, $this->sot['custom_head_html']);
+        $this->assertTrue(isset($this->sot['custom_head_html']));
     }
 
     /**
@@ -162,6 +308,10 @@ class CreateLandingPageRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getDescription
      * @covers ::setDescription
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyDescription(): void
     {
@@ -172,7 +322,23 @@ class CreateLandingPageRequestTest extends TestCase
         );
         $this->sot->setDescription($v);
         $this->assertEquals($v, $this->sot->getDescription());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setDescription(null);
+        $this->assertNull($this->sot->getDescription());
+        $this->sot->setDescription($v);
+
+        $this->assertEquals($v, $this->sot['description']);
+        $v = $this->getFakeValue(
+            $this->types['description'],
+            $this->allowedValues['description'] ?? null
+        );
+        $this->sot['description'] = $v;
+        $this->assertEquals($v, $this->sot['description']);
+        $this->assertTrue(isset($this->sot['description']));
+        unset($this->sot['description']);
+        $this->assertFalse(isset($this->sot['description']));
+        $this->sot['description'] = $v;
+        $this->assertEquals($v, $this->sot['description']);
+        $this->assertTrue(isset($this->sot['description']));
     }
 
     /**
@@ -181,6 +347,10 @@ class CreateLandingPageRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getFacebookOgTags
      * @covers ::setFacebookOgTags
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyFacebookOgTags(): void
     {
@@ -191,7 +361,23 @@ class CreateLandingPageRequestTest extends TestCase
         );
         $this->sot->setFacebookOgTags($v);
         $this->assertEquals($v, $this->sot->getFacebookOgTags());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setFacebookOgTags(null);
+        $this->assertNull($this->sot->getFacebookOgTags());
+        $this->sot->setFacebookOgTags($v);
+
+        $this->assertEquals($v, $this->sot['facebook_og_tags']);
+        $v = $this->getFakeValue(
+            $this->types['facebook_og_tags'],
+            $this->allowedValues['facebook_og_tags'] ?? null
+        );
+        $this->sot['facebook_og_tags'] = $v;
+        $this->assertEquals($v, $this->sot['facebook_og_tags']);
+        $this->assertTrue(isset($this->sot['facebook_og_tags']));
+        unset($this->sot['facebook_og_tags']);
+        $this->assertFalse(isset($this->sot['facebook_og_tags']));
+        $this->sot['facebook_og_tags'] = $v;
+        $this->assertEquals($v, $this->sot['facebook_og_tags']);
+        $this->assertTrue(isset($this->sot['facebook_og_tags']));
     }
 
     /**
@@ -200,6 +386,10 @@ class CreateLandingPageRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getFolder
      * @covers ::setFolder
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyFolder(): void
     {
@@ -210,7 +400,20 @@ class CreateLandingPageRequestTest extends TestCase
         );
         $this->sot->setFolder($v);
         $this->assertEquals($v, $this->sot->getFolder());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['folder']);
+        $v = $this->getFakeValue(
+            $this->types['folder'],
+            $this->allowedValues['folder'] ?? null
+        );
+        $this->sot['folder'] = $v;
+        $this->assertEquals($v, $this->sot['folder']);
+        $this->assertTrue(isset($this->sot['folder']));
+        unset($this->sot['folder']);
+        $this->assertFalse(isset($this->sot['folder']));
+        $this->sot['folder'] = $v;
+        $this->assertEquals($v, $this->sot['folder']);
+        $this->assertTrue(isset($this->sot['folder']));
     }
 
     /**
@@ -219,6 +422,10 @@ class CreateLandingPageRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getKeywords
      * @covers ::setKeywords
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyKeywords(): void
     {
@@ -229,7 +436,23 @@ class CreateLandingPageRequestTest extends TestCase
         );
         $this->sot->setKeywords($v);
         $this->assertEquals($v, $this->sot->getKeywords());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setKeywords(null);
+        $this->assertNull($this->sot->getKeywords());
+        $this->sot->setKeywords($v);
+
+        $this->assertEquals($v, $this->sot['keywords']);
+        $v = $this->getFakeValue(
+            $this->types['keywords'],
+            $this->allowedValues['keywords'] ?? null
+        );
+        $this->sot['keywords'] = $v;
+        $this->assertEquals($v, $this->sot['keywords']);
+        $this->assertTrue(isset($this->sot['keywords']));
+        unset($this->sot['keywords']);
+        $this->assertFalse(isset($this->sot['keywords']));
+        $this->sot['keywords'] = $v;
+        $this->assertEquals($v, $this->sot['keywords']);
+        $this->assertTrue(isset($this->sot['keywords']));
     }
 
     /**
@@ -238,6 +461,10 @@ class CreateLandingPageRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getMobileEnabled
      * @covers ::setMobileEnabled
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyMobileEnabled(): void
     {
@@ -248,7 +475,23 @@ class CreateLandingPageRequestTest extends TestCase
         );
         $this->sot->setMobileEnabled($v);
         $this->assertEquals($v, $this->sot->getMobileEnabled());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setMobileEnabled(null);
+        $this->assertNull($this->sot->getMobileEnabled());
+        $this->sot->setMobileEnabled($v);
+
+        $this->assertEquals($v, $this->sot['mobile_enabled']);
+        $v = $this->getFakeValue(
+            $this->types['mobile_enabled'],
+            $this->allowedValues['mobile_enabled'] ?? null
+        );
+        $this->sot['mobile_enabled'] = $v;
+        $this->assertEquals($v, $this->sot['mobile_enabled']);
+        $this->assertTrue(isset($this->sot['mobile_enabled']));
+        unset($this->sot['mobile_enabled']);
+        $this->assertFalse(isset($this->sot['mobile_enabled']));
+        $this->sot['mobile_enabled'] = $v;
+        $this->assertEquals($v, $this->sot['mobile_enabled']);
+        $this->assertTrue(isset($this->sot['mobile_enabled']));
     }
 
     /**
@@ -257,6 +500,10 @@ class CreateLandingPageRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getName
      * @covers ::setName
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyName(): void
     {
@@ -267,7 +514,20 @@ class CreateLandingPageRequestTest extends TestCase
         );
         $this->sot->setName($v);
         $this->assertEquals($v, $this->sot->getName());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['name']);
+        $v = $this->getFakeValue(
+            $this->types['name'],
+            $this->allowedValues['name'] ?? null
+        );
+        $this->sot['name'] = $v;
+        $this->assertEquals($v, $this->sot['name']);
+        $this->assertTrue(isset($this->sot['name']));
+        unset($this->sot['name']);
+        $this->assertFalse(isset($this->sot['name']));
+        $this->sot['name'] = $v;
+        $this->assertEquals($v, $this->sot['name']);
+        $this->assertTrue(isset($this->sot['name']));
     }
 
     /**
@@ -276,6 +536,10 @@ class CreateLandingPageRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getPrefillForm
      * @covers ::setPrefillForm
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyPrefillForm(): void
     {
@@ -286,7 +550,23 @@ class CreateLandingPageRequestTest extends TestCase
         );
         $this->sot->setPrefillForm($v);
         $this->assertEquals($v, $this->sot->getPrefillForm());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setPrefillForm(null);
+        $this->assertNull($this->sot->getPrefillForm());
+        $this->sot->setPrefillForm($v);
+
+        $this->assertEquals($v, $this->sot['prefill_form']);
+        $v = $this->getFakeValue(
+            $this->types['prefill_form'],
+            $this->allowedValues['prefill_form'] ?? null
+        );
+        $this->sot['prefill_form'] = $v;
+        $this->assertEquals($v, $this->sot['prefill_form']);
+        $this->assertTrue(isset($this->sot['prefill_form']));
+        unset($this->sot['prefill_form']);
+        $this->assertFalse(isset($this->sot['prefill_form']));
+        $this->sot['prefill_form'] = $v;
+        $this->assertEquals($v, $this->sot['prefill_form']);
+        $this->assertTrue(isset($this->sot['prefill_form']));
     }
 
     /**
@@ -295,6 +575,10 @@ class CreateLandingPageRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getRobots
      * @covers ::setRobots
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyRobots(): void
     {
@@ -305,7 +589,23 @@ class CreateLandingPageRequestTest extends TestCase
         );
         $this->sot->setRobots($v);
         $this->assertEquals($v, $this->sot->getRobots());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setRobots(null);
+        $this->assertNull($this->sot->getRobots());
+        $this->sot->setRobots($v);
+
+        $this->assertEquals($v, $this->sot['robots']);
+        $v = $this->getFakeValue(
+            $this->types['robots'],
+            $this->allowedValues['robots'] ?? null
+        );
+        $this->sot['robots'] = $v;
+        $this->assertEquals($v, $this->sot['robots']);
+        $this->assertTrue(isset($this->sot['robots']));
+        unset($this->sot['robots']);
+        $this->assertFalse(isset($this->sot['robots']));
+        $this->sot['robots'] = $v;
+        $this->assertEquals($v, $this->sot['robots']);
+        $this->assertTrue(isset($this->sot['robots']));
     }
 
     /**
@@ -314,6 +614,10 @@ class CreateLandingPageRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getTemplate
      * @covers ::setTemplate
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyTemplate(): void
     {
@@ -324,7 +628,20 @@ class CreateLandingPageRequestTest extends TestCase
         );
         $this->sot->setTemplate($v);
         $this->assertEquals($v, $this->sot->getTemplate());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['template']);
+        $v = $this->getFakeValue(
+            $this->types['template'],
+            $this->allowedValues['template'] ?? null
+        );
+        $this->sot['template'] = $v;
+        $this->assertEquals($v, $this->sot['template']);
+        $this->assertTrue(isset($this->sot['template']));
+        unset($this->sot['template']);
+        $this->assertFalse(isset($this->sot['template']));
+        $this->sot['template'] = $v;
+        $this->assertEquals($v, $this->sot['template']);
+        $this->assertTrue(isset($this->sot['template']));
     }
 
     /**
@@ -333,6 +650,10 @@ class CreateLandingPageRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getTitle
      * @covers ::setTitle
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyTitle(): void
     {
@@ -343,7 +664,23 @@ class CreateLandingPageRequestTest extends TestCase
         );
         $this->sot->setTitle($v);
         $this->assertEquals($v, $this->sot->getTitle());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setTitle(null);
+        $this->assertNull($this->sot->getTitle());
+        $this->sot->setTitle($v);
+
+        $this->assertEquals($v, $this->sot['title']);
+        $v = $this->getFakeValue(
+            $this->types['title'],
+            $this->allowedValues['title'] ?? null
+        );
+        $this->sot['title'] = $v;
+        $this->assertEquals($v, $this->sot['title']);
+        $this->assertTrue(isset($this->sot['title']));
+        unset($this->sot['title']);
+        $this->assertFalse(isset($this->sot['title']));
+        $this->sot['title'] = $v;
+        $this->assertEquals($v, $this->sot['title']);
+        $this->assertTrue(isset($this->sot['title']));
     }
 
     /**
@@ -352,6 +689,10 @@ class CreateLandingPageRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getUrlPageName
      * @covers ::setUrlPageName
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyUrlPageName(): void
     {
@@ -362,7 +703,23 @@ class CreateLandingPageRequestTest extends TestCase
         );
         $this->sot->setUrlPageName($v);
         $this->assertEquals($v, $this->sot->getUrlPageName());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setUrlPageName(null);
+        $this->assertNull($this->sot->getUrlPageName());
+        $this->sot->setUrlPageName($v);
+
+        $this->assertEquals($v, $this->sot['url_page_name']);
+        $v = $this->getFakeValue(
+            $this->types['url_page_name'],
+            $this->allowedValues['url_page_name'] ?? null
+        );
+        $this->sot['url_page_name'] = $v;
+        $this->assertEquals($v, $this->sot['url_page_name']);
+        $this->assertTrue(isset($this->sot['url_page_name']));
+        unset($this->sot['url_page_name']);
+        $this->assertFalse(isset($this->sot['url_page_name']));
+        $this->sot['url_page_name'] = $v;
+        $this->assertEquals($v, $this->sot['url_page_name']);
+        $this->assertTrue(isset($this->sot['url_page_name']));
     }
 
     /**
@@ -371,6 +728,10 @@ class CreateLandingPageRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getWorkspace
      * @covers ::setWorkspace
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyWorkspace(): void
     {
@@ -381,6 +742,22 @@ class CreateLandingPageRequestTest extends TestCase
         );
         $this->sot->setWorkspace($v);
         $this->assertEquals($v, $this->sot->getWorkspace());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setWorkspace(null);
+        $this->assertNull($this->sot->getWorkspace());
+        $this->sot->setWorkspace($v);
+
+        $this->assertEquals($v, $this->sot['workspace']);
+        $v = $this->getFakeValue(
+            $this->types['workspace'],
+            $this->allowedValues['workspace'] ?? null
+        );
+        $this->sot['workspace'] = $v;
+        $this->assertEquals($v, $this->sot['workspace']);
+        $this->assertTrue(isset($this->sot['workspace']));
+        unset($this->sot['workspace']);
+        $this->assertFalse(isset($this->sot['workspace']));
+        $this->sot['workspace'] = $v;
+        $this->assertEquals($v, $this->sot['workspace']);
+        $this->assertTrue(isset($this->sot['workspace']));
     }
 }

@@ -37,7 +37,7 @@ use PHPUnit\Framework\TestCase;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  *
- * @coversDefault \NecLimDul\MarketoRest\Lead\Model\Company
+ * @coversDefaultClass \NecLimDul\MarketoRest\Lead\Model\Company
  */
 class CompanyTest extends TestCase
 {
@@ -48,18 +48,19 @@ class CompanyTest extends TestCase
     private $sot;
 
     /**
-     * @var \Faker\Generator
-     */
-    private $faker;
-
-    /**
      * @var string[]
      */
     private $types = [
         'external_company_id' => 'string',
         'id' => 'int',
         'company' => 'string',
-    ];
+];
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
     /**
      * @var scalar[][]
      */
@@ -112,7 +113,14 @@ class CompanyTest extends TestCase
                 return new \stdClass();
         }
         if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
-            return new $type();
+            $model = new $type();
+            $types = $type::swaggerTypes();
+            foreach ($model->listInvalidProperties() as $field => $reason) {
+                // @todo get allowed values? ((getter))AllowedValues
+                // @phpstan-ignore-next-line
+                $model[$field] = $this->getFakeValue($types[$field], null);
+            }
+            return $model;
         }
         $this->markTestSkipped('This type is not mocked yet: ' . $type);
     }
@@ -124,7 +132,105 @@ class CompanyTest extends TestCase
      */
     public function testCompany(): void
     {
-        $this->assertInstanceOf(\NecLimDul\MarketoRest\Lead\Model\Company::class, $this->sot);
+        $this->assertInstanceOf(Company::class, $this->sot);
+    }
+
+    /**
+     * @covers ::swaggerTypes
+     */
+    public function testSwaggerTypes(): void
+    {
+        $this->assertEquals($this->types, Company::swaggerTypes());
+    }
+
+    /**
+     * @covers ::swaggerFormats
+     */
+    public function testSwaggerFormats(): void
+    {
+        $formats = $this->sot->swaggerFormats();
+        $this->assertEquals(null, $formats['external_company_id']);
+        $this->assertEquals(null, $formats['id']);
+        $this->assertEquals(null, $formats['company']);
+    }
+
+    /**
+     * @covers ::attributeMap
+     */
+    public function testAttributeMap(): void
+    {
+        $formats = $this->sot->attributeMap();
+        $this->assertEquals('externalCompanyId', $formats['external_company_id']);
+        $this->assertEquals('id', $formats['id']);
+        $this->assertEquals('company', $formats['company']);
+    }
+
+    /**
+     * @covers ::getters
+     * @covers ::setters
+     */
+    public function testGettersSetters(): void
+    {
+        $getters = $this->sot->getters();
+        $setters = $this->sot->setters();
+        foreach (array_keys($this->types) as $field) {
+            $this->assertTrue(isset($setters[$field]));
+            $this->assertTrue(isset($getters[$field]));
+            $this->assertTrue(
+                method_exists($this->sot, $getters[$field]),
+                'Getter exists on model.'
+            );
+            $this->assertTrue(
+                method_exists($this->sot, $setters[$field]),
+                'Setter exists on model.'
+            );
+        }
+    }
+
+    /**
+     * @covers ::getModelName
+     */
+    public function testGetModelName(): void
+    {
+        $this->assertEquals('Company', $this->sot->getModelName());
+    }
+
+    /**
+     * @covers ::listInvalidProperties
+     * @covers ::valid
+     */
+    public function testValid(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::setAdditionalProperties
+     * @covers ::setAdditionalProperty
+     * @covers ::getAdditionalProperties
+     */
+    public function testAdditionalProperties(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::jsonSerialize
+     * @covers ::__toString
+     */
+    public function testJson(): void
+    {
+        // Some minimal tests that json generates well.
+        $json = json_encode($this->sot);
+        $this->assertIsString($json, 'Json encoded');
+        $json = json_decode($json);
+        $string = json_decode((string) $this->sot);
+        $this->assertEquals(
+            $json,
+            $string
+        );
+        $this->assertInstanceOf(\stdClass::class, $json);
+        $this->assertInstanceOf(\stdClass::class, $string);
     }
 
     /**
@@ -133,6 +239,10 @@ class CompanyTest extends TestCase
      * @covers ::__construct
      * @covers ::getExternalCompanyId
      * @covers ::setExternalCompanyId
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyExternalCompanyId(): void
     {
@@ -143,7 +253,23 @@ class CompanyTest extends TestCase
         );
         $this->sot->setExternalCompanyId($v);
         $this->assertEquals($v, $this->sot->getExternalCompanyId());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setExternalCompanyId(null);
+        $this->assertNull($this->sot->getExternalCompanyId());
+        $this->sot->setExternalCompanyId($v);
+
+        $this->assertEquals($v, $this->sot['external_company_id']);
+        $v = $this->getFakeValue(
+            $this->types['external_company_id'],
+            $this->allowedValues['external_company_id'] ?? null
+        );
+        $this->sot['external_company_id'] = $v;
+        $this->assertEquals($v, $this->sot['external_company_id']);
+        $this->assertTrue(isset($this->sot['external_company_id']));
+        unset($this->sot['external_company_id']);
+        $this->assertFalse(isset($this->sot['external_company_id']));
+        $this->sot['external_company_id'] = $v;
+        $this->assertEquals($v, $this->sot['external_company_id']);
+        $this->assertTrue(isset($this->sot['external_company_id']));
     }
 
     /**
@@ -152,6 +278,10 @@ class CompanyTest extends TestCase
      * @covers ::__construct
      * @covers ::getId
      * @covers ::setId
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyId(): void
     {
@@ -162,7 +292,23 @@ class CompanyTest extends TestCase
         );
         $this->sot->setId($v);
         $this->assertEquals($v, $this->sot->getId());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setId(null);
+        $this->assertNull($this->sot->getId());
+        $this->sot->setId($v);
+
+        $this->assertEquals($v, $this->sot['id']);
+        $v = $this->getFakeValue(
+            $this->types['id'],
+            $this->allowedValues['id'] ?? null
+        );
+        $this->sot['id'] = $v;
+        $this->assertEquals($v, $this->sot['id']);
+        $this->assertTrue(isset($this->sot['id']));
+        unset($this->sot['id']);
+        $this->assertFalse(isset($this->sot['id']));
+        $this->sot['id'] = $v;
+        $this->assertEquals($v, $this->sot['id']);
+        $this->assertTrue(isset($this->sot['id']));
     }
 
     /**
@@ -171,6 +317,10 @@ class CompanyTest extends TestCase
      * @covers ::__construct
      * @covers ::getCompany
      * @covers ::setCompany
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyCompany(): void
     {
@@ -181,6 +331,22 @@ class CompanyTest extends TestCase
         );
         $this->sot->setCompany($v);
         $this->assertEquals($v, $this->sot->getCompany());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setCompany(null);
+        $this->assertNull($this->sot->getCompany());
+        $this->sot->setCompany($v);
+
+        $this->assertEquals($v, $this->sot['company']);
+        $v = $this->getFakeValue(
+            $this->types['company'],
+            $this->allowedValues['company'] ?? null
+        );
+        $this->sot['company'] = $v;
+        $this->assertEquals($v, $this->sot['company']);
+        $this->assertTrue(isset($this->sot['company']));
+        unset($this->sot['company']);
+        $this->assertFalse(isset($this->sot['company']));
+        $this->sot['company'] = $v;
+        $this->assertEquals($v, $this->sot['company']);
+        $this->assertTrue(isset($this->sot['company']));
     }
 }

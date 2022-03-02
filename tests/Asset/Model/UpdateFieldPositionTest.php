@@ -37,7 +37,7 @@ use PHPUnit\Framework\TestCase;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  *
- * @coversDefault \NecLimDul\MarketoRest\Asset\Model\UpdateFieldPosition
+ * @coversDefaultClass \NecLimDul\MarketoRest\Asset\Model\UpdateFieldPosition
  */
 class UpdateFieldPositionTest extends TestCase
 {
@@ -48,11 +48,6 @@ class UpdateFieldPositionTest extends TestCase
     private $sot;
 
     /**
-     * @var \Faker\Generator
-     */
-    private $faker;
-
-    /**
      * @var string[]
      */
     private $types = [
@@ -60,7 +55,13 @@ class UpdateFieldPositionTest extends TestCase
         'field_list' => '\NecLimDul\MarketoRest\Asset\Model\UpdateFieldPosition[]',
         'field_name' => 'string',
         'row_number' => 'int',
-    ];
+];
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
     /**
      * @var scalar[][]
      */
@@ -113,7 +114,14 @@ class UpdateFieldPositionTest extends TestCase
                 return new \stdClass();
         }
         if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
-            return new $type();
+            $model = new $type();
+            $types = $type::swaggerTypes();
+            foreach ($model->listInvalidProperties() as $field => $reason) {
+                // @todo get allowed values? ((getter))AllowedValues
+                // @phpstan-ignore-next-line
+                $model[$field] = $this->getFakeValue($types[$field], null);
+            }
+            return $model;
         }
         $this->markTestSkipped('This type is not mocked yet: ' . $type);
     }
@@ -125,7 +133,107 @@ class UpdateFieldPositionTest extends TestCase
      */
     public function testUpdateFieldPosition(): void
     {
-        $this->assertInstanceOf(\NecLimDul\MarketoRest\Asset\Model\UpdateFieldPosition::class, $this->sot);
+        $this->assertInstanceOf(UpdateFieldPosition::class, $this->sot);
+    }
+
+    /**
+     * @covers ::swaggerTypes
+     */
+    public function testSwaggerTypes(): void
+    {
+        $this->assertEquals($this->types, UpdateFieldPosition::swaggerTypes());
+    }
+
+    /**
+     * @covers ::swaggerFormats
+     */
+    public function testSwaggerFormats(): void
+    {
+        $formats = $this->sot->swaggerFormats();
+        $this->assertEquals('int32', $formats['column_number']);
+        $this->assertEquals(null, $formats['field_list']);
+        $this->assertEquals(null, $formats['field_name']);
+        $this->assertEquals('int32', $formats['row_number']);
+    }
+
+    /**
+     * @covers ::attributeMap
+     */
+    public function testAttributeMap(): void
+    {
+        $formats = $this->sot->attributeMap();
+        $this->assertEquals('columnNumber', $formats['column_number']);
+        $this->assertEquals('fieldList', $formats['field_list']);
+        $this->assertEquals('fieldName', $formats['field_name']);
+        $this->assertEquals('rowNumber', $formats['row_number']);
+    }
+
+    /**
+     * @covers ::getters
+     * @covers ::setters
+     */
+    public function testGettersSetters(): void
+    {
+        $getters = $this->sot->getters();
+        $setters = $this->sot->setters();
+        foreach (array_keys($this->types) as $field) {
+            $this->assertTrue(isset($setters[$field]));
+            $this->assertTrue(isset($getters[$field]));
+            $this->assertTrue(
+                method_exists($this->sot, $getters[$field]),
+                'Getter exists on model.'
+            );
+            $this->assertTrue(
+                method_exists($this->sot, $setters[$field]),
+                'Setter exists on model.'
+            );
+        }
+    }
+
+    /**
+     * @covers ::getModelName
+     */
+    public function testGetModelName(): void
+    {
+        $this->assertEquals('UpdateFieldPosition', $this->sot->getModelName());
+    }
+
+    /**
+     * @covers ::listInvalidProperties
+     * @covers ::valid
+     */
+    public function testValid(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::setAdditionalProperties
+     * @covers ::setAdditionalProperty
+     * @covers ::getAdditionalProperties
+     */
+    public function testAdditionalProperties(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::jsonSerialize
+     * @covers ::__toString
+     */
+    public function testJson(): void
+    {
+        // Some minimal tests that json generates well.
+        $json = json_encode($this->sot);
+        $this->assertIsString($json, 'Json encoded');
+        $json = json_decode($json);
+        $string = json_decode((string) $this->sot);
+        $this->assertEquals(
+            $json,
+            $string
+        );
+        $this->assertInstanceOf(\stdClass::class, $json);
+        $this->assertInstanceOf(\stdClass::class, $string);
     }
 
     /**
@@ -134,6 +242,10 @@ class UpdateFieldPositionTest extends TestCase
      * @covers ::__construct
      * @covers ::getColumnNumber
      * @covers ::setColumnNumber
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyColumnNumber(): void
     {
@@ -144,7 +256,20 @@ class UpdateFieldPositionTest extends TestCase
         );
         $this->sot->setColumnNumber($v);
         $this->assertEquals($v, $this->sot->getColumnNumber());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['column_number']);
+        $v = $this->getFakeValue(
+            $this->types['column_number'],
+            $this->allowedValues['column_number'] ?? null
+        );
+        $this->sot['column_number'] = $v;
+        $this->assertEquals($v, $this->sot['column_number']);
+        $this->assertTrue(isset($this->sot['column_number']));
+        unset($this->sot['column_number']);
+        $this->assertFalse(isset($this->sot['column_number']));
+        $this->sot['column_number'] = $v;
+        $this->assertEquals($v, $this->sot['column_number']);
+        $this->assertTrue(isset($this->sot['column_number']));
     }
 
     /**
@@ -153,6 +278,10 @@ class UpdateFieldPositionTest extends TestCase
      * @covers ::__construct
      * @covers ::getFieldList
      * @covers ::setFieldList
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyFieldList(): void
     {
@@ -163,7 +292,23 @@ class UpdateFieldPositionTest extends TestCase
         );
         $this->sot->setFieldList($v);
         $this->assertEquals($v, $this->sot->getFieldList());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setFieldList(null);
+        $this->assertNull($this->sot->getFieldList());
+        $this->sot->setFieldList($v);
+
+        $this->assertEquals($v, $this->sot['field_list']);
+        $v = $this->getFakeValue(
+            $this->types['field_list'],
+            $this->allowedValues['field_list'] ?? null
+        );
+        $this->sot['field_list'] = $v;
+        $this->assertEquals($v, $this->sot['field_list']);
+        $this->assertTrue(isset($this->sot['field_list']));
+        unset($this->sot['field_list']);
+        $this->assertFalse(isset($this->sot['field_list']));
+        $this->sot['field_list'] = $v;
+        $this->assertEquals($v, $this->sot['field_list']);
+        $this->assertTrue(isset($this->sot['field_list']));
     }
 
     /**
@@ -172,6 +317,10 @@ class UpdateFieldPositionTest extends TestCase
      * @covers ::__construct
      * @covers ::getFieldName
      * @covers ::setFieldName
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyFieldName(): void
     {
@@ -182,7 +331,20 @@ class UpdateFieldPositionTest extends TestCase
         );
         $this->sot->setFieldName($v);
         $this->assertEquals($v, $this->sot->getFieldName());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['field_name']);
+        $v = $this->getFakeValue(
+            $this->types['field_name'],
+            $this->allowedValues['field_name'] ?? null
+        );
+        $this->sot['field_name'] = $v;
+        $this->assertEquals($v, $this->sot['field_name']);
+        $this->assertTrue(isset($this->sot['field_name']));
+        unset($this->sot['field_name']);
+        $this->assertFalse(isset($this->sot['field_name']));
+        $this->sot['field_name'] = $v;
+        $this->assertEquals($v, $this->sot['field_name']);
+        $this->assertTrue(isset($this->sot['field_name']));
     }
 
     /**
@@ -191,6 +353,10 @@ class UpdateFieldPositionTest extends TestCase
      * @covers ::__construct
      * @covers ::getRowNumber
      * @covers ::setRowNumber
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyRowNumber(): void
     {
@@ -201,6 +367,19 @@ class UpdateFieldPositionTest extends TestCase
         );
         $this->sot->setRowNumber($v);
         $this->assertEquals($v, $this->sot->getRowNumber());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['row_number']);
+        $v = $this->getFakeValue(
+            $this->types['row_number'],
+            $this->allowedValues['row_number'] ?? null
+        );
+        $this->sot['row_number'] = $v;
+        $this->assertEquals($v, $this->sot['row_number']);
+        $this->assertTrue(isset($this->sot['row_number']));
+        unset($this->sot['row_number']);
+        $this->assertFalse(isset($this->sot['row_number']));
+        $this->sot['row_number'] = $v;
+        $this->assertEquals($v, $this->sot['row_number']);
+        $this->assertTrue(isset($this->sot['row_number']));
     }
 }

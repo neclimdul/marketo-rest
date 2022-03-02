@@ -84,22 +84,6 @@ class Form implements ModelInterface, ArrayAccess, \JsonSerializable
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -154,6 +138,22 @@ class Form implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -193,7 +193,7 @@ class Form implements ModelInterface, ArrayAccess, \JsonSerializable
         $invalidProperties = [];
 
         if ($this->container['lead_form_fields'] === null) {
-            $invalidProperties[] = "'lead_form_fields' can't be null";
+            $invalidProperties['lead_form_fields'] = "'lead_form_fields' can't be null";
         }
         return $invalidProperties;
     }
@@ -233,9 +233,9 @@ class Form implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets visitor_data
      *
-     * @return \NecLimDul\MarketoRest\Lead\Model\VisitorData
+     * @return \NecLimDul\MarketoRest\Lead\Model\VisitorData|null
      */
-    public function getVisitorData(): \NecLimDul\MarketoRest\Lead\Model\VisitorData
+    public function getVisitorData(): ?\NecLimDul\MarketoRest\Lead\Model\VisitorData
     {
         return $this->container['visitor_data'];
     }
@@ -257,9 +257,9 @@ class Form implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets cookie
      *
-     * @return string
+     * @return string|null
      */
-    public function getCookie(): string
+    public function getCookie(): ?string
     {
         return $this->container['cookie'];
     }

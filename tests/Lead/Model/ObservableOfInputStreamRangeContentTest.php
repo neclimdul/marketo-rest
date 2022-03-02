@@ -37,7 +37,7 @@ use PHPUnit\Framework\TestCase;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  *
- * @coversDefault \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamRangeContent
+ * @coversDefaultClass \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamRangeContent
  */
 class ObservableOfInputStreamRangeContentTest extends TestCase
 {
@@ -46,6 +46,12 @@ class ObservableOfInputStreamRangeContentTest extends TestCase
      * @var \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamRangeContent
      */
     private $sot;
+
+    /**
+     * @var string[]
+     */
+    private $types = [
+];
 
 
     public function setUp(): void
@@ -62,6 +68,88 @@ class ObservableOfInputStreamRangeContentTest extends TestCase
      */
     public function testObservableOfInputStreamRangeContent(): void
     {
-        $this->assertInstanceOf(\NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamRangeContent::class, $this->sot);
+        $this->assertInstanceOf(ObservableOfInputStreamRangeContent::class, $this->sot);
+    }
+
+    /**
+     * @covers ::swaggerTypes
+     */
+    public function testSwaggerTypes(): void
+    {
+        $this->assertEquals($this->types, ObservableOfInputStreamRangeContent::swaggerTypes());
+    }
+
+    /**
+     * @covers ::swaggerFormats
+     */
+    public function testSwaggerFormats(): void
+    {
+        $this->assertEmpty($this->sot->swaggerFormats());
+    }
+
+    /**
+     * @covers ::attributeMap
+     */
+    public function testAttributeMap(): void
+    {
+        $this->assertEmpty($this->sot->attributeMap());
+    }
+
+    /**
+     * @covers ::getters
+     * @covers ::setters
+     */
+    public function testGettersSetters(): void
+    {
+        $getters = $this->sot->getters();
+        $setters = $this->sot->setters();
+            $this->assertEmpty($setters);
+            $this->assertEmpty($getters);
+    }
+
+    /**
+     * @covers ::getModelName
+     */
+    public function testGetModelName(): void
+    {
+        $this->assertEquals('ObservableOfInputStreamRangeContent', $this->sot->getModelName());
+    }
+
+    /**
+     * @covers ::listInvalidProperties
+     * @covers ::valid
+     */
+    public function testValid(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::setAdditionalProperties
+     * @covers ::setAdditionalProperty
+     * @covers ::getAdditionalProperties
+     */
+    public function testAdditionalProperties(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::jsonSerialize
+     * @covers ::__toString
+     */
+    public function testJson(): void
+    {
+        // Some minimal tests that json generates well.
+        $json = json_encode($this->sot);
+        $this->assertIsString($json, 'Json encoded');
+        $json = json_decode($json);
+        $string = json_decode((string) $this->sot);
+        $this->assertEquals(
+            $json,
+            $string
+        );
+        $this->assertInstanceOf(\stdClass::class, $json);
+        $this->assertInstanceOf(\stdClass::class, $string);
     }
 }

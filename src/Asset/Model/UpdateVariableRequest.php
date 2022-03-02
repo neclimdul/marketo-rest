@@ -81,22 +81,6 @@ class UpdateVariableRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -144,6 +128,22 @@ class UpdateVariableRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     {
         $this->container['value'] = $data['value'] ?? null;
         $this->container['module_id'] = $data['module_id'] ?? null;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
     }
 
     /**
@@ -199,9 +199,9 @@ class UpdateVariableRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets value
      *
-     * @return string
+     * @return string|null
      */
-    public function getValue(): string
+    public function getValue(): ?string
     {
         return $this->container['value'];
     }
@@ -223,9 +223,9 @@ class UpdateVariableRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets module_id
      *
-     * @return string
+     * @return string|null
      */
-    public function getModuleId(): string
+    public function getModuleId(): ?string
     {
         return $this->container['module_id'];
     }

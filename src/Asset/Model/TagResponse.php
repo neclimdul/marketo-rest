@@ -85,22 +85,6 @@ class TagResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -159,6 +143,22 @@ class TagResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -198,13 +198,13 @@ class TagResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         $invalidProperties = [];
 
         if ($this->container['applicable_program_types'] === null) {
-            $invalidProperties[] = "'applicable_program_types' can't be null";
+            $invalidProperties['applicable_program_types'] = "'applicable_program_types' can't be null";
         }
         if ($this->container['required'] === null) {
-            $invalidProperties[] = "'required' can't be null";
+            $invalidProperties['required'] = "'required' can't be null";
         }
         if ($this->container['tag_type'] === null) {
-            $invalidProperties[] = "'tag_type' can't be null";
+            $invalidProperties['tag_type'] = "'tag_type' can't be null";
         }
         return $invalidProperties;
     }
@@ -220,9 +220,9 @@ class TagResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets allowable_values
      *
-     * @return string
+     * @return string|null
      */
-    public function getAllowableValues(): string
+    public function getAllowableValues(): ?string
     {
         return $this->container['allowable_values'];
     }

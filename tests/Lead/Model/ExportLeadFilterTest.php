@@ -37,7 +37,7 @@ use PHPUnit\Framework\TestCase;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  *
- * @coversDefault \NecLimDul\MarketoRest\Lead\Model\ExportLeadFilter
+ * @coversDefaultClass \NecLimDul\MarketoRest\Lead\Model\ExportLeadFilter
  */
 class ExportLeadFilterTest extends TestCase
 {
@@ -46,11 +46,6 @@ class ExportLeadFilterTest extends TestCase
      * @var \NecLimDul\MarketoRest\Lead\Model\ExportLeadFilter
      */
     private $sot;
-
-    /**
-     * @var \Faker\Generator
-     */
-    private $faker;
 
     /**
      * @var string[]
@@ -62,7 +57,13 @@ class ExportLeadFilterTest extends TestCase
         'static_list_id' => 'int',
         'static_list_name' => 'string',
         'updated_at' => '\NecLimDul\MarketoRest\Lead\Model\DateRange',
-    ];
+];
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
     /**
      * @var scalar[][]
      */
@@ -115,7 +116,14 @@ class ExportLeadFilterTest extends TestCase
                 return new \stdClass();
         }
         if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
-            return new $type();
+            $model = new $type();
+            $types = $type::swaggerTypes();
+            foreach ($model->listInvalidProperties() as $field => $reason) {
+                // @todo get allowed values? ((getter))AllowedValues
+                // @phpstan-ignore-next-line
+                $model[$field] = $this->getFakeValue($types[$field], null);
+            }
+            return $model;
         }
         $this->markTestSkipped('This type is not mocked yet: ' . $type);
     }
@@ -127,7 +135,111 @@ class ExportLeadFilterTest extends TestCase
      */
     public function testExportLeadFilter(): void
     {
-        $this->assertInstanceOf(\NecLimDul\MarketoRest\Lead\Model\ExportLeadFilter::class, $this->sot);
+        $this->assertInstanceOf(ExportLeadFilter::class, $this->sot);
+    }
+
+    /**
+     * @covers ::swaggerTypes
+     */
+    public function testSwaggerTypes(): void
+    {
+        $this->assertEquals($this->types, ExportLeadFilter::swaggerTypes());
+    }
+
+    /**
+     * @covers ::swaggerFormats
+     */
+    public function testSwaggerFormats(): void
+    {
+        $formats = $this->sot->swaggerFormats();
+        $this->assertEquals(null, $formats['created_at']);
+        $this->assertEquals('int32', $formats['smart_list_id']);
+        $this->assertEquals(null, $formats['smart_list_name']);
+        $this->assertEquals('int32', $formats['static_list_id']);
+        $this->assertEquals(null, $formats['static_list_name']);
+        $this->assertEquals(null, $formats['updated_at']);
+    }
+
+    /**
+     * @covers ::attributeMap
+     */
+    public function testAttributeMap(): void
+    {
+        $formats = $this->sot->attributeMap();
+        $this->assertEquals('createdAt', $formats['created_at']);
+        $this->assertEquals('smartListId', $formats['smart_list_id']);
+        $this->assertEquals('smartListName', $formats['smart_list_name']);
+        $this->assertEquals('staticListId', $formats['static_list_id']);
+        $this->assertEquals('staticListName', $formats['static_list_name']);
+        $this->assertEquals('updatedAt', $formats['updated_at']);
+    }
+
+    /**
+     * @covers ::getters
+     * @covers ::setters
+     */
+    public function testGettersSetters(): void
+    {
+        $getters = $this->sot->getters();
+        $setters = $this->sot->setters();
+        foreach (array_keys($this->types) as $field) {
+            $this->assertTrue(isset($setters[$field]));
+            $this->assertTrue(isset($getters[$field]));
+            $this->assertTrue(
+                method_exists($this->sot, $getters[$field]),
+                'Getter exists on model.'
+            );
+            $this->assertTrue(
+                method_exists($this->sot, $setters[$field]),
+                'Setter exists on model.'
+            );
+        }
+    }
+
+    /**
+     * @covers ::getModelName
+     */
+    public function testGetModelName(): void
+    {
+        $this->assertEquals('ExportLeadFilter', $this->sot->getModelName());
+    }
+
+    /**
+     * @covers ::listInvalidProperties
+     * @covers ::valid
+     */
+    public function testValid(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::setAdditionalProperties
+     * @covers ::setAdditionalProperty
+     * @covers ::getAdditionalProperties
+     */
+    public function testAdditionalProperties(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::jsonSerialize
+     * @covers ::__toString
+     */
+    public function testJson(): void
+    {
+        // Some minimal tests that json generates well.
+        $json = json_encode($this->sot);
+        $this->assertIsString($json, 'Json encoded');
+        $json = json_decode($json);
+        $string = json_decode((string) $this->sot);
+        $this->assertEquals(
+            $json,
+            $string
+        );
+        $this->assertInstanceOf(\stdClass::class, $json);
+        $this->assertInstanceOf(\stdClass::class, $string);
     }
 
     /**
@@ -136,6 +248,10 @@ class ExportLeadFilterTest extends TestCase
      * @covers ::__construct
      * @covers ::getCreatedAt
      * @covers ::setCreatedAt
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyCreatedAt(): void
     {
@@ -146,7 +262,20 @@ class ExportLeadFilterTest extends TestCase
         );
         $this->sot->setCreatedAt($v);
         $this->assertEquals($v, $this->sot->getCreatedAt());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['created_at']);
+        $v = $this->getFakeValue(
+            $this->types['created_at'],
+            $this->allowedValues['created_at'] ?? null
+        );
+        $this->sot['created_at'] = $v;
+        $this->assertEquals($v, $this->sot['created_at']);
+        $this->assertTrue(isset($this->sot['created_at']));
+        unset($this->sot['created_at']);
+        $this->assertFalse(isset($this->sot['created_at']));
+        $this->sot['created_at'] = $v;
+        $this->assertEquals($v, $this->sot['created_at']);
+        $this->assertTrue(isset($this->sot['created_at']));
     }
 
     /**
@@ -155,6 +284,10 @@ class ExportLeadFilterTest extends TestCase
      * @covers ::__construct
      * @covers ::getSmartListId
      * @covers ::setSmartListId
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertySmartListId(): void
     {
@@ -165,7 +298,20 @@ class ExportLeadFilterTest extends TestCase
         );
         $this->sot->setSmartListId($v);
         $this->assertEquals($v, $this->sot->getSmartListId());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['smart_list_id']);
+        $v = $this->getFakeValue(
+            $this->types['smart_list_id'],
+            $this->allowedValues['smart_list_id'] ?? null
+        );
+        $this->sot['smart_list_id'] = $v;
+        $this->assertEquals($v, $this->sot['smart_list_id']);
+        $this->assertTrue(isset($this->sot['smart_list_id']));
+        unset($this->sot['smart_list_id']);
+        $this->assertFalse(isset($this->sot['smart_list_id']));
+        $this->sot['smart_list_id'] = $v;
+        $this->assertEquals($v, $this->sot['smart_list_id']);
+        $this->assertTrue(isset($this->sot['smart_list_id']));
     }
 
     /**
@@ -174,6 +320,10 @@ class ExportLeadFilterTest extends TestCase
      * @covers ::__construct
      * @covers ::getSmartListName
      * @covers ::setSmartListName
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertySmartListName(): void
     {
@@ -184,7 +334,20 @@ class ExportLeadFilterTest extends TestCase
         );
         $this->sot->setSmartListName($v);
         $this->assertEquals($v, $this->sot->getSmartListName());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['smart_list_name']);
+        $v = $this->getFakeValue(
+            $this->types['smart_list_name'],
+            $this->allowedValues['smart_list_name'] ?? null
+        );
+        $this->sot['smart_list_name'] = $v;
+        $this->assertEquals($v, $this->sot['smart_list_name']);
+        $this->assertTrue(isset($this->sot['smart_list_name']));
+        unset($this->sot['smart_list_name']);
+        $this->assertFalse(isset($this->sot['smart_list_name']));
+        $this->sot['smart_list_name'] = $v;
+        $this->assertEquals($v, $this->sot['smart_list_name']);
+        $this->assertTrue(isset($this->sot['smart_list_name']));
     }
 
     /**
@@ -193,6 +356,10 @@ class ExportLeadFilterTest extends TestCase
      * @covers ::__construct
      * @covers ::getStaticListId
      * @covers ::setStaticListId
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyStaticListId(): void
     {
@@ -203,7 +370,20 @@ class ExportLeadFilterTest extends TestCase
         );
         $this->sot->setStaticListId($v);
         $this->assertEquals($v, $this->sot->getStaticListId());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['static_list_id']);
+        $v = $this->getFakeValue(
+            $this->types['static_list_id'],
+            $this->allowedValues['static_list_id'] ?? null
+        );
+        $this->sot['static_list_id'] = $v;
+        $this->assertEquals($v, $this->sot['static_list_id']);
+        $this->assertTrue(isset($this->sot['static_list_id']));
+        unset($this->sot['static_list_id']);
+        $this->assertFalse(isset($this->sot['static_list_id']));
+        $this->sot['static_list_id'] = $v;
+        $this->assertEquals($v, $this->sot['static_list_id']);
+        $this->assertTrue(isset($this->sot['static_list_id']));
     }
 
     /**
@@ -212,6 +392,10 @@ class ExportLeadFilterTest extends TestCase
      * @covers ::__construct
      * @covers ::getStaticListName
      * @covers ::setStaticListName
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyStaticListName(): void
     {
@@ -222,7 +406,20 @@ class ExportLeadFilterTest extends TestCase
         );
         $this->sot->setStaticListName($v);
         $this->assertEquals($v, $this->sot->getStaticListName());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['static_list_name']);
+        $v = $this->getFakeValue(
+            $this->types['static_list_name'],
+            $this->allowedValues['static_list_name'] ?? null
+        );
+        $this->sot['static_list_name'] = $v;
+        $this->assertEquals($v, $this->sot['static_list_name']);
+        $this->assertTrue(isset($this->sot['static_list_name']));
+        unset($this->sot['static_list_name']);
+        $this->assertFalse(isset($this->sot['static_list_name']));
+        $this->sot['static_list_name'] = $v;
+        $this->assertEquals($v, $this->sot['static_list_name']);
+        $this->assertTrue(isset($this->sot['static_list_name']));
     }
 
     /**
@@ -231,6 +428,10 @@ class ExportLeadFilterTest extends TestCase
      * @covers ::__construct
      * @covers ::getUpdatedAt
      * @covers ::setUpdatedAt
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyUpdatedAt(): void
     {
@@ -241,6 +442,19 @@ class ExportLeadFilterTest extends TestCase
         );
         $this->sot->setUpdatedAt($v);
         $this->assertEquals($v, $this->sot->getUpdatedAt());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['updated_at']);
+        $v = $this->getFakeValue(
+            $this->types['updated_at'],
+            $this->allowedValues['updated_at'] ?? null
+        );
+        $this->sot['updated_at'] = $v;
+        $this->assertEquals($v, $this->sot['updated_at']);
+        $this->assertTrue(isset($this->sot['updated_at']));
+        unset($this->sot['updated_at']);
+        $this->assertFalse(isset($this->sot['updated_at']));
+        $this->sot['updated_at'] = $v;
+        $this->assertEquals($v, $this->sot['updated_at']);
+        $this->assertTrue(isset($this->sot['updated_at']));
     }
 }

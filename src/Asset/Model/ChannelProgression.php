@@ -89,22 +89,6 @@ class ChannelProgression implements ModelInterface, ArrayAccess, \JsonSerializab
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -171,6 +155,22 @@ class ChannelProgression implements ModelInterface, ArrayAccess, \JsonSerializab
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -223,9 +223,9 @@ class ChannelProgression implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->container['description'];
     }
@@ -247,9 +247,9 @@ class ChannelProgression implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets hidden
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getHidden(): bool
+    public function getHidden(): ?bool
     {
         return $this->container['hidden'];
     }
@@ -271,9 +271,9 @@ class ChannelProgression implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets name
      *
-     * @return string
+     * @return string|null
      */
-    public function getName(): string
+    public function getName(): ?string
     {
         return $this->container['name'];
     }
@@ -295,9 +295,9 @@ class ChannelProgression implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets type
      *
-     * @return string
+     * @return string|null
      */
-    public function getType(): string
+    public function getType(): ?string
     {
         return $this->container['type'];
     }
@@ -319,9 +319,9 @@ class ChannelProgression implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets step
      *
-     * @return int
+     * @return int|null
      */
-    public function getStep(): int
+    public function getStep(): ?int
     {
         return $this->container['step'];
     }
@@ -343,9 +343,9 @@ class ChannelProgression implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets success
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getSuccess(): bool
+    public function getSuccess(): ?bool
     {
         return $this->container['success'];
     }

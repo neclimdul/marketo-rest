@@ -98,22 +98,6 @@ class LeadField implements ModelInterface, ArrayAccess, \JsonSerializable
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -196,6 +180,22 @@ class LeadField implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -235,31 +235,31 @@ class LeadField implements ModelInterface, ArrayAccess, \JsonSerializable
         $invalidProperties = [];
 
         if ($this->container['display_name'] === null) {
-            $invalidProperties[] = "'display_name' can't be null";
+            $invalidProperties['display_name'] = "'display_name' can't be null";
         }
         if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
+            $invalidProperties['name'] = "'name' can't be null";
         }
         if ($this->container['description'] === null) {
-            $invalidProperties[] = "'description' can't be null";
+            $invalidProperties['description'] = "'description' can't be null";
         }
         if ($this->container['data_type'] === null) {
-            $invalidProperties[] = "'data_type' can't be null";
+            $invalidProperties['data_type'] = "'data_type' can't be null";
         }
         if ($this->container['is_hidden'] === null) {
-            $invalidProperties[] = "'is_hidden' can't be null";
+            $invalidProperties['is_hidden'] = "'is_hidden' can't be null";
         }
         if ($this->container['is_html_encoding_in_email'] === null) {
-            $invalidProperties[] = "'is_html_encoding_in_email' can't be null";
+            $invalidProperties['is_html_encoding_in_email'] = "'is_html_encoding_in_email' can't be null";
         }
         if ($this->container['is_sensitive'] === null) {
-            $invalidProperties[] = "'is_sensitive' can't be null";
+            $invalidProperties['is_sensitive'] = "'is_sensitive' can't be null";
         }
         if ($this->container['is_custom'] === null) {
-            $invalidProperties[] = "'is_custom' can't be null";
+            $invalidProperties['is_custom'] = "'is_custom' can't be null";
         }
         if ($this->container['is_api_created'] === null) {
-            $invalidProperties[] = "'is_api_created' can't be null";
+            $invalidProperties['is_api_created'] = "'is_api_created' can't be null";
         }
         return $invalidProperties;
     }
@@ -371,9 +371,9 @@ class LeadField implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets length
      *
-     * @return int
+     * @return int|null
      */
-    public function getLength(): int
+    public function getLength(): ?int
     {
         return $this->container['length'];
     }

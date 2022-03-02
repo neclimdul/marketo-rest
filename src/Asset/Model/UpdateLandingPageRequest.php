@@ -99,22 +99,6 @@ class UpdateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -201,6 +185,22 @@ class UpdateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -253,9 +253,9 @@ class UpdateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets custom_head_html
      *
-     * @return string
+     * @return string|null
      */
-    public function getCustomHeadHtml(): string
+    public function getCustomHeadHtml(): ?string
     {
         return $this->container['custom_head_html'];
     }
@@ -277,9 +277,9 @@ class UpdateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->container['description'];
     }
@@ -301,9 +301,9 @@ class UpdateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets facebook_og_tags
      *
-     * @return string
+     * @return string|null
      */
-    public function getFacebookOgTags(): string
+    public function getFacebookOgTags(): ?string
     {
         return $this->container['facebook_og_tags'];
     }
@@ -325,9 +325,9 @@ class UpdateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets keywords
      *
-     * @return string
+     * @return string|null
      */
-    public function getKeywords(): string
+    public function getKeywords(): ?string
     {
         return $this->container['keywords'];
     }
@@ -349,9 +349,9 @@ class UpdateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets meta_tags_description
      *
-     * @return string
+     * @return string|null
      */
-    public function getMetaTagsDescription(): string
+    public function getMetaTagsDescription(): ?string
     {
         return $this->container['meta_tags_description'];
     }
@@ -373,9 +373,9 @@ class UpdateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets mobile_enabled
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getMobileEnabled(): bool
+    public function getMobileEnabled(): ?bool
     {
         return $this->container['mobile_enabled'];
     }
@@ -397,9 +397,9 @@ class UpdateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets name
      *
-     * @return string
+     * @return string|null
      */
-    public function getName(): string
+    public function getName(): ?string
     {
         return $this->container['name'];
     }
@@ -421,9 +421,9 @@ class UpdateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets robots
      *
-     * @return string
+     * @return string|null
      */
-    public function getRobots(): string
+    public function getRobots(): ?string
     {
         return $this->container['robots'];
     }
@@ -445,9 +445,9 @@ class UpdateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets style_over_ride
      *
-     * @return string
+     * @return string|null
      */
-    public function getStyleOverRide(): string
+    public function getStyleOverRide(): ?string
     {
         return $this->container['style_over_ride'];
     }
@@ -469,9 +469,9 @@ class UpdateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets title
      *
-     * @return string
+     * @return string|null
      */
-    public function getTitle(): string
+    public function getTitle(): ?string
     {
         return $this->container['title'];
     }
@@ -493,9 +493,9 @@ class UpdateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets url_page_name
      *
-     * @return string
+     * @return string|null
      */
-    public function getUrlPageName(): string
+    public function getUrlPageName(): ?string
     {
         return $this->container['url_page_name'];
     }

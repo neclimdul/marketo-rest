@@ -88,22 +88,6 @@ class UpdateLeadField implements ModelInterface, ArrayAccess, \JsonSerializable
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -166,6 +150,22 @@ class UpdateLeadField implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -218,9 +218,9 @@ class UpdateLeadField implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets display_name
      *
-     * @return string
+     * @return string|null
      */
-    public function getDisplayName(): string
+    public function getDisplayName(): ?string
     {
         return $this->container['display_name'];
     }
@@ -242,9 +242,9 @@ class UpdateLeadField implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->container['description'];
     }
@@ -266,9 +266,9 @@ class UpdateLeadField implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets is_hidden
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getIsHidden(): bool
+    public function getIsHidden(): ?bool
     {
         return $this->container['is_hidden'];
     }
@@ -290,9 +290,9 @@ class UpdateLeadField implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets is_html_encoding_in_email
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getIsHtmlEncodingInEmail(): bool
+    public function getIsHtmlEncodingInEmail(): ?bool
     {
         return $this->container['is_html_encoding_in_email'];
     }
@@ -314,9 +314,9 @@ class UpdateLeadField implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets is_sensitive
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getIsSensitive(): bool
+    public function getIsSensitive(): ?bool
     {
         return $this->container['is_sensitive'];
     }

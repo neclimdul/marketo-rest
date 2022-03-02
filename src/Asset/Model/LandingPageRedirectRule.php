@@ -93,22 +93,6 @@ class LandingPageRedirectRule implements ModelInterface, ArrayAccess, \JsonSeria
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -183,6 +167,22 @@ class LandingPageRedirectRule implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -222,28 +222,28 @@ class LandingPageRedirectRule implements ModelInterface, ArrayAccess, \JsonSeria
         $invalidProperties = [];
 
         if ($this->container['id'] === null) {
-            $invalidProperties[] = "'id' can't be null";
+            $invalidProperties['id'] = "'id' can't be null";
         }
         if ($this->container['redirect_from_url'] === null) {
-            $invalidProperties[] = "'redirect_from_url' can't be null";
+            $invalidProperties['redirect_from_url'] = "'redirect_from_url' can't be null";
         }
         if ($this->container['redirect_to_url'] === null) {
-            $invalidProperties[] = "'redirect_to_url' can't be null";
+            $invalidProperties['redirect_to_url'] = "'redirect_to_url' can't be null";
         }
         if ($this->container['hostname'] === null) {
-            $invalidProperties[] = "'hostname' can't be null";
+            $invalidProperties['hostname'] = "'hostname' can't be null";
         }
         if ($this->container['redirect_from'] === null) {
-            $invalidProperties[] = "'redirect_from' can't be null";
+            $invalidProperties['redirect_from'] = "'redirect_from' can't be null";
         }
         if ($this->container['redirect_to'] === null) {
-            $invalidProperties[] = "'redirect_to' can't be null";
+            $invalidProperties['redirect_to'] = "'redirect_to' can't be null";
         }
         if ($this->container['created_at'] === null) {
-            $invalidProperties[] = "'created_at' can't be null";
+            $invalidProperties['created_at'] = "'created_at' can't be null";
         }
         if ($this->container['updated_at'] === null) {
-            $invalidProperties[] = "'updated_at' can't be null";
+            $invalidProperties['updated_at'] = "'updated_at' can't be null";
         }
         return $invalidProperties;
     }

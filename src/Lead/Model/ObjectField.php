@@ -89,22 +89,6 @@ class ObjectField implements ModelInterface, ArrayAccess, \JsonSerializable
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -171,6 +155,22 @@ class ObjectField implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -223,9 +223,9 @@ class ObjectField implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets data_type
      *
-     * @return string
+     * @return string|null
      */
-    public function getDataType(): string
+    public function getDataType(): ?string
     {
         return $this->container['data_type'];
     }
@@ -247,9 +247,9 @@ class ObjectField implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets display_name
      *
-     * @return string
+     * @return string|null
      */
-    public function getDisplayName(): string
+    public function getDisplayName(): ?string
     {
         return $this->container['display_name'];
     }
@@ -271,9 +271,9 @@ class ObjectField implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets length
      *
-     * @return int
+     * @return int|null
      */
-    public function getLength(): int
+    public function getLength(): ?int
     {
         return $this->container['length'];
     }
@@ -295,9 +295,9 @@ class ObjectField implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets name
      *
-     * @return string
+     * @return string|null
      */
-    public function getName(): string
+    public function getName(): ?string
     {
         return $this->container['name'];
     }
@@ -319,9 +319,9 @@ class ObjectField implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets updateable
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getUpdateable(): bool
+    public function getUpdateable(): ?bool
     {
         return $this->container['updateable'];
     }
@@ -343,9 +343,9 @@ class ObjectField implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets crm_managed
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getCrmManaged(): bool
+    public function getCrmManaged(): ?bool
     {
         return $this->container['crm_managed'];
     }

@@ -81,22 +81,6 @@ class DateRange implements ModelInterface, ArrayAccess, \JsonSerializable
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -144,6 +128,22 @@ class DateRange implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $this->container['end_at'] = $data['end_at'] ?? null;
         $this->container['start_at'] = $data['start_at'] ?? null;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
     }
 
     /**
@@ -199,9 +199,9 @@ class DateRange implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets end_at
      *
-     * @return string
+     * @return string|null
      */
-    public function getEndAt(): string
+    public function getEndAt(): ?string
     {
         return $this->container['end_at'];
     }
@@ -223,9 +223,9 @@ class DateRange implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets start_at
      *
-     * @return string
+     * @return string|null
      */
-    public function getStartAt(): string
+    public function getStartAt(): ?string
     {
         return $this->container['start_at'];
     }

@@ -85,22 +85,6 @@ class SyncNamedAccountListRequest implements ModelInterface, ArrayAccess, \JsonS
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -155,6 +139,22 @@ class SyncNamedAccountListRequest implements ModelInterface, ArrayAccess, \JsonS
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -195,7 +195,7 @@ class SyncNamedAccountListRequest implements ModelInterface, ArrayAccess, \JsonS
 
         $allowedValues = $this->getActionAllowableValues();
         if (!is_null($this->container['action']) && !in_array($this->container['action'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
+            $invalidProperties['action'] = sprintf(
                 "invalid value '%s' for 'action', must be one of '%s'",
                 $this->container['action'],
                 implode("', '", $allowedValues)
@@ -203,7 +203,7 @@ class SyncNamedAccountListRequest implements ModelInterface, ArrayAccess, \JsonS
         }
 
         if ($this->container['input'] === null) {
-            $invalidProperties[] = "'input' can't be null";
+            $invalidProperties['input'] = "'input' can't be null";
         }
         return $invalidProperties;
     }
@@ -231,9 +231,9 @@ class SyncNamedAccountListRequest implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Gets action
      *
-     * @return string
+     * @return string|null
      */
-    public function getAction(): string
+    public function getAction(): ?string
     {
         return $this->container['action'];
     }
@@ -265,9 +265,9 @@ class SyncNamedAccountListRequest implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Gets dedupe_by
      *
-     * @return string
+     * @return string|null
      */
-    public function getDedupeBy(): string
+    public function getDedupeBy(): ?string
     {
         return $this->container['dedupe_by'];
     }

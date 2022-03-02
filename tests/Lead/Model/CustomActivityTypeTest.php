@@ -37,7 +37,7 @@ use PHPUnit\Framework\TestCase;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  *
- * @coversDefault \NecLimDul\MarketoRest\Lead\Model\CustomActivityType
+ * @coversDefaultClass \NecLimDul\MarketoRest\Lead\Model\CustomActivityType
  */
 class CustomActivityTypeTest extends TestCase
 {
@@ -46,11 +46,6 @@ class CustomActivityTypeTest extends TestCase
      * @var \NecLimDul\MarketoRest\Lead\Model\CustomActivityType
      */
     private $sot;
-
-    /**
-     * @var \Faker\Generator
-     */
-    private $faker;
 
     /**
      * @var string[]
@@ -67,7 +62,13 @@ class CustomActivityTypeTest extends TestCase
         'status' => 'string',
         'trigger_name' => 'string',
         'updated_at' => 'string',
-    ];
+];
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
     /**
      * @var scalar[][]
      */
@@ -126,7 +127,14 @@ class CustomActivityTypeTest extends TestCase
                 return new \stdClass();
         }
         if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
-            return new $type();
+            $model = new $type();
+            $types = $type::swaggerTypes();
+            foreach ($model->listInvalidProperties() as $field => $reason) {
+                // @todo get allowed values? ((getter))AllowedValues
+                // @phpstan-ignore-next-line
+                $model[$field] = $this->getFakeValue($types[$field], null);
+            }
+            return $model;
         }
         $this->markTestSkipped('This type is not mocked yet: ' . $type);
     }
@@ -138,7 +146,121 @@ class CustomActivityTypeTest extends TestCase
      */
     public function testCustomActivityType(): void
     {
-        $this->assertInstanceOf(\NecLimDul\MarketoRest\Lead\Model\CustomActivityType::class, $this->sot);
+        $this->assertInstanceOf(CustomActivityType::class, $this->sot);
+    }
+
+    /**
+     * @covers ::swaggerTypes
+     */
+    public function testSwaggerTypes(): void
+    {
+        $this->assertEquals($this->types, CustomActivityType::swaggerTypes());
+    }
+
+    /**
+     * @covers ::swaggerFormats
+     */
+    public function testSwaggerFormats(): void
+    {
+        $formats = $this->sot->swaggerFormats();
+        $this->assertEquals(null, $formats['api_name']);
+        $this->assertEquals(null, $formats['attributes']);
+        $this->assertEquals(null, $formats['created_at']);
+        $this->assertEquals(null, $formats['description']);
+        $this->assertEquals(null, $formats['filter_name']);
+        $this->assertEquals('int32', $formats['id']);
+        $this->assertEquals(null, $formats['name']);
+        $this->assertEquals(null, $formats['primary_attribute']);
+        $this->assertEquals(null, $formats['status']);
+        $this->assertEquals(null, $formats['trigger_name']);
+        $this->assertEquals(null, $formats['updated_at']);
+    }
+
+    /**
+     * @covers ::attributeMap
+     */
+    public function testAttributeMap(): void
+    {
+        $formats = $this->sot->attributeMap();
+        $this->assertEquals('apiName', $formats['api_name']);
+        $this->assertEquals('attributes', $formats['attributes']);
+        $this->assertEquals('createdAt', $formats['created_at']);
+        $this->assertEquals('description', $formats['description']);
+        $this->assertEquals('filterName', $formats['filter_name']);
+        $this->assertEquals('id', $formats['id']);
+        $this->assertEquals('name', $formats['name']);
+        $this->assertEquals('primaryAttribute', $formats['primary_attribute']);
+        $this->assertEquals('status', $formats['status']);
+        $this->assertEquals('triggerName', $formats['trigger_name']);
+        $this->assertEquals('updatedAt', $formats['updated_at']);
+    }
+
+    /**
+     * @covers ::getters
+     * @covers ::setters
+     */
+    public function testGettersSetters(): void
+    {
+        $getters = $this->sot->getters();
+        $setters = $this->sot->setters();
+        foreach (array_keys($this->types) as $field) {
+            $this->assertTrue(isset($setters[$field]));
+            $this->assertTrue(isset($getters[$field]));
+            $this->assertTrue(
+                method_exists($this->sot, $getters[$field]),
+                'Getter exists on model.'
+            );
+            $this->assertTrue(
+                method_exists($this->sot, $setters[$field]),
+                'Setter exists on model.'
+            );
+        }
+    }
+
+    /**
+     * @covers ::getModelName
+     */
+    public function testGetModelName(): void
+    {
+        $this->assertEquals('CustomActivityType', $this->sot->getModelName());
+    }
+
+    /**
+     * @covers ::listInvalidProperties
+     * @covers ::valid
+     */
+    public function testValid(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::setAdditionalProperties
+     * @covers ::setAdditionalProperty
+     * @covers ::getAdditionalProperties
+     */
+    public function testAdditionalProperties(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::jsonSerialize
+     * @covers ::__toString
+     */
+    public function testJson(): void
+    {
+        // Some minimal tests that json generates well.
+        $json = json_encode($this->sot);
+        $this->assertIsString($json, 'Json encoded');
+        $json = json_decode($json);
+        $string = json_decode((string) $this->sot);
+        $this->assertEquals(
+            $json,
+            $string
+        );
+        $this->assertInstanceOf(\stdClass::class, $json);
+        $this->assertInstanceOf(\stdClass::class, $string);
     }
 
     /**
@@ -147,6 +269,10 @@ class CustomActivityTypeTest extends TestCase
      * @covers ::__construct
      * @covers ::getApiName
      * @covers ::setApiName
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyApiName(): void
     {
@@ -157,7 +283,23 @@ class CustomActivityTypeTest extends TestCase
         );
         $this->sot->setApiName($v);
         $this->assertEquals($v, $this->sot->getApiName());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setApiName(null);
+        $this->assertNull($this->sot->getApiName());
+        $this->sot->setApiName($v);
+
+        $this->assertEquals($v, $this->sot['api_name']);
+        $v = $this->getFakeValue(
+            $this->types['api_name'],
+            $this->allowedValues['api_name'] ?? null
+        );
+        $this->sot['api_name'] = $v;
+        $this->assertEquals($v, $this->sot['api_name']);
+        $this->assertTrue(isset($this->sot['api_name']));
+        unset($this->sot['api_name']);
+        $this->assertFalse(isset($this->sot['api_name']));
+        $this->sot['api_name'] = $v;
+        $this->assertEquals($v, $this->sot['api_name']);
+        $this->assertTrue(isset($this->sot['api_name']));
     }
 
     /**
@@ -166,6 +308,10 @@ class CustomActivityTypeTest extends TestCase
      * @covers ::__construct
      * @covers ::getAttributes
      * @covers ::setAttributes
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyAttributes(): void
     {
@@ -176,7 +322,23 @@ class CustomActivityTypeTest extends TestCase
         );
         $this->sot->setAttributes($v);
         $this->assertEquals($v, $this->sot->getAttributes());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setAttributes(null);
+        $this->assertNull($this->sot->getAttributes());
+        $this->sot->setAttributes($v);
+
+        $this->assertEquals($v, $this->sot['attributes']);
+        $v = $this->getFakeValue(
+            $this->types['attributes'],
+            $this->allowedValues['attributes'] ?? null
+        );
+        $this->sot['attributes'] = $v;
+        $this->assertEquals($v, $this->sot['attributes']);
+        $this->assertTrue(isset($this->sot['attributes']));
+        unset($this->sot['attributes']);
+        $this->assertFalse(isset($this->sot['attributes']));
+        $this->sot['attributes'] = $v;
+        $this->assertEquals($v, $this->sot['attributes']);
+        $this->assertTrue(isset($this->sot['attributes']));
     }
 
     /**
@@ -185,6 +347,10 @@ class CustomActivityTypeTest extends TestCase
      * @covers ::__construct
      * @covers ::getCreatedAt
      * @covers ::setCreatedAt
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyCreatedAt(): void
     {
@@ -195,7 +361,23 @@ class CustomActivityTypeTest extends TestCase
         );
         $this->sot->setCreatedAt($v);
         $this->assertEquals($v, $this->sot->getCreatedAt());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setCreatedAt(null);
+        $this->assertNull($this->sot->getCreatedAt());
+        $this->sot->setCreatedAt($v);
+
+        $this->assertEquals($v, $this->sot['created_at']);
+        $v = $this->getFakeValue(
+            $this->types['created_at'],
+            $this->allowedValues['created_at'] ?? null
+        );
+        $this->sot['created_at'] = $v;
+        $this->assertEquals($v, $this->sot['created_at']);
+        $this->assertTrue(isset($this->sot['created_at']));
+        unset($this->sot['created_at']);
+        $this->assertFalse(isset($this->sot['created_at']));
+        $this->sot['created_at'] = $v;
+        $this->assertEquals($v, $this->sot['created_at']);
+        $this->assertTrue(isset($this->sot['created_at']));
     }
 
     /**
@@ -204,6 +386,10 @@ class CustomActivityTypeTest extends TestCase
      * @covers ::__construct
      * @covers ::getDescription
      * @covers ::setDescription
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyDescription(): void
     {
@@ -214,7 +400,23 @@ class CustomActivityTypeTest extends TestCase
         );
         $this->sot->setDescription($v);
         $this->assertEquals($v, $this->sot->getDescription());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setDescription(null);
+        $this->assertNull($this->sot->getDescription());
+        $this->sot->setDescription($v);
+
+        $this->assertEquals($v, $this->sot['description']);
+        $v = $this->getFakeValue(
+            $this->types['description'],
+            $this->allowedValues['description'] ?? null
+        );
+        $this->sot['description'] = $v;
+        $this->assertEquals($v, $this->sot['description']);
+        $this->assertTrue(isset($this->sot['description']));
+        unset($this->sot['description']);
+        $this->assertFalse(isset($this->sot['description']));
+        $this->sot['description'] = $v;
+        $this->assertEquals($v, $this->sot['description']);
+        $this->assertTrue(isset($this->sot['description']));
     }
 
     /**
@@ -223,6 +425,10 @@ class CustomActivityTypeTest extends TestCase
      * @covers ::__construct
      * @covers ::getFilterName
      * @covers ::setFilterName
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyFilterName(): void
     {
@@ -233,7 +439,23 @@ class CustomActivityTypeTest extends TestCase
         );
         $this->sot->setFilterName($v);
         $this->assertEquals($v, $this->sot->getFilterName());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setFilterName(null);
+        $this->assertNull($this->sot->getFilterName());
+        $this->sot->setFilterName($v);
+
+        $this->assertEquals($v, $this->sot['filter_name']);
+        $v = $this->getFakeValue(
+            $this->types['filter_name'],
+            $this->allowedValues['filter_name'] ?? null
+        );
+        $this->sot['filter_name'] = $v;
+        $this->assertEquals($v, $this->sot['filter_name']);
+        $this->assertTrue(isset($this->sot['filter_name']));
+        unset($this->sot['filter_name']);
+        $this->assertFalse(isset($this->sot['filter_name']));
+        $this->sot['filter_name'] = $v;
+        $this->assertEquals($v, $this->sot['filter_name']);
+        $this->assertTrue(isset($this->sot['filter_name']));
     }
 
     /**
@@ -242,6 +464,10 @@ class CustomActivityTypeTest extends TestCase
      * @covers ::__construct
      * @covers ::getId
      * @covers ::setId
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyId(): void
     {
@@ -252,7 +478,23 @@ class CustomActivityTypeTest extends TestCase
         );
         $this->sot->setId($v);
         $this->assertEquals($v, $this->sot->getId());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setId(null);
+        $this->assertNull($this->sot->getId());
+        $this->sot->setId($v);
+
+        $this->assertEquals($v, $this->sot['id']);
+        $v = $this->getFakeValue(
+            $this->types['id'],
+            $this->allowedValues['id'] ?? null
+        );
+        $this->sot['id'] = $v;
+        $this->assertEquals($v, $this->sot['id']);
+        $this->assertTrue(isset($this->sot['id']));
+        unset($this->sot['id']);
+        $this->assertFalse(isset($this->sot['id']));
+        $this->sot['id'] = $v;
+        $this->assertEquals($v, $this->sot['id']);
+        $this->assertTrue(isset($this->sot['id']));
     }
 
     /**
@@ -261,6 +503,10 @@ class CustomActivityTypeTest extends TestCase
      * @covers ::__construct
      * @covers ::getName
      * @covers ::setName
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyName(): void
     {
@@ -271,7 +517,23 @@ class CustomActivityTypeTest extends TestCase
         );
         $this->sot->setName($v);
         $this->assertEquals($v, $this->sot->getName());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setName(null);
+        $this->assertNull($this->sot->getName());
+        $this->sot->setName($v);
+
+        $this->assertEquals($v, $this->sot['name']);
+        $v = $this->getFakeValue(
+            $this->types['name'],
+            $this->allowedValues['name'] ?? null
+        );
+        $this->sot['name'] = $v;
+        $this->assertEquals($v, $this->sot['name']);
+        $this->assertTrue(isset($this->sot['name']));
+        unset($this->sot['name']);
+        $this->assertFalse(isset($this->sot['name']));
+        $this->sot['name'] = $v;
+        $this->assertEquals($v, $this->sot['name']);
+        $this->assertTrue(isset($this->sot['name']));
     }
 
     /**
@@ -280,6 +542,10 @@ class CustomActivityTypeTest extends TestCase
      * @covers ::__construct
      * @covers ::getPrimaryAttribute
      * @covers ::setPrimaryAttribute
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyPrimaryAttribute(): void
     {
@@ -290,7 +556,23 @@ class CustomActivityTypeTest extends TestCase
         );
         $this->sot->setPrimaryAttribute($v);
         $this->assertEquals($v, $this->sot->getPrimaryAttribute());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setPrimaryAttribute(null);
+        $this->assertNull($this->sot->getPrimaryAttribute());
+        $this->sot->setPrimaryAttribute($v);
+
+        $this->assertEquals($v, $this->sot['primary_attribute']);
+        $v = $this->getFakeValue(
+            $this->types['primary_attribute'],
+            $this->allowedValues['primary_attribute'] ?? null
+        );
+        $this->sot['primary_attribute'] = $v;
+        $this->assertEquals($v, $this->sot['primary_attribute']);
+        $this->assertTrue(isset($this->sot['primary_attribute']));
+        unset($this->sot['primary_attribute']);
+        $this->assertFalse(isset($this->sot['primary_attribute']));
+        $this->sot['primary_attribute'] = $v;
+        $this->assertEquals($v, $this->sot['primary_attribute']);
+        $this->assertTrue(isset($this->sot['primary_attribute']));
     }
 
     /**
@@ -299,6 +581,10 @@ class CustomActivityTypeTest extends TestCase
      * @covers ::__construct
      * @covers ::getStatus
      * @covers ::setStatus
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyStatus(): void
     {
@@ -309,7 +595,23 @@ class CustomActivityTypeTest extends TestCase
         );
         $this->sot->setStatus($v);
         $this->assertEquals($v, $this->sot->getStatus());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setStatus(null);
+        $this->assertNull($this->sot->getStatus());
+        $this->sot->setStatus($v);
+
+        $this->assertEquals($v, $this->sot['status']);
+        $v = $this->getFakeValue(
+            $this->types['status'],
+            $this->allowedValues['status'] ?? null
+        );
+        $this->sot['status'] = $v;
+        $this->assertEquals($v, $this->sot['status']);
+        $this->assertTrue(isset($this->sot['status']));
+        unset($this->sot['status']);
+        $this->assertFalse(isset($this->sot['status']));
+        $this->sot['status'] = $v;
+        $this->assertEquals($v, $this->sot['status']);
+        $this->assertTrue(isset($this->sot['status']));
     }
 
     /**
@@ -318,6 +620,10 @@ class CustomActivityTypeTest extends TestCase
      * @covers ::__construct
      * @covers ::getTriggerName
      * @covers ::setTriggerName
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyTriggerName(): void
     {
@@ -328,7 +634,23 @@ class CustomActivityTypeTest extends TestCase
         );
         $this->sot->setTriggerName($v);
         $this->assertEquals($v, $this->sot->getTriggerName());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setTriggerName(null);
+        $this->assertNull($this->sot->getTriggerName());
+        $this->sot->setTriggerName($v);
+
+        $this->assertEquals($v, $this->sot['trigger_name']);
+        $v = $this->getFakeValue(
+            $this->types['trigger_name'],
+            $this->allowedValues['trigger_name'] ?? null
+        );
+        $this->sot['trigger_name'] = $v;
+        $this->assertEquals($v, $this->sot['trigger_name']);
+        $this->assertTrue(isset($this->sot['trigger_name']));
+        unset($this->sot['trigger_name']);
+        $this->assertFalse(isset($this->sot['trigger_name']));
+        $this->sot['trigger_name'] = $v;
+        $this->assertEquals($v, $this->sot['trigger_name']);
+        $this->assertTrue(isset($this->sot['trigger_name']));
     }
 
     /**
@@ -337,6 +659,10 @@ class CustomActivityTypeTest extends TestCase
      * @covers ::__construct
      * @covers ::getUpdatedAt
      * @covers ::setUpdatedAt
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyUpdatedAt(): void
     {
@@ -347,6 +673,22 @@ class CustomActivityTypeTest extends TestCase
         );
         $this->sot->setUpdatedAt($v);
         $this->assertEquals($v, $this->sot->getUpdatedAt());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setUpdatedAt(null);
+        $this->assertNull($this->sot->getUpdatedAt());
+        $this->sot->setUpdatedAt($v);
+
+        $this->assertEquals($v, $this->sot['updated_at']);
+        $v = $this->getFakeValue(
+            $this->types['updated_at'],
+            $this->allowedValues['updated_at'] ?? null
+        );
+        $this->sot['updated_at'] = $v;
+        $this->assertEquals($v, $this->sot['updated_at']);
+        $this->assertTrue(isset($this->sot['updated_at']));
+        unset($this->sot['updated_at']);
+        $this->assertFalse(isset($this->sot['updated_at']));
+        $this->sot['updated_at'] = $v;
+        $this->assertEquals($v, $this->sot['updated_at']);
+        $this->assertTrue(isset($this->sot['updated_at']));
     }
 }

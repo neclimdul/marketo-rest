@@ -87,22 +87,6 @@ class ResponseWithoutResult implements ModelInterface, ArrayAccess, \JsonSeriali
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -165,6 +149,22 @@ class ResponseWithoutResult implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -204,10 +204,10 @@ class ResponseWithoutResult implements ModelInterface, ArrayAccess, \JsonSeriali
         $invalidProperties = [];
 
         if ($this->container['request_id'] === null) {
-            $invalidProperties[] = "'request_id' can't be null";
+            $invalidProperties['request_id'] = "'request_id' can't be null";
         }
         if ($this->container['success'] === null) {
-            $invalidProperties[] = "'success' can't be null";
+            $invalidProperties['success'] = "'success' can't be null";
         }
         return $invalidProperties;
     }
@@ -223,9 +223,9 @@ class ResponseWithoutResult implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets errors
      *
-     * @return \NecLimDul\MarketoRest\Lead\Model\Error[]
+     * @return \NecLimDul\MarketoRest\Lead\Model\Error[]|null
      */
-    public function getErrors(): array
+    public function getErrors(): ?array
     {
         return $this->container['errors'];
     }
@@ -247,9 +247,9 @@ class ResponseWithoutResult implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets next_page_token
      *
-     * @return string
+     * @return string|null
      */
-    public function getNextPageToken(): string
+    public function getNextPageToken(): ?string
     {
         return $this->container['next_page_token'];
     }
@@ -319,9 +319,9 @@ class ResponseWithoutResult implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets warnings
      *
-     * @return \NecLimDul\MarketoRest\Lead\Model\Warning[]
+     * @return \NecLimDul\MarketoRest\Lead\Model\Warning[]|null
      */
-    public function getWarnings(): array
+    public function getWarnings(): ?array
     {
         return $this->container['warnings'];
     }

@@ -37,7 +37,7 @@ use PHPUnit\Framework\TestCase;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  *
- * @coversDefault \NecLimDul\MarketoRest\Lead\Model\InputStreamRangeContent
+ * @coversDefaultClass \NecLimDul\MarketoRest\Lead\Model\InputStreamRangeContent
  */
 class InputStreamRangeContentTest extends TestCase
 {
@@ -48,11 +48,6 @@ class InputStreamRangeContentTest extends TestCase
     private $sot;
 
     /**
-     * @var \Faker\Generator
-     */
-    private $faker;
-
-    /**
      * @var string[]
      */
     private $types = [
@@ -60,7 +55,13 @@ class InputStreamRangeContentTest extends TestCase
         'file_range' => '\NecLimDul\MarketoRest\Lead\Model\FileRange',
         'input_stream' => '\NecLimDul\MarketoRest\Lead\Model\InputStream',
         'length' => 'int',
-    ];
+];
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
     /**
      * @var scalar[][]
      */
@@ -113,7 +114,14 @@ class InputStreamRangeContentTest extends TestCase
                 return new \stdClass();
         }
         if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
-            return new $type();
+            $model = new $type();
+            $types = $type::swaggerTypes();
+            foreach ($model->listInvalidProperties() as $field => $reason) {
+                // @todo get allowed values? ((getter))AllowedValues
+                // @phpstan-ignore-next-line
+                $model[$field] = $this->getFakeValue($types[$field], null);
+            }
+            return $model;
         }
         $this->markTestSkipped('This type is not mocked yet: ' . $type);
     }
@@ -125,7 +133,107 @@ class InputStreamRangeContentTest extends TestCase
      */
     public function testInputStreamRangeContent(): void
     {
-        $this->assertInstanceOf(\NecLimDul\MarketoRest\Lead\Model\InputStreamRangeContent::class, $this->sot);
+        $this->assertInstanceOf(InputStreamRangeContent::class, $this->sot);
+    }
+
+    /**
+     * @covers ::swaggerTypes
+     */
+    public function testSwaggerTypes(): void
+    {
+        $this->assertEquals($this->types, InputStreamRangeContent::swaggerTypes());
+    }
+
+    /**
+     * @covers ::swaggerFormats
+     */
+    public function testSwaggerFormats(): void
+    {
+        $formats = $this->sot->swaggerFormats();
+        $this->assertEquals(null, $formats['content_type']);
+        $this->assertEquals(null, $formats['file_range']);
+        $this->assertEquals(null, $formats['input_stream']);
+        $this->assertEquals('int64', $formats['length']);
+    }
+
+    /**
+     * @covers ::attributeMap
+     */
+    public function testAttributeMap(): void
+    {
+        $formats = $this->sot->attributeMap();
+        $this->assertEquals('contentType', $formats['content_type']);
+        $this->assertEquals('fileRange', $formats['file_range']);
+        $this->assertEquals('inputStream', $formats['input_stream']);
+        $this->assertEquals('length', $formats['length']);
+    }
+
+    /**
+     * @covers ::getters
+     * @covers ::setters
+     */
+    public function testGettersSetters(): void
+    {
+        $getters = $this->sot->getters();
+        $setters = $this->sot->setters();
+        foreach (array_keys($this->types) as $field) {
+            $this->assertTrue(isset($setters[$field]));
+            $this->assertTrue(isset($getters[$field]));
+            $this->assertTrue(
+                method_exists($this->sot, $getters[$field]),
+                'Getter exists on model.'
+            );
+            $this->assertTrue(
+                method_exists($this->sot, $setters[$field]),
+                'Setter exists on model.'
+            );
+        }
+    }
+
+    /**
+     * @covers ::getModelName
+     */
+    public function testGetModelName(): void
+    {
+        $this->assertEquals('InputStreamRangeContent', $this->sot->getModelName());
+    }
+
+    /**
+     * @covers ::listInvalidProperties
+     * @covers ::valid
+     */
+    public function testValid(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::setAdditionalProperties
+     * @covers ::setAdditionalProperty
+     * @covers ::getAdditionalProperties
+     */
+    public function testAdditionalProperties(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::jsonSerialize
+     * @covers ::__toString
+     */
+    public function testJson(): void
+    {
+        // Some minimal tests that json generates well.
+        $json = json_encode($this->sot);
+        $this->assertIsString($json, 'Json encoded');
+        $json = json_decode($json);
+        $string = json_decode((string) $this->sot);
+        $this->assertEquals(
+            $json,
+            $string
+        );
+        $this->assertInstanceOf(\stdClass::class, $json);
+        $this->assertInstanceOf(\stdClass::class, $string);
     }
 
     /**
@@ -134,6 +242,10 @@ class InputStreamRangeContentTest extends TestCase
      * @covers ::__construct
      * @covers ::getContentType
      * @covers ::setContentType
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyContentType(): void
     {
@@ -144,7 +256,23 @@ class InputStreamRangeContentTest extends TestCase
         );
         $this->sot->setContentType($v);
         $this->assertEquals($v, $this->sot->getContentType());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setContentType(null);
+        $this->assertNull($this->sot->getContentType());
+        $this->sot->setContentType($v);
+
+        $this->assertEquals($v, $this->sot['content_type']);
+        $v = $this->getFakeValue(
+            $this->types['content_type'],
+            $this->allowedValues['content_type'] ?? null
+        );
+        $this->sot['content_type'] = $v;
+        $this->assertEquals($v, $this->sot['content_type']);
+        $this->assertTrue(isset($this->sot['content_type']));
+        unset($this->sot['content_type']);
+        $this->assertFalse(isset($this->sot['content_type']));
+        $this->sot['content_type'] = $v;
+        $this->assertEquals($v, $this->sot['content_type']);
+        $this->assertTrue(isset($this->sot['content_type']));
     }
 
     /**
@@ -153,6 +281,10 @@ class InputStreamRangeContentTest extends TestCase
      * @covers ::__construct
      * @covers ::getFileRange
      * @covers ::setFileRange
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyFileRange(): void
     {
@@ -163,7 +295,23 @@ class InputStreamRangeContentTest extends TestCase
         );
         $this->sot->setFileRange($v);
         $this->assertEquals($v, $this->sot->getFileRange());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setFileRange(null);
+        $this->assertNull($this->sot->getFileRange());
+        $this->sot->setFileRange($v);
+
+        $this->assertEquals($v, $this->sot['file_range']);
+        $v = $this->getFakeValue(
+            $this->types['file_range'],
+            $this->allowedValues['file_range'] ?? null
+        );
+        $this->sot['file_range'] = $v;
+        $this->assertEquals($v, $this->sot['file_range']);
+        $this->assertTrue(isset($this->sot['file_range']));
+        unset($this->sot['file_range']);
+        $this->assertFalse(isset($this->sot['file_range']));
+        $this->sot['file_range'] = $v;
+        $this->assertEquals($v, $this->sot['file_range']);
+        $this->assertTrue(isset($this->sot['file_range']));
     }
 
     /**
@@ -172,6 +320,10 @@ class InputStreamRangeContentTest extends TestCase
      * @covers ::__construct
      * @covers ::getInputStream
      * @covers ::setInputStream
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyInputStream(): void
     {
@@ -182,7 +334,23 @@ class InputStreamRangeContentTest extends TestCase
         );
         $this->sot->setInputStream($v);
         $this->assertEquals($v, $this->sot->getInputStream());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setInputStream(null);
+        $this->assertNull($this->sot->getInputStream());
+        $this->sot->setInputStream($v);
+
+        $this->assertEquals($v, $this->sot['input_stream']);
+        $v = $this->getFakeValue(
+            $this->types['input_stream'],
+            $this->allowedValues['input_stream'] ?? null
+        );
+        $this->sot['input_stream'] = $v;
+        $this->assertEquals($v, $this->sot['input_stream']);
+        $this->assertTrue(isset($this->sot['input_stream']));
+        unset($this->sot['input_stream']);
+        $this->assertFalse(isset($this->sot['input_stream']));
+        $this->sot['input_stream'] = $v;
+        $this->assertEquals($v, $this->sot['input_stream']);
+        $this->assertTrue(isset($this->sot['input_stream']));
     }
 
     /**
@@ -191,6 +359,10 @@ class InputStreamRangeContentTest extends TestCase
      * @covers ::__construct
      * @covers ::getLength
      * @covers ::setLength
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyLength(): void
     {
@@ -201,6 +373,22 @@ class InputStreamRangeContentTest extends TestCase
         );
         $this->sot->setLength($v);
         $this->assertEquals($v, $this->sot->getLength());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setLength(null);
+        $this->assertNull($this->sot->getLength());
+        $this->sot->setLength($v);
+
+        $this->assertEquals($v, $this->sot['length']);
+        $v = $this->getFakeValue(
+            $this->types['length'],
+            $this->allowedValues['length'] ?? null
+        );
+        $this->sot['length'] = $v;
+        $this->assertEquals($v, $this->sot['length']);
+        $this->assertTrue(isset($this->sot['length']));
+        unset($this->sot['length']);
+        $this->assertFalse(isset($this->sot['length']));
+        $this->sot['length'] = $v;
+        $this->assertEquals($v, $this->sot['length']);
+        $this->assertTrue(isset($this->sot['length']));
     }
 }

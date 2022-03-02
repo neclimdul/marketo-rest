@@ -95,22 +95,6 @@ class Activity implements ModelInterface, ArrayAccess, \JsonSerializable
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -189,6 +173,22 @@ class Activity implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -228,19 +228,19 @@ class Activity implements ModelInterface, ArrayAccess, \JsonSerializable
         $invalidProperties = [];
 
         if ($this->container['activity_date'] === null) {
-            $invalidProperties[] = "'activity_date' can't be null";
+            $invalidProperties['activity_date'] = "'activity_date' can't be null";
         }
         if ($this->container['activity_type_id'] === null) {
-            $invalidProperties[] = "'activity_type_id' can't be null";
+            $invalidProperties['activity_type_id'] = "'activity_type_id' can't be null";
         }
         if ($this->container['attributes'] === null) {
-            $invalidProperties[] = "'attributes' can't be null";
+            $invalidProperties['attributes'] = "'attributes' can't be null";
         }
         if ($this->container['id'] === null) {
-            $invalidProperties[] = "'id' can't be null";
+            $invalidProperties['id'] = "'id' can't be null";
         }
         if ($this->container['lead_id'] === null) {
-            $invalidProperties[] = "'lead_id' can't be null";
+            $invalidProperties['lead_id'] = "'lead_id' can't be null";
         }
         return $invalidProperties;
     }
@@ -328,9 +328,9 @@ class Activity implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets campaign_id
      *
-     * @return int
+     * @return int|null
      */
-    public function getCampaignId(): int
+    public function getCampaignId(): ?int
     {
         return $this->container['campaign_id'];
     }
@@ -400,9 +400,9 @@ class Activity implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets marketo_guid
      *
-     * @return string
+     * @return string|null
      */
-    public function getMarketoGuid(): string
+    public function getMarketoGuid(): ?string
     {
         return $this->container['marketo_guid'];
     }
@@ -424,9 +424,9 @@ class Activity implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets primary_attribute_value
      *
-     * @return string
+     * @return string|null
      */
-    public function getPrimaryAttributeValue(): string
+    public function getPrimaryAttributeValue(): ?string
     {
         return $this->container['primary_attribute_value'];
     }
@@ -448,9 +448,9 @@ class Activity implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets primary_attribute_value_id
      *
-     * @return int
+     * @return int|null
      */
-    public function getPrimaryAttributeValueId(): int
+    public function getPrimaryAttributeValueId(): ?int
     {
         return $this->container['primary_attribute_value_id'];
     }

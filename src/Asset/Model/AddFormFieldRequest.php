@@ -119,22 +119,6 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -261,6 +245,22 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -300,7 +300,7 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
         $invalidProperties = [];
 
         if ($this->container['field_id'] === null) {
-            $invalidProperties[] = "'field_id' can't be null";
+            $invalidProperties['field_id'] = "'field_id' can't be null";
         }
         return $invalidProperties;
     }
@@ -316,9 +316,9 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets blank_fields
      *
-     * @return int
+     * @return int|null
      */
-    public function getBlankFields(): int
+    public function getBlankFields(): ?int
     {
         return $this->container['blank_fields'];
     }
@@ -340,9 +340,9 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets default_value
      *
-     * @return string
+     * @return string|null
      */
-    public function getDefaultValue(): string
+    public function getDefaultValue(): ?string
     {
         return $this->container['default_value'];
     }
@@ -388,9 +388,9 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets field_width
      *
-     * @return int
+     * @return int|null
      */
-    public function getFieldWidth(): int
+    public function getFieldWidth(): ?int
     {
         return $this->container['field_width'];
     }
@@ -412,9 +412,9 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets form_prefill
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getFormPrefill(): bool
+    public function getFormPrefill(): ?bool
     {
         return $this->container['form_prefill'];
     }
@@ -436,9 +436,9 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets is_sensitive
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getIsSensitive(): bool
+    public function getIsSensitive(): ?bool
     {
         return $this->container['is_sensitive'];
     }
@@ -460,9 +460,9 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets hint_text
      *
-     * @return string
+     * @return string|null
      */
-    public function getHintText(): string
+    public function getHintText(): ?string
     {
         return $this->container['hint_text'];
     }
@@ -484,9 +484,9 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets initially_checked
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getInitiallyChecked(): bool
+    public function getInitiallyChecked(): ?bool
     {
         return $this->container['initially_checked'];
     }
@@ -508,9 +508,9 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets instructions
      *
-     * @return string
+     * @return string|null
      */
-    public function getInstructions(): string
+    public function getInstructions(): ?string
     {
         return $this->container['instructions'];
     }
@@ -532,9 +532,9 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets label
      *
-     * @return string
+     * @return string|null
      */
-    public function getLabel(): string
+    public function getLabel(): ?string
     {
         return $this->container['label'];
     }
@@ -556,9 +556,9 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets label_to_right
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getLabelToRight(): bool
+    public function getLabelToRight(): ?bool
     {
         return $this->container['label_to_right'];
     }
@@ -580,9 +580,9 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets label_width
      *
-     * @return int
+     * @return int|null
      */
-    public function getLabelWidth(): int
+    public function getLabelWidth(): ?int
     {
         return $this->container['label_width'];
     }
@@ -604,9 +604,9 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets mask_input
      *
-     * @return string
+     * @return string|null
      */
-    public function getMaskInput(): string
+    public function getMaskInput(): ?string
     {
         return $this->container['mask_input'];
     }
@@ -628,9 +628,9 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets max_length
      *
-     * @return int
+     * @return int|null
      */
-    public function getMaxLength(): int
+    public function getMaxLength(): ?int
     {
         return $this->container['max_length'];
     }
@@ -652,9 +652,9 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets max_value
      *
-     * @return float
+     * @return float|null
      */
-    public function getMaxValue(): float
+    public function getMaxValue(): ?float
     {
         return $this->container['max_value'];
     }
@@ -676,9 +676,9 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets min_value
      *
-     * @return float
+     * @return float|null
      */
-    public function getMinValue(): float
+    public function getMinValue(): ?float
     {
         return $this->container['min_value'];
     }
@@ -700,9 +700,9 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets multi_select
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getMultiSelect(): bool
+    public function getMultiSelect(): ?bool
     {
         return $this->container['multi_select'];
     }
@@ -724,9 +724,9 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets required
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getRequired(): bool
+    public function getRequired(): ?bool
     {
         return $this->container['required'];
     }
@@ -748,9 +748,9 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets validation_message
      *
-     * @return string
+     * @return string|null
      */
-    public function getValidationMessage(): string
+    public function getValidationMessage(): ?string
     {
         return $this->container['validation_message'];
     }
@@ -772,9 +772,9 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets values
      *
-     * @return string
+     * @return string|null
      */
-    public function getValues(): string
+    public function getValues(): ?string
     {
         return $this->container['values'];
     }
@@ -796,9 +796,9 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets visible_lines
      *
-     * @return int
+     * @return int|null
      */
-    public function getVisibleLines(): int
+    public function getVisibleLines(): ?int
     {
         return $this->container['visible_lines'];
     }

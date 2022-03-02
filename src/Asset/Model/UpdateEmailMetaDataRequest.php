@@ -91,22 +91,6 @@ class UpdateEmailMetaDataRequest implements ModelInterface, ArrayAccess, \JsonSe
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -177,6 +161,22 @@ class UpdateEmailMetaDataRequest implements ModelInterface, ArrayAccess, \JsonSe
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -229,9 +229,9 @@ class UpdateEmailMetaDataRequest implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->container['description'];
     }
@@ -253,9 +253,9 @@ class UpdateEmailMetaDataRequest implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Gets name
      *
-     * @return string
+     * @return string|null
      */
-    public function getName(): string
+    public function getName(): ?string
     {
         return $this->container['name'];
     }
@@ -277,9 +277,9 @@ class UpdateEmailMetaDataRequest implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Gets pre_header
      *
-     * @return string
+     * @return string|null
      */
-    public function getPreHeader(): string
+    public function getPreHeader(): ?string
     {
         return $this->container['pre_header'];
     }
@@ -301,9 +301,9 @@ class UpdateEmailMetaDataRequest implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Gets operational
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getOperational(): bool
+    public function getOperational(): ?bool
     {
         return $this->container['operational'];
     }
@@ -325,9 +325,9 @@ class UpdateEmailMetaDataRequest implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Gets published
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getPublished(): bool
+    public function getPublished(): ?bool
     {
         return $this->container['published'];
     }
@@ -349,9 +349,9 @@ class UpdateEmailMetaDataRequest implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Gets text_only
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getTextOnly(): bool
+    public function getTextOnly(): ?bool
     {
         return $this->container['text_only'];
     }
@@ -373,9 +373,9 @@ class UpdateEmailMetaDataRequest implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Gets web_view
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getWebView(): bool
+    public function getWebView(): ?bool
     {
         return $this->container['web_view'];
     }

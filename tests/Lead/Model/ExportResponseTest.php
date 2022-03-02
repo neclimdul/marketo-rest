@@ -37,7 +37,7 @@ use PHPUnit\Framework\TestCase;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  *
- * @coversDefault \NecLimDul\MarketoRest\Lead\Model\ExportResponse
+ * @coversDefaultClass \NecLimDul\MarketoRest\Lead\Model\ExportResponse
  */
 class ExportResponseTest extends TestCase
 {
@@ -46,11 +46,6 @@ class ExportResponseTest extends TestCase
      * @var \NecLimDul\MarketoRest\Lead\Model\ExportResponse
      */
     private $sot;
-
-    /**
-     * @var \Faker\Generator
-     */
-    private $faker;
 
     /**
      * @var string[]
@@ -67,7 +62,13 @@ class ExportResponseTest extends TestCase
         'queued_at' => '\DateTime',
         'started_at' => '\DateTime',
         'status' => 'string',
-    ];
+];
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
     /**
      * @var scalar[][]
      */
@@ -120,7 +121,14 @@ class ExportResponseTest extends TestCase
                 return new \stdClass();
         }
         if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
-            return new $type();
+            $model = new $type();
+            $types = $type::swaggerTypes();
+            foreach ($model->listInvalidProperties() as $field => $reason) {
+                // @todo get allowed values? ((getter))AllowedValues
+                // @phpstan-ignore-next-line
+                $model[$field] = $this->getFakeValue($types[$field], null);
+            }
+            return $model;
         }
         $this->markTestSkipped('This type is not mocked yet: ' . $type);
     }
@@ -132,7 +140,121 @@ class ExportResponseTest extends TestCase
      */
     public function testExportResponse(): void
     {
-        $this->assertInstanceOf(\NecLimDul\MarketoRest\Lead\Model\ExportResponse::class, $this->sot);
+        $this->assertInstanceOf(ExportResponse::class, $this->sot);
+    }
+
+    /**
+     * @covers ::swaggerTypes
+     */
+    public function testSwaggerTypes(): void
+    {
+        $this->assertEquals($this->types, ExportResponse::swaggerTypes());
+    }
+
+    /**
+     * @covers ::swaggerFormats
+     */
+    public function testSwaggerFormats(): void
+    {
+        $formats = $this->sot->swaggerFormats();
+        $this->assertEquals('date-time', $formats['created_at']);
+        $this->assertEquals(null, $formats['error_msg']);
+        $this->assertEquals(null, $formats['export_id']);
+        $this->assertEquals('int64', $formats['file_size']);
+        $this->assertEquals(null, $formats['file_checksum']);
+        $this->assertEquals('date-time', $formats['finished_at']);
+        $this->assertEquals(null, $formats['format']);
+        $this->assertEquals('int64', $formats['number_of_records']);
+        $this->assertEquals('date-time', $formats['queued_at']);
+        $this->assertEquals('date-time', $formats['started_at']);
+        $this->assertEquals(null, $formats['status']);
+    }
+
+    /**
+     * @covers ::attributeMap
+     */
+    public function testAttributeMap(): void
+    {
+        $formats = $this->sot->attributeMap();
+        $this->assertEquals('createdAt', $formats['created_at']);
+        $this->assertEquals('errorMsg', $formats['error_msg']);
+        $this->assertEquals('exportId', $formats['export_id']);
+        $this->assertEquals('fileSize', $formats['file_size']);
+        $this->assertEquals('fileChecksum', $formats['file_checksum']);
+        $this->assertEquals('finishedAt', $formats['finished_at']);
+        $this->assertEquals('format', $formats['format']);
+        $this->assertEquals('numberOfRecords', $formats['number_of_records']);
+        $this->assertEquals('queuedAt', $formats['queued_at']);
+        $this->assertEquals('startedAt', $formats['started_at']);
+        $this->assertEquals('status', $formats['status']);
+    }
+
+    /**
+     * @covers ::getters
+     * @covers ::setters
+     */
+    public function testGettersSetters(): void
+    {
+        $getters = $this->sot->getters();
+        $setters = $this->sot->setters();
+        foreach (array_keys($this->types) as $field) {
+            $this->assertTrue(isset($setters[$field]));
+            $this->assertTrue(isset($getters[$field]));
+            $this->assertTrue(
+                method_exists($this->sot, $getters[$field]),
+                'Getter exists on model.'
+            );
+            $this->assertTrue(
+                method_exists($this->sot, $setters[$field]),
+                'Setter exists on model.'
+            );
+        }
+    }
+
+    /**
+     * @covers ::getModelName
+     */
+    public function testGetModelName(): void
+    {
+        $this->assertEquals('ExportResponse', $this->sot->getModelName());
+    }
+
+    /**
+     * @covers ::listInvalidProperties
+     * @covers ::valid
+     */
+    public function testValid(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::setAdditionalProperties
+     * @covers ::setAdditionalProperty
+     * @covers ::getAdditionalProperties
+     */
+    public function testAdditionalProperties(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::jsonSerialize
+     * @covers ::__toString
+     */
+    public function testJson(): void
+    {
+        // Some minimal tests that json generates well.
+        $json = json_encode($this->sot);
+        $this->assertIsString($json, 'Json encoded');
+        $json = json_decode($json);
+        $string = json_decode((string) $this->sot);
+        $this->assertEquals(
+            $json,
+            $string
+        );
+        $this->assertInstanceOf(\stdClass::class, $json);
+        $this->assertInstanceOf(\stdClass::class, $string);
     }
 
     /**
@@ -141,6 +263,10 @@ class ExportResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getCreatedAt
      * @covers ::setCreatedAt
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyCreatedAt(): void
     {
@@ -151,7 +277,23 @@ class ExportResponseTest extends TestCase
         );
         $this->sot->setCreatedAt($v);
         $this->assertEquals($v, $this->sot->getCreatedAt());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setCreatedAt(null);
+        $this->assertNull($this->sot->getCreatedAt());
+        $this->sot->setCreatedAt($v);
+
+        $this->assertEquals($v, $this->sot['created_at']);
+        $v = $this->getFakeValue(
+            $this->types['created_at'],
+            $this->allowedValues['created_at'] ?? null
+        );
+        $this->sot['created_at'] = $v;
+        $this->assertEquals($v, $this->sot['created_at']);
+        $this->assertTrue(isset($this->sot['created_at']));
+        unset($this->sot['created_at']);
+        $this->assertFalse(isset($this->sot['created_at']));
+        $this->sot['created_at'] = $v;
+        $this->assertEquals($v, $this->sot['created_at']);
+        $this->assertTrue(isset($this->sot['created_at']));
     }
 
     /**
@@ -160,6 +302,10 @@ class ExportResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getErrorMsg
      * @covers ::setErrorMsg
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyErrorMsg(): void
     {
@@ -170,7 +316,23 @@ class ExportResponseTest extends TestCase
         );
         $this->sot->setErrorMsg($v);
         $this->assertEquals($v, $this->sot->getErrorMsg());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setErrorMsg(null);
+        $this->assertNull($this->sot->getErrorMsg());
+        $this->sot->setErrorMsg($v);
+
+        $this->assertEquals($v, $this->sot['error_msg']);
+        $v = $this->getFakeValue(
+            $this->types['error_msg'],
+            $this->allowedValues['error_msg'] ?? null
+        );
+        $this->sot['error_msg'] = $v;
+        $this->assertEquals($v, $this->sot['error_msg']);
+        $this->assertTrue(isset($this->sot['error_msg']));
+        unset($this->sot['error_msg']);
+        $this->assertFalse(isset($this->sot['error_msg']));
+        $this->sot['error_msg'] = $v;
+        $this->assertEquals($v, $this->sot['error_msg']);
+        $this->assertTrue(isset($this->sot['error_msg']));
     }
 
     /**
@@ -179,6 +341,10 @@ class ExportResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getExportId
      * @covers ::setExportId
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyExportId(): void
     {
@@ -189,7 +355,20 @@ class ExportResponseTest extends TestCase
         );
         $this->sot->setExportId($v);
         $this->assertEquals($v, $this->sot->getExportId());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['export_id']);
+        $v = $this->getFakeValue(
+            $this->types['export_id'],
+            $this->allowedValues['export_id'] ?? null
+        );
+        $this->sot['export_id'] = $v;
+        $this->assertEquals($v, $this->sot['export_id']);
+        $this->assertTrue(isset($this->sot['export_id']));
+        unset($this->sot['export_id']);
+        $this->assertFalse(isset($this->sot['export_id']));
+        $this->sot['export_id'] = $v;
+        $this->assertEquals($v, $this->sot['export_id']);
+        $this->assertTrue(isset($this->sot['export_id']));
     }
 
     /**
@@ -198,6 +377,10 @@ class ExportResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getFileSize
      * @covers ::setFileSize
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyFileSize(): void
     {
@@ -208,7 +391,23 @@ class ExportResponseTest extends TestCase
         );
         $this->sot->setFileSize($v);
         $this->assertEquals($v, $this->sot->getFileSize());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setFileSize(null);
+        $this->assertNull($this->sot->getFileSize());
+        $this->sot->setFileSize($v);
+
+        $this->assertEquals($v, $this->sot['file_size']);
+        $v = $this->getFakeValue(
+            $this->types['file_size'],
+            $this->allowedValues['file_size'] ?? null
+        );
+        $this->sot['file_size'] = $v;
+        $this->assertEquals($v, $this->sot['file_size']);
+        $this->assertTrue(isset($this->sot['file_size']));
+        unset($this->sot['file_size']);
+        $this->assertFalse(isset($this->sot['file_size']));
+        $this->sot['file_size'] = $v;
+        $this->assertEquals($v, $this->sot['file_size']);
+        $this->assertTrue(isset($this->sot['file_size']));
     }
 
     /**
@@ -217,6 +416,10 @@ class ExportResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getFileChecksum
      * @covers ::setFileChecksum
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyFileChecksum(): void
     {
@@ -227,7 +430,23 @@ class ExportResponseTest extends TestCase
         );
         $this->sot->setFileChecksum($v);
         $this->assertEquals($v, $this->sot->getFileChecksum());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setFileChecksum(null);
+        $this->assertNull($this->sot->getFileChecksum());
+        $this->sot->setFileChecksum($v);
+
+        $this->assertEquals($v, $this->sot['file_checksum']);
+        $v = $this->getFakeValue(
+            $this->types['file_checksum'],
+            $this->allowedValues['file_checksum'] ?? null
+        );
+        $this->sot['file_checksum'] = $v;
+        $this->assertEquals($v, $this->sot['file_checksum']);
+        $this->assertTrue(isset($this->sot['file_checksum']));
+        unset($this->sot['file_checksum']);
+        $this->assertFalse(isset($this->sot['file_checksum']));
+        $this->sot['file_checksum'] = $v;
+        $this->assertEquals($v, $this->sot['file_checksum']);
+        $this->assertTrue(isset($this->sot['file_checksum']));
     }
 
     /**
@@ -236,6 +455,10 @@ class ExportResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getFinishedAt
      * @covers ::setFinishedAt
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyFinishedAt(): void
     {
@@ -246,7 +469,23 @@ class ExportResponseTest extends TestCase
         );
         $this->sot->setFinishedAt($v);
         $this->assertEquals($v, $this->sot->getFinishedAt());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setFinishedAt(null);
+        $this->assertNull($this->sot->getFinishedAt());
+        $this->sot->setFinishedAt($v);
+
+        $this->assertEquals($v, $this->sot['finished_at']);
+        $v = $this->getFakeValue(
+            $this->types['finished_at'],
+            $this->allowedValues['finished_at'] ?? null
+        );
+        $this->sot['finished_at'] = $v;
+        $this->assertEquals($v, $this->sot['finished_at']);
+        $this->assertTrue(isset($this->sot['finished_at']));
+        unset($this->sot['finished_at']);
+        $this->assertFalse(isset($this->sot['finished_at']));
+        $this->sot['finished_at'] = $v;
+        $this->assertEquals($v, $this->sot['finished_at']);
+        $this->assertTrue(isset($this->sot['finished_at']));
     }
 
     /**
@@ -255,6 +494,10 @@ class ExportResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getFormat
      * @covers ::setFormat
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyFormat(): void
     {
@@ -265,7 +508,23 @@ class ExportResponseTest extends TestCase
         );
         $this->sot->setFormat($v);
         $this->assertEquals($v, $this->sot->getFormat());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setFormat(null);
+        $this->assertNull($this->sot->getFormat());
+        $this->sot->setFormat($v);
+
+        $this->assertEquals($v, $this->sot['format']);
+        $v = $this->getFakeValue(
+            $this->types['format'],
+            $this->allowedValues['format'] ?? null
+        );
+        $this->sot['format'] = $v;
+        $this->assertEquals($v, $this->sot['format']);
+        $this->assertTrue(isset($this->sot['format']));
+        unset($this->sot['format']);
+        $this->assertFalse(isset($this->sot['format']));
+        $this->sot['format'] = $v;
+        $this->assertEquals($v, $this->sot['format']);
+        $this->assertTrue(isset($this->sot['format']));
     }
 
     /**
@@ -274,6 +533,10 @@ class ExportResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getNumberOfRecords
      * @covers ::setNumberOfRecords
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyNumberOfRecords(): void
     {
@@ -284,7 +547,23 @@ class ExportResponseTest extends TestCase
         );
         $this->sot->setNumberOfRecords($v);
         $this->assertEquals($v, $this->sot->getNumberOfRecords());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setNumberOfRecords(null);
+        $this->assertNull($this->sot->getNumberOfRecords());
+        $this->sot->setNumberOfRecords($v);
+
+        $this->assertEquals($v, $this->sot['number_of_records']);
+        $v = $this->getFakeValue(
+            $this->types['number_of_records'],
+            $this->allowedValues['number_of_records'] ?? null
+        );
+        $this->sot['number_of_records'] = $v;
+        $this->assertEquals($v, $this->sot['number_of_records']);
+        $this->assertTrue(isset($this->sot['number_of_records']));
+        unset($this->sot['number_of_records']);
+        $this->assertFalse(isset($this->sot['number_of_records']));
+        $this->sot['number_of_records'] = $v;
+        $this->assertEquals($v, $this->sot['number_of_records']);
+        $this->assertTrue(isset($this->sot['number_of_records']));
     }
 
     /**
@@ -293,6 +572,10 @@ class ExportResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getQueuedAt
      * @covers ::setQueuedAt
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyQueuedAt(): void
     {
@@ -303,7 +586,23 @@ class ExportResponseTest extends TestCase
         );
         $this->sot->setQueuedAt($v);
         $this->assertEquals($v, $this->sot->getQueuedAt());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setQueuedAt(null);
+        $this->assertNull($this->sot->getQueuedAt());
+        $this->sot->setQueuedAt($v);
+
+        $this->assertEquals($v, $this->sot['queued_at']);
+        $v = $this->getFakeValue(
+            $this->types['queued_at'],
+            $this->allowedValues['queued_at'] ?? null
+        );
+        $this->sot['queued_at'] = $v;
+        $this->assertEquals($v, $this->sot['queued_at']);
+        $this->assertTrue(isset($this->sot['queued_at']));
+        unset($this->sot['queued_at']);
+        $this->assertFalse(isset($this->sot['queued_at']));
+        $this->sot['queued_at'] = $v;
+        $this->assertEquals($v, $this->sot['queued_at']);
+        $this->assertTrue(isset($this->sot['queued_at']));
     }
 
     /**
@@ -312,6 +611,10 @@ class ExportResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getStartedAt
      * @covers ::setStartedAt
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyStartedAt(): void
     {
@@ -322,7 +625,23 @@ class ExportResponseTest extends TestCase
         );
         $this->sot->setStartedAt($v);
         $this->assertEquals($v, $this->sot->getStartedAt());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setStartedAt(null);
+        $this->assertNull($this->sot->getStartedAt());
+        $this->sot->setStartedAt($v);
+
+        $this->assertEquals($v, $this->sot['started_at']);
+        $v = $this->getFakeValue(
+            $this->types['started_at'],
+            $this->allowedValues['started_at'] ?? null
+        );
+        $this->sot['started_at'] = $v;
+        $this->assertEquals($v, $this->sot['started_at']);
+        $this->assertTrue(isset($this->sot['started_at']));
+        unset($this->sot['started_at']);
+        $this->assertFalse(isset($this->sot['started_at']));
+        $this->sot['started_at'] = $v;
+        $this->assertEquals($v, $this->sot['started_at']);
+        $this->assertTrue(isset($this->sot['started_at']));
     }
 
     /**
@@ -331,6 +650,10 @@ class ExportResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getStatus
      * @covers ::setStatus
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyStatus(): void
     {
@@ -341,6 +664,19 @@ class ExportResponseTest extends TestCase
         );
         $this->sot->setStatus($v);
         $this->assertEquals($v, $this->sot->getStatus());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['status']);
+        $v = $this->getFakeValue(
+            $this->types['status'],
+            $this->allowedValues['status'] ?? null
+        );
+        $this->sot['status'] = $v;
+        $this->assertEquals($v, $this->sot['status']);
+        $this->assertTrue(isset($this->sot['status']));
+        unset($this->sot['status']);
+        $this->assertFalse(isset($this->sot['status']));
+        $this->sot['status'] = $v;
+        $this->assertEquals($v, $this->sot['status']);
+        $this->assertTrue(isset($this->sot['status']));
     }
 }

@@ -37,7 +37,7 @@ use PHPUnit\Framework\TestCase;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  *
- * @coversDefault \NecLimDul\MarketoRest\Asset\Model\VisibilityRuleRequest
+ * @coversDefaultClass \NecLimDul\MarketoRest\Asset\Model\VisibilityRuleRequest
  */
 class VisibilityRuleRequestTest extends TestCase
 {
@@ -48,11 +48,6 @@ class VisibilityRuleRequestTest extends TestCase
     private $sot;
 
     /**
-     * @var \Faker\Generator
-     */
-    private $faker;
-
-    /**
      * @var string[]
      */
     private $types = [
@@ -61,7 +56,13 @@ class VisibilityRuleRequestTest extends TestCase
         'pick_list_values' => '\NecLimDul\MarketoRest\Asset\Model\PickListDTO[]',
         'subject_field' => 'string',
         'values' => 'string[]',
-    ];
+];
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
     /**
      * @var scalar[][]
      */
@@ -140,7 +141,14 @@ class VisibilityRuleRequestTest extends TestCase
                 return new \stdClass();
         }
         if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
-            return new $type();
+            $model = new $type();
+            $types = $type::swaggerTypes();
+            foreach ($model->listInvalidProperties() as $field => $reason) {
+                // @todo get allowed values? ((getter))AllowedValues
+                // @phpstan-ignore-next-line
+                $model[$field] = $this->getFakeValue($types[$field], null);
+            }
+            return $model;
         }
         $this->markTestSkipped('This type is not mocked yet: ' . $type);
     }
@@ -152,7 +160,109 @@ class VisibilityRuleRequestTest extends TestCase
      */
     public function testVisibilityRuleRequest(): void
     {
-        $this->assertInstanceOf(\NecLimDul\MarketoRest\Asset\Model\VisibilityRuleRequest::class, $this->sot);
+        $this->assertInstanceOf(VisibilityRuleRequest::class, $this->sot);
+    }
+
+    /**
+     * @covers ::swaggerTypes
+     */
+    public function testSwaggerTypes(): void
+    {
+        $this->assertEquals($this->types, VisibilityRuleRequest::swaggerTypes());
+    }
+
+    /**
+     * @covers ::swaggerFormats
+     */
+    public function testSwaggerFormats(): void
+    {
+        $formats = $this->sot->swaggerFormats();
+        $this->assertEquals(null, $formats['alt_label']);
+        $this->assertEquals(null, $formats['operator']);
+        $this->assertEquals(null, $formats['pick_list_values']);
+        $this->assertEquals(null, $formats['subject_field']);
+        $this->assertEquals(null, $formats['values']);
+    }
+
+    /**
+     * @covers ::attributeMap
+     */
+    public function testAttributeMap(): void
+    {
+        $formats = $this->sot->attributeMap();
+        $this->assertEquals('altLabel', $formats['alt_label']);
+        $this->assertEquals('operator', $formats['operator']);
+        $this->assertEquals('pickListValues', $formats['pick_list_values']);
+        $this->assertEquals('subjectField', $formats['subject_field']);
+        $this->assertEquals('values', $formats['values']);
+    }
+
+    /**
+     * @covers ::getters
+     * @covers ::setters
+     */
+    public function testGettersSetters(): void
+    {
+        $getters = $this->sot->getters();
+        $setters = $this->sot->setters();
+        foreach (array_keys($this->types) as $field) {
+            $this->assertTrue(isset($setters[$field]));
+            $this->assertTrue(isset($getters[$field]));
+            $this->assertTrue(
+                method_exists($this->sot, $getters[$field]),
+                'Getter exists on model.'
+            );
+            $this->assertTrue(
+                method_exists($this->sot, $setters[$field]),
+                'Setter exists on model.'
+            );
+        }
+    }
+
+    /**
+     * @covers ::getModelName
+     */
+    public function testGetModelName(): void
+    {
+        $this->assertEquals('VisibilityRuleRequest', $this->sot->getModelName());
+    }
+
+    /**
+     * @covers ::listInvalidProperties
+     * @covers ::valid
+     */
+    public function testValid(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::setAdditionalProperties
+     * @covers ::setAdditionalProperty
+     * @covers ::getAdditionalProperties
+     */
+    public function testAdditionalProperties(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::jsonSerialize
+     * @covers ::__toString
+     */
+    public function testJson(): void
+    {
+        // Some minimal tests that json generates well.
+        $json = json_encode($this->sot);
+        $this->assertIsString($json, 'Json encoded');
+        $json = json_decode($json);
+        $string = json_decode((string) $this->sot);
+        $this->assertEquals(
+            $json,
+            $string
+        );
+        $this->assertInstanceOf(\stdClass::class, $json);
+        $this->assertInstanceOf(\stdClass::class, $string);
     }
 
     /**
@@ -161,6 +271,10 @@ class VisibilityRuleRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getAltLabel
      * @covers ::setAltLabel
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyAltLabel(): void
     {
@@ -171,7 +285,23 @@ class VisibilityRuleRequestTest extends TestCase
         );
         $this->sot->setAltLabel($v);
         $this->assertEquals($v, $this->sot->getAltLabel());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setAltLabel(null);
+        $this->assertNull($this->sot->getAltLabel());
+        $this->sot->setAltLabel($v);
+
+        $this->assertEquals($v, $this->sot['alt_label']);
+        $v = $this->getFakeValue(
+            $this->types['alt_label'],
+            $this->allowedValues['alt_label'] ?? null
+        );
+        $this->sot['alt_label'] = $v;
+        $this->assertEquals($v, $this->sot['alt_label']);
+        $this->assertTrue(isset($this->sot['alt_label']));
+        unset($this->sot['alt_label']);
+        $this->assertFalse(isset($this->sot['alt_label']));
+        $this->sot['alt_label'] = $v;
+        $this->assertEquals($v, $this->sot['alt_label']);
+        $this->assertTrue(isset($this->sot['alt_label']));
     }
 
     /**
@@ -180,6 +310,10 @@ class VisibilityRuleRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getOperator
      * @covers ::setOperator
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyOperator(): void
     {
@@ -190,7 +324,20 @@ class VisibilityRuleRequestTest extends TestCase
         );
         $this->sot->setOperator($v);
         $this->assertEquals($v, $this->sot->getOperator());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['operator']);
+        $v = $this->getFakeValue(
+            $this->types['operator'],
+            $this->allowedValues['operator'] ?? null
+        );
+        $this->sot['operator'] = $v;
+        $this->assertEquals($v, $this->sot['operator']);
+        $this->assertTrue(isset($this->sot['operator']));
+        unset($this->sot['operator']);
+        $this->assertFalse(isset($this->sot['operator']));
+        $this->sot['operator'] = $v;
+        $this->assertEquals($v, $this->sot['operator']);
+        $this->assertTrue(isset($this->sot['operator']));
     }
 
     /**
@@ -199,6 +346,10 @@ class VisibilityRuleRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getPickListValues
      * @covers ::setPickListValues
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyPickListValues(): void
     {
@@ -209,7 +360,23 @@ class VisibilityRuleRequestTest extends TestCase
         );
         $this->sot->setPickListValues($v);
         $this->assertEquals($v, $this->sot->getPickListValues());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setPickListValues(null);
+        $this->assertNull($this->sot->getPickListValues());
+        $this->sot->setPickListValues($v);
+
+        $this->assertEquals($v, $this->sot['pick_list_values']);
+        $v = $this->getFakeValue(
+            $this->types['pick_list_values'],
+            $this->allowedValues['pick_list_values'] ?? null
+        );
+        $this->sot['pick_list_values'] = $v;
+        $this->assertEquals($v, $this->sot['pick_list_values']);
+        $this->assertTrue(isset($this->sot['pick_list_values']));
+        unset($this->sot['pick_list_values']);
+        $this->assertFalse(isset($this->sot['pick_list_values']));
+        $this->sot['pick_list_values'] = $v;
+        $this->assertEquals($v, $this->sot['pick_list_values']);
+        $this->assertTrue(isset($this->sot['pick_list_values']));
     }
 
     /**
@@ -218,6 +385,10 @@ class VisibilityRuleRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getSubjectField
      * @covers ::setSubjectField
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertySubjectField(): void
     {
@@ -228,7 +399,20 @@ class VisibilityRuleRequestTest extends TestCase
         );
         $this->sot->setSubjectField($v);
         $this->assertEquals($v, $this->sot->getSubjectField());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['subject_field']);
+        $v = $this->getFakeValue(
+            $this->types['subject_field'],
+            $this->allowedValues['subject_field'] ?? null
+        );
+        $this->sot['subject_field'] = $v;
+        $this->assertEquals($v, $this->sot['subject_field']);
+        $this->assertTrue(isset($this->sot['subject_field']));
+        unset($this->sot['subject_field']);
+        $this->assertFalse(isset($this->sot['subject_field']));
+        $this->sot['subject_field'] = $v;
+        $this->assertEquals($v, $this->sot['subject_field']);
+        $this->assertTrue(isset($this->sot['subject_field']));
     }
 
     /**
@@ -237,6 +421,10 @@ class VisibilityRuleRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getValues
      * @covers ::setValues
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyValues(): void
     {
@@ -247,6 +435,19 @@ class VisibilityRuleRequestTest extends TestCase
         );
         $this->sot->setValues($v);
         $this->assertEquals($v, $this->sot->getValues());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['values']);
+        $v = $this->getFakeValue(
+            $this->types['values'],
+            $this->allowedValues['values'] ?? null
+        );
+        $this->sot['values'] = $v;
+        $this->assertEquals($v, $this->sot['values']);
+        $this->assertTrue(isset($this->sot['values']));
+        unset($this->sot['values']);
+        $this->assertFalse(isset($this->sot['values']));
+        $this->sot['values'] = $v;
+        $this->assertEquals($v, $this->sot['values']);
+        $this->assertTrue(isset($this->sot['values']));
     }
 }

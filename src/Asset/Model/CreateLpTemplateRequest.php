@@ -89,22 +89,6 @@ class CreateLpTemplateRequest implements ModelInterface, ArrayAccess, \JsonSeria
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -167,6 +151,22 @@ class CreateLpTemplateRequest implements ModelInterface, ArrayAccess, \JsonSeria
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -206,14 +206,14 @@ class CreateLpTemplateRequest implements ModelInterface, ArrayAccess, \JsonSeria
         $invalidProperties = [];
 
         if ($this->container['folder'] === null) {
-            $invalidProperties[] = "'folder' can't be null";
+            $invalidProperties['folder'] = "'folder' can't be null";
         }
         if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
+            $invalidProperties['name'] = "'name' can't be null";
         }
         $allowedValues = $this->getTemplateTypeAllowableValues();
         if (!is_null($this->container['template_type']) && !in_array($this->container['template_type'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
+            $invalidProperties['template_type'] = sprintf(
                 "invalid value '%s' for 'template_type', must be one of '%s'",
                 $this->container['template_type'],
                 implode("', '", $allowedValues)
@@ -246,9 +246,9 @@ class CreateLpTemplateRequest implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->container['description'];
     }
@@ -270,9 +270,9 @@ class CreateLpTemplateRequest implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets enable_munchkin
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getEnableMunchkin(): bool
+    public function getEnableMunchkin(): ?bool
     {
         return $this->container['enable_munchkin'];
     }
@@ -342,9 +342,9 @@ class CreateLpTemplateRequest implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets template_type
      *
-     * @return string
+     * @return string|null
      */
-    public function getTemplateType(): string
+    public function getTemplateType(): ?string
     {
         return $this->container['template_type'];
     }

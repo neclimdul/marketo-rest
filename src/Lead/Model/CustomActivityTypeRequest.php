@@ -89,22 +89,6 @@ class CustomActivityTypeRequest implements ModelInterface, ArrayAccess, \JsonSer
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -171,6 +155,22 @@ class CustomActivityTypeRequest implements ModelInterface, ArrayAccess, \JsonSer
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -210,19 +210,19 @@ class CustomActivityTypeRequest implements ModelInterface, ArrayAccess, \JsonSer
         $invalidProperties = [];
 
         if ($this->container['api_name'] === null) {
-            $invalidProperties[] = "'api_name' can't be null";
+            $invalidProperties['api_name'] = "'api_name' can't be null";
         }
         if ($this->container['filter_name'] === null) {
-            $invalidProperties[] = "'filter_name' can't be null";
+            $invalidProperties['filter_name'] = "'filter_name' can't be null";
         }
         if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
+            $invalidProperties['name'] = "'name' can't be null";
         }
         if ($this->container['primary_attribute'] === null) {
-            $invalidProperties[] = "'primary_attribute' can't be null";
+            $invalidProperties['primary_attribute'] = "'primary_attribute' can't be null";
         }
         if ($this->container['trigger_name'] === null) {
-            $invalidProperties[] = "'trigger_name' can't be null";
+            $invalidProperties['trigger_name'] = "'trigger_name' can't be null";
         }
         return $invalidProperties;
     }
@@ -262,9 +262,9 @@ class CustomActivityTypeRequest implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->container['description'];
     }

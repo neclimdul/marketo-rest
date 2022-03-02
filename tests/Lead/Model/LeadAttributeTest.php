@@ -37,7 +37,7 @@ use PHPUnit\Framework\TestCase;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  *
- * @coversDefault \NecLimDul\MarketoRest\Lead\Model\LeadAttribute
+ * @coversDefaultClass \NecLimDul\MarketoRest\Lead\Model\LeadAttribute
  */
 class LeadAttributeTest extends TestCase
 {
@@ -46,11 +46,6 @@ class LeadAttributeTest extends TestCase
      * @var \NecLimDul\MarketoRest\Lead\Model\LeadAttribute
      */
     private $sot;
-
-    /**
-     * @var \Faker\Generator
-     */
-    private $faker;
 
     /**
      * @var string[]
@@ -62,7 +57,13 @@ class LeadAttributeTest extends TestCase
         'length' => 'int',
         'rest' => '\NecLimDul\MarketoRest\Lead\Model\LeadMapAttribute',
         'soap' => '\NecLimDul\MarketoRest\Lead\Model\LeadMapAttribute',
-    ];
+];
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
     /**
      * @var scalar[][]
      */
@@ -115,7 +116,14 @@ class LeadAttributeTest extends TestCase
                 return new \stdClass();
         }
         if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
-            return new $type();
+            $model = new $type();
+            $types = $type::swaggerTypes();
+            foreach ($model->listInvalidProperties() as $field => $reason) {
+                // @todo get allowed values? ((getter))AllowedValues
+                // @phpstan-ignore-next-line
+                $model[$field] = $this->getFakeValue($types[$field], null);
+            }
+            return $model;
         }
         $this->markTestSkipped('This type is not mocked yet: ' . $type);
     }
@@ -127,7 +135,111 @@ class LeadAttributeTest extends TestCase
      */
     public function testLeadAttribute(): void
     {
-        $this->assertInstanceOf(\NecLimDul\MarketoRest\Lead\Model\LeadAttribute::class, $this->sot);
+        $this->assertInstanceOf(LeadAttribute::class, $this->sot);
+    }
+
+    /**
+     * @covers ::swaggerTypes
+     */
+    public function testSwaggerTypes(): void
+    {
+        $this->assertEquals($this->types, LeadAttribute::swaggerTypes());
+    }
+
+    /**
+     * @covers ::swaggerFormats
+     */
+    public function testSwaggerFormats(): void
+    {
+        $formats = $this->sot->swaggerFormats();
+        $this->assertEquals(null, $formats['data_type']);
+        $this->assertEquals(null, $formats['display_name']);
+        $this->assertEquals('int32', $formats['id']);
+        $this->assertEquals('int32', $formats['length']);
+        $this->assertEquals(null, $formats['rest']);
+        $this->assertEquals(null, $formats['soap']);
+    }
+
+    /**
+     * @covers ::attributeMap
+     */
+    public function testAttributeMap(): void
+    {
+        $formats = $this->sot->attributeMap();
+        $this->assertEquals('dataType', $formats['data_type']);
+        $this->assertEquals('displayName', $formats['display_name']);
+        $this->assertEquals('id', $formats['id']);
+        $this->assertEquals('length', $formats['length']);
+        $this->assertEquals('rest', $formats['rest']);
+        $this->assertEquals('soap', $formats['soap']);
+    }
+
+    /**
+     * @covers ::getters
+     * @covers ::setters
+     */
+    public function testGettersSetters(): void
+    {
+        $getters = $this->sot->getters();
+        $setters = $this->sot->setters();
+        foreach (array_keys($this->types) as $field) {
+            $this->assertTrue(isset($setters[$field]));
+            $this->assertTrue(isset($getters[$field]));
+            $this->assertTrue(
+                method_exists($this->sot, $getters[$field]),
+                'Getter exists on model.'
+            );
+            $this->assertTrue(
+                method_exists($this->sot, $setters[$field]),
+                'Setter exists on model.'
+            );
+        }
+    }
+
+    /**
+     * @covers ::getModelName
+     */
+    public function testGetModelName(): void
+    {
+        $this->assertEquals('LeadAttribute', $this->sot->getModelName());
+    }
+
+    /**
+     * @covers ::listInvalidProperties
+     * @covers ::valid
+     */
+    public function testValid(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::setAdditionalProperties
+     * @covers ::setAdditionalProperty
+     * @covers ::getAdditionalProperties
+     */
+    public function testAdditionalProperties(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::jsonSerialize
+     * @covers ::__toString
+     */
+    public function testJson(): void
+    {
+        // Some minimal tests that json generates well.
+        $json = json_encode($this->sot);
+        $this->assertIsString($json, 'Json encoded');
+        $json = json_decode($json);
+        $string = json_decode((string) $this->sot);
+        $this->assertEquals(
+            $json,
+            $string
+        );
+        $this->assertInstanceOf(\stdClass::class, $json);
+        $this->assertInstanceOf(\stdClass::class, $string);
     }
 
     /**
@@ -136,6 +248,10 @@ class LeadAttributeTest extends TestCase
      * @covers ::__construct
      * @covers ::getDataType
      * @covers ::setDataType
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyDataType(): void
     {
@@ -146,7 +262,20 @@ class LeadAttributeTest extends TestCase
         );
         $this->sot->setDataType($v);
         $this->assertEquals($v, $this->sot->getDataType());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['data_type']);
+        $v = $this->getFakeValue(
+            $this->types['data_type'],
+            $this->allowedValues['data_type'] ?? null
+        );
+        $this->sot['data_type'] = $v;
+        $this->assertEquals($v, $this->sot['data_type']);
+        $this->assertTrue(isset($this->sot['data_type']));
+        unset($this->sot['data_type']);
+        $this->assertFalse(isset($this->sot['data_type']));
+        $this->sot['data_type'] = $v;
+        $this->assertEquals($v, $this->sot['data_type']);
+        $this->assertTrue(isset($this->sot['data_type']));
     }
 
     /**
@@ -155,6 +284,10 @@ class LeadAttributeTest extends TestCase
      * @covers ::__construct
      * @covers ::getDisplayName
      * @covers ::setDisplayName
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyDisplayName(): void
     {
@@ -165,7 +298,20 @@ class LeadAttributeTest extends TestCase
         );
         $this->sot->setDisplayName($v);
         $this->assertEquals($v, $this->sot->getDisplayName());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['display_name']);
+        $v = $this->getFakeValue(
+            $this->types['display_name'],
+            $this->allowedValues['display_name'] ?? null
+        );
+        $this->sot['display_name'] = $v;
+        $this->assertEquals($v, $this->sot['display_name']);
+        $this->assertTrue(isset($this->sot['display_name']));
+        unset($this->sot['display_name']);
+        $this->assertFalse(isset($this->sot['display_name']));
+        $this->sot['display_name'] = $v;
+        $this->assertEquals($v, $this->sot['display_name']);
+        $this->assertTrue(isset($this->sot['display_name']));
     }
 
     /**
@@ -174,6 +320,10 @@ class LeadAttributeTest extends TestCase
      * @covers ::__construct
      * @covers ::getId
      * @covers ::setId
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyId(): void
     {
@@ -184,7 +334,20 @@ class LeadAttributeTest extends TestCase
         );
         $this->sot->setId($v);
         $this->assertEquals($v, $this->sot->getId());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['id']);
+        $v = $this->getFakeValue(
+            $this->types['id'],
+            $this->allowedValues['id'] ?? null
+        );
+        $this->sot['id'] = $v;
+        $this->assertEquals($v, $this->sot['id']);
+        $this->assertTrue(isset($this->sot['id']));
+        unset($this->sot['id']);
+        $this->assertFalse(isset($this->sot['id']));
+        $this->sot['id'] = $v;
+        $this->assertEquals($v, $this->sot['id']);
+        $this->assertTrue(isset($this->sot['id']));
     }
 
     /**
@@ -193,6 +356,10 @@ class LeadAttributeTest extends TestCase
      * @covers ::__construct
      * @covers ::getLength
      * @covers ::setLength
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyLength(): void
     {
@@ -203,7 +370,23 @@ class LeadAttributeTest extends TestCase
         );
         $this->sot->setLength($v);
         $this->assertEquals($v, $this->sot->getLength());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setLength(null);
+        $this->assertNull($this->sot->getLength());
+        $this->sot->setLength($v);
+
+        $this->assertEquals($v, $this->sot['length']);
+        $v = $this->getFakeValue(
+            $this->types['length'],
+            $this->allowedValues['length'] ?? null
+        );
+        $this->sot['length'] = $v;
+        $this->assertEquals($v, $this->sot['length']);
+        $this->assertTrue(isset($this->sot['length']));
+        unset($this->sot['length']);
+        $this->assertFalse(isset($this->sot['length']));
+        $this->sot['length'] = $v;
+        $this->assertEquals($v, $this->sot['length']);
+        $this->assertTrue(isset($this->sot['length']));
     }
 
     /**
@@ -212,6 +395,10 @@ class LeadAttributeTest extends TestCase
      * @covers ::__construct
      * @covers ::getRest
      * @covers ::setRest
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyRest(): void
     {
@@ -222,7 +409,23 @@ class LeadAttributeTest extends TestCase
         );
         $this->sot->setRest($v);
         $this->assertEquals($v, $this->sot->getRest());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setRest(null);
+        $this->assertNull($this->sot->getRest());
+        $this->sot->setRest($v);
+
+        $this->assertEquals($v, $this->sot['rest']);
+        $v = $this->getFakeValue(
+            $this->types['rest'],
+            $this->allowedValues['rest'] ?? null
+        );
+        $this->sot['rest'] = $v;
+        $this->assertEquals($v, $this->sot['rest']);
+        $this->assertTrue(isset($this->sot['rest']));
+        unset($this->sot['rest']);
+        $this->assertFalse(isset($this->sot['rest']));
+        $this->sot['rest'] = $v;
+        $this->assertEquals($v, $this->sot['rest']);
+        $this->assertTrue(isset($this->sot['rest']));
     }
 
     /**
@@ -231,6 +434,10 @@ class LeadAttributeTest extends TestCase
      * @covers ::__construct
      * @covers ::getSoap
      * @covers ::setSoap
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertySoap(): void
     {
@@ -241,6 +448,22 @@ class LeadAttributeTest extends TestCase
         );
         $this->sot->setSoap($v);
         $this->assertEquals($v, $this->sot->getSoap());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setSoap(null);
+        $this->assertNull($this->sot->getSoap());
+        $this->sot->setSoap($v);
+
+        $this->assertEquals($v, $this->sot['soap']);
+        $v = $this->getFakeValue(
+            $this->types['soap'],
+            $this->allowedValues['soap'] ?? null
+        );
+        $this->sot['soap'] = $v;
+        $this->assertEquals($v, $this->sot['soap']);
+        $this->assertTrue(isset($this->sot['soap']));
+        unset($this->sot['soap']);
+        $this->assertFalse(isset($this->sot['soap']));
+        $this->sot['soap'] = $v;
+        $this->assertEquals($v, $this->sot['soap']);
+        $this->assertTrue(isset($this->sot['soap']));
     }
 }

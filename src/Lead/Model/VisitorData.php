@@ -86,22 +86,6 @@ class VisitorData implements ModelInterface, ArrayAccess, \JsonSerializable
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -160,6 +144,22 @@ class VisitorData implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -212,9 +212,9 @@ class VisitorData implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets page_url
      *
-     * @return string
+     * @return string|null
      */
-    public function getPageUrl(): string
+    public function getPageUrl(): ?string
     {
         return $this->container['page_url'];
     }
@@ -236,9 +236,9 @@ class VisitorData implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets query_string
      *
-     * @return string
+     * @return string|null
      */
-    public function getQueryString(): string
+    public function getQueryString(): ?string
     {
         return $this->container['query_string'];
     }
@@ -260,9 +260,9 @@ class VisitorData implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets lead_client_ip_address
      *
-     * @return string
+     * @return string|null
      */
-    public function getLeadClientIpAddress(): string
+    public function getLeadClientIpAddress(): ?string
     {
         return $this->container['lead_client_ip_address'];
     }
@@ -284,9 +284,9 @@ class VisitorData implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets user_agent_string
      *
-     * @return string
+     * @return string|null
      */
-    public function getUserAgentString(): string
+    public function getUserAgentString(): ?string
     {
         return $this->container['user_agent_string'];
     }

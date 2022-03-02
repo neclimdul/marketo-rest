@@ -37,7 +37,7 @@ use PHPUnit\Framework\TestCase;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  *
- * @coversDefault \NecLimDul\MarketoRest\Asset\Model\EmailContentResponse
+ * @coversDefaultClass \NecLimDul\MarketoRest\Asset\Model\EmailContentResponse
  */
 class EmailContentResponseTest extends TestCase
 {
@@ -46,11 +46,6 @@ class EmailContentResponseTest extends TestCase
      * @var \NecLimDul\MarketoRest\Asset\Model\EmailContentResponse
      */
     private $sot;
-
-    /**
-     * @var \Faker\Generator
-     */
-    private $faker;
 
     /**
      * @var string[]
@@ -62,7 +57,13 @@ class EmailContentResponseTest extends TestCase
         'is_locked' => 'bool',
         'parent_html_id' => 'string',
         'value' => 'object',
-    ];
+];
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
     /**
      * @var scalar[][]
      */
@@ -115,7 +116,14 @@ class EmailContentResponseTest extends TestCase
                 return new \stdClass();
         }
         if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
-            return new $type();
+            $model = new $type();
+            $types = $type::swaggerTypes();
+            foreach ($model->listInvalidProperties() as $field => $reason) {
+                // @todo get allowed values? ((getter))AllowedValues
+                // @phpstan-ignore-next-line
+                $model[$field] = $this->getFakeValue($types[$field], null);
+            }
+            return $model;
         }
         $this->markTestSkipped('This type is not mocked yet: ' . $type);
     }
@@ -127,7 +135,111 @@ class EmailContentResponseTest extends TestCase
      */
     public function testEmailContentResponse(): void
     {
-        $this->assertInstanceOf(\NecLimDul\MarketoRest\Asset\Model\EmailContentResponse::class, $this->sot);
+        $this->assertInstanceOf(EmailContentResponse::class, $this->sot);
+    }
+
+    /**
+     * @covers ::swaggerTypes
+     */
+    public function testSwaggerTypes(): void
+    {
+        $this->assertEquals($this->types, EmailContentResponse::swaggerTypes());
+    }
+
+    /**
+     * @covers ::swaggerFormats
+     */
+    public function testSwaggerFormats(): void
+    {
+        $formats = $this->sot->swaggerFormats();
+        $this->assertEquals(null, $formats['content_type']);
+        $this->assertEquals(null, $formats['html_id']);
+        $this->assertEquals('int32', $formats['index']);
+        $this->assertEquals(null, $formats['is_locked']);
+        $this->assertEquals(null, $formats['parent_html_id']);
+        $this->assertEquals(null, $formats['value']);
+    }
+
+    /**
+     * @covers ::attributeMap
+     */
+    public function testAttributeMap(): void
+    {
+        $formats = $this->sot->attributeMap();
+        $this->assertEquals('contentType', $formats['content_type']);
+        $this->assertEquals('htmlId', $formats['html_id']);
+        $this->assertEquals('index', $formats['index']);
+        $this->assertEquals('isLocked', $formats['is_locked']);
+        $this->assertEquals('parentHtmlId', $formats['parent_html_id']);
+        $this->assertEquals('value', $formats['value']);
+    }
+
+    /**
+     * @covers ::getters
+     * @covers ::setters
+     */
+    public function testGettersSetters(): void
+    {
+        $getters = $this->sot->getters();
+        $setters = $this->sot->setters();
+        foreach (array_keys($this->types) as $field) {
+            $this->assertTrue(isset($setters[$field]));
+            $this->assertTrue(isset($getters[$field]));
+            $this->assertTrue(
+                method_exists($this->sot, $getters[$field]),
+                'Getter exists on model.'
+            );
+            $this->assertTrue(
+                method_exists($this->sot, $setters[$field]),
+                'Setter exists on model.'
+            );
+        }
+    }
+
+    /**
+     * @covers ::getModelName
+     */
+    public function testGetModelName(): void
+    {
+        $this->assertEquals('EmailContentResponse', $this->sot->getModelName());
+    }
+
+    /**
+     * @covers ::listInvalidProperties
+     * @covers ::valid
+     */
+    public function testValid(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::setAdditionalProperties
+     * @covers ::setAdditionalProperty
+     * @covers ::getAdditionalProperties
+     */
+    public function testAdditionalProperties(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::jsonSerialize
+     * @covers ::__toString
+     */
+    public function testJson(): void
+    {
+        // Some minimal tests that json generates well.
+        $json = json_encode($this->sot);
+        $this->assertIsString($json, 'Json encoded');
+        $json = json_decode($json);
+        $string = json_decode((string) $this->sot);
+        $this->assertEquals(
+            $json,
+            $string
+        );
+        $this->assertInstanceOf(\stdClass::class, $json);
+        $this->assertInstanceOf(\stdClass::class, $string);
     }
 
     /**
@@ -136,6 +248,10 @@ class EmailContentResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getContentType
      * @covers ::setContentType
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyContentType(): void
     {
@@ -146,7 +262,20 @@ class EmailContentResponseTest extends TestCase
         );
         $this->sot->setContentType($v);
         $this->assertEquals($v, $this->sot->getContentType());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['content_type']);
+        $v = $this->getFakeValue(
+            $this->types['content_type'],
+            $this->allowedValues['content_type'] ?? null
+        );
+        $this->sot['content_type'] = $v;
+        $this->assertEquals($v, $this->sot['content_type']);
+        $this->assertTrue(isset($this->sot['content_type']));
+        unset($this->sot['content_type']);
+        $this->assertFalse(isset($this->sot['content_type']));
+        $this->sot['content_type'] = $v;
+        $this->assertEquals($v, $this->sot['content_type']);
+        $this->assertTrue(isset($this->sot['content_type']));
     }
 
     /**
@@ -155,6 +284,10 @@ class EmailContentResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getHtmlId
      * @covers ::setHtmlId
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyHtmlId(): void
     {
@@ -165,7 +298,20 @@ class EmailContentResponseTest extends TestCase
         );
         $this->sot->setHtmlId($v);
         $this->assertEquals($v, $this->sot->getHtmlId());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['html_id']);
+        $v = $this->getFakeValue(
+            $this->types['html_id'],
+            $this->allowedValues['html_id'] ?? null
+        );
+        $this->sot['html_id'] = $v;
+        $this->assertEquals($v, $this->sot['html_id']);
+        $this->assertTrue(isset($this->sot['html_id']));
+        unset($this->sot['html_id']);
+        $this->assertFalse(isset($this->sot['html_id']));
+        $this->sot['html_id'] = $v;
+        $this->assertEquals($v, $this->sot['html_id']);
+        $this->assertTrue(isset($this->sot['html_id']));
     }
 
     /**
@@ -174,6 +320,10 @@ class EmailContentResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getIndex
      * @covers ::setIndex
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyIndex(): void
     {
@@ -184,7 +334,23 @@ class EmailContentResponseTest extends TestCase
         );
         $this->sot->setIndex($v);
         $this->assertEquals($v, $this->sot->getIndex());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setIndex(null);
+        $this->assertNull($this->sot->getIndex());
+        $this->sot->setIndex($v);
+
+        $this->assertEquals($v, $this->sot['index']);
+        $v = $this->getFakeValue(
+            $this->types['index'],
+            $this->allowedValues['index'] ?? null
+        );
+        $this->sot['index'] = $v;
+        $this->assertEquals($v, $this->sot['index']);
+        $this->assertTrue(isset($this->sot['index']));
+        unset($this->sot['index']);
+        $this->assertFalse(isset($this->sot['index']));
+        $this->sot['index'] = $v;
+        $this->assertEquals($v, $this->sot['index']);
+        $this->assertTrue(isset($this->sot['index']));
     }
 
     /**
@@ -193,6 +359,10 @@ class EmailContentResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getIsLocked
      * @covers ::setIsLocked
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyIsLocked(): void
     {
@@ -203,7 +373,23 @@ class EmailContentResponseTest extends TestCase
         );
         $this->sot->setIsLocked($v);
         $this->assertEquals($v, $this->sot->getIsLocked());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setIsLocked(null);
+        $this->assertNull($this->sot->getIsLocked());
+        $this->sot->setIsLocked($v);
+
+        $this->assertEquals($v, $this->sot['is_locked']);
+        $v = $this->getFakeValue(
+            $this->types['is_locked'],
+            $this->allowedValues['is_locked'] ?? null
+        );
+        $this->sot['is_locked'] = $v;
+        $this->assertEquals($v, $this->sot['is_locked']);
+        $this->assertTrue(isset($this->sot['is_locked']));
+        unset($this->sot['is_locked']);
+        $this->assertFalse(isset($this->sot['is_locked']));
+        $this->sot['is_locked'] = $v;
+        $this->assertEquals($v, $this->sot['is_locked']);
+        $this->assertTrue(isset($this->sot['is_locked']));
     }
 
     /**
@@ -212,6 +398,10 @@ class EmailContentResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getParentHtmlId
      * @covers ::setParentHtmlId
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyParentHtmlId(): void
     {
@@ -222,7 +412,23 @@ class EmailContentResponseTest extends TestCase
         );
         $this->sot->setParentHtmlId($v);
         $this->assertEquals($v, $this->sot->getParentHtmlId());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setParentHtmlId(null);
+        $this->assertNull($this->sot->getParentHtmlId());
+        $this->sot->setParentHtmlId($v);
+
+        $this->assertEquals($v, $this->sot['parent_html_id']);
+        $v = $this->getFakeValue(
+            $this->types['parent_html_id'],
+            $this->allowedValues['parent_html_id'] ?? null
+        );
+        $this->sot['parent_html_id'] = $v;
+        $this->assertEquals($v, $this->sot['parent_html_id']);
+        $this->assertTrue(isset($this->sot['parent_html_id']));
+        unset($this->sot['parent_html_id']);
+        $this->assertFalse(isset($this->sot['parent_html_id']));
+        $this->sot['parent_html_id'] = $v;
+        $this->assertEquals($v, $this->sot['parent_html_id']);
+        $this->assertTrue(isset($this->sot['parent_html_id']));
     }
 
     /**
@@ -231,6 +437,10 @@ class EmailContentResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getValue
      * @covers ::setValue
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyValue(): void
     {
@@ -241,6 +451,19 @@ class EmailContentResponseTest extends TestCase
         );
         $this->sot->setValue($v);
         $this->assertEquals($v, $this->sot->getValue());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['value']);
+        $v = $this->getFakeValue(
+            $this->types['value'],
+            $this->allowedValues['value'] ?? null
+        );
+        $this->sot['value'] = $v;
+        $this->assertEquals($v, $this->sot['value']);
+        $this->assertTrue(isset($this->sot['value']));
+        unset($this->sot['value']);
+        $this->assertFalse(isset($this->sot['value']));
+        $this->sot['value'] = $v;
+        $this->assertEquals($v, $this->sot['value']);
+        $this->assertTrue(isset($this->sot['value']));
     }
 }

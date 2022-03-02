@@ -88,22 +88,6 @@ class SmartListConditions implements ModelInterface, ArrayAccess, \JsonSerializa
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -166,6 +150,22 @@ class SmartListConditions implements ModelInterface, ArrayAccess, \JsonSerializa
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -205,19 +205,19 @@ class SmartListConditions implements ModelInterface, ArrayAccess, \JsonSerializa
         $invalidProperties = [];
 
         if ($this->container['activity_attribute_id'] === null) {
-            $invalidProperties[] = "'activity_attribute_id' can't be null";
+            $invalidProperties['activity_attribute_id'] = "'activity_attribute_id' can't be null";
         }
         if ($this->container['activity_attribute_name'] === null) {
-            $invalidProperties[] = "'activity_attribute_name' can't be null";
+            $invalidProperties['activity_attribute_name'] = "'activity_attribute_name' can't be null";
         }
         if ($this->container['operator'] === null) {
-            $invalidProperties[] = "'operator' can't be null";
+            $invalidProperties['operator'] = "'operator' can't be null";
         }
         if ($this->container['values'] === null) {
-            $invalidProperties[] = "'values' can't be null";
+            $invalidProperties['values'] = "'values' can't be null";
         }
         if ($this->container['is_primary'] === null) {
-            $invalidProperties[] = "'is_primary' can't be null";
+            $invalidProperties['is_primary'] = "'is_primary' can't be null";
         }
         return $invalidProperties;
     }

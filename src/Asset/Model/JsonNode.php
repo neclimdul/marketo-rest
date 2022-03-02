@@ -128,22 +128,6 @@ class JsonNode implements ModelInterface, ArrayAccess, \JsonSerializable
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -270,6 +254,22 @@ class JsonNode implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -310,7 +310,7 @@ class JsonNode implements ModelInterface, ArrayAccess, \JsonSerializable
 
         $allowedValues = $this->getNodeTypeAllowableValues();
         if (!is_null($this->container['node_type']) && !in_array($this->container['node_type'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
+            $invalidProperties['node_type'] = sprintf(
                 "invalid value '%s' for 'node_type', must be one of '%s'",
                 $this->container['node_type'],
                 implode("', '", $allowedValues)
@@ -350,9 +350,9 @@ class JsonNode implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets array
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getArray(): bool
+    public function getArray(): ?bool
     {
         return $this->container['array'];
     }
@@ -374,9 +374,9 @@ class JsonNode implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets big_decimal
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getBigDecimal(): bool
+    public function getBigDecimal(): ?bool
     {
         return $this->container['big_decimal'];
     }
@@ -398,9 +398,9 @@ class JsonNode implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets big_integer
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getBigInteger(): bool
+    public function getBigInteger(): ?bool
     {
         return $this->container['big_integer'];
     }
@@ -422,9 +422,9 @@ class JsonNode implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets binary
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getBinary(): bool
+    public function getBinary(): ?bool
     {
         return $this->container['binary'];
     }
@@ -446,9 +446,9 @@ class JsonNode implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets boolean
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getBoolean(): bool
+    public function getBoolean(): ?bool
     {
         return $this->container['boolean'];
     }
@@ -470,9 +470,9 @@ class JsonNode implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets container_node
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getContainerNode(): bool
+    public function getContainerNode(): ?bool
     {
         return $this->container['container_node'];
     }
@@ -494,9 +494,9 @@ class JsonNode implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets double
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getDouble(): bool
+    public function getDouble(): ?bool
     {
         return $this->container['double'];
     }
@@ -518,9 +518,9 @@ class JsonNode implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets float
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getFloat(): bool
+    public function getFloat(): ?bool
     {
         return $this->container['float'];
     }
@@ -542,9 +542,9 @@ class JsonNode implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets floating_point_number
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getFloatingPointNumber(): bool
+    public function getFloatingPointNumber(): ?bool
     {
         return $this->container['floating_point_number'];
     }
@@ -566,9 +566,9 @@ class JsonNode implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets int
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getInt(): bool
+    public function getInt(): ?bool
     {
         return $this->container['int'];
     }
@@ -590,9 +590,9 @@ class JsonNode implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets integral_number
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getIntegralNumber(): bool
+    public function getIntegralNumber(): ?bool
     {
         return $this->container['integral_number'];
     }
@@ -614,9 +614,9 @@ class JsonNode implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets long
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getLong(): bool
+    public function getLong(): ?bool
     {
         return $this->container['long'];
     }
@@ -638,9 +638,9 @@ class JsonNode implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets missing_node
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getMissingNode(): bool
+    public function getMissingNode(): ?bool
     {
         return $this->container['missing_node'];
     }
@@ -662,9 +662,9 @@ class JsonNode implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets node_type
      *
-     * @return string
+     * @return string|null
      */
-    public function getNodeType(): string
+    public function getNodeType(): ?string
     {
         return $this->container['node_type'];
     }
@@ -696,9 +696,9 @@ class JsonNode implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets null
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getNull(): bool
+    public function getNull(): ?bool
     {
         return $this->container['null'];
     }
@@ -720,9 +720,9 @@ class JsonNode implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets number
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getNumber(): bool
+    public function getNumber(): ?bool
     {
         return $this->container['number'];
     }
@@ -744,9 +744,9 @@ class JsonNode implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets object
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getObject(): bool
+    public function getObject(): ?bool
     {
         return $this->container['object'];
     }
@@ -768,9 +768,9 @@ class JsonNode implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets pojo
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getPojo(): bool
+    public function getPojo(): ?bool
     {
         return $this->container['pojo'];
     }
@@ -792,9 +792,9 @@ class JsonNode implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets short
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getShort(): bool
+    public function getShort(): ?bool
     {
         return $this->container['short'];
     }
@@ -816,9 +816,9 @@ class JsonNode implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets textual
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getTextual(): bool
+    public function getTextual(): ?bool
     {
         return $this->container['textual'];
     }
@@ -840,9 +840,9 @@ class JsonNode implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets value_node
      *
-     * @return bool
+     * @return bool|null
      */
-    public function getValueNode(): bool
+    public function getValueNode(): ?bool
     {
         return $this->container['value_node'];
     }

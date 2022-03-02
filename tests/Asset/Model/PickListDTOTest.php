@@ -37,7 +37,7 @@ use PHPUnit\Framework\TestCase;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  *
- * @coversDefault \NecLimDul\MarketoRest\Asset\Model\PickListDTO
+ * @coversDefaultClass \NecLimDul\MarketoRest\Asset\Model\PickListDTO
  */
 class PickListDTOTest extends TestCase
 {
@@ -48,11 +48,6 @@ class PickListDTOTest extends TestCase
     private $sot;
 
     /**
-     * @var \Faker\Generator
-     */
-    private $faker;
-
-    /**
      * @var string[]
      */
     private $types = [
@@ -60,7 +55,13 @@ class PickListDTOTest extends TestCase
         'label' => 'string',
         'selected' => 'bool',
         'value' => 'string',
-    ];
+];
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
     /**
      * @var scalar[][]
      */
@@ -113,7 +114,14 @@ class PickListDTOTest extends TestCase
                 return new \stdClass();
         }
         if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
-            return new $type();
+            $model = new $type();
+            $types = $type::swaggerTypes();
+            foreach ($model->listInvalidProperties() as $field => $reason) {
+                // @todo get allowed values? ((getter))AllowedValues
+                // @phpstan-ignore-next-line
+                $model[$field] = $this->getFakeValue($types[$field], null);
+            }
+            return $model;
         }
         $this->markTestSkipped('This type is not mocked yet: ' . $type);
     }
@@ -125,7 +133,107 @@ class PickListDTOTest extends TestCase
      */
     public function testPickListDTO(): void
     {
-        $this->assertInstanceOf(\NecLimDul\MarketoRest\Asset\Model\PickListDTO::class, $this->sot);
+        $this->assertInstanceOf(PickListDTO::class, $this->sot);
+    }
+
+    /**
+     * @covers ::swaggerTypes
+     */
+    public function testSwaggerTypes(): void
+    {
+        $this->assertEquals($this->types, PickListDTO::swaggerTypes());
+    }
+
+    /**
+     * @covers ::swaggerFormats
+     */
+    public function testSwaggerFormats(): void
+    {
+        $formats = $this->sot->swaggerFormats();
+        $this->assertEquals(null, $formats['is_default']);
+        $this->assertEquals(null, $formats['label']);
+        $this->assertEquals(null, $formats['selected']);
+        $this->assertEquals(null, $formats['value']);
+    }
+
+    /**
+     * @covers ::attributeMap
+     */
+    public function testAttributeMap(): void
+    {
+        $formats = $this->sot->attributeMap();
+        $this->assertEquals('isDefault', $formats['is_default']);
+        $this->assertEquals('label', $formats['label']);
+        $this->assertEquals('selected', $formats['selected']);
+        $this->assertEquals('value', $formats['value']);
+    }
+
+    /**
+     * @covers ::getters
+     * @covers ::setters
+     */
+    public function testGettersSetters(): void
+    {
+        $getters = $this->sot->getters();
+        $setters = $this->sot->setters();
+        foreach (array_keys($this->types) as $field) {
+            $this->assertTrue(isset($setters[$field]));
+            $this->assertTrue(isset($getters[$field]));
+            $this->assertTrue(
+                method_exists($this->sot, $getters[$field]),
+                'Getter exists on model.'
+            );
+            $this->assertTrue(
+                method_exists($this->sot, $setters[$field]),
+                'Setter exists on model.'
+            );
+        }
+    }
+
+    /**
+     * @covers ::getModelName
+     */
+    public function testGetModelName(): void
+    {
+        $this->assertEquals('PickListDTO', $this->sot->getModelName());
+    }
+
+    /**
+     * @covers ::listInvalidProperties
+     * @covers ::valid
+     */
+    public function testValid(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::setAdditionalProperties
+     * @covers ::setAdditionalProperty
+     * @covers ::getAdditionalProperties
+     */
+    public function testAdditionalProperties(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::jsonSerialize
+     * @covers ::__toString
+     */
+    public function testJson(): void
+    {
+        // Some minimal tests that json generates well.
+        $json = json_encode($this->sot);
+        $this->assertIsString($json, 'Json encoded');
+        $json = json_decode($json);
+        $string = json_decode((string) $this->sot);
+        $this->assertEquals(
+            $json,
+            $string
+        );
+        $this->assertInstanceOf(\stdClass::class, $json);
+        $this->assertInstanceOf(\stdClass::class, $string);
     }
 
     /**
@@ -134,6 +242,10 @@ class PickListDTOTest extends TestCase
      * @covers ::__construct
      * @covers ::getIsDefault
      * @covers ::setIsDefault
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyIsDefault(): void
     {
@@ -144,7 +256,23 @@ class PickListDTOTest extends TestCase
         );
         $this->sot->setIsDefault($v);
         $this->assertEquals($v, $this->sot->getIsDefault());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setIsDefault(null);
+        $this->assertNull($this->sot->getIsDefault());
+        $this->sot->setIsDefault($v);
+
+        $this->assertEquals($v, $this->sot['is_default']);
+        $v = $this->getFakeValue(
+            $this->types['is_default'],
+            $this->allowedValues['is_default'] ?? null
+        );
+        $this->sot['is_default'] = $v;
+        $this->assertEquals($v, $this->sot['is_default']);
+        $this->assertTrue(isset($this->sot['is_default']));
+        unset($this->sot['is_default']);
+        $this->assertFalse(isset($this->sot['is_default']));
+        $this->sot['is_default'] = $v;
+        $this->assertEquals($v, $this->sot['is_default']);
+        $this->assertTrue(isset($this->sot['is_default']));
     }
 
     /**
@@ -153,6 +281,10 @@ class PickListDTOTest extends TestCase
      * @covers ::__construct
      * @covers ::getLabel
      * @covers ::setLabel
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyLabel(): void
     {
@@ -163,7 +295,23 @@ class PickListDTOTest extends TestCase
         );
         $this->sot->setLabel($v);
         $this->assertEquals($v, $this->sot->getLabel());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setLabel(null);
+        $this->assertNull($this->sot->getLabel());
+        $this->sot->setLabel($v);
+
+        $this->assertEquals($v, $this->sot['label']);
+        $v = $this->getFakeValue(
+            $this->types['label'],
+            $this->allowedValues['label'] ?? null
+        );
+        $this->sot['label'] = $v;
+        $this->assertEquals($v, $this->sot['label']);
+        $this->assertTrue(isset($this->sot['label']));
+        unset($this->sot['label']);
+        $this->assertFalse(isset($this->sot['label']));
+        $this->sot['label'] = $v;
+        $this->assertEquals($v, $this->sot['label']);
+        $this->assertTrue(isset($this->sot['label']));
     }
 
     /**
@@ -172,6 +320,10 @@ class PickListDTOTest extends TestCase
      * @covers ::__construct
      * @covers ::getSelected
      * @covers ::setSelected
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertySelected(): void
     {
@@ -182,7 +334,23 @@ class PickListDTOTest extends TestCase
         );
         $this->sot->setSelected($v);
         $this->assertEquals($v, $this->sot->getSelected());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setSelected(null);
+        $this->assertNull($this->sot->getSelected());
+        $this->sot->setSelected($v);
+
+        $this->assertEquals($v, $this->sot['selected']);
+        $v = $this->getFakeValue(
+            $this->types['selected'],
+            $this->allowedValues['selected'] ?? null
+        );
+        $this->sot['selected'] = $v;
+        $this->assertEquals($v, $this->sot['selected']);
+        $this->assertTrue(isset($this->sot['selected']));
+        unset($this->sot['selected']);
+        $this->assertFalse(isset($this->sot['selected']));
+        $this->sot['selected'] = $v;
+        $this->assertEquals($v, $this->sot['selected']);
+        $this->assertTrue(isset($this->sot['selected']));
     }
 
     /**
@@ -191,6 +359,10 @@ class PickListDTOTest extends TestCase
      * @covers ::__construct
      * @covers ::getValue
      * @covers ::setValue
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyValue(): void
     {
@@ -201,6 +373,22 @@ class PickListDTOTest extends TestCase
         );
         $this->sot->setValue($v);
         $this->assertEquals($v, $this->sot->getValue());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setValue(null);
+        $this->assertNull($this->sot->getValue());
+        $this->sot->setValue($v);
+
+        $this->assertEquals($v, $this->sot['value']);
+        $v = $this->getFakeValue(
+            $this->types['value'],
+            $this->allowedValues['value'] ?? null
+        );
+        $this->sot['value'] = $v;
+        $this->assertEquals($v, $this->sot['value']);
+        $this->assertTrue(isset($this->sot['value']));
+        unset($this->sot['value']);
+        $this->assertFalse(isset($this->sot['value']));
+        $this->sot['value'] = $v;
+        $this->assertEquals($v, $this->sot['value']);
+        $this->assertTrue(isset($this->sot['value']));
     }
 }

@@ -89,22 +89,6 @@ class ActivityType implements ModelInterface, ArrayAccess, \JsonSerializable
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -171,6 +155,22 @@ class ActivityType implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -210,16 +210,16 @@ class ActivityType implements ModelInterface, ArrayAccess, \JsonSerializable
         $invalidProperties = [];
 
         if ($this->container['attributes'] === null) {
-            $invalidProperties[] = "'attributes' can't be null";
+            $invalidProperties['attributes'] = "'attributes' can't be null";
         }
         if ($this->container['id'] === null) {
-            $invalidProperties[] = "'id' can't be null";
+            $invalidProperties['id'] = "'id' can't be null";
         }
         if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
+            $invalidProperties['name'] = "'name' can't be null";
         }
         if ($this->container['primary_attribute'] === null) {
-            $invalidProperties[] = "'primary_attribute' can't be null";
+            $invalidProperties['primary_attribute'] = "'primary_attribute' can't be null";
         }
         return $invalidProperties;
     }
@@ -235,9 +235,9 @@ class ActivityType implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets api_name
      *
-     * @return string
+     * @return string|null
      */
-    public function getApiName(): string
+    public function getApiName(): ?string
     {
         return $this->container['api_name'];
     }
@@ -283,9 +283,9 @@ class ActivityType implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->container['description'];
     }

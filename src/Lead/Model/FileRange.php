@@ -81,22 +81,6 @@ class FileRange implements ModelInterface, ArrayAccess, \JsonSerializable
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -144,6 +128,22 @@ class FileRange implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $this->container['end'] = $data['end'] ?? null;
         $this->container['start'] = $data['start'] ?? null;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
     }
 
     /**
@@ -199,9 +199,9 @@ class FileRange implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets end
      *
-     * @return int
+     * @return int|null
      */
-    public function getEnd(): int
+    public function getEnd(): ?int
     {
         return $this->container['end'];
     }
@@ -223,9 +223,9 @@ class FileRange implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets start
      *
-     * @return int
+     * @return int|null
      */
-    public function getStart(): int
+    public function getStart(): ?int
     {
         return $this->container['start'];
     }

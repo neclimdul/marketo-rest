@@ -37,7 +37,7 @@ use PHPUnit\Framework\TestCase;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  *
- * @coversDefault \NecLimDul\MarketoRest\Asset\Model\SendSampleEmailRequest
+ * @coversDefaultClass \NecLimDul\MarketoRest\Asset\Model\SendSampleEmailRequest
  */
 class SendSampleEmailRequestTest extends TestCase
 {
@@ -48,18 +48,19 @@ class SendSampleEmailRequestTest extends TestCase
     private $sot;
 
     /**
-     * @var \Faker\Generator
-     */
-    private $faker;
-
-    /**
      * @var string[]
      */
     private $types = [
         'email_address' => 'string',
         'lead_id' => 'string',
         'text_only' => 'bool',
-    ];
+];
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
     /**
      * @var scalar[][]
      */
@@ -112,7 +113,14 @@ class SendSampleEmailRequestTest extends TestCase
                 return new \stdClass();
         }
         if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
-            return new $type();
+            $model = new $type();
+            $types = $type::swaggerTypes();
+            foreach ($model->listInvalidProperties() as $field => $reason) {
+                // @todo get allowed values? ((getter))AllowedValues
+                // @phpstan-ignore-next-line
+                $model[$field] = $this->getFakeValue($types[$field], null);
+            }
+            return $model;
         }
         $this->markTestSkipped('This type is not mocked yet: ' . $type);
     }
@@ -124,7 +132,105 @@ class SendSampleEmailRequestTest extends TestCase
      */
     public function testSendSampleEmailRequest(): void
     {
-        $this->assertInstanceOf(\NecLimDul\MarketoRest\Asset\Model\SendSampleEmailRequest::class, $this->sot);
+        $this->assertInstanceOf(SendSampleEmailRequest::class, $this->sot);
+    }
+
+    /**
+     * @covers ::swaggerTypes
+     */
+    public function testSwaggerTypes(): void
+    {
+        $this->assertEquals($this->types, SendSampleEmailRequest::swaggerTypes());
+    }
+
+    /**
+     * @covers ::swaggerFormats
+     */
+    public function testSwaggerFormats(): void
+    {
+        $formats = $this->sot->swaggerFormats();
+        $this->assertEquals(null, $formats['email_address']);
+        $this->assertEquals(null, $formats['lead_id']);
+        $this->assertEquals(null, $formats['text_only']);
+    }
+
+    /**
+     * @covers ::attributeMap
+     */
+    public function testAttributeMap(): void
+    {
+        $formats = $this->sot->attributeMap();
+        $this->assertEquals('emailAddress', $formats['email_address']);
+        $this->assertEquals('leadId', $formats['lead_id']);
+        $this->assertEquals('textOnly', $formats['text_only']);
+    }
+
+    /**
+     * @covers ::getters
+     * @covers ::setters
+     */
+    public function testGettersSetters(): void
+    {
+        $getters = $this->sot->getters();
+        $setters = $this->sot->setters();
+        foreach (array_keys($this->types) as $field) {
+            $this->assertTrue(isset($setters[$field]));
+            $this->assertTrue(isset($getters[$field]));
+            $this->assertTrue(
+                method_exists($this->sot, $getters[$field]),
+                'Getter exists on model.'
+            );
+            $this->assertTrue(
+                method_exists($this->sot, $setters[$field]),
+                'Setter exists on model.'
+            );
+        }
+    }
+
+    /**
+     * @covers ::getModelName
+     */
+    public function testGetModelName(): void
+    {
+        $this->assertEquals('SendSampleEmailRequest', $this->sot->getModelName());
+    }
+
+    /**
+     * @covers ::listInvalidProperties
+     * @covers ::valid
+     */
+    public function testValid(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::setAdditionalProperties
+     * @covers ::setAdditionalProperty
+     * @covers ::getAdditionalProperties
+     */
+    public function testAdditionalProperties(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::jsonSerialize
+     * @covers ::__toString
+     */
+    public function testJson(): void
+    {
+        // Some minimal tests that json generates well.
+        $json = json_encode($this->sot);
+        $this->assertIsString($json, 'Json encoded');
+        $json = json_decode($json);
+        $string = json_decode((string) $this->sot);
+        $this->assertEquals(
+            $json,
+            $string
+        );
+        $this->assertInstanceOf(\stdClass::class, $json);
+        $this->assertInstanceOf(\stdClass::class, $string);
     }
 
     /**
@@ -133,6 +239,10 @@ class SendSampleEmailRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getEmailAddress
      * @covers ::setEmailAddress
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyEmailAddress(): void
     {
@@ -143,7 +253,20 @@ class SendSampleEmailRequestTest extends TestCase
         );
         $this->sot->setEmailAddress($v);
         $this->assertEquals($v, $this->sot->getEmailAddress());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['email_address']);
+        $v = $this->getFakeValue(
+            $this->types['email_address'],
+            $this->allowedValues['email_address'] ?? null
+        );
+        $this->sot['email_address'] = $v;
+        $this->assertEquals($v, $this->sot['email_address']);
+        $this->assertTrue(isset($this->sot['email_address']));
+        unset($this->sot['email_address']);
+        $this->assertFalse(isset($this->sot['email_address']));
+        $this->sot['email_address'] = $v;
+        $this->assertEquals($v, $this->sot['email_address']);
+        $this->assertTrue(isset($this->sot['email_address']));
     }
 
     /**
@@ -152,6 +275,10 @@ class SendSampleEmailRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getLeadId
      * @covers ::setLeadId
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyLeadId(): void
     {
@@ -162,7 +289,23 @@ class SendSampleEmailRequestTest extends TestCase
         );
         $this->sot->setLeadId($v);
         $this->assertEquals($v, $this->sot->getLeadId());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setLeadId(null);
+        $this->assertNull($this->sot->getLeadId());
+        $this->sot->setLeadId($v);
+
+        $this->assertEquals($v, $this->sot['lead_id']);
+        $v = $this->getFakeValue(
+            $this->types['lead_id'],
+            $this->allowedValues['lead_id'] ?? null
+        );
+        $this->sot['lead_id'] = $v;
+        $this->assertEquals($v, $this->sot['lead_id']);
+        $this->assertTrue(isset($this->sot['lead_id']));
+        unset($this->sot['lead_id']);
+        $this->assertFalse(isset($this->sot['lead_id']));
+        $this->sot['lead_id'] = $v;
+        $this->assertEquals($v, $this->sot['lead_id']);
+        $this->assertTrue(isset($this->sot['lead_id']));
     }
 
     /**
@@ -171,6 +314,10 @@ class SendSampleEmailRequestTest extends TestCase
      * @covers ::__construct
      * @covers ::getTextOnly
      * @covers ::setTextOnly
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyTextOnly(): void
     {
@@ -181,6 +328,22 @@ class SendSampleEmailRequestTest extends TestCase
         );
         $this->sot->setTextOnly($v);
         $this->assertEquals($v, $this->sot->getTextOnly());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setTextOnly(null);
+        $this->assertNull($this->sot->getTextOnly());
+        $this->sot->setTextOnly($v);
+
+        $this->assertEquals($v, $this->sot['text_only']);
+        $v = $this->getFakeValue(
+            $this->types['text_only'],
+            $this->allowedValues['text_only'] ?? null
+        );
+        $this->sot['text_only'] = $v;
+        $this->assertEquals($v, $this->sot['text_only']);
+        $this->assertTrue(isset($this->sot['text_only']));
+        unset($this->sot['text_only']);
+        $this->assertFalse(isset($this->sot['text_only']));
+        $this->sot['text_only'] = $v;
+        $this->assertEquals($v, $this->sot['text_only']);
+        $this->assertTrue(isset($this->sot['text_only']));
     }
 }

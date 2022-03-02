@@ -89,22 +89,6 @@ class ResponseOfCompany implements ModelInterface, ArrayAccess, \JsonSerializabl
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -171,6 +155,22 @@ class ResponseOfCompany implements ModelInterface, ArrayAccess, \JsonSerializabl
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -210,19 +210,19 @@ class ResponseOfCompany implements ModelInterface, ArrayAccess, \JsonSerializabl
         $invalidProperties = [];
 
         if ($this->container['errors'] === null) {
-            $invalidProperties[] = "'errors' can't be null";
+            $invalidProperties['errors'] = "'errors' can't be null";
         }
         if ($this->container['request_id'] === null) {
-            $invalidProperties[] = "'request_id' can't be null";
+            $invalidProperties['request_id'] = "'request_id' can't be null";
         }
         if ($this->container['result'] === null) {
-            $invalidProperties[] = "'result' can't be null";
+            $invalidProperties['result'] = "'result' can't be null";
         }
         if ($this->container['success'] === null) {
-            $invalidProperties[] = "'success' can't be null";
+            $invalidProperties['success'] = "'success' can't be null";
         }
         if ($this->container['warnings'] === null) {
-            $invalidProperties[] = "'warnings' can't be null";
+            $invalidProperties['warnings'] = "'warnings' can't be null";
         }
         return $invalidProperties;
     }
@@ -262,9 +262,9 @@ class ResponseOfCompany implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets next_page_token
      *
-     * @return string
+     * @return string|null
      */
-    public function getNextPageToken(): string
+    public function getNextPageToken(): ?string
     {
         return $this->container['next_page_token'];
     }

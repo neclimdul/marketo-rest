@@ -37,7 +37,7 @@ use PHPUnit\Framework\TestCase;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  *
- * @coversDefault \NecLimDul\MarketoRest\Lead\Model\ObjectField
+ * @coversDefaultClass \NecLimDul\MarketoRest\Lead\Model\ObjectField
  */
 class ObjectFieldTest extends TestCase
 {
@@ -46,11 +46,6 @@ class ObjectFieldTest extends TestCase
      * @var \NecLimDul\MarketoRest\Lead\Model\ObjectField
      */
     private $sot;
-
-    /**
-     * @var \Faker\Generator
-     */
-    private $faker;
 
     /**
      * @var string[]
@@ -62,7 +57,13 @@ class ObjectFieldTest extends TestCase
         'name' => 'string',
         'updateable' => 'bool',
         'crm_managed' => 'bool',
-    ];
+];
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
     /**
      * @var scalar[][]
      */
@@ -115,7 +116,14 @@ class ObjectFieldTest extends TestCase
                 return new \stdClass();
         }
         if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
-            return new $type();
+            $model = new $type();
+            $types = $type::swaggerTypes();
+            foreach ($model->listInvalidProperties() as $field => $reason) {
+                // @todo get allowed values? ((getter))AllowedValues
+                // @phpstan-ignore-next-line
+                $model[$field] = $this->getFakeValue($types[$field], null);
+            }
+            return $model;
         }
         $this->markTestSkipped('This type is not mocked yet: ' . $type);
     }
@@ -127,7 +135,111 @@ class ObjectFieldTest extends TestCase
      */
     public function testObjectField(): void
     {
-        $this->assertInstanceOf(\NecLimDul\MarketoRest\Lead\Model\ObjectField::class, $this->sot);
+        $this->assertInstanceOf(ObjectField::class, $this->sot);
+    }
+
+    /**
+     * @covers ::swaggerTypes
+     */
+    public function testSwaggerTypes(): void
+    {
+        $this->assertEquals($this->types, ObjectField::swaggerTypes());
+    }
+
+    /**
+     * @covers ::swaggerFormats
+     */
+    public function testSwaggerFormats(): void
+    {
+        $formats = $this->sot->swaggerFormats();
+        $this->assertEquals(null, $formats['data_type']);
+        $this->assertEquals(null, $formats['display_name']);
+        $this->assertEquals('int32', $formats['length']);
+        $this->assertEquals(null, $formats['name']);
+        $this->assertEquals(null, $formats['updateable']);
+        $this->assertEquals(null, $formats['crm_managed']);
+    }
+
+    /**
+     * @covers ::attributeMap
+     */
+    public function testAttributeMap(): void
+    {
+        $formats = $this->sot->attributeMap();
+        $this->assertEquals('dataType', $formats['data_type']);
+        $this->assertEquals('displayName', $formats['display_name']);
+        $this->assertEquals('length', $formats['length']);
+        $this->assertEquals('name', $formats['name']);
+        $this->assertEquals('updateable', $formats['updateable']);
+        $this->assertEquals('crmManaged', $formats['crm_managed']);
+    }
+
+    /**
+     * @covers ::getters
+     * @covers ::setters
+     */
+    public function testGettersSetters(): void
+    {
+        $getters = $this->sot->getters();
+        $setters = $this->sot->setters();
+        foreach (array_keys($this->types) as $field) {
+            $this->assertTrue(isset($setters[$field]));
+            $this->assertTrue(isset($getters[$field]));
+            $this->assertTrue(
+                method_exists($this->sot, $getters[$field]),
+                'Getter exists on model.'
+            );
+            $this->assertTrue(
+                method_exists($this->sot, $setters[$field]),
+                'Setter exists on model.'
+            );
+        }
+    }
+
+    /**
+     * @covers ::getModelName
+     */
+    public function testGetModelName(): void
+    {
+        $this->assertEquals('ObjectField', $this->sot->getModelName());
+    }
+
+    /**
+     * @covers ::listInvalidProperties
+     * @covers ::valid
+     */
+    public function testValid(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::setAdditionalProperties
+     * @covers ::setAdditionalProperty
+     * @covers ::getAdditionalProperties
+     */
+    public function testAdditionalProperties(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::jsonSerialize
+     * @covers ::__toString
+     */
+    public function testJson(): void
+    {
+        // Some minimal tests that json generates well.
+        $json = json_encode($this->sot);
+        $this->assertIsString($json, 'Json encoded');
+        $json = json_decode($json);
+        $string = json_decode((string) $this->sot);
+        $this->assertEquals(
+            $json,
+            $string
+        );
+        $this->assertInstanceOf(\stdClass::class, $json);
+        $this->assertInstanceOf(\stdClass::class, $string);
     }
 
     /**
@@ -136,6 +248,10 @@ class ObjectFieldTest extends TestCase
      * @covers ::__construct
      * @covers ::getDataType
      * @covers ::setDataType
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyDataType(): void
     {
@@ -146,7 +262,23 @@ class ObjectFieldTest extends TestCase
         );
         $this->sot->setDataType($v);
         $this->assertEquals($v, $this->sot->getDataType());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setDataType(null);
+        $this->assertNull($this->sot->getDataType());
+        $this->sot->setDataType($v);
+
+        $this->assertEquals($v, $this->sot['data_type']);
+        $v = $this->getFakeValue(
+            $this->types['data_type'],
+            $this->allowedValues['data_type'] ?? null
+        );
+        $this->sot['data_type'] = $v;
+        $this->assertEquals($v, $this->sot['data_type']);
+        $this->assertTrue(isset($this->sot['data_type']));
+        unset($this->sot['data_type']);
+        $this->assertFalse(isset($this->sot['data_type']));
+        $this->sot['data_type'] = $v;
+        $this->assertEquals($v, $this->sot['data_type']);
+        $this->assertTrue(isset($this->sot['data_type']));
     }
 
     /**
@@ -155,6 +287,10 @@ class ObjectFieldTest extends TestCase
      * @covers ::__construct
      * @covers ::getDisplayName
      * @covers ::setDisplayName
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyDisplayName(): void
     {
@@ -165,7 +301,23 @@ class ObjectFieldTest extends TestCase
         );
         $this->sot->setDisplayName($v);
         $this->assertEquals($v, $this->sot->getDisplayName());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setDisplayName(null);
+        $this->assertNull($this->sot->getDisplayName());
+        $this->sot->setDisplayName($v);
+
+        $this->assertEquals($v, $this->sot['display_name']);
+        $v = $this->getFakeValue(
+            $this->types['display_name'],
+            $this->allowedValues['display_name'] ?? null
+        );
+        $this->sot['display_name'] = $v;
+        $this->assertEquals($v, $this->sot['display_name']);
+        $this->assertTrue(isset($this->sot['display_name']));
+        unset($this->sot['display_name']);
+        $this->assertFalse(isset($this->sot['display_name']));
+        $this->sot['display_name'] = $v;
+        $this->assertEquals($v, $this->sot['display_name']);
+        $this->assertTrue(isset($this->sot['display_name']));
     }
 
     /**
@@ -174,6 +326,10 @@ class ObjectFieldTest extends TestCase
      * @covers ::__construct
      * @covers ::getLength
      * @covers ::setLength
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyLength(): void
     {
@@ -184,7 +340,23 @@ class ObjectFieldTest extends TestCase
         );
         $this->sot->setLength($v);
         $this->assertEquals($v, $this->sot->getLength());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setLength(null);
+        $this->assertNull($this->sot->getLength());
+        $this->sot->setLength($v);
+
+        $this->assertEquals($v, $this->sot['length']);
+        $v = $this->getFakeValue(
+            $this->types['length'],
+            $this->allowedValues['length'] ?? null
+        );
+        $this->sot['length'] = $v;
+        $this->assertEquals($v, $this->sot['length']);
+        $this->assertTrue(isset($this->sot['length']));
+        unset($this->sot['length']);
+        $this->assertFalse(isset($this->sot['length']));
+        $this->sot['length'] = $v;
+        $this->assertEquals($v, $this->sot['length']);
+        $this->assertTrue(isset($this->sot['length']));
     }
 
     /**
@@ -193,6 +365,10 @@ class ObjectFieldTest extends TestCase
      * @covers ::__construct
      * @covers ::getName
      * @covers ::setName
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyName(): void
     {
@@ -203,7 +379,23 @@ class ObjectFieldTest extends TestCase
         );
         $this->sot->setName($v);
         $this->assertEquals($v, $this->sot->getName());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setName(null);
+        $this->assertNull($this->sot->getName());
+        $this->sot->setName($v);
+
+        $this->assertEquals($v, $this->sot['name']);
+        $v = $this->getFakeValue(
+            $this->types['name'],
+            $this->allowedValues['name'] ?? null
+        );
+        $this->sot['name'] = $v;
+        $this->assertEquals($v, $this->sot['name']);
+        $this->assertTrue(isset($this->sot['name']));
+        unset($this->sot['name']);
+        $this->assertFalse(isset($this->sot['name']));
+        $this->sot['name'] = $v;
+        $this->assertEquals($v, $this->sot['name']);
+        $this->assertTrue(isset($this->sot['name']));
     }
 
     /**
@@ -212,6 +404,10 @@ class ObjectFieldTest extends TestCase
      * @covers ::__construct
      * @covers ::getUpdateable
      * @covers ::setUpdateable
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyUpdateable(): void
     {
@@ -222,7 +418,23 @@ class ObjectFieldTest extends TestCase
         );
         $this->sot->setUpdateable($v);
         $this->assertEquals($v, $this->sot->getUpdateable());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setUpdateable(null);
+        $this->assertNull($this->sot->getUpdateable());
+        $this->sot->setUpdateable($v);
+
+        $this->assertEquals($v, $this->sot['updateable']);
+        $v = $this->getFakeValue(
+            $this->types['updateable'],
+            $this->allowedValues['updateable'] ?? null
+        );
+        $this->sot['updateable'] = $v;
+        $this->assertEquals($v, $this->sot['updateable']);
+        $this->assertTrue(isset($this->sot['updateable']));
+        unset($this->sot['updateable']);
+        $this->assertFalse(isset($this->sot['updateable']));
+        $this->sot['updateable'] = $v;
+        $this->assertEquals($v, $this->sot['updateable']);
+        $this->assertTrue(isset($this->sot['updateable']));
     }
 
     /**
@@ -231,6 +443,10 @@ class ObjectFieldTest extends TestCase
      * @covers ::__construct
      * @covers ::getCrmManaged
      * @covers ::setCrmManaged
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyCrmManaged(): void
     {
@@ -241,6 +457,22 @@ class ObjectFieldTest extends TestCase
         );
         $this->sot->setCrmManaged($v);
         $this->assertEquals($v, $this->sot->getCrmManaged());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setCrmManaged(null);
+        $this->assertNull($this->sot->getCrmManaged());
+        $this->sot->setCrmManaged($v);
+
+        $this->assertEquals($v, $this->sot['crm_managed']);
+        $v = $this->getFakeValue(
+            $this->types['crm_managed'],
+            $this->allowedValues['crm_managed'] ?? null
+        );
+        $this->sot['crm_managed'] = $v;
+        $this->assertEquals($v, $this->sot['crm_managed']);
+        $this->assertTrue(isset($this->sot['crm_managed']));
+        unset($this->sot['crm_managed']);
+        $this->assertFalse(isset($this->sot['crm_managed']));
+        $this->sot['crm_managed'] = $v;
+        $this->assertEquals($v, $this->sot['crm_managed']);
+        $this->assertTrue(isset($this->sot['crm_managed']));
     }
 }

@@ -89,22 +89,6 @@ class SegmentContent implements ModelInterface, ArrayAccess, \JsonSerializable
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -171,6 +155,22 @@ class SegmentContent implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -210,16 +210,16 @@ class SegmentContent implements ModelInterface, ArrayAccess, \JsonSerializable
         $invalidProperties = [];
 
         if ($this->container['content'] === null) {
-            $invalidProperties[] = "'content' can't be null";
+            $invalidProperties['content'] = "'content' can't be null";
         }
         if ($this->container['segment_id'] === null) {
-            $invalidProperties[] = "'segment_id' can't be null";
+            $invalidProperties['segment_id'] = "'segment_id' can't be null";
         }
         if ($this->container['segment_name'] === null) {
-            $invalidProperties[] = "'segment_name' can't be null";
+            $invalidProperties['segment_name'] = "'segment_name' can't be null";
         }
         if ($this->container['type'] === null) {
-            $invalidProperties[] = "'type' can't be null";
+            $invalidProperties['type'] = "'type' can't be null";
         }
         return $invalidProperties;
     }
@@ -259,9 +259,9 @@ class SegmentContent implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets followup_type
      *
-     * @return string
+     * @return string|null
      */
-    public function getFollowupType(): string
+    public function getFollowupType(): ?string
     {
         return $this->container['followup_type'];
     }
@@ -283,9 +283,9 @@ class SegmentContent implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets followup_value
      *
-     * @return string
+     * @return string|null
      */
-    public function getFollowupValue(): string
+    public function getFollowupValue(): ?string
     {
         return $this->container['followup_value'];
     }

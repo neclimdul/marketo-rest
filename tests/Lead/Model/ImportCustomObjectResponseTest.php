@@ -37,7 +37,7 @@ use PHPUnit\Framework\TestCase;
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  *
- * @coversDefault \NecLimDul\MarketoRest\Lead\Model\ImportCustomObjectResponse
+ * @coversDefaultClass \NecLimDul\MarketoRest\Lead\Model\ImportCustomObjectResponse
  */
 class ImportCustomObjectResponseTest extends TestCase
 {
@@ -46,11 +46,6 @@ class ImportCustomObjectResponseTest extends TestCase
      * @var \NecLimDul\MarketoRest\Lead\Model\ImportCustomObjectResponse
      */
     private $sot;
-
-    /**
-     * @var \Faker\Generator
-     */
-    private $faker;
 
     /**
      * @var string[]
@@ -65,7 +60,13 @@ class ImportCustomObjectResponseTest extends TestCase
         'object_api_name' => 'string',
         'operation' => 'string',
         'status' => 'string',
-    ];
+];
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
     /**
      * @var scalar[][]
      */
@@ -118,7 +119,14 @@ class ImportCustomObjectResponseTest extends TestCase
                 return new \stdClass();
         }
         if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
-            return new $type();
+            $model = new $type();
+            $types = $type::swaggerTypes();
+            foreach ($model->listInvalidProperties() as $field => $reason) {
+                // @todo get allowed values? ((getter))AllowedValues
+                // @phpstan-ignore-next-line
+                $model[$field] = $this->getFakeValue($types[$field], null);
+            }
+            return $model;
         }
         $this->markTestSkipped('This type is not mocked yet: ' . $type);
     }
@@ -130,7 +138,117 @@ class ImportCustomObjectResponseTest extends TestCase
      */
     public function testImportCustomObjectResponse(): void
     {
-        $this->assertInstanceOf(\NecLimDul\MarketoRest\Lead\Model\ImportCustomObjectResponse::class, $this->sot);
+        $this->assertInstanceOf(ImportCustomObjectResponse::class, $this->sot);
+    }
+
+    /**
+     * @covers ::swaggerTypes
+     */
+    public function testSwaggerTypes(): void
+    {
+        $this->assertEquals($this->types, ImportCustomObjectResponse::swaggerTypes());
+    }
+
+    /**
+     * @covers ::swaggerFormats
+     */
+    public function testSwaggerFormats(): void
+    {
+        $formats = $this->sot->swaggerFormats();
+        $this->assertEquals('int32', $formats['batch_id']);
+        $this->assertEquals(null, $formats['import_time']);
+        $this->assertEquals(null, $formats['message']);
+        $this->assertEquals('int32', $formats['num_of_objects_processed']);
+        $this->assertEquals('int32', $formats['num_of_rows_failed']);
+        $this->assertEquals('int32', $formats['num_of_rows_with_warning']);
+        $this->assertEquals(null, $formats['object_api_name']);
+        $this->assertEquals(null, $formats['operation']);
+        $this->assertEquals(null, $formats['status']);
+    }
+
+    /**
+     * @covers ::attributeMap
+     */
+    public function testAttributeMap(): void
+    {
+        $formats = $this->sot->attributeMap();
+        $this->assertEquals('batchId', $formats['batch_id']);
+        $this->assertEquals('importTime', $formats['import_time']);
+        $this->assertEquals('message', $formats['message']);
+        $this->assertEquals('numOfObjectsProcessed', $formats['num_of_objects_processed']);
+        $this->assertEquals('numOfRowsFailed', $formats['num_of_rows_failed']);
+        $this->assertEquals('numOfRowsWithWarning', $formats['num_of_rows_with_warning']);
+        $this->assertEquals('objectApiName', $formats['object_api_name']);
+        $this->assertEquals('operation', $formats['operation']);
+        $this->assertEquals('status', $formats['status']);
+    }
+
+    /**
+     * @covers ::getters
+     * @covers ::setters
+     */
+    public function testGettersSetters(): void
+    {
+        $getters = $this->sot->getters();
+        $setters = $this->sot->setters();
+        foreach (array_keys($this->types) as $field) {
+            $this->assertTrue(isset($setters[$field]));
+            $this->assertTrue(isset($getters[$field]));
+            $this->assertTrue(
+                method_exists($this->sot, $getters[$field]),
+                'Getter exists on model.'
+            );
+            $this->assertTrue(
+                method_exists($this->sot, $setters[$field]),
+                'Setter exists on model.'
+            );
+        }
+    }
+
+    /**
+     * @covers ::getModelName
+     */
+    public function testGetModelName(): void
+    {
+        $this->assertEquals('ImportCustomObjectResponse', $this->sot->getModelName());
+    }
+
+    /**
+     * @covers ::listInvalidProperties
+     * @covers ::valid
+     */
+    public function testValid(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::setAdditionalProperties
+     * @covers ::setAdditionalProperty
+     * @covers ::getAdditionalProperties
+     */
+    public function testAdditionalProperties(): void
+    {
+        $this->markTestIncomplete('TODO');
+    }
+
+    /**
+     * @covers ::jsonSerialize
+     * @covers ::__toString
+     */
+    public function testJson(): void
+    {
+        // Some minimal tests that json generates well.
+        $json = json_encode($this->sot);
+        $this->assertIsString($json, 'Json encoded');
+        $json = json_decode($json);
+        $string = json_decode((string) $this->sot);
+        $this->assertEquals(
+            $json,
+            $string
+        );
+        $this->assertInstanceOf(\stdClass::class, $json);
+        $this->assertInstanceOf(\stdClass::class, $string);
     }
 
     /**
@@ -139,6 +257,10 @@ class ImportCustomObjectResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getBatchId
      * @covers ::setBatchId
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyBatchId(): void
     {
@@ -149,7 +271,20 @@ class ImportCustomObjectResponseTest extends TestCase
         );
         $this->sot->setBatchId($v);
         $this->assertEquals($v, $this->sot->getBatchId());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['batch_id']);
+        $v = $this->getFakeValue(
+            $this->types['batch_id'],
+            $this->allowedValues['batch_id'] ?? null
+        );
+        $this->sot['batch_id'] = $v;
+        $this->assertEquals($v, $this->sot['batch_id']);
+        $this->assertTrue(isset($this->sot['batch_id']));
+        unset($this->sot['batch_id']);
+        $this->assertFalse(isset($this->sot['batch_id']));
+        $this->sot['batch_id'] = $v;
+        $this->assertEquals($v, $this->sot['batch_id']);
+        $this->assertTrue(isset($this->sot['batch_id']));
     }
 
     /**
@@ -158,6 +293,10 @@ class ImportCustomObjectResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getImportTime
      * @covers ::setImportTime
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyImportTime(): void
     {
@@ -168,7 +307,23 @@ class ImportCustomObjectResponseTest extends TestCase
         );
         $this->sot->setImportTime($v);
         $this->assertEquals($v, $this->sot->getImportTime());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setImportTime(null);
+        $this->assertNull($this->sot->getImportTime());
+        $this->sot->setImportTime($v);
+
+        $this->assertEquals($v, $this->sot['import_time']);
+        $v = $this->getFakeValue(
+            $this->types['import_time'],
+            $this->allowedValues['import_time'] ?? null
+        );
+        $this->sot['import_time'] = $v;
+        $this->assertEquals($v, $this->sot['import_time']);
+        $this->assertTrue(isset($this->sot['import_time']));
+        unset($this->sot['import_time']);
+        $this->assertFalse(isset($this->sot['import_time']));
+        $this->sot['import_time'] = $v;
+        $this->assertEquals($v, $this->sot['import_time']);
+        $this->assertTrue(isset($this->sot['import_time']));
     }
 
     /**
@@ -177,6 +332,10 @@ class ImportCustomObjectResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getMessage
      * @covers ::setMessage
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyMessage(): void
     {
@@ -187,7 +346,23 @@ class ImportCustomObjectResponseTest extends TestCase
         );
         $this->sot->setMessage($v);
         $this->assertEquals($v, $this->sot->getMessage());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setMessage(null);
+        $this->assertNull($this->sot->getMessage());
+        $this->sot->setMessage($v);
+
+        $this->assertEquals($v, $this->sot['message']);
+        $v = $this->getFakeValue(
+            $this->types['message'],
+            $this->allowedValues['message'] ?? null
+        );
+        $this->sot['message'] = $v;
+        $this->assertEquals($v, $this->sot['message']);
+        $this->assertTrue(isset($this->sot['message']));
+        unset($this->sot['message']);
+        $this->assertFalse(isset($this->sot['message']));
+        $this->sot['message'] = $v;
+        $this->assertEquals($v, $this->sot['message']);
+        $this->assertTrue(isset($this->sot['message']));
     }
 
     /**
@@ -196,6 +371,10 @@ class ImportCustomObjectResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getNumOfObjectsProcessed
      * @covers ::setNumOfObjectsProcessed
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyNumOfObjectsProcessed(): void
     {
@@ -206,7 +385,23 @@ class ImportCustomObjectResponseTest extends TestCase
         );
         $this->sot->setNumOfObjectsProcessed($v);
         $this->assertEquals($v, $this->sot->getNumOfObjectsProcessed());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setNumOfObjectsProcessed(null);
+        $this->assertNull($this->sot->getNumOfObjectsProcessed());
+        $this->sot->setNumOfObjectsProcessed($v);
+
+        $this->assertEquals($v, $this->sot['num_of_objects_processed']);
+        $v = $this->getFakeValue(
+            $this->types['num_of_objects_processed'],
+            $this->allowedValues['num_of_objects_processed'] ?? null
+        );
+        $this->sot['num_of_objects_processed'] = $v;
+        $this->assertEquals($v, $this->sot['num_of_objects_processed']);
+        $this->assertTrue(isset($this->sot['num_of_objects_processed']));
+        unset($this->sot['num_of_objects_processed']);
+        $this->assertFalse(isset($this->sot['num_of_objects_processed']));
+        $this->sot['num_of_objects_processed'] = $v;
+        $this->assertEquals($v, $this->sot['num_of_objects_processed']);
+        $this->assertTrue(isset($this->sot['num_of_objects_processed']));
     }
 
     /**
@@ -215,6 +410,10 @@ class ImportCustomObjectResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getNumOfRowsFailed
      * @covers ::setNumOfRowsFailed
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyNumOfRowsFailed(): void
     {
@@ -225,7 +424,23 @@ class ImportCustomObjectResponseTest extends TestCase
         );
         $this->sot->setNumOfRowsFailed($v);
         $this->assertEquals($v, $this->sot->getNumOfRowsFailed());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setNumOfRowsFailed(null);
+        $this->assertNull($this->sot->getNumOfRowsFailed());
+        $this->sot->setNumOfRowsFailed($v);
+
+        $this->assertEquals($v, $this->sot['num_of_rows_failed']);
+        $v = $this->getFakeValue(
+            $this->types['num_of_rows_failed'],
+            $this->allowedValues['num_of_rows_failed'] ?? null
+        );
+        $this->sot['num_of_rows_failed'] = $v;
+        $this->assertEquals($v, $this->sot['num_of_rows_failed']);
+        $this->assertTrue(isset($this->sot['num_of_rows_failed']));
+        unset($this->sot['num_of_rows_failed']);
+        $this->assertFalse(isset($this->sot['num_of_rows_failed']));
+        $this->sot['num_of_rows_failed'] = $v;
+        $this->assertEquals($v, $this->sot['num_of_rows_failed']);
+        $this->assertTrue(isset($this->sot['num_of_rows_failed']));
     }
 
     /**
@@ -234,6 +449,10 @@ class ImportCustomObjectResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getNumOfRowsWithWarning
      * @covers ::setNumOfRowsWithWarning
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyNumOfRowsWithWarning(): void
     {
@@ -244,7 +463,23 @@ class ImportCustomObjectResponseTest extends TestCase
         );
         $this->sot->setNumOfRowsWithWarning($v);
         $this->assertEquals($v, $this->sot->getNumOfRowsWithWarning());
-        // $this->markTestIncomplete('Not implemented');
+        $this->sot->setNumOfRowsWithWarning(null);
+        $this->assertNull($this->sot->getNumOfRowsWithWarning());
+        $this->sot->setNumOfRowsWithWarning($v);
+
+        $this->assertEquals($v, $this->sot['num_of_rows_with_warning']);
+        $v = $this->getFakeValue(
+            $this->types['num_of_rows_with_warning'],
+            $this->allowedValues['num_of_rows_with_warning'] ?? null
+        );
+        $this->sot['num_of_rows_with_warning'] = $v;
+        $this->assertEquals($v, $this->sot['num_of_rows_with_warning']);
+        $this->assertTrue(isset($this->sot['num_of_rows_with_warning']));
+        unset($this->sot['num_of_rows_with_warning']);
+        $this->assertFalse(isset($this->sot['num_of_rows_with_warning']));
+        $this->sot['num_of_rows_with_warning'] = $v;
+        $this->assertEquals($v, $this->sot['num_of_rows_with_warning']);
+        $this->assertTrue(isset($this->sot['num_of_rows_with_warning']));
     }
 
     /**
@@ -253,6 +488,10 @@ class ImportCustomObjectResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getObjectApiName
      * @covers ::setObjectApiName
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyObjectApiName(): void
     {
@@ -263,7 +502,20 @@ class ImportCustomObjectResponseTest extends TestCase
         );
         $this->sot->setObjectApiName($v);
         $this->assertEquals($v, $this->sot->getObjectApiName());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['object_api_name']);
+        $v = $this->getFakeValue(
+            $this->types['object_api_name'],
+            $this->allowedValues['object_api_name'] ?? null
+        );
+        $this->sot['object_api_name'] = $v;
+        $this->assertEquals($v, $this->sot['object_api_name']);
+        $this->assertTrue(isset($this->sot['object_api_name']));
+        unset($this->sot['object_api_name']);
+        $this->assertFalse(isset($this->sot['object_api_name']));
+        $this->sot['object_api_name'] = $v;
+        $this->assertEquals($v, $this->sot['object_api_name']);
+        $this->assertTrue(isset($this->sot['object_api_name']));
     }
 
     /**
@@ -272,6 +524,10 @@ class ImportCustomObjectResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getOperation
      * @covers ::setOperation
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyOperation(): void
     {
@@ -282,7 +538,20 @@ class ImportCustomObjectResponseTest extends TestCase
         );
         $this->sot->setOperation($v);
         $this->assertEquals($v, $this->sot->getOperation());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['operation']);
+        $v = $this->getFakeValue(
+            $this->types['operation'],
+            $this->allowedValues['operation'] ?? null
+        );
+        $this->sot['operation'] = $v;
+        $this->assertEquals($v, $this->sot['operation']);
+        $this->assertTrue(isset($this->sot['operation']));
+        unset($this->sot['operation']);
+        $this->assertFalse(isset($this->sot['operation']));
+        $this->sot['operation'] = $v;
+        $this->assertEquals($v, $this->sot['operation']);
+        $this->assertTrue(isset($this->sot['operation']));
     }
 
     /**
@@ -291,6 +560,10 @@ class ImportCustomObjectResponseTest extends TestCase
      * @covers ::__construct
      * @covers ::getStatus
      * @covers ::setStatus
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
      */
     public function testPropertyStatus(): void
     {
@@ -301,6 +574,19 @@ class ImportCustomObjectResponseTest extends TestCase
         );
         $this->sot->setStatus($v);
         $this->assertEquals($v, $this->sot->getStatus());
-        // $this->markTestIncomplete('Not implemented');
+
+        $this->assertEquals($v, $this->sot['status']);
+        $v = $this->getFakeValue(
+            $this->types['status'],
+            $this->allowedValues['status'] ?? null
+        );
+        $this->sot['status'] = $v;
+        $this->assertEquals($v, $this->sot['status']);
+        $this->assertTrue(isset($this->sot['status']));
+        unset($this->sot['status']);
+        $this->assertFalse(isset($this->sot['status']));
+        $this->sot['status'] = $v;
+        $this->assertEquals($v, $this->sot['status']);
+        $this->assertTrue(isset($this->sot['status']));
     }
 }

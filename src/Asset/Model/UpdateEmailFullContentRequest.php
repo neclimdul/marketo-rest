@@ -79,22 +79,6 @@ class UpdateEmailFullContentRequest implements ModelInterface, ArrayAccess, \Jso
     protected $additionalProperties = [];
 
     /**
-     * {@inheritDoc}
-     */
-    public static function swaggerTypes(): array
-    {
-        return self::$swaggerTypes;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function swaggerFormats(): array
-    {
-        return self::$swaggerFormats;
-    }
-
-    /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
      *
@@ -141,6 +125,22 @@ class UpdateEmailFullContentRequest implements ModelInterface, ArrayAccess, \Jso
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public static function swaggerTypes(): array
+    {
+        return self::$swaggerTypes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function swaggerFormats(): array
+    {
+        return self::$swaggerFormats;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function attributeMap(): array
@@ -180,7 +180,7 @@ class UpdateEmailFullContentRequest implements ModelInterface, ArrayAccess, \Jso
         $invalidProperties = [];
 
         if ($this->container['content'] === null) {
-            $invalidProperties[] = "'content' can't be null";
+            $invalidProperties['content'] = "'content' can't be null";
         }
         return $invalidProperties;
     }
