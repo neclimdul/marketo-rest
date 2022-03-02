@@ -23,6 +23,9 @@
 
 namespace NecLimDul\MarketoRest\Asset\Test\Model;
 
+use Faker\Factory;
+use NecLimDul\MarketoRest\Asset\Model\ModelInterface;
+use NecLimDul\MarketoRest\Asset\Model\EmailContentResponse;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -33,70 +36,212 @@ use PHPUnit\Framework\TestCase;
  * @package     NecLimDul\MarketoRest\Asset
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
+ *
+ * @coversDefault \NecLimDul\MarketoRest\Asset\Model\EmailContentResponse
  */
 class EmailContentResponseTest extends TestCase
 {
 
     /**
+     * @var \NecLimDul\MarketoRest\Asset\Model\EmailContentResponse
+     */
+    private $sot;
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
+    /**
+     * @var string[]
+     */
+    private $types = [
+        'content_type' => 'string',
+        'html_id' => 'string',
+        'index' => 'int',
+        'is_locked' => 'bool',
+        'parent_html_id' => 'string',
+        'value' => 'object',
+    ];
+    /**
+     * @var scalar[][]
+     */
+    private $allowedValues = [
+    ];
+
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->faker = \Faker\Factory::create();
+        $data = [];
+        foreach ($this->types as $field => $type) {
+            $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
+        }
+        $this->sot = new EmailContentResponse($data);
+        $this->sot = new EmailContentResponse();
+    }
+
+    /**
+     * @param string $type
+     * @param scalar[]|null $values
+     * @return mixed
+     */
+    private function getFakeValue(string $type, ?array $values) {
+        if (isset($values)) {
+            // @todo random.
+            return array_pop($values);
+        }
+
+        // @todo look for container hints.
+        if (strcasecmp(substr($type, -2), '[]') === 0) {
+            $return = [];
+            $subType = substr($type, 0, -2);
+            for ($i = 0; $i <= rand(0, 9); $i++) {
+                $return[] = $this->getFakeValue($subType, $values);
+            }
+            return $return;
+        }
+        switch ($type) {
+            case 'string':
+                return $this->faker->word();
+            case 'float':
+                return $this->faker->randomFloat();
+            case 'int':
+                return $this->faker->randomNumber();
+            case 'bool':
+                return $this->faker->boolean();
+            case '\DateTime':
+                return $this->faker->dateTimeAD();
+            case 'object':
+                return new \stdClass();
+        }
+        if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
+            return new $type();
+        }
+        $this->markTestSkipped('This type is not mocked yet: ' . $type);
+    }
+
+    /**
      * Test "EmailContentResponse"
+     *
+     * @covers ::__construct
      */
     public function testEmailContentResponse(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(\NecLimDul\MarketoRest\Asset\Model\EmailContentResponse::class, $this->sot);
     }
 
     /**
      * Test attribute "content_type"
+     *
+     * @covers ::__construct
+     * @covers ::getContentType
+     * @covers ::setContentType
      */
     public function testPropertyContentType(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['content_type'],
+            $this->allowedValues['content_type'] ?? null
+        );
+        $this->sot->setContentType($v);
+        $this->assertEquals($v, $this->sot->getContentType());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "html_id"
+     *
+     * @covers ::__construct
+     * @covers ::getHtmlId
+     * @covers ::setHtmlId
      */
     public function testPropertyHtmlId(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['html_id'],
+            $this->allowedValues['html_id'] ?? null
+        );
+        $this->sot->setHtmlId($v);
+        $this->assertEquals($v, $this->sot->getHtmlId());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "index"
+     *
+     * @covers ::__construct
+     * @covers ::getIndex
+     * @covers ::setIndex
      */
     public function testPropertyIndex(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['index'],
+            $this->allowedValues['index'] ?? null
+        );
+        $this->sot->setIndex($v);
+        $this->assertEquals($v, $this->sot->getIndex());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "is_locked"
+     *
+     * @covers ::__construct
+     * @covers ::getIsLocked
+     * @covers ::setIsLocked
      */
     public function testPropertyIsLocked(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['is_locked'],
+            $this->allowedValues['is_locked'] ?? null
+        );
+        $this->sot->setIsLocked($v);
+        $this->assertEquals($v, $this->sot->getIsLocked());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "parent_html_id"
+     *
+     * @covers ::__construct
+     * @covers ::getParentHtmlId
+     * @covers ::setParentHtmlId
      */
     public function testPropertyParentHtmlId(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['parent_html_id'],
+            $this->allowedValues['parent_html_id'] ?? null
+        );
+        $this->sot->setParentHtmlId($v);
+        $this->assertEquals($v, $this->sot->getParentHtmlId());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "value"
+     *
+     * @covers ::__construct
+     * @covers ::getValue
+     * @covers ::setValue
      */
     public function testPropertyValue(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['value'],
+            $this->allowedValues['value'] ?? null
+        );
+        $this->sot->setValue($v);
+        $this->assertEquals($v, $this->sot->getValue());
+        // $this->markTestIncomplete('Not implemented');
     }
 }

@@ -23,6 +23,9 @@
 
 namespace NecLimDul\MarketoRest\Lead\Test\Model;
 
+use Faker\Factory;
+use NecLimDul\MarketoRest\Lead\Model\ModelInterface;
+use NecLimDul\MarketoRest\Lead\Model\Company;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -33,43 +36,152 @@ use PHPUnit\Framework\TestCase;
  * @package     NecLimDul\MarketoRest\Lead
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
+ *
+ * @coversDefault \NecLimDul\MarketoRest\Lead\Model\Company
  */
 class CompanyTest extends TestCase
 {
 
     /**
+     * @var \NecLimDul\MarketoRest\Lead\Model\Company
+     */
+    private $sot;
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
+    /**
+     * @var string[]
+     */
+    private $types = [
+        'external_company_id' => 'string',
+        'id' => 'int',
+        'company' => 'string',
+    ];
+    /**
+     * @var scalar[][]
+     */
+    private $allowedValues = [
+    ];
+
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->faker = \Faker\Factory::create();
+        $data = [];
+        foreach ($this->types as $field => $type) {
+            $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
+        }
+        $this->sot = new Company($data);
+        $this->sot = new Company();
+    }
+
+    /**
+     * @param string $type
+     * @param scalar[]|null $values
+     * @return mixed
+     */
+    private function getFakeValue(string $type, ?array $values) {
+        if (isset($values)) {
+            // @todo random.
+            return array_pop($values);
+        }
+
+        // @todo look for container hints.
+        if (strcasecmp(substr($type, -2), '[]') === 0) {
+            $return = [];
+            $subType = substr($type, 0, -2);
+            for ($i = 0; $i <= rand(0, 9); $i++) {
+                $return[] = $this->getFakeValue($subType, $values);
+            }
+            return $return;
+        }
+        switch ($type) {
+            case 'string':
+                return $this->faker->word();
+            case 'float':
+                return $this->faker->randomFloat();
+            case 'int':
+                return $this->faker->randomNumber();
+            case 'bool':
+                return $this->faker->boolean();
+            case '\DateTime':
+                return $this->faker->dateTimeAD();
+            case 'object':
+                return new \stdClass();
+        }
+        if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
+            return new $type();
+        }
+        $this->markTestSkipped('This type is not mocked yet: ' . $type);
+    }
+
+    /**
      * Test "Company"
+     *
+     * @covers ::__construct
      */
     public function testCompany(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(\NecLimDul\MarketoRest\Lead\Model\Company::class, $this->sot);
     }
 
     /**
      * Test attribute "external_company_id"
+     *
+     * @covers ::__construct
+     * @covers ::getExternalCompanyId
+     * @covers ::setExternalCompanyId
      */
     public function testPropertyExternalCompanyId(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['external_company_id'],
+            $this->allowedValues['external_company_id'] ?? null
+        );
+        $this->sot->setExternalCompanyId($v);
+        $this->assertEquals($v, $this->sot->getExternalCompanyId());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "id"
+     *
+     * @covers ::__construct
+     * @covers ::getId
+     * @covers ::setId
      */
     public function testPropertyId(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['id'],
+            $this->allowedValues['id'] ?? null
+        );
+        $this->sot->setId($v);
+        $this->assertEquals($v, $this->sot->getId());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "company"
+     *
+     * @covers ::__construct
+     * @covers ::getCompany
+     * @covers ::setCompany
      */
     public function testPropertyCompany(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['company'],
+            $this->allowedValues['company'] ?? null
+        );
+        $this->sot->setCompany($v);
+        $this->assertEquals($v, $this->sot->getCompany());
+        // $this->markTestIncomplete('Not implemented');
     }
 }

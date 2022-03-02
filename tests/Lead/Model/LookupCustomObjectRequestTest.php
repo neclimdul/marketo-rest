@@ -23,6 +23,9 @@
 
 namespace NecLimDul\MarketoRest\Lead\Test\Model;
 
+use Faker\Factory;
+use NecLimDul\MarketoRest\Lead\Model\ModelInterface;
+use NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -33,61 +36,192 @@ use PHPUnit\Framework\TestCase;
  * @package     NecLimDul\MarketoRest\Lead
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
+ *
+ * @coversDefault \NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest
  */
 class LookupCustomObjectRequestTest extends TestCase
 {
 
     /**
+     * @var \NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest
+     */
+    private $sot;
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
+    /**
+     * @var string[]
+     */
+    private $types = [
+        'batch_size' => 'int',
+        'fields' => 'string[]',
+        'filter_type' => 'string',
+        'input' => '\NecLimDul\MarketoRest\Lead\Model\CustomObject[]',
+        'next_page_token' => 'string',
+    ];
+    /**
+     * @var scalar[][]
+     */
+    private $allowedValues = [
+    ];
+
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->faker = \Faker\Factory::create();
+        $data = [];
+        foreach ($this->types as $field => $type) {
+            $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
+        }
+        $this->sot = new LookupCustomObjectRequest($data);
+        $this->sot = new LookupCustomObjectRequest();
+    }
+
+    /**
+     * @param string $type
+     * @param scalar[]|null $values
+     * @return mixed
+     */
+    private function getFakeValue(string $type, ?array $values) {
+        if (isset($values)) {
+            // @todo random.
+            return array_pop($values);
+        }
+
+        // @todo look for container hints.
+        if (strcasecmp(substr($type, -2), '[]') === 0) {
+            $return = [];
+            $subType = substr($type, 0, -2);
+            for ($i = 0; $i <= rand(0, 9); $i++) {
+                $return[] = $this->getFakeValue($subType, $values);
+            }
+            return $return;
+        }
+        switch ($type) {
+            case 'string':
+                return $this->faker->word();
+            case 'float':
+                return $this->faker->randomFloat();
+            case 'int':
+                return $this->faker->randomNumber();
+            case 'bool':
+                return $this->faker->boolean();
+            case '\DateTime':
+                return $this->faker->dateTimeAD();
+            case 'object':
+                return new \stdClass();
+        }
+        if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
+            return new $type();
+        }
+        $this->markTestSkipped('This type is not mocked yet: ' . $type);
+    }
+
+    /**
      * Test "LookupCustomObjectRequest"
+     *
+     * @covers ::__construct
      */
     public function testLookupCustomObjectRequest(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(\NecLimDul\MarketoRest\Lead\Model\LookupCustomObjectRequest::class, $this->sot);
     }
 
     /**
      * Test attribute "batch_size"
+     *
+     * @covers ::__construct
+     * @covers ::getBatchSize
+     * @covers ::setBatchSize
      */
     public function testPropertyBatchSize(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['batch_size'],
+            $this->allowedValues['batch_size'] ?? null
+        );
+        $this->sot->setBatchSize($v);
+        $this->assertEquals($v, $this->sot->getBatchSize());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "fields"
+     *
+     * @covers ::__construct
+     * @covers ::getFields
+     * @covers ::setFields
      */
     public function testPropertyFields(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['fields'],
+            $this->allowedValues['fields'] ?? null
+        );
+        $this->sot->setFields($v);
+        $this->assertEquals($v, $this->sot->getFields());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "filter_type"
+     *
+     * @covers ::__construct
+     * @covers ::getFilterType
+     * @covers ::setFilterType
      */
     public function testPropertyFilterType(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['filter_type'],
+            $this->allowedValues['filter_type'] ?? null
+        );
+        $this->sot->setFilterType($v);
+        $this->assertEquals($v, $this->sot->getFilterType());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "input"
+     *
+     * @covers ::__construct
+     * @covers ::getInput
+     * @covers ::setInput
      */
     public function testPropertyInput(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['input'],
+            $this->allowedValues['input'] ?? null
+        );
+        $this->sot->setInput($v);
+        $this->assertEquals($v, $this->sot->getInput());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "next_page_token"
+     *
+     * @covers ::__construct
+     * @covers ::getNextPageToken
+     * @covers ::setNextPageToken
      */
     public function testPropertyNextPageToken(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['next_page_token'],
+            $this->allowedValues['next_page_token'] ?? null
+        );
+        $this->sot->setNextPageToken($v);
+        $this->assertEquals($v, $this->sot->getNextPageToken());
+        // $this->markTestIncomplete('Not implemented');
     }
 }

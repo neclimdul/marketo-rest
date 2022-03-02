@@ -23,6 +23,9 @@
 
 namespace NecLimDul\MarketoRest\Asset\Test\Model;
 
+use Faker\Factory;
+use NecLimDul\MarketoRest\Asset\Model\ModelInterface;
+use NecLimDul\MarketoRest\Asset\Model\SubmitButtonRequest;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -33,52 +36,172 @@ use PHPUnit\Framework\TestCase;
  * @package     NecLimDul\MarketoRest\Asset
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
+ *
+ * @coversDefault \NecLimDul\MarketoRest\Asset\Model\SubmitButtonRequest
  */
 class SubmitButtonRequestTest extends TestCase
 {
 
     /**
+     * @var \NecLimDul\MarketoRest\Asset\Model\SubmitButtonRequest
+     */
+    private $sot;
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
+    /**
+     * @var string[]
+     */
+    private $types = [
+        'button_position' => 'int',
+        'button_style' => 'string',
+        'label' => 'string',
+        'waiting_label' => 'string',
+    ];
+    /**
+     * @var scalar[][]
+     */
+    private $allowedValues = [
+    ];
+
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->faker = \Faker\Factory::create();
+        $data = [];
+        foreach ($this->types as $field => $type) {
+            $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
+        }
+        $this->sot = new SubmitButtonRequest($data);
+        $this->sot = new SubmitButtonRequest();
+    }
+
+    /**
+     * @param string $type
+     * @param scalar[]|null $values
+     * @return mixed
+     */
+    private function getFakeValue(string $type, ?array $values) {
+        if (isset($values)) {
+            // @todo random.
+            return array_pop($values);
+        }
+
+        // @todo look for container hints.
+        if (strcasecmp(substr($type, -2), '[]') === 0) {
+            $return = [];
+            $subType = substr($type, 0, -2);
+            for ($i = 0; $i <= rand(0, 9); $i++) {
+                $return[] = $this->getFakeValue($subType, $values);
+            }
+            return $return;
+        }
+        switch ($type) {
+            case 'string':
+                return $this->faker->word();
+            case 'float':
+                return $this->faker->randomFloat();
+            case 'int':
+                return $this->faker->randomNumber();
+            case 'bool':
+                return $this->faker->boolean();
+            case '\DateTime':
+                return $this->faker->dateTimeAD();
+            case 'object':
+                return new \stdClass();
+        }
+        if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
+            return new $type();
+        }
+        $this->markTestSkipped('This type is not mocked yet: ' . $type);
+    }
+
+    /**
      * Test "SubmitButtonRequest"
+     *
+     * @covers ::__construct
      */
     public function testSubmitButtonRequest(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(\NecLimDul\MarketoRest\Asset\Model\SubmitButtonRequest::class, $this->sot);
     }
 
     /**
      * Test attribute "button_position"
+     *
+     * @covers ::__construct
+     * @covers ::getButtonPosition
+     * @covers ::setButtonPosition
      */
     public function testPropertyButtonPosition(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['button_position'],
+            $this->allowedValues['button_position'] ?? null
+        );
+        $this->sot->setButtonPosition($v);
+        $this->assertEquals($v, $this->sot->getButtonPosition());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "button_style"
+     *
+     * @covers ::__construct
+     * @covers ::getButtonStyle
+     * @covers ::setButtonStyle
      */
     public function testPropertyButtonStyle(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['button_style'],
+            $this->allowedValues['button_style'] ?? null
+        );
+        $this->sot->setButtonStyle($v);
+        $this->assertEquals($v, $this->sot->getButtonStyle());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "label"
+     *
+     * @covers ::__construct
+     * @covers ::getLabel
+     * @covers ::setLabel
      */
     public function testPropertyLabel(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['label'],
+            $this->allowedValues['label'] ?? null
+        );
+        $this->sot->setLabel($v);
+        $this->assertEquals($v, $this->sot->getLabel());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "waiting_label"
+     *
+     * @covers ::__construct
+     * @covers ::getWaitingLabel
+     * @covers ::setWaitingLabel
      */
     public function testPropertyWaitingLabel(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['waiting_label'],
+            $this->allowedValues['waiting_label'] ?? null
+        );
+        $this->sot->setWaitingLabel($v);
+        $this->assertEquals($v, $this->sot->getWaitingLabel());
+        // $this->markTestIncomplete('Not implemented');
     }
 }

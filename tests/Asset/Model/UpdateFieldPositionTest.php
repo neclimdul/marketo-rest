@@ -23,6 +23,9 @@
 
 namespace NecLimDul\MarketoRest\Asset\Test\Model;
 
+use Faker\Factory;
+use NecLimDul\MarketoRest\Asset\Model\ModelInterface;
+use NecLimDul\MarketoRest\Asset\Model\UpdateFieldPosition;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -33,52 +36,172 @@ use PHPUnit\Framework\TestCase;
  * @package     NecLimDul\MarketoRest\Asset
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
+ *
+ * @coversDefault \NecLimDul\MarketoRest\Asset\Model\UpdateFieldPosition
  */
 class UpdateFieldPositionTest extends TestCase
 {
 
     /**
+     * @var \NecLimDul\MarketoRest\Asset\Model\UpdateFieldPosition
+     */
+    private $sot;
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
+    /**
+     * @var string[]
+     */
+    private $types = [
+        'column_number' => 'int',
+        'field_list' => '\NecLimDul\MarketoRest\Asset\Model\UpdateFieldPosition[]',
+        'field_name' => 'string',
+        'row_number' => 'int',
+    ];
+    /**
+     * @var scalar[][]
+     */
+    private $allowedValues = [
+    ];
+
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->faker = \Faker\Factory::create();
+        $data = [];
+        foreach ($this->types as $field => $type) {
+            $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
+        }
+        $this->sot = new UpdateFieldPosition($data);
+        $this->sot = new UpdateFieldPosition();
+    }
+
+    /**
+     * @param string $type
+     * @param scalar[]|null $values
+     * @return mixed
+     */
+    private function getFakeValue(string $type, ?array $values) {
+        if (isset($values)) {
+            // @todo random.
+            return array_pop($values);
+        }
+
+        // @todo look for container hints.
+        if (strcasecmp(substr($type, -2), '[]') === 0) {
+            $return = [];
+            $subType = substr($type, 0, -2);
+            for ($i = 0; $i <= rand(0, 9); $i++) {
+                $return[] = $this->getFakeValue($subType, $values);
+            }
+            return $return;
+        }
+        switch ($type) {
+            case 'string':
+                return $this->faker->word();
+            case 'float':
+                return $this->faker->randomFloat();
+            case 'int':
+                return $this->faker->randomNumber();
+            case 'bool':
+                return $this->faker->boolean();
+            case '\DateTime':
+                return $this->faker->dateTimeAD();
+            case 'object':
+                return new \stdClass();
+        }
+        if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
+            return new $type();
+        }
+        $this->markTestSkipped('This type is not mocked yet: ' . $type);
+    }
+
+    /**
      * Test "UpdateFieldPosition"
+     *
+     * @covers ::__construct
      */
     public function testUpdateFieldPosition(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(\NecLimDul\MarketoRest\Asset\Model\UpdateFieldPosition::class, $this->sot);
     }
 
     /**
      * Test attribute "column_number"
+     *
+     * @covers ::__construct
+     * @covers ::getColumnNumber
+     * @covers ::setColumnNumber
      */
     public function testPropertyColumnNumber(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['column_number'],
+            $this->allowedValues['column_number'] ?? null
+        );
+        $this->sot->setColumnNumber($v);
+        $this->assertEquals($v, $this->sot->getColumnNumber());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "field_list"
+     *
+     * @covers ::__construct
+     * @covers ::getFieldList
+     * @covers ::setFieldList
      */
     public function testPropertyFieldList(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['field_list'],
+            $this->allowedValues['field_list'] ?? null
+        );
+        $this->sot->setFieldList($v);
+        $this->assertEquals($v, $this->sot->getFieldList());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "field_name"
+     *
+     * @covers ::__construct
+     * @covers ::getFieldName
+     * @covers ::setFieldName
      */
     public function testPropertyFieldName(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['field_name'],
+            $this->allowedValues['field_name'] ?? null
+        );
+        $this->sot->setFieldName($v);
+        $this->assertEquals($v, $this->sot->getFieldName());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "row_number"
+     *
+     * @covers ::__construct
+     * @covers ::getRowNumber
+     * @covers ::setRowNumber
      */
     public function testPropertyRowNumber(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['row_number'],
+            $this->allowedValues['row_number'] ?? null
+        );
+        $this->sot->setRowNumber($v);
+        $this->assertEquals($v, $this->sot->getRowNumber());
+        // $this->markTestIncomplete('Not implemented');
     }
 }

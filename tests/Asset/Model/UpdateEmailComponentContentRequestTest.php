@@ -23,6 +23,9 @@
 
 namespace NecLimDul\MarketoRest\Asset\Test\Model;
 
+use Faker\Factory;
+use NecLimDul\MarketoRest\Asset\Model\ModelInterface;
+use NecLimDul\MarketoRest\Asset\Model\UpdateEmailComponentContentRequest;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -33,124 +36,337 @@ use PHPUnit\Framework\TestCase;
  * @package     NecLimDul\MarketoRest\Asset
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
+ *
+ * @coversDefault \NecLimDul\MarketoRest\Asset\Model\UpdateEmailComponentContentRequest
  */
 class UpdateEmailComponentContentRequestTest extends TestCase
 {
 
     /**
+     * @var \NecLimDul\MarketoRest\Asset\Model\UpdateEmailComponentContentRequest
+     */
+    private $sot;
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
+    /**
+     * @var string[]
+     */
+    private $types = [
+        'alt_text' => 'string',
+        'external_url' => 'string',
+        'height' => 'int',
+        'image' => 'string',
+        'link_url' => 'string',
+        'over_write' => 'bool',
+        'style' => 'string',
+        'text_value' => 'string',
+        'type' => 'string',
+        'value' => 'string',
+        'video_url' => 'string',
+        'width' => 'int',
+    ];
+    /**
+     * @var scalar[][]
+     */
+    private $allowedValues = [
+        'type' => [
+            'TEXT' => 'Text',
+            'DYNAMIC_CONTENT' => 'DynamicContent',
+            'SNIPPET' => 'Snippet',
+        ],
+    ];
+
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->faker = \Faker\Factory::create();
+        $data = [];
+        foreach ($this->types as $field => $type) {
+            $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
+        }
+        $this->sot = new UpdateEmailComponentContentRequest($data);
+        $this->sot = new UpdateEmailComponentContentRequest();
+    }
+
+    /**
+     * @param string $type
+     * @param scalar[]|null $values
+     * @return mixed
+     */
+    private function getFakeValue(string $type, ?array $values) {
+        if (isset($values)) {
+            // @todo random.
+            return array_pop($values);
+        }
+
+        // @todo look for container hints.
+        if (strcasecmp(substr($type, -2), '[]') === 0) {
+            $return = [];
+            $subType = substr($type, 0, -2);
+            for ($i = 0; $i <= rand(0, 9); $i++) {
+                $return[] = $this->getFakeValue($subType, $values);
+            }
+            return $return;
+        }
+        switch ($type) {
+            case 'string':
+                return $this->faker->word();
+            case 'float':
+                return $this->faker->randomFloat();
+            case 'int':
+                return $this->faker->randomNumber();
+            case 'bool':
+                return $this->faker->boolean();
+            case '\DateTime':
+                return $this->faker->dateTimeAD();
+            case 'object':
+                return new \stdClass();
+        }
+        if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
+            return new $type();
+        }
+        $this->markTestSkipped('This type is not mocked yet: ' . $type);
+    }
+
+    /**
      * Test "UpdateEmailComponentContentRequest"
+     *
+     * @covers ::__construct
      */
     public function testUpdateEmailComponentContentRequest(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(\NecLimDul\MarketoRest\Asset\Model\UpdateEmailComponentContentRequest::class, $this->sot);
     }
 
     /**
      * Test attribute "alt_text"
+     *
+     * @covers ::__construct
+     * @covers ::getAltText
+     * @covers ::setAltText
      */
     public function testPropertyAltText(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['alt_text'],
+            $this->allowedValues['alt_text'] ?? null
+        );
+        $this->sot->setAltText($v);
+        $this->assertEquals($v, $this->sot->getAltText());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "external_url"
+     *
+     * @covers ::__construct
+     * @covers ::getExternalUrl
+     * @covers ::setExternalUrl
      */
     public function testPropertyExternalUrl(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['external_url'],
+            $this->allowedValues['external_url'] ?? null
+        );
+        $this->sot->setExternalUrl($v);
+        $this->assertEquals($v, $this->sot->getExternalUrl());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "height"
+     *
+     * @covers ::__construct
+     * @covers ::getHeight
+     * @covers ::setHeight
      */
     public function testPropertyHeight(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['height'],
+            $this->allowedValues['height'] ?? null
+        );
+        $this->sot->setHeight($v);
+        $this->assertEquals($v, $this->sot->getHeight());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "image"
+     *
+     * @covers ::__construct
+     * @covers ::getImage
+     * @covers ::setImage
      */
     public function testPropertyImage(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['image'],
+            $this->allowedValues['image'] ?? null
+        );
+        $this->sot->setImage($v);
+        $this->assertEquals($v, $this->sot->getImage());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "link_url"
+     *
+     * @covers ::__construct
+     * @covers ::getLinkUrl
+     * @covers ::setLinkUrl
      */
     public function testPropertyLinkUrl(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['link_url'],
+            $this->allowedValues['link_url'] ?? null
+        );
+        $this->sot->setLinkUrl($v);
+        $this->assertEquals($v, $this->sot->getLinkUrl());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "over_write"
+     *
+     * @covers ::__construct
+     * @covers ::getOverWrite
+     * @covers ::setOverWrite
      */
     public function testPropertyOverWrite(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['over_write'],
+            $this->allowedValues['over_write'] ?? null
+        );
+        $this->sot->setOverWrite($v);
+        $this->assertEquals($v, $this->sot->getOverWrite());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "style"
+     *
+     * @covers ::__construct
+     * @covers ::getStyle
+     * @covers ::setStyle
      */
     public function testPropertyStyle(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['style'],
+            $this->allowedValues['style'] ?? null
+        );
+        $this->sot->setStyle($v);
+        $this->assertEquals($v, $this->sot->getStyle());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "text_value"
+     *
+     * @covers ::__construct
+     * @covers ::getTextValue
+     * @covers ::setTextValue
      */
     public function testPropertyTextValue(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['text_value'],
+            $this->allowedValues['text_value'] ?? null
+        );
+        $this->sot->setTextValue($v);
+        $this->assertEquals($v, $this->sot->getTextValue());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "type"
+     *
+     * @covers ::__construct
+     * @covers ::getType
+     * @covers ::setType
      */
     public function testPropertyType(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['type'],
+            $this->allowedValues['type'] ?? null
+        );
+        $this->sot->setType($v);
+        $this->assertEquals($v, $this->sot->getType());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "value"
+     *
+     * @covers ::__construct
+     * @covers ::getValue
+     * @covers ::setValue
      */
     public function testPropertyValue(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['value'],
+            $this->allowedValues['value'] ?? null
+        );
+        $this->sot->setValue($v);
+        $this->assertEquals($v, $this->sot->getValue());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "video_url"
+     *
+     * @covers ::__construct
+     * @covers ::getVideoUrl
+     * @covers ::setVideoUrl
      */
     public function testPropertyVideoUrl(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['video_url'],
+            $this->allowedValues['video_url'] ?? null
+        );
+        $this->sot->setVideoUrl($v);
+        $this->assertEquals($v, $this->sot->getVideoUrl());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "width"
+     *
+     * @covers ::__construct
+     * @covers ::getWidth
+     * @covers ::setWidth
      */
     public function testPropertyWidth(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['width'],
+            $this->allowedValues['width'] ?? null
+        );
+        $this->sot->setWidth($v);
+        $this->assertEquals($v, $this->sot->getWidth());
+        // $this->markTestIncomplete('Not implemented');
     }
 }

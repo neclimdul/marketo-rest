@@ -23,6 +23,9 @@
 
 namespace NecLimDul\MarketoRest\Lead\Test\Model;
 
+use Faker\Factory;
+use NecLimDul\MarketoRest\Lead\Model\ModelInterface;
+use NecLimDul\MarketoRest\Lead\Model\LeadChange;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -33,88 +36,252 @@ use PHPUnit\Framework\TestCase;
  * @package     NecLimDul\MarketoRest\Lead
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
+ *
+ * @coversDefault \NecLimDul\MarketoRest\Lead\Model\LeadChange
  */
 class LeadChangeTest extends TestCase
 {
 
     /**
+     * @var \NecLimDul\MarketoRest\Lead\Model\LeadChange
+     */
+    private $sot;
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
+    /**
+     * @var string[]
+     */
+    private $types = [
+        'activity_date' => '\DateTime',
+        'activity_type_id' => 'int',
+        'attributes' => '\NecLimDul\MarketoRest\Lead\Model\Attribute[]',
+        'campaign_id' => 'int',
+        'fields' => '\NecLimDul\MarketoRest\Lead\Model\LeadChangeField[]',
+        'id' => 'int',
+        'lead_id' => 'int',
+        'marketo_guid' => 'string',
+    ];
+    /**
+     * @var scalar[][]
+     */
+    private $allowedValues = [
+    ];
+
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->faker = \Faker\Factory::create();
+        $data = [];
+        foreach ($this->types as $field => $type) {
+            $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
+        }
+        $this->sot = new LeadChange($data);
+        $this->sot = new LeadChange();
+    }
+
+    /**
+     * @param string $type
+     * @param scalar[]|null $values
+     * @return mixed
+     */
+    private function getFakeValue(string $type, ?array $values) {
+        if (isset($values)) {
+            // @todo random.
+            return array_pop($values);
+        }
+
+        // @todo look for container hints.
+        if (strcasecmp(substr($type, -2), '[]') === 0) {
+            $return = [];
+            $subType = substr($type, 0, -2);
+            for ($i = 0; $i <= rand(0, 9); $i++) {
+                $return[] = $this->getFakeValue($subType, $values);
+            }
+            return $return;
+        }
+        switch ($type) {
+            case 'string':
+                return $this->faker->word();
+            case 'float':
+                return $this->faker->randomFloat();
+            case 'int':
+                return $this->faker->randomNumber();
+            case 'bool':
+                return $this->faker->boolean();
+            case '\DateTime':
+                return $this->faker->dateTimeAD();
+            case 'object':
+                return new \stdClass();
+        }
+        if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
+            return new $type();
+        }
+        $this->markTestSkipped('This type is not mocked yet: ' . $type);
+    }
+
+    /**
      * Test "LeadChange"
+     *
+     * @covers ::__construct
      */
     public function testLeadChange(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(\NecLimDul\MarketoRest\Lead\Model\LeadChange::class, $this->sot);
     }
 
     /**
      * Test attribute "activity_date"
+     *
+     * @covers ::__construct
+     * @covers ::getActivityDate
+     * @covers ::setActivityDate
      */
     public function testPropertyActivityDate(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['activity_date'],
+            $this->allowedValues['activity_date'] ?? null
+        );
+        $this->sot->setActivityDate($v);
+        $this->assertEquals($v, $this->sot->getActivityDate());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "activity_type_id"
+     *
+     * @covers ::__construct
+     * @covers ::getActivityTypeId
+     * @covers ::setActivityTypeId
      */
     public function testPropertyActivityTypeId(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['activity_type_id'],
+            $this->allowedValues['activity_type_id'] ?? null
+        );
+        $this->sot->setActivityTypeId($v);
+        $this->assertEquals($v, $this->sot->getActivityTypeId());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "attributes"
+     *
+     * @covers ::__construct
+     * @covers ::getAttributes
+     * @covers ::setAttributes
      */
     public function testPropertyAttributes(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['attributes'],
+            $this->allowedValues['attributes'] ?? null
+        );
+        $this->sot->setAttributes($v);
+        $this->assertEquals($v, $this->sot->getAttributes());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "campaign_id"
+     *
+     * @covers ::__construct
+     * @covers ::getCampaignId
+     * @covers ::setCampaignId
      */
     public function testPropertyCampaignId(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['campaign_id'],
+            $this->allowedValues['campaign_id'] ?? null
+        );
+        $this->sot->setCampaignId($v);
+        $this->assertEquals($v, $this->sot->getCampaignId());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "fields"
+     *
+     * @covers ::__construct
+     * @covers ::getFields
+     * @covers ::setFields
      */
     public function testPropertyFields(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['fields'],
+            $this->allowedValues['fields'] ?? null
+        );
+        $this->sot->setFields($v);
+        $this->assertEquals($v, $this->sot->getFields());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "id"
+     *
+     * @covers ::__construct
+     * @covers ::getId
+     * @covers ::setId
      */
     public function testPropertyId(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['id'],
+            $this->allowedValues['id'] ?? null
+        );
+        $this->sot->setId($v);
+        $this->assertEquals($v, $this->sot->getId());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "lead_id"
+     *
+     * @covers ::__construct
+     * @covers ::getLeadId
+     * @covers ::setLeadId
      */
     public function testPropertyLeadId(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['lead_id'],
+            $this->allowedValues['lead_id'] ?? null
+        );
+        $this->sot->setLeadId($v);
+        $this->assertEquals($v, $this->sot->getLeadId());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "marketo_guid"
+     *
+     * @covers ::__construct
+     * @covers ::getMarketoGuid
+     * @covers ::setMarketoGuid
      */
     public function testPropertyMarketoGuid(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['marketo_guid'],
+            $this->allowedValues['marketo_guid'] ?? null
+        );
+        $this->sot->setMarketoGuid($v);
+        $this->assertEquals($v, $this->sot->getMarketoGuid());
+        // $this->markTestIncomplete('Not implemented');
     }
 }

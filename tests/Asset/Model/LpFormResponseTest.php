@@ -23,6 +23,9 @@
 
 namespace NecLimDul\MarketoRest\Asset\Test\Model;
 
+use Faker\Factory;
+use NecLimDul\MarketoRest\Asset\Model\ModelInterface;
+use NecLimDul\MarketoRest\Asset\Model\LpFormResponse;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -33,196 +36,496 @@ use PHPUnit\Framework\TestCase;
  * @package     NecLimDul\MarketoRest\Asset
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
+ *
+ * @coversDefault \NecLimDul\MarketoRest\Asset\Model\LpFormResponse
  */
 class LpFormResponseTest extends TestCase
 {
 
     /**
+     * @var \NecLimDul\MarketoRest\Asset\Model\LpFormResponse
+     */
+    private $sot;
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
+    /**
+     * @var string[]
+     */
+    private $types = [
+        'button_label' => 'string',
+        'button_location' => 'int',
+        'created_at' => '\DateTime',
+        'description' => 'string',
+        'folder' => '\NecLimDul\MarketoRest\Asset\Model\Folder',
+        'font_family' => 'string',
+        'font_size' => 'string',
+        'id' => 'int',
+        'known_visitor' => '\NecLimDul\MarketoRest\Asset\Model\FormKnownVisitorDTO',
+        'label_position' => 'string',
+        'language' => 'string',
+        'locale' => 'string',
+        'name' => 'string',
+        'progressive_profiling' => 'bool',
+        'status' => 'string',
+        'thank_you_list' => '\NecLimDul\MarketoRest\Asset\Model\FormThankYouPageDTO[]',
+        'theme' => 'string',
+        'updated_at' => '\DateTime',
+        'url' => 'string',
+        'waiting_label' => 'string',
+    ];
+    /**
+     * @var scalar[][]
+     */
+    private $allowedValues = [
+        'status' => [
+            'APPROVED' => 'approved',
+            'DRAFT' => 'draft',
+        ],
+    ];
+
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->faker = \Faker\Factory::create();
+        $data = [];
+        foreach ($this->types as $field => $type) {
+            $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
+        }
+        $this->sot = new LpFormResponse($data);
+        $this->sot = new LpFormResponse();
+    }
+
+    /**
+     * @param string $type
+     * @param scalar[]|null $values
+     * @return mixed
+     */
+    private function getFakeValue(string $type, ?array $values) {
+        if (isset($values)) {
+            // @todo random.
+            return array_pop($values);
+        }
+
+        // @todo look for container hints.
+        if (strcasecmp(substr($type, -2), '[]') === 0) {
+            $return = [];
+            $subType = substr($type, 0, -2);
+            for ($i = 0; $i <= rand(0, 9); $i++) {
+                $return[] = $this->getFakeValue($subType, $values);
+            }
+            return $return;
+        }
+        switch ($type) {
+            case 'string':
+                return $this->faker->word();
+            case 'float':
+                return $this->faker->randomFloat();
+            case 'int':
+                return $this->faker->randomNumber();
+            case 'bool':
+                return $this->faker->boolean();
+            case '\DateTime':
+                return $this->faker->dateTimeAD();
+            case 'object':
+                return new \stdClass();
+        }
+        if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
+            return new $type();
+        }
+        $this->markTestSkipped('This type is not mocked yet: ' . $type);
+    }
+
+    /**
      * Test "LpFormResponse"
+     *
+     * @covers ::__construct
      */
     public function testLpFormResponse(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(\NecLimDul\MarketoRest\Asset\Model\LpFormResponse::class, $this->sot);
     }
 
     /**
      * Test attribute "button_label"
+     *
+     * @covers ::__construct
+     * @covers ::getButtonLabel
+     * @covers ::setButtonLabel
      */
     public function testPropertyButtonLabel(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['button_label'],
+            $this->allowedValues['button_label'] ?? null
+        );
+        $this->sot->setButtonLabel($v);
+        $this->assertEquals($v, $this->sot->getButtonLabel());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "button_location"
+     *
+     * @covers ::__construct
+     * @covers ::getButtonLocation
+     * @covers ::setButtonLocation
      */
     public function testPropertyButtonLocation(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['button_location'],
+            $this->allowedValues['button_location'] ?? null
+        );
+        $this->sot->setButtonLocation($v);
+        $this->assertEquals($v, $this->sot->getButtonLocation());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "created_at"
+     *
+     * @covers ::__construct
+     * @covers ::getCreatedAt
+     * @covers ::setCreatedAt
      */
     public function testPropertyCreatedAt(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['created_at'],
+            $this->allowedValues['created_at'] ?? null
+        );
+        $this->sot->setCreatedAt($v);
+        $this->assertEquals($v, $this->sot->getCreatedAt());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "description"
+     *
+     * @covers ::__construct
+     * @covers ::getDescription
+     * @covers ::setDescription
      */
     public function testPropertyDescription(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['description'],
+            $this->allowedValues['description'] ?? null
+        );
+        $this->sot->setDescription($v);
+        $this->assertEquals($v, $this->sot->getDescription());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "folder"
+     *
+     * @covers ::__construct
+     * @covers ::getFolder
+     * @covers ::setFolder
      */
     public function testPropertyFolder(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['folder'],
+            $this->allowedValues['folder'] ?? null
+        );
+        $this->sot->setFolder($v);
+        $this->assertEquals($v, $this->sot->getFolder());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "font_family"
+     *
+     * @covers ::__construct
+     * @covers ::getFontFamily
+     * @covers ::setFontFamily
      */
     public function testPropertyFontFamily(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['font_family'],
+            $this->allowedValues['font_family'] ?? null
+        );
+        $this->sot->setFontFamily($v);
+        $this->assertEquals($v, $this->sot->getFontFamily());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "font_size"
+     *
+     * @covers ::__construct
+     * @covers ::getFontSize
+     * @covers ::setFontSize
      */
     public function testPropertyFontSize(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['font_size'],
+            $this->allowedValues['font_size'] ?? null
+        );
+        $this->sot->setFontSize($v);
+        $this->assertEquals($v, $this->sot->getFontSize());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "id"
+     *
+     * @covers ::__construct
+     * @covers ::getId
+     * @covers ::setId
      */
     public function testPropertyId(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['id'],
+            $this->allowedValues['id'] ?? null
+        );
+        $this->sot->setId($v);
+        $this->assertEquals($v, $this->sot->getId());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "known_visitor"
+     *
+     * @covers ::__construct
+     * @covers ::getKnownVisitor
+     * @covers ::setKnownVisitor
      */
     public function testPropertyKnownVisitor(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['known_visitor'],
+            $this->allowedValues['known_visitor'] ?? null
+        );
+        $this->sot->setKnownVisitor($v);
+        $this->assertEquals($v, $this->sot->getKnownVisitor());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "label_position"
+     *
+     * @covers ::__construct
+     * @covers ::getLabelPosition
+     * @covers ::setLabelPosition
      */
     public function testPropertyLabelPosition(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['label_position'],
+            $this->allowedValues['label_position'] ?? null
+        );
+        $this->sot->setLabelPosition($v);
+        $this->assertEquals($v, $this->sot->getLabelPosition());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "language"
+     *
+     * @covers ::__construct
+     * @covers ::getLanguage
+     * @covers ::setLanguage
      */
     public function testPropertyLanguage(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['language'],
+            $this->allowedValues['language'] ?? null
+        );
+        $this->sot->setLanguage($v);
+        $this->assertEquals($v, $this->sot->getLanguage());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "locale"
+     *
+     * @covers ::__construct
+     * @covers ::getLocale
+     * @covers ::setLocale
      */
     public function testPropertyLocale(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['locale'],
+            $this->allowedValues['locale'] ?? null
+        );
+        $this->sot->setLocale($v);
+        $this->assertEquals($v, $this->sot->getLocale());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "name"
+     *
+     * @covers ::__construct
+     * @covers ::getName
+     * @covers ::setName
      */
     public function testPropertyName(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['name'],
+            $this->allowedValues['name'] ?? null
+        );
+        $this->sot->setName($v);
+        $this->assertEquals($v, $this->sot->getName());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "progressive_profiling"
+     *
+     * @covers ::__construct
+     * @covers ::getProgressiveProfiling
+     * @covers ::setProgressiveProfiling
      */
     public function testPropertyProgressiveProfiling(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['progressive_profiling'],
+            $this->allowedValues['progressive_profiling'] ?? null
+        );
+        $this->sot->setProgressiveProfiling($v);
+        $this->assertEquals($v, $this->sot->getProgressiveProfiling());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "status"
+     *
+     * @covers ::__construct
+     * @covers ::getStatus
+     * @covers ::setStatus
      */
     public function testPropertyStatus(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['status'],
+            $this->allowedValues['status'] ?? null
+        );
+        $this->sot->setStatus($v);
+        $this->assertEquals($v, $this->sot->getStatus());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "thank_you_list"
+     *
+     * @covers ::__construct
+     * @covers ::getThankYouList
+     * @covers ::setThankYouList
      */
     public function testPropertyThankYouList(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['thank_you_list'],
+            $this->allowedValues['thank_you_list'] ?? null
+        );
+        $this->sot->setThankYouList($v);
+        $this->assertEquals($v, $this->sot->getThankYouList());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "theme"
+     *
+     * @covers ::__construct
+     * @covers ::getTheme
+     * @covers ::setTheme
      */
     public function testPropertyTheme(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['theme'],
+            $this->allowedValues['theme'] ?? null
+        );
+        $this->sot->setTheme($v);
+        $this->assertEquals($v, $this->sot->getTheme());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "updated_at"
+     *
+     * @covers ::__construct
+     * @covers ::getUpdatedAt
+     * @covers ::setUpdatedAt
      */
     public function testPropertyUpdatedAt(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['updated_at'],
+            $this->allowedValues['updated_at'] ?? null
+        );
+        $this->sot->setUpdatedAt($v);
+        $this->assertEquals($v, $this->sot->getUpdatedAt());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "url"
+     *
+     * @covers ::__construct
+     * @covers ::getUrl
+     * @covers ::setUrl
      */
     public function testPropertyUrl(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['url'],
+            $this->allowedValues['url'] ?? null
+        );
+        $this->sot->setUrl($v);
+        $this->assertEquals($v, $this->sot->getUrl());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "waiting_label"
+     *
+     * @covers ::__construct
+     * @covers ::getWaitingLabel
+     * @covers ::setWaitingLabel
      */
     public function testPropertyWaitingLabel(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['waiting_label'],
+            $this->allowedValues['waiting_label'] ?? null
+        );
+        $this->sot->setWaitingLabel($v);
+        $this->assertEquals($v, $this->sot->getWaitingLabel());
+        // $this->markTestIncomplete('Not implemented');
     }
 }

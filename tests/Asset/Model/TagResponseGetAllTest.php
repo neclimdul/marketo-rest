@@ -23,6 +23,9 @@
 
 namespace NecLimDul\MarketoRest\Asset\Test\Model;
 
+use Faker\Factory;
+use NecLimDul\MarketoRest\Asset\Model\ModelInterface;
+use NecLimDul\MarketoRest\Asset\Model\TagResponseGetAll;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -33,43 +36,152 @@ use PHPUnit\Framework\TestCase;
  * @package     NecLimDul\MarketoRest\Asset
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
+ *
+ * @coversDefault \NecLimDul\MarketoRest\Asset\Model\TagResponseGetAll
  */
 class TagResponseGetAllTest extends TestCase
 {
 
     /**
+     * @var \NecLimDul\MarketoRest\Asset\Model\TagResponseGetAll
+     */
+    private $sot;
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
+    /**
+     * @var string[]
+     */
+    private $types = [
+        'applicable_program_types' => 'string',
+        'required' => 'bool',
+        'tag_type' => 'string',
+    ];
+    /**
+     * @var scalar[][]
+     */
+    private $allowedValues = [
+    ];
+
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->faker = \Faker\Factory::create();
+        $data = [];
+        foreach ($this->types as $field => $type) {
+            $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
+        }
+        $this->sot = new TagResponseGetAll($data);
+        $this->sot = new TagResponseGetAll();
+    }
+
+    /**
+     * @param string $type
+     * @param scalar[]|null $values
+     * @return mixed
+     */
+    private function getFakeValue(string $type, ?array $values) {
+        if (isset($values)) {
+            // @todo random.
+            return array_pop($values);
+        }
+
+        // @todo look for container hints.
+        if (strcasecmp(substr($type, -2), '[]') === 0) {
+            $return = [];
+            $subType = substr($type, 0, -2);
+            for ($i = 0; $i <= rand(0, 9); $i++) {
+                $return[] = $this->getFakeValue($subType, $values);
+            }
+            return $return;
+        }
+        switch ($type) {
+            case 'string':
+                return $this->faker->word();
+            case 'float':
+                return $this->faker->randomFloat();
+            case 'int':
+                return $this->faker->randomNumber();
+            case 'bool':
+                return $this->faker->boolean();
+            case '\DateTime':
+                return $this->faker->dateTimeAD();
+            case 'object':
+                return new \stdClass();
+        }
+        if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
+            return new $type();
+        }
+        $this->markTestSkipped('This type is not mocked yet: ' . $type);
+    }
+
+    /**
      * Test "TagResponseGetAll"
+     *
+     * @covers ::__construct
      */
     public function testTagResponseGetAll(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(\NecLimDul\MarketoRest\Asset\Model\TagResponseGetAll::class, $this->sot);
     }
 
     /**
      * Test attribute "applicable_program_types"
+     *
+     * @covers ::__construct
+     * @covers ::getApplicableProgramTypes
+     * @covers ::setApplicableProgramTypes
      */
     public function testPropertyApplicableProgramTypes(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['applicable_program_types'],
+            $this->allowedValues['applicable_program_types'] ?? null
+        );
+        $this->sot->setApplicableProgramTypes($v);
+        $this->assertEquals($v, $this->sot->getApplicableProgramTypes());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "required"
+     *
+     * @covers ::__construct
+     * @covers ::getRequired
+     * @covers ::setRequired
      */
     public function testPropertyRequired(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['required'],
+            $this->allowedValues['required'] ?? null
+        );
+        $this->sot->setRequired($v);
+        $this->assertEquals($v, $this->sot->getRequired());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "tag_type"
+     *
+     * @covers ::__construct
+     * @covers ::getTagType
+     * @covers ::setTagType
      */
     public function testPropertyTagType(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['tag_type'],
+            $this->allowedValues['tag_type'] ?? null
+        );
+        $this->sot->setTagType($v);
+        $this->assertEquals($v, $this->sot->getTagType());
+        // $this->markTestIncomplete('Not implemented');
     }
 }

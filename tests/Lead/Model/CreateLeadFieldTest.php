@@ -23,6 +23,9 @@
 
 namespace NecLimDul\MarketoRest\Lead\Test\Model;
 
+use Faker\Factory;
+use NecLimDul\MarketoRest\Lead\Model\ModelInterface;
+use NecLimDul\MarketoRest\Lead\Model\CreateLeadField;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -33,79 +36,246 @@ use PHPUnit\Framework\TestCase;
  * @package     NecLimDul\MarketoRest\Lead
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
+ *
+ * @coversDefault \NecLimDul\MarketoRest\Lead\Model\CreateLeadField
  */
 class CreateLeadFieldTest extends TestCase
 {
 
     /**
+     * @var \NecLimDul\MarketoRest\Lead\Model\CreateLeadField
+     */
+    private $sot;
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
+    /**
+     * @var string[]
+     */
+    private $types = [
+        'display_name' => 'string',
+        'name' => 'string',
+        'description' => 'string',
+        'data_type' => 'string',
+        'is_hidden' => 'bool',
+        'is_html_encoding_in_email' => 'bool',
+        'is_sensitive' => 'bool',
+    ];
+    /**
+     * @var scalar[][]
+     */
+    private $allowedValues = [
+        'data_type' => [
+            'BOOLEAN' => 'boolean',
+            'CURRENCY' => 'currency',
+            'DATE' => 'date',
+            'DATETIME' => 'datetime',
+            'EMAIL' => 'email',
+            'FLOAT' => 'float',
+            'INTEGER' => 'integer',
+            'PERCENT' => 'percent',
+            'PHONE' => 'phone',
+            'SCORE' => 'score',
+            'STRING' => 'string',
+            'URL' => 'url',
+        ],
+    ];
+
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->faker = \Faker\Factory::create();
+        $data = [];
+        foreach ($this->types as $field => $type) {
+            $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
+        }
+        $this->sot = new CreateLeadField($data);
+        $this->sot = new CreateLeadField();
+    }
+
+    /**
+     * @param string $type
+     * @param scalar[]|null $values
+     * @return mixed
+     */
+    private function getFakeValue(string $type, ?array $values) {
+        if (isset($values)) {
+            // @todo random.
+            return array_pop($values);
+        }
+
+        // @todo look for container hints.
+        if (strcasecmp(substr($type, -2), '[]') === 0) {
+            $return = [];
+            $subType = substr($type, 0, -2);
+            for ($i = 0; $i <= rand(0, 9); $i++) {
+                $return[] = $this->getFakeValue($subType, $values);
+            }
+            return $return;
+        }
+        switch ($type) {
+            case 'string':
+                return $this->faker->word();
+            case 'float':
+                return $this->faker->randomFloat();
+            case 'int':
+                return $this->faker->randomNumber();
+            case 'bool':
+                return $this->faker->boolean();
+            case '\DateTime':
+                return $this->faker->dateTimeAD();
+            case 'object':
+                return new \stdClass();
+        }
+        if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
+            return new $type();
+        }
+        $this->markTestSkipped('This type is not mocked yet: ' . $type);
+    }
+
+    /**
      * Test "CreateLeadField"
+     *
+     * @covers ::__construct
      */
     public function testCreateLeadField(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(\NecLimDul\MarketoRest\Lead\Model\CreateLeadField::class, $this->sot);
     }
 
     /**
      * Test attribute "display_name"
+     *
+     * @covers ::__construct
+     * @covers ::getDisplayName
+     * @covers ::setDisplayName
      */
     public function testPropertyDisplayName(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['display_name'],
+            $this->allowedValues['display_name'] ?? null
+        );
+        $this->sot->setDisplayName($v);
+        $this->assertEquals($v, $this->sot->getDisplayName());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "name"
+     *
+     * @covers ::__construct
+     * @covers ::getName
+     * @covers ::setName
      */
     public function testPropertyName(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['name'],
+            $this->allowedValues['name'] ?? null
+        );
+        $this->sot->setName($v);
+        $this->assertEquals($v, $this->sot->getName());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "description"
+     *
+     * @covers ::__construct
+     * @covers ::getDescription
+     * @covers ::setDescription
      */
     public function testPropertyDescription(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['description'],
+            $this->allowedValues['description'] ?? null
+        );
+        $this->sot->setDescription($v);
+        $this->assertEquals($v, $this->sot->getDescription());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "data_type"
+     *
+     * @covers ::__construct
+     * @covers ::getDataType
+     * @covers ::setDataType
      */
     public function testPropertyDataType(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['data_type'],
+            $this->allowedValues['data_type'] ?? null
+        );
+        $this->sot->setDataType($v);
+        $this->assertEquals($v, $this->sot->getDataType());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "is_hidden"
+     *
+     * @covers ::__construct
+     * @covers ::getIsHidden
+     * @covers ::setIsHidden
      */
     public function testPropertyIsHidden(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['is_hidden'],
+            $this->allowedValues['is_hidden'] ?? null
+        );
+        $this->sot->setIsHidden($v);
+        $this->assertEquals($v, $this->sot->getIsHidden());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "is_html_encoding_in_email"
+     *
+     * @covers ::__construct
+     * @covers ::getIsHtmlEncodingInEmail
+     * @covers ::setIsHtmlEncodingInEmail
      */
     public function testPropertyIsHtmlEncodingInEmail(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['is_html_encoding_in_email'],
+            $this->allowedValues['is_html_encoding_in_email'] ?? null
+        );
+        $this->sot->setIsHtmlEncodingInEmail($v);
+        $this->assertEquals($v, $this->sot->getIsHtmlEncodingInEmail());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "is_sensitive"
+     *
+     * @covers ::__construct
+     * @covers ::getIsSensitive
+     * @covers ::setIsSensitive
      */
     public function testPropertyIsSensitive(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['is_sensitive'],
+            $this->allowedValues['is_sensitive'] ?? null
+        );
+        $this->sot->setIsSensitive($v);
+        $this->assertEquals($v, $this->sot->getIsSensitive());
+        // $this->markTestIncomplete('Not implemented');
     }
 }

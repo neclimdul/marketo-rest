@@ -23,6 +23,9 @@
 
 namespace NecLimDul\MarketoRest\Asset\Test\Model;
 
+use Faker\Factory;
+use NecLimDul\MarketoRest\Asset\Model\ModelInterface;
+use NecLimDul\MarketoRest\Asset\Model\EmailCCFields;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -33,52 +36,172 @@ use PHPUnit\Framework\TestCase;
  * @package     NecLimDul\MarketoRest\Asset
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
+ *
+ * @coversDefault \NecLimDul\MarketoRest\Asset\Model\EmailCCFields
  */
 class EmailCCFieldsTest extends TestCase
 {
 
     /**
+     * @var \NecLimDul\MarketoRest\Asset\Model\EmailCCFields
+     */
+    private $sot;
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
+    /**
+     * @var string[]
+     */
+    private $types = [
+        'attribute_id' => 'string',
+        'object_name' => 'string',
+        'display_name' => 'string',
+        'api_name' => 'string',
+    ];
+    /**
+     * @var scalar[][]
+     */
+    private $allowedValues = [
+    ];
+
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->faker = \Faker\Factory::create();
+        $data = [];
+        foreach ($this->types as $field => $type) {
+            $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
+        }
+        $this->sot = new EmailCCFields($data);
+        $this->sot = new EmailCCFields();
+    }
+
+    /**
+     * @param string $type
+     * @param scalar[]|null $values
+     * @return mixed
+     */
+    private function getFakeValue(string $type, ?array $values) {
+        if (isset($values)) {
+            // @todo random.
+            return array_pop($values);
+        }
+
+        // @todo look for container hints.
+        if (strcasecmp(substr($type, -2), '[]') === 0) {
+            $return = [];
+            $subType = substr($type, 0, -2);
+            for ($i = 0; $i <= rand(0, 9); $i++) {
+                $return[] = $this->getFakeValue($subType, $values);
+            }
+            return $return;
+        }
+        switch ($type) {
+            case 'string':
+                return $this->faker->word();
+            case 'float':
+                return $this->faker->randomFloat();
+            case 'int':
+                return $this->faker->randomNumber();
+            case 'bool':
+                return $this->faker->boolean();
+            case '\DateTime':
+                return $this->faker->dateTimeAD();
+            case 'object':
+                return new \stdClass();
+        }
+        if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
+            return new $type();
+        }
+        $this->markTestSkipped('This type is not mocked yet: ' . $type);
+    }
+
+    /**
      * Test "EmailCCFields"
+     *
+     * @covers ::__construct
      */
     public function testEmailCCFields(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(\NecLimDul\MarketoRest\Asset\Model\EmailCCFields::class, $this->sot);
     }
 
     /**
      * Test attribute "attribute_id"
+     *
+     * @covers ::__construct
+     * @covers ::getAttributeId
+     * @covers ::setAttributeId
      */
     public function testPropertyAttributeId(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['attribute_id'],
+            $this->allowedValues['attribute_id'] ?? null
+        );
+        $this->sot->setAttributeId($v);
+        $this->assertEquals($v, $this->sot->getAttributeId());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "object_name"
+     *
+     * @covers ::__construct
+     * @covers ::getObjectName
+     * @covers ::setObjectName
      */
     public function testPropertyObjectName(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['object_name'],
+            $this->allowedValues['object_name'] ?? null
+        );
+        $this->sot->setObjectName($v);
+        $this->assertEquals($v, $this->sot->getObjectName());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "display_name"
+     *
+     * @covers ::__construct
+     * @covers ::getDisplayName
+     * @covers ::setDisplayName
      */
     public function testPropertyDisplayName(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['display_name'],
+            $this->allowedValues['display_name'] ?? null
+        );
+        $this->sot->setDisplayName($v);
+        $this->assertEquals($v, $this->sot->getDisplayName());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "api_name"
+     *
+     * @covers ::__construct
+     * @covers ::getApiName
+     * @covers ::setApiName
      */
     public function testPropertyApiName(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['api_name'],
+            $this->allowedValues['api_name'] ?? null
+        );
+        $this->sot->setApiName($v);
+        $this->assertEquals($v, $this->sot->getApiName());
+        // $this->markTestIncomplete('Not implemented');
     }
 }

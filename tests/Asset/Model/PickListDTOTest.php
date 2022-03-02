@@ -23,6 +23,9 @@
 
 namespace NecLimDul\MarketoRest\Asset\Test\Model;
 
+use Faker\Factory;
+use NecLimDul\MarketoRest\Asset\Model\ModelInterface;
+use NecLimDul\MarketoRest\Asset\Model\PickListDTO;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -33,52 +36,172 @@ use PHPUnit\Framework\TestCase;
  * @package     NecLimDul\MarketoRest\Asset
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
+ *
+ * @coversDefault \NecLimDul\MarketoRest\Asset\Model\PickListDTO
  */
 class PickListDTOTest extends TestCase
 {
 
     /**
+     * @var \NecLimDul\MarketoRest\Asset\Model\PickListDTO
+     */
+    private $sot;
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
+    /**
+     * @var string[]
+     */
+    private $types = [
+        'is_default' => 'bool',
+        'label' => 'string',
+        'selected' => 'bool',
+        'value' => 'string',
+    ];
+    /**
+     * @var scalar[][]
+     */
+    private $allowedValues = [
+    ];
+
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->faker = \Faker\Factory::create();
+        $data = [];
+        foreach ($this->types as $field => $type) {
+            $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
+        }
+        $this->sot = new PickListDTO($data);
+        $this->sot = new PickListDTO();
+    }
+
+    /**
+     * @param string $type
+     * @param scalar[]|null $values
+     * @return mixed
+     */
+    private function getFakeValue(string $type, ?array $values) {
+        if (isset($values)) {
+            // @todo random.
+            return array_pop($values);
+        }
+
+        // @todo look for container hints.
+        if (strcasecmp(substr($type, -2), '[]') === 0) {
+            $return = [];
+            $subType = substr($type, 0, -2);
+            for ($i = 0; $i <= rand(0, 9); $i++) {
+                $return[] = $this->getFakeValue($subType, $values);
+            }
+            return $return;
+        }
+        switch ($type) {
+            case 'string':
+                return $this->faker->word();
+            case 'float':
+                return $this->faker->randomFloat();
+            case 'int':
+                return $this->faker->randomNumber();
+            case 'bool':
+                return $this->faker->boolean();
+            case '\DateTime':
+                return $this->faker->dateTimeAD();
+            case 'object':
+                return new \stdClass();
+        }
+        if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
+            return new $type();
+        }
+        $this->markTestSkipped('This type is not mocked yet: ' . $type);
+    }
+
+    /**
      * Test "PickListDTO"
+     *
+     * @covers ::__construct
      */
     public function testPickListDTO(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(\NecLimDul\MarketoRest\Asset\Model\PickListDTO::class, $this->sot);
     }
 
     /**
      * Test attribute "is_default"
+     *
+     * @covers ::__construct
+     * @covers ::getIsDefault
+     * @covers ::setIsDefault
      */
     public function testPropertyIsDefault(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['is_default'],
+            $this->allowedValues['is_default'] ?? null
+        );
+        $this->sot->setIsDefault($v);
+        $this->assertEquals($v, $this->sot->getIsDefault());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "label"
+     *
+     * @covers ::__construct
+     * @covers ::getLabel
+     * @covers ::setLabel
      */
     public function testPropertyLabel(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['label'],
+            $this->allowedValues['label'] ?? null
+        );
+        $this->sot->setLabel($v);
+        $this->assertEquals($v, $this->sot->getLabel());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "selected"
+     *
+     * @covers ::__construct
+     * @covers ::getSelected
+     * @covers ::setSelected
      */
     public function testPropertySelected(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['selected'],
+            $this->allowedValues['selected'] ?? null
+        );
+        $this->sot->setSelected($v);
+        $this->assertEquals($v, $this->sot->getSelected());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "value"
+     *
+     * @covers ::__construct
+     * @covers ::getValue
+     * @covers ::setValue
      */
     public function testPropertyValue(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['value'],
+            $this->allowedValues['value'] ?? null
+        );
+        $this->sot->setValue($v);
+        $this->assertEquals($v, $this->sot->getValue());
+        // $this->markTestIncomplete('Not implemented');
     }
 }

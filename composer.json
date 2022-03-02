@@ -33,7 +33,8 @@
         "php-parallel-lint/php-parallel-lint": "^1.3",
         "phpstan/phpstan-phpunit": "^1.0",
         "phpstan/extension-installer": "^1.1",
-        "jangregor/phpstan-prophecy": "^1.0"
+        "jangregor/phpstan-prophecy": "^1.0",
+        "fakerphp/faker": "^1.19"
     },
     "autoload": {
         "psr-4": {"NecLimDul\\MarketoRest\\": "src/"}

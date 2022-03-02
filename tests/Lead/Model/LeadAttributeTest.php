@@ -23,6 +23,9 @@
 
 namespace NecLimDul\MarketoRest\Lead\Test\Model;
 
+use Faker\Factory;
+use NecLimDul\MarketoRest\Lead\Model\ModelInterface;
+use NecLimDul\MarketoRest\Lead\Model\LeadAttribute;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -33,70 +36,212 @@ use PHPUnit\Framework\TestCase;
  * @package     NecLimDul\MarketoRest\Lead
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
+ *
+ * @coversDefault \NecLimDul\MarketoRest\Lead\Model\LeadAttribute
  */
 class LeadAttributeTest extends TestCase
 {
 
     /**
+     * @var \NecLimDul\MarketoRest\Lead\Model\LeadAttribute
+     */
+    private $sot;
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
+    /**
+     * @var string[]
+     */
+    private $types = [
+        'data_type' => 'string',
+        'display_name' => 'string',
+        'id' => 'int',
+        'length' => 'int',
+        'rest' => '\NecLimDul\MarketoRest\Lead\Model\LeadMapAttribute',
+        'soap' => '\NecLimDul\MarketoRest\Lead\Model\LeadMapAttribute',
+    ];
+    /**
+     * @var scalar[][]
+     */
+    private $allowedValues = [
+    ];
+
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->faker = \Faker\Factory::create();
+        $data = [];
+        foreach ($this->types as $field => $type) {
+            $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
+        }
+        $this->sot = new LeadAttribute($data);
+        $this->sot = new LeadAttribute();
+    }
+
+    /**
+     * @param string $type
+     * @param scalar[]|null $values
+     * @return mixed
+     */
+    private function getFakeValue(string $type, ?array $values) {
+        if (isset($values)) {
+            // @todo random.
+            return array_pop($values);
+        }
+
+        // @todo look for container hints.
+        if (strcasecmp(substr($type, -2), '[]') === 0) {
+            $return = [];
+            $subType = substr($type, 0, -2);
+            for ($i = 0; $i <= rand(0, 9); $i++) {
+                $return[] = $this->getFakeValue($subType, $values);
+            }
+            return $return;
+        }
+        switch ($type) {
+            case 'string':
+                return $this->faker->word();
+            case 'float':
+                return $this->faker->randomFloat();
+            case 'int':
+                return $this->faker->randomNumber();
+            case 'bool':
+                return $this->faker->boolean();
+            case '\DateTime':
+                return $this->faker->dateTimeAD();
+            case 'object':
+                return new \stdClass();
+        }
+        if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
+            return new $type();
+        }
+        $this->markTestSkipped('This type is not mocked yet: ' . $type);
+    }
+
+    /**
      * Test "LeadAttribute"
+     *
+     * @covers ::__construct
      */
     public function testLeadAttribute(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(\NecLimDul\MarketoRest\Lead\Model\LeadAttribute::class, $this->sot);
     }
 
     /**
      * Test attribute "data_type"
+     *
+     * @covers ::__construct
+     * @covers ::getDataType
+     * @covers ::setDataType
      */
     public function testPropertyDataType(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['data_type'],
+            $this->allowedValues['data_type'] ?? null
+        );
+        $this->sot->setDataType($v);
+        $this->assertEquals($v, $this->sot->getDataType());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "display_name"
+     *
+     * @covers ::__construct
+     * @covers ::getDisplayName
+     * @covers ::setDisplayName
      */
     public function testPropertyDisplayName(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['display_name'],
+            $this->allowedValues['display_name'] ?? null
+        );
+        $this->sot->setDisplayName($v);
+        $this->assertEquals($v, $this->sot->getDisplayName());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "id"
+     *
+     * @covers ::__construct
+     * @covers ::getId
+     * @covers ::setId
      */
     public function testPropertyId(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['id'],
+            $this->allowedValues['id'] ?? null
+        );
+        $this->sot->setId($v);
+        $this->assertEquals($v, $this->sot->getId());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "length"
+     *
+     * @covers ::__construct
+     * @covers ::getLength
+     * @covers ::setLength
      */
     public function testPropertyLength(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['length'],
+            $this->allowedValues['length'] ?? null
+        );
+        $this->sot->setLength($v);
+        $this->assertEquals($v, $this->sot->getLength());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "rest"
+     *
+     * @covers ::__construct
+     * @covers ::getRest
+     * @covers ::setRest
      */
     public function testPropertyRest(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['rest'],
+            $this->allowedValues['rest'] ?? null
+        );
+        $this->sot->setRest($v);
+        $this->assertEquals($v, $this->sot->getRest());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "soap"
+     *
+     * @covers ::__construct
+     * @covers ::getSoap
+     * @covers ::setSoap
      */
     public function testPropertySoap(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['soap'],
+            $this->allowedValues['soap'] ?? null
+        );
+        $this->sot->setSoap($v);
+        $this->assertEquals($v, $this->sot->getSoap());
+        // $this->markTestIncomplete('Not implemented');
     }
 }

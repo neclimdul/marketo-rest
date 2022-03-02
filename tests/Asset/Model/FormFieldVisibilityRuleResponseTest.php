@@ -23,6 +23,9 @@
 
 namespace NecLimDul\MarketoRest\Asset\Test\Model;
 
+use Faker\Factory;
+use NecLimDul\MarketoRest\Asset\Model\ModelInterface;
+use NecLimDul\MarketoRest\Asset\Model\FormFieldVisibilityRuleResponse;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -33,34 +36,132 @@ use PHPUnit\Framework\TestCase;
  * @package     NecLimDul\MarketoRest\Asset
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
+ *
+ * @coversDefault \NecLimDul\MarketoRest\Asset\Model\FormFieldVisibilityRuleResponse
  */
 class FormFieldVisibilityRuleResponseTest extends TestCase
 {
 
     /**
+     * @var \NecLimDul\MarketoRest\Asset\Model\FormFieldVisibilityRuleResponse
+     */
+    private $sot;
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
+    /**
+     * @var string[]
+     */
+    private $types = [
+        'rule_type' => 'string',
+        'rules' => '\NecLimDul\MarketoRest\Asset\Model\FormVisibilityRuleDTO[]',
+    ];
+    /**
+     * @var scalar[][]
+     */
+    private $allowedValues = [
+    ];
+
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->faker = \Faker\Factory::create();
+        $data = [];
+        foreach ($this->types as $field => $type) {
+            $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
+        }
+        $this->sot = new FormFieldVisibilityRuleResponse($data);
+        $this->sot = new FormFieldVisibilityRuleResponse();
+    }
+
+    /**
+     * @param string $type
+     * @param scalar[]|null $values
+     * @return mixed
+     */
+    private function getFakeValue(string $type, ?array $values) {
+        if (isset($values)) {
+            // @todo random.
+            return array_pop($values);
+        }
+
+        // @todo look for container hints.
+        if (strcasecmp(substr($type, -2), '[]') === 0) {
+            $return = [];
+            $subType = substr($type, 0, -2);
+            for ($i = 0; $i <= rand(0, 9); $i++) {
+                $return[] = $this->getFakeValue($subType, $values);
+            }
+            return $return;
+        }
+        switch ($type) {
+            case 'string':
+                return $this->faker->word();
+            case 'float':
+                return $this->faker->randomFloat();
+            case 'int':
+                return $this->faker->randomNumber();
+            case 'bool':
+                return $this->faker->boolean();
+            case '\DateTime':
+                return $this->faker->dateTimeAD();
+            case 'object':
+                return new \stdClass();
+        }
+        if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
+            return new $type();
+        }
+        $this->markTestSkipped('This type is not mocked yet: ' . $type);
+    }
+
+    /**
      * Test "FormFieldVisibilityRuleResponse"
+     *
+     * @covers ::__construct
      */
     public function testFormFieldVisibilityRuleResponse(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(\NecLimDul\MarketoRest\Asset\Model\FormFieldVisibilityRuleResponse::class, $this->sot);
     }
 
     /**
      * Test attribute "rule_type"
+     *
+     * @covers ::__construct
+     * @covers ::getRuleType
+     * @covers ::setRuleType
      */
     public function testPropertyRuleType(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['rule_type'],
+            $this->allowedValues['rule_type'] ?? null
+        );
+        $this->sot->setRuleType($v);
+        $this->assertEquals($v, $this->sot->getRuleType());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "rules"
+     *
+     * @covers ::__construct
+     * @covers ::getRules
+     * @covers ::setRules
      */
     public function testPropertyRules(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['rules'],
+            $this->allowedValues['rules'] ?? null
+        );
+        $this->sot->setRules($v);
+        $this->assertEquals($v, $this->sot->getRules());
+        // $this->markTestIncomplete('Not implemented');
     }
 }

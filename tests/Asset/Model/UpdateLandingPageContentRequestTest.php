@@ -23,6 +23,9 @@
 
 namespace NecLimDul\MarketoRest\Asset\Test\Model;
 
+use Faker\Factory;
+use NecLimDul\MarketoRest\Asset\Model\ModelInterface;
+use NecLimDul\MarketoRest\Asset\Model\UpdateLandingPageContentRequest;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -33,169 +36,441 @@ use PHPUnit\Framework\TestCase;
  * @package     NecLimDul\MarketoRest\Asset
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
+ *
+ * @coversDefault \NecLimDul\MarketoRest\Asset\Model\UpdateLandingPageContentRequest
  */
 class UpdateLandingPageContentRequestTest extends TestCase
 {
 
     /**
+     * @var \NecLimDul\MarketoRest\Asset\Model\UpdateLandingPageContentRequest
+     */
+    private $sot;
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
+    /**
+     * @var string[]
+     */
+    private $types = [
+        'background_color' => 'string',
+        'border_color' => 'string',
+        'border_style' => 'string',
+        'border_width' => 'string',
+        'height' => 'string',
+        'hide_desktop' => 'bool',
+        'hide_mobile' => 'bool',
+        'image_open_new_window' => 'string',
+        'index' => 'int',
+        'left' => 'string',
+        'link_url' => 'string',
+        'opacity' => 'string',
+        'top' => 'string',
+        'type' => 'string',
+        'value' => 'string',
+        'width' => 'string',
+        'z_index' => 'string',
+    ];
+    /**
+     * @var scalar[][]
+     */
+    private $allowedValues = [
+        'type' => [
+            'IMAGE' => 'Image',
+            'FORM' => 'Form',
+            'RECTANGLE' => 'Rectangle',
+            'SNIPPET' => 'Snippet',
+            'RICH_TEXT' => 'RichText',
+            'HTML' => 'HTML',
+            'DYNAMIC_CONTENT' => 'DynamicContent',
+        ],
+    ];
+
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->faker = \Faker\Factory::create();
+        $data = [];
+        foreach ($this->types as $field => $type) {
+            $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
+        }
+        $this->sot = new UpdateLandingPageContentRequest($data);
+        $this->sot = new UpdateLandingPageContentRequest();
+    }
+
+    /**
+     * @param string $type
+     * @param scalar[]|null $values
+     * @return mixed
+     */
+    private function getFakeValue(string $type, ?array $values) {
+        if (isset($values)) {
+            // @todo random.
+            return array_pop($values);
+        }
+
+        // @todo look for container hints.
+        if (strcasecmp(substr($type, -2), '[]') === 0) {
+            $return = [];
+            $subType = substr($type, 0, -2);
+            for ($i = 0; $i <= rand(0, 9); $i++) {
+                $return[] = $this->getFakeValue($subType, $values);
+            }
+            return $return;
+        }
+        switch ($type) {
+            case 'string':
+                return $this->faker->word();
+            case 'float':
+                return $this->faker->randomFloat();
+            case 'int':
+                return $this->faker->randomNumber();
+            case 'bool':
+                return $this->faker->boolean();
+            case '\DateTime':
+                return $this->faker->dateTimeAD();
+            case 'object':
+                return new \stdClass();
+        }
+        if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
+            return new $type();
+        }
+        $this->markTestSkipped('This type is not mocked yet: ' . $type);
+    }
+
+    /**
      * Test "UpdateLandingPageContentRequest"
+     *
+     * @covers ::__construct
      */
     public function testUpdateLandingPageContentRequest(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(\NecLimDul\MarketoRest\Asset\Model\UpdateLandingPageContentRequest::class, $this->sot);
     }
 
     /**
      * Test attribute "background_color"
+     *
+     * @covers ::__construct
+     * @covers ::getBackgroundColor
+     * @covers ::setBackgroundColor
      */
     public function testPropertyBackgroundColor(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['background_color'],
+            $this->allowedValues['background_color'] ?? null
+        );
+        $this->sot->setBackgroundColor($v);
+        $this->assertEquals($v, $this->sot->getBackgroundColor());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "border_color"
+     *
+     * @covers ::__construct
+     * @covers ::getBorderColor
+     * @covers ::setBorderColor
      */
     public function testPropertyBorderColor(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['border_color'],
+            $this->allowedValues['border_color'] ?? null
+        );
+        $this->sot->setBorderColor($v);
+        $this->assertEquals($v, $this->sot->getBorderColor());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "border_style"
+     *
+     * @covers ::__construct
+     * @covers ::getBorderStyle
+     * @covers ::setBorderStyle
      */
     public function testPropertyBorderStyle(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['border_style'],
+            $this->allowedValues['border_style'] ?? null
+        );
+        $this->sot->setBorderStyle($v);
+        $this->assertEquals($v, $this->sot->getBorderStyle());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "border_width"
+     *
+     * @covers ::__construct
+     * @covers ::getBorderWidth
+     * @covers ::setBorderWidth
      */
     public function testPropertyBorderWidth(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['border_width'],
+            $this->allowedValues['border_width'] ?? null
+        );
+        $this->sot->setBorderWidth($v);
+        $this->assertEquals($v, $this->sot->getBorderWidth());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "height"
+     *
+     * @covers ::__construct
+     * @covers ::getHeight
+     * @covers ::setHeight
      */
     public function testPropertyHeight(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['height'],
+            $this->allowedValues['height'] ?? null
+        );
+        $this->sot->setHeight($v);
+        $this->assertEquals($v, $this->sot->getHeight());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "hide_desktop"
+     *
+     * @covers ::__construct
+     * @covers ::getHideDesktop
+     * @covers ::setHideDesktop
      */
     public function testPropertyHideDesktop(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['hide_desktop'],
+            $this->allowedValues['hide_desktop'] ?? null
+        );
+        $this->sot->setHideDesktop($v);
+        $this->assertEquals($v, $this->sot->getHideDesktop());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "hide_mobile"
+     *
+     * @covers ::__construct
+     * @covers ::getHideMobile
+     * @covers ::setHideMobile
      */
     public function testPropertyHideMobile(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['hide_mobile'],
+            $this->allowedValues['hide_mobile'] ?? null
+        );
+        $this->sot->setHideMobile($v);
+        $this->assertEquals($v, $this->sot->getHideMobile());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "image_open_new_window"
+     *
+     * @covers ::__construct
+     * @covers ::getImageOpenNewWindow
+     * @covers ::setImageOpenNewWindow
      */
     public function testPropertyImageOpenNewWindow(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['image_open_new_window'],
+            $this->allowedValues['image_open_new_window'] ?? null
+        );
+        $this->sot->setImageOpenNewWindow($v);
+        $this->assertEquals($v, $this->sot->getImageOpenNewWindow());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "index"
+     *
+     * @covers ::__construct
+     * @covers ::getIndex
+     * @covers ::setIndex
      */
     public function testPropertyIndex(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['index'],
+            $this->allowedValues['index'] ?? null
+        );
+        $this->sot->setIndex($v);
+        $this->assertEquals($v, $this->sot->getIndex());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "left"
+     *
+     * @covers ::__construct
+     * @covers ::getLeft
+     * @covers ::setLeft
      */
     public function testPropertyLeft(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['left'],
+            $this->allowedValues['left'] ?? null
+        );
+        $this->sot->setLeft($v);
+        $this->assertEquals($v, $this->sot->getLeft());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "link_url"
+     *
+     * @covers ::__construct
+     * @covers ::getLinkUrl
+     * @covers ::setLinkUrl
      */
     public function testPropertyLinkUrl(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['link_url'],
+            $this->allowedValues['link_url'] ?? null
+        );
+        $this->sot->setLinkUrl($v);
+        $this->assertEquals($v, $this->sot->getLinkUrl());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "opacity"
+     *
+     * @covers ::__construct
+     * @covers ::getOpacity
+     * @covers ::setOpacity
      */
     public function testPropertyOpacity(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['opacity'],
+            $this->allowedValues['opacity'] ?? null
+        );
+        $this->sot->setOpacity($v);
+        $this->assertEquals($v, $this->sot->getOpacity());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "top"
+     *
+     * @covers ::__construct
+     * @covers ::getTop
+     * @covers ::setTop
      */
     public function testPropertyTop(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['top'],
+            $this->allowedValues['top'] ?? null
+        );
+        $this->sot->setTop($v);
+        $this->assertEquals($v, $this->sot->getTop());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "type"
+     *
+     * @covers ::__construct
+     * @covers ::getType
+     * @covers ::setType
      */
     public function testPropertyType(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['type'],
+            $this->allowedValues['type'] ?? null
+        );
+        $this->sot->setType($v);
+        $this->assertEquals($v, $this->sot->getType());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "value"
+     *
+     * @covers ::__construct
+     * @covers ::getValue
+     * @covers ::setValue
      */
     public function testPropertyValue(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['value'],
+            $this->allowedValues['value'] ?? null
+        );
+        $this->sot->setValue($v);
+        $this->assertEquals($v, $this->sot->getValue());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "width"
+     *
+     * @covers ::__construct
+     * @covers ::getWidth
+     * @covers ::setWidth
      */
     public function testPropertyWidth(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['width'],
+            $this->allowedValues['width'] ?? null
+        );
+        $this->sot->setWidth($v);
+        $this->assertEquals($v, $this->sot->getWidth());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "z_index"
+     *
+     * @covers ::__construct
+     * @covers ::getZIndex
+     * @covers ::setZIndex
      */
     public function testPropertyZIndex(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['z_index'],
+            $this->allowedValues['z_index'] ?? null
+        );
+        $this->sot->setZIndex($v);
+        $this->assertEquals($v, $this->sot->getZIndex());
+        // $this->markTestIncomplete('Not implemented');
     }
 }

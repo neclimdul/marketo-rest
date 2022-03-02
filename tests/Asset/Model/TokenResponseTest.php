@@ -23,6 +23,9 @@
 
 namespace NecLimDul\MarketoRest\Asset\Test\Model;
 
+use Faker\Factory;
+use NecLimDul\MarketoRest\Asset\Model\ModelInterface;
+use NecLimDul\MarketoRest\Asset\Model\TokenResponse;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -33,34 +36,132 @@ use PHPUnit\Framework\TestCase;
  * @package     NecLimDul\MarketoRest\Asset
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
+ *
+ * @coversDefault \NecLimDul\MarketoRest\Asset\Model\TokenResponse
  */
 class TokenResponseTest extends TestCase
 {
 
     /**
+     * @var \NecLimDul\MarketoRest\Asset\Model\TokenResponse
+     */
+    private $sot;
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
+    /**
+     * @var string[]
+     */
+    private $types = [
+        'folder' => 'string',
+        'tokens' => '\NecLimDul\MarketoRest\Asset\Model\TokenDTO[]',
+    ];
+    /**
+     * @var scalar[][]
+     */
+    private $allowedValues = [
+    ];
+
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->faker = \Faker\Factory::create();
+        $data = [];
+        foreach ($this->types as $field => $type) {
+            $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
+        }
+        $this->sot = new TokenResponse($data);
+        $this->sot = new TokenResponse();
+    }
+
+    /**
+     * @param string $type
+     * @param scalar[]|null $values
+     * @return mixed
+     */
+    private function getFakeValue(string $type, ?array $values) {
+        if (isset($values)) {
+            // @todo random.
+            return array_pop($values);
+        }
+
+        // @todo look for container hints.
+        if (strcasecmp(substr($type, -2), '[]') === 0) {
+            $return = [];
+            $subType = substr($type, 0, -2);
+            for ($i = 0; $i <= rand(0, 9); $i++) {
+                $return[] = $this->getFakeValue($subType, $values);
+            }
+            return $return;
+        }
+        switch ($type) {
+            case 'string':
+                return $this->faker->word();
+            case 'float':
+                return $this->faker->randomFloat();
+            case 'int':
+                return $this->faker->randomNumber();
+            case 'bool':
+                return $this->faker->boolean();
+            case '\DateTime':
+                return $this->faker->dateTimeAD();
+            case 'object':
+                return new \stdClass();
+        }
+        if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
+            return new $type();
+        }
+        $this->markTestSkipped('This type is not mocked yet: ' . $type);
+    }
+
+    /**
      * Test "TokenResponse"
+     *
+     * @covers ::__construct
      */
     public function testTokenResponse(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(\NecLimDul\MarketoRest\Asset\Model\TokenResponse::class, $this->sot);
     }
 
     /**
      * Test attribute "folder"
+     *
+     * @covers ::__construct
+     * @covers ::getFolder
+     * @covers ::setFolder
      */
     public function testPropertyFolder(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['folder'],
+            $this->allowedValues['folder'] ?? null
+        );
+        $this->sot->setFolder($v);
+        $this->assertEquals($v, $this->sot->getFolder());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "tokens"
+     *
+     * @covers ::__construct
+     * @covers ::getTokens
+     * @covers ::setTokens
      */
     public function testPropertyTokens(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['tokens'],
+            $this->allowedValues['tokens'] ?? null
+        );
+        $this->sot->setTokens($v);
+        $this->assertEquals($v, $this->sot->getTokens());
+        // $this->markTestIncomplete('Not implemented');
     }
 }

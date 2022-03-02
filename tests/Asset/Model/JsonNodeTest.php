@@ -23,6 +23,9 @@
 
 namespace NecLimDul\MarketoRest\Asset\Test\Model;
 
+use Faker\Factory;
+use NecLimDul\MarketoRest\Asset\Model\ModelInterface;
+use NecLimDul\MarketoRest\Asset\Model\JsonNode;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -33,205 +36,523 @@ use PHPUnit\Framework\TestCase;
  * @package     NecLimDul\MarketoRest\Asset
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
+ *
+ * @coversDefault \NecLimDul\MarketoRest\Asset\Model\JsonNode
  */
 class JsonNodeTest extends TestCase
 {
 
     /**
+     * @var \NecLimDul\MarketoRest\Asset\Model\JsonNode
+     */
+    private $sot;
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
+    /**
+     * @var string[]
+     */
+    private $types = [
+        'array' => 'bool',
+        'big_decimal' => 'bool',
+        'big_integer' => 'bool',
+        'binary' => 'bool',
+        'boolean' => 'bool',
+        'container_node' => 'bool',
+        'double' => 'bool',
+        'float' => 'bool',
+        'floating_point_number' => 'bool',
+        'int' => 'bool',
+        'integral_number' => 'bool',
+        'long' => 'bool',
+        'missing_node' => 'bool',
+        'node_type' => 'string',
+        'null' => 'bool',
+        'number' => 'bool',
+        'object' => 'bool',
+        'pojo' => 'bool',
+        'short' => 'bool',
+        'textual' => 'bool',
+        'value_node' => 'bool',
+    ];
+    /**
+     * @var scalar[][]
+     */
+    private $allowedValues = [
+        'node_type' => [
+            '_ARRAY' => 'ARRAY',
+            'BINARY' => 'BINARY',
+            'BOOLEAN' => 'BOOLEAN',
+            'MISSING' => 'MISSING',
+            'NULL' => 'NULL',
+            'NUMBER' => 'NUMBER',
+            'OBJECT' => 'OBJECT',
+            'POJO' => 'POJO',
+            'STRING' => 'STRING',
+        ],
+    ];
+
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->faker = \Faker\Factory::create();
+        $data = [];
+        foreach ($this->types as $field => $type) {
+            $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
+        }
+        $this->sot = new JsonNode($data);
+        $this->sot = new JsonNode();
+    }
+
+    /**
+     * @param string $type
+     * @param scalar[]|null $values
+     * @return mixed
+     */
+    private function getFakeValue(string $type, ?array $values) {
+        if (isset($values)) {
+            // @todo random.
+            return array_pop($values);
+        }
+
+        // @todo look for container hints.
+        if (strcasecmp(substr($type, -2), '[]') === 0) {
+            $return = [];
+            $subType = substr($type, 0, -2);
+            for ($i = 0; $i <= rand(0, 9); $i++) {
+                $return[] = $this->getFakeValue($subType, $values);
+            }
+            return $return;
+        }
+        switch ($type) {
+            case 'string':
+                return $this->faker->word();
+            case 'float':
+                return $this->faker->randomFloat();
+            case 'int':
+                return $this->faker->randomNumber();
+            case 'bool':
+                return $this->faker->boolean();
+            case '\DateTime':
+                return $this->faker->dateTimeAD();
+            case 'object':
+                return new \stdClass();
+        }
+        if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
+            return new $type();
+        }
+        $this->markTestSkipped('This type is not mocked yet: ' . $type);
+    }
+
+    /**
      * Test "JsonNode"
+     *
+     * @covers ::__construct
      */
     public function testJsonNode(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(\NecLimDul\MarketoRest\Asset\Model\JsonNode::class, $this->sot);
     }
 
     /**
      * Test attribute "array"
+     *
+     * @covers ::__construct
+     * @covers ::getArray
+     * @covers ::setArray
      */
     public function testPropertyArray(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['array'],
+            $this->allowedValues['array'] ?? null
+        );
+        $this->sot->setArray($v);
+        $this->assertEquals($v, $this->sot->getArray());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "big_decimal"
+     *
+     * @covers ::__construct
+     * @covers ::getBigDecimal
+     * @covers ::setBigDecimal
      */
     public function testPropertyBigDecimal(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['big_decimal'],
+            $this->allowedValues['big_decimal'] ?? null
+        );
+        $this->sot->setBigDecimal($v);
+        $this->assertEquals($v, $this->sot->getBigDecimal());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "big_integer"
+     *
+     * @covers ::__construct
+     * @covers ::getBigInteger
+     * @covers ::setBigInteger
      */
     public function testPropertyBigInteger(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['big_integer'],
+            $this->allowedValues['big_integer'] ?? null
+        );
+        $this->sot->setBigInteger($v);
+        $this->assertEquals($v, $this->sot->getBigInteger());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "binary"
+     *
+     * @covers ::__construct
+     * @covers ::getBinary
+     * @covers ::setBinary
      */
     public function testPropertyBinary(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['binary'],
+            $this->allowedValues['binary'] ?? null
+        );
+        $this->sot->setBinary($v);
+        $this->assertEquals($v, $this->sot->getBinary());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "boolean"
+     *
+     * @covers ::__construct
+     * @covers ::getBoolean
+     * @covers ::setBoolean
      */
     public function testPropertyBoolean(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['boolean'],
+            $this->allowedValues['boolean'] ?? null
+        );
+        $this->sot->setBoolean($v);
+        $this->assertEquals($v, $this->sot->getBoolean());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "container_node"
+     *
+     * @covers ::__construct
+     * @covers ::getContainerNode
+     * @covers ::setContainerNode
      */
     public function testPropertyContainerNode(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['container_node'],
+            $this->allowedValues['container_node'] ?? null
+        );
+        $this->sot->setContainerNode($v);
+        $this->assertEquals($v, $this->sot->getContainerNode());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "double"
+     *
+     * @covers ::__construct
+     * @covers ::getDouble
+     * @covers ::setDouble
      */
     public function testPropertyDouble(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['double'],
+            $this->allowedValues['double'] ?? null
+        );
+        $this->sot->setDouble($v);
+        $this->assertEquals($v, $this->sot->getDouble());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "float"
+     *
+     * @covers ::__construct
+     * @covers ::getFloat
+     * @covers ::setFloat
      */
     public function testPropertyFloat(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['float'],
+            $this->allowedValues['float'] ?? null
+        );
+        $this->sot->setFloat($v);
+        $this->assertEquals($v, $this->sot->getFloat());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "floating_point_number"
+     *
+     * @covers ::__construct
+     * @covers ::getFloatingPointNumber
+     * @covers ::setFloatingPointNumber
      */
     public function testPropertyFloatingPointNumber(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['floating_point_number'],
+            $this->allowedValues['floating_point_number'] ?? null
+        );
+        $this->sot->setFloatingPointNumber($v);
+        $this->assertEquals($v, $this->sot->getFloatingPointNumber());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "int"
+     *
+     * @covers ::__construct
+     * @covers ::getInt
+     * @covers ::setInt
      */
     public function testPropertyInt(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['int'],
+            $this->allowedValues['int'] ?? null
+        );
+        $this->sot->setInt($v);
+        $this->assertEquals($v, $this->sot->getInt());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "integral_number"
+     *
+     * @covers ::__construct
+     * @covers ::getIntegralNumber
+     * @covers ::setIntegralNumber
      */
     public function testPropertyIntegralNumber(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['integral_number'],
+            $this->allowedValues['integral_number'] ?? null
+        );
+        $this->sot->setIntegralNumber($v);
+        $this->assertEquals($v, $this->sot->getIntegralNumber());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "long"
+     *
+     * @covers ::__construct
+     * @covers ::getLong
+     * @covers ::setLong
      */
     public function testPropertyLong(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['long'],
+            $this->allowedValues['long'] ?? null
+        );
+        $this->sot->setLong($v);
+        $this->assertEquals($v, $this->sot->getLong());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "missing_node"
+     *
+     * @covers ::__construct
+     * @covers ::getMissingNode
+     * @covers ::setMissingNode
      */
     public function testPropertyMissingNode(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['missing_node'],
+            $this->allowedValues['missing_node'] ?? null
+        );
+        $this->sot->setMissingNode($v);
+        $this->assertEquals($v, $this->sot->getMissingNode());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "node_type"
+     *
+     * @covers ::__construct
+     * @covers ::getNodeType
+     * @covers ::setNodeType
      */
     public function testPropertyNodeType(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['node_type'],
+            $this->allowedValues['node_type'] ?? null
+        );
+        $this->sot->setNodeType($v);
+        $this->assertEquals($v, $this->sot->getNodeType());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "null"
+     *
+     * @covers ::__construct
+     * @covers ::getNull
+     * @covers ::setNull
      */
     public function testPropertyNull(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['null'],
+            $this->allowedValues['null'] ?? null
+        );
+        $this->sot->setNull($v);
+        $this->assertEquals($v, $this->sot->getNull());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "number"
+     *
+     * @covers ::__construct
+     * @covers ::getNumber
+     * @covers ::setNumber
      */
     public function testPropertyNumber(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['number'],
+            $this->allowedValues['number'] ?? null
+        );
+        $this->sot->setNumber($v);
+        $this->assertEquals($v, $this->sot->getNumber());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "object"
+     *
+     * @covers ::__construct
+     * @covers ::getObject
+     * @covers ::setObject
      */
     public function testPropertyObject(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['object'],
+            $this->allowedValues['object'] ?? null
+        );
+        $this->sot->setObject($v);
+        $this->assertEquals($v, $this->sot->getObject());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "pojo"
+     *
+     * @covers ::__construct
+     * @covers ::getPojo
+     * @covers ::setPojo
      */
     public function testPropertyPojo(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['pojo'],
+            $this->allowedValues['pojo'] ?? null
+        );
+        $this->sot->setPojo($v);
+        $this->assertEquals($v, $this->sot->getPojo());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "short"
+     *
+     * @covers ::__construct
+     * @covers ::getShort
+     * @covers ::setShort
      */
     public function testPropertyShort(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['short'],
+            $this->allowedValues['short'] ?? null
+        );
+        $this->sot->setShort($v);
+        $this->assertEquals($v, $this->sot->getShort());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "textual"
+     *
+     * @covers ::__construct
+     * @covers ::getTextual
+     * @covers ::setTextual
      */
     public function testPropertyTextual(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['textual'],
+            $this->allowedValues['textual'] ?? null
+        );
+        $this->sot->setTextual($v);
+        $this->assertEquals($v, $this->sot->getTextual());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "value_node"
+     *
+     * @covers ::__construct
+     * @covers ::getValueNode
+     * @covers ::setValueNode
      */
     public function testPropertyValueNode(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['value_node'],
+            $this->allowedValues['value_node'] ?? null
+        );
+        $this->sot->setValueNode($v);
+        $this->assertEquals($v, $this->sot->getValueNode());
+        // $this->markTestIncomplete('Not implemented');
     }
 }

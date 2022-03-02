@@ -23,6 +23,9 @@
 
 namespace NecLimDul\MarketoRest\Lead\Test\Model;
 
+use Faker\Factory;
+use NecLimDul\MarketoRest\Lead\Model\ModelInterface;
+use NecLimDul\MarketoRest\Lead\Model\Form;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -33,43 +36,152 @@ use PHPUnit\Framework\TestCase;
  * @package     NecLimDul\MarketoRest\Lead
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
+ *
+ * @coversDefault \NecLimDul\MarketoRest\Lead\Model\Form
  */
 class FormTest extends TestCase
 {
 
     /**
+     * @var \NecLimDul\MarketoRest\Lead\Model\Form
+     */
+    private $sot;
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
+    /**
+     * @var string[]
+     */
+    private $types = [
+        'lead_form_fields' => '\NecLimDul\MarketoRest\Lead\Model\LeadFormFields',
+        'visitor_data' => '\NecLimDul\MarketoRest\Lead\Model\VisitorData',
+        'cookie' => 'string',
+    ];
+    /**
+     * @var scalar[][]
+     */
+    private $allowedValues = [
+    ];
+
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->faker = \Faker\Factory::create();
+        $data = [];
+        foreach ($this->types as $field => $type) {
+            $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
+        }
+        $this->sot = new Form($data);
+        $this->sot = new Form();
+    }
+
+    /**
+     * @param string $type
+     * @param scalar[]|null $values
+     * @return mixed
+     */
+    private function getFakeValue(string $type, ?array $values) {
+        if (isset($values)) {
+            // @todo random.
+            return array_pop($values);
+        }
+
+        // @todo look for container hints.
+        if (strcasecmp(substr($type, -2), '[]') === 0) {
+            $return = [];
+            $subType = substr($type, 0, -2);
+            for ($i = 0; $i <= rand(0, 9); $i++) {
+                $return[] = $this->getFakeValue($subType, $values);
+            }
+            return $return;
+        }
+        switch ($type) {
+            case 'string':
+                return $this->faker->word();
+            case 'float':
+                return $this->faker->randomFloat();
+            case 'int':
+                return $this->faker->randomNumber();
+            case 'bool':
+                return $this->faker->boolean();
+            case '\DateTime':
+                return $this->faker->dateTimeAD();
+            case 'object':
+                return new \stdClass();
+        }
+        if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
+            return new $type();
+        }
+        $this->markTestSkipped('This type is not mocked yet: ' . $type);
+    }
+
+    /**
      * Test "Form"
+     *
+     * @covers ::__construct
      */
     public function testForm(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(\NecLimDul\MarketoRest\Lead\Model\Form::class, $this->sot);
     }
 
     /**
      * Test attribute "lead_form_fields"
+     *
+     * @covers ::__construct
+     * @covers ::getLeadFormFields
+     * @covers ::setLeadFormFields
      */
     public function testPropertyLeadFormFields(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['lead_form_fields'],
+            $this->allowedValues['lead_form_fields'] ?? null
+        );
+        $this->sot->setLeadFormFields($v);
+        $this->assertEquals($v, $this->sot->getLeadFormFields());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "visitor_data"
+     *
+     * @covers ::__construct
+     * @covers ::getVisitorData
+     * @covers ::setVisitorData
      */
     public function testPropertyVisitorData(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['visitor_data'],
+            $this->allowedValues['visitor_data'] ?? null
+        );
+        $this->sot->setVisitorData($v);
+        $this->assertEquals($v, $this->sot->getVisitorData());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "cookie"
+     *
+     * @covers ::__construct
+     * @covers ::getCookie
+     * @covers ::setCookie
      */
     public function testPropertyCookie(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['cookie'],
+            $this->allowedValues['cookie'] ?? null
+        );
+        $this->sot->setCookie($v);
+        $this->assertEquals($v, $this->sot->getCookie());
+        // $this->markTestIncomplete('Not implemented');
     }
 }

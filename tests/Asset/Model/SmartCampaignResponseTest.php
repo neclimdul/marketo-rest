@@ -23,6 +23,9 @@
 
 namespace NecLimDul\MarketoRest\Asset\Test\Model;
 
+use Faker\Factory;
+use NecLimDul\MarketoRest\Asset\Model\ModelInterface;
+use NecLimDul\MarketoRest\Asset\Model\SmartCampaignResponse;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -33,214 +36,557 @@ use PHPUnit\Framework\TestCase;
  * @package     NecLimDul\MarketoRest\Asset
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
+ *
+ * @coversDefault \NecLimDul\MarketoRest\Asset\Model\SmartCampaignResponse
  */
 class SmartCampaignResponseTest extends TestCase
 {
 
     /**
+     * @var \NecLimDul\MarketoRest\Asset\Model\SmartCampaignResponse
+     */
+    private $sot;
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
+    /**
+     * @var string[]
+     */
+    private $types = [
+        'id' => 'int',
+        'name' => 'string',
+        'description' => 'string',
+        'type' => 'string',
+        'is_system' => 'bool',
+        'is_active' => 'bool',
+        'is_requestable' => 'bool',
+        'recurrence' => '\NecLimDul\MarketoRest\Asset\Model\Recurrence',
+        'qualification_rule_type' => 'string',
+        'qualification_rule_interval' => 'int',
+        'qualification_rule_unit' => 'string',
+        'max_members' => 'int',
+        'is_communication_limit_enabled' => 'bool',
+        'smart_list_id' => 'int',
+        'flow_id' => 'int',
+        'parent_program_id' => 'int',
+        'folder' => '\NecLimDul\MarketoRest\Asset\Model\Folder',
+        'created_at' => '\DateTime',
+        'updated_at' => '\DateTime',
+        'workspace' => 'string',
+        'computed_url' => 'string',
+        'status' => 'string',
+    ];
+    /**
+     * @var scalar[][]
+     */
+    private $allowedValues = [
+        'type' => [
+            'BATCH' => 'batch',
+            '_DEFAULT' => 'default',
+            'TRIGGER' => 'trigger',
+        ],
+        'qualification_rule_type' => [
+            'ONCE' => 'once',
+            'ANY' => 'any',
+            'INTERVAL' => 'interval',
+        ],
+        'qualification_rule_unit' => [
+            'HOUR' => 'hour',
+            'DAY' => 'day',
+            'WEEK' => 'week',
+            'MONTH' => 'month',
+        ],
+        'status' => [
+            'INACTIVE' => 'Inactive',
+            'SINGLE_RUN' => 'Single Run',
+            'INVALID' => 'Invalid',
+            'RECURRING_RUN' => 'Recurring Run',
+            'ACTIVE' => 'Active',
+            'REQUESTED' => 'Requested',
+            'NEVER_RUN' => 'Never Run',
+        ],
+    ];
+
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->faker = \Faker\Factory::create();
+        $data = [];
+        foreach ($this->types as $field => $type) {
+            $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
+        }
+        $this->sot = new SmartCampaignResponse($data);
+        $this->sot = new SmartCampaignResponse();
+    }
+
+    /**
+     * @param string $type
+     * @param scalar[]|null $values
+     * @return mixed
+     */
+    private function getFakeValue(string $type, ?array $values) {
+        if (isset($values)) {
+            // @todo random.
+            return array_pop($values);
+        }
+
+        // @todo look for container hints.
+        if (strcasecmp(substr($type, -2), '[]') === 0) {
+            $return = [];
+            $subType = substr($type, 0, -2);
+            for ($i = 0; $i <= rand(0, 9); $i++) {
+                $return[] = $this->getFakeValue($subType, $values);
+            }
+            return $return;
+        }
+        switch ($type) {
+            case 'string':
+                return $this->faker->word();
+            case 'float':
+                return $this->faker->randomFloat();
+            case 'int':
+                return $this->faker->randomNumber();
+            case 'bool':
+                return $this->faker->boolean();
+            case '\DateTime':
+                return $this->faker->dateTimeAD();
+            case 'object':
+                return new \stdClass();
+        }
+        if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
+            return new $type();
+        }
+        $this->markTestSkipped('This type is not mocked yet: ' . $type);
+    }
+
+    /**
      * Test "SmartCampaignResponse"
+     *
+     * @covers ::__construct
      */
     public function testSmartCampaignResponse(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(\NecLimDul\MarketoRest\Asset\Model\SmartCampaignResponse::class, $this->sot);
     }
 
     /**
      * Test attribute "id"
+     *
+     * @covers ::__construct
+     * @covers ::getId
+     * @covers ::setId
      */
     public function testPropertyId(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['id'],
+            $this->allowedValues['id'] ?? null
+        );
+        $this->sot->setId($v);
+        $this->assertEquals($v, $this->sot->getId());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "name"
+     *
+     * @covers ::__construct
+     * @covers ::getName
+     * @covers ::setName
      */
     public function testPropertyName(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['name'],
+            $this->allowedValues['name'] ?? null
+        );
+        $this->sot->setName($v);
+        $this->assertEquals($v, $this->sot->getName());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "description"
+     *
+     * @covers ::__construct
+     * @covers ::getDescription
+     * @covers ::setDescription
      */
     public function testPropertyDescription(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['description'],
+            $this->allowedValues['description'] ?? null
+        );
+        $this->sot->setDescription($v);
+        $this->assertEquals($v, $this->sot->getDescription());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "type"
+     *
+     * @covers ::__construct
+     * @covers ::getType
+     * @covers ::setType
      */
     public function testPropertyType(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['type'],
+            $this->allowedValues['type'] ?? null
+        );
+        $this->sot->setType($v);
+        $this->assertEquals($v, $this->sot->getType());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "is_system"
+     *
+     * @covers ::__construct
+     * @covers ::getIsSystem
+     * @covers ::setIsSystem
      */
     public function testPropertyIsSystem(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['is_system'],
+            $this->allowedValues['is_system'] ?? null
+        );
+        $this->sot->setIsSystem($v);
+        $this->assertEquals($v, $this->sot->getIsSystem());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "is_active"
+     *
+     * @covers ::__construct
+     * @covers ::getIsActive
+     * @covers ::setIsActive
      */
     public function testPropertyIsActive(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['is_active'],
+            $this->allowedValues['is_active'] ?? null
+        );
+        $this->sot->setIsActive($v);
+        $this->assertEquals($v, $this->sot->getIsActive());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "is_requestable"
+     *
+     * @covers ::__construct
+     * @covers ::getIsRequestable
+     * @covers ::setIsRequestable
      */
     public function testPropertyIsRequestable(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['is_requestable'],
+            $this->allowedValues['is_requestable'] ?? null
+        );
+        $this->sot->setIsRequestable($v);
+        $this->assertEquals($v, $this->sot->getIsRequestable());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "recurrence"
+     *
+     * @covers ::__construct
+     * @covers ::getRecurrence
+     * @covers ::setRecurrence
      */
     public function testPropertyRecurrence(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['recurrence'],
+            $this->allowedValues['recurrence'] ?? null
+        );
+        $this->sot->setRecurrence($v);
+        $this->assertEquals($v, $this->sot->getRecurrence());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "qualification_rule_type"
+     *
+     * @covers ::__construct
+     * @covers ::getQualificationRuleType
+     * @covers ::setQualificationRuleType
      */
     public function testPropertyQualificationRuleType(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['qualification_rule_type'],
+            $this->allowedValues['qualification_rule_type'] ?? null
+        );
+        $this->sot->setQualificationRuleType($v);
+        $this->assertEquals($v, $this->sot->getQualificationRuleType());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "qualification_rule_interval"
+     *
+     * @covers ::__construct
+     * @covers ::getQualificationRuleInterval
+     * @covers ::setQualificationRuleInterval
      */
     public function testPropertyQualificationRuleInterval(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['qualification_rule_interval'],
+            $this->allowedValues['qualification_rule_interval'] ?? null
+        );
+        $this->sot->setQualificationRuleInterval($v);
+        $this->assertEquals($v, $this->sot->getQualificationRuleInterval());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "qualification_rule_unit"
+     *
+     * @covers ::__construct
+     * @covers ::getQualificationRuleUnit
+     * @covers ::setQualificationRuleUnit
      */
     public function testPropertyQualificationRuleUnit(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['qualification_rule_unit'],
+            $this->allowedValues['qualification_rule_unit'] ?? null
+        );
+        $this->sot->setQualificationRuleUnit($v);
+        $this->assertEquals($v, $this->sot->getQualificationRuleUnit());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "max_members"
+     *
+     * @covers ::__construct
+     * @covers ::getMaxMembers
+     * @covers ::setMaxMembers
      */
     public function testPropertyMaxMembers(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['max_members'],
+            $this->allowedValues['max_members'] ?? null
+        );
+        $this->sot->setMaxMembers($v);
+        $this->assertEquals($v, $this->sot->getMaxMembers());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "is_communication_limit_enabled"
+     *
+     * @covers ::__construct
+     * @covers ::getIsCommunicationLimitEnabled
+     * @covers ::setIsCommunicationLimitEnabled
      */
     public function testPropertyIsCommunicationLimitEnabled(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['is_communication_limit_enabled'],
+            $this->allowedValues['is_communication_limit_enabled'] ?? null
+        );
+        $this->sot->setIsCommunicationLimitEnabled($v);
+        $this->assertEquals($v, $this->sot->getIsCommunicationLimitEnabled());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "smart_list_id"
+     *
+     * @covers ::__construct
+     * @covers ::getSmartListId
+     * @covers ::setSmartListId
      */
     public function testPropertySmartListId(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['smart_list_id'],
+            $this->allowedValues['smart_list_id'] ?? null
+        );
+        $this->sot->setSmartListId($v);
+        $this->assertEquals($v, $this->sot->getSmartListId());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "flow_id"
+     *
+     * @covers ::__construct
+     * @covers ::getFlowId
+     * @covers ::setFlowId
      */
     public function testPropertyFlowId(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['flow_id'],
+            $this->allowedValues['flow_id'] ?? null
+        );
+        $this->sot->setFlowId($v);
+        $this->assertEquals($v, $this->sot->getFlowId());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "parent_program_id"
+     *
+     * @covers ::__construct
+     * @covers ::getParentProgramId
+     * @covers ::setParentProgramId
      */
     public function testPropertyParentProgramId(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['parent_program_id'],
+            $this->allowedValues['parent_program_id'] ?? null
+        );
+        $this->sot->setParentProgramId($v);
+        $this->assertEquals($v, $this->sot->getParentProgramId());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "folder"
+     *
+     * @covers ::__construct
+     * @covers ::getFolder
+     * @covers ::setFolder
      */
     public function testPropertyFolder(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['folder'],
+            $this->allowedValues['folder'] ?? null
+        );
+        $this->sot->setFolder($v);
+        $this->assertEquals($v, $this->sot->getFolder());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "created_at"
+     *
+     * @covers ::__construct
+     * @covers ::getCreatedAt
+     * @covers ::setCreatedAt
      */
     public function testPropertyCreatedAt(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['created_at'],
+            $this->allowedValues['created_at'] ?? null
+        );
+        $this->sot->setCreatedAt($v);
+        $this->assertEquals($v, $this->sot->getCreatedAt());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "updated_at"
+     *
+     * @covers ::__construct
+     * @covers ::getUpdatedAt
+     * @covers ::setUpdatedAt
      */
     public function testPropertyUpdatedAt(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['updated_at'],
+            $this->allowedValues['updated_at'] ?? null
+        );
+        $this->sot->setUpdatedAt($v);
+        $this->assertEquals($v, $this->sot->getUpdatedAt());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "workspace"
+     *
+     * @covers ::__construct
+     * @covers ::getWorkspace
+     * @covers ::setWorkspace
      */
     public function testPropertyWorkspace(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['workspace'],
+            $this->allowedValues['workspace'] ?? null
+        );
+        $this->sot->setWorkspace($v);
+        $this->assertEquals($v, $this->sot->getWorkspace());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "computed_url"
+     *
+     * @covers ::__construct
+     * @covers ::getComputedUrl
+     * @covers ::setComputedUrl
      */
     public function testPropertyComputedUrl(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['computed_url'],
+            $this->allowedValues['computed_url'] ?? null
+        );
+        $this->sot->setComputedUrl($v);
+        $this->assertEquals($v, $this->sot->getComputedUrl());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "status"
+     *
+     * @covers ::__construct
+     * @covers ::getStatus
+     * @covers ::setStatus
      */
     public function testPropertyStatus(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['status'],
+            $this->allowedValues['status'] ?? null
+        );
+        $this->sot->setStatus($v);
+        $this->assertEquals($v, $this->sot->getStatus());
+        // $this->markTestIncomplete('Not implemented');
     }
 }

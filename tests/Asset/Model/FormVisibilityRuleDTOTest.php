@@ -23,6 +23,9 @@
 
 namespace NecLimDul\MarketoRest\Asset\Test\Model;
 
+use Faker\Factory;
+use NecLimDul\MarketoRest\Asset\Model\ModelInterface;
+use NecLimDul\MarketoRest\Asset\Model\FormVisibilityRuleDTO;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -33,61 +36,192 @@ use PHPUnit\Framework\TestCase;
  * @package     NecLimDul\MarketoRest\Asset
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
+ *
+ * @coversDefault \NecLimDul\MarketoRest\Asset\Model\FormVisibilityRuleDTO
  */
 class FormVisibilityRuleDTOTest extends TestCase
 {
 
     /**
+     * @var \NecLimDul\MarketoRest\Asset\Model\FormVisibilityRuleDTO
+     */
+    private $sot;
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
+    /**
+     * @var string[]
+     */
+    private $types = [
+        'alt_label' => 'string',
+        'operator' => 'string',
+        'picklist_filter_values' => '\NecLimDul\MarketoRest\Asset\Model\PickListDTO[]',
+        'subject_field' => 'string',
+        'values' => 'string[]',
+    ];
+    /**
+     * @var scalar[][]
+     */
+    private $allowedValues = [
+    ];
+
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->faker = \Faker\Factory::create();
+        $data = [];
+        foreach ($this->types as $field => $type) {
+            $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
+        }
+        $this->sot = new FormVisibilityRuleDTO($data);
+        $this->sot = new FormVisibilityRuleDTO();
+    }
+
+    /**
+     * @param string $type
+     * @param scalar[]|null $values
+     * @return mixed
+     */
+    private function getFakeValue(string $type, ?array $values) {
+        if (isset($values)) {
+            // @todo random.
+            return array_pop($values);
+        }
+
+        // @todo look for container hints.
+        if (strcasecmp(substr($type, -2), '[]') === 0) {
+            $return = [];
+            $subType = substr($type, 0, -2);
+            for ($i = 0; $i <= rand(0, 9); $i++) {
+                $return[] = $this->getFakeValue($subType, $values);
+            }
+            return $return;
+        }
+        switch ($type) {
+            case 'string':
+                return $this->faker->word();
+            case 'float':
+                return $this->faker->randomFloat();
+            case 'int':
+                return $this->faker->randomNumber();
+            case 'bool':
+                return $this->faker->boolean();
+            case '\DateTime':
+                return $this->faker->dateTimeAD();
+            case 'object':
+                return new \stdClass();
+        }
+        if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
+            return new $type();
+        }
+        $this->markTestSkipped('This type is not mocked yet: ' . $type);
+    }
+
+    /**
      * Test "FormVisibilityRuleDTO"
+     *
+     * @covers ::__construct
      */
     public function testFormVisibilityRuleDTO(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(\NecLimDul\MarketoRest\Asset\Model\FormVisibilityRuleDTO::class, $this->sot);
     }
 
     /**
      * Test attribute "alt_label"
+     *
+     * @covers ::__construct
+     * @covers ::getAltLabel
+     * @covers ::setAltLabel
      */
     public function testPropertyAltLabel(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['alt_label'],
+            $this->allowedValues['alt_label'] ?? null
+        );
+        $this->sot->setAltLabel($v);
+        $this->assertEquals($v, $this->sot->getAltLabel());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "operator"
+     *
+     * @covers ::__construct
+     * @covers ::getOperator
+     * @covers ::setOperator
      */
     public function testPropertyOperator(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['operator'],
+            $this->allowedValues['operator'] ?? null
+        );
+        $this->sot->setOperator($v);
+        $this->assertEquals($v, $this->sot->getOperator());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "picklist_filter_values"
+     *
+     * @covers ::__construct
+     * @covers ::getPicklistFilterValues
+     * @covers ::setPicklistFilterValues
      */
     public function testPropertyPicklistFilterValues(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['picklist_filter_values'],
+            $this->allowedValues['picklist_filter_values'] ?? null
+        );
+        $this->sot->setPicklistFilterValues($v);
+        $this->assertEquals($v, $this->sot->getPicklistFilterValues());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "subject_field"
+     *
+     * @covers ::__construct
+     * @covers ::getSubjectField
+     * @covers ::setSubjectField
      */
     public function testPropertySubjectField(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['subject_field'],
+            $this->allowedValues['subject_field'] ?? null
+        );
+        $this->sot->setSubjectField($v);
+        $this->assertEquals($v, $this->sot->getSubjectField());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "values"
+     *
+     * @covers ::__construct
+     * @covers ::getValues
+     * @covers ::setValues
      */
     public function testPropertyValues(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['values'],
+            $this->allowedValues['values'] ?? null
+        );
+        $this->sot->setValues($v);
+        $this->assertEquals($v, $this->sot->getValues());
+        // $this->markTestIncomplete('Not implemented');
     }
 }

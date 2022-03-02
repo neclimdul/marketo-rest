@@ -23,6 +23,9 @@
 
 namespace NecLimDul\MarketoRest\Lead\Test\Model;
 
+use Faker\Factory;
+use NecLimDul\MarketoRest\Lead\Model\ModelInterface;
+use NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -33,16 +36,32 @@ use PHPUnit\Framework\TestCase;
  * @package     NecLimDul\MarketoRest\Lead
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
+ *
+ * @coversDefault \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent
  */
 class ObservableOfInputStreamContentTest extends TestCase
 {
 
     /**
+     * @var \NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent
+     */
+    private $sot;
+
+
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->sot = new ObservableOfInputStreamContent();
+    }
+
+
+    /**
      * Test "ObservableOfInputStreamContent"
+     *
+     * @covers ::__construct
      */
     public function testObservableOfInputStreamContent(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(\NecLimDul\MarketoRest\Lead\Model\ObservableOfInputStreamContent::class, $this->sot);
     }
 }

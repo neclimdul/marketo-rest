@@ -23,6 +23,9 @@
 
 namespace NecLimDul\MarketoRest\Identity\Test\Model;
 
+use Faker\Factory;
+use NecLimDul\MarketoRest\Identity\Model\ModelInterface;
+use NecLimDul\MarketoRest\Identity\Model\ResponseOfIdentity;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -33,52 +36,175 @@ use PHPUnit\Framework\TestCase;
  * @package     NecLimDul\MarketoRest\Identity
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
+ *
+ * @coversDefault \NecLimDul\MarketoRest\Identity\Model\ResponseOfIdentity
  */
 class ResponseOfIdentityTest extends TestCase
 {
 
     /**
+     * @var \NecLimDul\MarketoRest\Identity\Model\ResponseOfIdentity
+     */
+    private $sot;
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
+    /**
+     * @var string[]
+     */
+    private $types = [
+        'access_token' => 'string',
+        'scope' => 'string',
+        'expires_in' => 'int',
+        'token_type' => 'string',
+    ];
+    /**
+     * @var scalar[][]
+     */
+    private $allowedValues = [
+        'token_type' => [
+            'BEARER' => 'bearer',
+        ],
+    ];
+
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->faker = \Faker\Factory::create();
+        $data = [];
+        foreach ($this->types as $field => $type) {
+            $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
+        }
+        $this->sot = new ResponseOfIdentity($data);
+        $this->sot = new ResponseOfIdentity();
+    }
+
+    /**
+     * @param string $type
+     * @param scalar[]|null $values
+     * @return mixed
+     */
+    private function getFakeValue(string $type, ?array $values) {
+        if (isset($values)) {
+            // @todo random.
+            return array_pop($values);
+        }
+
+        // @todo look for container hints.
+        if (strcasecmp(substr($type, -2), '[]') === 0) {
+            $return = [];
+            $subType = substr($type, 0, -2);
+            for ($i = 0; $i <= rand(0, 9); $i++) {
+                $return[] = $this->getFakeValue($subType, $values);
+            }
+            return $return;
+        }
+        switch ($type) {
+            case 'string':
+                return $this->faker->word();
+            case 'float':
+                return $this->faker->randomFloat();
+            case 'int':
+                return $this->faker->randomNumber();
+            case 'bool':
+                return $this->faker->boolean();
+            case '\DateTime':
+                return $this->faker->dateTimeAD();
+            case 'object':
+                return new \stdClass();
+        }
+        if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
+            return new $type();
+        }
+        $this->markTestSkipped('This type is not mocked yet: ' . $type);
+    }
+
+    /**
      * Test "ResponseOfIdentity"
+     *
+     * @covers ::__construct
      */
     public function testResponseOfIdentity(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(\NecLimDul\MarketoRest\Identity\Model\ResponseOfIdentity::class, $this->sot);
     }
 
     /**
      * Test attribute "access_token"
+     *
+     * @covers ::__construct
+     * @covers ::getAccessToken
+     * @covers ::setAccessToken
      */
     public function testPropertyAccessToken(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['access_token'],
+            $this->allowedValues['access_token'] ?? null
+        );
+        $this->sot->setAccessToken($v);
+        $this->assertEquals($v, $this->sot->getAccessToken());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "scope"
+     *
+     * @covers ::__construct
+     * @covers ::getScope
+     * @covers ::setScope
      */
     public function testPropertyScope(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['scope'],
+            $this->allowedValues['scope'] ?? null
+        );
+        $this->sot->setScope($v);
+        $this->assertEquals($v, $this->sot->getScope());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "expires_in"
+     *
+     * @covers ::__construct
+     * @covers ::getExpiresIn
+     * @covers ::setExpiresIn
      */
     public function testPropertyExpiresIn(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['expires_in'],
+            $this->allowedValues['expires_in'] ?? null
+        );
+        $this->sot->setExpiresIn($v);
+        $this->assertEquals($v, $this->sot->getExpiresIn());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "token_type"
+     *
+     * @covers ::__construct
+     * @covers ::getTokenType
+     * @covers ::setTokenType
      */
     public function testPropertyTokenType(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['token_type'],
+            $this->allowedValues['token_type'] ?? null
+        );
+        $this->sot->setTokenType($v);
+        $this->assertEquals($v, $this->sot->getTokenType());
+        // $this->markTestIncomplete('Not implemented');
     }
 }

@@ -23,6 +23,9 @@
 
 namespace NecLimDul\MarketoRest\Lead\Test\Model;
 
+use Faker\Factory;
+use NecLimDul\MarketoRest\Lead\Model\ModelInterface;
+use NecLimDul\MarketoRest\Lead\Model\InputStreamContent;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -33,34 +36,132 @@ use PHPUnit\Framework\TestCase;
  * @package     NecLimDul\MarketoRest\Lead
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
+ *
+ * @coversDefault \NecLimDul\MarketoRest\Lead\Model\InputStreamContent
  */
 class InputStreamContentTest extends TestCase
 {
 
     /**
+     * @var \NecLimDul\MarketoRest\Lead\Model\InputStreamContent
+     */
+    private $sot;
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
+    /**
+     * @var string[]
+     */
+    private $types = [
+        'content_type' => 'string',
+        'input_stream' => '\NecLimDul\MarketoRest\Lead\Model\InputStream',
+    ];
+    /**
+     * @var scalar[][]
+     */
+    private $allowedValues = [
+    ];
+
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->faker = \Faker\Factory::create();
+        $data = [];
+        foreach ($this->types as $field => $type) {
+            $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
+        }
+        $this->sot = new InputStreamContent($data);
+        $this->sot = new InputStreamContent();
+    }
+
+    /**
+     * @param string $type
+     * @param scalar[]|null $values
+     * @return mixed
+     */
+    private function getFakeValue(string $type, ?array $values) {
+        if (isset($values)) {
+            // @todo random.
+            return array_pop($values);
+        }
+
+        // @todo look for container hints.
+        if (strcasecmp(substr($type, -2), '[]') === 0) {
+            $return = [];
+            $subType = substr($type, 0, -2);
+            for ($i = 0; $i <= rand(0, 9); $i++) {
+                $return[] = $this->getFakeValue($subType, $values);
+            }
+            return $return;
+        }
+        switch ($type) {
+            case 'string':
+                return $this->faker->word();
+            case 'float':
+                return $this->faker->randomFloat();
+            case 'int':
+                return $this->faker->randomNumber();
+            case 'bool':
+                return $this->faker->boolean();
+            case '\DateTime':
+                return $this->faker->dateTimeAD();
+            case 'object':
+                return new \stdClass();
+        }
+        if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
+            return new $type();
+        }
+        $this->markTestSkipped('This type is not mocked yet: ' . $type);
+    }
+
+    /**
      * Test "InputStreamContent"
+     *
+     * @covers ::__construct
      */
     public function testInputStreamContent(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(\NecLimDul\MarketoRest\Lead\Model\InputStreamContent::class, $this->sot);
     }
 
     /**
      * Test attribute "content_type"
+     *
+     * @covers ::__construct
+     * @covers ::getContentType
+     * @covers ::setContentType
      */
     public function testPropertyContentType(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['content_type'],
+            $this->allowedValues['content_type'] ?? null
+        );
+        $this->sot->setContentType($v);
+        $this->assertEquals($v, $this->sot->getContentType());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "input_stream"
+     *
+     * @covers ::__construct
+     * @covers ::getInputStream
+     * @covers ::setInputStream
      */
     public function testPropertyInputStream(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['input_stream'],
+            $this->allowedValues['input_stream'] ?? null
+        );
+        $this->sot->setInputStream($v);
+        $this->assertEquals($v, $this->sot->getInputStream());
+        // $this->markTestIncomplete('Not implemented');
     }
 }

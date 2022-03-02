@@ -23,6 +23,9 @@
 
 namespace NecLimDul\MarketoRest\Asset\Test\Model;
 
+use Faker\Factory;
+use NecLimDul\MarketoRest\Asset\Model\ModelInterface;
+use NecLimDul\MarketoRest\Asset\Model\SendSampleResponse;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -33,34 +36,135 @@ use PHPUnit\Framework\TestCase;
  * @package     NecLimDul\MarketoRest\Asset
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
+ *
+ * @coversDefault \NecLimDul\MarketoRest\Asset\Model\SendSampleResponse
  */
 class SendSampleResponseTest extends TestCase
 {
 
     /**
+     * @var \NecLimDul\MarketoRest\Asset\Model\SendSampleResponse
+     */
+    private $sot;
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
+    /**
+     * @var string[]
+     */
+    private $types = [
+        'service' => 'string',
+        'result' => 'bool',
+    ];
+    /**
+     * @var scalar[][]
+     */
+    private $allowedValues = [
+        'service' => [
+            'SEND_TEST_EMAIL' => 'sendTestEmail',
+        ],
+    ];
+
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->faker = \Faker\Factory::create();
+        $data = [];
+        foreach ($this->types as $field => $type) {
+            $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
+        }
+        $this->sot = new SendSampleResponse($data);
+        $this->sot = new SendSampleResponse();
+    }
+
+    /**
+     * @param string $type
+     * @param scalar[]|null $values
+     * @return mixed
+     */
+    private function getFakeValue(string $type, ?array $values) {
+        if (isset($values)) {
+            // @todo random.
+            return array_pop($values);
+        }
+
+        // @todo look for container hints.
+        if (strcasecmp(substr($type, -2), '[]') === 0) {
+            $return = [];
+            $subType = substr($type, 0, -2);
+            for ($i = 0; $i <= rand(0, 9); $i++) {
+                $return[] = $this->getFakeValue($subType, $values);
+            }
+            return $return;
+        }
+        switch ($type) {
+            case 'string':
+                return $this->faker->word();
+            case 'float':
+                return $this->faker->randomFloat();
+            case 'int':
+                return $this->faker->randomNumber();
+            case 'bool':
+                return $this->faker->boolean();
+            case '\DateTime':
+                return $this->faker->dateTimeAD();
+            case 'object':
+                return new \stdClass();
+        }
+        if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
+            return new $type();
+        }
+        $this->markTestSkipped('This type is not mocked yet: ' . $type);
+    }
+
+    /**
      * Test "SendSampleResponse"
+     *
+     * @covers ::__construct
      */
     public function testSendSampleResponse(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(\NecLimDul\MarketoRest\Asset\Model\SendSampleResponse::class, $this->sot);
     }
 
     /**
      * Test attribute "service"
+     *
+     * @covers ::__construct
+     * @covers ::getService
+     * @covers ::setService
      */
     public function testPropertyService(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['service'],
+            $this->allowedValues['service'] ?? null
+        );
+        $this->sot->setService($v);
+        $this->assertEquals($v, $this->sot->getService());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "result"
+     *
+     * @covers ::__construct
+     * @covers ::getResult
+     * @covers ::setResult
      */
     public function testPropertyResult(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['result'],
+            $this->allowedValues['result'] ?? null
+        );
+        $this->sot->setResult($v);
+        $this->assertEquals($v, $this->sot->getResult());
+        // $this->markTestIncomplete('Not implemented');
     }
 }

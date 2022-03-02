@@ -23,6 +23,9 @@
 
 namespace NecLimDul\MarketoRest\Lead\Test\Model;
 
+use Faker\Factory;
+use NecLimDul\MarketoRest\Lead\Model\ModelInterface;
+use NecLimDul\MarketoRest\Lead\Model\ExportLeadRequest;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -33,52 +36,172 @@ use PHPUnit\Framework\TestCase;
  * @package     NecLimDul\MarketoRest\Lead
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
+ *
+ * @coversDefault \NecLimDul\MarketoRest\Lead\Model\ExportLeadRequest
  */
 class ExportLeadRequestTest extends TestCase
 {
 
     /**
+     * @var \NecLimDul\MarketoRest\Lead\Model\ExportLeadRequest
+     */
+    private $sot;
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
+    /**
+     * @var string[]
+     */
+    private $types = [
+        'column_header_names' => '\NecLimDul\MarketoRest\Lead\Model\ColumnHeaderNames',
+        'fields' => 'string[]',
+        'filter' => '\NecLimDul\MarketoRest\Lead\Model\ExportLeadFilter',
+        'format' => 'string',
+    ];
+    /**
+     * @var scalar[][]
+     */
+    private $allowedValues = [
+    ];
+
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->faker = \Faker\Factory::create();
+        $data = [];
+        foreach ($this->types as $field => $type) {
+            $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
+        }
+        $this->sot = new ExportLeadRequest($data);
+        $this->sot = new ExportLeadRequest();
+    }
+
+    /**
+     * @param string $type
+     * @param scalar[]|null $values
+     * @return mixed
+     */
+    private function getFakeValue(string $type, ?array $values) {
+        if (isset($values)) {
+            // @todo random.
+            return array_pop($values);
+        }
+
+        // @todo look for container hints.
+        if (strcasecmp(substr($type, -2), '[]') === 0) {
+            $return = [];
+            $subType = substr($type, 0, -2);
+            for ($i = 0; $i <= rand(0, 9); $i++) {
+                $return[] = $this->getFakeValue($subType, $values);
+            }
+            return $return;
+        }
+        switch ($type) {
+            case 'string':
+                return $this->faker->word();
+            case 'float':
+                return $this->faker->randomFloat();
+            case 'int':
+                return $this->faker->randomNumber();
+            case 'bool':
+                return $this->faker->boolean();
+            case '\DateTime':
+                return $this->faker->dateTimeAD();
+            case 'object':
+                return new \stdClass();
+        }
+        if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
+            return new $type();
+        }
+        $this->markTestSkipped('This type is not mocked yet: ' . $type);
+    }
+
+    /**
      * Test "ExportLeadRequest"
+     *
+     * @covers ::__construct
      */
     public function testExportLeadRequest(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(\NecLimDul\MarketoRest\Lead\Model\ExportLeadRequest::class, $this->sot);
     }
 
     /**
      * Test attribute "column_header_names"
+     *
+     * @covers ::__construct
+     * @covers ::getColumnHeaderNames
+     * @covers ::setColumnHeaderNames
      */
     public function testPropertyColumnHeaderNames(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['column_header_names'],
+            $this->allowedValues['column_header_names'] ?? null
+        );
+        $this->sot->setColumnHeaderNames($v);
+        $this->assertEquals($v, $this->sot->getColumnHeaderNames());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "fields"
+     *
+     * @covers ::__construct
+     * @covers ::getFields
+     * @covers ::setFields
      */
     public function testPropertyFields(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['fields'],
+            $this->allowedValues['fields'] ?? null
+        );
+        $this->sot->setFields($v);
+        $this->assertEquals($v, $this->sot->getFields());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "filter"
+     *
+     * @covers ::__construct
+     * @covers ::getFilter
+     * @covers ::setFilter
      */
     public function testPropertyFilter(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['filter'],
+            $this->allowedValues['filter'] ?? null
+        );
+        $this->sot->setFilter($v);
+        $this->assertEquals($v, $this->sot->getFilter());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "format"
+     *
+     * @covers ::__construct
+     * @covers ::getFormat
+     * @covers ::setFormat
      */
     public function testPropertyFormat(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['format'],
+            $this->allowedValues['format'] ?? null
+        );
+        $this->sot->setFormat($v);
+        $this->assertEquals($v, $this->sot->getFormat());
+        // $this->markTestIncomplete('Not implemented');
     }
 }

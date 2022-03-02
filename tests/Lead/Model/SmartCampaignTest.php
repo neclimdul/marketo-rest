@@ -23,6 +23,9 @@
 
 namespace NecLimDul\MarketoRest\Lead\Test\Model;
 
+use Faker\Factory;
+use NecLimDul\MarketoRest\Lead\Model\ModelInterface;
+use NecLimDul\MarketoRest\Lead\Model\SmartCampaign;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -33,43 +36,152 @@ use PHPUnit\Framework\TestCase;
  * @package     NecLimDul\MarketoRest\Lead
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
+ *
+ * @coversDefault \NecLimDul\MarketoRest\Lead\Model\SmartCampaign
  */
 class SmartCampaignTest extends TestCase
 {
 
     /**
+     * @var \NecLimDul\MarketoRest\Lead\Model\SmartCampaign
+     */
+    private $sot;
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
+    /**
+     * @var string[]
+     */
+    private $types = [
+        'created_at' => 'string',
+        'smart_campaign_id' => 'int',
+        'updated_at' => 'string',
+    ];
+    /**
+     * @var scalar[][]
+     */
+    private $allowedValues = [
+    ];
+
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->faker = \Faker\Factory::create();
+        $data = [];
+        foreach ($this->types as $field => $type) {
+            $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
+        }
+        $this->sot = new SmartCampaign($data);
+        $this->sot = new SmartCampaign();
+    }
+
+    /**
+     * @param string $type
+     * @param scalar[]|null $values
+     * @return mixed
+     */
+    private function getFakeValue(string $type, ?array $values) {
+        if (isset($values)) {
+            // @todo random.
+            return array_pop($values);
+        }
+
+        // @todo look for container hints.
+        if (strcasecmp(substr($type, -2), '[]') === 0) {
+            $return = [];
+            $subType = substr($type, 0, -2);
+            for ($i = 0; $i <= rand(0, 9); $i++) {
+                $return[] = $this->getFakeValue($subType, $values);
+            }
+            return $return;
+        }
+        switch ($type) {
+            case 'string':
+                return $this->faker->word();
+            case 'float':
+                return $this->faker->randomFloat();
+            case 'int':
+                return $this->faker->randomNumber();
+            case 'bool':
+                return $this->faker->boolean();
+            case '\DateTime':
+                return $this->faker->dateTimeAD();
+            case 'object':
+                return new \stdClass();
+        }
+        if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
+            return new $type();
+        }
+        $this->markTestSkipped('This type is not mocked yet: ' . $type);
+    }
+
+    /**
      * Test "SmartCampaign"
+     *
+     * @covers ::__construct
      */
     public function testSmartCampaign(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(\NecLimDul\MarketoRest\Lead\Model\SmartCampaign::class, $this->sot);
     }
 
     /**
      * Test attribute "created_at"
+     *
+     * @covers ::__construct
+     * @covers ::getCreatedAt
+     * @covers ::setCreatedAt
      */
     public function testPropertyCreatedAt(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['created_at'],
+            $this->allowedValues['created_at'] ?? null
+        );
+        $this->sot->setCreatedAt($v);
+        $this->assertEquals($v, $this->sot->getCreatedAt());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "smart_campaign_id"
+     *
+     * @covers ::__construct
+     * @covers ::getSmartCampaignId
+     * @covers ::setSmartCampaignId
      */
     public function testPropertySmartCampaignId(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['smart_campaign_id'],
+            $this->allowedValues['smart_campaign_id'] ?? null
+        );
+        $this->sot->setSmartCampaignId($v);
+        $this->assertEquals($v, $this->sot->getSmartCampaignId());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "updated_at"
+     *
+     * @covers ::__construct
+     * @covers ::getUpdatedAt
+     * @covers ::setUpdatedAt
      */
     public function testPropertyUpdatedAt(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['updated_at'],
+            $this->allowedValues['updated_at'] ?? null
+        );
+        $this->sot->setUpdatedAt($v);
+        $this->assertEquals($v, $this->sot->getUpdatedAt());
+        // $this->markTestIncomplete('Not implemented');
     }
 }

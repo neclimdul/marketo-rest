@@ -23,6 +23,9 @@
 
 namespace NecLimDul\MarketoRest\Lead\Test\Model;
 
+use Faker\Factory;
+use NecLimDul\MarketoRest\Lead\Model\ModelInterface;
+use NecLimDul\MarketoRest\Lead\Model\ImportCustomObjectResponse;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -33,97 +36,272 @@ use PHPUnit\Framework\TestCase;
  * @package     NecLimDul\MarketoRest\Lead
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
+ *
+ * @coversDefault \NecLimDul\MarketoRest\Lead\Model\ImportCustomObjectResponse
  */
 class ImportCustomObjectResponseTest extends TestCase
 {
 
     /**
+     * @var \NecLimDul\MarketoRest\Lead\Model\ImportCustomObjectResponse
+     */
+    private $sot;
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
+    /**
+     * @var string[]
+     */
+    private $types = [
+        'batch_id' => 'int',
+        'import_time' => 'string',
+        'message' => 'string',
+        'num_of_objects_processed' => 'int',
+        'num_of_rows_failed' => 'int',
+        'num_of_rows_with_warning' => 'int',
+        'object_api_name' => 'string',
+        'operation' => 'string',
+        'status' => 'string',
+    ];
+    /**
+     * @var scalar[][]
+     */
+    private $allowedValues = [
+    ];
+
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->faker = \Faker\Factory::create();
+        $data = [];
+        foreach ($this->types as $field => $type) {
+            $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
+        }
+        $this->sot = new ImportCustomObjectResponse($data);
+        $this->sot = new ImportCustomObjectResponse();
+    }
+
+    /**
+     * @param string $type
+     * @param scalar[]|null $values
+     * @return mixed
+     */
+    private function getFakeValue(string $type, ?array $values) {
+        if (isset($values)) {
+            // @todo random.
+            return array_pop($values);
+        }
+
+        // @todo look for container hints.
+        if (strcasecmp(substr($type, -2), '[]') === 0) {
+            $return = [];
+            $subType = substr($type, 0, -2);
+            for ($i = 0; $i <= rand(0, 9); $i++) {
+                $return[] = $this->getFakeValue($subType, $values);
+            }
+            return $return;
+        }
+        switch ($type) {
+            case 'string':
+                return $this->faker->word();
+            case 'float':
+                return $this->faker->randomFloat();
+            case 'int':
+                return $this->faker->randomNumber();
+            case 'bool':
+                return $this->faker->boolean();
+            case '\DateTime':
+                return $this->faker->dateTimeAD();
+            case 'object':
+                return new \stdClass();
+        }
+        if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
+            return new $type();
+        }
+        $this->markTestSkipped('This type is not mocked yet: ' . $type);
+    }
+
+    /**
      * Test "ImportCustomObjectResponse"
+     *
+     * @covers ::__construct
      */
     public function testImportCustomObjectResponse(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(\NecLimDul\MarketoRest\Lead\Model\ImportCustomObjectResponse::class, $this->sot);
     }
 
     /**
      * Test attribute "batch_id"
+     *
+     * @covers ::__construct
+     * @covers ::getBatchId
+     * @covers ::setBatchId
      */
     public function testPropertyBatchId(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['batch_id'],
+            $this->allowedValues['batch_id'] ?? null
+        );
+        $this->sot->setBatchId($v);
+        $this->assertEquals($v, $this->sot->getBatchId());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "import_time"
+     *
+     * @covers ::__construct
+     * @covers ::getImportTime
+     * @covers ::setImportTime
      */
     public function testPropertyImportTime(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['import_time'],
+            $this->allowedValues['import_time'] ?? null
+        );
+        $this->sot->setImportTime($v);
+        $this->assertEquals($v, $this->sot->getImportTime());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "message"
+     *
+     * @covers ::__construct
+     * @covers ::getMessage
+     * @covers ::setMessage
      */
     public function testPropertyMessage(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['message'],
+            $this->allowedValues['message'] ?? null
+        );
+        $this->sot->setMessage($v);
+        $this->assertEquals($v, $this->sot->getMessage());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "num_of_objects_processed"
+     *
+     * @covers ::__construct
+     * @covers ::getNumOfObjectsProcessed
+     * @covers ::setNumOfObjectsProcessed
      */
     public function testPropertyNumOfObjectsProcessed(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['num_of_objects_processed'],
+            $this->allowedValues['num_of_objects_processed'] ?? null
+        );
+        $this->sot->setNumOfObjectsProcessed($v);
+        $this->assertEquals($v, $this->sot->getNumOfObjectsProcessed());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "num_of_rows_failed"
+     *
+     * @covers ::__construct
+     * @covers ::getNumOfRowsFailed
+     * @covers ::setNumOfRowsFailed
      */
     public function testPropertyNumOfRowsFailed(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['num_of_rows_failed'],
+            $this->allowedValues['num_of_rows_failed'] ?? null
+        );
+        $this->sot->setNumOfRowsFailed($v);
+        $this->assertEquals($v, $this->sot->getNumOfRowsFailed());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "num_of_rows_with_warning"
+     *
+     * @covers ::__construct
+     * @covers ::getNumOfRowsWithWarning
+     * @covers ::setNumOfRowsWithWarning
      */
     public function testPropertyNumOfRowsWithWarning(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['num_of_rows_with_warning'],
+            $this->allowedValues['num_of_rows_with_warning'] ?? null
+        );
+        $this->sot->setNumOfRowsWithWarning($v);
+        $this->assertEquals($v, $this->sot->getNumOfRowsWithWarning());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "object_api_name"
+     *
+     * @covers ::__construct
+     * @covers ::getObjectApiName
+     * @covers ::setObjectApiName
      */
     public function testPropertyObjectApiName(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['object_api_name'],
+            $this->allowedValues['object_api_name'] ?? null
+        );
+        $this->sot->setObjectApiName($v);
+        $this->assertEquals($v, $this->sot->getObjectApiName());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "operation"
+     *
+     * @covers ::__construct
+     * @covers ::getOperation
+     * @covers ::setOperation
      */
     public function testPropertyOperation(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['operation'],
+            $this->allowedValues['operation'] ?? null
+        );
+        $this->sot->setOperation($v);
+        $this->assertEquals($v, $this->sot->getOperation());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "status"
+     *
+     * @covers ::__construct
+     * @covers ::getStatus
+     * @covers ::setStatus
      */
     public function testPropertyStatus(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['status'],
+            $this->allowedValues['status'] ?? null
+        );
+        $this->sot->setStatus($v);
+        $this->assertEquals($v, $this->sot->getStatus());
+        // $this->markTestIncomplete('Not implemented');
     }
 }

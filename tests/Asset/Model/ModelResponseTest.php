@@ -23,6 +23,9 @@
 
 namespace NecLimDul\MarketoRest\Asset\Test\Model;
 
+use Faker\Factory;
+use NecLimDul\MarketoRest\Asset\Model\ModelInterface;
+use NecLimDul\MarketoRest\Asset\Model\ModelResponse;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -33,16 +36,32 @@ use PHPUnit\Framework\TestCase;
  * @package     NecLimDul\MarketoRest\Asset
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
+ *
+ * @coversDefault \NecLimDul\MarketoRest\Asset\Model\ModelResponse
  */
 class ModelResponseTest extends TestCase
 {
 
     /**
+     * @var \NecLimDul\MarketoRest\Asset\Model\ModelResponse
+     */
+    private $sot;
+
+
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->sot = new ModelResponse();
+    }
+
+
+    /**
      * Test "ModelResponse"
+     *
+     * @covers ::__construct
      */
     public function testModelResponse(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(\NecLimDul\MarketoRest\Asset\Model\ModelResponse::class, $this->sot);
     }
 }

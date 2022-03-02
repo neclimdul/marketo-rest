@@ -23,6 +23,9 @@
 
 namespace NecLimDul\MarketoRest\Lead\Test\Model;
 
+use Faker\Factory;
+use NecLimDul\MarketoRest\Lead\Model\ModelInterface;
+use NecLimDul\MarketoRest\Lead\Model\CustomActivityType;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -33,115 +36,318 @@ use PHPUnit\Framework\TestCase;
  * @package     NecLimDul\MarketoRest\Lead
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
+ *
+ * @coversDefault \NecLimDul\MarketoRest\Lead\Model\CustomActivityType
  */
 class CustomActivityTypeTest extends TestCase
 {
 
     /**
+     * @var \NecLimDul\MarketoRest\Lead\Model\CustomActivityType
+     */
+    private $sot;
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
+    /**
+     * @var string[]
+     */
+    private $types = [
+        'api_name' => 'string',
+        'attributes' => '\NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttribute[]',
+        'created_at' => 'string',
+        'description' => 'string',
+        'filter_name' => 'string',
+        'id' => 'int',
+        'name' => 'string',
+        'primary_attribute' => '\NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttribute',
+        'status' => 'string',
+        'trigger_name' => 'string',
+        'updated_at' => 'string',
+    ];
+    /**
+     * @var scalar[][]
+     */
+    private $allowedValues = [
+        'status' => [
+            'DRAFT' => 'draft',
+            'APPROVED' => 'approved',
+            'DELETED' => 'deleted',
+            'APPROVED_WITH_DRAFT' => 'approved with draft',
+        ],
+    ];
+
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->faker = \Faker\Factory::create();
+        $data = [];
+        foreach ($this->types as $field => $type) {
+            $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
+        }
+        $this->sot = new CustomActivityType($data);
+        $this->sot = new CustomActivityType();
+    }
+
+    /**
+     * @param string $type
+     * @param scalar[]|null $values
+     * @return mixed
+     */
+    private function getFakeValue(string $type, ?array $values) {
+        if (isset($values)) {
+            // @todo random.
+            return array_pop($values);
+        }
+
+        // @todo look for container hints.
+        if (strcasecmp(substr($type, -2), '[]') === 0) {
+            $return = [];
+            $subType = substr($type, 0, -2);
+            for ($i = 0; $i <= rand(0, 9); $i++) {
+                $return[] = $this->getFakeValue($subType, $values);
+            }
+            return $return;
+        }
+        switch ($type) {
+            case 'string':
+                return $this->faker->word();
+            case 'float':
+                return $this->faker->randomFloat();
+            case 'int':
+                return $this->faker->randomNumber();
+            case 'bool':
+                return $this->faker->boolean();
+            case '\DateTime':
+                return $this->faker->dateTimeAD();
+            case 'object':
+                return new \stdClass();
+        }
+        if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
+            return new $type();
+        }
+        $this->markTestSkipped('This type is not mocked yet: ' . $type);
+    }
+
+    /**
      * Test "CustomActivityType"
+     *
+     * @covers ::__construct
      */
     public function testCustomActivityType(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(\NecLimDul\MarketoRest\Lead\Model\CustomActivityType::class, $this->sot);
     }
 
     /**
      * Test attribute "api_name"
+     *
+     * @covers ::__construct
+     * @covers ::getApiName
+     * @covers ::setApiName
      */
     public function testPropertyApiName(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['api_name'],
+            $this->allowedValues['api_name'] ?? null
+        );
+        $this->sot->setApiName($v);
+        $this->assertEquals($v, $this->sot->getApiName());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "attributes"
+     *
+     * @covers ::__construct
+     * @covers ::getAttributes
+     * @covers ::setAttributes
      */
     public function testPropertyAttributes(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['attributes'],
+            $this->allowedValues['attributes'] ?? null
+        );
+        $this->sot->setAttributes($v);
+        $this->assertEquals($v, $this->sot->getAttributes());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "created_at"
+     *
+     * @covers ::__construct
+     * @covers ::getCreatedAt
+     * @covers ::setCreatedAt
      */
     public function testPropertyCreatedAt(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['created_at'],
+            $this->allowedValues['created_at'] ?? null
+        );
+        $this->sot->setCreatedAt($v);
+        $this->assertEquals($v, $this->sot->getCreatedAt());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "description"
+     *
+     * @covers ::__construct
+     * @covers ::getDescription
+     * @covers ::setDescription
      */
     public function testPropertyDescription(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['description'],
+            $this->allowedValues['description'] ?? null
+        );
+        $this->sot->setDescription($v);
+        $this->assertEquals($v, $this->sot->getDescription());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "filter_name"
+     *
+     * @covers ::__construct
+     * @covers ::getFilterName
+     * @covers ::setFilterName
      */
     public function testPropertyFilterName(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['filter_name'],
+            $this->allowedValues['filter_name'] ?? null
+        );
+        $this->sot->setFilterName($v);
+        $this->assertEquals($v, $this->sot->getFilterName());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "id"
+     *
+     * @covers ::__construct
+     * @covers ::getId
+     * @covers ::setId
      */
     public function testPropertyId(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['id'],
+            $this->allowedValues['id'] ?? null
+        );
+        $this->sot->setId($v);
+        $this->assertEquals($v, $this->sot->getId());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "name"
+     *
+     * @covers ::__construct
+     * @covers ::getName
+     * @covers ::setName
      */
     public function testPropertyName(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['name'],
+            $this->allowedValues['name'] ?? null
+        );
+        $this->sot->setName($v);
+        $this->assertEquals($v, $this->sot->getName());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "primary_attribute"
+     *
+     * @covers ::__construct
+     * @covers ::getPrimaryAttribute
+     * @covers ::setPrimaryAttribute
      */
     public function testPropertyPrimaryAttribute(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['primary_attribute'],
+            $this->allowedValues['primary_attribute'] ?? null
+        );
+        $this->sot->setPrimaryAttribute($v);
+        $this->assertEquals($v, $this->sot->getPrimaryAttribute());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "status"
+     *
+     * @covers ::__construct
+     * @covers ::getStatus
+     * @covers ::setStatus
      */
     public function testPropertyStatus(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['status'],
+            $this->allowedValues['status'] ?? null
+        );
+        $this->sot->setStatus($v);
+        $this->assertEquals($v, $this->sot->getStatus());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "trigger_name"
+     *
+     * @covers ::__construct
+     * @covers ::getTriggerName
+     * @covers ::setTriggerName
      */
     public function testPropertyTriggerName(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['trigger_name'],
+            $this->allowedValues['trigger_name'] ?? null
+        );
+        $this->sot->setTriggerName($v);
+        $this->assertEquals($v, $this->sot->getTriggerName());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "updated_at"
+     *
+     * @covers ::__construct
+     * @covers ::getUpdatedAt
+     * @covers ::setUpdatedAt
      */
     public function testPropertyUpdatedAt(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['updated_at'],
+            $this->allowedValues['updated_at'] ?? null
+        );
+        $this->sot->setUpdatedAt($v);
+        $this->assertEquals($v, $this->sot->getUpdatedAt());
+        // $this->markTestIncomplete('Not implemented');
     }
 }

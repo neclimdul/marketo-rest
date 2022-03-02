@@ -23,6 +23,9 @@
 
 namespace NecLimDul\MarketoRest\Lead\Test\Model;
 
+use Faker\Factory;
+use NecLimDul\MarketoRest\Lead\Model\ModelInterface;
+use NecLimDul\MarketoRest\Lead\Model\ExportCustomObjectFilter;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -33,61 +36,192 @@ use PHPUnit\Framework\TestCase;
  * @package     NecLimDul\MarketoRest\Lead
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
+ *
+ * @coversDefault \NecLimDul\MarketoRest\Lead\Model\ExportCustomObjectFilter
  */
 class ExportCustomObjectFilterTest extends TestCase
 {
 
     /**
+     * @var \NecLimDul\MarketoRest\Lead\Model\ExportCustomObjectFilter
+     */
+    private $sot;
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
+    /**
+     * @var string[]
+     */
+    private $types = [
+        'updated_at' => '\NecLimDul\MarketoRest\Lead\Model\DateRange',
+        'smart_list_id' => 'int',
+        'smart_list_name' => 'string',
+        'static_list_id' => 'int',
+        'static_list_name' => 'string',
+    ];
+    /**
+     * @var scalar[][]
+     */
+    private $allowedValues = [
+    ];
+
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->faker = \Faker\Factory::create();
+        $data = [];
+        foreach ($this->types as $field => $type) {
+            $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
+        }
+        $this->sot = new ExportCustomObjectFilter($data);
+        $this->sot = new ExportCustomObjectFilter();
+    }
+
+    /**
+     * @param string $type
+     * @param scalar[]|null $values
+     * @return mixed
+     */
+    private function getFakeValue(string $type, ?array $values) {
+        if (isset($values)) {
+            // @todo random.
+            return array_pop($values);
+        }
+
+        // @todo look for container hints.
+        if (strcasecmp(substr($type, -2), '[]') === 0) {
+            $return = [];
+            $subType = substr($type, 0, -2);
+            for ($i = 0; $i <= rand(0, 9); $i++) {
+                $return[] = $this->getFakeValue($subType, $values);
+            }
+            return $return;
+        }
+        switch ($type) {
+            case 'string':
+                return $this->faker->word();
+            case 'float':
+                return $this->faker->randomFloat();
+            case 'int':
+                return $this->faker->randomNumber();
+            case 'bool':
+                return $this->faker->boolean();
+            case '\DateTime':
+                return $this->faker->dateTimeAD();
+            case 'object':
+                return new \stdClass();
+        }
+        if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
+            return new $type();
+        }
+        $this->markTestSkipped('This type is not mocked yet: ' . $type);
+    }
+
+    /**
      * Test "ExportCustomObjectFilter"
+     *
+     * @covers ::__construct
      */
     public function testExportCustomObjectFilter(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(\NecLimDul\MarketoRest\Lead\Model\ExportCustomObjectFilter::class, $this->sot);
     }
 
     /**
      * Test attribute "updated_at"
+     *
+     * @covers ::__construct
+     * @covers ::getUpdatedAt
+     * @covers ::setUpdatedAt
      */
     public function testPropertyUpdatedAt(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['updated_at'],
+            $this->allowedValues['updated_at'] ?? null
+        );
+        $this->sot->setUpdatedAt($v);
+        $this->assertEquals($v, $this->sot->getUpdatedAt());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "smart_list_id"
+     *
+     * @covers ::__construct
+     * @covers ::getSmartListId
+     * @covers ::setSmartListId
      */
     public function testPropertySmartListId(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['smart_list_id'],
+            $this->allowedValues['smart_list_id'] ?? null
+        );
+        $this->sot->setSmartListId($v);
+        $this->assertEquals($v, $this->sot->getSmartListId());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "smart_list_name"
+     *
+     * @covers ::__construct
+     * @covers ::getSmartListName
+     * @covers ::setSmartListName
      */
     public function testPropertySmartListName(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['smart_list_name'],
+            $this->allowedValues['smart_list_name'] ?? null
+        );
+        $this->sot->setSmartListName($v);
+        $this->assertEquals($v, $this->sot->getSmartListName());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "static_list_id"
+     *
+     * @covers ::__construct
+     * @covers ::getStaticListId
+     * @covers ::setStaticListId
      */
     public function testPropertyStaticListId(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['static_list_id'],
+            $this->allowedValues['static_list_id'] ?? null
+        );
+        $this->sot->setStaticListId($v);
+        $this->assertEquals($v, $this->sot->getStaticListId());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "static_list_name"
+     *
+     * @covers ::__construct
+     * @covers ::getStaticListName
+     * @covers ::setStaticListName
      */
     public function testPropertyStaticListName(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['static_list_name'],
+            $this->allowedValues['static_list_name'] ?? null
+        );
+        $this->sot->setStaticListName($v);
+        $this->assertEquals($v, $this->sot->getStaticListName());
+        // $this->markTestIncomplete('Not implemented');
     }
 }

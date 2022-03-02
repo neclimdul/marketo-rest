@@ -23,6 +23,9 @@
 
 namespace NecLimDul\MarketoRest\Lead\Test\Model;
 
+use Faker\Factory;
+use NecLimDul\MarketoRest\Lead\Model\ModelInterface;
+use NecLimDul\MarketoRest\Lead\Model\ObjectDependentAsset;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -33,52 +36,172 @@ use PHPUnit\Framework\TestCase;
  * @package     NecLimDul\MarketoRest\Lead
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
+ *
+ * @coversDefault \NecLimDul\MarketoRest\Lead\Model\ObjectDependentAsset
  */
 class ObjectDependentAssetTest extends TestCase
 {
 
     /**
+     * @var \NecLimDul\MarketoRest\Lead\Model\ObjectDependentAsset
+     */
+    private $sot;
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
+    /**
+     * @var string[]
+     */
+    private $types = [
+        'asset_type' => 'string',
+        'asset_id' => 'int',
+        'asset_name' => 'string',
+        'used_fields' => 'string[]',
+    ];
+    /**
+     * @var scalar[][]
+     */
+    private $allowedValues = [
+    ];
+
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->faker = \Faker\Factory::create();
+        $data = [];
+        foreach ($this->types as $field => $type) {
+            $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
+        }
+        $this->sot = new ObjectDependentAsset($data);
+        $this->sot = new ObjectDependentAsset();
+    }
+
+    /**
+     * @param string $type
+     * @param scalar[]|null $values
+     * @return mixed
+     */
+    private function getFakeValue(string $type, ?array $values) {
+        if (isset($values)) {
+            // @todo random.
+            return array_pop($values);
+        }
+
+        // @todo look for container hints.
+        if (strcasecmp(substr($type, -2), '[]') === 0) {
+            $return = [];
+            $subType = substr($type, 0, -2);
+            for ($i = 0; $i <= rand(0, 9); $i++) {
+                $return[] = $this->getFakeValue($subType, $values);
+            }
+            return $return;
+        }
+        switch ($type) {
+            case 'string':
+                return $this->faker->word();
+            case 'float':
+                return $this->faker->randomFloat();
+            case 'int':
+                return $this->faker->randomNumber();
+            case 'bool':
+                return $this->faker->boolean();
+            case '\DateTime':
+                return $this->faker->dateTimeAD();
+            case 'object':
+                return new \stdClass();
+        }
+        if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
+            return new $type();
+        }
+        $this->markTestSkipped('This type is not mocked yet: ' . $type);
+    }
+
+    /**
      * Test "ObjectDependentAsset"
+     *
+     * @covers ::__construct
      */
     public function testObjectDependentAsset(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(\NecLimDul\MarketoRest\Lead\Model\ObjectDependentAsset::class, $this->sot);
     }
 
     /**
      * Test attribute "asset_type"
+     *
+     * @covers ::__construct
+     * @covers ::getAssetType
+     * @covers ::setAssetType
      */
     public function testPropertyAssetType(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['asset_type'],
+            $this->allowedValues['asset_type'] ?? null
+        );
+        $this->sot->setAssetType($v);
+        $this->assertEquals($v, $this->sot->getAssetType());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "asset_id"
+     *
+     * @covers ::__construct
+     * @covers ::getAssetId
+     * @covers ::setAssetId
      */
     public function testPropertyAssetId(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['asset_id'],
+            $this->allowedValues['asset_id'] ?? null
+        );
+        $this->sot->setAssetId($v);
+        $this->assertEquals($v, $this->sot->getAssetId());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "asset_name"
+     *
+     * @covers ::__construct
+     * @covers ::getAssetName
+     * @covers ::setAssetName
      */
     public function testPropertyAssetName(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['asset_name'],
+            $this->allowedValues['asset_name'] ?? null
+        );
+        $this->sot->setAssetName($v);
+        $this->assertEquals($v, $this->sot->getAssetName());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "used_fields"
+     *
+     * @covers ::__construct
+     * @covers ::getUsedFields
+     * @covers ::setUsedFields
      */
     public function testPropertyUsedFields(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['used_fields'],
+            $this->allowedValues['used_fields'] ?? null
+        );
+        $this->sot->setUsedFields($v);
+        $this->assertEquals($v, $this->sot->getUsedFields());
+        // $this->markTestIncomplete('Not implemented');
     }
 }

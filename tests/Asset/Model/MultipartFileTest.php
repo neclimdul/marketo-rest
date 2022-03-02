@@ -23,6 +23,9 @@
 
 namespace NecLimDul\MarketoRest\Asset\Test\Model;
 
+use Faker\Factory;
+use NecLimDul\MarketoRest\Asset\Model\ModelInterface;
+use NecLimDul\MarketoRest\Asset\Model\MultipartFile;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -33,16 +36,32 @@ use PHPUnit\Framework\TestCase;
  * @package     NecLimDul\MarketoRest\Asset
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
+ *
+ * @coversDefault \NecLimDul\MarketoRest\Asset\Model\MultipartFile
  */
 class MultipartFileTest extends TestCase
 {
 
     /**
+     * @var \NecLimDul\MarketoRest\Asset\Model\MultipartFile
+     */
+    private $sot;
+
+
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->sot = new MultipartFile();
+    }
+
+
+    /**
      * Test "MultipartFile"
+     *
+     * @covers ::__construct
      */
     public function testMultipartFile(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(\NecLimDul\MarketoRest\Asset\Model\MultipartFile::class, $this->sot);
     }
 }

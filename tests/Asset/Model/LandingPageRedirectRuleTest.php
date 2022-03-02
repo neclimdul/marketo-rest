@@ -23,6 +23,9 @@
 
 namespace NecLimDul\MarketoRest\Asset\Test\Model;
 
+use Faker\Factory;
+use NecLimDul\MarketoRest\Asset\Model\ModelInterface;
+use NecLimDul\MarketoRest\Asset\Model\LandingPageRedirectRule;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -33,88 +36,252 @@ use PHPUnit\Framework\TestCase;
  * @package     NecLimDul\MarketoRest\Asset
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
+ *
+ * @coversDefault \NecLimDul\MarketoRest\Asset\Model\LandingPageRedirectRule
  */
 class LandingPageRedirectRuleTest extends TestCase
 {
 
     /**
+     * @var \NecLimDul\MarketoRest\Asset\Model\LandingPageRedirectRule
+     */
+    private $sot;
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
+    /**
+     * @var string[]
+     */
+    private $types = [
+        'id' => 'int',
+        'redirect_from_url' => 'string',
+        'redirect_to_url' => 'string',
+        'hostname' => 'string',
+        'redirect_from' => '\NecLimDul\MarketoRest\Asset\Model\RedirectFrom',
+        'redirect_to' => '\NecLimDul\MarketoRest\Asset\Model\RedirectTo',
+        'created_at' => '\DateTime',
+        'updated_at' => '\DateTime',
+    ];
+    /**
+     * @var scalar[][]
+     */
+    private $allowedValues = [
+    ];
+
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->faker = \Faker\Factory::create();
+        $data = [];
+        foreach ($this->types as $field => $type) {
+            $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
+        }
+        $this->sot = new LandingPageRedirectRule($data);
+        $this->sot = new LandingPageRedirectRule();
+    }
+
+    /**
+     * @param string $type
+     * @param scalar[]|null $values
+     * @return mixed
+     */
+    private function getFakeValue(string $type, ?array $values) {
+        if (isset($values)) {
+            // @todo random.
+            return array_pop($values);
+        }
+
+        // @todo look for container hints.
+        if (strcasecmp(substr($type, -2), '[]') === 0) {
+            $return = [];
+            $subType = substr($type, 0, -2);
+            for ($i = 0; $i <= rand(0, 9); $i++) {
+                $return[] = $this->getFakeValue($subType, $values);
+            }
+            return $return;
+        }
+        switch ($type) {
+            case 'string':
+                return $this->faker->word();
+            case 'float':
+                return $this->faker->randomFloat();
+            case 'int':
+                return $this->faker->randomNumber();
+            case 'bool':
+                return $this->faker->boolean();
+            case '\DateTime':
+                return $this->faker->dateTimeAD();
+            case 'object':
+                return new \stdClass();
+        }
+        if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
+            return new $type();
+        }
+        $this->markTestSkipped('This type is not mocked yet: ' . $type);
+    }
+
+    /**
      * Test "LandingPageRedirectRule"
+     *
+     * @covers ::__construct
      */
     public function testLandingPageRedirectRule(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(\NecLimDul\MarketoRest\Asset\Model\LandingPageRedirectRule::class, $this->sot);
     }
 
     /**
      * Test attribute "id"
+     *
+     * @covers ::__construct
+     * @covers ::getId
+     * @covers ::setId
      */
     public function testPropertyId(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['id'],
+            $this->allowedValues['id'] ?? null
+        );
+        $this->sot->setId($v);
+        $this->assertEquals($v, $this->sot->getId());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "redirect_from_url"
+     *
+     * @covers ::__construct
+     * @covers ::getRedirectFromUrl
+     * @covers ::setRedirectFromUrl
      */
     public function testPropertyRedirectFromUrl(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['redirect_from_url'],
+            $this->allowedValues['redirect_from_url'] ?? null
+        );
+        $this->sot->setRedirectFromUrl($v);
+        $this->assertEquals($v, $this->sot->getRedirectFromUrl());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "redirect_to_url"
+     *
+     * @covers ::__construct
+     * @covers ::getRedirectToUrl
+     * @covers ::setRedirectToUrl
      */
     public function testPropertyRedirectToUrl(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['redirect_to_url'],
+            $this->allowedValues['redirect_to_url'] ?? null
+        );
+        $this->sot->setRedirectToUrl($v);
+        $this->assertEquals($v, $this->sot->getRedirectToUrl());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "hostname"
+     *
+     * @covers ::__construct
+     * @covers ::getHostname
+     * @covers ::setHostname
      */
     public function testPropertyHostname(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['hostname'],
+            $this->allowedValues['hostname'] ?? null
+        );
+        $this->sot->setHostname($v);
+        $this->assertEquals($v, $this->sot->getHostname());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "redirect_from"
+     *
+     * @covers ::__construct
+     * @covers ::getRedirectFrom
+     * @covers ::setRedirectFrom
      */
     public function testPropertyRedirectFrom(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['redirect_from'],
+            $this->allowedValues['redirect_from'] ?? null
+        );
+        $this->sot->setRedirectFrom($v);
+        $this->assertEquals($v, $this->sot->getRedirectFrom());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "redirect_to"
+     *
+     * @covers ::__construct
+     * @covers ::getRedirectTo
+     * @covers ::setRedirectTo
      */
     public function testPropertyRedirectTo(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['redirect_to'],
+            $this->allowedValues['redirect_to'] ?? null
+        );
+        $this->sot->setRedirectTo($v);
+        $this->assertEquals($v, $this->sot->getRedirectTo());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "created_at"
+     *
+     * @covers ::__construct
+     * @covers ::getCreatedAt
+     * @covers ::setCreatedAt
      */
     public function testPropertyCreatedAt(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['created_at'],
+            $this->allowedValues['created_at'] ?? null
+        );
+        $this->sot->setCreatedAt($v);
+        $this->assertEquals($v, $this->sot->getCreatedAt());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "updated_at"
+     *
+     * @covers ::__construct
+     * @covers ::getUpdatedAt
+     * @covers ::setUpdatedAt
      */
     public function testPropertyUpdatedAt(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['updated_at'],
+            $this->allowedValues['updated_at'] ?? null
+        );
+        $this->sot->setUpdatedAt($v);
+        $this->assertEquals($v, $this->sot->getUpdatedAt());
+        // $this->markTestIncomplete('Not implemented');
     }
 }

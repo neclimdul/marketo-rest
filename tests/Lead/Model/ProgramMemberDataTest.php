@@ -23,6 +23,9 @@
 
 namespace NecLimDul\MarketoRest\Lead\Test\Model;
 
+use Faker\Factory;
+use NecLimDul\MarketoRest\Lead\Model\ModelInterface;
+use NecLimDul\MarketoRest\Lead\Model\ProgramMemberData;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -33,43 +36,152 @@ use PHPUnit\Framework\TestCase;
  * @package     NecLimDul\MarketoRest\Lead
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
+ *
+ * @coversDefault \NecLimDul\MarketoRest\Lead\Model\ProgramMemberData
  */
 class ProgramMemberDataTest extends TestCase
 {
 
     /**
+     * @var \NecLimDul\MarketoRest\Lead\Model\ProgramMemberData
+     */
+    private $sot;
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
+    /**
+     * @var string[]
+     */
+    private $types = [
+        'lead_id' => 'int',
+        'field_api_name' => 'string',
+        'field_api_name2' => 'string',
+    ];
+    /**
+     * @var scalar[][]
+     */
+    private $allowedValues = [
+    ];
+
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->faker = \Faker\Factory::create();
+        $data = [];
+        foreach ($this->types as $field => $type) {
+            $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
+        }
+        $this->sot = new ProgramMemberData($data);
+        $this->sot = new ProgramMemberData();
+    }
+
+    /**
+     * @param string $type
+     * @param scalar[]|null $values
+     * @return mixed
+     */
+    private function getFakeValue(string $type, ?array $values) {
+        if (isset($values)) {
+            // @todo random.
+            return array_pop($values);
+        }
+
+        // @todo look for container hints.
+        if (strcasecmp(substr($type, -2), '[]') === 0) {
+            $return = [];
+            $subType = substr($type, 0, -2);
+            for ($i = 0; $i <= rand(0, 9); $i++) {
+                $return[] = $this->getFakeValue($subType, $values);
+            }
+            return $return;
+        }
+        switch ($type) {
+            case 'string':
+                return $this->faker->word();
+            case 'float':
+                return $this->faker->randomFloat();
+            case 'int':
+                return $this->faker->randomNumber();
+            case 'bool':
+                return $this->faker->boolean();
+            case '\DateTime':
+                return $this->faker->dateTimeAD();
+            case 'object':
+                return new \stdClass();
+        }
+        if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
+            return new $type();
+        }
+        $this->markTestSkipped('This type is not mocked yet: ' . $type);
+    }
+
+    /**
      * Test "ProgramMemberData"
+     *
+     * @covers ::__construct
      */
     public function testProgramMemberData(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(\NecLimDul\MarketoRest\Lead\Model\ProgramMemberData::class, $this->sot);
     }
 
     /**
      * Test attribute "lead_id"
+     *
+     * @covers ::__construct
+     * @covers ::getLeadId
+     * @covers ::setLeadId
      */
     public function testPropertyLeadId(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['lead_id'],
+            $this->allowedValues['lead_id'] ?? null
+        );
+        $this->sot->setLeadId($v);
+        $this->assertEquals($v, $this->sot->getLeadId());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "field_api_name"
+     *
+     * @covers ::__construct
+     * @covers ::getFieldApiName
+     * @covers ::setFieldApiName
      */
     public function testPropertyFieldApiName(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['field_api_name'],
+            $this->allowedValues['field_api_name'] ?? null
+        );
+        $this->sot->setFieldApiName($v);
+        $this->assertEquals($v, $this->sot->getFieldApiName());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "field_api_name2"
+     *
+     * @covers ::__construct
+     * @covers ::getFieldApiName2
+     * @covers ::setFieldApiName2
      */
     public function testPropertyFieldApiName2(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['field_api_name2'],
+            $this->allowedValues['field_api_name2'] ?? null
+        );
+        $this->sot->setFieldApiName2($v);
+        $this->assertEquals($v, $this->sot->getFieldApiName2());
+        // $this->markTestIncomplete('Not implemented');
     }
 }

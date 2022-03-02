@@ -23,6 +23,9 @@
 
 namespace NecLimDul\MarketoRest\Asset\Test\Model;
 
+use Faker\Factory;
+use NecLimDul\MarketoRest\Asset\Model\ModelInterface;
+use NecLimDul\MarketoRest\Asset\Model\UpdateEmailComponentDataRequest;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -33,52 +36,172 @@ use PHPUnit\Framework\TestCase;
  * @package     NecLimDul\MarketoRest\Asset
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
+ *
+ * @coversDefault \NecLimDul\MarketoRest\Asset\Model\UpdateEmailComponentDataRequest
  */
 class UpdateEmailComponentDataRequestTest extends TestCase
 {
 
     /**
+     * @var \NecLimDul\MarketoRest\Asset\Model\UpdateEmailComponentDataRequest
+     */
+    private $sot;
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
+    /**
+     * @var string[]
+     */
+    private $types = [
+        'from_email' => '\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField',
+        'from_name' => '\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField',
+        'reply_to' => '\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField',
+        'subject' => '\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField',
+    ];
+    /**
+     * @var scalar[][]
+     */
+    private $allowedValues = [
+    ];
+
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->faker = \Faker\Factory::create();
+        $data = [];
+        foreach ($this->types as $field => $type) {
+            $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
+        }
+        $this->sot = new UpdateEmailComponentDataRequest($data);
+        $this->sot = new UpdateEmailComponentDataRequest();
+    }
+
+    /**
+     * @param string $type
+     * @param scalar[]|null $values
+     * @return mixed
+     */
+    private function getFakeValue(string $type, ?array $values) {
+        if (isset($values)) {
+            // @todo random.
+            return array_pop($values);
+        }
+
+        // @todo look for container hints.
+        if (strcasecmp(substr($type, -2), '[]') === 0) {
+            $return = [];
+            $subType = substr($type, 0, -2);
+            for ($i = 0; $i <= rand(0, 9); $i++) {
+                $return[] = $this->getFakeValue($subType, $values);
+            }
+            return $return;
+        }
+        switch ($type) {
+            case 'string':
+                return $this->faker->word();
+            case 'float':
+                return $this->faker->randomFloat();
+            case 'int':
+                return $this->faker->randomNumber();
+            case 'bool':
+                return $this->faker->boolean();
+            case '\DateTime':
+                return $this->faker->dateTimeAD();
+            case 'object':
+                return new \stdClass();
+        }
+        if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
+            return new $type();
+        }
+        $this->markTestSkipped('This type is not mocked yet: ' . $type);
+    }
+
+    /**
      * Test "UpdateEmailComponentDataRequest"
+     *
+     * @covers ::__construct
      */
     public function testUpdateEmailComponentDataRequest(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(\NecLimDul\MarketoRest\Asset\Model\UpdateEmailComponentDataRequest::class, $this->sot);
     }
 
     /**
      * Test attribute "from_email"
+     *
+     * @covers ::__construct
+     * @covers ::getFromEmail
+     * @covers ::setFromEmail
      */
     public function testPropertyFromEmail(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['from_email'],
+            $this->allowedValues['from_email'] ?? null
+        );
+        $this->sot->setFromEmail($v);
+        $this->assertEquals($v, $this->sot->getFromEmail());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "from_name"
+     *
+     * @covers ::__construct
+     * @covers ::getFromName
+     * @covers ::setFromName
      */
     public function testPropertyFromName(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['from_name'],
+            $this->allowedValues['from_name'] ?? null
+        );
+        $this->sot->setFromName($v);
+        $this->assertEquals($v, $this->sot->getFromName());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "reply_to"
+     *
+     * @covers ::__construct
+     * @covers ::getReplyTo
+     * @covers ::setReplyTo
      */
     public function testPropertyReplyTo(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['reply_to'],
+            $this->allowedValues['reply_to'] ?? null
+        );
+        $this->sot->setReplyTo($v);
+        $this->assertEquals($v, $this->sot->getReplyTo());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "subject"
+     *
+     * @covers ::__construct
+     * @covers ::getSubject
+     * @covers ::setSubject
      */
     public function testPropertySubject(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['subject'],
+            $this->allowedValues['subject'] ?? null
+        );
+        $this->sot->setSubject($v);
+        $this->assertEquals($v, $this->sot->getSubject());
+        // $this->markTestIncomplete('Not implemented');
     }
 }

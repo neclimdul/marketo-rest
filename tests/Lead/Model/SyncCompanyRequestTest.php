@@ -23,6 +23,9 @@
 
 namespace NecLimDul\MarketoRest\Lead\Test\Model;
 
+use Faker\Factory;
+use NecLimDul\MarketoRest\Lead\Model\ModelInterface;
+use NecLimDul\MarketoRest\Lead\Model\SyncCompanyRequest;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -33,43 +36,157 @@ use PHPUnit\Framework\TestCase;
  * @package     NecLimDul\MarketoRest\Lead
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
+ *
+ * @coversDefault \NecLimDul\MarketoRest\Lead\Model\SyncCompanyRequest
  */
 class SyncCompanyRequestTest extends TestCase
 {
 
     /**
+     * @var \NecLimDul\MarketoRest\Lead\Model\SyncCompanyRequest
+     */
+    private $sot;
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
+    /**
+     * @var string[]
+     */
+    private $types = [
+        'action' => 'string',
+        'dedupe_by' => 'string',
+        'input' => '\NecLimDul\MarketoRest\Lead\Model\Company[]',
+    ];
+    /**
+     * @var scalar[][]
+     */
+    private $allowedValues = [
+        'action' => [
+            'CREATE_ONLY' => 'createOnly',
+            'UPDATE_ONLY' => 'updateOnly',
+            'CREATE_OR_UPDATE' => 'createOrUpdate',
+        ],
+    ];
+
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->faker = \Faker\Factory::create();
+        $data = [];
+        foreach ($this->types as $field => $type) {
+            $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
+        }
+        $this->sot = new SyncCompanyRequest($data);
+        $this->sot = new SyncCompanyRequest();
+    }
+
+    /**
+     * @param string $type
+     * @param scalar[]|null $values
+     * @return mixed
+     */
+    private function getFakeValue(string $type, ?array $values) {
+        if (isset($values)) {
+            // @todo random.
+            return array_pop($values);
+        }
+
+        // @todo look for container hints.
+        if (strcasecmp(substr($type, -2), '[]') === 0) {
+            $return = [];
+            $subType = substr($type, 0, -2);
+            for ($i = 0; $i <= rand(0, 9); $i++) {
+                $return[] = $this->getFakeValue($subType, $values);
+            }
+            return $return;
+        }
+        switch ($type) {
+            case 'string':
+                return $this->faker->word();
+            case 'float':
+                return $this->faker->randomFloat();
+            case 'int':
+                return $this->faker->randomNumber();
+            case 'bool':
+                return $this->faker->boolean();
+            case '\DateTime':
+                return $this->faker->dateTimeAD();
+            case 'object':
+                return new \stdClass();
+        }
+        if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
+            return new $type();
+        }
+        $this->markTestSkipped('This type is not mocked yet: ' . $type);
+    }
+
+    /**
      * Test "SyncCompanyRequest"
+     *
+     * @covers ::__construct
      */
     public function testSyncCompanyRequest(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(\NecLimDul\MarketoRest\Lead\Model\SyncCompanyRequest::class, $this->sot);
     }
 
     /**
      * Test attribute "action"
+     *
+     * @covers ::__construct
+     * @covers ::getAction
+     * @covers ::setAction
      */
     public function testPropertyAction(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['action'],
+            $this->allowedValues['action'] ?? null
+        );
+        $this->sot->setAction($v);
+        $this->assertEquals($v, $this->sot->getAction());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "dedupe_by"
+     *
+     * @covers ::__construct
+     * @covers ::getDedupeBy
+     * @covers ::setDedupeBy
      */
     public function testPropertyDedupeBy(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['dedupe_by'],
+            $this->allowedValues['dedupe_by'] ?? null
+        );
+        $this->sot->setDedupeBy($v);
+        $this->assertEquals($v, $this->sot->getDedupeBy());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "input"
+     *
+     * @covers ::__construct
+     * @covers ::getInput
+     * @covers ::setInput
      */
     public function testPropertyInput(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['input'],
+            $this->allowedValues['input'] ?? null
+        );
+        $this->sot->setInput($v);
+        $this->assertEquals($v, $this->sot->getInput());
+        // $this->markTestIncomplete('Not implemented');
     }
 }

@@ -23,6 +23,9 @@
 
 namespace NecLimDul\MarketoRest\Lead\Test\Model;
 
+use Faker\Factory;
+use NecLimDul\MarketoRest\Lead\Model\ModelInterface;
+use NecLimDul\MarketoRest\Lead\Model\UsageData;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -33,43 +36,152 @@ use PHPUnit\Framework\TestCase;
  * @package     NecLimDul\MarketoRest\Lead
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
+ *
+ * @coversDefault \NecLimDul\MarketoRest\Lead\Model\UsageData
  */
 class UsageDataTest extends TestCase
 {
 
     /**
+     * @var \NecLimDul\MarketoRest\Lead\Model\UsageData
+     */
+    private $sot;
+
+    /**
+     * @var \Faker\Generator
+     */
+    private $faker;
+
+    /**
+     * @var string[]
+     */
+    private $types = [
+        'date' => '\DateTime',
+        'total' => 'int',
+        'users' => '\NecLimDul\MarketoRest\Lead\Model\UserCount[]',
+    ];
+    /**
+     * @var scalar[][]
+     */
+    private $allowedValues = [
+    ];
+
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->faker = \Faker\Factory::create();
+        $data = [];
+        foreach ($this->types as $field => $type) {
+            $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
+        }
+        $this->sot = new UsageData($data);
+        $this->sot = new UsageData();
+    }
+
+    /**
+     * @param string $type
+     * @param scalar[]|null $values
+     * @return mixed
+     */
+    private function getFakeValue(string $type, ?array $values) {
+        if (isset($values)) {
+            // @todo random.
+            return array_pop($values);
+        }
+
+        // @todo look for container hints.
+        if (strcasecmp(substr($type, -2), '[]') === 0) {
+            $return = [];
+            $subType = substr($type, 0, -2);
+            for ($i = 0; $i <= rand(0, 9); $i++) {
+                $return[] = $this->getFakeValue($subType, $values);
+            }
+            return $return;
+        }
+        switch ($type) {
+            case 'string':
+                return $this->faker->word();
+            case 'float':
+                return $this->faker->randomFloat();
+            case 'int':
+                return $this->faker->randomNumber();
+            case 'bool':
+                return $this->faker->boolean();
+            case '\DateTime':
+                return $this->faker->dateTimeAD();
+            case 'object':
+                return new \stdClass();
+        }
+        if (class_exists($type) && is_subclass_of($type, ModelInterface::class)) {
+            return new $type();
+        }
+        $this->markTestSkipped('This type is not mocked yet: ' . $type);
+    }
+
+    /**
      * Test "UsageData"
+     *
+     * @covers ::__construct
      */
     public function testUsageData(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $this->assertInstanceOf(\NecLimDul\MarketoRest\Lead\Model\UsageData::class, $this->sot);
     }
 
     /**
      * Test attribute "date"
+     *
+     * @covers ::__construct
+     * @covers ::getDate
+     * @covers ::setDate
      */
     public function testPropertyDate(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['date'],
+            $this->allowedValues['date'] ?? null
+        );
+        $this->sot->setDate($v);
+        $this->assertEquals($v, $this->sot->getDate());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "total"
+     *
+     * @covers ::__construct
+     * @covers ::getTotal
+     * @covers ::setTotal
      */
     public function testPropertyTotal(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['total'],
+            $this->allowedValues['total'] ?? null
+        );
+        $this->sot->setTotal($v);
+        $this->assertEquals($v, $this->sot->getTotal());
+        // $this->markTestIncomplete('Not implemented');
     }
 
     /**
      * Test attribute "users"
+     *
+     * @covers ::__construct
+     * @covers ::getUsers
+     * @covers ::setUsers
      */
     public function testPropertyUsers(): void
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['users'],
+            $this->allowedValues['users'] ?? null
+        );
+        $this->sot->setUsers($v);
+        $this->assertEquals($v, $this->sot->getUsers());
+        // $this->markTestIncomplete('Not implemented');
     }
 }
