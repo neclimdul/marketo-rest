@@ -52,7 +52,7 @@
         "test": "phpunit",
         "phpcs": "phpcs",
         "static": [
-            "parallel-lint src",
+            "parallel-lint src tests",
             "phpstan",
             "psalm src"
         ]
