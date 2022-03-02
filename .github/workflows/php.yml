@@ -29,9 +29,11 @@ jobs:
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress
 
-    - name: Run test suite
+    - name: Run static analysis
       run: composer static
 
     - name: Run style check
       run: composer phpcs
 
+    - name: Run test suite
+      uses: php-actions/phpunit@v3
