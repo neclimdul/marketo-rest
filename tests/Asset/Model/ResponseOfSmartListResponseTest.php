@@ -77,7 +77,6 @@ class ResponseOfSmartListResponseTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new ResponseOfSmartListResponse($data);
-        $this->sot = new ResponseOfSmartListResponse();
     }
 
     /**

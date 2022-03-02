@@ -79,7 +79,6 @@ class ResponseOfLeadTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new ResponseOfLead($data);
-        $this->sot = new ResponseOfLead();
     }
 
     /**

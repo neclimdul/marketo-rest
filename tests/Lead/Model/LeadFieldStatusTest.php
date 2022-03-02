@@ -78,7 +78,6 @@ class LeadFieldStatusTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new LeadFieldStatus($data);
-        $this->sot = new LeadFieldStatus();
     }
 
     /**

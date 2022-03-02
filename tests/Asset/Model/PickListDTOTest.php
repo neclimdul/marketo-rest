@@ -76,7 +76,6 @@ class PickListDTOTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new PickListDTO($data);
-        $this->sot = new PickListDTO();
     }
 
     /**

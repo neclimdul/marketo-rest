@@ -78,7 +78,6 @@ class ResponseOfVoidTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new ResponseOfVoid($data);
-        $this->sot = new ResponseOfVoid();
     }
 
     /**

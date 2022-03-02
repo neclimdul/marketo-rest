@@ -74,7 +74,6 @@ class UpdateVariableRequestTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new UpdateVariableRequest($data);
-        $this->sot = new UpdateVariableRequest();
     }
 
     /**

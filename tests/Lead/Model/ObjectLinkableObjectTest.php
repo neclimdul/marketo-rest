@@ -75,7 +75,6 @@ class ObjectLinkableObjectTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new ObjectLinkableObject($data);
-        $this->sot = new ObjectLinkableObject();
     }
 
     /**

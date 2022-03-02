@@ -77,7 +77,6 @@ class ResponseOfIdResponseTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new ResponseOfIdResponse($data);
-        $this->sot = new ResponseOfIdResponse();
     }
 
     /**

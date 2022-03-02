@@ -75,7 +75,6 @@ class CloneFormRequestTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new CloneFormRequest($data);
-        $this->sot = new CloneFormRequest();
     }
 
     /**

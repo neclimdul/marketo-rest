@@ -74,7 +74,6 @@ class CustomObjectTypeFieldRelatedToTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new CustomObjectTypeFieldRelatedTo($data);
-        $this->sot = new CustomObjectTypeFieldRelatedTo();
     }
 
     /**

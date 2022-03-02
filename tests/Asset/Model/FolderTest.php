@@ -78,7 +78,6 @@ class FolderTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new Folder($data);
-        $this->sot = new Folder();
     }
 
     /**

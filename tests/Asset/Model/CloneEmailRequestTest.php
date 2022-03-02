@@ -76,7 +76,6 @@ class CloneEmailRequestTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new CloneEmailRequest($data);
-        $this->sot = new CloneEmailRequest();
     }
 
     /**

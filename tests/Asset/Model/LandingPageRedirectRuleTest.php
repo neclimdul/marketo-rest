@@ -80,7 +80,6 @@ class LandingPageRedirectRuleTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new LandingPageRedirectRule($data);
-        $this->sot = new LandingPageRedirectRule();
     }
 
     /**

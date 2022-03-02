@@ -73,7 +73,6 @@ class UpdateEmailTemplateContentRequestTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new UpdateEmailTemplateContentRequest($data);
-        $this->sot = new UpdateEmailTemplateContentRequest();
     }
 
     /**

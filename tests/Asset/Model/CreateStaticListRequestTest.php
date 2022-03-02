@@ -75,7 +75,6 @@ class CreateStaticListRequestTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new CreateStaticListRequest($data);
-        $this->sot = new CreateStaticListRequest();
     }
 
     /**

@@ -75,7 +75,6 @@ class CreateSnippetRequestTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new CreateSnippetRequest($data);
-        $this->sot = new CreateSnippetRequest();
     }
 
     /**

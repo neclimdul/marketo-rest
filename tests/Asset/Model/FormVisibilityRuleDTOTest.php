@@ -77,7 +77,6 @@ class FormVisibilityRuleDTOTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new FormVisibilityRuleDTO($data);
-        $this->sot = new FormVisibilityRuleDTO();
     }
 
     /**

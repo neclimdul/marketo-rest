@@ -74,7 +74,6 @@ class LeadMapAttributeTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new LeadMapAttribute($data);
-        $this->sot = new LeadMapAttribute();
     }
 
     /**

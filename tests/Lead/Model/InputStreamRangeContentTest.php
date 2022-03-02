@@ -76,7 +76,6 @@ class InputStreamRangeContentTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new InputStreamRangeContent($data);
-        $this->sot = new InputStreamRangeContent();
     }
 
     /**

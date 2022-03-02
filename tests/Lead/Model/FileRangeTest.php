@@ -74,7 +74,6 @@ class FileRangeTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new FileRange($data);
-        $this->sot = new FileRange();
     }
 
     /**

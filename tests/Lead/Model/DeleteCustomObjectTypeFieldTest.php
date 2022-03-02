@@ -73,7 +73,6 @@ class DeleteCustomObjectTypeFieldTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new DeleteCustomObjectTypeField($data);
-        $this->sot = new DeleteCustomObjectTypeField();
     }
 
     /**

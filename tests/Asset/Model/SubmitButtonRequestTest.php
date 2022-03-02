@@ -76,7 +76,6 @@ class SubmitButtonRequestTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new SubmitButtonRequest($data);
-        $this->sot = new SubmitButtonRequest();
     }
 
     /**

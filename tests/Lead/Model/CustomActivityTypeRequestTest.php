@@ -78,7 +78,6 @@ class CustomActivityTypeRequestTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new CustomActivityTypeRequest($data);
-        $this->sot = new CustomActivityTypeRequest();
     }
 
     /**

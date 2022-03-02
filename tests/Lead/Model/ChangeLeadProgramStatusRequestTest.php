@@ -74,7 +74,6 @@ class ChangeLeadProgramStatusRequestTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new ChangeLeadProgramStatusRequest($data);
-        $this->sot = new ChangeLeadProgramStatusRequest();
     }
 
     /**

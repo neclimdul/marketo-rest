@@ -89,7 +89,6 @@ class NamedAccountListTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new NamedAccountList($data);
-        $this->sot = new NamedAccountList();
     }
 
     /**

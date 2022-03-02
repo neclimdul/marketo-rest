@@ -76,7 +76,6 @@ class ExportCustomObjectRequestTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new ExportCustomObjectRequest($data);
-        $this->sot = new ExportCustomObjectRequest();
     }
 
     /**

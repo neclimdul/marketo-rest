@@ -74,7 +74,6 @@ class DeleteCompanyRequestTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new DeleteCompanyRequest($data);
-        $this->sot = new DeleteCompanyRequest();
     }
 
     /**

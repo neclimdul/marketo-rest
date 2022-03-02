@@ -75,7 +75,6 @@ class UsageDataTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new UsageData($data);
-        $this->sot = new UsageData();
     }
 
     /**

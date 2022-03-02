@@ -74,7 +74,6 @@ class FormKnownVisitorDTOTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new FormKnownVisitorDTO($data);
-        $this->sot = new FormKnownVisitorDTO();
     }
 
     /**

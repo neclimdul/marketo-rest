@@ -79,7 +79,6 @@ class ProgramMembershipTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new ProgramMembership($data);
-        $this->sot = new ProgramMembership();
     }
 
     /**

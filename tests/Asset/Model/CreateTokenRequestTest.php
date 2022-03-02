@@ -88,7 +88,6 @@ class CreateTokenRequestTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new CreateTokenRequest($data);
-        $this->sot = new CreateTokenRequest();
     }
 
     /**

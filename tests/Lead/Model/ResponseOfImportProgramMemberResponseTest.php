@@ -77,7 +77,6 @@ class ResponseOfImportProgramMemberResponseTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new ResponseOfImportProgramMemberResponse($data);
-        $this->sot = new ResponseOfImportProgramMemberResponse();
     }
 
     /**

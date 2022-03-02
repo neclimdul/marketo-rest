@@ -75,7 +75,6 @@ class CloneSnippetRequestTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new CloneSnippetRequest($data);
-        $this->sot = new CloneSnippetRequest();
     }
 
     /**

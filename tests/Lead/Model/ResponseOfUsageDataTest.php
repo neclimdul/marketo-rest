@@ -79,7 +79,6 @@ class ResponseOfUsageDataTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new ResponseOfUsageData($data);
-        $this->sot = new ResponseOfUsageData();
     }
 
     /**

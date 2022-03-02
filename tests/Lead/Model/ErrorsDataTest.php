@@ -75,7 +75,6 @@ class ErrorsDataTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new ErrorsData($data);
-        $this->sot = new ErrorsData();
     }
 
     /**

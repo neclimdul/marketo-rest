@@ -76,7 +76,6 @@ class ExportProgramMemberRequestTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new ExportProgramMemberRequest($data);
-        $this->sot = new ExportProgramMemberRequest();
     }
 
     /**

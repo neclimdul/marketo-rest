@@ -79,7 +79,6 @@ class ResponseOfLeadChangeTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new ResponseOfLeadChange($data);
-        $this->sot = new ResponseOfLeadChange();
     }
 
     /**

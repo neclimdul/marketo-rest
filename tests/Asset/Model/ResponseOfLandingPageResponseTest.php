@@ -77,7 +77,6 @@ class ResponseOfLandingPageResponseTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new ResponseOfLandingPageResponse($data);
-        $this->sot = new ResponseOfLandingPageResponse();
     }
 
     /**

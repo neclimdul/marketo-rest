@@ -77,7 +77,6 @@ class ResponseOfPushLeadToMarketoTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new ResponseOfPushLeadToMarketo($data);
-        $this->sot = new ResponseOfPushLeadToMarketo();
     }
 
     /**

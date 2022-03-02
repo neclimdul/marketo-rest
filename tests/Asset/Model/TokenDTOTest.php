@@ -76,7 +76,6 @@ class TokenDTOTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new TokenDTO($data);
-        $this->sot = new TokenDTO();
     }
 
     /**

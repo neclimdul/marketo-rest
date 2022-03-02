@@ -76,7 +76,6 @@ class ExportActivityRequestTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new ExportActivityRequest($data);
-        $this->sot = new ExportActivityRequest();
     }
 
     /**

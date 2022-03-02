@@ -74,7 +74,6 @@ class DeleteSalesPersonRequestTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new DeleteSalesPersonRequest($data);
-        $this->sot = new DeleteSalesPersonRequest();
     }
 
     /**

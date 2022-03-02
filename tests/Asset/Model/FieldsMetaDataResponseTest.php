@@ -91,7 +91,6 @@ class FieldsMetaDataResponseTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new FieldsMetaDataResponse($data);
-        $this->sot = new FieldsMetaDataResponse();
     }
 
     /**

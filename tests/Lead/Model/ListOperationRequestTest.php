@@ -73,7 +73,6 @@ class ListOperationRequestTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new ListOperationRequest($data);
-        $this->sot = new ListOperationRequest();
     }
 
     /**

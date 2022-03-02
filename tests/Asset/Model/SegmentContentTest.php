@@ -78,7 +78,6 @@ class SegmentContentTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new SegmentContent($data);
-        $this->sot = new SegmentContent();
     }
 
     /**

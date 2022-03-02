@@ -76,7 +76,6 @@ class CloneLandingPageRequestTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new CloneLandingPageRequest($data);
-        $this->sot = new CloneLandingPageRequest();
     }
 
     /**

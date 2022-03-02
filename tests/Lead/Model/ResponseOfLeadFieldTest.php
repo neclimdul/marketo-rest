@@ -79,7 +79,6 @@ class ResponseOfLeadFieldTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new ResponseOfLeadField($data);
-        $this->sot = new ResponseOfLeadField();
     }
 
     /**

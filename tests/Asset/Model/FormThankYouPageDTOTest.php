@@ -78,7 +78,6 @@ class FormThankYouPageDTOTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new FormThankYouPageDTO($data);
-        $this->sot = new FormThankYouPageDTO();
     }
 
     /**

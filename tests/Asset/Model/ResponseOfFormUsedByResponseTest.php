@@ -77,7 +77,6 @@ class ResponseOfFormUsedByResponseTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new ResponseOfFormUsedByResponse($data);
-        $this->sot = new ResponseOfFormUsedByResponse();
     }
 
     /**

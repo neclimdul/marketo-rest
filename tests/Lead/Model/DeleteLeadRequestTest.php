@@ -73,7 +73,6 @@ class DeleteLeadRequestTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new DeleteLeadRequest($data);
-        $this->sot = new DeleteLeadRequest();
     }
 
     /**

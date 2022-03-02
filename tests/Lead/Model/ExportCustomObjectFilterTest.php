@@ -77,7 +77,6 @@ class ExportCustomObjectFilterTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new ExportCustomObjectFilter($data);
-        $this->sot = new ExportCustomObjectFilter();
     }
 
     /**

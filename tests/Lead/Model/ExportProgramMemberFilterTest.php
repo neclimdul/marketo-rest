@@ -73,7 +73,6 @@ class ExportProgramMemberFilterTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new ExportProgramMemberFilter($data);
-        $this->sot = new ExportProgramMemberFilter();
     }
 
     /**

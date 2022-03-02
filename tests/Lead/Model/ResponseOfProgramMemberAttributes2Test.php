@@ -79,7 +79,6 @@ class ResponseOfProgramMemberAttributes2Test extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new ResponseOfProgramMemberAttributes2($data);
-        $this->sot = new ResponseOfProgramMemberAttributes2();
     }
 
     /**

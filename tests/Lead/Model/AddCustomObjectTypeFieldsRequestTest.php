@@ -73,7 +73,6 @@ class AddCustomObjectTypeFieldsRequestTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new AddCustomObjectTypeFieldsRequest($data);
-        $this->sot = new AddCustomObjectTypeFieldsRequest();
     }
 
     /**

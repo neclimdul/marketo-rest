@@ -79,7 +79,6 @@ class ResponseOfObjectMetaDataTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new ResponseOfObjectMetaData($data);
-        $this->sot = new ResponseOfObjectMetaData();
     }
 
     /**

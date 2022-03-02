@@ -73,7 +73,6 @@ class AddFormFieldVisibilityRequestTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new AddFormFieldVisibilityRequest($data);
-        $this->sot = new AddFormFieldVisibilityRequest();
     }
 
     /**

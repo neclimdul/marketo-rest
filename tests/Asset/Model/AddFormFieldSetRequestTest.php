@@ -73,7 +73,6 @@ class AddFormFieldSetRequestTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new AddFormFieldSetRequest($data);
-        $this->sot = new AddFormFieldSetRequest();
     }
 
     /**

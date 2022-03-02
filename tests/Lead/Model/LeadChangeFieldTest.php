@@ -76,7 +76,6 @@ class LeadChangeFieldTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new LeadChangeField($data);
-        $this->sot = new LeadChangeField();
     }
 
     /**

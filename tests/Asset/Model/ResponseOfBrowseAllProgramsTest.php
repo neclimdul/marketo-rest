@@ -77,7 +77,6 @@ class ResponseOfBrowseAllProgramsTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new ResponseOfBrowseAllPrograms($data);
-        $this->sot = new ResponseOfBrowseAllPrograms();
     }
 
     /**

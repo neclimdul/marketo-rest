@@ -77,7 +77,6 @@ class ResponseOfLpFormResponseTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new ResponseOfLpFormResponse($data);
-        $this->sot = new ResponseOfLpFormResponse();
     }
 
     /**

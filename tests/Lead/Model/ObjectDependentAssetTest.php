@@ -76,7 +76,6 @@ class ObjectDependentAssetTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new ObjectDependentAsset($data);
-        $this->sot = new ObjectDependentAsset();
     }
 
     /**

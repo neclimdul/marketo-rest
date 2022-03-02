@@ -78,7 +78,6 @@ class ThankYouPageRequestTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new ThankYouPageRequest($data);
-        $this->sot = new ThankYouPageRequest();
     }
 
     /**

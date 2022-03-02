@@ -86,7 +86,6 @@ class CampaignTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new Campaign($data);
-        $this->sot = new Campaign();
     }
 
     /**

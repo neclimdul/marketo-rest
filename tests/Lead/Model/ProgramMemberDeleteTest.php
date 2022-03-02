@@ -73,7 +73,6 @@ class ProgramMemberDeleteTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new ProgramMemberDelete($data);
-        $this->sot = new ProgramMemberDelete();
     }
 
     /**

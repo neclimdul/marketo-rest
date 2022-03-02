@@ -75,7 +75,6 @@ class UpdateLandingPageRedirectRuleRequestTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new UpdateLandingPageRedirectRuleRequest($data);
-        $this->sot = new UpdateLandingPageRedirectRuleRequest();
     }
 
     /**

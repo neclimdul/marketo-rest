@@ -75,7 +75,6 @@ class ActivityTypeAttributeTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new ActivityTypeAttribute($data);
-        $this->sot = new ActivityTypeAttribute();
     }
 
     /**

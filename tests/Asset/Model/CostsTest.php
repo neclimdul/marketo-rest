@@ -75,7 +75,6 @@ class CostsTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new Costs($data);
-        $this->sot = new Costs();
     }
 
     /**

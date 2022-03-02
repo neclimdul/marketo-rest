@@ -80,7 +80,6 @@ class FormResponseTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new FormResponse($data);
-        $this->sot = new FormResponse();
     }
 
     /**

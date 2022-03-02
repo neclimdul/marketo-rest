@@ -74,7 +74,6 @@ class ColumnHeaderNamesTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new ColumnHeaderNames($data);
-        $this->sot = new ColumnHeaderNames();
     }
 
     /**

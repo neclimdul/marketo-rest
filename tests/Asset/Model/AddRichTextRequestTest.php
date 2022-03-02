@@ -73,7 +73,6 @@ class AddRichTextRequestTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new AddRichTextRequest($data);
-        $this->sot = new AddRichTextRequest();
     }
 
     /**

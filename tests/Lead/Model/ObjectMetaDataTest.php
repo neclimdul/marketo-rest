@@ -94,7 +94,6 @@ class ObjectMetaDataTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new ObjectMetaData($data);
-        $this->sot = new ObjectMetaData();
     }
 
     /**

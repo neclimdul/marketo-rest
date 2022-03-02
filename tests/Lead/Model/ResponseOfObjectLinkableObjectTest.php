@@ -77,7 +77,6 @@ class ResponseOfObjectLinkableObjectTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new ResponseOfObjectLinkableObject($data);
-        $this->sot = new ResponseOfObjectLinkableObject();
     }
 
     /**

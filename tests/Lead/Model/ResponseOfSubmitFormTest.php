@@ -77,7 +77,6 @@ class ResponseOfSubmitFormTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new ResponseOfSubmitForm($data);
-        $this->sot = new ResponseOfSubmitForm();
     }
 
     /**

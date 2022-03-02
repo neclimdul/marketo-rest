@@ -95,7 +95,6 @@ class RecurrenceTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new Recurrence($data);
-        $this->sot = new Recurrence();
     }
 
     /**

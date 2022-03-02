@@ -79,7 +79,6 @@ class ResponseOfNamedAccountTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new ResponseOfNamedAccount($data);
-        $this->sot = new ResponseOfNamedAccount();
     }
 
     /**

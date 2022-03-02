@@ -75,7 +75,6 @@ class ChangeLeadProgramStatusOutputDataTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new ChangeLeadProgramStatusOutputData($data);
-        $this->sot = new ChangeLeadProgramStatusOutputData();
     }
 
     /**

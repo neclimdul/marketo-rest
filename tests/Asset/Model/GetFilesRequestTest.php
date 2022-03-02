@@ -75,7 +75,6 @@ class GetFilesRequestTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new GetFilesRequest($data);
-        $this->sot = new GetFilesRequest();
     }
 
     /**

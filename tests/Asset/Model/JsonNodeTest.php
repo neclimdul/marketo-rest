@@ -104,7 +104,6 @@ class JsonNodeTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new JsonNode($data);
-        $this->sot = new JsonNode();
     }
 
     /**

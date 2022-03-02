@@ -77,7 +77,6 @@ class ResponseOfLpTemplateGetContentResponseTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new ResponseOfLpTemplateGetContentResponse($data);
-        $this->sot = new ResponseOfLpTemplateGetContentResponse();
     }
 
     /**

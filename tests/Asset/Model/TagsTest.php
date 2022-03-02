@@ -74,7 +74,6 @@ class TagsTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new Tags($data);
-        $this->sot = new Tags();
     }
 
     /**

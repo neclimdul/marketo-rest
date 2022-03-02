@@ -75,7 +75,6 @@ class AttributeTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new Attribute($data);
-        $this->sot = new Attribute();
     }
 
     /**

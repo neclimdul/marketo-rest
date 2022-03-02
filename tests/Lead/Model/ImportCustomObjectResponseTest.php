@@ -81,7 +81,6 @@ class ImportCustomObjectResponseTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new ImportCustomObjectResponse($data);
-        $this->sot = new ImportCustomObjectResponse();
     }
 
     /**

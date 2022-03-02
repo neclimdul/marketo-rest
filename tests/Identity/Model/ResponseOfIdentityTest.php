@@ -79,7 +79,6 @@ class ResponseOfIdentityTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new ResponseOfIdentity($data);
-        $this->sot = new ResponseOfIdentity();
     }
 
     /**

@@ -79,7 +79,6 @@ class DeleteTokenRequestTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new DeleteTokenRequest($data);
-        $this->sot = new DeleteTokenRequest();
     }
 
     /**

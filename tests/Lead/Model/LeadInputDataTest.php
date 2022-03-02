@@ -73,7 +73,6 @@ class LeadInputDataTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new LeadInputData($data);
-        $this->sot = new LeadInputData();
     }
 
     /**

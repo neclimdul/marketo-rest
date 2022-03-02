@@ -73,7 +73,6 @@ class SyncProgramMemberDataRequestTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new SyncProgramMemberDataRequest($data);
-        $this->sot = new SyncProgramMemberDataRequest();
     }
 
     /**

@@ -79,7 +79,6 @@ class ResponseOfCustomObjectTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new ResponseOfCustomObject($data);
-        $this->sot = new ResponseOfCustomObject();
     }
 
     /**

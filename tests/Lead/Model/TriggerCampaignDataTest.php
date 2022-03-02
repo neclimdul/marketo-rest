@@ -74,7 +74,6 @@ class TriggerCampaignDataTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new TriggerCampaignData($data);
-        $this->sot = new TriggerCampaignData();
     }
 
     /**

@@ -88,7 +88,6 @@ class UpdateEmailDynamicContentRequestTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new UpdateEmailDynamicContentRequest($data);
-        $this->sot = new UpdateEmailDynamicContentRequest();
     }
 
     /**

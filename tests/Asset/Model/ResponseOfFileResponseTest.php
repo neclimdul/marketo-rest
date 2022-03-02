@@ -77,7 +77,6 @@ class ResponseOfFileResponseTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new ResponseOfFileResponse($data);
-        $this->sot = new ResponseOfFileResponse();
     }
 
     /**

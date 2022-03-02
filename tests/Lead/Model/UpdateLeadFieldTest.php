@@ -77,7 +77,6 @@ class UpdateLeadFieldTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new UpdateLeadField($data);
-        $this->sot = new UpdateLeadField();
     }
 
     /**

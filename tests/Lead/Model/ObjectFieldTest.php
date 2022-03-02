@@ -78,7 +78,6 @@ class ObjectFieldTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new ObjectField($data);
-        $this->sot = new ObjectField();
     }
 
     /**

@@ -81,7 +81,6 @@ class ProgramTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new Program($data);
-        $this->sot = new Program();
     }
 
     /**

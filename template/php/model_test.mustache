@@ -85,7 +85,9 @@ class {{classname}}Test extends TestCase
         }
         $this->sot = new {{classname}}($data);
         {{/hasVars}}
+        {{^hasVars}}
         $this->sot = new {{classname}}();
+        {{/hasVars}}
     }
 
 {{#hasVars}}

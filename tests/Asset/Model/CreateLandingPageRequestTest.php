@@ -85,7 +85,6 @@ class CreateLandingPageRequestTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new CreateLandingPageRequest($data);
-        $this->sot = new CreateLandingPageRequest();
     }
 
     /**

@@ -73,7 +73,6 @@ class LeadFormFieldsTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new LeadFormFields($data);
-        $this->sot = new LeadFormFields();
     }
 
     /**

@@ -78,7 +78,6 @@ class SmartListFiltersTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new SmartListFilters($data);
-        $this->sot = new SmartListFilters();
     }
 
     /**

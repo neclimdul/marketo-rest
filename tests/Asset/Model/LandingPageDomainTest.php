@@ -78,7 +78,6 @@ class LandingPageDomainTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new LandingPageDomain($data);
-        $this->sot = new LandingPageDomain();
     }
 
     /**

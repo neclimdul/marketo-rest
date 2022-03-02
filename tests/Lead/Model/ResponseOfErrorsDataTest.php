@@ -79,7 +79,6 @@ class ResponseOfErrorsDataTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new ResponseOfErrorsData($data);
-        $this->sot = new ResponseOfErrorsData();
     }
 
     /**

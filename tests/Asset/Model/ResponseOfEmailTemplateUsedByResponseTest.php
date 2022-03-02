@@ -77,7 +77,6 @@ class ResponseOfEmailTemplateUsedByResponseTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new ResponseOfEmailTemplateUsedByResponse($data);
-        $this->sot = new ResponseOfEmailTemplateUsedByResponse();
     }
 
     /**

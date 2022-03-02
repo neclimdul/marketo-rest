@@ -75,7 +75,6 @@ class LeadPartitionTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new LeadPartition($data);
-        $this->sot = new LeadPartition();
     }
 
     /**

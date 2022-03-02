@@ -73,7 +73,6 @@ class TriggerCampaignRequestTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new TriggerCampaignRequest($data);
-        $this->sot = new TriggerCampaignRequest();
     }
 
     /**

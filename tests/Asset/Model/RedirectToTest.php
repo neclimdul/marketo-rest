@@ -78,7 +78,6 @@ class RedirectToTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new RedirectTo($data);
-        $this->sot = new RedirectTo();
     }
 
     /**

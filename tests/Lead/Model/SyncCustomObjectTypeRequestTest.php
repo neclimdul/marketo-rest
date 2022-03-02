@@ -83,7 +83,6 @@ class SyncCustomObjectTypeRequestTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new SyncCustomObjectTypeRequest($data);
-        $this->sot = new SyncCustomObjectTypeRequest();
     }
 
     /**

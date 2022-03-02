@@ -75,7 +75,6 @@ class CreateFolderRequestTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new CreateFolderRequest($data);
-        $this->sot = new CreateFolderRequest();
     }
 
     /**

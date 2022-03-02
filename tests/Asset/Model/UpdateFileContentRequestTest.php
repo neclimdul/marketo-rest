@@ -74,7 +74,6 @@ class UpdateFileContentRequestTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new UpdateFileContentRequest($data);
-        $this->sot = new UpdateFileContentRequest();
     }
 
     /**

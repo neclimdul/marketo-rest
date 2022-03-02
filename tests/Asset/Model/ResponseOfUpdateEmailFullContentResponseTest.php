@@ -77,7 +77,6 @@ class ResponseOfUpdateEmailFullContentResponseTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new ResponseOfUpdateEmailFullContentResponse($data);
-        $this->sot = new ResponseOfUpdateEmailFullContentResponse();
     }
 
     /**

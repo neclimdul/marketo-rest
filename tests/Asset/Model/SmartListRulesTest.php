@@ -80,7 +80,6 @@ class SmartListRulesTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new SmartListRules($data);
-        $this->sot = new SmartListRules();
     }
 
     /**

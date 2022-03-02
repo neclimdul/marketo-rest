@@ -74,7 +74,6 @@ class TokenResponseTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new TokenResponse($data);
-        $this->sot = new TokenResponse();
     }
 
     /**

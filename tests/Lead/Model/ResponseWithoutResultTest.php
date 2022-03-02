@@ -77,7 +77,6 @@ class ResponseWithoutResultTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new ResponseWithoutResult($data);
-        $this->sot = new ResponseWithoutResult();
     }
 
     /**

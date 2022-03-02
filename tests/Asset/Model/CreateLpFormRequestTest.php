@@ -83,7 +83,6 @@ class CreateLpFormRequestTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new CreateLpFormRequest($data);
-        $this->sot = new CreateLpFormRequest();
     }
 
     /**

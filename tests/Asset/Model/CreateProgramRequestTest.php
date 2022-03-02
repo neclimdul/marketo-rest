@@ -79,7 +79,6 @@ class CreateProgramRequestTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new CreateProgramRequest($data);
-        $this->sot = new CreateProgramRequest();
     }
 
     /**

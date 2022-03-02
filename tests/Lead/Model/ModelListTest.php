@@ -75,7 +75,6 @@ class ModelListTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new ModelList($data);
-        $this->sot = new ModelList();
     }
 
     /**

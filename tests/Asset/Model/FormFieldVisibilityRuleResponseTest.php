@@ -74,7 +74,6 @@ class FormFieldVisibilityRuleResponseTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new FormFieldVisibilityRuleResponse($data);
-        $this->sot = new FormFieldVisibilityRuleResponse();
     }
 
     /**

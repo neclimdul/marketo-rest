@@ -78,7 +78,6 @@ class ResponseOfCompanyTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new ResponseOfCompany($data);
-        $this->sot = new ResponseOfCompany();
     }
 
     /**

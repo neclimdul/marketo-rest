@@ -101,7 +101,6 @@ class ProgramResponseTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new ProgramResponse($data);
-        $this->sot = new ProgramResponse();
     }
 
     /**

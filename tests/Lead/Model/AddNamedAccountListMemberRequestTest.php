@@ -73,7 +73,6 @@ class AddNamedAccountListMemberRequestTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new AddNamedAccountListMemberRequest($data);
-        $this->sot = new AddNamedAccountListMemberRequest();
     }
 
     /**

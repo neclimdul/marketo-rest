@@ -73,7 +73,6 @@ class RemoveNamedAccountListMemberRequestTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new RemoveNamedAccountListMemberRequest($data);
-        $this->sot = new RemoveNamedAccountListMemberRequest();
     }
 
     /**

@@ -102,7 +102,6 @@ class FolderResponseTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new FolderResponse($data);
-        $this->sot = new FolderResponse();
     }
 
     /**

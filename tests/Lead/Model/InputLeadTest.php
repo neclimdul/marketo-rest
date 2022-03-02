@@ -73,7 +73,6 @@ class InputLeadTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new InputLead($data);
-        $this->sot = new InputLead();
     }
 
     /**

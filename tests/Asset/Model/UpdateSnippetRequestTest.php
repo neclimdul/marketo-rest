@@ -75,7 +75,6 @@ class UpdateSnippetRequestTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new UpdateSnippetRequest($data);
-        $this->sot = new UpdateSnippetRequest();
     }
 
     /**

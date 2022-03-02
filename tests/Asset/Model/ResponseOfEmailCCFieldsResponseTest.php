@@ -77,7 +77,6 @@ class ResponseOfEmailCCFieldsResponseTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new ResponseOfEmailCCFieldsResponse($data);
-        $this->sot = new ResponseOfEmailCCFieldsResponse();
     }
 
     /**

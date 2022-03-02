@@ -83,7 +83,6 @@ class SyncLeadRequestTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new SyncLeadRequest($data);
-        $this->sot = new SyncLeadRequest();
     }
 
     /**

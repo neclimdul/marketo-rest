@@ -80,7 +80,6 @@ class ProgramMemberStatusResponseTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new ProgramMemberStatusResponse($data);
-        $this->sot = new ProgramMemberStatusResponse();
     }
 
     /**

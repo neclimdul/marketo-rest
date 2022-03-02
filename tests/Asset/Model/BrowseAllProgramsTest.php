@@ -97,7 +97,6 @@ class BrowseAllProgramsTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new BrowseAllPrograms($data);
-        $this->sot = new BrowseAllPrograms();
     }
 
     /**

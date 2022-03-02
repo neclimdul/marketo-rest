@@ -74,7 +74,6 @@ class UpdateLeadPartitionTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new UpdateLeadPartition($data);
-        $this->sot = new UpdateLeadPartition();
     }
 
     /**

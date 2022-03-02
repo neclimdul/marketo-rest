@@ -79,7 +79,6 @@ class StaticListTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new StaticList($data);
-        $this->sot = new StaticList();
     }
 
     /**

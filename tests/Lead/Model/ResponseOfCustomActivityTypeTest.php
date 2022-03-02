@@ -79,7 +79,6 @@ class ResponseOfCustomActivityTypeTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new ResponseOfCustomActivityType($data);
-        $this->sot = new ResponseOfCustomActivityType();
     }
 
     /**

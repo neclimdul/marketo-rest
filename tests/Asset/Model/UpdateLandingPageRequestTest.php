@@ -83,7 +83,6 @@ class UpdateLandingPageRequestTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new UpdateLandingPageRequest($data);
-        $this->sot = new UpdateLandingPageRequest();
     }
 
     /**

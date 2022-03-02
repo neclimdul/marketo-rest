@@ -75,7 +75,6 @@ class ListOperationOutputDataTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new ListOperationOutputData($data);
-        $this->sot = new ListOperationOutputData();
     }
 
     /**

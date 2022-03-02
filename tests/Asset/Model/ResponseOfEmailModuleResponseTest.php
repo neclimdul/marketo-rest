@@ -77,7 +77,6 @@ class ResponseOfEmailModuleResponseTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new ResponseOfEmailModuleResponse($data);
-        $this->sot = new ResponseOfEmailModuleResponse();
     }
 
     /**

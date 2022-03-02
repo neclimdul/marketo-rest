@@ -78,7 +78,6 @@ class ResponseOfExportResponseWithTokenTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new ResponseOfExportResponseWithToken($data);
-        $this->sot = new ResponseOfExportResponseWithToken();
     }
 
     /**

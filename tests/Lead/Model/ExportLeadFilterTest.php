@@ -78,7 +78,6 @@ class ExportLeadFilterTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new ExportLeadFilter($data);
-        $this->sot = new ExportLeadFilter();
     }
 
     /**

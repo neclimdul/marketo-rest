@@ -74,7 +74,6 @@ class GetLandingPageFullContentResponseTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new GetLandingPageFullContentResponse($data);
-        $this->sot = new GetLandingPageFullContentResponse();
     }
 
     /**

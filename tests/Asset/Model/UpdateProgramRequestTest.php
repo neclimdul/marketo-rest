@@ -79,7 +79,6 @@ class UpdateProgramRequestTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new UpdateProgramRequest($data);
-        $this->sot = new UpdateProgramRequest();
     }
 
     /**

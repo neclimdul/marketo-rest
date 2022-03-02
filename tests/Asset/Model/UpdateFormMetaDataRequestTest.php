@@ -83,7 +83,6 @@ class UpdateFormMetaDataRequestTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new UpdateFormMetaDataRequest($data);
-        $this->sot = new UpdateFormMetaDataRequest();
     }
 
     /**

@@ -75,7 +75,6 @@ class SubmitFormRequestTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new SubmitFormRequest($data);
-        $this->sot = new SubmitFormRequest();
     }
 
     /**

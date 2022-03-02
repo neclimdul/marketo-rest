@@ -75,7 +75,6 @@ class CloneLpTemplateRequestTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new CloneLpTemplateRequest($data);
-        $this->sot = new CloneLpTemplateRequest();
     }
 
     /**

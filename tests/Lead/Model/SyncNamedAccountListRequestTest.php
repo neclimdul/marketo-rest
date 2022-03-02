@@ -79,7 +79,6 @@ class SyncNamedAccountListRequestTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new SyncNamedAccountListRequest($data);
-        $this->sot = new SyncNamedAccountListRequest();
     }
 
     /**

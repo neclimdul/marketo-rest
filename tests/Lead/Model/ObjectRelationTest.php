@@ -75,7 +75,6 @@ class ObjectRelationTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new ObjectRelation($data);
-        $this->sot = new ObjectRelation();
     }
 
     /**

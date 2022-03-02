@@ -93,7 +93,6 @@ class CreateLeadFieldTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new CreateLeadField($data);
-        $this->sot = new CreateLeadField();
     }
 
     /**

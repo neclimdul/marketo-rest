@@ -77,7 +77,6 @@ class ResponseOfTagResponseTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new ResponseOfTagResponse($data);
-        $this->sot = new ResponseOfTagResponse();
     }
 
     /**

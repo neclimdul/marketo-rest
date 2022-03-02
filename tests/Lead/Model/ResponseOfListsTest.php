@@ -79,7 +79,6 @@ class ResponseOfListsTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new ResponseOfLists($data);
-        $this->sot = new ResponseOfLists();
     }
 
     /**

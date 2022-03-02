@@ -74,7 +74,6 @@ class UpdateEmailTemplateMetaDataRequestTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new UpdateEmailTemplateMetaDataRequest($data);
-        $this->sot = new UpdateEmailTemplateMetaDataRequest();
     }
 
     /**

@@ -73,7 +73,6 @@ class CustomActivityTypeAttributeRequestTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new CustomActivityTypeAttributeRequest($data);
-        $this->sot = new CustomActivityTypeAttributeRequest();
     }
 
     /**

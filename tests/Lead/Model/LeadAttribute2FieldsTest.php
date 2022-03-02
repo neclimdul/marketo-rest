@@ -78,7 +78,6 @@ class LeadAttribute2FieldsTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new LeadAttribute2Fields($data);
-        $this->sot = new LeadAttribute2Fields();
     }
 
     /**

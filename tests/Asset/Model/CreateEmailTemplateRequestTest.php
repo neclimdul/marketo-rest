@@ -76,7 +76,6 @@ class CreateEmailTemplateRequestTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new CreateEmailTemplateRequest($data);
-        $this->sot = new CreateEmailTemplateRequest();
     }
 
     /**

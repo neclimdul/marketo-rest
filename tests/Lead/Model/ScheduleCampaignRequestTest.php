@@ -73,7 +73,6 @@ class ScheduleCampaignRequestTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new ScheduleCampaignRequest($data);
-        $this->sot = new ScheduleCampaignRequest();
     }
 
     /**

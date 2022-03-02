@@ -75,7 +75,6 @@ class SendSampleEmailRequestTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new SendSampleEmailRequest($data);
-        $this->sot = new SendSampleEmailRequest();
     }
 
     /**

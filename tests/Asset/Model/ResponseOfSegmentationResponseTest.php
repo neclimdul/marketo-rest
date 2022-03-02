@@ -77,7 +77,6 @@ class ResponseOfSegmentationResponseTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new ResponseOfSegmentationResponse($data);
-        $this->sot = new ResponseOfSegmentationResponse();
     }
 
     /**

@@ -77,7 +77,6 @@ class SmartListConditionsTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new SmartListConditions($data);
-        $this->sot = new SmartListConditions();
     }
 
     /**

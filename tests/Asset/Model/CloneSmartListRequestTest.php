@@ -75,7 +75,6 @@ class CloneSmartListRequestTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new CloneSmartListRequest($data);
-        $this->sot = new CloneSmartListRequest();
     }
 
     /**

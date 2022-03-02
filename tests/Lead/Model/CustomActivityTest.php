@@ -90,7 +90,6 @@ class CustomActivityTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new CustomActivity($data);
-        $this->sot = new CustomActivity();
     }
 
     /**

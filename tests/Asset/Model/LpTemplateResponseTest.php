@@ -87,7 +87,6 @@ class LpTemplateResponseTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new LpTemplateResponse($data);
-        $this->sot = new LpTemplateResponse();
     }
 
     /**

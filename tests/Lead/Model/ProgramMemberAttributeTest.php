@@ -74,7 +74,6 @@ class ProgramMemberAttributeTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new ProgramMemberAttribute($data);
-        $this->sot = new ProgramMemberAttribute();
     }
 
     /**

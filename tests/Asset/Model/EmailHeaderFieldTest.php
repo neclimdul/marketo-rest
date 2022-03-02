@@ -74,7 +74,6 @@ class EmailHeaderFieldTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new EmailHeaderField($data);
-        $this->sot = new EmailHeaderField();
     }
 
     /**

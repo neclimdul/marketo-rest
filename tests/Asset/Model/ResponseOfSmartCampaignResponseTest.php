@@ -77,7 +77,6 @@ class ResponseOfSmartCampaignResponseTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new ResponseOfSmartCampaignResponse($data);
-        $this->sot = new ResponseOfSmartCampaignResponse();
     }
 
     /**

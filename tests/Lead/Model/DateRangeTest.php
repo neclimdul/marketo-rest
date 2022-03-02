@@ -74,7 +74,6 @@ class DateRangeTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new DateRange($data);
-        $this->sot = new DateRange();
     }
 
     /**

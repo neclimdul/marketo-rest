@@ -74,7 +74,6 @@ class WarningTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new Warning($data);
-        $this->sot = new Warning();
     }
 
     /**

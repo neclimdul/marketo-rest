@@ -79,7 +79,6 @@ class ResponseOfLeadPartitionTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new ResponseOfLeadPartition($data);
-        $this->sot = new ResponseOfLeadPartition();
     }
 
     /**

@@ -77,7 +77,6 @@ class EmailDynamicContentResponseTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new EmailDynamicContentResponse($data);
-        $this->sot = new EmailDynamicContentResponse();
     }
 
     /**

@@ -74,7 +74,6 @@ class UpdateSmartCampaignRequestTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new UpdateSmartCampaignRequest($data);
-        $this->sot = new UpdateSmartCampaignRequest();
     }
 
     /**

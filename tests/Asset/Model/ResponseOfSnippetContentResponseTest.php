@@ -77,7 +77,6 @@ class ResponseOfSnippetContentResponseTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new ResponseOfSnippetContentResponse($data);
-        $this->sot = new ResponseOfSnippetContentResponse();
     }
 
     /**

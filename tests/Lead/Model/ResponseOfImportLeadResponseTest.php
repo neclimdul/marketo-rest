@@ -79,7 +79,6 @@ class ResponseOfImportLeadResponseTest extends TestCase
             $data[$field] = $this->getFakeValue($type, $this->allowedValues[$field] ?? null);
         }
         $this->sot = new ResponseOfImportLeadResponse($data);
-        $this->sot = new ResponseOfImportLeadResponse();
     }
 
     /**
