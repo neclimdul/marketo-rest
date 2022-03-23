@@ -258,11 +258,9 @@ class NamedAccountsApi
         );
         if ($headers['Content-Type'] === 'application/json') {
           $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($delete_account_request));
-        } elseif (!is_array($delete_account_request)) {
-          $httpBody = (string) $delete_account_request;
         }
         else {
-          $httpBody = '';
+          $httpBody = (string) $delete_account_request;
         }
 
 
@@ -740,13 +738,7 @@ class NamedAccountsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($batch_size)) {
-            $batch_size = ObjectSerializer::serializeCollection($batch_size, '', true);
-        }
         $queryParams['batchSize'] = $batch_size;
-        if (is_array($next_page_token)) {
-            $next_page_token = ObjectSerializer::serializeCollection($next_page_token, '', true);
-        }
         $queryParams['nextPageToken'] = $next_page_token;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
@@ -939,25 +931,12 @@ class NamedAccountsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($filter_type)) {
-            $filter_type = ObjectSerializer::serializeCollection($filter_type, '', true);
-        }
         $queryParams['filterType'] = $filter_type;
-        if (is_array($filter_values)) {
-            $filter_values = ObjectSerializer::serializeCollection($filter_values, 'multi', true);
-        }
+        $filter_values = ObjectSerializer::serializeCollection($filter_values, 'multi', true);
         $queryParams['filterValues'] = $filter_values;
-        if (is_array($fields)) {
-            $fields = ObjectSerializer::serializeCollection($fields, 'multi', true);
-        }
+        $fields = ObjectSerializer::serializeCollection($fields, 'multi', true);
         $queryParams['fields'] = $fields;
-        if (is_array($batch_size)) {
-            $batch_size = ObjectSerializer::serializeCollection($batch_size, '', true);
-        }
         $queryParams['batchSize'] = $batch_size;
-        if (is_array($next_page_token)) {
-            $next_page_token = ObjectSerializer::serializeCollection($next_page_token, '', true);
-        }
         $queryParams['nextPageToken'] = $next_page_token;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
@@ -1128,11 +1107,9 @@ class NamedAccountsApi
         );
         if ($headers['Content-Type'] === 'application/json') {
           $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($sync_account_request));
-        } elseif (!is_array($sync_account_request)) {
-          $httpBody = (string) $sync_account_request;
         }
         else {
-          $httpBody = '';
+          $httpBody = (string) $sync_account_request;
         }
 
 

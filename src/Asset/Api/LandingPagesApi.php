@@ -431,21 +431,9 @@ class LandingPagesApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($status)) {
-            $status = ObjectSerializer::serializeCollection($status, '', true);
-        }
         $queryParams['status'] = $status;
-        if (is_array($max_return)) {
-            $max_return = ObjectSerializer::serializeCollection($max_return, '', true);
-        }
         $queryParams['maxReturn'] = $max_return;
-        if (is_array($offset)) {
-            $offset = ObjectSerializer::serializeCollection($offset, '', true);
-        }
         $queryParams['offset'] = $offset;
-        if (is_array($folder)) {
-            $folder = ObjectSerializer::serializeCollection($folder, '', true);
-        }
         $queryParams['folder'] = $folder;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
@@ -634,11 +622,9 @@ class LandingPagesApi
         );
         if ($headers['Content-Type'] === 'application/json') {
           $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($clone_landing_page_request));
-        } elseif (!is_array($clone_landing_page_request)) {
-          $httpBody = (string) $clone_landing_page_request;
         }
         else {
-          $httpBody = '';
+          $httpBody = (string) $clone_landing_page_request;
         }
 
 
@@ -803,11 +789,9 @@ class LandingPagesApi
         );
         if ($headers['Content-Type'] === 'application/json') {
           $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($create_landing_page_request));
-        } elseif (!is_array($create_landing_page_request)) {
-          $httpBody = (string) $create_landing_page_request;
         }
         else {
-          $httpBody = '';
+          $httpBody = (string) $create_landing_page_request;
         }
 
 
@@ -1309,9 +1293,6 @@ class LandingPagesApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($status)) {
-            $status = ObjectSerializer::serializeCollection($status, '', true);
-        }
         $queryParams['status'] = $status;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
@@ -1500,21 +1481,9 @@ class LandingPagesApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($name)) {
-            $name = ObjectSerializer::serializeCollection($name, '', true);
-        }
         $queryParams['name'] = $name;
-        if (is_array($status)) {
-            $status = ObjectSerializer::serializeCollection($status, '', true);
-        }
         $queryParams['status'] = $status;
-        if (is_array($max_return)) {
-            $max_return = ObjectSerializer::serializeCollection($max_return, '', true);
-        }
         $queryParams['maxReturn'] = $max_return;
-        if (is_array($offset)) {
-            $offset = ObjectSerializer::serializeCollection($offset, '', true);
-        }
         $queryParams['offset'] = $offset;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
@@ -1691,13 +1660,7 @@ class LandingPagesApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($lead_id)) {
-            $lead_id = ObjectSerializer::serializeCollection($lead_id, '', true);
-        }
         $queryParams['leadId'] = $lead_id;
-        if (is_array($segmentation)) {
-            $segmentation = ObjectSerializer::serializeCollection($segmentation, '', true);
-        }
         $queryParams['segmentation'] = $segmentation;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
@@ -1876,9 +1839,6 @@ class LandingPagesApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($status)) {
-            $status = ObjectSerializer::serializeCollection($status, '', true);
-        }
         $queryParams['status'] = $status;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
@@ -2242,11 +2202,9 @@ class LandingPagesApi
         );
         if ($headers['Content-Type'] === 'application/json') {
           $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($update_landing_page_request));
-        } elseif (!is_array($update_landing_page_request)) {
-          $httpBody = (string) $update_landing_page_request;
         }
         else {
-          $httpBody = '';
+          $httpBody = (string) $update_landing_page_request;
         }
 
 
@@ -2429,9 +2387,6 @@ class LandingPagesApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($value)) {
-            $value = ObjectSerializer::serializeCollection($value, '', true);
-        }
         $queryParams['value'] = $value;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });

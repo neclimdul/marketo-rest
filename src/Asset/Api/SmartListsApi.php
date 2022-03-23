@@ -276,11 +276,9 @@ class SmartListsApi
         );
         if ($headers['Content-Type'] === 'application/json') {
           $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($clone_smart_list_request));
-        } elseif (!is_array($clone_smart_list_request)) {
-          $httpBody = (string) $clone_smart_list_request;
         }
         else {
-          $httpBody = '';
+          $httpBody = (string) $clone_smart_list_request;
         }
 
 
@@ -614,9 +612,6 @@ class SmartListsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($include_rules)) {
-            $include_rules = ObjectSerializer::serializeCollection($include_rules, '', true);
-        }
         $queryParams['includeRules'] = $include_rules;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
@@ -790,9 +785,6 @@ class SmartListsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($name)) {
-            $name = ObjectSerializer::serializeCollection($name, '', true);
-        }
         $queryParams['name'] = $name;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
@@ -973,25 +965,10 @@ class SmartListsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($folder)) {
-            $folder = ObjectSerializer::serializeCollection($folder, '', true);
-        }
         $queryParams['folder'] = $folder;
-        if (is_array($offset)) {
-            $offset = ObjectSerializer::serializeCollection($offset, '', true);
-        }
         $queryParams['offset'] = $offset;
-        if (is_array($max_return)) {
-            $max_return = ObjectSerializer::serializeCollection($max_return, '', true);
-        }
         $queryParams['maxReturn'] = $max_return;
-        if (is_array($earliest_updated_at)) {
-            $earliest_updated_at = ObjectSerializer::serializeCollection($earliest_updated_at, '', true);
-        }
         $queryParams['earliestUpdatedAt'] = $earliest_updated_at;
-        if (is_array($latest_updated_at)) {
-            $latest_updated_at = ObjectSerializer::serializeCollection($latest_updated_at, '', true);
-        }
         $queryParams['latestUpdatedAt'] = $latest_updated_at;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });

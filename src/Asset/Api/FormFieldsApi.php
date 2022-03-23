@@ -276,11 +276,9 @@ class FormFieldsApi
         );
         if ($headers['Content-Type'] === 'application/json') {
           $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($add_form_field_set_request));
-        } elseif (!is_array($add_form_field_set_request)) {
-          $httpBody = (string) $add_form_field_set_request;
         }
         else {
-          $httpBody = '';
+          $httpBody = (string) $add_form_field_set_request;
         }
 
 
@@ -463,11 +461,9 @@ class FormFieldsApi
         );
         if ($headers['Content-Type'] === 'application/json') {
           $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($add_form_field_set_request));
-        } elseif (!is_array($add_form_field_set_request)) {
-          $httpBody = (string) $add_form_field_set_request;
         }
         else {
-          $httpBody = '';
+          $httpBody = (string) $add_form_field_set_request;
         }
 
 
@@ -666,11 +662,9 @@ class FormFieldsApi
         );
         if ($headers['Content-Type'] === 'application/json') {
           $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($add_form_field_visibility_request));
-        } elseif (!is_array($add_form_field_visibility_request)) {
-          $httpBody = (string) $add_form_field_visibility_request;
         }
         else {
-          $httpBody = '';
+          $httpBody = (string) $add_form_field_visibility_request;
         }
 
 
@@ -853,11 +847,9 @@ class FormFieldsApi
         );
         if ($headers['Content-Type'] === 'application/json') {
           $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($add_rich_text_request));
-        } elseif (!is_array($add_rich_text_request)) {
-          $httpBody = (string) $add_rich_text_request;
         }
         else {
-          $httpBody = '';
+          $httpBody = (string) $add_rich_text_request;
         }
 
 
@@ -1401,13 +1393,7 @@ class FormFieldsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($max_return)) {
-            $max_return = ObjectSerializer::serializeCollection($max_return, '', true);
-        }
         $queryParams['maxReturn'] = $max_return;
-        if (is_array($offset)) {
-            $offset = ObjectSerializer::serializeCollection($offset, '', true);
-        }
         $queryParams['offset'] = $offset;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
@@ -1573,13 +1559,7 @@ class FormFieldsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($max_return)) {
-            $max_return = ObjectSerializer::serializeCollection($max_return, '', true);
-        }
         $queryParams['maxReturn'] = $max_return;
-        if (is_array($offset)) {
-            $offset = ObjectSerializer::serializeCollection($offset, '', true);
-        }
         $queryParams['offset'] = $offset;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
@@ -1751,9 +1731,6 @@ class FormFieldsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($status)) {
-            $status = ObjectSerializer::serializeCollection($status, '', true);
-        }
         $queryParams['status'] = $status;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
@@ -1945,11 +1922,9 @@ class FormFieldsApi
         if (!empty($re_arrange_request)) {
             if ($headers['Content-Type'] === 'application/json') {
                 $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($re_arrange_request));
-            } elseif (!is_array($re_arrange_request)) {
-                $httpBody = (string) $re_arrange_request;
             }
             else {
-                $httpBody = '';
+              $httpBody = (string) $re_arrange_request;
             }
         }
 
@@ -2149,11 +2124,9 @@ class FormFieldsApi
         );
         if ($headers['Content-Type'] === 'application/json') {
           $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($update_form_field_request));
-        } elseif (!is_array($update_form_field_request)) {
-          $httpBody = (string) $update_form_field_request;
         }
         else {
-          $httpBody = '';
+          $httpBody = (string) $update_form_field_request;
         }
 
 

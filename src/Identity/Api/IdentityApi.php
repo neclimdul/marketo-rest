@@ -258,17 +258,8 @@ class IdentityApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($client_id)) {
-            $client_id = ObjectSerializer::serializeCollection($client_id, '', true);
-        }
         $queryParams['client_id'] = $client_id;
-        if (is_array($client_secret)) {
-            $client_secret = ObjectSerializer::serializeCollection($client_secret, '', true);
-        }
         $queryParams['client_secret'] = $client_secret;
-        if (is_array($grant_type)) {
-            $grant_type = ObjectSerializer::serializeCollection($grant_type, '', true);
-        }
         $queryParams['grant_type'] = $grant_type;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });

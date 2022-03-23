@@ -828,9 +828,6 @@ class BulkImportCustomObjectsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($format)) {
-            $format = ObjectSerializer::serializeCollection($format, '', true);
-        }
         $queryParams['format'] = $format;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
@@ -848,7 +845,7 @@ class BulkImportCustomObjectsApi
         $multipart = false;
         $multipart = true;
         $formParams['file'] = [];
-        $paramFiles = is_array($file) ? $file : [$file];
+        $paramFiles = [$file];
         foreach ($paramFiles as $paramFile) {
             $formParams['file'][] = \GuzzleHttp\Psr7\Utils::tryFopen(
                 ObjectSerializer::toFormValue($paramFile),

@@ -422,11 +422,9 @@ class BulkExportActivitiesApi
         if (!empty($export_activity_request)) {
             if ($headers['Content-Type'] === 'application/json') {
                 $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($export_activity_request));
-            } elseif (!is_array($export_activity_request)) {
-                $httpBody = (string) $export_activity_request;
             }
             else {
-                $httpBody = '';
+              $httpBody = (string) $export_activity_request;
             }
         }
 
@@ -1106,17 +1104,9 @@ class BulkExportActivitiesApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($status)) {
-            $status = ObjectSerializer::serializeCollection($status, 'multi', true);
-        }
+        $status = ObjectSerializer::serializeCollection($status, 'multi', true);
         $queryParams['status'] = $status;
-        if (is_array($batch_size)) {
-            $batch_size = ObjectSerializer::serializeCollection($batch_size, '', true);
-        }
         $queryParams['batchSize'] = $batch_size;
-        if (is_array($next_page_token)) {
-            $next_page_token = ObjectSerializer::serializeCollection($next_page_token, '', true);
-        }
         $queryParams['nextPageToken'] = $next_page_token;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });

@@ -791,13 +791,7 @@ class BulkImportProgramMembersApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($program_member_status)) {
-            $program_member_status = ObjectSerializer::serializeCollection($program_member_status, '', true);
-        }
         $queryParams['programMemberStatus'] = $program_member_status;
-        if (is_array($format)) {
-            $format = ObjectSerializer::serializeCollection($format, '', true);
-        }
         $queryParams['format'] = $format;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
@@ -815,7 +809,7 @@ class BulkImportProgramMembersApi
         $multipart = false;
         $multipart = true;
         $formParams['file'] = [];
-        $paramFiles = is_array($file) ? $file : [$file];
+        $paramFiles = [$file];
         foreach ($paramFiles as $paramFile) {
             $formParams['file'][] = \GuzzleHttp\Psr7\Utils::tryFopen(
                 ObjectSerializer::toFormValue($paramFile),

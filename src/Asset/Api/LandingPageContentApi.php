@@ -276,11 +276,9 @@ class LandingPageContentApi
         );
         if ($headers['Content-Type'] === 'application/json') {
           $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($request));
-        } elseif (!is_array($request)) {
-          $httpBody = (string) $request;
         }
         else {
-          $httpBody = '';
+          $httpBody = (string) $request;
         }
 
 
@@ -446,9 +444,6 @@ class LandingPageContentApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($status)) {
-            $status = ObjectSerializer::serializeCollection($status, '', true);
-        }
         $queryParams['status'] = $status;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
@@ -1028,11 +1023,9 @@ class LandingPageContentApi
         );
         if ($headers['Content-Type'] === 'application/json') {
           $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($request));
-        } elseif (!is_array($request)) {
-          $httpBody = (string) $request;
         }
         else {
-          $httpBody = '';
+          $httpBody = (string) $request;
         }
 
 
@@ -1227,11 +1220,9 @@ class LandingPageContentApi
         if (!empty($request)) {
             if ($headers['Content-Type'] === 'application/json') {
                 $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($request));
-            } elseif (!is_array($request)) {
-                $httpBody = (string) $request;
             }
             else {
-                $httpBody = '';
+              $httpBody = (string) $request;
             }
         }
 

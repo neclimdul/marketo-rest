@@ -258,11 +258,9 @@ class FilesApi
         );
         if ($headers['Content-Type'] === 'application/json') {
           $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($create_file_request));
-        } elseif (!is_array($create_file_request)) {
-          $httpBody = (string) $create_file_request;
         }
         else {
-          $httpBody = '';
+          $httpBody = (string) $create_file_request;
         }
 
 
@@ -591,9 +589,6 @@ class FilesApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($name)) {
-            $name = ObjectSerializer::serializeCollection($name, '', true);
-        }
         $queryParams['name'] = $name;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
@@ -765,9 +760,6 @@ class FilesApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($folder)) {
-            $folder = ObjectSerializer::serializeCollection($folder, '', true);
-        }
         $queryParams['folder'] = $folder;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
@@ -777,11 +769,9 @@ class FilesApi
         );
         if ($headers['Content-Type'] === 'application/json') {
           $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($get_files_request));
-        } elseif (!is_array($get_files_request)) {
-          $httpBody = (string) $get_files_request;
         }
         else {
-          $httpBody = '';
+          $httpBody = (string) $get_files_request;
         }
 
 

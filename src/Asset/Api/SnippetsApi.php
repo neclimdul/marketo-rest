@@ -440,11 +440,9 @@ class SnippetsApi
         if (!empty($clone_snippet_request)) {
             if ($headers['Content-Type'] === 'application/json') {
                 $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($clone_snippet_request));
-            } elseif (!is_array($clone_snippet_request)) {
-                $httpBody = (string) $clone_snippet_request;
             }
             else {
-                $httpBody = '';
+              $httpBody = (string) $clone_snippet_request;
             }
         }
 
@@ -610,11 +608,9 @@ class SnippetsApi
         );
         if ($headers['Content-Type'] === 'application/json') {
           $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($create_snippet_request));
-        } elseif (!is_array($create_snippet_request)) {
-          $httpBody = (string) $create_snippet_request;
         }
         else {
-          $httpBody = '';
+          $httpBody = (string) $create_snippet_request;
         }
 
 
@@ -1116,9 +1112,6 @@ class SnippetsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($status)) {
-            $status = ObjectSerializer::serializeCollection($status, '', true);
-        }
         $queryParams['status'] = $status;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
@@ -1297,9 +1290,6 @@ class SnippetsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($status)) {
-            $status = ObjectSerializer::serializeCollection($status, '', true);
-        }
         $queryParams['status'] = $status;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
@@ -1478,9 +1468,6 @@ class SnippetsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($status)) {
-            $status = ObjectSerializer::serializeCollection($status, '', true);
-        }
         $queryParams['status'] = $status;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
@@ -1658,17 +1645,8 @@ class SnippetsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($status)) {
-            $status = ObjectSerializer::serializeCollection($status, '', true);
-        }
         $queryParams['status'] = $status;
-        if (is_array($max_return)) {
-            $max_return = ObjectSerializer::serializeCollection($max_return, '', true);
-        }
         $queryParams['maxReturn'] = $max_return;
-        if (is_array($offset)) {
-            $offset = ObjectSerializer::serializeCollection($offset, '', true);
-        }
         $queryParams['offset'] = $offset;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
@@ -2025,13 +2003,7 @@ class SnippetsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($content)) {
-            $content = ObjectSerializer::serializeCollection($content, '', true);
-        }
         $queryParams['content'] = $content;
-        if (is_array($type)) {
-            $type = ObjectSerializer::serializeCollection($type, '', true);
-        }
         $queryParams['type'] = $type;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
@@ -2243,11 +2215,9 @@ class SnippetsApi
         );
         if ($headers['Content-Type'] === 'application/json') {
           $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($request));
-        } elseif (!is_array($request)) {
-          $httpBody = (string) $request;
         }
         else {
-          $httpBody = '';
+          $httpBody = (string) $request;
         }
 
 
@@ -2430,11 +2400,9 @@ class SnippetsApi
         );
         if ($headers['Content-Type'] === 'application/json') {
           $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($update_snippet_request));
-        } elseif (!is_array($update_snippet_request)) {
-          $httpBody = (string) $update_snippet_request;
         }
         else {
-          $httpBody = '';
+          $httpBody = (string) $update_snippet_request;
         }
 
 

@@ -287,13 +287,7 @@ class EmailsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($name)) {
-            $name = ObjectSerializer::serializeCollection($name, '', true);
-        }
         $queryParams['name'] = $name;
-        if (is_array($index)) {
-            $index = ObjectSerializer::serializeCollection($index, '', true);
-        }
         $queryParams['index'] = $index;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
@@ -662,11 +656,9 @@ class EmailsApi
         );
         if ($headers['Content-Type'] === 'application/json') {
           $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($clone_email_request));
-        } elseif (!is_array($clone_email_request)) {
-          $httpBody = (string) $clone_email_request;
         }
         else {
-          $httpBody = '';
+          $httpBody = (string) $clone_email_request;
         }
 
 
@@ -849,11 +841,9 @@ class EmailsApi
         );
         if ($headers['Content-Type'] === 'application/json') {
           $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($update_email_full_content_request));
-        } elseif (!is_array($update_email_full_content_request)) {
-          $httpBody = (string) $update_email_full_content_request;
         }
         else {
-          $httpBody = '';
+          $httpBody = (string) $update_email_full_content_request;
         }
 
 
@@ -1018,11 +1008,9 @@ class EmailsApi
         );
         if ($headers['Content-Type'] === 'application/json') {
           $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($create_email_request));
-        } elseif (!is_array($create_email_request)) {
-          $httpBody = (string) $create_email_request;
         }
         else {
-          $httpBody = '';
+          $httpBody = (string) $create_email_request;
         }
 
 
@@ -1725,9 +1713,6 @@ class EmailsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($name)) {
-            $name = ObjectSerializer::serializeCollection($name, '', true);
-        }
         $queryParams['name'] = $name;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
@@ -1911,9 +1896,6 @@ class EmailsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($status)) {
-            $status = ObjectSerializer::serializeCollection($status, '', true);
-        }
         $queryParams['status'] = $status;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
@@ -2097,17 +2079,8 @@ class EmailsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($name)) {
-            $name = ObjectSerializer::serializeCollection($name, '', true);
-        }
         $queryParams['name'] = $name;
-        if (is_array($status)) {
-            $status = ObjectSerializer::serializeCollection($status, '', true);
-        }
         $queryParams['status'] = $status;
-        if (is_array($folder)) {
-            $folder = ObjectSerializer::serializeCollection($folder, '', true);
-        }
         $queryParams['folder'] = $folder;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
@@ -2429,9 +2402,6 @@ class EmailsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($status)) {
-            $status = ObjectSerializer::serializeCollection($status, '', true);
-        }
         $queryParams['status'] = $status;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
@@ -2621,9 +2591,6 @@ class EmailsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($status)) {
-            $status = ObjectSerializer::serializeCollection($status, '', true);
-        }
         $queryParams['status'] = $status;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
@@ -2817,17 +2784,8 @@ class EmailsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($status)) {
-            $status = ObjectSerializer::serializeCollection($status, '', true);
-        }
         $queryParams['status'] = $status;
-        if (is_array($lead_id)) {
-            $lead_id = ObjectSerializer::serializeCollection($lead_id, '', true);
-        }
         $queryParams['leadId'] = $lead_id;
-        if (is_array($type)) {
-            $type = ObjectSerializer::serializeCollection($type, '', true);
-        }
         $queryParams['type'] = $type;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
@@ -3020,29 +2978,11 @@ class EmailsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($status)) {
-            $status = ObjectSerializer::serializeCollection($status, '', true);
-        }
         $queryParams['status'] = $status;
-        if (is_array($folder)) {
-            $folder = ObjectSerializer::serializeCollection($folder, '', true);
-        }
         $queryParams['folder'] = $folder;
-        if (is_array($offset)) {
-            $offset = ObjectSerializer::serializeCollection($offset, '', true);
-        }
         $queryParams['offset'] = $offset;
-        if (is_array($max_return)) {
-            $max_return = ObjectSerializer::serializeCollection($max_return, '', true);
-        }
         $queryParams['maxReturn'] = $max_return;
-        if (is_array($earliest_updated_at)) {
-            $earliest_updated_at = ObjectSerializer::serializeCollection($earliest_updated_at, '', true);
-        }
         $queryParams['earliestUpdatedAt'] = $earliest_updated_at;
-        if (is_array($latest_updated_at)) {
-            $latest_updated_at = ObjectSerializer::serializeCollection($latest_updated_at, '', true);
-        }
         $queryParams['latestUpdatedAt'] = $latest_updated_at;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
@@ -3395,11 +3335,9 @@ class EmailsApi
         if (!empty($positions)) {
             if ($headers['Content-Type'] === 'application/json') {
                 $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($positions));
-            } elseif (!is_array($positions)) {
-                $httpBody = (string) $positions;
             }
             else {
-                $httpBody = '';
+              $httpBody = (string) $positions;
             }
         }
 
@@ -3583,9 +3521,6 @@ class EmailsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($name)) {
-            $name = ObjectSerializer::serializeCollection($name, '', true);
-        }
         $queryParams['name'] = $name;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
@@ -3786,11 +3721,9 @@ class EmailsApi
         );
         if ($headers['Content-Type'] === 'application/json') {
           $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($send_sample_email_request));
-        } elseif (!is_array($send_sample_email_request)) {
-          $httpBody = (string) $send_sample_email_request;
         }
         else {
-          $httpBody = '';
+          $httpBody = (string) $send_sample_email_request;
         }
 
 
@@ -4157,11 +4090,9 @@ class EmailsApi
         );
         if ($headers['Content-Type'] === 'application/json') {
           $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($request));
-        } elseif (!is_array($request)) {
-          $httpBody = (string) $request;
         }
         else {
-          $httpBody = '';
+          $httpBody = (string) $request;
         }
 
 
@@ -4344,11 +4275,9 @@ class EmailsApi
         );
         if ($headers['Content-Type'] === 'application/json') {
           $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($update_email_request));
-        } elseif (!is_array($update_email_request)) {
-          $httpBody = (string) $update_email_request;
         }
         else {
-          $httpBody = '';
+          $httpBody = (string) $update_email_request;
         }
 
 
@@ -4547,11 +4476,9 @@ class EmailsApi
         );
         if ($headers['Content-Type'] === 'application/json') {
           $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($request));
-        } elseif (!is_array($request)) {
-          $httpBody = (string) $request;
         }
         else {
-          $httpBody = '';
+          $httpBody = (string) $request;
         }
 
 
@@ -4734,11 +4661,9 @@ class EmailsApi
         );
         if ($headers['Content-Type'] === 'application/json') {
           $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($update_email_request));
-        } elseif (!is_array($update_email_request)) {
-          $httpBody = (string) $update_email_request;
         }
         else {
-          $httpBody = '';
+          $httpBody = (string) $update_email_request;
         }
 
 
@@ -4933,11 +4858,9 @@ class EmailsApi
         if (!empty($update_variable_request)) {
             if ($headers['Content-Type'] === 'application/json') {
                 $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($update_variable_request));
-            } elseif (!is_array($update_variable_request)) {
-                $httpBody = (string) $update_variable_request;
             }
             else {
-                $httpBody = '';
+              $httpBody = (string) $update_variable_request;
             }
         }
 

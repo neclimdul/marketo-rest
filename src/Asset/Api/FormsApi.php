@@ -437,21 +437,9 @@ class FormsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($status)) {
-            $status = ObjectSerializer::serializeCollection($status, '', true);
-        }
         $queryParams['status'] = $status;
-        if (is_array($folder)) {
-            $folder = ObjectSerializer::serializeCollection($folder, '', true);
-        }
         $queryParams['folder'] = $folder;
-        if (is_array($max_return)) {
-            $max_return = ObjectSerializer::serializeCollection($max_return, '', true);
-        }
         $queryParams['maxReturn'] = $max_return;
-        if (is_array($offset)) {
-            $offset = ObjectSerializer::serializeCollection($offset, '', true);
-        }
         $queryParams['offset'] = $offset;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
@@ -636,11 +624,9 @@ class FormsApi
         if (!empty($clone_form_request)) {
             if ($headers['Content-Type'] === 'application/json') {
                 $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($clone_form_request));
-            } elseif (!is_array($clone_form_request)) {
-                $httpBody = (string) $clone_form_request;
             }
             else {
-                $httpBody = '';
+              $httpBody = (string) $clone_form_request;
             }
         }
 
@@ -806,11 +792,9 @@ class FormsApi
         );
         if ($headers['Content-Type'] === 'application/json') {
           $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($create_form_request));
-        } elseif (!is_array($create_form_request)) {
-          $httpBody = (string) $create_form_request;
         }
         else {
-          $httpBody = '';
+          $httpBody = (string) $create_form_request;
         }
 
 
@@ -1317,13 +1301,7 @@ class FormsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($offset)) {
-            $offset = ObjectSerializer::serializeCollection($offset, '', true);
-        }
         $queryParams['offset'] = $offset;
-        if (is_array($max_return)) {
-            $max_return = ObjectSerializer::serializeCollection($max_return, '', true);
-        }
         $queryParams['maxReturn'] = $max_return;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
@@ -1502,9 +1480,6 @@ class FormsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($status)) {
-            $status = ObjectSerializer::serializeCollection($status, '', true);
-        }
         $queryParams['status'] = $status;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
@@ -1688,17 +1663,8 @@ class FormsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($name)) {
-            $name = ObjectSerializer::serializeCollection($name, '', true);
-        }
         $queryParams['name'] = $name;
-        if (is_array($status)) {
-            $status = ObjectSerializer::serializeCollection($status, '', true);
-        }
         $queryParams['status'] = $status;
-        if (is_array($folder)) {
-            $folder = ObjectSerializer::serializeCollection($folder, '', true);
-        }
         $queryParams['folder'] = $folder;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
@@ -1870,9 +1836,6 @@ class FormsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($status)) {
-            $status = ObjectSerializer::serializeCollection($status, '', true);
-        }
         $queryParams['status'] = $status;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
@@ -2068,11 +2031,9 @@ class FormsApi
         );
         if ($headers['Content-Type'] === 'application/json') {
           $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($submit_button_request));
-        } elseif (!is_array($submit_button_request)) {
-          $httpBody = (string) $submit_button_request;
         }
         else {
-          $httpBody = '';
+          $httpBody = (string) $submit_button_request;
         }
 
 
@@ -2255,11 +2216,9 @@ class FormsApi
         );
         if ($headers['Content-Type'] === 'application/json') {
           $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($update_form_meta_data_request));
-        } elseif (!is_array($update_form_meta_data_request)) {
-          $httpBody = (string) $update_form_meta_data_request;
         }
         else {
-          $httpBody = '';
+          $httpBody = (string) $update_form_meta_data_request;
         }
 
 
@@ -2442,11 +2401,9 @@ class FormsApi
         );
         if ($headers['Content-Type'] === 'application/json') {
           $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($thank_you_page_request));
-        } elseif (!is_array($thank_you_page_request)) {
-          $httpBody = (string) $thank_you_page_request;
         }
         else {
-          $httpBody = '';
+          $httpBody = (string) $thank_you_page_request;
         }
 
 

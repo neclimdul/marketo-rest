@@ -444,11 +444,9 @@ class SmartCampaignsApi
         );
         if ($headers['Content-Type'] === 'application/json') {
           $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($clone_smart_campaign_request));
-        } elseif (!is_array($clone_smart_campaign_request)) {
-          $httpBody = (string) $clone_smart_campaign_request;
         }
         else {
-          $httpBody = '';
+          $httpBody = (string) $clone_smart_campaign_request;
         }
 
 
@@ -613,11 +611,9 @@ class SmartCampaignsApi
         );
         if ($headers['Content-Type'] === 'application/json') {
           $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($create_smart_campaign_request));
-        } elseif (!is_array($create_smart_campaign_request)) {
-          $httpBody = (string) $create_smart_campaign_request;
         }
         else {
-          $httpBody = '';
+          $httpBody = (string) $create_smart_campaign_request;
         }
 
 
@@ -1133,29 +1129,11 @@ class SmartCampaignsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($max_return)) {
-            $max_return = ObjectSerializer::serializeCollection($max_return, '', true);
-        }
         $queryParams['maxReturn'] = $max_return;
-        if (is_array($offset)) {
-            $offset = ObjectSerializer::serializeCollection($offset, '', true);
-        }
         $queryParams['offset'] = $offset;
-        if (is_array($folder)) {
-            $folder = ObjectSerializer::serializeCollection($folder, '', true);
-        }
         $queryParams['folder'] = $folder;
-        if (is_array($earliest_updated_at)) {
-            $earliest_updated_at = ObjectSerializer::serializeCollection($earliest_updated_at, '', true);
-        }
         $queryParams['earliestUpdatedAt'] = $earliest_updated_at;
-        if (is_array($latest_updated_at)) {
-            $latest_updated_at = ObjectSerializer::serializeCollection($latest_updated_at, '', true);
-        }
         $queryParams['latestUpdatedAt'] = $latest_updated_at;
-        if (is_array($is_active)) {
-            $is_active = ObjectSerializer::serializeCollection($is_active, '', true);
-        }
         $queryParams['isActive'] = $is_active;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
@@ -1490,9 +1468,6 @@ class SmartCampaignsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($name)) {
-            $name = ObjectSerializer::serializeCollection($name, '', true);
-        }
         $queryParams['name'] = $name;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
@@ -1664,9 +1639,6 @@ class SmartCampaignsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($include_rules)) {
-            $include_rules = ObjectSerializer::serializeCollection($include_rules, '', true);
-        }
         $queryParams['includeRules'] = $include_rules;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
@@ -1862,11 +1834,9 @@ class SmartCampaignsApi
         );
         if ($headers['Content-Type'] === 'application/json') {
           $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($update_smart_campaign_request));
-        } elseif (!is_array($update_smart_campaign_request)) {
-          $httpBody = (string) $update_smart_campaign_request;
         }
         else {
-          $httpBody = '';
+          $httpBody = (string) $update_smart_campaign_request;
         }
 
 

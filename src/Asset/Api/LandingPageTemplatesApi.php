@@ -444,11 +444,9 @@ class LandingPageTemplatesApi
         );
         if ($headers['Content-Type'] === 'application/json') {
           $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($clone_lp_template_request));
-        } elseif (!is_array($clone_lp_template_request)) {
-          $httpBody = (string) $clone_lp_template_request;
         }
         else {
-          $httpBody = '';
+          $httpBody = (string) $clone_lp_template_request;
         }
 
 
@@ -613,11 +611,9 @@ class LandingPageTemplatesApi
         );
         if ($headers['Content-Type'] === 'application/json') {
           $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($create_lp_template_request));
-        } elseif (!is_array($create_lp_template_request)) {
-          $httpBody = (string) $create_lp_template_request;
         }
         else {
-          $httpBody = '';
+          $httpBody = (string) $create_lp_template_request;
         }
 
 
@@ -1119,9 +1115,6 @@ class LandingPageTemplatesApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($status)) {
-            $status = ObjectSerializer::serializeCollection($status, '', true);
-        }
         $queryParams['status'] = $status;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
@@ -1295,9 +1288,6 @@ class LandingPageTemplatesApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($name)) {
-            $name = ObjectSerializer::serializeCollection($name, '', true);
-        }
         $queryParams['name'] = $name;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
@@ -1469,9 +1459,6 @@ class LandingPageTemplatesApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($status)) {
-            $status = ObjectSerializer::serializeCollection($status, '', true);
-        }
         $queryParams['status'] = $status;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
@@ -1654,21 +1641,9 @@ class LandingPageTemplatesApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($max_return)) {
-            $max_return = ObjectSerializer::serializeCollection($max_return, '', true);
-        }
         $queryParams['maxReturn'] = $max_return;
-        if (is_array($offset)) {
-            $offset = ObjectSerializer::serializeCollection($offset, '', true);
-        }
         $queryParams['offset'] = $offset;
-        if (is_array($status)) {
-            $status = ObjectSerializer::serializeCollection($status, '', true);
-        }
         $queryParams['status'] = $status;
-        if (is_array($folder)) {
-            $folder = ObjectSerializer::serializeCollection($folder, '', true);
-        }
         $queryParams['folder'] = $folder;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
@@ -2248,11 +2223,9 @@ class LandingPageTemplatesApi
         );
         if ($headers['Content-Type'] === 'application/json') {
           $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($update_lp_template_request));
-        } elseif (!is_array($update_lp_template_request)) {
-          $httpBody = (string) $update_lp_template_request;
         }
         else {
-          $httpBody = '';
+          $httpBody = (string) $update_lp_template_request;
         }
 
 

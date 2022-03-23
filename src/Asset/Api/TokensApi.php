@@ -276,11 +276,9 @@ class TokensApi
         );
         if ($headers['Content-Type'] === 'application/json') {
           $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($create_token_request));
-        } elseif (!is_array($create_token_request)) {
-          $httpBody = (string) $create_token_request;
         }
         else {
-          $httpBody = '';
+          $httpBody = (string) $create_token_request;
         }
 
 
@@ -463,11 +461,9 @@ class TokensApi
         );
         if ($headers['Content-Type'] === 'application/json') {
           $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($delete_token_request));
-        } elseif (!is_array($delete_token_request)) {
-          $httpBody = (string) $delete_token_request;
         }
         else {
-          $httpBody = '';
+          $httpBody = (string) $delete_token_request;
         }
 
 
@@ -633,9 +629,6 @@ class TokensApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($folder_type)) {
-            $folder_type = ObjectSerializer::serializeCollection($folder_type, '', true);
-        }
         $queryParams['folderType'] = $folder_type;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });

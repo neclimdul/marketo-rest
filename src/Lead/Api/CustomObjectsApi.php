@@ -276,11 +276,9 @@ class CustomObjectsApi
         );
         if ($headers['Content-Type'] === 'application/json') {
           $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($add_custom_object_type_fields_request));
-        } elseif (!is_array($add_custom_object_type_fields_request)) {
-          $httpBody = (string) $add_custom_object_type_fields_request;
         }
         else {
-          $httpBody = '';
+          $httpBody = (string) $add_custom_object_type_fields_request;
         }
 
 
@@ -631,11 +629,9 @@ class CustomObjectsApi
         );
         if ($headers['Content-Type'] === 'application/json') {
           $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($delete_custom_object_type_fields_request));
-        } elseif (!is_array($delete_custom_object_type_fields_request)) {
-          $httpBody = (string) $delete_custom_object_type_fields_request;
         }
         else {
-          $httpBody = '';
+          $httpBody = (string) $delete_custom_object_type_fields_request;
         }
 
 
@@ -982,11 +978,9 @@ class CustomObjectsApi
         if (!empty($delete_custom_object_request)) {
             if ($headers['Content-Type'] === 'application/json') {
                 $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($delete_custom_object_request));
-            } elseif (!is_array($delete_custom_object_request)) {
-                $httpBody = (string) $delete_custom_object_request;
             }
             else {
-                $httpBody = '';
+              $httpBody = (string) $delete_custom_object_request;
             }
         }
 
@@ -1153,9 +1147,6 @@ class CustomObjectsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($state)) {
-            $state = ObjectSerializer::serializeCollection($state, '', true);
-        }
         $queryParams['state'] = $state;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
@@ -2175,25 +2166,12 @@ class CustomObjectsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($filter_type)) {
-            $filter_type = ObjectSerializer::serializeCollection($filter_type, '', true);
-        }
         $queryParams['filterType'] = $filter_type;
-        if (is_array($filter_values)) {
-            $filter_values = ObjectSerializer::serializeCollection($filter_values, 'multi', true);
-        }
+        $filter_values = ObjectSerializer::serializeCollection($filter_values, 'multi', true);
         $queryParams['filterValues'] = $filter_values;
-        if (is_array($fields)) {
-            $fields = ObjectSerializer::serializeCollection($fields, 'multi', true);
-        }
+        $fields = ObjectSerializer::serializeCollection($fields, 'multi', true);
         $queryParams['fields'] = $fields;
-        if (is_array($batch_size)) {
-            $batch_size = ObjectSerializer::serializeCollection($batch_size, '', true);
-        }
         $queryParams['batchSize'] = $batch_size;
-        if (is_array($next_page_token)) {
-            $next_page_token = ObjectSerializer::serializeCollection($next_page_token, '', true);
-        }
         $queryParams['nextPageToken'] = $next_page_token;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
@@ -2212,11 +2190,9 @@ class CustomObjectsApi
         if (!empty($custom_object_lookup_request)) {
             if ($headers['Content-Type'] === 'application/json') {
                 $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($custom_object_lookup_request));
-            } elseif (!is_array($custom_object_lookup_request)) {
-                $httpBody = (string) $custom_object_lookup_request;
             }
             else {
-                $httpBody = '';
+              $httpBody = (string) $custom_object_lookup_request;
             }
         }
 
@@ -2377,13 +2353,8 @@ class CustomObjectsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($names)) {
-            $names = ObjectSerializer::serializeCollection($names, 'multi', true);
-        }
+        $names = ObjectSerializer::serializeCollection($names, 'multi', true);
         $queryParams['names'] = $names;
-        if (is_array($state)) {
-            $state = ObjectSerializer::serializeCollection($state, '', true);
-        }
         $queryParams['state'] = $state;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
@@ -2544,9 +2515,7 @@ class CustomObjectsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($names)) {
-            $names = ObjectSerializer::serializeCollection($names, 'multi', true);
-        }
+        $names = ObjectSerializer::serializeCollection($names, 'multi', true);
         $queryParams['names'] = $names;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
@@ -2717,11 +2686,9 @@ class CustomObjectsApi
         );
         if ($headers['Content-Type'] === 'application/json') {
           $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($sync_custom_object_type_request));
-        } elseif (!is_array($sync_custom_object_type_request)) {
-          $httpBody = (string) $sync_custom_object_type_request;
         }
         else {
-          $httpBody = '';
+          $httpBody = (string) $sync_custom_object_type_request;
         }
 
 
@@ -2904,11 +2871,9 @@ class CustomObjectsApi
         );
         if ($headers['Content-Type'] === 'application/json') {
           $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($sync_custom_object_request));
-        } elseif (!is_array($sync_custom_object_request)) {
-          $httpBody = (string) $sync_custom_object_request;
         }
         else {
-          $httpBody = '';
+          $httpBody = (string) $sync_custom_object_request;
         }
 
 
@@ -3107,11 +3072,9 @@ class CustomObjectsApi
         );
         if ($headers['Content-Type'] === 'application/json') {
           $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($update_custom_object_type_field_request));
-        } elseif (!is_array($update_custom_object_type_field_request)) {
-          $httpBody = (string) $update_custom_object_type_field_request;
         }
         else {
-          $httpBody = '';
+          $httpBody = (string) $update_custom_object_type_field_request;
         }
 
 

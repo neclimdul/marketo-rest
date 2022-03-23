@@ -258,11 +258,9 @@ class FoldersApi
         );
         if ($headers['Content-Type'] === 'application/json') {
           $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($create_folder_request));
-        } elseif (!is_array($create_folder_request)) {
-          $httpBody = (string) $create_folder_request;
         }
         else {
-          $httpBody = '';
+          $httpBody = (string) $create_folder_request;
         }
 
 
@@ -657,9 +655,6 @@ class FoldersApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($type)) {
-            $type = ObjectSerializer::serializeCollection($type, '', true);
-        }
         $queryParams['type'] = $type;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
@@ -848,21 +843,9 @@ class FoldersApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($name)) {
-            $name = ObjectSerializer::serializeCollection($name, '', true);
-        }
         $queryParams['name'] = $name;
-        if (is_array($type)) {
-            $type = ObjectSerializer::serializeCollection($type, '', true);
-        }
         $queryParams['type'] = $type;
-        if (is_array($root)) {
-            $root = ObjectSerializer::serializeCollection($root, '', true);
-        }
         $queryParams['root'] = $root;
-        if (is_array($work_space)) {
-            $work_space = ObjectSerializer::serializeCollection($work_space, '', true);
-        }
         $queryParams['workSpace'] = $work_space;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
@@ -1050,17 +1033,8 @@ class FoldersApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($max_return)) {
-            $max_return = ObjectSerializer::serializeCollection($max_return, '', true);
-        }
         $queryParams['maxReturn'] = $max_return;
-        if (is_array($offset)) {
-            $offset = ObjectSerializer::serializeCollection($offset, '', true);
-        }
         $queryParams['offset'] = $offset;
-        if (is_array($type)) {
-            $type = ObjectSerializer::serializeCollection($type, '', true);
-        }
         $queryParams['type'] = $type;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
@@ -1248,25 +1222,10 @@ class FoldersApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($root)) {
-            $root = ObjectSerializer::serializeCollection($root, '', true);
-        }
         $queryParams['root'] = $root;
-        if (is_array($max_depth)) {
-            $max_depth = ObjectSerializer::serializeCollection($max_depth, '', true);
-        }
         $queryParams['maxDepth'] = $max_depth;
-        if (is_array($max_return)) {
-            $max_return = ObjectSerializer::serializeCollection($max_return, '', true);
-        }
         $queryParams['maxReturn'] = $max_return;
-        if (is_array($offset)) {
-            $offset = ObjectSerializer::serializeCollection($offset, '', true);
-        }
         $queryParams['offset'] = $offset;
-        if (is_array($work_space)) {
-            $work_space = ObjectSerializer::serializeCollection($work_space, '', true);
-        }
         $queryParams['workSpace'] = $work_space;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
@@ -1455,11 +1414,9 @@ class FoldersApi
         );
         if ($headers['Content-Type'] === 'application/json') {
           $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($update_folder_request));
-        } elseif (!is_array($update_folder_request)) {
-          $httpBody = (string) $update_folder_request;
         }
         else {
-          $httpBody = '';
+          $httpBody = (string) $update_folder_request;
         }
 
 

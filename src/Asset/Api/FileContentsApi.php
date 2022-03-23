@@ -276,11 +276,9 @@ class FileContentsApi
         );
         if ($headers['Content-Type'] === 'application/json') {
           $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($request));
-        } elseif (!is_array($request)) {
-          $httpBody = (string) $request;
         }
         else {
-          $httpBody = '';
+          $httpBody = (string) $request;
         }
 
 

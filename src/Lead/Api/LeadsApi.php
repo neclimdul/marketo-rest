@@ -265,9 +265,6 @@ class LeadsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($cookie)) {
-            $cookie = ObjectSerializer::serializeCollection($cookie, '', true);
-        }
         $queryParams['cookie'] = $cookie;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
@@ -463,11 +460,9 @@ class LeadsApi
         );
         if ($headers['Content-Type'] === 'application/json') {
           $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($change_lead_program_status_request));
-        } elseif (!is_array($change_lead_program_status_request)) {
-          $httpBody = (string) $change_lead_program_status_request;
         }
         else {
-          $httpBody = '';
+          $httpBody = (string) $change_lead_program_status_request;
         }
 
 
@@ -632,11 +627,9 @@ class LeadsApi
         );
         if ($headers['Content-Type'] === 'application/json') {
           $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($create_lead_field_request));
-        } elseif (!is_array($create_lead_field_request)) {
-          $httpBody = (string) $create_lead_field_request;
         }
         else {
-          $httpBody = '';
+          $httpBody = (string) $create_lead_field_request;
         }
 
 
@@ -796,9 +789,7 @@ class LeadsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($id)) {
-            $id = ObjectSerializer::serializeCollection($id, 'multi', true);
-        }
+        $id = ObjectSerializer::serializeCollection($id, 'multi', true);
         $queryParams['id'] = $id;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
@@ -810,11 +801,9 @@ class LeadsApi
         if (!empty($delete_lead_request)) {
             if ($headers['Content-Type'] === 'application/json') {
                 $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($delete_lead_request));
-            } elseif (!is_array($delete_lead_request)) {
-                $httpBody = (string) $delete_lead_request;
             }
             else {
-                $httpBody = '';
+              $httpBody = (string) $delete_lead_request;
             }
         }
 
@@ -1431,9 +1420,7 @@ class LeadsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($fields)) {
-            $fields = ObjectSerializer::serializeCollection($fields, 'multi', true);
-        }
+        $fields = ObjectSerializer::serializeCollection($fields, 'multi', true);
         $queryParams['fields'] = $fields;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
@@ -1774,13 +1761,7 @@ class LeadsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($batch_size)) {
-            $batch_size = ObjectSerializer::serializeCollection($batch_size, '', true);
-        }
         $queryParams['batchSize'] = $batch_size;
-        if (is_array($next_page_token)) {
-            $next_page_token = ObjectSerializer::serializeCollection($next_page_token, '', true);
-        }
         $queryParams['nextPageToken'] = $next_page_token;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
@@ -2123,25 +2104,12 @@ class LeadsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($filter_type)) {
-            $filter_type = ObjectSerializer::serializeCollection($filter_type, '', true);
-        }
         $queryParams['filterType'] = $filter_type;
-        if (is_array($filter_values)) {
-            $filter_values = ObjectSerializer::serializeCollection($filter_values, 'multi', true);
-        }
+        $filter_values = ObjectSerializer::serializeCollection($filter_values, 'multi', true);
         $queryParams['filterValues'] = $filter_values;
-        if (is_array($fields)) {
-            $fields = ObjectSerializer::serializeCollection($fields, 'multi', true);
-        }
+        $fields = ObjectSerializer::serializeCollection($fields, 'multi', true);
         $queryParams['fields'] = $fields;
-        if (is_array($batch_size)) {
-            $batch_size = ObjectSerializer::serializeCollection($batch_size, '', true);
-        }
         $queryParams['batchSize'] = $batch_size;
-        if (is_array($next_page_token)) {
-            $next_page_token = ObjectSerializer::serializeCollection($next_page_token, '', true);
-        }
         $queryParams['nextPageToken'] = $next_page_token;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
@@ -2323,17 +2291,9 @@ class LeadsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($fields)) {
-            $fields = ObjectSerializer::serializeCollection($fields, 'multi', true);
-        }
+        $fields = ObjectSerializer::serializeCollection($fields, 'multi', true);
         $queryParams['fields'] = $fields;
-        if (is_array($batch_size)) {
-            $batch_size = ObjectSerializer::serializeCollection($batch_size, '', true);
-        }
         $queryParams['batchSize'] = $batch_size;
-        if (is_array($next_page_token)) {
-            $next_page_token = ObjectSerializer::serializeCollection($next_page_token, '', true);
-        }
         $queryParams['nextPageToken'] = $next_page_token;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
@@ -2517,13 +2477,7 @@ class LeadsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($next_page_token)) {
-            $next_page_token = ObjectSerializer::serializeCollection($next_page_token, '', true);
-        }
         $queryParams['nextPageToken'] = $next_page_token;
-        if (is_array($batch_size)) {
-            $batch_size = ObjectSerializer::serializeCollection($batch_size, '', true);
-        }
         $queryParams['batchSize'] = $batch_size;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
@@ -2727,29 +2681,12 @@ class LeadsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($next_page_token)) {
-            $next_page_token = ObjectSerializer::serializeCollection($next_page_token, '', true);
-        }
         $queryParams['nextPageToken'] = $next_page_token;
-        if (is_array($batch_size)) {
-            $batch_size = ObjectSerializer::serializeCollection($batch_size, '', true);
-        }
         $queryParams['batchSize'] = $batch_size;
-        if (is_array($earliest_updated_at)) {
-            $earliest_updated_at = ObjectSerializer::serializeCollection($earliest_updated_at, '', true);
-        }
         $queryParams['earliestUpdatedAt'] = $earliest_updated_at;
-        if (is_array($latest_updated_at)) {
-            $latest_updated_at = ObjectSerializer::serializeCollection($latest_updated_at, '', true);
-        }
         $queryParams['latestUpdatedAt'] = $latest_updated_at;
-        if (is_array($filter_type)) {
-            $filter_type = ObjectSerializer::serializeCollection($filter_type, '', true);
-        }
         $queryParams['filterType'] = $filter_type;
-        if (is_array($filter_values)) {
-            $filter_values = ObjectSerializer::serializeCollection($filter_values, 'multi', true);
-        }
+        $filter_values = ObjectSerializer::serializeCollection($filter_values, 'multi', true);
         $queryParams['filterValues'] = $filter_values;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
@@ -2943,21 +2880,9 @@ class LeadsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($next_page_token)) {
-            $next_page_token = ObjectSerializer::serializeCollection($next_page_token, '', true);
-        }
         $queryParams['nextPageToken'] = $next_page_token;
-        if (is_array($batch_size)) {
-            $batch_size = ObjectSerializer::serializeCollection($batch_size, '', true);
-        }
         $queryParams['batchSize'] = $batch_size;
-        if (is_array($earliest_updated_at)) {
-            $earliest_updated_at = ObjectSerializer::serializeCollection($earliest_updated_at, '', true);
-        }
         $queryParams['earliestUpdatedAt'] = $earliest_updated_at;
-        if (is_array($latest_updated_at)) {
-            $latest_updated_at = ObjectSerializer::serializeCollection($latest_updated_at, '', true);
-        }
         $queryParams['latestUpdatedAt'] = $latest_updated_at;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
@@ -3146,17 +3071,9 @@ class LeadsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($lead_id2)) {
-            $lead_id2 = ObjectSerializer::serializeCollection($lead_id2, '', true);
-        }
         $queryParams['leadId'] = $lead_id2;
-        if (is_array($lead_ids)) {
-            $lead_ids = ObjectSerializer::serializeCollection($lead_ids, 'multi', true);
-        }
+        $lead_ids = ObjectSerializer::serializeCollection($lead_ids, 'multi', true);
         $queryParams['leadIds'] = $lead_ids;
-        if (is_array($merge_in_crm)) {
-            $merge_in_crm = ObjectSerializer::serializeCollection($merge_in_crm, '', true);
-        }
         $queryParams['mergeInCRM'] = $merge_in_crm;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
@@ -3334,11 +3251,9 @@ class LeadsApi
         );
         if ($headers['Content-Type'] === 'application/json') {
           $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($push_lead_to_marketo_request));
-        } elseif (!is_array($push_lead_to_marketo_request)) {
-          $httpBody = (string) $push_lead_to_marketo_request;
         }
         else {
-          $httpBody = '';
+          $httpBody = (string) $push_lead_to_marketo_request;
         }
 
 
@@ -3503,11 +3418,9 @@ class LeadsApi
         );
         if ($headers['Content-Type'] === 'application/json') {
           $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($submit_form_request));
-        } elseif (!is_array($submit_form_request)) {
-          $httpBody = (string) $submit_form_request;
         }
         else {
-          $httpBody = '';
+          $httpBody = (string) $submit_form_request;
         }
 
 
@@ -3672,11 +3585,9 @@ class LeadsApi
         );
         if ($headers['Content-Type'] === 'application/json') {
           $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($sync_lead_request));
-        } elseif (!is_array($sync_lead_request)) {
-          $httpBody = (string) $sync_lead_request;
         }
         else {
-          $httpBody = '';
+          $httpBody = (string) $sync_lead_request;
         }
 
 
@@ -3859,11 +3770,9 @@ class LeadsApi
         );
         if ($headers['Content-Type'] === 'application/json') {
           $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($update_lead_field_request));
-        } elseif (!is_array($update_lead_field_request)) {
-          $httpBody = (string) $update_lead_field_request;
         }
         else {
-          $httpBody = '';
+          $httpBody = (string) $update_lead_field_request;
         }
 
 
@@ -4028,11 +3937,9 @@ class LeadsApi
         );
         if ($headers['Content-Type'] === 'application/json') {
           $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($update_lead_partition_request));
-        } elseif (!is_array($update_lead_partition_request)) {
-          $httpBody = (string) $update_lead_partition_request;
         }
         else {
-          $httpBody = '';
+          $httpBody = (string) $update_lead_partition_request;
         }
 
 

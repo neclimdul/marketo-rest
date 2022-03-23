@@ -264,9 +264,7 @@ class StaticListsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($id)) {
-            $id = ObjectSerializer::serializeCollection($id, 'multi', true);
-        }
+        $id = ObjectSerializer::serializeCollection($id, 'multi', true);
         $queryParams['id'] = $id;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
@@ -285,11 +283,9 @@ class StaticListsApi
         if (!empty($list_operation_request)) {
             if ($headers['Content-Type'] === 'application/json') {
                 $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($list_operation_request));
-            } elseif (!is_array($list_operation_request)) {
-                $httpBody = (string) $list_operation_request;
             }
             else {
-                $httpBody = '';
+              $httpBody = (string) $list_operation_request;
             }
         }
 
@@ -461,9 +457,7 @@ class StaticListsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($id)) {
-            $id = ObjectSerializer::serializeCollection($id, 'multi', true);
-        }
+        $id = ObjectSerializer::serializeCollection($id, 'multi', true);
         $queryParams['id'] = $id;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
@@ -482,11 +476,9 @@ class StaticListsApi
         if (!empty($list_operation_request)) {
             if ($headers['Content-Type'] === 'application/json') {
                 $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($list_operation_request));
-            } elseif (!is_array($list_operation_request)) {
-                $httpBody = (string) $list_operation_request;
             }
             else {
-                $httpBody = '';
+              $httpBody = (string) $list_operation_request;
             }
         }
 
@@ -663,17 +655,9 @@ class StaticListsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($fields)) {
-            $fields = ObjectSerializer::serializeCollection($fields, 'multi', true);
-        }
+        $fields = ObjectSerializer::serializeCollection($fields, 'multi', true);
         $queryParams['fields'] = $fields;
-        if (is_array($batch_size)) {
-            $batch_size = ObjectSerializer::serializeCollection($batch_size, '', true);
-        }
         $queryParams['batchSize'] = $batch_size;
-        if (is_array($next_page_token)) {
-            $next_page_token = ObjectSerializer::serializeCollection($next_page_token, '', true);
-        }
         $queryParams['nextPageToken'] = $next_page_token;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
@@ -862,17 +846,9 @@ class StaticListsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($fields)) {
-            $fields = ObjectSerializer::serializeCollection($fields, 'multi', true);
-        }
+        $fields = ObjectSerializer::serializeCollection($fields, 'multi', true);
         $queryParams['fields'] = $fields;
-        if (is_array($batch_size)) {
-            $batch_size = ObjectSerializer::serializeCollection($batch_size, '', true);
-        }
         $queryParams['batchSize'] = $batch_size;
-        if (is_array($next_page_token)) {
-            $next_page_token = ObjectSerializer::serializeCollection($next_page_token, '', true);
-        }
         $queryParams['nextPageToken'] = $next_page_token;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
@@ -1233,29 +1209,15 @@ class StaticListsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($id)) {
-            $id = ObjectSerializer::serializeCollection($id, 'multi', true);
-        }
+        $id = ObjectSerializer::serializeCollection($id, 'multi', true);
         $queryParams['id'] = $id;
-        if (is_array($name)) {
-            $name = ObjectSerializer::serializeCollection($name, 'multi', true);
-        }
+        $name = ObjectSerializer::serializeCollection($name, 'multi', true);
         $queryParams['name'] = $name;
-        if (is_array($program_name)) {
-            $program_name = ObjectSerializer::serializeCollection($program_name, 'multi', true);
-        }
+        $program_name = ObjectSerializer::serializeCollection($program_name, 'multi', true);
         $queryParams['programName'] = $program_name;
-        if (is_array($workspace_name)) {
-            $workspace_name = ObjectSerializer::serializeCollection($workspace_name, 'multi', true);
-        }
+        $workspace_name = ObjectSerializer::serializeCollection($workspace_name, 'multi', true);
         $queryParams['workspaceName'] = $workspace_name;
-        if (is_array($batch_size)) {
-            $batch_size = ObjectSerializer::serializeCollection($batch_size, '', true);
-        }
         $queryParams['batchSize'] = $batch_size;
-        if (is_array($next_page_token)) {
-            $next_page_token = ObjectSerializer::serializeCollection($next_page_token, '', true);
-        }
         $queryParams['nextPageToken'] = $next_page_token;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
@@ -1444,9 +1406,7 @@ class StaticListsApi
         $httpBody = '';
 
         // Query parameters.
-        if (is_array($id)) {
-            $id = ObjectSerializer::serializeCollection($id, 'multi', true);
-        }
+        $id = ObjectSerializer::serializeCollection($id, 'multi', true);
         $queryParams['id'] = $id;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
@@ -1463,11 +1423,9 @@ class StaticListsApi
         );
         if ($headers['Content-Type'] === 'application/json') {
           $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($list_operation_request));
-        } elseif (!is_array($list_operation_request)) {
-          $httpBody = (string) $list_operation_request;
         }
         else {
-          $httpBody = '';
+          $httpBody = (string) $list_operation_request;
         }
 
 
