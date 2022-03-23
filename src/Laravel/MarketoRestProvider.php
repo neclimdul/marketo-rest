@@ -62,11 +62,6 @@ class MarketoRestProvider extends ServiceProvider
      */
     protected $defer = true;
 
-    /**
-     * @var int
-     */
-    protected $timeout;
-
     public function boot(): void
     {
         // Publish config files.

@@ -53,7 +53,7 @@ class LeadsApi extends LeadsLeadsApi
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
-                function ($response) {
+                function (ResponseInterface $response) {
                     return $this->responseToReturn(
                         $response,
                         \NecLimDul\MarketoRest\Hacks\Model\ResponseOfSubmitForm::class
@@ -155,7 +155,7 @@ class LeadsApi extends LeadsLeadsApi
         array $headers = []
     ) {
         return ObjectSerializer::deserialize(
-            $returnType === '\SplFileObject' ? $responseBody : (string)$responseBody,
+            $returnType === \SplFileObject::class ? $responseBody : (string)$responseBody,
             $returnType,
             $headers
         );

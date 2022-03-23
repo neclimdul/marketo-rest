@@ -265,7 +265,7 @@ class ObjectSerializer
      *
      * @return string the header string
      */
-    public static function toString($value)
+    public static function toString($value): string
     {
         if ($value instanceof \DateTime) { // datetime in ISO8601 format
             return $value->format(self::$dateTimeFormat);
@@ -307,7 +307,7 @@ class ObjectSerializer
      * @return string
      * @throws \NecLimDul\MarketoRest\Lead\ApiException
      */
-    public static function serializeCollection(array $collection, $style, $allowCollectionFormatMulti = false)
+    public static function serializeCollection(array $collection, string $style, bool $allowCollectionFormatMulti = false): string
     {
         if ($allowCollectionFormatMulti && ('multi' === $style)) {
             // http_build_query() almost does the job for us. We just
@@ -511,14 +511,12 @@ class ObjectSerializer
         array $form,
         $body
     ): Request {
+
         $query = array_filter($query, function ($v) {
             return $v !== null;
         });
         $query = Query::build($query);
         $headers = array_filter($headers, function ($v) {
-            return $v !== null;
-        });
-        $form = array_filter($form, function ($v) {
             return $v !== null;
         });
         assert(empty($form) || empty($body), 'Form parameters will override body.');
