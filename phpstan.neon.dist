@@ -7,3 +7,5 @@ parameters:
 		- .
 	excludePaths:
 	  - vendor/*
+	ignoreErrors:
+		- '#Call to function is_array\(\) with .* will always evaluate to false.#'
