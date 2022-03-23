@@ -198,6 +198,18 @@ class ResponseOfIdentity implements ModelInterface, ArrayAccess, \JsonSerializab
     {
         $invalidProperties = [];
 
+        if ($this->container['access_token'] === null) {
+            $invalidProperties['access_token'] = "'access_token' can't be null";
+        }
+        if ($this->container['scope'] === null) {
+            $invalidProperties['scope'] = "'scope' can't be null";
+        }
+        if ($this->container['expires_in'] === null) {
+            $invalidProperties['expires_in'] = "'expires_in' can't be null";
+        }
+        if ($this->container['token_type'] === null) {
+            $invalidProperties['token_type'] = "'token_type' can't be null";
+        }
         $allowedValues = $this->getTokenTypeAllowableValues();
         if (!is_null($this->container['token_type']) && !in_array($this->container['token_type'], $allowedValues, true)) {
             $invalidProperties['token_type'] = sprintf(
@@ -232,9 +244,9 @@ class ResponseOfIdentity implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets access_token
      *
-     * @return string|null
+     * @return string
      */
-    public function getAccessToken(): ?string
+    public function getAccessToken(): string
     {
         return $this->container['access_token'];
     }
@@ -242,11 +254,11 @@ class ResponseOfIdentity implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets access_token
      *
-     * @param string|null $access_token access_token
+     * @param string $access_token The token that you pass with subsequent calls to authenticate with the target instance
      *
      * @return self<TKey, TValue>
      */
-    public function setAccessToken(?string $access_token): ResponseOfIdentity
+    public function setAccessToken(string $access_token): ResponseOfIdentity
     {
         $this->container['access_token'] = $access_token;
 
@@ -256,9 +268,9 @@ class ResponseOfIdentity implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets scope
      *
-     * @return string|null
+     * @return string
      */
-    public function getScope(): ?string
+    public function getScope(): string
     {
         return $this->container['scope'];
     }
@@ -266,11 +278,11 @@ class ResponseOfIdentity implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets scope
      *
-     * @param string|null $scope scope
+     * @param string $scope The owning API-only user of the custom service that was used to authenticate
      *
      * @return self<TKey, TValue>
      */
-    public function setScope(?string $scope): ResponseOfIdentity
+    public function setScope(string $scope): ResponseOfIdentity
     {
         $this->container['scope'] = $scope;
 
@@ -280,9 +292,9 @@ class ResponseOfIdentity implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets expires_in
      *
-     * @return int|null
+     * @return int
      */
-    public function getExpiresIn(): ?int
+    public function getExpiresIn(): int
     {
         return $this->container['expires_in'];
     }
@@ -290,11 +302,11 @@ class ResponseOfIdentity implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets expires_in
      *
-     * @param int|null $expires_in expires_in
+     * @param int $expires_in Remaining lifespan of the current token in seconds
      *
      * @return self<TKey, TValue>
      */
-    public function setExpiresIn(?int $expires_in): ResponseOfIdentity
+    public function setExpiresIn(int $expires_in): ResponseOfIdentity
     {
         $this->container['expires_in'] = $expires_in;
 
@@ -304,9 +316,9 @@ class ResponseOfIdentity implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets token_type
      *
-     * @return string|null
+     * @return string
      */
-    public function getTokenType(): ?string
+    public function getTokenType(): string
     {
         return $this->container['token_type'];
     }
@@ -314,14 +326,14 @@ class ResponseOfIdentity implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets token_type
      *
-     * @param string|null $token_type token_type
+     * @param string $token_type The OAuth authentication method
      *
      * @return self<TKey, TValue>
      */
-    public function setTokenType(?string $token_type): ResponseOfIdentity
+    public function setTokenType(string $token_type): ResponseOfIdentity
     {
         $allowedValues = $this->getTokenTypeAllowableValues();
-        if (!is_null($token_type) && !in_array($token_type, $allowedValues, true)) {
+        if (!in_array($token_type, $allowedValues, true)) {
             throw new \InvalidArgumentException(
                 sprintf(
                     "Invalid value '%s' for 'token_type', must be one of '%s'",

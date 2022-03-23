@@ -823,6 +823,186 @@ class ProgramsApi
     }
 
     /**
+     * Exception handler for deleteProgramTagUsingPOST.
+     *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function deleteProgramTagUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class,
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
+     * Delete Program Tag
+     *
+     * @param int $id
+     *   id
+     * @param string $tag_type
+     *   Type of program tag
+     *
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse
+     */
+    public function deleteProgramTagUsingPOST(
+        int $id,
+        string $tag_type
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse {
+        list($response) = $this->deleteProgramTagUsingPOSTWithHttpInfo($id, $tag_type);
+        return $response;
+    }
+
+    /**
+     * Delete Program Tag
+     *
+     * @param int $id
+     *   id
+     * @param string $tag_type
+     *   Type of program tag
+     *
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse,
+     *     int,
+     *     array<array<string>>
+     * }
+     */
+    public function deleteProgramTagUsingPOSTWithHttpInfo(
+        int $id,
+        string $tag_type
+    ): array {
+        $request = $this->deleteProgramTagUsingPOSTRequest($id, $tag_type);
+        try {
+            $response = $this->makeRequest($request);
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
+            );
+        } catch (ApiException $e) {
+            throw $this->deleteProgramTagUsingPOSTHandleException($e);
+        }
+    }
+
+    /**
+     * Delete Program Tag
+     *
+     * @param int $id
+     *   id
+     * @param string $tag_type
+     *   Type of program tag
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteProgramTagUsingPOSTAsync(
+        int $id,
+        string $tag_type
+    ): PromiseInterface {
+        return $this->deleteProgramTagUsingPOSTAsyncWithHttpInfo($id, $tag_type)
+            ->then(
+                function (array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Delete Program Tag
+     *
+     * @param int $id
+     *   id
+     * @param string $tag_type
+     *   Type of program tag
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteProgramTagUsingPOSTAsyncWithHttpInfo(
+        int $id,
+        string $tag_type
+    ): PromiseInterface {
+        $request = $this->deleteProgramTagUsingPOSTRequest($id, $tag_type);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class,
+            [$this, 'deleteProgramTagUsingPOSTHandleException']
+        );
+    }
+
+    /**
+     * Create request for operation 'deleteProgramTagUsingPOST'
+     *
+     * @param int $id
+     *   id
+     * @param string $tag_type
+     *   Type of program tag
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function deleteProgramTagUsingPOSTRequest(
+        int $id,
+        string $tag_type
+    ): Request {
+
+        $resourcePath = '/rest/asset/v1/program/{id}/tag/{tagType}/delete.json';
+        $resourcePath = str_replace(
+            '{' . 'id' . '}',
+            ObjectSerializer::toPathValue($id),
+            $resourcePath
+        );
+        $resourcePath = str_replace(
+            '{' . 'tagType' . '}',
+            ObjectSerializer::toPathValue($tag_type),
+            $resourcePath
+        );
+
+        $headers = [];
+        if ($this->config->getUserAgent()) {
+            $headers['User-Agent'] = $this->config->getUserAgent();
+        }
+        $headers = array_merge($headers, $this->headerSelector->selectHeaders(
+            ['application/json'],
+            ['application/x-www-form-urlencoded']
+        ));
+        $operationHost = $this->config->getHost();
+
+        // figure out header select logic.
+        return ObjectSerializer::createRequest(
+            'POST',
+            $operationHost . $resourcePath,
+            // Query.
+            [
+            ],
+            // Headers.
+            array_merge(
+                [
+                ],
+                $headers
+            ),
+            // Form Params
+            [
+            ],
+            ''
+        );
+    }
+
+    /**
      * Exception handler for deleteProgramUsingPOST.
      *
      * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
@@ -1856,6 +2036,202 @@ class ProgramsApi
             $operationHost . $resourcePath,
             // Query.
             [
+            ],
+            // Headers.
+            array_merge(
+                [
+                ],
+                $headers
+            ),
+            // Form Params
+            [
+            ],
+            ''
+        );
+    }
+
+    /**
+     * Exception handler for updateProgramTagUsingPOST.
+     *
+     * @param \NecLimDul\MarketoRest\Asset\ApiException $e Unprocessed exception.
+     *
+     * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
+     */
+    protected function updateProgramTagUsingPOSTHandleException(ApiException $e)
+    {
+        switch ($e->getCode()) {
+            case 200:
+                $e->setResponseObject(
+                    $this->deserializeResponseBody(
+                        $e->getResponseBody(),
+                        \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class,
+                        $e->getResponseHeaders()
+                    )
+                );
+                break;
+        }
+        return $e;
+    }
+
+    /**
+     * Update Program Tag
+     *
+     * @param int $id
+     *   id
+     * @param string $tag_type
+     *   Type of program tag
+     * @param string $tag_value
+     *   Value of program tag
+     *
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse
+     */
+    public function updateProgramTagUsingPOST(
+        int $id,
+        string $tag_type,
+        string $tag_value
+    ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse {
+        list($response) = $this->updateProgramTagUsingPOSTWithHttpInfo($id, $tag_type, $tag_value);
+        return $response;
+    }
+
+    /**
+     * Update Program Tag
+     *
+     * @param int $id
+     *   id
+     * @param string $tag_type
+     *   Type of program tag
+     * @param string $tag_value
+     *   Value of program tag
+     *
+     * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of the response, status code, and headers.
+     * @phpstan-return array{
+     *     \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse,
+     *     int,
+     *     array<array<string>>
+     * }
+     */
+    public function updateProgramTagUsingPOSTWithHttpInfo(
+        int $id,
+        string $tag_type,
+        string $tag_value
+    ): array {
+        $request = $this->updateProgramTagUsingPOSTRequest($id, $tag_type, $tag_value);
+        try {
+            $response = $this->makeRequest($request);
+            return $this->responseToReturn(
+                $response,
+                \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class
+            );
+        } catch (ApiException $e) {
+            throw $this->updateProgramTagUsingPOSTHandleException($e);
+        }
+    }
+
+    /**
+     * Update Program Tag
+     *
+     * @param int $id
+     *   id
+     * @param string $tag_type
+     *   Type of program tag
+     * @param string $tag_value
+     *   Value of program tag
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function updateProgramTagUsingPOSTAsync(
+        int $id,
+        string $tag_type,
+        string $tag_value
+    ): PromiseInterface {
+        return $this->updateProgramTagUsingPOSTAsyncWithHttpInfo($id, $tag_type, $tag_value)
+            ->then(
+                function (array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Update Program Tag
+     *
+     * @param int $id
+     *   id
+     * @param string $tag_type
+     *   Type of program tag
+     * @param string $tag_value
+     *   Value of program tag
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function updateProgramTagUsingPOSTAsyncWithHttpInfo(
+        int $id,
+        string $tag_type,
+        string $tag_value
+    ): PromiseInterface {
+        $request = $this->updateProgramTagUsingPOSTRequest($id, $tag_type, $tag_value);
+        return $this->makeAsyncRequest(
+            $request,
+            \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse::class,
+            [$this, 'updateProgramTagUsingPOSTHandleException']
+        );
+    }
+
+    /**
+     * Create request for operation 'updateProgramTagUsingPOST'
+     *
+     * @param int $id
+     *   id
+     * @param string $tag_type
+     *   Type of program tag
+     * @param string $tag_value
+     *   Value of program tag
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function updateProgramTagUsingPOSTRequest(
+        int $id,
+        string $tag_type,
+        string $tag_value
+    ): Request {
+
+        $resourcePath = '/rest/asset/v1/program/{id}/tag/{tagType}.json';
+        $resourcePath = str_replace(
+            '{' . 'id' . '}',
+            ObjectSerializer::toPathValue($id),
+            $resourcePath
+        );
+        $resourcePath = str_replace(
+            '{' . 'tagType' . '}',
+            ObjectSerializer::toPathValue($tag_type),
+            $resourcePath
+        );
+
+        $headers = [];
+        if ($this->config->getUserAgent()) {
+            $headers['User-Agent'] = $this->config->getUserAgent();
+        }
+        $headers = array_merge($headers, $this->headerSelector->selectHeaders(
+            ['application/json'],
+            ['application/x-www-form-urlencoded']
+        ));
+        $operationHost = $this->config->getHost();
+
+        // figure out header select logic.
+        return ObjectSerializer::createRequest(
+            'POST',
+            $operationHost . $resourcePath,
+            // Query.
+            [
+                'tagValue' => ObjectSerializer::toQueryValue($tag_value),
             ],
             // Headers.
             array_merge(

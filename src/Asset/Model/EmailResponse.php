@@ -79,6 +79,7 @@ class EmailResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'web_view' => 'bool',
         'workspace' => 'string',
         'auto_copy_to_text' => 'bool',
+        'is_open_tracking_disabled' => 'bool',
         'pre_header' => 'string',
         'cc_fields' => '\NecLimDul\MarketoRest\Asset\Model\EmailCCFields[]'
     ];
@@ -111,6 +112,7 @@ class EmailResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'web_view' => null,
         'workspace' => null,
         'auto_copy_to_text' => null,
+        'is_open_tracking_disabled' => null,
         'pre_header' => null,
         'cc_fields' => null
     ];
@@ -149,6 +151,7 @@ class EmailResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'web_view' => 'webView',
         'workspace' => 'workspace',
         'auto_copy_to_text' => 'autoCopyToText',
+        'is_open_tracking_disabled' => 'isOpenTrackingDisabled',
         'pre_header' => 'preHeader',
         'cc_fields' => 'ccFields'
     ];
@@ -179,6 +182,7 @@ class EmailResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'web_view' => 'setWebView',
         'workspace' => 'setWorkspace',
         'auto_copy_to_text' => 'setAutoCopyToText',
+        'is_open_tracking_disabled' => 'setIsOpenTrackingDisabled',
         'pre_header' => 'setPreHeader',
         'cc_fields' => 'setCcFields'
     ];
@@ -209,6 +213,7 @@ class EmailResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'web_view' => 'getWebView',
         'workspace' => 'getWorkspace',
         'auto_copy_to_text' => 'getAutoCopyToText',
+        'is_open_tracking_disabled' => 'getIsOpenTrackingDisabled',
         'pre_header' => 'getPreHeader',
         'cc_fields' => 'getCcFields'
     ];
@@ -248,6 +253,7 @@ class EmailResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['web_view'] = $data['web_view'] ?? null;
         $this->container['workspace'] = $data['workspace'] ?? null;
         $this->container['auto_copy_to_text'] = $data['auto_copy_to_text'] ?? null;
+        $this->container['is_open_tracking_disabled'] = $data['is_open_tracking_disabled'] ?? null;
         $this->container['pre_header'] = $data['pre_header'] ?? null;
         $this->container['cc_fields'] = $data['cc_fields'] ?? null;
     }
@@ -351,6 +357,9 @@ class EmailResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         }
         if ($this->container['auto_copy_to_text'] === null) {
             $invalidProperties['auto_copy_to_text'] = "'auto_copy_to_text' can't be null";
+        }
+        if ($this->container['is_open_tracking_disabled'] === null) {
+            $invalidProperties['is_open_tracking_disabled'] = "'is_open_tracking_disabled' can't be null";
         }
         if ($this->container['pre_header'] === null) {
             $invalidProperties['pre_header'] = "'pre_header' can't be null";
@@ -864,6 +873,30 @@ class EmailResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setAutoCopyToText(bool $auto_copy_to_text): EmailResponse
     {
         $this->container['auto_copy_to_text'] = $auto_copy_to_text;
+
+        return $this;
+    }
+
+    /**
+     * Gets is_open_tracking_disabled
+     *
+     * @return bool
+     */
+    public function getIsOpenTrackingDisabled(): bool
+    {
+        return $this->container['is_open_tracking_disabled'];
+    }
+
+    /**
+     * Sets is_open_tracking_disabled
+     *
+     * @param bool $is_open_tracking_disabled Whether 'Disable Open Tracking' function is enabled for the email
+     *
+     * @return self<TKey, TValue>
+     */
+    public function setIsOpenTrackingDisabled(bool $is_open_tracking_disabled): EmailResponse
+    {
+        $this->container['is_open_tracking_disabled'] = $is_open_tracking_disabled;
 
         return $this;
     }

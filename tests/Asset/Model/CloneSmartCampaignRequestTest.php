@@ -54,6 +54,7 @@ class CloneSmartCampaignRequestTest extends TestCase
         'description' => 'string',
         'folder' => '\NecLimDul\MarketoRest\Asset\Model\Folder',
         'name' => 'string',
+        'is_executable' => 'bool',
 ];
 
     /**
@@ -152,6 +153,7 @@ class CloneSmartCampaignRequestTest extends TestCase
         $this->assertEquals(null, $formats['description']);
         $this->assertEquals(null, $formats['folder']);
         $this->assertEquals(null, $formats['name']);
+        $this->assertEquals(null, $formats['is_executable']);
     }
 
     /**
@@ -163,6 +165,7 @@ class CloneSmartCampaignRequestTest extends TestCase
         $this->assertEquals('description', $formats['description']);
         $this->assertEquals('folder', $formats['folder']);
         $this->assertEquals('name', $formats['name']);
+        $this->assertEquals('isExecutable', $formats['is_executable']);
     }
 
     /**
@@ -342,5 +345,44 @@ class CloneSmartCampaignRequestTest extends TestCase
         $this->sot['name'] = $v;
         $this->assertEquals($v, $this->sot['name']);
         $this->assertTrue(isset($this->sot['name']));
+    }
+
+    /**
+     * Test attribute "is_executable"
+     *
+     * @covers ::__construct
+     * @covers ::getIsExecutable
+     * @covers ::setIsExecutable
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
+     */
+    public function testPropertyIsExecutable(): void
+    {
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['is_executable'],
+            $this->allowedValues['is_executable'] ?? null
+        );
+        $this->sot->setIsExecutable($v);
+        $this->assertEquals($v, $this->sot->getIsExecutable());
+        $this->sot->setIsExecutable(null);
+        $this->assertNull($this->sot->getIsExecutable());
+        $this->sot->setIsExecutable($v);
+
+        $this->assertEquals($v, $this->sot['is_executable']);
+        $v = $this->getFakeValue(
+            $this->types['is_executable'],
+            $this->allowedValues['is_executable'] ?? null
+        );
+        $this->sot['is_executable'] = $v;
+        $this->assertEquals($v, $this->sot['is_executable']);
+        $this->assertTrue(isset($this->sot['is_executable']));
+        unset($this->sot['is_executable']);
+        $this->assertFalse(isset($this->sot['is_executable']));
+        $this->sot['is_executable'] = $v;
+        $this->assertEquals($v, $this->sot['is_executable']);
+        $this->assertTrue(isset($this->sot['is_executable']));
     }
 }

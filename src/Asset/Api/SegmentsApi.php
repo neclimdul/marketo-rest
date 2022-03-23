@@ -140,15 +140,21 @@ class SegmentsApi
      *
      * @param string|null $status
      *   Status filter for draft or approved versions
+     * @param int|null $offset
+     *   Integer offset for paging
+     * @param int|null $max_return
+     *   Maximum number of channels to return.  Max 200, default 20
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Asset\Model\ResponseOfSegmentationResponse
      */
     public function getSegmentationUsingGET(
-        string $status = null
+        string $status = null,
+        int $offset = null,
+        int $max_return = null
     ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfSegmentationResponse {
-        list($response) = $this->getSegmentationUsingGETWithHttpInfo($status);
+        list($response) = $this->getSegmentationUsingGETWithHttpInfo($status, $offset, $max_return);
         return $response;
     }
 
@@ -157,6 +163,10 @@ class SegmentsApi
      *
      * @param string|null $status
      *   Status filter for draft or approved versions
+     * @param int|null $offset
+     *   Integer offset for paging
+     * @param int|null $max_return
+     *   Maximum number of channels to return.  Max 200, default 20
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -168,9 +178,11 @@ class SegmentsApi
      * }
      */
     public function getSegmentationUsingGETWithHttpInfo(
-        string $status = null
+        string $status = null,
+        int $offset = null,
+        int $max_return = null
     ): array {
-        $request = $this->getSegmentationUsingGETRequest($status);
+        $request = $this->getSegmentationUsingGETRequest($status, $offset, $max_return);
         try {
             $response = $this->makeRequest($request);
             return $this->responseToReturn(
@@ -187,14 +199,20 @@ class SegmentsApi
      *
      * @param string|null $status
      *   Status filter for draft or approved versions
+     * @param int|null $offset
+     *   Integer offset for paging
+     * @param int|null $max_return
+     *   Maximum number of channels to return.  Max 200, default 20
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function getSegmentationUsingGETAsync(
-        string $status = null
+        string $status = null,
+        int $offset = null,
+        int $max_return = null
     ): PromiseInterface {
-        return $this->getSegmentationUsingGETAsyncWithHttpInfo($status)
+        return $this->getSegmentationUsingGETAsyncWithHttpInfo($status, $offset, $max_return)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfSegmentationResponse {
                     return $response[0];
@@ -207,14 +225,20 @@ class SegmentsApi
      *
      * @param string|null $status
      *   Status filter for draft or approved versions
+     * @param int|null $offset
+     *   Integer offset for paging
+     * @param int|null $max_return
+     *   Maximum number of channels to return.  Max 200, default 20
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function getSegmentationUsingGETAsyncWithHttpInfo(
-        string $status = null
+        string $status = null,
+        int $offset = null,
+        int $max_return = null
     ): PromiseInterface {
-        $request = $this->getSegmentationUsingGETRequest($status);
+        $request = $this->getSegmentationUsingGETRequest($status, $offset, $max_return);
         return $this->makeAsyncRequest(
             $request,
             \NecLimDul\MarketoRest\Asset\Model\ResponseOfSegmentationResponse::class,
@@ -227,12 +251,18 @@ class SegmentsApi
      *
      * @param string|null $status
      *   Status filter for draft or approved versions
+     * @param int|null $offset
+     *   Integer offset for paging
+     * @param int|null $max_return
+     *   Maximum number of channels to return.  Max 200, default 20
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
     public function getSegmentationUsingGETRequest(
-        string $status = null
+        string $status = null,
+        int $offset = null,
+        int $max_return = null
     ): Request {
 
         $resourcePath = '/rest/asset/v1/segmentation.json';
@@ -254,6 +284,8 @@ class SegmentsApi
             // Query.
             [
                 'status' => ObjectSerializer::toQueryValue($status),
+                'offset' => ObjectSerializer::toQueryValue($offset),
+                'maxReturn' => ObjectSerializer::toQueryValue($max_return),
             ],
             // Headers.
             array_merge(
@@ -298,10 +330,6 @@ class SegmentsApi
      *   id
      * @param string|null $status
      *   Status filter for draft or approved versions
-     * @param int|null $offset
-     *   Integer offset for paging
-     * @param int|null $max_return
-     *   Maximum number of channels to return.  Max 200, default 20
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -309,11 +337,9 @@ class SegmentsApi
      */
     public function getSegmentsForSegmentationUsingGET(
         int $id,
-        string $status = null,
-        int $offset = null,
-        int $max_return = null
+        string $status = null
     ): \NecLimDul\MarketoRest\Asset\Model\ResponseOfSegmentsResponse {
-        list($response) = $this->getSegmentsForSegmentationUsingGETWithHttpInfo($id, $status, $offset, $max_return);
+        list($response) = $this->getSegmentsForSegmentationUsingGETWithHttpInfo($id, $status);
         return $response;
     }
 
@@ -324,10 +350,6 @@ class SegmentsApi
      *   id
      * @param string|null $status
      *   Status filter for draft or approved versions
-     * @param int|null $offset
-     *   Integer offset for paging
-     * @param int|null $max_return
-     *   Maximum number of channels to return.  Max 200, default 20
      *
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -340,11 +362,9 @@ class SegmentsApi
      */
     public function getSegmentsForSegmentationUsingGETWithHttpInfo(
         int $id,
-        string $status = null,
-        int $offset = null,
-        int $max_return = null
+        string $status = null
     ): array {
-        $request = $this->getSegmentsForSegmentationUsingGETRequest($id, $status, $offset, $max_return);
+        $request = $this->getSegmentsForSegmentationUsingGETRequest($id, $status);
         try {
             $response = $this->makeRequest($request);
             return $this->responseToReturn(
@@ -363,21 +383,15 @@ class SegmentsApi
      *   id
      * @param string|null $status
      *   Status filter for draft or approved versions
-     * @param int|null $offset
-     *   Integer offset for paging
-     * @param int|null $max_return
-     *   Maximum number of channels to return.  Max 200, default 20
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function getSegmentsForSegmentationUsingGETAsync(
         int $id,
-        string $status = null,
-        int $offset = null,
-        int $max_return = null
+        string $status = null
     ): PromiseInterface {
-        return $this->getSegmentsForSegmentationUsingGETAsyncWithHttpInfo($id, $status, $offset, $max_return)
+        return $this->getSegmentsForSegmentationUsingGETAsyncWithHttpInfo($id, $status)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Asset\Model\ResponseOfSegmentsResponse {
                     return $response[0];
@@ -392,21 +406,15 @@ class SegmentsApi
      *   id
      * @param string|null $status
      *   Status filter for draft or approved versions
-     * @param int|null $offset
-     *   Integer offset for paging
-     * @param int|null $max_return
-     *   Maximum number of channels to return.  Max 200, default 20
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function getSegmentsForSegmentationUsingGETAsyncWithHttpInfo(
         int $id,
-        string $status = null,
-        int $offset = null,
-        int $max_return = null
+        string $status = null
     ): PromiseInterface {
-        $request = $this->getSegmentsForSegmentationUsingGETRequest($id, $status, $offset, $max_return);
+        $request = $this->getSegmentsForSegmentationUsingGETRequest($id, $status);
         return $this->makeAsyncRequest(
             $request,
             \NecLimDul\MarketoRest\Asset\Model\ResponseOfSegmentsResponse::class,
@@ -421,19 +429,13 @@ class SegmentsApi
      *   id
      * @param string|null $status
      *   Status filter for draft or approved versions
-     * @param int|null $offset
-     *   Integer offset for paging
-     * @param int|null $max_return
-     *   Maximum number of channels to return.  Max 200, default 20
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
     public function getSegmentsForSegmentationUsingGETRequest(
         int $id,
-        string $status = null,
-        int $offset = null,
-        int $max_return = null
+        string $status = null
     ): Request {
 
         $resourcePath = '/rest/asset/v1/segmentation/{id}/segments.json';
@@ -460,8 +462,6 @@ class SegmentsApi
             // Query.
             [
                 'status' => ObjectSerializer::toQueryValue($status),
-                'offset' => ObjectSerializer::toQueryValue($offset),
-                'maxReturn' => ObjectSerializer::toQueryValue($max_return),
             ],
             // Headers.
             array_merge(

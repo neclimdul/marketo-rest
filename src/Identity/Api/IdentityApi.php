@@ -138,40 +138,35 @@ class IdentityApi
     /**
      * Identity
      *
-     * @param string $client_id
+     * @param string|null $client_id
      *   Client ID from Admin &gt; Integration &gt; Launchpoint menu.
-     * @param string $client_secret
+     * @param string|null $client_secret
      *   Client Secret from Admin &gt; Integration &gt; Launchpoint menu.
-     * @param string $grant_type
+     * @param string|null $grant_type
      *   Grant type.
-     * @param string|null $partner_id
-     *   LaunchPoint Technology Partner &lt;a href&#x3D;&#39;http://developers.marketo.com/support/Marketo_LaunchPoint_Technology_Partner_API_Key.pdf&#39;&gt;API Key&lt;/a&gt;.
      *
      * @throws \NecLimDul\MarketoRest\Identity\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \NecLimDul\MarketoRest\Identity\Model\ResponseOfIdentity
      */
     public function identityUsingGET(
-        string $client_id,
-        string $client_secret,
-        string $grant_type,
-        string $partner_id = null
+        string $client_id = null,
+        string $client_secret = null,
+        string $grant_type = null
     ): \NecLimDul\MarketoRest\Identity\Model\ResponseOfIdentity {
-        list($response) = $this->identityUsingGETWithHttpInfo($client_id, $client_secret, $grant_type, $partner_id);
+        list($response) = $this->identityUsingGETWithHttpInfo($client_id, $client_secret, $grant_type);
         return $response;
     }
 
     /**
      * Identity
      *
-     * @param string $client_id
+     * @param string|null $client_id
      *   Client ID from Admin &gt; Integration &gt; Launchpoint menu.
-     * @param string $client_secret
+     * @param string|null $client_secret
      *   Client Secret from Admin &gt; Integration &gt; Launchpoint menu.
-     * @param string $grant_type
+     * @param string|null $grant_type
      *   Grant type.
-     * @param string|null $partner_id
-     *   LaunchPoint Technology Partner &lt;a href&#x3D;&#39;http://developers.marketo.com/support/Marketo_LaunchPoint_Technology_Partner_API_Key.pdf&#39;&gt;API Key&lt;/a&gt;.
      *
      * @throws \NecLimDul\MarketoRest\Identity\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -183,12 +178,11 @@ class IdentityApi
      * }
      */
     public function identityUsingGETWithHttpInfo(
-        string $client_id,
-        string $client_secret,
-        string $grant_type,
-        string $partner_id = null
+        string $client_id = null,
+        string $client_secret = null,
+        string $grant_type = null
     ): array {
-        $request = $this->identityUsingGETRequest($client_id, $client_secret, $grant_type, $partner_id);
+        $request = $this->identityUsingGETRequest($client_id, $client_secret, $grant_type);
         try {
             $response = $this->makeRequest($request);
             return $this->responseToReturn(
@@ -203,25 +197,22 @@ class IdentityApi
     /**
      * Identity
      *
-     * @param string $client_id
+     * @param string|null $client_id
      *   Client ID from Admin &gt; Integration &gt; Launchpoint menu.
-     * @param string $client_secret
+     * @param string|null $client_secret
      *   Client Secret from Admin &gt; Integration &gt; Launchpoint menu.
-     * @param string $grant_type
+     * @param string|null $grant_type
      *   Grant type.
-     * @param string|null $partner_id
-     *   LaunchPoint Technology Partner &lt;a href&#x3D;&#39;http://developers.marketo.com/support/Marketo_LaunchPoint_Technology_Partner_API_Key.pdf&#39;&gt;API Key&lt;/a&gt;.
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function identityUsingGETAsync(
-        string $client_id,
-        string $client_secret,
-        string $grant_type,
-        string $partner_id = null
+        string $client_id = null,
+        string $client_secret = null,
+        string $grant_type = null
     ): PromiseInterface {
-        return $this->identityUsingGETAsyncWithHttpInfo($client_id, $client_secret, $grant_type, $partner_id)
+        return $this->identityUsingGETAsyncWithHttpInfo($client_id, $client_secret, $grant_type)
             ->then(
                 function (array $response): \NecLimDul\MarketoRest\Identity\Model\ResponseOfIdentity {
                     return $response[0];
@@ -232,25 +223,22 @@ class IdentityApi
     /**
      * Identity
      *
-     * @param string $client_id
+     * @param string|null $client_id
      *   Client ID from Admin &gt; Integration &gt; Launchpoint menu.
-     * @param string $client_secret
+     * @param string|null $client_secret
      *   Client Secret from Admin &gt; Integration &gt; Launchpoint menu.
-     * @param string $grant_type
+     * @param string|null $grant_type
      *   Grant type.
-     * @param string|null $partner_id
-     *   LaunchPoint Technology Partner &lt;a href&#x3D;&#39;http://developers.marketo.com/support/Marketo_LaunchPoint_Technology_Partner_API_Key.pdf&#39;&gt;API Key&lt;/a&gt;.
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function identityUsingGETAsyncWithHttpInfo(
-        string $client_id,
-        string $client_secret,
-        string $grant_type,
-        string $partner_id = null
+        string $client_id = null,
+        string $client_secret = null,
+        string $grant_type = null
     ): PromiseInterface {
-        $request = $this->identityUsingGETRequest($client_id, $client_secret, $grant_type, $partner_id);
+        $request = $this->identityUsingGETRequest($client_id, $client_secret, $grant_type);
         return $this->makeAsyncRequest(
             $request,
             \NecLimDul\MarketoRest\Identity\Model\ResponseOfIdentity::class,
@@ -261,23 +249,20 @@ class IdentityApi
     /**
      * Create request for operation 'identityUsingGET'
      *
-     * @param string $client_id
+     * @param string|null $client_id
      *   Client ID from Admin &gt; Integration &gt; Launchpoint menu.
-     * @param string $client_secret
+     * @param string|null $client_secret
      *   Client Secret from Admin &gt; Integration &gt; Launchpoint menu.
-     * @param string $grant_type
+     * @param string|null $grant_type
      *   Grant type.
-     * @param string|null $partner_id
-     *   LaunchPoint Technology Partner &lt;a href&#x3D;&#39;http://developers.marketo.com/support/Marketo_LaunchPoint_Technology_Partner_API_Key.pdf&#39;&gt;API Key&lt;/a&gt;.
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
     public function identityUsingGETRequest(
-        string $client_id,
-        string $client_secret,
-        string $grant_type,
-        string $partner_id = null
+        string $client_id = null,
+        string $client_secret = null,
+        string $grant_type = null
     ): Request {
 
         $resourcePath = '/identity/oauth/token';
@@ -301,7 +286,6 @@ class IdentityApi
                 'client_id' => ObjectSerializer::toQueryValue($client_id),
                 'client_secret' => ObjectSerializer::toQueryValue($client_secret),
                 'grant_type' => ObjectSerializer::toQueryValue($grant_type),
-                'partner_id' => ObjectSerializer::toQueryValue($partner_id),
             ],
             // Headers.
             array_merge(

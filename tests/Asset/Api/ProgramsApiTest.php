@@ -86,6 +86,17 @@ class ProgramsApiTest extends TestCase
     }
 
     /**
+     * Delete Program Tag.
+     *
+     * @covers ::deleteProgramTagUsingPOST
+     */
+    public function testDeleteProgramTagUsingPOST(): void
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Delete Program.
      *
      * @covers ::deleteProgramUsingPOST
@@ -146,6 +157,17 @@ class ProgramsApiTest extends TestCase
      * @covers ::unapproveProgramUsingPOST
      */
     public function testUnapproveProgramUsingPOST(): void
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Update Program Tag.
+     *
+     * @covers ::updateProgramTagUsingPOST
+     */
+    public function testUpdateProgramTagUsingPOST(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

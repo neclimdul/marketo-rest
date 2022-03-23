@@ -59,7 +59,8 @@ class CloneSmartCampaignRequest implements ModelInterface, ArrayAccess, \JsonSer
     protected static $swaggerTypes = [
         'description' => 'string',
         'folder' => '\NecLimDul\MarketoRest\Asset\Model\Folder',
-        'name' => 'string'
+        'name' => 'string',
+        'is_executable' => 'bool'
     ];
 
     /**
@@ -72,7 +73,8 @@ class CloneSmartCampaignRequest implements ModelInterface, ArrayAccess, \JsonSer
     protected static $swaggerFormats = [
         'description' => null,
         'folder' => null,
-        'name' => null
+        'name' => null,
+        'is_executable' => null
     ];
 
     /**
@@ -91,7 +93,8 @@ class CloneSmartCampaignRequest implements ModelInterface, ArrayAccess, \JsonSer
     protected static $attributeMap = [
         'description' => 'description',
         'folder' => 'folder',
-        'name' => 'name'
+        'name' => 'name',
+        'is_executable' => 'isExecutable'
     ];
 
     /**
@@ -102,7 +105,8 @@ class CloneSmartCampaignRequest implements ModelInterface, ArrayAccess, \JsonSer
     protected static $setters = [
         'description' => 'setDescription',
         'folder' => 'setFolder',
-        'name' => 'setName'
+        'name' => 'setName',
+        'is_executable' => 'setIsExecutable'
     ];
 
     /**
@@ -113,7 +117,8 @@ class CloneSmartCampaignRequest implements ModelInterface, ArrayAccess, \JsonSer
     protected static $getters = [
         'description' => 'getDescription',
         'folder' => 'getFolder',
-        'name' => 'getName'
+        'name' => 'getName',
+        'is_executable' => 'getIsExecutable'
     ];
 
     /**
@@ -134,6 +139,7 @@ class CloneSmartCampaignRequest implements ModelInterface, ArrayAccess, \JsonSer
         $this->container['description'] = $data['description'] ?? null;
         $this->container['folder'] = $data['folder'] ?? null;
         $this->container['name'] = $data['name'] ?? null;
+        $this->container['is_executable'] = $data['is_executable'] ?? null;
     }
 
     /**
@@ -276,6 +282,30 @@ class CloneSmartCampaignRequest implements ModelInterface, ArrayAccess, \JsonSer
     public function setName(string $name): CloneSmartCampaignRequest
     {
         $this->container['name'] = $name;
+
+        return $this;
+    }
+
+    /**
+     * Gets is_executable
+     *
+     * @return bool|null
+     */
+    public function getIsExecutable(): ?bool
+    {
+        return $this->container['is_executable'];
+    }
+
+    /**
+     * Sets is_executable
+     *
+     * @param bool|null $is_executable Whether smart campaign is executable.  Defaults to false
+     *
+     * @return self<TKey, TValue>
+     */
+    public function setIsExecutable(?bool $is_executable): CloneSmartCampaignRequest
+    {
+        $this->container['is_executable'] = $is_executable;
 
         return $this;
     }

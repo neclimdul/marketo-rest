@@ -251,7 +251,7 @@ class ExportActivityRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets fields
      *
-     * @param string[] $fields Array of strings containing field values.  Used to reduce the number of fields contained in export file.  Select one or more of: marketoGUID, leadId, activityDate, activityTypeId, campaignId, primaryAttributeValueId, primaryAttributeValue
+     * @param string[] $fields Array of strings containing field values.  Used to reduce the number of fields contained in export file.  Select one or more of: marketoGUID, leadId, activityDate, activityTypeId, campaignId, primaryAttributeValueId, primaryAttributeValue, actionResult
      *
      * @return self<TKey, TValue>
      */

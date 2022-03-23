@@ -21,5 +21,6 @@ Name | Type | Description | Notes
 **updated_at** | [**\DateTime**](\DateTime.md) | Datetime the asset was most recently updated | [optional] 
 **url** | **string** | Url of the asset in the Marketo UI | [optional] 
 **workspace** | **string** | Name of the workspace | [optional] 
+**head_start** | **bool** | Whether &#39;Head Start&#39; function is enabled for the program | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

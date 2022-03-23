@@ -71,6 +71,7 @@ class EmailResponseTest extends TestCase
         'web_view' => 'bool',
         'workspace' => 'string',
         'auto_copy_to_text' => 'bool',
+        'is_open_tracking_disabled' => 'bool',
         'pre_header' => 'string',
         'cc_fields' => '\NecLimDul\MarketoRest\Asset\Model\EmailCCFields[]',
 ];
@@ -192,6 +193,7 @@ class EmailResponseTest extends TestCase
         $this->assertEquals(null, $formats['web_view']);
         $this->assertEquals(null, $formats['workspace']);
         $this->assertEquals(null, $formats['auto_copy_to_text']);
+        $this->assertEquals(null, $formats['is_open_tracking_disabled']);
         $this->assertEquals(null, $formats['pre_header']);
         $this->assertEquals(null, $formats['cc_fields']);
     }
@@ -222,6 +224,7 @@ class EmailResponseTest extends TestCase
         $this->assertEquals('webView', $formats['web_view']);
         $this->assertEquals('workspace', $formats['workspace']);
         $this->assertEquals('autoCopyToText', $formats['auto_copy_to_text']);
+        $this->assertEquals('isOpenTrackingDisabled', $formats['is_open_tracking_disabled']);
         $this->assertEquals('preHeader', $formats['pre_header']);
         $this->assertEquals('ccFields', $formats['cc_fields']);
     }
@@ -1036,6 +1039,42 @@ class EmailResponseTest extends TestCase
         $this->sot['auto_copy_to_text'] = $v;
         $this->assertEquals($v, $this->sot['auto_copy_to_text']);
         $this->assertTrue(isset($this->sot['auto_copy_to_text']));
+    }
+
+    /**
+     * Test attribute "is_open_tracking_disabled"
+     *
+     * @covers ::__construct
+     * @covers ::getIsOpenTrackingDisabled
+     * @covers ::setIsOpenTrackingDisabled
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
+     */
+    public function testPropertyIsOpenTrackingDisabled(): void
+    {
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['is_open_tracking_disabled'],
+            $this->allowedValues['is_open_tracking_disabled'] ?? null
+        );
+        $this->sot->setIsOpenTrackingDisabled($v);
+        $this->assertEquals($v, $this->sot->getIsOpenTrackingDisabled());
+
+        $this->assertEquals($v, $this->sot['is_open_tracking_disabled']);
+        $v = $this->getFakeValue(
+            $this->types['is_open_tracking_disabled'],
+            $this->allowedValues['is_open_tracking_disabled'] ?? null
+        );
+        $this->sot['is_open_tracking_disabled'] = $v;
+        $this->assertEquals($v, $this->sot['is_open_tracking_disabled']);
+        $this->assertTrue(isset($this->sot['is_open_tracking_disabled']));
+        unset($this->sot['is_open_tracking_disabled']);
+        $this->assertFalse(isset($this->sot['is_open_tracking_disabled']));
+        $this->sot['is_open_tracking_disabled'] = $v;
+        $this->assertEquals($v, $this->sot['is_open_tracking_disabled']);
+        $this->assertTrue(isset($this->sot['is_open_tracking_disabled']));
     }
 
     /**

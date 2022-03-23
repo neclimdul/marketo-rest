@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 
 # **getSegmentationUsingGET**
-> \NecLimDul\MarketoRest\Asset\Model\ResponseOfSegmentationResponse getSegmentationUsingGET($status)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfSegmentationResponse getSegmentationUsingGET($status, $offset, $max_return)
 
 Get Segmentations
 
@@ -26,9 +26,11 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\SegmentsApi(
     new GuzzleHttp\Client()
 );
 $status = "status_example"; // string | Status filter for draft or approved versions
+$offset = 56; // int | Integer offset for paging
+$max_return = 56; // int | Maximum number of channels to return.  Max 200, default 20
 
 try {
-    $result = $apiInstance->getSegmentationUsingGET($status);
+    $result = $apiInstance->getSegmentationUsingGET($status, $offset, $max_return);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling SegmentsApi->getSegmentationUsingGET: ', $e->getMessage(), PHP_EOL;
@@ -41,6 +43,8 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **status** | **string**| Status filter for draft or approved versions | [optional]
+ **offset** | **int**| Integer offset for paging | [optional]
+ **max_return** | **int**| Maximum number of channels to return.  Max 200, default 20 | [optional]
 
 ### Return type
 
@@ -58,7 +62,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getSegmentsForSegmentationUsingGET**
-> \NecLimDul\MarketoRest\Asset\Model\ResponseOfSegmentsResponse getSegmentsForSegmentationUsingGET($id, $status, $offset, $max_return)
+> \NecLimDul\MarketoRest\Asset\Model\ResponseOfSegmentsResponse getSegmentsForSegmentationUsingGET($id, $status)
 
 Get Segments For Segmentation
 
@@ -76,11 +80,9 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\SegmentsApi(
 );
 $id = 56; // int | id
 $status = "status_example"; // string | Status filter for draft or approved versions
-$offset = 56; // int | Integer offset for paging
-$max_return = 56; // int | Maximum number of channels to return.  Max 200, default 20
 
 try {
-    $result = $apiInstance->getSegmentsForSegmentationUsingGET($id, $status, $offset, $max_return);
+    $result = $apiInstance->getSegmentsForSegmentationUsingGET($id, $status);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling SegmentsApi->getSegmentsForSegmentationUsingGET: ', $e->getMessage(), PHP_EOL;
@@ -94,8 +96,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| id |
  **status** | **string**| Status filter for draft or approved versions | [optional]
- **offset** | **int**| Integer offset for paging | [optional]
- **max_return** | **int**| Maximum number of channels to return.  Max 200, default 20 | [optional]
 
 ### Return type
 

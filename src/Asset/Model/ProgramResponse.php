@@ -81,7 +81,8 @@ class ProgramResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'type' => 'string',
         'updated_at' => '\DateTime',
         'url' => 'string',
-        'workspace' => 'string'
+        'workspace' => 'string',
+        'head_start' => 'bool'
     ];
 
     /**
@@ -108,7 +109,8 @@ class ProgramResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'type' => null,
         'updated_at' => 'date-time',
         'url' => null,
-        'workspace' => null
+        'workspace' => null,
+        'head_start' => null
     ];
 
     /**
@@ -141,7 +143,8 @@ class ProgramResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'type' => 'type',
         'updated_at' => 'updatedAt',
         'url' => 'url',
-        'workspace' => 'workspace'
+        'workspace' => 'workspace',
+        'head_start' => 'headStart'
     ];
 
     /**
@@ -166,7 +169,8 @@ class ProgramResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'type' => 'setType',
         'updated_at' => 'setUpdatedAt',
         'url' => 'setUrl',
-        'workspace' => 'setWorkspace'
+        'workspace' => 'setWorkspace',
+        'head_start' => 'setHeadStart'
     ];
 
     /**
@@ -191,7 +195,8 @@ class ProgramResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         'type' => 'getType',
         'updated_at' => 'getUpdatedAt',
         'url' => 'getUrl',
-        'workspace' => 'getWorkspace'
+        'workspace' => 'getWorkspace',
+        'head_start' => 'getHeadStart'
     ];
 
     /**
@@ -226,6 +231,7 @@ class ProgramResponse implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['updated_at'] = $data['updated_at'] ?? null;
         $this->container['url'] = $data['url'] ?? null;
         $this->container['workspace'] = $data['workspace'] ?? null;
+        $this->container['head_start'] = $data['head_start'] ?? null;
     }
 
     /**
@@ -319,6 +325,9 @@ class ProgramResponse implements ModelInterface, ArrayAccess, \JsonSerializable
             );
         }
 
+        if ($this->container['head_start'] === null) {
+            $invalidProperties['head_start'] = "'head_start' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -782,6 +791,30 @@ class ProgramResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setWorkspace(?string $workspace): ProgramResponse
     {
         $this->container['workspace'] = $workspace;
+
+        return $this;
+    }
+
+    /**
+     * Gets head_start
+     *
+     * @return bool
+     */
+    public function getHeadStart(): bool
+    {
+        return $this->container['head_start'];
+    }
+
+    /**
+     * Sets head_start
+     *
+     * @param bool $head_start Whether 'Head Start' function is enabled for the program
+     *
+     * @return self<TKey, TValue>
+     */
+    public function setHeadStart(bool $head_start): ProgramResponse
+    {
+        $this->container['head_start'] = $head_start;
 
         return $this;
     }

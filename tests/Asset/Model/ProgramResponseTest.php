@@ -68,6 +68,7 @@ class ProgramResponseTest extends TestCase
         'updated_at' => '\DateTime',
         'url' => 'string',
         'workspace' => 'string',
+        'head_start' => 'bool',
 ];
 
     /**
@@ -192,6 +193,7 @@ class ProgramResponseTest extends TestCase
         $this->assertEquals('date-time', $formats['updated_at']);
         $this->assertEquals(null, $formats['url']);
         $this->assertEquals(null, $formats['workspace']);
+        $this->assertEquals(null, $formats['head_start']);
     }
 
     /**
@@ -217,6 +219,7 @@ class ProgramResponseTest extends TestCase
         $this->assertEquals('updatedAt', $formats['updated_at']);
         $this->assertEquals('url', $formats['url']);
         $this->assertEquals('workspace', $formats['workspace']);
+        $this->assertEquals('headStart', $formats['head_start']);
     }
 
     /**
@@ -930,5 +933,41 @@ class ProgramResponseTest extends TestCase
         $this->sot['workspace'] = $v;
         $this->assertEquals($v, $this->sot['workspace']);
         $this->assertTrue(isset($this->sot['workspace']));
+    }
+
+    /**
+     * Test attribute "head_start"
+     *
+     * @covers ::__construct
+     * @covers ::getHeadStart
+     * @covers ::setHeadStart
+     * @covers ::offsetExists
+     * @covers ::offsetGet
+     * @covers ::offsetSet
+     * @covers ::offsetUnset
+     */
+    public function testPropertyHeadStart(): void
+    {
+        // @todo can we assert anything useful about the default?
+        $v = $this->getFakeValue(
+            $this->types['head_start'],
+            $this->allowedValues['head_start'] ?? null
+        );
+        $this->sot->setHeadStart($v);
+        $this->assertEquals($v, $this->sot->getHeadStart());
+
+        $this->assertEquals($v, $this->sot['head_start']);
+        $v = $this->getFakeValue(
+            $this->types['head_start'],
+            $this->allowedValues['head_start'] ?? null
+        );
+        $this->sot['head_start'] = $v;
+        $this->assertEquals($v, $this->sot['head_start']);
+        $this->assertTrue(isset($this->sot['head_start']));
+        unset($this->sot['head_start']);
+        $this->assertFalse(isset($this->sot['head_start']));
+        $this->sot['head_start'] = $v;
+        $this->assertEquals($v, $this->sot['head_start']);
+        $this->assertTrue(isset($this->sot['head_start']));
     }
 }
