@@ -84,7 +84,7 @@ class FormThankYouPageDTO implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
       * Array of additional properties.
       *
-      * @var mixed[]
+      * @var string[]
       */
     protected $additionalProperties = [];
 
@@ -393,7 +393,7 @@ class FormThankYouPageDTO implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * {@inheritdoc}
      */
-    public function getAdditionalProperties()
+    public function getAdditionalProperties(): array
     {
         $container = $this->container;
         $map =

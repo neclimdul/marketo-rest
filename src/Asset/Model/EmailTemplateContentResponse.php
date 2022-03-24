@@ -80,7 +80,7 @@ class EmailTemplateContentResponse implements ModelInterface, ArrayAccess, \Json
     /**
       * Array of additional properties.
       *
-      * @var mixed[]
+      * @var string[]
       */
     protected $additionalProperties = [];
 
@@ -345,7 +345,7 @@ class EmailTemplateContentResponse implements ModelInterface, ArrayAccess, \Json
     /**
      * {@inheritdoc}
      */
-    public function getAdditionalProperties()
+    public function getAdditionalProperties(): array
     {
         $container = $this->container;
         $map =

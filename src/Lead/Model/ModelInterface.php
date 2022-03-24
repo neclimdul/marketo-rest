@@ -105,7 +105,7 @@ interface ModelInterface
      * @param mixed $value
      *   Value of the property.
      */
-    public function setAdditionalProperty($property, $value): void;
+    public function setAdditionalProperty(string $property, $value): void;
 
     /**
      * Get list of additional properties for the model.
@@ -113,5 +113,5 @@ interface ModelInterface
      * @return mixed[]
      *   List of additional properties
      */
-    public function getAdditionalProperties();
+    public function getAdditionalProperties(): array;
 }

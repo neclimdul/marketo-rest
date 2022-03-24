@@ -76,7 +76,7 @@ class SnippetContentResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
       * Array of additional properties.
       *
-      * @var mixed[]
+      * @var string[]
       */
     protected $additionalProperties = [];
 
@@ -276,7 +276,7 @@ class SnippetContentResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * {@inheritdoc}
      */
-    public function getAdditionalProperties()
+    public function getAdditionalProperties(): array
     {
         $container = $this->container;
         $map =

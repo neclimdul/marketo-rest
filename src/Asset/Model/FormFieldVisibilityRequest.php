@@ -79,7 +79,7 @@ class FormFieldVisibilityRequest implements ModelInterface, ArrayAccess, \JsonSe
     /**
       * Array of additional properties.
       *
-      * @var mixed[]
+      * @var string[]
       */
     protected $additionalProperties = [];
 
@@ -314,7 +314,7 @@ class FormFieldVisibilityRequest implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * {@inheritdoc}
      */
-    public function getAdditionalProperties()
+    public function getAdditionalProperties(): array
     {
         $container = $this->container;
         $map =

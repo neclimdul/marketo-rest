@@ -77,7 +77,7 @@ class SendSampleResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
       * Array of additional properties.
       *
-      * @var mixed[]
+      * @var string[]
       */
     protected $additionalProperties = [];
 
@@ -310,7 +310,7 @@ class SendSampleResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * {@inheritdoc}
      */
-    public function getAdditionalProperties()
+    public function getAdditionalProperties(): array
     {
         $container = $this->container;
         $map =

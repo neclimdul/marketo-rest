@@ -458,6 +458,7 @@ class ObjectSerializer
             return $data;
         }
 
+        /** @psalm-suppress MixedMethodCall */
         $instance = new $type();
         if ($instance instanceof ModelInterface) {
             $additional_properties = get_object_vars($data);
@@ -476,7 +477,7 @@ class ObjectSerializer
                 ));
             }
             // Add any additional properties directly. This doesn't get any
-            // fancy serialization which is unfortunate but it gives us basic
+            // fancy serialization which is unfortunate, but it gives us basic
             // access to additional properties.
             foreach ($additional_properties as $property => $value) {
                 $instance->setAdditionalProperty($property, $value);

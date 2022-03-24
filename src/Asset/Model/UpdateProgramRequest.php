@@ -86,7 +86,7 @@ class UpdateProgramRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
       * Array of additional properties.
       *
-      * @var mixed[]
+      * @var string[]
       */
     protected $additionalProperties = [];
 
@@ -423,7 +423,7 @@ class UpdateProgramRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * {@inheritdoc}
      */
-    public function getAdditionalProperties()
+    public function getAdditionalProperties(): array
     {
         $container = $this->container;
         $map =

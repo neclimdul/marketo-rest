@@ -82,7 +82,7 @@ class ResponseOfSmartCampaignResponse implements ModelInterface, ArrayAccess, \J
     /**
       * Array of additional properties.
       *
-      * @var mixed[]
+      * @var string[]
       */
     protected $additionalProperties = [];
 
@@ -363,7 +363,7 @@ class ResponseOfSmartCampaignResponse implements ModelInterface, ArrayAccess, \J
     /**
      * {@inheritdoc}
      */
-    public function getAdditionalProperties()
+    public function getAdditionalProperties(): array
     {
         $container = $this->container;
         $map =

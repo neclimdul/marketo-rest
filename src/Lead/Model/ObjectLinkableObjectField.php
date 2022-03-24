@@ -78,7 +78,7 @@ class ObjectLinkableObjectField implements ModelInterface, ArrayAccess, \JsonSer
     /**
       * Array of additional properties.
       *
-      * @var mixed[]
+      * @var string[]
       */
     protected $additionalProperties = [];
 
@@ -312,7 +312,7 @@ class ObjectLinkableObjectField implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * {@inheritdoc}
      */
-    public function getAdditionalProperties()
+    public function getAdditionalProperties(): array
     {
         $container = $this->container;
         $map =

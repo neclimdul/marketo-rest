@@ -86,7 +86,7 @@ class ResponseOfProgramMember implements ModelInterface, ArrayAccess, \JsonSeria
     /**
       * Array of additional properties.
       *
-      * @var mixed[]
+      * @var string[]
       */
     protected $additionalProperties = [];
 
@@ -438,7 +438,7 @@ class ResponseOfProgramMember implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * {@inheritdoc}
      */
-    public function getAdditionalProperties()
+    public function getAdditionalProperties(): array
     {
         $container = $this->container;
         $map =

@@ -82,7 +82,7 @@ class SmartListRules implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
       * Array of additional properties.
       *
-      * @var mixed[]
+      * @var string[]
       */
     protected $additionalProperties = [];
 
@@ -348,7 +348,7 @@ class SmartListRules implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * {@inheritdoc}
      */
-    public function getAdditionalProperties()
+    public function getAdditionalProperties(): array
     {
         $container = $this->container;
         $map =

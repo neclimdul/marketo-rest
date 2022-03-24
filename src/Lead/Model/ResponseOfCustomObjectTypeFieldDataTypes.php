@@ -82,7 +82,7 @@ class ResponseOfCustomObjectTypeFieldDataTypes implements ModelInterface, ArrayA
     /**
       * Array of additional properties.
       *
-      * @var mixed[]
+      * @var string[]
       */
     protected $additionalProperties = [];
 
@@ -378,7 +378,7 @@ class ResponseOfCustomObjectTypeFieldDataTypes implements ModelInterface, ArrayA
     /**
      * {@inheritdoc}
      */
-    public function getAdditionalProperties()
+    public function getAdditionalProperties(): array
     {
         $container = $this->container;
         $map =

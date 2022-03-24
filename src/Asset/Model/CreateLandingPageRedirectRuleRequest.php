@@ -78,7 +78,7 @@ class CreateLandingPageRedirectRuleRequest implements ModelInterface, ArrayAcces
     /**
       * Array of additional properties.
       *
-      * @var mixed[]
+      * @var string[]
       */
     protected $additionalProperties = [];
 
@@ -312,7 +312,7 @@ class CreateLandingPageRedirectRuleRequest implements ModelInterface, ArrayAcces
     /**
      * {@inheritdoc}
      */
-    public function getAdditionalProperties()
+    public function getAdditionalProperties(): array
     {
         $container = $this->container;
         $map =
