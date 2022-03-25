@@ -8,7 +8,6 @@ use NecLimDul\MarketoRest\Lead\Api\ActivitiesApi as LeadsActivitiesApi;
 
 class ActivitiesApi extends LeadsActivitiesApi
 {
-
     /**
      * {@inheritDoc}
      */
@@ -70,5 +69,4 @@ class ActivitiesApi extends LeadsActivitiesApi
         );
         return $request;
     }
-
 }
