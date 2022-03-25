@@ -78,13 +78,8 @@ class LeadsApi extends LeadsLeadsApi
     /**
      * {@inheritDoc}
      */
-    public function getLeadsByFilterUsingGETRequest(
-        string $filter_type,
-        array $filter_values,
-        array $fields = null,
-        int $batch_size = null,
-        string $next_page_token = null
-    ): Request {
+    public function getLeadsByFilterUsingGETRequest($filter_type, $filter_values, $fields = null, $batch_size = null, $next_page_token = null)
+    {
         $request = parent::getLeadsByFilterUsingGETRequest(
             $filter_type,
             $filter_values,

@@ -12,14 +12,8 @@ class ActivitiesApi extends LeadsActivitiesApi
     /**
      * {@inheritDoc}
      */
-    public function getLeadActivitiesUsingGETRequest(
-        string $next_page_token,
-        array $activity_type_ids,
-        array $asset_ids = null,
-        int $list_id = null,
-        array $lead_ids = null,
-        int $batch_size = null
-    ): Request {
+    public function getLeadActivitiesUsingGETRequest($next_page_token, $activity_type_ids, $asset_ids = null, $list_id = null, $lead_ids = null, $batch_size = null)
+    {
         $request = parent::getLeadActivitiesUsingGETRequest(
             $next_page_token,
             $activity_type_ids,
@@ -44,13 +38,8 @@ class ActivitiesApi extends LeadsActivitiesApi
     /**
      * {@inheritDoc}
      */
-    public function getLeadChangesUsingGETRequest(
-        string $next_page_token,
-        array $fields,
-        int $list_id = null,
-        array $lead_ids = null,
-        int $batch_size = null
-    ): Request {
+    public function getLeadChangesUsingGETRequest($next_page_token, $fields, $list_id = null, $lead_ids = null, $batch_size = null)
+    {
         $request = parent::getLeadChangesUsingGETRequest(
             $next_page_token,
             $fields,
