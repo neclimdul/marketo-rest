@@ -89,7 +89,7 @@ class TokensApi
      *
      * @param int $hostIndex Host index (required)
      */
-    public function setHostIndex($hostIndex): void
+    public function setHostIndex(int $hostIndex): void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -119,7 +119,7 @@ class TokensApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function addTokenTOFolderUsingPOSTHandleException(ApiException $e)
+    protected function addTokenTOFolderUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -294,7 +294,7 @@ class TokensApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function deleteTokenByNameUsingPOSTHandleException(ApiException $e)
+    protected function deleteTokenByNameUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -469,7 +469,7 @@ class TokensApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function getTokensByFolderIdUsingGETHandleException(ApiException $e)
+    protected function getTokensByFolderIdUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:

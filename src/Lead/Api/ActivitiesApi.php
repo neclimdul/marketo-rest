@@ -89,7 +89,7 @@ class ActivitiesApi
      *
      * @param int $hostIndex Host index (required)
      */
-    public function setHostIndex($hostIndex): void
+    public function setHostIndex(int $hostIndex): void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -119,7 +119,7 @@ class ActivitiesApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function addCustomActivityUsingPOSTHandleException(ApiException $e)
+    protected function addCustomActivityUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -274,7 +274,7 @@ class ActivitiesApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function approveCustomActivityTypeUsingPOSTHandleException(ApiException $e)
+    protected function approveCustomActivityTypeUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -434,7 +434,7 @@ class ActivitiesApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function createCustomActivityTypeAttributesUsingPOSTHandleException(ApiException $e)
+    protected function createCustomActivityTypeAttributesUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -609,7 +609,7 @@ class ActivitiesApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function createCustomActivityTypeUsingPOSTHandleException(ApiException $e)
+    protected function createCustomActivityTypeUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -764,7 +764,7 @@ class ActivitiesApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function deleteCustomActivityTypeAttributesUsingPOSTHandleException(ApiException $e)
+    protected function deleteCustomActivityTypeAttributesUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -939,7 +939,7 @@ class ActivitiesApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function deleteCustomActivityTypeUsingPOSTHandleException(ApiException $e)
+    protected function deleteCustomActivityTypeUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -1099,7 +1099,7 @@ class ActivitiesApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function describeCustomActivityTypeUsingGETHandleException(ApiException $e)
+    protected function describeCustomActivityTypeUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -1275,7 +1275,7 @@ class ActivitiesApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function discardDraftofCustomActivityTypeUsingPOSTHandleException(ApiException $e)
+    protected function discardDraftofCustomActivityTypeUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -1435,7 +1435,7 @@ class ActivitiesApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function getActivitiesPagingTokenUsingGETHandleException(ApiException $e)
+    protected function getActivitiesPagingTokenUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -1591,7 +1591,7 @@ class ActivitiesApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function getAllActivityTypesUsingGETHandleException(ApiException $e)
+    protected function getAllActivityTypesUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -1726,7 +1726,7 @@ class ActivitiesApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function getCustomActivityTypeUsingGETHandleException(ApiException $e)
+    protected function getCustomActivityTypeUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -1861,7 +1861,7 @@ class ActivitiesApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function getDeletedLeadsUsingGETHandleException(ApiException $e)
+    protected function getDeletedLeadsUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -2033,7 +2033,7 @@ class ActivitiesApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function getLeadActivitiesUsingGETHandleException(ApiException $e)
+    protected function getLeadActivitiesUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -2275,7 +2275,7 @@ class ActivitiesApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function getLeadChangesUsingGETHandleException(ApiException $e)
+    protected function getLeadChangesUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -2501,7 +2501,7 @@ class ActivitiesApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function updateCustomActivityTypeAttributesUsingPOSTHandleException(ApiException $e)
+    protected function updateCustomActivityTypeAttributesUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -2676,7 +2676,7 @@ class ActivitiesApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function updateCustomActivityTypeUsingPOSTHandleException(ApiException $e)
+    protected function updateCustomActivityTypeUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:

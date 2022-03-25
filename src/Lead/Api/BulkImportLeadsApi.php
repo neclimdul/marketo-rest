@@ -89,7 +89,7 @@ class BulkImportLeadsApi
      *
      * @param int $hostIndex Host index (required)
      */
-    public function setHostIndex($hostIndex): void
+    public function setHostIndex(int $hostIndex): void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -119,7 +119,7 @@ class BulkImportLeadsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function getImportLeadFailuresUsingGETHandleException(ApiException $e)
+    protected function getImportLeadFailuresUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -279,7 +279,7 @@ class BulkImportLeadsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function getImportLeadStatusUsingGETHandleException(ApiException $e)
+    protected function getImportLeadStatusUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -439,7 +439,7 @@ class BulkImportLeadsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function getImportLeadWarningsUsingGETHandleException(ApiException $e)
+    protected function getImportLeadWarningsUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -599,7 +599,7 @@ class BulkImportLeadsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function importLeadUsingPOSTHandleException(ApiException $e)
+    protected function importLeadUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:

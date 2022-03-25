@@ -89,7 +89,7 @@ class FoldersApi
      *
      * @param int $hostIndex Host index (required)
      */
-    public function setHostIndex($hostIndex): void
+    public function setHostIndex(int $hostIndex): void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -119,7 +119,7 @@ class FoldersApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function createFolderUsingPOSTHandleException(ApiException $e)
+    protected function createFolderUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -274,7 +274,7 @@ class FoldersApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function deleteFolderUsingPOSTHandleException(ApiException $e)
+    protected function deleteFolderUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -450,7 +450,7 @@ class FoldersApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function getFolderByIdUsingGETHandleException(ApiException $e)
+    protected function getFolderByIdUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -626,7 +626,7 @@ class FoldersApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function getFolderByNameUsingGETHandleException(ApiException $e)
+    protected function getFolderByNameUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -830,7 +830,7 @@ class FoldersApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function getFolderContentUsingGETHandleException(ApiException $e)
+    protected function getFolderContentUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -1038,7 +1038,7 @@ class FoldersApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function getFolderUsingGETHandleException(ApiException $e)
+    protected function getFolderUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -1258,7 +1258,7 @@ class FoldersApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function updateFolderUsingPOSTHandleException(ApiException $e)
+    protected function updateFolderUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:

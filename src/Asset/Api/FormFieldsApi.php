@@ -89,7 +89,7 @@ class FormFieldsApi
      *
      * @param int $hostIndex Host index (required)
      */
-    public function setHostIndex($hostIndex): void
+    public function setHostIndex(int $hostIndex): void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -119,7 +119,7 @@ class FormFieldsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function addFieldSetUsingPOSTHandleException(ApiException $e)
+    protected function addFieldSetUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -294,7 +294,7 @@ class FormFieldsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function addFieldToAFormUsingPOSTHandleException(ApiException $e)
+    protected function addFieldToAFormUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -469,7 +469,7 @@ class FormFieldsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function addFormFieldVisibilityRuleUsingPOSTHandleException(ApiException $e)
+    protected function addFormFieldVisibilityRuleUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -664,7 +664,7 @@ class FormFieldsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function addRichTextFieldUsingPOSTHandleException(ApiException $e)
+    protected function addRichTextFieldUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -839,7 +839,7 @@ class FormFieldsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function deleteFormFieldFromFieldSetUsingPOSTHandleException(ApiException $e)
+    protected function deleteFormFieldFromFieldSetUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -1039,7 +1039,7 @@ class FormFieldsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function deleteFormFieldUsingPOSTHandleException(ApiException $e)
+    protected function deleteFormFieldUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -1219,7 +1219,7 @@ class FormFieldsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function getAllFieldsUsingGETHandleException(ApiException $e)
+    protected function getAllFieldsUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -1391,7 +1391,7 @@ class FormFieldsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function getAllProgramMemberFieldsUsingGETHandleException(ApiException $e)
+    protected function getAllProgramMemberFieldsUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -1563,7 +1563,7 @@ class FormFieldsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function getFormFieldByFormVidUsingGETHandleException(ApiException $e)
+    protected function getFormFieldByFormVidUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -1739,7 +1739,7 @@ class FormFieldsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function updateFieldPositionsUsingPOSTHandleException(ApiException $e)
+    protected function updateFieldPositionsUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -1914,7 +1914,7 @@ class FormFieldsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function updateFormFieldUsingPOSTHandleException(ApiException $e)
+    protected function updateFormFieldUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:

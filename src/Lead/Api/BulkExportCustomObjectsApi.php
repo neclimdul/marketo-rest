@@ -89,7 +89,7 @@ class BulkExportCustomObjectsApi
      *
      * @param int $hostIndex Host index (required)
      */
-    public function setHostIndex($hostIndex): void
+    public function setHostIndex(int $hostIndex): void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -119,7 +119,7 @@ class BulkExportCustomObjectsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function cancelExportCustomObjectsUsingPOSTHandleException(ApiException $e)
+    protected function cancelExportCustomObjectsUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -299,7 +299,7 @@ class BulkExportCustomObjectsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function createExportCustomObjectsUsingPOSTHandleException(ApiException $e)
+    protected function createExportCustomObjectsUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -474,7 +474,7 @@ class BulkExportCustomObjectsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function enqueueExportCustomObjectsUsingPOSTHandleException(ApiException $e)
+    protected function enqueueExportCustomObjectsUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -654,7 +654,7 @@ class BulkExportCustomObjectsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function getExportCustomObjectsFileUsingGETHandleException(ApiException $e)
+    protected function getExportCustomObjectsFileUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -850,7 +850,7 @@ class BulkExportCustomObjectsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function getExportCustomObjectsStatusUsingGETHandleException(ApiException $e)
+    protected function getExportCustomObjectsStatusUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -1030,7 +1030,7 @@ class BulkExportCustomObjectsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function getExportCustomObjectsUsingGETHandleException(ApiException $e)
+    protected function getExportCustomObjectsUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:

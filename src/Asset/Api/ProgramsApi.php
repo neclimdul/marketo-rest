@@ -89,7 +89,7 @@ class ProgramsApi
      *
      * @param int $hostIndex Host index (required)
      */
-    public function setHostIndex($hostIndex): void
+    public function setHostIndex(int $hostIndex): void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -119,7 +119,7 @@ class ProgramsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function approveProgramUsingPOSTHandleException(ApiException $e)
+    protected function approveProgramUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -279,7 +279,7 @@ class ProgramsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function browseProgramsUsingGETHandleException(ApiException $e)
+    protected function browseProgramsUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -499,7 +499,7 @@ class ProgramsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function cloneProgramUsingPOSTHandleException(ApiException $e)
+    protected function cloneProgramUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -674,7 +674,7 @@ class ProgramsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function createProgramUsingPOSTHandleException(ApiException $e)
+    protected function createProgramUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -829,7 +829,7 @@ class ProgramsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function deleteProgramTagUsingPOSTHandleException(ApiException $e)
+    protected function deleteProgramTagUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -1009,7 +1009,7 @@ class ProgramsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function deleteProgramUsingPOSTHandleException(ApiException $e)
+    protected function deleteProgramUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -1169,7 +1169,7 @@ class ProgramsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function getProgramByIdUsingGETHandleException(ApiException $e)
+    protected function getProgramByIdUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -1329,7 +1329,7 @@ class ProgramsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function getProgramByNameUsingGETHandleException(ApiException $e)
+    protected function getProgramByNameUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -1517,7 +1517,7 @@ class ProgramsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function getProgramListByTagUsingGETHandleException(ApiException $e)
+    protected function getProgramListByTagUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -1721,7 +1721,7 @@ class ProgramsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function getSmartListByProgramIdUsingGETHandleException(ApiException $e)
+    protected function getSmartListByProgramIdUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -1897,7 +1897,7 @@ class ProgramsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function unapproveProgramUsingPOSTHandleException(ApiException $e)
+    protected function unapproveProgramUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -2057,7 +2057,7 @@ class ProgramsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function updateProgramTagUsingPOSTHandleException(ApiException $e)
+    protected function updateProgramTagUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -2253,7 +2253,7 @@ class ProgramsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function updateProgramUsingPOSTHandleException(ApiException $e)
+    protected function updateProgramUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:

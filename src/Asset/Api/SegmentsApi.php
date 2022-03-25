@@ -89,7 +89,7 @@ class SegmentsApi
      *
      * @param int $hostIndex Host index (required)
      */
-    public function setHostIndex($hostIndex): void
+    public function setHostIndex(int $hostIndex): void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -119,7 +119,7 @@ class SegmentsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function getSegmentationUsingGETHandleException(ApiException $e)
+    protected function getSegmentationUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -307,7 +307,7 @@ class SegmentsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function getSegmentsForSegmentationUsingGETHandleException(ApiException $e)
+    protected function getSegmentsForSegmentationUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:

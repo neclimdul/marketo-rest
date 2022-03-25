@@ -82,7 +82,7 @@ use {{invokerPackage}}\ObjectSerializer;
      *
      * @param int $hostIndex Host index (required)
      */
-    public function setHostIndex($hostIndex): void
+    public function setHostIndex(int $hostIndex): void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -113,7 +113,7 @@ use {{invokerPackage}}\ObjectSerializer;
      *
      * @return \{{invokerPackage}}\ApiException Processed exception.
      */
-    protected function {{operationId}}HandleException(ApiException $e)
+    protected function {{operationId}}HandleException(ApiException $e): ApiException
     {
         {{#returnType}}
         {{#responses}}

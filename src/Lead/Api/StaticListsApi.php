@@ -89,7 +89,7 @@ class StaticListsApi
      *
      * @param int $hostIndex Host index (required)
      */
-    public function setHostIndex($hostIndex): void
+    public function setHostIndex(int $hostIndex): void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -119,7 +119,7 @@ class StaticListsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function addLeadsToListUsingPOSTHandleException(ApiException $e)
+    protected function addLeadsToListUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -310,7 +310,7 @@ class StaticListsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function areLeadsMemberOfListUsingGETHandleException(ApiException $e)
+    protected function areLeadsMemberOfListUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -501,7 +501,7 @@ class StaticListsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function getLeadsByListIdUsingGETHandleException(ApiException $e)
+    protected function getLeadsByListIdUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -709,7 +709,7 @@ class StaticListsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function getLeadsByListIdUsingGET1HandleException(ApiException $e)
+    protected function getLeadsByListIdUsingGET1HandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -917,7 +917,7 @@ class StaticListsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function getListByIdUsingGETHandleException(ApiException $e)
+    protected function getListByIdUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -1077,7 +1077,7 @@ class StaticListsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function getListsUsingGETHandleException(ApiException $e)
+    protected function getListsUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -1313,7 +1313,7 @@ class StaticListsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function removeLeadsFromListUsingDELETEHandleException(ApiException $e)
+    protected function removeLeadsFromListUsingDELETEHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:

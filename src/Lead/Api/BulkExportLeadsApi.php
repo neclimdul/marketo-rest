@@ -89,7 +89,7 @@ class BulkExportLeadsApi
      *
      * @param int $hostIndex Host index (required)
      */
-    public function setHostIndex($hostIndex): void
+    public function setHostIndex(int $hostIndex): void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -119,7 +119,7 @@ class BulkExportLeadsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function cancelExportLeadsUsingPOSTHandleException(ApiException $e)
+    protected function cancelExportLeadsUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -279,7 +279,7 @@ class BulkExportLeadsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function createExportLeadsUsingPOSTHandleException(ApiException $e)
+    protected function createExportLeadsUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -434,7 +434,7 @@ class BulkExportLeadsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function enqueueExportLeadsUsingPOSTHandleException(ApiException $e)
+    protected function enqueueExportLeadsUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -594,7 +594,7 @@ class BulkExportLeadsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function getExportLeadsFileUsingGETHandleException(ApiException $e)
+    protected function getExportLeadsFileUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -770,7 +770,7 @@ class BulkExportLeadsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function getExportLeadsStatusUsingGETHandleException(ApiException $e)
+    protected function getExportLeadsStatusUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -930,7 +930,7 @@ class BulkExportLeadsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function getExportLeadsUsingGETHandleException(ApiException $e)
+    protected function getExportLeadsUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:

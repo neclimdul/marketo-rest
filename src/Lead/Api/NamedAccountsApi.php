@@ -89,7 +89,7 @@ class NamedAccountsApi
      *
      * @param int $hostIndex Host index (required)
      */
-    public function setHostIndex($hostIndex): void
+    public function setHostIndex(int $hostIndex): void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -119,7 +119,7 @@ class NamedAccountsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function deleteNamedAccountsUsingPOSTHandleException(ApiException $e)
+    protected function deleteNamedAccountsUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -274,7 +274,7 @@ class NamedAccountsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function describeUsingGET3HandleException(ApiException $e)
+    protected function describeUsingGET3HandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -409,7 +409,7 @@ class NamedAccountsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function getNamedAccountFieldByNameUsingGETHandleException(ApiException $e)
+    protected function getNamedAccountFieldByNameUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -569,7 +569,7 @@ class NamedAccountsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function getNamedAccountFieldsUsingGETHandleException(ApiException $e)
+    protected function getNamedAccountFieldsUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -741,7 +741,7 @@ class NamedAccountsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function getNamedAccountsUsingGETHandleException(ApiException $e)
+    protected function getNamedAccountsUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -967,7 +967,7 @@ class NamedAccountsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function syncNamedAccountsUsingPOSTHandleException(ApiException $e)
+    protected function syncNamedAccountsUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:

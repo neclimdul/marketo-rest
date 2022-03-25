@@ -89,7 +89,7 @@ class CustomObjectsApi
      *
      * @param int $hostIndex Host index (required)
      */
-    public function setHostIndex($hostIndex): void
+    public function setHostIndex(int $hostIndex): void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -119,7 +119,7 @@ class CustomObjectsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function addCustomObjectTypeFieldsUsingPOSTHandleException(ApiException $e)
+    protected function addCustomObjectTypeFieldsUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -294,7 +294,7 @@ class CustomObjectsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function approveCustomObjectTypeUsingPOSTHandleException(ApiException $e)
+    protected function approveCustomObjectTypeUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -454,7 +454,7 @@ class CustomObjectsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function deleteCustomObjectTypeFieldsUsingPOSTHandleException(ApiException $e)
+    protected function deleteCustomObjectTypeFieldsUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -629,7 +629,7 @@ class CustomObjectsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function deleteCustomObjectTypeUsingPOSTHandleException(ApiException $e)
+    protected function deleteCustomObjectTypeUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -789,7 +789,7 @@ class CustomObjectsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function deleteCustomObjectsUsingPOSTHandleException(ApiException $e)
+    protected function deleteCustomObjectsUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -964,7 +964,7 @@ class CustomObjectsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function describeCustomObjectTypeUsingGETHandleException(ApiException $e)
+    protected function describeCustomObjectTypeUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -1140,7 +1140,7 @@ class CustomObjectsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function describeUsingGET1HandleException(ApiException $e)
+    protected function describeUsingGET1HandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -1300,7 +1300,7 @@ class CustomObjectsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function discardCustomObjectTypeUsingPOSTHandleException(ApiException $e)
+    protected function discardCustomObjectTypeUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -1460,7 +1460,7 @@ class CustomObjectsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function getCustomObjectTypeDependentAssetsUsingGETHandleException(ApiException $e)
+    protected function getCustomObjectTypeDependentAssetsUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -1620,7 +1620,7 @@ class CustomObjectsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function getCustomObjectTypeFieldDataTypesUsingGETHandleException(ApiException $e)
+    protected function getCustomObjectTypeFieldDataTypesUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -1755,7 +1755,7 @@ class CustomObjectsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function getCustomObjectTypeLinkableObjectsUsingGETHandleException(ApiException $e)
+    protected function getCustomObjectTypeLinkableObjectsUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -1890,7 +1890,7 @@ class CustomObjectsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function getCustomObjectsUsingGETHandleException(ApiException $e)
+    protected function getCustomObjectsUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -2151,7 +2151,7 @@ class CustomObjectsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function listCustomObjectTypesUsingGETHandleException(ApiException $e)
+    protected function listCustomObjectTypesUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -2323,7 +2323,7 @@ class CustomObjectsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function listCustomObjectsUsingGETHandleException(ApiException $e)
+    protected function listCustomObjectsUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -2479,7 +2479,7 @@ class CustomObjectsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function syncCustomObjectTypeUsingPOSTHandleException(ApiException $e)
+    protected function syncCustomObjectTypeUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -2634,7 +2634,7 @@ class CustomObjectsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function syncCustomObjectsUsingPOSTHandleException(ApiException $e)
+    protected function syncCustomObjectsUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -2809,7 +2809,7 @@ class CustomObjectsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function updateCustomObjectTypeFieldUsingPOSTHandleException(ApiException $e)
+    protected function updateCustomObjectTypeFieldUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:

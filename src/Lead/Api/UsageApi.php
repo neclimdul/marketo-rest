@@ -89,7 +89,7 @@ class UsageApi
      *
      * @param int $hostIndex Host index (required)
      */
-    public function setHostIndex($hostIndex): void
+    public function setHostIndex(int $hostIndex): void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -119,7 +119,7 @@ class UsageApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function getDailyErrorsUsingGETHandleException(ApiException $e)
+    protected function getDailyErrorsUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -254,7 +254,7 @@ class UsageApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function getDailyUsageUsingGETHandleException(ApiException $e)
+    protected function getDailyUsageUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -389,7 +389,7 @@ class UsageApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function getLast7DaysErrorsUsingGETHandleException(ApiException $e)
+    protected function getLast7DaysErrorsUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -524,7 +524,7 @@ class UsageApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function getLast7DaysUsageUsingGETHandleException(ApiException $e)
+    protected function getLast7DaysUsageUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:

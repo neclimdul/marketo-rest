@@ -89,7 +89,7 @@ class SmartListsApi
      *
      * @param int $hostIndex Host index (required)
      */
-    public function setHostIndex($hostIndex): void
+    public function setHostIndex(int $hostIndex): void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -119,7 +119,7 @@ class SmartListsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function cloneSmartListUsingPOSTHandleException(ApiException $e)
+    protected function cloneSmartListUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -294,7 +294,7 @@ class SmartListsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function deleteSmartListByIdUsingPOSTHandleException(ApiException $e)
+    protected function deleteSmartListByIdUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -454,7 +454,7 @@ class SmartListsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function getSmartListByIdUsingGETHandleException(ApiException $e)
+    protected function getSmartListByIdUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -630,7 +630,7 @@ class SmartListsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function getSmartListByNameUsingGETHandleException(ApiException $e)
+    protected function getSmartListByNameUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -786,7 +786,7 @@ class SmartListsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function getSmartListsUsingGETHandleException(ApiException $e)
+    protected function getSmartListsUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:

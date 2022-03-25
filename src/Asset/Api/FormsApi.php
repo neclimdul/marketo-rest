@@ -89,7 +89,7 @@ class FormsApi
      *
      * @param int $hostIndex Host index (required)
      */
-    public function setHostIndex($hostIndex): void
+    public function setHostIndex(int $hostIndex): void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -119,7 +119,7 @@ class FormsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function approveFromUsingPOSTHandleException(ApiException $e)
+    protected function approveFromUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -279,7 +279,7 @@ class FormsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function browseForms2UsingGETHandleException(ApiException $e)
+    protected function browseForms2UsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -483,7 +483,7 @@ class FormsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function cloneLpFormsUsingPOSTHandleException(ApiException $e)
+    protected function cloneLpFormsUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -658,7 +658,7 @@ class FormsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function createLpFormsUsingPOSTHandleException(ApiException $e)
+    protected function createLpFormsUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -813,7 +813,7 @@ class FormsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function deleteFormByIdUsingPOSTHandleException(ApiException $e)
+    protected function deleteFormByIdUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -973,7 +973,7 @@ class FormsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function discardFormByIdUsingPOSTHandleException(ApiException $e)
+    protected function discardFormByIdUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -1133,7 +1133,7 @@ class FormsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function getFormUsedByUsingGETHandleException(ApiException $e)
+    protected function getFormUsedByUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -1325,7 +1325,7 @@ class FormsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function getLpFormByIdUsingGETHandleException(ApiException $e)
+    protected function getLpFormByIdUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -1501,7 +1501,7 @@ class FormsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function getLpFormByNameUsingGETHandleException(ApiException $e)
+    protected function getLpFormByNameUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -1689,7 +1689,7 @@ class FormsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function getThankYouPageByIdUsingGETHandleException(ApiException $e)
+    protected function getThankYouPageByIdUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -1865,7 +1865,7 @@ class FormsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function updateFormSubmitButtonUsingPOSTHandleException(ApiException $e)
+    protected function updateFormSubmitButtonUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -2040,7 +2040,7 @@ class FormsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function updateFormsUsingPOSTHandleException(ApiException $e)
+    protected function updateFormsUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -2215,7 +2215,7 @@ class FormsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function updateThankYouPageByIdUsingPOSTHandleException(ApiException $e)
+    protected function updateThankYouPageByIdUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:

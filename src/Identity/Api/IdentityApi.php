@@ -89,7 +89,7 @@ class IdentityApi
      *
      * @param int $hostIndex Host index (required)
      */
-    public function setHostIndex($hostIndex): void
+    public function setHostIndex(int $hostIndex): void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -119,7 +119,7 @@ class IdentityApi
      *
      * @return \NecLimDul\MarketoRest\Identity\ApiException Processed exception.
      */
-    protected function identityUsingGETHandleException(ApiException $e)
+    protected function identityUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:

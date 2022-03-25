@@ -89,7 +89,7 @@ class SmartCampaignsApi
      *
      * @param int $hostIndex Host index (required)
      */
-    public function setHostIndex($hostIndex): void
+    public function setHostIndex(int $hostIndex): void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -119,7 +119,7 @@ class SmartCampaignsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function activateSmartCampaignUsingPOSTHandleException(ApiException $e)
+    protected function activateSmartCampaignUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -279,7 +279,7 @@ class SmartCampaignsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function cloneSmartCampaignUsingPOSTHandleException(ApiException $e)
+    protected function cloneSmartCampaignUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -454,7 +454,7 @@ class SmartCampaignsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function createSmartCampaignUsingPOSTHandleException(ApiException $e)
+    protected function createSmartCampaignUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -609,7 +609,7 @@ class SmartCampaignsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function deactivateSmartCampaignUsingPOSTHandleException(ApiException $e)
+    protected function deactivateSmartCampaignUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -769,7 +769,7 @@ class SmartCampaignsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function deleteSmartCampaignUsingPOSTHandleException(ApiException $e)
+    protected function deleteSmartCampaignUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -929,7 +929,7 @@ class SmartCampaignsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function getAllSmartCampaignsGETHandleException(ApiException $e)
+    protected function getAllSmartCampaignsGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -1165,7 +1165,7 @@ class SmartCampaignsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function getSmartCampaignByIdUsingGETHandleException(ApiException $e)
+    protected function getSmartCampaignByIdUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -1325,7 +1325,7 @@ class SmartCampaignsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function getSmartCampaignByNameUsingGETHandleException(ApiException $e)
+    protected function getSmartCampaignByNameUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -1481,7 +1481,7 @@ class SmartCampaignsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function getSmartListBySmartCampaignIdUsingGETHandleException(ApiException $e)
+    protected function getSmartListBySmartCampaignIdUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -1657,7 +1657,7 @@ class SmartCampaignsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function updateSmartCampaignUsingPOSTHandleException(ApiException $e)
+    protected function updateSmartCampaignUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:

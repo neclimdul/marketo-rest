@@ -89,7 +89,7 @@ class StaticListsApi
      *
      * @param int $hostIndex Host index (required)
      */
-    public function setHostIndex($hostIndex): void
+    public function setHostIndex(int $hostIndex): void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -119,7 +119,7 @@ class StaticListsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function createStaticListUsingPOSTHandleException(ApiException $e)
+    protected function createStaticListUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -274,7 +274,7 @@ class StaticListsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function deleteStaticListByIdUsingPOSTHandleException(ApiException $e)
+    protected function deleteStaticListByIdUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -434,7 +434,7 @@ class StaticListsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function getStaticListByIdUsingGETHandleException(ApiException $e)
+    protected function getStaticListByIdUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -594,7 +594,7 @@ class StaticListsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function getStaticListByNameUsingGETHandleException(ApiException $e)
+    protected function getStaticListByNameUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -750,7 +750,7 @@ class StaticListsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function getStaticListsUsingGETHandleException(ApiException $e)
+    protected function getStaticListsUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -970,7 +970,7 @@ class StaticListsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function updateStaticListUsingPOSTHandleException(ApiException $e)
+    protected function updateStaticListUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:

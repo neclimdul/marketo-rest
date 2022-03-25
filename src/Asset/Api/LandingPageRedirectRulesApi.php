@@ -89,7 +89,7 @@ class LandingPageRedirectRulesApi
      *
      * @param int $hostIndex Host index (required)
      */
-    public function setHostIndex($hostIndex): void
+    public function setHostIndex(int $hostIndex): void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -119,7 +119,7 @@ class LandingPageRedirectRulesApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function createLandingPageRedirectRuleUsingPOSTHandleException(ApiException $e)
+    protected function createLandingPageRedirectRuleUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -274,7 +274,7 @@ class LandingPageRedirectRulesApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function deleteLandingPageRedirectRuleUsingPOSTHandleException(ApiException $e)
+    protected function deleteLandingPageRedirectRuleUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -434,7 +434,7 @@ class LandingPageRedirectRulesApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function getLandingPageDomainsUsingGETHandleException(ApiException $e)
+    protected function getLandingPageDomainsUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -606,7 +606,7 @@ class LandingPageRedirectRulesApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function getLandingPageRedirectRuleByIdUsingGETHandleException(ApiException $e)
+    protected function getLandingPageRedirectRuleByIdUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -766,7 +766,7 @@ class LandingPageRedirectRulesApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function getLandingPageRedirectRulesUsingGETHandleException(ApiException $e)
+    protected function getLandingPageRedirectRulesUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -1002,7 +1002,7 @@ class LandingPageRedirectRulesApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function updateLandingPageRedirectRuleUsingPOSTHandleException(ApiException $e)
+    protected function updateLandingPageRedirectRuleUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:

@@ -89,7 +89,7 @@ class EmailTemplatesApi
      *
      * @param int $hostIndex Host index (required)
      */
-    public function setHostIndex($hostIndex): void
+    public function setHostIndex(int $hostIndex): void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -119,7 +119,7 @@ class EmailTemplatesApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function approveDraftUsingPOST1HandleException(ApiException $e)
+    protected function approveDraftUsingPOST1HandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -279,7 +279,7 @@ class EmailTemplatesApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function cloneTemplateUsingPOSTHandleException(ApiException $e)
+    protected function cloneTemplateUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -454,7 +454,7 @@ class EmailTemplatesApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function createEmailTemplateUsingPOSTHandleException(ApiException $e)
+    protected function createEmailTemplateUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -609,7 +609,7 @@ class EmailTemplatesApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function deleteTemplateUsingPOSTHandleException(ApiException $e)
+    protected function deleteTemplateUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -769,7 +769,7 @@ class EmailTemplatesApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function discardDraftUsingPOST1HandleException(ApiException $e)
+    protected function discardDraftUsingPOST1HandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -929,7 +929,7 @@ class EmailTemplatesApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function getEmailTemplateUsedByUsingGETHandleException(ApiException $e)
+    protected function getEmailTemplateUsedByUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -1121,7 +1121,7 @@ class EmailTemplatesApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function getEmailTemplatesUsingGETHandleException(ApiException $e)
+    protected function getEmailTemplatesUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -1309,7 +1309,7 @@ class EmailTemplatesApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function getTemplateByIdUsingGETHandleException(ApiException $e)
+    protected function getTemplateByIdUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -1485,7 +1485,7 @@ class EmailTemplatesApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function getTemplateByNameUsingGETHandleException(ApiException $e)
+    protected function getTemplateByNameUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -1657,7 +1657,7 @@ class EmailTemplatesApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function getTemplateContentByIdUsingGETHandleException(ApiException $e)
+    protected function getTemplateContentByIdUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -1833,7 +1833,7 @@ class EmailTemplatesApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function unapproveDraftUsingPOST1HandleException(ApiException $e)
+    protected function unapproveDraftUsingPOST1HandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -1993,7 +1993,7 @@ class EmailTemplatesApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function updateEmailTemplateContentUsingPOSTHandleException(ApiException $e)
+    protected function updateEmailTemplateContentUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -2168,7 +2168,7 @@ class EmailTemplatesApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function updateEmailTemplateUsingPOSTHandleException(ApiException $e)
+    protected function updateEmailTemplateUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:

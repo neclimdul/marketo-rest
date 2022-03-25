@@ -89,7 +89,7 @@ class BulkImportProgramMembersApi
      *
      * @param int $hostIndex Host index (required)
      */
-    public function setHostIndex($hostIndex): void
+    public function setHostIndex(int $hostIndex): void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -119,7 +119,7 @@ class BulkImportProgramMembersApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function getImportProgramMemberFailuresUsingGETHandleException(ApiException $e)
+    protected function getImportProgramMemberFailuresUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -279,7 +279,7 @@ class BulkImportProgramMembersApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function getImportProgramMemberStatusUsingGETHandleException(ApiException $e)
+    protected function getImportProgramMemberStatusUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -439,7 +439,7 @@ class BulkImportProgramMembersApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function getImportProgramMemberWarningsUsingGETHandleException(ApiException $e)
+    protected function getImportProgramMemberWarningsUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -599,7 +599,7 @@ class BulkImportProgramMembersApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function importProgramMemberUsingPOSTHandleException(ApiException $e)
+    protected function importProgramMemberUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:

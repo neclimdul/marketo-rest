@@ -89,7 +89,7 @@ class CompaniesApi
      *
      * @param int $hostIndex Host index (required)
      */
-    public function setHostIndex($hostIndex): void
+    public function setHostIndex(int $hostIndex): void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -119,7 +119,7 @@ class CompaniesApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function deleteCompaniesUsingPOSTHandleException(ApiException $e)
+    protected function deleteCompaniesUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -274,7 +274,7 @@ class CompaniesApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function describeUsingGETHandleException(ApiException $e)
+    protected function describeUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -409,7 +409,7 @@ class CompaniesApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function getCompaniesUsingGETHandleException(ApiException $e)
+    protected function getCompaniesUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -635,7 +635,7 @@ class CompaniesApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function getCompanyFieldByNameUsingGETHandleException(ApiException $e)
+    protected function getCompanyFieldByNameUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -795,7 +795,7 @@ class CompaniesApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function getCompanyFieldsUsingGETHandleException(ApiException $e)
+    protected function getCompanyFieldsUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -967,7 +967,7 @@ class CompaniesApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function syncCompaniesUsingPOSTHandleException(ApiException $e)
+    protected function syncCompaniesUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:

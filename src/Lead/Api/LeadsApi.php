@@ -89,7 +89,7 @@ class LeadsApi
      *
      * @param int $hostIndex Host index (required)
      */
-    public function setHostIndex($hostIndex): void
+    public function setHostIndex(int $hostIndex): void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -119,7 +119,7 @@ class LeadsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function associateLeadUsingPOSTHandleException(ApiException $e)
+    protected function associateLeadUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -295,7 +295,7 @@ class LeadsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function changeLeadProgramStatusUsingPOSTHandleException(ApiException $e)
+    protected function changeLeadProgramStatusUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -470,7 +470,7 @@ class LeadsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function createLeadFieldUsingPOSTHandleException(ApiException $e)
+    protected function createLeadFieldUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -625,7 +625,7 @@ class LeadsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function deleteLeadsUsingPOSTHandleException(ApiException $e)
+    protected function deleteLeadsUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -796,7 +796,7 @@ class LeadsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function describeProgramMemberUsingGETHandleException(ApiException $e)
+    protected function describeProgramMemberUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -931,7 +931,7 @@ class LeadsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function describeUsingGET2HandleException(ApiException $e)
+    protected function describeUsingGET2HandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -1066,7 +1066,7 @@ class LeadsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function describeUsingGET6HandleException(ApiException $e)
+    protected function describeUsingGET6HandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -1201,7 +1201,7 @@ class LeadsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function getLeadByIdUsingGETHandleException(ApiException $e)
+    protected function getLeadByIdUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -1377,7 +1377,7 @@ class LeadsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function getLeadFieldByNameUsingGETHandleException(ApiException $e)
+    protected function getLeadFieldByNameUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -1537,7 +1537,7 @@ class LeadsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function getLeadFieldsUsingGETHandleException(ApiException $e)
+    protected function getLeadFieldsUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -1709,7 +1709,7 @@ class LeadsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function getLeadPartitionsUsingGETHandleException(ApiException $e)
+    protected function getLeadPartitionsUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -1844,7 +1844,7 @@ class LeadsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function getLeadsByFilterUsingGETHandleException(ApiException $e)
+    protected function getLeadsByFilterUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -2070,7 +2070,7 @@ class LeadsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function getLeadsByProgramIdUsingGETHandleException(ApiException $e)
+    protected function getLeadsByProgramIdUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -2278,7 +2278,7 @@ class LeadsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function getListMembershipUsingGETHandleException(ApiException $e)
+    protected function getListMembershipUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -2470,7 +2470,7 @@ class LeadsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function getProgramMembershipUsingGETHandleException(ApiException $e)
+    protected function getProgramMembershipUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -2726,7 +2726,7 @@ class LeadsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function getSmartCampaignMembershipUsingGETHandleException(ApiException $e)
+    protected function getSmartCampaignMembershipUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -2950,7 +2950,7 @@ class LeadsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function mergeLeadsUsingPOSTHandleException(ApiException $e)
+    protected function mergeLeadsUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -3158,7 +3158,7 @@ class LeadsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function pushToMarketoUsingPOSTHandleException(ApiException $e)
+    protected function pushToMarketoUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -3313,7 +3313,7 @@ class LeadsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function submitFormUsingPOSTHandleException(ApiException $e)
+    protected function submitFormUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -3468,7 +3468,7 @@ class LeadsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function syncLeadUsingPOSTHandleException(ApiException $e)
+    protected function syncLeadUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -3623,7 +3623,7 @@ class LeadsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function updateLeadFieldUsingPOSTHandleException(ApiException $e)
+    protected function updateLeadFieldUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -3798,7 +3798,7 @@ class LeadsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function updatePartitionsUsingPOSTHandleException(ApiException $e)
+    protected function updatePartitionsUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:

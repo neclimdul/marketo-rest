@@ -89,7 +89,7 @@ class SalesPersonsApi
      *
      * @param int $hostIndex Host index (required)
      */
-    public function setHostIndex($hostIndex): void
+    public function setHostIndex(int $hostIndex): void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -119,7 +119,7 @@ class SalesPersonsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function deleteSalesPersonUsingPOSTHandleException(ApiException $e)
+    protected function deleteSalesPersonUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -274,7 +274,7 @@ class SalesPersonsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function describeUsingGET5HandleException(ApiException $e)
+    protected function describeUsingGET5HandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -409,7 +409,7 @@ class SalesPersonsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function getSalesPersonUsingGETHandleException(ApiException $e)
+    protected function getSalesPersonUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -635,7 +635,7 @@ class SalesPersonsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function syncSalesPersonsUsingPOSTHandleException(ApiException $e)
+    protected function syncSalesPersonsUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:

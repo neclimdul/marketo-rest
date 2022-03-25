@@ -89,7 +89,7 @@ class LandingPageContentApi
      *
      * @param int $hostIndex Host index (required)
      */
-    public function setHostIndex($hostIndex): void
+    public function setHostIndex(int $hostIndex): void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -119,7 +119,7 @@ class LandingPageContentApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function addLandingPageContentUsingPOSTHandleException(ApiException $e)
+    protected function addLandingPageContentUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -294,7 +294,7 @@ class LandingPageContentApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function getLandingPageContentUsingGETHandleException(ApiException $e)
+    protected function getLandingPageContentUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -470,7 +470,7 @@ class LandingPageContentApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function getLandingPageDynamicContentsUsingGETHandleException(ApiException $e)
+    protected function getLandingPageDynamicContentsUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -650,7 +650,7 @@ class LandingPageContentApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function removeLandingPageContentUsingPOSTHandleException(ApiException $e)
+    protected function removeLandingPageContentUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -830,7 +830,7 @@ class LandingPageContentApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function updateLandingPageContentUsingPOSTHandleException(ApiException $e)
+    protected function updateLandingPageContentUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -1025,7 +1025,7 @@ class LandingPageContentApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function updateLandingPageDynamicContentUsingPOSTHandleException(ApiException $e)
+    protected function updateLandingPageDynamicContentUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:

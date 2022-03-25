@@ -89,7 +89,7 @@ class SnippetsApi
      *
      * @param int $hostIndex Host index (required)
      */
-    public function setHostIndex($hostIndex): void
+    public function setHostIndex(int $hostIndex): void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -119,7 +119,7 @@ class SnippetsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function approveSnippetUsingPOSTHandleException(ApiException $e)
+    protected function approveSnippetUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -279,7 +279,7 @@ class SnippetsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function cloneSnippetUsingPOSTHandleException(ApiException $e)
+    protected function cloneSnippetUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -454,7 +454,7 @@ class SnippetsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function createSnippetUsingPOSTHandleException(ApiException $e)
+    protected function createSnippetUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -609,7 +609,7 @@ class SnippetsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function deleteSnippetUsingPOSTHandleException(ApiException $e)
+    protected function deleteSnippetUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -769,7 +769,7 @@ class SnippetsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function discardSnippetUsingPOSTHandleException(ApiException $e)
+    protected function discardSnippetUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -929,7 +929,7 @@ class SnippetsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function getDynamicContentUsingGETHandleException(ApiException $e)
+    protected function getDynamicContentUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -1105,7 +1105,7 @@ class SnippetsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function getSnippetByIdUsingGETHandleException(ApiException $e)
+    protected function getSnippetByIdUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -1281,7 +1281,7 @@ class SnippetsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function getSnippetContentByIdUsingGETHandleException(ApiException $e)
+    protected function getSnippetContentByIdUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -1457,7 +1457,7 @@ class SnippetsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function getSnippetUsingGETHandleException(ApiException $e)
+    protected function getSnippetUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -1645,7 +1645,7 @@ class SnippetsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function unapproveSnippetUsingPOSTHandleException(ApiException $e)
+    protected function unapproveSnippetUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -1805,7 +1805,7 @@ class SnippetsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function updateContentUsingPOST1HandleException(ApiException $e)
+    protected function updateContentUsingPOST1HandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -1997,7 +1997,7 @@ class SnippetsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function updateDynamicContentUsingPOSTHandleException(ApiException $e)
+    protected function updateDynamicContentUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -2192,7 +2192,7 @@ class SnippetsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function updateSnippetUsingPOSTHandleException(ApiException $e)
+    protected function updateSnippetUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:

@@ -89,7 +89,7 @@ class NamedAccountListsApi
      *
      * @param int $hostIndex Host index (required)
      */
-    public function setHostIndex($hostIndex): void
+    public function setHostIndex(int $hostIndex): void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -119,7 +119,7 @@ class NamedAccountListsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function addNamedAccountListMembersUsingPOSTHandleException(ApiException $e)
+    protected function addNamedAccountListMembersUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -294,7 +294,7 @@ class NamedAccountListsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function deleteNamedAccountListsUsingPOSTHandleException(ApiException $e)
+    protected function deleteNamedAccountListsUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -449,7 +449,7 @@ class NamedAccountListsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function getNamedAccountListMembersUsingGETHandleException(ApiException $e)
+    protected function getNamedAccountListMembersUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -657,7 +657,7 @@ class NamedAccountListsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function getNamedAccountListsUsingGETHandleException(ApiException $e)
+    protected function getNamedAccountListsUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -867,7 +867,7 @@ class NamedAccountListsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function removeNamedAccountListMembersUsingPOSTHandleException(ApiException $e)
+    protected function removeNamedAccountListMembersUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -1042,7 +1042,7 @@ class NamedAccountListsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function syncNamedAccountListsUsingPOSTHandleException(ApiException $e)
+    protected function syncNamedAccountListsUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:

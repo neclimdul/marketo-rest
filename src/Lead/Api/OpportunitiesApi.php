@@ -89,7 +89,7 @@ class OpportunitiesApi
      *
      * @param int $hostIndex Host index (required)
      */
-    public function setHostIndex($hostIndex): void
+    public function setHostIndex(int $hostIndex): void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -119,7 +119,7 @@ class OpportunitiesApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function deleteOpportunitiesUsingPOSTHandleException(ApiException $e)
+    protected function deleteOpportunitiesUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -274,7 +274,7 @@ class OpportunitiesApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function deleteOpportunityRolesUsingPOSTHandleException(ApiException $e)
+    protected function deleteOpportunityRolesUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -429,7 +429,7 @@ class OpportunitiesApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function describeOpportunityRoleUsingGETHandleException(ApiException $e)
+    protected function describeOpportunityRoleUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -564,7 +564,7 @@ class OpportunitiesApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function describeUsingGET4HandleException(ApiException $e)
+    protected function describeUsingGET4HandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -699,7 +699,7 @@ class OpportunitiesApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function getOpportunitiesUsingGETHandleException(ApiException $e)
+    protected function getOpportunitiesUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -940,7 +940,7 @@ class OpportunitiesApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function getOpportunityFieldByNameUsingGETHandleException(ApiException $e)
+    protected function getOpportunityFieldByNameUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -1100,7 +1100,7 @@ class OpportunitiesApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function getOpportunityFieldsUsingGETHandleException(ApiException $e)
+    protected function getOpportunityFieldsUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -1272,7 +1272,7 @@ class OpportunitiesApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function getOpportunityRolesUsingGETHandleException(ApiException $e)
+    protected function getOpportunityRolesUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -1513,7 +1513,7 @@ class OpportunitiesApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function syncOpportunitiesUsingPOSTHandleException(ApiException $e)
+    protected function syncOpportunitiesUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -1668,7 +1668,7 @@ class OpportunitiesApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function syncOpportunityRolesUsingPOSTHandleException(ApiException $e)
+    protected function syncOpportunityRolesUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:

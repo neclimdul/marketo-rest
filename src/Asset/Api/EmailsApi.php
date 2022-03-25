@@ -89,7 +89,7 @@ class EmailsApi
      *
      * @param int $hostIndex Host index (required)
      */
-    public function setHostIndex($hostIndex): void
+    public function setHostIndex(int $hostIndex): void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -119,7 +119,7 @@ class EmailsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function addModuleUsingPOSTHandleException(ApiException $e)
+    protected function addModuleUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -331,7 +331,7 @@ class EmailsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function approveDraftUsingPOSTHandleException(ApiException $e)
+    protected function approveDraftUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -491,7 +491,7 @@ class EmailsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function cloneEmailUsingPOSTHandleException(ApiException $e)
+    protected function cloneEmailUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -666,7 +666,7 @@ class EmailsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function createEmailFullContentUsingPOSTHandleException(ApiException $e)
+    protected function createEmailFullContentUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -841,7 +841,7 @@ class EmailsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function createEmailUsingPOSTHandleException(ApiException $e)
+    protected function createEmailUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -996,7 +996,7 @@ class EmailsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function deleteEmailUsingPOSTHandleException(ApiException $e)
+    protected function deleteEmailUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -1156,7 +1156,7 @@ class EmailsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function deleteModuleUsingPOSTHandleException(ApiException $e)
+    protected function deleteModuleUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -1336,7 +1336,7 @@ class EmailsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function discardDraftUsingPOSTHandleException(ApiException $e)
+    protected function discardDraftUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -1496,7 +1496,7 @@ class EmailsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function duplicateModuleUsingPOSTHandleException(ApiException $e)
+    protected function duplicateModuleUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -1692,7 +1692,7 @@ class EmailsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function getEmailByIdUsingGETHandleException(ApiException $e)
+    protected function getEmailByIdUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -1868,7 +1868,7 @@ class EmailsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function getEmailByNameUsingGETHandleException(ApiException $e)
+    protected function getEmailByNameUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -2056,7 +2056,7 @@ class EmailsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function getEmailCCFieldsUsingGETHandleException(ApiException $e)
+    protected function getEmailCCFieldsUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -2191,7 +2191,7 @@ class EmailsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function getEmailContentByIdUsingGETHandleException(ApiException $e)
+    protected function getEmailContentByIdUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -2367,7 +2367,7 @@ class EmailsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function getEmailDynamicContentUsingGETHandleException(ApiException $e)
+    protected function getEmailDynamicContentUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -2563,7 +2563,7 @@ class EmailsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function getEmailFullContentUsingGETHandleException(ApiException $e)
+    protected function getEmailFullContentUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -2771,7 +2771,7 @@ class EmailsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function getEmailUsingGETHandleException(ApiException $e)
+    protected function getEmailUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -3007,7 +3007,7 @@ class EmailsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function getEmailVariablesUsingGETHandleException(ApiException $e)
+    protected function getEmailVariablesUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -3167,7 +3167,7 @@ class EmailsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function rearrangeModulesUsingPOSTHandleException(ApiException $e)
+    protected function rearrangeModulesUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -3342,7 +3342,7 @@ class EmailsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function renameUsingPOSTHandleException(ApiException $e)
+    protected function renameUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -3538,7 +3538,7 @@ class EmailsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function sendSampleEmailUsingPOSTHandleException(ApiException $e)
+    protected function sendSampleEmailUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -3713,7 +3713,7 @@ class EmailsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function unapproveDraftUsingPOSTHandleException(ApiException $e)
+    protected function unapproveDraftUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -3873,7 +3873,7 @@ class EmailsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function updateEmailComponentContentUsingPOSTHandleException(ApiException $e)
+    protected function updateEmailComponentContentUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -4068,7 +4068,7 @@ class EmailsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function updateEmailContentUsingPOSTHandleException(ApiException $e)
+    protected function updateEmailContentUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -4243,7 +4243,7 @@ class EmailsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function updateEmailDynamicContentUsingPOSTHandleException(ApiException $e)
+    protected function updateEmailDynamicContentUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -4438,7 +4438,7 @@ class EmailsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function updateEmailUsingPOSTHandleException(ApiException $e)
+    protected function updateEmailUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -4613,7 +4613,7 @@ class EmailsApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function updateVariableUsingPOSTHandleException(ApiException $e)
+    protected function updateVariableUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:

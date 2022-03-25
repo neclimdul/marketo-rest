@@ -89,7 +89,7 @@ class BulkImportCustomObjectsApi
      *
      * @param int $hostIndex Host index (required)
      */
-    public function setHostIndex($hostIndex): void
+    public function setHostIndex(int $hostIndex): void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -119,7 +119,7 @@ class BulkImportCustomObjectsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function getImportCustomObjectFailuresUsingGETHandleException(ApiException $e)
+    protected function getImportCustomObjectFailuresUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -299,7 +299,7 @@ class BulkImportCustomObjectsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function getImportCustomObjectStatusUsingGETHandleException(ApiException $e)
+    protected function getImportCustomObjectStatusUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -479,7 +479,7 @@ class BulkImportCustomObjectsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function getImportCustomObjectWarningsUsingGETHandleException(ApiException $e)
+    protected function getImportCustomObjectWarningsUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -659,7 +659,7 @@ class BulkImportCustomObjectsApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function importCustomObjectUsingPOSTHandleException(ApiException $e)
+    protected function importCustomObjectUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:

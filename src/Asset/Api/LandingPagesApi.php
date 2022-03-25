@@ -89,7 +89,7 @@ class LandingPagesApi
      *
      * @param int $hostIndex Host index (required)
      */
-    public function setHostIndex($hostIndex): void
+    public function setHostIndex(int $hostIndex): void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -119,7 +119,7 @@ class LandingPagesApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function approveLandingPageUsingPOSTHandleException(ApiException $e)
+    protected function approveLandingPageUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -279,7 +279,7 @@ class LandingPagesApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function browseLandingPagesUsingGETHandleException(ApiException $e)
+    protected function browseLandingPagesUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -483,7 +483,7 @@ class LandingPagesApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function cloneLandingPageUsingPOSTHandleException(ApiException $e)
+    protected function cloneLandingPageUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -658,7 +658,7 @@ class LandingPagesApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function createLandingPageUsingPOSTHandleException(ApiException $e)
+    protected function createLandingPageUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -813,7 +813,7 @@ class LandingPagesApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function deleteLandingPageByIdUsingPOSTHandleException(ApiException $e)
+    protected function deleteLandingPageByIdUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -973,7 +973,7 @@ class LandingPagesApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function discardLandingPageByIdUsingPOSTHandleException(ApiException $e)
+    protected function discardLandingPageByIdUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -1133,7 +1133,7 @@ class LandingPagesApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function getLandingPageByIdUsingGETHandleException(ApiException $e)
+    protected function getLandingPageByIdUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -1309,7 +1309,7 @@ class LandingPagesApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function getLandingPageByNameUsingGETHandleException(ApiException $e)
+    protected function getLandingPageByNameUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -1513,7 +1513,7 @@ class LandingPagesApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function getLandingPageFullContentUsingGETHandleException(ApiException $e)
+    protected function getLandingPageFullContentUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -1705,7 +1705,7 @@ class LandingPagesApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function getVariablesUsingGETHandleException(ApiException $e)
+    protected function getVariablesUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -1881,7 +1881,7 @@ class LandingPagesApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function unapproveLandingPageByIdUsingPOSTHandleException(ApiException $e)
+    protected function unapproveLandingPageByIdUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -2041,7 +2041,7 @@ class LandingPagesApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function updateLandingPageUsingPOSTHandleException(ApiException $e)
+    protected function updateLandingPageUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -2216,7 +2216,7 @@ class LandingPagesApi
      *
      * @return \NecLimDul\MarketoRest\Asset\ApiException Processed exception.
      */
-    protected function updateLandingPageVariableUsingPOSTHandleException(ApiException $e)
+    protected function updateLandingPageVariableUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:

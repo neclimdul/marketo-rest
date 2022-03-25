@@ -89,7 +89,7 @@ class ProgramMembersApi
      *
      * @param int $hostIndex Host index (required)
      */
-    public function setHostIndex($hostIndex): void
+    public function setHostIndex(int $hostIndex): void
     {
         $this->hostIndex = $hostIndex;
     }
@@ -119,7 +119,7 @@ class ProgramMembersApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function createProgramMemberFieldUsingPOSTHandleException(ApiException $e)
+    protected function createProgramMemberFieldUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -274,7 +274,7 @@ class ProgramMembersApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function deleteProgramMemberUsingPOSTHandleException(ApiException $e)
+    protected function deleteProgramMemberUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -449,7 +449,7 @@ class ProgramMembersApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function describeProgramMemberUsingGET2HandleException(ApiException $e)
+    protected function describeProgramMemberUsingGET2HandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -584,7 +584,7 @@ class ProgramMembersApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function getProgramMemberFieldByNameUsingGETHandleException(ApiException $e)
+    protected function getProgramMemberFieldByNameUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -744,7 +744,7 @@ class ProgramMembersApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function getProgramMemberFieldsUsingGETHandleException(ApiException $e)
+    protected function getProgramMemberFieldsUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -916,7 +916,7 @@ class ProgramMembersApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function getProgramMembersUsingGETHandleException(ApiException $e)
+    protected function getProgramMembersUsingGETHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -1194,7 +1194,7 @@ class ProgramMembersApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function syncProgramMemberDataUsingPOSTHandleException(ApiException $e)
+    protected function syncProgramMemberDataUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -1369,7 +1369,7 @@ class ProgramMembersApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function syncProgramMemberStatusUsingPOSTHandleException(ApiException $e)
+    protected function syncProgramMemberStatusUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
@@ -1544,7 +1544,7 @@ class ProgramMembersApi
      *
      * @return \NecLimDul\MarketoRest\Lead\ApiException Processed exception.
      */
-    protected function updateProgramMemberFieldUsingPOSTHandleException(ApiException $e)
+    protected function updateProgramMemberFieldUsingPOSTHandleException(ApiException $e): ApiException
     {
         switch ($e->getCode()) {
             case 200:
