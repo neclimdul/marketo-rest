@@ -1098,8 +1098,8 @@ class EmailTemplatesApi
             $operationHost . $resourcePath,
             // Query.
             [
-                'offset' => ObjectSerializer::toQueryValue($offset),
-                'maxReturn' => ObjectSerializer::toQueryValue($max_return),
+                'offset' => isset($offset) ? ObjectSerializer::toQueryValue($offset) : null,
+                'maxReturn' => isset($max_return) ? ObjectSerializer::toQueryValue($max_return) : null,
             ],
             // Headers.
             array_merge(
@@ -1285,9 +1285,9 @@ class EmailTemplatesApi
             $operationHost . $resourcePath,
             // Query.
             [
-                'offset' => ObjectSerializer::toQueryValue($offset),
-                'maxReturn' => ObjectSerializer::toQueryValue($max_return),
-                'status' => ObjectSerializer::toQueryValue($status),
+                'offset' => isset($offset) ? ObjectSerializer::toQueryValue($offset) : null,
+                'maxReturn' => isset($max_return) ? ObjectSerializer::toQueryValue($max_return) : null,
+                'status' => isset($status) ? ObjectSerializer::toQueryValue($status) : null,
             ],
             // Headers.
             array_merge(
@@ -1463,7 +1463,7 @@ class EmailTemplatesApi
             $operationHost . $resourcePath,
             // Query.
             [
-                'status' => ObjectSerializer::toQueryValue($status),
+                'status' => isset($status) ? ObjectSerializer::toQueryValue($status) : null,
             ],
             // Headers.
             array_merge(
@@ -1635,7 +1635,7 @@ class EmailTemplatesApi
             // Query.
             [
                 'name' => ObjectSerializer::toQueryValue($name),
-                'status' => ObjectSerializer::toQueryValue($status),
+                'status' => isset($status) ? ObjectSerializer::toQueryValue($status) : null,
             ],
             // Headers.
             array_merge(
@@ -1811,7 +1811,7 @@ class EmailTemplatesApi
             $operationHost . $resourcePath,
             // Query.
             [
-                'status' => ObjectSerializer::toQueryValue($status),
+                'status' => isset($status) ? ObjectSerializer::toQueryValue($status) : null,
             ],
             // Headers.
             array_merge(

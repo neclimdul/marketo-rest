@@ -448,7 +448,7 @@ class LandingPageContentApi
             $operationHost . $resourcePath,
             // Query.
             [
-                'status' => ObjectSerializer::toQueryValue($status),
+                'status' => isset($status) ? ObjectSerializer::toQueryValue($status) : null,
             ],
             // Headers.
             array_merge(

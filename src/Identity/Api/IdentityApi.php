@@ -283,9 +283,9 @@ class IdentityApi
             $operationHost . $resourcePath,
             // Query.
             [
-                'client_id' => ObjectSerializer::toQueryValue($client_id),
-                'client_secret' => ObjectSerializer::toQueryValue($client_secret),
-                'grant_type' => ObjectSerializer::toQueryValue($grant_type),
+                'client_id' => isset($client_id) ? ObjectSerializer::toQueryValue($client_id) : null,
+                'client_secret' => isset($client_secret) ? ObjectSerializer::toQueryValue($client_secret) : null,
+                'grant_type' => isset($grant_type) ? ObjectSerializer::toQueryValue($grant_type) : null,
             ],
             // Headers.
             array_merge(

@@ -473,11 +473,11 @@ class ProgramsApi
             $operationHost . $resourcePath,
             // Query.
             [
-                'maxReturn' => ObjectSerializer::toQueryValue($max_return),
-                'offset' => ObjectSerializer::toQueryValue($offset),
-                'filterType' => ObjectSerializer::toQueryValue($filter_type),
-                'earliestUpdatedAt' => ObjectSerializer::toQueryValue($earliest_updated_at),
-                'latestUpdatedAt' => ObjectSerializer::toQueryValue($latest_updated_at),
+                'maxReturn' => isset($max_return) ? ObjectSerializer::toQueryValue($max_return) : null,
+                'offset' => isset($offset) ? ObjectSerializer::toQueryValue($offset) : null,
+                'filterType' => isset($filter_type) ? ObjectSerializer::toQueryValue($filter_type) : null,
+                'earliestUpdatedAt' => isset($earliest_updated_at) ? ObjectSerializer::toQueryValue($earliest_updated_at) : null,
+                'latestUpdatedAt' => isset($latest_updated_at) ? ObjectSerializer::toQueryValue($latest_updated_at) : null,
             ],
             // Headers.
             array_merge(
@@ -1494,8 +1494,8 @@ class ProgramsApi
             // Query.
             [
                 'name' => ObjectSerializer::toQueryValue($name),
-                'includeTags' => ObjectSerializer::toQueryValue($include_tags),
-                'includeCosts' => ObjectSerializer::toQueryValue($include_costs),
+                'includeTags' => isset($include_tags) ? ObjectSerializer::toQueryValue($include_tags) : null,
+                'includeCosts' => isset($include_costs) ? ObjectSerializer::toQueryValue($include_costs) : null,
             ],
             // Headers.
             array_merge(
@@ -1698,8 +1698,8 @@ class ProgramsApi
             [
                 'tagType' => ObjectSerializer::toQueryValue($tag_type),
                 'tagValue' => ObjectSerializer::toQueryValue($tag_value),
-                'maxReturn' => ObjectSerializer::toQueryValue($max_return),
-                'offset' => ObjectSerializer::toQueryValue($offset),
+                'maxReturn' => isset($max_return) ? ObjectSerializer::toQueryValue($max_return) : null,
+                'offset' => isset($offset) ? ObjectSerializer::toQueryValue($offset) : null,
             ],
             // Headers.
             array_merge(
@@ -1875,7 +1875,7 @@ class ProgramsApi
             $operationHost . $resourcePath,
             // Query.
             [
-                'includeRules' => ObjectSerializer::toQueryValue($include_rules),
+                'includeRules' => isset($include_rules) ? ObjectSerializer::toQueryValue($include_rules) : null,
             ],
             // Headers.
             array_merge(

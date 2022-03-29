@@ -283,9 +283,9 @@ class SegmentsApi
             $operationHost . $resourcePath,
             // Query.
             [
-                'status' => ObjectSerializer::toQueryValue($status),
-                'offset' => ObjectSerializer::toQueryValue($offset),
-                'maxReturn' => ObjectSerializer::toQueryValue($max_return),
+                'status' => isset($status) ? ObjectSerializer::toQueryValue($status) : null,
+                'offset' => isset($offset) ? ObjectSerializer::toQueryValue($offset) : null,
+                'maxReturn' => isset($max_return) ? ObjectSerializer::toQueryValue($max_return) : null,
             ],
             // Headers.
             array_merge(
@@ -461,7 +461,7 @@ class SegmentsApi
             $operationHost . $resourcePath,
             // Query.
             [
-                'status' => ObjectSerializer::toQueryValue($status),
+                'status' => isset($status) ? ObjectSerializer::toQueryValue($status) : null,
             ],
             // Headers.
             array_merge(

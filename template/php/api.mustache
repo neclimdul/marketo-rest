@@ -526,8 +526,33 @@ use {{invokerPackage}}\ObjectSerializer;
             // Query.
             [
             {{#queryParams}}
-                {{! This doesn't support isContainer or style. Is there something to do? }}
+            {{#required}}
+            {{#collectionFormat}}
+                '{{baseName}}' => ObjectSerializer::serializeCollection(${{paramName}}, '{{collectionFormat}}'),
+            {{/collectionFormat}}
+            {{^collectionFormat}}
                 '{{baseName}}' => ObjectSerializer::toQueryValue(${{paramName}}),
+            {{/collectionFormat}}
+            {{/required}}
+            {{^required}}
+            {{#defaultValue}}
+            {{! non-required fields with a default value shouldn't be nullable. }}
+            {{#collectionFormat}}
+                '{{baseName}}' => ObjectSerializer::serializeCollection(${{paramName}}, '{{collectionFormat}}'),
+            {{/collectionFormat}}
+            {{^collectionFormat}}
+                '{{baseName}}' => ObjectSerializer::toQueryValue(${{paramName}}),
+            {{/collectionFormat}}
+            {{/defaultValue}}
+            {{^defaultValue}}
+            {{#collectionFormat}}
+                '{{baseName}}' => isset(${{paramName}}) ? ObjectSerializer::serializeCollection(${{paramName}}, '{{collectionFormat}}') : null,
+            {{/collectionFormat}}
+            {{^collectionFormat}}
+                '{{baseName}}' => isset(${{paramName}}) ? ObjectSerializer::toQueryValue(${{paramName}}) : null,
+            {{/collectionFormat}}
+            {{/defaultValue}}
+            {{/required}}
             {{/queryParams}}
             ],
             // Headers.

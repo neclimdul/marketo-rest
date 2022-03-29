@@ -155,7 +155,7 @@ class ObjectSerializer
      * If it's a string, pass through unchanged. It will be url-encoded
      * later.
      *
-     * @param scalar[]|scalar|null|\DateTime $object an object to be serialized to a string
+     * @param scalar[]|scalar|\DateTime $object an object to be serialized to a string
      *
      * @return string|null A serialized query parameter. Null to skip.
      */
@@ -163,11 +163,8 @@ class ObjectSerializer
     {
         if (is_array($object)) {
             return implode(',', $object);
-        } elseif ($object === null) {
-            return null;
-        } else {
-            return self::toString($object);
         }
+        return self::toString($object);
     }
 
     /**
@@ -250,9 +247,8 @@ class ObjectSerializer
                 throw new ApiException('Unable to find file.');
             }
             return $path;
-        } else {
-            return self::toString($value);
         }
+        return self::toString($value);
     }
 
     /**
@@ -271,9 +267,8 @@ class ObjectSerializer
             return $value->format(self::$dateTimeFormat);
         } elseif (is_bool($value)) {
             return $value ? 'true' : 'false';
-        } else {
-            return (string) $value;
         }
+        return (string) $value;
     }
 
     /**

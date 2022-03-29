@@ -1094,9 +1094,9 @@ class BulkExportActivitiesApi
             $operationHost . $resourcePath,
             // Query.
             [
-                'status' => ObjectSerializer::toQueryValue($status),
-                'batchSize' => ObjectSerializer::toQueryValue($batch_size),
-                'nextPageToken' => ObjectSerializer::toQueryValue($next_page_token),
+                'status' => isset($status) ? ObjectSerializer::serializeCollection($status, 'multi') : null,
+                'batchSize' => isset($batch_size) ? ObjectSerializer::toQueryValue($batch_size) : null,
+                'nextPageToken' => isset($next_page_token) ? ObjectSerializer::toQueryValue($next_page_token) : null,
             ],
             // Headers.
             array_merge(

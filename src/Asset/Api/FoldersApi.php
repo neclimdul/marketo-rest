@@ -806,9 +806,9 @@ class FoldersApi
             // Query.
             [
                 'name' => ObjectSerializer::toQueryValue($name),
-                'type' => ObjectSerializer::toQueryValue($type),
-                'root' => ObjectSerializer::toQueryValue($root),
-                'workSpace' => ObjectSerializer::toQueryValue($work_space),
+                'type' => isset($type) ? ObjectSerializer::toQueryValue($type) : null,
+                'root' => isset($root) ? ObjectSerializer::toQueryValue($root) : null,
+                'workSpace' => isset($work_space) ? ObjectSerializer::toQueryValue($work_space) : null,
             ],
             // Headers.
             array_merge(
@@ -1014,8 +1014,8 @@ class FoldersApi
             $operationHost . $resourcePath,
             // Query.
             [
-                'maxReturn' => ObjectSerializer::toQueryValue($max_return),
-                'offset' => ObjectSerializer::toQueryValue($offset),
+                'maxReturn' => isset($max_return) ? ObjectSerializer::toQueryValue($max_return) : null,
+                'offset' => isset($offset) ? ObjectSerializer::toQueryValue($offset) : null,
                 'type' => ObjectSerializer::toQueryValue($type),
             ],
             // Headers.
@@ -1232,11 +1232,11 @@ class FoldersApi
             $operationHost . $resourcePath,
             // Query.
             [
-                'root' => ObjectSerializer::toQueryValue($root),
-                'maxDepth' => ObjectSerializer::toQueryValue($max_depth),
-                'maxReturn' => ObjectSerializer::toQueryValue($max_return),
-                'offset' => ObjectSerializer::toQueryValue($offset),
-                'workSpace' => ObjectSerializer::toQueryValue($work_space),
+                'root' => isset($root) ? ObjectSerializer::toQueryValue($root) : null,
+                'maxDepth' => isset($max_depth) ? ObjectSerializer::toQueryValue($max_depth) : null,
+                'maxReturn' => isset($max_return) ? ObjectSerializer::toQueryValue($max_return) : null,
+                'offset' => isset($offset) ? ObjectSerializer::toQueryValue($offset) : null,
+                'workSpace' => isset($work_space) ? ObjectSerializer::toQueryValue($work_space) : null,
             ],
             // Headers.
             array_merge(

@@ -583,8 +583,8 @@ class LandingPageRedirectRulesApi
             $operationHost . $resourcePath,
             // Query.
             [
-                'maxReturn' => ObjectSerializer::toQueryValue($max_return),
-                'offset' => ObjectSerializer::toQueryValue($offset),
+                'maxReturn' => isset($max_return) ? ObjectSerializer::toQueryValue($max_return) : null,
+                'offset' => isset($offset) ? ObjectSerializer::toQueryValue($offset) : null,
             ],
             // Headers.
             array_merge(
@@ -975,12 +975,12 @@ class LandingPageRedirectRulesApi
             $operationHost . $resourcePath,
             // Query.
             [
-                'maxReturn' => ObjectSerializer::toQueryValue($max_return),
-                'offset' => ObjectSerializer::toQueryValue($offset),
-                'redirectTolandingPageId' => ObjectSerializer::toQueryValue($redirect_tolanding_page_id),
-                'redirectToPath' => ObjectSerializer::toQueryValue($redirect_to_path),
-                'earliestUpdatedAt' => ObjectSerializer::toQueryValue($earliest_updated_at),
-                'latestUpdatedAt' => ObjectSerializer::toQueryValue($latest_updated_at),
+                'maxReturn' => isset($max_return) ? ObjectSerializer::toQueryValue($max_return) : null,
+                'offset' => isset($offset) ? ObjectSerializer::toQueryValue($offset) : null,
+                'redirectTolandingPageId' => isset($redirect_tolanding_page_id) ? ObjectSerializer::toQueryValue($redirect_tolanding_page_id) : null,
+                'redirectToPath' => isset($redirect_to_path) ? ObjectSerializer::toQueryValue($redirect_to_path) : null,
+                'earliestUpdatedAt' => isset($earliest_updated_at) ? ObjectSerializer::toQueryValue($earliest_updated_at) : null,
+                'latestUpdatedAt' => isset($latest_updated_at) ? ObjectSerializer::toQueryValue($latest_updated_at) : null,
             ],
             // Headers.
             array_merge(

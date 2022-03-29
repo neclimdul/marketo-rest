@@ -288,7 +288,7 @@ class StaticListsApi
             $operationHost . $resourcePath,
             // Query.
             [
-                'id' => ObjectSerializer::toQueryValue($id),
+                'id' => isset($id) ? ObjectSerializer::serializeCollection($id, 'multi') : null,
             ],
             // Headers.
             array_merge(
@@ -479,7 +479,7 @@ class StaticListsApi
             $operationHost . $resourcePath,
             // Query.
             [
-                'id' => ObjectSerializer::toQueryValue($id),
+                'id' => isset($id) ? ObjectSerializer::serializeCollection($id, 'multi') : null,
             ],
             // Headers.
             array_merge(
@@ -685,9 +685,9 @@ class StaticListsApi
             $operationHost . $resourcePath,
             // Query.
             [
-                'fields' => ObjectSerializer::toQueryValue($fields),
-                'batchSize' => ObjectSerializer::toQueryValue($batch_size),
-                'nextPageToken' => ObjectSerializer::toQueryValue($next_page_token),
+                'fields' => isset($fields) ? ObjectSerializer::serializeCollection($fields, 'multi') : null,
+                'batchSize' => isset($batch_size) ? ObjectSerializer::toQueryValue($batch_size) : null,
+                'nextPageToken' => isset($next_page_token) ? ObjectSerializer::toQueryValue($next_page_token) : null,
             ],
             // Headers.
             array_merge(
@@ -893,9 +893,9 @@ class StaticListsApi
             $operationHost . $resourcePath,
             // Query.
             [
-                'fields' => ObjectSerializer::toQueryValue($fields),
-                'batchSize' => ObjectSerializer::toQueryValue($batch_size),
-                'nextPageToken' => ObjectSerializer::toQueryValue($next_page_token),
+                'fields' => isset($fields) ? ObjectSerializer::serializeCollection($fields, 'multi') : null,
+                'batchSize' => isset($batch_size) ? ObjectSerializer::toQueryValue($batch_size) : null,
+                'nextPageToken' => isset($next_page_token) ? ObjectSerializer::toQueryValue($next_page_token) : null,
             ],
             // Headers.
             array_merge(
@@ -1286,12 +1286,12 @@ class StaticListsApi
             $operationHost . $resourcePath,
             // Query.
             [
-                'id' => ObjectSerializer::toQueryValue($id),
-                'name' => ObjectSerializer::toQueryValue($name),
-                'programName' => ObjectSerializer::toQueryValue($program_name),
-                'workspaceName' => ObjectSerializer::toQueryValue($workspace_name),
-                'batchSize' => ObjectSerializer::toQueryValue($batch_size),
-                'nextPageToken' => ObjectSerializer::toQueryValue($next_page_token),
+                'id' => isset($id) ? ObjectSerializer::serializeCollection($id, 'multi') : null,
+                'name' => isset($name) ? ObjectSerializer::serializeCollection($name, 'multi') : null,
+                'programName' => isset($program_name) ? ObjectSerializer::serializeCollection($program_name, 'multi') : null,
+                'workspaceName' => isset($workspace_name) ? ObjectSerializer::serializeCollection($workspace_name, 'multi') : null,
+                'batchSize' => isset($batch_size) ? ObjectSerializer::toQueryValue($batch_size) : null,
+                'nextPageToken' => isset($next_page_token) ? ObjectSerializer::toQueryValue($next_page_token) : null,
             ],
             // Headers.
             array_merge(
@@ -1488,7 +1488,7 @@ class StaticListsApi
             $operationHost . $resourcePath,
             // Query.
             [
-                'id' => ObjectSerializer::toQueryValue($id),
+                'id' => ObjectSerializer::serializeCollection($id, 'multi'),
             ],
             // Headers.
             array_merge(

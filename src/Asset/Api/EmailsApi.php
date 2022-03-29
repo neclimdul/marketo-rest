@@ -1846,7 +1846,7 @@ class EmailsApi
             $operationHost . $resourcePath,
             // Query.
             [
-                'status' => ObjectSerializer::toQueryValue($status),
+                'status' => isset($status) ? ObjectSerializer::toQueryValue($status) : null,
             ],
             // Headers.
             array_merge(
@@ -2033,8 +2033,8 @@ class EmailsApi
             // Query.
             [
                 'name' => ObjectSerializer::toQueryValue($name),
-                'status' => ObjectSerializer::toQueryValue($status),
-                'folder' => ObjectSerializer::toQueryValue($folder),
+                'status' => isset($status) ? ObjectSerializer::toQueryValue($status) : null,
+                'folder' => isset($folder) ? ObjectSerializer::toQueryValue($folder) : null,
             ],
             // Headers.
             array_merge(
@@ -2345,7 +2345,7 @@ class EmailsApi
             $operationHost . $resourcePath,
             // Query.
             [
-                'status' => ObjectSerializer::toQueryValue($status),
+                'status' => isset($status) ? ObjectSerializer::toQueryValue($status) : null,
             ],
             // Headers.
             array_merge(
@@ -2541,7 +2541,7 @@ class EmailsApi
             $operationHost . $resourcePath,
             // Query.
             [
-                'status' => ObjectSerializer::toQueryValue($status),
+                'status' => isset($status) ? ObjectSerializer::toQueryValue($status) : null,
             ],
             // Headers.
             array_merge(
@@ -2747,9 +2747,9 @@ class EmailsApi
             $operationHost . $resourcePath,
             // Query.
             [
-                'status' => ObjectSerializer::toQueryValue($status),
-                'leadId' => ObjectSerializer::toQueryValue($lead_id),
-                'type' => ObjectSerializer::toQueryValue($type),
+                'status' => isset($status) ? ObjectSerializer::toQueryValue($status) : null,
+                'leadId' => isset($lead_id) ? ObjectSerializer::toQueryValue($lead_id) : null,
+                'type' => isset($type) ? ObjectSerializer::toQueryValue($type) : null,
             ],
             // Headers.
             array_merge(
@@ -2980,12 +2980,12 @@ class EmailsApi
             $operationHost . $resourcePath,
             // Query.
             [
-                'status' => ObjectSerializer::toQueryValue($status),
-                'folder' => ObjectSerializer::toQueryValue($folder),
-                'offset' => ObjectSerializer::toQueryValue($offset),
-                'maxReturn' => ObjectSerializer::toQueryValue($max_return),
-                'earliestUpdatedAt' => ObjectSerializer::toQueryValue($earliest_updated_at),
-                'latestUpdatedAt' => ObjectSerializer::toQueryValue($latest_updated_at),
+                'status' => isset($status) ? ObjectSerializer::toQueryValue($status) : null,
+                'folder' => isset($folder) ? ObjectSerializer::toQueryValue($folder) : null,
+                'offset' => isset($offset) ? ObjectSerializer::toQueryValue($offset) : null,
+                'maxReturn' => isset($max_return) ? ObjectSerializer::toQueryValue($max_return) : null,
+                'earliestUpdatedAt' => isset($earliest_updated_at) ? ObjectSerializer::toQueryValue($earliest_updated_at) : null,
+                'latestUpdatedAt' => isset($latest_updated_at) ? ObjectSerializer::toQueryValue($latest_updated_at) : null,
             ],
             // Headers.
             array_merge(

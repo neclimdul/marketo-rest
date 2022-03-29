@@ -944,11 +944,11 @@ class StaticListsApi
             $operationHost . $resourcePath,
             // Query.
             [
-                'folder' => ObjectSerializer::toQueryValue($folder),
-                'offset' => ObjectSerializer::toQueryValue($offset),
-                'maxReturn' => ObjectSerializer::toQueryValue($max_return),
-                'earliestUpdatedAt' => ObjectSerializer::toQueryValue($earliest_updated_at),
-                'latestUpdatedAt' => ObjectSerializer::toQueryValue($latest_updated_at),
+                'folder' => isset($folder) ? ObjectSerializer::toQueryValue($folder) : null,
+                'offset' => isset($offset) ? ObjectSerializer::toQueryValue($offset) : null,
+                'maxReturn' => isset($max_return) ? ObjectSerializer::toQueryValue($max_return) : null,
+                'earliestUpdatedAt' => isset($earliest_updated_at) ? ObjectSerializer::toQueryValue($earliest_updated_at) : null,
+                'latestUpdatedAt' => isset($latest_updated_at) ? ObjectSerializer::toQueryValue($latest_updated_at) : null,
             ],
             // Headers.
             array_merge(

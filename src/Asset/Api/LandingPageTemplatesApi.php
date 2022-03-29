@@ -1083,7 +1083,7 @@ class LandingPageTemplatesApi
             $operationHost . $resourcePath,
             // Query.
             [
-                'status' => ObjectSerializer::toQueryValue($status),
+                'status' => isset($status) ? ObjectSerializer::toQueryValue($status) : null,
             ],
             // Headers.
             array_merge(
@@ -1415,7 +1415,7 @@ class LandingPageTemplatesApi
             $operationHost . $resourcePath,
             // Query.
             [
-                'status' => ObjectSerializer::toQueryValue($status),
+                'status' => isset($status) ? ObjectSerializer::toQueryValue($status) : null,
             ],
             // Headers.
             array_merge(
@@ -1616,10 +1616,10 @@ class LandingPageTemplatesApi
             $operationHost . $resourcePath,
             // Query.
             [
-                'maxReturn' => ObjectSerializer::toQueryValue($max_return),
-                'offset' => ObjectSerializer::toQueryValue($offset),
-                'status' => ObjectSerializer::toQueryValue($status),
-                'folder' => ObjectSerializer::toQueryValue($folder),
+                'maxReturn' => isset($max_return) ? ObjectSerializer::toQueryValue($max_return) : null,
+                'offset' => isset($offset) ? ObjectSerializer::toQueryValue($offset) : null,
+                'status' => isset($status) ? ObjectSerializer::toQueryValue($status) : null,
+                'folder' => isset($folder) ? ObjectSerializer::toQueryValue($folder) : null,
             ],
             // Headers.
             array_merge(

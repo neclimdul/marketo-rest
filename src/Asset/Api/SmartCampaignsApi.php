@@ -1138,12 +1138,12 @@ class SmartCampaignsApi
             $operationHost . $resourcePath,
             // Query.
             [
-                'maxReturn' => ObjectSerializer::toQueryValue($max_return),
-                'offset' => ObjectSerializer::toQueryValue($offset),
-                'folder' => ObjectSerializer::toQueryValue($folder),
-                'earliestUpdatedAt' => ObjectSerializer::toQueryValue($earliest_updated_at),
-                'latestUpdatedAt' => ObjectSerializer::toQueryValue($latest_updated_at),
-                'isActive' => ObjectSerializer::toQueryValue($is_active),
+                'maxReturn' => isset($max_return) ? ObjectSerializer::toQueryValue($max_return) : null,
+                'offset' => isset($offset) ? ObjectSerializer::toQueryValue($offset) : null,
+                'folder' => isset($folder) ? ObjectSerializer::toQueryValue($folder) : null,
+                'earliestUpdatedAt' => isset($earliest_updated_at) ? ObjectSerializer::toQueryValue($earliest_updated_at) : null,
+                'latestUpdatedAt' => isset($latest_updated_at) ? ObjectSerializer::toQueryValue($latest_updated_at) : null,
+                'isActive' => isset($is_active) ? ObjectSerializer::toQueryValue($is_active) : null,
             ],
             // Headers.
             array_merge(
@@ -1635,7 +1635,7 @@ class SmartCampaignsApi
             $operationHost . $resourcePath,
             // Query.
             [
-                'includeRules' => ObjectSerializer::toQueryValue($include_rules),
+                'includeRules' => isset($include_rules) ? ObjectSerializer::toQueryValue($include_rules) : null,
             ],
             // Headers.
             array_merge(

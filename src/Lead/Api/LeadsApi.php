@@ -774,7 +774,7 @@ class LeadsApi
             $operationHost . $resourcePath,
             // Query.
             [
-                'id' => ObjectSerializer::toQueryValue($id),
+                'id' => isset($id) ? ObjectSerializer::serializeCollection($id, 'multi') : null,
             ],
             // Headers.
             array_merge(
@@ -1355,7 +1355,7 @@ class LeadsApi
             $operationHost . $resourcePath,
             // Query.
             [
-                'fields' => ObjectSerializer::toQueryValue($fields),
+                'fields' => isset($fields) ? ObjectSerializer::serializeCollection($fields, 'multi') : null,
             ],
             // Headers.
             array_merge(
@@ -1686,8 +1686,8 @@ class LeadsApi
             $operationHost . $resourcePath,
             // Query.
             [
-                'batchSize' => ObjectSerializer::toQueryValue($batch_size),
-                'nextPageToken' => ObjectSerializer::toQueryValue($next_page_token),
+                'batchSize' => isset($batch_size) ? ObjectSerializer::toQueryValue($batch_size) : null,
+                'nextPageToken' => isset($next_page_token) ? ObjectSerializer::toQueryValue($next_page_token) : null,
             ],
             // Headers.
             array_merge(
@@ -2045,10 +2045,10 @@ class LeadsApi
             // Query.
             [
                 'filterType' => ObjectSerializer::toQueryValue($filter_type),
-                'filterValues' => ObjectSerializer::toQueryValue($filter_values),
-                'fields' => ObjectSerializer::toQueryValue($fields),
-                'batchSize' => ObjectSerializer::toQueryValue($batch_size),
-                'nextPageToken' => ObjectSerializer::toQueryValue($next_page_token),
+                'filterValues' => ObjectSerializer::serializeCollection($filter_values, 'multi'),
+                'fields' => isset($fields) ? ObjectSerializer::serializeCollection($fields, 'multi') : null,
+                'batchSize' => isset($batch_size) ? ObjectSerializer::toQueryValue($batch_size) : null,
+                'nextPageToken' => isset($next_page_token) ? ObjectSerializer::toQueryValue($next_page_token) : null,
             ],
             // Headers.
             array_merge(
@@ -2254,9 +2254,9 @@ class LeadsApi
             $operationHost . $resourcePath,
             // Query.
             [
-                'fields' => ObjectSerializer::toQueryValue($fields),
-                'batchSize' => ObjectSerializer::toQueryValue($batch_size),
-                'nextPageToken' => ObjectSerializer::toQueryValue($next_page_token),
+                'fields' => isset($fields) ? ObjectSerializer::serializeCollection($fields, 'multi') : null,
+                'batchSize' => isset($batch_size) ? ObjectSerializer::toQueryValue($batch_size) : null,
+                'nextPageToken' => isset($next_page_token) ? ObjectSerializer::toQueryValue($next_page_token) : null,
             ],
             // Headers.
             array_merge(
@@ -2447,8 +2447,8 @@ class LeadsApi
             $operationHost . $resourcePath,
             // Query.
             [
-                'nextPageToken' => ObjectSerializer::toQueryValue($next_page_token),
-                'batchSize' => ObjectSerializer::toQueryValue($batch_size),
+                'nextPageToken' => isset($next_page_token) ? ObjectSerializer::toQueryValue($next_page_token) : null,
+                'batchSize' => isset($batch_size) ? ObjectSerializer::toQueryValue($batch_size) : null,
             ],
             // Headers.
             array_merge(
@@ -2699,12 +2699,12 @@ class LeadsApi
             $operationHost . $resourcePath,
             // Query.
             [
-                'nextPageToken' => ObjectSerializer::toQueryValue($next_page_token),
-                'batchSize' => ObjectSerializer::toQueryValue($batch_size),
-                'earliestUpdatedAt' => ObjectSerializer::toQueryValue($earliest_updated_at),
-                'latestUpdatedAt' => ObjectSerializer::toQueryValue($latest_updated_at),
-                'filterType' => ObjectSerializer::toQueryValue($filter_type),
-                'filterValues' => ObjectSerializer::toQueryValue($filter_values),
+                'nextPageToken' => isset($next_page_token) ? ObjectSerializer::toQueryValue($next_page_token) : null,
+                'batchSize' => isset($batch_size) ? ObjectSerializer::toQueryValue($batch_size) : null,
+                'earliestUpdatedAt' => isset($earliest_updated_at) ? ObjectSerializer::toQueryValue($earliest_updated_at) : null,
+                'latestUpdatedAt' => isset($latest_updated_at) ? ObjectSerializer::toQueryValue($latest_updated_at) : null,
+                'filterType' => isset($filter_type) ? ObjectSerializer::toQueryValue($filter_type) : null,
+                'filterValues' => isset($filter_values) ? ObjectSerializer::serializeCollection($filter_values, 'multi') : null,
             ],
             // Headers.
             array_merge(
@@ -2925,10 +2925,10 @@ class LeadsApi
             $operationHost . $resourcePath,
             // Query.
             [
-                'nextPageToken' => ObjectSerializer::toQueryValue($next_page_token),
-                'batchSize' => ObjectSerializer::toQueryValue($batch_size),
-                'earliestUpdatedAt' => ObjectSerializer::toQueryValue($earliest_updated_at),
-                'latestUpdatedAt' => ObjectSerializer::toQueryValue($latest_updated_at),
+                'nextPageToken' => isset($next_page_token) ? ObjectSerializer::toQueryValue($next_page_token) : null,
+                'batchSize' => isset($batch_size) ? ObjectSerializer::toQueryValue($batch_size) : null,
+                'earliestUpdatedAt' => isset($earliest_updated_at) ? ObjectSerializer::toQueryValue($earliest_updated_at) : null,
+                'latestUpdatedAt' => isset($latest_updated_at) ? ObjectSerializer::toQueryValue($latest_updated_at) : null,
             ],
             // Headers.
             array_merge(
@@ -3134,9 +3134,9 @@ class LeadsApi
             $operationHost . $resourcePath,
             // Query.
             [
-                'leadId' => ObjectSerializer::toQueryValue($lead_id2),
-                'leadIds' => ObjectSerializer::toQueryValue($lead_ids),
-                'mergeInCRM' => ObjectSerializer::toQueryValue($merge_in_crm),
+                'leadId' => isset($lead_id2) ? ObjectSerializer::toQueryValue($lead_id2) : null,
+                'leadIds' => isset($lead_ids) ? ObjectSerializer::serializeCollection($lead_ids, 'multi') : null,
+                'mergeInCRM' => isset($merge_in_crm) ? ObjectSerializer::toQueryValue($merge_in_crm) : null,
             ],
             // Headers.
             array_merge(

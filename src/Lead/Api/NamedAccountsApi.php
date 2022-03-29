@@ -718,8 +718,8 @@ class NamedAccountsApi
             $operationHost . $resourcePath,
             // Query.
             [
-                'batchSize' => ObjectSerializer::toQueryValue($batch_size),
-                'nextPageToken' => ObjectSerializer::toQueryValue($next_page_token),
+                'batchSize' => isset($batch_size) ? ObjectSerializer::toQueryValue($batch_size) : null,
+                'nextPageToken' => isset($next_page_token) ? ObjectSerializer::toQueryValue($next_page_token) : null,
             ],
             // Headers.
             array_merge(
@@ -942,10 +942,10 @@ class NamedAccountsApi
             // Query.
             [
                 'filterType' => ObjectSerializer::toQueryValue($filter_type),
-                'filterValues' => ObjectSerializer::toQueryValue($filter_values),
-                'fields' => ObjectSerializer::toQueryValue($fields),
-                'batchSize' => ObjectSerializer::toQueryValue($batch_size),
-                'nextPageToken' => ObjectSerializer::toQueryValue($next_page_token),
+                'filterValues' => ObjectSerializer::serializeCollection($filter_values, 'multi'),
+                'fields' => isset($fields) ? ObjectSerializer::serializeCollection($fields, 'multi') : null,
+                'batchSize' => isset($batch_size) ? ObjectSerializer::toQueryValue($batch_size) : null,
+                'nextPageToken' => isset($next_page_token) ? ObjectSerializer::toQueryValue($next_page_token) : null,
             ],
             // Headers.
             array_merge(

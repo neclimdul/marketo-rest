@@ -739,7 +739,7 @@ class FilesApi
             $operationHost . $resourcePath,
             // Query.
             [
-                'folder' => ObjectSerializer::toQueryValue($folder),
+                'folder' => isset($folder) ? ObjectSerializer::toQueryValue($folder) : null,
             ],
             // Headers.
             array_merge(

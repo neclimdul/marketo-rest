@@ -794,9 +794,9 @@ class BulkImportLeadsApi
             // Query.
             [
                 'format' => ObjectSerializer::toQueryValue($format),
-                'lookupField' => ObjectSerializer::toQueryValue($lookup_field),
-                'partitionName' => ObjectSerializer::toQueryValue($partition_name),
-                'listId' => ObjectSerializer::toQueryValue($list_id),
+                'lookupField' => isset($lookup_field) ? ObjectSerializer::toQueryValue($lookup_field) : null,
+                'partitionName' => isset($partition_name) ? ObjectSerializer::toQueryValue($partition_name) : null,
+                'listId' => isset($list_id) ? ObjectSerializer::toQueryValue($list_id) : null,
             ],
             // Headers.
             array_merge(

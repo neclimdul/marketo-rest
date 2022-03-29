@@ -458,10 +458,10 @@ class FormsApi
             $operationHost . $resourcePath,
             // Query.
             [
-                'status' => ObjectSerializer::toQueryValue($status),
+                'status' => isset($status) ? ObjectSerializer::toQueryValue($status) : null,
                 'folder' => ObjectSerializer::toQueryValue($folder),
-                'maxReturn' => ObjectSerializer::toQueryValue($max_return),
-                'offset' => ObjectSerializer::toQueryValue($offset),
+                'maxReturn' => isset($max_return) ? ObjectSerializer::toQueryValue($max_return) : null,
+                'offset' => isset($offset) ? ObjectSerializer::toQueryValue($offset) : null,
             ],
             // Headers.
             array_merge(
@@ -1302,8 +1302,8 @@ class FormsApi
             $operationHost . $resourcePath,
             // Query.
             [
-                'offset' => ObjectSerializer::toQueryValue($offset),
-                'maxReturn' => ObjectSerializer::toQueryValue($max_return),
+                'offset' => isset($offset) ? ObjectSerializer::toQueryValue($offset) : null,
+                'maxReturn' => isset($max_return) ? ObjectSerializer::toQueryValue($max_return) : null,
             ],
             // Headers.
             array_merge(
@@ -1479,7 +1479,7 @@ class FormsApi
             $operationHost . $resourcePath,
             // Query.
             [
-                'status' => ObjectSerializer::toQueryValue($status),
+                'status' => isset($status) ? ObjectSerializer::toQueryValue($status) : null,
             ],
             // Headers.
             array_merge(
@@ -1666,8 +1666,8 @@ class FormsApi
             // Query.
             [
                 'name' => ObjectSerializer::toQueryValue($name),
-                'status' => ObjectSerializer::toQueryValue($status),
-                'folder' => ObjectSerializer::toQueryValue($folder),
+                'status' => isset($status) ? ObjectSerializer::toQueryValue($status) : null,
+                'folder' => isset($folder) ? ObjectSerializer::toQueryValue($folder) : null,
             ],
             // Headers.
             array_merge(
@@ -1843,7 +1843,7 @@ class FormsApi
             $operationHost . $resourcePath,
             // Query.
             [
-                'status' => ObjectSerializer::toQueryValue($status),
+                'status' => isset($status) ? ObjectSerializer::toQueryValue($status) : null,
             ],
             // Headers.
             array_merge(

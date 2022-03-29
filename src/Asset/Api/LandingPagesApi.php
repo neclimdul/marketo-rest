@@ -458,10 +458,10 @@ class LandingPagesApi
             $operationHost . $resourcePath,
             // Query.
             [
-                'status' => ObjectSerializer::toQueryValue($status),
-                'maxReturn' => ObjectSerializer::toQueryValue($max_return),
-                'offset' => ObjectSerializer::toQueryValue($offset),
-                'folder' => ObjectSerializer::toQueryValue($folder),
+                'status' => isset($status) ? ObjectSerializer::toQueryValue($status) : null,
+                'maxReturn' => isset($max_return) ? ObjectSerializer::toQueryValue($max_return) : null,
+                'offset' => isset($offset) ? ObjectSerializer::toQueryValue($offset) : null,
+                'folder' => isset($folder) ? ObjectSerializer::toQueryValue($folder) : null,
             ],
             // Headers.
             array_merge(
@@ -1287,7 +1287,7 @@ class LandingPagesApi
             $operationHost . $resourcePath,
             // Query.
             [
-                'status' => ObjectSerializer::toQueryValue($status),
+                'status' => isset($status) ? ObjectSerializer::toQueryValue($status) : null,
             ],
             // Headers.
             array_merge(
@@ -1489,9 +1489,9 @@ class LandingPagesApi
             // Query.
             [
                 'name' => ObjectSerializer::toQueryValue($name),
-                'status' => ObjectSerializer::toQueryValue($status),
-                'maxReturn' => ObjectSerializer::toQueryValue($max_return),
-                'offset' => ObjectSerializer::toQueryValue($offset),
+                'status' => isset($status) ? ObjectSerializer::toQueryValue($status) : null,
+                'maxReturn' => isset($max_return) ? ObjectSerializer::toQueryValue($max_return) : null,
+                'offset' => isset($offset) ? ObjectSerializer::toQueryValue($offset) : null,
             ],
             // Headers.
             array_merge(
@@ -1682,8 +1682,8 @@ class LandingPagesApi
             $operationHost . $resourcePath,
             // Query.
             [
-                'leadId' => ObjectSerializer::toQueryValue($lead_id),
-                'segmentation' => ObjectSerializer::toQueryValue($segmentation),
+                'leadId' => isset($lead_id) ? ObjectSerializer::toQueryValue($lead_id) : null,
+                'segmentation' => isset($segmentation) ? ObjectSerializer::toQueryValue($segmentation) : null,
             ],
             // Headers.
             array_merge(
@@ -1859,7 +1859,7 @@ class LandingPagesApi
             $operationHost . $resourcePath,
             // Query.
             [
-                'status' => ObjectSerializer::toQueryValue($status),
+                'status' => isset($status) ? ObjectSerializer::toQueryValue($status) : null,
             ],
             // Headers.
             array_merge(

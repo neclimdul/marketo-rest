@@ -503,13 +503,13 @@ class CampaignsApi
             $operationHost . $resourcePath,
             // Query.
             [
-                'id' => ObjectSerializer::toQueryValue($id),
-                'name' => ObjectSerializer::toQueryValue($name),
-                'programName' => ObjectSerializer::toQueryValue($program_name),
-                'workspaceName' => ObjectSerializer::toQueryValue($workspace_name),
-                'batchSize' => ObjectSerializer::toQueryValue($batch_size),
-                'nextPageToken' => ObjectSerializer::toQueryValue($next_page_token),
-                'isTriggerable' => ObjectSerializer::toQueryValue($is_triggerable),
+                'id' => isset($id) ? ObjectSerializer::serializeCollection($id, 'multi') : null,
+                'name' => isset($name) ? ObjectSerializer::serializeCollection($name, 'multi') : null,
+                'programName' => isset($program_name) ? ObjectSerializer::serializeCollection($program_name, 'multi') : null,
+                'workspaceName' => isset($workspace_name) ? ObjectSerializer::serializeCollection($workspace_name, 'multi') : null,
+                'batchSize' => isset($batch_size) ? ObjectSerializer::toQueryValue($batch_size) : null,
+                'nextPageToken' => isset($next_page_token) ? ObjectSerializer::toQueryValue($next_page_token) : null,
+                'isTriggerable' => isset($is_triggerable) ? ObjectSerializer::toQueryValue($is_triggerable) : null,
             ],
             // Headers.
             array_merge(
