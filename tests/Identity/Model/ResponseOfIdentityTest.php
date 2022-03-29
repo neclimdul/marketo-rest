@@ -259,6 +259,9 @@ class ResponseOfIdentityTest extends TestCase
         );
         $this->sot->setAccessToken($v);
         $this->assertEquals($v, $this->sot->getAccessToken());
+        $this->sot->setAccessToken(null);
+        $this->assertNull($this->sot->getAccessToken());
+        $this->sot->setAccessToken($v);
 
         $this->assertEquals($v, $this->sot['access_token']);
         $v = $this->getFakeValue(
@@ -295,6 +298,9 @@ class ResponseOfIdentityTest extends TestCase
         );
         $this->sot->setScope($v);
         $this->assertEquals($v, $this->sot->getScope());
+        $this->sot->setScope(null);
+        $this->assertNull($this->sot->getScope());
+        $this->sot->setScope($v);
 
         $this->assertEquals($v, $this->sot['scope']);
         $v = $this->getFakeValue(
@@ -331,6 +337,9 @@ class ResponseOfIdentityTest extends TestCase
         );
         $this->sot->setExpiresIn($v);
         $this->assertEquals($v, $this->sot->getExpiresIn());
+        $this->sot->setExpiresIn(null);
+        $this->assertNull($this->sot->getExpiresIn());
+        $this->sot->setExpiresIn($v);
 
         $this->assertEquals($v, $this->sot['expires_in']);
         $v = $this->getFakeValue(
@@ -367,6 +376,9 @@ class ResponseOfIdentityTest extends TestCase
         );
         $this->sot->setTokenType($v);
         $this->assertEquals($v, $this->sot->getTokenType());
+        $this->sot->setTokenType(null);
+        $this->assertNull($this->sot->getTokenType());
+        $this->sot->setTokenType($v);
 
         $this->assertEquals($v, $this->sot['token_type']);
         $v = $this->getFakeValue(
