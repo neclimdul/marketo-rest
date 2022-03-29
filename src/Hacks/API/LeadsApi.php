@@ -5,7 +5,6 @@ namespace NecLimDul\MarketoRest\Hacks\API;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\Psr7\Request;
-use GuzzleHttp\Psr7\Uri;
 use NecLimDul\MarketoRest\Lead\Api\LeadsApi as LeadsLeadsApi;
 use NecLimDul\MarketoRest\Lead\ApiException;
 use NecLimDul\MarketoRest\Lead\Model\SubmitFormRequest;
@@ -74,36 +73,6 @@ class LeadsApi extends LeadsLeadsApi
                     );
                 }
             );
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getLeadsByFilterUsingGETRequest(
-        string $filter_type,
-        array $filter_values,
-        array $fields = null,
-        int $batch_size = null,
-        string $next_page_token = null
-    ): Request {
-        $request = parent::getLeadsByFilterUsingGETRequest(
-            $filter_type,
-            $filter_values,
-            $fields,
-            $batch_size,
-            $next_page_token
-        );
-        $uri = $request->getUri();
-        parse_str($uri->getQuery(), $query);
-        $query['filter_values'] = implode(',', $query['filter_values']);
-        $query['fields'] = implode(',', $query['fields']);
-        $request->withUri(
-            Uri::withQueryValues(
-                $uri,
-                $query
-            )
-        );
-        return $request;
     }
 
     /**
