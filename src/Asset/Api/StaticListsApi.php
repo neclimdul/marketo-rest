@@ -1165,7 +1165,7 @@ class StaticListsApi
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @return \Psr\Http\Message\ResponseInterface
      */
-    private function makeRequest(Request $request)
+    protected function makeRequest(Request $request)
     {
         $options = $this->createHttpClientOption();
         try {
@@ -1206,7 +1206,7 @@ class StaticListsApi
      * @throws \NecLimDul\MarketoRest\Lead\ApiException on non-2xx response
      * @return \GuzzleHttp\Promise\PromiseInterface A promise that will return a processed response.
      */
-    private function makeAsyncRequest(Request $request, string $returnType, callable $exceptionHandler)
+    protected function makeAsyncRequest(Request $request, string $returnType, callable $exceptionHandler)
     {
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1242,7 +1242,7 @@ class StaticListsApi
      * @return array structured array or response and http info.
      * @phpstan-return array{T, int, array<array<string>>}
      */
-    private function responseToReturn(ResponseInterface $response, string $returnType)
+    protected function responseToReturn(ResponseInterface $response, string $returnType)
     {
         return [
             $this->deserializeResponseBody($response->getBody(), $returnType),
