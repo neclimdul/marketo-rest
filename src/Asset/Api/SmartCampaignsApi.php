@@ -1888,7 +1888,7 @@ class SmartCampaignsApi
      * @throws \NecLimDul\MarketoRest\Asset\ApiException on non-2xx response
      * @return \Psr\Http\Message\ResponseInterface
      */
-    private function makeRequest(Request $request) {
+    protected function makeRequest(Request $request) {
         $options = $this->createHttpClientOption();
         try {
            $response = $this->client->send($request, $options);
@@ -1928,7 +1928,7 @@ class SmartCampaignsApi
      *
      * @return array
      */
-    private function responseToReturn(ResponseInterface $response, string $returnType) {
+    protected function responseToReturn(ResponseInterface $response, string $returnType) {
         return [
             $this->deserializeResponseBody($response->getBody(), $returnType),
             $response->getStatusCode(),
@@ -1948,7 +1948,7 @@ class SmartCampaignsApi
      * @return mixed
      *   Either a string or a stream to be passed to a file object.
      */
-    private function deserializeResponseBody($responseBody, $returnType, $headers = [])
+    protected function deserializeResponseBody($responseBody, $returnType, $headers = [])
     {
         return ObjectSerializer::deserialize(
             $returnType === '\SplFileObject' ? $responseBody : (string) $responseBody,
