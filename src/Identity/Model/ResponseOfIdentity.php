@@ -203,18 +203,6 @@ class ResponseOfIdentity implements ModelInterface, ArrayAccess, \JsonSerializab
     {
         $invalidProperties = [];
 
-        if ($this->container['access_token'] === null) {
-            $invalidProperties[] = "'access_token' can't be null";
-        }
-        if ($this->container['scope'] === null) {
-            $invalidProperties[] = "'scope' can't be null";
-        }
-        if ($this->container['expires_in'] === null) {
-            $invalidProperties[] = "'expires_in' can't be null";
-        }
-        if ($this->container['token_type'] === null) {
-            $invalidProperties[] = "'token_type' can't be null";
-        }
         $allowedValues = $this->getTokenTypeAllowableValues();
         if (!is_null($this->container['token_type']) && !in_array($this->container['token_type'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
@@ -341,7 +329,7 @@ class ResponseOfIdentity implements ModelInterface, ArrayAccess, \JsonSerializab
     public function setTokenType($token_type)
     {
         $allowedValues = $this->getTokenTypeAllowableValues();
-        if (!in_array($token_type, $allowedValues, true)) {
+        if (!is_null($token_type) && !in_array($token_type, $allowedValues, true)) {
             throw new \InvalidArgumentException(
                 sprintf(
                     "Invalid value '%s' for 'token_type', must be one of '%s'",
