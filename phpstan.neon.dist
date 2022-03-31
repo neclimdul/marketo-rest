@@ -1,9 +1,13 @@
 includes:
   - phpstan-baseline.neon
 parameters:
-	level: 5
+	level: 6
 	treatPhpDocTypesAsCertain: false
 	paths:
 		- .
+	ignoreErrors:
+		- '#Method .* has no return type specified\.$#'
+		- '#Method .* return type has no value type specified in iterable type array\.$#'
+		- '#Method .* has parameter .* with no value type specified in iterable type array\.$#'
 	excludePaths:
 	  - vendor/*
