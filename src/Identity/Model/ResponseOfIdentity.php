@@ -37,9 +37,7 @@ use \NecLimDul\MarketoRest\Identity\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Identity
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<string,?mixed>
  */
 class ResponseOfIdentity implements ModelInterface, ArrayAccess, \JsonSerializable
 {

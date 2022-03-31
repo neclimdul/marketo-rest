@@ -37,9 +37,7 @@ use \NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<string,?mixed>
  */
 class SendSampleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
