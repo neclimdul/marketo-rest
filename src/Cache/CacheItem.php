@@ -6,11 +6,25 @@ use Psr\Cache\CacheItemInterface;
 
 class CacheItem implements CacheItemInterface
 {
+    /**
+     * @var string
+     */
     protected $key;
-    protected $isHit;
+    /**
+     * @var mixed|null
+     */
     protected $value;
+    /**
+     * @var bool
+     */
+    protected $isHit;
 
-    public function __construct($key = null, $value = null, $isHit = false)
+    /**
+     * @param string $key
+     * @param mixed|null $value
+     * @param bool $isHit
+     */
+    public function __construct(string $key, $value = null, bool $isHit = false)
     {
         $this->key = $key;
         $this->value = $value;
@@ -65,5 +79,4 @@ class CacheItem implements CacheItemInterface
     {
         return $this;
     }
-
 }
