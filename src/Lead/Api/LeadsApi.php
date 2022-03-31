@@ -789,7 +789,7 @@ class LeadsApi
         $httpBody = '';
 
         // Query parameters.
-        $id = ObjectSerializer::serializeCollection($id, 'multi', true);
+        $id = isset($id) ? ObjectSerializer::serializeCollection($id, 'multi', true) : null;
         $queryParams['id'] = $id;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
@@ -1420,7 +1420,7 @@ class LeadsApi
         $httpBody = '';
 
         // Query parameters.
-        $fields = ObjectSerializer::serializeCollection($fields, 'multi', true);
+        $fields = isset($fields) ? ObjectSerializer::serializeCollection($fields, 'multi', true) : null;
         $queryParams['fields'] = $fields;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
@@ -2107,7 +2107,7 @@ class LeadsApi
         $queryParams['filterType'] = $filter_type;
         $filter_values = ObjectSerializer::serializeCollection($filter_values, 'multi', true);
         $queryParams['filterValues'] = $filter_values;
-        $fields = ObjectSerializer::serializeCollection($fields, 'multi', true);
+        $fields = isset($fields) ? ObjectSerializer::serializeCollection($fields, 'multi', true) : null;
         $queryParams['fields'] = $fields;
         $queryParams['batchSize'] = $batch_size;
         $queryParams['nextPageToken'] = $next_page_token;
@@ -2291,7 +2291,7 @@ class LeadsApi
         $httpBody = '';
 
         // Query parameters.
-        $fields = ObjectSerializer::serializeCollection($fields, 'multi', true);
+        $fields = isset($fields) ? ObjectSerializer::serializeCollection($fields, 'multi', true) : null;
         $queryParams['fields'] = $fields;
         $queryParams['batchSize'] = $batch_size;
         $queryParams['nextPageToken'] = $next_page_token;
@@ -2686,7 +2686,7 @@ class LeadsApi
         $queryParams['earliestUpdatedAt'] = $earliest_updated_at;
         $queryParams['latestUpdatedAt'] = $latest_updated_at;
         $queryParams['filterType'] = $filter_type;
-        $filter_values = ObjectSerializer::serializeCollection($filter_values, 'multi', true);
+        $filter_values = isset($filter_values) ? ObjectSerializer::serializeCollection($filter_values, 'multi', true) : null;
         $queryParams['filterValues'] = $filter_values;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
@@ -3072,7 +3072,7 @@ class LeadsApi
 
         // Query parameters.
         $queryParams['leadId'] = $lead_id2;
-        $lead_ids = ObjectSerializer::serializeCollection($lead_ids, 'multi', true);
+        $lead_ids = isset($lead_ids) ? ObjectSerializer::serializeCollection($lead_ids, 'multi', true) : null;
         $queryParams['leadIds'] = $lead_ids;
         $queryParams['mergeInCRM'] = $merge_in_crm;
         // Remove any null (optional values).

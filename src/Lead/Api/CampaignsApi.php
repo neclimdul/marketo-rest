@@ -446,13 +446,13 @@ class CampaignsApi
         $httpBody = '';
 
         // Query parameters.
-        $id = ObjectSerializer::serializeCollection($id, 'multi', true);
+        $id = isset($id) ? ObjectSerializer::serializeCollection($id, 'multi', true) : null;
         $queryParams['id'] = $id;
-        $name = ObjectSerializer::serializeCollection($name, 'multi', true);
+        $name = isset($name) ? ObjectSerializer::serializeCollection($name, 'multi', true) : null;
         $queryParams['name'] = $name;
-        $program_name = ObjectSerializer::serializeCollection($program_name, 'multi', true);
+        $program_name = isset($program_name) ? ObjectSerializer::serializeCollection($program_name, 'multi', true) : null;
         $queryParams['programName'] = $program_name;
-        $workspace_name = ObjectSerializer::serializeCollection($workspace_name, 'multi', true);
+        $workspace_name = isset($workspace_name) ? ObjectSerializer::serializeCollection($workspace_name, 'multi', true) : null;
         $queryParams['workspaceName'] = $workspace_name;
         $queryParams['batchSize'] = $batch_size;
         $queryParams['nextPageToken'] = $next_page_token;

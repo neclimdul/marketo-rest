@@ -1142,7 +1142,7 @@ class ProgramMembersApi
         $queryParams['filterValues'] = $filter_values;
         $queryParams['startAt'] = $start_at;
         $queryParams['endAt'] = $end_at;
-        $fields = ObjectSerializer::serializeCollection($fields, 'multi', true);
+        $fields = isset($fields) ? ObjectSerializer::serializeCollection($fields, 'multi', true) : null;
         $queryParams['fields'] = $fields;
         $queryParams['batchSize'] = $batch_size;
         $queryParams['nextPageToken'] = $next_page_token;

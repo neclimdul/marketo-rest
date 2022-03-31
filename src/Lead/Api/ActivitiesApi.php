@@ -2312,10 +2312,10 @@ class ActivitiesApi
         $queryParams['nextPageToken'] = $next_page_token;
         $activity_type_ids = ObjectSerializer::serializeCollection($activity_type_ids, 'multi', true);
         $queryParams['activityTypeIds'] = $activity_type_ids;
-        $asset_ids = ObjectSerializer::serializeCollection($asset_ids, 'multi', true);
+        $asset_ids = isset($asset_ids) ? ObjectSerializer::serializeCollection($asset_ids, 'multi', true) : null;
         $queryParams['assetIds'] = $asset_ids;
         $queryParams['listId'] = $list_id;
-        $lead_ids = ObjectSerializer::serializeCollection($lead_ids, 'multi', true);
+        $lead_ids = isset($lead_ids) ? ObjectSerializer::serializeCollection($lead_ids, 'multi', true) : null;
         $queryParams['leadIds'] = $lead_ids;
         $queryParams['batchSize'] = $batch_size;
         // Remove any null (optional values).
@@ -2513,7 +2513,7 @@ class ActivitiesApi
         $fields = ObjectSerializer::serializeCollection($fields, 'multi', true);
         $queryParams['fields'] = $fields;
         $queryParams['listId'] = $list_id;
-        $lead_ids = ObjectSerializer::serializeCollection($lead_ids, 'multi', true);
+        $lead_ids = isset($lead_ids) ? ObjectSerializer::serializeCollection($lead_ids, 'multi', true) : null;
         $queryParams['leadIds'] = $lead_ids;
         $queryParams['batchSize'] = $batch_size;
         // Remove any null (optional values).

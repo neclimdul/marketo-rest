@@ -2169,7 +2169,7 @@ class CustomObjectsApi
         $queryParams['filterType'] = $filter_type;
         $filter_values = ObjectSerializer::serializeCollection($filter_values, 'multi', true);
         $queryParams['filterValues'] = $filter_values;
-        $fields = ObjectSerializer::serializeCollection($fields, 'multi', true);
+        $fields = isset($fields) ? ObjectSerializer::serializeCollection($fields, 'multi', true) : null;
         $queryParams['fields'] = $fields;
         $queryParams['batchSize'] = $batch_size;
         $queryParams['nextPageToken'] = $next_page_token;
@@ -2353,7 +2353,7 @@ class CustomObjectsApi
         $httpBody = '';
 
         // Query parameters.
-        $names = ObjectSerializer::serializeCollection($names, 'multi', true);
+        $names = isset($names) ? ObjectSerializer::serializeCollection($names, 'multi', true) : null;
         $queryParams['names'] = $names;
         $queryParams['state'] = $state;
         // Remove any null (optional values).
@@ -2515,7 +2515,7 @@ class CustomObjectsApi
         $httpBody = '';
 
         // Query parameters.
-        $names = ObjectSerializer::serializeCollection($names, 'multi', true);
+        $names = isset($names) ? ObjectSerializer::serializeCollection($names, 'multi', true) : null;
         $queryParams['names'] = $names;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });

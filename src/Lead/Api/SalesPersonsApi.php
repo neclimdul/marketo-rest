@@ -600,7 +600,7 @@ class SalesPersonsApi
         $queryParams['filterType'] = $filter_type;
         $filter_values = ObjectSerializer::serializeCollection($filter_values, 'csv', true);
         $queryParams['filterValues'] = $filter_values;
-        $fields = ObjectSerializer::serializeCollection($fields, 'multi', true);
+        $fields = isset($fields) ? ObjectSerializer::serializeCollection($fields, 'multi', true) : null;
         $queryParams['fields'] = $fields;
         $queryParams['batchSize'] = $batch_size;
         $queryParams['nextPageToken'] = $next_page_token;

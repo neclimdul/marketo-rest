@@ -264,7 +264,7 @@ class StaticListsApi
         $httpBody = '';
 
         // Query parameters.
-        $id = ObjectSerializer::serializeCollection($id, 'multi', true);
+        $id = isset($id) ? ObjectSerializer::serializeCollection($id, 'multi', true) : null;
         $queryParams['id'] = $id;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
@@ -457,7 +457,7 @@ class StaticListsApi
         $httpBody = '';
 
         // Query parameters.
-        $id = ObjectSerializer::serializeCollection($id, 'multi', true);
+        $id = isset($id) ? ObjectSerializer::serializeCollection($id, 'multi', true) : null;
         $queryParams['id'] = $id;
         // Remove any null (optional values).
         $queryParams = array_filter($queryParams, function($v) { return $v !== null; });
@@ -655,7 +655,7 @@ class StaticListsApi
         $httpBody = '';
 
         // Query parameters.
-        $fields = ObjectSerializer::serializeCollection($fields, 'multi', true);
+        $fields = isset($fields) ? ObjectSerializer::serializeCollection($fields, 'multi', true) : null;
         $queryParams['fields'] = $fields;
         $queryParams['batchSize'] = $batch_size;
         $queryParams['nextPageToken'] = $next_page_token;
@@ -846,7 +846,7 @@ class StaticListsApi
         $httpBody = '';
 
         // Query parameters.
-        $fields = ObjectSerializer::serializeCollection($fields, 'multi', true);
+        $fields = isset($fields) ? ObjectSerializer::serializeCollection($fields, 'multi', true) : null;
         $queryParams['fields'] = $fields;
         $queryParams['batchSize'] = $batch_size;
         $queryParams['nextPageToken'] = $next_page_token;
@@ -1209,13 +1209,13 @@ class StaticListsApi
         $httpBody = '';
 
         // Query parameters.
-        $id = ObjectSerializer::serializeCollection($id, 'multi', true);
+        $id = isset($id) ? ObjectSerializer::serializeCollection($id, 'multi', true) : null;
         $queryParams['id'] = $id;
-        $name = ObjectSerializer::serializeCollection($name, 'multi', true);
+        $name = isset($name) ? ObjectSerializer::serializeCollection($name, 'multi', true) : null;
         $queryParams['name'] = $name;
-        $program_name = ObjectSerializer::serializeCollection($program_name, 'multi', true);
+        $program_name = isset($program_name) ? ObjectSerializer::serializeCollection($program_name, 'multi', true) : null;
         $queryParams['programName'] = $program_name;
-        $workspace_name = ObjectSerializer::serializeCollection($workspace_name, 'multi', true);
+        $workspace_name = isset($workspace_name) ? ObjectSerializer::serializeCollection($workspace_name, 'multi', true) : null;
         $queryParams['workspaceName'] = $workspace_name;
         $queryParams['batchSize'] = $batch_size;
         $queryParams['nextPageToken'] = $next_page_token;

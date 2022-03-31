@@ -437,7 +437,12 @@ use {{invokerPackage}}\ObjectSerializer;
         {{/isExplode}}
         {{^isExplode}}
         {{#isContainer}}
-        ${{paramName}} = ObjectSerializer::serializeCollection(${{paramName}}, '{{#style}}{{style}}{{/style}}{{^style}}{{#collectionFormat}}{{collectionFormat}}{{/collectionFormat}}{{/style}}', true);
+        {{#required}}
+        ${{paramName}} = ObjectSerializer::serializeCollection(${{paramName}}, '{{#style}}{{.}}{{/style}}{{^style}}{{#collectionFormat}}{{.}}{{/collectionFormat}}{{/style}}', true);
+        {{/required}}
+        {{^required}}
+        ${{paramName}} = isset(${{paramName}}) ? ObjectSerializer::serializeCollection(${{paramName}}, '{{#style}}{{.}}{{/style}}{{^style}}{{#collectionFormat}}{{.}}{{/collectionFormat}}{{/style}}', true) : null;
+        {{/required}}
         {{/isContainer}}
         $queryParams['{{baseName}}'] = ${{paramName}};
         {{/isExplode}}

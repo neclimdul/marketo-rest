@@ -1104,7 +1104,7 @@ class BulkExportProgramMembersApi
         $httpBody = '';
 
         // Query parameters.
-        $status = ObjectSerializer::serializeCollection($status, 'multi', true);
+        $status = isset($status) ? ObjectSerializer::serializeCollection($status, 'multi', true) : null;
         $queryParams['status'] = $status;
         $queryParams['batchSize'] = $batch_size;
         $queryParams['nextPageToken'] = $next_page_token;
