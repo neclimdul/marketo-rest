@@ -35,9 +35,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class ScheduleCampaignRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -206,7 +204,7 @@ class ScheduleCampaignRequest implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\ScheduleCampaignData|null $input input
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setInput(?\NecLimDul\MarketoRest\Lead\Model\ScheduleCampaignData $input): ScheduleCampaignRequest
     {
@@ -295,6 +293,7 @@ class ScheduleCampaignRequest implements ModelInterface, ArrayAccess, \JsonSeria
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class JsonNode implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -362,7 +360,7 @@ class JsonNode implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param bool|null $array array
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setArray(?bool $array): JsonNode
     {
@@ -386,7 +384,7 @@ class JsonNode implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param bool|null $big_decimal big_decimal
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setBigDecimal(?bool $big_decimal): JsonNode
     {
@@ -410,7 +408,7 @@ class JsonNode implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param bool|null $big_integer big_integer
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setBigInteger(?bool $big_integer): JsonNode
     {
@@ -434,7 +432,7 @@ class JsonNode implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param bool|null $binary binary
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setBinary(?bool $binary): JsonNode
     {
@@ -458,7 +456,7 @@ class JsonNode implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param bool|null $boolean boolean
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setBoolean(?bool $boolean): JsonNode
     {
@@ -482,7 +480,7 @@ class JsonNode implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param bool|null $container_node container_node
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setContainerNode(?bool $container_node): JsonNode
     {
@@ -506,7 +504,7 @@ class JsonNode implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param bool|null $double double
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDouble(?bool $double): JsonNode
     {
@@ -530,7 +528,7 @@ class JsonNode implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param bool|null $float float
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFloat(?bool $float): JsonNode
     {
@@ -554,7 +552,7 @@ class JsonNode implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param bool|null $floating_point_number floating_point_number
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFloatingPointNumber(?bool $floating_point_number): JsonNode
     {
@@ -578,7 +576,7 @@ class JsonNode implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param bool|null $int int
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setInt(?bool $int): JsonNode
     {
@@ -602,7 +600,7 @@ class JsonNode implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param bool|null $integral_number integral_number
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setIntegralNumber(?bool $integral_number): JsonNode
     {
@@ -626,7 +624,7 @@ class JsonNode implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param bool|null $long long
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setLong(?bool $long): JsonNode
     {
@@ -650,7 +648,7 @@ class JsonNode implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param bool|null $missing_node missing_node
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setMissingNode(?bool $missing_node): JsonNode
     {
@@ -674,7 +672,7 @@ class JsonNode implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $node_type node_type
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setNodeType(?string $node_type): JsonNode
     {
@@ -708,7 +706,7 @@ class JsonNode implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param bool|null $null null
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setNull(?bool $null): JsonNode
     {
@@ -732,7 +730,7 @@ class JsonNode implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param bool|null $number number
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setNumber(?bool $number): JsonNode
     {
@@ -756,7 +754,7 @@ class JsonNode implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param bool|null $object object
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setObject(?bool $object): JsonNode
     {
@@ -780,7 +778,7 @@ class JsonNode implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param bool|null $pojo pojo
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setPojo(?bool $pojo): JsonNode
     {
@@ -804,7 +802,7 @@ class JsonNode implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param bool|null $short short
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setShort(?bool $short): JsonNode
     {
@@ -828,7 +826,7 @@ class JsonNode implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param bool|null $textual textual
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setTextual(?bool $textual): JsonNode
     {
@@ -852,7 +850,7 @@ class JsonNode implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param bool|null $value_node value_node
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setValueNode(?bool $value_node): JsonNode
     {
@@ -941,6 +939,7 @@ class JsonNode implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

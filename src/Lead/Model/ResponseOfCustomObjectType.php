@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class ResponseOfCustomObjectType implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -244,7 +242,7 @@ class ResponseOfCustomObjectType implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\Error[] $errors Array of errors that occurred if the request was unsuccessful
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setErrors(array $errors): ResponseOfCustomObjectType
     {
@@ -268,7 +266,7 @@ class ResponseOfCustomObjectType implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param string $request_id Id of the request made
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setRequestId(string $request_id): ResponseOfCustomObjectType
     {
@@ -292,7 +290,7 @@ class ResponseOfCustomObjectType implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\ModelEmpty[] $result Empty array
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setResult(array $result): ResponseOfCustomObjectType
     {
@@ -316,7 +314,7 @@ class ResponseOfCustomObjectType implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param bool $success Whether the request succeeded
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setSuccess(bool $success): ResponseOfCustomObjectType
     {
@@ -340,7 +338,7 @@ class ResponseOfCustomObjectType implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\Warning[] $warnings Array of warnings given for the operation
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setWarnings(array $warnings): ResponseOfCustomObjectType
     {
@@ -429,6 +427,7 @@ class ResponseOfCustomObjectType implements ModelInterface, ArrayAccess, \JsonSe
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

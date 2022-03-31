@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class SyncLeadRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -259,7 +257,7 @@ class SyncLeadRequest implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $action Type of sync operation to perform.  Defaults to createOrUpdate if unset
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setAction(?string $action): SyncLeadRequest
     {
@@ -293,7 +291,7 @@ class SyncLeadRequest implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param bool|null $async_processing If set to true, the call will return immediately
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setAsyncProcessing(?bool $async_processing): SyncLeadRequest
     {
@@ -317,7 +315,7 @@ class SyncLeadRequest implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\Lead[] $input List of leads for input
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setInput(array $input): SyncLeadRequest
     {
@@ -341,7 +339,7 @@ class SyncLeadRequest implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $lookup_field Field to deduplicate on.  The field must be present in each lead record of the input.  Defaults to email if unset
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setLookupField(?string $lookup_field): SyncLeadRequest
     {
@@ -365,7 +363,7 @@ class SyncLeadRequest implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $partition_name Name of the partition to operate on, if applicable.  Should be set whenever possible, when interacting with an instance where partitions are enabled.
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setPartitionName(?string $partition_name): SyncLeadRequest
     {
@@ -454,6 +452,7 @@ class SyncLeadRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

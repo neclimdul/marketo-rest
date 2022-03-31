@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class EmailHeaderField implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -217,7 +215,7 @@ class EmailHeaderField implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $type Field type
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setType(string $type): EmailHeaderField
     {
@@ -241,7 +239,7 @@ class EmailHeaderField implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $value Value of field
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setValue(string $value): EmailHeaderField
     {
@@ -330,6 +328,7 @@ class EmailHeaderField implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class ActivityTypeAttribute implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -223,7 +221,7 @@ class ActivityTypeAttribute implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param string|null $api_name api_name
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setApiName(?string $api_name): ActivityTypeAttribute
     {
@@ -247,7 +245,7 @@ class ActivityTypeAttribute implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param string $data_type Datatype of the Attribute
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDataType(string $data_type): ActivityTypeAttribute
     {
@@ -271,7 +269,7 @@ class ActivityTypeAttribute implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param string $name Name of the attribute
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setName(string $name): ActivityTypeAttribute
     {
@@ -360,6 +358,7 @@ class ActivityTypeAttribute implements ModelInterface, ArrayAccess, \JsonSeriali
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

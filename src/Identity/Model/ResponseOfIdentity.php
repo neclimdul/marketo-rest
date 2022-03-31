@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Identity\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Identity
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class ResponseOfIdentity implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -244,7 +242,7 @@ class ResponseOfIdentity implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param string|null $access_token The token that you pass with subsequent calls to authenticate with the target instance
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setAccessToken(?string $access_token): ResponseOfIdentity
     {
@@ -268,7 +266,7 @@ class ResponseOfIdentity implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param string|null $scope The owning API-only user of the custom service that was used to authenticate
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setScope(?string $scope): ResponseOfIdentity
     {
@@ -292,7 +290,7 @@ class ResponseOfIdentity implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param int|null $expires_in Remaining lifespan of the current token in seconds
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setExpiresIn(?int $expires_in): ResponseOfIdentity
     {
@@ -316,7 +314,7 @@ class ResponseOfIdentity implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param string|null $token_type The OAuth authentication method
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setTokenType(?string $token_type): ResponseOfIdentity
     {
@@ -415,6 +413,7 @@ class ResponseOfIdentity implements ModelInterface, ArrayAccess, \JsonSerializab
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

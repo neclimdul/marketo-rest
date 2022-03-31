@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class UpdateLandingPageRedirectRuleRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -217,7 +215,7 @@ class UpdateLandingPageRedirectRuleRequest implements ModelInterface, ArrayAcces
      *
      * @param string|null $hostname The hostname for the landing pages.  Branding domain or alias.  Max 255 characters
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setHostname(?string $hostname): UpdateLandingPageRedirectRuleRequest
     {
@@ -241,7 +239,7 @@ class UpdateLandingPageRedirectRuleRequest implements ModelInterface, ArrayAcces
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\RedirectFrom|null $redirect_from JSON representation of redirect from landing page, with members 'type' which may be 'landingPageId' or 'path', and 'value'
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setRedirectFrom(?\NecLimDul\MarketoRest\Asset\Model\RedirectFrom $redirect_from): UpdateLandingPageRedirectRuleRequest
     {
@@ -265,7 +263,7 @@ class UpdateLandingPageRedirectRuleRequest implements ModelInterface, ArrayAcces
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\RedirectTo|null $redirect_to JSON representation of redirect to landing page, with members 'type' which may be 'landingPageId' or 'url', and 'value'
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setRedirectTo(?\NecLimDul\MarketoRest\Asset\Model\RedirectTo $redirect_to): UpdateLandingPageRedirectRuleRequest
     {
@@ -354,6 +352,7 @@ class UpdateLandingPageRedirectRuleRequest implements ModelInterface, ArrayAcces
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

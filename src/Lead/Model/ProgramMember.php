@@ -35,9 +35,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class ProgramMember implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -254,7 +252,7 @@ class ProgramMember implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param int $seq Integer indicating the sequence of the record in response.  This value is correlated to the order of the records included in the request input.  Seq should only be part of responses and should not be submitted.
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setSeq(int $seq): ProgramMember
     {
@@ -278,7 +276,7 @@ class ProgramMember implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param int $lead_id Unique integer id of a lead record
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setLeadId(int $lead_id): ProgramMember
     {
@@ -302,7 +300,7 @@ class ProgramMember implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param bool $reached_success Boolean indicating if program member has reached success criteria for program
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setReachedSuccess(bool $reached_success): ProgramMember
     {
@@ -326,7 +324,7 @@ class ProgramMember implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param int $program_id Unique integer id of a program
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setProgramId(int $program_id): ProgramMember
     {
@@ -350,7 +348,7 @@ class ProgramMember implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param bool $acquired_by Boolean indicating if program member was acquired by program
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setAcquiredBy(bool $acquired_by): ProgramMember
     {
@@ -374,7 +372,7 @@ class ProgramMember implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $membership_date Date the lead first became a member of the program
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setMembershipDate(string $membership_date): ProgramMember
     {
@@ -463,6 +461,7 @@ class ProgramMember implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

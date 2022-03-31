@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class GetFilesRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -217,7 +215,7 @@ class GetFilesRequest implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\Folder|null $folder JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFolder(?\NecLimDul\MarketoRest\Asset\Model\Folder $folder): GetFilesRequest
     {
@@ -241,7 +239,7 @@ class GetFilesRequest implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param int|null $max_return Maximum number of channels to return.  Max 200, default 20
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setMaxReturn(?int $max_return): GetFilesRequest
     {
@@ -265,7 +263,7 @@ class GetFilesRequest implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param int|null $offset Integer offset for paging
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setOffset(?int $offset): GetFilesRequest
     {
@@ -354,6 +352,7 @@ class GetFilesRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class Recurrence implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -338,7 +336,7 @@ class Recurrence implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param \DateTime $start_at Datetime of the first scheduled campaign to run. Required if setting recurrence. Not required to create a smart campaign that has no recurrence
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setStartAt(\DateTime $start_at): Recurrence
     {
@@ -362,7 +360,7 @@ class Recurrence implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param \DateTime $end_at Datetime after which no further runs will be automatically scheduled
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setEndAt(\DateTime $end_at): Recurrence
     {
@@ -386,7 +384,7 @@ class Recurrence implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $interval_type Recurrence interval. Not required to create a smart campaign that has no recurrence
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setIntervalType(string $interval_type): Recurrence
     {
@@ -420,7 +418,7 @@ class Recurrence implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param int $interval Number of interval units between recurrences
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setInterval(int $interval): Recurrence
     {
@@ -444,7 +442,7 @@ class Recurrence implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param bool $weekday_only Only run smart campaign on weekdays. May only be set if intervalType is 'Daily'.  Defaults to false
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setWeekdayOnly(bool $weekday_only): Recurrence
     {
@@ -468,7 +466,7 @@ class Recurrence implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string[] $weekday_mask String array of empty or one or more of 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'. May only be set if intervalType is 'Weekly'
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setWeekdayMask(array $weekday_mask): Recurrence
     {
@@ -492,7 +490,7 @@ class Recurrence implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param int $day_of_month Day of the month to recur. Permissible range 1-31. May only be set if intervalType is 'Monthly' and dayOfWeek and weekOfMonth are unset.
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDayOfMonth(int $day_of_month): Recurrence
     {
@@ -516,7 +514,7 @@ class Recurrence implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $day_of_week Day of the week to recur. May only be set if dayOfMonth is not set, and weekOfMonth is set
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDayOfWeek(string $day_of_week): Recurrence
     {
@@ -550,7 +548,7 @@ class Recurrence implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param int $week_of_month Week of the month to recur. Permissible range 1-4. May only be set if dayOfMonth is not set, and dayOfWeek is set
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setWeekOfMonth(int $week_of_month): Recurrence
     {
@@ -639,6 +637,7 @@ class Recurrence implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

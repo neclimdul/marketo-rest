@@ -35,9 +35,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class UpdateLeadField implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -230,7 +228,7 @@ class UpdateLeadField implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $display_name UI display-name of the field
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDisplayName(?string $display_name): UpdateLeadField
     {
@@ -254,7 +252,7 @@ class UpdateLeadField implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $description Description of the field
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDescription(?string $description): UpdateLeadField
     {
@@ -278,7 +276,7 @@ class UpdateLeadField implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param bool|null $is_hidden If set to true, the field is hidden.  Default is false
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setIsHidden(?bool $is_hidden): UpdateLeadField
     {
@@ -302,7 +300,7 @@ class UpdateLeadField implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param bool|null $is_html_encoding_in_email If set to true, field is encoded as HTML in email.  Default is true
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setIsHtmlEncodingInEmail(?bool $is_html_encoding_in_email): UpdateLeadField
     {
@@ -326,7 +324,7 @@ class UpdateLeadField implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param bool|null $is_sensitive If set to true, field is marked as sensitive.  Default is false
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setIsSensitive(?bool $is_sensitive): UpdateLeadField
     {
@@ -415,6 +413,7 @@ class UpdateLeadField implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

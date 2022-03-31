@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class LpTemplateGetContentResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -290,7 +288,7 @@ class LpTemplateGetContentResponse implements ModelInterface, ArrayAccess, \Json
      *
      * @param string $content HTML content of the landing page template
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setContent(string $content): LpTemplateGetContentResponse
     {
@@ -314,7 +312,7 @@ class LpTemplateGetContentResponse implements ModelInterface, ArrayAccess, \Json
      *
      * @param bool $enable_munchkin Whether to enable munchkin on the derived pages.  Defaults to true
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setEnableMunchkin(bool $enable_munchkin): LpTemplateGetContentResponse
     {
@@ -338,7 +336,7 @@ class LpTemplateGetContentResponse implements ModelInterface, ArrayAccess, \Json
      *
      * @param int $id Unique integer id of the template
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setId(int $id): LpTemplateGetContentResponse
     {
@@ -362,7 +360,7 @@ class LpTemplateGetContentResponse implements ModelInterface, ArrayAccess, \Json
      *
      * @param string $status Status filter for draft or approved versions
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setStatus(string $status): LpTemplateGetContentResponse
     {
@@ -396,7 +394,7 @@ class LpTemplateGetContentResponse implements ModelInterface, ArrayAccess, \Json
      *
      * @param string $template_type Type of template to create.  Defaults to freeForm
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setTemplateType(string $template_type): LpTemplateGetContentResponse
     {
@@ -495,6 +493,7 @@ class LpTemplateGetContentResponse implements ModelInterface, ArrayAccess, \Json
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

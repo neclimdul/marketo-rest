@@ -35,9 +35,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class SmartListConditions implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -245,7 +243,7 @@ class SmartListConditions implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param int $activity_attribute_id Id of the activity attribute
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setActivityAttributeId(int $activity_attribute_id): SmartListConditions
     {
@@ -269,7 +267,7 @@ class SmartListConditions implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param string $activity_attribute_name Name of activity attribute
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setActivityAttributeName(string $activity_attribute_name): SmartListConditions
     {
@@ -293,7 +291,7 @@ class SmartListConditions implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param string $operator Value of operator
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setOperator(string $operator): SmartListConditions
     {
@@ -317,7 +315,7 @@ class SmartListConditions implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param string[] $values List of values
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setValues(array $values): SmartListConditions
     {
@@ -341,7 +339,7 @@ class SmartListConditions implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param bool $is_primary Whether the condition is primary or not (first condition of the smart list)
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setIsPrimary(bool $is_primary): SmartListConditions
     {
@@ -430,6 +428,7 @@ class SmartListConditions implements ModelInterface, ArrayAccess, \JsonSerializa
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

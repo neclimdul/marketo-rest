@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class SmartListResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -271,7 +269,7 @@ class SmartListResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param int $id Id of the smart list
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setId(int $id): SmartListResponse
     {
@@ -295,7 +293,7 @@ class SmartListResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param string $name Name of the smart list
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setName(string $name): SmartListResponse
     {
@@ -319,7 +317,7 @@ class SmartListResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param string $description Description of the smart list
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDescription(string $description): SmartListResponse
     {
@@ -343,7 +341,7 @@ class SmartListResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param \DateTime $created_at Datetime the smart list was created
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setCreatedAt(\DateTime $created_at): SmartListResponse
     {
@@ -367,7 +365,7 @@ class SmartListResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param \DateTime $updated_at Datetime the smart list was most recently updated
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setUpdatedAt(\DateTime $updated_at): SmartListResponse
     {
@@ -391,7 +389,7 @@ class SmartListResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param string $url Url of the smart list in the Marketo UI
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setUrl(string $url): SmartListResponse
     {
@@ -415,7 +413,7 @@ class SmartListResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFolder(\NecLimDul\MarketoRest\Asset\Model\Folder $folder): SmartListResponse
     {
@@ -439,7 +437,7 @@ class SmartListResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param string $workspace Name of the workspace
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setWorkspace(string $workspace): SmartListResponse
     {
@@ -528,6 +526,7 @@ class SmartListResponse implements ModelInterface, ArrayAccess, \JsonSerializabl
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

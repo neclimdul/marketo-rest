@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class UpdateEmailComponentDataRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -223,7 +221,7 @@ class UpdateEmailComponentDataRequest implements ModelInterface, ArrayAccess, \J
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField|null $from_email From-address of the Email
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFromEmail(?\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField $from_email): UpdateEmailComponentDataRequest
     {
@@ -247,7 +245,7 @@ class UpdateEmailComponentDataRequest implements ModelInterface, ArrayAccess, \J
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField|null $from_name From-name of the Email
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFromName(?\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField $from_name): UpdateEmailComponentDataRequest
     {
@@ -271,7 +269,7 @@ class UpdateEmailComponentDataRequest implements ModelInterface, ArrayAccess, \J
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField|null $reply_to Reply-To address of the Email
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setReplyTo(?\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField $reply_to): UpdateEmailComponentDataRequest
     {
@@ -295,7 +293,7 @@ class UpdateEmailComponentDataRequest implements ModelInterface, ArrayAccess, \J
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField|null $subject Subject Line of the Email
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setSubject(?\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField $subject): UpdateEmailComponentDataRequest
     {
@@ -384,6 +382,7 @@ class UpdateEmailComponentDataRequest implements ModelInterface, ArrayAccess, \J
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

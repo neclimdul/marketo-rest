@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class UpdateSnippetDynamicContentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -232,7 +230,7 @@ class UpdateSnippetDynamicContentRequest implements ModelInterface, ArrayAccess,
      *
      * @param string|null $type Type of dynamic content section
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setType(?string $type): UpdateSnippetDynamicContentRequest
     {
@@ -266,7 +264,7 @@ class UpdateSnippetDynamicContentRequest implements ModelInterface, ArrayAccess,
      *
      * @param string|null $value Value of the dynamic content section
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setValue(?string $value): UpdateSnippetDynamicContentRequest
     {
@@ -355,6 +353,7 @@ class UpdateSnippetDynamicContentRequest implements ModelInterface, ArrayAccess,
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class LandingPageResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -319,7 +317,7 @@ class LandingPageResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param string|null $url Url of the asset in the Marketo UI
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setUrl(?string $url): LandingPageResponse
     {
@@ -343,7 +341,7 @@ class LandingPageResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param string|null $computed_url computed_url
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setComputedUrl(?string $computed_url): LandingPageResponse
     {
@@ -367,7 +365,7 @@ class LandingPageResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param \DateTime|null $created_at Datetime the asset was created
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setCreatedAt(?\DateTime $created_at): LandingPageResponse
     {
@@ -391,7 +389,7 @@ class LandingPageResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param string $custom_head_html Any custom HTML to embed in the <head> tag of the page
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setCustomHeadHtml(string $custom_head_html): LandingPageResponse
     {
@@ -415,7 +413,7 @@ class LandingPageResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param string|null $description Description of the asset
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDescription(?string $description): LandingPageResponse
     {
@@ -439,7 +437,7 @@ class LandingPageResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param string $facebook_og_tags Any OpenGraph meta tags to apply to the page
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFacebookOgTags(string $facebook_og_tags): LandingPageResponse
     {
@@ -463,7 +461,7 @@ class LandingPageResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\Folder|null $folder JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFolder(?\NecLimDul\MarketoRest\Asset\Model\Folder $folder): LandingPageResponse
     {
@@ -487,7 +485,7 @@ class LandingPageResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param bool|null $form_prefill Boolean to toggle whether forms embedded in the page will prefill.  Default false
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFormPrefill(?bool $form_prefill): LandingPageResponse
     {
@@ -511,7 +509,7 @@ class LandingPageResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param int|null $id Id of the asset
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setId(?int $id): LandingPageResponse
     {
@@ -535,7 +533,7 @@ class LandingPageResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param string|null $keywords keywords
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setKeywords(?string $keywords): LandingPageResponse
     {
@@ -559,7 +557,7 @@ class LandingPageResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param bool|null $mobile_enabled Whether the page has mobile viewing enabled.  Free-form pages only.  Default false
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setMobileEnabled(?bool $mobile_enabled): LandingPageResponse
     {
@@ -583,7 +581,7 @@ class LandingPageResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param string|null $name Name of the asset
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setName(?string $name): LandingPageResponse
     {
@@ -607,7 +605,7 @@ class LandingPageResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param string $robots Robots directives to apply to the pages meta tags
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setRobots(string $robots): LandingPageResponse
     {
@@ -631,7 +629,7 @@ class LandingPageResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param string|null $status Status filter for draft or approved versions
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setStatus(?string $status): LandingPageResponse
     {
@@ -655,7 +653,7 @@ class LandingPageResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param int|null $template Id of the template used
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setTemplate(?int $template): LandingPageResponse
     {
@@ -679,7 +677,7 @@ class LandingPageResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param string $title Title element of the landing page
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setTitle(string $title): LandingPageResponse
     {
@@ -703,7 +701,7 @@ class LandingPageResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param \DateTime|null $updated_at Datetime the asset was most recently updated
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setUpdatedAt(?\DateTime $updated_at): LandingPageResponse
     {
@@ -727,7 +725,7 @@ class LandingPageResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param string|null $workspace Name of the workspace
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setWorkspace(?string $workspace): LandingPageResponse
     {
@@ -816,6 +814,7 @@ class LandingPageResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

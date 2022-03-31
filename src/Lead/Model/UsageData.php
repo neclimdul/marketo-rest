@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class UsageData implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -220,7 +218,7 @@ class UsageData implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param \DateTime $date Date of the collected calls
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDate(\DateTime $date): UsageData
     {
@@ -244,7 +242,7 @@ class UsageData implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param int|null $total Total number of errors in the time period
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setTotal(?int $total): UsageData
     {
@@ -268,7 +266,7 @@ class UsageData implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\UserCount[]|null $users Counts for individual users
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setUsers(?array $users): UsageData
     {
@@ -357,6 +355,7 @@ class UsageData implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class ThankYouPageResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -211,7 +209,7 @@ class ThankYouPageResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param int|null $id id
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setId(?int $id): ThankYouPageResponse
     {
@@ -235,7 +233,7 @@ class ThankYouPageResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\FormThankYouPageDTO[]|null $thank_you_list thank_you_list
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setThankYouList(?array $thank_you_list): ThankYouPageResponse
     {
@@ -324,6 +322,7 @@ class ThankYouPageResponse implements ModelInterface, ArrayAccess, \JsonSerializ
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class EmailTemplateUsedByResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -267,7 +265,7 @@ class EmailTemplateUsedByResponse implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param int $id Id of the asset
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setId(int $id): EmailTemplateUsedByResponse
     {
@@ -291,7 +289,7 @@ class EmailTemplateUsedByResponse implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param string $name Name of the asset
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setName(string $name): EmailTemplateUsedByResponse
     {
@@ -315,7 +313,7 @@ class EmailTemplateUsedByResponse implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param string $type Type of asset
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setType(string $type): EmailTemplateUsedByResponse
     {
@@ -339,7 +337,7 @@ class EmailTemplateUsedByResponse implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param string $status Status filter for draft or approved versions
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setStatus(string $status): EmailTemplateUsedByResponse
     {
@@ -373,7 +371,7 @@ class EmailTemplateUsedByResponse implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param \DateTime $updated_at Datetime the asset was most recently updated
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setUpdatedAt(\DateTime $updated_at): EmailTemplateUsedByResponse
     {
@@ -462,6 +460,7 @@ class EmailTemplateUsedByResponse implements ModelInterface, ArrayAccess, \JsonS
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

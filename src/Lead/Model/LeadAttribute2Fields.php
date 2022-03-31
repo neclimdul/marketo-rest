@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class LeadAttribute2Fields implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -250,7 +248,7 @@ class LeadAttribute2Fields implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param string $name REST API name of field
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setName(string $name): LeadAttribute2Fields
     {
@@ -274,7 +272,7 @@ class LeadAttribute2Fields implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param string $display_name Display name of field (friendly name)
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDisplayName(string $display_name): LeadAttribute2Fields
     {
@@ -298,7 +296,7 @@ class LeadAttribute2Fields implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param string $data_type Data type of field
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDataType(string $data_type): LeadAttribute2Fields
     {
@@ -322,7 +320,7 @@ class LeadAttribute2Fields implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param int|null $length Length of field
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setLength(?int $length): LeadAttribute2Fields
     {
@@ -346,7 +344,7 @@ class LeadAttribute2Fields implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param bool $updateable Is field updateable
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setUpdateable(bool $updateable): LeadAttribute2Fields
     {
@@ -370,7 +368,7 @@ class LeadAttribute2Fields implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param bool $crm_managed Is field managed by CRM
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setCrmManaged(bool $crm_managed): LeadAttribute2Fields
     {
@@ -459,6 +457,7 @@ class LeadAttribute2Fields implements ModelInterface, ArrayAccess, \JsonSerializ
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

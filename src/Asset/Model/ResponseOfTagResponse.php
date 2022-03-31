@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class ResponseOfTagResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -229,7 +227,7 @@ class ResponseOfTagResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\Error[]|null $errors errors
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setErrors(?array $errors): ResponseOfTagResponse
     {
@@ -253,7 +251,7 @@ class ResponseOfTagResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param string|null $request_id request_id
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setRequestId(?string $request_id): ResponseOfTagResponse
     {
@@ -277,7 +275,7 @@ class ResponseOfTagResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\TagResponse[]|null $result result
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setResult(?array $result): ResponseOfTagResponse
     {
@@ -301,7 +299,7 @@ class ResponseOfTagResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param bool|null $success success
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setSuccess(?bool $success): ResponseOfTagResponse
     {
@@ -325,7 +323,7 @@ class ResponseOfTagResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param string[]|null $warnings warnings
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setWarnings(?array $warnings): ResponseOfTagResponse
     {
@@ -414,6 +412,7 @@ class ResponseOfTagResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

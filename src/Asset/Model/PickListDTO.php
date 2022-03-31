@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class PickListDTO implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -223,7 +221,7 @@ class PickListDTO implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param bool|null $is_default is_default
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setIsDefault(?bool $is_default): PickListDTO
     {
@@ -247,7 +245,7 @@ class PickListDTO implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $label label
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setLabel(?string $label): PickListDTO
     {
@@ -271,7 +269,7 @@ class PickListDTO implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param bool|null $selected selected
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setSelected(?bool $selected): PickListDTO
     {
@@ -295,7 +293,7 @@ class PickListDTO implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $value value
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setValue(?string $value): PickListDTO
     {
@@ -384,6 +382,7 @@ class PickListDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

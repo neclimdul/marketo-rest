@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class ProgramMemberStatus implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -208,7 +206,7 @@ class ProgramMemberStatus implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param int $lead_id Unique integer id of a lead record
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setLeadId(int $lead_id): ProgramMemberStatus
     {
@@ -297,6 +295,7 @@ class ProgramMemberStatus implements ModelInterface, ArrayAccess, \JsonSerializa
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

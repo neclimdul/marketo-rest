@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -241,7 +239,7 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\PushLead[]|null $input input
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setInput(?array $input): PushLeadToMarketoRequest
     {
@@ -265,7 +263,7 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param string|null $lookup_field lookup_field
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setLookupField(?string $lookup_field): PushLeadToMarketoRequest
     {
@@ -289,7 +287,7 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param string|null $partition_name partition_name
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setPartitionName(?string $partition_name): PushLeadToMarketoRequest
     {
@@ -313,7 +311,7 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param string|null $program_name program_name
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setProgramName(?string $program_name): PushLeadToMarketoRequest
     {
@@ -337,7 +335,7 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param string|null $program_status program_status
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setProgramStatus(?string $program_status): PushLeadToMarketoRequest
     {
@@ -361,7 +359,7 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param string|null $reason reason
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setReason(?string $reason): PushLeadToMarketoRequest
     {
@@ -385,7 +383,7 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param string|null $source source
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setSource(?string $source): PushLeadToMarketoRequest
     {
@@ -474,6 +472,7 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess, \JsonSeri
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

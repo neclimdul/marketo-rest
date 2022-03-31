@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class UpdateEmailFullContentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -208,7 +206,7 @@ class UpdateEmailFullContentRequest implements ModelInterface, ArrayAccess, \Jso
      *
      * @param string $content Multipart file. File containing HTML document to update with.  File cannot include JavaScript or script tags.
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setContent(string $content): UpdateEmailFullContentRequest
     {
@@ -297,6 +295,7 @@ class UpdateEmailFullContentRequest implements ModelInterface, ArrayAccess, \Jso
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class CreateEmailTemplateRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -232,7 +230,7 @@ class CreateEmailTemplateRequest implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param string $name Name of the Email Template.  Must be unique under the parent folder.
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setName(string $name): CreateEmailTemplateRequest
     {
@@ -256,7 +254,7 @@ class CreateEmailTemplateRequest implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFolder(\NecLimDul\MarketoRest\Asset\Model\Folder $folder): CreateEmailTemplateRequest
     {
@@ -280,7 +278,7 @@ class CreateEmailTemplateRequest implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param string|null $description Description of the email template
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDescription(?string $description): CreateEmailTemplateRequest
     {
@@ -304,7 +302,7 @@ class CreateEmailTemplateRequest implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param string $content HTML content for template.  Multipart file.
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setContent(string $content): CreateEmailTemplateRequest
     {
@@ -393,6 +391,7 @@ class CreateEmailTemplateRequest implements ModelInterface, ArrayAccess, \JsonSe
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

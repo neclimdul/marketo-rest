@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class UpdateVariableRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -211,7 +209,7 @@ class UpdateVariableRequest implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param string|null $value Value to update variable with
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setValue(?string $value): UpdateVariableRequest
     {
@@ -235,7 +233,7 @@ class UpdateVariableRequest implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param string|null $module_id Module that variable is associated with. Required for updating module variables. Not needed for global variables.
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setModuleId(?string $module_id): UpdateVariableRequest
     {
@@ -324,6 +322,7 @@ class UpdateVariableRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

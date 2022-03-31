@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class BrowseAllPrograms implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -343,7 +341,7 @@ class BrowseAllPrograms implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param string $channel Channel of the program
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setChannel(string $channel): BrowseAllPrograms
     {
@@ -367,7 +365,7 @@ class BrowseAllPrograms implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param \DateTime|null $created_at Datetime the asset was created
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setCreatedAt(?\DateTime $created_at): BrowseAllPrograms
     {
@@ -391,7 +389,7 @@ class BrowseAllPrograms implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param string|null $description Description of the asset
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDescription(?string $description): BrowseAllPrograms
     {
@@ -415,7 +413,7 @@ class BrowseAllPrograms implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFolder(\NecLimDul\MarketoRest\Asset\Model\Folder $folder): BrowseAllPrograms
     {
@@ -439,7 +437,7 @@ class BrowseAllPrograms implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param int|null $id Id of the asset
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setId(?int $id): BrowseAllPrograms
     {
@@ -463,7 +461,7 @@ class BrowseAllPrograms implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param string|null $name Name of the asset
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setName(?string $name): BrowseAllPrograms
     {
@@ -487,7 +485,7 @@ class BrowseAllPrograms implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param string|null $sfdc_id SFDC id of the program if linked to an SFDC campaign
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setSfdcId(?string $sfdc_id): BrowseAllPrograms
     {
@@ -511,7 +509,7 @@ class BrowseAllPrograms implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param string|null $sfdc_name Name of the linked SFDC campaign if applicable
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setSfdcName(?string $sfdc_name): BrowseAllPrograms
     {
@@ -535,7 +533,7 @@ class BrowseAllPrograms implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param string $status Status of the program.  Only valid for Email and engagement program types.
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setStatus(string $status): BrowseAllPrograms
     {
@@ -569,7 +567,7 @@ class BrowseAllPrograms implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param string $type Type of the program
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setType(string $type): BrowseAllPrograms
     {
@@ -603,7 +601,7 @@ class BrowseAllPrograms implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param \DateTime|null $updated_at Datetime the asset was most recently updated
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setUpdatedAt(?\DateTime $updated_at): BrowseAllPrograms
     {
@@ -627,7 +625,7 @@ class BrowseAllPrograms implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param string|null $url Url of the asset in the Marketo UI
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setUrl(?string $url): BrowseAllPrograms
     {
@@ -651,7 +649,7 @@ class BrowseAllPrograms implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param string|null $workspace Name of the workspace
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setWorkspace(?string $workspace): BrowseAllPrograms
     {
@@ -740,6 +738,7 @@ class BrowseAllPrograms implements ModelInterface, ArrayAccess, \JsonSerializabl
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

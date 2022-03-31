@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class CreateLpFormRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -268,7 +266,7 @@ class CreateLpFormRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param string|null $description Description of the form
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDescription(?string $description): CreateLpFormRequest
     {
@@ -292,7 +290,7 @@ class CreateLpFormRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFolder(\NecLimDul\MarketoRest\Asset\Model\Folder $folder): CreateLpFormRequest
     {
@@ -316,7 +314,7 @@ class CreateLpFormRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param string|null $font_family font-family property for the form
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFontFamily(?string $font_family): CreateLpFormRequest
     {
@@ -340,7 +338,7 @@ class CreateLpFormRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param string|null $font_size font-size property of the form
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFontSize(?string $font_size): CreateLpFormRequest
     {
@@ -364,7 +362,7 @@ class CreateLpFormRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\FormKnownVisitorDTO|null $known_visitor Known visitor behavior for the form
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setKnownVisitor(?\NecLimDul\MarketoRest\Asset\Model\FormKnownVisitorDTO $known_visitor): CreateLpFormRequest
     {
@@ -388,7 +386,7 @@ class CreateLpFormRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param string|null $label_position Default positioning of labels.
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setLabelPosition(?string $label_position): CreateLpFormRequest
     {
@@ -412,7 +410,7 @@ class CreateLpFormRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param string|null $language Language of the form
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setLanguage(?string $language): CreateLpFormRequest
     {
@@ -436,7 +434,7 @@ class CreateLpFormRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param string|null $locale Locale of the form
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setLocale(?string $locale): CreateLpFormRequest
     {
@@ -460,7 +458,7 @@ class CreateLpFormRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param string|null $name Name of the form
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setName(?string $name): CreateLpFormRequest
     {
@@ -484,7 +482,7 @@ class CreateLpFormRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param bool|null $progressive_profiling Whether progressive profiling is enabled for the form
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setProgressiveProfiling(?bool $progressive_profiling): CreateLpFormRequest
     {
@@ -508,7 +506,7 @@ class CreateLpFormRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param string|null $theme CSS theme for the form to use
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setTheme(?string $theme): CreateLpFormRequest
     {
@@ -597,6 +595,7 @@ class CreateLpFormRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

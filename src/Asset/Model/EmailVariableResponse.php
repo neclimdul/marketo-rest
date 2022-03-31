@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class EmailVariableResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -232,7 +230,7 @@ class EmailVariableResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param string $name Name of the email variable
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setName(string $name): EmailVariableResponse
     {
@@ -256,7 +254,7 @@ class EmailVariableResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param string $value Value of the email variable
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setValue(string $value): EmailVariableResponse
     {
@@ -280,7 +278,7 @@ class EmailVariableResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param bool $module_scope Returns true for local variables else returns false
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setModuleScope(bool $module_scope): EmailVariableResponse
     {
@@ -304,7 +302,7 @@ class EmailVariableResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param string|null $module_id Returns the moduleId associated with the variable, only in case of local variable
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setModuleId(?string $module_id): EmailVariableResponse
     {
@@ -393,6 +391,7 @@ class EmailVariableResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

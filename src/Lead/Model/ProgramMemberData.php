@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class ProgramMemberData implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -223,7 +221,7 @@ class ProgramMemberData implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param int $lead_id Unique integer id of a lead record
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setLeadId(int $lead_id): ProgramMemberData
     {
@@ -247,7 +245,7 @@ class ProgramMemberData implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param string $field_api_name API Name of field to update.  Must be updateable as described by <a href=\"/rest-api/endpoint-reference/lead-database-endpoint-reference/#/Leads/describeProgramMemberUsingGET2\">Describe Program Member</a> endpoint.
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFieldApiName(string $field_api_name): ProgramMemberData
     {
@@ -271,7 +269,7 @@ class ProgramMemberData implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param string|null $field_api_name2 API Name of another field to update (and so forth).  Must be updateable as described by <a href=\"/rest-api/endpoint-reference/lead-database-endpoint-reference/#/Leads/describeProgramMemberUsingGET2\">Describe Program Member</a> endpoint.
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFieldApiName2(?string $field_api_name2): ProgramMemberData
     {
@@ -360,6 +358,7 @@ class ProgramMemberData implements ModelInterface, ArrayAccess, \JsonSerializabl
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

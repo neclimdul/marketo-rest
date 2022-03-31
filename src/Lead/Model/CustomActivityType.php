@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class CustomActivityType implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -292,7 +290,7 @@ class CustomActivityType implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param string|null $api_name API Name of the type.  The API name must be unique and alphanumeric, containing at least one letter.  It is highly recommended to prepend a unique namespace of up to sixteen characters to the API name.  Required on creation
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setApiName(?string $api_name): CustomActivityType
     {
@@ -316,7 +314,7 @@ class CustomActivityType implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttribute[]|null $attributes List of attributes for the activity type.  May only be added or update through Create or Update Custom Activity Type Attributes
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setAttributes(?array $attributes): CustomActivityType
     {
@@ -340,7 +338,7 @@ class CustomActivityType implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param string|null $created_at Datetime when the activity type was created
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setCreatedAt(?string $created_at): CustomActivityType
     {
@@ -364,7 +362,7 @@ class CustomActivityType implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param string|null $description Description of the activity type
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDescription(?string $description): CustomActivityType
     {
@@ -388,7 +386,7 @@ class CustomActivityType implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param string|null $filter_name Human-readable name for the associated filter of the activity type.  Required on creation
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFilterName(?string $filter_name): CustomActivityType
     {
@@ -412,7 +410,7 @@ class CustomActivityType implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param int|null $id id
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setId(?int $id): CustomActivityType
     {
@@ -436,7 +434,7 @@ class CustomActivityType implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param string|null $name Human-readable display name of the type.  Required on creation
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setName(?string $name): CustomActivityType
     {
@@ -460,7 +458,7 @@ class CustomActivityType implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttribute|null $primary_attribute Primary Attribute of the activity type.  Required on creation
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setPrimaryAttribute(?\NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttribute $primary_attribute): CustomActivityType
     {
@@ -484,7 +482,7 @@ class CustomActivityType implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param string|null $status State of the activity type
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setStatus(?string $status): CustomActivityType
     {
@@ -518,7 +516,7 @@ class CustomActivityType implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param string|null $trigger_name Human-readable name for the associated trigger of the activity type.  Required on creation
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setTriggerName(?string $trigger_name): CustomActivityType
     {
@@ -542,7 +540,7 @@ class CustomActivityType implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param string|null $updated_at Datetime when the activity type was most recently updated
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setUpdatedAt(?string $updated_at): CustomActivityType
     {
@@ -631,6 +629,7 @@ class CustomActivityType implements ModelInterface, ArrayAccess, \JsonSerializab
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

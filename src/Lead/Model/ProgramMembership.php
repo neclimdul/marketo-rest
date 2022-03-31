@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class ProgramMembership implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -247,7 +245,7 @@ class ProgramMembership implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param bool|null $acquired_by Whether the lead was acquired by the parent program
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setAcquiredBy(?bool $acquired_by): ProgramMembership
     {
@@ -271,7 +269,7 @@ class ProgramMembership implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param bool|null $is_exhausted Whether the lead is currently exhausted in the stream, if applicable
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setIsExhausted(?bool $is_exhausted): ProgramMembership
     {
@@ -295,7 +293,7 @@ class ProgramMembership implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param string $membership_date Date the lead first became a member of the program
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setMembershipDate(string $membership_date): ProgramMembership
     {
@@ -319,7 +317,7 @@ class ProgramMembership implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param string|null $nurture_cadence Cadence of the parent stream if applicable
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setNurtureCadence(?string $nurture_cadence): ProgramMembership
     {
@@ -343,7 +341,7 @@ class ProgramMembership implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param string $progression_status Program status of the lead in the parent program
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setProgressionStatus(string $progression_status): ProgramMembership
     {
@@ -367,7 +365,7 @@ class ProgramMembership implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param bool|null $reached_success Whether the lead is in a success-status in the parent program
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setReachedSuccess(?bool $reached_success): ProgramMembership
     {
@@ -391,7 +389,7 @@ class ProgramMembership implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param string|null $stream Stream that the lead is a member of, if the parent program is an engagement program
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setStream(?string $stream): ProgramMembership
     {
@@ -480,6 +478,7 @@ class ProgramMembership implements ModelInterface, ArrayAccess, \JsonSerializabl
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

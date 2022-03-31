@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class DeleteNamedAccountRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -214,7 +212,7 @@ class DeleteNamedAccountRequest implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param string|null $delete_by Key to use for deletion of the record
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDeleteBy(?string $delete_by): DeleteNamedAccountRequest
     {
@@ -238,7 +236,7 @@ class DeleteNamedAccountRequest implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\NamedAccount[] $input List of input records
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setInput(array $input): DeleteNamedAccountRequest
     {
@@ -327,6 +325,7 @@ class DeleteNamedAccountRequest implements ModelInterface, ArrayAccess, \JsonSer
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

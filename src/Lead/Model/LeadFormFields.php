@@ -35,9 +35,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class LeadFormFields implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -209,7 +207,7 @@ class LeadFormFields implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $email Email address used as primary key during lead upsert
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setEmail(string $email): LeadFormFields
     {
@@ -298,6 +296,7 @@ class LeadFormFields implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

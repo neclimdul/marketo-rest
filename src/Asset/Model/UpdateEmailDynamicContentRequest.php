@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class UpdateEmailDynamicContentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -296,7 +294,7 @@ class UpdateEmailDynamicContentRequest implements ModelInterface, ArrayAccess, \
      *
      * @param string|null $alt_text Sets the value of the alt parameter for the resulting img element
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setAltText(?string $alt_text): UpdateEmailDynamicContentRequest
     {
@@ -320,7 +318,7 @@ class UpdateEmailDynamicContentRequest implements ModelInterface, ArrayAccess, \
      *
      * @param string|null $external_url external_url
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setExternalUrl(?string $external_url): UpdateEmailDynamicContentRequest
     {
@@ -344,7 +342,7 @@ class UpdateEmailDynamicContentRequest implements ModelInterface, ArrayAccess, \
      *
      * @param int|null $height Overrides naitve height of the image.  The resulting file will be resized to the given height
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setHeight(?int $height): UpdateEmailDynamicContentRequest
     {
@@ -368,7 +366,7 @@ class UpdateEmailDynamicContentRequest implements ModelInterface, ArrayAccess, \
      *
      * @param string|null $image Multipart file that allows you to add an image from your computer
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setImage(?string $image): UpdateEmailDynamicContentRequest
     {
@@ -392,7 +390,7 @@ class UpdateEmailDynamicContentRequest implements ModelInterface, ArrayAccess, \
      *
      * @param string|null $link_url link_url
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setLinkUrl(?string $link_url): UpdateEmailDynamicContentRequest
     {
@@ -416,7 +414,7 @@ class UpdateEmailDynamicContentRequest implements ModelInterface, ArrayAccess, \
      *
      * @param bool|null $over_write Allows overwriting of the existing image content section
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setOverWrite(?bool $over_write): UpdateEmailDynamicContentRequest
     {
@@ -440,7 +438,7 @@ class UpdateEmailDynamicContentRequest implements ModelInterface, ArrayAccess, \
      *
      * @param string|null $style Sets the value of the style parameter for the content section
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setStyle(?string $style): UpdateEmailDynamicContentRequest
     {
@@ -464,7 +462,7 @@ class UpdateEmailDynamicContentRequest implements ModelInterface, ArrayAccess, \
      *
      * @param string $type Type of content to set for the section.
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setType(string $type): UpdateEmailDynamicContentRequest
     {
@@ -498,7 +496,7 @@ class UpdateEmailDynamicContentRequest implements ModelInterface, ArrayAccess, \
      *
      * @param string $value Value to set for the section.  For type Text, the HTML content of the section.  For type DynamicContent, the id of the segmentation to use for the content.  For type Snippet, the id of the snippet to embed
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setValue(string $value): UpdateEmailDynamicContentRequest
     {
@@ -522,7 +520,7 @@ class UpdateEmailDynamicContentRequest implements ModelInterface, ArrayAccess, \
      *
      * @param string|null $video_url Sets the Url of the video element.  Videos must be either from YouTube or Vimeo
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setVideoUrl(?string $video_url): UpdateEmailDynamicContentRequest
     {
@@ -546,7 +544,7 @@ class UpdateEmailDynamicContentRequest implements ModelInterface, ArrayAccess, \
      *
      * @param int|null $width Overrides native width of the image.  The resulting file will be resized to the given width
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setWidth(?int $width): UpdateEmailDynamicContentRequest
     {
@@ -635,6 +633,7 @@ class UpdateEmailDynamicContentRequest implements ModelInterface, ArrayAccess, \
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

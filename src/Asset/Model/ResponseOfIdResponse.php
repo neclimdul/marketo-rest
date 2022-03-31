@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class ResponseOfIdResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -229,7 +227,7 @@ class ResponseOfIdResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\Error[]|null $errors errors
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setErrors(?array $errors): ResponseOfIdResponse
     {
@@ -253,7 +251,7 @@ class ResponseOfIdResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param string|null $request_id request_id
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setRequestId(?string $request_id): ResponseOfIdResponse
     {
@@ -277,7 +275,7 @@ class ResponseOfIdResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\IdResponse[]|null $result result
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setResult(?array $result): ResponseOfIdResponse
     {
@@ -301,7 +299,7 @@ class ResponseOfIdResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param bool|null $success success
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setSuccess(?bool $success): ResponseOfIdResponse
     {
@@ -325,7 +323,7 @@ class ResponseOfIdResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param string[]|null $warnings warnings
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setWarnings(?array $warnings): ResponseOfIdResponse
     {
@@ -414,6 +412,7 @@ class ResponseOfIdResponse implements ModelInterface, ArrayAccess, \JsonSerializ
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

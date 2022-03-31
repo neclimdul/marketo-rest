@@ -35,9 +35,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class LeadField implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -287,7 +285,7 @@ class LeadField implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $display_name UI display-name of the field
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDisplayName(string $display_name): LeadField
     {
@@ -311,7 +309,7 @@ class LeadField implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $name API name of the field
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setName(string $name): LeadField
     {
@@ -335,7 +333,7 @@ class LeadField implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $description Description of the field
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDescription(string $description): LeadField
     {
@@ -359,7 +357,7 @@ class LeadField implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $data_type Datatype of the field
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDataType(string $data_type): LeadField
     {
@@ -383,7 +381,7 @@ class LeadField implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param int|null $length Max length of the field.  Only applicable to text, string, and text area.
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setLength(?int $length): LeadField
     {
@@ -407,7 +405,7 @@ class LeadField implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param bool $is_hidden If set to true, the field is hidden
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setIsHidden(bool $is_hidden): LeadField
     {
@@ -431,7 +429,7 @@ class LeadField implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param bool $is_html_encoding_in_email If set to true, field is encoded as HTML in email
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setIsHtmlEncodingInEmail(bool $is_html_encoding_in_email): LeadField
     {
@@ -455,7 +453,7 @@ class LeadField implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param bool $is_sensitive If set to true, field is marked as sensitive
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setIsSensitive(bool $is_sensitive): LeadField
     {
@@ -479,7 +477,7 @@ class LeadField implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param bool $is_custom If set to true, field is custom
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setIsCustom(bool $is_custom): LeadField
     {
@@ -503,7 +501,7 @@ class LeadField implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param bool $is_api_created If set to true, field was created using REST API
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setIsApiCreated(bool $is_api_created): LeadField
     {
@@ -592,6 +590,7 @@ class LeadField implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

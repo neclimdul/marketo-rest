@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class UpdateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -265,7 +263,7 @@ class UpdateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param string|null $custom_head_html Any custom HTML to embed in the <head> tag of the page
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setCustomHeadHtml(?string $custom_head_html): UpdateLandingPageRequest
     {
@@ -289,7 +287,7 @@ class UpdateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param string|null $description Description of the asset
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDescription(?string $description): UpdateLandingPageRequest
     {
@@ -313,7 +311,7 @@ class UpdateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param string|null $facebook_og_tags Any OpenGraph meta tags to apply to the page
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFacebookOgTags(?string $facebook_og_tags): UpdateLandingPageRequest
     {
@@ -337,7 +335,7 @@ class UpdateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param string|null $keywords keywords
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setKeywords(?string $keywords): UpdateLandingPageRequest
     {
@@ -361,7 +359,7 @@ class UpdateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param string|null $meta_tags_description Meta description property of the page
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setMetaTagsDescription(?string $meta_tags_description): UpdateLandingPageRequest
     {
@@ -385,7 +383,7 @@ class UpdateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param bool|null $mobile_enabled Whether the page has mobile viewing enabled.  Free-form pages only.  Default false
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setMobileEnabled(?bool $mobile_enabled): UpdateLandingPageRequest
     {
@@ -409,7 +407,7 @@ class UpdateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param string|null $name Name of the landing page
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setName(?string $name): UpdateLandingPageRequest
     {
@@ -433,7 +431,7 @@ class UpdateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param string|null $robots Robots directives to apply to the pages meta tags
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setRobots(?string $robots): UpdateLandingPageRequest
     {
@@ -457,7 +455,7 @@ class UpdateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param string|null $style_over_ride Additional CSS styles to append to the landing page <head>
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setStyleOverRide(?string $style_over_ride): UpdateLandingPageRequest
     {
@@ -481,7 +479,7 @@ class UpdateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param string|null $title Title element of the landing page
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setTitle(?string $title): UpdateLandingPageRequest
     {
@@ -505,7 +503,7 @@ class UpdateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param string|null $url_page_name URL path of the page.  Derived from the name field if unset
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setUrlPageName(?string $url_page_name): UpdateLandingPageRequest
     {
@@ -594,6 +592,7 @@ class UpdateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

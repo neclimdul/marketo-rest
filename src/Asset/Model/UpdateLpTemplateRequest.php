@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class UpdateLpTemplateRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -217,7 +215,7 @@ class UpdateLpTemplateRequest implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param string|null $description Description of the landing page template
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDescription(?string $description): UpdateLpTemplateRequest
     {
@@ -241,7 +239,7 @@ class UpdateLpTemplateRequest implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param bool|null $enable_munchkin Whether to enable munchkin on the derived pages.  Defaults to true
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setEnableMunchkin(?bool $enable_munchkin): UpdateLpTemplateRequest
     {
@@ -265,7 +263,7 @@ class UpdateLpTemplateRequest implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param string|null $name Name of the landing page template
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setName(?string $name): UpdateLpTemplateRequest
     {
@@ -354,6 +352,7 @@ class UpdateLpTemplateRequest implements ModelInterface, ArrayAccess, \JsonSeria
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class ExportLeadFilter implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -253,7 +251,7 @@ class ExportLeadFilter implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\DateRange $created_at Date range to filter new leads on
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setCreatedAt(\NecLimDul\MarketoRest\Lead\Model\DateRange $created_at): ExportLeadFilter
     {
@@ -277,7 +275,7 @@ class ExportLeadFilter implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param int $smart_list_id Id of smart list to retrieve leads from
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setSmartListId(int $smart_list_id): ExportLeadFilter
     {
@@ -301,7 +299,7 @@ class ExportLeadFilter implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $smart_list_name Name of smart list to retrieve leads from
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setSmartListName(string $smart_list_name): ExportLeadFilter
     {
@@ -325,7 +323,7 @@ class ExportLeadFilter implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param int $static_list_id Id of static list to retrieve leads from
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setStaticListId(int $static_list_id): ExportLeadFilter
     {
@@ -349,7 +347,7 @@ class ExportLeadFilter implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $static_list_name Name of static list to retrieve leads from
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setStaticListName(string $static_list_name): ExportLeadFilter
     {
@@ -373,7 +371,7 @@ class ExportLeadFilter implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\DateRange $updated_at Date range to filter updated leads on
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setUpdatedAt(\NecLimDul\MarketoRest\Lead\Model\DateRange $updated_at): ExportLeadFilter
     {
@@ -462,6 +460,7 @@ class ExportLeadFilter implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class SmartListResponseWithRules implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -277,7 +275,7 @@ class SmartListResponseWithRules implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param int $id Id of the smart list
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setId(int $id): SmartListResponseWithRules
     {
@@ -301,7 +299,7 @@ class SmartListResponseWithRules implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param string $name Name of the smart list
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setName(string $name): SmartListResponseWithRules
     {
@@ -325,7 +323,7 @@ class SmartListResponseWithRules implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param string $description Description of the smart list
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDescription(string $description): SmartListResponseWithRules
     {
@@ -349,7 +347,7 @@ class SmartListResponseWithRules implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param \DateTime $created_at Datetime the smart list was created
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setCreatedAt(\DateTime $created_at): SmartListResponseWithRules
     {
@@ -373,7 +371,7 @@ class SmartListResponseWithRules implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param \DateTime $updated_at Datetime the smart list was most recently updated
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setUpdatedAt(\DateTime $updated_at): SmartListResponseWithRules
     {
@@ -397,7 +395,7 @@ class SmartListResponseWithRules implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param string $url Url of the smart list in the Marketo UI
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setUrl(string $url): SmartListResponseWithRules
     {
@@ -421,7 +419,7 @@ class SmartListResponseWithRules implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFolder(\NecLimDul\MarketoRest\Asset\Model\Folder $folder): SmartListResponseWithRules
     {
@@ -445,7 +443,7 @@ class SmartListResponseWithRules implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param string $workspace Name of the workspace
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setWorkspace(string $workspace): SmartListResponseWithRules
     {
@@ -469,7 +467,7 @@ class SmartListResponseWithRules implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\SmartListRules|null $rules Rules contained in the smart list
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setRules(?\NecLimDul\MarketoRest\Asset\Model\SmartListRules $rules): SmartListResponseWithRules
     {
@@ -558,6 +556,7 @@ class SmartListResponseWithRules implements ModelInterface, ArrayAccess, \JsonSe
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

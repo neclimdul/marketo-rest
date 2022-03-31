@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class UpdateStaticListRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -211,7 +209,7 @@ class UpdateStaticListRequest implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param string|null $description Description of the static list
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDescription(?string $description): UpdateStaticListRequest
     {
@@ -235,7 +233,7 @@ class UpdateStaticListRequest implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param string|null $name Name of the static list
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setName(?string $name): UpdateStaticListRequest
     {
@@ -324,6 +322,7 @@ class UpdateStaticListRequest implements ModelInterface, ArrayAccess, \JsonSeria
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class TagRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -211,7 +209,7 @@ class TagRequest implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $tag_type Type of program tag
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setTagType(?string $tag_type): TagRequest
     {
@@ -235,7 +233,7 @@ class TagRequest implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $tag_value Value of the tag
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setTagValue(?string $tag_value): TagRequest
     {
@@ -324,6 +322,7 @@ class TagRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

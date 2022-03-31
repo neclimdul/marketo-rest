@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class LandingPageRedirectRule implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -271,7 +269,7 @@ class LandingPageRedirectRule implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param int $id Internal id for landing page redirect rule
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setId(int $id): LandingPageRedirectRule
     {
@@ -295,7 +293,7 @@ class LandingPageRedirectRule implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param string $redirect_from_url Redirect 'from' URL of the Landing Page.  Combination of the hostname and redirectFrom landing page or path
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setRedirectFromUrl(string $redirect_from_url): LandingPageRedirectRule
     {
@@ -319,7 +317,7 @@ class LandingPageRedirectRule implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param string $redirect_to_url Redirect 'to' URL of the Landing Page.  Could be a Marketo landing page or non-Marketo URL.
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setRedirectToUrl(string $redirect_to_url): LandingPageRedirectRule
     {
@@ -343,7 +341,7 @@ class LandingPageRedirectRule implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param string $hostname The hostname for the landing pages.  Branding domain or alias.  Max 255 characters.
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setHostname(string $hostname): LandingPageRedirectRule
     {
@@ -367,7 +365,7 @@ class LandingPageRedirectRule implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\RedirectFrom $redirect_from JSON representation of redirect from landing page, with members 'type' which may be 'landingPageId' or 'path', and 'value'
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setRedirectFrom(\NecLimDul\MarketoRest\Asset\Model\RedirectFrom $redirect_from): LandingPageRedirectRule
     {
@@ -391,7 +389,7 @@ class LandingPageRedirectRule implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\RedirectTo $redirect_to JSON representation of redirect to landing page, with members 'type' which may be 'landingPageId' or 'url', and 'value'
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setRedirectTo(\NecLimDul\MarketoRest\Asset\Model\RedirectTo $redirect_to): LandingPageRedirectRule
     {
@@ -415,7 +413,7 @@ class LandingPageRedirectRule implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param \DateTime $created_at Datetime the landing page redirect rule was created
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setCreatedAt(\DateTime $created_at): LandingPageRedirectRule
     {
@@ -439,7 +437,7 @@ class LandingPageRedirectRule implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param \DateTime $updated_at Datetime the landing page redirect rule was most recently updated
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setUpdatedAt(\DateTime $updated_at): LandingPageRedirectRule
     {
@@ -528,6 +526,7 @@ class LandingPageRedirectRule implements ModelInterface, ArrayAccess, \JsonSeria
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

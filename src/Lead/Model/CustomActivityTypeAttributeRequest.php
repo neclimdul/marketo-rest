@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class CustomActivityTypeAttributeRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -205,7 +203,7 @@ class CustomActivityTypeAttributeRequest implements ModelInterface, ArrayAccess,
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttribute[]|null $attributes List of attributes to add to the activity type
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setAttributes(?array $attributes): CustomActivityTypeAttributeRequest
     {
@@ -294,6 +292,7 @@ class CustomActivityTypeAttributeRequest implements ModelInterface, ArrayAccess,
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

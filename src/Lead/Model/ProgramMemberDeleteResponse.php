@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class ProgramMemberDeleteResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -255,7 +253,7 @@ class ProgramMemberDeleteResponse implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param string $status Status of the operation performed on the record
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setStatus(string $status): ProgramMemberDeleteResponse
     {
@@ -289,7 +287,7 @@ class ProgramMemberDeleteResponse implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\Reason[]|null $reasons List of reasons why an operation did not succeed.  Reasons are only present in API responses and should not be submitted
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setReasons(?array $reasons): ProgramMemberDeleteResponse
     {
@@ -313,7 +311,7 @@ class ProgramMemberDeleteResponse implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param int $lead_id Id of the lead associated to the program member
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setLeadId(int $lead_id): ProgramMemberDeleteResponse
     {
@@ -337,7 +335,7 @@ class ProgramMemberDeleteResponse implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param int $seq Integer indicating the sequence of the record in response.  This value is correlated to the order of the records included in the request input.  Seq should only be part of responses and should not be submitted.
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setSeq(int $seq): ProgramMemberDeleteResponse
     {
@@ -426,6 +424,7 @@ class ProgramMemberDeleteResponse implements ModelInterface, ArrayAccess, \JsonS
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class CreateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -286,7 +284,7 @@ class CreateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param string|null $custom_head_html Any custom HTML to embed in the <head> tag of the page
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setCustomHeadHtml(?string $custom_head_html): CreateLandingPageRequest
     {
@@ -310,7 +308,7 @@ class CreateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param string|null $description Description of the asset
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDescription(?string $description): CreateLandingPageRequest
     {
@@ -334,7 +332,7 @@ class CreateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param string|null $facebook_og_tags Any OpenGraph meta tags to apply to the page
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFacebookOgTags(?string $facebook_og_tags): CreateLandingPageRequest
     {
@@ -358,7 +356,7 @@ class CreateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFolder(\NecLimDul\MarketoRest\Asset\Model\Folder $folder): CreateLandingPageRequest
     {
@@ -382,7 +380,7 @@ class CreateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param string|null $keywords keywords
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setKeywords(?string $keywords): CreateLandingPageRequest
     {
@@ -406,7 +404,7 @@ class CreateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param bool|null $mobile_enabled Whether the page has mobile viewing enabled.  Free-form pages only.  Default false
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setMobileEnabled(?bool $mobile_enabled): CreateLandingPageRequest
     {
@@ -430,7 +428,7 @@ class CreateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param string $name Name of the landing page
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setName(string $name): CreateLandingPageRequest
     {
@@ -454,7 +452,7 @@ class CreateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param bool|null $prefill_form Boolean to toggle whether forms embedded in the page will prefill.  Default false
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setPrefillForm(?bool $prefill_form): CreateLandingPageRequest
     {
@@ -478,7 +476,7 @@ class CreateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param string|null $robots Robots directives to apply to the pages meta tags
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setRobots(?string $robots): CreateLandingPageRequest
     {
@@ -502,7 +500,7 @@ class CreateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param int $template Id of the template used
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setTemplate(int $template): CreateLandingPageRequest
     {
@@ -526,7 +524,7 @@ class CreateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param string|null $title Title element of the landing page
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setTitle(?string $title): CreateLandingPageRequest
     {
@@ -550,7 +548,7 @@ class CreateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param string|null $url_page_name URL path of the page.  Derived from the name field if unset
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setUrlPageName(?string $url_page_name): CreateLandingPageRequest
     {
@@ -574,7 +572,7 @@ class CreateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param string|null $workspace Name of the workspace
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setWorkspace(?string $workspace): CreateLandingPageRequest
     {
@@ -663,6 +661,7 @@ class CreateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

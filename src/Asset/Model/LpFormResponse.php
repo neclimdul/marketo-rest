@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class LpFormResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -384,7 +382,7 @@ class LpFormResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $button_label Label text of the button
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setButtonLabel(string $button_label): LpFormResponse
     {
@@ -408,7 +406,7 @@ class LpFormResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param int $button_location Location in pixels of the button relative to the left of the form
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setButtonLocation(int $button_location): LpFormResponse
     {
@@ -432,7 +430,7 @@ class LpFormResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param \DateTime|null $created_at Datetime the asset was created
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setCreatedAt(?\DateTime $created_at): LpFormResponse
     {
@@ -456,7 +454,7 @@ class LpFormResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $description Description of the asset
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDescription(?string $description): LpFormResponse
     {
@@ -480,7 +478,7 @@ class LpFormResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFolder(\NecLimDul\MarketoRest\Asset\Model\Folder $folder): LpFormResponse
     {
@@ -504,7 +502,7 @@ class LpFormResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $font_family font-family property for the form
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFontFamily(string $font_family): LpFormResponse
     {
@@ -528,7 +526,7 @@ class LpFormResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $font_size font-size property of the form
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFontSize(string $font_size): LpFormResponse
     {
@@ -552,7 +550,7 @@ class LpFormResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param int|null $id Id of the asset
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setId(?int $id): LpFormResponse
     {
@@ -576,7 +574,7 @@ class LpFormResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\FormKnownVisitorDTO $known_visitor Known visitor behavior for the form
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setKnownVisitor(\NecLimDul\MarketoRest\Asset\Model\FormKnownVisitorDTO $known_visitor): LpFormResponse
     {
@@ -600,7 +598,7 @@ class LpFormResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $label_position Default positioning of labels.
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setLabelPosition(string $label_position): LpFormResponse
     {
@@ -624,7 +622,7 @@ class LpFormResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $language Language of the form
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setLanguage(string $language): LpFormResponse
     {
@@ -648,7 +646,7 @@ class LpFormResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $locale Locale of the form
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setLocale(string $locale): LpFormResponse
     {
@@ -672,7 +670,7 @@ class LpFormResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $name Name of the asset
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setName(?string $name): LpFormResponse
     {
@@ -696,7 +694,7 @@ class LpFormResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param bool $progressive_profiling Whether progressive profiling is enabled for the form
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setProgressiveProfiling(bool $progressive_profiling): LpFormResponse
     {
@@ -720,7 +718,7 @@ class LpFormResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $status Status filter for draft or approved versions
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setStatus(string $status): LpFormResponse
     {
@@ -754,7 +752,7 @@ class LpFormResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\FormThankYouPageDTO[] $thank_you_list List of thank you page behaviors for the form
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setThankYouList(array $thank_you_list): LpFormResponse
     {
@@ -778,7 +776,7 @@ class LpFormResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $theme CSS theme for the form to use
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setTheme(string $theme): LpFormResponse
     {
@@ -802,7 +800,7 @@ class LpFormResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param \DateTime|null $updated_at Datetime the asset was most recently updated
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setUpdatedAt(?\DateTime $updated_at): LpFormResponse
     {
@@ -826,7 +824,7 @@ class LpFormResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $url Url of the asset in the Marketo UI
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setUrl(?string $url): LpFormResponse
     {
@@ -850,7 +848,7 @@ class LpFormResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $waiting_label Waiting text of the button
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setWaitingLabel(string $waiting_label): LpFormResponse
     {
@@ -939,6 +937,7 @@ class LpFormResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

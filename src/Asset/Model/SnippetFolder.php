@@ -35,9 +35,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class SnippetFolder implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -250,7 +248,7 @@ class SnippetFolder implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param int $value Id of the folder
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setValue(int $value): SnippetFolder
     {
@@ -274,7 +272,7 @@ class SnippetFolder implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $type Type of folder
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setType(string $type): SnippetFolder
     {
@@ -308,7 +306,7 @@ class SnippetFolder implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $folder_name Name of folder
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFolderName(string $folder_name): SnippetFolder
     {
@@ -397,6 +395,7 @@ class SnippetFolder implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

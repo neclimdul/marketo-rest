@@ -35,9 +35,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class Lead implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -224,7 +222,7 @@ class Lead implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param int|null $id Unique integer id of a lead record
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setId(?int $id): Lead
     {
@@ -248,7 +246,7 @@ class Lead implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\ProgramMembership|null $membership Membership data for the parent program.  Only returned via Get Leads By Program Id
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setMembership(?\NecLimDul\MarketoRest\Lead\Model\ProgramMembership $membership): Lead
     {
@@ -272,7 +270,7 @@ class Lead implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\Reason|null $reason Reason object describing why an operation did not succeed for a record
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setReason(?\NecLimDul\MarketoRest\Lead\Model\Reason $reason): Lead
     {
@@ -296,7 +294,7 @@ class Lead implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $status Status of the operation performed on the record
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setStatus(?string $status): Lead
     {
@@ -385,6 +383,7 @@ class Lead implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

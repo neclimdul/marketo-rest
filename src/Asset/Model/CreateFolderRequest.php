@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class CreateFolderRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -223,7 +221,7 @@ class CreateFolderRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param string|null $description Description of the asset
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDescription(?string $description): CreateFolderRequest
     {
@@ -247,7 +245,7 @@ class CreateFolderRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param string $name Name of the Folder
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setName(string $name): CreateFolderRequest
     {
@@ -271,7 +269,7 @@ class CreateFolderRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\Folder $parent Folder object describing the parent folder
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setParent(\NecLimDul\MarketoRest\Asset\Model\Folder $parent): CreateFolderRequest
     {
@@ -360,6 +358,7 @@ class CreateFolderRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

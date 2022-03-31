@@ -35,9 +35,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class ExportResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -272,7 +270,7 @@ class ExportResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param \DateTime|null $created_at Date when the export request was created
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setCreatedAt(?\DateTime $created_at): ExportResponse
     {
@@ -296,7 +294,7 @@ class ExportResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $error_msg Error message in case of \"Failed\" status
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setErrorMsg(?string $error_msg): ExportResponse
     {
@@ -320,7 +318,7 @@ class ExportResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $export_id Unique id of the export job
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setExportId(string $export_id): ExportResponse
     {
@@ -344,7 +342,7 @@ class ExportResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param int|null $file_size Size of exported file in bytes. This will have a value only when status is \"Completed\", otherwise null
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFileSize(?int $file_size): ExportResponse
     {
@@ -368,7 +366,7 @@ class ExportResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $file_checksum SHA-256 hash of exported file. This will have a value only when status is \"Completed\", otherwise null
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFileChecksum(?string $file_checksum): ExportResponse
     {
@@ -392,7 +390,7 @@ class ExportResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param \DateTime|null $finished_at Finish time of export job. This will have value only when status is \"Completed\" or \"Failed\", otherwise null
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFinishedAt(?\DateTime $finished_at): ExportResponse
     {
@@ -416,7 +414,7 @@ class ExportResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $format Format of file as given in the request (\"CSV\", \"TSV\", \"SSV\")
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFormat(?string $format): ExportResponse
     {
@@ -440,7 +438,7 @@ class ExportResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param int|null $number_of_records Number of records in the export file.  This will have value only when status is \"Completed\", otherwise null
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setNumberOfRecords(?int $number_of_records): ExportResponse
     {
@@ -464,7 +462,7 @@ class ExportResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param \DateTime|null $queued_at Queue time of export job. This will have value when \"Queued\" status is reached, before that null
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setQueuedAt(?\DateTime $queued_at): ExportResponse
     {
@@ -488,7 +486,7 @@ class ExportResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param \DateTime|null $started_at Start time of export job. This will have value when \"Processing\" status is reached, before that null
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setStartedAt(?\DateTime $started_at): ExportResponse
     {
@@ -512,7 +510,7 @@ class ExportResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $status Status of the export job (\"Created\",\"Queued\",\"Processing\",\"Canceled\",\"Completed\",\"Failed\")
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setStatus(string $status): ExportResponse
     {
@@ -601,6 +599,7 @@ class ExportResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class ChangeLeadProgramStatusOutputData implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -223,7 +221,7 @@ class ChangeLeadProgramStatusOutputData implements ModelInterface, ArrayAccess, 
      *
      * @param int $id Unique integer id of a lead record
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setId(int $id): ChangeLeadProgramStatusOutputData
     {
@@ -247,7 +245,7 @@ class ChangeLeadProgramStatusOutputData implements ModelInterface, ArrayAccess, 
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\Reason[]|null $reasons List of reasons why an operation did not succeed.  Reasons are only present in API responses and should not be submitted
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setReasons(?array $reasons): ChangeLeadProgramStatusOutputData
     {
@@ -271,7 +269,7 @@ class ChangeLeadProgramStatusOutputData implements ModelInterface, ArrayAccess, 
      *
      * @param string $status Program status of the record.  Permissible values can be retrieve from the Get Channel by Name API for the designated program's channel
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setStatus(string $status): ChangeLeadProgramStatusOutputData
     {
@@ -360,6 +358,7 @@ class ChangeLeadProgramStatusOutputData implements ModelInterface, ArrayAccess, 
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

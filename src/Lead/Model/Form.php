@@ -35,9 +35,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class Form implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -221,7 +219,7 @@ class Form implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\LeadFormFields $lead_form_fields List of form fields.  Email is required field
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setLeadFormFields(\NecLimDul\MarketoRest\Lead\Model\LeadFormFields $lead_form_fields): Form
     {
@@ -245,7 +243,7 @@ class Form implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\VisitorData|null $visitor_data Page visit-related data
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setVisitorData(?\NecLimDul\MarketoRest\Lead\Model\VisitorData $visitor_data): Form
     {
@@ -269,7 +267,7 @@ class Form implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $cookie Munchkin cookie value used to associate new lead with anonymous activities.  e.g. id:123-XYZ-456&token:_mch-marketo.com-1594662481190-60776
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setCookie(?string $cookie): Form
     {
@@ -358,6 +356,7 @@ class Form implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

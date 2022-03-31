@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class SyncProgramMemberDataRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -208,7 +206,7 @@ class SyncProgramMemberDataRequest implements ModelInterface, ArrayAccess, \Json
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\ProgramMemberData[] $input List of input records
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setInput(array $input): SyncProgramMemberDataRequest
     {
@@ -297,6 +295,7 @@ class SyncProgramMemberDataRequest implements ModelInterface, ArrayAccess, \Json
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class SegmentationResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -259,7 +257,7 @@ class SegmentationResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param \DateTime|null $created_at Datetime the asset was created
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setCreatedAt(?\DateTime $created_at): SegmentationResponse
     {
@@ -283,7 +281,7 @@ class SegmentationResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param string|null $description Description of the asset
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDescription(?string $description): SegmentationResponse
     {
@@ -307,7 +305,7 @@ class SegmentationResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFolder(\NecLimDul\MarketoRest\Asset\Model\Folder $folder): SegmentationResponse
     {
@@ -331,7 +329,7 @@ class SegmentationResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param int|null $id Id of the asset
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setId(?int $id): SegmentationResponse
     {
@@ -355,7 +353,7 @@ class SegmentationResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param string|null $name Name of the asset
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setName(?string $name): SegmentationResponse
     {
@@ -379,7 +377,7 @@ class SegmentationResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param string $status Status filter for draft or approved versions
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setStatus(string $status): SegmentationResponse
     {
@@ -403,7 +401,7 @@ class SegmentationResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param \DateTime|null $updated_at Datetime the asset was most recently updated
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setUpdatedAt(?\DateTime $updated_at): SegmentationResponse
     {
@@ -427,7 +425,7 @@ class SegmentationResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param string|null $url Url of the asset in the Marketo UI
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setUrl(?string $url): SegmentationResponse
     {
@@ -451,7 +449,7 @@ class SegmentationResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param string|null $workspace Name of the workspace
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setWorkspace(?string $workspace): SegmentationResponse
     {
@@ -540,6 +538,7 @@ class SegmentationResponse implements ModelInterface, ArrayAccess, \JsonSerializ
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

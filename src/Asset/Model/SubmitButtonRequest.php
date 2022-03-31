@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class SubmitButtonRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -223,7 +221,7 @@ class SubmitButtonRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param int|null $button_position Location in pixels of the button relative to the left of the form
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setButtonPosition(?int $button_position): SubmitButtonRequest
     {
@@ -247,7 +245,7 @@ class SubmitButtonRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param string|null $button_style Style of the button
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setButtonStyle(?string $button_style): SubmitButtonRequest
     {
@@ -271,7 +269,7 @@ class SubmitButtonRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param string|null $label Label text of the button
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setLabel(?string $label): SubmitButtonRequest
     {
@@ -295,7 +293,7 @@ class SubmitButtonRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param string|null $waiting_label Waiting text of the button
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setWaitingLabel(?string $waiting_label): SubmitButtonRequest
     {
@@ -384,6 +382,7 @@ class SubmitButtonRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

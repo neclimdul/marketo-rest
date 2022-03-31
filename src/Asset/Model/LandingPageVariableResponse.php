@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class LandingPageVariableResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -220,7 +218,7 @@ class LandingPageVariableResponse implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param string $id Integer id of the variable
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setId(string $id): LandingPageVariableResponse
     {
@@ -244,7 +242,7 @@ class LandingPageVariableResponse implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param string|null $type Type of the variable
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setType(?string $type): LandingPageVariableResponse
     {
@@ -268,7 +266,7 @@ class LandingPageVariableResponse implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param object|null $value Value of the variable
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setValue(?object $value): LandingPageVariableResponse
     {
@@ -357,6 +355,7 @@ class LandingPageVariableResponse implements ModelInterface, ArrayAccess, \JsonS
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

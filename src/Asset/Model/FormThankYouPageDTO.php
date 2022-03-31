@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class FormThankYouPageDTO implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -235,7 +233,7 @@ class FormThankYouPageDTO implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param bool|null $default default
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDefault(?bool $default): FormThankYouPageDTO
     {
@@ -259,7 +257,7 @@ class FormThankYouPageDTO implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param string|null $followup_type followup_type
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFollowupType(?string $followup_type): FormThankYouPageDTO
     {
@@ -283,7 +281,7 @@ class FormThankYouPageDTO implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param object|null $followup_value followup_value
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFollowupValue(?object $followup_value): FormThankYouPageDTO
     {
@@ -307,7 +305,7 @@ class FormThankYouPageDTO implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param string|null $operator operator
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setOperator(?string $operator): FormThankYouPageDTO
     {
@@ -331,7 +329,7 @@ class FormThankYouPageDTO implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param string|null $subject_field subject_field
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setSubjectField(?string $subject_field): FormThankYouPageDTO
     {
@@ -355,7 +353,7 @@ class FormThankYouPageDTO implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param string[]|null $values values
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setValues(?array $values): FormThankYouPageDTO
     {
@@ -444,6 +442,7 @@ class FormThankYouPageDTO implements ModelInterface, ArrayAccess, \JsonSerializa
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

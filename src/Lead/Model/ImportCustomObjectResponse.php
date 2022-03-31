@@ -35,9 +35,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class ImportCustomObjectResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -266,7 +264,7 @@ class ImportCustomObjectResponse implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param int $batch_id Unique integer id of the import batch
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setBatchId(int $batch_id): ImportCustomObjectResponse
     {
@@ -290,7 +288,7 @@ class ImportCustomObjectResponse implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param string|null $import_time Time spent on the batch
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setImportTime(?string $import_time): ImportCustomObjectResponse
     {
@@ -314,7 +312,7 @@ class ImportCustomObjectResponse implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param string|null $message Status message of the batch
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setMessage(?string $message): ImportCustomObjectResponse
     {
@@ -338,7 +336,7 @@ class ImportCustomObjectResponse implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param int|null $num_of_objects_processed Number of rows processed so far
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setNumOfObjectsProcessed(?int $num_of_objects_processed): ImportCustomObjectResponse
     {
@@ -362,7 +360,7 @@ class ImportCustomObjectResponse implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param int|null $num_of_rows_failed Number of rows failed so far
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setNumOfRowsFailed(?int $num_of_rows_failed): ImportCustomObjectResponse
     {
@@ -386,7 +384,7 @@ class ImportCustomObjectResponse implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param int|null $num_of_rows_with_warning Number of rows with a warning so far
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setNumOfRowsWithWarning(?int $num_of_rows_with_warning): ImportCustomObjectResponse
     {
@@ -410,7 +408,7 @@ class ImportCustomObjectResponse implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param string $object_api_name Object API Name
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setObjectApiName(string $object_api_name): ImportCustomObjectResponse
     {
@@ -434,7 +432,7 @@ class ImportCustomObjectResponse implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param string $operation Bulk operation type. Can be import or export
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setOperation(string $operation): ImportCustomObjectResponse
     {
@@ -458,7 +456,7 @@ class ImportCustomObjectResponse implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param string $status Status of the batch
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setStatus(string $status): ImportCustomObjectResponse
     {
@@ -547,6 +545,7 @@ class ImportCustomObjectResponse implements ModelInterface, ArrayAccess, \JsonSe
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

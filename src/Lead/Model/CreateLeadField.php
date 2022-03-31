@@ -35,9 +35,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class CreateLeadField implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -294,7 +292,7 @@ class CreateLeadField implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $display_name UI display-name of the field.  Must be unique, cannot contain special characters
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDisplayName(string $display_name): CreateLeadField
     {
@@ -318,7 +316,7 @@ class CreateLeadField implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $name API name of the field.  Must be unique, start with a letter, and only contain letters, numbers, or underscore
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setName(string $name): CreateLeadField
     {
@@ -342,7 +340,7 @@ class CreateLeadField implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $description Description of the field.  Default is no description
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDescription(?string $description): CreateLeadField
     {
@@ -366,7 +364,7 @@ class CreateLeadField implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $data_type Datatype of the field
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDataType(string $data_type): CreateLeadField
     {
@@ -400,7 +398,7 @@ class CreateLeadField implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param bool|null $is_hidden If set to true, the field is hidden.  Default is false
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setIsHidden(?bool $is_hidden): CreateLeadField
     {
@@ -424,7 +422,7 @@ class CreateLeadField implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param bool|null $is_html_encoding_in_email If set to true, field is encoded as HTML in email.  Default is true
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setIsHtmlEncodingInEmail(?bool $is_html_encoding_in_email): CreateLeadField
     {
@@ -448,7 +446,7 @@ class CreateLeadField implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param bool|null $is_sensitive If set to true, field is marked as sensitive.  Default is false
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setIsSensitive(?bool $is_sensitive): CreateLeadField
     {
@@ -537,6 +535,7 @@ class CreateLeadField implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

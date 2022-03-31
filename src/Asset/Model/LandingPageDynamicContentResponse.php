@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class LandingPageDynamicContentResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -229,7 +227,7 @@ class LandingPageDynamicContentResponse implements ModelInterface, ArrayAccess, 
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\SegmentContent[]|null $content List of variations in the section
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setContent(?array $content): LandingPageDynamicContentResponse
     {
@@ -253,7 +251,7 @@ class LandingPageDynamicContentResponse implements ModelInterface, ArrayAccess, 
      *
      * @param \DateTime|null $created_at Datetime when the section was created
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setCreatedAt(?\DateTime $created_at): LandingPageDynamicContentResponse
     {
@@ -277,7 +275,7 @@ class LandingPageDynamicContentResponse implements ModelInterface, ArrayAccess, 
      *
      * @param int|null $id Id of the dnamic content section
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setId(?int $id): LandingPageDynamicContentResponse
     {
@@ -301,7 +299,7 @@ class LandingPageDynamicContentResponse implements ModelInterface, ArrayAccess, 
      *
      * @param int|null $segmentation Segmentation to which the section is linked
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setSegmentation(?int $segmentation): LandingPageDynamicContentResponse
     {
@@ -325,7 +323,7 @@ class LandingPageDynamicContentResponse implements ModelInterface, ArrayAccess, 
      *
      * @param \DateTime|null $updated_at Datetime when the section was last updated
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setUpdatedAt(?\DateTime $updated_at): LandingPageDynamicContentResponse
     {
@@ -414,6 +412,7 @@ class LandingPageDynamicContentResponse implements ModelInterface, ArrayAccess, 
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

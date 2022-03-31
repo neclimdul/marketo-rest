@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class FolderResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -360,7 +358,7 @@ class FolderResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param int|null $access_zone_id access_zone_id
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setAccessZoneId(?int $access_zone_id): FolderResponse
     {
@@ -384,7 +382,7 @@ class FolderResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param \DateTime $created_at Datetime the folder was created
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setCreatedAt(\DateTime $created_at): FolderResponse
     {
@@ -408,7 +406,7 @@ class FolderResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $description Description of the folder
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDescription(?string $description): FolderResponse
     {
@@ -432,7 +430,7 @@ class FolderResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder_id Id of the folder
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFolderId(\NecLimDul\MarketoRest\Asset\Model\Folder $folder_id): FolderResponse
     {
@@ -456,7 +454,7 @@ class FolderResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $folder_type Type of folder
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFolderType(string $folder_type): FolderResponse
     {
@@ -490,7 +488,7 @@ class FolderResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param int $id Id of the folder
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setId(int $id): FolderResponse
     {
@@ -514,7 +512,7 @@ class FolderResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param bool $is_archive Archival status of the folder
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setIsArchive(bool $is_archive): FolderResponse
     {
@@ -538,7 +536,7 @@ class FolderResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param bool|null $is_system Whether the folder is system-managed
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setIsSystem(?bool $is_system): FolderResponse
     {
@@ -562,7 +560,7 @@ class FolderResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $name Name of the folder.  Not applicable for Programs
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setName(string $name): FolderResponse
     {
@@ -586,7 +584,7 @@ class FolderResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\Folder $parent Parent folder reference
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setParent(\NecLimDul\MarketoRest\Asset\Model\Folder $parent): FolderResponse
     {
@@ -610,7 +608,7 @@ class FolderResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $path Path of the folder
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setPath(string $path): FolderResponse
     {
@@ -634,7 +632,7 @@ class FolderResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param \DateTime $updated_at Datetime the folder was last updated
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setUpdatedAt(\DateTime $updated_at): FolderResponse
     {
@@ -658,7 +656,7 @@ class FolderResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $url Url of the folder
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setUrl(string $url): FolderResponse
     {
@@ -682,7 +680,7 @@ class FolderResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $workspace Name of the workspace
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setWorkspace(?string $workspace): FolderResponse
     {
@@ -771,6 +769,7 @@ class FolderResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -328,7 +326,7 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param int|null $blank_fields Number of blank fields to show when progressive profiling is enabled
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setBlankFields(?int $blank_fields): AddFormFieldRequest
     {
@@ -352,7 +350,7 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param string|null $default_value Optional default value for the field
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDefaultValue(?string $default_value): AddFormFieldRequest
     {
@@ -376,7 +374,7 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param string $field_id Id of the field
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFieldId(string $field_id): AddFormFieldRequest
     {
@@ -400,7 +398,7 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param int|null $field_width Width of the input or select element
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFieldWidth(?int $field_width): AddFormFieldRequest
     {
@@ -424,7 +422,7 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param bool|null $form_prefill Whether the field should prefill.  Default true
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFormPrefill(?bool $form_prefill): AddFormFieldRequest
     {
@@ -448,7 +446,7 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param bool|null $is_sensitive Whether the field is marked as sensitive.  Default false
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setIsSensitive(?bool $is_sensitive): AddFormFieldRequest
     {
@@ -472,7 +470,7 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param string|null $hint_text Hint text for the field
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setHintText(?string $hint_text): AddFormFieldRequest
     {
@@ -496,7 +494,7 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param bool|null $initially_checked Whether the field should be checked upon loading.  Default false
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setInitiallyChecked(?bool $initially_checked): AddFormFieldRequest
     {
@@ -520,7 +518,7 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param string|null $instructions Instructions for the field
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setInstructions(?string $instructions): AddFormFieldRequest
     {
@@ -544,7 +542,7 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param string|null $label Label of the field
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setLabel(?string $label): AddFormFieldRequest
     {
@@ -568,7 +566,7 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param bool|null $label_to_right Whether the field label should be displayed to the right of the input/select element. Default false
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setLabelToRight(?bool $label_to_right): AddFormFieldRequest
     {
@@ -592,7 +590,7 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param int|null $label_width Width of the field label element
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setLabelWidth(?int $label_width): AddFormFieldRequest
     {
@@ -616,7 +614,7 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param string|null $mask_input Optional input mask for the field
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setMaskInput(?string $mask_input): AddFormFieldRequest
     {
@@ -640,7 +638,7 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param int|null $max_length Maximum length for text type fields
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setMaxLength(?int $max_length): AddFormFieldRequest
     {
@@ -664,7 +662,7 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param float|null $max_value Maximum value accepted by the field
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setMaxValue(?float $max_value): AddFormFieldRequest
     {
@@ -688,7 +686,7 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param float|null $min_value Minimum value accepted by the field
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setMinValue(?float $min_value): AddFormFieldRequest
     {
@@ -712,7 +710,7 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param bool|null $multi_select Whether the field should allow multiple selections. Default false
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setMultiSelect(?bool $multi_select): AddFormFieldRequest
     {
@@ -736,7 +734,7 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param bool|null $required Whether the field is required to submit the form.  Default false
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setRequired(?bool $required): AddFormFieldRequest
     {
@@ -760,7 +758,7 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param string|null $validation_message Validation message to display on failed validation
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setValidationMessage(?string $validation_message): AddFormFieldRequest
     {
@@ -784,7 +782,7 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param string|null $values Comma-separated list of accepted values for the field.  Only for select-field types
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setValues(?string $values): AddFormFieldRequest
     {
@@ -808,7 +806,7 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param int|null $visible_lines Number of lines to display for the field element
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setVisibleLines(?int $visible_lines): AddFormFieldRequest
     {
@@ -897,6 +895,7 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

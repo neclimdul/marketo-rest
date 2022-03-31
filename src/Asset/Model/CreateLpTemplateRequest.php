@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class CreateLpTemplateRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -258,7 +256,7 @@ class CreateLpTemplateRequest implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param string|null $description Description of the landing page template
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDescription(?string $description): CreateLpTemplateRequest
     {
@@ -282,7 +280,7 @@ class CreateLpTemplateRequest implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param bool|null $enable_munchkin Whether to enable munchkin on the derived pages.  Defaults to true
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setEnableMunchkin(?bool $enable_munchkin): CreateLpTemplateRequest
     {
@@ -306,7 +304,7 @@ class CreateLpTemplateRequest implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFolder(\NecLimDul\MarketoRest\Asset\Model\Folder $folder): CreateLpTemplateRequest
     {
@@ -330,7 +328,7 @@ class CreateLpTemplateRequest implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param string $name Name of the landing page template
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setName(string $name): CreateLpTemplateRequest
     {
@@ -354,7 +352,7 @@ class CreateLpTemplateRequest implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param string|null $template_type Type of template to create.  Defaults to freeForm
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setTemplateType(?string $template_type): CreateLpTemplateRequest
     {
@@ -453,6 +451,7 @@ class CreateLpTemplateRequest implements ModelInterface, ArrayAccess, \JsonSeria
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

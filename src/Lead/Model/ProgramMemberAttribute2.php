@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class ProgramMemberAttribute2 implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -262,7 +260,7 @@ class ProgramMemberAttribute2 implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param string $name \"API Program Member\"
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setName(string $name): ProgramMemberAttribute2
     {
@@ -286,7 +284,7 @@ class ProgramMemberAttribute2 implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param string $description \"API Program Member Map\"
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDescription(string $description): ProgramMemberAttribute2
     {
@@ -310,7 +308,7 @@ class ProgramMemberAttribute2 implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param string $created_at Datetime when created
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setCreatedAt(string $created_at): ProgramMemberAttribute2
     {
@@ -334,7 +332,7 @@ class ProgramMemberAttribute2 implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param string $updated_at Datetime updated
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setUpdatedAt(string $updated_at): ProgramMemberAttribute2
     {
@@ -358,7 +356,7 @@ class ProgramMemberAttribute2 implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param string[] $dedupe_fields List of dedupe fields
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDedupeFields(array $dedupe_fields): ProgramMemberAttribute2
     {
@@ -382,7 +380,7 @@ class ProgramMemberAttribute2 implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\LeadAttribute2SearchableFields[] $searchable_fields List of searchable fields
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setSearchableFields(array $searchable_fields): ProgramMemberAttribute2
     {
@@ -406,7 +404,7 @@ class ProgramMemberAttribute2 implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\LeadAttribute2Fields2[] $fields Description of searchable fields
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFields(array $fields): ProgramMemberAttribute2
     {
@@ -495,6 +493,7 @@ class ProgramMemberAttribute2 implements ModelInterface, ArrayAccess, \JsonSeria
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

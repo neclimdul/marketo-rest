@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class CreateTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -289,7 +287,7 @@ class CreateTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param string $folder_type Type of folder.  'Folder' or 'Program'
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFolderType(string $folder_type): CreateTokenRequest
     {
@@ -323,7 +321,7 @@ class CreateTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param string $name Name of the token. Max length is 50 characters)
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setName(string $name): CreateTokenRequest
     {
@@ -347,7 +345,7 @@ class CreateTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param string $type Type of the token
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setType(string $type): CreateTokenRequest
     {
@@ -381,7 +379,7 @@ class CreateTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param string $value Value of the token
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setValue(string $value): CreateTokenRequest
     {
@@ -470,6 +468,7 @@ class CreateTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

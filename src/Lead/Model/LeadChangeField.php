@@ -35,9 +35,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class LeadChangeField implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -233,7 +231,7 @@ class LeadChangeField implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param int $id Unique integer id of the change record
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setId(int $id): LeadChangeField
     {
@@ -257,7 +255,7 @@ class LeadChangeField implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $name Name of the field which was changed
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setName(string $name): LeadChangeField
     {
@@ -281,7 +279,7 @@ class LeadChangeField implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $new_value New value after the change
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setNewValue(string $new_value): LeadChangeField
     {
@@ -305,7 +303,7 @@ class LeadChangeField implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $old_value Old value before the change
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setOldValue(?string $old_value): LeadChangeField
     {
@@ -394,6 +392,7 @@ class LeadChangeField implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

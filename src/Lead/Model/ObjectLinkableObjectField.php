@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class ObjectLinkableObjectField implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -226,7 +224,7 @@ class ObjectLinkableObjectField implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param string $name Link field API name
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setName(string $name): ObjectLinkableObjectField
     {
@@ -250,7 +248,7 @@ class ObjectLinkableObjectField implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param string $display_name Link field name
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDisplayName(string $display_name): ObjectLinkableObjectField
     {
@@ -274,7 +272,7 @@ class ObjectLinkableObjectField implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param string $data_type Link field data type
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDataType(string $data_type): ObjectLinkableObjectField
     {
@@ -363,6 +361,7 @@ class ObjectLinkableObjectField implements ModelInterface, ArrayAccess, \JsonSer
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

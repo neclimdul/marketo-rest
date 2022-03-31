@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class LpTemplateResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -300,7 +298,7 @@ class LpTemplateResponse implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param \DateTime|null $created_at Datetime the asset was created
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setCreatedAt(?\DateTime $created_at): LpTemplateResponse
     {
@@ -324,7 +322,7 @@ class LpTemplateResponse implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param string|null $description Description of the asset
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDescription(?string $description): LpTemplateResponse
     {
@@ -348,7 +346,7 @@ class LpTemplateResponse implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param bool $enable_munchkin Whether to enable munchkin on the derived pages.  Defaults to true
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setEnableMunchkin(bool $enable_munchkin): LpTemplateResponse
     {
@@ -372,7 +370,7 @@ class LpTemplateResponse implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFolder(\NecLimDul\MarketoRest\Asset\Model\Folder $folder): LpTemplateResponse
     {
@@ -396,7 +394,7 @@ class LpTemplateResponse implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param int|null $id Id of the asset
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setId(?int $id): LpTemplateResponse
     {
@@ -420,7 +418,7 @@ class LpTemplateResponse implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param string|null $name Name of the asset
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setName(?string $name): LpTemplateResponse
     {
@@ -444,7 +442,7 @@ class LpTemplateResponse implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param string $status Status filter for draft or approved versions
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setStatus(string $status): LpTemplateResponse
     {
@@ -468,7 +466,7 @@ class LpTemplateResponse implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param string $template_type Type of template to create.  Defaults to freeForm
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setTemplateType(string $template_type): LpTemplateResponse
     {
@@ -502,7 +500,7 @@ class LpTemplateResponse implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param \DateTime|null $updated_at Datetime the asset was most recently updated
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setUpdatedAt(?\DateTime $updated_at): LpTemplateResponse
     {
@@ -526,7 +524,7 @@ class LpTemplateResponse implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param string|null $url Url of the asset in the Marketo UI
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setUrl(?string $url): LpTemplateResponse
     {
@@ -550,7 +548,7 @@ class LpTemplateResponse implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param string|null $workspace Name of the workspace.  Max 255 characters
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setWorkspace(?string $workspace): LpTemplateResponse
     {
@@ -639,6 +637,7 @@ class LpTemplateResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

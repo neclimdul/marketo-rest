@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class LeadAttribute2 implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -226,7 +224,7 @@ class LeadAttribute2 implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $name \"API Lead\"
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setName(string $name): LeadAttribute2
     {
@@ -250,7 +248,7 @@ class LeadAttribute2 implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\LeadAttribute2SearchableFields[] $searchable_fields List of searchable fields
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setSearchableFields(array $searchable_fields): LeadAttribute2
     {
@@ -274,7 +272,7 @@ class LeadAttribute2 implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\LeadAttribute2Fields[] $fields Description of searchable fields
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFields(array $fields): LeadAttribute2
     {
@@ -363,6 +361,7 @@ class LeadAttribute2 implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

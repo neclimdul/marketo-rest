@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class EmailResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -402,7 +400,7 @@ class EmailResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param \DateTime|null $created_at Datetime the asset was created
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setCreatedAt(?\DateTime $created_at): EmailResponse
     {
@@ -426,7 +424,7 @@ class EmailResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $description Description of the asset
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDescription(?string $description): EmailResponse
     {
@@ -450,7 +448,7 @@ class EmailResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFolder(\NecLimDul\MarketoRest\Asset\Model\Folder $folder): EmailResponse
     {
@@ -474,7 +472,7 @@ class EmailResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField $from_email From-address of the Email
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFromEmail(\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField $from_email): EmailResponse
     {
@@ -498,7 +496,7 @@ class EmailResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField $from_name From-name of the Email
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFromName(\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField $from_name): EmailResponse
     {
@@ -522,7 +520,7 @@ class EmailResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param int|null $id Id of the asset
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setId(?int $id): EmailResponse
     {
@@ -546,7 +544,7 @@ class EmailResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $name Name of the asset
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setName(?string $name): EmailResponse
     {
@@ -570,7 +568,7 @@ class EmailResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param bool $operational Whether the email is operational.  Operational emails bypass unsubscribe status.  Defaults to false
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setOperational(bool $operational): EmailResponse
     {
@@ -594,7 +592,7 @@ class EmailResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param bool $publish_to_msi Whether the email is published to Marketo Sales Insight
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setPublishToMsi(bool $publish_to_msi): EmailResponse
     {
@@ -618,7 +616,7 @@ class EmailResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField $reply_email Reply-To address of the Email
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setReplyEmail(\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField $reply_email): EmailResponse
     {
@@ -642,7 +640,7 @@ class EmailResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $status Status filter for draft or approved versions
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setStatus(string $status): EmailResponse
     {
@@ -666,7 +664,7 @@ class EmailResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField $subject Subject Line of the Email
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setSubject(\NecLimDul\MarketoRest\Asset\Model\EmailHeaderField $subject): EmailResponse
     {
@@ -690,7 +688,7 @@ class EmailResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param int $template Id of the parent template
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setTemplate(int $template): EmailResponse
     {
@@ -714,7 +712,7 @@ class EmailResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param bool $text_only Setting to include text-only version of email when sent
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setTextOnly(bool $text_only): EmailResponse
     {
@@ -738,7 +736,7 @@ class EmailResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param \DateTime|null $updated_at Datetime the asset was most recently updated
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setUpdatedAt(?\DateTime $updated_at): EmailResponse
     {
@@ -762,7 +760,7 @@ class EmailResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $url Url of the asset in the Marketo UI
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setUrl(?string $url): EmailResponse
     {
@@ -786,7 +784,7 @@ class EmailResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param int|null $version The type version of the email
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setVersion(?int $version): EmailResponse
     {
@@ -820,7 +818,7 @@ class EmailResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param bool $web_view Whether 'View as Webpage' function is enabled for the email
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setWebView(bool $web_view): EmailResponse
     {
@@ -844,7 +842,7 @@ class EmailResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $workspace Name of the workspace
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setWorkspace(?string $workspace): EmailResponse
     {
@@ -868,7 +866,7 @@ class EmailResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param bool $auto_copy_to_text Setting to automatically copy HTML version to Text version
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setAutoCopyToText(bool $auto_copy_to_text): EmailResponse
     {
@@ -892,7 +890,7 @@ class EmailResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param bool $is_open_tracking_disabled Whether 'Disable Open Tracking' function is enabled for the email
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setIsOpenTrackingDisabled(bool $is_open_tracking_disabled): EmailResponse
     {
@@ -916,7 +914,7 @@ class EmailResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $pre_header The email preheader text (max 1024 characters)
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setPreHeader(string $pre_header): EmailResponse
     {
@@ -940,7 +938,7 @@ class EmailResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\EmailCCFields[]|null $cc_fields cc_fields
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setCcFields(?array $cc_fields): EmailResponse
     {
@@ -1029,6 +1027,7 @@ class EmailResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

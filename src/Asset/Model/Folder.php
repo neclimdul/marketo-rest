@@ -35,9 +35,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class Folder implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -241,7 +239,7 @@ class Folder implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param int $id Id of the folder
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setId(int $id): Folder
     {
@@ -265,7 +263,7 @@ class Folder implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $type Type of folder
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setType(string $type): Folder
     {
@@ -364,6 +362,7 @@ class Folder implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

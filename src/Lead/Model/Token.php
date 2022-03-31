@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class Token implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -217,7 +215,7 @@ class Token implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $name Name of the token.  Should be formatted as \"{{my.name}}\"
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setName(string $name): Token
     {
@@ -241,7 +239,7 @@ class Token implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $value Value of the token
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setValue(string $value): Token
     {
@@ -330,6 +328,7 @@ class Token implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

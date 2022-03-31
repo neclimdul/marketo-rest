@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class ActivityType implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -247,7 +245,7 @@ class ActivityType implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $api_name api_name
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setApiName(?string $api_name): ActivityType
     {
@@ -271,7 +269,7 @@ class ActivityType implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\ActivityTypeAttribute[] $attributes List of secondary attributes of the type
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setAttributes(array $attributes): ActivityType
     {
@@ -295,7 +293,7 @@ class ActivityType implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $description Description of the activity type
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDescription(?string $description): ActivityType
     {
@@ -319,7 +317,7 @@ class ActivityType implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param int $id Id of the activity type
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setId(int $id): ActivityType
     {
@@ -343,7 +341,7 @@ class ActivityType implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $name Name of the activity type
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setName(string $name): ActivityType
     {
@@ -367,7 +365,7 @@ class ActivityType implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\ActivityTypeAttribute $primary_attribute Primary attribute of the type
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setPrimaryAttribute(\NecLimDul\MarketoRest\Lead\Model\ActivityTypeAttribute $primary_attribute): ActivityType
     {
@@ -456,6 +454,7 @@ class ActivityType implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class CostRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -223,7 +221,7 @@ class CostRequest implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param int $cost Amount of the cost
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setCost(int $cost): CostRequest
     {
@@ -247,7 +245,7 @@ class CostRequest implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $note Notes on the cost
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setNote(?string $note): CostRequest
     {
@@ -271,7 +269,7 @@ class CostRequest implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param \DateTime $start_date Start date of the period cost
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setStartDate(\DateTime $start_date): CostRequest
     {
@@ -360,6 +358,7 @@ class CostRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

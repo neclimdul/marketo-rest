@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class FieldsMetaDataResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -316,7 +314,7 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param string|null $data_type Type of field
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDataType(?string $data_type): FieldsMetaDataResponse
     {
@@ -340,7 +338,7 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param string|null $default_value Optional default value for the field
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDefaultValue(?string $default_value): FieldsMetaDataResponse
     {
@@ -364,7 +362,7 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param string|null $description Description of the field
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDescription(?string $description): FieldsMetaDataResponse
     {
@@ -388,7 +386,7 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param string|null $field_mask_values Optional input mask for the field
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFieldMaskValues(?string $field_mask_values): FieldsMetaDataResponse
     {
@@ -412,7 +410,7 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param int|null $field_width Width of the input or select element
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFieldWidth(?int $field_width): FieldsMetaDataResponse
     {
@@ -436,7 +434,7 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param string $id Id of the field
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setId(string $id): FieldsMetaDataResponse
     {
@@ -460,7 +458,7 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param bool|null $initially_checked Whether the field should be checked upon loading.  Default false
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setInitiallyChecked(?bool $initially_checked): FieldsMetaDataResponse
     {
@@ -484,7 +482,7 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param bool|null $is_label_to_right Whether the field label should be displayed to the right of the input/select element. Default false
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setIsLabelToRight(?bool $is_label_to_right): FieldsMetaDataResponse
     {
@@ -508,7 +506,7 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param bool|null $is_multiselect Whether the field should allow multiple selections. Default false
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setIsMultiselect(?bool $is_multiselect): FieldsMetaDataResponse
     {
@@ -532,7 +530,7 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param bool|null $is_required Whether the field is required to submit the form.  Default false
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setIsRequired(?bool $is_required): FieldsMetaDataResponse
     {
@@ -556,7 +554,7 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param bool|null $is_sensitive Whether the field is marked as sensitive.  Default false
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setIsSensitive(?bool $is_sensitive): FieldsMetaDataResponse
     {
@@ -580,7 +578,7 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param int|null $label_width Width of the field label element
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setLabelWidth(?int $label_width): FieldsMetaDataResponse
     {
@@ -604,7 +602,7 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param int|null $max_length Maximum length for text type fields
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setMaxLength(?int $max_length): FieldsMetaDataResponse
     {
@@ -628,7 +626,7 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param float|null $maximum_number Maximum value accepted by the field
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setMaximumNumber(?float $maximum_number): FieldsMetaDataResponse
     {
@@ -652,7 +650,7 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param float|null $minimum_number Minimum value accepted by the field
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setMinimumNumber(?float $minimum_number): FieldsMetaDataResponse
     {
@@ -676,7 +674,7 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param string|null $picklist_values Comma-separated list of available picklist values for the field
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setPicklistValues(?string $picklist_values): FieldsMetaDataResponse
     {
@@ -700,7 +698,7 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param string|null $placeholder_text Placeholder text for the field
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setPlaceholderText(?string $placeholder_text): FieldsMetaDataResponse
     {
@@ -724,7 +722,7 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param string|null $validation_message Validation message to display on failed validation
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setValidationMessage(?string $validation_message): FieldsMetaDataResponse
     {
@@ -748,7 +746,7 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param int|null $visible_rows Number of rows visible for progressive profiling
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setVisibleRows(?int $visible_rows): FieldsMetaDataResponse
     {
@@ -837,6 +835,7 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess, \JsonSerial
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

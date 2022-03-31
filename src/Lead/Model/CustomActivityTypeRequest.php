@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class CustomActivityTypeRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -250,7 +248,7 @@ class CustomActivityTypeRequest implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param string $api_name api_name
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setApiName(string $api_name): CustomActivityTypeRequest
     {
@@ -274,7 +272,7 @@ class CustomActivityTypeRequest implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param string|null $description description
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDescription(?string $description): CustomActivityTypeRequest
     {
@@ -298,7 +296,7 @@ class CustomActivityTypeRequest implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param string $filter_name Human-readable name of the associated filter
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFilterName(string $filter_name): CustomActivityTypeRequest
     {
@@ -322,7 +320,7 @@ class CustomActivityTypeRequest implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param string $name Human-readable display name of the activity type
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setName(string $name): CustomActivityTypeRequest
     {
@@ -346,7 +344,7 @@ class CustomActivityTypeRequest implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttribute $primary_attribute Primary attribute of the activity type
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setPrimaryAttribute(\NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttribute $primary_attribute): CustomActivityTypeRequest
     {
@@ -370,7 +368,7 @@ class CustomActivityTypeRequest implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param string $trigger_name Human-readable name of the associated trigger
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setTriggerName(string $trigger_name): CustomActivityTypeRequest
     {
@@ -459,6 +457,7 @@ class CustomActivityTypeRequest implements ModelInterface, ArrayAccess, \JsonSer
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class SnippetResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -259,7 +257,7 @@ class SnippetResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param \DateTime|null $created_at Datetime the asset was created
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setCreatedAt(?\DateTime $created_at): SnippetResponse
     {
@@ -283,7 +281,7 @@ class SnippetResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $description Description of the asset
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDescription(?string $description): SnippetResponse
     {
@@ -307,7 +305,7 @@ class SnippetResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\SnippetFolder $folder JSON representation of parent folder, with members 'folderName', 'value', and 'type' which may be 'Folder' or 'Program'
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFolder(\NecLimDul\MarketoRest\Asset\Model\SnippetFolder $folder): SnippetResponse
     {
@@ -331,7 +329,7 @@ class SnippetResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param int|null $id Id of the asset
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setId(?int $id): SnippetResponse
     {
@@ -355,7 +353,7 @@ class SnippetResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $name Name of the asset
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setName(?string $name): SnippetResponse
     {
@@ -379,7 +377,7 @@ class SnippetResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $status Status filter for draft or approved versions
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setStatus(string $status): SnippetResponse
     {
@@ -403,7 +401,7 @@ class SnippetResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param \DateTime|null $updated_at Datetime the asset was most recently updated
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setUpdatedAt(?\DateTime $updated_at): SnippetResponse
     {
@@ -427,7 +425,7 @@ class SnippetResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $url Url of the asset in the Marketo UI
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setUrl(?string $url): SnippetResponse
     {
@@ -451,7 +449,7 @@ class SnippetResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $workspace Name of the workspace
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setWorkspace(?string $workspace): SnippetResponse
     {
@@ -540,6 +538,7 @@ class SnippetResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

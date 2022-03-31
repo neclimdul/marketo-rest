@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class FormVisibilityRuleResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -217,7 +215,7 @@ class FormVisibilityRuleResponse implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param string|null $form_field_id form_field_id
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFormFieldId(?string $form_field_id): FormVisibilityRuleResponse
     {
@@ -241,7 +239,7 @@ class FormVisibilityRuleResponse implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param string|null $rule_type rule_type
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setRuleType(?string $rule_type): FormVisibilityRuleResponse
     {
@@ -265,7 +263,7 @@ class FormVisibilityRuleResponse implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\FormVisibilityRuleDTO[]|null $rules rules
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setRules(?array $rules): FormVisibilityRuleResponse
     {
@@ -354,6 +352,7 @@ class FormVisibilityRuleResponse implements ModelInterface, ArrayAccess, \JsonSe
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

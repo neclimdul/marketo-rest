@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class FormKnownVisitorDTO implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -211,7 +209,7 @@ class FormKnownVisitorDTO implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param string|null $template template
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setTemplate(?string $template): FormKnownVisitorDTO
     {
@@ -235,7 +233,7 @@ class FormKnownVisitorDTO implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param string|null $type type
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setType(?string $type): FormKnownVisitorDTO
     {
@@ -324,6 +322,7 @@ class FormKnownVisitorDTO implements ModelInterface, ArrayAccess, \JsonSerializa
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

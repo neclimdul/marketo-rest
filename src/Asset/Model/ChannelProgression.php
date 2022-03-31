@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class ChannelProgression implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -235,7 +233,7 @@ class ChannelProgression implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param string|null $description Description of the program status
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDescription(?string $description): ChannelProgression
     {
@@ -259,7 +257,7 @@ class ChannelProgression implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param bool|null $hidden Whether the status has been hidden
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setHidden(?bool $hidden): ChannelProgression
     {
@@ -283,7 +281,7 @@ class ChannelProgression implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param string|null $name Name of the status
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setName(?string $name): ChannelProgression
     {
@@ -307,7 +305,7 @@ class ChannelProgression implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param string|null $type Type of the status
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setType(?string $type): ChannelProgression
     {
@@ -331,7 +329,7 @@ class ChannelProgression implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param int|null $step Step number of the status
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setStep(?int $step): ChannelProgression
     {
@@ -355,7 +353,7 @@ class ChannelProgression implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param bool|null $success Whether this status is a success step for program members
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setSuccess(?bool $success): ChannelProgression
     {
@@ -444,6 +442,7 @@ class ChannelProgression implements ModelInterface, ArrayAccess, \JsonSerializab
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

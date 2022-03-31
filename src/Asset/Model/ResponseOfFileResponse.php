@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class ResponseOfFileResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -229,7 +227,7 @@ class ResponseOfFileResponse implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\Error[]|null $errors errors
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setErrors(?array $errors): ResponseOfFileResponse
     {
@@ -253,7 +251,7 @@ class ResponseOfFileResponse implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param string|null $request_id request_id
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setRequestId(?string $request_id): ResponseOfFileResponse
     {
@@ -277,7 +275,7 @@ class ResponseOfFileResponse implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\FileResponse[]|null $result result
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setResult(?array $result): ResponseOfFileResponse
     {
@@ -301,7 +299,7 @@ class ResponseOfFileResponse implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param bool|null $success success
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setSuccess(?bool $success): ResponseOfFileResponse
     {
@@ -325,7 +323,7 @@ class ResponseOfFileResponse implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param string[]|null $warnings warnings
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setWarnings(?array $warnings): ResponseOfFileResponse
     {
@@ -414,6 +412,7 @@ class ResponseOfFileResponse implements ModelInterface, ArrayAccess, \JsonSerial
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

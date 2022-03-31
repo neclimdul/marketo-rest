@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class CloneSnippetRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -223,7 +221,7 @@ class CloneSnippetRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param string $name Name for the cloned snippet
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setName(string $name): CloneSnippetRequest
     {
@@ -247,7 +245,7 @@ class CloneSnippetRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFolder(\NecLimDul\MarketoRest\Asset\Model\Folder $folder): CloneSnippetRequest
     {
@@ -271,7 +269,7 @@ class CloneSnippetRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param string|null $description Description of the cloned snippet
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDescription(?string $description): CloneSnippetRequest
     {
@@ -360,6 +358,7 @@ class CloneSnippetRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

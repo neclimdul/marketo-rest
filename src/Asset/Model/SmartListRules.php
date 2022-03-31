@@ -35,9 +35,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class SmartListRules implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -252,7 +250,7 @@ class SmartListRules implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $filter_match_type Smart list filter match type (rule logic)
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFilterMatchType(string $filter_match_type): SmartListRules
     {
@@ -286,7 +284,7 @@ class SmartListRules implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string[] $triggers List of smart list triggers
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setTriggers(array $triggers): SmartListRules
     {
@@ -310,7 +308,7 @@ class SmartListRules implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\SmartListFilters[] $filters List of smart list filters
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFilters(array $filters): SmartListRules
     {
@@ -399,6 +397,7 @@ class SmartListRules implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

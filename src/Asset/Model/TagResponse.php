@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class TagResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -232,7 +230,7 @@ class TagResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $allowable_values The list of acceptable values for the tag type
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setAllowableValues(?string $allowable_values): TagResponse
     {
@@ -256,7 +254,7 @@ class TagResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $applicable_program_types Types of programs to which the tag can apply
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setApplicableProgramTypes(string $applicable_program_types): TagResponse
     {
@@ -280,7 +278,7 @@ class TagResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param bool $required Whether the tag is required for its applicable program types
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setRequired(bool $required): TagResponse
     {
@@ -304,7 +302,7 @@ class TagResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $tag_type Name of the tag
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setTagType(string $tag_type): TagResponse
     {
@@ -393,6 +391,7 @@ class TagResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

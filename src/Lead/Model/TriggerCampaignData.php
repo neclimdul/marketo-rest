@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class TriggerCampaignData implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -214,7 +212,7 @@ class TriggerCampaignData implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\InputLead[] $leads List of leads for input
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setLeads(array $leads): TriggerCampaignData
     {
@@ -238,7 +236,7 @@ class TriggerCampaignData implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\Token[]|null $tokens List of my tokens to replace during the run of the target campaign.  The tokens must be available in a parent program or folder to be replaced during the run
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setTokens(?array $tokens): TriggerCampaignData
     {
@@ -327,6 +325,7 @@ class TriggerCampaignData implements ModelInterface, ArrayAccess, \JsonSerializa
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

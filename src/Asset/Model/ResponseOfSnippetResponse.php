@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class ResponseOfSnippetResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -229,7 +227,7 @@ class ResponseOfSnippetResponse implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\Error[]|null $errors errors
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setErrors(?array $errors): ResponseOfSnippetResponse
     {
@@ -253,7 +251,7 @@ class ResponseOfSnippetResponse implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param string|null $request_id request_id
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setRequestId(?string $request_id): ResponseOfSnippetResponse
     {
@@ -277,7 +275,7 @@ class ResponseOfSnippetResponse implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\SnippetResponse[]|null $result result
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setResult(?array $result): ResponseOfSnippetResponse
     {
@@ -301,7 +299,7 @@ class ResponseOfSnippetResponse implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param bool|null $success success
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setSuccess(?bool $success): ResponseOfSnippetResponse
     {
@@ -325,7 +323,7 @@ class ResponseOfSnippetResponse implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param string[]|null $warnings warnings
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setWarnings(?array $warnings): ResponseOfSnippetResponse
     {
@@ -414,6 +412,7 @@ class ResponseOfSnippetResponse implements ModelInterface, ArrayAccess, \JsonSer
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

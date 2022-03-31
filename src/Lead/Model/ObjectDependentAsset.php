@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class ObjectDependentAsset implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -232,7 +230,7 @@ class ObjectDependentAsset implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param string $asset_type Type of asset
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setAssetType(string $asset_type): ObjectDependentAsset
     {
@@ -256,7 +254,7 @@ class ObjectDependentAsset implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param int $asset_id ID of asset
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setAssetId(int $asset_id): ObjectDependentAsset
     {
@@ -280,7 +278,7 @@ class ObjectDependentAsset implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param string $asset_name Name of asset
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setAssetName(string $asset_name): ObjectDependentAsset
     {
@@ -304,7 +302,7 @@ class ObjectDependentAsset implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param string[]|null $used_fields List of associated fields
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setUsedFields(?array $used_fields): ObjectDependentAsset
     {
@@ -393,6 +391,7 @@ class ObjectDependentAsset implements ModelInterface, ArrayAccess, \JsonSerializ
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

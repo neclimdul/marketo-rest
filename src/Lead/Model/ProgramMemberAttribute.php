@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class ProgramMemberAttribute implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -214,7 +212,7 @@ class ProgramMemberAttribute implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param string|null $name \"API Program Member\"
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setName(?string $name): ProgramMemberAttribute
     {
@@ -238,7 +236,7 @@ class ProgramMemberAttribute implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\LeadAttribute2Fields[] $fields Description of searchable fields
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFields(array $fields): ProgramMemberAttribute
     {
@@ -327,6 +325,7 @@ class ProgramMemberAttribute implements ModelInterface, ArrayAccess, \JsonSerial
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

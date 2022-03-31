@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class UpdateCustomObjectTypeFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -235,7 +233,7 @@ class UpdateCustomObjectTypeFieldRequest implements ModelInterface, ArrayAccess,
      *
      * @param string|null $name API Name of custom object field
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setName(?string $name): UpdateCustomObjectTypeFieldRequest
     {
@@ -259,7 +257,7 @@ class UpdateCustomObjectTypeFieldRequest implements ModelInterface, ArrayAccess,
      *
      * @param string|null $display_name UI display-name of the custom object field
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDisplayName(?string $display_name): UpdateCustomObjectTypeFieldRequest
     {
@@ -283,7 +281,7 @@ class UpdateCustomObjectTypeFieldRequest implements ModelInterface, ArrayAccess,
      *
      * @param string|null $data_type Datatype of the custom object field
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDataType(?string $data_type): UpdateCustomObjectTypeFieldRequest
     {
@@ -307,7 +305,7 @@ class UpdateCustomObjectTypeFieldRequest implements ModelInterface, ArrayAccess,
      *
      * @param string|null $description Description of the custom object field
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDescription(?string $description): UpdateCustomObjectTypeFieldRequest
     {
@@ -331,7 +329,7 @@ class UpdateCustomObjectTypeFieldRequest implements ModelInterface, ArrayAccess,
      *
      * @param bool|null $is_dedupe_field Set to true to enable field as unique identifier for deduplicating records.  Default is false
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setIsDedupeField(?bool $is_dedupe_field): UpdateCustomObjectTypeFieldRequest
     {
@@ -355,7 +353,7 @@ class UpdateCustomObjectTypeFieldRequest implements ModelInterface, ArrayAccess,
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\CustomObjectTypeFieldRelatedTo|null $related_to Define custom object link field
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setRelatedTo(?\NecLimDul\MarketoRest\Lead\Model\CustomObjectTypeFieldRelatedTo $related_to): UpdateCustomObjectTypeFieldRequest
     {
@@ -444,6 +442,7 @@ class UpdateCustomObjectTypeFieldRequest implements ModelInterface, ArrayAccess,
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

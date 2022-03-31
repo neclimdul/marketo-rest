@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class TokenDTO implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -223,7 +221,7 @@ class TokenDTO implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $computed_url computed_url
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setComputedUrl(?string $computed_url): TokenDTO
     {
@@ -247,7 +245,7 @@ class TokenDTO implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $name name
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setName(?string $name): TokenDTO
     {
@@ -271,7 +269,7 @@ class TokenDTO implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $type type
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setType(?string $type): TokenDTO
     {
@@ -295,7 +293,7 @@ class TokenDTO implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $value value
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setValue(?string $value): TokenDTO
     {
@@ -384,6 +382,7 @@ class TokenDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class LpFormFieldResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -319,7 +317,7 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param int|null $blank_fields blank_fields
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setBlankFields(?int $blank_fields): LpFormFieldResponse
     {
@@ -343,7 +341,7 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param int|null $column_number column_number
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setColumnNumber(?int $column_number): LpFormFieldResponse
     {
@@ -367,7 +365,7 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param string|null $data_type data_type
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDataType(?string $data_type): LpFormFieldResponse
     {
@@ -391,7 +389,7 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param string|null $default_value default_value
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDefaultValue(?string $default_value): LpFormFieldResponse
     {
@@ -415,7 +413,7 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param object|null $field_meta_data field_meta_data
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFieldMetaData(?object $field_meta_data): LpFormFieldResponse
     {
@@ -439,7 +437,7 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param int|null $field_width field_width
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFieldWidth(?int $field_width): LpFormFieldResponse
     {
@@ -463,7 +461,7 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param string[]|null $fields fields
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFields(?array $fields): LpFormFieldResponse
     {
@@ -487,7 +485,7 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param bool|null $form_prefill form_prefill
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFormPrefill(?bool $form_prefill): LpFormFieldResponse
     {
@@ -511,7 +509,7 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param bool|null $is_sensitive is_sensitive
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setIsSensitive(?bool $is_sensitive): LpFormFieldResponse
     {
@@ -535,7 +533,7 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param string|null $hint_text hint_text
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setHintText(?string $hint_text): LpFormFieldResponse
     {
@@ -559,7 +557,7 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param string|null $id id
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setId(?string $id): LpFormFieldResponse
     {
@@ -583,7 +581,7 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param string|null $instructions instructions
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setInstructions(?string $instructions): LpFormFieldResponse
     {
@@ -607,7 +605,7 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param string|null $label label
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setLabel(?string $label): LpFormFieldResponse
     {
@@ -631,7 +629,7 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param int|null $label_width label_width
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setLabelWidth(?int $label_width): LpFormFieldResponse
     {
@@ -655,7 +653,7 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param int|null $max_length max_length
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setMaxLength(?int $max_length): LpFormFieldResponse
     {
@@ -679,7 +677,7 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param bool|null $required required
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setRequired(?bool $required): LpFormFieldResponse
     {
@@ -703,7 +701,7 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param int|null $row_number row_number
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setRowNumber(?int $row_number): LpFormFieldResponse
     {
@@ -727,7 +725,7 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param string|null $text text
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setText(?string $text): LpFormFieldResponse
     {
@@ -751,7 +749,7 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param object|null $validation_message validation_message
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setValidationMessage(?object $validation_message): LpFormFieldResponse
     {
@@ -775,7 +773,7 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\FormFieldVisibilityRuleResponse|null $visibility_rules visibility_rules
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setVisibilityRules(?\NecLimDul\MarketoRest\Asset\Model\FormFieldVisibilityRuleResponse $visibility_rules): LpFormFieldResponse
     {
@@ -864,6 +862,7 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

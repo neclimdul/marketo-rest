@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class SegmentsResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -244,7 +242,7 @@ class SegmentsResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param \DateTime|null $created_at Datetime the asset was created
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setCreatedAt(?\DateTime $created_at): SegmentsResponse
     {
@@ -268,7 +266,7 @@ class SegmentsResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $description Description of the asset
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDescription(?string $description): SegmentsResponse
     {
@@ -292,7 +290,7 @@ class SegmentsResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param int|null $id Id of the asset
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setId(?int $id): SegmentsResponse
     {
@@ -316,7 +314,7 @@ class SegmentsResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $name Name of the asset
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setName(?string $name): SegmentsResponse
     {
@@ -340,7 +338,7 @@ class SegmentsResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param int $segmentation_id Id of the Segmentation
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setSegmentationId(int $segmentation_id): SegmentsResponse
     {
@@ -364,7 +362,7 @@ class SegmentsResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param \DateTime|null $updated_at Datetime the asset was most recently updated
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setUpdatedAt(?\DateTime $updated_at): SegmentsResponse
     {
@@ -388,7 +386,7 @@ class SegmentsResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $url Url of the asset in the Marketo UI
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setUrl(?string $url): SegmentsResponse
     {
@@ -477,6 +475,7 @@ class SegmentsResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

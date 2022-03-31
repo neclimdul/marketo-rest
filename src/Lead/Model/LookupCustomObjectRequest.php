@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class LookupCustomObjectRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -232,7 +230,7 @@ class LookupCustomObjectRequest implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param int|null $batch_size Maximum number of records to return in the response.  Max and default is 300
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setBatchSize(?int $batch_size): LookupCustomObjectRequest
     {
@@ -256,7 +254,7 @@ class LookupCustomObjectRequest implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param string[]|null $fields List of fields to return. If not specified, will return the following fields: marketoGuid, dedupeFields, updatedAt, createdAt, filterType
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFields(?array $fields): LookupCustomObjectRequest
     {
@@ -280,7 +278,7 @@ class LookupCustomObjectRequest implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param string|null $filter_type Field to search on.  Valid values are: dedupeFields, idFields, and any field defined in searchableFields attribute of Describe endpoint.  Default is dedupeFields
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFilterType(?string $filter_type): LookupCustomObjectRequest
     {
@@ -304,7 +302,7 @@ class LookupCustomObjectRequest implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\CustomObject[] $input Search values when using a compound key.  Each element must include each of the fields in the compound key.  Compound keys are determined by the contents of \"dedupeFields\" in the Describe result for the object
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setInput(array $input): LookupCustomObjectRequest
     {
@@ -328,7 +326,7 @@ class LookupCustomObjectRequest implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param string|null $next_page_token Paging token returned from a previous response
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setNextPageToken(?string $next_page_token): LookupCustomObjectRequest
     {
@@ -417,6 +415,7 @@ class LookupCustomObjectRequest implements ModelInterface, ArrayAccess, \JsonSer
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

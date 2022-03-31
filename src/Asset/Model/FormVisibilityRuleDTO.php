@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class FormVisibilityRuleDTO implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -229,7 +227,7 @@ class FormVisibilityRuleDTO implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param string|null $alt_label alt_label
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setAltLabel(?string $alt_label): FormVisibilityRuleDTO
     {
@@ -253,7 +251,7 @@ class FormVisibilityRuleDTO implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param string|null $operator operator
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setOperator(?string $operator): FormVisibilityRuleDTO
     {
@@ -277,7 +275,7 @@ class FormVisibilityRuleDTO implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\PickListDTO[]|null $picklist_filter_values picklist_filter_values
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setPicklistFilterValues(?array $picklist_filter_values): FormVisibilityRuleDTO
     {
@@ -301,7 +299,7 @@ class FormVisibilityRuleDTO implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param string|null $subject_field subject_field
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setSubjectField(?string $subject_field): FormVisibilityRuleDTO
     {
@@ -325,7 +323,7 @@ class FormVisibilityRuleDTO implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param string[]|null $values values
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setValues(?array $values): FormVisibilityRuleDTO
     {
@@ -414,6 +412,7 @@ class FormVisibilityRuleDTO implements ModelInterface, ArrayAccess, \JsonSeriali
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

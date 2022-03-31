@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class SyncNamedAccountRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -245,7 +243,7 @@ class SyncNamedAccountRequest implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param string|null $action Type of sync operation to perform
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setAction(?string $action): SyncNamedAccountRequest
     {
@@ -279,7 +277,7 @@ class SyncNamedAccountRequest implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param string|null $dedupe_by Field to deduplicate on.  If the value in the field for a given record is not unique, an error will be returned for the individual record.
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDedupeBy(?string $dedupe_by): SyncNamedAccountRequest
     {
@@ -303,7 +301,7 @@ class SyncNamedAccountRequest implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\NamedAccount[] $input List of input records
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setInput(array $input): SyncNamedAccountRequest
     {
@@ -392,6 +390,7 @@ class SyncNamedAccountRequest implements ModelInterface, ArrayAccess, \JsonSeria
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

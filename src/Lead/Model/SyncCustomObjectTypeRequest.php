@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class SyncCustomObjectTypeRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -266,7 +264,7 @@ class SyncCustomObjectTypeRequest implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param string|null $action Type of sync operation to perform.  Default is createOrUpdate.
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setAction(?string $action): SyncCustomObjectTypeRequest
     {
@@ -300,7 +298,7 @@ class SyncCustomObjectTypeRequest implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param string $display_name UI display-name of the custom object type
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDisplayName(string $display_name): SyncCustomObjectTypeRequest
     {
@@ -324,7 +322,7 @@ class SyncCustomObjectTypeRequest implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param string $api_name API name of the custom object type
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setApiName(string $api_name): SyncCustomObjectTypeRequest
     {
@@ -348,7 +346,7 @@ class SyncCustomObjectTypeRequest implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param string|null $plural_name UI plural-name of the custom object type
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setPluralName(?string $plural_name): SyncCustomObjectTypeRequest
     {
@@ -372,7 +370,7 @@ class SyncCustomObjectTypeRequest implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param string|null $description Description of the custom object type
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDescription(?string $description): SyncCustomObjectTypeRequest
     {
@@ -396,7 +394,7 @@ class SyncCustomObjectTypeRequest implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param bool|null $show_in_lead_detail Whether to show custom object type in lead detail of UI.  Default is false
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setShowInLeadDetail(?bool $show_in_lead_detail): SyncCustomObjectTypeRequest
     {
@@ -485,6 +483,7 @@ class SyncCustomObjectTypeRequest implements ModelInterface, ArrayAccess, \JsonS
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class LeadPartition implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -223,7 +221,7 @@ class LeadPartition implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $description Description of the partition
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDescription(?string $description): LeadPartition
     {
@@ -247,7 +245,7 @@ class LeadPartition implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param int $id Unique integer id of the partition
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setId(int $id): LeadPartition
     {
@@ -271,7 +269,7 @@ class LeadPartition implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $name Name of the partition
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setName(string $name): LeadPartition
     {
@@ -360,6 +358,7 @@ class LeadPartition implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

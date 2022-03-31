@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class ListOperationOutputData implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -220,7 +218,7 @@ class ListOperationOutputData implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param int $id Unique integer id of a lead record
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setId(int $id): ListOperationOutputData
     {
@@ -244,7 +242,7 @@ class ListOperationOutputData implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\Reason[]|null $reasons List of reasons why an operation did not succeed.  Reasons are only present in API responses and should not be submitted
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setReasons(?array $reasons): ListOperationOutputData
     {
@@ -268,7 +266,7 @@ class ListOperationOutputData implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param string|null $status Status of the operation performed on the record
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setStatus(?string $status): ListOperationOutputData
     {
@@ -357,6 +355,7 @@ class ListOperationOutputData implements ModelInterface, ArrayAccess, \JsonSeria
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

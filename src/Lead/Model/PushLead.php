@@ -35,9 +35,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class PushLead implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -218,7 +216,7 @@ class PushLead implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param int|null $id Unique integer id of a lead record
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setId(?int $id): PushLead
     {
@@ -242,7 +240,7 @@ class PushLead implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\Reason|null $reason Reason object describing why an operation did not succeed for a record
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setReason(?\NecLimDul\MarketoRest\Lead\Model\Reason $reason): PushLead
     {
@@ -266,7 +264,7 @@ class PushLead implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $status Status of the operation performed on the record
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setStatus(?string $status): PushLead
     {
@@ -355,6 +353,7 @@ class PushLead implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

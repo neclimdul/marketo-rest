@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class UpdateEmailFullContentResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -208,7 +206,7 @@ class UpdateEmailFullContentResponse implements ModelInterface, ArrayAccess, \Js
      *
      * @param int $id Unique integer id of the email
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setId(int $id): UpdateEmailFullContentResponse
     {
@@ -297,6 +295,7 @@ class UpdateEmailFullContentResponse implements ModelInterface, ArrayAccess, \Js
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

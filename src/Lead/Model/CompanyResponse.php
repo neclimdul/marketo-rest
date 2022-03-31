@@ -35,9 +35,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class CompanyResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -261,7 +259,7 @@ class CompanyResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param int $id Unique integer id of the company record
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setId(int $id): CompanyResponse
     {
@@ -285,7 +283,7 @@ class CompanyResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\Reason[]|null $reasons List of reasons why an operation did not succeed.  Reasons are only present in API responses and should not be submitted
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setReasons(?array $reasons): CompanyResponse
     {
@@ -309,7 +307,7 @@ class CompanyResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param int $seq Integer indicating the sequence of the record in response.  This value is correlated to the order of the records included in the request input.  Seq should only be part of responses and should not be submitted.
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setSeq(int $seq): CompanyResponse
     {
@@ -333,7 +331,7 @@ class CompanyResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $status Status of the operation performed on the record
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setStatus(?string $status): CompanyResponse
     {
@@ -432,6 +430,7 @@ class CompanyResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class VisibilityRuleRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -305,7 +303,7 @@ class VisibilityRuleRequest implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param string|null $alt_label alt_label
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setAltLabel(?string $alt_label): VisibilityRuleRequest
     {
@@ -329,7 +327,7 @@ class VisibilityRuleRequest implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param string $operator Operation to apply to target field.  Evaluated against the list of values when applicable.
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setOperator(string $operator): VisibilityRuleRequest
     {
@@ -363,7 +361,7 @@ class VisibilityRuleRequest implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\PickListDTO[]|null $pick_list_values Alternative label to display when rules are applied.
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setPickListValues(?array $pick_list_values): VisibilityRuleRequest
     {
@@ -387,7 +385,7 @@ class VisibilityRuleRequest implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param string $subject_field Target field id to apply the operation defined by operator to
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setSubjectField(string $subject_field): VisibilityRuleRequest
     {
@@ -411,7 +409,7 @@ class VisibilityRuleRequest implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param string[] $values Comma-separated list of values to match against.  Valid for operators 'is', 'isNot', 'startsWith', 'notStartsWith', 'endsWith', 'notEndsWith', 'contains', and 'notContains'
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setValues(array $values): VisibilityRuleRequest
     {
@@ -500,6 +498,7 @@ class VisibilityRuleRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

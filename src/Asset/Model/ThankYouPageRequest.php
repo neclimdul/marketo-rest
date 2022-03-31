@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class ThankYouPageRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -250,7 +248,7 @@ class ThankYouPageRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param bool|null $default When true, this is the default rule, and will be applied when a user does not qualify for any of the other rules
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDefault(?bool $default): ThankYouPageRequest
     {
@@ -274,7 +272,7 @@ class ThankYouPageRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param string $followup_type Type of followup.  When set to url, will follow to the url set in followupValue.  When set to lp, will follow to the Landing page with the id given in followupValue
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFollowupType(string $followup_type): ThankYouPageRequest
     {
@@ -298,7 +296,7 @@ class ThankYouPageRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param string $followup_value Where to follow to on submission.  Given as a URL or and Integer depending on followupType
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFollowupValue(string $followup_value): ThankYouPageRequest
     {
@@ -322,7 +320,7 @@ class ThankYouPageRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param string $operator Operator to evaluate aginst the subject field
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setOperator(string $operator): ThankYouPageRequest
     {
@@ -346,7 +344,7 @@ class ThankYouPageRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param string $subject_field Field to apply to operator to
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setSubjectField(string $subject_field): ThankYouPageRequest
     {
@@ -370,7 +368,7 @@ class ThankYouPageRequest implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param string[] $values Comma-separated list of values to compare to with the operator
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setValues(array $values): ThankYouPageRequest
     {
@@ -459,6 +457,7 @@ class ThankYouPageRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

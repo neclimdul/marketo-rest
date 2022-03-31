@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class NamedAccountList implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -290,7 +288,7 @@ class NamedAccountList implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $created_at Datetime when the named account list was created
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setCreatedAt(?string $created_at): NamedAccountList
     {
@@ -314,7 +312,7 @@ class NamedAccountList implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $marketo_guid Unique GUID of the custom object records
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setMarketoGuid(string $marketo_guid): NamedAccountList
     {
@@ -338,7 +336,7 @@ class NamedAccountList implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $name Name of named account list
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setName(?string $name): NamedAccountList
     {
@@ -362,7 +360,7 @@ class NamedAccountList implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\Reason[]|null $reasons List of reasons why an operation did not succeed.  Reasons are only present in API responses and should not be submitted
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setReasons(?array $reasons): NamedAccountList
     {
@@ -386,7 +384,7 @@ class NamedAccountList implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param int $seq Integer indicating the sequence of the record in response.  This value is correlated to the order of the records included in the request input.  Seq should only be part of responses and should not be submitted.
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setSeq(int $seq): NamedAccountList
     {
@@ -410,7 +408,7 @@ class NamedAccountList implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $status status
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setStatus(?string $status): NamedAccountList
     {
@@ -444,7 +442,7 @@ class NamedAccountList implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $type Type of named account list (\"default\" if created by user or API, \"external\" if managed by CRM-View)
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setType(?string $type): NamedAccountList
     {
@@ -468,7 +466,7 @@ class NamedAccountList implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param bool|null $updateable Whether the list is updateable (true if created by user or API, false if managed by CRM-View)
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setUpdateable(?bool $updateable): NamedAccountList
     {
@@ -492,7 +490,7 @@ class NamedAccountList implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $updated_at Datetime when the named account list was most recently updated
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setUpdatedAt(?string $updated_at): NamedAccountList
     {
@@ -581,6 +579,7 @@ class NamedAccountList implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

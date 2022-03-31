@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class ColumnHeaderNames implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -217,7 +215,7 @@ class ColumnHeaderNames implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param string $name REST API name for header field
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setName(string $name): ColumnHeaderNames
     {
@@ -241,7 +239,7 @@ class ColumnHeaderNames implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param string $value Value for header field
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setValue(string $value): ColumnHeaderNames
     {
@@ -330,6 +328,7 @@ class ColumnHeaderNames implements ModelInterface, ArrayAccess, \JsonSerializabl
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

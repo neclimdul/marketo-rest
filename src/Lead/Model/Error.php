@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class Error implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -217,7 +215,7 @@ class Error implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $code Error code of the error.  See full list of error codes <a href=\"https://developers.marketo.com/rest-api/error-codes/\">here</a>
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setCode(string $code): Error
     {
@@ -241,7 +239,7 @@ class Error implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $message Message describing the cause of the error
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setMessage(string $message): Error
     {
@@ -330,6 +328,7 @@ class Error implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

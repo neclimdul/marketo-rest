@@ -35,9 +35,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class SmartListFilters implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -254,7 +252,7 @@ class SmartListFilters implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param int $id Id of the filter
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setId(int $id): SmartListFilters
     {
@@ -278,7 +276,7 @@ class SmartListFilters implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $name Name of filter
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setName(string $name): SmartListFilters
     {
@@ -302,7 +300,7 @@ class SmartListFilters implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param int $rule_type_id Id of the rule type
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setRuleTypeId(int $rule_type_id): SmartListFilters
     {
@@ -326,7 +324,7 @@ class SmartListFilters implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $rule_type Name of rule type
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setRuleType(string $rule_type): SmartListFilters
     {
@@ -350,7 +348,7 @@ class SmartListFilters implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $operator Name of operator
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setOperator(string $operator): SmartListFilters
     {
@@ -374,7 +372,7 @@ class SmartListFilters implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\SmartListConditions[] $conditions List of smart list conditions
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setConditions(array $conditions): SmartListFilters
     {
@@ -463,6 +461,7 @@ class SmartListFilters implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class CreateLandingPageContentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -338,7 +336,7 @@ class CreateLandingPageContentRequest implements ModelInterface, ArrayAccess, \J
      *
      * @param string|null $background_color background-color property of the HTML section
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setBackgroundColor(?string $background_color): CreateLandingPageContentRequest
     {
@@ -362,7 +360,7 @@ class CreateLandingPageContentRequest implements ModelInterface, ArrayAccess, \J
      *
      * @param string|null $border_color border-color property of the HTML section
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setBorderColor(?string $border_color): CreateLandingPageContentRequest
     {
@@ -386,7 +384,7 @@ class CreateLandingPageContentRequest implements ModelInterface, ArrayAccess, \J
      *
      * @param string|null $border_style border-style property of the HTML section
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setBorderStyle(?string $border_style): CreateLandingPageContentRequest
     {
@@ -410,7 +408,7 @@ class CreateLandingPageContentRequest implements ModelInterface, ArrayAccess, \J
      *
      * @param string|null $border_width border-width property of the HTML section
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setBorderWidth(?string $border_width): CreateLandingPageContentRequest
     {
@@ -434,7 +432,7 @@ class CreateLandingPageContentRequest implements ModelInterface, ArrayAccess, \J
      *
      * @param string $content_id Id of the content section.  Also the HTML id of the section.
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setContentId(string $content_id): CreateLandingPageContentRequest
     {
@@ -458,7 +456,7 @@ class CreateLandingPageContentRequest implements ModelInterface, ArrayAccess, \J
      *
      * @param string|null $height height property of the HTML section
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setHeight(?string $height): CreateLandingPageContentRequest
     {
@@ -482,7 +480,7 @@ class CreateLandingPageContentRequest implements ModelInterface, ArrayAccess, \J
      *
      * @param bool|null $hide_desktop Hide the section when displayed on a desktop browser.  Default false
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setHideDesktop(?bool $hide_desktop): CreateLandingPageContentRequest
     {
@@ -506,7 +504,7 @@ class CreateLandingPageContentRequest implements ModelInterface, ArrayAccess, \J
      *
      * @param bool|null $hide_mobile Hide the section when displayed on a mobile browser.  Default false
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setHideMobile(?bool $hide_mobile): CreateLandingPageContentRequest
     {
@@ -530,7 +528,7 @@ class CreateLandingPageContentRequest implements ModelInterface, ArrayAccess, \J
      *
      * @param string|null $image_open_new_window image_open_new_window
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setImageOpenNewWindow(?string $image_open_new_window): CreateLandingPageContentRequest
     {
@@ -554,7 +552,7 @@ class CreateLandingPageContentRequest implements ModelInterface, ArrayAccess, \J
      *
      * @param string|null $left left property of the HTML section
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setLeft(?string $left): CreateLandingPageContentRequest
     {
@@ -578,7 +576,7 @@ class CreateLandingPageContentRequest implements ModelInterface, ArrayAccess, \J
      *
      * @param string|null $link_url URL parameter of a link type section
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setLinkUrl(?string $link_url): CreateLandingPageContentRequest
     {
@@ -602,7 +600,7 @@ class CreateLandingPageContentRequest implements ModelInterface, ArrayAccess, \J
      *
      * @param string|null $opacity opacity property of the HTML section
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setOpacity(?string $opacity): CreateLandingPageContentRequest
     {
@@ -626,7 +624,7 @@ class CreateLandingPageContentRequest implements ModelInterface, ArrayAccess, \J
      *
      * @param string|null $top top property of the HTML section
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setTop(?string $top): CreateLandingPageContentRequest
     {
@@ -650,7 +648,7 @@ class CreateLandingPageContentRequest implements ModelInterface, ArrayAccess, \J
      *
      * @param string $type Type of content section
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setType(string $type): CreateLandingPageContentRequest
     {
@@ -684,7 +682,7 @@ class CreateLandingPageContentRequest implements ModelInterface, ArrayAccess, \J
      *
      * @param string|null $value Type of content section
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setValue(?string $value): CreateLandingPageContentRequest
     {
@@ -708,7 +706,7 @@ class CreateLandingPageContentRequest implements ModelInterface, ArrayAccess, \J
      *
      * @param string|null $width width property of the HTML section
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setWidth(?string $width): CreateLandingPageContentRequest
     {
@@ -732,7 +730,7 @@ class CreateLandingPageContentRequest implements ModelInterface, ArrayAccess, \J
      *
      * @param string|null $z_index z-index property of the HTML section
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setZIndex(?string $z_index): CreateLandingPageContentRequest
     {
@@ -821,6 +819,7 @@ class CreateLandingPageContentRequest implements ModelInterface, ArrayAccess, \J
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

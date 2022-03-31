@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class FileResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -277,7 +275,7 @@ class FileResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param \DateTime $created_at Datetime when the file was created
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setCreatedAt(\DateTime $created_at): FileResponse
     {
@@ -301,7 +299,7 @@ class FileResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $description Description of the file
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDescription(?string $description): FileResponse
     {
@@ -325,7 +323,7 @@ class FileResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\FileFolder $folder JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFolder(\NecLimDul\MarketoRest\Asset\Model\FileFolder $folder): FileResponse
     {
@@ -349,7 +347,7 @@ class FileResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param int $id Id of the file
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setId(int $id): FileResponse
     {
@@ -373,7 +371,7 @@ class FileResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $mime_type MIME type of the file
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setMimeType(string $mime_type): FileResponse
     {
@@ -397,7 +395,7 @@ class FileResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $name Name of the file
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setName(string $name): FileResponse
     {
@@ -421,7 +419,7 @@ class FileResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param int $size Size of the file in bytes
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setSize(int $size): FileResponse
     {
@@ -445,7 +443,7 @@ class FileResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param \DateTime $updated_at Datetime when the file was most recently updated
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setUpdatedAt(\DateTime $updated_at): FileResponse
     {
@@ -469,7 +467,7 @@ class FileResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $url Publically accessible URL of the file
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setUrl(string $url): FileResponse
     {
@@ -558,6 +556,7 @@ class FileResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

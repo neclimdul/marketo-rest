@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class DeleteTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -240,7 +238,7 @@ class DeleteTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param string|null $folder_type folder_type
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFolderType(?string $folder_type): DeleteTokenRequest
     {
@@ -274,7 +272,7 @@ class DeleteTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param string|null $name name
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setName(?string $name): DeleteTokenRequest
     {
@@ -298,7 +296,7 @@ class DeleteTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param string|null $type type
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setType(?string $type): DeleteTokenRequest
     {
@@ -387,6 +385,7 @@ class DeleteTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

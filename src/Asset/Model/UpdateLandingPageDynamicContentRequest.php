@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class UpdateLandingPageDynamicContentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -301,7 +299,7 @@ class UpdateLandingPageDynamicContentRequest implements ModelInterface, ArrayAcc
      *
      * @param string|null $background_color background-color property of the HTML section
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setBackgroundColor(?string $background_color): UpdateLandingPageDynamicContentRequest
     {
@@ -325,7 +323,7 @@ class UpdateLandingPageDynamicContentRequest implements ModelInterface, ArrayAcc
      *
      * @param string|null $border_color border-color property of the HTML section
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setBorderColor(?string $border_color): UpdateLandingPageDynamicContentRequest
     {
@@ -349,7 +347,7 @@ class UpdateLandingPageDynamicContentRequest implements ModelInterface, ArrayAcc
      *
      * @param string|null $border_style border-style property of the HTML section
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setBorderStyle(?string $border_style): UpdateLandingPageDynamicContentRequest
     {
@@ -373,7 +371,7 @@ class UpdateLandingPageDynamicContentRequest implements ModelInterface, ArrayAcc
      *
      * @param string|null $border_width border-width property of the HTML section
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setBorderWidth(?string $border_width): UpdateLandingPageDynamicContentRequest
     {
@@ -397,7 +395,7 @@ class UpdateLandingPageDynamicContentRequest implements ModelInterface, ArrayAcc
      *
      * @param string|null $height height property of the HTML section
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setHeight(?string $height): UpdateLandingPageDynamicContentRequest
     {
@@ -421,7 +419,7 @@ class UpdateLandingPageDynamicContentRequest implements ModelInterface, ArrayAcc
      *
      * @param bool|null $hide_desktop Hide the section when displayed on a desktop browser.  Default false
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setHideDesktop(?bool $hide_desktop): UpdateLandingPageDynamicContentRequest
     {
@@ -445,7 +443,7 @@ class UpdateLandingPageDynamicContentRequest implements ModelInterface, ArrayAcc
      *
      * @param bool|null $hide_mobile Hide the section when displayed on a mobile browser.  Default false
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setHideMobile(?bool $hide_mobile): UpdateLandingPageDynamicContentRequest
     {
@@ -469,7 +467,7 @@ class UpdateLandingPageDynamicContentRequest implements ModelInterface, ArrayAcc
      *
      * @param string|null $image_open_new_window image_open_new_window
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setImageOpenNewWindow(?string $image_open_new_window): UpdateLandingPageDynamicContentRequest
     {
@@ -493,7 +491,7 @@ class UpdateLandingPageDynamicContentRequest implements ModelInterface, ArrayAcc
      *
      * @param string|null $left left property of the HTML section
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setLeft(?string $left): UpdateLandingPageDynamicContentRequest
     {
@@ -517,7 +515,7 @@ class UpdateLandingPageDynamicContentRequest implements ModelInterface, ArrayAcc
      *
      * @param string|null $link_url URL parameter of a link type section
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setLinkUrl(?string $link_url): UpdateLandingPageDynamicContentRequest
     {
@@ -541,7 +539,7 @@ class UpdateLandingPageDynamicContentRequest implements ModelInterface, ArrayAcc
      *
      * @param string|null $opacity opacity property of the HTML section
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setOpacity(?string $opacity): UpdateLandingPageDynamicContentRequest
     {
@@ -565,7 +563,7 @@ class UpdateLandingPageDynamicContentRequest implements ModelInterface, ArrayAcc
      *
      * @param string|null $segment Name of the segment to display content section for
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setSegment(?string $segment): UpdateLandingPageDynamicContentRequest
     {
@@ -589,7 +587,7 @@ class UpdateLandingPageDynamicContentRequest implements ModelInterface, ArrayAcc
      *
      * @param string|null $top top property of the HTML section
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setTop(?string $top): UpdateLandingPageDynamicContentRequest
     {
@@ -613,7 +611,7 @@ class UpdateLandingPageDynamicContentRequest implements ModelInterface, ArrayAcc
      *
      * @param string|null $type Type of content section
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setType(?string $type): UpdateLandingPageDynamicContentRequest
     {
@@ -637,7 +635,7 @@ class UpdateLandingPageDynamicContentRequest implements ModelInterface, ArrayAcc
      *
      * @param string|null $value Type of content section
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setValue(?string $value): UpdateLandingPageDynamicContentRequest
     {
@@ -661,7 +659,7 @@ class UpdateLandingPageDynamicContentRequest implements ModelInterface, ArrayAcc
      *
      * @param string|null $width width property of the HTML section
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setWidth(?string $width): UpdateLandingPageDynamicContentRequest
     {
@@ -685,7 +683,7 @@ class UpdateLandingPageDynamicContentRequest implements ModelInterface, ArrayAcc
      *
      * @param string|null $z_index z-index property of the HTML section
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setZIndex(?string $z_index): UpdateLandingPageDynamicContentRequest
     {
@@ -774,6 +772,7 @@ class UpdateLandingPageDynamicContentRequest implements ModelInterface, ArrayAcc
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

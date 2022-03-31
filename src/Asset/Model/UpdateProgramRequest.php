@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class UpdateProgramRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -241,7 +239,7 @@ class UpdateProgramRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\CostRequest[]|null $costs Lists of associated period costs that allow you to append, replace, or delete. To append new costs, simply add them to costs array.  To replace costs (destructive update), pass new costs and set costsDestructiveUpdate to true. To delete costs, do not pass costs parameter and set costsDestructiveUpdate to true
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setCosts(?array $costs): UpdateProgramRequest
     {
@@ -265,7 +263,7 @@ class UpdateProgramRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param bool|null $costs_destructive_update Set true to destroy existing costs and replace them with the specified costs
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setCostsDestructiveUpdate(?bool $costs_destructive_update): UpdateProgramRequest
     {
@@ -289,7 +287,7 @@ class UpdateProgramRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param string|null $description Updated description for the program
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDescription(?string $description): UpdateProgramRequest
     {
@@ -313,7 +311,7 @@ class UpdateProgramRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param string|null $end_date End date of the program.  Applicable to event, email, and webinar type programs
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setEndDate(?string $end_date): UpdateProgramRequest
     {
@@ -337,7 +335,7 @@ class UpdateProgramRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param string|null $name Name of the program
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setName(?string $name): UpdateProgramRequest
     {
@@ -361,7 +359,7 @@ class UpdateProgramRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param string|null $start_date Start date of program.  Applicable to event, email and webinar type programs
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setStartDate(?string $start_date): UpdateProgramRequest
     {
@@ -385,7 +383,7 @@ class UpdateProgramRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\TagRequest[]|null $tags List of associated program tags
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setTags(?array $tags): UpdateProgramRequest
     {
@@ -474,6 +472,7 @@ class UpdateProgramRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

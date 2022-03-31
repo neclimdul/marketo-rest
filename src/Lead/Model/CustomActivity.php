@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class CustomActivity implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -311,7 +309,7 @@ class CustomActivity implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $activity_date Datetime of the activity
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setActivityDate(string $activity_date): CustomActivity
     {
@@ -335,7 +333,7 @@ class CustomActivity implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param int $activity_type_id Id of the activity type
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setActivityTypeId(int $activity_type_id): CustomActivity
     {
@@ -359,7 +357,7 @@ class CustomActivity implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $api_name api_name
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setApiName(?string $api_name): CustomActivity
     {
@@ -383,7 +381,7 @@ class CustomActivity implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\Attribute[] $attributes List of secondary attributes
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setAttributes(array $attributes): CustomActivity
     {
@@ -407,7 +405,7 @@ class CustomActivity implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\Error[] $errors Array of errors that occurred if the request was unsuccessful
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setErrors(array $errors): CustomActivity
     {
@@ -431,7 +429,7 @@ class CustomActivity implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param int $id Integer id of the activity.  For instances which have been migrated to Activity Service, this field may not be present, and should not be treated as unique.
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setId(int $id): CustomActivity
     {
@@ -455,7 +453,7 @@ class CustomActivity implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param int $lead_id Id of the lead associated to the activity
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setLeadId(int $lead_id): CustomActivity
     {
@@ -479,7 +477,7 @@ class CustomActivity implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $marketo_guid Unique id of the activity (128 character string)
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setMarketoGuid(?string $marketo_guid): CustomActivity
     {
@@ -503,7 +501,7 @@ class CustomActivity implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $primary_attribute_value Value of the primary attribute
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setPrimaryAttributeValue(string $primary_attribute_value): CustomActivity
     {
@@ -527,7 +525,7 @@ class CustomActivity implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $status Status of the operation performed on the record
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setStatus(?string $status): CustomActivity
     {
@@ -626,6 +624,7 @@ class CustomActivity implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

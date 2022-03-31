@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class UpdateEmailMetaDataRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -241,7 +239,7 @@ class UpdateEmailMetaDataRequest implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param string|null $description Description of the asset
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDescription(?string $description): UpdateEmailMetaDataRequest
     {
@@ -265,7 +263,7 @@ class UpdateEmailMetaDataRequest implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param string|null $name Name of the Email
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setName(?string $name): UpdateEmailMetaDataRequest
     {
@@ -289,7 +287,7 @@ class UpdateEmailMetaDataRequest implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param string|null $pre_header Preheader text for the email
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setPreHeader(?string $pre_header): UpdateEmailMetaDataRequest
     {
@@ -313,7 +311,7 @@ class UpdateEmailMetaDataRequest implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param bool|null $operational Whether the email is operational.  Operational emails bypass unsubscribe status.  Defaults to false
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setOperational(?bool $operational): UpdateEmailMetaDataRequest
     {
@@ -337,7 +335,7 @@ class UpdateEmailMetaDataRequest implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param bool|null $published Whether the email has been published to Sales Insight.  Default false
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setPublished(?bool $published): UpdateEmailMetaDataRequest
     {
@@ -361,7 +359,7 @@ class UpdateEmailMetaDataRequest implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param bool|null $text_only Setting to include text-only version of email when sent
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setTextOnly(?bool $text_only): UpdateEmailMetaDataRequest
     {
@@ -385,7 +383,7 @@ class UpdateEmailMetaDataRequest implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param bool|null $web_view Whether the email has been enabled to allow the 'View as Web Page' when received
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setWebView(?bool $web_view): UpdateEmailMetaDataRequest
     {
@@ -474,6 +472,7 @@ class UpdateEmailMetaDataRequest implements ModelInterface, ArrayAccess, \JsonSe
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class EmailCCFields implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -235,7 +233,7 @@ class EmailCCFields implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $attribute_id Attribute identifier
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setAttributeId(string $attribute_id): EmailCCFields
     {
@@ -259,7 +257,7 @@ class EmailCCFields implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $object_name Object name.  'lead' or 'company'
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setObjectName(string $object_name): EmailCCFields
     {
@@ -283,7 +281,7 @@ class EmailCCFields implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $display_name Display name
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDisplayName(string $display_name): EmailCCFields
     {
@@ -307,7 +305,7 @@ class EmailCCFields implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $api_name API name
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setApiName(string $api_name): EmailCCFields
     {
@@ -396,6 +394,7 @@ class EmailCCFields implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

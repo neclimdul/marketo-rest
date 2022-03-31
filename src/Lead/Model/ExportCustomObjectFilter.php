@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class ExportCustomObjectFilter implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -244,7 +242,7 @@ class ExportCustomObjectFilter implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\DateRange $updated_at Date range to filter updated custom objects on
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setUpdatedAt(\NecLimDul\MarketoRest\Lead\Model\DateRange $updated_at): ExportCustomObjectFilter
     {
@@ -268,7 +266,7 @@ class ExportCustomObjectFilter implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param int $smart_list_id Id of smart list to retrieve leads from
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setSmartListId(int $smart_list_id): ExportCustomObjectFilter
     {
@@ -292,7 +290,7 @@ class ExportCustomObjectFilter implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param string $smart_list_name Name of smart list to retrieve leads from
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setSmartListName(string $smart_list_name): ExportCustomObjectFilter
     {
@@ -316,7 +314,7 @@ class ExportCustomObjectFilter implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param int $static_list_id Id of static list to retrieve leads from
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setStaticListId(int $static_list_id): ExportCustomObjectFilter
     {
@@ -340,7 +338,7 @@ class ExportCustomObjectFilter implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param string $static_list_name Name of static list to retrieve leads from
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setStaticListName(string $static_list_name): ExportCustomObjectFilter
     {
@@ -429,6 +427,7 @@ class ExportCustomObjectFilter implements ModelInterface, ArrayAccess, \JsonSeri
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

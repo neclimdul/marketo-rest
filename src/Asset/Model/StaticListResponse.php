@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class StaticListResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -277,7 +275,7 @@ class StaticListResponse implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param int $id Id of the static list
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setId(int $id): StaticListResponse
     {
@@ -301,7 +299,7 @@ class StaticListResponse implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param string $name Name of the static list
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setName(string $name): StaticListResponse
     {
@@ -325,7 +323,7 @@ class StaticListResponse implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param string $description Description of the static list
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDescription(string $description): StaticListResponse
     {
@@ -349,7 +347,7 @@ class StaticListResponse implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param \DateTime $created_at Datetime the static list was created
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setCreatedAt(\DateTime $created_at): StaticListResponse
     {
@@ -373,7 +371,7 @@ class StaticListResponse implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param \DateTime $updated_at Datetime the static list was most recently updated
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setUpdatedAt(\DateTime $updated_at): StaticListResponse
     {
@@ -397,7 +395,7 @@ class StaticListResponse implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param string $url Url of the static list in the Marketo UI
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setUrl(string $url): StaticListResponse
     {
@@ -421,7 +419,7 @@ class StaticListResponse implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFolder(\NecLimDul\MarketoRest\Asset\Model\Folder $folder): StaticListResponse
     {
@@ -445,7 +443,7 @@ class StaticListResponse implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param string $workspace Name of the workspace
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setWorkspace(string $workspace): StaticListResponse
     {
@@ -469,7 +467,7 @@ class StaticListResponse implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param string|null $computed_url computed_url
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setComputedUrl(?string $computed_url): StaticListResponse
     {
@@ -558,6 +556,7 @@ class StaticListResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

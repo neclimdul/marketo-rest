@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class SegmentContent implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -247,7 +245,7 @@ class SegmentContent implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param object $content Type of content section
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setContent(object $content): SegmentContent
     {
@@ -271,7 +269,7 @@ class SegmentContent implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $followup_type followup_type
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFollowupType(?string $followup_type): SegmentContent
     {
@@ -295,7 +293,7 @@ class SegmentContent implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $followup_value followup_value
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFollowupValue(?string $followup_value): SegmentContent
     {
@@ -319,7 +317,7 @@ class SegmentContent implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param int $segment_id Segmentation to which the section is linked
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setSegmentId(int $segment_id): SegmentContent
     {
@@ -343,7 +341,7 @@ class SegmentContent implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $segment_name Name of the segment to display content section for
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setSegmentName(string $segment_name): SegmentContent
     {
@@ -367,7 +365,7 @@ class SegmentContent implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $type Type of content section
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setType(string $type): SegmentContent
     {
@@ -456,6 +454,7 @@ class SegmentContent implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

@@ -35,9 +35,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class Campaign implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -298,7 +296,7 @@ class Campaign implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param bool|null $active Whether the campaign is active.  Only applicable to trigger campaigns
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setActive(?bool $active): Campaign
     {
@@ -322,7 +320,7 @@ class Campaign implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $created_at Datetime when the campaign was created
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setCreatedAt(string $created_at): Campaign
     {
@@ -346,7 +344,7 @@ class Campaign implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $description Description of the Smart Campaign
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDescription(?string $description): Campaign
     {
@@ -370,7 +368,7 @@ class Campaign implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param int $id Unique integer id of the Smart Campaign
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setId(int $id): Campaign
     {
@@ -394,7 +392,7 @@ class Campaign implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $name Name of the Smart Campaign
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setName(string $name): Campaign
     {
@@ -418,7 +416,7 @@ class Campaign implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param int|null $program_id Id of the parent program if applicable
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setProgramId(?int $program_id): Campaign
     {
@@ -442,7 +440,7 @@ class Campaign implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $program_name Name of the parent program if applicable
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setProgramName(?string $program_name): Campaign
     {
@@ -466,7 +464,7 @@ class Campaign implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $type Type of the Smart Campaign
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setType(string $type): Campaign
     {
@@ -500,7 +498,7 @@ class Campaign implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $updated_at Datetime when the campaign was most recently updated
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setUpdatedAt(string $updated_at): Campaign
     {
@@ -524,7 +522,7 @@ class Campaign implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $workspace_name Name of the parent workspace if applicable
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setWorkspaceName(?string $workspace_name): Campaign
     {
@@ -613,6 +611,7 @@ class Campaign implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

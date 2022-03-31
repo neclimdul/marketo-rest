@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class SmartCampaignResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -501,7 +499,7 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param int $id Id of the smart campaign (system managed)
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setId(int $id): SmartCampaignResponse
     {
@@ -525,7 +523,7 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param string $name Name of the smart campaign
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setName(string $name): SmartCampaignResponse
     {
@@ -549,7 +547,7 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param string $description Description of the smart campaign
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDescription(string $description): SmartCampaignResponse
     {
@@ -573,7 +571,7 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param string $type Type of the smart campaign. Batch: has at least one filter and no triggers. Trigger: has at least one trigger. Default: has no smart list rules
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setType(string $type): SmartCampaignResponse
     {
@@ -607,7 +605,7 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param bool $is_system Whether smart campaign is system managed.  Defaults to false
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setIsSystem(bool $is_system): SmartCampaignResponse
     {
@@ -631,7 +629,7 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param bool $is_active Whether smart campaign is active.  Defaults to false
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setIsActive(bool $is_active): SmartCampaignResponse
     {
@@ -655,7 +653,7 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param bool $is_requestable Whether smart campaign is requestable (is active and contains 'Campaign is Requested' trigger with Source of 'Web Service API').  Defaults to false
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setIsRequestable(bool $is_requestable): SmartCampaignResponse
     {
@@ -679,7 +677,7 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\Recurrence $recurrence Recurrence schedule of batch smart campaign
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setRecurrence(\NecLimDul\MarketoRest\Asset\Model\Recurrence $recurrence): SmartCampaignResponse
     {
@@ -703,7 +701,7 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param string $qualification_rule_type Type of qualification rule.  Defaults to 'once'
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setQualificationRuleType(string $qualification_rule_type): SmartCampaignResponse
     {
@@ -737,7 +735,7 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param int $qualification_rule_interval Interval of qualification rule.  Only set when qualificationRuleType is 'interval'
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setQualificationRuleInterval(int $qualification_rule_interval): SmartCampaignResponse
     {
@@ -761,7 +759,7 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param string $qualification_rule_unit Unit of measure of qualification rule.  Only set when qualificationRuleType is 'interval'
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setQualificationRuleUnit(string $qualification_rule_unit): SmartCampaignResponse
     {
@@ -795,7 +793,7 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param int $max_members Smart campaign membership limit
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setMaxMembers(int $max_members): SmartCampaignResponse
     {
@@ -819,7 +817,7 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param bool $is_communication_limit_enabled Whether smart campaign communication limit is enabled (i.e. block non-operational emails).  Defaults to false
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setIsCommunicationLimitEnabled(bool $is_communication_limit_enabled): SmartCampaignResponse
     {
@@ -843,7 +841,7 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param int $smart_list_id Id of the smart campaign's child smart list
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setSmartListId(int $smart_list_id): SmartCampaignResponse
     {
@@ -867,7 +865,7 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param int $flow_id Id of the smart campaign's child flow
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFlowId(int $flow_id): SmartCampaignResponse
     {
@@ -891,7 +889,7 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param int|null $parent_program_id Parent program Id.  Present if smart campaign is under program or nested folder
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setParentProgramId(?int $parent_program_id): SmartCampaignResponse
     {
@@ -915,7 +913,7 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFolder(\NecLimDul\MarketoRest\Asset\Model\Folder $folder): SmartCampaignResponse
     {
@@ -939,7 +937,7 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param \DateTime $created_at Datetime when the smart campaign was created
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setCreatedAt(\DateTime $created_at): SmartCampaignResponse
     {
@@ -963,7 +961,7 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param \DateTime $updated_at Datetime when the smart campaign was most recently updated
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setUpdatedAt(\DateTime $updated_at): SmartCampaignResponse
     {
@@ -987,7 +985,7 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param string $workspace Name of the smart campaign workspace
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setWorkspace(string $workspace): SmartCampaignResponse
     {
@@ -1011,7 +1009,7 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param string|null $computed_url URL to asset in Marketo Engage
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setComputedUrl(?string $computed_url): SmartCampaignResponse
     {
@@ -1035,7 +1033,7 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param string $status Status of smart campaign
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setStatus(string $status): SmartCampaignResponse
     {
@@ -1134,6 +1132,7 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class CustomActivityTypeAttribute implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -276,7 +274,7 @@ class CustomActivityTypeAttribute implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param string $api_name API Name of the attribute
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setApiName(string $api_name): CustomActivityTypeAttribute
     {
@@ -300,7 +298,7 @@ class CustomActivityTypeAttribute implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param string|null $data_type Data type of the attribute
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDataType(?string $data_type): CustomActivityTypeAttribute
     {
@@ -334,7 +332,7 @@ class CustomActivityTypeAttribute implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param string|null $description Description of the attribute
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDescription(?string $description): CustomActivityTypeAttribute
     {
@@ -358,7 +356,7 @@ class CustomActivityTypeAttribute implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param bool|null $is_primary Whether the attribute is the primary attribute of the activity type.  There may only be one primary attribute at a time
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setIsPrimary(?bool $is_primary): CustomActivityTypeAttribute
     {
@@ -382,7 +380,7 @@ class CustomActivityTypeAttribute implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param string $name Human-readable display name of the attribute
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setName(string $name): CustomActivityTypeAttribute
     {
@@ -471,6 +469,7 @@ class CustomActivityTypeAttribute implements ModelInterface, ArrayAccess, \JsonS
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

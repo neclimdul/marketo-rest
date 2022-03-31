@@ -3,7 +3,6 @@ includes:
 parameters:
 	level: 8
 	treatPhpDocTypesAsCertain: true
-	checkGenericClassInNonGenericObjectType: false
 	paths:
 		- src
 		- tests

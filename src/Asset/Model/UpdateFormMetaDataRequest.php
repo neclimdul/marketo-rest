@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class UpdateFormMetaDataRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -265,7 +263,7 @@ class UpdateFormMetaDataRequest implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param string|null $custom_css Custom CSS to apply to the form
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setCustomCss(?string $custom_css): UpdateFormMetaDataRequest
     {
@@ -289,7 +287,7 @@ class UpdateFormMetaDataRequest implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param string|null $description Description of the form
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDescription(?string $description): UpdateFormMetaDataRequest
     {
@@ -313,7 +311,7 @@ class UpdateFormMetaDataRequest implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param string|null $font_family font-family property for the form
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFontFamily(?string $font_family): UpdateFormMetaDataRequest
     {
@@ -337,7 +335,7 @@ class UpdateFormMetaDataRequest implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param string|null $font_size font-size property of the form
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFontSize(?string $font_size): UpdateFormMetaDataRequest
     {
@@ -361,7 +359,7 @@ class UpdateFormMetaDataRequest implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\FormKnownVisitorDTO|null $known_visitor Known visitor behavior for the form
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setKnownVisitor(?\NecLimDul\MarketoRest\Asset\Model\FormKnownVisitorDTO $known_visitor): UpdateFormMetaDataRequest
     {
@@ -385,7 +383,7 @@ class UpdateFormMetaDataRequest implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param string|null $label_position Default positioning of labels.
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setLabelPosition(?string $label_position): UpdateFormMetaDataRequest
     {
@@ -409,7 +407,7 @@ class UpdateFormMetaDataRequest implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param string|null $language Language of the form
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setLanguage(?string $language): UpdateFormMetaDataRequest
     {
@@ -433,7 +431,7 @@ class UpdateFormMetaDataRequest implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param string|null $locale Locale of the form
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setLocale(?string $locale): UpdateFormMetaDataRequest
     {
@@ -457,7 +455,7 @@ class UpdateFormMetaDataRequest implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param string|null $name Name of the form
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setName(?string $name): UpdateFormMetaDataRequest
     {
@@ -481,7 +479,7 @@ class UpdateFormMetaDataRequest implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param bool|null $progressive_profiling Whether progressive profiling is enabled for the form
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setProgressiveProfiling(?bool $progressive_profiling): UpdateFormMetaDataRequest
     {
@@ -505,7 +503,7 @@ class UpdateFormMetaDataRequest implements ModelInterface, ArrayAccess, \JsonSer
      *
      * @param string|null $theme CSS theme for the form to use
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setTheme(?string $theme): UpdateFormMetaDataRequest
     {
@@ -594,6 +592,7 @@ class UpdateFormMetaDataRequest implements ModelInterface, ArrayAccess, \JsonSer
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class CloneLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -229,7 +227,7 @@ class CloneLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param string|null $description Description of the asset
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDescription(?string $description): CloneLandingPageRequest
     {
@@ -253,7 +251,7 @@ class CloneLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFolder(\NecLimDul\MarketoRest\Asset\Model\Folder $folder): CloneLandingPageRequest
     {
@@ -277,7 +275,7 @@ class CloneLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param string $name Name of the landing page
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setName(string $name): CloneLandingPageRequest
     {
@@ -301,7 +299,7 @@ class CloneLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param int|null $template Id of the template used
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setTemplate(?int $template): CloneLandingPageRequest
     {
@@ -390,6 +388,7 @@ class CloneLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeria
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

@@ -288,7 +288,7 @@ class {{classname}} {{#parentSchema}}extends {{{parent}}} {{/parentSchema}}{{^pa
      *
      * @param {{datatype}}{{^required}}|null{{/required}} ${{name}}{{#description}} {{{description}}}{{/description}}{{^description}} {{{name}}}{{/description}}
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function {{setter}}({{^required}}?{{/required}}{{^isContainer}}{{datatype}}{{/isContainer}}{{#isContainer}}array{{/isContainer}} ${{name}}): {{classname}}
     {
@@ -437,6 +437,7 @@ class {{classname}} {{#parentSchema}}extends {{{parent}}} {{/parentSchema}}{{^pa
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

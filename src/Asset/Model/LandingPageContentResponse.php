@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class LandingPageContentResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -315,7 +313,7 @@ class LandingPageContentResponse implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param object|null $content Content of the section.  Expected values vary based on type.  Image: An image URL.  RichText: HTML Content.  HTML: HTML Content.  Form: A form id.  Rectangle: Empty. Snippet: A snippet id.
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setContent(?object $content): LandingPageContentResponse
     {
@@ -339,7 +337,7 @@ class LandingPageContentResponse implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param string|null $followup_type Follow-up behavior of a form.  Only available for form-type content sections.  Defaults to form defined behavior.
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFollowupType(?string $followup_type): LandingPageContentResponse
     {
@@ -373,7 +371,7 @@ class LandingPageContentResponse implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param string|null $followup_value Where to follow-up on form submission.  When followupType is lp, accepts the integer id of a landing page.  For url, it accepts a url string.
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFollowupValue(?string $followup_value): LandingPageContentResponse
     {
@@ -397,7 +395,7 @@ class LandingPageContentResponse implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\JsonNode|null $formatting_options formatting_options
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFormattingOptions(?\NecLimDul\MarketoRest\Asset\Model\JsonNode $formatting_options): LandingPageContentResponse
     {
@@ -421,7 +419,7 @@ class LandingPageContentResponse implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param object $id Id of the content section, may be a string or an int
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setId(object $id): LandingPageContentResponse
     {
@@ -445,7 +443,7 @@ class LandingPageContentResponse implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param int|null $index Index of the content section.  Index orients the elements from lowest to highest
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setIndex(?int $index): LandingPageContentResponse
     {
@@ -469,7 +467,7 @@ class LandingPageContentResponse implements ModelInterface, ArrayAccess, \JsonSe
      *
      * @param string $type Type of content section
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setType(string $type): LandingPageContentResponse
     {
@@ -568,6 +566,7 @@ class LandingPageContentResponse implements ModelInterface, ArrayAccess, \JsonSe
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

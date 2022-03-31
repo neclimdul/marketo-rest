@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class InputStreamContent implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -211,7 +209,7 @@ class InputStreamContent implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param string|null $content_type content_type
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setContentType(?string $content_type): InputStreamContent
     {
@@ -235,7 +233,7 @@ class InputStreamContent implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\InputStream|null $input_stream input_stream
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setInputStream(?\NecLimDul\MarketoRest\Lead\Model\InputStream $input_stream): InputStreamContent
     {
@@ -324,6 +322,7 @@ class InputStreamContent implements ModelInterface, ArrayAccess, \JsonSerializab
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

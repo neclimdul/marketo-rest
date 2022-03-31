@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class AddFormFieldVisibilityRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -205,7 +203,7 @@ class AddFormFieldVisibilityRequest implements ModelInterface, ArrayAccess, \Jso
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\FormFieldVisibilityRequest|null $visibility_rule visibility_rule
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setVisibilityRule(?\NecLimDul\MarketoRest\Asset\Model\FormFieldVisibilityRequest $visibility_rule): AddFormFieldVisibilityRequest
     {
@@ -294,6 +292,7 @@ class AddFormFieldVisibilityRequest implements ModelInterface, ArrayAccess, \Jso
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

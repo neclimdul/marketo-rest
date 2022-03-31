@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class CreateProgramRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -253,7 +251,7 @@ class CreateProgramRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param string $channel Channel of the program
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setChannel(string $channel): CreateProgramRequest
     {
@@ -277,7 +275,7 @@ class CreateProgramRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\CostRequest[]|null $costs Lists of associated period costs
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setCosts(?array $costs): CreateProgramRequest
     {
@@ -301,7 +299,7 @@ class CreateProgramRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param string|null $description description
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDescription(?string $description): CreateProgramRequest
     {
@@ -325,7 +323,7 @@ class CreateProgramRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFolder(\NecLimDul\MarketoRest\Asset\Model\Folder $folder): CreateProgramRequest
     {
@@ -349,7 +347,7 @@ class CreateProgramRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param string $name Name of the program
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setName(string $name): CreateProgramRequest
     {
@@ -373,7 +371,7 @@ class CreateProgramRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\TagRequest[]|null $tags List of associated program tags
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setTags(?array $tags): CreateProgramRequest
     {
@@ -397,7 +395,7 @@ class CreateProgramRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param string $type Type of the program
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setType(string $type): CreateProgramRequest
     {
@@ -486,6 +484,7 @@ class CreateProgramRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

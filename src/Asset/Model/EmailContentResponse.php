@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class EmailContentResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -244,7 +242,7 @@ class EmailContentResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param string $content_type Type of content to set for the section.
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setContentType(string $content_type): EmailContentResponse
     {
@@ -268,7 +266,7 @@ class EmailContentResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param string $html_id HTML id of the content section
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setHtmlId(string $html_id): EmailContentResponse
     {
@@ -292,7 +290,7 @@ class EmailContentResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param int|null $index index
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setIndex(?int $index): EmailContentResponse
     {
@@ -316,7 +314,7 @@ class EmailContentResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param bool|null $is_locked is_locked
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setIsLocked(?bool $is_locked): EmailContentResponse
     {
@@ -340,7 +338,7 @@ class EmailContentResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param string|null $parent_html_id parent_html_id
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setParentHtmlId(?string $parent_html_id): EmailContentResponse
     {
@@ -364,7 +362,7 @@ class EmailContentResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param object $value Contents of the section
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setValue(object $value): EmailContentResponse
     {
@@ -453,6 +451,7 @@ class EmailContentResponse implements ModelInterface, ArrayAccess, \JsonSerializ
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

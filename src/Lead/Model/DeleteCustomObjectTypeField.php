@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class DeleteCustomObjectTypeField implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -208,7 +206,7 @@ class DeleteCustomObjectTypeField implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param string $name API Name of custom object type field
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setName(string $name): DeleteCustomObjectTypeField
     {
@@ -297,6 +295,7 @@ class DeleteCustomObjectTypeField implements ModelInterface, ArrayAccess, \JsonS
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

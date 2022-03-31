@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class ChannelResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -250,7 +248,7 @@ class ChannelResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $applicable_program_type Types of programs to which the channel can apply
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setApplicableProgramType(string $applicable_program_type): ChannelResponse
     {
@@ -274,7 +272,7 @@ class ChannelResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param \DateTime $created_at Datetime when the channel was created
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setCreatedAt(\DateTime $created_at): ChannelResponse
     {
@@ -298,7 +296,7 @@ class ChannelResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param int $id Id of the Channel
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setId(int $id): ChannelResponse
     {
@@ -322,7 +320,7 @@ class ChannelResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $name Name of the Channel
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setName(string $name): ChannelResponse
     {
@@ -346,7 +344,7 @@ class ChannelResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\ChannelProgression[]|null $progression_statuses List of available statuses for members of programs with the channel
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setProgressionStatuses(?array $progression_statuses): ChannelResponse
     {
@@ -370,7 +368,7 @@ class ChannelResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param \DateTime $updated_at Datetime when the channel was most recently updated
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setUpdatedAt(\DateTime $updated_at): ChannelResponse
     {
@@ -459,6 +457,7 @@ class ChannelResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

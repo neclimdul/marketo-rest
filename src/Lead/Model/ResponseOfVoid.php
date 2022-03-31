@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class ResponseOfVoid implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -247,7 +245,7 @@ class ResponseOfVoid implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\Error[] $errors Array of errors that occurred if the request was unsuccessful
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setErrors(array $errors): ResponseOfVoid
     {
@@ -271,7 +269,7 @@ class ResponseOfVoid implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param bool|null $more_result Boolean indicating if there are more results in subsequent pages
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setMoreResult(?bool $more_result): ResponseOfVoid
     {
@@ -295,7 +293,7 @@ class ResponseOfVoid implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $next_page_token Paging token given if the result set exceeded the allowed batch size
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setNextPageToken(?string $next_page_token): ResponseOfVoid
     {
@@ -319,7 +317,7 @@ class ResponseOfVoid implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $request_id Id of the request made
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setRequestId(string $request_id): ResponseOfVoid
     {
@@ -343,7 +341,7 @@ class ResponseOfVoid implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param bool $success Whether the request succeeded
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setSuccess(bool $success): ResponseOfVoid
     {
@@ -367,7 +365,7 @@ class ResponseOfVoid implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\Warning[] $warnings Array of warnings given for the operation
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setWarnings(array $warnings): ResponseOfVoid
     {
@@ -456,6 +454,7 @@ class ResponseOfVoid implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

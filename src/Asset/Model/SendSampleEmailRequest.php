@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class SendSampleEmailRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -220,7 +218,7 @@ class SendSampleEmailRequest implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param string $email_address Email address to receive sample email
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setEmailAddress(string $email_address): SendSampleEmailRequest
     {
@@ -244,7 +242,7 @@ class SendSampleEmailRequest implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param string|null $lead_id Id of a lead to impersonate.  Tokens and dynamic content will be populated as though it were sent to the lead.
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setLeadId(?string $lead_id): SendSampleEmailRequest
     {
@@ -268,7 +266,7 @@ class SendSampleEmailRequest implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param bool|null $text_only Whether to send to text only version along with the HTML version.  Default false.
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setTextOnly(?bool $text_only): SendSampleEmailRequest
     {
@@ -357,6 +355,7 @@ class SendSampleEmailRequest implements ModelInterface, ArrayAccess, \JsonSerial
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

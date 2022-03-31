@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class LandingPageDomain implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -240,7 +238,7 @@ class LandingPageDomain implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param string $hostname The hostname for the landing pages
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setHostname(string $hostname): LandingPageDomain
     {
@@ -264,7 +262,7 @@ class LandingPageDomain implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param string $type Specifies type of hostname
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setType(string $type): LandingPageDomain
     {
@@ -363,6 +361,7 @@ class LandingPageDomain implements ModelInterface, ArrayAccess, \JsonSerializabl
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

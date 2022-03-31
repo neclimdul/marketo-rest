@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class SubmitFormRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -223,7 +221,7 @@ class SubmitFormRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\Form[] $input Single array item that contains form fields and visitor data to use during a form submittal
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setInput(array $input): SubmitFormRequest
     {
@@ -247,7 +245,7 @@ class SubmitFormRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param int $form_id Id of the form
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFormId(int $form_id): SubmitFormRequest
     {
@@ -271,7 +269,7 @@ class SubmitFormRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param int|null $program_id Id of the program to add lead and/or program member custom fields to
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setProgramId(?int $program_id): SubmitFormRequest
     {
@@ -360,6 +358,7 @@ class SubmitFormRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

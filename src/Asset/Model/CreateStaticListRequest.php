@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class CreateStaticListRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -223,7 +221,7 @@ class CreateStaticListRequest implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param string|null $description Description of the static list
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDescription(?string $description): CreateStaticListRequest
     {
@@ -247,7 +245,7 @@ class CreateStaticListRequest implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param string $name Name of the static list
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setName(string $name): CreateStaticListRequest
     {
@@ -271,7 +269,7 @@ class CreateStaticListRequest implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder Folder object describing the parent folder
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFolder(\NecLimDul\MarketoRest\Asset\Model\Folder $folder): CreateStaticListRequest
     {
@@ -360,6 +358,7 @@ class CreateStaticListRequest implements ModelInterface, ArrayAccess, \JsonSeria
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

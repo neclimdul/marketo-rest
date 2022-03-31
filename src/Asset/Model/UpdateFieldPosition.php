@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class UpdateFieldPosition implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -232,7 +230,7 @@ class UpdateFieldPosition implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param int $column_number Column number of the field
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setColumnNumber(int $column_number): UpdateFieldPosition
     {
@@ -256,7 +254,7 @@ class UpdateFieldPosition implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\UpdateFieldPosition[]|null $field_list List of positions inside the fields.  Only valid if the target is a fieldset
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFieldList(?array $field_list): UpdateFieldPosition
     {
@@ -280,7 +278,7 @@ class UpdateFieldPosition implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param string $field_name Id of the field
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFieldName(string $field_name): UpdateFieldPosition
     {
@@ -304,7 +302,7 @@ class UpdateFieldPosition implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param int $row_number Row number of the field
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setRowNumber(int $row_number): UpdateFieldPosition
     {
@@ -393,6 +391,7 @@ class UpdateFieldPosition implements ModelInterface, ArrayAccess, \JsonSerializa
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

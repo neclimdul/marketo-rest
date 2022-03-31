@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class AddRichTextRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -208,7 +206,7 @@ class AddRichTextRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param string $text Multipart file. HTML Content for the rich text field.
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setText(string $text): AddRichTextRequest
     {
@@ -297,6 +295,7 @@ class AddRichTextRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

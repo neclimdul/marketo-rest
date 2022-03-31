@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class UpdateSnippetRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -217,7 +215,7 @@ class UpdateSnippetRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param string|null $description Description of the snippet
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDescription(?string $description): UpdateSnippetRequest
     {
@@ -241,7 +239,7 @@ class UpdateSnippetRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param string|null $is_archive Archival status of the snippet
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setIsArchive(?string $is_archive): UpdateSnippetRequest
     {
@@ -265,7 +263,7 @@ class UpdateSnippetRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param string|null $name Name of the snippet
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setName(?string $name): UpdateSnippetRequest
     {
@@ -354,6 +352,7 @@ class UpdateSnippetRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

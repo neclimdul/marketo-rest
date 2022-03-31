@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class CustomObjectTypeFieldRelatedTo implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -217,7 +215,7 @@ class CustomObjectTypeFieldRelatedTo implements ModelInterface, ArrayAccess, \Js
      *
      * @param string $name Name of linkable object type
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setName(string $name): CustomObjectTypeFieldRelatedTo
     {
@@ -241,7 +239,7 @@ class CustomObjectTypeFieldRelatedTo implements ModelInterface, ArrayAccess, \Js
      *
      * @param string $field Foreign field to which the parent is linked
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setField(string $field): CustomObjectTypeFieldRelatedTo
     {
@@ -330,6 +328,7 @@ class CustomObjectTypeFieldRelatedTo implements ModelInterface, ArrayAccess, \Js
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

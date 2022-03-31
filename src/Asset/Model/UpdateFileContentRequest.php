@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class UpdateFileContentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -217,7 +215,7 @@ class UpdateFileContentRequest implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param string $file Multipart file. Content of the file.
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFile(string $file): UpdateFileContentRequest
     {
@@ -241,7 +239,7 @@ class UpdateFileContentRequest implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @param int $id Id of the file
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setId(int $id): UpdateFileContentRequest
     {
@@ -330,6 +328,7 @@ class UpdateFileContentRequest implements ModelInterface, ArrayAccess, \JsonSeri
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

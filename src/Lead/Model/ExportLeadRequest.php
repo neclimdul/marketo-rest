@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class ExportLeadRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -229,7 +227,7 @@ class ExportLeadRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\ColumnHeaderNames|null $column_header_names File header field names override (corresponds with REST API name)
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setColumnHeaderNames(?\NecLimDul\MarketoRest\Lead\Model\ColumnHeaderNames $column_header_names): ExportLeadRequest
     {
@@ -253,7 +251,7 @@ class ExportLeadRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param string[] $fields Comma-separated list of fields to include in the file
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFields(array $fields): ExportLeadRequest
     {
@@ -277,7 +275,7 @@ class ExportLeadRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\ExportLeadFilter $filter Lead record selection criteria. Can be one of the following: \"createdAt\", \"updatedAt\", \"staticListName\", \"staticListId\", \"smartListName\", \"smartListId\"
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFilter(\NecLimDul\MarketoRest\Lead\Model\ExportLeadFilter $filter): ExportLeadRequest
     {
@@ -301,7 +299,7 @@ class ExportLeadRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param string|null $format File format to create(\"CSV\", \"TSV\", \"SSV\").  Default is \"CSV\"
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFormat(?string $format): ExportLeadRequest
     {
@@ -390,6 +388,7 @@ class ExportLeadRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

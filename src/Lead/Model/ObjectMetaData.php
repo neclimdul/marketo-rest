@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class ObjectMetaData implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -361,7 +359,7 @@ class ObjectMetaData implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param \DateTime $created_at Datetime when the object type was created
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setCreatedAt(\DateTime $created_at): ObjectMetaData
     {
@@ -385,7 +383,7 @@ class ObjectMetaData implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string[] $dedupe_fields List of dedupe fields.  Arrays with multiple members are compound keys
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDedupeFields(array $dedupe_fields): ObjectMetaData
     {
@@ -409,7 +407,7 @@ class ObjectMetaData implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $description Description of the object type
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDescription(string $description): ObjectMetaData
     {
@@ -433,7 +431,7 @@ class ObjectMetaData implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $display_name UI display-name of the object type
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDisplayName(string $display_name): ObjectMetaData
     {
@@ -457,7 +455,7 @@ class ObjectMetaData implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $plural_name UI plural-name of the custom object type
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setPluralName(string $plural_name): ObjectMetaData
     {
@@ -481,7 +479,7 @@ class ObjectMetaData implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\ObjectField[] $fields List of fields available on the object type
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFields(array $fields): ObjectMetaData
     {
@@ -505,7 +503,7 @@ class ObjectMetaData implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $id_field Primary id key of the object type
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setIdField(string $id_field): ObjectMetaData
     {
@@ -529,7 +527,7 @@ class ObjectMetaData implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $api_name Name of the object type
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setApiName(string $api_name): ObjectMetaData
     {
@@ -553,7 +551,7 @@ class ObjectMetaData implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\ObjectRelation[] $relationships List of relationships which the object has
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setRelationships(array $relationships): ObjectMetaData
     {
@@ -577,7 +575,7 @@ class ObjectMetaData implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string[][] $searchable_fields List of fields valid for use as a filter type in a query
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setSearchableFields(array $searchable_fields): ObjectMetaData
     {
@@ -601,7 +599,7 @@ class ObjectMetaData implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param \DateTime $updated_at Datetime when the object type was most recently updated
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setUpdatedAt(\DateTime $updated_at): ObjectMetaData
     {
@@ -625,7 +623,7 @@ class ObjectMetaData implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $state Approval state of object type
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setState(?string $state): ObjectMetaData
     {
@@ -659,7 +657,7 @@ class ObjectMetaData implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $version Version of object type that is returned in response
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setVersion(string $version): ObjectMetaData
     {
@@ -758,6 +756,7 @@ class ObjectMetaData implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

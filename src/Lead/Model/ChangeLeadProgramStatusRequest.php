@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class ChangeLeadProgramStatusRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -217,7 +215,7 @@ class ChangeLeadProgramStatusRequest implements ModelInterface, ArrayAccess, \Js
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\LeadLookupInputData[] $input List of leads for input
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setInput(array $input): ChangeLeadProgramStatusRequest
     {
@@ -241,7 +239,7 @@ class ChangeLeadProgramStatusRequest implements ModelInterface, ArrayAccess, \Js
      *
      * @param string $status Program status of the record.  Permissible values can be retrieve from the Get Channel by Name API for the designated program's channel
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setStatus(string $status): ChangeLeadProgramStatusRequest
     {
@@ -330,6 +328,7 @@ class ChangeLeadProgramStatusRequest implements ModelInterface, ArrayAccess, \Js
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

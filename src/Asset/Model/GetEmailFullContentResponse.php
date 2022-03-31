@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class GetEmailFullContentResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -249,7 +247,7 @@ class GetEmailFullContentResponse implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param string $content HTML content of the email
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setContent(string $content): GetEmailFullContentResponse
     {
@@ -273,7 +271,7 @@ class GetEmailFullContentResponse implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param int $id Unique integer id of the email
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setId(int $id): GetEmailFullContentResponse
     {
@@ -297,7 +295,7 @@ class GetEmailFullContentResponse implements ModelInterface, ArrayAccess, \JsonS
      *
      * @param string $status Status filter for draft or approved versions
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setStatus(string $status): GetEmailFullContentResponse
     {
@@ -396,6 +394,7 @@ class GetEmailFullContentResponse implements ModelInterface, ArrayAccess, \JsonS
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

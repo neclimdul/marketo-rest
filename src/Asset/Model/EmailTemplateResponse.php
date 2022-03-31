@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class EmailTemplateResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -288,7 +286,7 @@ class EmailTemplateResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param \DateTime|null $created_at Datetime the asset was created
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setCreatedAt(?\DateTime $created_at): EmailTemplateResponse
     {
@@ -312,7 +310,7 @@ class EmailTemplateResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param string|null $description Description of the asset
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDescription(?string $description): EmailTemplateResponse
     {
@@ -336,7 +334,7 @@ class EmailTemplateResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFolder(\NecLimDul\MarketoRest\Asset\Model\Folder $folder): EmailTemplateResponse
     {
@@ -360,7 +358,7 @@ class EmailTemplateResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param int|null $id Id of the asset
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setId(?int $id): EmailTemplateResponse
     {
@@ -384,7 +382,7 @@ class EmailTemplateResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param string|null $name Name of the asset
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setName(?string $name): EmailTemplateResponse
     {
@@ -408,7 +406,7 @@ class EmailTemplateResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param string $status Status filter for draft or approved versions
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setStatus(string $status): EmailTemplateResponse
     {
@@ -432,7 +430,7 @@ class EmailTemplateResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param \DateTime|null $updated_at Datetime the asset was most recently updated
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setUpdatedAt(?\DateTime $updated_at): EmailTemplateResponse
     {
@@ -456,7 +454,7 @@ class EmailTemplateResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param string|null $url Url of the asset in the Marketo UI
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setUrl(?string $url): EmailTemplateResponse
     {
@@ -480,7 +478,7 @@ class EmailTemplateResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param int|null $version Template version type
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setVersion(?int $version): EmailTemplateResponse
     {
@@ -514,7 +512,7 @@ class EmailTemplateResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param string|null $workspace Name of the workspace
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setWorkspace(?string $workspace): EmailTemplateResponse
     {
@@ -603,6 +601,7 @@ class EmailTemplateResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class ExportActivityFilter implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -226,7 +224,7 @@ class ExportActivityFilter implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param int[]|null $activity_type_ids List of activity type ids to filter on
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setActivityTypeIds(?array $activity_type_ids): ExportActivityFilter
     {
@@ -250,7 +248,7 @@ class ExportActivityFilter implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param int[]|null $primary_attribute_value_ids List of primary attribute ids to filter on
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setPrimaryAttributeValueIds(?array $primary_attribute_value_ids): ExportActivityFilter
     {
@@ -274,7 +272,7 @@ class ExportActivityFilter implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param string[]|null $primary_attribute_values List of primary attribute values to filter on
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setPrimaryAttributeValues(?array $primary_attribute_values): ExportActivityFilter
     {
@@ -298,7 +296,7 @@ class ExportActivityFilter implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\DateRange $created_at Date range to filter new activities on
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setCreatedAt(\NecLimDul\MarketoRest\Lead\Model\DateRange $created_at): ExportActivityFilter
     {
@@ -387,6 +385,7 @@ class ExportActivityFilter implements ModelInterface, ArrayAccess, \JsonSerializ
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

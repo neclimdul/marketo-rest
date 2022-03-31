@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class DateRange implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -211,7 +209,7 @@ class DateRange implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $end_at End of date range filter (ISO 8601-format)
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setEndAt(?string $end_at): DateRange
     {
@@ -235,7 +233,7 @@ class DateRange implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $start_at Start of date range filter (ISO-8601 format)
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setStartAt(?string $start_at): DateRange
     {
@@ -324,6 +322,7 @@ class DateRange implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

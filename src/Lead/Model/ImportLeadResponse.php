@@ -35,9 +35,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class ImportLeadResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -251,7 +249,7 @@ class ImportLeadResponse implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param int $batch_id Unique integer id of the import batch
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setBatchId(int $batch_id): ImportLeadResponse
     {
@@ -275,7 +273,7 @@ class ImportLeadResponse implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param string|null $import_id import_id
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setImportId(?string $import_id): ImportLeadResponse
     {
@@ -299,7 +297,7 @@ class ImportLeadResponse implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param string|null $message message
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setMessage(?string $message): ImportLeadResponse
     {
@@ -323,7 +321,7 @@ class ImportLeadResponse implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param int $num_of_leads_processed Number of rows processed so far
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setNumOfLeadsProcessed(int $num_of_leads_processed): ImportLeadResponse
     {
@@ -347,7 +345,7 @@ class ImportLeadResponse implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param int|null $num_of_rows_failed Number of rows failed so far
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setNumOfRowsFailed(?int $num_of_rows_failed): ImportLeadResponse
     {
@@ -371,7 +369,7 @@ class ImportLeadResponse implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param int|null $num_of_rows_with_warning Number of rows with a warning so far
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setNumOfRowsWithWarning(?int $num_of_rows_with_warning): ImportLeadResponse
     {
@@ -395,7 +393,7 @@ class ImportLeadResponse implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param string $status Status of the batch
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setStatus(string $status): ImportLeadResponse
     {
@@ -484,6 +482,7 @@ class ImportLeadResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

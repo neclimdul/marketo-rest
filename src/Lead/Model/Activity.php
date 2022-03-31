@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class Activity implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -268,7 +266,7 @@ class Activity implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param \DateTime $activity_date Datetime of the activity
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setActivityDate(\DateTime $activity_date): Activity
     {
@@ -292,7 +290,7 @@ class Activity implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param int $activity_type_id Id of the activity type
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setActivityTypeId(int $activity_type_id): Activity
     {
@@ -316,7 +314,7 @@ class Activity implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\Attribute[] $attributes List of secondary attributes
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setAttributes(array $attributes): Activity
     {
@@ -340,7 +338,7 @@ class Activity implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param int|null $campaign_id Id of the associated Smart Campaign, if applicable
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setCampaignId(?int $campaign_id): Activity
     {
@@ -364,7 +362,7 @@ class Activity implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param int $id Integer id of the activity. This value could exceed Int.MAX. For instances which have been migrated to Activity Service, this field may not be present, and should not be treated as unique.
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setId(int $id): Activity
     {
@@ -388,7 +386,7 @@ class Activity implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param int $lead_id Id of the lead associated to the activity
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setLeadId(int $lead_id): Activity
     {
@@ -412,7 +410,7 @@ class Activity implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $marketo_guid Unique id of the activity (128 character string)
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setMarketoGuid(?string $marketo_guid): Activity
     {
@@ -436,7 +434,7 @@ class Activity implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $primary_attribute_value Value of the primary attribute
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setPrimaryAttributeValue(?string $primary_attribute_value): Activity
     {
@@ -460,7 +458,7 @@ class Activity implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param int|null $primary_attribute_value_id Id of the primary attribute field
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setPrimaryAttributeValueId(?int $primary_attribute_value_id): Activity
     {
@@ -549,6 +547,7 @@ class Activity implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

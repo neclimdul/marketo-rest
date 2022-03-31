@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class ObjectField implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -235,7 +233,7 @@ class ObjectField implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $data_type Datatype of the field
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDataType(?string $data_type): ObjectField
     {
@@ -259,7 +257,7 @@ class ObjectField implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $display_name UI display-name of the field
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDisplayName(?string $display_name): ObjectField
     {
@@ -283,7 +281,7 @@ class ObjectField implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param int|null $length Max length of the field.  Only applicable to text, string, and text area.
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setLength(?int $length): ObjectField
     {
@@ -307,7 +305,7 @@ class ObjectField implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $name Name of the field
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setName(?string $name): ObjectField
     {
@@ -331,7 +329,7 @@ class ObjectField implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param bool|null $updateable Whether the field is updateable
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setUpdateable(?bool $updateable): ObjectField
     {
@@ -355,7 +353,7 @@ class ObjectField implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param bool|null $crm_managed Whether the field is managed by CRM (native sync)
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setCrmManaged(?bool $crm_managed): ObjectField
     {
@@ -444,6 +442,7 @@ class ObjectField implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

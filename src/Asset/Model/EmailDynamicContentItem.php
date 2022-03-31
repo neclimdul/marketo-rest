@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class EmailDynamicContentItem implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -229,7 +227,7 @@ class EmailDynamicContentItem implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param string|null $content content
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setContent(?string $content): EmailDynamicContentItem
     {
@@ -253,7 +251,7 @@ class EmailDynamicContentItem implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param string|null $id id
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setId(?string $id): EmailDynamicContentItem
     {
@@ -277,7 +275,7 @@ class EmailDynamicContentItem implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param string|null $segment_id segment_id
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setSegmentId(?string $segment_id): EmailDynamicContentItem
     {
@@ -301,7 +299,7 @@ class EmailDynamicContentItem implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param string|null $segment_name segment_name
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setSegmentName(?string $segment_name): EmailDynamicContentItem
     {
@@ -325,7 +323,7 @@ class EmailDynamicContentItem implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param string|null $type type
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setType(?string $type): EmailDynamicContentItem
     {
@@ -414,6 +412,7 @@ class EmailDynamicContentItem implements ModelInterface, ArrayAccess, \JsonSeria
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

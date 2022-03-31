@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class InputStreamRangeContent implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -223,7 +221,7 @@ class InputStreamRangeContent implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param string|null $content_type content_type
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setContentType(?string $content_type): InputStreamRangeContent
     {
@@ -247,7 +245,7 @@ class InputStreamRangeContent implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\FileRange|null $file_range file_range
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFileRange(?\NecLimDul\MarketoRest\Lead\Model\FileRange $file_range): InputStreamRangeContent
     {
@@ -271,7 +269,7 @@ class InputStreamRangeContent implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\InputStream|null $input_stream input_stream
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setInputStream(?\NecLimDul\MarketoRest\Lead\Model\InputStream $input_stream): InputStreamRangeContent
     {
@@ -295,7 +293,7 @@ class InputStreamRangeContent implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param int|null $length length
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setLength(?int $length): InputStreamRangeContent
     {
@@ -384,6 +382,7 @@ class InputStreamRangeContent implements ModelInterface, ArrayAccess, \JsonSeria
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

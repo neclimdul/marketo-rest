@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class ResponseOfActivityType implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -256,7 +254,7 @@ class ResponseOfActivityType implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\Error[] $errors Array of errors that occurred if the request was unsuccessful
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setErrors(array $errors): ResponseOfActivityType
     {
@@ -280,7 +278,7 @@ class ResponseOfActivityType implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param bool|null $more_result Boolean indicating if there are more results in subsequent pages
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setMoreResult(?bool $more_result): ResponseOfActivityType
     {
@@ -304,7 +302,7 @@ class ResponseOfActivityType implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param string|null $next_page_token Paging token given if the result set exceeded the allowed batch size
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setNextPageToken(?string $next_page_token): ResponseOfActivityType
     {
@@ -328,7 +326,7 @@ class ResponseOfActivityType implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param string $request_id Id of the request made
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setRequestId(string $request_id): ResponseOfActivityType
     {
@@ -352,7 +350,7 @@ class ResponseOfActivityType implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\ActivityType[] $result Array of results for individual records in the operation, may be empty
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setResult(array $result): ResponseOfActivityType
     {
@@ -376,7 +374,7 @@ class ResponseOfActivityType implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param bool $success Whether the request succeeded
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setSuccess(bool $success): ResponseOfActivityType
     {
@@ -400,7 +398,7 @@ class ResponseOfActivityType implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\Warning[] $warnings Array of warnings given for the operation
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setWarnings(array $warnings): ResponseOfActivityType
     {
@@ -489,6 +487,7 @@ class ResponseOfActivityType implements ModelInterface, ArrayAccess, \JsonSerial
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

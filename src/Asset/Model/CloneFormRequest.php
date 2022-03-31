@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class CloneFormRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -223,7 +221,7 @@ class CloneFormRequest implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $name Name for the cloned form
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setName(string $name): CloneFormRequest
     {
@@ -247,7 +245,7 @@ class CloneFormRequest implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFolder(\NecLimDul\MarketoRest\Asset\Model\Folder $folder): CloneFormRequest
     {
@@ -271,7 +269,7 @@ class CloneFormRequest implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $description Description of the cloned form
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDescription(?string $description): CloneFormRequest
     {
@@ -360,6 +358,7 @@ class CloneFormRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

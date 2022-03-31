@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class UpdateLandingPageContentRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -337,7 +335,7 @@ class UpdateLandingPageContentRequest implements ModelInterface, ArrayAccess, \J
      *
      * @param string|null $background_color background-color property of the HTML section
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setBackgroundColor(?string $background_color): UpdateLandingPageContentRequest
     {
@@ -361,7 +359,7 @@ class UpdateLandingPageContentRequest implements ModelInterface, ArrayAccess, \J
      *
      * @param string|null $border_color border-color property of the HTML section
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setBorderColor(?string $border_color): UpdateLandingPageContentRequest
     {
@@ -385,7 +383,7 @@ class UpdateLandingPageContentRequest implements ModelInterface, ArrayAccess, \J
      *
      * @param string|null $border_style border-style property of the HTML section
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setBorderStyle(?string $border_style): UpdateLandingPageContentRequest
     {
@@ -409,7 +407,7 @@ class UpdateLandingPageContentRequest implements ModelInterface, ArrayAccess, \J
      *
      * @param string|null $border_width border-width property of the HTML section
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setBorderWidth(?string $border_width): UpdateLandingPageContentRequest
     {
@@ -433,7 +431,7 @@ class UpdateLandingPageContentRequest implements ModelInterface, ArrayAccess, \J
      *
      * @param string|null $height height property of the HTML section
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setHeight(?string $height): UpdateLandingPageContentRequest
     {
@@ -457,7 +455,7 @@ class UpdateLandingPageContentRequest implements ModelInterface, ArrayAccess, \J
      *
      * @param bool|null $hide_desktop Hide the section when displayed on a desktop browser.  Default false
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setHideDesktop(?bool $hide_desktop): UpdateLandingPageContentRequest
     {
@@ -481,7 +479,7 @@ class UpdateLandingPageContentRequest implements ModelInterface, ArrayAccess, \J
      *
      * @param bool|null $hide_mobile Hide the section when displayed on a mobile browser.  Default false
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setHideMobile(?bool $hide_mobile): UpdateLandingPageContentRequest
     {
@@ -505,7 +503,7 @@ class UpdateLandingPageContentRequest implements ModelInterface, ArrayAccess, \J
      *
      * @param string|null $image_open_new_window image_open_new_window
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setImageOpenNewWindow(?string $image_open_new_window): UpdateLandingPageContentRequest
     {
@@ -529,7 +527,7 @@ class UpdateLandingPageContentRequest implements ModelInterface, ArrayAccess, \J
      *
      * @param int|null $index Index of the content section.  Determines the order of the section in the landing page
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setIndex(?int $index): UpdateLandingPageContentRequest
     {
@@ -553,7 +551,7 @@ class UpdateLandingPageContentRequest implements ModelInterface, ArrayAccess, \J
      *
      * @param string|null $left left property of the HTML section
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setLeft(?string $left): UpdateLandingPageContentRequest
     {
@@ -577,7 +575,7 @@ class UpdateLandingPageContentRequest implements ModelInterface, ArrayAccess, \J
      *
      * @param string|null $link_url URL parameter of a link type section
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setLinkUrl(?string $link_url): UpdateLandingPageContentRequest
     {
@@ -601,7 +599,7 @@ class UpdateLandingPageContentRequest implements ModelInterface, ArrayAccess, \J
      *
      * @param string|null $opacity opacity property of the HTML section
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setOpacity(?string $opacity): UpdateLandingPageContentRequest
     {
@@ -625,7 +623,7 @@ class UpdateLandingPageContentRequest implements ModelInterface, ArrayAccess, \J
      *
      * @param string|null $top top property of the HTML section
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setTop(?string $top): UpdateLandingPageContentRequest
     {
@@ -649,7 +647,7 @@ class UpdateLandingPageContentRequest implements ModelInterface, ArrayAccess, \J
      *
      * @param string $type Type of content section
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setType(string $type): UpdateLandingPageContentRequest
     {
@@ -683,7 +681,7 @@ class UpdateLandingPageContentRequest implements ModelInterface, ArrayAccess, \J
      *
      * @param string|null $value Type of content section
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setValue(?string $value): UpdateLandingPageContentRequest
     {
@@ -707,7 +705,7 @@ class UpdateLandingPageContentRequest implements ModelInterface, ArrayAccess, \J
      *
      * @param string|null $width width property of the HTML section
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setWidth(?string $width): UpdateLandingPageContentRequest
     {
@@ -731,7 +729,7 @@ class UpdateLandingPageContentRequest implements ModelInterface, ArrayAccess, \J
      *
      * @param string|null $z_index z-index property of the HTML section
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setZIndex(?string $z_index): UpdateLandingPageContentRequest
     {
@@ -820,6 +818,7 @@ class UpdateLandingPageContentRequest implements ModelInterface, ArrayAccess, \J
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

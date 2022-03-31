@@ -35,9 +35,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class FormResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -249,7 +247,7 @@ class FormResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param int $id Id of lead
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setId(int $id): FormResponse
     {
@@ -273,7 +271,7 @@ class FormResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $status status
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setStatus(string $status): FormResponse
     {
@@ -307,7 +305,7 @@ class FormResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\Reason[]|null $reasons List of reasons why an operation did not succeed.  Reasons are only present in API responses and should not be submitted
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setReasons(?array $reasons): FormResponse
     {
@@ -396,6 +394,7 @@ class FormResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

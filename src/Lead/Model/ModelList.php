@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class ModelList implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -226,7 +224,7 @@ class ModelList implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $created_at Datetime when the static list was created
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setCreatedAt(string $created_at): ModelList
     {
@@ -250,7 +248,7 @@ class ModelList implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param int $list_id Unique integer id of the static list
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setListId(int $list_id): ModelList
     {
@@ -274,7 +272,7 @@ class ModelList implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $updated_at Datetime when the static list was most recently updated
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setUpdatedAt(string $updated_at): ModelList
     {
@@ -363,6 +361,7 @@ class ModelList implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

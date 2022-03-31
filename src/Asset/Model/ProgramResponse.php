@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class ProgramResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -382,7 +380,7 @@ class ProgramResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $channel Channel of the program
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setChannel(string $channel): ProgramResponse
     {
@@ -406,7 +404,7 @@ class ProgramResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\Costs[] $costs Lists of associated period costs
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setCosts(array $costs): ProgramResponse
     {
@@ -430,7 +428,7 @@ class ProgramResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param \DateTime|null $created_at Datetime the asset was created
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setCreatedAt(?\DateTime $created_at): ProgramResponse
     {
@@ -454,7 +452,7 @@ class ProgramResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $description Description of the asset
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDescription(?string $description): ProgramResponse
     {
@@ -478,7 +476,7 @@ class ProgramResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param \DateTime|null $end_date End date of the program.  Applicable to event, email, and webinar type programs
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setEndDate(?\DateTime $end_date): ProgramResponse
     {
@@ -502,7 +500,7 @@ class ProgramResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFolder(\NecLimDul\MarketoRest\Asset\Model\Folder $folder): ProgramResponse
     {
@@ -526,7 +524,7 @@ class ProgramResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param int|null $id Id of the asset
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setId(?int $id): ProgramResponse
     {
@@ -550,7 +548,7 @@ class ProgramResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $name Name of the asset
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setName(?string $name): ProgramResponse
     {
@@ -574,7 +572,7 @@ class ProgramResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $sfdc_id SFDC id of the program if linked to an SFDC campaign
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setSfdcId(?string $sfdc_id): ProgramResponse
     {
@@ -598,7 +596,7 @@ class ProgramResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $sfdc_name Name of the linked SFDC campaign if applicable
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setSfdcName(?string $sfdc_name): ProgramResponse
     {
@@ -622,7 +620,7 @@ class ProgramResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param \DateTime|null $start_date Start date of program.  Applicable to event, email and webinar type programs
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setStartDate(?\DateTime $start_date): ProgramResponse
     {
@@ -646,7 +644,7 @@ class ProgramResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $status Status of the program.  Only valid for Email and engagement program types.
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setStatus(string $status): ProgramResponse
     {
@@ -680,7 +678,7 @@ class ProgramResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\Tags[] $tags List of associated program tags
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setTags(array $tags): ProgramResponse
     {
@@ -704,7 +702,7 @@ class ProgramResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $type Type of the program
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setType(string $type): ProgramResponse
     {
@@ -738,7 +736,7 @@ class ProgramResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param \DateTime|null $updated_at Datetime the asset was most recently updated
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setUpdatedAt(?\DateTime $updated_at): ProgramResponse
     {
@@ -762,7 +760,7 @@ class ProgramResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $url Url of the asset in the Marketo UI
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setUrl(?string $url): ProgramResponse
     {
@@ -786,7 +784,7 @@ class ProgramResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $workspace Name of the workspace
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setWorkspace(?string $workspace): ProgramResponse
     {
@@ -810,7 +808,7 @@ class ProgramResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param bool $head_start Whether 'Head Start' function is enabled for the program
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setHeadStart(bool $head_start): ProgramResponse
     {
@@ -899,6 +897,7 @@ class ProgramResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

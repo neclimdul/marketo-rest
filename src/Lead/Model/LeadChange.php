@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class LeadChange implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -262,7 +260,7 @@ class LeadChange implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param \DateTime $activity_date Datetime of the activity
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setActivityDate(\DateTime $activity_date): LeadChange
     {
@@ -286,7 +284,7 @@ class LeadChange implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param int $activity_type_id Id of the activity type
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setActivityTypeId(int $activity_type_id): LeadChange
     {
@@ -310,7 +308,7 @@ class LeadChange implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\Attribute[] $attributes List of secondary attributes
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setAttributes(array $attributes): LeadChange
     {
@@ -334,7 +332,7 @@ class LeadChange implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param int|null $campaign_id campaign_id
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setCampaignId(?int $campaign_id): LeadChange
     {
@@ -358,7 +356,7 @@ class LeadChange implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\LeadChangeField[]|null $fields fields
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFields(?array $fields): LeadChange
     {
@@ -382,7 +380,7 @@ class LeadChange implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param int $id Integer id of the activity.  For instances which have been migrated to Activity Service, this field may not be present, and should not be treated as unique.
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setId(int $id): LeadChange
     {
@@ -406,7 +404,7 @@ class LeadChange implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param int $lead_id Id of the lead associated to the activity
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setLeadId(int $lead_id): LeadChange
     {
@@ -430,7 +428,7 @@ class LeadChange implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $marketo_guid Unique id of the activity (128 character string)
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setMarketoGuid(?string $marketo_guid): LeadChange
     {
@@ -519,6 +517,7 @@ class LeadChange implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

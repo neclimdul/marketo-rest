@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class CreateFileRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -238,7 +236,7 @@ class CreateFileRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param string|null $description Description of the asset
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDescription(?string $description): CreateFileRequest
     {
@@ -262,7 +260,7 @@ class CreateFileRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param string $file Multipart file.  Content of the file.
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFile(string $file): CreateFileRequest
     {
@@ -286,7 +284,7 @@ class CreateFileRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFolder(\NecLimDul\MarketoRest\Asset\Model\Folder $folder): CreateFileRequest
     {
@@ -310,7 +308,7 @@ class CreateFileRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param bool|null $insert_only Whether the calls hould fail if there is already an existing file with the same name
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setInsertOnly(?bool $insert_only): CreateFileRequest
     {
@@ -334,7 +332,7 @@ class CreateFileRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param string $name Name of the File
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setName(string $name): CreateFileRequest
     {
@@ -423,6 +421,7 @@ class CreateFileRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

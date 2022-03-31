@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class Program implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -274,7 +272,7 @@ class Program implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param int $id Unique integer id of a program record
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setId(int $id): Program
     {
@@ -298,7 +296,7 @@ class Program implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param bool $acquired_by Whether the lead was acquired by the parent program
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setAcquiredBy(bool $acquired_by): Program
     {
@@ -322,7 +320,7 @@ class Program implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param bool $is_exhausted Whether the lead is currently exhausted in the stream, if applicable
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setIsExhausted(bool $is_exhausted): Program
     {
@@ -346,7 +344,7 @@ class Program implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $membership_date Date the lead first became a member of the program
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setMembershipDate(string $membership_date): Program
     {
@@ -370,7 +368,7 @@ class Program implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $nurture_cadence Cadence of the parent stream if applicable
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setNurtureCadence(?string $nurture_cadence): Program
     {
@@ -394,7 +392,7 @@ class Program implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $progression_status Program status of the lead in the parent program
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setProgressionStatus(string $progression_status): Program
     {
@@ -418,7 +416,7 @@ class Program implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param bool $reached_success Whether the lead is in a success-status in the parent program
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setReachedSuccess(bool $reached_success): Program
     {
@@ -442,7 +440,7 @@ class Program implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $stream Stream that the lead is a member of, if the parent program is an engagement program
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setStream(?string $stream): Program
     {
@@ -466,7 +464,7 @@ class Program implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $updated_at Datetime when the program was most recently updated
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setUpdatedAt(string $updated_at): Program
     {
@@ -555,6 +553,7 @@ class Program implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

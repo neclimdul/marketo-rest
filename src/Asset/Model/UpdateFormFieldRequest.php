@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class UpdateFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -325,7 +323,7 @@ class UpdateFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param int|null $blank_fields Number of blank fields to show when progressive profiling is enabled
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setBlankFields(?int $blank_fields): UpdateFormFieldRequest
     {
@@ -349,7 +347,7 @@ class UpdateFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param string|null $default_value Optional default value for the field
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDefaultValue(?string $default_value): UpdateFormFieldRequest
     {
@@ -373,7 +371,7 @@ class UpdateFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param string|null $field_type Type of field
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFieldType(?string $field_type): UpdateFormFieldRequest
     {
@@ -397,7 +395,7 @@ class UpdateFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param int|null $field_width Width of the input or select element
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFieldWidth(?int $field_width): UpdateFormFieldRequest
     {
@@ -421,7 +419,7 @@ class UpdateFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param bool|null $form_prefill Whether the field should prefill.  Default true
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFormPrefill(?bool $form_prefill): UpdateFormFieldRequest
     {
@@ -445,7 +443,7 @@ class UpdateFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param bool|null $is_sensitive Whether the field is marked as sensitive.  Default false
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setIsSensitive(?bool $is_sensitive): UpdateFormFieldRequest
     {
@@ -469,7 +467,7 @@ class UpdateFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param string|null $hint_text Hint text for the field
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setHintText(?string $hint_text): UpdateFormFieldRequest
     {
@@ -493,7 +491,7 @@ class UpdateFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param bool|null $initially_checked Whether the field should be checked upon loading.  Default false
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setInitiallyChecked(?bool $initially_checked): UpdateFormFieldRequest
     {
@@ -517,7 +515,7 @@ class UpdateFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param string|null $instructions Instructions for the field
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setInstructions(?string $instructions): UpdateFormFieldRequest
     {
@@ -541,7 +539,7 @@ class UpdateFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param string|null $label Label of the field
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setLabel(?string $label): UpdateFormFieldRequest
     {
@@ -565,7 +563,7 @@ class UpdateFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param bool|null $label_to_right Whether the field label should be displayed to the right of the input/select element. Default false
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setLabelToRight(?bool $label_to_right): UpdateFormFieldRequest
     {
@@ -589,7 +587,7 @@ class UpdateFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param int|null $label_width Width of the field label element
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setLabelWidth(?int $label_width): UpdateFormFieldRequest
     {
@@ -613,7 +611,7 @@ class UpdateFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param string|null $mask_input Optional input mask for the field
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setMaskInput(?string $mask_input): UpdateFormFieldRequest
     {
@@ -637,7 +635,7 @@ class UpdateFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param int|null $max_length Maximum length for text type fields
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setMaxLength(?int $max_length): UpdateFormFieldRequest
     {
@@ -661,7 +659,7 @@ class UpdateFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param float|null $max_value Maximum value accepted by the field
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setMaxValue(?float $max_value): UpdateFormFieldRequest
     {
@@ -685,7 +683,7 @@ class UpdateFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param float|null $min_value Minimum value accepted by the field
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setMinValue(?float $min_value): UpdateFormFieldRequest
     {
@@ -709,7 +707,7 @@ class UpdateFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param bool|null $multi_select Whether the field should allow multiple selections. Default false
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setMultiSelect(?bool $multi_select): UpdateFormFieldRequest
     {
@@ -733,7 +731,7 @@ class UpdateFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param bool|null $required Whether the field is required to submit the form.  Default false
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setRequired(?bool $required): UpdateFormFieldRequest
     {
@@ -757,7 +755,7 @@ class UpdateFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param string|null $validation_message Validation message to display on failed validation
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setValidationMessage(?string $validation_message): UpdateFormFieldRequest
     {
@@ -781,7 +779,7 @@ class UpdateFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param string|null $values Array of JSON objects that contain field attributes. Only for select-field types.  Example: values=[{'label':'Select...','value':'','isDefault':true,'selected':true}, {'label':'MR','value':'Mr'}, {'label':'MS','value':'Ms'}, {'label':'MRS','value':'Mrs'}, {'label':'DR','value':'Dr'}, {'label':'PROF','value':'Prof'}]
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setValues(?string $values): UpdateFormFieldRequest
     {
@@ -805,7 +803,7 @@ class UpdateFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param int|null $visible_lines Number of lines to display for the field element
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setVisibleLines(?int $visible_lines): UpdateFormFieldRequest
     {
@@ -894,6 +892,7 @@ class UpdateFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerial
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

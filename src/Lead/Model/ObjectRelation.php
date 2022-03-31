@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class ObjectRelation implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -226,7 +224,7 @@ class ObjectRelation implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $field API Name of link field
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setField(string $field): ObjectRelation
     {
@@ -250,7 +248,7 @@ class ObjectRelation implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\RelatedObject $related_to Object to which the field is linked
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setRelatedTo(\NecLimDul\MarketoRest\Lead\Model\RelatedObject $related_to): ObjectRelation
     {
@@ -274,7 +272,7 @@ class ObjectRelation implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string $type Type of the relationship field
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setType(string $type): ObjectRelation
     {
@@ -363,6 +361,7 @@ class ObjectRelation implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

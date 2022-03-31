@@ -35,9 +35,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class VisitorData implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -224,7 +222,7 @@ class VisitorData implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $page_url Web page that hosts the form.  Must be a fully formed URL
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setPageUrl(?string $page_url): VisitorData
     {
@@ -248,7 +246,7 @@ class VisitorData implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $query_string Web page query string.  Contains one or more ampersand delimited key=value pairs
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setQueryString(?string $query_string): VisitorData
     {
@@ -272,7 +270,7 @@ class VisitorData implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $lead_client_ip_address Client IP address.  IPv4 format.  Used to populate inferred fields on upserted lead record.
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setLeadClientIpAddress(?string $lead_client_ip_address): VisitorData
     {
@@ -296,7 +294,7 @@ class VisitorData implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param string|null $user_agent_string User agent of browser hosting the form
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setUserAgentString(?string $user_agent_string): VisitorData
     {
@@ -385,6 +383,7 @@ class VisitorData implements ModelInterface, ArrayAccess, \JsonSerializable
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

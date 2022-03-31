@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class CreateEmailRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -280,7 +278,7 @@ class CreateEmailRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param string|null $description Description of the asset
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDescription(?string $description): CreateEmailRequest
     {
@@ -304,7 +302,7 @@ class CreateEmailRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFolder(\NecLimDul\MarketoRest\Asset\Model\Folder $folder): CreateEmailRequest
     {
@@ -328,7 +326,7 @@ class CreateEmailRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param string $from_email From-address of the Email
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFromEmail(string $from_email): CreateEmailRequest
     {
@@ -352,7 +350,7 @@ class CreateEmailRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param string $from_name From-name of the Email
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFromName(string $from_name): CreateEmailRequest
     {
@@ -376,7 +374,7 @@ class CreateEmailRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param string $name Name of the email
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setName(string $name): CreateEmailRequest
     {
@@ -400,7 +398,7 @@ class CreateEmailRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param bool|null $operational Whether the email is operational.  Operational emails bypass unsubscribe status.  Defaults to false
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setOperational(?bool $operational): CreateEmailRequest
     {
@@ -424,7 +422,7 @@ class CreateEmailRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param string $reply_email Reply-To address of the Email
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setReplyEmail(string $reply_email): CreateEmailRequest
     {
@@ -448,7 +446,7 @@ class CreateEmailRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param string $subject Subject Line of the Email
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setSubject(string $subject): CreateEmailRequest
     {
@@ -472,7 +470,7 @@ class CreateEmailRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param int $template Id of the parent template
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setTemplate(int $template): CreateEmailRequest
     {
@@ -496,7 +494,7 @@ class CreateEmailRequest implements ModelInterface, ArrayAccess, \JsonSerializab
      *
      * @param string|null $text_only Setting to include text-only version of email when sent
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setTextOnly(?string $text_only): CreateEmailRequest
     {
@@ -585,6 +583,7 @@ class CreateEmailRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

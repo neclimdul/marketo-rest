@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Asset\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Asset
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class CloneEmailRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -229,7 +227,7 @@ class CloneEmailRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param string|null $description Description of the asset
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDescription(?string $description): CloneEmailRequest
     {
@@ -253,7 +251,7 @@ class CloneEmailRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param \NecLimDul\MarketoRest\Asset\Model\Folder $folder JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setFolder(\NecLimDul\MarketoRest\Asset\Model\Folder $folder): CloneEmailRequest
     {
@@ -277,7 +275,7 @@ class CloneEmailRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param string $name Name of the new email asset
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setName(string $name): CloneEmailRequest
     {
@@ -301,7 +299,7 @@ class CloneEmailRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @param bool|null $operational Whether the email is operational.  Operational emails bypass unsubscribe status.  Defaults to false
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setOperational(?bool $operational): CloneEmailRequest
     {
@@ -390,6 +388,7 @@ class CloneEmailRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 

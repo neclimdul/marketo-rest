@@ -34,9 +34,7 @@ use NecLimDul\MarketoRest\Lead\ObjectSerializer;
  * @package  NecLimDul\MarketoRest\Lead
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
- * @implements \ArrayAccess<TKey, TValue>
- * @template TKey int|null
- * @template TValue mixed|null
+ * @implements \ArrayAccess<?string, ?mixed>
  */
 class DeleteCompanyRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -211,7 +209,7 @@ class DeleteCompanyRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param string|null $delete_by Field to delete company records by.  Key may be \"dedupeFields\" or \"idField\"
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setDeleteBy(?string $delete_by): DeleteCompanyRequest
     {
@@ -235,7 +233,7 @@ class DeleteCompanyRequest implements ModelInterface, ArrayAccess, \JsonSerializ
      *
      * @param \NecLimDul\MarketoRest\Lead\Model\Company[]|null $input List of company objects. Companies in the list should only contain a member matching the dedupeBy value. Each 'Company' object contains a 'searchableField' for lookup purposes which can be retrieved using the Describe Companies endpoint
      *
-     * @return self<TKey, TValue>
+     * @return self
      */
     public function setInput(?array $input): DeleteCompanyRequest
     {
@@ -324,6 +322,7 @@ class DeleteCompanyRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
+        /** @psalm-suppress PossiblyNullArrayOffset */
         unset($this->container[$offset]);
     }
 
