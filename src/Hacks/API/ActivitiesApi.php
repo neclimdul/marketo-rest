@@ -11,6 +11,8 @@ class ActivitiesApi extends LeadsActivitiesApi
 {
     /**
      * {@inheritDoc}
+     *
+     * @phpstan-return \NecLimDul\MarketoRest\Hacks\Model\ResponseOfActivity
      */
     public function getLeadActivitiesUsingGET($next_page_token, $activity_type_ids, $asset_ids = null, $list_id = null, $lead_ids = null, $batch_size = null)
     {
