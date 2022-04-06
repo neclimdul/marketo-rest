@@ -216,7 +216,7 @@ class VisitorData implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets page_url
      *
-     * @return string
+     * @return string|null
      */
     public function getPageUrl()
     {
@@ -240,7 +240,7 @@ class VisitorData implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets query_string
      *
-     * @return string
+     * @return string|null
      */
     public function getQueryString()
     {
@@ -264,7 +264,7 @@ class VisitorData implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets lead_client_ip_address
      *
-     * @return string
+     * @return string|null
      */
     public function getLeadClientIpAddress()
     {
@@ -288,7 +288,7 @@ class VisitorData implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets user_agent_string
      *
-     * @return string
+     * @return string|null
      */
     public function getUserAgentString()
     {

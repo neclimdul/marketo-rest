@@ -262,7 +262,7 @@ class {{classname}} {{#parentSchema}}extends {{{parent}}} {{/parentSchema}}{{^pa
     /**
      * Gets {{name}}
      *
-     * @return {{datatype}}
+     * @return {{datatype}}{{^required}}|null{{/required}}
      */
     public function {{getter}}()
     {

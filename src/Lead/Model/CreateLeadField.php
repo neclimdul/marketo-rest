@@ -336,7 +336,7 @@ class CreateLeadField implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
     public function getDescription()
     {
@@ -394,7 +394,7 @@ class CreateLeadField implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets is_hidden
      *
-     * @return bool
+     * @return bool|null
      */
     public function getIsHidden()
     {
@@ -418,7 +418,7 @@ class CreateLeadField implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets is_html_encoding_in_email
      *
-     * @return bool
+     * @return bool|null
      */
     public function getIsHtmlEncodingInEmail()
     {
@@ -442,7 +442,7 @@ class CreateLeadField implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets is_sensitive
      *
-     * @return bool
+     * @return bool|null
      */
     public function getIsSensitive()
     {

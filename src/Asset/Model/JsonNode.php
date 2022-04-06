@@ -356,7 +356,7 @@ class JsonNode implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets array
      *
-     * @return bool
+     * @return bool|null
      */
     public function getArray()
     {
@@ -380,7 +380,7 @@ class JsonNode implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets big_decimal
      *
-     * @return bool
+     * @return bool|null
      */
     public function getBigDecimal()
     {
@@ -404,7 +404,7 @@ class JsonNode implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets big_integer
      *
-     * @return bool
+     * @return bool|null
      */
     public function getBigInteger()
     {
@@ -428,7 +428,7 @@ class JsonNode implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets binary
      *
-     * @return bool
+     * @return bool|null
      */
     public function getBinary()
     {
@@ -452,7 +452,7 @@ class JsonNode implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets boolean
      *
-     * @return bool
+     * @return bool|null
      */
     public function getBoolean()
     {
@@ -476,7 +476,7 @@ class JsonNode implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets container_node
      *
-     * @return bool
+     * @return bool|null
      */
     public function getContainerNode()
     {
@@ -500,7 +500,7 @@ class JsonNode implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets double
      *
-     * @return bool
+     * @return bool|null
      */
     public function getDouble()
     {
@@ -524,7 +524,7 @@ class JsonNode implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets float
      *
-     * @return bool
+     * @return bool|null
      */
     public function getFloat()
     {
@@ -548,7 +548,7 @@ class JsonNode implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets floating_point_number
      *
-     * @return bool
+     * @return bool|null
      */
     public function getFloatingPointNumber()
     {
@@ -572,7 +572,7 @@ class JsonNode implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets int
      *
-     * @return bool
+     * @return bool|null
      */
     public function getInt()
     {
@@ -596,7 +596,7 @@ class JsonNode implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets integral_number
      *
-     * @return bool
+     * @return bool|null
      */
     public function getIntegralNumber()
     {
@@ -620,7 +620,7 @@ class JsonNode implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets long
      *
-     * @return bool
+     * @return bool|null
      */
     public function getLong()
     {
@@ -644,7 +644,7 @@ class JsonNode implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets missing_node
      *
-     * @return bool
+     * @return bool|null
      */
     public function getMissingNode()
     {
@@ -668,7 +668,7 @@ class JsonNode implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets node_type
      *
-     * @return string
+     * @return string|null
      */
     public function getNodeType()
     {
@@ -702,7 +702,7 @@ class JsonNode implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets null
      *
-     * @return bool
+     * @return bool|null
      */
     public function getNull()
     {
@@ -726,7 +726,7 @@ class JsonNode implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets number
      *
-     * @return bool
+     * @return bool|null
      */
     public function getNumber()
     {
@@ -750,7 +750,7 @@ class JsonNode implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets object
      *
-     * @return bool
+     * @return bool|null
      */
     public function getObject()
     {
@@ -774,7 +774,7 @@ class JsonNode implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets pojo
      *
-     * @return bool
+     * @return bool|null
      */
     public function getPojo()
     {
@@ -798,7 +798,7 @@ class JsonNode implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets short
      *
-     * @return bool
+     * @return bool|null
      */
     public function getShort()
     {
@@ -822,7 +822,7 @@ class JsonNode implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets textual
      *
-     * @return bool
+     * @return bool|null
      */
     public function getTextual()
     {
@@ -846,7 +846,7 @@ class JsonNode implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets value_node
      *
-     * @return bool
+     * @return bool|null
      */
     public function getValueNode()
     {

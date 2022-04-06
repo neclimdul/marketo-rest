@@ -282,7 +282,7 @@ class EmailTemplateResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets created_at
      *
-     * @return \DateTime
+     * @return \DateTime|null
      */
     public function getCreatedAt()
     {
@@ -306,7 +306,7 @@ class EmailTemplateResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
     public function getDescription()
     {
@@ -354,7 +354,7 @@ class EmailTemplateResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets id
      *
-     * @return int
+     * @return int|null
      */
     public function getId()
     {
@@ -378,7 +378,7 @@ class EmailTemplateResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets name
      *
-     * @return string
+     * @return string|null
      */
     public function getName()
     {
@@ -426,7 +426,7 @@ class EmailTemplateResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets updated_at
      *
-     * @return \DateTime
+     * @return \DateTime|null
      */
     public function getUpdatedAt()
     {
@@ -450,7 +450,7 @@ class EmailTemplateResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets url
      *
-     * @return string
+     * @return string|null
      */
     public function getUrl()
     {
@@ -474,7 +474,7 @@ class EmailTemplateResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets version
      *
-     * @return int
+     * @return int|null
      */
     public function getVersion()
     {
@@ -508,7 +508,7 @@ class EmailTemplateResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets workspace
      *
-     * @return string
+     * @return string|null
      */
     public function getWorkspace()
     {

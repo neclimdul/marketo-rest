@@ -203,7 +203,7 @@ class InputStreamContent implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets content_type
      *
-     * @return string
+     * @return string|null
      */
     public function getContentType()
     {
@@ -227,7 +227,7 @@ class InputStreamContent implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets input_stream
      *
-     * @return \NecLimDul\MarketoRest\Lead\Model\InputStream
+     * @return \NecLimDul\MarketoRest\Lead\Model\InputStream|null
      */
     public function getInputStream()
     {

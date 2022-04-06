@@ -267,7 +267,7 @@ class ImportLeadResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets import_id
      *
-     * @return string
+     * @return string|null
      */
     public function getImportId()
     {
@@ -291,7 +291,7 @@ class ImportLeadResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets message
      *
-     * @return string
+     * @return string|null
      */
     public function getMessage()
     {
@@ -339,7 +339,7 @@ class ImportLeadResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets num_of_rows_failed
      *
-     * @return int
+     * @return int|null
      */
     public function getNumOfRowsFailed()
     {
@@ -363,7 +363,7 @@ class ImportLeadResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets num_of_rows_with_warning
      *
-     * @return int
+     * @return int|null
      */
     public function getNumOfRowsWithWarning()
     {

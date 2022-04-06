@@ -257,7 +257,7 @@ class UpdateFormMetaDataRequest implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Gets custom_css
      *
-     * @return string
+     * @return string|null
      */
     public function getCustomCss()
     {
@@ -281,7 +281,7 @@ class UpdateFormMetaDataRequest implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
     public function getDescription()
     {
@@ -305,7 +305,7 @@ class UpdateFormMetaDataRequest implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Gets font_family
      *
-     * @return string
+     * @return string|null
      */
     public function getFontFamily()
     {
@@ -329,7 +329,7 @@ class UpdateFormMetaDataRequest implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Gets font_size
      *
-     * @return string
+     * @return string|null
      */
     public function getFontSize()
     {
@@ -353,7 +353,7 @@ class UpdateFormMetaDataRequest implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Gets known_visitor
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\FormKnownVisitorDTO
+     * @return \NecLimDul\MarketoRest\Asset\Model\FormKnownVisitorDTO|null
      */
     public function getKnownVisitor()
     {
@@ -377,7 +377,7 @@ class UpdateFormMetaDataRequest implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Gets label_position
      *
-     * @return string
+     * @return string|null
      */
     public function getLabelPosition()
     {
@@ -401,7 +401,7 @@ class UpdateFormMetaDataRequest implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Gets language
      *
-     * @return string
+     * @return string|null
      */
     public function getLanguage()
     {
@@ -425,7 +425,7 @@ class UpdateFormMetaDataRequest implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Gets locale
      *
-     * @return string
+     * @return string|null
      */
     public function getLocale()
     {
@@ -449,7 +449,7 @@ class UpdateFormMetaDataRequest implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Gets name
      *
-     * @return string
+     * @return string|null
      */
     public function getName()
     {
@@ -473,7 +473,7 @@ class UpdateFormMetaDataRequest implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Gets progressive_profiling
      *
-     * @return bool
+     * @return bool|null
      */
     public function getProgressiveProfiling()
     {
@@ -497,7 +497,7 @@ class UpdateFormMetaDataRequest implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Gets theme
      *
-     * @return string
+     * @return string|null
      */
     public function getTheme()
     {

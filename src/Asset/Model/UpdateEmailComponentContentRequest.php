@@ -296,7 +296,7 @@ class UpdateEmailComponentContentRequest implements ModelInterface, ArrayAccess,
     /**
      * Gets alt_text
      *
-     * @return string
+     * @return string|null
      */
     public function getAltText()
     {
@@ -320,7 +320,7 @@ class UpdateEmailComponentContentRequest implements ModelInterface, ArrayAccess,
     /**
      * Gets external_url
      *
-     * @return string
+     * @return string|null
      */
     public function getExternalUrl()
     {
@@ -344,7 +344,7 @@ class UpdateEmailComponentContentRequest implements ModelInterface, ArrayAccess,
     /**
      * Gets height
      *
-     * @return int
+     * @return int|null
      */
     public function getHeight()
     {
@@ -368,7 +368,7 @@ class UpdateEmailComponentContentRequest implements ModelInterface, ArrayAccess,
     /**
      * Gets image
      *
-     * @return string
+     * @return string|null
      */
     public function getImage()
     {
@@ -392,7 +392,7 @@ class UpdateEmailComponentContentRequest implements ModelInterface, ArrayAccess,
     /**
      * Gets link_url
      *
-     * @return string
+     * @return string|null
      */
     public function getLinkUrl()
     {
@@ -416,7 +416,7 @@ class UpdateEmailComponentContentRequest implements ModelInterface, ArrayAccess,
     /**
      * Gets over_write
      *
-     * @return bool
+     * @return bool|null
      */
     public function getOverWrite()
     {
@@ -440,7 +440,7 @@ class UpdateEmailComponentContentRequest implements ModelInterface, ArrayAccess,
     /**
      * Gets style
      *
-     * @return string
+     * @return string|null
      */
     public function getStyle()
     {
@@ -464,7 +464,7 @@ class UpdateEmailComponentContentRequest implements ModelInterface, ArrayAccess,
     /**
      * Gets text_value
      *
-     * @return string
+     * @return string|null
      */
     public function getTextValue()
     {
@@ -546,7 +546,7 @@ class UpdateEmailComponentContentRequest implements ModelInterface, ArrayAccess,
     /**
      * Gets video_url
      *
-     * @return string
+     * @return string|null
      */
     public function getVideoUrl()
     {
@@ -570,7 +570,7 @@ class UpdateEmailComponentContentRequest implements ModelInterface, ArrayAccess,
     /**
      * Gets width
      *
-     * @return int
+     * @return int|null
      */
     public function getWidth()
     {

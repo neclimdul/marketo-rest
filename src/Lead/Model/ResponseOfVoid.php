@@ -263,7 +263,7 @@ class ResponseOfVoid implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets more_result
      *
-     * @return bool
+     * @return bool|null
      */
     public function getMoreResult()
     {
@@ -287,7 +287,7 @@ class ResponseOfVoid implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets next_page_token
      *
-     * @return string
+     * @return string|null
      */
     public function getNextPageToken()
     {

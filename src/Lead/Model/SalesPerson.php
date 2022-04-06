@@ -248,7 +248,7 @@ class SalesPerson implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets id
      *
-     * @return int
+     * @return int|null
      */
     public function getId()
     {
@@ -272,7 +272,7 @@ class SalesPerson implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets reasons
      *
-     * @return \NecLimDul\MarketoRest\Lead\Model\Reason[]
+     * @return \NecLimDul\MarketoRest\Lead\Model\Reason[]|null
      */
     public function getReasons()
     {
@@ -296,7 +296,7 @@ class SalesPerson implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets seq
      *
-     * @return int
+     * @return int|null
      */
     public function getSeq()
     {
@@ -320,7 +320,7 @@ class SalesPerson implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets status
      *
-     * @return string
+     * @return string|null
      */
     public function getStatus()
     {

@@ -282,7 +282,7 @@ class ImportCustomObjectResponse implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Gets import_time
      *
-     * @return string
+     * @return string|null
      */
     public function getImportTime()
     {
@@ -306,7 +306,7 @@ class ImportCustomObjectResponse implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Gets message
      *
-     * @return string
+     * @return string|null
      */
     public function getMessage()
     {
@@ -330,7 +330,7 @@ class ImportCustomObjectResponse implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Gets num_of_objects_processed
      *
-     * @return int
+     * @return int|null
      */
     public function getNumOfObjectsProcessed()
     {
@@ -354,7 +354,7 @@ class ImportCustomObjectResponse implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Gets num_of_rows_failed
      *
-     * @return int
+     * @return int|null
      */
     public function getNumOfRowsFailed()
     {
@@ -378,7 +378,7 @@ class ImportCustomObjectResponse implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Gets num_of_rows_with_warning
      *
-     * @return int
+     * @return int|null
      */
     public function getNumOfRowsWithWarning()
     {

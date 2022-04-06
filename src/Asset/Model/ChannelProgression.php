@@ -227,7 +227,7 @@ class ChannelProgression implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
     public function getDescription()
     {
@@ -251,7 +251,7 @@ class ChannelProgression implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets hidden
      *
-     * @return bool
+     * @return bool|null
      */
     public function getHidden()
     {
@@ -275,7 +275,7 @@ class ChannelProgression implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets name
      *
-     * @return string
+     * @return string|null
      */
     public function getName()
     {
@@ -299,7 +299,7 @@ class ChannelProgression implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets type
      *
-     * @return string
+     * @return string|null
      */
     public function getType()
     {
@@ -323,7 +323,7 @@ class ChannelProgression implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets step
      *
-     * @return int
+     * @return int|null
      */
     public function getStep()
     {
@@ -347,7 +347,7 @@ class ChannelProgression implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets success
      *
-     * @return bool
+     * @return bool|null
      */
     public function getSuccess()
     {

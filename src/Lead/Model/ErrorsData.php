@@ -236,7 +236,7 @@ class ErrorsData implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets errors
      *
-     * @return \NecLimDul\MarketoRest\Lead\Model\ErrorCount[]
+     * @return \NecLimDul\MarketoRest\Lead\Model\ErrorCount[]|null
      */
     public function getErrors()
     {
@@ -260,7 +260,7 @@ class ErrorsData implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets total
      *
-     * @return int
+     * @return int|null
      */
     public function getTotal()
     {

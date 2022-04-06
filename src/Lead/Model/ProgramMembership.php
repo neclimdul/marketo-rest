@@ -239,7 +239,7 @@ class ProgramMembership implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets acquired_by
      *
-     * @return bool
+     * @return bool|null
      */
     public function getAcquiredBy()
     {
@@ -263,7 +263,7 @@ class ProgramMembership implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets is_exhausted
      *
-     * @return bool
+     * @return bool|null
      */
     public function getIsExhausted()
     {
@@ -311,7 +311,7 @@ class ProgramMembership implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets nurture_cadence
      *
-     * @return string
+     * @return string|null
      */
     public function getNurtureCadence()
     {
@@ -359,7 +359,7 @@ class ProgramMembership implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets reached_success
      *
-     * @return bool
+     * @return bool|null
      */
     public function getReachedSuccess()
     {
@@ -383,7 +383,7 @@ class ProgramMembership implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets stream
      *
-     * @return string
+     * @return string|null
      */
     public function getStream()
     {

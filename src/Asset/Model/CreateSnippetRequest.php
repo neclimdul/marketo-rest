@@ -215,7 +215,7 @@ class CreateSnippetRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
     public function getDescription()
     {

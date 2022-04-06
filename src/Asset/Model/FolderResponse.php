@@ -354,7 +354,7 @@ class FolderResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets access_zone_id
      *
-     * @return int
+     * @return int|null
      */
     public function getAccessZoneId()
     {
@@ -402,7 +402,7 @@ class FolderResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
     public function getDescription()
     {
@@ -532,7 +532,7 @@ class FolderResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets is_system
      *
-     * @return bool
+     * @return bool|null
      */
     public function getIsSystem()
     {
@@ -676,7 +676,7 @@ class FolderResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets workspace
      *
-     * @return string
+     * @return string|null
      */
     public function getWorkspace()
     {

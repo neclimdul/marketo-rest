@@ -308,7 +308,7 @@ class LeadAttribute implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets length
      *
-     * @return int
+     * @return int|null
      */
     public function getLength()
     {
@@ -332,7 +332,7 @@ class LeadAttribute implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets rest
      *
-     * @return \NecLimDul\MarketoRest\Lead\Model\LeadMapAttribute
+     * @return \NecLimDul\MarketoRest\Lead\Model\LeadMapAttribute|null
      */
     public function getRest()
     {
@@ -356,7 +356,7 @@ class LeadAttribute implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets soap
      *
-     * @return \NecLimDul\MarketoRest\Lead\Model\LeadMapAttribute
+     * @return \NecLimDul\MarketoRest\Lead\Model\LeadMapAttribute|null
      */
     public function getSoap()
     {

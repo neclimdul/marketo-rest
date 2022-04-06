@@ -224,7 +224,7 @@ class TagResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets allowable_values
      *
-     * @return string
+     * @return string|null
      */
     public function getAllowableValues()
     {

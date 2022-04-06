@@ -263,7 +263,7 @@ class ProgramMemberData implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets field_api_name2
      *
-     * @return string
+     * @return string|null
      */
     public function getFieldApiName2()
     {

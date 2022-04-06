@@ -621,7 +621,7 @@ class ObjectMetaData implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets state
      *
-     * @return string
+     * @return string|null
      */
     public function getState()
     {

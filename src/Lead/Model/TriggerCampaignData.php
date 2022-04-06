@@ -230,7 +230,7 @@ class TriggerCampaignData implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets tokens
      *
-     * @return \NecLimDul\MarketoRest\Lead\Model\Token[]
+     * @return \NecLimDul\MarketoRest\Lead\Model\Token[]|null
      */
     public function getTokens()
     {

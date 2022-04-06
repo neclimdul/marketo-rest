@@ -242,7 +242,7 @@ class ThankYouPageRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets default
      *
-     * @return bool
+     * @return bool|null
      */
     public function getDefault()
     {

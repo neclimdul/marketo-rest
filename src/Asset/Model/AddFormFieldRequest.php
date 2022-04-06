@@ -320,7 +320,7 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets blank_fields
      *
-     * @return int
+     * @return int|null
      */
     public function getBlankFields()
     {
@@ -344,7 +344,7 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets default_value
      *
-     * @return string
+     * @return string|null
      */
     public function getDefaultValue()
     {
@@ -392,7 +392,7 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets field_width
      *
-     * @return int
+     * @return int|null
      */
     public function getFieldWidth()
     {
@@ -416,7 +416,7 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets form_prefill
      *
-     * @return bool
+     * @return bool|null
      */
     public function getFormPrefill()
     {
@@ -440,7 +440,7 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets is_sensitive
      *
-     * @return bool
+     * @return bool|null
      */
     public function getIsSensitive()
     {
@@ -464,7 +464,7 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets hint_text
      *
-     * @return string
+     * @return string|null
      */
     public function getHintText()
     {
@@ -488,7 +488,7 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets initially_checked
      *
-     * @return bool
+     * @return bool|null
      */
     public function getInitiallyChecked()
     {
@@ -512,7 +512,7 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets instructions
      *
-     * @return string
+     * @return string|null
      */
     public function getInstructions()
     {
@@ -536,7 +536,7 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets label
      *
-     * @return string
+     * @return string|null
      */
     public function getLabel()
     {
@@ -560,7 +560,7 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets label_to_right
      *
-     * @return bool
+     * @return bool|null
      */
     public function getLabelToRight()
     {
@@ -584,7 +584,7 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets label_width
      *
-     * @return int
+     * @return int|null
      */
     public function getLabelWidth()
     {
@@ -608,7 +608,7 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets mask_input
      *
-     * @return string
+     * @return string|null
      */
     public function getMaskInput()
     {
@@ -632,7 +632,7 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets max_length
      *
-     * @return int
+     * @return int|null
      */
     public function getMaxLength()
     {
@@ -656,7 +656,7 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets max_value
      *
-     * @return float
+     * @return float|null
      */
     public function getMaxValue()
     {
@@ -680,7 +680,7 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets min_value
      *
-     * @return float
+     * @return float|null
      */
     public function getMinValue()
     {
@@ -704,7 +704,7 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets multi_select
      *
-     * @return bool
+     * @return bool|null
      */
     public function getMultiSelect()
     {
@@ -728,7 +728,7 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets required
      *
-     * @return bool
+     * @return bool|null
      */
     public function getRequired()
     {
@@ -752,7 +752,7 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets validation_message
      *
-     * @return string
+     * @return string|null
      */
     public function getValidationMessage()
     {
@@ -776,7 +776,7 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets values
      *
-     * @return string
+     * @return string|null
      */
     public function getValues()
     {
@@ -800,7 +800,7 @@ class AddFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets visible_lines
      *
-     * @return int
+     * @return int|null
      */
     public function getVisibleLines()
     {

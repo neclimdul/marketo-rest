@@ -326,7 +326,7 @@ class LeadChange implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets campaign_id
      *
-     * @return int
+     * @return int|null
      */
     public function getCampaignId()
     {
@@ -350,7 +350,7 @@ class LeadChange implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets fields
      *
-     * @return \NecLimDul\MarketoRest\Lead\Model\LeadChangeField[]
+     * @return \NecLimDul\MarketoRest\Lead\Model\LeadChangeField[]|null
      */
     public function getFields()
     {
@@ -422,7 +422,7 @@ class LeadChange implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets marketo_guid
      *
-     * @return string
+     * @return string|null
      */
     public function getMarketoGuid()
     {

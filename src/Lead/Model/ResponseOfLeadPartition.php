@@ -272,7 +272,7 @@ class ResponseOfLeadPartition implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets more_result
      *
-     * @return bool
+     * @return bool|null
      */
     public function getMoreResult()
     {
@@ -296,7 +296,7 @@ class ResponseOfLeadPartition implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets next_page_token
      *
-     * @return string
+     * @return string|null
      */
     public function getNextPageToken()
     {

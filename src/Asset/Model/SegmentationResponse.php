@@ -251,7 +251,7 @@ class SegmentationResponse implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets created_at
      *
-     * @return \DateTime
+     * @return \DateTime|null
      */
     public function getCreatedAt()
     {
@@ -275,7 +275,7 @@ class SegmentationResponse implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
     public function getDescription()
     {
@@ -323,7 +323,7 @@ class SegmentationResponse implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets id
      *
-     * @return int
+     * @return int|null
      */
     public function getId()
     {
@@ -347,7 +347,7 @@ class SegmentationResponse implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets name
      *
-     * @return string
+     * @return string|null
      */
     public function getName()
     {
@@ -395,7 +395,7 @@ class SegmentationResponse implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets updated_at
      *
-     * @return \DateTime
+     * @return \DateTime|null
      */
     public function getUpdatedAt()
     {
@@ -419,7 +419,7 @@ class SegmentationResponse implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets url
      *
-     * @return string
+     * @return string|null
      */
     public function getUrl()
     {
@@ -443,7 +443,7 @@ class SegmentationResponse implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets workspace
      *
-     * @return string
+     * @return string|null
      */
     public function getWorkspace()
     {

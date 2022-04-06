@@ -215,7 +215,7 @@ class CreateSmartCampaignRequest implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
     public function getDescription()
     {

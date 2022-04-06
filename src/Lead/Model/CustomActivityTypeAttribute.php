@@ -294,7 +294,7 @@ class CustomActivityTypeAttribute implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Gets data_type
      *
-     * @return string
+     * @return string|null
      */
     public function getDataType()
     {
@@ -328,7 +328,7 @@ class CustomActivityTypeAttribute implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
     public function getDescription()
     {
@@ -352,7 +352,7 @@ class CustomActivityTypeAttribute implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Gets is_primary
      *
-     * @return bool
+     * @return bool|null
      */
     public function getIsPrimary()
     {

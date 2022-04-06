@@ -203,7 +203,7 @@ class UpdateEmailTemplateMetaDataRequest implements ModelInterface, ArrayAccess,
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
     public function getDescription()
     {
@@ -227,7 +227,7 @@ class UpdateEmailTemplateMetaDataRequest implements ModelInterface, ArrayAccess,
     /**
      * Gets name
      *
-     * @return string
+     * @return string|null
      */
     public function getName()
     {

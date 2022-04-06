@@ -234,7 +234,7 @@ class DeleteTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets folder_type
      *
-     * @return string
+     * @return string|null
      */
     public function getFolderType()
     {
@@ -268,7 +268,7 @@ class DeleteTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets name
      *
-     * @return string
+     * @return string|null
      */
     public function getName()
     {
@@ -292,7 +292,7 @@ class DeleteTokenRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets type
      *
-     * @return string
+     * @return string|null
      */
     public function getType()
     {

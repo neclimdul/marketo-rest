@@ -215,7 +215,7 @@ class InputStreamRangeContent implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets content_type
      *
-     * @return string
+     * @return string|null
      */
     public function getContentType()
     {
@@ -239,7 +239,7 @@ class InputStreamRangeContent implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets file_range
      *
-     * @return \NecLimDul\MarketoRest\Lead\Model\FileRange
+     * @return \NecLimDul\MarketoRest\Lead\Model\FileRange|null
      */
     public function getFileRange()
     {
@@ -263,7 +263,7 @@ class InputStreamRangeContent implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets input_stream
      *
-     * @return \NecLimDul\MarketoRest\Lead\Model\InputStream
+     * @return \NecLimDul\MarketoRest\Lead\Model\InputStream|null
      */
     public function getInputStream()
     {
@@ -287,7 +287,7 @@ class InputStreamRangeContent implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets length
      *
-     * @return int
+     * @return int|null
      */
     public function getLength()
     {

@@ -311,7 +311,7 @@ class LandingPageResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets url
      *
-     * @return string
+     * @return string|null
      */
     public function getUrl()
     {
@@ -335,7 +335,7 @@ class LandingPageResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets computed_url
      *
-     * @return string
+     * @return string|null
      */
     public function getComputedUrl()
     {
@@ -359,7 +359,7 @@ class LandingPageResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets created_at
      *
-     * @return \DateTime
+     * @return \DateTime|null
      */
     public function getCreatedAt()
     {
@@ -407,7 +407,7 @@ class LandingPageResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
     public function getDescription()
     {
@@ -455,7 +455,7 @@ class LandingPageResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets folder
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\Folder
+     * @return \NecLimDul\MarketoRest\Asset\Model\Folder|null
      */
     public function getFolder()
     {
@@ -479,7 +479,7 @@ class LandingPageResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets form_prefill
      *
-     * @return bool
+     * @return bool|null
      */
     public function getFormPrefill()
     {
@@ -503,7 +503,7 @@ class LandingPageResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets id
      *
-     * @return int
+     * @return int|null
      */
     public function getId()
     {
@@ -527,7 +527,7 @@ class LandingPageResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets keywords
      *
-     * @return string
+     * @return string|null
      */
     public function getKeywords()
     {
@@ -551,7 +551,7 @@ class LandingPageResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets mobile_enabled
      *
-     * @return bool
+     * @return bool|null
      */
     public function getMobileEnabled()
     {
@@ -575,7 +575,7 @@ class LandingPageResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets name
      *
-     * @return string
+     * @return string|null
      */
     public function getName()
     {
@@ -623,7 +623,7 @@ class LandingPageResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets status
      *
-     * @return string
+     * @return string|null
      */
     public function getStatus()
     {
@@ -647,7 +647,7 @@ class LandingPageResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets template
      *
-     * @return int
+     * @return int|null
      */
     public function getTemplate()
     {
@@ -695,7 +695,7 @@ class LandingPageResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets updated_at
      *
-     * @return \DateTime
+     * @return \DateTime|null
      */
     public function getUpdatedAt()
     {
@@ -719,7 +719,7 @@ class LandingPageResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets workspace
      *
-     * @return string
+     * @return string|null
      */
     public function getWorkspace()
     {

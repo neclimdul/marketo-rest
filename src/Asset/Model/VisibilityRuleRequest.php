@@ -299,7 +299,7 @@ class VisibilityRuleRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets alt_label
      *
-     * @return string
+     * @return string|null
      */
     public function getAltLabel()
     {
@@ -357,7 +357,7 @@ class VisibilityRuleRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets pick_list_values
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\PickListDTO[]
+     * @return \NecLimDul\MarketoRest\Asset\Model\PickListDTO[]|null
      */
     public function getPickListValues()
     {

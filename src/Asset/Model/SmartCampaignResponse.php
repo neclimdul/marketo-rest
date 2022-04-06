@@ -891,7 +891,7 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets parent_program_id
      *
-     * @return int
+     * @return int|null
      */
     public function getParentProgramId()
     {
@@ -1011,7 +1011,7 @@ class SmartCampaignResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets computed_url
      *
-     * @return string
+     * @return string|null
      */
     public function getComputedUrl()
     {

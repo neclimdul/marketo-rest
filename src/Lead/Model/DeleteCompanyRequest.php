@@ -203,7 +203,7 @@ class DeleteCompanyRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets delete_by
      *
-     * @return string
+     * @return string|null
      */
     public function getDeleteBy()
     {
@@ -227,7 +227,7 @@ class DeleteCompanyRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets input
      *
-     * @return \NecLimDul\MarketoRest\Lead\Model\Company[]
+     * @return \NecLimDul\MarketoRest\Lead\Model\Company[]|null
      */
     public function getInput()
     {

@@ -257,7 +257,7 @@ class UpdateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets custom_head_html
      *
-     * @return string
+     * @return string|null
      */
     public function getCustomHeadHtml()
     {
@@ -281,7 +281,7 @@ class UpdateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
     public function getDescription()
     {
@@ -305,7 +305,7 @@ class UpdateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets facebook_og_tags
      *
-     * @return string
+     * @return string|null
      */
     public function getFacebookOgTags()
     {
@@ -329,7 +329,7 @@ class UpdateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets keywords
      *
-     * @return string
+     * @return string|null
      */
     public function getKeywords()
     {
@@ -353,7 +353,7 @@ class UpdateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets meta_tags_description
      *
-     * @return string
+     * @return string|null
      */
     public function getMetaTagsDescription()
     {
@@ -377,7 +377,7 @@ class UpdateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets mobile_enabled
      *
-     * @return bool
+     * @return bool|null
      */
     public function getMobileEnabled()
     {
@@ -401,7 +401,7 @@ class UpdateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets name
      *
-     * @return string
+     * @return string|null
      */
     public function getName()
     {
@@ -425,7 +425,7 @@ class UpdateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets robots
      *
-     * @return string
+     * @return string|null
      */
     public function getRobots()
     {
@@ -449,7 +449,7 @@ class UpdateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets style_over_ride
      *
-     * @return string
+     * @return string|null
      */
     public function getStyleOverRide()
     {
@@ -473,7 +473,7 @@ class UpdateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets title
      *
-     * @return string
+     * @return string|null
      */
     public function getTitle()
     {
@@ -497,7 +497,7 @@ class UpdateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets url_page_name
      *
-     * @return string
+     * @return string|null
      */
     public function getUrlPageName()
     {

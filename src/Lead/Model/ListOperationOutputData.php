@@ -236,7 +236,7 @@ class ListOperationOutputData implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets reasons
      *
-     * @return \NecLimDul\MarketoRest\Lead\Model\Reason[]
+     * @return \NecLimDul\MarketoRest\Lead\Model\Reason[]|null
      */
     public function getReasons()
     {
@@ -260,7 +260,7 @@ class ListOperationOutputData implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets status
      *
-     * @return string
+     * @return string|null
      */
     public function getStatus()
     {

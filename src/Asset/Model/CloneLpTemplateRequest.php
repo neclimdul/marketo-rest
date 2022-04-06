@@ -215,7 +215,7 @@ class CloneLpTemplateRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
     public function getDescription()
     {

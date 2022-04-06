@@ -248,7 +248,7 @@ class UpdateFieldPosition implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets field_list
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\UpdateFieldPosition[]
+     * @return \NecLimDul\MarketoRest\Asset\Model\UpdateFieldPosition[]|null
      */
     public function getFieldList()
     {

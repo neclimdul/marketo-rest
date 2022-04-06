@@ -221,7 +221,7 @@ class ResponseOfLandingPageDomains implements ModelInterface, ArrayAccess, \Json
     /**
      * Gets errors
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\Error[]
+     * @return \NecLimDul\MarketoRest\Asset\Model\Error[]|null
      */
     public function getErrors()
     {
@@ -245,7 +245,7 @@ class ResponseOfLandingPageDomains implements ModelInterface, ArrayAccess, \Json
     /**
      * Gets request_id
      *
-     * @return string
+     * @return string|null
      */
     public function getRequestId()
     {
@@ -269,7 +269,7 @@ class ResponseOfLandingPageDomains implements ModelInterface, ArrayAccess, \Json
     /**
      * Gets result
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\LandingPageDomain[]
+     * @return \NecLimDul\MarketoRest\Asset\Model\LandingPageDomain[]|null
      */
     public function getResult()
     {
@@ -293,7 +293,7 @@ class ResponseOfLandingPageDomains implements ModelInterface, ArrayAccess, \Json
     /**
      * Gets success
      *
-     * @return bool
+     * @return bool|null
      */
     public function getSuccess()
     {
@@ -317,7 +317,7 @@ class ResponseOfLandingPageDomains implements ModelInterface, ArrayAccess, \Json
     /**
      * Gets warnings
      *
-     * @return string[]
+     * @return string[]|null
      */
     public function getWarnings()
     {

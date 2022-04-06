@@ -209,7 +209,7 @@ class ScheduleCampaignData implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets clone_to_program_name
      *
-     * @return string
+     * @return string|null
      */
     public function getCloneToProgramName()
     {
@@ -233,7 +233,7 @@ class ScheduleCampaignData implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets run_at
      *
-     * @return \DateTime
+     * @return \DateTime|null
      */
     public function getRunAt()
     {
@@ -257,7 +257,7 @@ class ScheduleCampaignData implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets tokens
      *
-     * @return \NecLimDul\MarketoRest\Lead\Model\Token[]
+     * @return \NecLimDul\MarketoRest\Lead\Model\Token[]|null
      */
     public function getTokens()
     {

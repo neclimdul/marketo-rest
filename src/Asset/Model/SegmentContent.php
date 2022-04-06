@@ -263,7 +263,7 @@ class SegmentContent implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets followup_type
      *
-     * @return string
+     * @return string|null
      */
     public function getFollowupType()
     {
@@ -287,7 +287,7 @@ class SegmentContent implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets followup_value
      *
-     * @return string
+     * @return string|null
      */
     public function getFollowupValue()
     {

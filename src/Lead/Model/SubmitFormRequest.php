@@ -263,7 +263,7 @@ class SubmitFormRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets program_id
      *
-     * @return int
+     * @return int|null
      */
     public function getProgramId()
     {

@@ -272,7 +272,7 @@ class ResponseOfChangeLeadProgramStatusOutputData implements ModelInterface, Arr
     /**
      * Gets more_result
      *
-     * @return bool
+     * @return bool|null
      */
     public function getMoreResult()
     {
@@ -296,7 +296,7 @@ class ResponseOfChangeLeadProgramStatusOutputData implements ModelInterface, Arr
     /**
      * Gets next_page_token
      *
-     * @return string
+     * @return string|null
      */
     public function getNextPageToken()
     {

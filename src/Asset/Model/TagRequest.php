@@ -203,7 +203,7 @@ class TagRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets tag_type
      *
-     * @return string
+     * @return string|null
      */
     public function getTagType()
     {
@@ -227,7 +227,7 @@ class TagRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets tag_value
      *
-     * @return string
+     * @return string|null
      */
     public function getTagValue()
     {

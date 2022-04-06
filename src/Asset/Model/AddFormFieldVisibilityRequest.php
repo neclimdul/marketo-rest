@@ -197,7 +197,7 @@ class AddFormFieldVisibilityRequest implements ModelInterface, ArrayAccess, \Jso
     /**
      * Gets visibility_rule
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\FormFieldVisibilityRequest
+     * @return \NecLimDul\MarketoRest\Asset\Model\FormFieldVisibilityRequest|null
      */
     public function getVisibilityRule()
     {

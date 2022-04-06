@@ -286,7 +286,7 @@ class CustomActivityType implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets api_name
      *
-     * @return string
+     * @return string|null
      */
     public function getApiName()
     {
@@ -310,7 +310,7 @@ class CustomActivityType implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets attributes
      *
-     * @return \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttribute[]
+     * @return \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttribute[]|null
      */
     public function getAttributes()
     {
@@ -334,7 +334,7 @@ class CustomActivityType implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets created_at
      *
-     * @return string
+     * @return string|null
      */
     public function getCreatedAt()
     {
@@ -358,7 +358,7 @@ class CustomActivityType implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
     public function getDescription()
     {
@@ -382,7 +382,7 @@ class CustomActivityType implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets filter_name
      *
-     * @return string
+     * @return string|null
      */
     public function getFilterName()
     {
@@ -406,7 +406,7 @@ class CustomActivityType implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets id
      *
-     * @return int
+     * @return int|null
      */
     public function getId()
     {
@@ -430,7 +430,7 @@ class CustomActivityType implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets name
      *
-     * @return string
+     * @return string|null
      */
     public function getName()
     {
@@ -454,7 +454,7 @@ class CustomActivityType implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets primary_attribute
      *
-     * @return \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttribute
+     * @return \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttribute|null
      */
     public function getPrimaryAttribute()
     {
@@ -478,7 +478,7 @@ class CustomActivityType implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets status
      *
-     * @return string
+     * @return string|null
      */
     public function getStatus()
     {
@@ -512,7 +512,7 @@ class CustomActivityType implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets trigger_name
      *
-     * @return string
+     * @return string|null
      */
     public function getTriggerName()
     {
@@ -536,7 +536,7 @@ class CustomActivityType implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets updated_at
      *
-     * @return string
+     * @return string|null
      */
     public function getUpdatedAt()
     {

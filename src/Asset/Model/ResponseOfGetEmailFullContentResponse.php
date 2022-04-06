@@ -221,7 +221,7 @@ class ResponseOfGetEmailFullContentResponse implements ModelInterface, ArrayAcce
     /**
      * Gets errors
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\Error[]
+     * @return \NecLimDul\MarketoRest\Asset\Model\Error[]|null
      */
     public function getErrors()
     {
@@ -245,7 +245,7 @@ class ResponseOfGetEmailFullContentResponse implements ModelInterface, ArrayAcce
     /**
      * Gets request_id
      *
-     * @return string
+     * @return string|null
      */
     public function getRequestId()
     {
@@ -269,7 +269,7 @@ class ResponseOfGetEmailFullContentResponse implements ModelInterface, ArrayAcce
     /**
      * Gets result
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\GetEmailFullContentResponse[]
+     * @return \NecLimDul\MarketoRest\Asset\Model\GetEmailFullContentResponse[]|null
      */
     public function getResult()
     {
@@ -293,7 +293,7 @@ class ResponseOfGetEmailFullContentResponse implements ModelInterface, ArrayAcce
     /**
      * Gets success
      *
-     * @return bool
+     * @return bool|null
      */
     public function getSuccess()
     {
@@ -317,7 +317,7 @@ class ResponseOfGetEmailFullContentResponse implements ModelInterface, ArrayAcce
     /**
      * Gets warnings
      *
-     * @return string[]
+     * @return string[]|null
      */
     public function getWarnings()
     {

@@ -216,7 +216,7 @@ class Lead implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets id
      *
-     * @return int
+     * @return int|null
      */
     public function getId()
     {
@@ -240,7 +240,7 @@ class Lead implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets membership
      *
-     * @return \NecLimDul\MarketoRest\Lead\Model\ProgramMembership
+     * @return \NecLimDul\MarketoRest\Lead\Model\ProgramMembership|null
      */
     public function getMembership()
     {
@@ -264,7 +264,7 @@ class Lead implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets reason
      *
-     * @return \NecLimDul\MarketoRest\Lead\Model\Reason
+     * @return \NecLimDul\MarketoRest\Lead\Model\Reason|null
      */
     public function getReason()
     {
@@ -288,7 +288,7 @@ class Lead implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets status
      *
-     * @return string
+     * @return string|null
      */
     public function getStatus()
     {

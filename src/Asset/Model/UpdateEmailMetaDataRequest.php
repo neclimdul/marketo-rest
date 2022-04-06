@@ -233,7 +233,7 @@ class UpdateEmailMetaDataRequest implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
     public function getDescription()
     {
@@ -257,7 +257,7 @@ class UpdateEmailMetaDataRequest implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Gets name
      *
-     * @return string
+     * @return string|null
      */
     public function getName()
     {
@@ -281,7 +281,7 @@ class UpdateEmailMetaDataRequest implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Gets pre_header
      *
-     * @return string
+     * @return string|null
      */
     public function getPreHeader()
     {
@@ -305,7 +305,7 @@ class UpdateEmailMetaDataRequest implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Gets operational
      *
-     * @return bool
+     * @return bool|null
      */
     public function getOperational()
     {
@@ -329,7 +329,7 @@ class UpdateEmailMetaDataRequest implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Gets published
      *
-     * @return bool
+     * @return bool|null
      */
     public function getPublished()
     {
@@ -353,7 +353,7 @@ class UpdateEmailMetaDataRequest implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Gets text_only
      *
-     * @return bool
+     * @return bool|null
      */
     public function getTextOnly()
     {
@@ -377,7 +377,7 @@ class UpdateEmailMetaDataRequest implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Gets web_view
      *
-     * @return bool
+     * @return bool|null
      */
     public function getWebView()
     {

@@ -238,7 +238,7 @@ class ResponseOfIdentity implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets access_token
      *
-     * @return string
+     * @return string|null
      */
     public function getAccessToken()
     {
@@ -262,7 +262,7 @@ class ResponseOfIdentity implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets scope
      *
-     * @return string
+     * @return string|null
      */
     public function getScope()
     {
@@ -286,7 +286,7 @@ class ResponseOfIdentity implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets expires_in
      *
-     * @return int
+     * @return int|null
      */
     public function getExpiresIn()
     {
@@ -310,7 +310,7 @@ class ResponseOfIdentity implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets token_type
      *
-     * @return string
+     * @return string|null
      */
     public function getTokenType()
     {

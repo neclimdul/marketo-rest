@@ -266,7 +266,7 @@ class ResponseOfCampaign implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets next_page_token
      *
-     * @return string
+     * @return string|null
      */
     public function getNextPageToken()
     {

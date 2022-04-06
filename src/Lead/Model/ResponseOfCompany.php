@@ -266,7 +266,7 @@ class ResponseOfCompany implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets next_page_token
      *
-     * @return string
+     * @return string|null
      */
     public function getNextPageToken()
     {

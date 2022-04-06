@@ -353,7 +353,7 @@ class CustomActivity implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets api_name
      *
-     * @return string
+     * @return string|null
      */
     public function getApiName()
     {
@@ -473,7 +473,7 @@ class CustomActivity implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets marketo_guid
      *
-     * @return string
+     * @return string|null
      */
     public function getMarketoGuid()
     {
@@ -521,7 +521,7 @@ class CustomActivity implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets status
      *
-     * @return string
+     * @return string|null
      */
     public function getStatus()
     {

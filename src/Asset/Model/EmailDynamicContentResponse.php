@@ -221,7 +221,7 @@ class EmailDynamicContentResponse implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Gets content
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\EmailDynamicContentItem[]
+     * @return \NecLimDul\MarketoRest\Asset\Model\EmailDynamicContentItem[]|null
      */
     public function getContent()
     {
@@ -245,7 +245,7 @@ class EmailDynamicContentResponse implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Gets created_at
      *
-     * @return \DateTime
+     * @return \DateTime|null
      */
     public function getCreatedAt()
     {
@@ -269,7 +269,7 @@ class EmailDynamicContentResponse implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Gets id
      *
-     * @return int
+     * @return int|null
      */
     public function getId()
     {
@@ -293,7 +293,7 @@ class EmailDynamicContentResponse implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Gets segmentation
      *
-     * @return int
+     * @return int|null
      */
     public function getSegmentation()
     {
@@ -317,7 +317,7 @@ class EmailDynamicContentResponse implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Gets updated_at
      *
-     * @return \DateTime
+     * @return \DateTime|null
      */
     public function getUpdatedAt()
     {

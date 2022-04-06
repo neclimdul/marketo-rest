@@ -311,7 +311,7 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets blank_fields
      *
-     * @return int
+     * @return int|null
      */
     public function getBlankFields()
     {
@@ -335,7 +335,7 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets column_number
      *
-     * @return int
+     * @return int|null
      */
     public function getColumnNumber()
     {
@@ -359,7 +359,7 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets data_type
      *
-     * @return string
+     * @return string|null
      */
     public function getDataType()
     {
@@ -383,7 +383,7 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets default_value
      *
-     * @return string
+     * @return string|null
      */
     public function getDefaultValue()
     {
@@ -407,7 +407,7 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets field_meta_data
      *
-     * @return object
+     * @return object|null
      */
     public function getFieldMetaData()
     {
@@ -431,7 +431,7 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets field_width
      *
-     * @return int
+     * @return int|null
      */
     public function getFieldWidth()
     {
@@ -455,7 +455,7 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets fields
      *
-     * @return string[]
+     * @return string[]|null
      */
     public function getFields()
     {
@@ -479,7 +479,7 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets form_prefill
      *
-     * @return bool
+     * @return bool|null
      */
     public function getFormPrefill()
     {
@@ -503,7 +503,7 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets is_sensitive
      *
-     * @return bool
+     * @return bool|null
      */
     public function getIsSensitive()
     {
@@ -527,7 +527,7 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets hint_text
      *
-     * @return string
+     * @return string|null
      */
     public function getHintText()
     {
@@ -551,7 +551,7 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets id
      *
-     * @return string
+     * @return string|null
      */
     public function getId()
     {
@@ -575,7 +575,7 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets instructions
      *
-     * @return string
+     * @return string|null
      */
     public function getInstructions()
     {
@@ -599,7 +599,7 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets label
      *
-     * @return string
+     * @return string|null
      */
     public function getLabel()
     {
@@ -623,7 +623,7 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets label_width
      *
-     * @return int
+     * @return int|null
      */
     public function getLabelWidth()
     {
@@ -647,7 +647,7 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets max_length
      *
-     * @return int
+     * @return int|null
      */
     public function getMaxLength()
     {
@@ -671,7 +671,7 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets required
      *
-     * @return bool
+     * @return bool|null
      */
     public function getRequired()
     {
@@ -695,7 +695,7 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets row_number
      *
-     * @return int
+     * @return int|null
      */
     public function getRowNumber()
     {
@@ -719,7 +719,7 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets text
      *
-     * @return string
+     * @return string|null
      */
     public function getText()
     {
@@ -743,7 +743,7 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets validation_message
      *
-     * @return object
+     * @return object|null
      */
     public function getValidationMessage()
     {
@@ -767,7 +767,7 @@ class LpFormFieldResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets visibility_rules
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\FormFieldVisibilityRuleResponse
+     * @return \NecLimDul\MarketoRest\Asset\Model\FormFieldVisibilityRuleResponse|null
      */
     public function getVisibilityRules()
     {

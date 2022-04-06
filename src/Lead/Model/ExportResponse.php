@@ -264,7 +264,7 @@ class ExportResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets created_at
      *
-     * @return \DateTime
+     * @return \DateTime|null
      */
     public function getCreatedAt()
     {
@@ -288,7 +288,7 @@ class ExportResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets error_msg
      *
-     * @return string
+     * @return string|null
      */
     public function getErrorMsg()
     {
@@ -336,7 +336,7 @@ class ExportResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets file_size
      *
-     * @return int
+     * @return int|null
      */
     public function getFileSize()
     {
@@ -360,7 +360,7 @@ class ExportResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets file_checksum
      *
-     * @return string
+     * @return string|null
      */
     public function getFileChecksum()
     {
@@ -384,7 +384,7 @@ class ExportResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets finished_at
      *
-     * @return \DateTime
+     * @return \DateTime|null
      */
     public function getFinishedAt()
     {
@@ -408,7 +408,7 @@ class ExportResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets format
      *
-     * @return string
+     * @return string|null
      */
     public function getFormat()
     {
@@ -432,7 +432,7 @@ class ExportResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets number_of_records
      *
-     * @return int
+     * @return int|null
      */
     public function getNumberOfRecords()
     {
@@ -456,7 +456,7 @@ class ExportResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets queued_at
      *
-     * @return \DateTime
+     * @return \DateTime|null
      */
     public function getQueuedAt()
     {
@@ -480,7 +480,7 @@ class ExportResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets started_at
      *
-     * @return \DateTime
+     * @return \DateTime|null
      */
     public function getStartedAt()
     {

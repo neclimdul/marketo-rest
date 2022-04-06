@@ -461,7 +461,7 @@ class StaticListResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets computed_url
      *
-     * @return string
+     * @return string|null
      */
     public function getComputedUrl()
     {

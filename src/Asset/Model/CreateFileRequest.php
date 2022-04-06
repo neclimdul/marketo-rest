@@ -230,7 +230,7 @@ class CreateFileRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
     public function getDescription()
     {
@@ -302,7 +302,7 @@ class CreateFileRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets insert_only
      *
-     * @return bool
+     * @return bool|null
      */
     public function getInsertOnly()
     {

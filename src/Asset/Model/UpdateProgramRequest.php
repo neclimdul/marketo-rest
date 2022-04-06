@@ -233,7 +233,7 @@ class UpdateProgramRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets costs
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\CostRequest[]
+     * @return \NecLimDul\MarketoRest\Asset\Model\CostRequest[]|null
      */
     public function getCosts()
     {
@@ -257,7 +257,7 @@ class UpdateProgramRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets costs_destructive_update
      *
-     * @return bool
+     * @return bool|null
      */
     public function getCostsDestructiveUpdate()
     {
@@ -281,7 +281,7 @@ class UpdateProgramRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
     public function getDescription()
     {
@@ -305,7 +305,7 @@ class UpdateProgramRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets end_date
      *
-     * @return string
+     * @return string|null
      */
     public function getEndDate()
     {
@@ -329,7 +329,7 @@ class UpdateProgramRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets name
      *
-     * @return string
+     * @return string|null
      */
     public function getName()
     {
@@ -353,7 +353,7 @@ class UpdateProgramRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets start_date
      *
-     * @return string
+     * @return string|null
      */
     public function getStartDate()
     {
@@ -377,7 +377,7 @@ class UpdateProgramRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets tags
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\TagRequest[]
+     * @return \NecLimDul\MarketoRest\Asset\Model\TagRequest[]|null
      */
     public function getTags()
     {

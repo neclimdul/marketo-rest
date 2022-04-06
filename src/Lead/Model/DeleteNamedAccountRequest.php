@@ -206,7 +206,7 @@ class DeleteNamedAccountRequest implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Gets delete_by
      *
-     * @return string
+     * @return string|null
      */
     public function getDeleteBy()
     {

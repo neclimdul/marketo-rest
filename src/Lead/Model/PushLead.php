@@ -210,7 +210,7 @@ class PushLead implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets id
      *
-     * @return int
+     * @return int|null
      */
     public function getId()
     {
@@ -234,7 +234,7 @@ class PushLead implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets reason
      *
-     * @return \NecLimDul\MarketoRest\Lead\Model\Reason
+     * @return \NecLimDul\MarketoRest\Lead\Model\Reason|null
      */
     public function getReason()
     {
@@ -258,7 +258,7 @@ class PushLead implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets status
      *
-     * @return string
+     * @return string|null
      */
     public function getStatus()
     {

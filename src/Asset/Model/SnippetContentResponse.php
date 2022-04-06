@@ -206,7 +206,7 @@ class SnippetContentResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets content
      *
-     * @return string
+     * @return string|null
      */
     public function getContent()
     {

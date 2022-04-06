@@ -284,7 +284,7 @@ class EmailContentResponse implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets index
      *
-     * @return int
+     * @return int|null
      */
     public function getIndex()
     {
@@ -308,7 +308,7 @@ class EmailContentResponse implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets is_locked
      *
-     * @return bool
+     * @return bool|null
      */
     public function getIsLocked()
     {
@@ -332,7 +332,7 @@ class EmailContentResponse implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets parent_html_id
      *
-     * @return string
+     * @return string|null
      */
     public function getParentHtmlId()
     {

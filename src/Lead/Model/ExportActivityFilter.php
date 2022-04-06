@@ -218,7 +218,7 @@ class ExportActivityFilter implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets activity_type_ids
      *
-     * @return int[]
+     * @return int[]|null
      */
     public function getActivityTypeIds()
     {
@@ -242,7 +242,7 @@ class ExportActivityFilter implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets primary_attribute_value_ids
      *
-     * @return int[]
+     * @return int[]|null
      */
     public function getPrimaryAttributeValueIds()
     {
@@ -266,7 +266,7 @@ class ExportActivityFilter implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets primary_attribute_values
      *
-     * @return string[]
+     * @return string[]|null
      */
     public function getPrimaryAttributeValues()
     {

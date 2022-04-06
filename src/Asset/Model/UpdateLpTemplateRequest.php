@@ -209,7 +209,7 @@ class UpdateLpTemplateRequest implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
     public function getDescription()
     {
@@ -233,7 +233,7 @@ class UpdateLpTemplateRequest implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets enable_munchkin
      *
-     * @return bool
+     * @return bool|null
      */
     public function getEnableMunchkin()
     {
@@ -257,7 +257,7 @@ class UpdateLpTemplateRequest implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets name
      *
-     * @return string
+     * @return string|null
      */
     public function getName()
     {

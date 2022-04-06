@@ -215,7 +215,7 @@ class TokenDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets computed_url
      *
-     * @return string
+     * @return string|null
      */
     public function getComputedUrl()
     {
@@ -239,7 +239,7 @@ class TokenDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets name
      *
-     * @return string
+     * @return string|null
      */
     public function getName()
     {
@@ -263,7 +263,7 @@ class TokenDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets type
      *
-     * @return string
+     * @return string|null
      */
     public function getType()
     {
@@ -287,7 +287,7 @@ class TokenDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets value
      *
-     * @return string
+     * @return string|null
      */
     public function getValue()
     {

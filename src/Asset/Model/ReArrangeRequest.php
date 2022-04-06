@@ -197,7 +197,7 @@ class ReArrangeRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets positions
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\UpdateFieldPosition[]
+     * @return \NecLimDul\MarketoRest\Asset\Model\UpdateFieldPosition[]|null
      */
     public function getPositions()
     {

@@ -296,7 +296,7 @@ class ObjectDependentAsset implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets used_fields
      *
-     * @return string[]
+     * @return string[]|null
      */
     public function getUsedFields()
     {

@@ -227,7 +227,7 @@ class ObjectField implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets data_type
      *
-     * @return string
+     * @return string|null
      */
     public function getDataType()
     {
@@ -251,7 +251,7 @@ class ObjectField implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets display_name
      *
-     * @return string
+     * @return string|null
      */
     public function getDisplayName()
     {
@@ -275,7 +275,7 @@ class ObjectField implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets length
      *
-     * @return int
+     * @return int|null
      */
     public function getLength()
     {
@@ -299,7 +299,7 @@ class ObjectField implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets name
      *
-     * @return string
+     * @return string|null
      */
     public function getName()
     {
@@ -323,7 +323,7 @@ class ObjectField implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets updateable
      *
-     * @return bool
+     * @return bool|null
      */
     public function getUpdateable()
     {
@@ -347,7 +347,7 @@ class ObjectField implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets crm_managed
      *
-     * @return bool
+     * @return bool|null
      */
     public function getCrmManaged()
     {

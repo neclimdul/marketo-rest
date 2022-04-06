@@ -198,7 +198,7 @@ class ScheduleCampaignRequest implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets input
      *
-     * @return \NecLimDul\MarketoRest\Lead\Model\ScheduleCampaignData
+     * @return \NecLimDul\MarketoRest\Lead\Model\ScheduleCampaignData|null
      */
     public function getInput()
     {

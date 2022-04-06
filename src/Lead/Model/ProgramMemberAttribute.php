@@ -206,7 +206,7 @@ class ProgramMemberAttribute implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets name
      *
-     * @return string
+     * @return string|null
      */
     public function getName()
     {

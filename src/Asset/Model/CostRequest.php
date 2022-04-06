@@ -239,7 +239,7 @@ class CostRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets note
      *
-     * @return string
+     * @return string|null
      */
     public function getNote()
     {

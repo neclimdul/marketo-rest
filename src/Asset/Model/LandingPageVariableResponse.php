@@ -236,7 +236,7 @@ class LandingPageVariableResponse implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Gets type
      *
-     * @return string
+     * @return string|null
      */
     public function getType()
     {
@@ -260,7 +260,7 @@ class LandingPageVariableResponse implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Gets value
      *
-     * @return object
+     * @return object|null
      */
     public function getValue()
     {

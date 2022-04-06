@@ -331,7 +331,7 @@ class UpdateLandingPageContentRequest implements ModelInterface, ArrayAccess, \J
     /**
      * Gets background_color
      *
-     * @return string
+     * @return string|null
      */
     public function getBackgroundColor()
     {
@@ -355,7 +355,7 @@ class UpdateLandingPageContentRequest implements ModelInterface, ArrayAccess, \J
     /**
      * Gets border_color
      *
-     * @return string
+     * @return string|null
      */
     public function getBorderColor()
     {
@@ -379,7 +379,7 @@ class UpdateLandingPageContentRequest implements ModelInterface, ArrayAccess, \J
     /**
      * Gets border_style
      *
-     * @return string
+     * @return string|null
      */
     public function getBorderStyle()
     {
@@ -403,7 +403,7 @@ class UpdateLandingPageContentRequest implements ModelInterface, ArrayAccess, \J
     /**
      * Gets border_width
      *
-     * @return string
+     * @return string|null
      */
     public function getBorderWidth()
     {
@@ -427,7 +427,7 @@ class UpdateLandingPageContentRequest implements ModelInterface, ArrayAccess, \J
     /**
      * Gets height
      *
-     * @return string
+     * @return string|null
      */
     public function getHeight()
     {
@@ -451,7 +451,7 @@ class UpdateLandingPageContentRequest implements ModelInterface, ArrayAccess, \J
     /**
      * Gets hide_desktop
      *
-     * @return bool
+     * @return bool|null
      */
     public function getHideDesktop()
     {
@@ -475,7 +475,7 @@ class UpdateLandingPageContentRequest implements ModelInterface, ArrayAccess, \J
     /**
      * Gets hide_mobile
      *
-     * @return bool
+     * @return bool|null
      */
     public function getHideMobile()
     {
@@ -499,7 +499,7 @@ class UpdateLandingPageContentRequest implements ModelInterface, ArrayAccess, \J
     /**
      * Gets image_open_new_window
      *
-     * @return string
+     * @return string|null
      */
     public function getImageOpenNewWindow()
     {
@@ -523,7 +523,7 @@ class UpdateLandingPageContentRequest implements ModelInterface, ArrayAccess, \J
     /**
      * Gets index
      *
-     * @return int
+     * @return int|null
      */
     public function getIndex()
     {
@@ -547,7 +547,7 @@ class UpdateLandingPageContentRequest implements ModelInterface, ArrayAccess, \J
     /**
      * Gets left
      *
-     * @return string
+     * @return string|null
      */
     public function getLeft()
     {
@@ -571,7 +571,7 @@ class UpdateLandingPageContentRequest implements ModelInterface, ArrayAccess, \J
     /**
      * Gets link_url
      *
-     * @return string
+     * @return string|null
      */
     public function getLinkUrl()
     {
@@ -595,7 +595,7 @@ class UpdateLandingPageContentRequest implements ModelInterface, ArrayAccess, \J
     /**
      * Gets opacity
      *
-     * @return string
+     * @return string|null
      */
     public function getOpacity()
     {
@@ -619,7 +619,7 @@ class UpdateLandingPageContentRequest implements ModelInterface, ArrayAccess, \J
     /**
      * Gets top
      *
-     * @return string
+     * @return string|null
      */
     public function getTop()
     {
@@ -677,7 +677,7 @@ class UpdateLandingPageContentRequest implements ModelInterface, ArrayAccess, \J
     /**
      * Gets value
      *
-     * @return string
+     * @return string|null
      */
     public function getValue()
     {
@@ -701,7 +701,7 @@ class UpdateLandingPageContentRequest implements ModelInterface, ArrayAccess, \J
     /**
      * Gets width
      *
-     * @return string
+     * @return string|null
      */
     public function getWidth()
     {
@@ -725,7 +725,7 @@ class UpdateLandingPageContentRequest implements ModelInterface, ArrayAccess, \J
     /**
      * Gets z_index
      *
-     * @return string
+     * @return string|null
      */
     public function getZIndex()
     {

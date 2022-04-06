@@ -266,7 +266,7 @@ class ResponseOfExportResponseWithToken implements ModelInterface, ArrayAccess, 
     /**
      * Gets next_page_token
      *
-     * @return string
+     * @return string|null
      */
     public function getNextPageToken()
     {

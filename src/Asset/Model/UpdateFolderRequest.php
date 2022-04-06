@@ -243,7 +243,7 @@ class UpdateFolderRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
     public function getDescription()
     {
@@ -267,7 +267,7 @@ class UpdateFolderRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets is_archive
      *
-     * @return bool
+     * @return bool|null
      */
     public function getIsArchive()
     {
@@ -291,7 +291,7 @@ class UpdateFolderRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets name
      *
-     * @return string
+     * @return string|null
      */
     public function getName()
     {

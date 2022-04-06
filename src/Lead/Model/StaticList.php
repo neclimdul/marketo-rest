@@ -269,7 +269,7 @@ class StaticList implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
     public function getDescription()
     {
@@ -341,7 +341,7 @@ class StaticList implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets program_name
      *
-     * @return string
+     * @return string|null
      */
     public function getProgramName()
     {
@@ -389,7 +389,7 @@ class StaticList implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets workspace_name
      *
-     * @return string
+     * @return string|null
      */
     public function getWorkspaceName()
     {

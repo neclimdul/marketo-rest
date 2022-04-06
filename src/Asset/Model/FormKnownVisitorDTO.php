@@ -203,7 +203,7 @@ class FormKnownVisitorDTO implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets template
      *
-     * @return string
+     * @return string|null
      */
     public function getTemplate()
     {
@@ -227,7 +227,7 @@ class FormKnownVisitorDTO implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets type
      *
-     * @return string
+     * @return string|null
      */
     public function getType()
     {

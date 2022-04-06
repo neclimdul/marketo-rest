@@ -278,7 +278,7 @@ class CreateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets custom_head_html
      *
-     * @return string
+     * @return string|null
      */
     public function getCustomHeadHtml()
     {
@@ -302,7 +302,7 @@ class CreateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
     public function getDescription()
     {
@@ -326,7 +326,7 @@ class CreateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets facebook_og_tags
      *
-     * @return string
+     * @return string|null
      */
     public function getFacebookOgTags()
     {
@@ -374,7 +374,7 @@ class CreateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets keywords
      *
-     * @return string
+     * @return string|null
      */
     public function getKeywords()
     {
@@ -398,7 +398,7 @@ class CreateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets mobile_enabled
      *
-     * @return bool
+     * @return bool|null
      */
     public function getMobileEnabled()
     {
@@ -446,7 +446,7 @@ class CreateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets prefill_form
      *
-     * @return bool
+     * @return bool|null
      */
     public function getPrefillForm()
     {
@@ -470,7 +470,7 @@ class CreateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets robots
      *
-     * @return string
+     * @return string|null
      */
     public function getRobots()
     {
@@ -518,7 +518,7 @@ class CreateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets title
      *
-     * @return string
+     * @return string|null
      */
     public function getTitle()
     {
@@ -542,7 +542,7 @@ class CreateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets url_page_name
      *
-     * @return string
+     * @return string|null
      */
     public function getUrlPageName()
     {
@@ -566,7 +566,7 @@ class CreateLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets workspace
      *
-     * @return string
+     * @return string|null
      */
     public function getWorkspace()
     {

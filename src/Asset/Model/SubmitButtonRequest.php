@@ -215,7 +215,7 @@ class SubmitButtonRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets button_position
      *
-     * @return int
+     * @return int|null
      */
     public function getButtonPosition()
     {
@@ -239,7 +239,7 @@ class SubmitButtonRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets button_style
      *
-     * @return string
+     * @return string|null
      */
     public function getButtonStyle()
     {
@@ -263,7 +263,7 @@ class SubmitButtonRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets label
      *
-     * @return string
+     * @return string|null
      */
     public function getLabel()
     {
@@ -287,7 +287,7 @@ class SubmitButtonRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets waiting_label
      *
-     * @return string
+     * @return string|null
      */
     public function getWaitingLabel()
     {

@@ -203,7 +203,7 @@ class FileRange implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets end
      *
-     * @return int
+     * @return int|null
      */
     public function getEnd()
     {
@@ -227,7 +227,7 @@ class FileRange implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets start
      *
-     * @return int
+     * @return int|null
      */
     public function getStart()
     {

@@ -253,7 +253,7 @@ class SyncLeadRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets action
      *
-     * @return string
+     * @return string|null
      */
     public function getAction()
     {
@@ -287,7 +287,7 @@ class SyncLeadRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets async_processing
      *
-     * @return bool
+     * @return bool|null
      */
     public function getAsyncProcessing()
     {
@@ -335,7 +335,7 @@ class SyncLeadRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets lookup_field
      *
-     * @return string
+     * @return string|null
      */
     public function getLookupField()
     {
@@ -359,7 +359,7 @@ class SyncLeadRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets partition_name
      *
-     * @return string
+     * @return string|null
      */
     public function getPartitionName()
     {

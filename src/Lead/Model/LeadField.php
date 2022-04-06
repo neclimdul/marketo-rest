@@ -375,7 +375,7 @@ class LeadField implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets length
      *
-     * @return int
+     * @return int|null
      */
     public function getLength()
     {

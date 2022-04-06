@@ -269,7 +269,7 @@ class CreateProgramRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets costs
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\CostRequest[]
+     * @return \NecLimDul\MarketoRest\Asset\Model\CostRequest[]|null
      */
     public function getCosts()
     {
@@ -293,7 +293,7 @@ class CreateProgramRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
     public function getDescription()
     {
@@ -365,7 +365,7 @@ class CreateProgramRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets tags
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\TagRequest[]
+     * @return \NecLimDul\MarketoRest\Asset\Model\TagRequest[]|null
      */
     public function getTags()
     {

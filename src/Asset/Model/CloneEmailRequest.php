@@ -221,7 +221,7 @@ class CloneEmailRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
     public function getDescription()
     {
@@ -293,7 +293,7 @@ class CloneEmailRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets operational
      *
-     * @return bool
+     * @return bool|null
      */
     public function getOperational()
     {

@@ -239,7 +239,7 @@ class SyncSalesPersonRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets action
      *
-     * @return string
+     * @return string|null
      */
     public function getAction()
     {
@@ -273,7 +273,7 @@ class SyncSalesPersonRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets dedupe_by
      *
-     * @return string
+     * @return string|null
      */
     public function getDedupeBy()
     {

@@ -221,7 +221,7 @@ class FormVisibilityRuleDTO implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets alt_label
      *
-     * @return string
+     * @return string|null
      */
     public function getAltLabel()
     {
@@ -245,7 +245,7 @@ class FormVisibilityRuleDTO implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets operator
      *
-     * @return string
+     * @return string|null
      */
     public function getOperator()
     {
@@ -269,7 +269,7 @@ class FormVisibilityRuleDTO implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets picklist_filter_values
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\PickListDTO[]
+     * @return \NecLimDul\MarketoRest\Asset\Model\PickListDTO[]|null
      */
     public function getPicklistFilterValues()
     {
@@ -293,7 +293,7 @@ class FormVisibilityRuleDTO implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets subject_field
      *
-     * @return string
+     * @return string|null
      */
     public function getSubjectField()
     {
@@ -317,7 +317,7 @@ class FormVisibilityRuleDTO implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets values
      *
-     * @return string[]
+     * @return string[]|null
      */
     public function getValues()
     {

@@ -279,7 +279,7 @@ class CompanyResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets reasons
      *
-     * @return \NecLimDul\MarketoRest\Lead\Model\Reason[]
+     * @return \NecLimDul\MarketoRest\Lead\Model\Reason[]|null
      */
     public function getReasons()
     {
@@ -327,7 +327,7 @@ class CompanyResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets status
      *
-     * @return string
+     * @return string|null
      */
     public function getStatus()
     {

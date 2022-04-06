@@ -260,7 +260,7 @@ class CreateLpFormRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
     public function getDescription()
     {
@@ -308,7 +308,7 @@ class CreateLpFormRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets font_family
      *
-     * @return string
+     * @return string|null
      */
     public function getFontFamily()
     {
@@ -332,7 +332,7 @@ class CreateLpFormRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets font_size
      *
-     * @return string
+     * @return string|null
      */
     public function getFontSize()
     {
@@ -356,7 +356,7 @@ class CreateLpFormRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets known_visitor
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\FormKnownVisitorDTO
+     * @return \NecLimDul\MarketoRest\Asset\Model\FormKnownVisitorDTO|null
      */
     public function getKnownVisitor()
     {
@@ -380,7 +380,7 @@ class CreateLpFormRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets label_position
      *
-     * @return string
+     * @return string|null
      */
     public function getLabelPosition()
     {
@@ -404,7 +404,7 @@ class CreateLpFormRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets language
      *
-     * @return string
+     * @return string|null
      */
     public function getLanguage()
     {
@@ -428,7 +428,7 @@ class CreateLpFormRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets locale
      *
-     * @return string
+     * @return string|null
      */
     public function getLocale()
     {
@@ -452,7 +452,7 @@ class CreateLpFormRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets name
      *
-     * @return string
+     * @return string|null
      */
     public function getName()
     {
@@ -476,7 +476,7 @@ class CreateLpFormRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets progressive_profiling
      *
-     * @return bool
+     * @return bool|null
      */
     public function getProgressiveProfiling()
     {
@@ -500,7 +500,7 @@ class CreateLpFormRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets theme
      *
-     * @return string
+     * @return string|null
      */
     public function getTheme()
     {

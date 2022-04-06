@@ -203,7 +203,7 @@ class UpdateVariableRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets value
      *
-     * @return string
+     * @return string|null
      */
     public function getValue()
     {
@@ -227,7 +227,7 @@ class UpdateVariableRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets module_id
      *
-     * @return string
+     * @return string|null
      */
     public function getModuleId()
     {

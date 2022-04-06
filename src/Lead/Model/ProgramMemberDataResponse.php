@@ -285,7 +285,7 @@ class ProgramMemberDataResponse implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Gets reasons
      *
-     * @return \NecLimDul\MarketoRest\Lead\Model\Reason[]
+     * @return \NecLimDul\MarketoRest\Lead\Model\Reason[]|null
      */
     public function getReasons()
     {

@@ -297,7 +297,7 @@ class LeadChangeField implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets old_value
      *
-     * @return string
+     * @return string|null
      */
     public function getOldValue()
     {

@@ -396,7 +396,7 @@ class EmailResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets created_at
      *
-     * @return \DateTime
+     * @return \DateTime|null
      */
     public function getCreatedAt()
     {
@@ -420,7 +420,7 @@ class EmailResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
     public function getDescription()
     {
@@ -516,7 +516,7 @@ class EmailResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets id
      *
-     * @return int
+     * @return int|null
      */
     public function getId()
     {
@@ -540,7 +540,7 @@ class EmailResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets name
      *
-     * @return string
+     * @return string|null
      */
     public function getName()
     {
@@ -732,7 +732,7 @@ class EmailResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets updated_at
      *
-     * @return \DateTime
+     * @return \DateTime|null
      */
     public function getUpdatedAt()
     {
@@ -756,7 +756,7 @@ class EmailResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets url
      *
-     * @return string
+     * @return string|null
      */
     public function getUrl()
     {
@@ -780,7 +780,7 @@ class EmailResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets version
      *
-     * @return int
+     * @return int|null
      */
     public function getVersion()
     {
@@ -838,7 +838,7 @@ class EmailResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets workspace
      *
-     * @return string
+     * @return string|null
      */
     public function getWorkspace()
     {
@@ -934,7 +934,7 @@ class EmailResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets cc_fields
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\EmailCCFields[]
+     * @return \NecLimDul\MarketoRest\Asset\Model\EmailCCFields[]|null
      */
     public function getCcFields()
     {

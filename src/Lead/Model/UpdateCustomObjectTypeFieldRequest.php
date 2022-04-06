@@ -227,7 +227,7 @@ class UpdateCustomObjectTypeFieldRequest implements ModelInterface, ArrayAccess,
     /**
      * Gets name
      *
-     * @return string
+     * @return string|null
      */
     public function getName()
     {
@@ -251,7 +251,7 @@ class UpdateCustomObjectTypeFieldRequest implements ModelInterface, ArrayAccess,
     /**
      * Gets display_name
      *
-     * @return string
+     * @return string|null
      */
     public function getDisplayName()
     {
@@ -275,7 +275,7 @@ class UpdateCustomObjectTypeFieldRequest implements ModelInterface, ArrayAccess,
     /**
      * Gets data_type
      *
-     * @return string
+     * @return string|null
      */
     public function getDataType()
     {
@@ -299,7 +299,7 @@ class UpdateCustomObjectTypeFieldRequest implements ModelInterface, ArrayAccess,
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
     public function getDescription()
     {
@@ -323,7 +323,7 @@ class UpdateCustomObjectTypeFieldRequest implements ModelInterface, ArrayAccess,
     /**
      * Gets is_dedupe_field
      *
-     * @return bool
+     * @return bool|null
      */
     public function getIsDedupeField()
     {
@@ -347,7 +347,7 @@ class UpdateCustomObjectTypeFieldRequest implements ModelInterface, ArrayAccess,
     /**
      * Gets related_to
      *
-     * @return \NecLimDul\MarketoRest\Lead\Model\CustomObjectTypeFieldRelatedTo
+     * @return \NecLimDul\MarketoRest\Lead\Model\CustomObjectTypeFieldRelatedTo|null
      */
     public function getRelatedTo()
     {

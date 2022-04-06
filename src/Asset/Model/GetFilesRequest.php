@@ -209,7 +209,7 @@ class GetFilesRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets folder
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\Folder
+     * @return \NecLimDul\MarketoRest\Asset\Model\Folder|null
      */
     public function getFolder()
     {
@@ -233,7 +233,7 @@ class GetFilesRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets max_return
      *
-     * @return int
+     * @return int|null
      */
     public function getMaxReturn()
     {
@@ -257,7 +257,7 @@ class GetFilesRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets offset
      *
-     * @return int
+     * @return int|null
      */
     public function getOffset()
     {

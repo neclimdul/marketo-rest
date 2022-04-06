@@ -338,7 +338,7 @@ class ChannelResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets progression_statuses
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\ChannelProgression[]
+     * @return \NecLimDul\MarketoRest\Asset\Model\ChannelProgression[]|null
      */
     public function getProgressionStatuses()
     {

@@ -263,7 +263,7 @@ class CloneSmartListRequest implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
     public function getDescription()
     {

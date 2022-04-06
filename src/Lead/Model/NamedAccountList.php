@@ -284,7 +284,7 @@ class NamedAccountList implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets created_at
      *
-     * @return string
+     * @return string|null
      */
     public function getCreatedAt()
     {
@@ -332,7 +332,7 @@ class NamedAccountList implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets name
      *
-     * @return string
+     * @return string|null
      */
     public function getName()
     {
@@ -356,7 +356,7 @@ class NamedAccountList implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets reasons
      *
-     * @return \NecLimDul\MarketoRest\Lead\Model\Reason[]
+     * @return \NecLimDul\MarketoRest\Lead\Model\Reason[]|null
      */
     public function getReasons()
     {
@@ -404,7 +404,7 @@ class NamedAccountList implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets status
      *
-     * @return string
+     * @return string|null
      */
     public function getStatus()
     {
@@ -438,7 +438,7 @@ class NamedAccountList implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets type
      *
-     * @return string
+     * @return string|null
      */
     public function getType()
     {
@@ -462,7 +462,7 @@ class NamedAccountList implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets updateable
      *
-     * @return bool
+     * @return bool|null
      */
     public function getUpdateable()
     {
@@ -486,7 +486,7 @@ class NamedAccountList implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets updated_at
      *
-     * @return string
+     * @return string|null
      */
     public function getUpdatedAt()
     {

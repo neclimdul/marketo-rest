@@ -239,7 +239,7 @@ class ChangeLeadProgramStatusOutputData implements ModelInterface, ArrayAccess, 
     /**
      * Gets reasons
      *
-     * @return \NecLimDul\MarketoRest\Lead\Model\Reason[]
+     * @return \NecLimDul\MarketoRest\Lead\Model\Reason[]|null
      */
     public function getReasons()
     {

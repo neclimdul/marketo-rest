@@ -237,7 +237,7 @@ class Form implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets visitor_data
      *
-     * @return \NecLimDul\MarketoRest\Lead\Model\VisitorData
+     * @return \NecLimDul\MarketoRest\Lead\Model\VisitorData|null
      */
     public function getVisitorData()
     {
@@ -261,7 +261,7 @@ class Form implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets cookie
      *
-     * @return string
+     * @return string|null
      */
     public function getCookie()
     {

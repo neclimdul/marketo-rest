@@ -203,7 +203,7 @@ class FormFieldVisibilityRuleResponse implements ModelInterface, ArrayAccess, \J
     /**
      * Gets rule_type
      *
-     * @return string
+     * @return string|null
      */
     public function getRuleType()
     {
@@ -227,7 +227,7 @@ class FormFieldVisibilityRuleResponse implements ModelInterface, ArrayAccess, \J
     /**
      * Gets rules
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\FormVisibilityRuleDTO[]
+     * @return \NecLimDul\MarketoRest\Asset\Model\FormVisibilityRuleDTO[]|null
      */
     public function getRules()
     {

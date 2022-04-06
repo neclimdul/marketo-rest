@@ -272,7 +272,7 @@ class CreateEmailRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
     public function getDescription()
     {
@@ -392,7 +392,7 @@ class CreateEmailRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets operational
      *
-     * @return bool
+     * @return bool|null
      */
     public function getOperational()
     {
@@ -488,7 +488,7 @@ class CreateEmailRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets text_only
      *
-     * @return string
+     * @return string|null
      */
     public function getTextOnly()
     {

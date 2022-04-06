@@ -294,7 +294,7 @@ class LpTemplateResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets created_at
      *
-     * @return \DateTime
+     * @return \DateTime|null
      */
     public function getCreatedAt()
     {
@@ -318,7 +318,7 @@ class LpTemplateResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
     public function getDescription()
     {
@@ -390,7 +390,7 @@ class LpTemplateResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets id
      *
-     * @return int
+     * @return int|null
      */
     public function getId()
     {
@@ -414,7 +414,7 @@ class LpTemplateResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets name
      *
-     * @return string
+     * @return string|null
      */
     public function getName()
     {
@@ -496,7 +496,7 @@ class LpTemplateResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets updated_at
      *
-     * @return \DateTime
+     * @return \DateTime|null
      */
     public function getUpdatedAt()
     {
@@ -520,7 +520,7 @@ class LpTemplateResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets url
      *
-     * @return string
+     * @return string|null
      */
     public function getUrl()
     {
@@ -544,7 +544,7 @@ class LpTemplateResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets workspace
      *
-     * @return string
+     * @return string|null
      */
     public function getWorkspace()
     {

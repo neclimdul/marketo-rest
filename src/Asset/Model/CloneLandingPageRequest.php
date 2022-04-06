@@ -221,7 +221,7 @@ class CloneLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
     public function getDescription()
     {
@@ -293,7 +293,7 @@ class CloneLandingPageRequest implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets template
      *
-     * @return int
+     * @return int|null
      */
     public function getTemplate()
     {

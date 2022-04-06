@@ -314,7 +314,7 @@ class LeadAttribute2Fields2 implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets length
      *
-     * @return int
+     * @return int|null
      */
     public function getLength()
     {

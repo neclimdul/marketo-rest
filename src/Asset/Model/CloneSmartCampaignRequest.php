@@ -221,7 +221,7 @@ class CloneSmartCampaignRequest implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
     public function getDescription()
     {
@@ -293,7 +293,7 @@ class CloneSmartCampaignRequest implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Gets is_executable
      *
-     * @return bool
+     * @return bool|null
      */
     public function getIsExecutable()
     {

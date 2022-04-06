@@ -209,7 +209,7 @@ class UpdateSnippetRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
     public function getDescription()
     {
@@ -233,7 +233,7 @@ class UpdateSnippetRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets is_archive
      *
-     * @return string
+     * @return string|null
      */
     public function getIsArchive()
     {
@@ -257,7 +257,7 @@ class UpdateSnippetRequest implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets name
      *
-     * @return string
+     * @return string|null
      */
     public function getName()
     {

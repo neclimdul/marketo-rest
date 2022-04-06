@@ -215,7 +215,7 @@ class ActivityTypeAttribute implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets api_name
      *
-     * @return string
+     * @return string|null
      */
     public function getApiName()
     {

@@ -308,7 +308,7 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets data_type
      *
-     * @return string
+     * @return string|null
      */
     public function getDataType()
     {
@@ -332,7 +332,7 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets default_value
      *
-     * @return string
+     * @return string|null
      */
     public function getDefaultValue()
     {
@@ -356,7 +356,7 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
     public function getDescription()
     {
@@ -380,7 +380,7 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets field_mask_values
      *
-     * @return string
+     * @return string|null
      */
     public function getFieldMaskValues()
     {
@@ -404,7 +404,7 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets field_width
      *
-     * @return int
+     * @return int|null
      */
     public function getFieldWidth()
     {
@@ -452,7 +452,7 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets initially_checked
      *
-     * @return bool
+     * @return bool|null
      */
     public function getInitiallyChecked()
     {
@@ -476,7 +476,7 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets is_label_to_right
      *
-     * @return bool
+     * @return bool|null
      */
     public function getIsLabelToRight()
     {
@@ -500,7 +500,7 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets is_multiselect
      *
-     * @return bool
+     * @return bool|null
      */
     public function getIsMultiselect()
     {
@@ -524,7 +524,7 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets is_required
      *
-     * @return bool
+     * @return bool|null
      */
     public function getIsRequired()
     {
@@ -548,7 +548,7 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets is_sensitive
      *
-     * @return bool
+     * @return bool|null
      */
     public function getIsSensitive()
     {
@@ -572,7 +572,7 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets label_width
      *
-     * @return int
+     * @return int|null
      */
     public function getLabelWidth()
     {
@@ -596,7 +596,7 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets max_length
      *
-     * @return int
+     * @return int|null
      */
     public function getMaxLength()
     {
@@ -620,7 +620,7 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets maximum_number
      *
-     * @return float
+     * @return float|null
      */
     public function getMaximumNumber()
     {
@@ -644,7 +644,7 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets minimum_number
      *
-     * @return float
+     * @return float|null
      */
     public function getMinimumNumber()
     {
@@ -668,7 +668,7 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets picklist_values
      *
-     * @return string
+     * @return string|null
      */
     public function getPicklistValues()
     {
@@ -692,7 +692,7 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets placeholder_text
      *
-     * @return string
+     * @return string|null
      */
     public function getPlaceholderText()
     {
@@ -716,7 +716,7 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets validation_message
      *
-     * @return string
+     * @return string|null
      */
     public function getValidationMessage()
     {
@@ -740,7 +740,7 @@ class FieldsMetaDataResponse implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets visible_rows
      *
-     * @return int
+     * @return int|null
      */
     public function getVisibleRows()
     {

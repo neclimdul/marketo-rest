@@ -239,7 +239,7 @@ class SyncCompanyRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets action
      *
-     * @return string
+     * @return string|null
      */
     public function getAction()
     {
@@ -273,7 +273,7 @@ class SyncCompanyRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets dedupe_by
      *
-     * @return string
+     * @return string|null
      */
     public function getDedupeBy()
     {

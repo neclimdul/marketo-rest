@@ -203,7 +203,7 @@ class ThankYouPageResponse implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets id
      *
-     * @return int
+     * @return int|null
      */
     public function getId()
     {
@@ -227,7 +227,7 @@ class ThankYouPageResponse implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets thank_you_list
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\FormThankYouPageDTO[]
+     * @return \NecLimDul\MarketoRest\Asset\Model\FormThankYouPageDTO[]|null
      */
     public function getThankYouList()
     {

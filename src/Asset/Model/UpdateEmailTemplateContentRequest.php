@@ -197,7 +197,7 @@ class UpdateEmailTemplateContentRequest implements ModelInterface, ArrayAccess, 
     /**
      * Gets content
      *
-     * @return string
+     * @return string|null
      */
     public function getContent()
     {

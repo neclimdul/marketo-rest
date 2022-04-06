@@ -311,7 +311,7 @@ class LandingPageContentResponse implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Gets content
      *
-     * @return object
+     * @return object|null
      */
     public function getContent()
     {
@@ -335,7 +335,7 @@ class LandingPageContentResponse implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Gets followup_type
      *
-     * @return string
+     * @return string|null
      */
     public function getFollowupType()
     {
@@ -369,7 +369,7 @@ class LandingPageContentResponse implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Gets followup_value
      *
-     * @return string
+     * @return string|null
      */
     public function getFollowupValue()
     {
@@ -393,7 +393,7 @@ class LandingPageContentResponse implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Gets formatting_options
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\JsonNode
+     * @return \NecLimDul\MarketoRest\Asset\Model\JsonNode|null
      */
     public function getFormattingOptions()
     {
@@ -441,7 +441,7 @@ class LandingPageContentResponse implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Gets index
      *
-     * @return int
+     * @return int|null
      */
     public function getIndex()
     {

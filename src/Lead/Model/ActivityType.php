@@ -239,7 +239,7 @@ class ActivityType implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets api_name
      *
-     * @return string
+     * @return string|null
      */
     public function getApiName()
     {
@@ -287,7 +287,7 @@ class ActivityType implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
     public function getDescription()
     {

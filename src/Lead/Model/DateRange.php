@@ -203,7 +203,7 @@ class DateRange implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets end_at
      *
-     * @return string
+     * @return string|null
      */
     public function getEndAt()
     {
@@ -227,7 +227,7 @@ class DateRange implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets start_at
      *
-     * @return string
+     * @return string|null
      */
     public function getStartAt()
     {

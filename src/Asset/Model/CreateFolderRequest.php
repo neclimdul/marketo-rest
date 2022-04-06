@@ -215,7 +215,7 @@ class CreateFolderRequest implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
     public function getDescription()
     {

@@ -426,7 +426,7 @@ class ProgramResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets created_at
      *
-     * @return \DateTime
+     * @return \DateTime|null
      */
     public function getCreatedAt()
     {
@@ -450,7 +450,7 @@ class ProgramResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
     public function getDescription()
     {
@@ -474,7 +474,7 @@ class ProgramResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets end_date
      *
-     * @return \DateTime
+     * @return \DateTime|null
      */
     public function getEndDate()
     {
@@ -522,7 +522,7 @@ class ProgramResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets id
      *
-     * @return int
+     * @return int|null
      */
     public function getId()
     {
@@ -546,7 +546,7 @@ class ProgramResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets name
      *
-     * @return string
+     * @return string|null
      */
     public function getName()
     {
@@ -570,7 +570,7 @@ class ProgramResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets sfdc_id
      *
-     * @return string
+     * @return string|null
      */
     public function getSfdcId()
     {
@@ -594,7 +594,7 @@ class ProgramResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets sfdc_name
      *
-     * @return string
+     * @return string|null
      */
     public function getSfdcName()
     {
@@ -618,7 +618,7 @@ class ProgramResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets start_date
      *
-     * @return \DateTime
+     * @return \DateTime|null
      */
     public function getStartDate()
     {
@@ -734,7 +734,7 @@ class ProgramResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets updated_at
      *
-     * @return \DateTime
+     * @return \DateTime|null
      */
     public function getUpdatedAt()
     {
@@ -758,7 +758,7 @@ class ProgramResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets url
      *
-     * @return string
+     * @return string|null
      */
     public function getUrl()
     {
@@ -782,7 +782,7 @@ class ProgramResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets workspace
      *
-     * @return string
+     * @return string|null
      */
     public function getWorkspace()
     {

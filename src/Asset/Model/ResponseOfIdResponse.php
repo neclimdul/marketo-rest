@@ -221,7 +221,7 @@ class ResponseOfIdResponse implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets errors
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\Error[]
+     * @return \NecLimDul\MarketoRest\Asset\Model\Error[]|null
      */
     public function getErrors()
     {
@@ -245,7 +245,7 @@ class ResponseOfIdResponse implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets request_id
      *
-     * @return string
+     * @return string|null
      */
     public function getRequestId()
     {
@@ -269,7 +269,7 @@ class ResponseOfIdResponse implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets result
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\IdResponse[]
+     * @return \NecLimDul\MarketoRest\Asset\Model\IdResponse[]|null
      */
     public function getResult()
     {
@@ -293,7 +293,7 @@ class ResponseOfIdResponse implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets success
      *
-     * @return bool
+     * @return bool|null
      */
     public function getSuccess()
     {
@@ -317,7 +317,7 @@ class ResponseOfIdResponse implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets warnings
      *
-     * @return string[]
+     * @return string[]|null
      */
     public function getWarnings()
     {

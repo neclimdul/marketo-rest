@@ -230,7 +230,7 @@ class LeadMapAttribute implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets read_only
      *
-     * @return bool
+     * @return bool|null
      */
     public function getReadOnly()
     {

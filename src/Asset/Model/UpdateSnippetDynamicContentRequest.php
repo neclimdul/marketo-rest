@@ -226,7 +226,7 @@ class UpdateSnippetDynamicContentRequest implements ModelInterface, ArrayAccess,
     /**
      * Gets type
      *
-     * @return string
+     * @return string|null
      */
     public function getType()
     {
@@ -260,7 +260,7 @@ class UpdateSnippetDynamicContentRequest implements ModelInterface, ArrayAccess,
     /**
      * Gets value
      *
-     * @return string
+     * @return string|null
      */
     public function getValue()
     {

@@ -221,7 +221,7 @@ class LandingPageDynamicContentResponse implements ModelInterface, ArrayAccess, 
     /**
      * Gets content
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\SegmentContent[]
+     * @return \NecLimDul\MarketoRest\Asset\Model\SegmentContent[]|null
      */
     public function getContent()
     {
@@ -245,7 +245,7 @@ class LandingPageDynamicContentResponse implements ModelInterface, ArrayAccess, 
     /**
      * Gets created_at
      *
-     * @return \DateTime
+     * @return \DateTime|null
      */
     public function getCreatedAt()
     {
@@ -269,7 +269,7 @@ class LandingPageDynamicContentResponse implements ModelInterface, ArrayAccess, 
     /**
      * Gets id
      *
-     * @return int
+     * @return int|null
      */
     public function getId()
     {
@@ -293,7 +293,7 @@ class LandingPageDynamicContentResponse implements ModelInterface, ArrayAccess, 
     /**
      * Gets segmentation
      *
-     * @return int
+     * @return int|null
      */
     public function getSegmentation()
     {
@@ -317,7 +317,7 @@ class LandingPageDynamicContentResponse implements ModelInterface, ArrayAccess, 
     /**
      * Gets updated_at
      *
-     * @return \DateTime
+     * @return \DateTime|null
      */
     public function getUpdatedAt()
     {

@@ -221,7 +221,7 @@ class ExportLeadRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets column_header_names
      *
-     * @return \NecLimDul\MarketoRest\Lead\Model\ColumnHeaderNames
+     * @return \NecLimDul\MarketoRest\Lead\Model\ColumnHeaderNames|null
      */
     public function getColumnHeaderNames()
     {
@@ -293,7 +293,7 @@ class ExportLeadRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets format
      *
-     * @return string
+     * @return string|null
      */
     public function getFormat()
     {

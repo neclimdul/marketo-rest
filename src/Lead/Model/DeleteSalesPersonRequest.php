@@ -206,7 +206,7 @@ class DeleteSalesPersonRequest implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets delete_by
      *
-     * @return string
+     * @return string|null
      */
     public function getDeleteBy()
     {

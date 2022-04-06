@@ -224,7 +224,7 @@ class LookupCustomObjectRequest implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Gets batch_size
      *
-     * @return int
+     * @return int|null
      */
     public function getBatchSize()
     {
@@ -248,7 +248,7 @@ class LookupCustomObjectRequest implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Gets fields
      *
-     * @return string[]
+     * @return string[]|null
      */
     public function getFields()
     {
@@ -272,7 +272,7 @@ class LookupCustomObjectRequest implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Gets filter_type
      *
-     * @return string
+     * @return string|null
      */
     public function getFilterType()
     {
@@ -320,7 +320,7 @@ class LookupCustomObjectRequest implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Gets next_page_token
      *
-     * @return string
+     * @return string|null
      */
     public function getNextPageToken()
     {

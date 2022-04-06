@@ -317,7 +317,7 @@ class UpdateFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets blank_fields
      *
-     * @return int
+     * @return int|null
      */
     public function getBlankFields()
     {
@@ -341,7 +341,7 @@ class UpdateFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets default_value
      *
-     * @return string
+     * @return string|null
      */
     public function getDefaultValue()
     {
@@ -365,7 +365,7 @@ class UpdateFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets field_type
      *
-     * @return string
+     * @return string|null
      */
     public function getFieldType()
     {
@@ -389,7 +389,7 @@ class UpdateFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets field_width
      *
-     * @return int
+     * @return int|null
      */
     public function getFieldWidth()
     {
@@ -413,7 +413,7 @@ class UpdateFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets form_prefill
      *
-     * @return bool
+     * @return bool|null
      */
     public function getFormPrefill()
     {
@@ -437,7 +437,7 @@ class UpdateFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets is_sensitive
      *
-     * @return bool
+     * @return bool|null
      */
     public function getIsSensitive()
     {
@@ -461,7 +461,7 @@ class UpdateFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets hint_text
      *
-     * @return string
+     * @return string|null
      */
     public function getHintText()
     {
@@ -485,7 +485,7 @@ class UpdateFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets initially_checked
      *
-     * @return bool
+     * @return bool|null
      */
     public function getInitiallyChecked()
     {
@@ -509,7 +509,7 @@ class UpdateFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets instructions
      *
-     * @return string
+     * @return string|null
      */
     public function getInstructions()
     {
@@ -533,7 +533,7 @@ class UpdateFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets label
      *
-     * @return string
+     * @return string|null
      */
     public function getLabel()
     {
@@ -557,7 +557,7 @@ class UpdateFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets label_to_right
      *
-     * @return bool
+     * @return bool|null
      */
     public function getLabelToRight()
     {
@@ -581,7 +581,7 @@ class UpdateFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets label_width
      *
-     * @return int
+     * @return int|null
      */
     public function getLabelWidth()
     {
@@ -605,7 +605,7 @@ class UpdateFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets mask_input
      *
-     * @return string
+     * @return string|null
      */
     public function getMaskInput()
     {
@@ -629,7 +629,7 @@ class UpdateFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets max_length
      *
-     * @return int
+     * @return int|null
      */
     public function getMaxLength()
     {
@@ -653,7 +653,7 @@ class UpdateFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets max_value
      *
-     * @return float
+     * @return float|null
      */
     public function getMaxValue()
     {
@@ -677,7 +677,7 @@ class UpdateFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets min_value
      *
-     * @return float
+     * @return float|null
      */
     public function getMinValue()
     {
@@ -701,7 +701,7 @@ class UpdateFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets multi_select
      *
-     * @return bool
+     * @return bool|null
      */
     public function getMultiSelect()
     {
@@ -725,7 +725,7 @@ class UpdateFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets required
      *
-     * @return bool
+     * @return bool|null
      */
     public function getRequired()
     {
@@ -749,7 +749,7 @@ class UpdateFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets validation_message
      *
-     * @return string
+     * @return string|null
      */
     public function getValidationMessage()
     {
@@ -773,7 +773,7 @@ class UpdateFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets values
      *
-     * @return string
+     * @return string|null
      */
     public function getValues()
     {
@@ -797,7 +797,7 @@ class UpdateFormFieldRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets visible_lines
      *
-     * @return int
+     * @return int|null
      */
     public function getVisibleLines()
     {

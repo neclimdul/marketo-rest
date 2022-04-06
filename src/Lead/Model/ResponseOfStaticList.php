@@ -266,7 +266,7 @@ class ResponseOfStaticList implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets next_page_token
      *
-     * @return string
+     * @return string|null
      */
     public function getNextPageToken()
     {

@@ -210,7 +210,7 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets external_company_id
      *
-     * @return string
+     * @return string|null
      */
     public function getExternalCompanyId()
     {
@@ -234,7 +234,7 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets id
      *
-     * @return int
+     * @return int|null
      */
     public function getId()
     {
@@ -258,7 +258,7 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets company
      *
-     * @return string
+     * @return string|null
      */
     public function getCompany()
     {

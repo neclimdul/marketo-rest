@@ -209,7 +209,7 @@ class UpdateLandingPageRedirectRuleRequest implements ModelInterface, ArrayAcces
     /**
      * Gets hostname
      *
-     * @return string
+     * @return string|null
      */
     public function getHostname()
     {
@@ -233,7 +233,7 @@ class UpdateLandingPageRedirectRuleRequest implements ModelInterface, ArrayAcces
     /**
      * Gets redirect_from
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\RedirectFrom
+     * @return \NecLimDul\MarketoRest\Asset\Model\RedirectFrom|null
      */
     public function getRedirectFrom()
     {
@@ -257,7 +257,7 @@ class UpdateLandingPageRedirectRuleRequest implements ModelInterface, ArrayAcces
     /**
      * Gets redirect_to
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\RedirectTo
+     * @return \NecLimDul\MarketoRest\Asset\Model\RedirectTo|null
      */
     public function getRedirectTo()
     {

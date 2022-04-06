@@ -230,7 +230,7 @@ class TokenResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets tokens
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\TokenDTO[]
+     * @return \NecLimDul\MarketoRest\Asset\Model\TokenDTO[]|null
      */
     public function getTokens()
     {

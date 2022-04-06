@@ -461,7 +461,7 @@ class SmartListResponseWithRules implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Gets rules
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\SmartListRules
+     * @return \NecLimDul\MarketoRest\Asset\Model\SmartListRules|null
      */
     public function getRules()
     {

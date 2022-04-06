@@ -221,7 +221,7 @@ class EmailDynamicContentItem implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets content
      *
-     * @return string
+     * @return string|null
      */
     public function getContent()
     {
@@ -245,7 +245,7 @@ class EmailDynamicContentItem implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets id
      *
-     * @return string
+     * @return string|null
      */
     public function getId()
     {
@@ -269,7 +269,7 @@ class EmailDynamicContentItem implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets segment_id
      *
-     * @return string
+     * @return string|null
      */
     public function getSegmentId()
     {
@@ -293,7 +293,7 @@ class EmailDynamicContentItem implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets segment_name
      *
-     * @return string
+     * @return string|null
      */
     public function getSegmentName()
     {
@@ -317,7 +317,7 @@ class EmailDynamicContentItem implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets type
      *
-     * @return string
+     * @return string|null
      */
     public function getType()
     {

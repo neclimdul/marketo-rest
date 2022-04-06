@@ -362,7 +362,7 @@ class Program implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets nurture_cadence
      *
-     * @return string
+     * @return string|null
      */
     public function getNurtureCadence()
     {
@@ -434,7 +434,7 @@ class Program implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets stream
      *
-     * @return string
+     * @return string|null
      */
     public function getStream()
     {

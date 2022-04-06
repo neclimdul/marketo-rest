@@ -206,7 +206,7 @@ class DeleteNamedAccountListRequest implements ModelInterface, ArrayAccess, \Jso
     /**
      * Gets delete_by
      *
-     * @return string
+     * @return string|null
      */
     public function getDeleteBy()
     {

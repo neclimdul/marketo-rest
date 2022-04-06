@@ -197,7 +197,7 @@ class UpdateThankYouPageRequest implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Gets thankyou
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\ThankYouPageRequest[]
+     * @return \NecLimDul\MarketoRest\Asset\Model\ThankYouPageRequest[]|null
      */
     public function getThankyou()
     {

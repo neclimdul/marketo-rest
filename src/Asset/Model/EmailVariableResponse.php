@@ -296,7 +296,7 @@ class EmailVariableResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets module_id
      *
-     * @return string
+     * @return string|null
      */
     public function getModuleId()
     {

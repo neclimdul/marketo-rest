@@ -260,7 +260,7 @@ class SyncCustomObjectTypeRequest implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Gets action
      *
-     * @return string
+     * @return string|null
      */
     public function getAction()
     {
@@ -342,7 +342,7 @@ class SyncCustomObjectTypeRequest implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Gets plural_name
      *
-     * @return string
+     * @return string|null
      */
     public function getPluralName()
     {
@@ -366,7 +366,7 @@ class SyncCustomObjectTypeRequest implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
     public function getDescription()
     {
@@ -390,7 +390,7 @@ class SyncCustomObjectTypeRequest implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Gets show_in_lead_detail
      *
-     * @return bool
+     * @return bool|null
      */
     public function getShowInLeadDetail()
     {

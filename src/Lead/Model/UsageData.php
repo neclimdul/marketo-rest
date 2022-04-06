@@ -236,7 +236,7 @@ class UsageData implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets total
      *
-     * @return int
+     * @return int|null
      */
     public function getTotal()
     {
@@ -260,7 +260,7 @@ class UsageData implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets users
      *
-     * @return \NecLimDul\MarketoRest\Lead\Model\UserCount[]
+     * @return \NecLimDul\MarketoRest\Lead\Model\UserCount[]|null
      */
     public function getUsers()
     {

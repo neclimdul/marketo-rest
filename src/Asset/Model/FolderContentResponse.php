@@ -203,7 +203,7 @@ class FolderContentResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets id
      *
-     * @return int
+     * @return int|null
      */
     public function getId()
     {
@@ -227,7 +227,7 @@ class FolderContentResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets type
      *
-     * @return string
+     * @return string|null
      */
     public function getType()
     {

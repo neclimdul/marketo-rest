@@ -203,7 +203,7 @@ class UpdateSmartCampaignRequest implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
     public function getDescription()
     {
@@ -227,7 +227,7 @@ class UpdateSmartCampaignRequest implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Gets name
      *
-     * @return string
+     * @return string|null
      */
     public function getName()
     {

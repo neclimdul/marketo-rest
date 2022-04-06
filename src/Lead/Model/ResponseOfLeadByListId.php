@@ -266,7 +266,7 @@ class ResponseOfLeadByListId implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets next_page_token
      *
-     * @return string
+     * @return string|null
      */
     public function getNextPageToken()
     {

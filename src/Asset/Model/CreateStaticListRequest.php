@@ -215,7 +215,7 @@ class CreateStaticListRequest implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
     public function getDescription()
     {

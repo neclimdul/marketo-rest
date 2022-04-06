@@ -293,7 +293,7 @@ class UpdateLandingPageDynamicContentRequest implements ModelInterface, ArrayAcc
     /**
      * Gets background_color
      *
-     * @return string
+     * @return string|null
      */
     public function getBackgroundColor()
     {
@@ -317,7 +317,7 @@ class UpdateLandingPageDynamicContentRequest implements ModelInterface, ArrayAcc
     /**
      * Gets border_color
      *
-     * @return string
+     * @return string|null
      */
     public function getBorderColor()
     {
@@ -341,7 +341,7 @@ class UpdateLandingPageDynamicContentRequest implements ModelInterface, ArrayAcc
     /**
      * Gets border_style
      *
-     * @return string
+     * @return string|null
      */
     public function getBorderStyle()
     {
@@ -365,7 +365,7 @@ class UpdateLandingPageDynamicContentRequest implements ModelInterface, ArrayAcc
     /**
      * Gets border_width
      *
-     * @return string
+     * @return string|null
      */
     public function getBorderWidth()
     {
@@ -389,7 +389,7 @@ class UpdateLandingPageDynamicContentRequest implements ModelInterface, ArrayAcc
     /**
      * Gets height
      *
-     * @return string
+     * @return string|null
      */
     public function getHeight()
     {
@@ -413,7 +413,7 @@ class UpdateLandingPageDynamicContentRequest implements ModelInterface, ArrayAcc
     /**
      * Gets hide_desktop
      *
-     * @return bool
+     * @return bool|null
      */
     public function getHideDesktop()
     {
@@ -437,7 +437,7 @@ class UpdateLandingPageDynamicContentRequest implements ModelInterface, ArrayAcc
     /**
      * Gets hide_mobile
      *
-     * @return bool
+     * @return bool|null
      */
     public function getHideMobile()
     {
@@ -461,7 +461,7 @@ class UpdateLandingPageDynamicContentRequest implements ModelInterface, ArrayAcc
     /**
      * Gets image_open_new_window
      *
-     * @return string
+     * @return string|null
      */
     public function getImageOpenNewWindow()
     {
@@ -485,7 +485,7 @@ class UpdateLandingPageDynamicContentRequest implements ModelInterface, ArrayAcc
     /**
      * Gets left
      *
-     * @return string
+     * @return string|null
      */
     public function getLeft()
     {
@@ -509,7 +509,7 @@ class UpdateLandingPageDynamicContentRequest implements ModelInterface, ArrayAcc
     /**
      * Gets link_url
      *
-     * @return string
+     * @return string|null
      */
     public function getLinkUrl()
     {
@@ -533,7 +533,7 @@ class UpdateLandingPageDynamicContentRequest implements ModelInterface, ArrayAcc
     /**
      * Gets opacity
      *
-     * @return string
+     * @return string|null
      */
     public function getOpacity()
     {
@@ -557,7 +557,7 @@ class UpdateLandingPageDynamicContentRequest implements ModelInterface, ArrayAcc
     /**
      * Gets segment
      *
-     * @return string
+     * @return string|null
      */
     public function getSegment()
     {
@@ -581,7 +581,7 @@ class UpdateLandingPageDynamicContentRequest implements ModelInterface, ArrayAcc
     /**
      * Gets top
      *
-     * @return string
+     * @return string|null
      */
     public function getTop()
     {
@@ -605,7 +605,7 @@ class UpdateLandingPageDynamicContentRequest implements ModelInterface, ArrayAcc
     /**
      * Gets type
      *
-     * @return string
+     * @return string|null
      */
     public function getType()
     {
@@ -629,7 +629,7 @@ class UpdateLandingPageDynamicContentRequest implements ModelInterface, ArrayAcc
     /**
      * Gets value
      *
-     * @return string
+     * @return string|null
      */
     public function getValue()
     {
@@ -653,7 +653,7 @@ class UpdateLandingPageDynamicContentRequest implements ModelInterface, ArrayAcc
     /**
      * Gets width
      *
-     * @return string
+     * @return string|null
      */
     public function getWidth()
     {
@@ -677,7 +677,7 @@ class UpdateLandingPageDynamicContentRequest implements ModelInterface, ArrayAcc
     /**
      * Gets z_index
      *
-     * @return string
+     * @return string|null
      */
     public function getZIndex()
     {

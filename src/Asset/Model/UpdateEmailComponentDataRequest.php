@@ -215,7 +215,7 @@ class UpdateEmailComponentDataRequest implements ModelInterface, ArrayAccess, \J
     /**
      * Gets from_email
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField
+     * @return \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField|null
      */
     public function getFromEmail()
     {
@@ -239,7 +239,7 @@ class UpdateEmailComponentDataRequest implements ModelInterface, ArrayAccess, \J
     /**
      * Gets from_name
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField
+     * @return \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField|null
      */
     public function getFromName()
     {
@@ -263,7 +263,7 @@ class UpdateEmailComponentDataRequest implements ModelInterface, ArrayAccess, \J
     /**
      * Gets reply_to
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField
+     * @return \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField|null
      */
     public function getReplyTo()
     {
@@ -287,7 +287,7 @@ class UpdateEmailComponentDataRequest implements ModelInterface, ArrayAccess, \J
     /**
      * Gets subject
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField
+     * @return \NecLimDul\MarketoRest\Asset\Model\EmailHeaderField|null
      */
     public function getSubject()
     {

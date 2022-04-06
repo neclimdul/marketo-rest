@@ -227,7 +227,7 @@ class ResponseWithoutResult implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets errors
      *
-     * @return \NecLimDul\MarketoRest\Lead\Model\Error[]
+     * @return \NecLimDul\MarketoRest\Lead\Model\Error[]|null
      */
     public function getErrors()
     {
@@ -251,7 +251,7 @@ class ResponseWithoutResult implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets next_page_token
      *
-     * @return string
+     * @return string|null
      */
     public function getNextPageToken()
     {
@@ -323,7 +323,7 @@ class ResponseWithoutResult implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets warnings
      *
-     * @return \NecLimDul\MarketoRest\Lead\Model\Warning[]
+     * @return \NecLimDul\MarketoRest\Lead\Model\Warning[]|null
      */
     public function getWarnings()
     {

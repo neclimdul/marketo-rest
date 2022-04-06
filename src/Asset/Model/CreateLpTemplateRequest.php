@@ -252,7 +252,7 @@ class CreateLpTemplateRequest implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
     public function getDescription()
     {
@@ -276,7 +276,7 @@ class CreateLpTemplateRequest implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets enable_munchkin
      *
-     * @return bool
+     * @return bool|null
      */
     public function getEnableMunchkin()
     {
@@ -348,7 +348,7 @@ class CreateLpTemplateRequest implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets template_type
      *
-     * @return string
+     * @return string|null
      */
     public function getTemplateType()
     {

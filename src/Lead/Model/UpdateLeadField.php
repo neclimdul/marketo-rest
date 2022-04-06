@@ -222,7 +222,7 @@ class UpdateLeadField implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets display_name
      *
-     * @return string
+     * @return string|null
      */
     public function getDisplayName()
     {
@@ -246,7 +246,7 @@ class UpdateLeadField implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
     public function getDescription()
     {
@@ -270,7 +270,7 @@ class UpdateLeadField implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets is_hidden
      *
-     * @return bool
+     * @return bool|null
      */
     public function getIsHidden()
     {
@@ -294,7 +294,7 @@ class UpdateLeadField implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets is_html_encoding_in_email
      *
-     * @return bool
+     * @return bool|null
      */
     public function getIsHtmlEncodingInEmail()
     {
@@ -318,7 +318,7 @@ class UpdateLeadField implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets is_sensitive
      *
-     * @return bool
+     * @return bool|null
      */
     public function getIsSensitive()
     {

@@ -227,7 +227,7 @@ class FormThankYouPageDTO implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets default
      *
-     * @return bool
+     * @return bool|null
      */
     public function getDefault()
     {
@@ -251,7 +251,7 @@ class FormThankYouPageDTO implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets followup_type
      *
-     * @return string
+     * @return string|null
      */
     public function getFollowupType()
     {
@@ -275,7 +275,7 @@ class FormThankYouPageDTO implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets followup_value
      *
-     * @return object
+     * @return object|null
      */
     public function getFollowupValue()
     {
@@ -299,7 +299,7 @@ class FormThankYouPageDTO implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets operator
      *
-     * @return string
+     * @return string|null
      */
     public function getOperator()
     {
@@ -323,7 +323,7 @@ class FormThankYouPageDTO implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets subject_field
      *
-     * @return string
+     * @return string|null
      */
     public function getSubjectField()
     {
@@ -347,7 +347,7 @@ class FormThankYouPageDTO implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets values
      *
-     * @return string[]
+     * @return string[]|null
      */
     public function getValues()
     {

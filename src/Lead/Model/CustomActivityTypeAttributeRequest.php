@@ -197,7 +197,7 @@ class CustomActivityTypeAttributeRequest implements ModelInterface, ArrayAccess,
     /**
      * Gets attributes
      *
-     * @return \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttribute[]
+     * @return \NecLimDul\MarketoRest\Lead\Model\CustomActivityTypeAttribute[]|null
      */
     public function getAttributes()
     {

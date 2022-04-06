@@ -209,7 +209,7 @@ class FormVisibilityRuleResponse implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Gets form_field_id
      *
-     * @return string
+     * @return string|null
      */
     public function getFormFieldId()
     {
@@ -233,7 +233,7 @@ class FormVisibilityRuleResponse implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Gets rule_type
      *
-     * @return string
+     * @return string|null
      */
     public function getRuleType()
     {
@@ -257,7 +257,7 @@ class FormVisibilityRuleResponse implements ModelInterface, ArrayAccess, \JsonSe
     /**
      * Gets rules
      *
-     * @return \NecLimDul\MarketoRest\Asset\Model\FormVisibilityRuleDTO[]
+     * @return \NecLimDul\MarketoRest\Asset\Model\FormVisibilityRuleDTO[]|null
      */
     public function getRules()
     {

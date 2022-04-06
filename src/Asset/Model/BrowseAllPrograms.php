@@ -363,7 +363,7 @@ class BrowseAllPrograms implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets created_at
      *
-     * @return \DateTime
+     * @return \DateTime|null
      */
     public function getCreatedAt()
     {
@@ -387,7 +387,7 @@ class BrowseAllPrograms implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
     public function getDescription()
     {
@@ -435,7 +435,7 @@ class BrowseAllPrograms implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets id
      *
-     * @return int
+     * @return int|null
      */
     public function getId()
     {
@@ -459,7 +459,7 @@ class BrowseAllPrograms implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets name
      *
-     * @return string
+     * @return string|null
      */
     public function getName()
     {
@@ -483,7 +483,7 @@ class BrowseAllPrograms implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets sfdc_id
      *
-     * @return string
+     * @return string|null
      */
     public function getSfdcId()
     {
@@ -507,7 +507,7 @@ class BrowseAllPrograms implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets sfdc_name
      *
-     * @return string
+     * @return string|null
      */
     public function getSfdcName()
     {
@@ -599,7 +599,7 @@ class BrowseAllPrograms implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets updated_at
      *
-     * @return \DateTime
+     * @return \DateTime|null
      */
     public function getUpdatedAt()
     {
@@ -623,7 +623,7 @@ class BrowseAllPrograms implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets url
      *
-     * @return string
+     * @return string|null
      */
     public function getUrl()
     {
@@ -647,7 +647,7 @@ class BrowseAllPrograms implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets workspace
      *
-     * @return string
+     * @return string|null
      */
     public function getWorkspace()
     {

@@ -308,7 +308,7 @@ class AddCustomObjectTypeField implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
     public function getDescription()
     {
@@ -332,7 +332,7 @@ class AddCustomObjectTypeField implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets is_dedupe_field
      *
-     * @return bool
+     * @return bool|null
      */
     public function getIsDedupeField()
     {
@@ -356,7 +356,7 @@ class AddCustomObjectTypeField implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets related_to
      *
-     * @return \NecLimDul\MarketoRest\Lead\Model\CustomObjectTypeFieldRelatedTo
+     * @return \NecLimDul\MarketoRest\Lead\Model\CustomObjectTypeFieldRelatedTo|null
      */
     public function getRelatedTo()
     {

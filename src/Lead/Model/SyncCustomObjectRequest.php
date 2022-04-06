@@ -239,7 +239,7 @@ class SyncCustomObjectRequest implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets action
      *
-     * @return string
+     * @return string|null
      */
     public function getAction()
     {
@@ -273,7 +273,7 @@ class SyncCustomObjectRequest implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets dedupe_by
      *
-     * @return string
+     * @return string|null
      */
     public function getDedupeBy()
     {

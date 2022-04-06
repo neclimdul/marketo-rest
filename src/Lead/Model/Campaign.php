@@ -292,7 +292,7 @@ class Campaign implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets active
      *
-     * @return bool
+     * @return bool|null
      */
     public function getActive()
     {
@@ -340,7 +340,7 @@ class Campaign implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
     public function getDescription()
     {
@@ -412,7 +412,7 @@ class Campaign implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets program_id
      *
-     * @return int
+     * @return int|null
      */
     public function getProgramId()
     {
@@ -436,7 +436,7 @@ class Campaign implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets program_name
      *
-     * @return string
+     * @return string|null
      */
     public function getProgramName()
     {
@@ -518,7 +518,7 @@ class Campaign implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets workspace_name
      *
-     * @return string
+     * @return string|null
      */
     public function getWorkspaceName()
     {

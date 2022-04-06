@@ -215,7 +215,7 @@ class PickListDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets is_default
      *
-     * @return bool
+     * @return bool|null
      */
     public function getIsDefault()
     {
@@ -239,7 +239,7 @@ class PickListDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets label
      *
-     * @return string
+     * @return string|null
      */
     public function getLabel()
     {
@@ -263,7 +263,7 @@ class PickListDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets selected
      *
-     * @return bool
+     * @return bool|null
      */
     public function getSelected()
     {
@@ -287,7 +287,7 @@ class PickListDTO implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets value
      *
-     * @return string
+     * @return string|null
      */
     public function getValue()
     {

@@ -237,7 +237,7 @@ class SyncNamedAccountListRequest implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Gets action
      *
-     * @return string
+     * @return string|null
      */
     public function getAction()
     {
@@ -271,7 +271,7 @@ class SyncNamedAccountListRequest implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Gets dedupe_by
      *
-     * @return string
+     * @return string|null
      */
     public function getDedupeBy()
     {

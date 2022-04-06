@@ -233,7 +233,7 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets input
      *
-     * @return \NecLimDul\MarketoRest\Lead\Model\PushLead[]
+     * @return \NecLimDul\MarketoRest\Lead\Model\PushLead[]|null
      */
     public function getInput()
     {
@@ -257,7 +257,7 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets lookup_field
      *
-     * @return string
+     * @return string|null
      */
     public function getLookupField()
     {
@@ -281,7 +281,7 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets partition_name
      *
-     * @return string
+     * @return string|null
      */
     public function getPartitionName()
     {
@@ -305,7 +305,7 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets program_name
      *
-     * @return string
+     * @return string|null
      */
     public function getProgramName()
     {
@@ -329,7 +329,7 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets program_status
      *
-     * @return string
+     * @return string|null
      */
     public function getProgramStatus()
     {
@@ -353,7 +353,7 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets reason
      *
-     * @return string
+     * @return string|null
      */
     public function getReason()
     {
@@ -377,7 +377,7 @@ class PushLeadToMarketoRequest implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets source
      *
-     * @return string
+     * @return string|null
      */
     public function getSource()
     {

@@ -236,7 +236,7 @@ class SendSampleEmailRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets lead_id
      *
-     * @return string
+     * @return string|null
      */
     public function getLeadId()
     {
@@ -260,7 +260,7 @@ class SendSampleEmailRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets text_only
      *
-     * @return bool
+     * @return bool|null
      */
     public function getTextOnly()
     {

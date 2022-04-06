@@ -332,7 +332,7 @@ class Activity implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets campaign_id
      *
-     * @return int
+     * @return int|null
      */
     public function getCampaignId()
     {
@@ -404,7 +404,7 @@ class Activity implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets marketo_guid
      *
-     * @return string
+     * @return string|null
      */
     public function getMarketoGuid()
     {
@@ -428,7 +428,7 @@ class Activity implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets primary_attribute_value
      *
-     * @return string
+     * @return string|null
      */
     public function getPrimaryAttributeValue()
     {
@@ -452,7 +452,7 @@ class Activity implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets primary_attribute_value_id
      *
-     * @return int
+     * @return int|null
      */
     public function getPrimaryAttributeValueId()
     {
