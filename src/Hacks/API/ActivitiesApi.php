@@ -11,6 +11,8 @@ class ActivitiesApi extends LeadActivitiesApi
 {
     /**
      * {@inheritDoc}
+     *
+     * @phpstan-return \NecLimDul\MarketoRest\Hacks\Model\ResponseOfActivity
      */
     public function getLeadActivitiesUsingGET(
       string $next_page_token,
@@ -52,6 +54,7 @@ class ActivitiesApi extends LeadActivitiesApi
             throw $this->getLeadActivitiesUsingGETHandleException($e);
         }
     }
+
     /**
      * {@inheritDoc}
      */
