@@ -15,15 +15,15 @@ class ActivitiesApi extends LeadActivitiesApi
      * @phpstan-return \NecLimDul\MarketoRest\Hacks\Model\ResponseOfActivity
      */
     public function getLeadActivitiesUsingGET(
-      string $next_page_token,
-      array $activity_type_ids,
-      array $asset_ids = NULL,
-      int $list_id = NULL,
-      array $lead_ids = NULL,
-      int $batch_size = NULL
+        string $next_page_token,
+        array $activity_type_ids,
+        array $asset_ids = null,
+        int $list_id = null,
+        array $lead_ids = null,
+        int $batch_size = null
     ): ResponseOfActivity {
-      list($response) = $this->getLeadActivitiesUsingGETWithHttpInfo($next_page_token, $activity_type_ids, $asset_ids, $list_id, $lead_ids, $batch_size);
-      return $response;
+        list($response) = $this->getLeadActivitiesUsingGETWithHttpInfo($next_page_token, $activity_type_ids, $asset_ids, $list_id, $lead_ids, $batch_size);
+        return $response;
     }
 
     /**
