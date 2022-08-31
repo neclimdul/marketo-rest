@@ -9,22 +9,22 @@ class CacheItem implements CacheItemInterface
     /**
      * @var string
      */
-    protected $key;
+    protected string $key;
     /**
      * @var mixed|null
      */
-    protected $value;
+    protected mixed $value;
     /**
      * @var bool
      */
-    protected $isHit;
+    protected bool $isHit;
 
     /**
      * @param string $key
      * @param mixed|null $value
      * @param bool $isHit
      */
-    public function __construct(string $key, $value = null, bool $isHit = false)
+    public function __construct(string $key, mixed $value = null, bool $isHit = false)
     {
         $this->key = $key;
         $this->value = $value;
@@ -34,7 +34,7 @@ class CacheItem implements CacheItemInterface
     /**
      * @inheritDoc
      */
-    public function getKey()
+    public function getKey(): string
     {
         return $this->key;
     }
@@ -42,7 +42,7 @@ class CacheItem implements CacheItemInterface
     /**
      * @inheritDoc
      */
-    public function get()
+    public function get(): mixed
     {
         return $this->value;
     }
@@ -50,7 +50,7 @@ class CacheItem implements CacheItemInterface
     /**
      * @inheritDoc
      */
-    public function isHit()
+    public function isHit(): bool
     {
         return $this->isHit;
     }
@@ -58,7 +58,7 @@ class CacheItem implements CacheItemInterface
     /**
      * @inheritDoc
      */
-    public function set($value)
+    public function set($value): static
     {
         $this->value = $value;
         return $this;
@@ -67,7 +67,7 @@ class CacheItem implements CacheItemInterface
     /**
      * @inheritDoc
      */
-    public function expiresAt($expiration)
+    public function expiresAt($expiration): static
     {
         return $this;
     }
@@ -75,7 +75,7 @@ class CacheItem implements CacheItemInterface
     /**
      * @inheritDoc
      */
-    public function expiresAfter($time)
+    public function expiresAfter($time): static
     {
         return $this;
     }

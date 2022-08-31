@@ -10,11 +10,11 @@ class StaticCachePool implements CacheItemPoolInterface
     /**
      * @var \Psr\Cache\CacheItemInterface[]
      */
-    private $deferred = [];
+    private array $deferred = [];
     /**
      * @var \Psr\Cache\CacheItemInterface[]
      */
-    private $cache = [];
+    private array $cache = [];
 
     /**
      * @inheritDoc
