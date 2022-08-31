@@ -19,7 +19,7 @@ class StaticCachePool implements CacheItemPoolInterface
     /**
      * @inheritDoc
      */
-    public function getItem($key)
+    public function getItem(string $key): CacheItemInterface
     {
         if ($this->deferred) {
             $this->commit();
@@ -37,7 +37,7 @@ class StaticCachePool implements CacheItemPoolInterface
      *
      * @phpstan-return array<string, \Psr\Cache\CacheItemInterface>
      */
-    public function getItems(array $keys = array())
+    public function getItems(array $keys = []): iterable
     {
         if ($this->deferred) {
             $this->commit();
@@ -48,7 +48,7 @@ class StaticCachePool implements CacheItemPoolInterface
     /**
      * @inheritDoc
      */
-    public function hasItem($key)
+    public function hasItem(string $key): bool
     {
         if (isset($this->deferred[$key])) {
             $this->commit();
@@ -59,7 +59,7 @@ class StaticCachePool implements CacheItemPoolInterface
     /**
      * @inheritDoc
      */
-    public function clear()
+    public function clear(): bool
     {
         $this->deferred = [];
         $this->cache = [];
@@ -69,7 +69,7 @@ class StaticCachePool implements CacheItemPoolInterface
     /**
      * @inheritDoc
      */
-    public function deleteItem($key)
+    public function deleteItem(string $key): bool
     {
         unset($this->cache[$key]);
         unset($this->deferred[$key]);
@@ -79,7 +79,7 @@ class StaticCachePool implements CacheItemPoolInterface
     /**
      * @inheritDoc
      */
-    public function deleteItems(array $keys)
+    public function deleteItems(array $keys): bool
     {
         foreach ($keys as $key) {
             unset($this->cache[$key]);
@@ -91,7 +91,7 @@ class StaticCachePool implements CacheItemPoolInterface
     /**
      * @inheritDoc
      */
-    public function save(CacheItemInterface $item)
+    public function save(CacheItemInterface $item): bool
     {
         $this->cache[$item->getKey()] = $item;
         return $this->commit();
@@ -100,7 +100,7 @@ class StaticCachePool implements CacheItemPoolInterface
     /**
      * @inheritDoc
      */
-    public function saveDeferred(CacheItemInterface $item)
+    public function saveDeferred(CacheItemInterface $item): bool
     {
         $this->deferred[$item->getKey()] = $item;
         return true;
@@ -109,7 +109,7 @@ class StaticCachePool implements CacheItemPoolInterface
     /**
      * @inheritDoc
      */
-    public function commit()
+    public function commit(): bool
     {
         foreach ($this->deferred as $k => $v) {
             $this->cache[$k] = $v;
