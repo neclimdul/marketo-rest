@@ -235,7 +235,7 @@ No authorization required
 
 Describe Program Member
 
-Returns metadata about program member objects in the target instance, including a list of all fields available for interaction via the APIs.  Required Permissions: Read-Only Lead, Read-Write Lead<br><br><b>Note: This endpoint has been superceded.</b>  Use <a href=\"/rest-api/endpoint-reference/lead-database-endpoint-reference/#/Leads/describeProgramMemberUsingGET2\">Describe Program Member</a> endpoint instead.
+Returns metadata about program member objects in the target instance, including a list of all fields available for interaction via the APIs.  Required Permissions: Read-Only Lead, Read-Write Lead<br><br><b>Note: This endpoint has been superceded.</b>  Use <a href=\"/rest-api/endpoint-reference/lead-database-endpoint-reference/#!/Program_Members/describeProgramMemberUsingGET2\">Describe Program Member</a> endpoint instead.
 
 ### Example
 ```php
