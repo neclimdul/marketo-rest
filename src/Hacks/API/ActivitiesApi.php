@@ -22,7 +22,7 @@ class ActivitiesApi extends LeadActivitiesApi
         array $lead_ids = null,
         int $batch_size = null
     ): ResponseOfActivity {
-        list($response) = $this->getLeadActivitiesUsingGETWithHttpInfo($next_page_token, $activity_type_ids, $asset_ids, $list_id, $lead_ids, $batch_size);
+        [$response] = $this->getLeadActivitiesUsingGETWithHttpInfo($next_page_token, $activity_type_ids, $asset_ids, $list_id, $lead_ids, $batch_size);
         return $response;
     }
 

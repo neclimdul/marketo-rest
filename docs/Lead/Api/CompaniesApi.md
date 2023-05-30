@@ -1,28 +1,34 @@
 # NecLimDul\MarketoRest\Lead\CompaniesApi
 
-All URIs are relative to *https://localhost:8080*
+All URIs are relative to https://localhost:8080.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**deleteCompaniesUsingPOST**](CompaniesApi.md#deleteCompaniesUsingPOST) | **POST** /rest/v1/companies/delete.json | Delete Companies
-[**describeUsingGET**](CompaniesApi.md#describeUsingGET) | **GET** /rest/v1/companies/describe.json | Describe Companies
-[**getCompaniesUsingGET**](CompaniesApi.md#getCompaniesUsingGET) | **GET** /rest/v1/companies.json | Get Companies
-[**getCompanyFieldByNameUsingGET**](CompaniesApi.md#getCompanyFieldByNameUsingGET) | **GET** /rest/v1/companies/schema/fields/{fieldApiName}.json | Get Company Field by Name
-[**getCompanyFieldsUsingGET**](CompaniesApi.md#getCompanyFieldsUsingGET) | **GET** /rest/v1/companies/schema/fields.json | Get Company Fields
-[**syncCompaniesUsingPOST**](CompaniesApi.md#syncCompaniesUsingPOST) | **POST** /rest/v1/companies.json | Sync Companies
+[**deleteCompaniesUsingPOST()**](CompaniesApi.md#deleteCompaniesUsingPOST) | **POST** /rest/v1/companies/delete.json | Delete Companies
+[**describeUsingGET()**](CompaniesApi.md#describeUsingGET) | **GET** /rest/v1/companies/describe.json | Describe Companies
+[**getCompaniesUsingGET()**](CompaniesApi.md#getCompaniesUsingGET) | **GET** /rest/v1/companies.json | Get Companies
+[**getCompanyFieldByNameUsingGET()**](CompaniesApi.md#getCompanyFieldByNameUsingGET) | **GET** /rest/v1/companies/schema/fields/{fieldApiName}.json | Get Company Field by Name
+[**getCompanyFieldsUsingGET()**](CompaniesApi.md#getCompanyFieldsUsingGET) | **GET** /rest/v1/companies/schema/fields.json | Get Company Fields
+[**syncCompaniesUsingPOST()**](CompaniesApi.md#syncCompaniesUsingPOST) | **POST** /rest/v1/companies.json | Sync Companies
 
 
-# **deleteCompaniesUsingPOST**
-> \NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany deleteCompaniesUsingPOST($delete_company_request)
+## `deleteCompaniesUsingPOST()`
+
+```php
+deleteCompaniesUsingPOST($delete_company_request): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany
+```
 
 Delete Companies
 
 Deletes the included list of company records from the destination instance.  Required Permissions: Read-Write Company
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
+
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\CompaniesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
@@ -37,7 +43,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling CompaniesApi->deleteCompaniesUsingPOST: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -56,22 +61,30 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
-# **describeUsingGET**
-> \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData describeUsingGET()
+## `describeUsingGET()`
+
+```php
+describeUsingGET(): \NecLimDul\MarketoRest\Lead\Model\ResponseOfObjectMetaData
+```
 
 Describe Companies
 
 Returns metadata about companies and the fields available for interaction via the API.  Required Permissions: Read-Only Company, Read-Write Company
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
+
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\CompaniesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
@@ -85,10 +98,10 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling CompaniesApi->describeUsingGET: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -101,33 +114,41 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
-# **getCompaniesUsingGET**
-> \NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany getCompaniesUsingGET($filter_type, $filter_values, $fields, $batch_size, $next_page_token)
+## `getCompaniesUsingGET()`
+
+```php
+getCompaniesUsingGET($filter_type, $filter_values, $fields, $batch_size, $next_page_token): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany
+```
 
 Get Companies
 
 Retrieves company records from the destination instance based on the submitted filter.  Required Permissions: Read-Only Company, Read-Write Company
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
+
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\CompaniesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$filter_type = "filter_type_example"; // string | The company field to filter on.  Searchable fields can be retrieved with the Describe Company call.
-$filter_values = array("filter_values_example"); // string[] | Comma-separated list of values to match against
-$fields = array("fields_example"); // string[] | Comma-separated list of fields to include in the response
+$filter_type = 'filter_type_example'; // string | The company field to filter on.  Searchable fields can be retrieved with the Describe Company call.
+$filter_values = array('filter_values_example'); // string[] | Comma-separated list of values to match against
+$fields = array('fields_example'); // string[] | Comma-separated list of fields to include in the response
 $batch_size = 56; // int | The batch size to return.  The max and default value is 300.
-$next_page_token = "next_page_token_example"; // string | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info.
+$next_page_token = 'next_page_token_example'; // string | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info.
 
 try {
     $result = $apiInstance->getCompaniesUsingGET($filter_type, $filter_values, $fields, $batch_size, $next_page_token);
@@ -135,7 +156,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling CompaniesApi->getCompaniesUsingGET: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -158,29 +178,37 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
-# **getCompanyFieldByNameUsingGET**
-> \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField getCompanyFieldByNameUsingGET($field_api_name)
+## `getCompanyFieldByNameUsingGET()`
+
+```php
+getCompanyFieldByNameUsingGET($field_api_name): \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField
+```
 
 Get Company Field by Name
 
 Retrieves metadata for single company field.  Required Permissions: Read-Write Schema Standard Field, Read-Write Schema Custom Field
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
+
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\CompaniesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$field_api_name = "field_api_name_example"; // string | The API name of company field
+$field_api_name = 'field_api_name_example'; // string | The API name of company field
 
 try {
     $result = $apiInstance->getCompanyFieldByNameUsingGET($field_api_name);
@@ -188,7 +216,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling CompaniesApi->getCompanyFieldByNameUsingGET: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -207,22 +234,30 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
-# **getCompanyFieldsUsingGET**
-> \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField getCompanyFieldsUsingGET($batch_size, $next_page_token)
+## `getCompanyFieldsUsingGET()`
+
+```php
+getCompanyFieldsUsingGET($batch_size, $next_page_token): \NecLimDul\MarketoRest\Lead\Model\ResponseOfLeadField
+```
 
 Get Company Fields
 
 Retrieves metadata for all company fields in the target instance.  Required Permissions: Read-Write Schema Standard Field, Read-Write Schema Custom Field
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
+
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\CompaniesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
@@ -230,7 +265,7 @@ $apiInstance = new NecLimDul\MarketoRest\Lead\Api\CompaniesApi(
     new GuzzleHttp\Client()
 );
 $batch_size = 56; // int | The batch size to return. The max and default value is 300.
-$next_page_token = "next_page_token_example"; // string | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
+$next_page_token = 'next_page_token_example'; // string | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter. See Paging Tokens for more info.
 
 try {
     $result = $apiInstance->getCompanyFieldsUsingGET($batch_size, $next_page_token);
@@ -238,7 +273,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling CompaniesApi->getCompanyFieldsUsingGET: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -258,22 +292,30 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
-# **syncCompaniesUsingPOST**
-> \NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany syncCompaniesUsingPOST($sync_company_request)
+## `syncCompaniesUsingPOST()`
+
+```php
+syncCompaniesUsingPOST($sync_company_request): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCompany
+```
 
 Sync Companies
 
 Allows inserting, updating, or upserting of company records into Marketo. Required Permissions: Read-Write Company
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
+
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\CompaniesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
@@ -288,7 +330,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling CompaniesApi->syncCompaniesUsingPOST: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -307,8 +348,9 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
-
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)

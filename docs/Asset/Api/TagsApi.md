@@ -1,31 +1,37 @@
 # NecLimDul\MarketoRest\Asset\TagsApi
 
-All URIs are relative to *https://localhost:8080*
+All URIs are relative to https://localhost:8080.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getTagByNameUsingGET**](TagsApi.md#getTagByNameUsingGET) | **GET** /rest/asset/v1/tagType/byName.json | Get Tag By Name
-[**getTagTypesUsingGET**](TagsApi.md#getTagTypesUsingGET) | **GET** /rest/asset/v1/tagTypes.json | Get Tag Types
+[**getTagByNameUsingGET()**](TagsApi.md#getTagByNameUsingGET) | **GET** /rest/asset/v1/tagType/byName.json | Get Tag By Name
+[**getTagTypesUsingGET()**](TagsApi.md#getTagTypesUsingGET) | **GET** /rest/asset/v1/tagTypes.json | Get Tag Types
 
 
-# **getTagByNameUsingGET**
-> \NecLimDul\MarketoRest\Asset\Model\ResponseOfTagResponse getTagByNameUsingGET($name)
+## `getTagByNameUsingGET()`
+
+```php
+getTagByNameUsingGET($name): \NecLimDul\MarketoRest\Asset\Model\ResponseOfTagResponse
+```
 
 Get Tag By Name
 
 Retrieves a tag by its name.  This will also return the set of valid values for the tag.  Required Permissions: Read-Only Assets, Read-Write Assets
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
+
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\TagsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$name = "name_example"; // string | Name of the tag
+$name = 'name_example'; // string | Name of the tag
 
 try {
     $result = $apiInstance->getTagByNameUsingGET($name);
@@ -33,7 +39,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling TagsApi->getTagByNameUsingGET: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -52,22 +57,30 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
-# **getTagTypesUsingGET**
-> \NecLimDul\MarketoRest\Asset\Model\ResponseOfTagResponseGetAll getTagTypesUsingGET($max_return, $offset)
+## `getTagTypesUsingGET()`
+
+```php
+getTagTypesUsingGET($max_return, $offset): \NecLimDul\MarketoRest\Asset\Model\ResponseOfTagResponseGetAll
+```
 
 Get Tag Types
 
 Retrieves a list of available tag types.  Required Permissions: Read-Only Assets, Read-Write Assets
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
+
 
 $apiInstance = new NecLimDul\MarketoRest\Asset\Api\TagsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
@@ -83,7 +96,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling TagsApi->getTagTypesUsingGET: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -103,8 +115,9 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
-
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)

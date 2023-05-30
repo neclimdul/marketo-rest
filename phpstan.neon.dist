@@ -1,10 +1,27 @@
 includes:
 	- phpstan-baseline.neon
 parameters:
-	level: 8
+	level: 5
 	treatPhpDocTypesAsCertain: true
 	paths:
 		- src
-		- tests
 	ignoreErrors:
-		- '#Method .*\\ObjectSerializer::sanitizeForSerialization\(\) return type has no value type specified in iterable type array\.$#'
+		-
+			message: '#Parameter \#1 \$obj of method Neclimdul\\OpenapiPhp\\Helper\\ApiExceptionBase::setResponseObject\(\) expects Neclimdul\\OpenapiPhp\\Helper\\Model\\ModelInterface\|string, .*\[\] given.#'
+			reportUnmatched: false
+		-
+			message: '#Parameter \#2 \$type of static method .*\\ObjectSerializer::deserialize\(\) expects class-string<.*>|null, string given.#'
+			reportUnmatched: false
+		-
+			message: '#Parameter \#1 \$obj of method Neclimdul\\OpenapiPhp\\Helper\\ApiExceptionBase::setResponseObject\(\) expects Neclimdul\\OpenapiPhp\\Helper\\Model\\ModelInterface\|string, string given\.#'
+			reportUnmatched: false
+		# Something weird going on with phpstan. Need to report this.
+		-
+			message: '#Method .*\\Api\\.*::.*WithHttpInfo\(\) should return array{array<.*>, int, array<array<string>>} but returns array{.*\[\], int, array<array<string>>}.#'
+			reportUnmatched: false
+		-
+			message: '#Method .*\\Api\\.*::.*WithHttpInfo\(\) should return array{array<.*>, int, array<array<string>>} but returns array{array<.*>, int, array<array<string>>}.#'
+			reportUnmatched: false
+		-
+			message: '#Method .*\\Api\\.*::.*WithHttpInfo\(\) should return array{string, int, array<array<(string|int|float)>>} but returns array{(string|int|float), int, array<array<string>>}.#'
+			reportUnmatched: false

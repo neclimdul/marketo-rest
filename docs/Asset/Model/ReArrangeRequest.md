@@ -4,6 +4,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**positions** | [**\NecLimDul\MarketoRest\Asset\Model\UpdateFieldPosition[]**](UpdateFieldPosition.md) |  | [optional] 
+**positions** | [**\NecLimDul\MarketoRest\Asset\Model\UpdateFieldPosition[]**](UpdateFieldPosition.md) |  | [optional]
 
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+[[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

@@ -1,26 +1,32 @@
 # NecLimDul\MarketoRest\Lead\CampaignsApi
 
-All URIs are relative to *https://localhost:8080*
+All URIs are relative to https://localhost:8080.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getCampaignByIdUsingGET**](CampaignsApi.md#getCampaignByIdUsingGET) | **GET** /rest/v1/campaigns/{campaignId}.json | Get Campaign By Id
-[**getCampaignsUsingGET**](CampaignsApi.md#getCampaignsUsingGET) | **GET** /rest/v1/campaigns.json | Get Campaigns
-[**scheduleCampaignUsingPOST**](CampaignsApi.md#scheduleCampaignUsingPOST) | **POST** /rest/v1/campaigns/{campaignId}/schedule.json | Schedule Campaign
-[**triggerCampaignUsingPOST**](CampaignsApi.md#triggerCampaignUsingPOST) | **POST** /rest/v1/campaigns/{campaignId}/trigger.json | Request Campaign
+[**getCampaignByIdUsingGET()**](CampaignsApi.md#getCampaignByIdUsingGET) | **GET** /rest/v1/campaigns/{campaignId}.json | Get Campaign By Id
+[**getCampaignsUsingGET()**](CampaignsApi.md#getCampaignsUsingGET) | **GET** /rest/v1/campaigns.json | Get Campaigns
+[**scheduleCampaignUsingPOST()**](CampaignsApi.md#scheduleCampaignUsingPOST) | **POST** /rest/v1/campaigns/{campaignId}/schedule.json | Schedule Campaign
+[**triggerCampaignUsingPOST()**](CampaignsApi.md#triggerCampaignUsingPOST) | **POST** /rest/v1/campaigns/{campaignId}/trigger.json | Request Campaign
 
 
-# **getCampaignByIdUsingGET**
-> \NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign getCampaignByIdUsingGET($campaign_id)
+## `getCampaignByIdUsingGET()`
+
+```php
+getCampaignByIdUsingGET($campaign_id): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign
+```
 
 Get Campaign By Id
 
 Returns the record of a campaign by its id.  Required Permissions: Read-Only Campaigns, Read-Write Campaigns<br><br><b>Note: This endpoint has been superceded.</b>  Use <a href=\"/rest-api/endpoint-reference/asset-endpoint-reference/#!/Smart_Campaigns/getSmartCampaignByIdUsingGET\">Get Smart Campaign by Id</a> endpoint instead.
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
+
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\CampaignsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
@@ -35,7 +41,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling CampaignsApi->getCampaignByIdUsingGET: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -54,22 +59,30 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
-# **getCampaignsUsingGET**
-> \NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign getCampaignsUsingGET($id, $name, $program_name, $workspace_name, $batch_size, $next_page_token, $is_triggerable)
+## `getCampaignsUsingGET()`
+
+```php
+getCampaignsUsingGET($id, $name, $program_name, $workspace_name, $batch_size, $next_page_token, $is_triggerable): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign
+```
 
 Get Campaigns
 
 Returns a list of campaign records.  Required Permissions: Read-Only Campaigns, Read-Write Campaigns<br><br><b>Note: This endpoint has been superceded.</b>  Use <a href=\"/rest-api/endpoint-reference/asset-endpoint-reference/#/Smart_Campaigns/getAllSmartCampaignsGET\">Get Smart Campaigns</a> endpoint instead.
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
+
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\CampaignsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
@@ -77,12 +90,12 @@ $apiInstance = new NecLimDul\MarketoRest\Lead\Api\CampaignsApi(
     new GuzzleHttp\Client()
 );
 $id = array(56); // int[] | Comma-separated list of campaign ids to return records for
-$name = array("name_example"); // string[] | Comma-separated list of names to filter on
-$program_name = array("program_name_example"); // string[] | Comma-separated list of program names to filter on.  If set, will filter to only campaigns which are children of the designated programs.
-$workspace_name = array("workspace_name_example"); // string[] | Comma-separated list of workspace names to filter on.  If set, will only return campaigns in the given workspaces.
+$name = array('name_example'); // string[] | Comma-separated list of names to filter on
+$program_name = array('program_name_example'); // string[] | Comma-separated list of program names to filter on.  If set, will filter to only campaigns which are children of the designated programs.
+$workspace_name = array('workspace_name_example'); // string[] | Comma-separated list of workspace names to filter on.  If set, will only return campaigns in the given workspaces.
 $batch_size = 56; // int | Maximum number of records to return.  Maximum and default is 300.
-$next_page_token = "next_page_token_example"; // string | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info.
-$is_triggerable = true; // bool | Set to true to return active Campaigns which have a Campaign is Requested trigger and source is Web Service API
+$next_page_token = 'next_page_token_example'; // string | A token will be returned by this endpoint if the result set is greater than the batch size and can be passed in a subsequent call through this parameter.  See Paging Tokens for more info.
+$is_triggerable = True; // bool | Set to true to return active Campaigns which have a Campaign is Requested trigger and source is Web Service API
 
 try {
     $result = $apiInstance->getCampaignsUsingGET($id, $name, $program_name, $workspace_name, $batch_size, $next_page_token, $is_triggerable);
@@ -90,7 +103,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling CampaignsApi->getCampaignsUsingGET: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -115,22 +127,30 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
-# **scheduleCampaignUsingPOST**
-> \NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign scheduleCampaignUsingPOST($campaign_id, $schedule_campaign_request)
+## `scheduleCampaignUsingPOST()`
+
+```php
+scheduleCampaignUsingPOST($campaign_id, $schedule_campaign_request): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign
+```
 
 Schedule Campaign
 
 Remotely schedules a batch campaign to run at a given time.  My tokens local to the campaign's parent program can be overridden for the run to customize content.  When using the \"cloneToProgramName\" parameter described below, this endpoint is limited to 20 calls per day. Required Permissions: Execute Campaign
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
+
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\CampaignsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
@@ -146,7 +166,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling CampaignsApi->scheduleCampaignUsingPOST: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -166,22 +185,30 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
-# **triggerCampaignUsingPOST**
-> \NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign triggerCampaignUsingPOST($campaign_id, $trigger_campaign_request)
+## `triggerCampaignUsingPOST()`
+
+```php
+triggerCampaignUsingPOST($campaign_id, $trigger_campaign_request): \NecLimDul\MarketoRest\Lead\Model\ResponseOfCampaign
+```
 
 Request Campaign
 
 Passes a set of leads to a trigger campaign to run through the campaign's flow.  The designated campaign must have a Campaign is Requested: Web Service API trigger, and must be active.  My tokens local to the campaign's parent program can be overridden for the run to customize content. A maximum of 100 leads are allowed per call. Required Permissions: Execute Campaign
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
+
 
 $apiInstance = new NecLimDul\MarketoRest\Lead\Api\CampaignsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
@@ -197,7 +224,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling CampaignsApi->triggerCampaignUsingPOST: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -217,8 +243,9 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
-
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
