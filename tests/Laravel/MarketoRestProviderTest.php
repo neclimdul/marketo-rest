@@ -53,6 +53,7 @@ class MarketoRestProviderTest extends TestCase
             preg_match('#src/(.*)/Api#', $class->getPath(), $matches);
             $x[] = 'NecLimDul\MarketoRest\\' . $matches[1] . '\Api\\' . basename($class->getFilename(), '.php');
         }
+        $x[] = 'NecLimDul\MarketoRest\Hacks\API\LeadsApi';
         return $x;
     }
 

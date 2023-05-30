@@ -192,7 +192,7 @@ class MarketoRestProvider extends ServiceProvider
             CampaignsApi::class,
             CompaniesApi::class,
             CustomObjectsApi::class,
-            LeadsApiHack::class,
+            LeadsApi::class,
             NamedAccountListsApi::class,
             NamedAccountsApi::class,
             OpportunitiesApi::class,
@@ -200,6 +200,9 @@ class MarketoRestProvider extends ServiceProvider
             SalesPersonsApi::class,
             LeadStaticListsApi::class,
             UsageApi::class,
+
+            // Hacks
+            LeadsApiHack::class,
         ];
     }
 
