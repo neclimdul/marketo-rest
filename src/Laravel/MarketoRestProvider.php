@@ -27,6 +27,7 @@ use NecLimDul\MarketoRest\Asset\Api\TokensApi;
 use NecLimDul\MarketoRest\Asset\Configuration as AssetConfiguration;
 use NecLimDul\MarketoRest\ClientFactory;
 use NecLimDul\MarketoRest\Configuration;
+use NecLimDul\MarketoRest\Hacks\API\LeadsApi as LeadsApiHack;
 use NecLimDul\MarketoRest\Identity\Api\IdentityApi;
 use NecLimDul\MarketoRest\Identity\Configuration as IdentityConfiguration;
 use NecLimDul\MarketoRest\Lead\Api\ActivitiesApi;
@@ -138,6 +139,7 @@ class MarketoRestProvider extends ServiceProvider
         $this->registerSingleton(CompaniesApi::class, $oauthClient, $config);
         $this->registerSingleton(CustomObjectsApi::class, $oauthClient, $config);
         $this->registerSingleton(LeadsApi::class, $oauthClient, $config);
+        $this->registerSingleton(LeadsApiHack::class, $oauthClient, $config);
         $this->registerSingleton(NamedAccountListsApi::class, $oauthClient, $config);
         $this->registerSingleton(NamedAccountsApi::class, $oauthClient, $config);
         $this->registerSingleton(OpportunitiesApi::class, $oauthClient, $config);
@@ -190,7 +192,7 @@ class MarketoRestProvider extends ServiceProvider
             CampaignsApi::class,
             CompaniesApi::class,
             CustomObjectsApi::class,
-            LeadsApi::class,
+            LeadsApiHack::class,
             NamedAccountListsApi::class,
             NamedAccountsApi::class,
             OpportunitiesApi::class,
