@@ -16,6 +16,30 @@ class LeadsApi extends LeadsLeadsApi
     /**
      * {@inheritDoc}
      */
+    public function getLeadsByFilterUsingGETRequest($filter_type, $filter_values, $fields = null, $batch_size = null, $next_page_token = null) {
+        $request = parent::getLeadsByFilterUsingGETRequest($filter_type, $filter_values, $fields, $batch_size, $next_page_token);
+        $uri = Uri::withQueryValue(
+            $request->getUri(),
+            'filterValues',
+            // Docs: A comma-separated list of values to filter on in the specified fields.
+            // Hack values into the expected format.
+            ObjectSerializer::serializeCollection($filter_values, 'csv')
+        );
+        if (isset($fields)) {
+            $uri = Uri::withQueryValue(
+                $request->getUri(),
+                'fields',
+                // Docs: A comma-separated list of lead fields to return for each record.
+                // Hack values into the expected format.
+                ObjectSerializer::serializeCollection($fields, 'csv')
+            );
+        }
+        return $request->withUri($uri);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function submitFormUsingPOSTWithHttpInfo($submit_form_request)
     {
         $request = $this->submitFormUsingPOSTRequest($submit_form_request);
