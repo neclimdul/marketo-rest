@@ -27,7 +27,7 @@ class LeadsApi extends LeadsLeadsApi
         );
         if (isset($fields)) {
             $uri = Uri::withQueryValue(
-                $request->getUri(),
+                $uri,
                 'fields',
                 // Docs: A comma-separated list of lead fields to return for each record.
                 // Hack values into the expected format.
