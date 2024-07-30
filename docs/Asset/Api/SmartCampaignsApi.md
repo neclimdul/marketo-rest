@@ -75,7 +75,7 @@ No authorization required
 ## `cloneSmartCampaignUsingPOST()`
 
 ```php
-cloneSmartCampaignUsingPOST($id, $folder, $name, $description, $is_executable): \NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse
+cloneSmartCampaignUsingPOST($id, $folder, $name, $description): \NecLimDul\MarketoRest\Asset\Model\ResponseOfSmartCampaignResponse
 ```
 
 Clone Smart Campaign
@@ -99,10 +99,9 @@ $id = 56; // int | Id of the smart campaign
 $folder = new \NecLimDul\MarketoRest\Asset\Model\Folder(); // \NecLimDul\MarketoRest\Asset\Model\Folder
 $name = 'name_example'; // string | Name of the smart campaign
 $description = 'description_example'; // string | Description of the smart campaign
-$is_executable = True; // bool | Whether smart campaign is executable.  Defaults to false
 
 try {
-    $result = $apiInstance->cloneSmartCampaignUsingPOST($id, $folder, $name, $description, $is_executable);
+    $result = $apiInstance->cloneSmartCampaignUsingPOST($id, $folder, $name, $description);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling SmartCampaignsApi->cloneSmartCampaignUsingPOST: ', $e->getMessage(), PHP_EOL;
@@ -117,7 +116,6 @@ Name | Type | Description  | Notes
  **folder** | [**\NecLimDul\MarketoRest\Asset\Model\Folder**](../Model/Folder.md)|  |
  **name** | **string**| Name of the smart campaign |
  **description** | **string**| Description of the smart campaign | [optional]
- **is_executable** | **bool**| Whether smart campaign is executable.  Defaults to false | [optional]
 
 ### Return type
 

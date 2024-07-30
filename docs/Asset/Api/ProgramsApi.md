@@ -8,14 +8,12 @@ Method | HTTP request | Description
 [**browseProgramsUsingGET()**](ProgramsApi.md#browseProgramsUsingGET) | **GET** /rest/asset/v1/programs.json | Get Programs
 [**cloneProgramUsingPOST()**](ProgramsApi.md#cloneProgramUsingPOST) | **POST** /rest/asset/v1/program/{id}/clone.json | Clone Program
 [**createProgramUsingPOST()**](ProgramsApi.md#createProgramUsingPOST) | **POST** /rest/asset/v1/programs.json | Create Program
-[**deleteProgramTagUsingPOST()**](ProgramsApi.md#deleteProgramTagUsingPOST) | **POST** /rest/asset/v1/program/{id}/tag/{tagType}/delete.json | Delete Program Tag
 [**deleteProgramUsingPOST()**](ProgramsApi.md#deleteProgramUsingPOST) | **POST** /rest/asset/v1/program/{id}/delete.json | Delete Program
 [**getProgramByIdUsingGET()**](ProgramsApi.md#getProgramByIdUsingGET) | **GET** /rest/asset/v1/program/{id}.json | Get Program by Id
 [**getProgramByNameUsingGET()**](ProgramsApi.md#getProgramByNameUsingGET) | **GET** /rest/asset/v1/program/byName.json | Get Program by Name
 [**getProgramListByTagUsingGET()**](ProgramsApi.md#getProgramListByTagUsingGET) | **GET** /rest/asset/v1/program/byTag.json | Get Programs by Tag
 [**getSmartListByProgramIdUsingGET()**](ProgramsApi.md#getSmartListByProgramIdUsingGET) | **GET** /rest/asset/v1/program/{programId}/smartList.json | Get Smart List by Program Id
 [**unapproveProgramUsingPOST()**](ProgramsApi.md#unapproveProgramUsingPOST) | **POST** /rest/asset/v1/program/{id}/unapprove.json | Unapprove Program
-[**updateProgramTagUsingPOST()**](ProgramsApi.md#updateProgramTagUsingPOST) | **POST** /rest/asset/v1/program/{id}/tag/{tagType}.json | Update Program Tag
 [**updateProgramUsingPOST()**](ProgramsApi.md#updateProgramUsingPOST) | **POST** /rest/asset/v1/program/{id}.json | Update Program Metadata
 
 
@@ -263,64 +261,6 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: `application/x-www-form-urlencoded`
-- **Accept**: `application/json`
-
-[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
-[[Back to Model list]](../../README.md#models)
-[[Back to README]](../../README.md)
-
-## `deleteProgramTagUsingPOST()`
-
-```php
-deleteProgramTagUsingPOST($id, $tag_type): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse
-```
-
-Delete Program Tag
-
-Delete non-required program tag.  Required Permissions: Read-Write Assets
-
-### Example
-
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-
-
-$apiInstance = new NecLimDul\MarketoRest\Asset\Api\ProgramsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
-);
-$id = 56; // int | id
-$tag_type = 'tag_type_example'; // string | Type of program tag
-
-try {
-    $result = $apiInstance->deleteProgramTagUsingPOST($id, $tag_type);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling ProgramsApi->deleteProgramTagUsingPOST: ', $e->getMessage(), PHP_EOL;
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| id |
- **tag_type** | **string**| Type of program tag |
-
-### Return type
-
-[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse**](../Model/ResponseOfIdResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
 - **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
@@ -657,66 +597,6 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| id |
-
-### Return type
-
-[**\NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse**](../Model/ResponseOfIdResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: `application/json`
-
-[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
-[[Back to Model list]](../../README.md#models)
-[[Back to README]](../../README.md)
-
-## `updateProgramTagUsingPOST()`
-
-```php
-updateProgramTagUsingPOST($id, $tag_type, $tag_value): \NecLimDul\MarketoRest\Asset\Model\ResponseOfIdResponse
-```
-
-Update Program Tag
-
-Update program tag.  Required Permissions: Read-Write Assets
-
-### Example
-
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-
-
-$apiInstance = new NecLimDul\MarketoRest\Asset\Api\ProgramsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
-);
-$id = 56; // int | id
-$tag_type = 'tag_type_example'; // string | Type of program tag
-$tag_value = 'tag_value_example'; // string | Value of program tag
-
-try {
-    $result = $apiInstance->updateProgramTagUsingPOST($id, $tag_type, $tag_value);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling ProgramsApi->updateProgramTagUsingPOST: ', $e->getMessage(), PHP_EOL;
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| id |
- **tag_type** | **string**| Type of program tag |
- **tag_value** | **string**| Value of program tag |
 
 ### Return type
 

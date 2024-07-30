@@ -189,7 +189,7 @@ No authorization required
 ## `getFilesUsingGET()`
 
 ```php
-getFilesUsingGET($get_files_request, $folder): \NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse
+getFilesUsingGET($folder, $offset, $max_return): \NecLimDul\MarketoRest\Asset\Model\ResponseOfFileResponse
 ```
 
 Get Files
@@ -209,11 +209,12 @@ $apiInstance = new NecLimDul\MarketoRest\Asset\Api\FilesApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$get_files_request = new \NecLimDul\MarketoRest\Asset\Model\GetFilesRequest(); // \NecLimDul\MarketoRest\Asset\Model\GetFilesRequest | getFilesRequest
 $folder = 'folder_example'; // string | JSON representation of parent folder, with members 'id', and 'type' which may be 'Folder' or 'Program'
+$offset = 56; // int | Integer offset for paging.  Default 0
+$max_return = 56; // int | Maximum number of files to return.  Max 200, default 20
 
 try {
-    $result = $apiInstance->getFilesUsingGET($get_files_request, $folder);
+    $result = $apiInstance->getFilesUsingGET($folder, $offset, $max_return);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling FilesApi->getFilesUsingGET: ', $e->getMessage(), PHP_EOL;
@@ -224,8 +225,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **get_files_request** | [**\NecLimDul\MarketoRest\Asset\Model\GetFilesRequest**](../Model/GetFilesRequest.md)| getFilesRequest |
  **folder** | **string**| JSON representation of parent folder, with members &#39;id&#39;, and &#39;type&#39; which may be &#39;Folder&#39; or &#39;Program&#39; | [optional]
+ **offset** | **int**| Integer offset for paging.  Default 0 | [optional]
+ **max_return** | **int**| Maximum number of files to return.  Max 200, default 20 | [optional]
 
 ### Return type
 
@@ -237,7 +239,7 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: `application/json`
+- **Content-Type**: Not defined
 - **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
